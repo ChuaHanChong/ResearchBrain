@@ -1,11 +1,11 @@
 ---
 name: alphaxiv-paper-lookup
-description: Look up any arxiv paper on alphaxiv.org to get a structured AI-generated overview. This is faster and more reliable than trying to read a raw PDF.
+description: Use this skill any time the user shares an arxiv paper URL (arxiv.org/abs/..., arxiv.org/pdf/..., alphaxiv.org/overview/...) or provides an arxiv paper ID (like 2401.12345 or 2312.00752v2) and wants it explained, summarized, or analyzed. Also invoke it proactively when you spot a numeric arxiv ID pattern or arxiv/alphaxiv URL in the message, even without an explicit request — the user almost certainly wants you to fetch the paper rather than guess from memory. Don't use for: general research concept questions with no specific paper, paper search requests, local PDFs, or non-arxiv URLs.
 ---
 
 # AlphaXiv Paper Lookup
 
-Look up any arxiv paper on alphaxiv.org to get a structured AI-generated overview. This is faster and more reliable than trying to read a raw PDF.
+Fetch and present an arxiv paper's content via alphaxiv.org — faster and more accurate than guessing from memory or attempting to read a raw PDF.
 
 ## When to Use
 
