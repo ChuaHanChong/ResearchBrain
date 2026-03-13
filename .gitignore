@@ -1,2 +1,6 @@
+__pycache__/
 .obsidian/
 .venv/
+.playwright*/
+Artefacts/
+docs/superpowers/
