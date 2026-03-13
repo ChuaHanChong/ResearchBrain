@@ -3,7 +3,7 @@ name: alphaxiv-summary-extract
 description: Use when the user says "update knowledge hub". Batch-processes a list
   of arxiv papers from knowledge.py using Selenium, scrapes structured summaries
   (Problem/Method/Results/Takeaways) from alphaxiv.org, and saves incrementally to
-  KnowledgeHub.json — skipping papers already in the KB. Do NOT use for single-paper
+  KnowledgeHub.json — skipping papers already in the KH. Do NOT use for single-paper
   lookup — use alphaxiv-paper-lookup instead.
 ---
 
@@ -56,7 +56,7 @@ python .claude/skills/alphaxiv-summary-extract/scripts/run.py \
 
 After the script completes, report to the user:
 - **Processed**: N new papers added to `KnowledgeHub.json`
-- **Skipped**: N papers already in KB (not re-scraped)
+- **Skipped**: N papers already in KH (not re-scraped)
 - **Failed**: list any paper URLs that errored
 - **Quality warnings**: any sections with fewer than 3 items
 

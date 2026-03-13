@@ -1,4 +1,347 @@
+# https://openreview.net/pdf/58ae64a1243fe5eb4669747ba8a3d9db6b127a57.pdf
+# https://openreview.net/pdf/63372d8188e117ec55aacd7962f4ec34ef94f2d0.pdf
+# https://openreview.net/pdf/18a6f96fdfd2566b5c60672e65c9ba24218298ef.pdf
+# https://openreview.net/pdf/5be312192ce6bcfe22acd8b83f8deedc148f53a5.pdf
+# https://openaccess.thecvf.com//content/CVPR2025/papers/Xu_VLMs-Guided_Representation_Distillation_for_Efficient_Vision-Based_Reinforcement_Learning_CVPR_2025_paper.pdf
+# https://openaccess.thecvf.com//content/CVPR2025/papers/Yang_ImagineFSL_Self-Supervised_Pretraining_Matters_on_Imagined_Base_Set_for_VLM-based_CVPR_2025_paper.pdf
+# https://openaccess.thecvf.com//content/CVPR2025/papers/Zhang_Adaptive_Parameter_Selection_for_Tuning_Vision-Language_Models_CVPR_2025_paper.pdf
+
+# https://openaccess.thecvf.com/content/ICCV2023/html/Ngo_Improved_Knowledge_Transfer_for_Semi-Supervised_Domain_Adaptation_via_Trico_Training_ICCV_2023_paper.html
+# https://openaccess.thecvf.com/content/ICCV2023/html/Lai_PADCLIP_Pseudo-labeling_with_Adaptive_Debiasing_in_CLIP_for_Unsupervised_Domain_ICCV_2023_paper.html
+# https://medium.com/@hbgallella/how-to-modify-openais-clip-model-for-fine-grained-classification-d912f0364370
+# https://hexiangteng.github.io/papers/ACM%20MM%202023%20FGVPL.pdf
+
+# https://www.semanticscholar.org/paper/The-Image-Data-and-Backbone-in-Weakly-Supervised-A-Ye-Wang/c38ad5b118a7506c45c4f7a45e03434ea6801f89
+
+# https://github.com/MoonshotAI/Kimi-K2/blob/main/tech_report.pdf
+# https://iliao2345.github.io/blog_posts/arc_agi_without_pretraining/arc_agi_without_pretraining.html
+
+# https://eugeneyan.com/writing/eval-process/  # An LLM-as-Judge Won't Save The Product—Fixing Your Process Will
+# https://eugeneyan.com/writing/llm-evaluators/  # Evaluating the Effectiveness of LLM-Evaluators (aka LLM-as-Judge)
+
+# https://cameronrwolfe.substack.com/p/online-rl  # Online versus Offline RL for LLMs
+# https://huggingface.co/posts/Kseniase/304021452230579  # 10 Latest Preference Optimization Techniques
+# https://thinkingmachines.ai/blog/lora/  # LoRA Without Regret
+# https://goyalpramod.github.io/blogs/Transformers_laid_out/  # Transformers Laid Out 
+# https://accessible-dragon-75f.notion.site/RL-Grokking-Recipe-How-Can-We-Enable-LLMs-to-Solve-Previously-Unsolvable-Tasks-with-RL-100a1714e6778062bae5eafad8e7677d  # RL Grokking Recipe: How Can We Enable LLMs to Solve Previously Unsolvable Tasks with RL?
+# https://huggingface.co/posts/Kseniase/610901061800000  # 8 Emerging trends in Reinforcement Learning
+# https://alexzhang13.github.io/blog/2025/rlm/  # Recursive Language Models
+
+# https://openreview.net/pdf/77e449189a700d3dab4933758d1a373e27313aae.pdf  # Enhancing Contrastive Learning with Variable Similarity
+# https://openreview.net/pdf/46f20263cc2abbd139b0f9be3ada52e0fd7427d5.pdf  # UniViT: Unifying Image and Video Understanding in One Vision Encoder
+# https://github.com/alexstoken/image-matching-models
+# https://tencentcloudadp.github.io/youtu-agent/
+# https://cameronrwolfe.substack.com/p/online-rl  # Online versus Offline RL for LLMs
+# https://github.com/EvolvingLMMs-Lab/lmms-engine  # A simple, unified multimodal models training engine. Lean, flexible, and built for hacking at scale.
+# https://huggingface.co/spaces/HuggingFaceH4/on-policy-distillation
+# https://openreview.net/pdf/3ec902e63d7caa0a34c58304a519e30a791073d1.pdf  # VaMP: Variational Multi-Modal Prompt Learning for Vision-Language Models
+# https://aclanthology.org/2025.findings-emnlp.643.pdf  # Curr-ReFT: Overcoming Training Bottlenecks in Small-scale Vision-Language Models via Curriculum Reinforcement Finetuning
+# https://relieved-cafe-fe1.notion.site/JustRL-Scaling-a-1-5B-LLM-with-a-Simple-RL-Recipe-24f6198b0b6b80e48e74f519bfdaf0a8  # JustRL: Scaling a 1.5B LLM with a Simple RL Recipe
+# https://abehrouz.github.io/files/NL.pdf?fbclid=IwdGRleAODBAZleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAo2NjI4NTY4Mzc5AAEeIXNznU6Zn8tAEZ_OSIlzjpYN7fbeF-m2pxWrJV2twXR4AsXv82F2KjNWq1s_aem_k7Xw_NCghslXQqWXtjKkZQ  # Nested Learning: The Illusion of Deep Learning Architectures
+# https://www.nature.com/articles/s41586-025-09761-x # Discovering state-of-the-art reinforcement learning algorithms
+
+# https://openaccess.thecvf.com/content/WACV2023/papers/Mo_Multi-Level_Contrastive_Learning_for_Self-Supervised_Vision_Transformers_WACV_2023_paper.pdf
+# https://ojs.aaai.org/index.php/AAAI/article/view/28561
+
+# https://openreview.net/pdf?id=M0MF4t3hE9
+# https://dl.acm.org/doi/10.1145/3595916.3626396
+# https://pdfs.semanticscholar.org/7bcd/f8a7c78e98e734e0ae074ee7cbc8c3fc5db3.pdf?_gl=1*1f7xyt9*_gcl_au*MTQ1NzQ2OTEzMS4xNzM5OTAwNzY4*_ga*MTA3ODQzNDczMS4xNzM5OTAwNzY4*_ga_H7P4ZT52H5*MTc0NTk0MTk4MC41Mi4xLjE3NDU5NDM4MTUuNTAuMC4w
+# https://proceedings.neurips.cc/paper_files/paper/2021/file/fc1a36821b02abbd2503fd949bfc9131-Paper.pdf
+# https://openaccess.thecvf.com/content/CVPR2021/papers/Chen_Adaptive_Image_Transformer_for_One-Shot_Object_Detection_CVPR_2021_paper.pdf
+
+# https://cameronrwolfe.substack.com/p/grpo-tricks  # GRPO++: Tricks for Making RL Actually Work
+# https://cameronrwolfe.substack.com/p/online-rl  # Online versus Offline RL for LLMs
+# https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence  # From Words to Worlds: Spatial Intelligence is AI’s Next Frontier
+
+# https://www-cs-faculty.stanford.edu/~knuth/papers/claude-cycles.pdf
+
+# https://github.com/zli12321/MM-Zero
+
 papers = [
     "https://arxiv.org/abs/2601.22628", # TTCS: Test-Time Curriculum Synthesis for Self-Evolving
     "https://arxiv.org/abs/2508.15568", # Backpropagation-Free Test-Time Adaptation via Probabilistic Gaussian Alignment
+    "https://arxiv.org/abs/2602.00462", # LATENTLENS: Revealing Highly Interpretable Visual Tokens in LLMs
+    "https://arxiv.org/abs/2602.02381", # Self-Supervised Learning from Structural Invariance
+    "https://arxiv.org/abs/2602.00795", # DVLA-RL: Dual-Level Vision-Language Alignment with Reinforcement Learning Gating for Few-Shot Learning
+    "https://arxiv.org/abs/2602.01984", # Enhancing Multi-Image Understanding through Delimiter Token Scaling
+    "https://arxiv.org/abs/2602.01905", # Learning Sparse Visual Representations via Spatial-Semantic Factorization
+    "https://arxiv.org/abs/2602.02488", # RLAnything: Forge Environment, Policy, and Reward Model in Completely Dynamic RL System
+    "https://arxiv.org/abs/2602.02156", # LoopViT: Scaling Visual ARC with Looped Transformers
+    "https://arxiv.org/abs/2602.02453", # Thinking with Comics: Enhancing Multimodal Reasoning through Structured Visual Storytelling
+    "https://arxiv.org/abs/2602.02140", # Quantifying the Gap between Understanding and Generation within Unified Multimodal Models
+    "https://arxiv.org/abs/2602.02150", # ECHO: Entropy-Confidence Hybrid Optimization for Test-Time Reinforcement Learning
+    "https://arxiv.org/abs/2602.00574", # Learning Modal-Mixed Chain-of-Thought Reasoning with Latent Embeddings
+    "https://arxiv.org/abs/2602.02465", # MENTISOCULI: Revealing the Limits of Reasoning with Mental Imagery
+    "https://arxiv.org/abs/2602.02004", # ClueTracer: Question-to-Vision Clue Tracing for Training-Free Hallucination Suppression in Multimodal Reasoning
+    "https://arxiv.org/abs/2601.22231", # Geometry without Position? When Positional Embeddings Help and Hurt Spatial Reasoning
+    "https://arxiv.org/abs/2601.21037", # Thinking in Frames: How Visual Context and Test-Time Scaling Empower Video Reasoning
+    "https://arxiv.org/abs/2602.01816", # Seeing Is Believing? A Benchmark for Multimodal Large Language Models on Visual Illusions and Anomalies
+    "https://arxiv.org/abs/2601.20354", # Everything in Its Place: Benchmarking Spatial Intelligence of Text-to-Image Models
+    "https://arxiv.org/abs/2601.19686", # Video-KTR: Reinforcing Video Reasoning via Key Token Attribution
+    "https://arxiv.org/abs/2601.16538", # OnlineSI: Taming Large Language Model for Online 3D Understanding and Grounding
+    "https://arxiv.org/abs/2601.21187", # FRISM: Fine-Grained Reasoning Injection via Subspace-Level Model Merging for Vision–Language Models
+    "https://arxiv.org/abs/2601.13562", # Reasoning is a Modality
+    "https://arxiv.org/abs/2601.11442", # Map2Thought: Explicit 3D Spatial Reasoning via Metric Cognitive Maps
+    "https://arxiv.org/abs/2601.23265", # PaperBanana: Automating Academic Illustration for AI Scientists
+    "https://arxiv.org/abs/2601.18734", # Self-Distilled Reasoner: On-Policy Self-Distillation for Large Language Models
+    "https://arxiv.org/abs/2602.02488", # RLAnything: Forge Environment, Policy, and Reward Model in Completely Dynamic RL System
+    "https://arxiv.org/abs/2602.02710", # Maximum Likelihood Reinforcement Learning
+    "https://arxiv.org/abs/2602.03806", # Bridging Online and Offline RL: Contextual Bandit Learning for Multi-Turn Code Generation
+    "https://arxiv.org/abs/2602.01058", # Good SFT Optimizes for SFT, Better SFT Prepares for Reinforcement Learning
+    "https://arxiv.org/abs/2504.15777", # Tina: Tiny Reasoning Models via LoRA
+    "https://arxiv.org/abs/2509.04259", # RL's Razor: Why Online Reinforcement Learning Forgets Less
+    "https://arxiv.org/abs/2602.04118", # Learning to Reason in 13 Parameters
+    "https://arxiv.org/abs/2602.04145", # Training Data Efficiency in Multimodal Process Reward Models
+    "https://arxiv.org/abs/2602.01630", # Research on World Models Is Not Merely Injecting World Knowledge into Specific Tasks
+    "https://arxiv.org/abs/2601.15275", # RayRoPE: Projective Ray Positional Encoding for Multi-view Attention
+    "https://arxiv.org/abs/2602.04837", # Group-Evolving Agents: Open-Ended Self-Improvement via Experience Sharing
+    "https://arxiv.org/abs/2601.21343", # Self-Improving Pretraining: using post-trained models to pretrain better models
+    "https://arxiv.org/abs/2602.04884", # Reinforced Attention Learning
+    "https://arxiv.org/abs/2602.04879", # Rethinking the Trust Region in LLM Reinforcement Learning
+    "https://arxiv.org/abs/2510.20817", # KL-Regularized Reinforcement Learning is Designed to Mode Collapse
+    "https://arxiv.org/abs/2602.02710", # Maximum Likelihood Reinforcement Learning
+    "https://arxiv.org/abs/2602.03143", # Self-Hinting Language Models Enhance Reinforcement Learning
+    "https://arxiv.org/abs/2602.03916", # SpatiaLab: Can Vision-Language Models Perform Spatial Reasoning in the Wild?
+    "https://arxiv.org/abs/2602.04145", # Training Data Efficiency in Multimodal Process Reward Models
+    "https://arxiv.org/abs/2602.02951", # Nüwa: Mending the Spatial Integrity Torn by VLM Token Pruning
+    "https://arxiv.org/abs/2602.03361", # Z3D: Zero-Shot 3D Visual Grounding from Images
+    "https://arxiv.org/abs/2602.03733", # RegionReasoner: Region-Grounded Multi-Round Visual Reasoning
+    "https://arxiv.org/abs/2602.00574", # Learning Modal-Mixed Chain-of-Thought Reasoning with Latent Embeddings
+    "https://arxiv.org/abs/2601.21598", # Beyond Imitation: Reinforcement Learning for Active Latent Planning
+    "https://arxiv.org/abs/2506.19360", # SoK: Can Synthetic Images Replace Real Data? A Survey of Utility and Privacy of Synthetic Image Generation
+    "https://arxiv.org/abs/2602.11389", # Causal-JEPA: Learning World Models through Object-Level Latent Interventions
+    "https://arxiv.org/abs/2602.03120", # Quantized Evolution Strategies: High-precision Fine-tuning of Quantized LLMs at Low-precision Cost
+    "https://arxiv.org/abs/2602.00170", # The Blessing of Dimensionality in LLM Fine-tuning: A Variance-Curvature Perspective
+    "https://arxiv.org/abs/2602.02605", # Fine-Tuning Language Models to Know What They Know
+    "https://arxiv.org/abs/2602.12275", # On-Policy Context Distillation for Language Models
+    "https://arxiv.org/abs/2602.05547", # Multi-Task GRPO: Reliable LLM Reasoning Across Tasks
+    "https://arxiv.org/abs/2602.05359", # Multimodal Latent Reasoning via Hierarchical Visual Cues Injection
+    "https://arxiv.org/abs/2602.03361", # Z3D: Zero-Shot 3D Visual Grounding from Images
+    "https://arxiv.org/abs/2602.05986", # RISE-Video: Can Video Generators Decode Implicit World Rules?
+    "https://arxiv.org/abs/2602.04413", # History-Guided Iterative Visual Reasoning with Self-Correction
+    "https://arxiv.org/abs/2602.00475", # Parallel Stochastic Gradient-Based Planning for World Models
+    "https://arxiv.org/abs/2602.04884", # Reinforced Attention Learning
+    "https://arxiv.org/abs/2410.02355", # AlphaEdit: Null-Space Constrained Knowledge Editing for Language Models
+    "https://arxiv.org/abs/2602.07605", # Fine-R1: Make Multi-modal LLMs Excel in Fine-Grained Visual Recognition by Chain-of-Thought Reasoning
+    "https://arxiv.org/abs/2602.06218", # Cross-Modal Redundancy and the Geometry of Vision-Language Embeddings
+    "https://arxiv.org/abs/2602.08236", # When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning
+    "https://arxiv.org/abs/2602.08346", # What, Whether and How? Unveiling Process Reward Models for Thinking with Images Reasoning
+    "https://arxiv.org/abs/2602.08241", # Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs
+    "https://arxiv.org/abs/2602.08234", # SkillRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning
+    "https://arxiv.org/abs/2511.08544", # LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics
+    "https://arxiv.org/abs/2602.04118", # Learning to Reason in 13 Parameters
+    "https://arxiv.org/abs/2602.11217", # The Magic Correlations: Understanding Knowledge Transfer from Pretraining to Supervised Fine-Tuning
+    "https://arxiv.org/abs/2602.11858", # Zooming without Zooming: Region-to-Image Distillation for Fine-Grained Multimodal Perception
+    "https://arxiv.org/abs/2602.11073", # Chatting with Images for Introspective Visual Thinking
+    "https://arxiv.org/abs/2602.11241", # Active Zero: Self-Evolving Vision-Language Models through Active Environment Exploration
+    "https://arxiv.org/abs/2602.11144", # GENIUS: Generative Fluid Intelligence Evaluation Suite
+    "https://arxiv.org/abs/2602.11389", # Causal-JEPA: Learning World Models through Object-Level Latent Interventions
+    "https://arxiv.org/abs/2602.08236", # When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning
+    "https://arxiv.org/abs/2602.11737", # Mask What Matters: Mitigating Object Hallucinations in Multimodal Large Language Models with Object-Aligned Visual Contrastive Decoding
+    "https://arxiv.org/abs/2602.08346", # What, Whether and How? Unveiling Process Reward Models for Thinking with Images Reasoning
+    "https://arxiv.org/abs/2602.08241", # Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs
+    "https://arxiv.org/abs/2602.10551", # C2ROPE: Causal Continuous Rotary Positional Encoding for 3D Large Multimodal-Models Reasoning
+    "https://arxiv.org/abs/2602.10675", # TwiFF (Think With Future Frames): A Large-Scale Dataset for Dynamic Visual Reasoning
+    "https://arxiv.org/abs/2602.09463", # SpotAgent: Grounding Visual Geo-localization in Large Vision-Language Models through Agentic Reasoning
+    "https://arxiv.org/abs/2602.11635", # Do MLLMs Really Understand Space? A Mathematical Reasoning Evaluation
+    "https://arxiv.org/abs/2602.12395", # What does RL improve for Visual Reasoning? A Frankenstein-Style Analysis
+    "https://arxiv.org/abs/2602.15918", # EarthSpatialBench: Benchmarking Spatial Reasoning Capabilities of Multimodal LLMs on Earth Imagery
+    "https://arxiv.org/abs/2602.15950", # Can Vision-Language Models See Squares? Text-Recognition Mediates Spatial Reasoning Across Three Mode
+    "https://arxiv.org/abs/2602.16702", # Saliency-Aware Multi-Route Thinking: Revisiting Vision-Language Reasoning
+    "https://arxiv.org/abs/2602.13949", # Experiential Reinforcement Learning
+    "https://arxiv.org/abs/2507.17634", # WSM: Decay-Free Learning Rate Schedule via Checkpoint Merging for LLM Pre-training
+    "https://arxiv.org/abs/2506.03295", # Unleashing the Reasoning Potential of Pre-trained LLMs by Critique Fine-Tuning on One Problem
+    "https://arxiv.org/abs/2601.06002", # The Molecular Structure of Thought: Mapping the Topology of Long Chain-of-Thought Reasoning
+    "https://arxiv.org/abs/2602.17270", # Unified Latents (UL): How to train your latents
+    "https://arxiv.org/abs/2602.18374", # Zero-shot Interactive Perception
+    "https://arxiv.org/abs/2602.15727", # Spanning the Visual Analogy Space with a Weight Basis of LoRAs
+    "https://arxiv.org/abs/2602.16702", # Saliency-Aware Multi-Route Thinking: Revisiting Vision-Language Reasoning
+    "https://arxiv.org/abs/2602.19063", # Direction-aware 3D Large Multimodal Model
+    "https://arxiv.org/abs/2505.20686", # Accelerating RL for LLM Reasoning with Optimal Advantage Regression
+    "https://arxiv.org/abs/2602.21992", # PanoEnv: Exploring 3D Spatial Intelligence in Panoramic Environments with Reinforcement Learning
+    "https://arxiv.org/abs/2602.21054", # VAUQ: Vision-Aware Uncertainty Quantification for LVLM Self-Evaluation
+    "https://arxiv.org/abs/2602.21628", # RuCL: Stratified Rubric-Based Curriculum Learning for Multimodal Large Language Model Reasoning
+    "https://arxiv.org/abs/2602.21497", # See It, Say It, Sorted: An Iterative Training-Free Framework for Visually-Grounded Multimodal Reasoning in LVLMs
+    "https://arxiv.org/abs/2602.20687", # How Foundational Skills Influence VLM-based Embodied Agents: A Naive Perspective
+    "https://arxiv.org/abs/2602.21619", # When More Is Less: A Systematic Analysis of Spatial and Commonsense Information for Visual Spatial Reasoning
+    "https://arxiv.org/abs/2602.21186", # Spa3R: Predictive Spatial Field Modeling for 3D Visual Reasoning
+    "https://arxiv.org/abs/2602.20980", # CrystaL: Spontaneous Emergence of Visual Latents in MLLMs
+    "https://arxiv.org/abs/2602.20739", # PyVision-RL: Forging Open Agentic Vision Models via RL
+    "https://arxiv.org/abs/2602.14697", # Evolutionary System Prompt Learning for Reinforcement Learning in LLMs
+    "https://arxiv.org/abs/2602.22859", # From Blind Spots to Gains: Diagnostic-Driven Iterative Training for Large Multimodal Models
+    "https://arxiv.org/abs/2602.21198", # Learning from Trials and Errors: Reflective Test-Time Planning for Embodied LLMs
+    "https://arxiv.org/abs/2602.21158", # SELAUR: Self Evolving LLM Agent via Uncertainty-aware Rewards
+    "https://arxiv.org/abs/2602.13949", # Experiential Reinforcement Learning
+    "https://arxiv.org/abs/2602.20159", # A Very Big Video Reasoning Suite
+    "https://arxiv.org/abs/2602.22766", # Imagination Helps Visual Reasoning, But Not Yet in Latent Space
+    "https://arxiv.org/abs/2602.21628", # RuCL: Stratified Rubric-Based Curriculum Learning for Multimodal Large Language Model Reasoning
+    "https://arxiv.org/abs/2602.22703", # Enhancing Geometric Perception in VLMs via Translator-Guided Reinforcement Learning
+    "https://arxiv.org/abs/2602.21186", # Spa3R: Predictive Spatial Field Modeling for 3D Visual Reasoning
+    "https://arxiv.org/abs/2602.21992", # PanoEnv: Exploring 3D Spatial Intelligence in Panoramic Environments with Reinforcement Learning
+    "https://arxiv.org/abs/2602.21497", # See It, Say It, Sorted: An Iterative Training-Free Framework for Visually-Grounded Multimodal Reasoning in LVLMs
+    "https://arxiv.org/abs/2602.20901", # SpatiaLQA: A Benchmark for Evaluating Spatial Logical Reasoning in Vision-Language Model
+    "https://arxiv.org/abs/2603.03818", # Pretrained Vision-Language-Action Models are Surprisingly Resistant to Forgetting in Continual Learning
+    "https://arxiv.org/abs/2603.04333", # What Does Flow Matching Bring To TD Learning?
+    "https://arxiv.org/abs/2603.02556", # Through the Lens of Contrast: Self-Improving Visual Reasoning in VLMs
+    "https://arxiv.org/abs/2603.02959", # Semi-Supervised Few-Shot Adaptation of Vision-Language Models
+    "https://arxiv.org/abs/2603.03276", # Beyond Language Modeling: An Exploration of Multimodal Pretraining
+    "https://arxiv.org/abs/2603.01097", # Understanding LoRA as Knowledge Memory: An Empirical Analysis
+    "https://arxiv.org/abs/2602.20133", # AdaEvolve: Adaptive LLM Driven Zeroth-Order Optimization
+    "https://arxiv.org/abs/2505.03335", # Absolute Zero: Reinforced Self-play Reasoning with Zero Data
+    "https://arxiv.org/abs/2603.00136", # TinyVLM: Zero-Shot Object Detection on Microcontrollers via Vision-Language Distillation with Matryoshka Embeddings
+    "https://arxiv.org/abs/2603.00518", # Vision-TTT: Efficient and Expressive Visual Representation Learning with Test-Time Training
+    "https://arxiv.org/abs/2603.02188", # Multi-Head Low-Rank Attention
+    "https://arxiv.org/abs/2602.24041", # Look Carefully: Adaptive Visual Reinforcements in Multimodal Large Language Models for Hallucination Mitigation
+    "https://arxiv.org/pdf/2602.23759", # Learning Accurate Segmentation Purelyfrom Self-Supervision
+    "https://arxiv.org/abs/2603.03241", # UniG2U-Bench: Do Unified Models Advance Multimodal Understanding?
+    "https://arxiv.org/abs/2603.03026", # Any Resolution Any Geometry: From Multi-View To Multi-Patch
+    "https://arxiv.org/abs/2603.02556", # Through the Lens of Contrast: Self-Improving Visual Reasoning in VLMs
+    "https://arxiv.org/abs/2603.03944", # Spatial Causal Prediction in Video
+    "https://arxiv.org/abs/2603.00515", # MLLM-4D: Towards Visual-based Spatial-Temporal Intelligence
+    "https://arxiv.org/abs/2603.03857", # DeepScan: A Training-Free Framework for Visually Grounded Reasoning in Large Vision-Language Models
+    "https://arxiv.org/abs/2603.02511", # Learning Object-Centric Spatial Reasoning for Sequential Manipulation in Cluttered Environments
+    "https://arxiv.org/abs/2602.23959", # Thinking with Images as Continuous Actions: Numerical Visual Chain-of-Thought
+    "https://arxiv.org/abs/2603.00905", # pySpatial: Generating 3D Visual Programs for Zero-Shot Spatial Reasoning
+    "https://arxiv.org/abs/2603.00461", # ReMoT: Reinforcement Learning with Motion Contrast Triplets
+    "https://arxiv.org/abs/2602.23615", # Annotation-Free Visual Reasoning for High-Resolution Large Multimodal Models via Reinforcement Learning
+    "https://arxiv.org/abs/2603.00207", # VisRef: Visual Refocusing while Thinking Improves Test-Time Scaling in Multi-Modal Large Reasoning Models
+    "https://arxiv.org/abs/2602.23320", # ParamMem: Augmenting Language Agents with Parametric Reflective Memory
+    "https://arxiv.org/abs/2602.15029", # Symmetry in language statistics shapes the geometry of model representations
+    "https://arxiv.org/abs/2603.00142", # Evaluating Theory of Mind and Internal Beliefs in LLM-Based Multi-Agent Systems
+    "https://arxiv.org/abs/2510.07242", # Hybrid Reinforcement: When Reward Is Sparse, It's Better to Be Dense
+    "https://arxiv.org/abs/2511.19661", # CodeV: Code with Images for Faithful Visual Reasoning via Tool-Aware Policy Optimization
+    "https://arxiv.org/abs/2602.02710", # Maximum Likelihood Reinforcement Learning
+    "https://arxiv.org/abs/2603.07335", # VisualScratchpad: Inference-time Visual Concepts Analysis in Vision Language Models
+    "https://arxiv.org/abs/2603.06693", # Soft Equivariance Regularization for Invariant Self-Supervised Learning
+    "https://arxiv.org/abs/2603.06569", # Penguin-VL: Exploring the Efficiency Limits of VLM with LLM-based Vision Encoders
+    "https://arxiv.org/abs/2603.10160", # ReMix: Reinforcement routing for mixtures of LoRAs in LLM finetuning
+    "https://arxiv.org/abs/2603.02203", # Tool Verification for Test-Time Reinforcement Learning
+
+    #"https://arxiv.org/abs/1909.12271",                                                                     
+    #"https://arxiv.org/abs/2003.08515",                                                                   
+    #"https://arxiv.org/abs/2112.03227",                                                                     
+    #"https://arxiv.org/abs/2201.07207",
+    #"https://arxiv.org/abs/2205.09991",
+    #"https://arxiv.org/abs/2206.14176",
+    #"https://arxiv.org/abs/2209.05451",
+    #"https://arxiv.org/abs/2212.06817",
+    #"https://arxiv.org/abs/2302.00111",
+    #"https://arxiv.org/abs/2303.04137",
+    #"https://arxiv.org/abs/2304.13705",
+    #"https://arxiv.org/abs/2305.12821",
+    #"https://arxiv.org/abs/2306.03310",
+    #"https://arxiv.org/abs/2306.10007",
+    #"https://arxiv.org/abs/2307.00595",
+    #"https://arxiv.org/abs/2307.05973",
+    #"https://arxiv.org/abs/2307.15818",
+    #"https://arxiv.org/abs/2309.13037",
+    #"https://arxiv.org/abs/2310.06114",
+    #"https://arxiv.org/abs/2310.08576",
+    #"https://arxiv.org/abs/2310.08864",
+    #"https://arxiv.org/abs/2310.10625",
+    #"https://arxiv.org/abs/2311.01378",
+    #"https://arxiv.org/abs/2312.13139",
+    #"https://arxiv.org/abs/2403.03954",
+    #"https://arxiv.org/abs/2403.08321",
+    #"https://arxiv.org/abs/2403.09631",
+    #"https://arxiv.org/abs/2403.12945",
+    #"https://arxiv.org/abs/2405.05941",
+    #"https://arxiv.org/abs/2405.12213",
+    #"https://arxiv.org/abs/2405.14093",
+    #"https://arxiv.org/abs/2406.02523",
+    #"https://arxiv.org/abs/2406.09246",
+    #"https://arxiv.org/abs/2407.05996",
+    #"https://arxiv.org/abs/2409.01652",
+    #"https://arxiv.org/abs/2409.12514",
+    #"https://arxiv.org/abs/2409.20537",
+    #"https://arxiv.org/abs/2410.06158",
+    #"https://arxiv.org/abs/2410.07864",
+    #"https://arxiv.org/abs/2410.11758",
+    #"https://arxiv.org/abs/2410.24164",
+    #"https://arxiv.org/abs/2411.19309",
+    #"https://arxiv.org/abs/2411.19650",
+    #"https://arxiv.org/abs/2412.10345",
+    #"https://arxiv.org/abs/2412.13877",
+    #"https://arxiv.org/abs/2412.14058",
+    #"https://arxiv.org/abs/2412.14803",
+    #"https://arxiv.org/abs/2412.15109",
+    #"https://arxiv.org/abs/2501.09747",
+    #"https://arxiv.org/abs/2501.15830",
+    #"https://arxiv.org/abs/2501.18867",
+    #"https://arxiv.org/abs/2502.14420",
+    #"https://arxiv.org/abs/2502.14795",
+    #"https://arxiv.org/abs/2502.19645",
+    #"https://arxiv.org/abs/2503.00200",
+    #"https://arxiv.org/abs/2503.02881",
+    #"https://arxiv.org/abs/2503.06669",
+    #"https://arxiv.org/abs/2503.09527",
+    #"https://arxiv.org/abs/2503.14734",
+    #"https://arxiv.org/abs/2503.20020",
+    #"https://arxiv.org/abs/2503.22020",
+    #"https://arxiv.org/abs/2504.02792",
+    #"https://arxiv.org/abs/2504.15369",
+    #"https://arxiv.org/abs/2504.16054",
+    #"https://arxiv.org/abs/2504.19854",
+    #"https://arxiv.org/abs/2505.04769",
+    #"https://arxiv.org/abs/2505.05800",
+    #"https://arxiv.org/abs/2505.12705",
+    #"https://arxiv.org/abs/2505.15660",
+    #"https://arxiv.org/abs/2505.17016",
+    #"https://arxiv.org/abs/2505.18719",
+    #"https://arxiv.org/abs/2505.22159",
+    #"https://arxiv.org/abs/2506.01844",
+    #"https://arxiv.org/abs/2506.08440",
+    #"https://arxiv.org/abs/2506.18088",
+    #"https://arxiv.org/abs/2506.19816",
+    #"https://arxiv.org/abs/2506.19850",
+    #"https://arxiv.org/abs/2506.21539",
+    #"https://arxiv.org/abs/2506.22242",
+    #"https://arxiv.org/abs/2507.04447",
+    #"https://arxiv.org/abs/2507.09160",
+    #"https://arxiv.org/abs/2507.16815",
+    #"https://arxiv.org/abs/2508.07917",
+    #"https://arxiv.org/abs/2508.10333",
+    #"https://arxiv.org/abs/2508.18269",
+    #"https://arxiv.org/abs/2508.19236",
+    #"https://arxiv.org/abs/2509.00576",
+    #"https://arxiv.org/abs/2509.04996",
+    #"https://arxiv.org/abs/2509.06951",
+    #"https://arxiv.org/abs/2509.09372",
+    #"https://arxiv.org/abs/2509.09674",
+    #"https://arxiv.org/abs/2509.18644",
+    #"https://arxiv.org/abs/2509.22643",
+    #"https://arxiv.org/abs/2509.24948",
+    #"https://arxiv.org/abs/2510.10274",
+    #"https://arxiv.org/abs/2510.13054",
+    #"https://arxiv.org/abs/2510.13626",
+    #"https://arxiv.org/abs/2511.05275",
+    #"https://arxiv.org/abs/2511.14148",
+    #"https://arxiv.org/abs/2511.14759",
+    #"https://arxiv.org/abs/2511.15605",
+    #"https://arxiv.org/abs/2511.17441",
+    #"https://arxiv.org/abs/2511.17502",
+    #"https://arxiv.org/abs/2511.18810",
+    #"https://arxiv.org/abs/2511.18960",
+    #"https://arxiv.org/abs/2512.00975",
+    #"https://arxiv.org/abs/2512.13030",
+    #"https://arxiv.org/abs/2512.14666",
+    #"https://arxiv.org/abs/2512.15692",
+    #"https://arxiv.org/abs/2512.22414",
+    #"https://arxiv.org/abs/2512.24125",
+    #"https://arxiv.org/abs/2512.24653",
+    #"https://arxiv.org/abs/2601.11404",
+    #"https://arxiv.org/abs/2601.11421",
+    #"https://arxiv.org/abs/2601.16163",
+    #"https://arxiv.org/abs/2601.18692",
+    #"https://arxiv.org/abs/2601.21998",
+    #"https://arxiv.org/abs/2601.22153",
+    #"https://arxiv.org/abs/2602.10098",
+    #"https://arxiv.org/abs/2602.11236",
+    #"https://arxiv.org/abs/2602.12062",
+    #"https://arxiv.org/abs/2602.12063",
+    #"https://arxiv.org/abs/2602.13710",
+    #"https://arxiv.org/abs/2602.15922",
+    #"https://arxiv.org/abs/2602.18224",
+    #"https://arxiv.org/abs/2602.22010",
+
 ]

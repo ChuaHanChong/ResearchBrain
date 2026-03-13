@@ -91,7 +91,7 @@ def main():
         to_process = to_process[: args.limit]
 
     print(f"Papers in list : {len(unique_papers)}")
-    print(f"Already in KB  : {len(processed_urls)}")
+    print(f"Already in KH  : {len(processed_urls)}")
     print(f"To process     : {len(to_process)}")
 
     if not to_process:

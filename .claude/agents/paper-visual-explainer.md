@@ -185,6 +185,15 @@ Then extract these cross-paper comparison dimensions:
 - Result badges per paper showing delta vs. prior work and vs. each other
 - Enough detail that a visual learner can understand what each paper does differently and why
 
+**Layout spec — pass these coordinates explicitly when invoking excalidraw:**
+- Left column:  x=60, width=1200
+- Divider line: x=1300 (thin vertical line)
+- Right column: x=1340, width=1200 ← must equal left (non-negotiable)
+- Shared rows:  x=60, width=2540 (spans both columns + gap)
+- Full-width containers in each column must use exactly width=1200 (headers, insight boxes, training boxes, limitation boxes)
+- Paired row elements (A and B) must share identical Y-coordinates and heights
+- Pipeline steps: divide 1200px equally across both columns using identical step widths
+
 **Step 5 — Save:**
 ```
 Artefacts/compare-{ID1}-{ID2}[...].excalidraw
