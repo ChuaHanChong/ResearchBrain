@@ -2,5 +2,7 @@ __pycache__/
 .obsidian/
 .venv/
 .playwright*/
-Artefacts/
+data/
+X02_Artefacts/
 docs/superpowers/
+.claude/scripts/eval_results/
