@@ -1,11 +1,10 @@
 ---
 title: Datasets, Benchmarks & Environments for Embodied AI
 tags:
-  - robotics
   - dataset
   - benchmark
   - embodied-AI
-  - survey
+  - robotics
 ---
 
 %%
@@ -50,27 +49,27 @@ Benchmark / Environment (9 papers)
 
 The biggest unlock in robot learning is training across many robot types simultaneously. These datasets pursue that goal at scale.
 
-**⭐ Open X-Embodiment** (2310) is the landmark effort: 1M+ real-robot trajectories from 22 embodiments, contributed by institutions worldwide. Training RT-X models on OXE demonstrated positive transfer and emergent skills across robot platforms — the ImageNet moment for robotics.
+**⭐ [[2310.08864|Open X-Embodiment]]** (2310) is the landmark effort: 1M+ real-robot trajectories from 22 embodiments, contributed by institutions worldwide. Training RT-X models on OXE demonstrated positive transfer and emergent skills across robot platforms — the ImageNet moment for robotics.
 
-**⭐ DROID** (2403) pushes diversity further by collecting "in-the-wild" data across 16 institutions, covering an unprecedented range of scenes, tasks, and objects. Policies co-trained on DROID show an average **20% improvement** in success rate and better robustness to distribution shift compared to smaller datasets.
+**⭐ [[2403.12945|DROID]]** (2403) pushes diversity further by collecting "in-the-wild" data across 16 institutions, covering an unprecedented range of scenes, tasks, and objects. Policies co-trained on DROID show an average **20% improvement** in success rate and better robustness to distribution shift compared to smaller datasets.
 
-**AgiBot World** (2503) ⭐ scales to **1 million real-world trajectories** spanning diverse tasks and environments, and pairs the dataset with GO-1, a generalist policy using latent action representations. It delivers a 32% average improvement over baselines, positioning it as the largest single-lab effort to date.
+**[[2503.06669|AgiBot World]]** (2503) ⭐ scales to **1 million real-world trajectories** spanning diverse tasks and environments, and pairs the dataset with GO-1, a generalist policy using latent action representations. It delivers a 32% average improvement over baselines, positioning it as the largest single-lab effort to date.
 
 ### Group 2 — Multi-Modal & Multi-Embodiment Specialist Datasets
 
 These datasets prioritize richer sensing or specific manipulation challenges.
 
-**RoboMIND** (2412) provides a unified multi-embodiment dataset collected under consistent standards across four robot types including a humanoid — enabling fair cross-embodiment comparison. **RoboMIND 2.0** (2512) extends this to 310K bimanual and mobile manipulation trajectories with tactile sensing and a high-fidelity digital twin, accompanied by the MIND-2 dual-system policy framework.
+**[[2412.13877|RoboMIND]]** (2412) provides a unified multi-embodiment dataset collected under consistent standards across four robot types including a humanoid — enabling fair cross-embodiment comparison. **[[2512.24653|RoboMIND 2.0]]** (2512) extends this to 310K bimanual and mobile manipulation trajectories with tactile sensing and a high-fidelity digital twin, accompanied by the MIND-2 dual-system policy framework.
 
-**RoboCOIN** (2511) focuses on **bimanual manipulation** specifically: 180K+ demonstrations across diverse platforms with hierarchical annotations and a data quality framework (CoRobot), leading to improved VLA performance on complex two-arm tasks.
+**[[2511.17441|RoboCOIN]]** (2511) focuses on **bimanual manipulation** specifically: 180K+ demonstrations across diverse platforms with hierarchical annotations and a data quality framework (CoRobot), leading to improved VLA performance on complex two-arm tasks.
 
-**Galaxea** (2509) takes a different angle — a 500-hour dataset collected in diverse real-world environments with a *single consistent embodiment*, demonstrating that single-embodiment, in-domain data quality can outperform heterogeneous scale.
+**[[2509.00576|Galaxea]]** (2509) takes a different angle — a 500-hour dataset collected in diverse real-world environments with a *single consistent embodiment*, demonstrating that single-embodiment, in-domain data quality can outperform heterogeneous scale.
 
-**RH20T** (2307) provides 110K+ multi-modal sequences across 147 tasks collected at SJTU, enabling improved few-shot learning and task generalization.
+**[[2307.00595|RH20T]]** (2307) provides 110K+ multi-modal sequences across 147 tasks collected at SJTU, enabling improved few-shot learning and task generalization.
 
 ### Group 3 — Evaluation-Oriented Dataset
 
-**GM-100** (2601) is less a training dataset and more a **diagnostic tool**: 100 carefully designed, detail-oriented tasks that expose failure modes of current VLA models. Existing models achieve very low success rates on GM-100, making it a useful stress test for measuring real capability gaps rather than benchmark saturation.
+**[[2601.11421|GM-100]]** (2601) is less a training dataset and more a **diagnostic tool**: 100 carefully designed, detail-oriented tasks that expose failure modes of current VLA models. Existing models achieve very low success rates on GM-100, making it a useful stress test for measuring real capability gaps rather than benchmark saturation.
 
 ---
 
@@ -80,31 +79,31 @@ These datasets prioritize richer sensing or specific manipulation challenges.
 
 These provide the physical simulation substrate on which many downstream benchmarks are built.
 
-**⭐ SAPIEN** (2003) is the foundational part-based interactive environment — physically accurate simulation with a large articulated object collection and photorealistic rendering. It is the simulation backbone for many subsequent benchmarks.
+**⭐ [[2003.08515|SAPIEN]]** (2003) is the foundational part-based interactive environment — physically accurate simulation with a large articulated object collection and photorealistic rendering. It is the simulation backbone for many subsequent benchmarks.
 
-**⭐ RLBench** (1909) from Dyson Robotics Lab provides 100 visually-guided manipulation tasks with infinite expert demonstrations via motion planning. It standardized the research interface for few-shot and imitation learning in robotic manipulation and remains a widely-used baseline environment.
+**⭐ [[1909.12271|RLBench]]** (1909) from Dyson Robotics Lab provides 100 visually-guided manipulation tasks with infinite expert demonstrations via motion planning. It standardized the research interface for few-shot and imitation learning in robotic manipulation and remains a widely-used baseline environment.
 
 ### Group 2 — Language-Conditioned Long-Horizon Benchmarks
 
 These benchmarks evaluate the harder problem of following language instructions over extended task horizons.
 
-**⭐ CALVIN** (2112) is the standard for long-horizon, language-conditioned policy evaluation in simulation. Tasks require chaining multiple sub-goals using continuous control, with multimodal sensing and diverse natural language instructions. It is the most cited benchmark for measuring compositional generalization.
+**⭐ [[2112.03227|CALVIN]]** (2112) is the standard for long-horizon, language-conditioned policy evaluation in simulation. Tasks require chaining multiple sub-goals using continuous control, with multimodal sensing and diverse natural language instructions. It is the most cited benchmark for measuring compositional generalization.
 
-**⭐ LIBERO** (2306) extends the paradigm to *lifelong learning* — procedurally generated tasks designed to evaluate knowledge transfer of both declarative (what) and procedural (how) skills across task sequences. Its findings highlight that policy architecture matters more than algorithm for knowledge retention.
+**⭐ [[2306.03310|LIBERO]]** (2306) extends the paradigm to *lifelong learning* — procedurally generated tasks designed to evaluate knowledge transfer of both declarative (what) and procedural (how) skills across task sequences. Its findings highlight that policy architecture matters more than algorithm for knowledge retention.
 
-**FurnitureBench** (2305) tests real-world long-horizon manipulation through furniture assembly with 3D-printable standardized props and a teleoperated dataset. Notably, current state-of-the-art algorithms fail to complete any full assembly task — making it a hard-open challenge.
+**[[2305.12821|FurnitureBench]]** (2305) tests real-world long-horizon manipulation through furniture assembly with 3D-printable standardized props and a teleoperated dataset. Notably, current state-of-the-art algorithms fail to complete any full assembly task — making it a hard-open challenge.
 
 ### Group 3 — Household-Scale Simulation
 
-**⭐ RoboCasa** (2406) targets everyday household tasks at scale: diverse kitchen environments, a large object repository, and 100 benchmark tasks. Crucially, it shows that scaling synthetic training data significantly improves generalist policy performance, making it a data-generation platform as much as a benchmark.
+**⭐ [[2406.02523|RoboCasa]]** (2406) targets everyday household tasks at scale: diverse kitchen environments, a large object repository, and 100 benchmark tasks. Crucially, it shows that scaling synthetic training data significantly improves generalist policy performance, making it a data-generation platform as much as a benchmark.
 
-**⭐ RoboTwin 2.0** (2506) focuses on **bimanual manipulation** with strong domain randomization. Its synthetic data pipeline produces a **24.4% improvement** in real-world few-shot success rates, demonstrating that high-quality sim-to-real transfer is achievable with sufficient randomization.
+**⭐ [[2506.18088|RoboTwin 2.0]]** (2506) focuses on **bimanual manipulation** with strong domain randomization. Its synthetic data pipeline produces a **24.4% improvement** in real-world few-shot success rates, demonstrating that high-quality sim-to-real transfer is achievable with sufficient randomization.
 
 ### Group 4 — Robustness & Sim-to-Real Evaluation
 
-**LIBERO-Plus** (2510) is a diagnostic layer on top of LIBERO that systematically tests VLA robustness across **seven perturbation dimensions**. Its key finding: VLA models are brittle despite high scores on standard benchmarks — strong performance on LIBERO does not guarantee real-world robustness.
+**[[2510.13626|LIBERO-Plus]]** (2510) is a diagnostic layer on top of LIBERO that systematically tests VLA robustness across **seven perturbation dimensions**. Its key finding: VLA models are brittle despite high scores on standard benchmarks — strong performance on LIBERO does not guarantee real-world robustness.
 
-**⭐ SimplerEnv** (2405) addresses the sim-to-real evaluation gap directly: a framework for evaluating real-world robot policies *in simulation* by carefully matching control and visual properties. It shows strong correlation with real-world performance, enabling cheap and reproducible policy evaluation without hardware.
+**⭐ [[2405.05941|SimplerEnv]]** (2405) addresses the sim-to-real evaluation gap directly: a framework for evaluating real-world robot policies *in simulation* by carefully matching control and visual properties. It shows strong correlation with real-world performance, enabling cheap and reproducible policy evaluation without hardware.
 
 ---
 

@@ -1,12 +1,11 @@
 ---
 title: VLA vs WAM — 101
 tags:
-  - robotics
   - VLA
   - WAM
-  - explainer
 aliases:
   - VLA vs WAM
+  - VLA 101
   - WAM 101
 ---
 
@@ -87,4 +86,4 @@ Because it actually understands the rules of the world (like gravity and momentu
 
 ---
 
-*For a deep dive into WAM papers by category, see [[WAM]].*
+*For a deep dive into WAM papers by category, see [[03_WAM]].*
