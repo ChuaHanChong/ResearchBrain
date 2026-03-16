@@ -13,17 +13,7 @@ import re
 import sys
 from pathlib import Path
 
-import requests
-
-
-def fetch_bibtex(arxiv_id: str) -> str | None:
-    try:
-        resp = requests.get(f"https://arxiv.org/bibtex/{arxiv_id}", timeout=15)
-        resp.raise_for_status()
-        return resp.text.strip()
-    except Exception as e:
-        print(f"  FAIL {arxiv_id}: {e}")
-        return None
+from utils import fetch_bibtex
 
 
 def update_bibtex_in_note(note_path: Path, bibtex: str) -> bool:
@@ -71,7 +61,7 @@ def main():
     for note_path in note_paths:
         arxiv_id = note_path.stem
         bibtex = fetch_bibtex(arxiv_id)
-        if bibtex is None:
+        if not bibtex:
             failed += 1
             continue
         changed = update_bibtex_in_note(note_path, bibtex)
