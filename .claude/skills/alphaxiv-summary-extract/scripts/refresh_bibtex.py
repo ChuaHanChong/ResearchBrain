@@ -30,8 +30,12 @@ def update_bibtex_in_note(note_path: Path, bibtex: str) -> bool:
     """Replace the content of the ```bibtex ... ``` block. Returns True if changed."""
     content = note_path.read_text(encoding="utf-8")
     pattern = r"(```bibtex\n).*?(```)"
-    replacement = f"\\1{bibtex}\n\\2"
-    new_content, count = re.subn(pattern, replacement, content, flags=re.DOTALL)
+    new_content, count = re.subn(
+        pattern,
+        lambda m: m.group(1) + bibtex + "\n" + m.group(2),
+        content,
+        flags=re.DOTALL,
+    )
     if count == 0:
         # No bibtex block found — append one
         new_content = content.rstrip() + f"\n\n## BibTeX\n\n```bibtex\n{bibtex}\n```\n"
