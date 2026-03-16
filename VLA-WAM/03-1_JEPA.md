@@ -1,0 +1,3 @@
+- [V-JEPA 2: Self-Supervised Video Models EnableUnderstanding, Prediction and Planning](https://arxiv.org/pdf/2506.09985)
+- [VL-JEPA: Joint Embedding Predictive Architecture for Vision-language](https://arxiv.org/pdf/2512.10942)
+- [VLA-JEPA: Enhancing Vision-Language-Action Model with Latent World Model](https://arxiv.org/pdf/2602.10098)

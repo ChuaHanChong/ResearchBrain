@@ -1,20 +1,23 @@
 #!/usr/bin/env python3
 """
-Batch-extract paper summaries from alphaxiv.org via Selenium.
+Batch-extract paper summaries from alphaxiv.org and write Obsidian markdown notes.
 
 Usage:
-    python run.py --input scripts/knowledge.py --output KnowledgeHub.json
-    python run.py --input scripts/knowledge.py --output KnowledgeHub.json --limit 3
+    python run.py --input scripts/knowledge.py --out VLA-WAM/KnowledgeHub
+    python run.py --input scripts/knowledge.py --out VLA-WAM/KnowledgeHub --limit 3
+    python run.py --input scripts/knowledge.py --out VLA-WAM/KnowledgeHub --force
 """
 
 import argparse
 import importlib.util
-import json
+import re
 import sys
 from pathlib import Path
 
-from selenium import webdriver
+import requests
 from tqdm import tqdm
+
+from selenium import webdriver
 
 
 def load_papers(input_path: str) -> list:
@@ -22,22 +25,6 @@ def load_papers(input_path: str) -> list:
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module.papers
-
-
-def load_knowledge_base(output_path: str) -> tuple:
-    path = Path(output_path)
-    if path.exists():
-        with open(path) as f:
-            data = json.load(f)
-    else:
-        data = {}
-    return data, set(data.keys())
-
-
-def save_knowledge_base(data: dict, output_path: str) -> None:
-    sorted_data = dict(sorted(data.items(), reverse=True))
-    with open(output_path, "w") as f:
-        json.dump(sorted_data, f, indent=4, ensure_ascii=False)
 
 
 def init_driver() -> webdriver.Chrome:
@@ -49,14 +36,68 @@ def init_driver() -> webdriver.Chrome:
     return webdriver.Chrome(options=options)
 
 
-def arxiv_to_alphaxiv_url(arxiv_url: str) -> str:
-    """Convert arxiv URL to alphaxiv overview URL.
+def arxiv_id_from_url(url: str) -> str:
+    return url.rstrip("/").split("/")[-1]
 
-    https://arxiv.org/abs/2601.22628 -> https://alphaxiv.org/overview/2601.22628
-    https://arxiv.org/pdf/2602.23759 -> https://alphaxiv.org/overview/2602.23759
-    """
-    paper_id = arxiv_url.rstrip("/").split("/")[-1]
-    return f"https://alphaxiv.org/overview/{paper_id}"
+
+def fetch_bibtex(arxiv_id: str) -> str:
+    try:
+        resp = requests.get(f"https://arxiv.org/bibtex/{arxiv_id}", timeout=15)
+        resp.raise_for_status()
+        return resp.text.strip()
+    except Exception as e:
+        print(f"  Warning: could not fetch BibTeX for {arxiv_id}: {e}")
+        return ""
+
+
+
+def render_note(
+    arxiv_id: str,
+    title: str,
+    summary: dict,
+    bibtex: str,
+) -> str:
+    link = f"https://www.alphaxiv.org/overview/{arxiv_id}"
+
+    def bullets(items: list) -> str:
+        return "\n".join(f"- {item}" for item in items) if items else "- (none)"
+
+    bibtex_block = f"```bibtex\n{bibtex}\n```" if bibtex else "```bibtex\n(unavailable)\n```"
+
+    return f"""\
+---
+title: "{title}"
+link: "{link}"
+authors: []
+tags: []
+aliases: []
+---
+# {title}
+
+> [!summary] Summary
+> {summary.get("Summary", "").strip()}
+
+## Problem
+
+{bullets(summary.get("Problem", []))}
+
+## Method
+
+{bullets(summary.get("Method", []))}
+
+## Results
+
+{bullets(summary.get("Results", []))}
+
+## Takeaways
+
+> [!tip] Key Insights
+{chr(10).join("> - " + t for t in summary.get("Takeaways", []))}
+
+## BibTeX
+
+{bibtex_block}
+"""
 
 
 def quality_check(entry: dict, url: str) -> None:
@@ -67,31 +108,53 @@ def quality_check(entry: dict, url: str) -> None:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Batch-extract paper summaries from alphaxiv.org")
-    parser.add_argument("--input", required=True, help="Path to knowledge.py with papers list")
-    parser.add_argument("--output", default="KnowledgeHub.json", help="Output JSON path (default: KnowledgeHub.json)")
+    parser = argparse.ArgumentParser(description="Scrape alphaxiv and write Obsidian notes")
+    parser.add_argument("--input", default=None, help="Path to knowledge.py with papers list (batch mode)")
+    parser.add_argument("--ids", nargs="+", help="One or more arxiv IDs or URLs to process directly")
+    parser.add_argument("--out", default="X01_KnowledgeHub", help="Output directory for .md notes")
     parser.add_argument("--limit", type=int, default=None, help="Process at most N papers (for testing)")
+    parser.add_argument("--force", action="store_true", help="Overwrite existing notes")
     args = parser.parse_args()
 
-    # Make retrieve.py importable from the scripts directory
+    if not args.input and not args.ids:
+        parser.error("Provide either --input (batch) or --ids (single/few papers)")
+
     scripts_dir = str(Path(__file__).parent)
     if scripts_dir not in sys.path:
         sys.path.insert(0, scripts_dir)
     from retrieve import extract_title, extract_summary
 
-    # Load paper list, deduplicate preserving order
-    all_papers = load_papers(args.input)
+    out_dir = Path(args.out)
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.ids:
+        # Normalise IDs/URLs to full arxiv URLs
+        all_papers = [
+            f"https://arxiv.org/abs/{arxiv_id_from_url(id_or_url)}"
+            for id_or_url in args.ids
+        ]
+    else:
+        all_papers = load_papers(args.input)
+
     unique_papers = list(dict.fromkeys(all_papers))
     if len(all_papers) != len(unique_papers):
         print(f"Removed {len(all_papers) - len(unique_papers)} duplicates from paper list.")
 
-    data, processed_urls = load_knowledge_base(args.output)
-    to_process = [url for url in unique_papers if url not in processed_urls]
+    to_process = []
+    skipped = 0
+    for url in unique_papers:
+        arxiv_id = arxiv_id_from_url(url)
+        note_path = out_dir / f"{arxiv_id}.md"
+        if note_path.exists() and not args.force:
+            skipped += 1
+        else:
+            to_process.append(url)
+
     if args.limit:
-        to_process = to_process[: args.limit]
+        to_process = to_process[:args.limit]
 
     print(f"Papers in list : {len(unique_papers)}")
-    print(f"Already in KH  : {len(processed_urls)}")
+    print(f"Already written: {skipped}")
     print(f"To process     : {len(to_process)}")
 
     if not to_process:
@@ -104,16 +167,17 @@ def main():
 
     try:
         for url in tqdm(to_process, desc="Extracting"):
+            arxiv_id = arxiv_id_from_url(url)
             try:
-                alphaxiv_url = arxiv_to_alphaxiv_url(url)
+                alphaxiv_url = f"https://alphaxiv.org/overview/{arxiv_id}"
                 title = extract_title(url)
                 summary = extract_summary(driver, alphaxiv_url)
+                quality_check(summary, url)
 
-                entry = {"Title": title, **summary}
-                quality_check(entry, url)
+                bibtex = fetch_bibtex(arxiv_id)
 
-                data[url] = entry
-                save_knowledge_base(data, args.output)  # incremental save
+                note = render_note(arxiv_id, title or arxiv_id, summary, bibtex)
+                (out_dir / f"{arxiv_id}.md").write_text(note, encoding="utf-8")
                 processed += 1
 
             except Exception as e:
@@ -124,7 +188,7 @@ def main():
 
     print(f"\n{'=' * 40}")
     print(f"Processed : {processed}")
-    print(f"Skipped   : {len(processed_urls)} (already in Knowledge Hub)")
+    print(f"Skipped   : {skipped} (already written)")
     print(f"Failed    : {len(failed)}")
     if failed:
         print("Failed papers:")
