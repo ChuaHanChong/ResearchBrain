@@ -71,14 +71,14 @@ Use `--force` to overwrite existing notes.
 
 For each newly written `.md` file, use the `obsidian-markdown` skill to:
 
-1. **Extract `authors`** from the BibTeX block (first + last author, max 5 total) and add to frontmatter
-2. **Infer `tags`** (3–6 topic tags, e.g. `diffusion`, `VLA`, `world-model`, `RL`, `robotics`) and add to frontmatter
-3. **Extract `aliases`** (the model/system short name, e.g. `DreamZero`) and add to frontmatter
-4. **Apply formatting** to **Method** section only:
-   - `==technical term==` highlights on key technical terms (architectures, losses, algorithms)
-   - `**ModelName**` bold on the paper's model/method names
-5. **Apply formatting** to **Results** section only:
-   - `**X%**` bold on numbers, percentages, and key metrics
+1. **Extract `authors`** from the BibTeX block (maximum of 5 total; keep the first 3 and the last 2 if there are more than 5 authors) and add them to the frontmatter. Never include `- ...` as a placeholder entry.
+2. **Infer `tags`** (3–6 topic tags, e.g., `diffusion`, `VLA`, `world-model`, `RL`, `robotics`) and add them to the frontmatter.
+3. **Set `aliases`** (the model/system short name, e.g., `DreamZero`) and add them to the frontmatter. Always provide at least one alias. Use the model/system short name if the paper introduces one (e.g., `DreamZero`). For surveys or papers without a specifically named contribution, derive a descriptive alias from the title (e.g., `VLM Survey 2025`, `RLHF Benchmark`). Never leave `aliases: []` empty.
+4. **Apply formatting** to the **Method** section only:
+   - Use `==technical term==` highlights for key technical terms (architectures, losses, algorithms).
+   - Use `**ModelName**` in bold for the paper's model or method names.
+5. **Apply formatting** to the **Results** section only:
+   - Use `**X%**` in bold for numbers, percentages, and key metrics.
 
 > Do NOT add highlights or bold to Summary, Problem, or Takeaways sections.
 
@@ -110,3 +110,5 @@ python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
 - The script skips papers whose `{ID}.md` already exists — safe to interrupt and resume
 - BibTeX is fetched from `https://arxiv.org/bibtex/{ID}` during note generation
 - `authors`, `tags`, and `aliases` in frontmatter start empty (`[]`) — Step 3 fills them in
+- `authors` must never contain `- ...` as a placeholder — use real names only, or omit the field
+- `aliases` must never remain `[]` — always derive at least one alias from the title or paper content

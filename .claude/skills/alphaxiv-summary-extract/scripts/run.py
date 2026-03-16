@@ -10,14 +10,13 @@ Usage:
 
 import argparse
 import importlib.util
-import re
 import sys
 from pathlib import Path
 
-import requests
 from tqdm import tqdm
-
 from selenium import webdriver
+
+from utils import fetch_bibtex
 
 
 def load_papers(input_path: str) -> list:
@@ -38,16 +37,6 @@ def init_driver() -> webdriver.Chrome:
 
 def arxiv_id_from_url(url: str) -> str:
     return url.rstrip("/").split("/")[-1]
-
-
-def fetch_bibtex(arxiv_id: str) -> str:
-    try:
-        resp = requests.get(f"https://arxiv.org/bibtex/{arxiv_id}", timeout=15)
-        resp.raise_for_status()
-        return resp.text.strip()
-    except Exception as e:
-        print(f"  Warning: could not fetch BibTeX for {arxiv_id}: {e}")
-        return ""
 
 
 
@@ -94,9 +83,11 @@ aliases: []
 > [!tip] Key Insights
 {chr(10).join("> - " + t for t in summary.get("Takeaways", []))}
 
+%%
 ## BibTeX
 
 {bibtex_block}
+%%
 """
 
 
