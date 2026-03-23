@@ -6,7 +6,6 @@ tags:
   - robotics
   - world-models
 ---
-
 %%
 PROMPT:
 From @X01_KnowledgeHub, briefly explain the differences between world action models derived from video generation, world action models derived from vision-language models, and world action models trained from scratch. Then, for each category, briefly explain the key ideas of the papers. You may group the papers if they share similar ideas, and you can also highlight the papers that you find most interesting.
