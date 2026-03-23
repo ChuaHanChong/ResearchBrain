@@ -56,6 +56,7 @@
 # https://www-cs-faculty.stanford.edu/~knuth/papers/claude-cycles.pdf
 
 # https://github.com/zli12321/MM-Zero
+# https://yifanzhang-pro.github.io/FALCON/FALCON.pdf
 
 papers = [
     "https://arxiv.org/abs/2601.22628", # TTCS: Test-Time Curriculum Synthesis for Self-Evolving
@@ -351,5 +352,125 @@ papers = [
     "https://arxiv.org/abs/2603.11653", # Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning
     "https://arxiv.org/abs/2510.10603", # EA4LLM: A Gradient-Free Approach to Large Language Model Optimization via Evolutionary Algorithms
     "https://arxiv.org/abs/2603.12011", # Can RL Improve Generalization of LLM Agents? An Empirical Study
+    "https://arxiv.org/abs/2603.12382", # SPARROW: Learning Spatial Precision and Temporal Referential Consistency in Pixel-Grounded Video MLLMs
+    "https://arxiv.org/abs/2603.12772", # PVI: Plug-in Visual Injection for Vision-Language-Action Models
+    "https://arxiv.org/abs/2603.12248", # Matching Features, Not Tokens: Energy-Based Fine-Tuning of Language Models
+    "https://arxiv.org/abs/2603.12231", # Temporal Straightening for Latent Planning
+    "https://arxiv.org/abs/2603.11327", # Meta-Reinforcement Learning with Self-Reflection for Agentic Search
+    "https://arxiv.org/abs/2603.12056", # XSkill: Continual Learning from Experience and Skills in Multimodal Agents
+    "https://arxiv.org/abs/2509.19349", # ShinkaEvolve: Towards Open-Ended And Sample-Efficient Program Evolution
+    "https://arxiv.org/abs/2602.23413", # EvoX: Meta-Evolution for Automated Discovery
+    "https://arxiv.org/abs/2602.08234", # SkillRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning
+    "https://arxiv.org/abs/2603.15031", # Attention Residuals
+    "https://arxiv.org/abs/2603.15619", # Mixture-of-Depths Attention
+    "https://arxiv.org/abs/2512.19133", # WorldRFT: Latent World Model Planning with Reinforcement Fine-Tuning for Autonomous Driving
+    "https://arxiv.org/abs/2603.16870", # Demystifying Video Reasoning
+    "https://arxiv.org/abs/2602.01960", # Grounding Generated Videos in Feasible Plans via World Models
+    "https://arxiv.org/abs/2603.15975", # UMO: Unified In-Context Learning Unlocks Motion Foundation Model Priors
+    "https://arxiv.org/abs/2603.12263", # Ψ0: An Open Foundation Model Towards Universal Humanoid Loco-Manipulation
+    "https://arxiv.org/abs/2603.17729", # SARE: Sample-wise Adaptive Reasoning for Training-free Fine-grained Visual Recognition
+    "https://arxiv.org/abs/2603.17655", # Interpretable Cross-Domain Few-Shot Learning with Rectified Target-Domain Local Alignment
+    "https://arxiv.org/abs/2603.17541", # Temporal Gains, Spatial Costs: Revisiting Video Fine-Tuning in Multimodal Large Language Models
+    "https://arxiv.org/abs/2504.04259", # ORCA: An Open-Source, Reliable, Cost-Effective, Anthropomorphic Robotic Hand for Uninterrupted Dexterous Task Learning
+    "https://arxiv.org/abs/2603.17621", # Complementary Reinforcement Learning
+    "https://arxiv.org/abs/2603.15381", # hy AI systems don't learn and what to do about it: Lessons on autonomous learning from cognitive science
+    "https://arxiv.org/abs/2603.18656", # Balanced Thinking: Improving Chain of Thought Training in Vision Language Models
+    "https://arxiv.org/abs/2603.18524", # 3DreamBooth: High-Fidelity 3D Subject-Driven Video Generation Model
+    "https://arxiv.org/abs/2603.17063", # Transformers are Bayesian Networks
+    "https://arxiv.org/abs/2603.17621", # Complementary Reinforcement Learning
+    "https://arxiv.org/abs/2603.16856", # Online Experiential Learning for Language Models
+    "https://arxiv.org/abs/2603.19231", # MonoArt: Progressive Structural Reasoning for Monocular Articulated 3D Reconstruction
+    "https://arxiv.org/abs/2603.05218", # KARL: Knowledge Agents via Reinforcement Learning
+    "https://arxiv.org/abs/2505.19590", # Learning to Reason without External Rewards
+    "https://arxiv.org/abs/2603.14609", # GroundSet: A Cadastral-Grounded Dataset for Spatial Understanding with Vector Data
+    "https://arxiv.org/abs/2603.14117", # Improving Visual Reasoning with Iterative Evidence Refinement
+    "https://arxiv.org/abs/2603.15386", # RieMind: Geometry-Grounded Spatial Agent for Scene Understanding
+    "https://arxiv.org/abs/2603.14145", # MMOU: A Massive Multi-Task Omni Understanding and Reasoning Benchmark for Long and Complex Real-World Videos
+    "https://arxiv.org/abs/2603.16506", # VIEW2SPACE: Studying Multi-View Visual Reasoning from Sparse Observations
+    "https://arxiv.org/abs/2603.17693", # Learning Transferable Temporal Primitives for Video Reasoning via Synthetic Videos
+    "https://arxiv.org/abs/2603.16253", # Grounding the Score: Explicit Visual Premise Verification for Reliable Vision-Language Process Reward Models
+    "https://arxiv.org/abs/2603.19235", # Generation Models Know Space: Unleashing Implicit 3D Priors for Scene Understanding
+    "https://arxiv.org/abs/2603.18892", # MultihopSpatial: Multi-hop Compositional Spatial Reasoning Benchmark for Vision-Language Model
+    "https://arxiv.org/abs/2603.18743", # Memento-Skills: Let Agents Design Agents
+    "https://arxiv.org/abs/2603.19227", # Bridging Semantic and Kinematic Conditions with Diffusion-based Discrete Motion Tokenizer
+
+    # Self-evolving agents (might not have imagination cap) != self-evolving world action model, 
+    "https://arxiv.org/abs/2506.21872", # A Survey of Continual Reinforcement Learning
+    "https://arxiv.org/abs/2508.07407", # A Comprehensive Survey of Self-Evolving AI Agents: A New Paradigm Bridging Foundation Models and Lifelong Agentic Systems
+    "https://arxiv.org/abs/2507.21046", # A Survey of Self-Evolving Agents (published)
+    "https://arxiv.org/abs/2404.14387", # A Survey on Self-Evolution of Large Language Models
+    "https://arxiv.org/abs/2602.04411", # Self-evolving Embodied AI
+    "https://arxiv.org/abs/2506.23468", # NavMorph: A Self-Evolving World Model for Vision-and-Language Navigation in Continuous Environments
+    "https://arxiv.org/abs/2502.05907", # EvoAgent: Self-evolving Agent with Continual World Model for Long-Horizon Tasks
+    "https://arxiv.org/abs/2511.16166", # EvoVLA: Self-Evolving Vision-Language-Action Model
+    "https://arxiv.org/abs/2506.21669", # SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents
+    "https://arxiv.org/abs/2508.19005", # Building Self-Evolving Agents via Experience-Driven Lifelong Learning: A Framework and Benchmark
+    "https://arxiv.org/abs/2603.08403", # SPIRAL: A Closed-Loop Framework for Self-Improving Action World Models via Reflective Planning Agents
+    "https://arxiv.org/abs/2511.10395", # AgentEvolver: Towards Efficient Self-Evolving Agent System
+    "https://arxiv.org/abs/2602.04837", # Group-Evolving Agents: Open-Ended Self-Improvement via Experience Sharing
+    "https://arxiv.org/abs/2511.18085", # Continually Evolving Skill Knowledge in Vision Language Action Model
+    "https://arxiv.org/abs/2510.20685", # C-NAV: Towards Self-Evolving Continual Object Navigation in Open World
+    "https://arxiv.org/abs/2302.01877", # AdaptDiffuser: Diffusion Models as Adaptive Self-evolving Planners
+    "https://arxiv.org/abs/2510.02752", # The Path of Self-Evolving Large Language Models: Achieving Data-Efficient Learning via Intrinsic Feedback
+    "https://arxiv.org/abs/2507.09177", # Continual Reinforcement Learning by Planning with Online World Models
+    "https://arxiv.org/abs/2211.15944", # The Effectiveness of World Models for Continual Reinforcement Learning
+    "https://arxiv.org/abs/1912.01603", # Dream to Control: Learning Behaviors by Latent Imagination
+    "https://arxiv.org/abs/2601.02456", # InternVLA-A1: Unifying Understanding, Generation and Action for Robotic Manipulation
+    "https://arxiv.org/abs/2510.16732", # A Comprehensive Survey on World Models for Embodied AI
+    "https://arxiv.org/abs/2411.14499", # Understanding World or Predicting Future? A Comprehensive Survey of World Models
+    "https://arxiv.org/abs/2007.07853", # Active World Model Learning with Progress Curiosity
+    "https://arxiv.org/abs/2510.16079", # EvolveR: Self-Evolving LLM Agents through an Experience-Driven Lifecycle
+    "https://arxiv.org/abs/2510.26433", # Co-Evolving Latent Action World Models
+    "https://arxiv.org/abs/2503.18938", # AdaWorld: Learning Adaptable World Models with Latent Actions
+    "https://arxiv.org/abs/2504.21024", # WebEvolver: Enhancing Web Agent Self-Improvement with Co-evolving World Model
+    "https://arxiv.org/abs/2601.06794", # No More Stale Feedback: Co-Evolving Critics for Open-World Agent Learning
+    "https://arxiv.org/abs/2406.04151", # AgentGym: Evolving Large Language Model-based Agents across Diverse Environments
+    "https://arxiv.org/abs/2506.09985", # V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning
+    "https://arxiv.org/abs/2509.26354", # Your Agent May Misevolve: Emergent Risks in Self-evolving LLM Agents
+    "https://arxiv.org/abs/2603.14482", # V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning
+    "https://arxiv.org/abs/2512.22688", # Autoregressive Flow Matching for Motion Prediction
+    "https://arxiv.org/abs/2301.04104", # Mastering Diverse Domains through World Models
+    "https://arxiv.org/abs/2509.24527", # Training Agents Inside of Scalable World Models
+    "https://arxiv.org/abs/2005.05960", # Planning to Explore via Self-Supervised World Models
+    "https://arxiv.org/abs/2305.13622", # Continual Learning with Strong Experience Replay
+    "https://arxiv.org/abs/2409.18964", # PhysGen: Rigid-Body Physics-Grounded Image-to-Video Generation
+    "https://arxiv.org/abs/2403.06845", # DriveDreamer-2: LLM-Enhanced World Models for Diverse Driving Video Generation
+    "https://arxiv.org/abs/2411.14499", # Understanding World or Predicting Future? A Comprehensive Survey of World Models
+    # https://genesis-world.readthedocs.io/en/latest/
+    "https://arxiv.org/abs/2404.08233", # Generalized Population-Based Training for Hyperparameter Optimization in Reinforcement Learning
+    "https://arxiv.org/abs/2501.15129", # EvoRL: A GPU-accelerated Framework for Evolutionary Reinforcement Learning
+    "https://arxiv.org/abs/2402.06912", # Solving Deep Reinforcement Learning Tasks with Evolution Strategies and Linear Policy Networks
+    "https://arxiv.org/abs/2110.01411", # Deep Reinforcement Learning Versus Evolution Strategies: A Comparative Survey
+    "https://arxiv.org/abs/2503.21047", # World Model Agents with Change-Based Intrinsic Motivation
+    "https://arxiv.org/abs/2307.04054", # Deep Unsupervised Learning Using Spike-Timing-Dependent Plasticity
+    "https://arxiv.org/abs/2503.23631", # Intrinsically-Motivated Humans and Agents in Open-World Exploration
+    "https://arxiv.org/abs/2503.01584", # SENSEI: Semantic Exploration Guided by Foundation Models to Learn Versatile World Models
+    "https://arxiv.org/abs/2408.05804", # A Single Goal is All You Need: Skills and Exploration Emerge from Contrastive RL without Rewards, Demonstrations, or Subgoals
+    "https://arxiv.org/abs/2307.01452", # Causal Reinforcement Learning: A Survey
+    "https://arxiv.org/abs/2302.05209", # A Survey on Causal Reinforcement Learning
+    "https://arxiv.org/abs/2411.13852", # Dealing with Synthetic Data Contamination in Online Continual Learning
+    "https://arxiv.org/abs/2305.13622", # Continual Learning with Strong Experience Replay
+    "https://arxiv.org/abs/2112.15402", # Relational Experience Replay: Continual Learning by Adaptively Tuning Task-wise Relationship
+    "https://arxiv.org/abs/2503.02269", # Experience Replay with Random Reshuffling
+    "https://arxiv.org/abs/1911.10601", # Scaling active inference
+    "https://arxiv.org/abs/2206.02072", # Deciding What to Model: Value-Equivalent Sampling for Reinforcement Learning
+    "https://arxiv.org/abs/2603.12231", # Temporal Straightening for Latent Planning
+    "https://arxiv.org/abs/2504.16680", # Uncertainty-Aware Robotic World Model Makes Offline Model-Based Reinforcement Learning Work on Real Robots
+    "https://arxiv.org/abs/2512.13030", # Motus: A Unified Latent Action World Model
+    "https://arxiv.org/abs/2603.16666", # Fast-WAM: Do World Action Models Need Test-time Future Imagination?
+    "https://arxiv.org/abs/2510.19430", # GigaBrain-0: A World Model-Powered Vision-LanguageAction Model
+    "https://arxiv.org/abs/2603.17240", # GigaWorld-Policy: An Efficient Action-Centered World--Action Model
+    "https://arxiv.org/abs/2410.00564", # Scaling Offline Model-Based RL via Jointly-Optimized World-Action Model Pretraining
+    "https://arxiv.org/abs/2601.05230", # Learning Latent Action World Models In The Wild
+    "https://arxiv.org/abs/2503.16806", # DyWA: Dynamics-adaptive World Action Model for Generalizable Non-prehensile Manipulation
+    "https://arxiv.org/abs/2506.21539", # WorldVLA: Towards Autoregressive Action World Model
+    "https://arxiv.org/abs/2504.16680", # Uncertainty-Aware Robotic World Model Makes Offline Model-Based Reinforcement Learning Work on Real Robots
+    "https://arxiv.org/abs/2512.24766", # Dream2Flow: Bridging Video Generation and Open-World Manipulation with 3D Object Flow
+    "https://arxiv.org/abs/2507.13340", # Latent Policy Steering with Embodiment-Agnostic Pretrained World Models
+    "https://arxiv.org/abs/2510.01183", # EvoWorld: Evolving Panoramic World Generation with Explicit 3D Memory
+    "https://arxiv.org/abs/2407.06886", # Aligning Cyber Space with Physical World: A Comprehensive Survey on Embodied AI
+    "https://arxiv.org/abs/2103.04918", # A Survey of Embodied AI: From Simulators to Research Tasks
+    "https://arxiv.org/abs/2509.20021", # Embodied AI: From LLMs to World Models
+    "https://arxiv.org/abs/2603.14497", # WorldVLM: Combining World Model Forecasting and Vision-Language Reasoning
 
 ]
