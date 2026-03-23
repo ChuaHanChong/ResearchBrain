@@ -9,7 +9,7 @@ tags:
 
 %%
 PROMPT:
-Based on @VLA-WAM/KnowledgeHub_VLA-WAM.json, briefly explain the key ideas of the papers related to datasets and benchmarks/environments for embodied AI. For each dataset or benchmark, you may group the papers if they share similar goals.
+Based on @_KnowledgeHub_, briefly explain the key ideas of the papers related to datasets and benchmarks/environments for embodied AI. For each dataset or benchmark, you may group the papers if they share similar goals.
 
 You may only refer to the papers in the list below and should not refer to any other papers.
 

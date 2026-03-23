@@ -393,6 +393,11 @@ papers = [
     "https://arxiv.org/abs/2603.18892", # MultihopSpatial: Multi-hop Compositional Spatial Reasoning Benchmark for Vision-Language Model
     "https://arxiv.org/abs/2603.18743", # Memento-Skills: Let Agents Design Agents
     "https://arxiv.org/abs/2603.19227", # Bridging Semantic and Kinematic Conditions with Diffusion-based Discrete Motion Tokenizer
+    "https://arxiv.org/abs/2203.14465", # STaR: Self-Taught Reasoner Bootstrapping Reasoning With Reasoning
+    "https://arxiv.org/abs/2403.09629", # Quiet-STaR: Language Models Can Teach Themselves to Think Before Speaking
+    "https://arxiv.org/abs/2409.03299", # Bringing the RT-1-X Foundation Model to a SCARA robot
+    "https://arxiv.org/abs/2511.02824", # Kosmos: An AI Scientist for Autonomous Discovery
+    "https://arxiv.org/abs/2407.07726", # PaliGemma: A versatile 3B VLM for transfer
 
     # Self-evolving agents (might not have imagination cap) != self-evolving world action model, 
     "https://arxiv.org/abs/2506.21872", # A Survey of Continual Reinforcement Learning

@@ -3,6 +3,8 @@ title: VLA vs WAM — 101
 tags:
   - VLA
   - WAM
+  - robotics
+  - embodied-AI
 aliases:
   - VLA vs WAM
   - VLA 101
@@ -20,7 +22,7 @@ The shift from ==Vision-Language-Action (VLA)== models to ==World Action Models 
 
 ## Vision-Language-Action (VLA) Models
 
-VLAs are essentially multimodal large language models fine-tuned for robotic control. Well-known examples include RT-2 and OpenVLA.
+VLAs are essentially multimodal large language models fine-tuned for robotic control. Well-known examples include [[2307.15818|RT-2]] and [[2406.09246|OpenVLA]].
 
 **How They Work:** They ingest visual observations (images of the environment) and language instructions (the goal), and directly output a sequence of discrete ==action tokens== (motor commands or waypoints).
 
@@ -36,7 +38,7 @@ VLAs are essentially multimodal large language models fine-tuned for robotic con
 
 ## World Action Models (WAM)
 
-WAMs are an emerging class of foundation models (such as [[WAM#DreamZero|DreamZero]]) that unify action generation with a predictive "world model."
+WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]]) that unify action generation with a predictive "world model."
 
 **How They Work:** Built on advanced ==video diffusion backbones== or autoregressive transformers, WAMs take in visual context and language instructions, but jointly predict ==future video frames== and the corresponding actions.
 
@@ -60,6 +62,64 @@ WAMs are an emerging class of foundation models (such as [[WAM#DreamZero|DreamZe
 | Physical Understanding | Implicit and often brittle | Explicit, grounded in physics priors |
 | Data Reliance | Repetitive, action-labeled demonstrations | Diverse data, including passive video |
 | Generalization | High semantic, low physical | Zero-shot task, environment, and embodiment |
+
+---
+
+## Deep Dive: Robotic Foundation Model Architectures
+
+### Four Learning Strategies
+
+| Strategy | How It Works | Limitation |
+| --- | --- | --- |
+| ==Model-Free== | Task-specific policy network maps states → actions | Poor semantic generality |
+| ==Model-Based== | Explicit dynamics models decompose the task | Requires accurate dynamics; configuration-specific |
+| ==WAM== | Predicts future goal-images, derives actions via inverse dynamics | Hard to learn for complex interactions (doors, deformables) |
+| ==VLA== | Pre-trained VLMs encode state, predict actions directly | High compute for history-dependent processing |
+
+> [!tip] WAM vs VLA — The Key Differentiator
+> WAMs predict a future goal-state then calculate actions via inverse dynamics — powerful but hard to learn for complex physics. VLAs bypass explicit world-modeling by inheriting spatial reasoning from web-scale VLM pre-training, mapping observations directly to control signals.
+
+### VLA Architecture Taxonomy
+
+VLA design choices break into three axes:
+
+**History Modeling:**
+- ==One-Step== — current observation only (fast, but no temporal context)
+- ==History Aggregation== — sliding window of past observations
+
+**History Fusion:**
+- ==Interleaved== — observations + actions in one multi-modal stream (effective but expensive)
+- ==Policy Head== — VLM processes each step, dedicated head (Transformer/RNN) handles history (more efficient)
+
+**Action Space:**
+- ==Discrete== — action tokens predicted auto-regressively (compounding errors over long horizons)
+- ==Continuous== — floating-point values via MSE, BCE, or ==Flow Matching== (better temporal coherence)
+
+> [!abstract] Current SOTA Configuration
+> ==Policy Head fusion + Continuous Action Space== — best trade-off between reasoning capacity and inference efficiency.
+
+**Representative models:** [[2310.08864|RT-2-X]], [[2406.09246|OpenVLA]] (one-step/discrete) · [[2405.12213|Octo]], [[2312.13139|GR-1]] (interleaved) · [[2311.01378|RoboFlamingo]] (policy head)
+
+### Data Strategy
+
+Three training recipes for bridging sim-to-real:
+
+1. **Co-training** — simultaneous in-domain + cross-embodiment (OXE) data
+2. **Post-training** — co-train on diverse data, then refine on in-domain only
+3. **Fine-tuning** — in-domain data exclusively
+
+> [!warning] In-domain data is non-negotiable
+> Even task-agnostic data from the *same robot* outperforms massive cross-embodiment datasets for target tasks. ==Post-training== (diverse pre-train → in-domain refinement) yields the best generalization.
+
+### Key Empirical Findings
+
+1. **Generalization** — VLAs achieved a **30.3%** improvement on 5-task chains in unseen CALVIN scenes
+2. **Backbone matters** — KosMos and [[2407.07726|PaliGemma]] outperform others due to stronger vision-language alignment from larger pre-training datasets
+3. **Continuous > Discrete** — continuous actions avoid compounding discretization errors; Flow Matching offers slight gains over MSE
+4. **Emergent self-correction** — top VLAs re-locate handles after a missed grasp without explicit error-recovery training; ==Mixture-of-Experts (MoE)== improves zero-shot generalization
+
+> [!success] Ideal VLA Design Spec
+> ==KosMos/[[2407.07726|PaliGemma]] backbone== + ==Policy Head fusion== + ==Continuous actions== + ==MoE== + ==Post-training on in-domain data==
 
 ---
 
