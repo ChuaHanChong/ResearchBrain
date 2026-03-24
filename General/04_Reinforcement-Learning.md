@@ -13,7 +13,7 @@ aliases:
 # Reinforcement Learning
 
 > [!abstract] Overview
-> RL has evolved from tabular methods to the backbone of modern AI reasoning. This note traces six major threads: foundational methods, model-based RL with learned world models, RL for LLM training, visual/multimodal RL, agentic RL, and RL for robotics. Each thread feeds into the next — world models enable sample-efficient robotics; RLHF enables reasoning LLMs; and agentic RL combines both.
+> RL has evolved from tabular methods to the backbone of modern AI reasoning. This note traces the major threads: foundational methods and theory, model-based RL with learned world models, policy optimization algorithms, RL for LLM reasoning (the post-DeepSeek-R1 paradigm), visual and multimodal RL, reward modeling, agentic RL, RL for robotics, and self-evolving systems. Each thread feeds into the next — world models enable sample-efficient robotics; RLHF enables reasoning LLMs; and agentic RL combines both.
 
 ## Evolution Graph
 
@@ -21,30 +21,30 @@ aliases:
 graph TD
     subgraph "Foundations"
         A["Policy Gradient / Actor-Critic"]
-        B["[[2412.05265|RL Overview]]<br/><i>Sutton 2024</i>"]
+        B["RL Overview (Sutton 2024)"]
     end
 
     subgraph "Model-Based RL"
-        C["[[1912.01603|Dreamer]]<br/><i>2019</i>"]
-        D["[[2301.04104|DreamerV3]]<br/><i>2023</i>"]
-        E["[[2206.14176|DayDreamer]]<br/><i>2022</i>"]
-        F["[[2211.15944|Continual-Dreamer]]<br/><i>2022</i>"]
-        G["[[2005.05960|Plan2Explore]]<br/><i>2020</i>"]
-        H["[[2205.09991|Diffuser]]<br/><i>2022</i>"]
+        C["Dreamer (2019)"]
+        D["DreamerV3 (2023)"]
+        E["DayDreamer (2022)"]
+        F["Continual-Dreamer (2022)"]
+        G["Plan2Explore (2020)"]
+        H["Diffuser (2022)"]
     end
 
     subgraph "RL for LLM Reasoning"
-        I["[[2203.14465|STaR]]<br/><i>2022</i>"]
-        J["[[2403.09629|Quiet-STaR]]<br/><i>2024</i>"]
-        K["[[2401.10020|Self-Rewarding LM]]<br/><i>2024</i>"]
-        L["[[2503.14476|DAPO]]<br/><i>2025</i>"]
-        M["[[2505.03335|Absolute Zero]]<br/><i>2025</i>"]
+        I["STaR (2022)"]
+        J["Quiet-STaR (2024)"]
+        K["Self-Rewarding LM (2024)"]
+        L["DAPO (2025)"]
+        M["Absolute Zero (2025)"]
     end
 
     subgraph "Agentic RL"
-        N["[[2406.04151|AgentGym]]<br/><i>2024</i>"]
-        O["[[2504.20073|RAGEN]]<br/><i>2025</i>"]
-        P["[[2603.17621|Complementary RL]]<br/><i>2026</i>"]
+        N["AgentGym (2024)"]
+        O["RAGEN (2025)"]
+        P["Complementary RL (2026)"]
     end
 
     A --> C
@@ -69,551 +69,647 @@ graph TD
     style P fill:#e8fde8,stroke:#27ae60
 ```
 
+| Node | Paper |
+|------|-------|
+| Policy Gradient / Actor-Critic | (foundational concept — no single paper) |
+| RL Overview | [[2412.05265\|RL Overview]] |
+| Dreamer | [[1912.01603\|Dreamer]] |
+| DreamerV3 | [[2301.04104\|DreamerV3]] |
+| DayDreamer | [[2206.14176\|DayDreamer]] |
+| Continual-Dreamer | [[2211.15944\|Continual-Dreamer]] |
+| Plan2Explore | [[2005.05960\|Plan2Explore]] |
+| Diffuser | [[2205.09991\|Diffuser]] |
+| STaR | [[2203.14465\|STaR]] |
+| Quiet-STaR | [[2403.09629\|Quiet-STaR]] |
+| Self-Rewarding LM | [[2401.10020\|Self-Rewarding LM]] |
+| DAPO | [[2503.14476\|DAPO]] |
+| Absolute Zero | [[2505.03335\|Absolute Zero]] |
+| AgentGym | [[2406.04151\|AgentGym]] |
+| RAGEN | [[2504.20073\|RAGEN]] |
+| Complementary RL | [[2603.17621\|Complementary RL]] |
+
 ---
 
-## 1. Foundations & Surveys
+## 1. Foundations, Surveys & Theory
 
-The theoretical bedrock. These papers define the field's vocabulary and scope.
+The theoretical bedrock of RL — comprehensive overviews, taxonomies, and fundamental theoretical contributions that define the field's vocabulary, scope, and open problems.
 
-| Paper | Year | Contribution |
-| --- | --- | --- |
-| [[2412.05265\|RL Overview]] | 2024 | Sutton's comprehensive modern overview of RL |
-| [[2302.05209\|Causal RL Survey 2023]] | 2023 | Survey connecting causal inference with RL |
-| [[2110.01411\|DRL vs ES Survey]] | 2021 | Comparative survey: deep RL vs evolutionary strategies |
-| [[2506.21872\|Continual RL Survey]] | 2025 | Survey of lifelong/continual learning in RL |
-| [[2301.08028\|Meta-RL Tutorial]] | 2023 | Tutorial on learning-to-learn for RL |
+**Comprehensive Overviews** — Broad surveys mapping the RL landscape and its major sub-fields.
+- [[2412.05265|RL Overview]], [[2501.09686|Large Reasoning Models Survey]], [[2505.02665|Slow Thinking LLM Survey]], [[2508.08189|RL for Large Models Survey]], [[2505.00551|DeepSeek-R1 Replication Survey]], [[2504.03151|Multimodal Reasoning Survey]], [[2504.21277|Reinforced MLLM Survey]], [[2505.04921|LMRM Survey]], [[2509.08827|RL for LRM Survey]]
+
+> [!star] Key Papers
+> - [[2412.05265|RL Overview]] — Sutton's comprehensive modern overview; the definitive reference for RL fundamentals
+> - [[2501.09686|Large Reasoning Models Survey]] — First systematic survey of RL-based reasoning in LLMs; maps the post-DeepSeek-R1 landscape
+> - [[2508.08189|RL for Large Models Survey]] — Comprehensive mapping of visual RL applied to large multimodal models
+
+**Causal RL** — Connecting causal inference with RL to enable more principled and generalizable decision-making.
+- [[2302.05209|Causal RL Survey 2023]], [[2307.01452|Causal RL Survey 2307]]
+
+> [!star] Key Papers
+> - [[2302.05209|Causal RL Survey 2023]] — First comprehensive taxonomy connecting causal inference with RL
+
+**Continual & Lifelong RL** — Agents that learn across sequential tasks without catastrophic forgetting.
+- [[2506.21872|Continual RL Survey]]
+
+**Meta-RL** — Learning-to-learn for RL: agents that can quickly adapt to new tasks by leveraging prior experience.
+- [[2301.08028|Meta-RL Tutorial]]
+
+**Evolutionary Strategies vs Deep RL** — Comparative analysis of gradient-free vs gradient-based approaches to policy optimization.
+- [[2110.01411|DRL vs ES Survey]], [[2402.06912|ES Linear Policy]], [[2501.15129|EvoRL]], [[2602.00170|Blessing of Dimensionality LLM]]
+
+> [!star] Key Papers
+> - [[2501.15129|EvoRL]] — JAX-based GPU-accelerated framework achieving 60x speedup for evolutionary RL
+> - [[2602.00170|Blessing of Dimensionality LLM]] — Explains why evolution strategies work for LLM fine-tuning with small populations
+
+**Training Dynamics & Scaling** — Understanding what happens during RL training at scale — batch sizing, network pruning, entropy dynamics, and spectral analysis.
+- [[1812.06162|Large-Batch Training]], [[2402.12479|Pruned Networks in Deep RL]], [[2505.22617|Entropy Collapse in RL]], [[2508.16546|SFT vs RL Spectral Analysis]], [[2509.21128|RL Squeezes SFT Expands]], [[2407.10490|LLM Finetuning Dynamics]]
+
+> [!star] Key Papers
+> - [[1812.06162|Large-Batch Training]] — OpenAI's gradient noise scale; foundational for understanding batch size in deep RL
+> - [[2505.22617|Entropy Collapse in RL]] — Identifies universal policy entropy collapse in RL for LLMs; a key failure mode to watch for
+> - [[2508.16546|SFT vs RL Spectral Analysis]] — Reveals that SFT causes OOD generalization issues that RL avoids, via spectral lens
+
+**SFT vs RL Generalization** — Why RL generalizes where supervised fine-tuning memorizes — a central question for post-training.
+- [[2501.17161|SFT Memorizes RL Generalizes]], [[2512.12690|SFT vs RL VLM Study]], [[2512.17636|TRAPO]]
+
+> [!star] Key Papers
+> - [[2501.17161|SFT Memorizes RL Generalizes]] — Landmark finding: SFT makes models memorize training distributions, while RL makes them generalize to unseen problems
+> - [[2512.17636|TRAPO]] — Unifies SFT and RL within a single trajectory-level preference optimization framework
+
+**Test-Time Scaling & Compute** — Trading inference compute for better reasoning — search, verification, and adaptive depth at test time.
+- [[2503.24235|Test-Time Scaling Survey]], [[2407.14414|System-1.x]], [[2510.08189|R-Horizon]]
+
+> [!star] Key Papers
+> - [[2503.24235|Test-Time Scaling Survey]] — Unified four-axis taxonomy for the rapidly growing test-time scaling field
+> - [[2407.14414|System-1.x]] — Dynamic balancing between fast System-1 and deliberate System-2 processing in LLMs
+
+> [!tip] The SFT vs RL Divide
+> The key insight from 2025: SFT teaches models to *reproduce* patterns, RL teaches them to *solve* problems. For reasoning tasks, RL generalizes where SFT memorizes. But SFT remains essential for format/instruction following — the best pipelines use SFT then RL.
 
 ---
 
 ## 2. Model-Based RL & World Models
 
-==The Dreamer lineage==: learning a latent world model, then "dreaming" in it to train a policy. This is the foundation for [[04_WAM|World Action Models]].
+The Dreamer lineage: learning a latent world model, then "dreaming" in it to train a policy. This is the foundation for World Action Models (WAMs) in robotics.
 
-- [[1912.01603|Dreamer]] (2019) — pioneered ==latent imagination==: learn a world model in latent space, generate synthetic rollouts, train the policy entirely in imagination
-- [[2301.04104|DreamerV3]] (2023) — generalized Dreamer to ==130+ diverse domains== (Atari, DMLab, Minecraft) with a single set of hyperparameters; introduced ==symlog predictions== for stable learning across reward scales
-- [[2206.14176|DayDreamer]] (2022) — first to deploy Dreamer on ==physical robots== (A1 quadruped, UR5 arm), learning from scratch in hours
-- [[2211.15944|Continual-Dreamer]] (2022) — extended DreamerV3 with ==continual learning==, preventing catastrophic forgetting across sequential tasks
-- [[2005.05960|Plan2Explore]] (2020) — ==curiosity-driven exploration== in world model latent space; the agent explores to maximize world model improvement, then adapts to any downstream task zero-shot
-- [[2205.09991|Diffuser]] (2022) — planning as ==diffusion over trajectories==; reframed RL as iterative denoising, enabling flexible conditioning on rewards, constraints, and skills
+**Dreamer Lineage** — The core trajectory from latent imagination through scalable general agents to real-robot deployment.
+- [[1912.01603|Dreamer]], [[2301.04104|DreamerV3]], [[2206.14176|DayDreamer]], [[2211.15944|Continual-Dreamer]], [[2503.21047|CBET-DreamerV3]]
+
+> [!star] Key Papers
+> - [[1912.01603|Dreamer]] — Pioneered latent imagination: learn a world model in latent space, generate synthetic rollouts, train the policy entirely in imagination
+> - [[2301.04104|DreamerV3]] — Generalized Dreamer to 130+ diverse domains with a single set of hyperparameters; introduced symlog predictions for stable learning
+> - [[2206.14176|DayDreamer]] — First to deploy Dreamer on physical robots (A1 quadruped, UR5 arm), learning from scratch in hours
+
+**Exploration & Curiosity** — Self-supervised exploration strategies that drive world model improvement and zero-shot task adaptation.
+- [[2005.05960|Plan2Explore]], [[2503.01584|SENSEI]], [[2408.05804|Single-Goal Contrastive RL]], [[2503.23631|Intrinsic Motivation Human-Agent Study]]
+
+> [!star] Key Papers
+> - [[2005.05960|Plan2Explore]] — Curiosity-driven exploration in world model latent space; explores to maximize world model improvement, then adapts zero-shot
+> - [[2503.01584|SENSEI]] — Semantic exploration with epistemic uncertainty + Go-Explore for versatile world models
+
+**Diffusion & Flow-Based Planning** — Reframing RL as iterative denoising or flow matching over trajectories, enabling flexible conditioning on rewards and constraints.
+- [[2205.09991|Diffuser]], [[2603.04333|floq]]
+
+> [!star] Key Papers
+> - [[2205.09991|Diffuser]] — Planning as diffusion over trajectories; reframed RL as iterative denoising, enabling flexible conditioning on rewards, constraints, and skills
+> - [[2603.04333|floq]] — Explains the empirical success of flow-matching critics in Temporal Difference learning
+
+**JEPA & Latent Prediction for RL** — Joint-Embedding Predictive Architectures adapted for RL, predicting future states in latent space rather than pixel space.
+- [[2504.16591|JEPA for RL]], [[2512.07733|SpatialDreamer]], [[2502.14819|PLDM]]
+
+> [!star] Key Papers
+> - [[2502.14819|PLDM]] — Planning with Latent Dynamics Models from NYU/Meta FAIR; leveraging reconstruction-free latent dynamics for control
+
+**Active Inference** — Perception-action loops grounded in free energy minimization, scaling to continuous control.
+- [[1911.10601|Scaling Active Inference]]
+
+**World Model Theory & Formal Results** — Theoretical foundations proving when and why world models are necessary for generalization.
+- [[2506.01622|General Agents World Models]], [[2206.02072|VSRL]]
+
+> [!star] Key Papers
+> - [[2506.01622|General Agents World Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
+
+**Offline Model-Based RL** — Learning world models from fixed datasets without further environment interaction, enabling safe policy improvement.
+- [[2410.00564|JOWA]], [[2504.16680|RWM-U]]
+
+> [!star] Key Papers
+> - [[2504.16680|RWM-U]] — Uncertainty-aware world model for real-robot offline RL; bridges sim-to-real with calibrated uncertainty
+
+**Continual & Online World Models** — World models that update online without catastrophic forgetting, supporting lifelong learning.
+- [[2507.09177|Online Agent (OA)]], [[2602.00475|GRASP]]
+
+> [!star] Key Papers
+> - [[2602.00475|GRASP]] — Gradient-based planning enabling world models to solve long-horizon control tasks
 
 > [!tip] Why This Matters for Robotics
-> The Dreamer → DayDreamer → DreamerV3 lineage directly enables [[04_WAM|WAMs]] like [[2602.15922|DreamZero]]. The key insight: learning in imagination is orders of magnitude more sample-efficient than real-world trial-and-error. See [[04-2_Self-Evolving-WAM-101]] for the self-evolving extension.
+> The Dreamer to DayDreamer to DreamerV3 lineage directly enables WAMs like DreamZero. The key insight: learning in imagination is orders of magnitude more sample-efficient than real-world trial-and-error. JEPA-based latent prediction is the next frontier — faster and more robust than pixel-space generation.
 
 ---
 
-## 3. RL for LLM Reasoning
+## 3. Policy Optimization
 
-==The post-DeepSeek-R1 paradigm==: using RL (especially GRPO) to teach LLMs to reason step-by-step, often surpassing supervised fine-tuning.
+Direct methods for optimizing policies — from classic PPO through modern GRPO variants, KL-regularized objectives, and tree-structured search. This is the algorithmic engine behind both LLM reasoning and robot control.
 
-- [[2203.14465|STaR]] (2022) — ==iterative bootstrapping==: LLM generates rationales, keeps correct ones, fine-tunes, repeat. 6B GPT-J matches 175B GPT-3 on reasoning
-- [[2403.09629|Quiet-STaR]] (2024) — extends STaR to ==think before every token==, learning internal rationales from general text via REINFORCE
-- [[2401.10020|Self-Rewarding LM]] (2024) — LLM generates its own reward signal, eliminating the need for a separate reward model
-- [[2503.14476|DAPO]] (2025) — open-source large-scale ==GRPO== system; demonstrated that RL at scale produces reasoning capabilities that SFT cannot
-- [[2505.03335|Absolute Zero]] (2025) — ==zero-data RL==: the model proposes its own problems, solves them, and uses the verifiable answer as reward — no human data at all
-- [[2501.17161|SFT Memorizes RL Generalizes]] (2025) — landmark finding: SFT makes models memorize training distributions, while RL makes them generalize to unseen problems
+**GRPO & Variants** — Group Relative Policy Optimization and its derivatives, the dominant paradigm for RL-based LLM reasoning post-DeepSeek-R1.
+- [[2503.14476|DAPO]], [[2503.20783|Dr. GRPO]], [[2504.00883|vsGRPO]], [[2505.22257|Off-Policy GRPO]], [[2506.16141|GRPO-CARE]], [[2507.21848|EDGE-GRPO]], [[2602.05547|MT-GRPO]], [[2511.06411|SofT-GRPO]], [[2506.13923|Guide-GRPO]], [[2509.25849|Knapsack-GRPO]], [[2508.09726|GFPO]]
 
-> [!warning] The Flood of R1 Variants
-> The KnowledgeHub contains 100+ papers on R1-style visual RL training (Vision-R1, VLM-R1, Video-R1, etc.). Most apply GRPO to a VLM on verifiable tasks. The papers above represent the paradigm shift; the variants are applications.
+> [!star] Key Papers
+> - [[2503.14476|DAPO]] — Open-source large-scale GRPO system; demonstrated that RL at scale produces reasoning capabilities that SFT cannot
+> - [[2503.20783|Dr. GRPO]] — Critical analysis of R1-Zero-like training; identifies and fixes key failure modes in GRPO
+> - [[2505.22257|Off-Policy GRPO]] — Formalized off-policy extension for GRPO; enables more sample-efficient training
 
-**Key surveys:**
-- [[2501.09686|Large Reasoning Models Survey]] — comprehensive survey of RL-based reasoning
-- [[2505.02665|Slow Thinking LLM Survey]] — survey of test-time scaling and RL for reasoning
-- [[2508.08189|RL for Large Models Survey]] — broader survey of RL applied to all large models
+**PPO & Proximal Methods** — PPO-family algorithms adapted for LLM and multimodal model training, with emphasis on credit assignment and stability.
+- [[2410.01679|VinePPO]], [[2506.15050|T-PPO]], [[2508.08221|Lite PPO]], [[2508.17784|PSFT]], [[2602.04879|DPPO]]
+
+> [!star] Key Papers
+> - [[2410.01679|VinePPO]] — Replaces PPO's learned value function with vine-based credit assignment; more precise step-level rewards
+> - [[2506.15050|T-PPO]] — Truncated PPO significantly enhances training efficiency for LLM reasoning
+
+**DPO, Preference & Alignment** — Direct Preference Optimization and its multimodal extensions — aligning models with human preferences without explicit reward models.
+- [[2411.10442|MPO]], [[2411.04109|SCPO]], [[2410.12735|CREAM]], [[2506.21495|Offline-Online RL for LLMs]], [[2509.11452|Multi-Objective RL Alignment]], [[2602.22703|GEODPO]], [[2510.16333|PIVOT]], [[2507.08068|QRPO]]
+
+> [!star] Key Papers
+> - [[2506.21495|Offline-Online RL for LLMs]] — Shows DPO adapted to online or hybrid settings matches full RL performance at lower cost
+> - [[2411.10442|MPO]] — Mixed Preference Optimization with scalable automated pipeline for constructing multimodal preferences
+
+**Value & Advantage-Based Methods** — Methods that improve value estimation and advantage computation for more stable and efficient RL training.
+- [[2504.05118|VAPO]], [[2505.20686|A*-PO]], [[2504.19599|GVPO]], [[2507.20673|GMPO]], [[2602.02710|MaxRL]]
+
+> [!star] Key Papers
+> - [[2504.05118|VAPO]] — Value-model-based RL that reliably enhances LLM performance on challenging math reasoning
+> - [[2505.20686|A*-PO]] — A*-search-inspired policy optimization via optimal advantage regression
+
+**Tree Search & MCTS** — Monte Carlo Tree Search integrated with RL for structured exploration during training and inference.
+- [[2406.03816|ReST-MCTS*]], [[2406.06592|OmegaPRM]], [[2506.11902|TreeRL]], [[2508.17445|TreePO]], [[2509.09284|Tree-OPO]], [[2509.25454|DeepSearch]]
+
+> [!star] Key Papers
+> - [[2506.11902|TreeRL]] — On-policy RL with tree search for structured exploration; improves sample quality during training
+> - [[2406.03816|ReST-MCTS*]] — Automated process reward model generation via MCTS for LLM self-training
+
+**Off-Policy & Sample Efficiency** — Methods that reuse past experience or manage data more efficiently for RL fine-tuning.
+- [[2503.02269|Experience Replay Random Reshuffling]], [[2505.11081|ShiQ]], [[2509.01321|DEPO]], [[2509.04501|GRAPE]], [[2510.02245|ExGRPO]], [[2510.18927|BAPO]], [[2503.19612|AGRO]]
+
+> [!star] Key Papers
+> - [[2505.11081|ShiQ]] — Off-policy Q-learning for LLM fine-tuning; enables reuse of generated data across iterations
+> - [[2509.01321|DEPO]] — Data-Efficient Policy Optimization; significantly improves sample efficiency of RLVR
+
+**Entropy & Diversity Regularization** — Combating mode collapse and entropy collapse in RL-trained models through regularization and diversity-aware objectives.
+- [[2509.25133|SIREN]], [[2506.01939|High-Entropy Token RLVR]], [[2509.02534|Darling]], [[2510.03222|Lp-Reg]], [[2510.20817|MARA]]
+
+> [!star] Key Papers
+> - [[2509.25133|SIREN]] — Selective entropy regularization to mitigate entropy collapse; targets high-uncertainty tokens
+> - [[2509.02534|Darling]] — Diversity-Aware RL from Meta FAIR; integrates diversity directly into the RL objective
+
+**KL Divergence & Regularization Theory** — Theoretical and practical work on KL-regularized policy gradients, a fundamental tool in RLHF.
+- [[2505.17508|RPG]], [[2506.09477|KL Divergence Gradient Pitfalls]]
+
+> [!star] Key Papers
+> - [[2506.09477|KL Divergence Gradient Pitfalls]] — Meta FAIR identifies widespread implementation errors in KL divergence gradient estimation; critical for correct RLHF
+
+**Multi-Turn & Agentic Policy Optimization** — Extending RLVR beyond single-turn QA to multi-step, multi-turn, and agentic settings.
+- [[2504.20073|RAGEN]], [[2504.20571|1-shot RLVR]], [[2509.22638|FCP]], [[2509.07980|Parallel-R1]], [[2509.02333|DCPO]]
+
+> [!star] Key Papers
+> - [[2504.20073|RAGEN]] — Showed that single-turn RLVR doesn't transfer to multi-step tasks; introduced StarPO for multi-turn RL
+> - [[2504.20571|1-shot RLVR]] — Achieves competitive reasoning with just 1 rollout per sample; extreme sample efficiency
+
+**Efficient & Practical RL Training** — Infrastructure, precision tricks, and engineering insights for scaling RL training to production.
+- [[2505.24034|LlamaRL]], [[2505.07291|INTELLECT-2]], [[2510.26788|FP16 RL Training]], [[2404.08233|GPBT-PL]]
+
+> [!star] Key Papers
+> - [[2505.24034|LlamaRL]] — Meta's distributed asynchronous RL framework for large-scale LLM training
+> - [[2510.26788|FP16 RL Training]] — Demonstrates FP16 precision works for RL training; halves memory cost
+
+**Hybrid SFT + RL Pipelines** — Methods that combine supervised fine-tuning with RL in unified or staged training recipes.
+- [[2510.10606|ViSurf]], [[2507.01679|Prefix-RFT]], [[2506.13056|Metis-RISE]], [[2601.06993|ReFine-RFT]], [[2602.01058|PEAR]], [[2603.12248|EBFT]]
+
+> [!star] Key Papers
+> - [[2510.10606|ViSurf]] — Unified single-stage post-training integrating SFT and RL; avoids the two-stage overhead
+> - [[2601.06993|ReFine-RFT]] — Identifies the "Cost of Thinking" where excessive textual reasoning hurts; balances verbal and visual reasoning
+
+**Variational & Information-Theoretic Approaches** — Principled probabilistic methods treating reasoning traces as latent variables or information bottlenecks.
+- [[2509.22637|Variational Reasoning]], [[2507.18391|IBRO]], [[2505.18454|HRPO]]
+
+> [!star] Key Papers
+> - [[2509.22637|Variational Reasoning]] — Treats thinking traces as latent variables; principled framework for reasoning optimization
+
+**Miscellaneous Policy Methods** — Other notable approaches to policy optimization that cross boundaries.
+- [[2509.24207|Humanline]], [[2509.24981|ROVER]], [[2512.01374|MiniRL]], [[2512.13607|Nemotron-Cascade]], [[2509.03646|HICRA]]
+
+> [!star] Key Papers
+> - [[2509.24207|Humanline]] — Explains why online RL outperforms offline methods from a human cognitive science perspective
+> - [[2512.01374|MiniRL]] — Qwen Team's theoretical justification for token-level optimization in sequential decision-making
+
+> [!tip] The GRPO Revolution
+> Post-DeepSeek-R1, GRPO replaced PPO as the default RL algorithm for LLM reasoning. Key improvements: Dr. GRPO fixes training instabilities, DAPO scales to production, and Off-Policy GRPO enables sample reuse. For new projects, start with DAPO or GRPO-CARE.
 
 ---
 
-## 4. Visual & Multimodal RL
+## 4. RL for LLM Reasoning
 
-Applying RL (especially GRPO) to teach VLMs to reason visually — a direct extension of the LLM reasoning paradigm to multi-modal models.
+The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reason step-by-step, often surpassing supervised fine-tuning. This section covers the reasoning methods themselves; policy optimization algorithms are in Section 3.
 
-| Paper | Year | Contribution |
-| --- | --- | --- |
-| [[2503.06749\|Vision-R1]] | 2025 | First R1-style RL for VLMs with visual CoT |
-| [[2504.07615\|VLM-R1]] | 2025 | Stable, generalizable R1-style VLM training |
-| [[2505.07062\|Seed1.5-VL]] | 2025 | ByteDance's production-grade multimodal reasoning model |
-| [[2504.16656\|Skywork R1V2]] | 2025 | Hybrid SFT+RL pipeline for multimodal reasoning |
-| [[2503.01785\|Visual-RFT]] | 2025 | Visual reinforcement fine-tuning framework |
-| [[2504.21277\|Reinforced MLLM Survey]] | 2025 | Survey of RL-based reasoning in multimodal LLMs |
+**Bootstrapped Self-Training** — The STaR lineage: iterative self-improvement where the model generates, filters, and fine-tunes on its own reasoning traces.
+- [[2203.14465|STaR]], [[2403.09629|Quiet-STaR]], [[2505.17746|Fast Quiet-STaR]], [[2505.03335|Absolute Zero]], [[2505.21444|SRT]], [[2512.15687|G2RL]]
+
+> [!star] Key Papers
+> - [[2203.14465|STaR]] — Iterative bootstrapping: LLM generates rationales, keeps correct ones, fine-tunes, repeat. 6B GPT-J matches 175B GPT-3
+> - [[2403.09629|Quiet-STaR]] — Extends STaR to think before every token, learning internal rationales from general text
+> - [[2505.03335|Absolute Zero]] — Zero-data RL: model proposes its own problems, solves them, uses verifiable answers as reward — no human data at all
+
+**Self-Rewarding & Self-Improvement** — Models that generate their own training signal, eliminating external reward models or human annotation.
+- [[2401.10020|Self-Rewarding LM]], [[2410.15639|Self-Developing]], [[2508.05004|R-Zero]], [[2601.21343|Self-Improving Pretraining]], [[2601.18734|OPSD]], [[2601.19897|SDFT]], [[2601.20802|SDPO]], [[2602.12275|OPCD]], [[2508.14460|DuPO]], [[2505.19590|INTUITOR]]
+
+> [!star] Key Papers
+> - [[2401.10020|Self-Rewarding LM]] — LLM generates its own reward signal; eliminates the need for a separate reward model
+> - [[2508.05004|R-Zero]] — LLMs self-evolve reasoning via self-generated problems and rewards; fully autonomous
+
+**Chain-of-Thought Reasoning** — Training LLMs to produce explicit step-by-step reasoning, with RL as the training signal.
+- [[2503.10460|Light-R1]], [[2503.24290|Open-Reasoner-Zero]], [[2505.10425|L2T]], [[2505.11896|AdaCoT]], [[2505.13308|LATENTSEEK]], [[2505.14631|LHRM]], [[2506.07751|AbstRaL]], [[2505.20561|BARL]]
+
+> [!star] Key Papers
+> - [[2503.24290|Open-Reasoner-Zero]] — First comprehensive open-source reproduction of R1-Zero; reference implementation for the field
+> - [[2505.10425|L2T]] — Learning to Think: fine-tunes LLMs to achieve higher reasoning accuracy with significantly fewer tokens
+
+**Adaptive & Efficient Reasoning** — Methods that teach models when and how much to reason, optimizing the compute-accuracy tradeoff.
+- [[2505.13379|Thinkless]], [[2505.13438|AnytimeReasoner]], [[2505.20258|ARM]], [[2505.15612|LASER]], [[2506.03295|CFT]], [[2503.16188|Think or Not Think]], [[2508.02150|Self-Supervised RL IF]]
+
+> [!star] Key Papers
+> - [[2505.13379|Thinkless]] — RL-based framework that teaches LLMs to skip reasoning when unnecessary; optimizes compute allocation
+> - [[2505.13438|AnytimeReasoner]] — Produces usable reasoning at any compute budget; true anytime behavior
+
+**RL Pre-Training** — Applying RL during pre-training rather than just post-training, fundamentally changing how models learn from data.
+- [[2506.08007|RPT]], [[2512.03442|PretrainZero]], [[2510.01265|RLP]], [[2512.07203|MMRPT]], [[2509.25810|RA3]]
+
+> [!star] Key Papers
+> - [[2506.08007|RPT]] — Reinforcement Pre-Training: reframes next-token prediction as RL; models learn reasoning during pre-training
+> - [[2512.03442|PretrainZero]] — Self-supervised reinforcement active pretraining without human data
+
+**Reasoning-Enhanced LLMs (General)** — Complete reasoning model training pipelines and notable reasoning-enhanced LLMs.
+- [[2502.06772|ReasonFlux]], [[2504.21233|Phi-4-Mini-Reasoning]], [[2504.21318|Phi-4-reasoning]], [[2505.00949|Llama-Nemotron]], [[2506.13284|AceReason-Nemotron]], [[2506.13585|MiniMax-M1]], [[2507.12507|Nemotron]], [[2501.11223|RLM Blueprint]], [[2504.13828|Cognition Engineering]]
+
+> [!star] Key Papers
+> - [[2505.00949|Llama-Nemotron]] — NVIDIA's open-source reasoning models achieving state-of-the-art across benchmarks
+> - [[2506.13585|MiniMax-M1]] — Hybrid MoE architecture with Lightning Attention; scales reasoning efficiently
+> - [[2501.11223|RLM Blueprint]] — ETH Zurich's comprehensive modular blueprint for Reasoning Language Models
+
+**Search-Augmented Reasoning** — Teaching LLMs to interleave reasoning with external search and retrieval, learned end-to-end via RL.
+- [[2503.05592|R1-Searcher]], [[2503.09516|Search-R1]], [[2503.19470|ReSearch]], [[2504.21776|WebThinker]], [[2505.04588|ZeroSearch]]
+
+> [!star] Key Papers
+> - [[2503.09516|Search-R1]] — RL trains LLMs to autonomously interleave reasoning with search; outperforms pipeline RAG approaches
+> - [[2505.04588|ZeroSearch]] — Trains LLMs to use search by simulating search engines with LLMs; zero real search calls needed
+
+**Verification & Process Rewards** — Learning to verify reasoning steps and assign process-level rewards for more reliable training signals.
+- [[2408.15240|GenRM]], [[2410.08146|PAV]], [[2506.14245|CoT-Pass@K]], [[2506.09026|e3]], [[2506.05316|DOTS]], [[2508.13755|DARS-Breadth]]
+
+> [!star] Key Papers
+> - [[2408.15240|GenRM]] — Reframes reward modeling as next-token prediction; generative verifiers outperform discriminative ones
+> - [[2410.08146|PAV]] — Process Advantage Verifiers measure step-level progress; fine-grained credit assignment
+
+**RLVR Theory & Analysis** — Understanding why and how Reinforcement Learning with Verifiable Rewards works, including failure modes and surprising phenomena.
+- [[2506.10947|Spurious Rewards RLVR]], [[2506.17219|RLIF No Free Lunch]], [[2507.10532|RandomCalculation]], [[2512.23165|PEFT for RLVR]], [[2509.04259|RL's Razor]], [[2505.11711|RL Sparse Subnetwork]], [[2506.09967|Resa]]
+
+> [!star] Key Papers
+> - [[2506.10947|Spurious Rewards RLVR]] — Shows RLVR can improve reasoning even with partially spurious rewards; robustness result
+> - [[2505.11711|RL Sparse Subnetwork]] — RL fine-tuning consistently activates sparse subnetworks; reveals structural changes in LLMs
+
+**Internalized Reasoning & Latent Thought** — Moving reasoning from explicit text to internal latent representations, enabling faster and more efficient inference.
+- [[2601.18631|AdaReasoner]], [[2601.05877|iReasoner]], [[2601.13562|Reasoning as Modality]], [[2601.21598|ATP-Latent]], [[2509.24251|LVR]]
+
+> [!star] Key Papers
+> - [[2509.24251|LVR]] — Latent Visual Reasoning: autoregressive reasoning directly within visual representations, bypassing text
+> - [[2601.13562|Reasoning as Modality]] — Treats reasoning traces as a separate modality; novel role-separated transformer architecture
+
+**MPC + RL Integration** — Combining Model Predictive Control with RL for structured, physically-grounded decision-making.
+- [[2502.02133|MPC-RL Survey]]
+
+> [!tip] The Self-Improving Loop
+> The frontier is self-sustaining improvement: STaR to Quiet-STaR to Absolute Zero to R-Zero. Each step removes more human supervision. The endgame is models that propose their own problems, solve them, verify solutions, and improve — no human data at all.
 
 ---
 
-## 5. Agentic RL
+## 5. Visual & Multimodal RL
 
-RL for multi-turn, tool-using, and self-evolving agents — the bridge between reasoning models and autonomous systems.
+Applying RL (especially GRPO) to teach VLMs to reason visually — a direct extension of the LLM reasoning paradigm to multimodal models. The largest and fastest-growing thread in RL research.
 
-- [[2406.04151|AgentGym]] (2024) — ==cross-environment== agent training with behavioral cloning + reward-weighted RL
-- [[2504.20073|RAGEN]] (2025) — ==multi-turn RL== for LLM agents; showed that single-turn RLVR doesn't transfer to multi-step tasks
-- [[2603.17621|Complementary RL]] (2026) — ==co-evolutionary loop== between policy actor and experience extractor; **1.3x** performance margin with **2x** fewer actions
-- [[2603.18743|Memento-Skills]] (2026) — ==skill library as external memory==; agents evolve without parameter updates, **+13.7pp** on GAIA
-- [[2603.05218|KARL]] (2026) — ==off-policy RL for knowledge agents==; Pareto-optimal on enterprise search, reducing trajectory lengths by **37%**
+**R1-Style Visual Reasoning** — Applying the DeepSeek-R1 recipe (GRPO + verifiable rewards) to vision-language models for visual chain-of-thought reasoning.
+- [[2503.06749|Vision-R1]], [[2504.07615|VLM-R1]], [[2503.01785|Visual-RFT]], [[2503.07365|MM-Eureka]], [[2503.07523|VisRL]], [[2504.08837|VL-Rethinker]], [[2504.16656|Skywork R1V2]], [[2503.12797|DeepPerception]], [[2503.17352|OpenVLThinker]], [[2503.20752|Reason-RFT]], [[2505.14677|Visionary-R1]], [[2505.16854|TON]], [[2505.17018|SophiaVL-R1]], [[2505.07062|Seed1.5-VL]], [[2506.04207|ReVisual-R1]], [[2506.07218|Perception-R1]], [[2506.03569|MiMo-VL]], [[2507.01006|GLM-4.5V]], [[2601.09536|Omni-R1]], [[2601.10094|V-Zero]], [[2602.07605|Fine-R1]], [[2505.03981|X-Reasoner]], [[2507.16814|SOPHIA]]
+
+> [!star] Key Papers
+> - [[2503.06749|Vision-R1]] — First R1-style RL for VLMs with visual CoT; opened the floodgate
+> - [[2504.07615|VLM-R1]] — Stable, generalizable R1-style VLM training; the reference open-source implementation
+> - [[2505.07062|Seed1.5-VL]] — ByteDance's production-grade multimodal reasoning model; SOTA on 38/60 benchmarks
+> - [[2506.03569|MiMo-VL]] — Xiaomi's 7B model achieving SOTA visual reasoning; proves small models can reason
+
+**Visual Grounding & Spatial RL** — Teaching VLMs to ground reasoning in precise visual regions, coordinates, and spatial relationships via RL.
+- [[2506.09965|VILASR]], [[2505.15804|STAR-R1]], [[2505.15879|GRIT]], [[2505.19094|SATORI]], [[2505.19255|VTool-R1]], [[2505.19702|Point-RFT]], [[2505.14231|UniVG-R1]], [[2506.22624|Seg-R1]], [[2506.21656|SpatialReasoner-R1]], [[2506.21458|MINDCUBE]], [[2507.13362|VLM Spatial Reasoning RL]], [[2510.27606|Spatial-SSRL]], [[2511.05491|VST]], [[2512.10554|GETok]], [[2512.12633|DiG]], [[2512.15160|EagleVision]], [[2512.20617|SpatialTree]], [[2601.21634|RSGround-R1]], [[2601.04777|GeM-VG]], [[2601.15224|PROGRESSLM]], [[2602.03733|RegionReasoner]], [[2602.23615|HART]], [[2602.23959|NV-CoT]], [[2507.08306|M2-Reasoning]], [[2507.05920|MGPO]], [[2507.05255|OVR]]
+
+> [!star] Key Papers
+> - [[2505.15804|STAR-R1]] — State-of-the-art spatial reasoning by anchoring each CoT step to visual regions
+> - [[2506.22624|Seg-R1]] — RL-based pixel-level segmentation with reasoning; bridges language and dense prediction
+> - [[2505.19702|Point-RFT]] — Explicitly grounds CoT steps to specific visual coordinates; precise spatial reasoning
+
+**Dynamic Visual Attention** — Teaching VLMs to adaptively look at images — zooming, cropping, and selecting visual regions via RL-learned policies.
+- [[2505.15436|Adaptive-CoF]], [[2505.16192|VLM-R3]], [[2505.23727|PixelThink]], [[2505.24025|DINO-R1]], [[2506.17218|Mirage]], [[2511.19820|CropVLM]], [[2602.08241|SAYO]], [[2602.11858|ZwZ]], [[2507.13348|VisionThink]], [[2508.06259|SIFThinker]], [[2601.13942|GoG]], [[2505.21457|ACTIVE-O3]]
+
+> [!star] Key Papers
+> - [[2505.16192|VLM-R3]] — Dynamic visual region selection via RL; models learn where to look
+> - [[2602.11858|ZwZ]] — "Zooming without Zooming": RL teaches VLMs to mentally zoom without changing input resolution
+> - [[2505.24025|DINO-R1]] — Group Relative Query Optimization for vision foundation models; extends RL beyond language heads
+
+**Visual Reasoning Segmentation** — Zero-shot and reasoning-guided segmentation driven by RL rather than supervised masks.
+- [[2503.06520|Seg-Zero]], [[2505.12081|VisionReasoner]], [[2510.21311|FineRS]], [[2602.09463|SpotAgent]]
+
+> [!star] Key Papers
+> - [[2503.06520|Seg-Zero]] — Pure RL framework for reasoning segmentation; emergent CoT for segmentation without supervised masks
+
+**Video & Temporal Reasoning** — RL for video understanding, temporal reasoning, and 4D spatial-temporal intelligence.
+- [[2505.19000|VerIPO]], [[2504.01805|SpaceR]], [[2510.23473|Video-Thinker]], [[2510.23569|EgoThinker]], [[2601.19686|Video-KTR]], [[2603.00461|ReMoT]], [[2603.00515|MLLM-4D]]
+
+> [!star] Key Papers
+> - [[2505.19000|VerIPO]] — Verifier-guided iterative policy optimization for deep, consistent video reasoning
+> - [[2603.00515|MLLM-4D]] — Equips MLLMs with 4D spatial-temporal intelligence; perceive and reason over dynamic 3D scenes
+
+**Multi-Image & Document Reasoning** — RL for reasoning across multiple images, documents, and complex visual inputs.
+- [[2505.22019|VRAG-RL]], [[2506.22434|MiCo]], [[2507.00748|Multi-Image Grounding RL]], [[2512.24297|FIGR]], [[2510.09733|EVisRAG]], [[2602.00574|Modal-Mixed CoT]], [[2505.14362|DeepEyes]]
+
+> [!star] Key Papers
+> - [[2505.22019|VRAG-RL]] — RL teaches VLMs to understand visually rich documents via retrieval-augmented generation
+> - [[2505.14362|DeepEyes]] — VLMs perform "thinking with images" by dynamically integrating visual re-observation into reasoning
+
+**Multimodal Self-Improvement** — VLMs that improve themselves from their own outputs, without external reward models or human feedback.
+- [[2505.22334|Multimodal RL Cold Start]], [[2505.22453|MM-UPT]], [[2505.22651|Sherlock]], [[2505.23224|MMBoundary]], [[2505.23585|OPO]], [[2505.23590|Jigsaw-R1]], [[2505.23678|ViGoRL]], [[2506.02096|SynthRL]], [[2512.22545|SR-MCR]], [[2512.23169|REVEALER]], [[2602.02150|ECHO]], [[2602.02488|RLAnything]], [[2602.13949|ERL]], [[2602.21158|SELAUR]], [[2602.21628|RuCL]]
+
+> [!star] Key Papers
+> - [[2505.22453|MM-UPT]] — Unsupervised Post-Training for multimodal LLMs; self-improvement without any human labels
+> - [[2506.02096|SynthRL]] — Automated pipeline synthesizing increasingly challenging visual reasoning tasks for RL training
+> - [[2602.02488|RLAnything]] — Completely dynamic RL system enabling self-improvement across arbitrary visual domains
+
+**RL-Distilled Compact Models** — Distilling RL-trained reasoning into smaller, deployable models.
+- [[2505.11221|LVLM2P]], [[2504.07934|ThinkLite-VL]], [[2504.11468|VLAA-Thinker]], [[2510.12798|Rex-Omni]], [[2504.15777|Tina]]
+
+> [!star] Key Papers
+> - [[2504.07934|ThinkLite-VL]] — Visual reasoning models achieving SOTA with significantly fewer parameters via distillation
+> - [[2504.15777|Tina]] — Highly cost-effective approach to visual reasoning; proves RL-distilled small models are viable
+
+**Visual Planning & Tool Use** — RL teaches VLMs to plan visually, use tools, and generate executable visual programs.
+- [[2505.11409|VPRL]], [[2505.20289|VisTA]], [[2511.19661|CodeV]], [[2602.11073|VILAVT]], [[2603.14117|SIEVE]]
+
+> [!star] Key Papers
+> - [[2505.11409|VPRL]] — Visual Planning via RL: multi-step reasoning solely through sequences of images
+> - [[2511.19661|CodeV]] — Code-based visual agent with Tool-Aware Policy Optimization; addresses unfaithful visual reasoning
+
+**Embodied Visual Reasoning** — RL for visual reasoning in physically grounded, 3D settings — bridging perception and action.
+- [[2504.12680|Embodied-R]], [[2506.08011|ViGaL]], [[2507.10548|EmbRACE-3K]], [[2511.20351|HVS]], [[2511.20814|SPHINX]], [[2512.13660|RoboTracer]], [[2602.00795|DVLA-RL]]
+
+> [!star] Key Papers
+> - [[2504.12680|Embodied-R]] — Enables foundation models to perform embodied spatial reasoning by combining CoT with physical grounding
+> - [[2507.10548|EmbRACE-3K]] — 3,000 embodied reasoning tasks in photorealistic environments; benchmark for embodied visual RL
+
+**Multimodal Benchmarks for RL** — Benchmarks specifically designed to evaluate RL-trained visual reasoning.
+- [[2504.15279|VisuLogic]], [[2602.08346|ThinkWithImages-PRMBENCH]], [[2505.15966|Pixel Reasoner]], [[2505.24760|REASONING GYM]], [[2506.14965|GURU]]
+
+> [!star] Key Papers
+> - [[2504.15279|VisuLogic]] — Evaluates true visual reasoning (not text shortcuts) through carefully designed visual logic puzzles
+> - [[2505.24760|REASONING GYM]] — 100+ procedurally generated environments with verifiable rewards; the gym for RL reasoning research
+
+**General Multimodal RL Infrastructure** — Cross-cutting tools, frameworks, and analysis for multimodal RL research.
+- [[2602.14697|E-SPL]], [[2602.20739|PyVision-RL]], [[2603.18656|SCALe-SFT]], [[2602.04145|BIS]], [[2602.12395|Frankenstein RL Analysis]], [[2601.05242|GDPO]], [[2601.00215|Sight to Insight]]
+
+> [!star] Key Papers
+> - [[2602.12395|Frankenstein RL Analysis]] — Mechanistic analysis of how RL improves VLMs; reveals which components change and why
+> - [[2601.00215|Sight to Insight]] — Identifies that visual perception, not reasoning, primarily limits multimodal LLM performance
+
+> [!tip] The Visual RL Explosion
+> After Vision-R1 (March 2025), visual RL papers appeared at a rate of 10+ per week. The core recipe is simple: GRPO + VLM + verifiable visual task. The frontier is dynamic visual attention (learning *where* to look) and latent visual reasoning (reasoning without generating text).
+
+---
+
+## 6. Reward Modeling & Verification
+
+Learning and designing reward signals for RL training — from hand-crafted rewards through learned reward models to reasoning-based verification. The quality of the reward model is the ceiling for RL performance.
+
+**Process Reward Models** — Models that evaluate individual reasoning steps rather than just final answers, enabling fine-grained credit assignment.
+- [[2503.10291|VisualPRM]], [[2503.13551|HRM]], [[2504.02495|DeepSeek-GRM]], [[2504.16828|THINKPRM]], [[2505.02387|RM-R1]], [[2506.13888|VL-GenRM]], [[2506.23235|EndoRM]]
+
+> [!star] Key Papers
+> - [[2504.02495|DeepSeek-GRM]] — Self-Principled Critique Tuning: point-wise reward models with self-generated principles
+> - [[2504.16828|THINKPRM]] — Generative PRM enabling LLMs to provide verbalized, step-level evaluation
+> - [[2506.23235|EndoRM]] — Reveals powerful reward models are already latent within any LLM; no separate training needed
+
+**Reward Model Surveys & Analysis** — Understanding what reward models learn, how they fail, and how to improve them.
+- [[2504.12328|Reward Model Survey]], [[2506.07326|Reward Model Interpretability]]
+
+> [!star] Key Papers
+> - [[2504.12328|Reward Model Survey]] — Comprehensive survey consolidating RM research in the LLM era; introduces unified taxonomy
+
+**Outcome & Reasoning Reward Models** — Reward models that evaluate full reasoning chains and final outcomes, including self-rewarding and reasoning-based approaches.
+- [[2505.03318|UNIFIEDREWARD-THINK]], [[2506.03637|RewardAnything]], [[2505.14674|RRM]], [[2510.07242|HERO]], [[2510.08696|LENS]], [[2510.15242|DWRL]], [[2510.23596|BR-RM]], [[2511.01758|RLAC]], [[2511.09158|CRM]], [[2511.10648|SCS]], [[2603.16253|EVPV]]
+
+> [!star] Key Papers
+> - [[2505.03318|UNIFIEDREWARD-THINK]] — First unified reasoning reward model; evaluates all modalities with explicit chain-of-thought
+> - [[2506.03637|RewardAnything]] — Reward models that follow natural language principles; infinitely customizable
+> - [[2510.07242|HERO]] — Integrates sparse verifier signals with dense generative rewards; best of both worlds
+
+**Reward Design for Images & Vision** — Reward signals specifically designed for visual tasks — perceptual quality, visual grounding, and image reasoning.
+- [[2302.08242|Reward Tuning CV]], [[2512.08889|VALOR]]
+
+> [!star] Key Papers
+> - [[2302.08242|Reward Tuning CV]] — Pioneered applying RL reward tuning to computer vision tasks
+
+**Self-Evolving Reward Models** — Reward models that improve themselves over time without additional human annotation.
+- [[2511.16672|EvoLMM]], [[2511.19900|Agent0-VL]]
+
+> [!star] Key Papers
+> - [[2511.19900|Agent0-VL]] — Self-evolving vision-language agent integrating tool usage into reward learning
+
+**Calibration & Safety** — Reward models that are well-calibrated, safe, and resistant to reward hacking.
+- [[2412.09544|POWER-DL]], [[2505.16186|SafeKey]], [[2507.16806|RLCR]]
+
+> [!star] Key Papers
+> - [[2505.16186|SafeKey]] — Enhances safety for Large Reasoning Models without sacrificing reasoning performance
+> - [[2507.16806|RLCR]] — Calibration Rewards: trains LLMs to know what they know and express appropriate confidence
+
+**Reward-Free & Verifier-Free RL** — Methods that bypass explicit reward models entirely, using self-consistency, code execution, or other verification proxies.
+- [[2505.21493|VeriFree]], [[2506.18254|RLPR]], [[2506.10128|ViCrit]]
+
+> [!star] Key Papers
+> - [[2505.21493|VeriFree]] — Trains LLMs for general reasoning without any verifier; uses self-generated training signal
+> - [[2506.18254|RLPR]] — Verifier-free RL that enables reasoning without external verification
+
+> [!tip] The Reward Model Hierarchy
+> Outcome rewards (right/wrong) are simple but coarse. Process rewards (step-by-step) are precise but expensive. Reasoning reward models (UNIFIEDREWARD-THINK, RRM) get the best of both: dense step-level signal from a model that reasons about reasoning. The endgame is EndoRM — the reward model is already inside the LLM.
+
+---
+
+## 7. Agentic RL
+
+RL for multi-turn, tool-using, and self-evolving agents — the bridge between reasoning models and autonomous systems. These agents don't just answer questions; they take actions, observe results, and adapt.
+
+**Multi-Turn Agent Frameworks** — RL training for agents that interact with environments over multiple steps, using tools and APIs.
+- [[2406.04151|AgentGym]], [[2504.20073|RAGEN]], [[2603.17621|Complementary RL]], [[2603.05218|KARL]]
+
+> [!star] Key Papers
+> - [[2406.04151|AgentGym]] — Cross-environment agent training with behavioral cloning + reward-weighted RL
+> - [[2603.17621|Complementary RL]] — Co-evolutionary loop between policy actor and experience extractor; 1.3x performance with 2x fewer actions
+> - [[2603.05218|KARL]] — Off-policy RL for knowledge agents; Pareto-optimal on enterprise search, 37% shorter trajectories
+
+**Self-Evolving Agents** — Agents that improve their own strategies, generate their own curricula, and bootstrap their own training data.
+- [[2603.18743|Memento-Skills]], [[2511.10395|AgentEvolver]], [[2511.16043|Agent0]], [[2602.20133|AdaEvolve]]
+
+> [!star] Key Papers
+> - [[2603.18743|Memento-Skills]] — Skill library as external memory; agents evolve without parameter updates, +13.7pp on GAIA
+> - [[2511.16043|Agent0]] — Fully autonomous agent that self-improves through experience without human feedback
+
+**Retrieval-Augmented Agents** — RL teaches agents to effectively retrieve and reason over external knowledge.
+- [[2503.05592|R1-Searcher]], [[2505.04588|ZeroSearch]], [[2503.09516|Search-R1]], [[2503.19470|ReSearch]], [[2504.21776|WebThinker]], [[2509.01092|REFRAG]], [[2505.20046|REARANK]]
+
+> [!star] Key Papers
+> - [[2503.09516|Search-R1]] — RL trains LLMs to autonomously interleave reasoning with search
+> - [[2504.21776|WebThinker]] — Equips LRMs with autonomous web search during deep reasoning
+
+**Embodied Agent RL** — RL for physically grounded agents that plan and act in 3D environments.
+- [[2602.21198|Reflective Test-Time Planning]], [[2602.23320|ParamMem]], [[2601.16175|TTT-Discover]], [[2506.23061|DyME]]
+
+> [!star] Key Papers
+> - [[2602.21198|Reflective Test-Time Planning]] — Embodied LLMs learn to plan via RL-driven reflection at test time
+
+**Agent Infrastructure & Benchmarks** — Frameworks, environments, and evaluation tools for agentic RL.
+- [[2505.24760|REASONING GYM]], [[2406.18505|LLM-Xavier]], [[2511.15661|VisPlay]], [[2511.17473|MR-RLVR]], [[2511.21395|Monet]], [[2602.04118|TinyLoRA]]
+
+> [!star] Key Papers
+> - [[2406.18505|LLM-Xavier]] — Empirical study of LLMs constructing mental models of RL environments; probes LLM world understanding
+
+**RL for Code & Tool Agents** — Teaching agents to write and use code, tools, and APIs through RL.
+- [[2512.04563|COOPER]], [[2512.08511|SubagentVL]], [[2511.01618|Actial]], [[2507.00417|ASTRO]]
+
+> [!star] Key Papers
+> - [[2507.00417|ASTRO]] — Three-stage framework teaching LLMs structured tool reasoning via RL
+
+**RL for Human Decision Explanation** — Using RL to model and explain human decision-making processes.
+- [[2505.11614|RL for Human Decision Explanation]]
 
 > [!tip] The Self-Evolving Connection
-> Agentic RL connects directly to [[01_Self-Evolving|Self-Evolving AI]]: agents that use RL to improve their own strategies, generate their own curricula, and bootstrap their own training data.
+> Agentic RL connects directly to self-evolving AI: agents that use RL to improve their own strategies, generate their own curricula, and bootstrap their own training data. The trajectory: AgentGym to RAGEN to Agent0 to Memento-Skills.
 
 ---
 
-## 6. RL + Robotics
+## 8. RL + Robotics
 
-RL methods designed for or applied to physical robot learning — the intersection with [[01_VLA-WAM-101|VLA/WAM]].
+RL methods designed for or applied to physical robot learning — sample efficiency, safety, and real-world deployment constraints make robotics RL fundamentally different from LLM RL.
 
-| Paper | Year | Contribution |
-| --- | --- | --- |
-| [[2206.14176\|DayDreamer]] | 2022 | Dreamer on physical robots (A1, UR5) |
-| [[2504.16680\|RWM-U]] | 2025 | Uncertainty-aware world model for real-robot offline RL |
-| [[2505.18719\|VLA-RL]] | 2025 | Scalable RL for VLA models in robotic manipulation |
-| [[2506.08440\|TGRPO]] | 2025 | Trajectory-wise GRPO for VLA fine-tuning |
-| [[2410.00564\|JOWA]] | 2024 | Jointly-optimized world-action model pretraining |
-| [[2502.02133\|MPC-RL Survey]] | 2025 | Survey of MPC + RL integration for control |
+**VLA RL Post-Training** — Applying RL to fine-tune Vision-Language-Action models beyond what imitation learning alone achieves.
+- [[2505.18719|VLA-RL]], [[2506.08440|TGRPO]]
+
+> [!star] Key Papers
+> - [[2505.18719|VLA-RL]] — First systematic RL framework for VLAs; showed RL post-training consistently improves over SFT
+> - [[2506.08440|TGRPO]] — Trajectory-wise GRPO adapted for VLA fine-tuning; bridges LLM RL and robot RL
+
+**Model-Based Robot RL** — World-model-based approaches for sample-efficient robot learning.
+- [[2206.14176|DayDreamer]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]]
+
+> [!star] Key Papers
+> - [[2206.14176|DayDreamer]] — Dreamer on physical robots (A1, UR5); learning from scratch in hours via imagination
+
+**MPC + RL for Control** — Combining Model Predictive Control with learned RL policies for structured, physically-grounded control.
+- [[2502.02133|MPC-RL Survey]]
+
+**RL for LLM-Guided Robotics** — RL methods where LLMs guide robot behavior through reasoning, planning, or reward specification.
+- [[2502.13130|Magma]], [[2504.13818|PODS]], [[2602.02605|ESMA]], [[2603.02203|T3RL]]
+
+> [!star] Key Papers
+> - [[2502.13130|Magma]] — Microsoft's foundation model unifying multimodal understanding with physical action generation
+> - [[2603.02203|T3RL]] — Test-Time Training for RL: adapts robot policies online using world model gradients
+
+**Sim-to-Real & Transfer** — Bridging the gap between simulation and physical deployment for robot RL.
+- [[2502.17666|IC-QL]], [[2201.02373|Mirror Learning]], [[2411.14251|NLRL]]
+
+> [!star] Key Papers
+> - [[2201.02373|Mirror Learning]] — Unifying theoretical framework for diverse policy optimization methods; connects RL algorithms under one roof
+
+**RL Infrastructure & Scaling** — Engineering and scaling RL systems for real-world robot deployment.
+- [[2505.24864|ProRL]], [[2512.20605|Internal RL]], [[2510.22512|TRL]]
+
+> [!star] Key Papers
+> - [[2505.24864|ProRL]] — NVIDIA's Prolonged RL for expanding LLM reasoning to complex robot planning domains
+
+**Contrastive & Self-Supervised RL** — Self-supervised methods that learn useful representations for RL without labeled rewards.
+- [[2503.14858|CRL]], [[2510.16416|SSL4RL]], [[2506.11967|Annotation Bootstrapping]]
+
+> [!star] Key Papers
+> - [[2510.16416|SSL4RL]] — Reinterprets self-supervised learning tasks as intrinsic verifiable rewards for RL
+> - [[2506.11967|Annotation Bootstrapping]] — Recasts visual pre-training as RL; learns annotation policies that improve downstream performance
+
+**Offline & Batch RL** — Learning policies from fixed datasets without further interaction, critical for safety-sensitive robot applications.
+- [[2410.01735|LASeR]], [[2410.18252|Asynchronous RLHF]], [[2508.03100|AVATAR]], [[2509.06870|AggLM]]
+
+> [!star] Key Papers
+> - [[2508.03100|AVATAR]] — Off-policy RL framework enhancing reasoning from static experience buffers
+> - [[2410.01735|LASeR]] — Multi-Armed Bandits for dynamic reward model selection; adapts to changing task requirements
+
+> [!tip] The RL for Robotics Recipe
+> The proven pipeline: pre-train with imitation learning, then post-train with RL (VLA-RL, TGRPO). For sample efficiency, use a world model (DayDreamer, RWM-U). For deployment, combine MPC structure with learned RL policies.
+
+---
+
+## 9. Miscellaneous RL Applications
+
+RL methods applied to specialized domains and cross-cutting applications that span multiple categories.
+
+**LLM Post-Training & Distillation** — General post-training methodologies and knowledge distillation approaches using RL.
+- [[2502.21321|LLM Post-Training Survey]], [[2507.17746|RaR]], [[2508.05629|DFT]], [[2508.12790|Rubicon]], [[2603.10160|ReMix]], [[2508.02298|CAPO]]
+
+> [!star] Key Papers
+> - [[2502.21321|LLM Post-Training Survey]] — Comprehensive survey of post-training for LLMs; maps the full SFT-to-RL pipeline
+> - [[2508.12790|Rubicon]] — Extends RLVR to subjective and open-ended tasks; broadens RL beyond math/code
+
+**RL for Structured Prediction** — RL applied to ranking, retrieval, and other structured output tasks.
+- [[2505.20046|REARANK]], [[2505.13445|RISE]], [[2508.14313|AIRL-S]]
+
+> [!star] Key Papers
+> - [[2505.13445|RISE]] — RL trains LLMs to iteratively search and refine; generalizes beyond single-shot generation
+
+**RL for Safety & Alignment** — Methods ensuring RL-trained models remain safe, truthful, and aligned with human values.
+- [[2505.16186|SafeKey]], [[2507.16806|RLCR]], [[2509.20357|RLMT]]
+
+> [!star] Key Papers
+> - [[2509.20357|RLMT]] — Model-rewarded Thinking: uses model's own confidence as reward for improved truthfulness
+
+**RL-Enhanced Multimodal Architectures** — Novel architectures that fundamentally integrate RL into their design rather than using it as post-training.
+- [[2505.18129|V-Triune]], [[2505.16673|R1-ShareVL]], [[2506.08388|RLTs]], [[2602.04884|RAL]], [[2602.03806|COBALT]], [[2602.03143|SAGE]], [[2602.02605|ESMA]], [[2506.13351|DRO]], [[2507.00432|Math Reasoning Transferability]], [[2511.10279|PROPA]]
+
+> [!star] Key Papers
+> - [[2505.18129|V-Triune]] — Triple unified RL system enabling VLMs to simultaneously improve reasoning, grounding, and perception
+> - [[2602.04884|RAL]] — Reinforced Attention Learning: optimizes internal attention distributions via RL post-training
+
+**RL + Generation** — RL for improving image generation, 3D generation, and creative outputs.
+- [[2506.08011|ViGaL]], [[2512.07733|SpatialDreamer]]
+
+**Continual & Test-Time RL** — RL methods that continue learning at deployment time or adapt to distribution shifts.
+- [[2602.21198|Reflective Test-Time Planning]], [[2601.16175|TTT-Discover]], [[2603.02203|T3RL]]
+
+> [!star] Key Papers
+> - [[2601.16175|TTT-Discover]] — Test-time training enabling LLMs to learn and adapt to novel patterns during inference
+
+**RL + Program Synthesis** — RL for theorem proving, code generation, and formal verification.
+- [[2504.21801|DeepSeek-Prover-V2]], [[2503.16219|Open-RS]]
+
+> [!star] Key Papers
+> - [[2504.21801|DeepSeek-Prover-V2]] — RL-enhanced formal theorem proving with recursive proof search and subgoal decomposition
+
+> [!tip] RL is Everywhere
+> RL is no longer just a training method — it's becoming an architectural principle. From attention optimization (RAL) to pre-training (RPT) to test-time adaptation (TTT-Discover), RL permeates every layer of modern AI systems.
 
 ---
 
 ## Cross-References
 
-- [[01_VLA-WAM-101]] — VLA vs WAM comparison (RL is the training backbone for both)
-- [[04_WAM]] — World Action Models (built on model-based RL principles)
-- [[04-2_Self-Evolving-WAM-101]] — Self-evolving WAMs (RL for continuous improvement)
-- [[04-1_JEPA]] — JEPA evolution (V-JEPA 2-AC uses RL-based MPC)
-- [[01_Self-Evolving|Self-Evolving AI]] — Broader self-evolving paradigm
+- [[07_Robotics-and-Embodied-AI]] — VLAs, WAMs, and embodied systems (RL is the training backbone)
+- [[11_Self-Evolving-AI]] — Broader self-evolving paradigm
+- [[06_Video-and-Temporal]] — Video generation as world modeling
+- [[01_Foundation-Models]] — Transformer/LLM foundations that RL fine-tunes
 
 ---
 
 *Next: [[01_Foundation-Models]] for the Transformer/LLM foundations that RL fine-tunes.*
-
----
-
-## Complete Paper Listing
-
-### Exploration & Curiosity (3)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2110.01411\|DRL vs ES Survey]] | 2021 | This survey provides a comprehensive comparison of Deep Reinforcement Learning (DRL) and Evolution Strategies (ESs) a... |
-| [[2408.05804\|Single-Goal Contrastive RL]] | 2024 | Researchers at Princeton University developed a method where a Contrastive Reinforcement Learning agent, when conditi... |
-| [[2503.23631\|Intrinsic Motivation Human-Agent Study]] | 2025 | Researchers at UC Berkeley's BAIR group compared human (adults, children) and AI agent exploration in the open-ended ... |
-
-### General RL (324)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[1812.06162\|Large-Batch Training]] | 2018 | This research from OpenAI empirically models optimal batch size for deep learning training using the "gradient noise ... |
-| [[2201.02373\|Mirror Learning]] | 2022 | Researchers at the University of Oxford introduce Mirror Learning, a new theoretical framework that unifies diverse p... |
-| [[2302.05209\|Causal RL Survey 2023]] | 2023 | This survey paper provides a comprehensive review and novel taxonomy for Causal Reinforcement Learning (CRL), a field... |
-| [[2302.08242\|Reward Tuning CV]] | 2023 | Researchers from Google Research Brain Team in Zürich introduce a reward tuning framework that applies reinforcement ... |
-| [[2307.01452\|Causal RL Survey 2307]] | 2023 | This survey paper systematically organizes and defines the emerging field of Causal Reinforcement Learning (Causal RL... |
-| [[2401.10020\|Self-Rewarding LM]] | 2024 | Self-Rewarding Language Models introduces an iterative training method where a single language model learns to both g... |
-| [[2402.06912\|ES Linear Policy]] | 2024 | A study from Leiden University evaluated Evolution Strategies (ES) against gradient-based Deep Reinforcement Learning... |
-| [[2402.12479\|Pruned Networks in Deep RL]] | 2024 | Researchers from Google DeepMind, Mila, and Université de Montréal demonstrate that gradual magnitude pruning dramati... |
-| [[2404.08233\|GPBT-PL]] | 2024 | The GPBT-PL framework introduces a flexible hyperparameter optimization method for reinforcement learning, utilizing ... |
-| [[2406.03816\|ReST-MCTS*]] | 2024 | ReST-MCTS*, developed by researchers at Tsinghua University and Caltech, enhances large language model self-training ... |
-| [[2406.06592\|OmegaPRM]] | 2024 | Luo et al. introduce OmegaPRM, a Monte Carlo Tree Search algorithm, to automate the generation of over 1.5 million pe... |
-| [[2406.18505\|LLM-Xavier]] | 2024 | An empirical study investigates the capability of Large Language Models (LLMs) to construct "mental models" of reinfo... |
-| [[2407.10490\|LLM Finetuning Dynamics]] | 2024 | The paper presents a learning dynamics framework to analyze LLM fine-tuning, explaining phenomena like hallucination ... |
-| [[2407.14414\|System-1.x]] | 2024 | A framework is introduced that allows large language models to dynamically balance between fast, intuitive System-1 p... |
-| [[2408.15240\|GenRM]] | 2024 | Generative Verifiers (GenRM), developed by Google DeepMind, reframes reward modeling for Large Language Models as a n... |
-| [[2410.01679\|VinePPO]] | 2024 | VinePPO refines credit assignment in reinforcement learning for large language models by replacing PPO's learned valu... |
-| [[2410.01735\|LASeR]] | 2024 | LASeR (Learning to Adaptively Select Reward models) introduces a framework that uses Multi-Armed Bandits to dynamical... |
-| [[2410.08146\|PAV]] | 2024 | A new approach, Process Advantage Verifiers (PAVs), is introduced to measure step-level progress in multi-step reason... |
-| [[2410.12735\|CREAM]] | 2024 | CREAM, a consistency-regularized self-rewarding language model, introduces a mechanism that mitigates bias and overco... |
-| [[2410.15639\|Self-Developing]] | 2024 | A framework called Self-Developing enables Large Language Models to autonomously discover and refine algorithms for t... |
-| [[2410.18252\|Asynchronous RLHF]] | 2024 | Researchers from Mila Quebec AI Institute and Université de Montréal introduce ASYNCHRONOUSRLHF, an off-policy reinfo... |
-| [[2411.04109\|SCPO]] | 2024 | Self-Consistency Preference Optimization (SCPO) is an iterative, unsupervised method that enhances large language mod... |
-| [[2411.10442\|MPO]] | 2024 | Researchers introduced Mixed Preference Optimization (MPO) and a scalable automated pipeline for constructing multimo... |
-| [[2411.14251\|NLRL]] | 2024 | The paper introduces Natural Language Reinforcement Learning (NLRL), a framework that redefines core reinforcement le... |
-| [[2412.05265\|RL Overview]] | 2024 | Kevin P. Murphy's overview synthesizes the expansive and rapidly evolving field of Reinforcement Learning, providing ... |
-| [[2412.09544\|POWER-DL]] | 2024 | Researchers at Meta AI's FAIR group developed POWER-DL, a framework designed to identify and address two types of rew... |
-| [[2501.09686\|Large Reasoning Models Survey]] | 2025 | This Tsinghua University-led survey synthesizes advancements in reinforced reasoning with Large Language Models, iden... |
-| [[2501.11223\|RLM Blueprint]] | 2025 | Researchers at ETH Zurich's Scalable Parallel Computing Laboratory propose a comprehensive, modular blueprint for Rea... |
-| [[2501.15129\|EvoRL]] | 2025 | EvoRL introduces a JAX-based, GPU-accelerated framework for Evolutionary Reinforcement Learning, achieving up to 60x ... |
-| [[2501.17161\|SFT Memorizes RL Generalizes]] | 2025 | A comparative study by researchers from Hong Kong University, UC Berkeley, NYU, and Google DeepMind empirically demon... |
-| [[2502.02133\|MPC-RL Survey]] | 2025 | A comprehensive survey establishes a systematic classification of methods synthesizing Model Predictive Control (MPC)... |
-| [[2502.06772\|ReasonFlux]] | 2025 | ReasonFlux presents a hierarchical framework for Large Language Model reasoning that leverages a structured thought t... |
-| [[2502.13130\|Magma]] | 2025 | Microsoft Research and academic partners introduce Magma, a breakthrough foundation model that unifies multimodal und... |
-| [[2502.17666\|IC-QL]] | 2025 | Researchers at the Artificial Intelligence Research Institute (AIRI) demonstrate that explicitly incorporating reinfo... |
-| [[2502.21321\|LLM Post-Training Survey]] | 2025 | This paper presents a comprehensive survey of post-training methodologies for Large Language Models (LLMs), focusing ... |
-| [[2503.01785\|Visual-RFT]] | 2025 | Shanghai researchers introduce Visual-RFT, a pioneering framework that adapts reinforcement learning techniques for v... |
-| [[2503.02269\|Experience Replay Random Reshuffling]] | 2025 | New methods, Random Reshuffling with Circular Buffer (RR-C) and Random Reshuffling by Masking (RR-M), adapt random re... |
-| [[2503.05592\|R1-Searcher]] | 2025 | R1-Searcher, from Renmin University of China, introduces a two-stage outcome-based reinforcement learning framework t... |
-| [[2503.06520\|Seg-Zero]] | 2025 | Seg-Zero introduces a pure reinforcement learning framework for reasoning segmentation, enabling emergent chain-of-th... |
-| [[2503.06749\|Vision-R1]] | 2025 | Vision-R1 introduces a two-phase training methodology that enhances multimodal large language models' reasoning capab... |
-| [[2503.07365\|MM-Eureka]] | 2025 | Researchers from Shanghai AI Laboratory, Shanghai Jiao Tong University, and The University of Hong Kong developed MM-... |
-| [[2503.07523\|VisRL]] | 2025 | VisRL introduces a reinforced reasoning framework that enables large multimodal models (LMMs) to perform intention-dr... |
-| [[2503.07572\|MRT]] | 2025 | Meta Reinforcement Fine-Tuning (MRT) enables large language models to more efficiently utilize test-time compute for ... |
-| [[2503.09516\|Search-R1]] | 2025 | A novel Reinforcement Learning framework trains Large Language Models to autonomously engage in interleaved reasoning... |
-| [[2503.10460\|Light-R1]] | 2025 | Qiyuan Tech and Renmin University researchers developed Light-R1, an open-source suite for training long Chain-of-Tho... |
-| [[2503.12797\|DeepPerception]] | 2025 | DeepPerception introduces an MLLM-based framework to advance R1-like cognitive visual perception for knowledge-intens... |
-| [[2503.14476\|DAPO]] | 2025 | Researchers from ByteDance Seed, Tsinghua University, and The University of Hong Kong developed DAPO, an open-source ... |
-| [[2503.14858\|CRL]] | 2025 | This research investigates scaling network depth in self-supervised reinforcement learning (RL) using Contrastive RL ... |
-| [[2503.16188\|Think or Not Think]] | 2025 | A study of thinking in rule-based visual reinforcement fine-tuning for multi-modal large language models reveals that... |
-| [[2503.16219\|Open-RS]] | 2025 | Knovel Engineering Lab and VNU University of Science developed a reinforcement learning approach to enhance mathemati... |
-| [[2503.17352\|OpenVLThinker]] | 2025 | Researchers at UCLA developed OpenVLThinker, an open-source large vision-language model, leveraging an iterative supe... |
-| [[2503.19470\|ReSearch]] | 2025 | The ReSearch framework enables Large Language Models to integrate multi-step reasoning with external search, learning... |
-| [[2503.19612\|AGRO]] | 2025 | Researchers from Meta GenAI and Meta FAIR present the Any-Generation Reward Optimization (AGRO) algorithm, a unified ... |
-| [[2503.20752\|Reason-RFT]] | 2025 | Reason-RFT introduces a two-stage reinforcement fine-tuning framework to enhance the visual reasoning and generalizat... |
-| [[2503.20783\|Dr. GRPO]] | 2025 | Researchers from Sea AI Lab and partner universities critically analyze R1-Zero-like training for large language mode... |
-| [[2503.24235\|Test-Time Scaling Survey]] | 2025 | A comprehensive survey introduces a unified, four-axis taxonomy to systematically organize the rapidly growing field ... |
-| [[2503.24290\|Open-Reasoner-Zero]] | 2025 | This research from StepFun and Tsinghua University presents Open-Reasoner-Zero (ORZ), the first comprehensive open-so... |
-| [[2504.00883\|vsGRPO]] | 2025 | Researchers at Shanghai Jiao Tong University and OPPO AI Center developed an R1-Zero-like training approach using Gro... |
-| [[2504.01805\|SpaceR]] | 2025 | SpaceR introduces a framework for improving Multimodal Large Language Models (MLLMs) in video spatial reasoning, achi... |
-| [[2504.03151\|Multimodal Reasoning Survey]] | 2025 | A survey from the University of Rochester and collaborating institutions organizes and analyzes current advancements ... |
-| [[2504.05118\|VAPO]] | 2025 | VAPO introduces a value-model-based reinforcement learning framework that reliably enhances large language model perf... |
-| [[2504.07615\|VLM-R1]] | 2025 | VLM-R1 introduces an open-source framework that applies rule-based reinforcement learning to Vision-Language Models (... |
-| [[2504.07934\|ThinkLite-VL]] | 2025 | This research introduces ThinkLite-VL, a family of visual reasoning models that achieve state-of-the-art performance ... |
-| [[2504.08837\|VL-Rethinker]] | 2025 | VL-Rethinker enhances the multimodal reasoning capabilities of Vision-Language Models through a direct reinforcement ... |
-| [[2504.11343\|RAFT++]] | 2025 | The paper empirically investigates reinforcement learning algorithms for fine-tuning Large Language Models on mathema... |
-| [[2504.11468\|VLAA-Thinker]] | 2025 | A comparative study examines the effectiveness of Supervised Fine-Tuning (SFT) versus Reinforcement Learning (RL) for... |
-| [[2504.12680\|Embodied-R]] | 2025 | A collaborative framework from Tsinghua University enables foundation models to perform embodied spatial reasoning by... |
-| [[2504.13055\|NoisyRollout]] | 2025 | NoisyRollout introduces a data augmentation method for training Vision-Language Models (VLMs) using Reinforcement Lea... |
-| [[2504.13818\|PODS]] | 2025 | Researchers at Carnegie Mellon University developed PODS (Policy Optimization with Down-Sampling), a framework that a... |
-| [[2504.13828\|Cognition Engineering]] | 2025 | Researchers from Shanghai Jiao Tong University, SII, and the Generative AI Research Lab delineate "Cognition Engineer... |
-| [[2504.14945\|LUFFY]] | 2025 | LUFFY introduces a framework that enhances Large Reasoning Models (LRMs) by integrating off-policy guidance into Rein... |
-| [[2504.15279\|VisuLogic]] | 2025 | A new benchmark called VisuLogic evaluates true visual reasoning capabilities in multimodal language models through c... |
-| [[2504.15777\|Tina]] | 2025 | Tina, a research initiative from the University of Southern California, demonstrates a highly cost-effective approach... |
-| [[2504.16656\|Skywork R1V2]] | 2025 | Skywork R1V2, developed by Skywork AI, introduces a multimodal hybrid reinforcement learning approach to enhance reas... |
-| [[2504.21233\|Phi-4-Mini-Reasoning]] | 2025 | Microsoft researchers demonstrate that a carefully designed multi-stage training recipe combining synthetic data dist... |
-| [[2504.21277\|Reinforced MLLM Survey]] | 2025 | The paper provides the first comprehensive survey on the application of Reinforcement Learning to enhance reasoning i... |
-| [[2504.21318\|Phi-4-reasoning]] | 2025 | Microsoft researchers develop a 14B parameter language model specialized in reasoning through careful data curation a... |
-| [[2504.21776\|WebThinker]] | 2025 | The WebThinker framework, developed by researchers from Renmin University of China and collaborators, equips Large Re... |
-| [[2504.21801\|DeepSeek-Prover-V2]] | 2025 | DeepSeek-Prover-V2 improves formal theorem proving in Lean 4 by employing a recursive proof search with subgoal decom... |
-| [[2505.00551\|DeepSeek-R1 Replication Survey]] | 2025 | This survey by MiroMind and affiliated universities synthesizes open-source replication studies of DeepSeek-R1, detai... |
-| [[2505.00949\|Llama-Nemotron]] | 2025 | NVIDIA's Llama-Nemotron introduces a family of open-source language models designed for advanced reasoning, achieving... |
-| [[2505.02665\|Slow Thinking LLM Survey]] | 2025 | A survey details recent progress in Large Language Models designed for "slow thinking" (System 2 cognition) by analyz... |
-| [[2505.03981\|X-Reasoner]] | 2025 | A framework combining supervised fine-tuning with reinforcement learning enables vision-language models to develop ge... |
-| [[2505.04588\|ZeroSearch]] | 2025 | A framework called ZEROSEARCH enables training large language models (LLMs) to leverage search capabilities by replac... |
-| [[2505.04921\|LMRM Survey]] | 2025 | Researchers from Harbin Institute of Technology, Shenzhen, surveyed Large Multimodal Reasoning Models (LMRMs), tracin... |
-| [[2505.07062\|Seed1.5-VL]] | 2025 | An advanced vision-language model from ByteDance Seed achieves state-of-the-art performance on 38 out of 60 public be... |
-| [[2505.07291\|INTELLECT-2]] | 2025 | A decentralized reinforcement learning framework enables training of a 32-billion parameter language model across dis... |
-| [[2505.10425\|L2T]] | 2025 | The Learning to Think (L2T) framework fine-unes large language models to achieve higher reasoning accuracy with signi... |
-| [[2505.11081\|ShiQ]] | 2025 | Cohere researchers introduce ShiQ, an off-policy Q-learning framework for fine-tuning Large Language Models that enab... |
-| [[2505.11221\|LVLM2P]] | 2025 | A framework called LVLM2P distills knowledge from large vision-language models (LVLMs) into compact reinforcement lea... |
-| [[2505.11409\|VPRL]] | 2025 | A new paradigm, Visual Planning, enables AI models to perform multi-step reasoning solely through sequences of images... |
-| [[2505.11614\|RL for Human Decision Explanation]] | 2025 | Researchers from Princeton University and Georgia Institute of Technology trained Large Language Models using reinfor... |
-| [[2505.11711\|RL Sparse Subnetwork]] | 2025 | This research from UIUC reveals that reinforcement learning (RL) finetuning of large language models (LLMs) consisten... |
-| [[2505.11896\|AdaCoT]] | 2025 | ByteDance Seed developed AdaCoT, a framework enabling large language models (LLMs) to adaptively decide whether to in... |
-| [[2505.12081\|VisionReasoner]] | 2025 | Researchers from the Chinese University of Hong Kong and SmartMore developed VisionReasoner, a unified framework for ... |
-| [[2505.13308\|LATENTSEEK]] | 2025 | Researchers from NLCo Lab at BIGAI and collaborators developed LATENTSEEK, a framework enhancing LLM reasoning by app... |
-| [[2505.13379\|Thinkless]] | 2025 | Researchers at the National University of Singapore developed "Thinkless," an RL-based framework that enables large l... |
-| [[2505.13438\|AnytimeReasoner]] | 2025 | Researchers from Sea AI Lab and the National University of Singapore developed AnytimeReasoner, a framework that opti... |
-| [[2505.13445\|RISE]] | 2025 | Researchers from Tencent and CUHK-Shenzhen introduce RISE, a reinforcement learning framework that trains language mo... |
-| [[2505.14231\|UniVG-R1]] | 2025 | UniVG-R1 introduces a reasoning-guided multimodal large language model for universal visual grounding, employing a tw... |
-| [[2505.14362\|DeepEyes]] | 2025 | DeepEyes enables Vision-Language Models (VLMs) to perform 'thinking with images' by dynamically integrating visual re... |
-| [[2505.14631\|LHRM]] | 2025 | Large Hybrid-Reasoning Models (LHRMs) from Microsoft Research and Peking University adaptively determine whether to e... |
-| [[2505.14674\|RRM]] | 2025 | Reward Reasoning Models (RRMs) introduce explicit chain-of-thought reasoning before generating a reward, allowing for... |
-| [[2505.14677\|Visionary-R1]] | 2025 | The VISIONARY-R1 framework trains visual language models for complex reasoning using reinforcement learning and CoT-f... |
-| [[2505.15436\|Adaptive-CoF]] | 2025 | Researchers from Beijing Institute of Technology and BIGAI developed Adaptive Chain-of-Focus (Adaptive-CoF), a framew... |
-| [[2505.15612\|LASER]] | 2025 | This paper presents LASER methods (LASER, LASER-D, LASER-DE), which utilize adaptive length-based reward shaping with... |
-| [[2505.15804\|STAR-R1]] | 2025 | STAR-R1 enhances multimodal large language models' (MLLMs) spatial reasoning by achieving state-of-the-art performanc... |
-| [[2505.15879\|GRIT]] | 2025 | GRIT enables Multimodal Large Language Models (MLLMs) from UC Santa Cruz and eBay to generate visually grounded reaso... |
-| [[2505.15966\|Pixel Reasoner]] | 2025 | Researchers from the University of Waterloo, HKUST, and Vector Institute developed Pixel Reasoner, a system that enab... |
-| [[2505.16186\|SafeKey]] | 2025 | SafeKey, developed by researchers from UCSC, UCB, Yale, and Cisco Research, enhances safety for Large Reasoning Model... |
-| [[2505.16192\|VLM-R3]] | 2025 | VLM-R³ introduces a framework that enhances Multimodal Large Language Models (MLLMs) by enabling dynamic visual regio... |
-| [[2505.16673\|R1-ShareVL]] | 2025 | Researchers from Nanyang Technological University, ByteDance, and collaborating institutions develop Share-GRPO, a re... |
-| [[2505.16854\|TON]] | 2025 | A framework from researchers at The Chinese University of Hong Kong and the National University of Singapore enables ... |
-| [[2505.17018\|SophiaVL-R1]] | 2025 | SophiaVL-R1 improves multimodal reasoning by integrating a "thinking reward" that evaluates the quality of the model'... |
-| [[2505.17508\|RPG]] | 2025 | A new theoretical framework, the Regularized Policy Gradient (RPG) view, unifies KL-regularized policy gradient algor... |
-| [[2505.17746\|Fast Quiet-STaR]] | 2025 | Fast Quiet-STaR introduces a multi-stage training method for large language models to internalize token-level reasoni... |
-| [[2505.18129\|V-Triune]] | 2025 | A Visual Triple Unified Reinforcement Learning system, V-Triune, enables Vision-Language Models to simultaneously imp... |
-| [[2505.18454\|HRPO]] | 2025 | Hybrid Latent Reasoning via Reinforcement Learning (HRPO) enables Large Language Models (LLMs) to integrate continuou... |
-| [[2505.19000\|VerIPO]] | 2025 | VerIPO cultivates deep, consistent, long-term reasoning in Video-LLMs by introducing a Verifier-guided Iterative Poli... |
-| [[2505.19094\|SATORI]] | 2025 | The SATORI framework enhances Multimodal Large Language Model (MLLM) reasoning by explicitly integrating visual groun... |
-| [[2505.19255\|VTool-R1]] | 2025 | VTool-R1 trains Vision-Language Models (VLMs) to generate multimodal chains of thought by dynamically interleaving te... |
-| [[2505.19590\|INTUITOR]] | 2025 | This research introduces Reinforcement Learning from Internal Feedback (RLIF) and its instantiation, INTUITOR, enabli... |
-| [[2505.19702\|Point-RFT]] | 2025 | Point-RFT is a framework for multimodal reasoning that explicitly grounds Chain-of-Thought (CoT) steps to specific vi... |
-| [[2505.20046\|REARANK]] | 2025 | Mila - Quebec AI Institute and Fudan University researchers develop REARANK, a reasoning-based re-ranking agent that ... |
-| [[2505.20258\|ARM]] | 2025 | The Adaptive Reasoning Model (ARM) enables large reasoning models to adaptively select appropriate reasoning formats ... |
-| [[2505.20289\|VisTA]] | 2025 | A research team from the University of Wisconsin-Madison and collaborators developed VisualToolAgent (VisTA), a reinf... |
-| [[2505.20561\|BARL]] | 2025 | Researchers from Northwestern University and Google DeepMind developed Bayes-Adaptive RL for LLM Reasoning (BARL), a ... |
-| [[2505.20686\|A*-PO]] | 2025 | Cornell University and Princeton University researchers develop A*-PO (Policy Optimization via Optimal Advantage Regr... |
-| [[2505.21444\|SRT]] | 2025 | This research investigates whether large reasoning models can self-train using an online reinforcement learning frame... |
-| [[2505.21457\|ACTIVE-O3]] | 2025 | Zhejiang University and Ant Group researchers develop ACTIVE-O3, a reinforcement learning framework using Group Relat... |
-| [[2505.21493\|VeriFree]] | 2025 | VeriFree proposes a novel approach to training large language models (LLMs) for general reasoning that eliminates the... |
-| [[2505.22019\|VRAG-RL]] | 2025 | VRAG-RL, a framework developed by Alibaba Group's Tongyi Lab, empowers Vision-Language Models to understand visually ... |
-| [[2505.22257\|Off-Policy GRPO]] | 2025 | IBM Research and MIT-IBM Watson Lab researchers formalized an off-policy extension for Group Relative Policy Optimiza... |
-| [[2505.22334\|Multimodal RL Cold Start]] | 2025 | Researchers from Shanghai Jiao Tong University developed a two-stage Supervised Fine-Tuning (SFT) and Reinforcement L... |
-| [[2505.22453\|MM-UPT]] | 2025 | MM-UPT establishes an Unsupervised Post-Training (UPT) paradigm for multi-modal large language models, allowing them ... |
-| [[2505.22617\|Entropy Collapse in RL]] | 2025 | This paper identifies and characterizes a universal policy entropy collapse in reinforcement learning for large langu... |
-| [[2505.22651\|Sherlock]] | 2025 | The Sherlock framework introduces a self-correction and self-improvement training methodology for Vision-Language Mod... |
-| [[2505.23224\|MMBoundary]] | 2025 | MMBoundary introduces a two-stage reinforced fine-tuning framework for multimodal large language models to express fi... |
-| [[2505.23585\|OPO]] | 2025 | Microsoft Research introduces On-Policy RL with Optimal reward baseline (OPO), an algorithm that simplifies large lan... |
-| [[2505.23590\|Jigsaw-R1]] | 2025 | Researchers from KU Leuven and collaborators explored rule-based reinforcement learning (RL) for multimodal large lan... |
-| [[2505.23678\|ViGoRL]] | 2025 | ViGoRL introduces a method that enhances visual reasoning in Vision-Language Models by explicitly anchoring each reas... |
-| [[2505.23727\|PixelThink]] | 2025 | Researchers from Zhejiang University, National University of Singapore, and Alibaba's AD Lab develop PIXELTHINK, an a... |
-| [[2505.24025\|DINO-R1]] | 2025 | DINO-R1 introduces Group Relative Query Optimization (GRQO), a reinforcement-style training strategy for vision found... |
-| [[2505.24034\|LlamaRL]] | 2025 | Meta GenAI developed LlamaRL, a distributed asynchronous reinforcement learning framework that accelerates large-scal... |
-| [[2505.24760\|REASONING GYM]] | 2025 | Open-Thought developed REASONING GYM, a library of over 100 procedurally generated environments with verifiable rewar... |
-| [[2505.24864\|ProRL]] | 2025 | NVIDIA researchers developed Prolonged Reinforcement Learning (ProRL) to expand large language models' reasoning capa... |
-| [[2506.01939\|High-Entropy Token RLVR]] | 2025 | Research from Alibaba Inc.'s Qwen Team and Tsinghua University's LeapLab reveals that in large language models, only ... |
-| [[2506.02096\|SynthRL]] | 2025 | NUS-TRAIL researchers develop SynthRL, an automated three-stage pipeline that synthesizes more challenging visual rea... |
-| [[2506.03295\|CFT]] | 2025 | One-shot Critique Fine-Tuning (CFT) activates latent reasoning abilities in pre-trained large language models using a... |
-| [[2506.03569\|MiMo-VL]] | 2025 | Xiaomi's LLM-Core division develops MiMo-VL-7B, a compact vision-language model that achieves state-of-the-art perfor... |
-| [[2506.04207\|ReVisual-R1]] | 2025 | Chinese researchers develop ReVisual-R1, a 7B multimodal reasoning model that achieves state-of-the-art performance a... |
-| [[2506.05316\|DOTS]] | 2025 | This research introduces a method to enhance the data efficiency of Large Language Model (LLM) reinforcement learning... |
-| [[2506.07218\|Perception-R1]] | 2025 | Perception-R1 enhances the multimodal reasoning abilities of Multimodal Large Language Models by explicitly integrati... |
-| [[2506.07751\|AbstRaL]] | 2025 | The ABSTRAL framework augments Large Language Models' reasoning capabilities by training them to perform abstract thi... |
-| [[2506.08007\|RPT]] | 2025 | Reinforcement Pre-Training (RPT) introduces a novel paradigm for pre-training large language models by reframing next... |
-| [[2506.08011\|ViGaL]] | 2025 | Researchers from Rice University, Johns Hopkins University, and NVIDIA developed Visual Game Learning (ViGaL), a post... |
-| [[2506.08388\|RLTs]] | 2025 | Researchers at Sakana AI developed Reinforcement-Learned Teachers (RLTs), a framework that trains specialized languag... |
-| [[2506.09026\|e3]] | 2025 | The e3 training recipe enables Large Language Models to truly extrapolate their reasoning performance by effectively ... |
-| [[2506.09477\|KL Divergence Gradient Pitfalls]] | 2025 | A paper from Meta FAIR and Meta GenAI identifies widespread implementation errors in KL divergence gradient estimatio... |
-| [[2506.09965\|VILASR]] | 2025 | This work introduces VILASR, a Vision-Language Model capable of spatial reasoning by generating and interpreting visu... |
-| [[2506.09967\|Resa]] | 2025 | Resa introduces SAE-Tuning, a two-stage training procedure that efficiently elicits strong reasoning abilities in lan... |
-| [[2506.10128\|ViCrit]] | 2025 | A novel reinforcement learning proxy task, ViCrit, enhances Vision-Language Models' fine-grained visual perception by... |
-| [[2506.10947\|Spurious Rewards RLVR]] | 2025 | This study demonstrates that Reinforcement Learning with Verifiable Rewards (RLVR) can significantly improve mathemat... |
-| [[2506.11902\|TreeRL]] | 2025 | TreeRL, developed by researchers from Tsinghua University and Caltech, introduces an on-policy reinforcement learning... |
-| [[2506.11967\|Annotation Bootstrapping]] | 2025 | Annotation Bootstrapping, developed by UC Berkeley researchers, recasts visual pre-training as a reinforcement learni... |
-| [[2506.13056\|Metis-RISE]] | 2025 | Meituan introduces Metis-RISE, a hybrid training framework that first uses Reinforcement Learning to activate latent ... |
-| [[2506.13284\|AceReason-Nemotron]] | 2025 | NVIDIA researchers developed AceReason-Nemotron 1.1, a Qwen2.5-7B based model, by systematically investigating the sy... |
-| [[2506.13351\|DRO]] | 2025 | Researchers from Microsoft and UCLA developed Direct Reasoning Optimization (DRO), an RL-based framework that allows ... |
-| [[2506.13585\|MiniMax-M1]] | 2025 | MiniMax developed MiniMax-M1, a large reasoning model leveraging a hybrid Mixture-of-Experts architecture with Lightn... |
-| [[2506.13923\|Guide-GRPO]] | 2025 | This paper investigates how large language models learn complex reasoning when trained with Reinforcement Learning wi... |
-| [[2506.14245\|CoT-Pass@K]] | 2025 | Researchers at Microsoft Research Asia and collaborating universities demonstrate that Reinforcement Learning with Ve... |
-| [[2506.14965\|GURU]] | 2025 | The paper introduces GURU, a multi-domain reinforcement learning corpus with 92K verifiable examples across six disti... |
-| [[2506.15050\|T-PPO]] | 2025 | Truncated Proximal Policy Optimization (T-PPO) significantly enhances the training efficiency of large language model... |
-| [[2506.16141\|GRPO-CARE]] | 2025 | Researchers from ARC Lab, Tencent PCG, The University of Hong Kong, and The Chinese University of Hong Kong introduce... |
-| [[2506.17218\|Mirage]] | 2025 | Researchers from UMass Amherst and MIT developed Mirage, a framework that enables Vision-Language Models to perform m... |
-| [[2506.17219\|RLIF No Free Lunch]] | 2025 | This study reveals a "no free lunch" principle for Reinforcement Learning from Internal Feedback (RLIF) in LLM reason... |
-| [[2506.18254\|RLPR]] | 2025 | Researchers from Tsinghua University and NUS developed RLPR, a verifier-free reinforcement learning framework that en... |
-| [[2506.21458\|MINDCUBE]] | 2025 | Researchers introduce MINDCUBE, a benchmark for evaluating Vision-Language Models' spatial mental modeling from limit... |
-| [[2506.21495\|Offline-Online RL for LLMs]] | 2025 | Researchers at FAIR at Meta and NYU demonstrated that Direct Preference Optimization (DPO), when adapted to online or... |
-| [[2506.21656\|SpatialReasoner-R1]] | 2025 | SpatialReasoner-R1, a Vision-Language Model, introduces enhanced capabilities for fine-grained, multi-step spatial re... |
-| [[2506.21872\|Continual RL Survey]] | 2025 | This survey paper provides a comprehensive review of Continual Reinforcement Learning (CRL), introducing a novel taxo... |
-| [[2506.22434\|MiCo]] | 2025 | MiCo (Multi-image Contrast) introduces a self-supervised reinforcement learning framework for Vision-Language Models ... |
-| [[2506.22624\|Seg-R1]] | 2025 | Seg-R1 introduces a reinforcement learning-based framework that enables large multimodal models (LMMs) to perform pix... |
-| [[2506.23061\|DyME]] | 2025 | Researchers from The Hong Kong University of Science and Technology (HKUST) introduced DyME (Dynamic Memorize–Explore... |
-| [[2507.00417\|ASTRO]] | 2025 | AI at Meta and University of Washington researchers introduce ASTRO, a three-stage framework that teaches large langu... |
-| [[2507.00432\|Math Reasoning Transferability]] | 2025 | This research investigates how fine-tuning methods for math reasoning affect the broader capabilities of Large Langua... |
-| [[2507.00748\|Multi-Image Grounding RL]] | 2025 | Researchers from Xiaohongshu Inc. and affiliated universities developed a two-stage training framework that combines ... |
-| [[2507.01006\|GLM-4.5V]] | 2025 | The GLM-V Team from Zhipu AI and Tsinghua University developed GLM-4.5V and GLM-4.1V-Thinking, a family of vision-lan... |
-| [[2507.01679\|Prefix-RFT]] | 2025 | Researchers introduce Prefix Reinforcement Fine-tuning (Prefix-RFT), a hybrid post-training approach for large langua... |
-| [[2507.05255\|OVR]] | 2025 | Researchers developed Open-Vision-Reasoner (OVR), an MLLM that transfers linguistic cognitive behaviors to the visual... |
-| [[2507.05920\|MGPO]] | 2025 | This paper introduces Multi-turn Grounding-based Policy Optimization (MGPO), a reinforcement learning framework that ... |
-| [[2507.08306\|M2-Reasoning]] | 2025 | Inclusion AI, Ant Group developed M2-Reasoning-7B, a Multimodal Large Language Model capable of unified general and s... |
-| [[2507.10532\|RandomCalculation]] | 2025 | The research investigates why Qwen2.5 LLMs show performance gains from random rewards on math benchmarks, concluding ... |
-| [[2507.10548\|EmbRACE-3K]] | 2025 | Researchers introduced EmbRACE-3K, a dataset featuring 3,000 embodied reasoning and action tasks in photorealistic Un... |
-| [[2507.12507\|Nemotron]] | 2025 | Researchers at NVIDIA demonstrate that prolonged reinforcement learning, coupled with specific algorithmic enhancemen... |
-| [[2507.13348\|VisionThink]] | 2025 | VisionThink is a Vision-Language Model that dynamically adjusts its visual input resolution using reinforcement learn... |
-| [[2507.13362\|VLM Spatial Reasoning RL]] | 2025 | This research from NYU's Courant Institute systematically enhances the spatial reasoning capabilities of Vision-Langu... |
-| [[2507.16806\|RLCR]] | 2025 | Researchers at MIT developed Reinforcement Learning with Calibration Rewards (RLCR), an approach that trains large la... |
-| [[2507.16814\|SOPHIA]] | 2025 | SOPHIA introduces a semi-off-policy reinforcement learning framework that enhances large vision-language models' (LVL... |
-| [[2507.17746\|RaR]] | 2025 | The 'Rubrics as Rewards' (RaR) framework enables reinforcement learning for large language models (LLMs) in complex, ... |
-| [[2507.18391\|IBRO]] | 2025 | This paper from The University of Sydney, ByteDance, and NTU introduces IB-aware Reasoning Optimization (IBRO), an in... |
-| [[2507.20673\|GMPO]] | 2025 | Geometric-Mean Policy Optimization (GMPO) stabilizes reinforcement learning for large language models (LLMs) by emplo... |
-| [[2507.21848\|EDGE-GRPO]] | 2025 | Researchers at Beihang University developed EDGE-GRPO, an algorithm that combines Guided Error Correction for respons... |
-| [[2508.02150\|Self-Supervised RL IF]] | 2025 | Researchers from Fudan University and Ant Group developed a self-supervised reinforcement learning framework to enhan... |
-| [[2508.02298\|CAPO]] | 2025 | CAPO significantly improves Large Language Model reasoning by providing fine-grained, reliable, and efficient credit ... |
-| [[2508.03100\|AVATAR]] | 2025 | Researchers from Arizona State University developed AVATAR, an off-policy reinforcement learning framework that enhan... |
-| [[2508.03682\|SQLM]] | 2025 | Carnegie Mellon University researchers developed Self-Questioning Language Models (SQLM), an autonomous self-improvem... |
-| [[2508.05004\|R-Zero]] | 2025 | Tencent AI Seattle Lab researchers developed R-Zero, a framework enabling Large Language Models (LLMs) to self-evolve... |
-| [[2508.05629\|DFT]] | 2025 | This work introduces Dynamic Fine-Tuning (DFT), a method that mathematically reinterprets Supervised Fine-Tuning (SFT... |
-| [[2508.06259\|SIFThinker]] | 2025 | The SIFThinker framework enhances multimodal large language models by intrinsically integrating dynamic visual attent... |
-| [[2508.08189\|RL for Large Models Survey]] | 2025 | A comprehensive survey maps the rapidly expanding landscape of visual Reinforcement Learning (RL) applied to large mu... |
-| [[2508.08221\|Lite PPO]] | 2025 | Researchers systematically analyzed reinforcement learning techniques for enhancing large language model reasoning, d... |
-| [[2508.09726\|GFPO]] | 2025 | Researchers at Microsoft Research developed Group Filtered Policy Optimization (GFPO), an RL fine-tuning method that ... |
-| [[2508.12790\|Rubicon]] | 2025 | Rubicon extends Reinforcement Learning from Verifiable Rewards (RLVR) to handle subjective and open-ended tasks in La... |
-| [[2508.13755\|DARS-Breadth]] | 2025 | A new framework, DARS-Breadth, improves large language model reasoning in Reinforcement Learning with Verifiable Rewa... |
-| [[2508.14313\|AIRL-S]] | 2025 | The AIRL-S framework unifies reinforcement learning (RL) and search-based test-time scaling (TTS) by learning a dynam... |
-| [[2508.14460\|DuPO]] | 2025 | DuPO introduces a self-supervised dual preference optimization framework that enables reliable LLM self-verification ... |
-| [[2508.16546\|SFT vs RL Spectral Analysis]] | 2025 | This research uses spectral analysis to reveal that Supervised Fine-Tuning (SFT) causes out-of-distribution (OOD) gen... |
-| [[2509.01092\|REFRAG]] | 2025 | REFRAG introduces an efficient decoding framework for Retrieval-Augmented Generation (RAG) that exploits the sparse a... |
-| [[2509.04259\|RL's Razor]] | 2025 | Online reinforcement learning (RL) consistently causes less catastrophic forgetting in foundation models compared to ... |
-| [[2509.12132\|Reflection-V]] | 2025 | A two-stage training strategy, Reflection-V, enhances visual reflection in Vision-Language Models (VLMs) by first gen... |
-| [[2509.20357\|RLMT]] | 2025 | Princeton University researchers developed Reinforcement Learning with Model-rewarded Thinking (RLMT), an approach th... |
-| [[2509.21128\|RL Squeezes SFT Expands]] | 2025 | Researchers from The University of Tokyo quantitatively compared reasoning in large language models after Supervised ... |
-| [[2509.24251\|LVR]] | 2025 | Latent Visual Reasoning (LVR) enables Multimodal Large Language Models to perform autoregressive reasoning directly w... |
-| [[2510.01265\|RLP]] | 2025 | Researchers developed RLP (Reinforcement as a Pretraining Objective), which integrates reinforcement learning directl... |
-| [[2510.08189\|R-Horizon]] | 2025 | Researchers from Fudan University and Meituan LongCat Team developed R-HORIZON, a method and benchmark to evaluate an... |
-| [[2510.09733\|EVisRAG]] | 2025 | The EVisRAG framework enhances visual retrieval-augmented generation by guiding Vision-Language Models through explic... |
-| [[2510.12798\|Rex-Omni]] | 2025 | Researchers at the International Digital Economy Academy (IDEA) introduced Rex-Omni, a 3-billion-parameter Multimodal... |
-| [[2510.16333\|PIVOT]] | 2025 | Research from KAIST and NAVER AI Lab demonstrates that Reinforcement Learning (RL) with Direct Preference Optimizatio... |
-| [[2510.16416\|SSL4RL]] | 2025 | The SSL4RL framework reinterprets self-supervised learning tasks as intrinsic, verifiable reward signals for reinforc... |
-| [[2510.21311\|FineRS]] | 2025 | FINERS introduces a multi-modal large language model framework designed for instruction-guided reasoning and pixel-le... |
-| [[2510.22512\|TRL]] | 2025 | Researchers at UC Berkeley introduce Transitive RL (TRL), a divide-and-conquer value learning algorithm for offline g... |
-| [[2510.23473\|Video-Thinker]] | 2025 | VIDEO-THINKER, a new framework, empowers Multimodal Large Language Models to reason with videos by intrinsically deve... |
-| [[2510.23569\|EgoThinker]] | 2025 | EgoThinker enhances Multimodal Large Language Models (MLLMs) with robust egocentric reasoning, leveraging a novel 5-m... |
-| [[2510.27606\|Spatial-SSRL]] | 2025 | Spatial-SSRL introduces a self-supervised reinforcement learning framework that enhances the spatial understanding ca... |
-| [[2511.01618\|Actial]] | 2025 | Actial, a framework developed by researchers including those from Nanjing University and The Chinese University of Ho... |
-| [[2511.05491\|VST]] | 2025 | Researchers from HKU, ByteDance Seed, and Tsinghua University developed Visual Spatial Tuning (VST), a framework that... |
-| [[2511.10279\|PROPA]] | 2025 | A framework called PROPA is introduced by the University of Melbourne to enhance complex visual reasoning in Vision-L... |
-| [[2511.10395\|AgentEvolver]] | 2025 | AgentEvolver presents a self-evolving agent system that leverages large language models for autonomous task generatio... |
-| [[2511.15661\|VisPlay]] | 2025 | The VisPlay framework enables Vision-Language Models (VLMs) to autonomously enhance their reasoning and factual groun... |
-| [[2511.16043\|Agent0]] | 2025 | Agent0, developed by researchers at UNC-Chapel Hill, Salesforce Research, and Stanford University, introduces a fully... |
-| [[2511.17473\|MR-RLVR]] | 2025 | This work introduces Masked-and-Reordered Self-Supervision for Reinforcement Learning from Verifiable Rewards (MR-RLV... |
-| [[2511.19820\|CropVLM]] | 2025 | CropVLM introduces an external, lightweight network that leverages reinforcement learning to dynamically generate rel... |
-| [[2511.20351\|HVS]] | 2025 | This research prototypes humanoid visual search, enabling multimodal large language models to actively explore 360° p... |
-| [[2511.20814\|SPHINX]] | 2025 | SPHINX is a new synthetic environment designed by researchers at RIT and the University of Washington to evaluate and... |
-| [[2511.21395\|Monet]] | 2025 | Monet, a framework developed by researchers from Peking University, ByteDance's Kling Team, and Amazon, enables multi... |
-| [[2512.03442\|PretrainZero]] | 2025 | PretrainZero introduces a self-supervised reinforcement active pretraining framework that enables large language mode... |
-| [[2512.04563\|COOPER]] | 2025 | COOPER, developed by researchers from Chinese Academy of Sciences and Baidu Inc., introduces a unified multimodal lar... |
-| [[2512.07203\|MMRPT]] | 2025 | A multimodal reinforcement pre-training framework, MMRPT, enhances visual reasoning in MLLMs by integrating masked vi... |
-| [[2512.08511\|SubagentVL]] | 2025 | Researchers at the University of Chinese Academy of Sciences developed the Self-Calling Chain-of-Thought (sCoT) parad... |
-| [[2512.10554\|GETok]] | 2025 | GETok enhances Multimodal Large Language Models' 2D spatial reasoning by introducing a lexical spatial representation... |
-| [[2512.12633\|DiG]] | 2025 | The DiG framework enhances Multimodal Large Language Models' fine-grained visual perception and precise spatial reaso... |
-| [[2512.12690\|SFT vs RL VLM Study]] | 2025 | This study empirically re-evaluates Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL) for Vision-Language ... |
-| [[2512.13660\|RoboTracer]] | 2025 | RoboTracer enhances Vision-Language Models with 3D spatial intelligence, enabling the generation of precise 3D positi... |
-| [[2512.15160\|EagleVision]] | 2025 | EagleVision, a dual-stage framework, enhances the spatial reasoning capabilities of multimodal large language models ... |
-| [[2512.15687\|G2RL]] | 2025 | A framework called G2RL guides Large Language Model (LLM) exploration during reinforcement learning by leveraging the... |
-| [[2512.17636\|TRAPO]] | 2025 | The paper introduces TRAPO, a framework that unifies Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL) wit... |
-| [[2512.20605\|Internal RL]] | 2025 | A novel hierarchical reinforcement learning paradigm, termed 'internal RL,' leverages emergent temporal abstractions ... |
-| [[2512.20617\|SpatialTree]] | 2025 | Researchers from Zhejiang University, ByteDance Seed, and Beijing Jiaotong University introduce SpatialTree, a cognit... |
-| [[2512.22545\|SR-MCR]] | 2025 | Researchers from Sun Yat-sen University and Alibaba Group developed Self-Rewarded Multimodal Coherent Reasoning (SR-M... |
-| [[2512.23165\|PEFT for RLVR]] | 2025 | This research systematically evaluates various Parameter-Efficient Fine-Tuning (PEFT) methods within the Reinforcemen... |
-| [[2512.23169\|REVEALER]] | 2025 | REVEALER presents a reinforcement-guided visual reasoning framework that evaluates text-image alignment at an element... |
-| [[2512.24297\|FIGR]] | 2025 | FIGR, developed by WeChat AI, Tencent Inc., enhances large language models' reasoning by integrating executable visua... |
-| [[2601.00215\|Sight to Insight]] | 2026 | Researchers identified that visual perception, not algorithmic reasoning, primarily limits multimodal large language ... |
-| [[2601.04777\|GeM-VG]] | 2026 | GeM-VG, a Multimodal Large Language Model, advances multi-image visual grounding by addressing single-target limitati... |
-| [[2601.05242\|GDPO]] | 2026 | GDPO (Group reward-Decoupled Normalization Policy Optimization) improves multi-reward reinforcement learning for larg... |
-| [[2601.05877\|iReasoner]] | 2026 | The IREASONER framework enhances the implicit reasoning capabilities of Large Multimodal Models (LMMs) by introducing... |
-| [[2601.06993\|ReFine-RFT]] | 2026 | Researchers from Michigan State University empirically identified the 'Cost of Thinking,' where excessive textual rea... |
-| [[2601.09536\|Omni-R1]] | 2026 | Researchers from The Hong Kong Polytechnic University and collaborators introduced Omni-R1, a framework that enables ... |
-| [[2601.10094\|V-Zero]] | 2026 | V-Zero, a framework developed at Zhejiang University, enables Vision-Language Models (VLMs) to self-improve their rea... |
-| [[2601.13562\|Reasoning as Modality]] | 2026 | Researchers from the University of Missouri - Columbia developed a role-separated transformer architecture, grounded ... |
-| [[2601.13942\|GoG]] | 2026 | Researchers at the Hong Kong University of Science and Technology developed Glance-or-Gaze (GoG), a framework that en... |
-| [[2601.15224\|PROGRESSLM]] | 2026 | Researchers at Northwestern University developed PROGRESSLM, a framework that enables Vision-Language Models to perfo... |
-| [[2601.16175\|TTT-Discover]] | 2026 | Researchers introduce TTT-Discover, a test-time training framework that enables Large Language Models to learn and ad... |
-| [[2601.18631\|AdaReasoner]] | 2026 | DAREASONER introduces a framework that enables Multimodal Large Language Models (MLLMs) to learn dynamic, iterative t... |
-| [[2601.18734\|OPSD]] | 2026 | The paper introduces On-Policy Self-Distillation (OPSD), a framework enabling a single Large Language Model to improv... |
-| [[2601.19686\|Video-KTR]] | 2026 | A new framework named Video-KTR improves multimodal large language models' video reasoning by selectively reinforcing... |
-| [[2601.19897\|SDFT]] | 2026 | Researchers at MIT and ETH Zurich developed Self-Distillation Fine-Tuning (SDFT), a method that enables large languag... |
-| [[2601.20802\|SDPO]] | 2026 | The paper introduces Self-Distillation Policy Optimization (SDPO), an on-policy reinforcement learning algorithm that... |
-| [[2601.21343\|Self-Improving Pretraining]] | 2026 | FAIR at Meta introduced "Self-Improving Pretraining," a method leveraging strong, post-trained LLMs to guide the pret... |
-| [[2601.21598\|ATP-Latent]] | 2026 | Researchers at the National University of Singapore developed Active Latent Planning (ATP-Latent), a two-stage method... |
-| [[2601.21634\|RSGround-R1]] | 2026 | Researchers at Nanyang Technological University and Shanghai University of Finance and Economics developed RSGround-R... |
-| [[2602.00170\|Blessing of Dimensionality LLM]] | 2026 | This research analyzes why Evolution Strategies (ES) effectively fine-tune large language models (LLMs) with small po... |
-| [[2602.00574\|Modal-Mixed CoT]] | 2026 | Researchers at UCSD developed a modal-mixed Chain-of-Thought (CoT) reasoning framework for Vision-Language Models (VL... |
-| [[2602.00795\|DVLA-RL]] | 2026 | DVLA-RL, developed by researchers from Shandong University and Southeast University, presents a framework for few-sho... |
-| [[2602.01058\|PEAR]] | 2026 | Researchers at the University of Illinois Urbana-Champaign introduced PEAR, a supervised fine-tuning (SFT) reweightin... |
-| [[2602.02150\|ECHO]] | 2026 | ECHO introduces an Entropy–Confidence Hybrid Optimization framework to enhance Test-Time Reinforcement Learning (TTRL... |
-| [[2602.02488\|RLAnything]] | 2026 | Researchers introduced RLAnything, a framework that establishes a completely dynamic reinforcement learning system, e... |
-| [[2602.02605\|ESMA]] | 2026 | This research introduces the Evolution Strategy for Metacognitive Alignment (ESMA), a method to enhance Large Languag... |
-| [[2602.02710\|MaxRL]] | 2026 | Maximum Likelihood Reinforcement Learning (MaxRL), developed by researchers primarily at Carnegie Mellon University, ... |
-| [[2602.03120\|QES]] | 2026 | Researchers from UCLA and Cognizant AI Lab introduce Quantized Evolution Strategies (QES), a method for high-precisio... |
-| [[2602.03143\|SAGE]] | 2026 | This research introduces SAGE, a reinforcement learning framework that enhances language model training by addressing... |
-| [[2602.03733\|RegionReasoner]] | 2026 | Researchers from the University of Amsterdam, Anhui University, and Westlake University developed REGIONREASONER, a r... |
-| [[2602.03806\|COBALT]] | 2026 | Researchers from The Ohio State University and Microsoft developed COBALT, an efficient reinforcement learning framew... |
-| [[2602.04118\|TinyLoRA]] | 2026 | Meta FAIR researchers developed TinyLoRA, a parameter-efficient finetuning method that enables large language models ... |
-| [[2602.04145\|BIS]] | 2026 | The Balanced-Information Score (BIS) was introduced to improve training data efficiency for Multimodal Process Reward... |
-| [[2602.04884\|RAL]] | 2026 | Reinforced Attention Learning (RAL) introduces a post-training framework that optimizes internal attention distributi... |
-| [[2602.07605\|Fine-R1]] | 2026 | Researchers from Peking University introduce FINE-R1, a Multi-modal Large Language Model (MLLM) that achieves state-o... |
-| [[2602.08241\|SAYO]] | 2026 | Ou et al. present SAYO, a reinforcement learning framework designed to strengthen visual attention in multimodal larg... |
-| [[2602.08346\|ThinkWithImages-PRMBENCH]] | 2026 | The Hong Kong University of Science and Technology and collaborators introduce ThinkWithImages-PRMBENCH, the first be... |
-| [[2602.09463\|SpotAgent]] | 2026 | SpotAgent grounds visual geo-localization in Large Vision-Language Models by formalizing the task as an agent-based d... |
-| [[2602.11073\|VILAVT]] | 2026 | The VILAVT model introduces a "chatting with images" framework, which redefines visual reasoning as language-guided f... |
-| [[2602.11241\|Active-Zero]] | 2026 | Active-Zero introduces a framework enabling Vision-Language Models (VLMs) to autonomously improve their reasoning by ... |
-| [[2602.11858\|ZwZ]] | 2026 | Researchers from Shanghai Jiao Tong University and Ant Group developed "Zooming without Zooming" (ZwZ), a paradigm us... |
-| [[2602.12275\|OPCD]] | 2026 | On-Policy Context Distillation (OPCD) enables language models to internalize transient in-context knowledge by traini... |
-| [[2602.12395\|Frankenstein RL Analysis]] | 2026 | This study provides a mechanistic analysis of how Reinforcement Learning (RL) improves Vision-Language Models (VLMs) ... |
-| [[2602.13949\|ERL]] | 2026 | Experiential Reinforcement Learning (ERL) from Shi et al. introduces a novel training paradigm that augments standard... |
-| [[2602.14697\|E-SPL]] | 2026 | A framework called Evolutionary System Prompt Learning (E-SPL) jointly optimizes Large Language Model weights using r... |
-| [[2602.20133\|AdaEvolve]] | 2026 | AdaEvolve, an adaptive framework developed at UC Berkeley, reframes LLM-driven program evolution as a hierarchical op... |
-| [[2602.20739\|PyVision-RL]] | 2026 | PyVision-RL introduces an open-weight reinforcement learning framework for agentic multimodal models, enabling dynami... |
-| [[2602.21158\|SELAUR]] | 2026 | SELAUR introduces a reinforcement learning framework that integrates multi-type intrinsic uncertainty signals into re... |
-| [[2602.21198\|Reflective Test-Time Planning]] | 2026 | This research introduces Reflective Test-Time Planning, a framework that allows embodied Large Language Models to lea... |
-| [[2602.21628\|RuCL]] | 2026 | The RuCL framework enhances Multimodal Large Language Model reasoning by applying a stratified rubric-based curriculu... |
-| [[2602.22703\|GEODPO]] | 2026 | Researchers at Tsinghua University and Guangdong Laboratory of Artificial Intelligence and Digital Economy developed ... |
-| [[2602.23320\|ParamMem]] | 2026 | Researchers from MBZUAI and Carnegie Mellon developed ParamMem, a parametric memory module that enhances language age... |
-| [[2602.23615\|HART]] | 2026 | Researchers at Nanjing University developed HART (High-resolution Annotation-free Reasoning Technique), a post-traini... |
-| [[2602.23959\|NV-CoT]] | 2026 | The Numerical Visual Chain-of-Thought (NV-CoT) framework allows Multimodal Large Language Models (MLLMs) to generate ... |
-| [[2603.00461\|ReMoT]] | 2026 | A unified framework, ReMoT, enhances Vision-Language Models' spatio-temporal reasoning by leveraging a large-scale mo... |
-| [[2603.00515\|MLLM-4D]] | 2026 | MLLM-4D equips Multimodal Large Language Models with 4D spatial-temporal intelligence, enabling them to perceive and ... |
-| [[2603.02203\|T3RL]] | 2026 | Researchers from Ludwig-Maximilians-University of Munich and Stanford University introduce T3RL, a framework that int... |
-| [[2603.04333\|floq]] | 2026 | Researchers from Carnegie Mellon University explain the empirical success of flow-matching critics in Temporal Differ... |
-| [[2603.10160\|ReMix]] | 2026 | ReMix, a method for fine-tuning large language models using Mixture-of-LoRAs, addresses the issue of routing weight c... |
-| [[2603.12248\|EBFT]] | 2026 | Energy-Based Fine-Tuning (EBFT) is introduced as a method for aligning language model rollouts with ground-truth data... |
-| [[2603.18656\|SCALe-SFT]] | 2026 | IBM Research introduces SCALe-SFT, a supervised fine-tuning framework for Vision-Language Models that enhances multim... |
-
-### Model-Based RL & World Models (16)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[1911.10601\|Scaling Active Inference]] | 2019 | A scalable implementation of active inference is presented, enabling its application to high-dimensional continuous c... |
-| [[1912.01603\|Dreamer]] | 2019 | A reinforcement learning agent, Dreamer, learns complex behaviors from high-dimensional visual inputs by purely laten... |
-| [[2005.05960\|Plan2Explore]] | 2020 | Plan2Explore is a self-supervised reinforcement learning agent that leverages learned world models and proactive plan... |
-| [[2206.02072\|VSRL]] | 2022 | A new reinforcement learning algorithm, Value-Equivalent Sampling for Reinforcement Learning (VSRL), is presented to ... |
-| [[2211.15944\|Continual-Dreamer]] | 2022 | Researchers from the University of Oxford and affiliated institutions systematically explored the effectiveness of wo... |
-| [[2301.04104\|DreamerV3]] | 2023 | DreamerV3 is an algorithm that achieves state-of-the-art performance across a wide range of reinforcement learning do... |
-| [[2410.00564\|JOWA]] | 2024 | JOWA, an offline model-based reinforcement learning agent, scales to diverse visual multi-task environments by jointl... |
-| [[2502.14819\|PLDM]] | 2025 | Researchers at NYU and Meta FAIR developed Planning with Latent Dynamics Models (PLDM), a method leveraging reconstru... |
-| [[2503.01584\|SENSEI]] | 2025 | SENSEI introduces a framework for model-based Reinforcement Learning agents that guides intrinsic exploration using s... |
-| [[2503.21047\|CBET-DreamerV3]] | 2025 | This study from the University of Groningen adapted the Change-Based Exploration Transfer (CBET) framework for the mo... |
-| [[2504.16591\|JEPA for RL]] | 2025 | University of Bielefeld researchers develop an adapted Joint-Embedding Predictive Architecture (JEPA) framework for r... |
-| [[2504.16680\|RWM-U]] | 2025 | Researchers at ETH Zurich developed a pipeline for offline Model-Based Reinforcement Learning that effectively trains... |
-| [[2506.01622\|General Agents World Models]] | 2025 | This research from Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed t... |
-| [[2507.09177\|Online Agent (OA)]] | 2025 | An Online Agent (OA) framework for Continual Reinforcement Learning mitigates catastrophic forgetting by integrating ... |
-| [[2512.07733\|SpatialDreamer]] | 2025 | SpatialDreamer presents a reinforcement learning framework that endows multimodal large language models with active s... |
-| [[2602.00475\|GRASP]] | 2026 | GRASP, a novel gradient-based planning algorithm, enables world models to effectively solve long-horizon control task... |
-
-### Policy Optimization (33)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2504.20073\|RAGEN]] | 2025 | Researchers from Northwestern University, Stanford, NYU, and Microsoft developed StarPO, a reinforcement learning fra... |
-| [[2504.20571\|1-shot RLVR]] | 2025 | Researchers at the University of Washington and Microsoft introduced 1-shot Reinforcement Learning with Verifiable Re... |
-| [[2505.03335\|Absolute Zero]] | 2025 | The 'Absolute Zero' paradigm introduces a self-supervised learning framework where a language model autonomously prop... |
-| [[2508.17445\|TreePO]] | 2025 | TreePO is a framework designed to enhance Large Language Model alignment by integrating segment-based tree search for... |
-| [[2508.17784\|PSFT]] | 2025 | Proximal Supervised Fine-Tuning (PSFT) introduces a PPO-inspired clipped objective to stabilize large language model ... |
-| [[2509.01321\|DEPO]] | 2025 | The DEPO (Data-Efficient Policy Optimization) framework significantly improves the data efficiency of Reinforcement L... |
-| [[2509.02333\|DCPO]] | 2025 | Researchers from Baichuan.inc developed Dynamic Clipping Policy Optimization (DCPO), a method to enhance Large Langua... |
-| [[2509.02534\|Darling]] | 2025 | Meta FAIR researchers developed Darling (Diversity-Aware Reinforcement Learning), an online RL framework that integra... |
-| [[2509.03646\|HICRA]] | 2025 | This research reveals an emergent hierarchical reasoning structure in Large Language Models during reinforcement lear... |
-| [[2509.04501\|GRAPE]] | 2025 | Rohit Patel, independently of Meta Superintelligence Labs, clarifies core Reinforcement Learning for Model Training a... |
-| [[2509.06870\|AggLM]] | 2025 | Researchers at FAIR at Meta introduce AggLM, a method that fine-tunes a language model using Reinforcement Learning f... |
-| [[2509.07980\|Parallel-R1]] | 2025 | Parallel-R1, a reinforcement learning framework developed by a collaborative team including Tencent AI Lab Seattle, t... |
-| [[2509.08827\|RL for LRM Survey]] | 2025 | This survey paper systematically synthesizes advancements in Reinforcement Learning (RL) for Large Reasoning Models (... |
-| [[2509.09284\|Tree-OPO]] | 2025 | Tree-OPO introduces a framework that enhances large language model reasoning by integrating MCTS-derived partial traj... |
-| [[2509.11452\|Multi-Objective RL Alignment]] | 2025 | This research introduces dynamic reward weighting mechanisms for multi-objective alignment of large language models (... |
-| [[2509.22637\|Variational Reasoning]] | 2025 | A variational reasoning framework is introduced for large language models, treating thinking traces as latent variabl... |
-| [[2509.22638\|FCP]] | 2025 | This research introduces the Feedback-Conditional Policy (FCP) framework, enabling Large Language Models to learn dir... |
-| [[2509.24207\|Humanline]] | 2025 | A paper from researchers at Princeton, Stanford, and the University of Chicago explains the performance advantage of ... |
-| [[2509.24981\|ROVER]] | 2025 | Researchers at Hong Kong University of Science and Technology, Kuaishou Technology, and StepFun developed ROVER, a mi... |
-| [[2509.25133\|SIREN]] | 2025 | This paper introduces SIREN (SelectIve entRopy rEgularizatioN), a method designed to mitigate entropy collapse in rei... |
-| [[2509.25454\|DeepSearch]] | 2025 | DeepSearch introduces a framework integrating Monte Carlo Tree Search (MCTS) into the Reinforcement Learning with Ver... |
-| [[2509.25849\|Knapsack-GRPO]] | 2025 | Knapsack RL introduces an optimization framework for dynamically allocating exploration budgets in Large Language Mod... |
-| [[2510.02245\|ExGRPO]] | 2025 | EXGRPO is a framework that improves large language model reasoning by intelligently managing and replaying high-quali... |
-| [[2510.03222\|Lp-Reg]] | 2025 | Researchers from Tencent's LLM Department and collaborating universities introduced Low-probability Regularization (L... |
-| [[2510.10606\|ViSurf]] | 2025 | ViSurf introduces a unified, single-stage post-training framework that integrates supervised fine-tuning (SFT) and re... |
-| [[2510.18927\|BAPO]] | 2025 | BAPO introduces an adaptive clipping mechanism for off-policy Reinforcement Learning in Large Language Models, which ... |
-| [[2510.20817\|MARA]] | 2025 | Researchers from NYU and EPFL demonstrate that KL-regularized reinforcement learning objectives inherently lead to mo... |
-| [[2510.26788\|FP16 RL Training]] | 2025 | This research from Sea AI Lab and the National University of Singapore demonstrates that using FP16 precision for bot... |
-| [[2511.06411\|SofT-GRPO]] | 2025 | SofT-GRPO, a new reinforcement learning algorithm, enables large language models using the "soft-thinking" paradigm t... |
-| [[2512.01374\|MiniRL]] | 2025 | The Qwen Team at Alibaba Inc. developed a theoretical formulation that justifies token-level optimization for sequenc... |
-| [[2512.13607\|Nemotron-Cascade]] | 2025 | NVIDIA's Nemotron-Cascade framework enables the development of general-purpose Large Language Models with enhanced re... |
-| [[2602.04879\|DPPO]] | 2026 | Researchers from Sea AI Lab and the National University of Singapore developed Divergence Proximal Policy Optimizatio... |
-| [[2602.05547\|MT-GRPO]] | 2026 | Researchers from UCL, Huawei Noah's Ark Lab, UNIST, Edinburgh, and Basel developed Multi-Task GRPO (MT-GRPO), an algo... |
-
-### RL for LLM Reasoning (28)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2503.10291\|VisualPRM]] | 2025 | Shanghai AI Laboratory and partner institutions introduce VisualPRM, a process reward model that evaluates step-by-st... |
-| [[2503.13551\|HRM]] | 2025 | Hierarchical Reward Models (HRM) and Hierarchical Node Compression (HNC) were developed to enhance the reliability an... |
-| [[2504.02495\|DeepSeek-GRM]] | 2025 | DeepSeek-AI and Tsinghua University developed Self-Principled Critique Tuning (SPCT) and DeepSeek-GRM models, a point... |
-| [[2504.12328\|Reward Model Survey]] | 2025 | A comprehensive survey consolidates research on Reward Models (RMs) in the Large Language Model (LLM) era, introducin... |
-| [[2504.16828\|THINKPRM]] | 2025 | This research introduces THINKPRM, a generative process reward model that enables large language models to provide ve... |
-| [[2504.18053\|DREAM]] | 2025 | DREAM, developed by Alibaba Group, Zhejiang University, and partners, introduces a two-stage training framework to en... |
-| [[2504.18397\|UV-CoT]] | 2025 | A framework for Unsupervised Visual Chain-of-Thought (UV-CoT) reasoning enables Multimodal Large Language Models (MLL... |
-| [[2504.19599\|GVPO]] | 2025 | Group Variance Policy Optimization (GVPO) introduces a method for Large Language Model post-training that guarantees ... |
-| [[2505.02387\|RM-R1]] | 2025 | Researchers from the University of Illinois Urbana-Champaign and collaborators present RM-R1, a new class of Reasonin... |
-| [[2505.03318\|UNIFIEDREWARD-THINK]] | 2025 | Researchers from Fudan University, Shanghai AI Lab, and Tencent's Hunyuan developed UNIFIEDREWARD-THINK, the first un... |
-| [[2506.03637\|RewardAnything]] | 2025 | "RewardAnything" introduces a new paradigm for reward models that can interpret and follow natural language principle... |
-| [[2506.07326\|Reward Model Interpretability]] | 2025 | Researchers from the University of Oxford investigated the interpretability of reward models by analyzing their scori... |
-| [[2506.13888\|VL-GenRM]] | 2025 | VL-GENRM enhances Vision-Language Reward Models (VL-RMs) through a novel iterative training framework that incorporat... |
-| [[2506.23235\|EndoRM]] | 2025 | Researchers at Nanjing University reveal that a powerful, generalist reward model is latently present within any LLM ... |
-| [[2507.08068\|QRPO]] | 2025 | Researchers at CLAIRE, EPFL, developed Quantile Reward Policy Optimization (QRPO), a new policy fitting method that a... |
-| [[2509.26074\|LENS]] | 2025 | A research team from University of Wisconsin-Madison and Nanyang Technological University introduced LENS, a framewor... |
-| [[2510.07242\|HERO]] | 2025 | The Hybrid Ensemble Reward Optimization (HERO) framework integrates sparse, deterministic verifier signals with dense... |
-| [[2510.08696\|LENS]] | 2025 | This research introduces Likelihood Estimation with Negative Samples (LENS), a method that enhances Reinforcement Lea... |
-| [[2510.15242\|DWRL]] | 2025 | Dual-Weighted Reinforcement Learning (DWRL) enables Generative Preference Models (GPMs) to integrate Chain-of-Thought... |
-| [[2510.23596\|BR-RM]] | 2025 | The Branch-and-Rethink Reasoning Reward Model (BR-RM) introduces a two-turn framework to improve Large Language Model... |
-| [[2511.01758\|RLAC]] | 2025 | RLAC (Reinforcement Learning with Adversarial Critic) introduces a framework to fine-tune large language models for o... |
-| [[2511.09158\|CRM]] | 2025 | Researchers from City University of Hong Kong and Huawei Research developed a Conciseness Reward Model (CRM) and an i... |
-| [[2511.10648\|SCS]] | 2025 | This research introduces Self-Consistency Sampling (SCS) to improve the faithfulness of multimodal large language mod... |
-| [[2511.16672\|EvoLMM]] | 2025 | Researchers from Mohamed bin Zayed University of AI present EvoLMM, a framework enabling Large Multimodal Models (LMM... |
-| [[2511.19661\|CodeV]] | 2025 | CodeV, a code-based visual agent, employs Tool-Aware Policy Optimization (TAPO) to address unfaithful visual reasonin... |
-| [[2511.19900\|Agent0-VL]] | 2025 | Agent0-VL from UNC-Chapel Hill introduces a self-evolving vision-language agent that integrates tool usage into both ... |
-| [[2512.08889\|VALOR]] | 2025 | VALOR, developed at Caltech, presents an annotation-free framework that trains visual reasoners by employing multimod... |
-| [[2603.16253\|EVPV]] | 2026 | Researchers at Alibaba and the Chinese Academy of Sciences introduced Explicit Visual Premise Verification (EVPV) to ... |
-
-### Visual & Multimodal RL (1)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2603.14117\|SIEVE]] | 2026 | The paper introduces SIEVE (Self-revisit Iterative Evidence Refinement), a framework enabling Vision-Language Models ... |

@@ -12,154 +12,344 @@ aliases:
 # Agents & Tool Use
 
 > [!abstract] Overview
-> AI agents that reason, plan, and use tools to accomplish multi-step tasks. This topic covers LLM-based agents, tool-augmented reasoning, multi-agent systems, and the transition from passive models to autonomous actors.
+> AI agents that reason, plan, and use tools to accomplish multi-step tasks. This topic covers the full arc from ReAct-style reasoning-acting loops (2022) through RL-trained tool-using agents (2025) to self-evolving multi-agent systems (2026). The field has matured along several axes: single-turn to multi-turn, fixed tools to tool creation, single-agent to multi-agent orchestration, and handcrafted prompting to reinforcement-learned agentic behavior.
 
-## Key Papers
+## Evolution Graph
 
-| Paper | Year | Contribution |
-| --- | --- | --- |
-| [[2210.03629\|ReAct]] | 2022 | Synergizing reasoning and acting in LLMs |
-| [[2310.04406\|LATS]] | 2023 | Language agent tree search unifying reasoning + planning |
-| [[2406.04151\|AgentGym]] | 2024 | Cross-environment agent training platform |
-| [[2504.20073\|RAGEN]] | 2025 | Multi-turn RL for LLM agents |
-| [[2603.18743\|Memento-Skills]] | 2026 | Skill library as external memory for continual learning |
-| [[2603.05218\|KARL]] | 2026 | Knowledge agents via off-policy RL |
+```mermaid
+graph TD
+    subgraph "Reasoning-Acting Foundations"
+        A["ReAct (2022)"]
+        B["RAP (2023)"]
+        C["LATS (2023)"]
+    end
 
-## Cross-References
+    subgraph "Code & Program Agents"
+        D["PAL (2022)"]
+        E["ViperGPT (2023)"]
+        F["AlphaEvolve (2025)"]
+    end
 
-- [[03_Reasoning-and-Planning]] — Reasoning foundations for agents
-- [[04_Reinforcement-Learning]] — RL training for agents
-- [[11_Self-Evolving-AI]] — Self-improving agents
-- [[07_Robotics-and-Embodied-AI]] — Embodied agents
+    subgraph "Tool-Augmented RL"
+        G["ReTool (2025)"]
+        H["ToolRL (2025)"]
+        I["ToRL (2025)"]
+        J["Agentic-R1 (2025)"]
+    end
+
+    subgraph "Multi-Agent Systems"
+        K["AgentGym (2024)"]
+        L["AgentOrchestra (2025)"]
+        M["MACRO-LLM (2026)"]
+    end
+
+    subgraph "Self-Evolving Agents"
+        N["RAGEN (2025)"]
+        O["SE-Agent (2025)"]
+        P["Dr. Zero (2026)"]
+        Q["Memento-Skills (2026)"]
+    end
+
+    A --> B --> C
+    A --> G
+    D --> E
+    E --> F
+    G --> H
+    H --> I
+    I --> J
+    K --> L
+    L --> M
+    N --> O
+    O --> P
+    P --> Q
+
+    style A fill:#e8f4fd,stroke:#4a90d9
+    style G fill:#f0e8fd,stroke:#9b59b6
+    style K fill:#e8fde8,stroke:#27ae60
+    style Q fill:#fde8e8,stroke:#e74c3c
+```
+
+| Node | Paper |
+|------|-------|
+| ReAct | [[2210.03629\|ReAct]] |
+| RAP | [[2305.14992\|RAP]] |
+| LATS | [[2310.04406\|LATS]] |
+| PAL | [[2211.10435\|PAL]] |
+| ViperGPT | [[2303.08128\|ViperGPT]] |
+| AlphaEvolve | [[2506.13131\|AlphaEvolve]] |
+| ReTool | [[2504.11536\|ReTool]] |
+| ToolRL | [[2504.13958\|ToolRL]] |
+| ToRL | [[2503.23383\|ToRL]] |
+| Agentic-R1 | [[2507.05707\|Agentic-R1]] |
+| AgentGym | [[2406.04151\|AgentGym]] |
+| AgentOrchestra | [[2506.12508\|AgentOrchestra]] |
+| MACRO-LLM | [[2601.09295\|MACRO-LLM]] |
+| RAGEN | [[2504.20073\|RAGEN]] |
+| SE-Agent | [[2508.02085\|SE-Agent]] |
+| Dr. Zero | [[2601.07055\|Dr. Zero]] |
+| Memento-Skills | [[2603.18743\|Memento-Skills]] |
 
 ---
 
-## Complete Paper Listing
+## 1. ReAct-Style & Agentic Reasoning
 
-### Code Generation (13)
+The foundational paradigm for LLM agents: interleaving reasoning traces with environment actions in think-act-observe loops. These methods established that LLMs could autonomously plan and execute multi-step tasks, not just answer questions.
 
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2211.10435\|PAL]] | 2022 | Program-aided Language Models (PAL) from Carnegie Mellon University enhance Large Language Models' reasoning by promp... |
-| [[2211.11559\|VISPROG]] | 2022 | VISPROG, developed by the PRIOR team at Allen Institute for AI, introduces a neuro-symbolic approach that generates e... |
-| [[2211.12588\|PoT]] | 2022 | Program of Thoughts (PoT) prompting enables Large Language Models (LLMs) to enhance their numerical reasoning capabil... |
-| [[2303.08128\|ViperGPT]] | 2023 | ViperGPT, developed by researchers at Columbia University, enables visual reasoning by having a large language model ... |
-| [[2503.01619\|Flame]] | 2025 | Researchers from KE Holdings Inc. and Alibaba Group developed a self-reflective data synthesis pipeline to generate l... |
-| [[2505.10557\|MathCoder-VL]] | 2025 | Researchers from CUHK introduce MathCoder-VL, a multimodal large language model that leverages code supervision and s... |
-| [[2506.13131\|AlphaEvolve]] | 2025 | AlphaEvolve, from Google DeepMind, combines large language models with an evolutionary search framework to autonomous... |
-| [[2506.22419\|LLM Speedrunning Benchmark]] | 2025 | Researchers at Meta introduce the Automated LLM Speedrunning Benchmark to evaluate AI agents' capacity for reproducin... |
-| [[2507.20766\|RRVF]] | 2025 | The Reasoning-Rendering-Visual-Feedback (RRVF) framework enables Multimodal Large Language Models (MLLMs) to acquire ... |
-| [[2508.11630\|Thyme]] | 2025 | Thyme introduces a paradigm for multimodal large language models (MLLMs) to enhance reasoning and perception by auton... |
-| [[2511.18538\|Code Intelligence Survey]] | 2025 | A comprehensive synthesis of Large Language Models for automated software development covers the entire model lifecyc... |
-| [[2512.03746\|CodeVision]] | 2025 | Researchers from Zhejiang University and ByteDance introduced CodeVision, a "code-as-tool" framework that equips Mult... |
-| [[2601.05344\|Im2Sim]] | 2026 | Sagi Eppel from the Weizmann Institute AI Hub developed the Im2Sim methodology and Im2Sim2Im evaluation framework to ... |
+**Reasoning-Acting Loops** — The core think-act-observe pattern that grounds LLM reasoning in real environment feedback, enabling self-correcting multi-step execution.
+- [[2210.03629\|ReAct]], [[2305.14992\|RAP]], [[2310.04406\|LATS]], [[2309.15129\|CogEval]], [[2507.23773\|SimuRA]]
 
-### LLM Agents (66)
+> [!star] Key Papers
+> - [[2210.03629\|ReAct]] — Synergizing reasoning and acting: the foundational think-act-observe loop that launched all modern LLM agents
+> - [[2310.04406\|LATS]] — Language Agent Tree Search: unifies reasoning, acting, and planning through MCTS over action spaces
+> - [[2305.14992\|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2210.03629\|ReAct]] | 2022 | Researchers from Princeton University and Google Research introduced ReAct, a paradigm that enables large language mo... |
-| [[2303.04671\|Visual ChatGPT]] | 2023 | Visual ChatGPT, developed by Microsoft Research Asia, integrates large language models like ChatGPT with various visu... |
-| [[2305.14992\|RAP]] | 2023 | The Reasoning via Planning (RAP) framework from UC San Diego and University of Florida integrates Large Language Mode... |
-| [[2309.15129\|CogEval]] | 2023 | Microsoft Research introduced CogEval, a cognitive science-inspired protocol, to systematically evaluate large langua... |
-| [[2310.04406\|LATS]] | 2023 | Language Agent Tree Search (LATS) unifies reasoning, acting, and planning capabilities in language models by adapting... |
-| [[2311.05437\|LLaVA-Plus]] | 2023 | LLaVA-Plus, developed by researchers from Tsinghua University and Microsoft Research, introduces an approach that tra... |
-| [[2402.15116\|LMA Survey]] | 2024 | A survey systematically reviews Large Multimodal Agents (LMAs), structuring the field by deconstructing their core co... |
-| [[2403.12884\|HYDRA]] | 2024 | HYDRA, a new multi-stage framework for dynamic compositional visual reasoning, integrates an RL agent as a cognitive ... |
-| [[2405.10292\|VLM-RL Fine-Tuning]] | 2024 | A framework is introduced for directly fine-tuning Large Vision-Language Models (VLMs) using reinforcement learning (... |
-| [[2411.17673\|SketchAgent]] | 2024 | SketchAgent introduces a method for language-driven, sequential sketch generation that leverages off-the-shelf multim... |
-| [[2504.09037\|LLM Reasoning Frontiers Survey]] | 2025 | Researchers from Salesforce AI Research, National University of Singapore, Nanyang Technological University, and A*ST... |
-| [[2504.09848\|LLM Spatial Intelligence Survey]] | 2025 | A comprehensive survey from Tsinghua University examines how large language models enable spatial intelligence across... |
-| [[2504.11536\|ReTool]] | 2025 | ReTool, developed by ByteDance Seed, introduces a reinforcement learning framework that enables Large Language Models... |
-| [[2504.13958\|ToolRL]] | 2025 | This research presents ToolRL, a novel reinforcement learning framework that utilizes a meticulously designed reward ... |
-| [[2504.16129\|MARFT]] | 2025 | A framework called Multi-Agent Reinforcement Fine-Tuning (MARFT) is introduced to optimize Large Language Model-based... |
-| [[2505.10468\|AI Agents vs Agentic AI]] | 2025 | This work from Cornell University and the University of the Peloponnese establishes a conceptual taxonomy to differen... |
-| [[2505.14246\|Visual-ARFT]] | 2025 | Researchers from Shanghai AI Lab and collaborating institutions develop Visual-ARFT, a reinforcement fine-tuning fram... |
-| [[2505.16938\|InternAgent]] | 2025 | The InternAgent framework establishes a unified closed-loop multi-agent system for autonomous scientific research, au... |
-| [[2505.22954\|DGM]] | 2025 | The Darwin Gödel Machine (DGM) demonstrates an AI system that autonomously improves its own code, inspired by Darwini... |
-| [[2506.02153\|SLMs for Agentic AI]] | 2025 | Researchers from NVIDIA and Georgia Institute of Technology contend that Small Language Models (SLMs) are the optimal... |
-| [[2506.06122\|ROLL]] | 2025 | Alibaba Group's ROLL is a comprehensive framework designed for large-scale Reinforcement Learning (RL) training of La... |
-| [[2506.09033\|Router-R1]] | 2025 | Router-R1, developed by researchers at the University of Illinois at Urbana-Champaign, introduces a reinforcement lea... |
-| [[2507.07998\|PyVision]] | 2025 | The PyVision framework equips multimodal large language models with the ability to autonomously generate, execute, an... |
-| [[2507.08664\|INoT]] | 2025 | The Introspection of Thought (INoT) framework introduces an "LLM-Read code" called PromptCode, embedding structured i... |
-| [[2507.11988\|Aime]] | 2025 | ByteDance researchers developed Aime, a multi-agent framework that overcomes limitations of traditional static planni... |
-| [[2507.19457\|GEPA]] | 2025 | GEPA is a novel prompt optimizer for large language model (LLM) systems that employs reflective prompt evolution and ... |
-| [[2507.19849\|ARPO]] | 2025 | Agentic Reinforced Policy Optimization (ARPO) trains Large Language Models to act as agents in multi-turn tool intera... |
-| [[2507.20534\|Kimi K2]] | 2025 | Moonshot AI developed Kimi K2, a 1 trillion-parameter Mixture-of-Experts large language model, demonstrating state-of... |
-| [[2507.21046\|Self-Evolving Agents Survey]] | 2025 | This survey paper from a global collaboration of institutions introduces a comprehensive framework for self-evolving ... |
-| [[2507.22844\|RLVMR]] | 2025 | RLVMR integrates verifiable meta-reasoning rewards into reinforcement learning to enhance long-horizon Large Language... |
-| [[2507.23276\|AI Scientist Survey]] | 2025 | This survey critically assesses the capabilities of large language model-powered AI Scientist systems, introducing a ... |
-| [[2507.23773\|SimuRA]] | 2025 | The SIMURA architecture integrates explicit world-model-driven simulative reasoning into a goal-oriented agent, lever... |
-| [[2508.02085\|SE-Agent]] | 2025 | A collaborative effort introduces SE-Agent, a self-evolutionary framework for LLM-based agents that optimizes multi-s... |
-| [[2508.03680\|Agent Lightning]] | 2025 | Agent Lightning, developed by Microsoft Research, introduces a framework that completely decouples reinforcement lear... |
-| [[2508.03923\|CoAct-1]] | 2025 | CoAct-1 presents a multi-agent framework that integrates both Graphical User Interface interactions and direct progra... |
-| [[2508.07407\|Self-Evolving AI Agents Survey]] | 2025 | This survey paper defines and systematically reviews the emerging paradigm of self-evolving AI agents, which bridge s... |
-| [[2508.07976\|ASearcher]] | 2025 | The ASearcher project, from Tsinghua University and Ant Group, introduces an open-source, large-scale asynchronous re... |
-| [[2508.09736\|M3-Agent]] | 2025 | M3-Agent, developed by ByteDance Seed, introduces a multimodal AI agent framework that processes continuous video and... |
-| [[2508.10874\|SSRL]] | 2025 | Self-Search Reinforcement Learning (SSRL) allows large language models to act as internal search engines during train... |
-| [[2508.13167\|CoA]] | 2025 | The OPPO AI Agent Team developed Chain-of-Agents (CoA), a paradigm enabling a single large language model (LLM) to pe... |
-| [[2508.17692\|Agentic Reasoning Survey]] | 2025 | Researchers from multiple international institutions propose a unified methodological taxonomy and formal language fo... |
-| [[2508.20722\|rStar2-Agent]] | 2025 | Microsoft Research introduces rStar2-Agent, an agentic reasoning model that enables large language models to "think s... |
-| [[2509.01055\|VerlTool]] | 2025 | VERLTOOL introduces a unified, open-source framework for Agentic Reinforcement Learning with Tool use (ARLT), address... |
-| [[2509.02547\|Agentic RL Survey]] | 2025 | A comprehensive survey formally defines Agentic Reinforcement Learning (RL) for Large Language Models (LLMs) using Pa... |
-| [[2510.01132\|Multi-turn Agentic RL Guide]] | 2025 | Researchers at UCSD and NVIDIA present a systematic guide for training large language models as agents in multi-turn ... |
-| [[2510.08191\|Training-Free GRPO]] | 2025 | Researchers from Tencent Youtu Lab developed Training-Free Group Relative Policy Optimization, a method that enhances... |
-| [[2510.19245\|See Think Act Shopper]] | 2025 | A team including researchers from Amazon and academic institutions introduced a VLM-driven framework to simulate onli... |
-| [[2510.22832\|HRM-Agent]] | 2025 | Melbourne, Australia, and Cerenaut AI researchers adapted the Hierarchical Reasoning Model (HRM) for reinforcement le... |
-| [[2510.23038\|TIR-Judge]] | 2025 | TIR-Judge, developed by researchers from Google and Emory University, introduces an LLM judge framework that integrat... |
-| [[2510.27363\|ToolScope]] | 2025 | Researchers from Renmin University of China developed ToolScope, a training-free multimodal agent framework, that int... |
-| [[2511.01833\|TIR-Bench]] | 2025 | Researchers at Shanghai AI Laboratory and collaborating institutions developed TIR-BENCH, a comprehensive benchmark d... |
-| [[2511.02824\|Kosmos AI Scientist]] | 2025 | Edison Scientific Inc. developed Kosmos, an AI scientist leveraging a multi-agent architecture and a structured world... |
-| [[2512.16301\|Agentic AI Adaptation Survey]] | 2025 | Researchers from the University of Illinois Urbana-Champaign and other leading institutions introduce a comprehensive... |
-| [[2512.16918\|AdaTooler-V]] | 2025 | AdaTooler-V introduces an MLLM that adaptively decides when to use external vision tools for images and videos, emplo... |
-| [[2512.23167\|SPIRAL]] | 2025 | Researchers from Vanderbilt University and IBM T.J. Watson Research Center introduced SPIRAL, a framework that enhanc... |
-| [[2512.23676\|WWM]] | 2025 | Researchers at Princeton University and collaborators introduce Web World Models (WWMs), a new architectural paradigm... |
-| [[2512.24330\|SenseNova-MARS]] | 2025 | Developed by SenseTime Research, Tsinghua University, and USTC, SenseNova-MARS is a multimodal agentic reasoning and ... |
-| [[2512.24601\|RLMs]] | 2025 | Recursive Language Models (RLMs) introduce an inference-time paradigm allowing large language models to process input... |
-| [[2601.03054\|IBISAgent]] | 2026 | Researchers at Zhejiang University and Shanghai Artificial Intelligence Laboratory developed IBISAgent, an agentic Mu... |
-| [[2601.03872\|ATLAS]] | 2026 | ATLAS introduces a dual-path framework to dynamically orchestrate diverse large language models and external tools, e... |
-| [[2601.07055\|Dr. Zero]] | 2026 | Dr. Zero, a framework developed by Meta Superintelligence Labs and UIUC, enables multi-turn search agents to self-evo... |
-| [[2601.09295\|MACRO-LLM]] | 2026 | The University of Hong Kong researchers developed MACRO-LLM, an LLM-empowered multi-agent framework designed for coll... |
-| [[2601.09667\|MATTRL]] | 2026 | The MATTRL framework, developed by researchers from MIT, NUS, and Microsoft, introduces Multi-Agent Test-Time Reinfor... |
-| [[2603.05218\|KARL]] | 2026 | Databricks AI Research introduced KARL, a knowledge agent engineered for grounded reasoning over proprietary enterpri... |
-| [[2603.15386\|RieMind]] | 2026 | Researchers at Riemann Lab, Huawei Technologies, developed RieMind, a geometry-grounded agentic framework that decoup... |
-| [[2603.18743\|Memento-Skills]] | 2026 | Memento-Skills introduces a system for Large Language Model (LLM) agents to continually learn and improve without upd... |
+**Agentic Reasoning Surveys & Taxonomies** — Comprehensive reviews mapping the rapidly evolving landscape of LLM-based agents, establishing conceptual frameworks and evaluation methodologies.
+- [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2505.10468\|AI Agents vs Agentic AI]], [[2508.17692\|Agentic Reasoning Survey]], [[2507.21046\|Self-Evolving Agents Survey]], [[2507.23276\|AI Scientist Survey]], [[2508.07407\|Self-Evolving AI Agents Survey]], [[2509.02547\|Agentic RL Survey]], [[2512.16301\|Agentic AI Adaptation Survey]], [[2601.12538\|Agentic Reasoning Survey]]
 
-### Multi-Agent (12)
+> [!star] Key Papers
+> - [[2505.10468\|AI Agents vs Agentic AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
+> - [[2509.02547\|Agentic RL Survey]] — Formal definition of agentic RL for LLMs using Partially Observable Markov Decision Processes
 
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2007.07853\|γ-Progress]] | 2020 | This research introduces γ-Progress, a curiosity signal for active world model learning that enhances efficiency and ... |
-| [[2410.17517\|Maynard-Cross Learning]] | 2024 | This research introduces a theoretical framework that formally equates collective decision-making in biological and s... |
-| [[2504.01990\|Foundation Agents Survey]] | 2025 | A comprehensive, brain-inspired framework integrates diverse research areas of LLM-based intelligent agents, encompas... |
-| [[2506.12508\|AgentOrchestra]] | 2025 | The AgentOrchestra framework, based on the Tool-Environment-Agent (TEA) protocol, introduces a unified approach to ma... |
-| [[2507.01701\|LbMAS]] | 2025 | Researchers from the Chinese Academy of Sciences propose LbMAS, a Large Language Model multi-agent system built on th... |
-| [[2511.20639\|LatentMAS]] | 2025 | LatentMAS, a framework by researchers from Princeton, UIUC, and Stanford, enables large language model agents to coll... |
-| [[2601.10825\|Societies of Thought]] | 2026 | This research investigates how advanced large language models (LLMs) achieve complex reasoning, finding that they imp... |
-| [[2601.12538\|Agentic Reasoning Survey]] | 2026 | A comprehensive survey details the rapidly evolving landscape of Large Language Model agents, reframing LLMs as auton... |
-| [[2601.19204\|MATA]] | 2026 | MATA is a trainable hierarchical automaton system for multi-agent visual reasoning that employs an LLM-based hyper ag... |
-| [[2601.23265\|PaperBanana]] | 2026 | Peking University and Google Cloud AI Research developed PaperBanana, an agentic framework that automates the generat... |
-| [[2602.04837\|GEA]] | 2026 | Researchers at the University of California, Santa Barbara developed Group-Evolving Agents (GEA), a framework enablin... |
-| [[2602.08234\|SkillRL]] | 2026 | Researchers from the University of North Carolina at Chapel Hill and collaborators developed SKILLRL, a framework ena... |
+> [!tip] ReAct Set the Pattern
+> ReAct's think-act-observe loop remains the default skeleton for nearly all LLM agents. LATS and RAP refined the search strategy (tree search, world-model planning), but the core loop is unchanged. When designing a new agent, start with ReAct and add structure as needed.
 
-### Tool Use (17)
+---
 
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2412.05479\|LATTE]] | 2024 | The LATTE framework trains open-source vision-language models to perform complex multimodal reasoning by integrating ... |
-| [[2412.13810\|CAD-Assistant]] | 2024 | CAD-Assistant presents a tool-augmented Vision and Large Language Model (VLLM) framework that integrates GPT-4o with ... |
-| [[2412.18072\|MMFactory]] | 2024 | MMFactory, developed by researchers from the University of British Columbia and the Vector Institute for AI, introduc... |
-| [[2503.23383\|ToRL]] | 2025 | The paper "TORL: Scaling Tool-Integrated RL" introduces a framework for training large language models (LLMs) to auto... |
-| [[2504.04736\|SWiRL]] | 2025 | SWiRL is an offline multi-step reinforcement learning methodology designed to enhance Large Language Models' reasonin... |
-| [[2505.00024\|Nemotron-Research-Tool-N1]] | 2025 | NVIDIA, Pennsylvania State University, and the University of Washington introduce Nemotron-Research-Tool-N1, which ap... |
-| [[2505.01441\|ARTIST]] | 2025 | The ARTIST framework from Microsoft Research unifies agentic reasoning, dynamic tool integration, and reinforcement l... |
-| [[2505.08617\|OpenThinkIMG]] | 2025 | Researchers from Soochow University, Microsoft, and other institutions developed OPENTHINKIMG, an open-source framewo... |
-| [[2506.14728\|AgentDistill]] | 2025 | AgentDistill presents a training-free framework for distilling advanced problem-solving capabilities from large langu... |
-| [[2506.15692\|MLE-STAR]] | 2025 | MLE-STAR is an LLM-based agent that automates machine learning engineering tasks by leveraging web search for up-to-d... |
-| [[2507.05707\|Agentic-R1]] | 2025 | Researchers at Carnegie Mellon University's LTI developed Agentic-R1, a language model trained with the DualDistill f... |
-| [[2508.04416\|VITAL]] | 2025 | Researchers from Tsinghua University, University of Chinese Academy of Sciences, and Bytedance developed VITAL, a fra... |
-| [[2508.12109\|Simple o3]] | 2025 | Simple o3 is an open-source framework designed to enhance Multimodal Large Language Models (MLLMs) by enabling dynami... |
-| [[2509.01656\|ReV PT]] | 2025 | Researchers from ONE Lab, HUST, University of Washington, and Zhejiang University developed Reinforced Visual Percept... |
-| [[2509.02479\|SimpleTIR]] | 2025 | The paper introduces SimpleTIR, an end-to-end Reinforcement Learning (RL) approach that stabilizes multi-turn Tool-In... |
-| [[2509.07969\|Mini-o3]] | 2025 | Mini-o3, developed by ByteDance and The University of Hong Kong, significantly enhances open-source Vision-Language M... |
-| [[2512.17312\|CodeDance]] | 2025 | CodeDance is an MLLM framework that employs a dynamic code-integrated reasoning loop for complex visual tasks, achiev... |
+## 2. Code Agents & Program-Aided Reasoning
+
+Agents that generate and execute code as their primary action modality. Instead of reasoning in natural language alone, these systems write programs to offload computation, compose vision modules, or perform scientific discovery.
+
+**Program-Aided Reasoning** — LLMs generate executable code to handle computation, separating logical reasoning from arithmetic and procedural execution.
+- [[2211.10435\|PAL]], [[2211.12588\|PoT]], [[2503.01619\|Flame]]
+
+> [!star] Key Papers
+> - [[2211.10435\|PAL]] — Program-aided Language Models: offload computation to a Python interpreter, separating reasoning from calculation
+> - [[2211.12588\|PoT]] — Program of Thoughts prompting: LLMs delegate numerical reasoning to code execution
+
+**Visual Programming & Compositional Code** — Composing vision-and-language modules into executable programs for visual reasoning, enabling training-free compositional problem-solving.
+- [[2211.11559\|VISPROG]], [[2303.08128\|ViperGPT]], [[2505.10557\|MathCoder-VL]], [[2507.20766\|RRVF]], [[2508.11630\|Thyme]], [[2512.03746\|CodeVision]], [[2601.05344\|Im2Sim]]
+
+> [!star] Key Papers
+> - [[2303.08128\|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without any training
+> - [[2211.11559\|VISPROG]] — Neuro-symbolic visual programming: executable step-by-step programs from natural language queries
+> - [[2512.03746\|CodeVision]] — Code-as-tool framework equipping MLLMs with dynamically generated visual processing code
+
+**Autonomous Code Discovery & Evolution** — Agents that autonomously discover algorithms, evolve code solutions, or benchmark AI coding capabilities at scale.
+- [[2506.13131\|AlphaEvolve]], [[2506.22419\|LLM Speedrunning Benchmark]], [[2511.18538\|Code Intelligence Survey]]
+
+> [!star] Key Papers
+> - [[2506.13131\|AlphaEvolve]] — Google DeepMind combines LLMs with evolutionary search to autonomously discover algorithms, finding new mathematical results
+> - [[2511.18538\|Code Intelligence Survey]] — Comprehensive synthesis of LLMs for automated software development across the full model lifecycle
+
+> [!tip] Code Beats Language for Computation
+> PAL and PoT proved that LLMs should not do arithmetic -- they should write code that does arithmetic. ViperGPT extended this to vision: compose perception modules via programs. The pattern generalizes: whenever reasoning involves precise computation or systematic search, delegate to code.
+
+---
+
+## 3. Tool-Augmented Reasoning & RL
+
+Training LLMs to learn when and how to invoke external tools through reinforcement learning, rather than relying on handcrafted prompting. This section covers the transition from prompted tool use to learned tool-use policies.
+
+**RL-Trained Tool Use** — Reinforcement learning frameworks that train LLMs to autonomously decide when to call tools, which tools to use, and how to integrate tool outputs into reasoning chains.
+- [[2504.11536\|ReTool]], [[2504.13958\|ToolRL]], [[2503.23383\|ToRL]], [[2504.04736\|SWiRL]], [[2505.00024\|Nemotron-Research-Tool-N1]], [[2509.01055\|VerlTool]], [[2509.02479\|SimpleTIR]]
+
+> [!star] Key Papers
+> - [[2504.11536\|ReTool]] — ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning
+> - [[2504.13958\|ToolRL]] — Novel reward shaping for tool-use RL; meticulously designed rewards guide optimal tool invocation
+> - [[2503.23383\|ToRL]] — Scaling tool-integrated RL: trains LLMs to autonomously learn when and how to use tools
+
+**Agentic Tool Integration Frameworks** — Unified frameworks that combine reasoning, tool invocation, and multi-step planning into coherent agent architectures.
+- [[2505.01441\|ARTIST]], [[2507.05707\|Agentic-R1]], [[2508.12109\|Simple o3]], [[2509.07969\|Mini-o3]], [[2512.17312\|CodeDance]]
+
+> [!star] Key Papers
+> - [[2505.01441\|ARTIST]] — Microsoft Research unifies agentic reasoning, dynamic tool integration, and RL training in a single framework
+> - [[2507.05707\|Agentic-R1]] — DualDistill framework training language models as tool-using agents via distillation and RL
+
+**Visual Tool Use & Adaptive Tool Selection** — Methods enabling vision-language models to select and invoke visual tools (detectors, segmenters, editors) on demand during reasoning.
+- [[2412.05479\|LATTE]], [[2412.13810\|CAD-Assistant]], [[2412.18072\|MMFactory]], [[2505.08617\|OpenThinkIMG]], [[2508.04416\|VITAL]], [[2509.01656\|ReV PT]], [[2512.16918\|AdaTooler-V]], [[2510.27363\|ToolScope]]
+
+> [!star] Key Papers
+> - [[2412.05479\|LATTE]] — Trains open-source VLMs to integrate external tools for complex multimodal reasoning
+> - [[2512.16918\|AdaTooler-V]] — MLLM that adaptively decides when external vision tools are needed; RL-trained selective tool invocation
+> - [[2505.08617\|OpenThinkIMG]] — Open-source framework for interleaved visual tool use during reasoning
+
+**Knowledge Distillation for Tool Use** — Transferring advanced tool-use capabilities from large frontier models to smaller, deployable agents without expensive RL training.
+- [[2506.14728\|AgentDistill]], [[2506.15692\|MLE-STAR]]
+
+> [!star] Key Papers
+> - [[2506.14728\|AgentDistill]] — Training-free distillation of tool-use capabilities from large to small models
+> - [[2506.15692\|MLE-STAR]] — LLM agent automating machine learning engineering by leveraging web search and tool composition
+
+> [!tip] From Prompted to Learned Tool Use
+> Early agents used handcrafted prompts to invoke tools (ReAct, Toolformer). ReTool, ToolRL, and ToRL showed that RL can learn tool-use policies that surpass prompting. The key insight: tool invocation is a decision problem, and RL is better at decision problems than prompting.
+
+---
+
+## 4. Multi-Turn & RL-Trained Agents
+
+Agents trained via reinforcement learning for multi-turn interactions with environments, moving beyond single-call tool use to sustained, stateful task execution across many steps.
+
+**Multi-Turn RL Training** — Frameworks and systematic guides for training LLM agents that maintain state and adapt strategy across extended multi-turn interactions.
+- [[2504.20073\|RAGEN]], [[2510.01132\|Multi-turn Agentic RL Guide]], [[2507.19849\|ARPO]], [[2508.03680\|Agent Lightning]], [[2506.06122\|ROLL]]
+
+> [!star] Key Papers
+> - [[2504.20073\|RAGEN]] — Multi-turn RL training for LLM agents; establishes the training paradigm for sustained agent-environment interaction
+> - [[2510.01132\|Multi-turn Agentic RL Guide]] — Systematic practical guide from UCSD and NVIDIA for training multi-turn LLM agents
+> - [[2508.03680\|Agent Lightning]] — Microsoft Research decouples RL training from inference, enabling scalable agent training
+
+**Verifiable Reasoning & Meta-Reasoning** — Agents that verify their own reasoning steps, use meta-cognitive strategies, or integrate judges for reliable multi-step execution.
+- [[2507.22844\|RLVMR]], [[2510.23038\|TIR-Judge]], [[2511.01833\|TIR-Bench]], [[2508.10874\|SSRL]], [[2510.08191\|Training-Free GRPO]]
+
+> [!star] Key Papers
+> - [[2507.22844\|RLVMR]] — Verifiable meta-reasoning rewards improve long-horizon agent performance by rewarding sound reasoning process, not just outcomes
+> - [[2510.23038\|TIR-Judge]] — LLM judge framework integrating tool-invoked reasoning for reliable multi-step evaluation
+
+**Dynamic Planning & Adaptive Agents** — Agents that dynamically revise plans during execution, adapting to unexpected observations rather than following fixed scripts.
+- [[2507.11988\|Aime]], [[2507.08664\|INoT]], [[2507.19457\|GEPA]], [[2508.20722\|rStar2-Agent]], [[2512.24601\|RLMs]]
+
+> [!star] Key Papers
+> - [[2507.11988\|Aime]] — ByteDance multi-agent framework overcoming static planning limitations with dynamic plan revision
+> - [[2508.20722\|rStar2-Agent]] — Microsoft's agentic reasoning model enabling LLMs to "think slow" with structured deliberation over action spaces
+> - [[2512.24601\|RLMs]] — Recursive Language Models: inference-time paradigm for iterative computation within a single forward pass
+
+> [!tip] Multi-Turn Is the Real Challenge
+> Single-turn tool calls are largely solved. The frontier is multi-turn: agents that maintain state, recover from errors, and adapt strategy over 10-100 steps. RAGEN and the Multi-turn RL Guide show that standard RL techniques need significant modification for this setting -- reward sparsity, credit assignment, and state tracking are all harder.
+
+---
+
+## 5. Web Agents & GUI Interaction
+
+Agents that operate in real digital environments -- browsing the web, interacting with GUIs, and completing tasks in applications. These bridge language understanding with pixel-level perception and action.
+
+**Web Navigation & Browsing Agents** — Agents that navigate websites, fill forms, and complete multi-step web tasks by combining visual perception with action planning.
+- [[2512.23676\|WWM]], [[2510.19245\|See Think Act Shopper]], [[2508.07976\|ASearcher]]
+
+> [!star] Key Papers
+> - [[2512.23676\|WWM]] — Princeton's Web World Models: a new architectural paradigm where agents build predictive models of web environments for planning
+> - [[2510.19245\|See Think Act Shopper]] — VLM-driven framework simulating online shopping tasks end-to-end
+
+**GUI & Multi-Application Agents** — Agents that interact with graphical user interfaces across multiple applications, combining screen understanding with structured actions.
+- [[2508.03923\|CoAct-1]], [[2508.09736\|M3-Agent]]
+
+> [!star] Key Papers
+> - [[2508.03923\|CoAct-1]] — Multi-agent framework integrating both GUI interactions and direct programmatic API access
+> - [[2508.09736\|M3-Agent]] — ByteDance's multimodal agent processing continuous video and GUI streams for real-time task completion
+
+> [!tip] Web Agents Need World Models
+> WWM's key insight: web agents that build predictive models of what happens next (like a chess engine) outperform reactive agents that just observe and act. The web is a partially observable environment, and planning beats reacting.
+
+---
+
+## 6. Multi-Agent Systems & Orchestration
+
+Systems where multiple LLM agents collaborate, specialize, or compete. Multi-agent architectures enable division of labor, debate-based reasoning, and scalable task decomposition that single agents cannot achieve.
+
+**Multi-Agent Frameworks & Orchestration** — Architectures for coordinating multiple specialized agents, managing communication, and distributing tasks across agent teams.
+- [[2504.01990\|Foundation Agents Survey]], [[2506.12508\|AgentOrchestra]], [[2507.01701\|LbMAS]], [[2601.09295\|MACRO-LLM]], [[2601.19204\|MATA]], [[2601.23265\|PaperBanana]], [[2504.16129\|MARFT]], [[2508.13167\|CoA]]
+
+> [!star] Key Papers
+> - [[2504.01990\|Foundation Agents Survey]] — Brain-inspired comprehensive framework integrating diverse LLM agent research areas
+> - [[2506.12508\|AgentOrchestra]] — TEA protocol (Tool-Environment-Agent) for unified multi-agent management and task orchestration
+> - [[2504.16129\|MARFT]] — Multi-Agent Reinforcement Fine-Tuning: RL-based optimization of LLM multi-agent systems
+
+**Latent Communication & Emergent Coordination** — Agents that communicate through learned latent representations rather than natural language, enabling more efficient multi-agent collaboration.
+- [[2511.20639\|LatentMAS]], [[2601.10825\|Societies of Thought]], [[2410.17517\|Maynard-Cross Learning]]
+
+> [!star] Key Papers
+> - [[2511.20639\|LatentMAS]] — Agents collaborate through latent-space communication rather than verbose natural language exchanges
+> - [[2601.10825\|Societies of Thought]] — Reveals how advanced LLMs implicitly implement multi-agent "society of mind" reasoning internally
+
+**Co-Evolution & Group Dynamics** — Multiple agents that evolve together, with competitive or cooperative dynamics driving collective improvement beyond what individual agents achieve.
+- [[2602.04837\|GEA]], [[2602.08234\|SkillRL]], [[2007.07853\|gamma-Progress]], [[2601.09667\|MATTRL]]
+
+> [!star] Key Papers
+> - [[2602.04837\|GEA]] — Group-Evolving Agents: agents co-evolve in groups, with emergent specialization and collective capability growth
+> - [[2601.09667\|MATTRL]] — Multi-Agent Test-Time Reinforcement Learning from MIT/NUS/Microsoft; agents coordinate adaptation at inference time
+
+> [!tip] Multi-Agent as Scaling Strategy
+> Multi-agent systems offer a different scaling axis than bigger models: instead of more parameters, use more specialized agents. AgentOrchestra and MARFT show this works in practice. The key challenge is coordination cost -- LatentMAS addresses this by replacing verbose text communication with compact latent messages.
+
+---
+
+## 7. Memory, Planning & Self-Evolution
+
+Agents that accumulate experience over time, build persistent memory, and autonomously improve their own capabilities. This represents the frontier where agents become self-evolving systems.
+
+**Skill Libraries & External Memory** — Agents that maintain persistent skill repositories or memory banks, enabling them to reuse learned capabilities across tasks without retraining.
+- [[2603.18743\|Memento-Skills]], [[2512.23167\|SPIRAL]], [[2603.05218\|KARL]]
+
+> [!star] Key Papers
+> - [[2603.18743\|Memento-Skills]] — Skill library as external memory for continual learning; agents store and retrieve reusable skills without weight updates
+> - [[2603.05218\|KARL]] — Knowledge agent via off-policy RL for grounded reasoning over enterprise knowledge bases
+
+**Self-Evolving Agent Frameworks** — Agents that autonomously improve their own strategies, prompts, or tool-use policies through self-reflection and iterative optimization.
+- [[2508.02085\|SE-Agent]], [[2505.22954\|DGM]], [[2601.07055\|Dr. Zero]], [[2507.19457\|GEPA]], [[2601.03872\|ATLAS]], [[2603.19461\|HyperAgents]]
+
+> [!star] Key Papers
+> - [[2508.02085\|SE-Agent]] — Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement
+> - [[2505.22954\|DGM]] — Darwin Godel Machine: AI system that autonomously improves its own code through Darwinian evolution
+> - [[2601.07055\|Dr. Zero]] — Meta's framework enabling search agents to self-evolve without human-provided training data
+
+**Routing, Composition & Model Selection** — Meta-agents that dynamically select, compose, or route between multiple models and tools to match task requirements.
+- [[2506.09033\|Router-R1]], [[2601.03872\|ATLAS]], [[2512.24330\|SenseNova-MARS]], [[2507.20534\|Kimi K2]]
+
+> [!star] Key Papers
+> - [[2506.09033\|Router-R1]] — RL-trained router that learns to dispatch queries to the optimal model or tool combination
+> - [[2512.24330\|SenseNova-MARS]] — SenseTime's multimodal agentic reasoning and search system integrating diverse tools and models
+
+> [!tip] Memory Makes the Agent
+> Without persistent memory, an agent is just a stateless function call. Memento-Skills and KARL show that external skill/knowledge storage is the missing piece: agents that remember and reuse past solutions improve logarithmically with experience, while memoryless agents plateau.
+
+---
+
+## 8. Multimodal & Embodied Agents
+
+Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
+
+**Multimodal Agent Architectures** — Integrated architectures combining vision-language understanding with agent capabilities for complex multimodal tasks.
+- [[2303.04671\|Visual ChatGPT]], [[2311.05437\|LLaVA-Plus]], [[2402.15116\|LMA Survey]], [[2403.12884\|HYDRA]], [[2411.17673\|SketchAgent]], [[2601.03054\|IBISAgent]]
+
+> [!star] Key Papers
+> - [[2402.15116\|LMA Survey]] — Systematic review of Large Multimodal Agents deconstructing their core components and capabilities
+> - [[2403.12884\|HYDRA]] — Multi-stage dynamic compositional visual reasoning integrating an RL agent as cognitive controller
+> - [[2311.05437\|LLaVA-Plus]] — Training VLMs to learn when and how to use external visual tools for any task
+
+**VLM Fine-Tuning & Reinforcement for Agency** — Methods for fine-tuning vision-language models via RL to act as agents in visual environments.
+- [[2405.10292\|VLM-RL Fine-Tuning]], [[2505.14246\|Visual-ARFT]], [[2507.07998\|PyVision]], [[2510.22832\|HRM-Agent]]
+
+> [!star] Key Papers
+> - [[2405.10292\|VLM-RL Fine-Tuning]] — Directly fine-tuning VLMs with RL for agentic visual tasks; bridges perception and action
+> - [[2505.14246\|Visual-ARFT]] — Reinforcement fine-tuning framework for visual agents from Shanghai AI Lab
+
+**Spatial Intelligence & Geometry Grounding** — Agents that reason about 3D space, geometric relationships, and physical structure for grounded problem-solving.
+- [[2504.09848\|LLM Spatial Intelligence Survey]], [[2603.15386\|RieMind]]
+
+> [!star] Key Papers
+> - [[2504.09848\|LLM Spatial Intelligence Survey]] — Comprehensive survey examining how LLMs enable spatial intelligence across domains
+> - [[2603.15386\|RieMind]] — Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations
+
+**Scientific & Research Agents** — Agents designed for autonomous scientific research, from literature review to experiment design and execution.
+- [[2505.16938\|InternAgent]], [[2511.02824\|Kosmos AI Scientist]], [[2506.02153\|SLMs for Agentic AI]]
+
+> [!star] Key Papers
+> - [[2505.16938\|InternAgent]] — Unified closed-loop multi-agent system for fully autonomous scientific research
+> - [[2511.02824\|Kosmos AI Scientist]] — Multi-agent architecture with structured world knowledge for autonomous scientific discovery
+> - [[2506.02153\|SLMs for Agentic AI]] — NVIDIA/Georgia Tech argument that Small Language Models are optimal for deployable agentic systems
+
+> [!tip] Vision Is the Missing Sense
+> Most LLM agents are "blind" -- they operate on text APIs. Multimodal agents like HYDRA and M3-Agent show that adding visual perception dramatically expands the task space (GUI interaction, scientific visualization, physical manipulation). The bottleneck has shifted from architecture to training data for visual agency.
+
+---
+
+## Cross-References
+
+- [[03_Reasoning-and-Planning]] — Reasoning foundations for agents (CoT, search, planning)
+- [[04_Reinforcement-Learning]] — RL training methods powering agent learning
+- [[11_Self-Evolving-AI]] — Self-improving and continually learning agents
+- [[07_Robotics-and-Embodied-AI]] — Embodied agents in physical environments
+- [[09_Multimodal-LLMs]] — Multimodal foundations for visual agents
+- [[08_Benchmarks-and-Surveys]] — Agent evaluation benchmarks
+
+---
+
+*Next: [[11_Self-Evolving-AI]] for self-improving systems that build on agentic foundations.*

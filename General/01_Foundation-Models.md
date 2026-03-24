@@ -13,35 +13,36 @@ aliases:
 # Foundation Models & Transformers
 
 > [!abstract] Overview
-> From ViT to billion-parameter VLMs, foundation models define the backbone of modern AI. This note traces the evolution from vision transformers through self-supervised learning to the large multi-modal models that power VLAs, reasoning systems, and autonomous agents.
+> From ViT to billion-parameter VLMs, foundation models define the backbone of modern AI. This note traces the evolution from vision transformers through self-supervised learning to the large multi-modal models that power VLAs, reasoning systems, and autonomous agents. It also covers the training recipes, attention innovations, and adaptation strategies that make these models practical.
 
 ## Evolution Graph
 
 ```mermaid
 graph TD
     subgraph "Vision Transformers"
-        A["[[2010.11929|ViT]]<br/><i>2020</i>"]
-        B["[[2111.09883|Swin V2]]<br/><i>2021</i>"]
-        C["[[2302.05442|ViT-22B]]<br/><i>2023</i>"]
+        A["ViT (2020)"]
+        B["Swin V2 (2021)"]
+        C["ViT-22B (2023)"]
     end
 
     subgraph "Self-Supervised Learning"
-        D["[[2104.14294|DINO]]<br/><i>2021</i>"]
-        E["[[2111.06377|MAE]]<br/><i>2021</i>"]
-        F["[[2304.07193|DINOv2]]<br/><i>2023</i>"]
-        G["[[2301.08243|I-JEPA]]<br/><i>2023</i>"]
+        D["DINO (2021)"]
+        E["MAE (2021)"]
+        F["DINOv2 (2023)"]
+        G["I-JEPA (2023)"]
     end
 
     subgraph "Vision-Language Alignment"
-        H["[[2103.00020|CLIP]]<br/><i>2021</i>"]
-        I["[[2201.12086|BLIP]]<br/><i>2022</i>"]
-        J["[[2305.05665|ImageBind]]<br/><i>2023</i>"]
+        H["CLIP (2021)"]
+        I["BLIP (2022)"]
+        J["ImageBind (2023)"]
     end
 
     subgraph "Multimodal LLMs"
-        K["[[2305.06500|InstructBLIP]]<br/><i>2023</i>"]
-        L["[[2306.14824|KOSMOS-2]]<br/><i>2023</i>"]
-        M["[[2407.07726|PaliGemma]]<br/><i>2024</i>"]
+        K["InstructBLIP (2023)"]
+        L["KOSMOS-2 (2023)"]
+        M["PaliGemma (2024)"]
+        N["BLIP3-o (2025)"]
     end
 
     A --> B --> C
@@ -53,83 +54,440 @@ graph TD
     F --> G
     H --> L
     I --> M
-    K --> L
+    K --> N
+    I --> N
 
     style A fill:#e8f4fd,stroke:#4a90d9
     style H fill:#f0e8fd,stroke:#9b59b6
     style F fill:#e8f4fd,stroke:#4a90d9
     style M fill:#e8fde8,stroke:#27ae60
+    style N fill:#e8fde8,stroke:#27ae60
 ```
+
+| Node | Paper |
+|------|-------|
+| ViT | [[2010.11929\|ViT]] |
+| Swin V2 | [[2111.09883\|Swin V2]] |
+| ViT-22B | [[2302.05442\|ViT-22B]] |
+| DINO | [[2104.14294\|DINO]] |
+| MAE | [[2111.06377\|MAE]] |
+| DINOv2 | [[2304.07193\|DINOv2]] |
+| I-JEPA | [[2301.08243\|I-JEPA]] |
+| CLIP | [[2103.00020\|CLIP]] |
+| BLIP | [[2201.12086\|BLIP]] |
+| ImageBind | [[2305.05665\|ImageBind]] |
+| InstructBLIP | [[2305.06500\|InstructBLIP]] |
+| KOSMOS-2 | [[2306.14824\|KOSMOS-2]] |
+| PaliGemma | [[2407.07726\|PaliGemma]] |
+| BLIP3-o | [[2505.09568\|BLIP3-o]] |
 
 ---
 
 ## 1. Vision Transformers
 
-The architectural revolution that brought attention mechanisms to computer vision.
+The architectural revolution that brought attention mechanisms to computer vision, replacing CNN inductive biases with scalable self-attention over image patches.
 
-- [[2010.11929|ViT]] (2020) — the original: split images into ==16x16 patches==, treat them as tokens, apply a standard Transformer encoder. Proved Transformers can match CNNs with enough data
-- [[2111.09883|Swin V2]] (2021) — ==shifted window attention== for efficient high-resolution processing; scaled to 3B parameters
-- [[2302.05442|ViT-22B]] (2023) — largest dense ViT at ==22B parameters==; demonstrated continued scaling benefits for vision
+**Foundational Architectures** — The core ViT lineage from patch tokenization to multi-scale hierarchies and extreme scale.
+- [[2010.11929|ViT]], [[2111.09883|Swin V2]], [[2302.05442|ViT-22B]], [[2205.14949|HiViT]], [[2310.00632|WIN-WIN]]
 
-**Key surveys:** [[2101.01169|Transformers in Vision Survey]], [[2111.06091|Visual Transformers Survey]], [[2305.09880|ViT CNN-Transformer Survey]]
+> [!star] Key Papers
+> - [[2010.11929|ViT]] — Split images into 16x16 patches, applied standard Transformer encoder; proved Transformers match CNNs with enough data
+> - [[2111.09883|Swin V2]] — Shifted window attention for efficient high-resolution processing; scaled to 3B parameters
+> - [[2302.05442|ViT-22B]] — Largest dense ViT at 22B parameters; demonstrated continued scaling benefits for vision
+
+**Hierarchical & Domain-Specific ViTs** — Specialized adaptations of ViT for high-resolution inputs and domain-specific tasks like medical imaging.
+- [[2205.14949|HiViT]], [[2310.00632|WIN-WIN]], [[2206.02647|HIPT]], [[2504.17379|GABMIL]]
+
+> [!star] Key Papers
+> - [[2206.02647|HIPT]] — Hierarchical self-supervised ViT for gigapixel pathology images; processes whole slide images across multiple magnifications
+> - [[2504.17379|GABMIL]] — Extends attention-based multiple instance learning with global spatial context for digital pathology
+
+**Key Surveys** — Comprehensive overviews of the vision transformer landscape.
+- [[2101.01169|Transformers in Vision Survey]], [[2111.06091|Visual Transformers Survey]], [[2305.09880|ViT CNN-Transformer Survey]]
+
+> [!tip] Scaling vs Efficiency
+> ViTs scale well (ViT-22B proves this), but raw scaling is not always practical. Hierarchical designs like Swin and HiViT recover multi-scale features efficiently, while domain-specific adaptations (HIPT for pathology, WIN-WIN for high-res) show that architecture matters as much as scale.
 
 ---
 
-## 2. Self-Supervised Visual Learning
+## 2. Attention Mechanisms & Architectural Innovations
+
+New attention patterns, normalization strategies, and structural modifications that improve Transformer efficiency, stability, and expressiveness.
+
+**Sparse & Efficient Attention** — Reducing the quadratic cost of self-attention through sparsity, routing, and learned masking.
+- [[2505.00315|MoSA]], [[2508.02124|DMA]], [[2603.15619|MoDA]], [[2505.17083|Scale-invariant Attention]], [[2505.01996|Token Graying]], [[2009.06732|Efficient Transformers Survey]]
+
+> [!star] Key Papers
+> - [[2505.00315|MoSA]] — Mixture of Sparse Attention with expert-choice routing; content-based learned sparsity
+> - [[2508.02124|DMA]] — Fully differentiable dynamic mask sparse attention; hardware-optimized for practical deployment
+> - [[2603.15619|MoDA]] — Mixture-of-Depths Attention dynamically allocates compute across tokens and layers
+
+**Activation & Normalization Replacements** — Drop-in replacements for LayerNorm and Softmax that improve training stability or remove normalization entirely.
+- [[2503.10622|DyT]], [[2504.20966|Softpick]], [[2512.10938|Derf]], [[2603.15031|AttnRes]], [[2512.24880|mHC]]
+
+> [!star] Key Papers
+> - [[2503.10622|DyT]] — Dynamic Tanh as a drop-in replacement for normalization layers; simpler and equally effective
+> - [[2504.20966|Softpick]] — Rectified non-sum-to-one normalization; eliminates attention sinks and massive activations
+
+**Residual Connections & Depth** — Rethinking how information flows through deep networks via improved residual strategies and adaptive depth.
+- [[2603.15031|AttnRes]], [[2512.24880|mHC]], [[2507.10524|MoR]], [[2512.24695|Hope]]
+
+> [!star] Key Papers
+> - [[2507.10524|MoR]] — Mixture-of-Recursions unifies parameter efficiency with adaptive per-token computation depth
+> - [[2512.24695|Hope]] — Nested Learning reinterprets deep learning as nested multi-level optimization
+
+**Hybrid Architectures** — Combining Transformers with state-space models, recurrence, or looped computation for improved efficiency.
+- [[2507.22448|Falcon-H1]], [[2503.24067|TransMamba]], [[2311.12424|Looped Transformers]], [[2501.00663|Titans]]
+
+> [!star] Key Papers
+> - [[2507.22448|Falcon-H1]] — Hybrid-head models integrating parallel Transformer and Mamba blocks; redefines the efficiency-performance frontier
+> - [[2501.00663|Titans]] — Learns to memorize at test time via a dedicated neural memory module; bridges short and long-range context
+
+**Theoretical Foundations of Transformers** — Formal analyses of what Transformers compute, how in-context learning works, and connections to established frameworks.
+- [[2603.17063|Transformers as Bayesian Networks]], [[2507.16003|ICL Implicit Dynamics]], [[2502.14010|ICL Attention Heads]], [[2509.00421|Prompt Tuning Memory Limits]], [[2504.13173|Miras]]
+
+> [!star] Key Papers
+> - [[2603.17063|Transformers as Bayesian Networks]] — Proves sigmoid Transformers fundamentally operate as Bayesian networks
+> - [[2507.16003|ICL Implicit Dynamics]] — Shows in-context learning in LLMs can be modeled as implicitly solving dynamical systems
+
+> [!tip] The Post-Softmax Era
+> 2025 saw a wave of work replacing or augmenting standard softmax attention (Softpick, DyT, Derf) and standard normalization (DyT removes it entirely). These are not incremental — they change how information flows through Transformers and may become default in next-generation architectures.
+
+---
+
+## 3. Self-Supervised Visual Learning
 
 Learning visual representations without labels — the foundation for data-efficient downstream tasks.
 
-| Paper | Year | Key Idea |
-| --- | --- | --- |
-| [[2104.14294\|DINO]] | 2021 | ==Self-distillation== with no labels; emergent object segmentation in attention maps |
-| [[2111.06377\|MAE]] | 2021 | ==Masked autoencoder==: mask 75% of patches, reconstruct pixels. Simple and scalable |
-| [[2304.07193\|DINOv2]] | 2023 | Curated data + distillation → universal visual features without fine-tuning |
-| [[2301.08243\|I-JEPA]] | 2023 | ==Joint-Embedding Predictive Architecture==: predict in representation space, not pixel space |
-| [[2106.08254\|BEiT]] | 2021 | BERT-style pre-training for vision: predict discrete visual tokens |
+**Contrastive & Self-Distillation** — Methods that learn by comparing or distilling representations without labeled data.
+- [[2104.14294|DINO]], [[2304.07193|DINOv2]], [[2502.10385|SimDINO]], [[2503.09867|OH-A-DINO]], [[2506.10159|VCL]], [[2507.14137|Franca]]
+
+> [!star] Key Papers
+> - [[2104.14294|DINO]] — Self-distillation with no labels; emergent object segmentation in attention maps
+> - [[2304.07193|DINOv2]] — Curated data + distillation produces universal visual features without fine-tuning
+> - [[2502.10385|SimDINO]] — Dramatically simplified DINO via coding rate regularization; shows what DINO really needs
+
+**Masked Image Modeling** — Self-supervised methods that mask patches of an image and train the model to reconstruct or predict the missing content, learning rich visual representations without labels.
+- [[2111.06377|MAE]], [[2106.08254|BEiT]], [[2205.14949|HiViT]]
+
+> [!star] Key Papers
+> - [[2111.06377|MAE]] — Masked 75% of patches; proved simple reconstruction objective learns powerful features
+> - [[2106.08254|BEiT]] — BERT-style pre-training for vision: predict discrete visual tokens from masked patches
+
+**JEPA & Latent Prediction** — Joint-Embedding Predictive Architectures that predict in representation space rather than pixel space, avoiding reconstruction artifacts.
+- [[2301.08243|I-JEPA]], [[2511.08544|LeJEPA]], [[2512.19605|KerJEPA]], [[2602.11389|Causal-JEPA]]
+
+> [!star] Key Papers
+> - [[2301.08243|I-JEPA]] — Predicts in latent space instead of pixel space; avoids reconstruction artifacts
+> - [[2511.08544|LeJEPA]] — Provable and scalable self-supervised learning framework based on Euclidean latent geometry
+> - [[2602.11389|Causal-JEPA]] — Object-centric world model integrating JEPAs with causal reasoning via latent interventions
 
 > [!tip] The JEPA Lineage
-> I-JEPA → [[2506.09985|V-JEPA 2]] → [[2603.14482|V-JEPA 2.1]] → [[2602.10098|VLA-JEPA]]. See [[04-1_JEPA]] for the full evolution.
+> I-JEPA started a family: [[2511.08544|LeJEPA]] (provable foundations) and [[2512.19605|KerJEPA]] (kernel methods) extend the theory, while [[2602.11389|Causal-JEPA]] adds causal reasoning. For the full robotics-oriented lineage (V-JEPA 2 → VL-JEPA → VLA-JEPA), see the JEPA notes in the vault.
+
+**Continual & Semi-Supervised Learning** — Adapting self-supervised models for streaming data, long-tailed distributions, and test-time shifts.
+- [[2507.10434|CLA]], [[2505.05062|ULFine]], [[2512.15934|IC-SSL]], [[2506.23529|SSTTA]], [[2411.13852|ESRM]], [[2603.06693|SER]]
+
+> [!star] Key Papers
+> - [[2507.10434|CLA]] — Continual Latent Alignment for online continual self-supervised learning; avoids catastrophic forgetting
+> - [[2512.15934|IC-SSL]] — In-Context Semi-Supervised Learning: Transformer framework leveraging in-context learning for semi-supervised tasks
+
+**Dataset Distillation & Representation Theory** — Compressing training data and understanding the theoretical properties of learned representations.
+- [[2511.16674|LGM]], [[2512.09322|GPSSL]], [[2601.03220|Epiplexity]], [[2504.10428|PIU Learning]], [[2603.12228|Neural Thickets]]
+
+> [!star] Key Papers
+> - [[2511.16674|LGM]] — Linear Gradient Matching for dataset distillation in self-supervised models; highly efficient compression
+> - [[2601.03220|Epiplexity]] — New information measure beyond entropy for computationally bounded intelligence
+
+**Test-Time Training & Adaptation** — Methods that adapt visual models at inference time to handle distribution shifts.
+- [[2603.00518|Vision-TTT]], [[2506.23529|SSTTA]]
+
+> [!star] Key Papers
+> - [[2603.00518|Vision-TTT]] — Adapts Test-Time Training for efficient visual representation learning; bridges pre-training and inference
+
+**Anomaly & Domain-Specific Detection** — Self-supervised approaches for anomaly detection and unsupervised domain adaptation.
+- [[2601.05552|UniADet]], [[2502.10694|UDA Simulation Study]], [[2411.15869|SC-CLIP]]
+
+> [!star] Key Papers
+> - [[2601.05552|UniADet]] — Universal vision anomaly detection without language priors; purely visual foundation model approach
+> - [[2411.15869|SC-CLIP]] — Training-free self-calibrated CLIP for open-vocabulary segmentation; resolves anomalous attention biases
+
+> [!tip] From Reconstruction to Prediction
+> The field moved from pixel reconstruction (MAE, BEiT) to latent prediction (I-JEPA, LeJEPA). Latent prediction avoids wasting capacity on irrelevant pixel details and produces more semantically meaningful features. Meanwhile, continual learning (CLA, IC-SSL) ensures these methods work in non-stationary real-world settings.
 
 ---
 
-## 3. Vision-Language Alignment
+## 4. Vision-Language Alignment
 
-Connecting visual and textual representations in a shared embedding space.
+Connecting visual and textual representations in a shared embedding space, enabling zero-shot transfer and multimodal reasoning.
 
-- [[2103.00020|CLIP]] (2021) — ==contrastive pre-training== on 400M image-text pairs; enabled zero-shot transfer to any visual task via text prompts
-- [[2201.12086|BLIP]] (2022) — unified ==understanding and generation== with bootstrapped captioning
-- [[2205.01917|CoCa]] (2022) — ==contrastive captioner==: combined contrastive and generative objectives
-- [[2305.05665|ImageBind]] (2023) — extended alignment to ==6 modalities== (image, text, audio, depth, thermal, IMU) via a single embedding space
-- [[2212.07143|OpenCLIP]] (2022) — open-source CLIP reproduction with ==scaling law analysis==
+**Contrastive Alignment** — Learning joint image-text embeddings via contrastive objectives on large-scale paired data.
+- [[2103.00020|CLIP]], [[2212.07143|OpenCLIP]], [[2205.01917|CoCa]], [[2507.18009|GRR-CoCa]]
+
+> [!star] Key Papers
+> - [[2103.00020|CLIP]] — Contrastive pre-training on 400M image-text pairs; enabled zero-shot transfer to any visual task via text prompts
+> - [[2205.01917|CoCa]] — Combined contrastive and generative objectives in a single contrastive captioner
+> - [[2507.18009|GRR-CoCa]] — Integrates modern LLM architectural features into the CoCa framework for improved multimodal performance
+
+**Multi-Modal Embedding Spaces** — Extending alignment beyond image-text to encompass audio, depth, thermal, and other modalities.
+- [[2305.05665|ImageBind]], [[2506.23639|Being-VL]], [[2510.06673|Heptapod]]
+
+> [!star] Key Papers
+> - [[2305.05665|ImageBind]] — Extended alignment to 6 modalities (image, text, audio, depth, thermal, IMU) via a single embedding space
+> - [[2506.23639|Being-VL]] — Unified multimodal understanding via byte-pair encoding applied to visual tokens
+
+**Bootstrapped & Generative Alignment** — Methods that generate or bootstrap training data for vision-language alignment.
+- [[2201.12086|BLIP]], [[2411.15869|SC-CLIP]]
+
+> [!star] Key Papers
+> - [[2201.12086|BLIP]] — Unified understanding and generation with bootstrapped captioning; self-cleans noisy web data
+
+> [!tip] Beyond Image-Text Pairs
+> CLIP showed that contrastive learning on web-scale data creates powerful zero-shot models. The next frontier (ImageBind, Being-VL, Heptapod) extends this to arbitrary modalities. The key insight: a single well-aligned embedding space transfers better than modality-specific encoders.
 
 ---
 
-## 4. Multimodal Large Language Models
+## 5. Multimodal Large Language Models
 
-LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
+LLMs augmented with visual perception — the backbone for modern VLMs and VLAs. These models bridge language understanding with visual grounding, generation, and action.
 
-- [[2305.06500|InstructBLIP]] (2023) — instruction-tuned BLIP-2 for general-purpose VLM tasks
-- [[2306.14824|KOSMOS-2]] (2023) — ==grounded multimodal LLM==: generates text with bounding box references
-- [[2407.07726|PaliGemma]] (2024) — ==sub-3B== VLM achieving SOTA on 40 tasks; ==SigLIP + Gemma== connected by linear projection
-- [[2309.05519|NExT-GPT]] (2023) — ==any-to-any== multimodal LLM (text, image, audio, video)
-- [[2502.13130|Magma]] (2025) — foundation model for ==multimodal AI agents==
+**Instruction-Tuned VLMs** — General-purpose multimodal models trained to follow instructions across vision-language tasks.
+- [[2305.06500|InstructBLIP]], [[2310.03744|LLaVA-1.5]], [[2407.07726|PaliGemma]], [[2505.09568|BLIP3-o]]
 
-> [!warning] Survey Coverage
-> The MLLM space moves fast. Key surveys: [[2306.13549|MLLM Survey]] (2023), [[2405.10739|Efficient MLLM Survey]] (2024).
+> [!star] Key Papers
+> - [[2407.07726|PaliGemma]] — Sub-3B VLM achieving SOTA on 40 tasks; SigLIP + Gemma connected by linear projection
+> - [[2310.03744|LLaVA-1.5]] — Enhanced large multimodal model achieving SOTA with simple architectural improvements
+> - [[2505.09568|BLIP3-o]] — Fully open unified multimodal model family excelling in both understanding and generation
+
+**Grounded & Spatial MLLMs** — Models that can localize objects, reference bounding boxes, and reason about spatial relationships.
+- [[2306.14824|KOSMOS-2]], [[2601.13633|EGM]], [[2602.11635|MathSpatial]]
+
+> [!star] Key Papers
+> - [[2306.14824|KOSMOS-2]] — Grounded multimodal LLM: generates text with bounding box references
+> - [[2601.13633|EGM]] — Enables smaller VLMs to scale test-time inference for visual grounding
+
+**Any-to-Any & Agent-Oriented MLLMs** — Models designed for arbitrary modality conversion or as foundations for autonomous agents.
+- [[2309.05519|NExT-GPT]], [[2502.13130|Magma]], [[2303.11381|MM-REACT]]
+
+> [!star] Key Papers
+> - [[2309.05519|NExT-GPT]] — Any-to-any multimodal LLM handling text, image, audio, and video
+> - [[2502.13130|Magma]] — Foundation model specifically designed for multimodal AI agents
+
+**Visual Reasoning & Thinking** — Methods for enhancing MLLMs with explicit reasoning, chain-of-thought over images, and self-rewarding loops.
+- [[2505.17022|GoT-R1]], [[2508.19652|Vision-SR1]], [[2511.09018|Owl]], [[2510.06783|TTRV]], [[2504.17207|APC]], [[2506.23918|Thinking with Images Survey]], [[2601.13705|LVLM Visual Puzzle Survey]]
+
+> [!star] Key Papers
+> - [[2505.17022|GoT-R1]] — Applies RL to unleash reasoning capability of MLLMs for visual generation
+> - [[2508.19652|Vision-SR1]] — Self-rewarding RL framework for VLMs via reasoning decomposition
+> - [[2510.06783|TTRV]] — First test-time RL framework for decoder-based VLMs
+
+**MLLM Evaluation & Benchmarks** — Reward models, judging frameworks, and benchmarks for evaluating multimodal model quality.
+- [[2512.16899|MMRB2]], [[2511.10055|HCM-GRPO]], [[2508.19229|StepWiser]]
+
+> [!star] Key Papers
+> - [[2512.16899|MMRB2]] — First comprehensive benchmark for evaluating reward models on multimodal interleaved content
+> - [[2508.19229|StepWiser]] — Generative judges that meta-reason about intermediate reasoning steps
+
+**Key Surveys** — Comprehensive surveys mapping the rapidly evolving MLLM landscape.
+- [[2306.13549|MLLM Survey]], [[2405.10739|Efficient MLLM Survey]], [[2405.19334|LLM Multimodal Generation Survey]]
+
+> [!tip] The VLM Stack
+> Modern VLMs follow a consistent pattern: frozen vision encoder (often SigLIP or DINOv2) + lightweight connector (linear projection or Q-Former) + LLM backbone. PaliGemma proved this can work at sub-3B scale, while BLIP3-o and LLaVA-1.5 showed that open models can compete with proprietary ones. The frontier is now visual reasoning (GoT-R1, Vision-SR1) and test-time RL (TTRV).
 
 ---
 
-## 5. Efficient Training & Adaptation
+## 6. LLM Training & Optimization
 
-Making foundation models practical: parameter-efficient fine-tuning, model merging, and efficient architectures.
+Core training recipes, optimizers, scaling laws, and architectural insights for training large language models efficiently.
 
-| Paper | Year | Contribution |
-| --- | --- | --- |
-| [[2109.01134\|CoOp]] | 2021 | ==Learnable prompts== for adapting CLIP without fine-tuning |
-| [[2203.05557\|CoCoOp]] | 2022 | ==Conditional prompts== that generalize to unseen classes |
-| [[2312.12148\|PEFT Survey]] | 2023 | Survey of LoRA, adapters, prompt tuning, and other PEFT methods |
-| [[2408.07666\|Model Merging Survey]] | 2024 | Survey of combining multiple fine-tuned models |
-| [[2009.06732\|Efficient Transformers Survey]] | 2020 | Survey of linear attention, sparse attention, and other efficiency methods |
+**Optimizers** — Second-order and novel optimizers that improve over AdamW for large-scale training.
+- [[2502.16982|Muon]], [[2505.02222|Muon (practical)]], [[2505.23725|MuLoCo]], [[2506.07254|SPlus]]
+
+> [!star] Key Papers
+> - [[2502.16982|Muon]] — Breakthrough: second-order optimizer demonstrating superior training efficiency over AdamW for LLMs
+> - [[2505.23725|MuLoCo]] — Muon as inner optimizer for DiLoCo distributed training; significant speedup over AdamW
+
+**Scaling Laws & Training Dynamics** — Understanding how loss curves, learning rates, batch sizes, and training duration interact at scale.
+- [[2503.12811|MPL]], [[2405.18392|Compute-Optimal Scaling Laws]], [[2507.07101|Small Batch LLM Training]], [[2505.10559|Neural Thermodynamic Laws]], [[2309.14322|Transformer Training Instabilities]], [[2603.15958|Hyperparameter Scaling Laws]]
+
+> [!star] Key Papers
+> - [[2503.12811|MPL]] — Multi-Power Law accurately predicts training loss across learning rate schedules
+> - [[2507.07101|Small Batch LLM Training]] — Small batch sizes (even batch=1) can stably train LLMs; challenges the large-batch orthodoxy
+
+**Inference Acceleration** — Techniques for faster inference through early exit, speculative decoding, and layer skipping.
+- [[2404.16710|LayerSkip]], [[2505.11820|CoLM]]
+
+> [!star] Key Papers
+> - [[2404.16710|LayerSkip]] — Enables accurate early exit and self-speculative decoding for faster LLM inference
+> - [[2505.11820|CoLM]] — Chain-of-Model enables incremental scaling and elastic adaptation
+
+**Architecture Search & Discovery** — Automated methods for discovering novel neural network architectures.
+- [[2507.18074|ASI-ARCH]], [[2505.09343|DeepSeek-V3]]
+
+> [!star] Key Papers
+> - [[2507.18074|ASI-ARCH]] — Autonomous system that discovers novel transformer architectures via automated search
+> - [[2505.09343|DeepSeek-V3]] — Hardware-software co-design strategy achieving SOTA LLM performance
+
+**Interpretability & Internal Representations** — Understanding what models learn internally and how to analyze their representations.
+- [[2502.02013|Layer-by-Layer Representations]], [[2506.15679|Dense SAE Latents]], [[2603.12228|Neural Thickets]]
+
+> [!star] Key Papers
+> - [[2502.02013|Layer-by-Layer Representations]] — Intermediate layers often provide superior downstream representations compared to final layers
+> - [[2506.15679|Dense SAE Latents]] — Redefines dense latents in Sparse Autoencoders from artifacts to functional features
+
+> [!tip] The Muon Moment
+> 2025 may be remembered as the year AdamW lost its monopoly. Muon (and its distributed variant MuLoCo) demonstrated that second-order optimization is practical at LLM scale. Combined with scaling law insights (MPL, small-batch training), the training recipe for LLMs is being fundamentally rewritten.
+
+---
+
+## 7. Efficient Adaptation & Model Composition
+
+Making foundation models practical: parameter-efficient fine-tuning, model merging, prompt tuning, and efficient transfer.
+
+**Prompt Learning** — Adapting foundation models through learned prompts rather than full fine-tuning.
+- [[2109.01134|CoOp]], [[2203.05557|CoCoOp]], [[2309.16797|PromptBreeder]]
+
+> [!star] Key Papers
+> - [[2109.01134|CoOp]] — Learnable prompts for adapting CLIP without fine-tuning; launched the prompt learning field
+> - [[2309.16797|PromptBreeder]] — Self-referential self-improvement via prompt evolution; automates prompt engineering
+
+**LoRA & Parameter-Efficient Fine-Tuning** — Methods that adapt large models by training only a small fraction of parameters.
+- [[2312.12148|PEFT Survey]], [[2506.06105|T2L]], [[2507.11851|Gated LoRA]]
+
+> [!star] Key Papers
+> - [[2506.06105|T2L]] — Text-to-LoRA: hypernetwork that dynamically generates task-specific LoRA adapters from text descriptions
+> - [[2507.11851|Gated LoRA]] — Enables pretrained autoregressive LLMs to perform multi-token prediction via gated LoRA modules
+
+**Model Merging & Weight Averaging** — Combining multiple fine-tuned models into a single improved model without retraining.
+- [[2408.07666|Model Merging Survey]], [[2505.12082|PMA]], [[1803.05407|SWA]]
+
+> [!star] Key Papers
+> - [[1803.05407|SWA]] — Stochastic Weight Averaging: simple technique that finds wider optima and better generalization
+> - [[2505.12082|PMA]] — Pre-trained Model Average for effective merging of LLM checkpoints
+
+**Machine Unlearning & Safety** — Removing specific data influence from trained models for privacy and safety compliance.
+- [[2402.15109|MU-Mis]]
+
+**Continual Pretraining & Domain Adaptation** — Extending foundation models to new domains or tasks through continued training.
+- [[2509.06806|MachineLearningLM]], [[2507.00994|MLM vs CLM Pretraining]], [[2507.06187|Delta Learning Hypothesis]]
+
+> [!star] Key Papers
+> - [[2509.06806|MachineLearningLM]] — Continued pretraining framework that enhances LLMs with robust many-shot in-context learning for ML tasks
+> - [[2507.06187|Delta Learning Hypothesis]] — Preference tuning on pairs of individually weak outputs can yield strong gains
+
+**Gradient-Free & Evolutionary Optimization** — Optimizing models without gradient computation using evolution strategies.
+- [[2510.10603|EA4LLM]], [[2602.03120|QES]]
+
+**Symmetry & Loss Landscape Theory** — Theoretical understanding of parameter space structure and its implications for training and merging.
+- [[2506.13018|NN Parameter Space Symmetry Survey]]
+
+> [!tip] The Adaptation Toolkit
+> The modern practitioner's stack: LoRA for efficient fine-tuning, SWA/PMA for merging multiple checkpoints, PromptBreeder for automated prompt optimization, and T2L for on-the-fly adapter generation. The key insight from 2025: you rarely need to fine-tune the full model — the right adapter strategy often matches or exceeds full fine-tuning.
+
+---
+
+## 8. RL for LLM Reasoning
+
+Reinforcement learning applied to improve language model reasoning, self-improvement, and verifiable reward systems.
+
+**RL with Verifiable Rewards** — Training LLMs with RL using automatically verifiable reward signals rather than human feedback.
+- [[2503.23829|RLVR]], [[2506.00103|Writing-Zero]], [[2510.06499|Webscale-RL]], [[2512.16649|JustRL]], [[2508.18588|RhymeRL]], [[2509.26074|LENS]]
+
+> [!star] Key Papers
+> - [[2503.23829|RLVR]] — Extends RL with verifiable rewards beyond math/code to diverse domains
+> - [[2510.06499|Webscale-RL]] — Automated pipeline scaling verifiable RL training data to pretraining levels
+> - [[2512.16649|JustRL]] — Simplified RL recipe effectively scales a 1.5B model for mathematical reasoning
+
+**Reasoning Models** — LLMs explicitly trained for multi-step reasoning with RL.
+- [[2506.10910|Magistral]], [[2505.10320|J1]], [[2507.18071|GSPO]]
+
+> [!star] Key Papers
+> - [[2506.10910|Magistral]] — Mistral's first reasoning model using custom RLHF for chain-of-thought
+> - [[2505.10320|J1]] — RL-trained LLM-as-a-Judge that incentivizes genuine thinking during evaluation
+
+**LLM-as-a-Judge & Evaluation** — Using LLMs to evaluate other LLMs, with RL to improve judging quality.
+- [[2411.15594|LLM-as-a-Judge Survey]], [[2505.10320|J1]], [[2508.19229|StepWiser]]
+
+> [!star] Key Papers
+> - [[2411.15594|LLM-as-a-Judge Survey]] — Comprehensive survey providing formal definitions and unified taxonomy for LLM-based evaluation
+
+**Agentic RL & Search** — RL applied to LLM-based agents for tool use, search, and multi-step task completion.
+- [[2603.11327|MR-Search]], [[2603.12011|RFT LLM Agent Generalization]]
+
+> [!star] Key Papers
+> - [[2603.11327|MR-Search]] — Meta-RL framework enabling LLM search agents to improve via in-context learning
+> - [[2603.12011|RFT LLM Agent Generalization]] — Systematic investigation of whether reinforcement fine-tuning improves LLM agent generalization
+
+**Unsupervised & Self-Supervised LLM Alignment** — Aligning language models without explicit human feedback through self-supervised objectives.
+- [[2506.10139|ICM]]
+
+> [!tip] The RL-for-Reasoning Stack
+> Post-DeepSeek-R1, the recipe is clear: start with SFT for format, then RL with verifiable rewards for reasoning. Webscale-RL showed you can automate reward data collection at pretraining scale. JustRL proved even a 1.5B model benefits. The frontier is extending verifiable rewards beyond math/code (Writing-Zero, RLVR).
+
+---
+
+## 9. Embodied Foundation Models
+
+Foundation models applied to robotics — VLAs, action pretraining, world models, and sim-to-real transfer.
+
+**Vision-Language-Action Models** — Models that bridge perception, language understanding, and physical action for robot control.
+- [[2504.16054|pi0.5]], [[2512.00975|MM-ACT]], [[2508.07917|MolmoAct]], [[2602.12062|HoloBrain-0]], [[2603.11653|VLA RL Continual Learning]]
+
+> [!star] Key Papers
+> - [[2504.16054|pi0.5]] — VLA model enabling mobile robots to perform complex household tasks in entirely new homes
+> - [[2512.00975|MM-ACT]] — Unified VLA model integrating text, image, and robot actions into a single multimodal framework
+> - [[2508.07917|MolmoAct]] — Action Reasoning Models integrating depth-aware perception with visual reasoning for spatial tasks
+
+**Action Pretraining & Latent Actions** — Learning action representations from video without explicit action labels.
+- [[2410.11758|LAPA]], [[2310.08576|AVDC]]
+
+> [!star] Key Papers
+> - [[2410.11758|LAPA]] — Latent Action Pretraining from videos; learns action representations without action labels
+> - [[2310.08576|AVDC]] — Learns manipulation tasks from actionless video via dense visual correspondences
+
+**World Models for Robotics** — Learned simulators that predict future states for planning and policy training.
+- [[2511.09057|PAN]], [[2602.11389|Causal-JEPA]], [[2603.12231|Temporal Straightening]]
+
+> [!star] Key Papers
+> - [[2511.09057|PAN]] — World model using Generative Latent Prediction for general, interactable, long-horizon simulation
+> - [[2603.12231|Temporal Straightening]] — Geometric regularization for straighter latent trajectories; improves latent planning
+
+**Simulation Environments** — Platforms for training and evaluating robotic manipulation and interaction.
+- [[2003.08515|SAPIEN]]
+
+> [!star] Key Papers
+> - [[2003.08515|SAPIEN]] — Simulated environment with 2,346 articulated objects; foundational platform for robot manipulation research
+
+> [!tip] The VLA Pipeline
+> Modern VLAs follow a pattern: large-scale pretraining on internet video (LAPA) or diverse robot data (pi0.5), then RL fine-tuning for specific tasks (VLA RL Continual Learning). World models (PAN, Causal-JEPA) are emerging as the "imagination engine" that enables sample-efficient policy learning without costly real-world interaction.
+
+---
+
+## 10. Emerging Methods
+
+Unconventional approaches that do not fit neatly into the above categories but represent important research directions.
+
+**Neuromorphic & Bio-Inspired Learning** — Learning algorithms inspired by biological neural mechanisms.
+- [[2307.04054|Deep-STDP]]
+
+**LLM-Assisted Research Tools** — Using LLMs to automate aspects of the research process itself.
+- [[2504.17192|PaperCoder]], [[2508.17971|LLM-NAR]]
+
+> [!star] Key Papers
+> - [[2504.17192|PaperCoder]] — Multi-agent LLM framework that generates functional code from scientific papers
+> - [[2508.17971|LLM-NAR]] — Integrates LLMs with Graph Neural Networks for multi-agent path finding
+
+**Visual Generation & Style Transfer** — Foundation model approaches to image generation, editing, and style-driven synthesis.
+- [[2508.18966|USO]], [[2505.17022|GoT-R1]]
+
+**Geospatial & Location Intelligence** — Applying foundation models to geospatial representation learning.
+- [[2505.09651|Location Intelligence Survey]]
+
+**Hardware Security & Physical Systems** — Foundation model techniques applied to hardware security and physical unclonable functions.
+- [[2403.01299|Photonic PUF ML Resilience]]
+
+> [!tip] Watch List
+> PaperCoder and LLM-NAR represent a meta-trend: AI systems that accelerate AI research itself. Deep-STDP explores whether biological learning rules can complement backpropagation. These are early signals of potentially transformative directions.
 
 ---
 
@@ -138,166 +496,9 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 - [[04_Reinforcement-Learning]] — RL fine-tunes these foundation models for reasoning
 - [[02_Vision-Language-Models]] — VLMs built on these foundations
 - [[07_Robotics-and-Embodied-AI]] — Foundation models as backbones for VLAs
-- [[04-1_JEPA]] — JEPA family evolution from I-JEPA to VLA-JEPA
+- [[09_Multimodal-LLMs]] — Detailed coverage of multimodal architectures
+- [[03_Reasoning-and-Planning]] — Reasoning methods that build on foundation models
 
 ---
 
 *Next: [[02_Vision-Language-Models]] for how these foundations are applied to multi-modal understanding.*
-
----
-
-## Complete Paper Listing
-
-### Alignment & Adaptation (1)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2505.12082\|PMA]] | 2025 | Pre-trained Model Average (PMA), developed by researchers at ByteDance Seed, Peking University, and The University of... |
-
-### Efficient Training & Inference (3)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[1803.05407\|SWA]] | 2018 | Stochastic Weight Averaging (SWA) is a simple optimization technique that improves the generalization performance of ... |
-| [[2402.15109\|MU-Mis]] | 2024 | MU-Mis introduces a machine unlearning method that efficiently removes data influence from deep neural networks witho... |
-| [[2506.13018\|NN Parameter Space Symmetry Survey]] | 2025 | This survey paper systematically consolidates fragmented knowledge on parameter space symmetry in neural networks, de... |
-
-### Large Language Models (13)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2404.16710\|LayerSkip]] | 2024 | Meta's LayerSkip accelerates Large Language Model (LLM) inference by enabling accurate early exit and self-speculativ... |
-| [[2502.16982\|Muon]] | 2025 | Moonshot AI researchers demonstrate a breakthrough in large language model training efficiency with the Muon optimize... |
-| [[2503.12811\|MPL]] | 2025 | Researchers from Tsinghua University and partners derive a Multi-Power Law (MPL) that accurately predicts the trainin... |
-| [[2505.02222\|Muon]] | 2025 | Essential AI demonstrates that Muon, a second-order optimizer, offers superior practical efficiency over AdamW for la... |
-| [[2505.23725\|MuLoCo]] | 2025 | Mila researchers demonstrate that Muon optimizer significantly outperforms AdamW as the inner optimizer in DiLoCo dis... |
-| [[2506.06105\|T2L]] | 2025 | Sakana AI researchers developed Text-to-LoRA (T2L), a hypernetwork that dynamically generates task-specific Low-Rank ... |
-| [[2507.00994\|MLM vs CLM Pretraining]] | 2025 | This paper presents a controlled study comparing Masked Language Modeling (MLM) and Causal Language Modeling (CLM) as... |
-| [[2507.06187\|Delta Learning Hypothesis]] | 2025 | Proposes the delta learning hypothesis, demonstrating that preference tuning on pairs of individually weak model outp... |
-| [[2507.07101\|Small Batch LLM Training]] | 2025 | Researchers from NYU and Columbia demonstrated that small batch sizes, even down to one, can stably and effectively t... |
-| [[2507.11851\|Gated LoRA]] | 2025 | A framework developed by researchers at Apple enables pretrained autoregressive large language models to perform mult... |
-| [[2507.18074\|ASI-ARCH]] | 2025 | ASI-ARCH, developed by Shanghai Jiao Tong University and collaborators, is an autonomous system that discovers novel ... |
-| [[2509.06806\|MachineLearningLM]] | 2025 | A continued pretraining framework, MACHINELEARNINGLM, enhances a general-purpose LLM with robust many-shot in-context... |
-| [[2510.10603\|EA4LLM]] | 2025 | EA4LLM introduces a gradient-free method employing Evolution Strategies for optimizing Large Language Models, success... |
-
-### Self-Supervised Learning (9)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2503.09867\|OH-A-DINO]] | 2025 | OH-A-DINO addresses the deficiency of self-supervised vision models and slot-based methods in capturing non-geometric... |
-| [[2505.05062\|ULFine]] | 2025 | A framework for long-tailed semi-supervised learning leverages foundation models through prototype adaptive fitting a... |
-| [[2506.10139\|ICM]] | 2025 | This paper presents Internal Coherence Maximization (ICM), an unsupervised algorithm for fine-tuning language models ... |
-| [[2507.10434\|CLA]] | 2025 | The paper introduces Continual Latent Alignment (CLA), a self-supervised learning strategy designed for online contin... |
-| [[2511.16674\|LGM]] | 2025 | The Massachusetts Institute of Technology developed Linear Gradient Matching (LGM), a dataset distillation method for... |
-| [[2512.09322\|GPSSL]] | 2025 | This work introduces Gaussian Process Self-Supervised Learning (GPSSL), a framework that integrates Gaussian Processe... |
-| [[2512.19605\|KerJEPA]] | 2025 | KERJEPA introduces a generalized framework for Euclidean self-supervised learning, building on LeJEPA by employing va... |
-| [[2601.03220\|Epiplexity]] | 2026 | Researchers from Carnegie Mellon University and New York University introduce epiplexity, a new information measure t... |
-| [[2601.05552\|UniADet]] | 2026 | Tencent YouTu Lab introduced UniADet, a universal vision anomaly detection framework that operates without a language... |
-
-### Theory & Interpretability (1)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2504.10428\|PIU Learning]] | 2025 | A framework from Yale University enables learning binary classifiers using positive and imperfect unlabeled data thro... |
-
-### Vision Transformers (32)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2205.14949\|HiViT]] | 2022 | HiViT is a hierarchical Vision Transformer architecture designed for efficient Masked Image Modeling pre-training. It... |
-| [[2309.14322\|Transformer Training Instabilities]] | 2023 | Researchers at Google DeepMind successfully reproduce and investigate large-scale Transformer training instabilities,... |
-| [[2311.12424\|Looped Transformers]] | 2023 | A looped transformer architecture from the University of Wisconsin, Madison, efficiently emulates iterative learning ... |
-| [[2501.00663\|Titans]] | 2025 | Titans introduces a new neural memory module that learns to memorize information at test time and effectively combine... |
-| [[2502.02013\|Layer-by-Layer Representations]] | 2025 | Intermediate layers in large language models often provide superior representations for downstream tasks compared to ... |
-| [[2502.14010\|ICL Attention Heads]] | 2025 | This research from UC Berkeley demonstrates that Function Vector (FV) attention heads are the primary drivers of in-c... |
-| [[2503.10622\|DyT]] | 2025 | This research introduces Dynamic Tanh (DyT), a simple element-wise function designed as a drop-in replacement for nor... |
-| [[2504.13173\|Miras]] | 2025 | A unified framework from Google Research introduces "Miras" for sequence modeling that reinterprets attention mechani... |
-| [[2504.17379\|GABMIL]] | 2025 | Researchers from Eindhoven University of Technology introduce Global ABMIL (GABMIL), an extension of Attention-Based ... |
-| [[2504.20966\|Softpick]] | 2025 | Researchers at MBZUAI developed Softpick, a rectified, non-sum-to-one normalization function for transformer attentio... |
-| [[2505.00315\|MoSA]] | 2025 | A novel sparse attention mechanism called MoSA (Mixture of Sparse Attention) enables more efficient transformer model... |
-| [[2505.01996\|Token Graying]] | 2025 | Researchers at Adelaide University and CSIRO found that the self-attention mechanism in Vision Transformers requires ... |
-| [[2505.09343\|DeepSeek-V3]] | 2025 | DeepSeek-V3 showcases how a hardware-software co-design strategy can achieve state-of-the-art large language model pe... |
-| [[2505.10559\|Neural Thermodynamic Laws]] | 2025 | This research formulates Neural Thermodynamic Laws (NTL) to provide a mechanistic understanding of large language mod... |
-| [[2505.11820\|CoLM]] | 2025 | A new learning paradigm called Chain-of-Model (CoM) enables large language models to scale incrementally and adapt el... |
-| [[2506.07254\|SPlus]] | 2025 | From UC Berkeley, SPlus introduces a stable whitening optimizer that improves the efficiency of training large Transf... |
-| [[2506.15679\|Dense SAE Latents]] | 2025 | This research redefines dense latents in Sparse Autoencoders (SAEs) from perceived training artifacts to functional f... |
-| [[2507.10524\|MoR]] | 2025 | Mixture-of-Recursions (MoR) introduces a unified framework for language models that combines parameter efficiency, ad... |
-| [[2507.16003\|ICL Implicit Dynamics]] | 2025 | This research from Google Research demonstrates that In-Context Learning (ICL) in Large Language Models (LLMs) can be... |
-| [[2507.22448\|Falcon-H1]] | 2025 | The Falcon LLM Team introduces Falcon-H1, a series of hybrid-head language models that integrate parallel Transformer... |
-| [[2508.02124\|DMA]] | 2025 | Trainable Dynamic Mask Sparse Attention (DMA) introduces a fully differentiable and hardware-optimized mechanism to a... |
-| [[2509.00421\|Prompt Tuning Memory Limits]] | 2025 | This research provides the first formal proof for the empirically observed memory degradation in transformers with ex... |
-| [[2511.08544\|LeJEPA]] | 2025 | LeJEPA (Latent-Euclidean Joint-Embedding Predictive Architecture) introduces a self-supervised learning framework bas... |
-| [[2512.10938\|Derf]] | 2025 | Researchers from Princeton, NYU, and Carnegie Mellon introduced Dynamic erf (Derf), a point-wise function that replac... |
-| [[2512.15934\|IC-SSL]] | 2025 | Researchers at Duke University introduced In-Context Semi-Supervised Learning (IC-SSL), a Transformer framework desig... |
-| [[2512.24695\|Hope]] | 2025 | Nested Learning introduces a paradigm that reinterprets machine learning as nested, multi-level optimization problems... |
-| [[2512.24880\|mHC]] | 2025 | Researchers at DeepSeek-AI developed Manifold-Constrained Hyper-Connections (mHC), an architectural modification that... |
-| [[2603.00518\|Vision-TTT]] | 2026 | Vision-TTT introduces a visual backbone that adapts Test-Time Training for efficient and expressive visual representa... |
-| [[2603.06693\|SER]] | 2026 | Soft Equivariance Regularization (SER) is introduced as a method to enhance self-supervised learning in Vision Transf... |
-| [[2603.15031\|AttnRes]] | 2026 | The Kimi Team introduced Attention Residuals (AttnRes) for deep neural networks, which replaces standard residual con... |
-| [[2603.15619\|MoDA]] | 2026 | Researchers from Huazhong University of Science & Technology and ByteDance Seed developed Mixture-of-Depths Attention... |
-| [[2603.17063\|Transformers as Bayesian Networks]] | 2026 | A formal analysis by Greg Coppola at coppola.ai establishes that the sigmoid Transformer architecture fundamentally o... |
-
-### Other (60)
-
-| Paper | Year | Summary |
-| --- | --- | --- |
-| [[2003.08515\|2003.08515]] | 2020 | SAPIEN is a simulated environment and dataset designed to advance robot learning for household manipulation by integr... |
-| [[2206.02647\|2206.02647]] | 2022 | Chen et al. introduce the Hierarchical Image Pyramid Transformer (HIPT), an architecture designed to process gigapixe... |
-| [[2303.11381\|2303.11381]] | 2023 | MM-REACT, a framework developed by Microsoft Azure AI, enables large language models like ChatGPT to understand and r... |
-| [[2307.04054\|Deep-STDP]] | 2023 | Researchers at The Pennsylvania State University developed Deep-STDP, an unsupervised learning framework for deep con... |
-| [[2309.16797\|2309.16797]] | 2023 | PromptBreeder from Google DeepMind automates prompt engineering for Large Language Models by employing a self-improvi... |
-| [[2310.00632\|2310.00632]] | 2023 | Naver Labs Europe introduces WIN-WIN, a training strategy for high-resolution Vision Transformers that utilizes struc... |
-| [[2310.03744\|2310.03744]] | 2023 | LLaVA-1.5 presents an enhanced Large Multimodal Model from UW-Madison and Microsoft Research that achieves state-of-t... |
-| [[2310.08576\|2310.08576]] | 2023 | The Actions from Video Dense Correspondences (AVDC) framework enables robots to learn and execute tasks solely from a... |
-| [[2403.01299\|Photonic PUF ML Resilience]] | 2024 | A study from Southern Methodist University and Anametric, Inc. assessed a photonic Physically Unclonable Function's r... |
-| [[2405.18392\|Compute-Optimal Scaling Laws]] | 2024 | Constant learning rates with a short cooldown or Stochastic Weight Averaging can match the performance of cosine sche... |
-| [[2405.19334\|LLM Multimodal Generation Survey]] | 2024 | This survey systematically reviews how Large Language Models (LLMs) are integrated into multimodal generation and edi... |
-| [[2410.11758\|2410.11758]] | 2024 | Latent Action Pretraining (LAPA), developed by researchers from KAIST, University of Washington, Microsoft Research, ... |
-| [[2411.13852\|ESRM]] | 2024 | A study investigates the impact of synthetic data contamination on online continual learning (CL) performance, propos... |
-| [[2411.15594\|2411.15594]] | 2024 | Researchers present a comprehensive survey of the "LLM-as-a-Judge" paradigm, providing formal definitions, a unified ... |
-| [[2411.15869\|2411.15869]] | 2024 | A training-free method named Self-Calibrated CLIP (SC-CLIP) improves open-vocabulary segmentation by resolving "anoma... |
-| [[2502.10385\|2502.10385]] | 2025 | UC Berkeley and Microsoft Research teams introduce SimDINO, a dramatically simplified version of the DINO self-superv... |
-| [[2502.10694\|UDA Simulation Study]] | 2025 | This study conducts extensive empirical simulations of several common Unsupervised Domain Adaptation (UDA) algorithms... |
-| [[2503.23829\|2503.23829]] | 2025 | Tencent AI Lab and Soochow University developed an approach to extend Reinforcement Learning with Verifiable Rewards ... |
-| [[2503.24067\|2503.24067]] | 2025 | A sequence-level hybrid Transformer-Mamba language model, TransMamba, unifies these architectures through shared para... |
-| [[2504.16054\|2504.16054]] | 2025 | A Vision-Language-Action model called π0.5 enables mobile robots to perform complex household tasks in entirely new h... |
-| [[2504.17192\|2504.17192]] | 2025 | Researchers at KAIST developed PaperCoder, a multi-agent Large Language Model (LLM) framework that generates function... |
-| [[2504.17207\|2504.17207]] | 2025 | KAIST and Stanford researchers develop an Abstract Perspective Change framework that enables vision-language models t... |
-| [[2505.09568\|2505.09568]] | 2025 | Salesforce Research and collaborators introduce BLIP3-o, a family of unified multimodal models excelling in both imag... |
-| [[2505.09651\|Location Intelligence Survey]] | 2025 | This survey paper provides a comprehensive review of geospatial representation learning, covering advancements from d... |
-| [[2505.10320\|2505.10320]] | 2025 | FAIR at Meta developed J1, an online reinforcement learning framework that explicitly optimizes chain-of-thought reas... |
-| [[2505.17022\|2505.17022]] | 2025 | Researchers from HKU MMLab, CUHK MMLab, Sensetime, and Beihang University develop GoT-R1, a framework that applies re... |
-| [[2505.17083\|Scale-invariant Attention]] | 2025 | A novel scale-invariant attention scheme, derived from first principles, enables large language models to generalize ... |
-| [[2506.00103\|2506.00103]] | 2025 | Researchers at Quark LLM, Alibaba Group, developed a method to apply Reinforcement Learning with Verifiable Rewards (... |
-| [[2506.10159\|2506.10159]] | 2025 | Variational Contrastive Learning (VCL) introduces a probabilistic framework for contrastive representation learning, ... |
-| [[2506.10910\|2506.10910]] | 2025 | Mistral AI introduces Magistral, its inaugural reasoning model, which leverages a custom Reinforcement Learning from ... |
-| [[2506.23529\|2506.23529]] | 2025 | Korea University and NAVER AI Lab researchers developed a Self-Supervised Test-Time Adaptation (SSTTA) protocol and a... |
-| [[2506.23639\|2506.23639]] | 2025 | A framework unifies multimodal understanding by applying a byte-pair encoding (BPE) strategy to visual tokens, which ... |
-| [[2506.23918\|Thinking with Images Survey]] | 2025 | A comprehensive survey introduces "Thinking with Images," a new paradigm where AI models use visual representations a... |
-| [[2507.18009\|2507.18009]] | 2025 | GRR-CoCa, developed at Rice University, integrates modern architectural features from Large Language Models (LLMs) in... |
-| [[2507.18071\|2507.18071]] | 2025 | Group Sequence Policy Optimization (GSPO) introduces a sequence-level approach to importance sampling in reinforcemen... |
-| [[2508.07917\|2508.07917]] | 2025 | MolmoAct introduces a class of Action Reasoning Models that integrate depth-aware perception tokens and visual reason... |
-| [[2508.17971\|2508.17971]] | 2025 | Beihang University researchers developed LLM-NAR, a framework integrating Large Language Models (LLMs) with Graph Neu... |
-| [[2508.18588\|2508.18588]] | 2025 | RhymeRL is an LLM reinforcement learning (RL) system that leverages historical rollout information to accelerate trai... |
-| [[2508.18966\|2508.18966]] | 2025 | Researchers from ByteDance's Intelligent Creation Lab developed USO, a unified framework that seamlessly integrates s... |
-| [[2508.19229\|2508.19229]] | 2025 | STEPWISER introduces a method for training generative judges that meta-reason about an LLM's intermediate reasoning s... |
-| [[2508.19652\|2508.19652]] | 2025 | Vision-SR1 introduces a self-rewarding reinforcement learning framework for Vision-Language Models (VLMs) that guides... |
-| [[2510.06499\|2510.06499]] | 2025 | Salesforce AI Research developed an automated Webscale-RL data pipeline to generate 1.2 million verifiable QA pairs f... |
-| [[2510.06673\|2510.06673]] | 2025 | Heptapod introduces "next 2D distribution prediction," a novel generative learning paradigm that enables causal Trans... |
-| [[2510.06783\|2510.06783]] | 2025 | TTRV introduces the first test-time reinforcement learning framework for decoder-based Vision-Language Models, enabli... |
-| [[2511.09018\|2511.09018]] | 2025 | Researchers from the University of Electronic Science and Technology of China and the University of Auckland develope... |
-| [[2511.09057\|2511.09057]] | 2025 | PAN, a world model from MBZUAI's Institute of Foundation Models, employs a Generative Latent Prediction (GLP) archite... |
-| [[2511.10055\|2511.10055]] | 2025 | Researchers from Tsinghua University and Alibaba Health developed HCM-GRPO, an enhanced reinforcement learning framew... |
-| [[2512.00975\|2512.00975]] | 2025 | MM-ACT introduces a unified Vision-Language-Action (VLA) model that integrates text, image, and robot actions into a ... |
-| [[2512.16649\|2512.16649]] | 2025 | JustRL introduces a simplified reinforcement learning framework for enhancing 1.5B parameter language models in mathe... |
-| [[2512.16899\|2512.16899]] | 2025 | Multimodal RewardBench 2 (MMRB2) introduces the first comprehensive benchmark for evaluating reward models on multimo... |
-| [[2601.13633\|2601.13633]] | 2026 | Researchers from NVIDIA, MIT, Oxford, and Tsinghua University developed EGM, a method that enables smaller Visual Lan... |
-| [[2601.13705\|LVLM Visual Puzzle Survey]] | 2026 | This survey paper from the National Technical University of Athens and Instituto de Telecomunicações recasts visual p... |
-| [[2602.11389\|2602.11389]] | 2026 | Causal-JEPA presents an object-centric world model integrating Joint Embedding Predictive Architectures (JEPAs) with ... |
-| [[2602.11635\|2602.11635]] | 2026 | Lu et al. introduce MathSpatial, a unified framework for evaluating and improving mathematical spatial reasoning in M... |
-| [[2602.12062\|2602.12062]] | 2026 | HoloBrain-0, a vision-language-action (VLA) foundation model by Horizon Robotics, introduces an integrated framework ... |
-| [[2603.11327\|2603.11327]] | 2026 | MR-Search introduces an in-context meta-reinforcement learning framework that enables LLM-based search agents to impr... |
-| [[2603.11653\|VLA RL Continual Learning]] | 2026 | Challenging established beliefs, a study on Vision-Language-Action (VLA) models using Reinforcement Learning and Low-... |
-| [[2603.12011\|RFT LLM Agent Generalization]] | 2026 | An empirical study from Fudan NLP Lab systematically investigates whether Reinforcement Fine-Tuning (RFT) improves th... |
-| [[2603.12228\|2603.12228]] | 2026 | MIT CSAIL researchers Yulu Gan and Phillip Isola propose that large pretrained neural networks exist in a "thicket" r... |
-| [[2603.12231\|Temporal Straightening]] | 2026 | Researchers introduced "temporal straightening," a geometric regularization technique that encourages straighter traj... |

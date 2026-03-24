@@ -58,6 +58,9 @@
 # https://github.com/zli12321/MM-Zero
 # https://yifanzhang-pro.github.io/FALCON/FALCON.pdf
 
+# https://bones.studio/datasets/seed
+# https://github.com/gatech-rl2/egoverse
+
 papers = [
     "https://arxiv.org/abs/2601.22628", # TTCS: Test-Time Curriculum Synthesis for Self-Evolving
     "https://arxiv.org/abs/2508.15568", # Backpropagation-Free Test-Time Adaptation via Probabilistic Gaussian Alignment
@@ -398,6 +401,83 @@ papers = [
     "https://arxiv.org/abs/2409.03299", # Bringing the RT-1-X Foundation Model to a SCARA robot
     "https://arxiv.org/abs/2511.02824", # Kosmos: An AI Scientist for Autonomous Discovery
     "https://arxiv.org/abs/2407.07726", # PaliGemma: A versatile 3B VLM for transfer
+    "https://arxiv.org/abs/2507.18342", # EmbSpatialBench
+    "https://arxiv.org/abs/2506.03135", # OmniSpatial
+    "https://arxiv.org/abs/2507.20174", # LRRBench
+    "https://arxiv.org/abs/2506.18385", # Core Knowledge Deficits
+    "https://arxiv.org/abs/2506.04633", # Unfolding SC
+    "https://arxiv.org/abs/2412.07825", # 3DSRBench
+    "https://arxiv.org/abs/2203.12555", # Aligning BD
+    "https://arxiv.org/abs/2506.14512", # SIRI-Bench
+    "https://arxiv.org/abs/2408.16662", # Space3D-Bench
+    "https://arxiv.org/abs/2507.14137", # Franca
+    "https://arxiv.org/abs/2410.06468", # Spatial457
+    "https://arxiv.org/abs/2508.13142", # Holistic Evaluation of Multimodal LLMs on Spatial Intelligence
+    "https://arxiv.org/abs/2505.05456", # SITE: towards Spatial Intelligence Thorough Evaluation
+    "https://arxiv.org/abs/2507.07610", # SpatialViz-Bench: A Cognitively-Grounded Benchmark for Diagnosing Spatial Visualization in MLLMs
+    "https://arxiv.org/abs/2502.16435", # Human Cognitive Benchmarks Reveal Foundational Visual Gaps in MLLMs
+    "https://arxiv.org/abs/2410.06468", # Does Spatial Cognition Emerge in Frontier Models?
+    "https://arxiv.org/abs/2410.17385", # Do Vision-Language Models Represent Space and How? Evaluating Spatial Frame of Reference Under Ambiguities
+    "https://arxiv.org/abs/2507.18342", # EgoExoBench: A Benchmark for First- and Third-person View Video Understanding in MLLMs
+    "https://arxiv.org/abs/2506.18385", # InternSpatial: A Comprehensive Dataset for Spatial Reasoning in Vision-Language Models
+    "https://arxiv.org/abs/2505.11907", # Are Multimodal Large Language Models Ready for Omnidirectional Spatial Reasoning?
+    "https://arxiv.org/abs/2504.09848", # A Survey of Large Language Model-Powered Spatial Intelligence Across Scales: Advances in Embodied Agents, Smart Cities, and Earth Science
+    "https://arxiv.org/abs/2410.06468", # Does Spatial Cognition Emerge in Frontier Models?
+    "https://arxiv.org/abs/2502.16435", # Human Cognitive Benchmarks Reveal Foundational Visual Gaps in MLLMs
+    "https://arxiv.org/abs/2507.18342", # EgoExoBench: A Benchmark for First- and Third-person View Video Understanding in MLLMs
+    "https://arxiv.org/abs/2507.07610", # SpatialViz-Bench: A Cognitively-Grounded Benchmark for Diagnosing Spatial Visualization in MLLMs
+    "https://arxiv.org/abs/2410.06468", # Does Spatial Cognition Emerge in Frontier Models?
+    "https://arxiv.org/abs/2408.16662", # Space3D-Bench: Spatial 3D Question Answering Benchmark
+    "https://arxiv.org/abs/2508.02095", # VLM4D: Towards Spatiotemporal Awareness in Vision Language Models
+    "https://arxiv.org/abs/2505.11907", # Are Multimodal Large Language Models Ready for Omnidirectional Spatial Reasoning?
+    "https://arxiv.org/abs/2506.18385", # InternSpatial: A Comprehensive Dataset for Spatial Reasoning in Vision-Language Models
+    "https://arxiv.org/abs/2506.04633", # Unfolding Spatial Cognition: Evaluating Multimodal Models on Visual Simulations
+    "https://arxiv.org/abs/2507.20174", # LRR-Bench: Left, Right or Rotate? Vision-Language models Still Struggle With Spatial Understanding Tasks
+    "https://arxiv.org/abs/2412.07825", # 3DSRBench: A Comprehensive 3D Spatial Reasoning Benchmark
+    "https://arxiv.org/abs/2506.14512", # SIRI-Bench: Challenging VLMs' Spatial Intelligence through Complex Reasoning Tasks
+    "https://arxiv.org/abs/2507.18342", # EgoExoBench: A Benchmark for First- and Third-person View Video Understanding in MLLMs
+    'https://arxiv.org/abs/2506.03135', # OmniSpatial: Towards Comprehensive Spatial Reasoning Benchmark for Vision Language Models
+    "https://arxiv.org/abs/2506.14512", # SIRI-Bench: Challenging VLMs' Spatial Intelligence through Complex Reasoning Tasks
+    "https://arxiv.org/abs/2408.16662", # Space3D-Bench: Spatial 3D Question Answering Benchmark
+    "https://arxiv.org/abs/2410.06468", # Does Spatial Cognition Emerge in Frontier Models?
+    "https://arxiv.org/abs/2507.07610", # SpatialViz-Bench: A Cognitively-Grounded Benchmark for Diagnosing Spatial Visualization in MLLMs
+    "https://arxiv.org/abs/2505.11907", # Are Multimodal Large Language Models Ready for Omnidirectional Spatial Reasoning?
+    "https://arxiv.org/abs/2508.03682", # Self-Questioning Language Models
+    "https://arxiv.org/abs/2203.12555", # GriTS: Grid table similarity metric for table structure recognition
+    "https://arxiv.org/abs/2507.14137", # Franca: A Benchmark for Evaluating Spatial Intelligence in Multimodal Large Language Models
+    "https://arxiv.org/abs/2507.09662", # Towards Concise and Adaptive Thinking in Large Reasoning Models: A Survey
+    "https://arxiv.org/abs/2506.07235", # Multi-Step Visual Reasoning with Visual Tokens Scaling and Verification
+    "https://arxiv.org/abs/2505.24726", # Reflect, Retry, Reward: Self-Improving LLMs via Reinforcement Learning
+    "https://arxiv.org/abs/2509.25810", # Learning to Reason as Action Abstractions with Scalable Mid-Training RL
+    "https://arxiv.org/abs/2502.10385", # Simplifying DINO via Coding Rate Regularization
+    "https://arxiv.org/abs/2508.04227", # Continual Learning for VLMs: A Survey and Taxonomy Beyond Forgetting
+    "https://arxiv.org/abs/2506.21872", # A Survey of Continual Reinforcement Learning
+    "https://arxiv.org/abs/2310.04406", # Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models
+    "https://arxiv.org/abs/2502.17425", # Introducing Visual Perception Token into Multimodal Large Language Model
+    "https://arxiv.org/abs/2412.18319", # Mulberry: Empowering MLLM with o1-like Reasoning and Reflection via Collective Monte Carlo Tree Search
+    "https://arxiv.org/abs/2501.09686", # Towards Large Reasoning Models: A Survey of Reinforced Reasoning with Large Language Models
+    "https://arxiv.org/abs/2508.11630", # Thyme: Think Beyond Images
+    "https://arxiv.org/abs/2508.12109", # Simple o3: Towards Interleaved Vision-Language Reasoning
+    "https://arxiv.org/abs/2505.19255", # VTool-R1: VLMs Learn to Think with Images via Reinforcement Learning on Multimodal Tool Use
+    "https://arxiv.org/abs/2407.14414", # System-1.x: Learning to Balance Fast and Slow Planning with Language Models
+    "https://arxiv.org/abs/2302.00923", # Multimodal Chain-of-Thought Reasoning in Language Models
+    "https://arxiv.org/abs/2508.12587", # Multimodal Chain of Continuous Thought for Latent-Space Reasoning in Vision-Language Models
+    "https://arxiv.org/abs/2503.20783", # Understanding R1-Zero-Like Training: A Critical Perspective
+    "https://arxiv.org/abs/2505.19000", # VerIPO: Cultivating Long Reasoning in Video-LLMs via Verifier-Gudied Iterative Policy Optimization
+    "https://arxiv.org/abs/2504.14920", # DyFo: A Training-Free Dynamic Focus Visual Search for Enhancing LMMs in Fine-Grained Visual Understanding
+    "https://arxiv.org/abs/2505.22525", # Thinking with Generated Images
+    "https://arxiv.org/abs/2412.10439", # CogNav: Cognitive Process Modeling for Object Goal Navigation with LLMs
+    "https://arxiv.org/abs/2412.10908", # Do large language vision models understand 3D shapes?
+    "https://arxiv.org/abs/2508.13142", # Holistic Evaluation of Multimodal LLMs on Spatial Intelligence
+    "https://arxiv.org/abs/2301.08243", # Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture
+    "https://arxiv.org/abs/2508.14313", # Your Reward Function for RL is Your Best PRM for Search: Unifying RL and Search-Based TTS
+    "https://arxiv.org/abs/2506.07235", # Multi-Step Visual Reasoning with Visual Tokens Scaling and Verification
+    "https://arxiv.org/abs/2603.19461", # Hyperagents
+    "https://arxiv.org/abs/2412.05265", # Reinforcement Learning: An Overview
+    "https://arxiv.org/abs/2501.09223", # Foundations of Large Language Models
+    "https://arxiv.org/abs/2205.08534", # Vision Transformer Adapter for Dense Predictions
+    "https://arxiv.org/abs/2603.18886", # Reasoning over mathematical objects: on-policy reward modeling and test time aggregation
+
 
     # Self-evolving agents (might not have imagination cap) != self-evolving world action model, 
     "https://arxiv.org/abs/2506.21872", # A Survey of Continual Reinforcement Learning
@@ -477,5 +557,11 @@ papers = [
     "https://arxiv.org/abs/2103.04918", # A Survey of Embodied AI: From Simulators to Research Tasks
     "https://arxiv.org/abs/2509.20021", # Embodied AI: From LLMs to World Models
     "https://arxiv.org/abs/2603.14497", # WorldVLM: Combining World Model Forecasting and Vision-Language Reasoning
+    "https://arxiv.org/abs/2603.19312", # LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels
+    "https://arxiv.org/abs/2603.16666", # Fast-WAM: Do World Action Models Need Test-time Future Imagination?
+    "https://arxiv.org/abs/2411.04983", # DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning
+    "https://arxiv.org/abs/2502.14819", # Learning from Reward-Free Offline Data: A Case for Planning with Latent Dynamics Models
+    "https://arxiv.org/abs/2603.15958", # Deriving Hyperparameter Scaling Laws via Modern Optimization Theory
+    "https://arxiv.org/abs/2512.05356", # AI & Human Co-Improvement for Safer Co-Superintelligence
 
 ]
