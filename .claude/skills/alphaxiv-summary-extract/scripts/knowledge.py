@@ -477,7 +477,29 @@ papers = [
     "https://arxiv.org/abs/2501.09223", # Foundations of Large Language Models
     "https://arxiv.org/abs/2205.08534", # Vision Transformer Adapter for Dense Predictions
     "https://arxiv.org/abs/2603.18886", # Reasoning over mathematical objects: on-policy reward modeling and test time aggregation
+    "https://arxiv.org/abs/2603.20278", # OpenResearcher: A Fully Open Pipeline for Long-Horizon Deep Research Trajectory Synthesis
+    "https://arxiv.org/abs/2509.24372", # Evolution Strategies at Scale: LLM Fine-Tuning Beyond Reinforcement Learning
+    "https://arxiv.org/abs/2603.23355", # Off-Policy Value-Based Reinforcement Learning for Large Language Models
+    "https://arxiv.org/abs/2603.21383", # PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost
+    "https://arxiv.org/abs/2603.23483", # SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning
+    "https://arxiv.org/abs/2603.21191", # On the Role of Batch Size in Stochastic Conditional Gradient Methods
+    "https://arxiv.org/abs/2603.22117", # On the Direction of RLVR Updates for LLM Reasoning: Identification and Exploitation
+    "https://arxiv.org/abs/2603.22275", # Repurposing Geometric Foundation Models for Multi-view Diffusion
+    "https://arxiv.org/abs/2603.22570", # CanViT: Toward Active-Vision Foundation Models
+    "https://arxiv.org/abs/2601.20802", # Reinforcement Learning via Self-Distillation
 
+    "https://arxiv.org/abs/2210.17067", # Unified Optimal Transport Framework for Universal Domain Adaptation
+    "https://arxiv.org/abs/2312.07871", # MLNet: Mutual Learning Network with Neighborhood Invariance for Universal Domain Adaptation
+    "https://arxiv.org/abs/2104.03344", # OVANet: One-vs-All Network for Universal Domain Adaptation
+    "https://arxiv.org/abs/2002.07953", # Universal Domain Adaptation through Self Supervision
+    "https://arxiv.org/abs/2403.14410", # GLC++: Source-Free Universal Domain Adaptation through Global-Local Clustering and Contrastive Affinity Learning
+    "https://arxiv.org/abs/2303.07110", # Upcycling Models under Domain and Category Shift
+    "https://arxiv.org/abs/2305.18712", # Can We Evaluate Domain Adaptation Models Without Target-Domain Labels?
+    "https://arxiv.org/abs/2403.03421", # LEAD: Learning Decomposition for Source-free Universal Domain Adaptation
+    "https://arxiv.org/abs/2407.21311", # EUDA: An Efficient Unsupervised Domain Adaptation via Self-Supervised Vision Transformer
+    "https://arxiv.org/abs/2110.03374", # Model Adaptation: Historical Contrastive Learning for Unsupervised Domain Adaptation without Source Data
+    "https://arxiv.org/abs/2402.14976", # Unsupervised Domain Adaptation within Deep Foundation Latent Spaces
+    # https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Domain_Consensus_Clustering_for_Universal_Domain_Adaptation_CVPR_2021_paper.pdf
 
     # Self-evolving agents (might not have imagination cap) != self-evolving world action model, 
     "https://arxiv.org/abs/2506.21872", # A Survey of Continual Reinforcement Learning
@@ -563,5 +585,28 @@ papers = [
     "https://arxiv.org/abs/2502.14819", # Learning from Reward-Free Offline Data: A Case for Planning with Latent Dynamics Models
     "https://arxiv.org/abs/2603.15958", # Deriving Hyperparameter Scaling Laws via Modern Optimization Theory
     "https://arxiv.org/abs/2512.05356", # AI & Human Co-Improvement for Safer Co-Superintelligence
+    "https://arxiv.org/abs/2603.09030", # PlayWorld: Learning Robot World Models from Autonomous Play
+    "https://arxiv.org/abs/2511.19221", # Percept-WAM: Perception-Enhanced World-Awareness-Action Model for Robust End-to-End Autonomous Driving
+    "https://arxiv.org/abs/2510.19430", # GigaBrain-0: A World Model-Powered Vision-LanguageAction Model
+    "https://arxiv.org/abs/2410.00564", # Scaling Offline Model-Based RL via Jointly-Optimized World-Action Model Pretraining
+    "https://arxiv.org/abs/2603.17240", # GigaWorld-Policy: An Efficient Action-Centered World--Action Model
+    "https://arxiv.org/abs/2603.23376", # ABot-PhysWorld: Interactive World Foundation Model for Robotic Manipulation with Physics Alignment
+    "https://arxiv.org/abs/2603.22281", # ThinkJEPA: Empowering Latent World Models with Large Vision-Language Reasoning Model
+    "https://arxiv.org/abs/2603.22212", # Omni-WorldBench: Towards a Comprehensive Interaction-Centric Evaluation for World Models
+    "https://arxiv.org/abs/2603.23497", # WildWorld: A Large-Scale Dataset for Dynamic World Modeling with Actions and Explicit State toward Generative ARPG
+    "https://arxiv.org/abs/2603.22078", # Do World Action Models Generalize Better than VLAs? A Robustness Study
+    "https://arxiv.org/abs/2406.09246", # OpenVLA: An Open-Source Vision-Language-Action Model
+    "https://arxiv.org/abs/2405.12213", # Octo: An Open-Source Generalist Robot Policy
+    "https://arxiv.org/abs/2510.10274", # X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model
+    "https://arxiv.org/abs/2509.00576", # Galaxea Open-World Dataset and G0 Dual-System VLA Model
+    "https://arxiv.org/abs/2510.12693", # ERA: Transforming VLMs into Embodied Agents via Embodied Prior Learning and Online Reinforcement Learning
+    "https://arxiv.org/abs/2410.24164", # π0: A Vision-Language-Action Flow Model for General Robot Control
+    "https://arxiv.org/abs/2504.16054", # π0.5: a Vision-Language-Action Model with Open-World Generalization
+    "https://arxiv.org/abs/2511.14759", # π∗0.6: a VLA That Learns From Experience
+    "https://arxiv.org/abs/2505.23705", # Knowledge Insulating Vision-Language-Action Models: Train Fast, Run Fast, Generalize Better
+    "https://arxiv.org/abs/2505.03500", # Task Reconstruction and Extrapolation for π0 using Text Latent
+    "https://arxiv.org/abs/2310.08864", # Open X-Embodiment: Robotic Learning Datasets and RT-X Models
+    # https://github.com/huggingface/lerobot
+    # https://genesis-world.readthedocs.io/en/latest/
 
 ]

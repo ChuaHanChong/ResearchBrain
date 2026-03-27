@@ -29,7 +29,7 @@ When `$ARGUMENTS` contains an arxiv ID or URL, run:
 ```bash
 python .claude/skills/alphaxiv-summary-extract/scripts/run.py \
   --ids $ARGUMENTS \
-  --out X01_KnowledgeHub
+  --out _KnowledgeHub_
 ```
 
 Multiple IDs or URLs in `$ARGUMENTS` are passed directly — they all work:
@@ -46,14 +46,14 @@ https://arxiv.org/abs/2602.15922
 
 Defaults (relative to vault root):
 - **Paper list**: `.claude/skills/alphaxiv-summary-extract/scripts/knowledge.py`
-- **Output directory**: `X01_KnowledgeHub`
+- **Output directory**: `_KnowledgeHub_`
 
 #### Step 2: Run the pipeline
 
 ```bash
 python .claude/skills/alphaxiv-summary-extract/scripts/run.py \
   --input .claude/skills/alphaxiv-summary-extract/scripts/knowledge.py \
-  --out X01_KnowledgeHub
+  --out _KnowledgeHub_
 ```
 
 For a test run on a small batch first, add `--limit 3`:
@@ -61,7 +61,7 @@ For a test run on a small batch first, add `--limit 3`:
 ```bash
 python .claude/skills/alphaxiv-summary-extract/scripts/run.py \
   --input .claude/skills/alphaxiv-summary-extract/scripts/knowledge.py \
-  --out X01_KnowledgeHub \
+  --out _KnowledgeHub_ \
   --limit 3
 ```
 
@@ -72,7 +72,22 @@ Use `--force` to overwrite existing notes.
 For each newly written `.md` file, use the `obsidian-markdown` skill to:
 
 1. **Extract `authors`** from the BibTeX block (maximum of 5 total; keep the first 3 and the last 2 if there are more than 5 authors) and add them to the frontmatter. Never include `- ...` as a placeholder entry.
-2. **Infer `tags`** (3–6 topic tags, e.g., `diffusion`, `VLA`, `world-model`, `RL`, `robotics`) and add them to the frontmatter.
+2. **Infer `tags`** (3–6 tags from the canonical taxonomy below) and add them to the frontmatter.
+
+#### Canonical Tag Taxonomy (55 tags)
+
+Pick 3–6 tags per note. Only use tags from this list.
+
+| Category | Tags |
+|----------|------|
+| **Models/Architectures** | `LLM`, `VLM`, `VLA`, `world-model`, `diffusion`, `vision-transformer`, `mixture-of-experts`, `reward-model`, `generative-model` |
+| **Methods/Techniques** | `reinforcement-learning`, `self-supervised-learning`, `contrastive-learning`, `knowledge-distillation`, `domain-adaptation`, `continual-learning`, `imitation-learning`, `fine-tuning`, `chain-of-thought`, `RLHF`, `meta-learning`, `curriculum-learning`, `in-context-learning`, `self-play`, `flow-matching`, `model-merging` |
+| **Training/Scaling** | `pre-training`, `scaling`, `synthetic-data`, `parameter-efficient`, `test-time-scaling` |
+| **Applications** | `robotics`, `autonomous-driving`, `embodied-AI`, `agentic-AI`, `code-generation`, `medical-imaging` |
+| **Tasks/Capabilities** | `reasoning`, `spatial-reasoning`, `visual-grounding`, `planning`, `object-detection`, `segmentation`, `3D-understanding`, `video-understanding`, `image-generation`, `navigation`, `manipulation`, `tool-use` |
+| **Properties/Concerns** | `hallucination`, `efficiency`, `interpretability`, `robustness`, `safety` |
+| **Paper Type** | `survey`, `benchmark` |
+
 3. **Set `aliases`** (the model/system short name, e.g., `DreamZero`) and add them to the frontmatter. Always provide at least one alias. Use the model/system short name if the paper introduces one (e.g., `DreamZero`). For surveys or papers without a specifically named contribution, derive a descriptive alias from the title (e.g., `VLM Survey 2025`, `RLHF Benchmark`). Never leave `aliases: []` empty.
 4. **Apply formatting** to the **Method** section only:
    - Use `==technical term==` highlights for key technical terms (architectures, losses, algorithms).
@@ -84,7 +99,7 @@ For each newly written `.md` file, use the `obsidian-markdown` skill to:
 
 ### Step 4: Report results
 
-- **Processed**: N new notes written to `X01_KnowledgeHub/`
+- **Processed**: N new notes written to `_KnowledgeHub_/`
 - **Skipped**: N papers already have a note
 - **Failed**: list any paper URLs that errored
 
@@ -94,14 +109,14 @@ To update BibTeX blocks in existing notes with the latest data from arXiv:
 
 ```bash
 python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
-  --notes-dir X01_KnowledgeHub
+  --notes-dir _KnowledgeHub_
 ```
 
 To refresh specific papers only:
 
 ```bash
 python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
-  --notes-dir X01_KnowledgeHub \
+  --notes-dir _KnowledgeHub_ \
   --ids 2602.15922 2601.16163
 ```
 
