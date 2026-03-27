@@ -1,6 +1,6 @@
 ---
 name: knowledgehub-query
-description: Read X01_KnowledgeHub paper notes and answer questions about them. Use this whenever the user references @X01_KnowledgeHub, provides a list of arxiv IDs or URLs, and wants to compare, summarize, categorize, or analyze papers. Also trigger when the user says "from my notes", "from the knowledge hub", or "what do my notes say about". Runs a script to extract and print all matching note content, then synthesizes the answer from the structured summaries.
+description: Read _KnowledgeHub_ paper notes and answer questions about them. Use this whenever the user references @_KnowledgeHub_, provides a list of arxiv IDs or URLs, and wants to compare, summarize, categorize, or analyze papers. Also trigger when the user says "from my notes", "from the knowledge hub", or "what do my notes say about". Runs a script to extract and print all matching note content, then synthesizes the answer from the structured summaries.
 ---
 
 # KnowledgeHub Query
@@ -14,12 +14,12 @@ When the user asks about specific papers by providing arxiv IDs or URLs, run the
 From the vault root, pipe the user's full query into the script:
 
 ```bash
-python .claude/skills/knowledgehub-query/scripts/extract_markdown.py --notes-dir X01_KnowledgeHub <<'QUERY'
+python .claude/skills/knowledgehub-query/scripts/extract_markdown.py --notes-dir _KnowledgeHub_ <<'QUERY'
 <paste the user's full message here>
 QUERY
 ```
 
-The script extracts all arxiv IDs from the text (handles `https://arxiv.org/abs/2602.15922`, plain `2602.15922`, and `2602.15922v2` forms), finds the matching `X01_KnowledgeHub/{id}.md` files, and prints their full content separated by dividers. Any IDs with no matching note are reported to stderr.
+The script extracts all arxiv IDs from the text (handles `https://arxiv.org/abs/2602.15922`, plain `2602.15922`, and `2602.15922v2` forms), finds the matching `_KnowledgeHub_/{id}.md` files, and prints their full content separated by dividers. Any IDs with no matching note are reported to stderr.
 
 ### Step 2: Answer from the output
 

@@ -78,28 +78,30 @@ graph TD
     style R fill:#fde8e8,stroke:#e74c3c
 ```
 
-| Node | Paper |
-|------|-------|
-| Chain-of-Thought | Wei et al. (2022) |
-| Multimodal-CoT | [[2302.00923\|Multimodal-CoT]] |
-| STaR | [[2203.14465\|STaR]] |
-| Quiet-STaR | [[2403.09629\|Quiet-STaR]] |
-| Stepwise Internalization | [[2405.14838\|Stepwise Internalization]] |
-| LaRS | [[2312.04684\|LaRS]] |
-| ReAct | [[2210.03629\|ReAct]] |
-| LATS | [[2310.04406\|LATS]] |
-| RAP | [[2305.14992\|RAP]] |
-| System-1.x | [[2407.14414\|System-1.x]] |
-| PAL | [[2211.10435\|PAL]] |
-| ViperGPT | [[2303.08128\|ViperGPT]] |
-| Coconut | [[2412.06769\|Coconut]] |
-| CODI | [[2502.21074\|CODI]] |
-| Huginn | [[2502.05171\|Huginn]] |
-| VisCoT | [[2403.16999\|VisCoT]] |
-| VoT | [[2404.03622\|VoT]] |
-| Vision-R1 | [[2503.06749\|Vision-R1]] |
-| TTS Survey | [[2503.24235\|Test-Time Scaling Survey]] |
-| LRM Survey | [[2501.09686\|Large Reasoning Models Survey]] |
+The field evolved through six phases: **explicit CoT prompting** (2022) where chain-of-thought and STaR established step-by-step reasoning; **agentic reasoning** (2022-2023) where ReAct, RAP, and LATS added environment interaction and tree search; **program-aided reasoning** (2022-2023) where PAL and ViperGPT delegated computation to code; **latent reasoning** (2024-2025) where Coconut, CODI, and Huginn moved reasoning into continuous latent space; **visual reasoning** (2024-2025) where VisCoT, VoT, and Vision-R1 grounded CoT in visual perception; and **test-time scaling** (2025) where surveys codified how to allocate more compute at inference for better answers.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2022 | Wei et al. (2022) | Introduced chain-of-thought prompting; showed step-by-step reasoning dramatically improves LLM problem-solving |
+| 2022 | [[2203.14465\|STaR]] | Self-taught reasoner bootstrapping its own rationales iteratively; created a flywheel for reasoning improvement |
+| 2022 | [[2210.03629\|ReAct]] | Synergized reasoning and acting in a think-act-observe loop; launched the LLM agent paradigm |
+| 2022 | [[2211.10435\|PAL]] | Program-aided Language Models offloading computation to a Python interpreter; separated reasoning from calculation |
+| 2023 | [[2302.00923\|Multimodal-CoT]] | Chain-of-thought with vision for sub-1B models; mitigated hallucinated rationales via two-stage reasoning |
+| 2023 | [[2305.14992\|RAP]] | Treated the LLM as its own world model for lookahead planning within the reasoning-acting framework |
+| 2023 | [[2310.04406\|LATS]] | Language Agent Tree Search unifying reasoning, acting, and planning through MCTS over action spaces |
+| 2023 | [[2303.08128\|ViperGPT]] | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning |
+| 2023 | [[2312.04684\|LaRS]] | Latent reasoning skills for chain-of-thought; learned implicit skill representations to guide reasoning |
+| 2024 | [[2403.09629\|Quiet-STaR]] | Extended STaR to think before every token via internal rationales; generalized self-training to token level |
+| 2024 | [[2405.14838\|Stepwise Internalization]] | Progressively internalized explicit CoT into implicit reasoning step by step |
+| 2024 | [[2407.14414\|System-1.x]] | Balanced fast and slow planning with learned planner routing; adaptive depth of reasoning |
+| 2024 | [[2412.06769\|Coconut]] | Trained LLMs to reason in continuous latent space instead of text tokens; eliminated verbalization overhead |
+| 2024 | [[2403.16999\|VisCoT]] | Visual chain-of-thought dataset and benchmark; grounded multi-step reasoning in image regions |
+| 2024 | [[2404.03622\|VoT]] | Visualization-of-Thought eliciting spatial reasoning in LLMs via mental imagery |
+| 2025 | [[2502.21074\|CODI]] | Compressed chain-of-thought into continuous space via self-distillation; efficient implicit reasoning |
+| 2025 | [[2502.05171\|Huginn]] | Scaled test-time compute with latent reasoning via recurrent depth; thinking without text tokens |
+| 2025 | [[2503.06749\|Vision-R1]] | RL-based incentivization of visual reasoning in MLLMs; extended R1-style training to vision |
+| 2025 | [[2503.24235\|Test-Time Scaling Survey]] | Comprehensive survey on what, how, where, and how well test-time scaling works for LLMs |
+| 2025 | [[2501.09686\|Large Reasoning Models Survey]] | First systematic survey of RL-based reasoning in LLMs; maps the post-DeepSeek-R1 landscape |
 
 ---
 

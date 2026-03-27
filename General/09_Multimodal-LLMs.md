@@ -69,23 +69,25 @@ graph TD
     style M fill:#fde8e8,stroke:#e74c3c
 ```
 
-| Node | Paper |
-|------|-------|
-| CLIP | [[2103.00020\|CLIP]] |
-| BLIP | [[2201.12086\|BLIP]] |
-| CoCa | [[2205.01917\|CoCa]] |
-| InstructBLIP | [[2305.06500\|InstructBLIP]] |
-| KOSMOS-2 | [[2306.14824\|KOSMOS-2]] |
-| Shikra | [[2306.15195\|Shikra]] |
-| LLaVA-MORE | [[2503.15621\|LLaVA-MORE]] |
-| Molmo | [[2409.17146\|Molmo]] |
-| PaliGemma | [[2407.07726\|PaliGemma]] |
-| InternVL3 | [[2504.10479\|InternVL3]] |
-| BAGEL | [[2505.14683\|BAGEL]] |
-| SAIL | [[2504.10462\|SAIL]] |
-| SmolVLM | [[2504.05299\|SmolVLM]] |
-| NVILA | [[2412.04468\|NVILA]] |
-| TinyVLM | [[2603.00136\|TinyVLM]] |
+The field evolved through four phases: **foundational alignment** (2021-2022) where CLIP, BLIP, and CoCa established vision-language pretraining paradigms; **early MLLMs** (2023) where InstructBLIP, KOSMOS-2, and Shikra connected visual encoders to LLMs with instruction tuning and grounding; **instruction-tuned MLLMs** (2024-2025) where LLaVA-MORE, Molmo, and PaliGemma refined the recipe for general-purpose multimodal understanding; and **unified native multimodal + efficient deployment** (2024-2026) where InternVL3 and BAGEL achieved native multi-task generation while SmolVLM and TinyVLM pushed sub-3B parameter efficiency.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2021 | [[2103.00020\|CLIP]] | Contrastive pretraining on 400M image-text pairs; enabled zero-shot visual recognition via natural language |
+| 2022 | [[2201.12086\|BLIP]] | Unified vision-language understanding and generation with bootstrapped caption filtering for noisy web data |
+| 2022 | [[2205.01917\|CoCa]] | Combined contrastive and generative objectives in a single model with decoupled text decoder |
+| 2023 | [[2305.06500\|InstructBLIP]] | Applied instruction tuning to VLMs with instruction-aware visual features; SOTA zero-shot on unseen tasks |
+| 2023 | [[2306.14824\|KOSMOS-2]] | Grounded MLLM that perceives and generates bounding boxes as location tokens in natural language |
+| 2023 | [[2306.15195\|Shikra]] | Enabled referential dialogue by processing and generating spatial coordinates directly in text output |
+| 2024 | [[2407.07726\|PaliGemma]] | Open-source 3B VLM matching larger models across 40 tasks; democratized VLM research |
+| 2024 | [[2409.17146\|Molmo]] | Family of open-source MLLMs with state-of-the-art pointing capabilities and transparent training pipeline |
+| 2024 | [[2412.04468\|NVILA]] | NVIDIA's efficient MLLM achieving strong performance via visual token compression and structured pruning |
+| 2025 | [[2503.15621\|LLaVA-MORE]] | Extended LLaVA with RL-based preference optimization; improved reasoning without sacrificing perception |
+| 2025 | [[2504.10479\|InternVL3]] | Native multimodal pre-training with tool-augmented generation; unified understanding and reasoning at scale |
+| 2025 | [[2505.14683\|BAGEL]] | Unified multimodal model for interleaved image-text understanding and generation with 7B parameters |
+| 2025 | [[2504.10462\|SAIL]] | Search-Augmented Instruction Learning for grounded multimodal reasoning with web knowledge retrieval |
+| 2025 | [[2504.05299\|SmolVLM]] | Sub-3B parameter efficient MLLM achieving competitive performance through aggressive architectural optimization |
+| 2026 | [[2603.00136\|TinyVLM]] | Ultra-compact MLLM pushing efficiency further with knowledge distillation from larger multimodal models |
 
 ---
 

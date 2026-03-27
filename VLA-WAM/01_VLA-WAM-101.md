@@ -146,4 +146,47 @@ Because it actually understands the rules of the world (like gravity and momentu
 
 ---
 
-*For a deep dive into WAM papers by category, see [[03_WAM]].*
+## How to Build: The Open-Source Stack
+
+The open-source robotics ecosystem now provides every component needed to build, train, and deploy both VLAs and WAMs — from data to deployment on a $100 robot arm.
+
+### The Pipeline
+
+```
+Researcher → Data → Training → Simulation → Deployment
+             OXE    LeRobot    Genesis       SO-100
+```
+
+| Component | Tool | Role |
+|-----------|------|------|
+| **Data** | [[2310.08864\|Open X-Embodiment]] | 1M+ cross-embodiment trajectories for pre-training |
+| **Training Framework** | [LeRobot (HuggingFace)](https://github.com/huggingface/lerobot) | End-to-end training pipeline for VLAs (OpenVLA, ACT, Diffusion Policy) |
+| **Simulation** | [Genesis](https://genesis-world.readthedocs.io/en/latest/), [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics) | Physics-accurate simulation for verification before real-world deployment |
+| **Hardware** | [SO-100](https://github.com/TheRobotStudio/SO-ARM100) (~$100) | Low-cost robot arm for real-world testing and deployment |
+
+### Building a VLA (Quick Recipe)
+
+1. **Pick a VLM backbone** — [[2407.07726\|PaliGemma]] or KosMos (best vision-language alignment)
+2. **Add an action head** — Policy Head with continuous actions via ==Flow Matching==
+3. **Pre-train on OXE** — cross-embodiment data for broad priors
+4. **Post-train on in-domain data** — fine-tune on your specific robot + tasks
+5. **Deploy** — use ==FAST== tokenization for real-time inference
+
+> See [[03_VLA#2. Design-Space Principles]] for the full design-space analysis.
+
+### Building a WAM (Quick Recipe)
+
+1. **Choose your prediction space** — Pixel (richest but slowest), Latent (fastest), or Action-only (most efficient)
+2. **Pick a backbone** — Video diffusion (Cosmos/DreamZero), JEPA (V-JEPA 2), or RSSM (Dreamer lineage)
+3. **Pre-train on video** — internet-scale video teaches physics priors
+4. **Decide test-time strategy** — Full imagination (robust but 4.8x slower) or training-only video (Fast-WAM approach)
+5. **Add action decoding** — Flow matching or inverse dynamics from predicted states
+
+> See [[04_WAM#1. The Design Space]] for the three-axis trade-off analysis.
+
+> [!tip] Start Simple, Add Complexity
+> Begin with a VLA (simpler, faster to iterate). Add world model augmentation only if you need robustness to visual perturbations or physics-aware planning. The [[2603.16666|Fast-WAM]] finding: you can get WAM-level robustness with VLA-level speed by using video objectives at training time only.
+
+---
+
+*For a deep dive into VLA design, see [[03_VLA]]. For WAM papers by category, see [[04_WAM]].*

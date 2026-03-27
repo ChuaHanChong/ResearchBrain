@@ -55,7 +55,6 @@
 
 # https://www-cs-faculty.stanford.edu/~knuth/papers/claude-cycles.pdf
 
-# https://github.com/zli12321/MM-Zero
 # https://yifanzhang-pro.github.io/FALCON/FALCON.pdf
 
 # https://bones.studio/datasets/seed
@@ -487,6 +486,7 @@ papers = [
     "https://arxiv.org/abs/2603.22275", # Repurposing Geometric Foundation Models for Multi-view Diffusion
     "https://arxiv.org/abs/2603.22570", # CanViT: Toward Active-Vision Foundation Models
     "https://arxiv.org/abs/2601.20802", # Reinforcement Learning via Self-Distillation
+    "https://arxiv.org/abs/2603.09206", # MM-Zero: Self-Evolving Multi-Model Vision Language Models From Zero Data
 
     "https://arxiv.org/abs/2210.17067", # Unified Optimal Transport Framework for Universal Domain Adaptation
     "https://arxiv.org/abs/2312.07871", # MLNet: Mutual Learning Network with Neighborhood Invariance for Universal Domain Adaptation

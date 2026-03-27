@@ -69,24 +69,26 @@ graph TD
     style P fill:#e8fde8,stroke:#27ae60
 ```
 
-| Node | Paper |
-|------|-------|
-| Policy Gradient / Actor-Critic | (foundational concept — no single paper) |
-| RL Overview | [[2412.05265\|RL Overview]] |
-| Dreamer | [[1912.01603\|Dreamer]] |
-| DreamerV3 | [[2301.04104\|DreamerV3]] |
-| DayDreamer | [[2206.14176\|DayDreamer]] |
-| Continual-Dreamer | [[2211.15944\|Continual-Dreamer]] |
-| Plan2Explore | [[2005.05960\|Plan2Explore]] |
-| Diffuser | [[2205.09991\|Diffuser]] |
-| STaR | [[2203.14465\|STaR]] |
-| Quiet-STaR | [[2403.09629\|Quiet-STaR]] |
-| Self-Rewarding LM | [[2401.10020\|Self-Rewarding LM]] |
-| DAPO | [[2503.14476\|DAPO]] |
-| Absolute Zero | [[2505.03335\|Absolute Zero]] |
-| AgentGym | [[2406.04151\|AgentGym]] |
-| RAGEN | [[2504.20073\|RAGEN]] |
-| Complementary RL | [[2603.17621\|Complementary RL]] |
+The field evolved through four threads: **model-based RL** (2019-2022) progressed from Dreamer's latent imagination through DayDreamer on real robots to Diffuser's diffusion-based planning; **RL for LLM reasoning** (2022-2025) advanced from STaR's self-taught bootstrapping through Self-Rewarding LMs and DAPO to Absolute Zero's fully zero-data self-play; **agentic RL** (2024-2026) scaled from AgentGym's multi-environment evolution through RAGEN's multi-turn training to Complementary RL's co-evolutionary framework.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| -- | (foundational concept) | Policy gradient and actor-critic methods; the theoretical backbone of all deep RL |
+| 2019 | [[1912.01603\|Dreamer]] | Learned behaviors by latent imagination; pioneered training RL policies entirely within a learned world model |
+| 2020 | [[2005.05960\|Plan2Explore]] | Self-supervised exploration via world model disagreement; zero-shot task adaptation without task-specific training |
+| 2022 | [[2206.14176\|DayDreamer]] | First deployment of Dreamer on real robots; proved sample-efficient learning from imagination works physically |
+| 2022 | [[2211.15944\|Continual-Dreamer]] | Demonstrated world models enable effective continual RL without catastrophic forgetting across sequential tasks |
+| 2022 | [[2205.09991\|Diffuser]] | First to use denoising diffusion for RL planning; treated trajectories as data to denoise |
+| 2022 | [[2203.14465\|STaR]] | Self-taught reasoner bootstrapping its own rationales; created a self-improvement flywheel for LLM reasoning |
+| 2023 | [[2301.04104\|DreamerV3]] | Mastered diverse domains with a single world model architecture; fixed-hyperparameter generalist agent |
+| 2024 | [[2412.05265\|RL Overview]] | Kevin Murphy's comprehensive modern overview; the definitive reference for RL fundamentals |
+| 2024 | [[2403.09629\|Quiet-STaR]] | Extended STaR to think before every token via internal rationales; token-level self-improvement |
+| 2024 | [[2401.10020\|Self-Rewarding LM]] | Single model acts as both generator and judge via iterative DPO; broke the human-feedback bottleneck |
+| 2024 | [[2406.04151\|AgentGym]] | Multi-environment agent evolution via behavioral cloning + self-evolution; generalist agent training |
+| 2025 | [[2503.14476\|DAPO]] | Open-source RL system at scale for LLM reasoning; decoupled clip-higher and dynamic sampling |
+| 2025 | [[2505.03335\|Absolute Zero]] | Zero-data self-play RL; model proposes tasks, solves, verifies via code, and retrains with no human data |
+| 2025 | [[2504.20073\|RAGEN]] | Multi-turn RL training for LLM agents; established the paradigm for sustained agent-environment interaction |
+| 2026 | [[2603.17621\|Complementary RL]] | Co-evolutionary RL framework where multiple agents improve each other through complementary objectives |
 
 ---
 

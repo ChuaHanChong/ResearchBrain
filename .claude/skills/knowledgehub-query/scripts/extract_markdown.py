@@ -4,7 +4,7 @@ Extract and print KnowledgeHub note content for arxiv IDs found in the input tex
 
 Usage:
     echo "query text with https://arxiv.org/abs/2602.15922 and 2507.04447" | python extract_markdown.py
-    python extract_markdown.py --notes-dir X01_KnowledgeHub < query.txt
+    python extract_markdown.py --notes-dir _KnowledgeHub_ < query.txt
     python extract_markdown.py 2602.15922 2507.04447 2506.21539
 
 Prints the full content of each matching note, separated by dividers.
@@ -37,7 +37,7 @@ def extract_ids(text: str) -> list[str]:
 def main():
     parser = argparse.ArgumentParser(description="Print KnowledgeHub note content for arxiv IDs")
     parser.add_argument("ids", nargs="*", help="Arxiv IDs or URLs (if omitted, reads from stdin)")
-    parser.add_argument("--notes-dir", default="X01_KnowledgeHub", help="KnowledgeHub directory")
+    parser.add_argument("--notes-dir", default="_KnowledgeHub_", help="KnowledgeHub directory")
     args = parser.parse_args()
 
     notes_dir = Path(args.notes_dir)

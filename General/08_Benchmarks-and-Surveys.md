@@ -14,6 +14,64 @@ aliases:
 > [!abstract] Overview
 > A cross-cutting index of benchmarks, datasets, and survey papers organized by domain. Surveys map the landscape and define taxonomies; benchmarks measure progress and expose capability gaps; dataset papers address how to collect, curate, and select training data at scale.
 
+## Evolution Graph
+
+```mermaid
+graph TD
+    subgraph "Simulation (2019-2021)"
+        A["RLBench<br/><i>2019</i>"]
+        B["CALVIN<br/><i>2021</i>"]
+    end
+
+    subgraph "Surveys (2020-2024)"
+        C["Efficient Transformers<br/><i>2020</i>"]
+        D["Transformers in Vision<br/><i>2021</i>"]
+        E["MLLM Survey<br/><i>2023</i>"]
+        F["Self-Evolution Survey<br/><i>2024</i>"]
+    end
+
+    subgraph "Datasets (2023-2025)"
+        G["OXE<br/><i>2023</i>"]
+        H["DROID<br/><i>2024</i>"]
+        I["AgiBot World<br/><i>2025</i>"]
+    end
+
+    subgraph "Diagnostics (2025-2026)"
+        J["LIBERO-Plus<br/><i>2025</i>"]
+        K["GM-100<br/><i>2025</i>"]
+        L["Omni-WorldBench<br/><i>2026</i>"]
+    end
+
+    A --> B --> J
+    C --> D --> E --> F
+    G --> H --> I
+    B --> K
+    E --> L
+
+    style A fill:#e8f4fd,stroke:#4a90d9
+    style C fill:#e8f4fd,stroke:#4a90d9
+    style G fill:#f0e8fd,stroke:#9b59b6
+    style L fill:#e8fde8,stroke:#27ae60
+    style K fill:#e8fde8,stroke:#27ae60
+```
+
+The field evolved through four tracks: **simulation infrastructure** (2019-2021) where RLBench and CALVIN established standardized evaluation; **survey literature** (2020-2024) where comprehensive taxonomies mapped each subfield; **large-scale datasets** (2023-2025) where OXE, DROID, and AgiBot World enabled cross-embodiment training; and **diagnostic benchmarks** (2025-2026) where LIBERO-Plus, GM-100, and Omni-WorldBench shifted focus from performance to robustness.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2019 | [[1909.12271\|RLBench]] | 100 manipulation tasks with infinite expert demos; standardized few-shot evaluation |
+| 2020 | [[2009.06732\|Efficient Transformers Survey]] | Foundational taxonomy of efficient attention variants |
+| 2021 | [[2101.01169\|Transformers in Vision Survey]] | First comprehensive survey of vision transformers |
+| 2021 | [[2112.03227\|CALVIN]] | Long-horizon language-conditioned benchmark; compositionality standard |
+| 2023 | [[2306.13549\|MLLM Survey]] | Mapped the rapidly evolving multimodal LLM landscape |
+| 2023 | [[2310.08864\|OXE]] | 1M+ trajectories from 22 embodiments; the ImageNet moment for robotics |
+| 2024 | [[2403.12945\|DROID]] | In-the-wild data across 16 institutions; proved diverse data beats curated data |
+| 2024 | [[2404.14387\|Self-Evolution Survey]] | Structured taxonomy of self-evolving LLM approaches |
+| 2025 | [[2503.06669\|AgiBot World]] | 1M trajectories + GO-1 generalist policy; largest single-lab effort |
+| 2025 | [[2510.13626\|LIBERO-Plus]] | 7 perturbation dimensions expose VLA brittleness despite high benchmark scores |
+| 2025 | [[2601.11421\|GM-100]] | 100 detail-oriented tasks; current VLAs achieve very low success rates |
+| 2026 | [[2603.22212\|Omni-WorldBench]] | First interaction-centric evaluation for world models; tests causal consistency |
+
 ---
 
 ## 1. Foundation Model & Transformer Surveys

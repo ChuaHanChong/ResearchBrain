@@ -56,18 +56,20 @@ graph TD
     style F fill:#e8fde8,stroke:#27ae60
 ```
 
-| Node | Paper |
-|------|-------|
-| CLIP | [[2103.00020\|CLIP]] |
-| GLIP | [[2112.03857\|GLIP]] |
-| Grounding DINO | [[2303.05499\|Grounding DINO]] |
-| OWL-ViT | [[2205.06230\|OWL-ViT]] |
-| KOSMOS-2 | [[2306.14824\|KOSMOS-2]] |
-| Shikra | [[2306.15195\|Shikra]] |
-| LISA | [[2308.00692\|LISA]] |
-| ViperGPT | [[2303.08128\|ViperGPT]] |
-| Multimodal-CoT | [[2302.00923\|Multimodal-CoT]] |
-| VISPROG | [[2211.11559\|VISPROG]] |
+The field progressed from **contrastive alignment** (2021) where CLIP proved image-text pairing at web scale, through **open-vocabulary grounding** (2022-2023) where GLIP, Grounding DINO, and OWL-ViT brought language-driven detection to arbitrary categories, to **grounded reasoning** (2023) where models like LISA and ViperGPT combined spatial understanding with multi-step inference.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2021 | [[2103.00020\|CLIP]] | Contrastive pretraining on 400M image-text pairs; established the paradigm for zero-shot vision-language transfer |
+| 2021 | [[2112.03857\|GLIP]] | Unified object detection and phrase grounding; learned object-level language-aware representations for open-vocabulary detection |
+| 2022 | [[2205.06230\|OWL-ViT]] | Simple adaptation of contrastive ViT to open-vocabulary detection; unified text- and image-conditioned object finding |
+| 2022 | [[2211.11559\|VISPROG]] | Neuro-symbolic visual programming via LLM-generated executable programs; compositional reasoning without task-specific training |
+| 2023 | [[2303.05499\|Grounding DINO]] | Deep language-vision fusion in a DINO detector; 52.5 AP zero-shot on COCO without seeing COCO categories |
+| 2023 | [[2306.14824\|KOSMOS-2]] | Grounded MLLM that perceives and generates bounding boxes as location tokens in natural language |
+| 2023 | [[2306.15195\|Shikra]] | Enabled referential dialogue by processing and generating spatial coordinates directly within MLLM text output |
+| 2023 | [[2308.00692\|LISA]] | Introduced reasoning segmentation -- MLLMs generate pixel-level masks from implicit natural language queries |
+| 2023 | [[2303.08128\|ViperGPT]] | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning without training |
+| 2023 | [[2302.00923\|Multimodal-CoT]] | Chain-of-thought with vision for sub-1B models; mitigated hallucinated rationales via two-stage reasoning |
 
 ---
 

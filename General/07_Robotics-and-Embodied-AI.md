@@ -62,21 +62,23 @@ graph TD
     style K fill:#e8fde8,stroke:#27ae60
 ```
 
-| Node | Paper |
-|------|-------|
-| RT-1 | [[2212.06817\|RT-1]] |
-| Diffusion Policy | [[2303.04137\|Diffusion Policy]] |
-| RT-2 | [[2307.15818\|RT-2]] |
-| OXE / RT-X | [[2310.08864\|OXE / RT-X]] |
-| OpenVLA | [[2406.09246\|OpenVLA]] |
-| π0 | [[2410.24164\|π0]] |
-| GR-1 | [[2312.13139\|GR-1]] |
-| GR-2 | [[2410.06158\|GR-2]] |
-| DreamZero | [[2602.15922\|DreamZero]] |
-| VLAW | [[2602.12063\|VLAW]] |
-| VLA-JEPA | [[2602.10098\|VLA-JEPA]] |
-| EvoAgent | [[2502.05907\|EvoAgent]] |
-| SPIRAL | [[2603.08403\|SPIRAL]] |
+The field evolved through four phases: **foundations** (2022-2023) where RT-1 and Diffusion Policy proved Transformers and diffusion work for robot control; **VLAs** (2023-2024) where RT-2, OXE, OpenVLA, and pi0 scaled vision-language-action models from proof-of-concept to generalist policies; **WAMs** (2026) where DreamZero, VLAW, and VLA-JEPA added world modeling for physics-aware control; and **self-evolving** (2025-2026) where EvoAgent and SPIRAL enabled autonomous improvement loops.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2022 | [[2212.06817\|RT-1]] | Transformer policy on 130K real demos; proved Transformers work for robot control at scale |
+| 2023 | [[2303.04137\|Diffusion Policy]] | Pioneered action diffusion for robotics; proved denoising beats regression for multimodal action distributions |
+| 2023 | [[2307.15818\|RT-2]] | Scaled to PaLI-X/PaLM-E backbones; first to show internet-scale VLM knowledge transfers to robot control |
+| 2023 | [[2310.08864\|OXE / RT-X]] | Open X-Embodiment: 1M+ trajectories from 22 embodiments; the ImageNet moment for robotics data |
+| 2023 | [[2312.13139\|GR-1]] | GPT-style generative robot model unifying language, video prediction, and action in a single Transformer |
+| 2024 | [[2406.09246\|OpenVLA]] | Open-source 7B VLA; democratized VLA research with competitive performance |
+| 2024 | [[2410.24164\|pi0]] | Flow matching action expert + VLM for dexterous manipulation; current SOTA generalist robot control |
+| 2024 | [[2410.06158\|GR-2]] | Scaled GR-1 to larger video generation backbone; improved long-horizon multi-task humanoid control |
+| 2025 | [[2502.05907\|EvoAgent]] | Self-evolving agent with continual world model; +105% improvement via self-planning and self-reflection |
+| 2026 | [[2602.15922\|DreamZero]] | 14B parameter WAM from NVIDIA; zero-shot robot policies via joint video+action prediction |
+| 2026 | [[2602.12063\|VLAW]] | Iterative co-improvement loop between VLA policy and world model; each bootstraps the other |
+| 2026 | [[2602.10098\|VLA-JEPA]] | JEPA-style latent prediction for leakage-free future state modeling in robot control |
+| 2026 | [[2603.08403\|SPIRAL]] | Closed-loop self-improving framework for controllable, long-horizon video generation and WAMs |
 
 ---
 

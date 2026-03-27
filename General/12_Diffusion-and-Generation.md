@@ -70,25 +70,27 @@ graph TD
     style C fill:#fde8e8,stroke:#e74c3c
 ```
 
-| Node | Paper |
-|------|-------|
-| Diffuser | [[2205.09991\|Diffuser]] |
-| Diffusion Policy | [[2303.04137\|Diffusion Policy]] |
-| Transfusion | [[2408.11039\|Transfusion]] |
-| Show-o | [[2408.12528\|Show-o]] |
-| Chameleon | [[2405.09818\|Chameleon]] |
-| Show-o2 | [[2506.15564\|Show-o2]] |
-| Ovis-U1 | [[2506.23044\|Ovis-U1]] |
-| LLaDA | [[2502.09992\|LLaDA]] |
-| LLaDA 1.5 | [[2505.19223\|LLaDA 1.5]] |
-| MMaDA | [[2505.15809\|MMaDA]] |
-| d1 | [[2504.12216\|d1]] |
-| Flow-GRPO | [[2505.05470\|Flow-GRPO]] |
-| BranchGRPO | [[2509.06040\|BranchGRPO]] |
-| UniRL | [[2505.23380\|UniRL]] |
-| CoT Image Gen | [[2501.13926\|CoT Image Generation]] |
-| T2I-R1 | [[2505.00703\|T2I-R1]] |
-| GoT | [[2503.10639\|GoT]] |
+The field evolved through five threads: **foundations** (2022-2023) where Diffuser and Diffusion Policy bridged diffusion from image synthesis to RL planning and robot control; **unified multimodal** (2024-2025) where Transfusion, Show-o, Chameleon, Show-o2, and Ovis-U1 merged understanding and generation in single architectures; **discrete diffusion LLMs** (2025) where LLaDA, LLaDA 1.5, MMaDA, and d1 proved diffusion can rival autoregression for language; **RL alignment** (2025) where Flow-GRPO, BranchGRPO, and UniRL applied policy optimization to generative models; and **CoT generation** (2025) where CoT Image Gen, T2I-R1, and GoT taught generators to reason before drawing.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2022 | [[2205.09991\|Diffuser]] | First to use denoising diffusion for RL planning; treated trajectories as data to denoise |
+| 2023 | [[2303.04137\|Diffusion Policy]] | Extended diffusion to visuomotor control; became the standard for robot action generation |
+| 2024 | [[2408.11039\|Transfusion]] | Pioneered mixing next-token prediction with diffusion loss in one model; outperformed quantization approaches |
+| 2024 | [[2408.12528\|Show-o]] | Single transformer unifying understanding and generation; proved unified architectures are viable |
+| 2024 | [[2405.09818\|Chameleon]] | Meta's early-fusion token-based model; proved full modality unification is architecturally viable at scale |
+| 2025 | [[2506.15564\|Show-o2]] | Scaled Show-o with native multimodal capabilities and improved generation quality |
+| 2025 | [[2506.23044\|Ovis-U1]] | Unified visual understanding and generation via an LLM-native multimodal architecture |
+| 2025 | [[2502.09992\|LLaDA]] | First 8B diffusion LLM competitive with AR models; proved diffusion works for large-scale language modeling |
+| 2025 | [[2505.19223\|LLaDA 1.5]] | Variance-Reduced Preference Optimization for aligning masked diffusion models with human preferences |
+| 2025 | [[2505.15809\|MMaDA]] | Unified diffusion model handling text reasoning, image generation, and multimodal understanding simultaneously |
+| 2025 | [[2504.12216\|d1]] | First RL post-training framework for dLLMs; introduced diffu-GRPO with +26.2% on Countdown |
+| 2025 | [[2505.05470\|Flow-GRPO]] | First framework adapting GRPO to flow matching; enables online RL for continuous generative models |
+| 2025 | [[2509.06040\|BranchGRPO]] | Tree-structured branching yielding 4.7x training speedup and 16% better alignment over vanilla GRPO |
+| 2025 | [[2505.23380\|UniRL]] | Unified self-improving post-training for both diffusion and flow models |
+| 2025 | [[2501.13926\|CoT Image Generation]] | First comprehensive study of CoT for AR image generation; +24% over Show-o baseline |
+| 2025 | [[2505.00703\|T2I-R1]] | Bi-level CoT (semantic + token) with RL; excels on complex, reasoning-intensive prompts |
+| 2025 | [[2503.10639\|GoT]] | Integrates MLLM reasoning into visual generation and editing via a unified framework |
 
 ---
 

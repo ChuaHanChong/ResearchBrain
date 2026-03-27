@@ -70,24 +70,26 @@ graph TD
     style P fill:#e8fde8,stroke:#27ae60
 ```
 
-| Node | Paper |
-|------|-------|
-| STaR | [[2203.14465\|STaR]] |
-| Self-Rewarding LM | [[2401.10020\|Self-Rewarding LM]] |
-| Quiet-STaR | [[2403.09629\|Quiet-STaR]] |
-| STILL-2 | [[2412.09413\|STILL-2]] |
-| Absolute Zero | [[2505.03335\|Absolute Zero]] |
-| TTRL | [[2504.16084\|TTRL]] |
-| EVOL-RL | [[2509.15194\|EVOL-RL]] |
-| Socratic-Zero | [[2509.24726\|Socratic-Zero]] |
-| Vision-Zero | [[2509.25541\|Vision-Zero]] |
-| AgentGym | [[2406.04151\|AgentGym]] |
-| EVOLVER | [[2510.16079\|EVOLVER]] |
-| SSR | [[2512.18552\|SSR]] |
-| ECHO | [[2601.06794\|ECHO]] |
-| ELL | [[2508.19005\|ELL Framework]] |
-| OEL | [[2603.16856\|OEL]] |
-| XSkill | [[2603.12056\|XSkill]] |
+The field evolved through five threads: **self-training origins** (2022) where STaR established iterative rationale bootstrapping; **reward and reasoning** (2024) where Self-Rewarding LM, Quiet-STaR, and STILL-2 added self-judging and slow-thinking; **zero-data and self-play** (2025) where Absolute Zero, TTRL, EVOL-RL, Socratic-Zero, and Vision-Zero eliminated human data entirely; **self-evolving agents** (2024-2026) where AgentGym, EVOLVER, SSR, and ECHO scaled self-improvement to multi-step agent behavior; and **continual experiential learning** (2025-2026) where ELL, OEL, and XSkill added persistent memory for lifelong improvement.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2022 | [[2203.14465\|STaR]] | Pioneered iterative self-improvement: generate rationales, keep correct ones, retrain; the self-training flywheel |
+| 2024 | [[2401.10020\|Self-Rewarding LM]] | Single model acts as both generator and judge via iterative DPO; broke the human-feedback bottleneck |
+| 2024 | [[2403.09629\|Quiet-STaR]] | Extended STaR to think before every token via internal rationales; generalized to token-level self-training |
+| 2024 | [[2412.09413\|STILL-2]] | Open-source framework reproducing o1-like slow-thinking; distillation + RL pipeline for chain-of-thought |
+| 2024 | [[2406.04151\|AgentGym]] | Multi-environment agent evolution via behavioral cloning + self-evolution for generalist agents |
+| 2025 | [[2505.03335\|Absolute Zero]] | Zero-data self-play: model proposes tasks, solves, verifies via code, and retrains with no human data |
+| 2025 | [[2504.16084\|TTRL]] | Proved LLMs can self-improve on unlabeled test data via majority-vote rewards; 211% on AIME 2024 |
+| 2025 | [[2509.15194\|EVOL-RL]] | Evolutionary RL preventing entropy collapse in label-free self-improvement; balances selection and novelty |
+| 2025 | [[2509.24726\|Socratic-Zero]] | Data-free Socratic dialogue where the model debates itself to improve reasoning without any environment |
+| 2025 | [[2509.25541\|Vision-Zero]] | Extended the zero-data self-play paradigm to Vision-Language Models via gamified self-play |
+| 2025 | [[2510.16079\|EVOLVER]] | Agents distill raw interaction trajectories into strategic principles; experience-driven lifecycle |
+| 2025 | [[2512.18552\|SSR]] | Meta's Self-play SWE-RL: agents generate learning experiences from real codebases; +10.4 on SWE-bench |
+| 2025 | [[2508.19005\|ELL Framework]] | Experience-driven Lifelong Learning framework and StuLife benchmark for continual self-improvement |
+| 2026 | [[2601.06794\|ECHO]] | Policy and environment co-evolve: harder challenges as policy improves, and vice versa |
+| 2026 | [[2603.16856\|OEL]] | Microsoft's Online Experiential Learning: LLMs continuously learn from deployment without forgetting |
+| 2026 | [[2603.12056\|XSkill]] | Dual-stream framework for continual learning from visually-grounded experience; cross-task skill transfer |
 
 ---
 

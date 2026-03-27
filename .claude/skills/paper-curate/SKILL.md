@@ -169,7 +169,13 @@ aliases:
 > {2-3 sentences explaining scope and evolution}
 
 ## Evolution Graph
-{mermaid graph + reference table}
+{mermaid graph}
+
+{1-2 sentence evolutionary trend paragraph}
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| YYYY | [[ID\|Name]] | One-sentence contribution |
 
 ---
 
@@ -254,12 +260,29 @@ graph TD
 
 - `graph TD` (top-down directed)
 - Nodes use **plain text** (not wikilinks): `["Name<br/><i>Year</i>"]`
-- A **reference table** below the graph maps plain-text node labels to actual `[[ID|Name]]` wikilinks — this is where the clickable links live
 - Colors:
   - Blue (`fill:#e8f4fd,stroke:#4a90d9`) = foundational/early work
   - Purple (`fill:#f0e8fd,stroke:#9b59b6`) = paradigm shift/novel approach
   - Green (`fill:#e8fde8,stroke:#27ae60`) = frontier/latest work
 - Update the graph when a new paper represents a significant evolution milestone
+
+### Evolution Reference Table
+
+After the mermaid graph, add a **trend paragraph** (1-2 sentences explaining the evolutionary phases), then a **3-column reference table**:
+
+```
+The field evolved through N phases: **phase name** (years), **phase name** (years), ...
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2022 | [[2212.06817\|RT-1]] | Transformer policy on 130K real demos; proved Transformers work for robot control |
+| 2024 | [[2410.24164\|π0]] | Flow matching action expert + VLM for dexterous manipulation |
+```
+
+- **Year**: extracted from the mermaid node label `<i>Year</i>`
+- **Paper**: wikilink with escaped pipe (`\|`) inside table cells
+- **Contribution**: one sentence explaining what this paper introduced or proved
+- Rows sorted chronologically (oldest first — this is the one place ascending order is used, because the table tells a story of progression)
 
 ### What NOT to Do
 

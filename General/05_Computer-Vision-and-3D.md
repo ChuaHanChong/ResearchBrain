@@ -77,24 +77,26 @@ graph TD
     style N fill:#f0e8fd,stroke:#9b59b6
 ```
 
-| Node | Paper |
-|------|-------|
-| ViT | [[2010.11929\|ViT]] |
-| DINO | [[2104.14294\|DINO]] |
-| MAE | [[2111.06377\|MAE]] |
-| DINOv2 | [[2304.07193\|DINOv2]] |
-| Swin V2 | [[2111.09883\|Swin Transformer V2]] |
-| FocalNet | [[2203.11926\|FocalNet]] |
-| MaxViT | [[2204.01697\|MaxViT]] |
-| FPN | [[1612.03144\|FPN]] |
-| GLIP | [[2112.03857\|GLIP]] |
-| Grounding DINO | [[2303.05499\|Grounding DINO]] |
-| LISA | [[2308.00692\|LISA]] |
-| RAM | [[2306.03514\|RAM]] |
-| DINOv | [[2311.13601\|DINOv]] |
-| RieMind | [[2603.15386\|RieMind]] |
-| VEGA-3D | [[2603.19235\|VEGA-3D]] |
-| VIEW2SPACE | [[2603.16506\|VIEW2SPACE]] |
+The field evolved through four phases: **backbone design** (2016-2022) where ViT, Swin V2, FocalNet, and FPN established the architectural vocabulary; **self-supervised feature learning** (2021-2023) where DINO, MAE, and DINOv2 eliminated label dependence; **open-vocabulary perception** (2021-2023) where GLIP, Grounding DINO, LISA, and RAM made detection and segmentation language-driven; and **3D spatial reasoning** (2023-2026) where RieMind, VEGA-3D, and VIEW2SPACE pushed models from 2D recognition into metric 3D understanding.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2016 | [[1612.03144\|FPN]] | Top-down feature pyramid with lateral connections; foundational multi-scale architecture for object detection |
+| 2020 | [[2010.11929\|ViT]] | Proved pure Transformers on image patches match CNNs; foundational backbone for all downstream architectures |
+| 2021 | [[2104.14294\|DINO]] | Self-distillation without labels; ViT attention maps emerge as object segmenters |
+| 2021 | [[2111.06377\|MAE]] | Masked 75% of image patches and reconstructed pixels; scalable self-supervised pretraining at 3-4x lower cost |
+| 2021 | [[2111.09883\|Swin Transformer V2]] | Scaled window attention to 3B parameters with stable training; solved the low-to-high resolution transfer gap |
+| 2021 | [[2112.03857\|GLIP]] | Unified detection and phrase grounding; learned object-level language-aware representations for open-vocabulary transfer |
+| 2022 | [[2203.11926\|FocalNet]] | Attention-free focal modulation for efficient long-range interactions; SOTA on detection and segmentation with lower cost |
+| 2022 | [[2204.01697\|MaxViT]] | Multi-axis attention combining blocked local and dilated global interactions with linear complexity |
+| 2023 | [[2304.07193\|DINOv2]] | Scaled self-supervised learning to 142M images; universal visual features rivaling CLIP without text supervision |
+| 2023 | [[2303.05499\|Grounding DINO]] | Deep language-vision fusion in DINO detector; 52.5 AP zero-shot on COCO for open-set detection |
+| 2023 | [[2308.00692\|LISA]] | Reasoning segmentation via LLM; generates pixel masks from implicit natural language queries |
+| 2023 | [[2306.03514\|RAM]] | Open-vocabulary image tagging foundation model trained on annotation-free web data; 86.0 mAP on OpenImages |
+| 2023 | [[2311.13601\|DINOv]] | Visual in-context prompting for unified segmentation; open-set generalization via purely visual cues |
+| 2026 | [[2603.15386\|RieMind]] | Geometry-grounded agent decoupling perception from reasoning via 3D Scene Graph tools; +16% on VSI-Bench |
+| 2026 | [[2603.19235\|VEGA-3D]] | Integrates video diffusion priors for dense geometric cues; improves MLLM spatial reasoning without 3D supervision |
+| 2026 | [[2603.16506\|VIEW2SPACE]] | Benchmark for multi-view reasoning from sparse observations; grounded CoT with visual evidence training |
 
 ---
 

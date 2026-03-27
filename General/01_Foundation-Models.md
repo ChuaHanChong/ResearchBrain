@@ -64,22 +64,24 @@ graph TD
     style N fill:#e8fde8,stroke:#27ae60
 ```
 
-| Node | Paper |
-|------|-------|
-| ViT | [[2010.11929\|ViT]] |
-| Swin V2 | [[2111.09883\|Swin V2]] |
-| ViT-22B | [[2302.05442\|ViT-22B]] |
-| DINO | [[2104.14294\|DINO]] |
-| MAE | [[2111.06377\|MAE]] |
-| DINOv2 | [[2304.07193\|DINOv2]] |
-| I-JEPA | [[2301.08243\|I-JEPA]] |
-| CLIP | [[2103.00020\|CLIP]] |
-| BLIP | [[2201.12086\|BLIP]] |
-| ImageBind | [[2305.05665\|ImageBind]] |
-| InstructBLIP | [[2305.06500\|InstructBLIP]] |
-| KOSMOS-2 | [[2306.14824\|KOSMOS-2]] |
-| PaliGemma | [[2407.07726\|PaliGemma]] |
-| BLIP3-o | [[2505.09568\|BLIP3-o]] |
+The field evolved through three phases: **architectural proof-of-concept** (2020-2021) where ViT, DINO, and CLIP established that Transformers and contrastive learning could replace CNNs; **self-supervised scaling** (2022-2023) where DINOv2, I-JEPA, and ViT-22B showed label-free pretraining scales to billions of parameters; and **multimodal unification** (2023-2025) where InstructBLIP, PaliGemma, and BLIP3-o merged understanding and generation into single models.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2020 | [[2010.11929\|ViT]] | Proved a pure Transformer on image patches matches CNNs at scale, eliminating convolutional inductive biases |
+| 2021 | [[2111.09883\|Swin V2]] | Scaled vision Transformers to 3B parameters with stable training via residual post-norm and cosine attention |
+| 2021 | [[2104.14294\|DINO]] | Self-distillation without labels produces ViT features with emergent object segmentation in attention maps |
+| 2021 | [[2111.06377\|MAE]] | Masked 75% of patches and reconstructed pixels; made self-supervised ViT pretraining 3-4x cheaper |
+| 2021 | [[2103.00020\|CLIP]] | Contrastive image-text pretraining on 400M web pairs; enabled zero-shot visual recognition via natural language |
+| 2022 | [[2201.12086\|BLIP]] | Unified vision-language understanding and generation with bootstrapped caption filtering for noisy web data |
+| 2023 | [[2302.05442\|ViT-22B]] | Demonstrated vision models can scale to 22B parameters, achieving 89.5% ImageNet with emergent LLM-like properties |
+| 2023 | [[2304.07193\|DINOv2]] | Scaled self-supervised learning to 142M curated images; produced universal visual features competitive with CLIP without text |
+| 2023 | [[2301.08243\|I-JEPA]] | Predicted abstract representations instead of pixels; 10x cheaper pretraining with stronger semantic features |
+| 2023 | [[2305.05665\|ImageBind]] | Aligned six modalities into one embedding space using images as anchor; enabled emergent cross-modal zero-shot transfer |
+| 2023 | [[2305.06500\|InstructBLIP]] | Applied instruction tuning to VLMs with instruction-aware visual features; SOTA zero-shot on unseen tasks |
+| 2023 | [[2306.14824\|KOSMOS-2]] | Grounded MLLMs to spatial regions via bounding box tokens in text; 78.7% R@1 on Flickr30k phrase grounding |
+| 2024 | [[2407.07726\|PaliGemma]] | Open-source 3B VLM matching larger models across 40 tasks; democratized VLM research through efficient transfer |
+| 2025 | [[2505.09568\|BLIP3-o]] | Unified image understanding and generation in a single hybrid autoregressive-diffusion architecture |
 
 ---
 

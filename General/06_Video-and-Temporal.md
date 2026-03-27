@@ -63,23 +63,25 @@ graph TD
     style N fill:#fde8e8,stroke:#e74c3c
 ```
 
-| Node | Paper |
-|------|-------|
-| MViT | [[2104.11227\|MViT]] |
-| V-JEPA 2 | [[2506.09985\|V-JEPA 2]] |
-| V-JEPA 2.1 | [[2603.14482\|V-JEPA 2.1]] |
-| UniPi | [[2302.00111\|UniPi]] |
-| UniSim | [[2310.06114\|UniSim]] |
-| DriveDreamer-2 | [[2403.06845\|DriveDreamer-2]] |
-| AdaWorld | [[2503.18938\|AdaWorld]] |
-| Dreamer 4 | [[2509.24527\|Dreamer 4]] |
-| Video-R1 | [[2503.21776\|Video-R1]] |
-| VIDEORFT | [[2505.12434\|VIDEORFT]] |
-| CoF | [[2506.00318\|CoF]] |
-| SynRL | [[2603.17693\|SynRL]] |
-| ARFM | [[2512.22688\|ARFM]] |
-| UMO | [[2603.15975\|UMO]] |
-| MoTok | [[2603.19227\|MoTok]] |
+The field evolved through four parallel tracks: **video architectures** (2021-2026) progressed from hand-designed multiscale pooling (MViT) to self-supervised world models (V-JEPA 2/2.1); **video-as-world-model** (2023-2025) moved from proving the concept (UniPi, UniSim) to scalable latent-action imagination (Dreamer 4, AdaWorld); **video reasoning** (2025-2026) unlocked temporal understanding via RL post-training (Video-R1, VIDEORFT) and frame-aware CoT (CoF, SynRL); and **motion generation** (2025-2026) converged on unified diffusion architectures for diverse motion tasks (UMO, MoTok).
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2021 | [[2104.11227\|MViT]] | Introduced multiscale pooling attention for spatiotemporal Transformers; 6.8x fewer FLOPs than ViViT-L at parity |
+| 2023 | [[2302.00111\|UniPi]] | First to use text-guided video generation as a universal policy; bridged video generation and robot control |
+| 2023 | [[2310.06114\|UniSim]] | Learned interactive real-world simulator from heterogeneous video data; enabled zero-shot sim-to-real transfer |
+| 2024 | [[2403.06845\|DriveDreamer-2]] | LLM-controlled driving video world model; synthetic data improves 3D detection and tracking |
+| 2025 | [[2506.09985\|V-JEPA 2]] | Self-supervised world model from 1M+ hours of video; enables zero-shot robotic control via MPC |
+| 2025 | [[2503.18938\|AdaWorld]] | Context-invariant latent actions for adaptable world models; 70.5% human success rate on LIBERO |
+| 2025 | [[2509.24527\|Dreamer 4]] | First offline diamond acquisition in Minecraft; scalable world model with 21 fps real-time inference |
+| 2025 | [[2503.21776\|Video-R1]] | First rule-based RL framework for video temporal reasoning; 37.1% on VSI-Bench surpassing GPT-4o |
+| 2025 | [[2505.12434\|VIDEORFT]] | Reinforced fine-tuning with semantic-consistency rewards; outperforms GPT-4o on video reasoning |
+| 2025 | [[2506.00318\|CoF]] | Frame-aware reasoning traces with explicit temporal grounding; SOTA on VSI-Bench and Video-MME |
+| 2025 | [[2512.22688\|ARFM]] | Autoregressive flow matching as a generalized framework for probabilistic motion prediction across domains |
+| 2026 | [[2603.14482\|V-JEPA 2.1]] | Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation |
+| 2026 | [[2603.17693\|SynRL]] | Synthetic video post-training teaches temporal primitives; 21x data efficiency over model-generated data |
+| 2026 | [[2603.15975\|UMO]] | Unified in-context learning for diverse motion tasks via pretrained DiT; emergent multi-person interaction |
+| 2026 | [[2603.19227\|MoTok]] | Diffusion-based discrete motion tokenizer decoupling semantics from kinematics; FID reduced to 0.025 |
 
 ---
 

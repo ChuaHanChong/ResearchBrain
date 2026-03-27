@@ -69,25 +69,27 @@ graph TD
     style Q fill:#fde8e8,stroke:#e74c3c
 ```
 
-| Node | Paper |
-|------|-------|
-| ReAct | [[2210.03629\|ReAct]] |
-| RAP | [[2305.14992\|RAP]] |
-| LATS | [[2310.04406\|LATS]] |
-| PAL | [[2211.10435\|PAL]] |
-| ViperGPT | [[2303.08128\|ViperGPT]] |
-| AlphaEvolve | [[2506.13131\|AlphaEvolve]] |
-| ReTool | [[2504.11536\|ReTool]] |
-| ToolRL | [[2504.13958\|ToolRL]] |
-| ToRL | [[2503.23383\|ToRL]] |
-| Agentic-R1 | [[2507.05707\|Agentic-R1]] |
-| AgentGym | [[2406.04151\|AgentGym]] |
-| AgentOrchestra | [[2506.12508\|AgentOrchestra]] |
-| MACRO-LLM | [[2601.09295\|MACRO-LLM]] |
-| RAGEN | [[2504.20073\|RAGEN]] |
-| SE-Agent | [[2508.02085\|SE-Agent]] |
-| Dr. Zero | [[2601.07055\|Dr. Zero]] |
-| Memento-Skills | [[2603.18743\|Memento-Skills]] |
+The field evolved through five threads: **reasoning-acting foundations** (2022-2023) where ReAct, RAP, and LATS established think-act-observe loops with increasing search sophistication; **code agents** (2022-2025) where PAL and ViperGPT delegated computation to code, scaling to AlphaEvolve's autonomous algorithm discovery; **tool-augmented RL** (2025) where ReTool, ToolRL, ToRL, and Agentic-R1 replaced prompted tool use with learned policies; **multi-agent systems** (2024-2026) where AgentGym, AgentOrchestra, and MACRO-LLM moved from single agents to coordinated teams; and **self-evolving agents** (2025-2026) where RAGEN, SE-Agent, Dr. Zero, and Memento-Skills enabled agents that autonomously improve from experience.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2022 | [[2210.03629\|ReAct]] | Synergized reasoning and acting in a think-act-observe loop; launched the LLM agent paradigm |
+| 2022 | [[2211.10435\|PAL]] | Program-aided Language Models offloading computation to a Python interpreter; separated reasoning from calculation |
+| 2023 | [[2305.14992\|RAP]] | Treated the LLM as its own world model for lookahead planning within reasoning-acting loops |
+| 2023 | [[2310.04406\|LATS]] | Language Agent Tree Search unifying reasoning, acting, and planning through MCTS over action spaces |
+| 2023 | [[2303.08128\|ViperGPT]] | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning |
+| 2024 | [[2406.04151\|AgentGym]] | Multi-environment agent evolution via behavioral cloning + self-evolution for generalist agents |
+| 2025 | [[2506.13131\|AlphaEvolve]] | Google DeepMind combining LLMs with evolutionary search to autonomously discover algorithms |
+| 2025 | [[2504.11536\|ReTool]] | ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning |
+| 2025 | [[2504.13958\|ToolRL]] | Novel reward shaping for tool-use RL; meticulously designed rewards guide optimal tool invocation |
+| 2025 | [[2503.23383\|ToRL]] | Scaling tool-integrated RL; trains LLMs to autonomously learn when and how to use tools |
+| 2025 | [[2507.05707\|Agentic-R1]] | DualDistill framework training language models as tool-using agents via distillation and RL |
+| 2025 | [[2506.12508\|AgentOrchestra]] | TEA protocol for unified multi-agent management and task orchestration |
+| 2025 | [[2504.20073\|RAGEN]] | Multi-turn RL training for LLM agents; established the paradigm for sustained agent-environment interaction |
+| 2025 | [[2508.02085\|SE-Agent]] | Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement |
+| 2026 | [[2601.09295\|MACRO-LLM]] | Macro-level multi-agent coordination for complex, multi-step LLM workflows |
+| 2026 | [[2601.07055\|Dr. Zero]] | Meta's framework enabling search agents to self-evolve without human-provided training data |
+| 2026 | [[2603.18743\|Memento-Skills]] | Skill library as external memory for continual learning; agents store and retrieve reusable skills |
 
 ---
 
