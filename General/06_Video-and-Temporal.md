@@ -88,21 +88,21 @@ graph TD
 From video classification to self-supervised video representation learning. The trajectory moves from hand-designed multiscale pooling to self-supervised world models that learn physics from raw video.
 
 **Multiscale Vision Transformers** — Specialized Transformer architectures that capture spatiotemporal information across multiple scales for video classification and action localization.
-- [[2104.11227|MViT]], [[2112.01526|MViTv2]], [[2312.17686|BMViT]]
+- [[2312.17686|BMViT]], [[2112.01526|MViTv2]], [[2104.11227|MViT]]
 
 > [!star] Key Papers
 > - [[2104.11227|MViT]] — Introduced multiscale pooling attention for video Transformers; foundational architecture for the family
 > - [[2112.01526|MViTv2]] — Refined pooling mechanism and added decomposed relative position embeddings; strong on both classification and detection
 
 **Self-Supervised Video Models** — Learn general video representations from unlabeled data, progressing toward world models that support zero-shot downstream transfer.
-- [[2506.09985|V-JEPA 2]], [[2603.14482|V-JEPA 2.1]], [[2505.11129|PhiNet v2]]
+- [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA 2.1]], [[2507.19468|DINO-world]], [[2506.09985|V-JEPA 2]], [[2505.11129|PhiNet v2]]
 
 > [!star] Key Papers
 > - [[2506.09985|V-JEPA 2]] — Self-supervised model trained on 1M+ hours of video; learned world model enables zero-shot robotic control via MPC
 > - [[2603.14482|V-JEPA 2.1]] — Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation
 
 **Video-Language Foundation Models** — Large-scale models that jointly process video and language for fine-grained understanding, captioning, and long-context comprehension.
-- [[2504.13180|PerceptionLM]], [[2504.15271|Eagle 2.5]], [[2504.16072|DAM]], [[2507.01949|Kwai Keye-VL]], [[2507.04590|VLM2Vec-V2]]
+- [[2507.04590|VLM2Vec-V2]], [[2507.01949|Kwai Keye-VL]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]]
 
 > [!star] Key Papers
 > - [[2504.15271|Eagle 2.5]] — Efficient 8B model processing 512 video frames; achieves 72.4% on Video-MME, rivaling 72B+ models
@@ -118,7 +118,7 @@ From video classification to self-supervised video representation learning. The 
 Understanding *why* things happen in video, not just *what* happens. This section covers RL-based post-training, chain-of-thought reasoning, and spatiotemporal grounding methods that push Video-LLMs beyond perception toward genuine temporal reasoning.
 
 **RL Post-Training for Video Reasoning** — Reinforcement learning frameworks that teach Video-LLMs temporal reasoning capabilities through rule-based rewards, self-supervised signals, or synthetic data.
-- [[2503.21776|Video-R1]], [[2505.12434|VIDEORFT]], [[2505.13934|RLVR-World]], [[2511.13054|ViSS-R1]], [[2511.11113|VIDEOP2R]], [[2603.17693|SynRL]]
+- [[2603.17693|SynRL]], [[2602.20159|VBVR]], [[2602.05986|RISE-Video]], [[2601.19686|Video-KTR]], [[2511.13054|ViSS-R1]], [[2511.11113|VIDEOP2R]], [[2510.23473|Video-Thinker]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2505.13934|RLVR-World]], [[2505.12434|VIDEORFT]], [[2503.21776|Video-R1]]
 
 > [!star] Key Papers
 > - [[2503.21776|Video-R1]] — First rule-based RL framework for video temporal reasoning; 37.1% on VSI-Bench surpassing GPT-4o
@@ -126,14 +126,14 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.17693|SynRL]] — Synthetic video post-training achieves 21x data efficiency over model-generated data
 
 **Chain-of-Thought for Video** — Methods that extend textual CoT reasoning to the video domain, explicitly grounding reasoning steps in specific frames or temporal segments.
-- [[2506.00318|CoF]], [[2506.03525|VIDEO-SKOT]], [[2507.09876|ViTCoT]], [[2603.16870|Chain-of-Steps]]
+- [[2603.16870|Chain-of-Steps]], [[2601.21037|Thinking in Frames]], [[2507.09876|ViTCoT]], [[2506.03525|VIDEO-SKOT]], [[2506.00318|CoF]]
 
 > [!star] Key Papers
 > - [[2506.00318|CoF]] — Frame-aware reasoning traces with explicit temporal grounding; SOTA on VSI-Bench and Video-MME
 > - [[2603.16870|Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Spatiotemporal Grounding & Perception** — Architectures for precise spatial and temporal localization in video, including segmentation, tracking, and pixel-grounded language understanding.
-- [[2503.19355|ST-VLM]], [[2504.07745|SF2T]], [[2506.05302|PAM]], [[2506.07850|SAM2Auto]], [[2507.10302|DisCo]], [[2511.16077|VideoSeg-R1]], [[2511.18373|MASS]], [[2511.19261|LAST]], [[2512.10359|STAR]], [[2603.12382|SPARROW]], [[2507.05258|REA]]
+- [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]]
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
@@ -141,14 +141,14 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.12382|SPARROW]] — Temporal referential consistency via target-specific tracked features; +8.9 J&F on MeViS RVOS
 
 **Temporal Traps & Failure Analysis** — Studies revealing fundamental limitations and failure modes of current Video-LLMs, especially around the tension between image and video capabilities.
-- [[2603.17541|Temporal Trap]], [[2603.14145|MMOU]], [[2511.16901|AVST-Zero]]
+- [[2603.17541|Temporal Trap]], [[2603.14145|MMOU]], [[2511.16901|AVST-Zero]], [[2511.13787|TC2]]
 
 > [!star] Key Papers
 > - [[2603.17541|Temporal Trap]] — Revealed that Video-SFT degrades image understanding despite improving video metrics; proposed Hybrid-Frame Strategy
 > - [[2603.14145|MMOU]] — Joint audio-visual reasoning benchmark; best model (64.2%) far below human (84.3%)
 
 **Benchmarks & Evaluation** — Dedicated benchmarks measuring video spatial intelligence, fine-grained temporal reasoning, and spatial-temporal interactions.
-- [[2503.23765|STI-Bench]], [[2512.10863|MMSI-Video-Bench]]
+- [[2512.10863|MMSI-Video-Bench]], [[2507.18342|EgoExoBench]], [[2503.23765|STI-Bench]]
 
 > [!star] Key Papers
 > - [[2503.23765|STI-Bench]] — Best model (Gemini-2.5-Pro) scores only 41.4% on precise spatial-temporal understanding
@@ -164,21 +164,21 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 The paradigm shift: video generation models that simulate ==physically plausible futures==, becoming the foundation for planning and control. These models bridge content creation and robotic planning by learning physics, causality, and dynamics from temporal data.
 
 **Foundational Video World Models** — Systems that treat video generation as world simulation, learning to produce physically coherent future states from observation.
-- [[2302.00111|UniPi]], [[2310.06114|UniSim]], [[2403.06845|DriveDreamer-2]], [[2409.18964|PhysGen]]
+- [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
 
 > [!star] Key Papers
 > - [[2302.00111|UniPi]] — First to use text-guided video generation as a universal policy; bridges video generation and robot control
 > - [[2310.06114|UniSim]] — Learned interactive real-world simulator from video data; key inspiration for the WAM paradigm
 
 **Latent-Action & Scalable World Models** — World models that extract latent action representations from unlabeled video, enabling RL-based agent training entirely within imagination.
-- [[2503.18938|AdaWorld]], [[2509.24527|Dreamer 4]], [[2510.26433|CoLA-World]], [[2505.13934|RLVR-World]]
+- [[2510.26433|CoLA-World]], [[2509.24527|Dreamer 4]], [[2505.13934|RLVR-World]], [[2503.18938|AdaWorld]]
 
 > [!star] Key Papers
 > - [[2509.24527|Dreamer 4]] — First offline diamond acquisition in Minecraft; scalable world model with real-time 21 fps inference
 > - [[2503.18938|AdaWorld]] — Context-invariant latent actions for adaptable world models; FVD of 767.0
 
 **Video Generation for Planning & Grounding** — Methods that use generated video as a planning medium, grounding visual plans in physically feasible actions.
-- [[2602.01960|GVP-WM]], [[2603.08403|SPIRAL]], [[2512.24766|Dream2Flow]]
+- [[2603.08403|SPIRAL]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]]
 
 > [!star] Key Papers
 > - [[2602.01960|GVP-WM]] — Converts physically inconsistent video plans into feasible action sequences via latent-space trajectory optimization
@@ -192,7 +192,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2512.09924|ReViSE]] — Reason-informed video editing via self-reflective learning; +32% on RVE-Bench
 
 **Surveys & Roadmaps** — Comprehensive overviews of the video-to-world-model progression.
-- [[2511.08585|Visual World Roadmap]]
+- [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]]
 
 > [!star] Key Papers
 > - [[2511.08585|Visual World Roadmap]] — Four-generation taxonomy from video generators to planning-capable world simulators
@@ -207,14 +207,14 @@ The paradigm shift: video generation models that simulate ==physically plausible
 Synthesizing human and robot motion — bridging video understanding with physical action. The field is converging on unified architectures that handle diverse motion tasks through a single model rather than task-specific pipelines.
 
 **Unified Motion Architectures** — Single models that handle multiple motion generation tasks (text-to-motion, motion prediction, motion editing) through shared representations.
-- [[2603.15975|UMO]], [[2603.19227|MoTok]]
+- [[2603.19227|MoTok]], [[2603.15975|UMO]]
 
 > [!star] Key Papers
 > - [[2603.15975|UMO]] — Unified in-context learning for diverse motion tasks via meta-operation embeddings on a pretrained DiT; FID of 9.460
 > - [[2603.19227|MoTok]] — Diffusion-based discrete motion tokenizer decoupling semantics from kinematics; FID from 0.061 to 0.029
 
 **Motion Prediction & Flow** — Autoregressive and flow-based methods for predicting future motion trajectories and bridging video generation with 3D object manipulation.
-- [[2512.22688|ARFM]], [[2512.24766|Dream2Flow]]
+- [[2512.24766|Dream2Flow]], [[2512.22688|ARFM]]
 
 > [!star] Key Papers
 > - [[2512.22688|ARFM]] — Autoregressive flow matching as a generalized framework for probabilistic motion prediction
@@ -222,6 +222,7 @@ Synthesizing human and robot motion — bridging video understanding with physic
 
 > [!tip] Motion as the Missing Link
 > Motion generation connects video understanding (perceiving dynamics) with robotics (producing actions). UMO and MoTok show that diffusion-based approaches unify diverse motion tasks. Dream2Flow demonstrates how video generation models can directly produce 3D motion representations for robot control.
+
 
 ---
 

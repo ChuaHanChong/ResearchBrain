@@ -10,7 +10,7 @@ aliases:
 ## Research Topics — Index
 
 > [!abstract]
-> Complete overview of all 1,928 papers in [[_KnowledgeHub_]], organized into 12 topic areas. Each topic file has curated narrative sections with evolution graphs, grouped sub-topics, key paper highlights, and practical insights.
+> Complete overview of all 1,810 papers in [[_KnowledgeHub_]], organized into 12 topic areas. Each topic file has curated narrative sections with evolution graphs, grouped sub-topics, key paper highlights, and practical insights.
 
 ### Topic Map
 

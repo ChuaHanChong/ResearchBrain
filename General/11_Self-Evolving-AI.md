@@ -96,7 +96,7 @@ graph TD
 The original self-improvement paradigm: models generate their own training data by sampling reasoning chains, filtering correct ones, and retraining on successes. Each iteration bootstraps quality beyond the original training distribution. This is the foundation on which all later self-evolving methods build.
 
 **Iterative Rationale Bootstrapping** — Generate candidate reasoning traces, keep the ones that reach correct answers, retrain, repeat. The simplest form of self-improvement, requiring only a verifier (ground-truth or model-based).
-- [[2203.14465|STaR]], [[2403.09629|Quiet-STaR]], [[2506.00467|SST]], [[2504.08672|Genius]]
+- [[2506.00467|SST]], [[2504.08672|Genius]], [[2403.09629|Quiet-STaR]], [[2203.14465|STaR]]
 
 > [!star] Key Papers
 > - [[2203.14465|STaR]] — Pioneered iterative self-improvement: generate rationales, keep correct ones, retrain; each round improves reasoning beyond the original distribution
@@ -104,7 +104,7 @@ The original self-improvement paradigm: models generate their own training data 
 > - [[2504.08672|Genius]] — Purely unsupervised self-training without external labels; uses self-generated solutions as implicit reward signal
 
 **Self-Rewarding & Self-Judging** — Models learn to evaluate their own outputs, creating an internal reward signal that replaces human annotators. The model is simultaneously generator and judge, enabling iterative DPO or RL without external feedback.
-- [[2401.10020|Self-Rewarding LM]], [[2502.08922|SCIR]], [[2503.03746|Process-based Self-Rewarding]], [[2412.01951|Sharpening Mechanism]]
+- [[2503.03746|Process-based Self-Rewarding]], [[2502.08922|SCIR]], [[2412.01951|Sharpening Mechanism]], [[2401.10020|Self-Rewarding LM]]
 
 > [!star] Key Papers
 > - [[2401.10020|Self-Rewarding LM]] — Single model acts as both instruction-follower and judge via iterative DPO; breaks the human-feedback bottleneck
@@ -112,7 +112,7 @@ The original self-improvement paradigm: models generate their own training data 
 > - [[2412.01951|Sharpening Mechanism]] — Formalizes self-improvement as "sharpening": theoretical framework explaining when and why self-training converges
 
 **Slow-Thinking & Test-Time Reasoning** — Train models to use extended reasoning chains at inference time (o1-style), where longer thinking leads to better answers. Self-improvement happens by learning to allocate more compute to harder problems.
-- [[2412.09413|STILL-2]], [[2501.01478|MCTS Process Supervision]], [[2503.18866|BoLT]], [[2511.01191|Self-Harmony]], [[2509.26626|RSA]]
+- [[2511.01191|Self-Harmony]], [[2509.26626|RSA]], [[2503.18866|BoLT]], [[2501.01478|MCTS Process Supervision]], [[2412.09413|STILL-2]]
 
 > [!star] Key Papers
 > - [[2412.09413|STILL-2]] — Open-source framework reproducing o1-like slow-thinking; distillation + RL pipeline for chain-of-thought enhancement
@@ -129,7 +129,7 @@ The original self-improvement paradigm: models generate their own training data 
 The most radical branch of self-evolution: models that improve with zero human-curated data. They either generate their own training problems (Absolute Zero), derive reward from consensus (TTRL), or use evolutionary self-play (EVOL-RL). This eliminates the last human bottleneck — the training dataset itself.
 
 **Task Self-Generation** — The model both proposes and solves its own problems, using only a code executor or environment for verification. No human data at any stage.
-- [[2505.03335|Absolute Zero]], [[2506.06499|SPARQ]], [[2506.08989|SwS]], [[2506.24119|SPIRAL]], [[2509.24726|Socratic-Zero]], [[2509.25541|Vision-Zero]]
+- [[2509.25541|Vision-Zero]], [[2509.24726|Socratic-Zero]], [[2506.24119|SPIRAL]], [[2506.08989|SwS]], [[2506.06499|SPARQ]], [[2505.03335|Absolute Zero]]
 
 > [!star] Key Papers
 > - [[2505.03335|Absolute Zero]] — The defining paper: model proposes tasks, solves them, verifies via code execution, and retrains; SOTA on coding and math with literally zero human data
@@ -137,21 +137,21 @@ The most radical branch of self-evolution: models that improve with zero human-c
 > - [[2509.25541|Vision-Zero]] — Extends the zero-data paradigm to Vision-Language Models via gamified self-play
 
 **Label-Free RL on Test Data** — Apply reinforcement learning directly on unlabeled test distributions, using self-consistency (majority voting) as the reward signal.
-- [[2504.16084|TTRL]], [[2509.15194|EVOL-RL]], [[2510.02752|Self-Aware RL for LLMs]], [[2505.24726|Reflect Retry Reward]]
+- [[2510.02752|Self-Aware RL for LLMs]], [[2509.15194|EVOL-RL]], [[2505.24726|Reflect Retry Reward]], [[2504.16084|TTRL]]
 
 > [!star] Key Papers
 > - [[2504.16084|TTRL]] — Proved LLMs can self-improve on unlabeled test data via majority-vote rewards; 211% improvement on AIME 2024
 > - [[2509.15194|EVOL-RL]] — Evolutionary RL that prevents entropy collapse in label-free self-improvement; balances selection pressure with novelty-driven diversity
 
 **Self-Play & Multi-Agent Competition** — Multiple model instances compete or cooperate, driving improvement through adversarial pressure or consensus-seeking dynamics.
-- [[2509.07414|LSP]], [[2506.07468|SELF-REDTEAM]], [[2510.23595|MAE]], [[2509.15172|MACA]], [[2510.24684|SPICE]]
+- [[2510.24684|SPICE]], [[2510.23595|MAE]], [[2509.15172|MACA]], [[2509.07414|LSP]], [[2506.07468|SELF-REDTEAM]]
 
 > [!star] Key Papers
 > - [[2509.07414|LSP]] — Language Self-Play from Meta: models improve through self-play dialogue without external reward models
 > - [[2506.07468|SELF-REDTEAM]] — Self-play for safety: model red-teams itself to find and fix vulnerabilities; online multi-agent adversarial loop
 
 **Hyperparameter & Sampling Self-Optimization** — Meta-level self-improvement: models learn to optimize their own inference parameters (temperature, sampling strategy) rather than just their weights.
-- [[2502.05234|TURN]], [[2510.02263|RLAD]]
+- [[2510.02263|RLAD]], [[2502.05234|TURN]]
 
 > [!star] Key Papers
 > - [[2502.05234|TURN]] — Automatically discovers near-optimal sampling temperature for self-improvement; removes a key manual tuning step
@@ -167,21 +167,21 @@ The most radical branch of self-evolution: models that improve with zero human-c
 Self-evolving systems need to practice on the right problems at the right difficulty. These methods automatically generate, select, and sequence training data so that each batch maximally improves the model — adaptive curricula that co-evolve with the learner.
 
 **Adaptive Difficulty & Reweighting** — Dynamically adjust which training examples the model sees based on current capability, focusing compute on problems at the frontier of what the model can almost solve.
-- [[2504.05520|ADARFT]], [[2510.09001|DARO]], [[2510.01135|PCL]], [[2512.02472|R-FEW]]
+- [[2512.02472|R-FEW]], [[2510.09001|DARO]], [[2510.01135|PCL]], [[2504.05520|ADARFT]]
 
 > [!star] Key Papers
 > - [[2504.05520|ADARFT]] — Adaptive curriculum for RLVR that selects training problems matching the model's current capability frontier
 > - [[2510.09001|DARO]] — Dynamic reweighting for RL with verifiable rewards; prevents the model from wasting compute on too-easy or too-hard problems
 
 **Self-Evolving Curricula** — The curriculum itself evolves: a synthesizer or environment generates new, capability-aligned challenges as the model improves, creating an unbounded supply of training signal.
-- [[2505.14970|SEC]], [[2511.07317|RLVE]], [[2601.22628|TTCS]], [[2512.06835|DoGe]]
+- [[2601.22628|TTCS]], [[2512.06835|DoGe]], [[2511.07317|RLVE]], [[2505.14970|SEC]]
 
 > [!star] Key Papers
 > - [[2505.14970|SEC]] — Self-Evolving Curriculum: the training data distribution co-evolves with the model, ensuring the curriculum never becomes stale
 > - [[2511.07317|RLVE]] — Procedurally generates an unbounded supply of verifiable environments; the challenges grow as the model grows
 
 **Multimodal & Reasoning Curricula** — Curriculum strategies specifically designed for vision-language models or multi-stage reasoning pipelines.
-- [[2507.22607|VL-Cogito]], [[2509.14234|CaT]]
+- [[2509.14234|CaT]], [[2507.22607|VL-Cogito]]
 
 > [!star] Key Papers
 > - [[2507.22607|VL-Cogito]] — Progressive curriculum for VLMs that sequences visual reasoning tasks from simple to complex
@@ -197,7 +197,7 @@ Self-evolving systems need to practice on the right problems at the right diffic
 When self-improvement meets agentic AI: systems that autonomously explore environments, accumulate experience, distill lessons, and evolve their own capabilities across tasks. These go beyond single-turn reasoning to multi-step, tool-using, environment-interacting agents that learn from deployment.
 
 **Agent Self-Evolution Frameworks** — End-to-end frameworks where agents improve by interacting with diverse environments, distilling experience into reusable strategies, and iterating.
-- [[2406.04151|AgentGym]], [[2510.16079|EVOLVER]], [[2506.01716|SCA]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]]
+- [[2603.19461|HyperAgents]], [[2511.16166|EvoVLA]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2406.04151|AgentGym]]
 
 > [!star] Key Papers
 > - [[2406.04151|AgentGym]] — Multi-environment agent evolution via behavioral cloning + self-evolution (AGENTEVOL); showed agents can generalize across diverse tasks
@@ -205,7 +205,7 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 > - [[2506.01716|SCA]] — Self-Challenging Agent: generates its own hard problems to practice on, driving continuous capability growth
 
 **Co-Evolutionary & Multi-Agent** — Multiple agents or model components (policy + environment, actor + critic) evolve together, each improving the other in a virtuous cycle.
-- [[2601.06794|ECHO]], [[2504.21024|WebEvolver]], [[2603.17621|Complementary RL]], [[2602.23413|EvoX]], [[2507.16518|C2-Evo]], [[2502.05907|EvoAgent]], [[2603.08403|SPIRAL]]
+- [[2603.17621|Complementary RL]], [[2603.08403|SPIRAL]], [[2602.23413|EvoX]], [[2601.06794|ECHO]], [[2510.26433|CoLA-World]], [[2507.16518|C2-Evo]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2502.05907|EvoAgent]], [[2302.01877|AdaptDiffuser]]
 
 > [!star] Key Papers
 > - [[2601.06794|ECHO]] — Policy and environment co-evolve: the environment generates harder challenges as the policy improves, and vice versa
@@ -229,21 +229,21 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 Learning to learn: models that adapt their own learning process, discover optimization algorithms, or rapidly adjust to new tasks from minimal data. While self-training improves outputs, meta-learning improves the learning procedure itself.
 
 **Meta-Reinforcement Learning** — Agents that learn an RL algorithm implicitly through experience, enabling rapid adaptation to new reward structures without retraining from scratch.
-- [[2301.08028|Meta-RL Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]], [[2309.05858|Mesa-Optimization Transformers]]
+- [[2309.05858|Mesa-Optimization Transformers]], [[2301.08028|Meta-RL Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]]
 
 > [!star] Key Papers
 > - [[2301.08028|Meta-RL Tutorial]] — Definitive survey structuring the meta-RL landscape: context-based, task-inference, and black-box approaches
 > - [[2309.05858|Mesa-Optimization Transformers]] — Mechanistic explanation of how Transformers implicitly learn optimization algorithms (mesa-optimization) in-context
 
 **Self-Adapting Language Models** — LLMs that generate their own fine-tuning data and adaptation strategies, optimizing internal parameters without external supervision.
-- [[2506.10943|SEAL]], [[2510.03259|MASA]]
+- [[2510.03259|MASA]], [[2506.10943|SEAL]]
 
 > [!star] Key Papers
 > - [[2506.10943|SEAL]] — Models autonomously generate optimized fine-tuning data and adaptation strategies; outperforms GPT-4.1-generated synthetic data
 > - [[2510.03259|MASA]] — Meta-Awareness via Self-Alignment: RL framework enabling models to develop self-awareness of their own capabilities and limitations
 
 **Few-Shot Object Detection** — Meta-learning applied to visual recognition: learn to detect new object categories from very few examples by leveraging learned priors.
-- [[1908.01998|Attention-RPN]], [[1909.13032|Meta R-CNN]], [[2401.07629|FPD]]
+- [[2401.07629|FPD]], [[1909.13032|Meta R-CNN]], [[1908.01998|Attention-RPN]]
 
 > [!star] Key Papers
 > - [[1909.13032|Meta R-CNN]] — General meta-learning framework for few-shot detection; class-attentive vectors modulate features per novel category
@@ -259,14 +259,14 @@ Learning to learn: models that adapt their own learning process, discover optimi
 Extending self-evolution beyond text-only LLMs to multimodal models that process both images and text. VLMs face unique challenges: hallucination, visual grounding errors, and cross-modal consistency — requiring self-improvement methods tailored to multimodal reasoning.
 
 **Hallucination Reduction via Self-Consistency** — VLMs detect and correct their own hallucinations by checking internal consistency across different modalities or question framings.
-- [[2509.23236|Self-Reflection VLM]], [[2510.10487|Triangular Consistency]], [[2510.24285|ViPER]]
+- [[2510.24285|ViPER]], [[2510.10487|Triangular Consistency]], [[2509.23236|Self-Reflection VLM]]
 
 > [!star] Key Papers
 > - [[2509.23236|Self-Reflection VLM]] — Uses binary self-consistency signals to reduce hallucinations without external supervision
 > - [[2510.10487|Triangular Consistency]] — Cross-checks visual, textual, and reasoning outputs for mutual consistency; self-refinement through multi-modal agreement
 
 **Multimodal Self-Evolution Frameworks** — End-to-end pipelines for VLM self-improvement covering data generation, training, and evaluation across vision-language tasks.
-- [[2412.17451|M-STAR]], [[2510.02665|MLLM Self-Improvement Survey]], [[2509.15155|Self-Improving EFM]]
+- [[2510.10606|ViSurf]], [[2510.02665|MLLM Self-Improvement Survey]], [[2509.15155|Self-Improving EFM]], [[2508.12137|Fine-Grained VLM Tuning]], [[2507.16663|MLLM Self-Improvement]], [[2412.17451|M-STAR]], [[2410.08202|Mono-InternVL]]
 
 > [!star] Key Papers
 > - [[2412.17451|M-STAR]] — Self-evolving training framework for large multimodal models; iterative self-improvement across vision-language benchmarks
@@ -282,7 +282,7 @@ Extending self-evolution beyond text-only LLMs to multimodal models that process
 Self-evolution over time: systems that accumulate knowledge from ongoing experience without catastrophic forgetting. While sections 1-4 focus on improving within a training run, continual learning ensures improvements persist across deployment episodes and new environments.
 
 **Experience-Driven Lifelong Learning** — Agents that build persistent memory banks of experiences and learn to retrieve and apply relevant past knowledge to new situations.
-- [[2508.19005|ELL Framework]], [[2603.16856|OEL]], [[2509.25140|ReasoningBank]], [[2510.04618|ACE]]
+- [[2603.16856|OEL]], [[2512.24695|Hope]], [[2512.09441|MoP-CIL]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2508.19005|ELL Framework]], [[2507.10434|CLA]], [[2507.09177|Online Agent (OA)]], [[2411.13852|ESRM]], [[2402.15109|MU-Mis]], [[2305.13622|SER]], [[2211.15944|Continual-Dreamer]]
 
 > [!star] Key Papers
 > - [[2508.19005|ELL Framework]] — Experience-driven Lifelong Learning: introduces the framework and StuLife benchmark for measuring continual self-improvement in realistic settings
@@ -290,13 +290,13 @@ Self-evolution over time: systems that accumulate knowledge from ongoing experie
 > - [[2509.25140|ReasoningBank]] — Memory-aware test-time scaling: stores and retrieves reasoning patterns for efficient reuse across problems
 
 **Multimodal Continual Skill Acquisition** — Agents that continually learn new skills from visual and language grounding, building an expanding repertoire without losing prior capabilities.
-- [[2603.12056|XSkill]], [[2504.21024|WebEvolver]], [[2603.17621|Complementary RL]]
+- [[2603.18743|Memento-Skills]], [[2603.17621|Complementary RL]], [[2603.12056|XSkill]], [[2511.18085|Stellar VLA]], [[2504.21024|WebEvolver]]
 
 > [!star] Key Papers
 > - [[2603.12056|XSkill]] — Dual-stream framework for continual learning from visually-grounded experience; skills transfer across tasks and modalities
 
 **Safety & Alignment Under Self-Evolution** — Investigating and mitigating the risks that arise when models evolve autonomously, including value drift, capability misalignment, and emergent unsafe behaviors.
-- [[2509.26354|Misevolution]], [[2506.07468|SELF-REDTEAM]], [[2512.05356|Co-Improving AI]]
+- [[2512.05356|Co-Improving AI]], [[2509.26354|Misevolution]], [[2506.07468|SELF-REDTEAM]]
 
 > [!star] Key Papers
 > - [[2509.26354|Misevolution]] — Identifies "misevolution" as a novel safety risk: self-evolving models can drift from intended values during autonomous improvement
@@ -314,9 +314,18 @@ Comprehensive reviews and theoretical analyses that map the self-evolving AI lan
 - [[2404.14387|LLM Self-Evolution Survey 2024]] — Structured taxonomy of self-evolution approaches: self-training, self-rewarding, RL-based, and evolutionary methods
 - [[2510.02665|MLLM Self-Improvement Survey]] — First survey focused on multimodal LLM self-improvement; maps methods from text to vision-language
 - [[2412.01951|Sharpening Mechanism]] — Theoretical framework formalizing when and why self-improvement converges; identifies conditions for guaranteed improvement
+- [[2408.07666|Model Merging Survey]] — Comprehensive survey of model merging methods for combining knowledge across fine-tuned models
+- [[2504.13173|Miras]] — Unified framework connecting test-time memorization, attentional bias, retention, and online optimization
+- [[2506.21872|Continual RL Survey]] — Survey of continual reinforcement learning methods across environments and tasks
+- [[2507.21046|Self-Evolving Agents Survey]] — Comprehensive survey on self-evolving LLM-based agents
+- [[2508.04227|VLM Continual Learning Survey]] — Taxonomy of continual learning challenges specific to vision-language models
+- [[2508.07407|Self-Evolving AI Agents Survey]] — Survey on self-evolving AI agent architectures and methods
+- [[2602.04411|Self-evolving Embodied AI]] — Survey on self-evolving systems in embodied AI settings
+- [[2603.15381|Autonomous Learning Framework]] — Lessons from cognitive science on why AI systems don't learn autonomously and how to address it
 
 > [!tip] Starting Points
 > New to self-evolving AI? Read the LLM Self-Evolution Survey (2024) for the taxonomy, then STaR and Absolute Zero for the two bookends of the field (simple bootstrapping vs. zero-data self-play).
+
 
 ---
 
