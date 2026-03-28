@@ -119,6 +119,9 @@ The core pretraining paradigms that established how to connect visual encoders w
 > - [[2504.16801|DeGLA]] — Decoupled Global-Local Alignment for compositional VLM understanding
 > - [[2511.13876|QwenCLIP]] — Medical vision-language pretraining framework adapting CLIP to clinical domains
 
+> [!success] Three-Layer Alignment Stack
+> ==Layer 1: Contrastive pretraining== (CLIP/SigLIP 2) for broad zero-shot transfer → ==Layer 2: Generative alignment== (BLIP/CoCa) for understanding + generation → ==Layer 3: Compositional refinement== ([[2505.02278|GCLIP]], [[2504.16801|DeGLA]]) for fine-grained reasoning. Modern MLLMs inherit all three layers.
+
 > [!tip] The Alignment Stack
 > The field converged on a three-layer alignment stack: (1) contrastive pretraining for broad zero-shot transfer (CLIP, SigLIP 2), (2) generative alignment for understanding + generation (BLIP, CoCa), and (3) compositional refinement for fine-grained reasoning (GCLIP, DeGLA). Each layer builds on the previous, and modern MLLMs inherit all three.
 
@@ -153,7 +156,7 @@ The first generation of models that connected visual encoders to large language 
 The maturation of MLLMs through systematic instruction tuning, scaling to production quality, and comparative studies of different LLM backbones and training recipes.
 
 **Flagship Instruction-Tuned Models** — Full-scale MLLMs trained with instruction-following data across diverse vision-language tasks.
-- [[2508.11737|Ovis2.5]], [[2508.01558|EvoVLMA]], [[2507.22448|Falcon-H1]], [[2507.12507|Nemotron]], [[2507.01006|GLM-4.5V]], [[2506.03569|MiMo-VL]], [[2505.18842|v1]], [[2505.07062|Seed1.5-VL]], [[2505.00949|Llama-Nemotron]], [[2504.13180|PerceptionLM]], [[2504.07491|Kimi-VL]], [[2503.15621|LLaVA-MORE]], [[2502.13130|Magma]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2407.07726|PaliGemma]]
+- [[2508.11737|Ovis2.5]], [[2508.01558|EvoVLMA]], [[2507.22448|Falcon-H1]], [[2507.12507|Nemotron]], [[2507.01006|GLM-4.5V]], [[2506.03569|MiMo-VL]], [[2505.18842|v1]], [[2505.07062|Seed1.5-VL]], [[2505.00949|Llama-Nemotron]], [[2504.13180|PerceptionLM]], [[2504.07491|Kimi-VL]], [[2503.15621|LLaVA-MORE]], [[2502.13130|Magma]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2407.07726|PaliGemma]], [[2603.25040|Intern-S1-Pro]]
 
 > [!star] Key Papers
 > - [[2407.07726|PaliGemma]] — Sub-3B parameter VLM achieving SOTA across 40+ tasks; demonstrated small models can match larger counterparts

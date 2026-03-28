@@ -198,6 +198,9 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2509.26346|EditReward]] — Human-aligned reward model for instruction-guided image editing; enables curation of high-quality training data
 > - [[2507.22003|ViHallu]] — Vision-centric framework reducing hallucinations in LVLMs by up to 5.9% via generated visual variations
 
+> [!success] RL Post-Training for Generative Models
+> ==Likelihood pre-training== (diffusion or flow) → ==RL post-training== with reward model. Use [[2505.05470|Flow-GRPO]] for flow matching, [[2509.06040|BranchGRPO]] for 4.7× speedup at scale, and [[2506.02095|CycleReward]] for self-supervised rewards without human annotation.
+
 > [!tip] RL for Generation
 > The recipe: train a base generative model (diffusion or flow) with likelihood, then post-train with RL using a reward model. Flow-GRPO for flow matching, BranchGRPO for efficiency at scale. CycleReward eliminates the human annotation bottleneck.
 
@@ -271,7 +274,12 @@ Diffusion models applied to physical action generation rather than image synthes
 - [[2603.15975|UMO]], [[2603.12263|Psi0]], [[2602.11236|ABot-M0]], [[2601.02456|InternVLA-A1]], [[2512.22688|ARFM]], [[2508.10333|ReconVLA]], [[2503.14734|GR00T N1]], [[2411.19650|CogACT]], [[2410.07864|RDT-1B]], [[2407.05996|MDT]], [[2405.12213|Octo]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2302.00111|UniPi]], [[2205.09991|Diffuser]]
 
 **Flow-Based VLA Policies** — Vision-language-action models using flow matching for continuous action generation, enabling smooth and efficient robot control.
-- [[2601.18692|LingBot-VLA]], [[2512.24125|GenieReasoner]], [[2511.14759|RECAP]], [[2511.14148|AsyncVLA]], [[2510.10274|X-VLA]], [[2509.04996|FLOWER]], [[2506.01844|SmolVLA]], [[2410.24164|π0]], [[2403.09631|3D-VLA]]
+- [[2601.18692|LingBot-VLA]], [[2512.24125|GenieReasoner]], [[2511.14759|RECAP]], [[2511.14148|AsyncVLA]], [[2510.10274|X-VLA]], [[2509.04996|FLOWER]], [[2506.01844|SmolVLA]], [[2410.24164|π0]], [[2403.09631|3D-VLA]], [[2603.24800|Calibri]]
+
+> [!star] Key Papers
+> - [[2410.24164|pi0]] — Vision-language-action flow model for general robot control; established flow matching as the standard for VLA action generation
+> - [[2506.01844|SmolVLA]] — Affordable and efficient VLA via flow matching; democratized robot learning with minimal compute requirements
+> - [[2509.04996|FLOWER]] — Generalist flow-based VLA policy enabling broad robot skill transfer across embodiments
 
 > [!star] Key Papers
 > - [[2205.09991|Diffuser]] — First to use denoising diffusion for RL planning; treat trajectories as data to denoise

@@ -94,7 +94,7 @@ After:  - [[2502.10385|SimDINO]], [[2304.07193|DINOv2]], [[2104.14294|DINO]]
 
 After placing papers, review whether any newly added paper deserves to be highlighted:
 
-- **`[!star]` Key Papers**: If a new paper is more impactful than existing starred papers in that sub-topic (e.g., higher citation count, paradigm-shifting result, state-of-the-art), add it to the `[!star]` callout or replace a less impactful entry. Each `[!star]` should have 2-3 papers max.
+- **`[!star]` Key Papers**: If a new paper is more impactful than existing starred papers in that sub-topic (e.g., higher citation count, paradigm-shifting result, state-of-the-art), add it to the `[!star]` callout or replace a less impactful entry. Each `[!star]` should have 3-5 papers max.
 - **`[!tip]` Insights**: If the new papers reveal a trend, shift, or practical takeaway not captured by the existing `[!tip]`, update the insight text to reflect the latest understanding.
 
 #### Step 6: Update the Index

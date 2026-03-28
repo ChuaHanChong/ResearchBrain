@@ -107,8 +107,16 @@ The architectural revolution that brought attention mechanisms to computer visio
 **Key Surveys** — Comprehensive overviews of the vision transformer landscape.
 - [[2309.02031|Efficient ViT Survey]], [[2305.09880|ViT CNN-Transformer Survey]], [[2111.06091|Visual Transformers Survey]], [[2101.01169|Transformers in Vision Survey]], [[2012.12556|Visual Transformer Survey]]
 
+> [!star] Key Papers
+> - [[2101.01169|Transformers in Vision Survey]] — Early comprehensive survey that mapped the ViT landscape and catalyzed adoption of Transformers in computer vision
+> - [[2309.02031|Efficient ViT Survey]] — Systematic taxonomy of efficiency methods for vision Transformers; essential reference for practical deployment
+
 **Efficient & Adaptive ViTs** — Adapting ViTs with lightweight modules, patch-level optimization, and resolution flexibility.
-- [[2603.22570|CanViT]], [[2601.08499|EfficientFSL]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2505.23769|TextRegion]], [[2505.21501|PH-Reg]], [[2505.19985|Structured ViT Initialization]], [[2505.17316|Patch-Aligned Training]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2307.09120|LW PLG-ViT]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2108.05988|TVT]], [[2107.02239|ViX]]
+- [[2603.22570|CanViT]], [[2601.08499|EfficientFSL]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2505.23769|TextRegion]], [[2505.21501|PH-Reg]], [[2505.19985|Structured ViT Initialization]], [[2505.17316|Patch-Aligned Training]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2307.09120|LW PLG-ViT]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2108.05988|TVT]], [[2107.02239|ViX]], [[2603.25744|MuRF]]
+
+> [!star] Key Papers
+> - [[2205.08534|ViT-Adapter]] — Foundational adapter method enabling plain ViTs to handle dense prediction tasks without architectural changes
+> - [[2412.04073|TransAdapter]] — Feature-centric unsupervised domain adaptation for ViTs; bridges the gap between pre-trained ViTs and target domains
 
 > [!tip] Scaling vs Efficiency
 > ViTs scale well (ViT-22B proves this), but raw scaling is not always practical. Hierarchical designs like Swin and HiViT recover multi-scale features efficiently, while domain-specific adaptations (HIPT for pathology, WIN-WIN for high-res) show that architecture matters as much as scale.
@@ -165,7 +173,7 @@ New attention patterns, normalization strategies, and structural modifications t
 Learning visual representations without labels — the foundation for data-efficient downstream tasks.
 
 **Contrastive & Self-Distillation** — Methods that learn by comparing or distilling representations without labeled data.
-- [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2406.09294|DINOv2]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
+- [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2406.09294|DINOv2]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]], [[2603.15553|Bootleg]]
 
 > [!star] Key Papers
 > - [[2104.14294|DINO]] — Self-distillation with no labels; emergent object segmentation in attention maps
@@ -220,6 +228,10 @@ Learning visual representations without labels — the foundation for data-effic
 **SSL Surveys** — Comprehensive reviews of self-supervised visual learning methods and evaluation.
 - [[2505.13584|SSL Segmentation Survey]], [[2505.01109|SSL-MIL Pathology Benchmark]], [[2504.07213|E-SSL Survey]], [[2408.17059|SSL for ViT Survey]], [[2305.13689|SSL Survey]]
 
+> [!star] Key Papers
+> - [[2305.13689|SSL Survey]] — Comprehensive taxonomy of image-based generative and discriminative self-supervised methods; essential landscape overview
+> - [[2408.17059|SSL for ViT Survey]] — Focused survey on self-supervised mechanisms specifically designed for vision Transformers
+
 > [!tip] From Reconstruction to Prediction
 > The field moved from pixel reconstruction (MAE, BEiT) to latent prediction (I-JEPA, LeJEPA). Latent prediction avoids wasting capacity on irrelevant pixel details and produces more semantically meaningful features. Meanwhile, continual learning (CLA, IC-SSL) ensures these methods work in non-stationary real-world settings.
 
@@ -246,6 +258,10 @@ Connecting visual and textual representations in a shared embedding space, enabl
 
 **Bootstrapped & Generative Alignment** — Methods that generate or bootstrap training data for vision-language alignment.
 - [[2601.09859|TuneCLIP]], [[2506.22434|MiCo]], [[2505.21465|ID-Align]], [[2505.16149|REVEAL]], [[2504.20364|SSL Representation Human Alignment]], [[2503.01776|CSR]], [[2411.15869|SC-CLIP]], [[2301.11915|Part-Aware SSL]], [[2201.12086|BLIP]]
+
+> [!star] Key Papers
+> - [[2201.12086|BLIP]] — Pioneered bootstrapped caption filtering for noisy web data; unified VL understanding and generation in one framework
+> - [[2503.01776|CSR]] — Sparse coding-based adaptive representations that go beyond Matryoshka for flexible embedding dimensionality
 
 **Region-Level & Fine-Grained Alignment** — Learning region-text correspondences and fine-grained visual-language representations.
 - [[2507.09961|TDCRL]], [[2507.09615|FAIR]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.15757|WPCL]], [[2506.12698|KDUP]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Augmentation-Aware Contrastive Learning Theory]], [[2505.21533|SOP]], [[2505.02278|GCLIP]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.02202|MLCL]], [[2401.09865|SPARC]], [[2206.05836|GLIPv2]], [[2203.12555|GriTS]], [[2112.09106|RegionCLIP]], [[2104.12763|MDETR]]
@@ -301,6 +317,13 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 
 **Key Surveys** — Comprehensive surveys mapping the rapidly evolving MLLM landscape.
 - [[2504.07951|NMM Scaling Laws]], [[2405.19334|LLM Multimodal Generation Survey]], [[2405.10739|Efficient MLLM Survey]], [[2306.13549|MLLM Survey]], [[2302.01107|Efficient Transformer Training Survey]]
+
+> [!star] Key Papers
+> - [[2306.13549|MLLM Survey]] — Foundational survey that defined the taxonomy and evaluation framework for multimodal large language models
+> - [[2405.10739|Efficient MLLM Survey]] — Comprehensive guide to making MLLMs practical through efficiency techniques across model, data, and inference
+
+> [!success] The Modern VLM Stack
+> ==Frozen vision encoder== (SigLIP or DINOv2) + ==lightweight connector== (linear projection) + ==LLM backbone== (Gemma, Llama) + ==instruction tuning== on diverse V-L tasks. [[2407.07726|PaliGemma]] proved sub-3B SOTA on 40+ tasks; [[2505.09568|BLIP3-o]] and [[2310.03744|LLaVA-1.5]] showed open models match proprietary ones.
 
 > [!tip] The VLM Stack
 > Modern VLMs follow a consistent pattern: frozen vision encoder (often SigLIP or DINOv2) + lightweight connector (linear projection or Q-Former) + LLM backbone. PaliGemma proved this can work at sub-3B scale, while BLIP3-o and LLaVA-1.5 showed that open models can compete with proprietary ones. The frontier is now visual reasoning (GoT-R1, Vision-SR1) and test-time RL (TTRV).
@@ -379,8 +402,16 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 **Knowledge Distillation** — Compressing large models into smaller ones via teacher-student training or multi-teacher distillation.
 - [[2603.16856|OEL]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
 
+> [!star] Key Papers
+> - [[2306.08543|MiniLLM]] — Foundational KD method for LLMs using reverse KL divergence; set the standard for language model compression
+> - [[2312.06709|AM-RADIO]] — Agglomerative multi-teacher distillation unifying CLIP, DINOv2, and SAM into one vision foundation model
+> - [[2506.14728|AgentDistill]] — Training-free agent distillation via generalizable MCP boxes; bridges large and small agent models
+
 **Machine Unlearning & Safety** — Removing specific data influence from trained models for privacy and safety compliance.
 - [[2402.15109|MU-Mis]]
+
+> [!star] Key Papers
+> - [[2402.15109|MU-Mis]] — Remaining-data-free unlearning via sample contribution suppression; enables privacy compliance without retaining original data
 
 **Continual Pretraining & Domain Adaptation** — Extending foundation models to new domains or tasks through continued training.
 - [[2603.17655|CC-CDFSL]], [[2602.02381|AdaSSL]], [[2509.06806|MachineLearningLM]], [[2507.06187|Delta Learning Hypothesis]], [[2507.00994|MLM vs CLM Pretraining]], [[2504.07745|SF2T]], [[2504.06608|Cross-Domain FSL with DKM]]
@@ -392,8 +423,15 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 **Gradient-Free & Evolutionary Optimization** — Optimizing models without gradient computation using evolution strategies.
 - [[2602.03120|QES]], [[2510.10603|EA4LLM]], [[2402.12479|Pruned Networks in Deep RL]]
 
+> [!star] Key Papers
+> - [[2510.10603|EA4LLM]] — Demonstrates evolutionary algorithms can effectively optimize LLMs without gradients; opens a new fine-tuning paradigm
+> - [[2602.03120|QES]] — Quantized evolution strategies achieving high-precision fine-tuning at low-precision cost; practical gradient-free optimization
+
 **Symmetry & Loss Landscape Theory** — Theoretical understanding of parameter space structure and its implications for training and merging.
 - [[2506.13018|NN Parameter Space Symmetry Survey]]
+
+> [!star] Key Papers
+> - [[2506.13018|NN Parameter Space Symmetry Survey]] — First comprehensive survey of symmetries in neural network parameter spaces; foundational for understanding model merging and loss landscape geometry
 
 > [!tip] The Adaptation Toolkit
 > The modern practitioner's stack: LoRA for efficient fine-tuning, SWA/PMA for merging multiple checkpoints, PromptBreeder for automated prompt optimization, and T2L for on-the-fly adapter generation. The key insight from 2025: you rarely need to fine-tune the full model — the right adapter strategy often matches or exceeds full fine-tuning.
@@ -435,8 +473,17 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 **Unsupervised & Self-Supervised LLM Alignment** — Aligning language models without explicit human feedback through self-supervised objectives.
 - [[2508.03682|SQLM]], [[2507.06187|Delta Learning Hypothesis]], [[2506.10139|ICM]]
 
+> [!star] Key Papers
+> - [[2508.03682|SQLM]] — Self-Questioning Language Models that generate their own training signal; eliminates dependence on human preference data
+> - [[2506.10139|ICM]] — Unsupervised elicitation of language model capabilities without labeled examples; reveals latent model knowledge
+
 **Self-Evolving & Self-Improving Agents** — LLM systems that autonomously improve their capabilities through self-play, self-generated data, or evolutionary strategies.
 - [[2601.10094|V-Zero]], [[2601.07055|Dr. Zero]], [[2601.05877|iReasoner]], [[2512.20605|Internal RL]], [[2512.06835|DoGe]], [[2512.02472|R-FEW]], [[2511.16672|EvoLMM]], [[2511.16043|Agent0]], [[2511.15661|VisPlay]], [[2511.13054|ViSS-R1]], [[2511.10395|AgentEvolver]], [[2510.16416|SSL4RL]], [[2510.16333|PIVOT]]
+
+> [!star] Key Papers
+> - [[2511.16043|Agent0]] — Self-evolving agents from zero data via tool-integrated reasoning; paradigm for autonomous agent improvement
+> - [[2511.16672|EvoLMM]] — Self-evolving multimodal models with continuous rewards; bridges RL and self-improvement for vision-language agents
+> - [[2601.10094|V-Zero]] — Self-improving multimodal reasoning with zero annotation; proves annotation-free self-improvement is viable
 
 > [!tip] The RL-for-Reasoning Stack
 > Post-DeepSeek-R1, the recipe is clear: start with SFT for format, then RL with verifiable rewards for reasoning. Webscale-RL showed you can automate reward data collection at pretraining scale. JustRL proved even a 1.5B model benefits. The frontier is extending verifiable rewards beyond math/code (Writing-Zero, RLVR).
@@ -487,6 +534,9 @@ Unconventional approaches that do not fit neatly into the above categories but r
 **Neuromorphic & Bio-Inspired Learning** — Learning algorithms inspired by biological neural mechanisms.
 - [[2307.04054|Deep-STDP]]
 
+> [!star] Key Papers
+> - [[2307.04054|Deep-STDP]] — Spike-timing-dependent plasticity for deep unsupervised learning; explores biologically plausible alternatives to backpropagation
+
 **LLM-Assisted Research Tools** — Using LLMs to automate aspects of the research process itself.
 - [[2508.17971|LLM-NAR]], [[2504.17192|PaperCoder]]
 
@@ -497,14 +547,29 @@ Unconventional approaches that do not fit neatly into the above categories but r
 **Visual Generation & Style Transfer** — Foundation model approaches to image generation, editing, and style-driven synthesis.
 - [[2508.18966|USO]], [[2505.17022|GoT-R1]], [[2411.10231|TaylorIR]]
 
+> [!star] Key Papers
+> - [[2505.17022|GoT-R1]] — Applies RL to unleash MLLM reasoning for visual generation; bridges reasoning and image synthesis
+> - [[2508.18966|USO]] — Unified style and subject-driven generation via disentangled reward learning; achieves controllable personalization
+
 **Detection & Segmentation Foundations** — Self-supervised and weakly-supervised methods for object detection and segmentation.
 - [[2602.23759|Selfment]], [[2507.03302|SemiOVS]], [[2505.06710|SimMIL]], [[2505.01109|SSL-MIL Pathology Benchmark]], [[2412.18273|SBV]], [[2407.11464|Crowd-SAM]], [[2203.16513|PromptDet]], [[2201.02609|GCD]], [[2201.02605|Detic]], [[2104.03344|OVANet]], [[2007.07986|Progressive Knowledge Transfer WSOD]], [[2004.02684|Attribute Mix]], [[2002.07421|EHSOD]], [[2002.04741|POTD]]
+
+> [!star] Key Papers
+> - [[2201.02605|Detic]] — Detects 20,000+ classes using only image-level supervision; pioneered scaling open-vocabulary detection with weak labels
+> - [[2201.02609|GCD]] — Generalized Category Discovery framework; foundational method for discovering novel categories without full supervision
+> - [[2602.23759|Selfment]] — Accurate segmentation learned purely from self-supervision; eliminates annotation dependency for dense prediction
 
 **Geospatial & Location Intelligence** — Applying foundation models to geospatial representation learning.
 - [[2505.09651|Location Intelligence Survey]]
 
+> [!star] Key Papers
+> - [[2505.09651|Location Intelligence Survey]] — Comprehensive survey bridging deep learning and LLMs for geospatial representation; maps the emerging location intelligence landscape
+
 **Hardware Security & Physical Systems** — Foundation model techniques applied to hardware security and physical unclonable functions.
 - [[2403.01299|Photonic PUF ML Resilience]]
+
+> [!star] Key Papers
+> - [[2403.01299|Photonic PUF ML Resilience]] — Evaluates ML attack resilience of photonic physically unclonable functions; bridges foundation model techniques and hardware security
 
 > [!tip] Watch List
 > PaperCoder and LLM-NAR represent a meta-trend: AI systems that accelerate AI research itself. Deep-STDP explores whether biological learning rules can complement backpropagation. These are early signals of potentially transformative directions.

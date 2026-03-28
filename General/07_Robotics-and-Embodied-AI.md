@@ -122,6 +122,10 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 **World Model Studies** — Empirical studies of predictive models in manipulation contexts.
 - [[2512.24497|JEPA-WM]], [[2512.13644|DexWM]], [[2503.09867|OH-A-DINO]], [[2411.04983|DINO-WM]]
 
+> [!star] Key Papers
+> - [[2411.04983|DINO-WM]] — World models built on pre-trained DINO features enable zero-shot planning; foundational for latent WM in manipulation
+> - [[2512.24497|JEPA-WM]] — LeCun lab study identifying what drives success in JEPA-based physical planning; key design insights
+
 > [!tip] The Diffusion Policy Shift
 > Regression → diffusion → flow matching. If you're building a manipulation policy today, start with Diffusion Policy or DP3 and add 3D/spatial features for viewpoint invariance.
 
@@ -198,7 +202,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2507.09160|Tactile-VLA]] — First to integrate 6-axis force feedback into VLAs; critical for assembly and insertion tasks
 
 **Architecture Studies** — Systematic explorations of VLA design choices, scaling laws, and novel architectures.
-- [[2603.22078|WAM vs VLA Robustness]], [[2603.12772|PVI]], [[2602.20687|NativeEmbodied]], [[2602.11236|ABot-M0]], [[2601.18692|LingBot-VLA]], [[2601.02456|InternVLA-A1]], [[2511.18085|Stellar VLA]], [[2511.05275|TwinVLA]], [[2510.19430|GigaBrain-0]], [[2510.13054|VLA-0]], [[2510.10274|X-VLA]], [[2509.09372|2509.09372]], [[2508.19236|MemoryVLA]], [[2506.19850|UniVLA]], [[2506.00123|VeBrain]], [[2412.14058|RoboVLMs]], [[2412.10345|TraceVLA]], [[2409.03299|RT-1-X SCARA Transfer]]
+- [[2603.22078|WAM vs VLA Robustness]], [[2603.12772|PVI]], [[2602.20687|NativeEmbodied]], [[2602.11236|ABot-M0]], [[2601.18692|LingBot-VLA]], [[2601.02456|InternVLA-A1]], [[2511.18085|Stellar VLA]], [[2511.05275|TwinVLA]], [[2510.19430|GigaBrain-0]], [[2510.13054|VLA-0]], [[2510.10274|X-VLA]], [[2509.09372|2509.09372]], [[2508.19236|MemoryVLA]], [[2506.19850|UniVLA]], [[2506.00123|VeBrain]], [[2412.14058|RoboVLMs]], [[2412.10345|TraceVLA]], [[2409.03299|RT-1-X SCARA Transfer]], [[2603.16861|MolmoBot]]
 
 > [!star] Key Papers
 > - [[2412.14058|RoboVLMs]] — 600+ experiments systematically testing VLA design choices; the definitive recipe paper
@@ -213,7 +217,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 WAMs go beyond VLAs by jointly predicting future states and actions — they learn the physics of the world, not just how to imitate demonstrations. The key architectural question is *where* to predict: in pixel space (video generation), latent space (JEPA-style), or action space only (efficient WAMs).
 
 **Dreamer Lineage** — The original model-based RL approach: learn world dynamics in compressed latent space via recurrent state-space models, then plan entirely in "imagination."
-- [[2509.24527|Dreamer 4]], [[2503.21047|CBET-DreamerV3]], [[2502.05907|EvoAgent]], [[2301.04104|DreamerV3]], [[2211.15944|Continual-Dreamer]], [[2206.14176|DayDreamer]], [[2206.02072|VSRL]], [[2007.07853|γ-Progress]], [[2005.05960|Plan2Explore]], [[1912.01603|Dreamer]], [[1911.10601|Scaling Active Inference]]
+- [[2509.24527|Dreamer 4]], [[2503.21047|CBET-DreamerV3]], [[2502.05907|EvoAgent]], [[2301.04104|DreamerV3]], [[2211.15944|Continual-Dreamer]], [[2206.14176|DayDreamer]], [[2206.02072|VSRL]], [[2007.07853|γ-Progress]], [[2005.05960|Plan2Explore]], [[1912.01603|Dreamer]], [[1911.10601|Scaling Active Inference]], [[1803.10122|World Models]]
 
 > [!star] Key Papers
 > - [[2206.14176|DayDreamer]] — First to deploy Dreamer on real robots; proved sample-efficient learning from imagination works physically
@@ -255,6 +259,10 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 **Surveys** — Comprehensive reviews of world model architectures, taxonomies, and design principles.
 - [[2602.01630|Unified World Model Framework]], [[2511.08585|Visual World Roadmap]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.22355|Embodied AI World Modeling]], [[2506.01622|General Agents World Models]], [[2411.14499|World Models Survey 2024]], [[2407.06886|ARIO]]
 
+> [!star] Key Papers
+> - [[2411.14499|World Models Survey 2024]] — Most comprehensive world model survey; distinguishes "understanding" vs "predicting" paradigms
+> - [[2602.01630|Unified World Model Framework]] — Argues world model research must go beyond task-specific injection; proposes a unified framework
+
 > [!tip] Video vs Latent
 > DreamZero proves video generation works at scale, but Fast-WAM shows you only need video at *training time*. For deployment, latent prediction (UWM, VLA-JEPA) is faster and more practical.
 
@@ -293,6 +301,9 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 **Vision-Language Navigation** — Follow natural language instructions through visual environments, requiring grounding of spatial language to visual observations.
 - [[2506.15757|WPCL]]
 
+> [!star] Key Papers
+> - [[2506.15757|WPCL]] — Weakly-supervised VLM-guided contrastive learning for VLN; reduces annotation cost while improving grounding
+
 **Autonomous Driving (World Model Perspective)** — Driving as a world model problem: predict the scene's future, then plan safe trajectories.
 - [[2603.14497|WorldVLM]], [[2512.24331|LVLDrive]], [[2505.17685|FSDrive]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]]
 
@@ -302,6 +313,10 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 
 **Surveys & Roadmaps** — Reviews of embodied navigation and spatial intelligence.
 - [[2512.24385|Spatial Intelligence Roadmap]], [[2311.00530|LLM Embodied Navigation Survey]]
+
+> [!star] Key Papers
+> - [[2512.24385|Spatial Intelligence Roadmap]] — Comprehensive roadmap for multi-modal spatial pre-training in autonomous systems; defines the field's trajectory
+> - [[2311.00530|LLM Embodied Navigation Survey]] — First survey connecting LLM advances to embodied navigation; maps the integration landscape
 
 > [!tip] Navigation → Driving
 > Both reduce to "predict the future scene, then plan a trajectory." The difference is scale and safety constraints. World model approaches transfer between them.
@@ -354,6 +369,10 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 **Spatial & Scene Understanding** — Understanding 3D scenes, layouts, and spatial relationships as a prerequisite for embodied reasoning.
 - [[2603.19231|MonoArt]], [[2603.18892|MultihopSpatial]], [[2601.16538|OnlineSI]], [[2512.12822|LEMON]], [[2511.16160|Video2Layout]], [[2507.05258|REA]], [[2504.12680|Embodied-R]], [[2410.06468|SPACE]]
 
+> [!star] Key Papers
+> - [[2410.06468|SPACE]] — Benchmark probing whether spatial cognition emerges in frontier models; reveals fundamental gaps in spatial reasoning
+> - [[2504.12680|Embodied-R]] — Activates embodied spatial reasoning in foundation models via RL; bridges perception and physical action
+
 **Domain Adaptation** — Transfer policies across visual domains without retraining from scratch.
 - [[2407.13771|Training-Free Model Merging MTDA]]
 
@@ -375,6 +394,10 @@ The data and evaluation infrastructure that makes all the above research possibl
 
 **Multi-Modal & Bimanual Datasets** — Datasets with rich sensor modalities (tactile, force) or bimanual manipulation focus.
 - [[2512.24653|RoboMIND 2.0]], [[2511.17441|RoboCOIN]], [[2509.00576|G0]], [[2412.13877|RoboMIND]]
+
+> [!star] Key Papers
+> - [[2412.13877|RoboMIND]] — Multi-embodiment benchmark with normative manipulation data; standardizes evaluation across robot types
+> - [[2512.24653|RoboMIND 2.0]] — Extended to bimanual mobile manipulation; the most comprehensive multi-modal robotics dataset
 
 **Benchmarks — Simulation** — Standardized simulation environments for reproducible evaluation.
 - [[2510.13626|LIBERO-Plus]], [[2406.02523|RoboCasa]], [[2405.05941|SIMPLER]], [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[1909.12271|RLBench]]

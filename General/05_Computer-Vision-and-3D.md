@@ -105,7 +105,7 @@ The field evolved through four phases: **backbone design** (2016-2022) where ViT
 The backbone revolution: Vision Transformers replaced CNNs as the default architecture for nearly all perception tasks. The design space spans pure transformers (ViT), hierarchical multi-scale architectures (Swin, MPViT), CNN-transformer hybrids (CMT, ViT-CoMer), and efficiency-focused designs for high-resolution or resource-constrained deployment.
 
 **Foundational Architectures** — The original ViT and its hierarchical extensions that introduced multi-scale feature processing to transformers.
-- [[2312.17686|BMViT]], [[2204.01697|MaxViT]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.09883|Swin Transformer V2]], [[2105.13677|ResT]], [[2010.11929|ViT]]
+- [[2312.17686|BMViT]], [[2204.01697|MaxViT]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.09883|Swin Transformer V2]], [[2105.13677|ResT]], [[2010.11929|ViT]], [[2603.25744|MuRF]]
 
 > [!star] Key Papers
 > - [[2010.11929|ViT]] — Proved a pure Transformer can match CNNs on image classification; launched the ViT era
@@ -150,6 +150,10 @@ The backbone revolution: Vision Transformers replaced CNNs as the default archit
 
 **Surveys** — Comprehensive reviews of vision transformer architectures, designs, and trends.
 - [[2309.02031|Efficient ViT Survey]], [[2305.09880|ViT CNN-Transformer Survey]], [[2111.06091|Visual Transformers Survey]], [[2101.01169|Transformers in Vision Survey]]
+
+> [!star] Key Papers
+> - [[2101.01169|Transformers in Vision Survey]] — First comprehensive survey of ViTs; established the taxonomy that later surveys build on
+> - [[2309.02031|Efficient ViT Survey]] — Focused review of efficiency techniques for ViTs; essential for deployment-oriented work
 
 > [!tip] Choosing a ViT Backbone
 > For general-purpose tasks, start with DINOv2 features. For detection, use ViTDet or ViT-CoMer. For efficiency-constrained deployment, FasterViT and EfficientViT offer the best speed-accuracy tradeoffs.
@@ -202,6 +206,10 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 **Initialization & Training Recipes** — Methods to improve ViT training stability, speed, or final performance through structured initialization or learning rate schedules.
 - [[2507.17634|WSM]], [[2505.19985|Structured ViT Initialization]]
 
+> [!star] Key Papers
+> - [[2505.19985|Structured ViT Initialization]] — Embeds convolutional inductive biases into ViT attention at init; bridges the CNN-ViT gap on small datasets
+> - [[2507.17634|WSM]] — Decay-free learning rate schedule via checkpoint merging; simplifies LLM pre-training with +1.3 avg benchmark improvement
+
 > [!tip] The SSL Hierarchy
 > DINO/DINOv2 for general-purpose features. MAE for tasks needing spatial detail (depth, segmentation). I-JEPA for semantic-level understanding. AM-RADIO if you need all properties in one model.
 
@@ -246,11 +254,23 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 **Reward & RL-Tuned Detection** — Methods applying reinforcement learning or reward-based optimization to improve detection and visual grounding.
 - [[2504.07615|VLM-R1]], [[2503.01785|Visual-RFT]], [[2302.08242|Reward Tuning CV]]
 
+> [!star] Key Papers
+> - [[2503.01785|Visual-RFT]] — Adapts RL fine-tuning to vision tasks with verifiable rewards; +24.3% on fine-grained classification, +21.9 mAP on few-shot detection
+> - [[2302.08242|Reward Tuning CV]] — Google's framework for directly optimizing non-differentiable vision metrics via RL; +15.1% mAP on detection
+
 **LLM-Assisted Detection & Automation** — Leveraging LLMs for detection chain-of-thought, auto-labeling, and specialized visual understanding tasks.
 - [[2510.21311|FineRS]], [[2506.07850|SAM2Auto]], [[2506.02359|Auto-Labeling]], [[2503.23508|Real-LOD]], [[2412.18273|SBV]], [[2411.19331|Talk2DINO]], [[2405.17104|LLM-Optic]], [[2405.08593|NRAA]], [[2403.12488|DetToolChain]], [[2401.17981|MLLM Detection Infusion]], [[2401.07629|FPD]]
 
+> [!star] Key Papers
+> - [[2403.12488|DetToolChain]] — Detection-specific chain-of-thought with a visual toolkit; enables zero-shot detection via prompting alone
+> - [[2510.21311|FineRS]] — Coarse-to-fine pipeline with RL for ultra-small object reasoning and segmentation in 4K images
+
 **Surveys** — Comprehensive reviews of open-vocabulary detection and segmentation.
 - [[2307.09220|OVD/OVS Survey]], [[2306.15880|Open Vocabulary Learning Survey]]
+
+> [!star] Key Papers
+> - [[2306.15880|Open Vocabulary Learning Survey]] — Comprehensive survey of open-vocabulary methods across detection, segmentation, and recognition
+> - [[2307.09220|OVD/OVS Survey]] — Focused review of open-vocabulary detection and segmentation; maps the rapid transition from closed-set to open-world
 
 > [!tip] Detection in Practice
 > For open-vocabulary needs, Grounding DINO is the standard. For few-shot scenarios, combine a strong DINO/DINOv2 backbone with metric-learning heads. For small objects, add Dynamic Tiling or HMPE on top of any base detector.
@@ -290,11 +310,21 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 **One-Shot Segmentation** — Segment novel categories from a single annotated example using similarity guidance or prototype matching.
 - [[1810.09091|SG-One]]
 
+> [!star] Key Papers
+> - [[1810.09091|SG-One]] — Similarity guidance network for one-shot segmentation; halved parameters while exceeding prior methods by 5+ mIoU
+
 **Video & Temporal Segmentation** — Segmentation methods that extend to video sequences, combining spatial precision with temporal consistency.
 - [[2603.12382|SPARROW]], [[2511.16077|VideoSeg-R1]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]]
 
+> [!star] Key Papers
+> - [[2511.16077|VideoSeg-R1]] — First RL-based framework for video object segmentation; explicit reasoning chains for temporal tracking
+> - [[2603.12382|SPARROW]] — Dual-prompt grounding with tracked features; +8.9 J&F on MeViS for temporally consistent segmentation
+
 **Semi-Supervised Segmentation** — Segmentation with limited labeled data, leveraging language anchors or open-vocabulary models.
 - [[2507.03302|SemiOVS]], [[2402.06912|ES Linear Policy]]
+
+> [!star] Key Papers
+> - [[2507.03302|SemiOVS]] — Uses open-vocabulary models for pseudo-labels on out-of-distribution data; +12.6% mIoU in low-label settings
 
 > [!tip] Segmentation Stack
 > Use Grounding DINO for detection + SAM for masks in most applications. For complex language queries, LISA adds reasoning. For domain-specific needs, JAFAR sharpens frozen features without retraining.
@@ -332,7 +362,11 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2403.03954|DP3]] — 3D Diffusion Policy: generalizable visuomotor policy from point clouds; enables sim-to-real without camera calibration
 
 **Spatial Intelligence Surveys** — Comprehensive reviews of 4D spatial intelligence, encompassing 3D understanding across time.
-- [[2512.24385|Spatial Intelligence Roadmap]], [[2507.21045|4D Spatial Intelligence Survey]], [[2506.20134|3D World Models Survey]], [[2504.15280|All-Angles Bench]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2504.09848|LLM Spatial Intelligence Survey]], [[2412.14171|VSI-Bench]]
+- [[2512.24385|Spatial Intelligence Roadmap]], [[2507.21045|4D Spatial Intelligence Survey]], [[2506.20134|3D World Models Survey]], [[2504.15280|All-Angles Bench]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2504.09848|LLM Spatial Intelligence Survey]], [[2412.14171|VSI-Bench]], [[2603.22057|SpatialBoost]]
+
+> [!star] Key Papers
+> - [[2507.21045|4D Spatial Intelligence Survey]] — Five-level hierarchical taxonomy for 4D reconstruction; the most structured overview of spatial intelligence
+> - [[2512.24385|Spatial Intelligence Roadmap]] — Maps the multi-modal pre-training trajectory from single-modality to unified foundation models for autonomous systems
 
 > [!tip] 3D for Robotics
 > 3D understanding is the missing link between VLMs and physical manipulation. RieMind and VEGA-3D show that explicit geometric grounding dramatically improves robot task performance. See [[07_Robotics-and-Embodied-AI]].
@@ -366,8 +400,16 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 **OOD Generalization & Robustness** — Predicting and improving model performance on out-of-distribution data.
 - [[2603.21191|BST Scaling Rule]], [[2602.02140|GAPEVAL]], [[2511.13787|TC2]], [[2504.13292|GrokTransfer]], [[2410.02735|OOD-Chameleon]], [[2404.04452|ViT Domain Robustness Survey]], [[2305.18712|Transfer Score]]
 
+> [!star] Key Papers
+> - [[2410.02735|OOD-Chameleon]] — Meta-learning framework that automatically selects the best OOD generalization strategy for a given distribution shift
+> - [[2504.13292|GrokTransfer]] — Accelerates grokking via embedding transfer from weaker models; eliminates delayed generalization
+
 **VLM-Based Adaptation** — Adapting vision-language models (CLIP and variants) to new domains via prompting, fine-tuning, or representation learning.
 - [[2512.09441|MoP-CIL]], [[2507.09615|FAIR]], [[2507.03657|ProtoMM]], [[2504.12104|Logits DeConfusion]], [[2504.10428|PIU Learning]], [[2504.06389|SemiDAViL]], [[2503.08497|MMRL]], [[2503.06626|DiffCLIP]], [[2411.04997|LLM2CLIP]], [[2407.15173|CLIP Domain Adaptation]], [[2407.07726|PaliGemma]], [[2407.01400|GalLoP]], [[2309.08912|MP-FGVC]]
+
+> [!star] Key Papers
+> - [[2411.04997|LLM2CLIP]] — Integrates LLM text understanding into CLIP; +15.8 points on long-text retrieval over EVA02
+> - [[2407.07726|PaliGemma]] — Google's sub-3B VLM achieving strong transfer across 40 tasks; proves small VLMs can rival large ones
 
 **Surveys** — Reviews of domain adaptation and VLM generalization.
 - [[2508.05547|VLM Unsupervised Adaptation Survey]], [[2506.18504|VLM Generalization Survey]], [[2506.02843|REAP]]
@@ -412,6 +454,9 @@ Learning from minimal examples or no examples at all. These methods enable visua
 **Semantic Augmentation** — Data augmentation at the semantic level for few-shot scenarios, generating novel training combinations from attribute decompositions.
 - [[2004.02684|Attribute Mix]]
 
+> [!star] Key Papers
+> - [[2004.02684|Attribute Mix]] — Semantic data augmentation via attribute-level feature mixing; +3.1% on CUB-200 without extra inference cost
+
 > [!tip] Few-Shot Checklist
 > Check domain gap first: same-domain few-shot is largely solved by DINOv2 + linear probe. Cross-domain few-shot (ADAPTER, CC-CDFSL) remains challenging. For discovering entirely new categories, use GCD.
 
@@ -437,6 +482,9 @@ Understanding what vision models learn, explaining their decisions, and providin
 **Image Retrieval & Explainability** — Methods for retrievable and explainable visual representations.
 - [[2411.10231|TaylorIR]]
 
+> [!star] Key Papers
+> - [[2411.10231|TaylorIR]] — 1x1 pixel-wise patch embeddings with TaylorShift attention; 60% memory reduction for transformer-based super-resolution
+
 > [!tip] Interpretability in Practice
 > B-cos Networks and INTR offer built-in explanations. For post-hoc analysis of frozen models, sparse autoencoders (USAE, DINOv2 Hierarchy SAE) reveal what features encode without modifying the model.
 
@@ -455,6 +503,9 @@ Practical methods for training vision models efficiently: dataset pruning, conti
 **Knowledge Distillation** — Transfer knowledge from large teacher models to smaller, deployable student models.
 - [[2306.08543|MiniLLM]]
 
+> [!star] Key Papers
+> - [[2306.08543|MiniLLM]] — Reverse KL divergence + on-policy optimization for LLM distillation; produces higher-precision student models
+
 **Continual Learning** — Learn new tasks sequentially without forgetting previous knowledge.
 - [[2305.13622|SER]]
 
@@ -470,11 +521,20 @@ Practical methods for training vision models efficiently: dataset pruning, conti
 **Weakly-Supervised Pre-Training** — Pre-train on weakly-labeled data (e.g., image-level tags for pixel-level tasks) to scale annotation-efficient learning.
 - [[2505.06710|SimMIL]]
 
+> [!star] Key Papers
+> - [[2505.06710|SimMIL]] — Propagates bag-level labels to instances for MIL pre-training; improves pathology classification without pixel annotations
+
 **Adversarial Robustness** — Understanding and improving model resilience to adversarial perturbations.
 - [[2506.21046|dSVA]]
 
+> [!star] Key Papers
+> - [[2506.21046|dSVA]] — Exploits self-supervised ViT features for adversarial attacks; outperforms prior methods by 13.7% on average transferability
+
 **High-Resolution Processing** — Efficient methods for handling high-resolution inputs that would otherwise exceed memory or compute budgets.
 - [[2207.13050|Efficient High-Resolution Survey]]
+
+> [!star] Key Papers
+> - [[2207.13050|Efficient High-Resolution Survey]] — First comprehensive survey of efficient high-resolution deep learning; categorizes five families of approaches
 
 > [!tip] Efficiency Stack
 > Prune your dataset (Dataset Pruning) -> pre-train with SSL (DINOv2/MAE) -> fine-tune with PEFT (V-PEFT Bench recipes) -> distill for deployment (AM-RADIO/MiniLLM). Each stage compounds savings.

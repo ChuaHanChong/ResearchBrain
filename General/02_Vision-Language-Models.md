@@ -84,6 +84,9 @@ The foundational approach: learning shared vision-language embeddings from web-s
 > - [[2111.10050|BASIC]] — Combined batch, data, and model scaling to push contrastive learning to 85.7% zero-shot ImageNet accuracy
 > - [[2505.04410|DeCLIP]] — Decoupled learning framework enhancing CLIP for open-vocabulary dense perception tasks
 
+> [!tip] CLIP as the Universal Starting Point
+> Nearly every VLM in this vault traces back to CLIP's contrastive pre-training recipe. SigLIP 2 and DeCLIP show the paradigm still evolving five years later, while LiT demonstrated that freezing the image tower and only tuning text can be surprisingly effective for adaptation. The choice of contrastive objective (softmax vs sigmoid, global vs local) cascades into downstream grounding and detection quality.
+
 ---
 
 ## 2. Self-Supervised Visual Learning
@@ -348,14 +351,35 @@ Large multimodal models — the workhorses of modern vision-language understandi
 **Large-Scale MLLMs** — General-purpose instruction-tuned multimodal models at scale.
 - [[2508.11737|Ovis2.5]], [[2507.23278|UniLiP]], [[2507.01949|Kwai Keye-VL]], [[2507.01006|GLM-4.5V]], [[2505.18842|v1]], [[2505.14683|BAGEL]], [[2505.07062|Seed1.5-VL]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2504.10479|InternVL3]], [[2504.07491|Kimi-VL]], [[2504.00595|Open-Qwen2VL]], [[2410.13733|Arcana]], [[2410.10855|CoreCognition]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2407.07726|PaliGemma]], [[2306.13549|MLLM Survey]], [[2305.06500|InstructBLIP]], [[2304.07193|DINOv2]], [[2201.12086|BLIP]]
 
+> [!star] Key Papers
+> - [[2504.10479|InternVL3]] — Native multimodal pre-training paradigm achieving 72.2 on MMMU; top open-source MLLM competitive with proprietary models
+> - [[2409.17146|Molmo]] — Fully open-weight and open-data VLM family proving that SOTA performance does not require proprietary training data
+> - [[2505.14683|BAGEL]] — Unified MoT architecture with emergent reasoning; SOTA open-source on understanding and generation benchmarks
+
 **Efficient & Compressed MLLMs** — Lightweight, fast, or token-efficient multimodal models for practical deployment.
 - [[2603.06569|Penguin-VL]], [[2603.00136|TinyVLM]], [[2511.19820|CropVLM]], [[2507.00505|LLaVA-SP]], [[2506.17608|HIRE]], [[2506.12776|NativeRes-LLaVA]], [[2506.10967|CDPruner]], [[2505.24541|Mixpert]], [[2505.05626|PERCEPTLLM]], [[2505.01064|NeaR]], [[2504.05299|SmolVLM]], [[2503.16660|Adaptive Token Reduction]], [[2412.13871|LLaVA-UHD v2]], [[2412.13303|FastVLM]], [[2412.04468|NVILA]]
+
+> [!star] Key Papers
+> - [[2412.04468|NVILA]] — Scale-then-compress paradigm reducing training cost 5x and enabling VLM fine-tuning under 24GB; real-time robotic deployment on a laptop GPU
+> - [[2504.15271|Eagle 2.5]] — 8B model matching 72B+ performance on video understanding via information-first sampling and progressive mixed post-training
 
 **Unified Understanding & Generation MLLMs** — Models that jointly handle visual understanding, generation, and editing in a single architecture.
 - [[2603.03276|Transfusion]], [[2510.08673|Puffin]], [[2506.22880|DeSa2VA]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.16933|LLaDA-V]], [[2505.05472|Mogao]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2501.17811|Janus-Pro]], [[2501.00289|D-DiT]], [[2412.03069|TokenFlow]], [[2410.13848|Janus]], [[2408.12528|Show-o]], [[2408.11039|Transfusion]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
+> [!star] Key Papers
+> - [[2408.12528|Show-o]] — Single transformer unifying understanding and generation via omni-attention that switches between causal and full attention per modality
+> - [[2405.09818|Chameleon]] — Early-fusion token-based architecture scaling to 34B parameters; preferred over GPT-4V+ for mixed-modal generation in human evals
+> - [[2501.17811|Janus-Pro]] — Decoupled visual encoding resolving the understanding-generation conflict; 80% on GenEval surpassing DALL-E 3
+
 **Multimodal Surveys & Taxonomies** — Comprehensive surveys covering the MLLM landscape.
 - [[2510.09586|VLM Survey 26K]], [[2508.04227|VLM Continual Learning Survey]], [[2501.02189|VLM Survey 2025]], [[2412.18619|Multimodal NTP Survey]], [[2405.10739|Efficient MLLM Survey]]
+
+> [!star] Key Papers
+> - [[2306.13549|MLLM Survey]] — Foundational survey synthesizing MLLM architectures, training paradigms, evaluation methods, and the hallucination challenge
+> - [[2501.02189|VLM Survey 2025]] — Comprehensive 2025 review covering 95 benchmarks and identifying the shift from trained-from-scratch to LLM-backbone VLMs
+
+> [!tip] The Architecture Convergence
+> MLLMs are converging on a shared blueprint: frozen vision encoder + connector + instruction-tuned LLM. The differentiators are now training recipe (native multimodal pre-training in InternVL3 vs post-hoc adaptation) and efficiency (NVILA shows 5x training cost reduction). For unified understanding+generation, the key design choice is whether to use a single token space (Chameleon) or decoupled encoders (Janus-Pro) -- the latter currently wins on quality.
 
 ---
 
@@ -366,29 +390,64 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 **RL-Trained Visual Reasoners** — VLMs fine-tuned with RL for improved visual reasoning and chain-of-thought.
 - [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
 
+> [!star] Key Papers
+> - [[2503.01785|Visual-RFT]] — Pioneered RL fine-tuning for visual tasks with verifiable rewards; 24.3% accuracy boost in fine-grained classification
+> - [[2505.19094|SATORI]] — Glance-Focus-Think paradigm anchoring RL training in explicit visual grounding; 76.2% on MathVista surpassing GPT-4o
+
 **VLM Chain-of-Thought & Thinking** — Methods for step-by-step visual reasoning in multimodal models.
 - [[2603.23483|SpecEyes]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
+
+> [!star] Key Papers
+> - [[2411.10440|LLaVA-CoT]] — Autonomous multistage reasoning with stage-wise retracing; 5.8% improvement enabling 11B model to rival larger closed-source MLLMs
+> - [[2603.22281|ThinkJEPA]] — Integrates JEPA-style world modeling into VLM chain-of-thought for grounded visual prediction
 
 **VLM Evaluation & Benchmarks** — Evaluation frameworks, benchmarks, and quality assessment for multimodal models.
 - [[2603.03944|SCP-Bench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.16520|TangramPuzzle]], [[2601.12585|MLLM Visualization Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2406.18925|VisArgs]]
 
+> [!star] Key Papers
+> - [[2603.03944|SCP-Bench]] — Spatial causal prediction benchmark revealing a 23% gap between best MLLMs and humans on unseen spatio-temporal reasoning
+> - [[2406.18925|VisArgs]] — Evaluates VLM ability to construct and assess visual arguments, probing beyond factual accuracy into persuasion and reasoning
+
 **VLM Continual & Incremental Learning** — Adapting VLMs to new tasks and domains without forgetting.
 - [[2602.21628|RuCL]], [[2512.12822|LEMON]], [[2505.22453|MM-UPT]], [[2410.19925|MLLM Continual Learning]]
+
+> [!star] Key Papers
+> - [[2410.19925|MLLM Continual Learning]] — Systematic quantification of linguistic forgetting in MLLMs; showed mSGM+Rehearsal preserves language abilities during multimodal adaptation
+> - [[2512.12822|LEMON]] — Efficient incremental learning for MLLMs via lightweight memory-optimized adaptation
 
 **VLM Alignment & Post-Training** — Aligning VLMs with preferences, safety, or task-specific objectives.
 - [[2510.09201|MPO]], [[2509.03113|GACD]], [[2506.17901|PostAlign]], [[2506.08391|SECOND]], [[2506.04277|RSVP]], [[2505.20444|HoPE]], [[2505.20164|VAT]], [[2505.16411|SPIN]], [[2505.07956|LLM-LEx]], [[2504.14200|KeCO]]
 
+> [!star] Key Papers
+> - [[2510.09201|MPO]] — Multimodal prompt optimization jointly tuning textual and non-textual prompts; outperforms text-only methods by 5+ points with 70% less evaluation budget
+> - [[2506.08391|SECOND]] — Training-free contrastive decoding that reduces hallucination while improving general VLM accuracy
+
 **VLM Agents & Tool Use** — VLMs deployed as interactive agents, tool users, or in agentic workflows.
 - [[2601.18631|AdaReasoner]], [[2512.15885|JARVIS]], [[2511.21688|G2VLM]], [[2506.11515|Manager]], [[2505.23766|Argus]], [[2505.21497|PosterAgent]], [[2505.21457|ACTIVE-O3]], [[2411.17673|SketchAgent]], [[2410.16400|VipAct]], [[2311.05437|LLaVA-Plus]]
+
+> [!star] Key Papers
+> - [[2311.05437|LLaVA-Plus]] — Trains MLLMs to orchestrate a skill repository of vision tools; SOTA on VisiT-Bench with emergent tool composition
+> - [[2512.15885|JARVIS]] — JEPA-inspired self-supervised objective giving MLLMs fine-grained visual perception beyond textual descriptions
 
 **VLM Efficiency & Inference** — Methods for accelerating VLM inference through token compression, resolution adaptation, and routing.
 - [[2602.01984|Delimiter Token Scaling]], [[2507.23070|E-FineR]], [[2507.10302|DisCo]], [[2506.22434|MiCo]], [[2506.21710|FOCUS]], [[2506.09522|ReVisiT]], [[2506.05302|PAM]], [[2506.01850|MoDA]], [[2506.01663|Zoom-Refine]], [[2505.21538|PAM-CVR]], [[2504.17040|DyMU]], [[2503.20680|VoRA]], [[2411.16044|ZoomEye]]
 
+> [!star] Key Papers
+> - [[2411.16044|ZoomEye]] — Training-free tree-based image exploration enabling 3B models to outperform GPT-4o on high-resolution benchmarks
+> - [[2506.21710|FOCUS]] — Internal MLLM representations for efficient visual cropping; 42% accuracy boost at 3-6.5x less compute than baselines
+
 **Multimodal Representation & Embedding** — Learning improved multimodal embeddings and representations.
 - [[2511.11007|VisMem]], [[2509.26625|LLM Visual Priors]], [[2507.04590|VLM2Vec-V2]], [[2506.23115|MoCa]], [[2506.17629|CLiViS]], [[2505.19707|MVFT-JI]], [[2505.17812|VaLSe]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.17422|MLLM Small Visual Details]], [[2502.16435|VISFACTOR]]
 
+> [!star] Key Papers
+> - [[2504.17432|UniME]] — Universal multimodal embeddings via distillation and hard-negative tuning; SOTA on MMEB with 14-18% gains on long-caption retrieval
+> - [[2507.04590|VLM2Vec-V2]] — Unified embedding model for videos, images, and documents achieving top scores on the 78-task MMEB-V2 benchmark
+
 **Domain-Specific VLMs** — VLMs adapted for specific domains like medicine, science, video, and document understanding.
 - [[2603.19235|VEGA-3D]], [[2603.17729|SARE]], [[2603.14497|WorldVLM]], [[2603.14145|MMOU]], [[2603.14117|SIEVE]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.24041|AIR]], [[2602.15727|LoRWeB]], [[2602.11144|GENIUS]], [[2602.04884|RAL]], [[2602.03361|Z3D]], [[2602.02951|NUWA]], [[2602.02453|TwC]], [[2602.02004|ClueTracer]], [[2601.23265|PaperBanana]], [[2601.21187|FRISM]], [[2601.19099|m2sv]], [[2601.09430|Video-MSR]], [[2601.04777|GeM-VG]], [[2601.03193|UniCorn]], [[2601.00561|AEGIS]], [[2512.22799|VPTracker]], [[2512.12633|DiG]], [[2512.06281|LaVer]], [[2512.04563|COOPER]], [[2508.13142|EASI]], [[2507.10203|ARL]], [[2507.10202|ECP]], [[2507.01544|MARVIS]], [[2506.17218|Mirage]], [[2506.16112|AutoV]], [[2506.04220|Struct2D]], [[2506.03569|MiMo-VL]], [[2506.03147|UniWorld-V1]], [[2505.23705|Knowledge Insulation VLA]], [[2505.02056|VLM Pseudo-label Calibration]], [[2504.13055|NoisyRollout]], [[2504.10462|SAIL]], [[2503.15621|LLaVA-MORE]], [[2503.01773|ADAPTVIS]], [[2503.01584|SENSEI]]
+
+> [!tip] RL is Reshaping VLM Training
+> The RL-for-vision wave (Visual-RFT, SATORI, VLM-R1) is the biggest shift since instruction tuning. Key insight: verifiable visual rewards (bounding box accuracy, count correctness) work far better than language-only RLHF for grounding. Meanwhile, inference-time scaling via chain-of-thought (LLaVA-CoT) and dynamic zooming (ZoomEye, FOCUS) lets smaller models punch above their weight without retraining.
 
 ---
 
@@ -410,6 +469,9 @@ In-context learning, few-shot detection, and meta-learning methods applied to vi
 
 **Additional VLM & Perception Methods** — Cross-cutting papers on VLM training, perception, and multi-modal understanding.
 - [[2507.05920|MGPO]], [[2507.00748|Multi-Image Grounding RL]], [[2506.02843|REAP]], [[2505.23769|TextRegion]], [[2505.17316|Patch-Aligned Training]], [[2504.16801|DeGLA]], [[2502.17425|VPT]], [[2502.07503|RINS]], [[2407.01400|GalLoP]], [[2403.19103|PRISM]], [[2209.15639|F-VLM]]
+
+> [!tip] In-Context Learning Beyond Text
+> Transformers implement internal gradient-based optimization during their forward pass (Mesa-Optimization), which explains why ICL works for vision too. DINOv showed that purely visual in-context prompts can match text-prompted models for segmentation. The practical upshot: few-shot visual adaptation does not always require fine-tuning -- well-chosen in-context examples can suffice, especially when combined with RL-trained reasoning (Visual-RFT, Fine-R1).
 
 ---
 

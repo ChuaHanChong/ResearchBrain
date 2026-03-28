@@ -130,11 +130,24 @@ Surveys covering multimodal LLMs, open-vocabulary learning, hallucination, and t
 **Multimodal Reasoning** — Surveys on how multimodal models reason across modalities, combining visual and textual information for complex inference.
 - [[2508.17298|Compositional Visual Reasoning Survey]], [[2504.21277|Reinforced MLLM Survey]], [[2504.03151|Multimodal Reasoning Survey]], [[2503.12605|MCoT Survey]], [[2503.01773|ADAPTVIS]]
 
+> [!star] Key Papers
+> - [[2504.03151|Multimodal Reasoning Survey]] — Systematic framework categorizing multimodal reasoning into post-training and test-time strategies, with cognitive science integration
+> - [[2508.17298|Compositional Visual Reasoning Survey]] — Five-stage taxonomy of compositional visual reasoning covering 260+ papers; maps the shift from monolithic to compositional approaches
+
 **VLM & MLLM Benchmarks** — Evaluation frameworks and benchmarks for vision-language models across diverse tasks.
 - [[2603.20278|OpenResearcher]], [[2603.19231|MonoArt]], [[2603.18886|RLLM]], [[2603.15975|UMO]], [[2603.14609|GroundSet]], [[2603.07335|VisualScratchpad]], [[2603.03857|DeepScan]], [[2603.03241|UniG2U-Bench]], [[2603.02959|SS-Text-U]], [[2603.00461|ReMoT]], [[2603.00142|ToM Multi-Agent Eval]], [[2603.00136|TinyVLM]], [[2602.22859|DPE]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.21619|VSR Information Injection Analysis]], [[2602.21497|ECRD]], [[2602.21054|VAUQ]], [[2602.20687|NativeEmbodied]], [[2602.20159|VBVR]], [[2602.16702|SAP]], [[2602.12395|Frankenstein RL Analysis]], [[2602.11858|ZwZ]], [[2602.11737|OA-VCD]], [[2602.11236|ABot-M0]], [[2602.11144|GENIUS]], [[2602.10675|TwiFF]], [[2602.10551|C2RoPE]], [[2602.09463|SpotAgent]], [[2602.08346|ThinkWithImages-PRMBENCH]], [[2602.05547|MT-GRPO]], [[2602.05359|HIVE]], [[2602.04145|BIS]], [[2602.03733|RegionReasoner]], [[2602.02951|NUWA]], [[2602.02605|ESMA]], [[2602.02465|MentisOculi]], [[2602.02156|LoopViT]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.23265|PaperBanana]], [[2601.16973|VisGym]], [[2601.15224|PROGRESSLM]], [[2601.14127|MIR-SafetyBench]], [[2601.12964|Cross-Scale Pretraining]], [[2601.12585|MLLM Visualization Literacy]], [[2601.10679|Augmented HRM]], [[2601.05244|GREx]], [[2601.03193|UniCorn]], [[2601.02422|CoCoT]], [[2601.00561|AEGIS]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.14666|EVOLVE-VLA]], [[2512.12690|SFT vs RL VLM Study]], [[2512.08228|MM-CoT]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2511.20351|HVS]], [[2511.18373|MASS]], [[2511.17487|EXTRACT+THINK]], [[2511.16901|AVST-Zero]], [[2511.04670|Cambrian-S]], [[2511.02779|MIRA]], [[2511.01833|TIR-Bench]], [[2510.23603|PixelRefer]], [[2510.23569|EgoThinker]], [[2510.16714|SceneCOT]], [[2510.16596|SHIELD]], [[2510.12225|HoneyBee]], [[2510.08189|R-Horizon]], [[2509.26346|EditReward]], [[2509.23250|VL-PRM]], [[2509.14760|ALIGN3]], [[2509.00576|G0]], [[2508.12466|Inverse-LLaVA]], [[2508.12109|Simple o3]], [[2508.11737|Ovis2.5]], [[2508.03102|CCA]], [[2508.02419|TVAI]], [[2507.23751|CoT-Self-Instruct]], [[2507.23278|UniLiP]], [[2507.23276|AI Scientist Survey]], [[2507.22003|ViHallu]], [[2507.17746|RaR]], [[2507.16746|Zebra-CoT]], [[2507.11932|Hyperphantasia]], [[2507.10548|EmbRACE-3K]], [[2507.10532|RandomCalculation]], [[2507.10202|ECP]], [[2507.05258|REA]], [[2507.02978|Inf-Bench]], [[2507.01955|GPT-4o Vision Evaluation]], [[2507.01949|Kwai Keye-VL]], [[2507.01643|SAILViT]], [[2506.23120|R2S]], [[2506.23115|MoCa]], [[2506.22992|MARBLE]], [[2506.22434|MiCo]], [[2506.22419|LLM Speedrunning Benchmark]], [[2506.22395|Test-Time VLM Consistency]], [[2506.21215|G2-Reasoner]], [[2506.17901|PostAlign]], [[2506.16141|GRPO-CARE]], [[2506.14965|GURU]], [[2506.14512|SIRI-Bench]], [[2506.13723|OTFusion]], [[2506.12776|NativeRes-LLaVA]], [[2506.12609|VisFlow]], [[2506.12508|AgentOrchestra]], [[2506.10128|ViCrit]], [[2506.08429|SCALE]], [[2506.07936|MM-ICL Mimicking vs Reasoning]], [[2506.07227|MED]], [[2506.06279|CoMemo]], [[2506.05302|PAM]], [[2506.04633|STARE]], [[2506.04277|RSVP]], [[2506.02557|KUEA]], [[2506.02126|Knowledge vs Reasoning LLM Eval]], [[2506.01850|MoDA]], [[2506.01724|ALOR]], [[2506.01663|Zoom-Refine]], [[2505.23004|QLIP]], [[2505.21538|PAM-CVR]], [[2505.21497|PosterAgent]], [[2505.21457|ACTIVE-O3]], [[2505.20612|RF100-VL]], [[2505.20444|HoPE]], [[2505.20046|REARANK]], [[2505.19094|SATORI]], [[2505.18129|V-Triune]], [[2505.17316|Patch-Aligned Training]], [[2505.17018|SophiaVL-R1]], [[2505.16151|FRANK]], [[2505.16149|REVEAL]], [[2505.15660|AGNOSTOS]], [[2505.15045|DIFFEMBED]], [[2505.14404|ViC-Bench]], [[2505.14246|Visual-ARFT]], [[2505.12448|SSR]], [[2505.12363|ViCA2]], [[2505.12312|ViCA-7B]], [[2505.11815|UniMoCo]], [[2505.10557|MathCoder-VL]], [[2505.07062|Seed1.5-VL]], [[2505.05800|3D-CAVLA]], [[2505.05472|Mogao]], [[2505.02406|TCPA]], [[2505.02056|VLM Pseudo-label Calibration]], [[2505.01064|NeaR]], [[2504.21559|BBVPE]], [[2504.21356|Nexus-Gen]], [[2504.20199|FCVC]], [[2504.19254|uqlm]], [[2504.18053|DREAM]], [[2504.17432|UniME]], [[2504.16072|DAM]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2504.12104|Logits DeConfusion]], [[2504.10479|InternVL3]], [[2504.07745|SF2T]], [[2503.15621|LLaVA-MORE]], [[2503.12797|DeepPerception]], [[2503.10291|VisualPRM]], [[2503.07365|MM-Eureka]], [[2503.05255|CMMCoT]], [[2502.17422|MLLM Small Visual Details]], [[2502.16435|VISFACTOR]], [[2502.03387|LIMO]], [[2501.19393|s1]], [[2501.13620|VLM Perception-Reasoning Probe]], [[2412.18072|MMFactory]], [[2412.07012|ProVision]], [[2411.11930|AtomThink]], [[2411.10440|LLaVA-CoT]], [[2410.10855|CoreCognition]], [[2410.02735|OOD-Chameleon]], [[2409.17146|Molmo]], [[2404.14396|SEED-X]], [[2402.02242|V-PEFT Bench]]
 
+> [!star] Key Papers
+> - [[2504.10479|InternVL3]] — Native multimodal pre-training reaching 72.2 on MMMU; top open-source MLLM across diverse tasks
+> - [[2409.17146|Molmo]] — Fully open-weight and open-data VLM family; proves high performance without proprietary synthetic data
+> - [[2505.07062|Seed1.5-VL]] — ByteDance's VLM achieving SOTA on 38/60 benchmarks; strong on GUI, documents, and video
+
 **Grounding & Referring Expression Benchmarks** — Evaluating models' ability to localize objects from language descriptions.
 - [[2510.11106|CZSL Survey]], [[2506.19360|Synthetic Image Privacy SoK]], [[2505.13317|Few-shot SSL]], [[2504.00883|vsGRPO]], [[2503.21776|Video-R1]], [[2503.19903|PS3]], [[2503.12799|GCoT]], [[2503.09527|CombatVLA]], [[2503.08497|MMRL]], [[2503.06626|DiffCLIP]], [[2503.01619|Flame]], [[2502.17159|RobustMerge]], [[2502.16982|Muon]], [[2412.18319|Mulberry]], [[2412.13810|CAD-Assistant]], [[2412.07755|SAT]], [[2411.19488|ICoT]], [[2411.16044|ZoomEye]], [[2411.10231|TaylorIR]], [[2411.09691|TinyGroundingGPT]], [[2410.21676|Critical Batch Size Scaling]], [[2410.17517|Maynard-Cross Learning]], [[2410.17385|COMFORT]], [[2410.16400|VipAct]], [[2410.06158|GR-2]], [[2409.18869|Emu3]], [[2407.19666|Two-Stage Visual Reasoning]], [[2406.19934|VIREO]], [[2406.18925|VisArgs]], [[2406.18505|LLM-Xavier]], [[2406.09308|TransNAR]], [[2404.13013|Groma]], [[2404.04452|ViT Domain Robustness Survey]], [[2403.16999|VisCoT]], [[2403.13043|S2]], [[2403.03421|LEAD]], [[2402.15116|LMA Survey]], [[2402.06912|ES Linear Policy]], [[2401.13987|ADAPTER]], [[2312.14135|V*]], [[2309.11069|Dynamic Tiling]], [[2308.10677|Visual Crowd Analysis Survey]], [[2307.04054|Deep-STDP]], [[2307.03601|GPT4RoI]], [[2304.03977|EMP-SSL]], [[2211.09699|PromptCap]], [[2203.07669|PE2E]]
+
+> [!star] Key Papers
+> - [[2412.18319|Mulberry]] — Collective Monte Carlo Tree Search for step-by-step multimodal reasoning; generates 260K tree-structured reasoning examples
+> - [[2403.16999|VisCoT]] — Visual chain-of-thought with grounded bounding boxes; bridges reasoning and spatial localization
 
 > [!tip] The Hallucination Problem
 > VLM hallucination remains one of the biggest barriers to deployment. The LVLM Hallucination Survey provides the taxonomy; the Efficient MLLM Survey shows how architectural choices affect both hallucination rates and inference cost.
@@ -161,6 +174,10 @@ Surveys spanning classical RL, its intersection with causal inference, continual
 **RL for Reasoning** — How RL drives chain-of-thought and multi-step reasoning in large language models.
 - [[2505.04921|LMRM Survey]], [[2505.02665|Slow Thinking LLM Survey]], [[2505.00551|DeepSeek-R1 Replication Survey]], [[2504.12328|Reward Model Survey]], [[2504.09037|LLM Reasoning Frontiers Survey]], [[2501.09686|Large Reasoning Models Survey]]
 
+> [!star] Key Papers
+> - [[2501.09686|Large Reasoning Models Survey]] — Defines the LRM paradigm; maps how RL + process reward models enable complex multi-step reasoning
+> - [[2504.12328|Reward Model Survey]] — Comprehensive taxonomy of reward models driving RLHF and reasoning; essential for understanding post-training
+
 > [!tip] The RL-Reasoning Connection
 > The Large Reasoning Models Survey bridges two worlds: RL researchers studying reward optimization and LLM researchers studying chain-of-thought. Post-DeepSeek-R1, this intersection is where much of the field's energy is focused.
 
@@ -186,6 +203,9 @@ Surveys mapping the robotics landscape from embodied AI simulators through VLA a
 
 **Control & Planning** — Surveys on combining model-predictive control with RL for robot manipulation and locomotion.
 - [[2502.02133|MPC-RL Survey]]
+
+> [!star] Key Papers
+> - [[2502.02133|MPC-RL Survey]] — Systematic classification of MPC-RL synthesis; maps how model-based control and learning complement each other
 
 > [!tip] Survey Progression
 > Read embodied AI surveys chronologically: 2021 survey for foundations, ARIO (2024) for the current landscape and dataset standards, then the LLM-WM Survey (2025) for the architectural roadmap ahead.
@@ -242,11 +262,25 @@ Surveys covering specific domains and emerging fields.
 **Diffusion & Generation Surveys** — Surveys on diffusion models, generative architectures, and their principles.
 - [[2510.21890|Diffusion Models Principles]], [[2506.13759|Discrete Diffusion LLM Survey]]
 
+> [!star] Key Papers
+> - [[2510.21890|Diffusion Models Principles]] — Authoritative monograph from Sony AI/OpenAI/Stanford unifying variational, score-based, and flow-based diffusion perspectives
+> - [[2506.13759|Discrete Diffusion LLM Survey]] — Maps dLLMs achieving 10x faster inference than autoregressive models; a key emerging paradigm
+
 **Code Intelligence & Software Surveys** — Surveys on AI for code understanding, generation, and software engineering.
 - [[2511.18538|Code Intelligence Survey]], [[2505.24189|SLM vs LLM Low-Code Workflows]]
 
+> [!star] Key Papers
+> - [[2511.18538|Code Intelligence Survey]] — End-to-end guide from data curation to autonomous coding agents; the most comprehensive code LLM survey
+
 **Miscellaneous Surveys** — Other notable surveys spanning diverse topics.
 - [[2602.17270|UL]], [[2602.01630|Unified World Model Framework]], [[2601.21187|FRISM]], [[2601.03220|Epiplexity]], [[2512.24880|mHC]], [[2510.00034|MOWI]], [[2509.04501|GRAPE]], [[2509.00421|Prompt Tuning Memory Limits]], [[2507.23276|AI Scientist Survey]], [[2507.18074|ASI-ARCH]], [[2507.17634|WSM]], [[2506.19360|Synthetic Image Privacy SoK]], [[2506.13018|NN Parameter Space Symmetry Survey]], [[2505.23725|MuLoCo]], [[2504.20966|Softpick]], [[2504.13173|Miras]], [[2503.12811|MPL]], [[2210.17067|UniOT]], [[2207.13050|Efficient High-Resolution Survey]], [[2203.12555|GriTS]], [[2201.02373|Mirror Learning]], [[2112.02814|Low-Shot Detection Survey]], [[2002.07421|EHSOD]]
+
+> [!star] Key Papers
+> - [[2602.01630|Unified World Model Framework]] — Proposes a unified framework for world models spanning simulation, prediction, and generation
+> - [[2507.23276|AI Scientist Survey]] — Maps the landscape of AI-driven scientific discovery; relevant to every research domain
+
+> [!tip] Navigating Specialized Surveys
+> Start with the Diffusion Models Principles monograph for generative foundations, then consult the Discrete Diffusion LLM Survey if you need faster-than-autoregressive generation. For code tasks, the Code Intelligence Survey covers the full pipeline from pre-training to agents and is the best single entry point.
 
 ---
 
@@ -293,6 +327,10 @@ Benchmarks that test whether models truly understand spatial relationships, 3D s
 
 **Visual Spatial Reasoning** — Binary and multi-choice spatial relationship evaluation for VLMs.
 - [[2603.03944|SCP-Bench]], [[2602.20901|SpatiaLQA]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2601.19099|m2sv]], [[2601.16520|TangramPuzzle]], [[2601.14339|CityCube]], [[2601.13304|CausalSpatial]], [[2601.11729|SpaRRTa]], [[2601.06521|BabyVision]], [[2601.00092|Spatial4D-Bench]], [[2512.24385|Spatial Intelligence Roadmap]], [[2512.23365|SpatialMosaic]], [[2512.20617|SpatialTree]], [[2512.19683|OpenBench]], [[2512.10863|MMSI-Video-Bench]], [[2511.21471|SpatialBench]], [[2510.18873|DSI-Bench]], [[2510.11549|ODI-Bench]], [[2510.09606|SpaceVista]], [[2508.13142|EASI]], [[2508.02095|VLM4D]], [[2507.21045|4D Spatial Intelligence Survey]], [[2507.20529|SpatialVTS]], [[2507.20174|LRR-Bench]], [[2507.07610|SpatialViz-Bench]], [[2506.21458|MINDCUBE]], [[2506.18385|InternSpatial]], [[2506.07966|SpaCE-10]], [[2506.03135|OmniSpatial]], [[2505.24257|DISJOINT-3DQA]], [[2505.23764|MMSI-Bench]], [[2505.21500|MVSM]], [[2505.20279|VLM-3R]], [[2505.17015|Multi-SpatialMLLM]], [[2505.17012|SpatialScore]], [[2505.11907|OSR-Bench]], [[2505.05626|PERCEPTLLM]], [[2505.05456|SITE]], [[2504.20648|SpaRE]], [[2504.15280|All-Angles Bench]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2504.09848|LLM Spatial Intelligence Survey]], [[2504.05786|3D Spatial Reasoning in LLM Survey]], [[2504.01805|SpaceR]], [[2503.19707|VLM Spatial Reasoning Benchmark]], [[2503.19355|ST-VLM]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2502.03214|iVISPAR]], [[2412.14171|VSI-Bench]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2401.12168|SpatialVLM]], [[2205.00363|VSR]]
+
+> [!star] Key Papers
+> - [[2505.17012|SpatialScore]] — Comprehensive spatial intelligence benchmark revealing significant MLLM gaps in 3D understanding; proposes SpatialAgent for +8.3% accuracy
+> - [[2205.00363|VSR]] — Foundational spatial reasoning dataset exposing the 25-point gap between VLM and human spatial understanding
 
 **Multi-View & Compositional** — Benchmarks requiring reasoning across multiple viewpoints or chaining spatial inferences.
 - [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.00515|MLLM-4D]]

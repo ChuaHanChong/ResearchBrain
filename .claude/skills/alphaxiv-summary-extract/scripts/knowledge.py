@@ -57,8 +57,9 @@
 
 # https://yifanzhang-pro.github.io/FALCON/FALCON.pdf
 
-# https://bones.studio/datasets/seed
-# https://github.com/gatech-rl2/egoverse
+# https://github.com/Memento-Teams/Memento-Skills
+# https://github.com/nousresearch/hermes-agent
+
 
 papers = [
     "https://arxiv.org/abs/2601.22628", # TTCS: Test-Time Curriculum Synthesis for Self-Evolving
@@ -487,6 +488,22 @@ papers = [
     "https://arxiv.org/abs/2603.22570", # CanViT: Toward Active-Vision Foundation Models
     "https://arxiv.org/abs/2601.20802", # Reinforcement Learning via Self-Distillation
     "https://arxiv.org/abs/2603.09206", # MM-Zero: Self-Evolving Multi-Model Vision Language Models From Zero Data
+    "https://arxiv.org/abs/1803.10122", # World Models
+    "https://arxiv.org/abs/1901.01753", # Paired Open-Ended Trailblazer (POET): Endlessly Generating Increasingly Complex and Diverse Learning Environments and Their Solutions
+    "https://arxiv.org/abs/1612.00796", # Overcoming catastrophic forgetting in neural networks
+    "https://arxiv.org/abs/1705.05363", # Curiosity-driven Exploration by Self-supervised Prediction
+    "https://arxiv.org/abs/1810.12894", # Exploration by Random Network Distillation
+    "https://arxiv.org/abs/2502.05726", # Improving Environment Novelty Quantification for Effective Unsupervised Environment Design
+    "https://arxiv.org/abs/2403.06845", # DriveDreamer-2: LLM-Enhanced World Models for Diverse Driving Video Generation
+    "https://arxiv.org/abs/2503.01584", # SENSEI: Semantic Exploration Guided by Foundation Models to Learn Versatile World Models
+    "https://arxiv.org/abs/2411.13852", # Dealing with Synthetic Data Contamination in Online Continual Learning
+    "https://arxiv.org/abs/2305.13622", # Continual Learning with Strong Experience Replay
+    "https://arxiv.org/abs/2112.15402", # Relational Experience Replay: Continual Learning by Adaptively Tuning Task-wise Relationship
+    "https://arxiv.org/abs/2603.15553", # Self-Distillation of Hidden Layers for Self-Supervised Representation Learning
+    "https://arxiv.org/abs/2603.25744", # MuRF: Unlocking the Multi-Scale Potential of Vision Foundation Models
+    "https://arxiv.org/abs/2603.25723", # Natural-Language Agent Harnesses
+    "https://arxiv.org/abs/2603.24800", # Calibri: Enhancing Diffusion Transformers via Parameter-Efficient Calibration
+    "https://arxiv.org/abs/2603.22057", # SpatialBoost: Enhancing Visual Representation through Language-Guided Reasoning
 
     "https://arxiv.org/abs/2210.17067", # Unified Optimal Transport Framework for Universal Domain Adaptation
     "https://arxiv.org/abs/2312.07871", # MLNet: Mutual Learning Network with Neighborhood Invariance for Universal Domain Adaptation
@@ -608,5 +625,8 @@ papers = [
     "https://arxiv.org/abs/2310.08864", # Open X-Embodiment: Robotic Learning Datasets and RT-X Models
     # https://github.com/huggingface/lerobot
     # https://genesis-world.readthedocs.io/en/latest/
-
+    "https://arxiv.org/abs/2603.24517", # AVO: Agentic Variation Operators for Autonomous Evolutionary Search
+    "https://arxiv.org/abs/2603.25040", # Intern-S1-Pro: Scientific Multimodal Foundation Model at Trillion Scale
+    "https://arxiv.org/abs/2603.16861", # MolmoB0T: Large-Scale Simulation Enables Zero-Shot Manipulation
+    
 ]

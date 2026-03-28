@@ -278,7 +278,7 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 Agents that accumulate experience over time, build persistent memory, and autonomously improve their own capabilities. This represents the frontier where agents become self-evolving systems.
 
 **Skill Libraries & External Memory** — Agents that maintain persistent skill repositories or memory banks, enabling them to reuse learned capabilities across tasks without retraining.
-- [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]]
+- [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24517|AVO]]
 
 > [!star] Key Papers
 > - [[2603.18743\|Memento-Skills]] — Skill library as external memory for continual learning; agents store and retrieve reusable skills without weight updates
