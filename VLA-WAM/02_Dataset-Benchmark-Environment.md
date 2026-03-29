@@ -172,7 +172,7 @@ Systematic studies that benchmark VLA design decisions rather than individual mo
 > - [[2412.14058|RoboVLMs]] — 600+ experiments systematically testing backbone, action space, history fusion, and data strategy choices
 
 > [!tip] The RoboVLMs Recipe
-> The most rigorous VLA design study: KosMos/PaliGemma backbone + Policy Head fusion + Continuous actions + MoE + Post-training. See [[03_VLA#2. Design-Space Principles]] for the full breakdown.
+> The most rigorous VLA design study: KosMos/PaliGemma backbone + Policy Head fusion + Continuous actions + MoE + Post-training. See [[03_VLA#1. Design-Space Principles]] for the full breakdown.
 
 ---
 

@@ -26,7 +26,7 @@ aliases:
 > [!tip] Model-First Wins
 > For embodied AI, ==start with a trained world model and add self-evolution== (not the other way around). A world model already has a robust latent space for generating synthetic future states — the challenge shifts to data quality within the model's own imagination.
 
-| | [[2602.15922|DreamZero]] | [[2602.10098|VLA-JEPA]] |
+| | [[2602.15922\|DreamZero]] | [[2602.10098\|VLA-JEPA]] |
 |---|---|---|
 | **Architecture** | 14B autoregressive diffusion transformer (DiT) | Latent-space predictive encoder (JEPA) |
 | **How it models dynamics** | Flow-matching: jointly predicts video + continuous actions as next-token prediction | Leakage-free state prediction: predicts latent future representations, not raw pixels |
