@@ -200,7 +200,7 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 > - [[2401.09865|SPARC]] — Sparse fine-grained contrastive alignment for dense region-level VLM features
 
 **Visual Grounding & Referring** — Localizing specific objects or regions described by natural language expressions.
-- [[2603.16253|EVPV]], [[2603.14609|GroundSet]], [[2603.12382|SPARROW]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.16702|SAP]], [[2602.08241|SAYO]], [[2601.10129|LaViT]], [[2601.07645|PlaM]], [[2601.06993|ReFine-RFT]], [[2601.05328|BFD]], [[2601.05244|GREx]], [[2601.00659|CRoPS]], [[2601.00215|Sight to Insight]], [[2512.24297|FIGR]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.21218|LIVR]], [[2512.16922|NEPA]], [[2512.16584|SkiLa]], [[2510.23603|PixelRefer]], [[2510.21501|GranViT]], [[2510.21311|FineRS]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.12798|Rex-Omni]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image Grounding RL]], [[2506.22624|Seg-R1]], [[2506.11991|VGR]], [[2506.02359|Auto-Labeling]], [[2505.02278|GCLIP]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2307.12813|DOD]], [[2301.05226|IPVR]], [[2203.16265|SeqTR]]
+- [[2603.25411|HiSpatial]], [[2603.16253|EVPV]], [[2603.14609|GroundSet]], [[2603.12382|SPARROW]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.16702|SAP]], [[2602.08241|SAYO]], [[2601.10129|LaViT]], [[2601.07645|PlaM]], [[2601.06993|ReFine-RFT]], [[2601.05328|BFD]], [[2601.05244|GREx]], [[2601.00659|CRoPS]], [[2601.00215|Sight to Insight]], [[2512.24297|FIGR]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.21218|LIVR]], [[2512.16922|NEPA]], [[2512.16584|SkiLa]], [[2510.23603|PixelRefer]], [[2510.21501|GranViT]], [[2510.21311|FineRS]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.12798|Rex-Omni]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image Grounding RL]], [[2506.22624|Seg-R1]], [[2506.11991|VGR]], [[2506.02359|Auto-Labeling]], [[2505.02278|GCLIP]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2307.12813|DOD]], [[2301.05226|IPVR]], [[2203.16265|SeqTR]]
 
 > [!star] Key Papers
 > - [[2203.16265|SeqTR]] — Reformulated grounding as autoregressive coordinate prediction; unified phrase localization and referring expression tasks
@@ -333,7 +333,7 @@ VLMs confidently describe things that are not in the image — a critical obstac
 
 A growing focus area bridging VLMs toward embodied tasks — understanding where things are relative to each other in 3D space.
 
-- [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2602.21619|VSR Information Injection Analysis]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.04413|H-GIVR]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2511.21471|SpatialBench]], [[2510.09606|SpaceVista]], [[2507.07610|SpatialViz-Bench]], [[2506.18385|InternSpatial]], [[2506.03135|OmniSpatial]], [[2505.23747|Spatial-MLLM]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2503.19707|VLM Spatial Reasoning Benchmark]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2502.03214|iVISPAR]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]], [[2205.00363|VSR]]
+- [[2603.25629|LanteRn]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2602.21619|VSR Information Injection Analysis]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.04413|H-GIVR]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2511.21471|SpatialBench]], [[2510.09606|SpaceVista]], [[2507.07610|SpatialViz-Bench]], [[2506.18385|InternSpatial]], [[2506.03135|OmniSpatial]], [[2505.23747|Spatial-MLLM]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2503.19707|VLM Spatial Reasoning Benchmark]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2502.03214|iVISPAR]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]], [[2205.00363|VSR]]
 
 > [!star] Key Papers
 > - [[2401.12168|SpatialVLM]] — Endowed VLMs with spatial reasoning via 3D-aware training data
@@ -388,14 +388,14 @@ Large multimodal models — the workhorses of modern vision-language understandi
 Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-thought, and multimodal decision-making.
 
 **RL-Trained Visual Reasoners** — VLMs fine-tuned with RL for improved visual reasoning and chain-of-thought.
-- [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
+- [[2603.25629|LanteRn]], [[2603.24533|UI-Voyager]], [[2603.22847|PEPO]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
 
 > [!star] Key Papers
 > - [[2503.01785|Visual-RFT]] — Pioneered RL fine-tuning for visual tasks with verifiable rewards; 24.3% accuracy boost in fine-grained classification
 > - [[2505.19094|SATORI]] — Glance-Focus-Think paradigm anchoring RL training in explicit visual grounding; 76.2% on MathVista surpassing GPT-4o
 
 **VLM Chain-of-Thought & Thinking** — Methods for step-by-step visual reasoning in multimodal models.
-- [[2603.23483|SpecEyes]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
+- [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
 
 > [!star] Key Papers
 > - [[2411.10440|LLaVA-CoT]] — Autonomous multistage reasoning with stage-wise retracing; 5.8% improvement enabling 11B model to rival larger closed-source MLLMs
@@ -423,7 +423,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2506.08391|SECOND]] — Training-free contrastive decoding that reduces hallucination while improving general VLM accuracy
 
 **VLM Agents & Tool Use** — VLMs deployed as interactive agents, tool users, or in agentic workflows.
-- [[2601.18631|AdaReasoner]], [[2512.15885|JARVIS]], [[2511.21688|G2VLM]], [[2506.11515|Manager]], [[2505.23766|Argus]], [[2505.21497|PosterAgent]], [[2505.21457|ACTIVE-O3]], [[2411.17673|SketchAgent]], [[2410.16400|VipAct]], [[2311.05437|LLaVA-Plus]]
+- [[2603.24558|LensWalk]], [[2601.18631|AdaReasoner]], [[2512.15885|JARVIS]], [[2511.21688|G2VLM]], [[2506.11515|Manager]], [[2505.23766|Argus]], [[2505.21497|PosterAgent]], [[2505.21457|ACTIVE-O3]], [[2411.17673|SketchAgent]], [[2410.16400|VipAct]], [[2311.05437|LLaVA-Plus]]
 
 > [!star] Key Papers
 > - [[2311.05437|LLaVA-Plus]] — Trains MLLMs to orchestrate a skill repository of vision tools; SOTA on VisiT-Bench with emergent tool composition

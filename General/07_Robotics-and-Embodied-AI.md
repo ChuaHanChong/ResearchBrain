@@ -94,7 +94,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2403.03954|DP3]] — Extended to 3D point clouds, enabling sim-to-real transfer without camera calibration
 
 **Foundational Manipulation Architectures** — Transformer and perception-based agents that established how robots can learn multi-task manipulation from language instructions and visual observations.
-- [[2412.11974|EMMA-X]], [[2410.07864|RDT-1B]], [[2405.12213|Octo]], [[2306.10007|RPT]], [[2209.05451|PerAct]]
+- [[2603.22264|UniDex]], [[2412.11974|EMMA-X]], [[2410.07864|RDT-1B]], [[2405.12213|Octo]], [[2306.10007|RPT]], [[2209.05451|PerAct]]
 
 > [!star] Key Papers
 > - [[2209.05451|PerAct]] — First to use Perceiver Transformer on voxelized observations for 6-DoF multi-task manipulation
@@ -155,7 +155,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2506.01844|SmolVLA]] — 450M params achieving competitive performance; proves VLAs don't need to be massive
 
 **Spatial & 3D-Aware** — Inject depth, 3D coordinate embeddings, or volumetric features into VLAs for better spatial generalization.
-- [[2506.22242|4D-VLA]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2403.09631|3D-VLA]]
+- [[2603.25399|LaMP]], [[2603.24393|3D-MIX]], [[2506.22242|4D-VLA]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2403.09631|3D-VLA]]
 
 > [!star] Key Papers
 > - [[2501.15830|SpatialVLA]] — Novel spatial representations that let VLAs understand object arrangements without explicit 3D supervision
@@ -223,7 +223,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 > - [[2206.14176|DayDreamer]] — First to deploy Dreamer on real robots; proved sample-efficient learning from imagination works physically
 
 **Video Generation as World Models** — Use pre-trained video diffusion models as physics simulators: generate future video frames conditioned on actions, then extract policies from the generated futures.
-- [[2603.23376|ABot-PhysWorld]], [[2602.15922|DreamZero]], [[2601.20540|LingBot-World]], [[2512.24766|Dream2Flow]], [[2512.15692|mimic-video]], [[2510.26583|Emu3.5]], [[2510.01183|EvoWorld]], [[2508.00795|Video Policy]], [[2505.13934|RLVR-World]], [[2505.12705|DreamGen]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2412.14803|VPP]], [[2310.10625|VLP]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
+- [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2602.15922|DreamZero]], [[2601.20540|LingBot-World]], [[2512.24766|Dream2Flow]], [[2512.15692|mimic-video]], [[2510.26583|Emu3.5]], [[2510.01183|EvoWorld]], [[2508.00795|Video Policy]], [[2505.13934|RLVR-World]], [[2505.12705|DreamGen]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2412.14803|VPP]], [[2310.10625|VLP]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
 
 > [!star] Key Papers
 > - [[2602.15922|DreamZero]] — 14B parameter WAM from NVIDIA; zero-shot robot policies via joint video+action prediction; 39.5% on unseen tasks
@@ -305,7 +305,7 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 > - [[2506.15757|WPCL]] — Weakly-supervised VLM-guided contrastive learning for VLN; reduces annotation cost while improving grounding
 
 **Autonomous Driving (World Model Perspective)** — Driving as a world model problem: predict the scene's future, then plan safe trajectories.
-- [[2603.14497|WorldVLM]], [[2512.24331|LVLDrive]], [[2505.17685|FSDrive]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]]
+- [[2603.24581|Latent-WAM]], [[2603.14497|WorldVLM]], [[2512.24331|LVLDrive]], [[2505.17685|FSDrive]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]]
 
 > [!star] Key Papers
 > - [[2403.06845|DriveDreamer-2]] — LLM-enhanced driving video generation; creates diverse scenarios for world model training
@@ -340,7 +340,7 @@ The training paradigm question: pure imitation learning (behavior cloning) is si
 > - [[2512.20675|VLM Reward Objectives]] — Simple triplet loss on VLMs produces effective reward signals for robot learning
 
 **Continual & Experience-Driven** — Agents that improve from ongoing real-world interaction without catastrophic forgetting.
-- [[2603.03818|VLA Continual Learning]], [[2510.08558|Early Experience]]
+- [[2603.24350|Emergent Self]], [[2603.03818|VLA Continual Learning]], [[2510.08558|Early Experience]]
 
 > [!star] Key Papers
 > - [[2603.03818|VLA Continual Learning]] — Showed pre-trained VLAs have surprising resistance to catastrophic forgetting during continual adaptation

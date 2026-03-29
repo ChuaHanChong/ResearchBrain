@@ -504,6 +504,18 @@ papers = [
     "https://arxiv.org/abs/2603.25723", # Natural-Language Agent Harnesses
     "https://arxiv.org/abs/2603.24800", # Calibri: Enhancing Diffusion Transformers via Parameter-Efficient Calibration
     "https://arxiv.org/abs/2603.22057", # SpatialBoost: Enhancing Visual Representation through Language-Guided Reasoning
+    "https://arxiv.org/abs/2603.21383", # PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost
+    "https://arxiv.org/abs/2511.16652", # Evolution Strategies at the Hyperscale
+    "https://arxiv.org/pdf/2603.15255", # SAGE: Multi-Agent Self-Evolution for LLM Reasoning
+    "https://arxiv.org/abs/2601.19280", # Group Distributionally Robust Optimization-Driven Reinforcement Learning for LLM Reasoning
+    "https://arxiv.org/abs/2603.24800", # Calibri: Enhancing Diffusion Transformers via Parameter-Efficient Calibration
+    "https://arxiv.org/abs/2603.24422", # OneSearch-V2: The Latent Reasoning Enhanced Self-distillation Generative Search Framework
+    "https://arxiv.org/abs/2603.23404", # Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning
+    "https://arxiv.org/abs/2603.25597", # Spatiotemporal system forecasting with irregular time steps via masked autoencoder
+    "https://arxiv.org/abs/2603.23500", # UniGRPO: Unified Policy Optimization for Reasoning-Driven Visual Generation
+    "https://arxiv.org/abs/2603.25411", # HiSpatial: Taming Hierarchical 3D Spatial Understanding in Vision-Language Models
+    "https://arxiv.org/abs/2603.25723", # Natural-Language Agent Harnesses
+    "https://arxiv.org/abs/2603.24533", # UI-Voyager: A Self-Evolving GUI Agent Learning via Failed Experience
 
     "https://arxiv.org/abs/2210.17067", # Unified Optimal Transport Framework for Universal Domain Adaptation
     "https://arxiv.org/abs/2312.07871", # MLNet: Mutual Learning Network with Neighborhood Invariance for Universal Domain Adaptation
@@ -628,5 +640,25 @@ papers = [
     "https://arxiv.org/abs/2603.24517", # AVO: Agentic Variation Operators for Autonomous Evolutionary Search
     "https://arxiv.org/abs/2603.25040", # Intern-S1-Pro: Scientific Multimodal Foundation Model at Trillion Scale
     "https://arxiv.org/abs/2603.16861", # MolmoB0T: Large-Scale Simulation Enables Zero-Shot Manipulation
-    
+    "https://arxiv.org/abs/2603.24350", # Evidence of an Emergent “Self” in Continual Robot Learning
+    "https://arxiv.org/abs/2603.22212", # Omni-WorldBench: Towards a Comprehensive Interaction-Centric Evaluation for World Models
+    "https://arxiv.org/abs/2603.25399", # LaMP: Learning Vision-Language-Action Policy with 3D Scene Flow as Latent Motion Prior
+    "https://arxiv.org/abs/2603.22264", # UniDex: A Robot Foundation Suite for Universal Dexterous Hand Control from Egocentric Human Videos
+    "https://arxiv.org/abs/2603.25111", # SEVerA: Verified Synthesis of Self-Evolving Agents
+    "https://arxiv.org/abs/2603.24558", # LensWalk: Agentic Video Understanding by Planning How You See in Videos
+    "https://arxiv.org/abs/2603.25716", # Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World Models
+    "https://arxiv.org/abs/2603.23497", # WildWorld: A Large-Scale Dataset for Dynamic World Modeling with Actions and Explicit State toward Generative ARPG
+    "https://arxiv.org/abs/2603.24639", # Experiential Reflective Learning for Self-Improving LLM Agents
+    "https://arxiv.org/abs/2603.25685", # Persistent Robot World Models: Stabilizing Multi-Step Rollouts via Reinforcement Learning
+    "https://arxiv.org/abs/2603.23376", # ABot-PhysWorld: Interactive World Foundation Model for Robotic Manipulation with Physics Alignment
+    "https://arxiv.org/abs/2603.24581", # Latent-WAM: Latent World Action Modeling for End-to-End Autonomous Driving
+    "https://arxiv.org/abs/2603.25629", # LanteRn: Latent Visual Structured Reasoning
+    "https://arxiv.org/abs/2603.25681", # Self-Improvement of Large Language Models: A Technical Overview and Future Outlook
+    "https://arxiv.org/abs/2603.22847", # Rethinking Token-Level Policy Optimization for Multimodal Chain-of-Thought
+    "https://arxiv.org/abs/2603.24393", # 3D-MIX for VLA: A Plug-and-Play Module for Integrating VGGT-based 3D Information into Vision-Language-Action Models
+    "https://arxiv.org/abs/2603.16666", # Fast-WAM: Do World Action Models Need Test-time Future Imagination?
+    "https://arxiv.org/abs/2603.24393", # 3D-MIX for VLA: A Plug-and-Play Module for Integrating VGGT-based 3D Information into Vision-Language-Action Models
+    "https://arxiv.org/abs/2603.22281", # ThinkJEPA: Empowering Latent World Models with Large Vision-Language Reasoning Model
+    "https://arxiv.org/abs/2603.24517", # AVO: Agentic Variation Operators for Autonomous Evolutionary Search
 ]
+

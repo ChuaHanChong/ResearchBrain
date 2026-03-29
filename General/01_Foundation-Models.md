@@ -181,7 +181,7 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2502.10385|SimDINO]] — Dramatically simplified DINO via coding rate regularization; shows what DINO really needs
 
 **Masked Image Modeling** — Self-supervised methods that mask patches of an image and train the model to reconstruct or predict the missing content, learning rich visual representations without labels.
-- [[2505.11129|PhiNet v2]], [[2402.10093|MIM-Refiner]], [[2205.14949|HiViT]], [[2111.09886|SimMIM]], [[2111.06377|MAE]], [[2106.08254|BEiT]]
+- [[2603.25597|P-STMAE]], [[2505.11129|PhiNet v2]], [[2402.10093|MIM-Refiner]], [[2205.14949|HiViT]], [[2111.09886|SimMIM]], [[2111.06377|MAE]], [[2106.08254|BEiT]]
 
 > [!star] Key Papers
 > - [[2111.06377|MAE]] — Masked 75% of patches; proved simple reconstruction objective learns powerful features
@@ -400,7 +400,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2505.12082|PMA]] — Pre-trained Model Average for effective merging of LLM checkpoints
 
 **Knowledge Distillation** — Compressing large models into smaller ones via teacher-student training or multi-teacher distillation.
-- [[2603.16856|OEL]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
+- [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] — Foundational KD method for LLMs using reverse KL divergence; set the standard for language model compression
@@ -421,7 +421,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2507.06187|Delta Learning Hypothesis]] — Preference tuning on pairs of individually weak outputs can yield strong gains
 
 **Gradient-Free & Evolutionary Optimization** — Optimizing models without gradient computation using evolution strategies.
-- [[2602.03120|QES]], [[2510.10603|EA4LLM]], [[2402.12479|Pruned Networks in Deep RL]]
+- [[2602.03120|QES]], [[2511.16652|EGGROLL]], [[2510.10603|EA4LLM]], [[2402.12479|Pruned Networks in Deep RL]]
 
 > [!star] Key Papers
 > - [[2510.10603|EA4LLM]] — Demonstrates evolutionary algorithms can effectively optimize LLMs without gradients; opens a new fine-tuning paradigm

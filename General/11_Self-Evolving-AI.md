@@ -146,7 +146,7 @@ The most radical branch of self-evolution: models that improve with zero human-c
 > - [[2509.15194|EVOL-RL]] — Evolutionary RL that prevents entropy collapse in label-free self-improvement; balances selection pressure with novelty-driven diversity
 
 **Self-Play & Multi-Agent Competition** — Multiple model instances compete or cooperate, driving improvement through adversarial pressure or consensus-seeking dynamics.
-- [[2510.24684|SPICE]], [[2510.23595|MAE]], [[2509.15172|MACA]], [[2509.07414|LSP]], [[2506.07468|SELF-REDTEAM]]
+- [[2603.15255|SAGE]], [[2510.24684|SPICE]], [[2510.23595|MAE]], [[2509.15172|MACA]], [[2509.07414|LSP]], [[2506.07468|SELF-REDTEAM]]
 
 > [!star] Key Papers
 > - [[2509.07414|LSP]] — Language Self-Play from Meta: models improve through self-play dialogue without external reward models
@@ -284,7 +284,7 @@ Extending self-evolution beyond text-only LLMs to multimodal models that process
 Self-evolution over time: systems that accumulate knowledge from ongoing experience without catastrophic forgetting. While sections 1-4 focus on improving within a training run, continual learning ensures improvements persist across deployment episodes and new environments.
 
 **Experience-Driven Lifelong Learning** — Agents that build persistent memory banks of experiences and learn to retrieve and apply relevant past knowledge to new situations.
-- [[2603.16856|OEL]], [[2512.24695|Hope]], [[2512.09441|MoP-CIL]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2508.19005|ELL Framework]], [[2507.10434|CLA]], [[2507.09177|Online Agent (OA)]], [[2411.13852|ESRM]], [[2402.15109|MU-Mis]], [[2305.13622|SER]], [[2211.15944|Continual-Dreamer]]
+- [[2603.24350|Emergent Self]], [[2603.16856|OEL]], [[2512.24695|Hope]], [[2512.09441|MoP-CIL]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2508.19005|ELL Framework]], [[2507.10434|CLA]], [[2507.09177|Online Agent (OA)]], [[2411.13852|ESRM]], [[2402.15109|MU-Mis]], [[2305.13622|SER]], [[2211.15944|Continual-Dreamer]]
 
 > [!star] Key Papers
 > - [[2508.19005|ELL Framework]] — Experience-driven Lifelong Learning: introduces the framework and StuLife benchmark for measuring continual self-improvement in realistic settings
@@ -313,6 +313,7 @@ Self-evolution over time: systems that accumulate knowledge from ongoing experie
 
 Comprehensive reviews and theoretical analyses that map the self-evolving AI landscape, formalize when self-improvement converges, and identify open challenges.
 
+- [[2603.25681|LLM Self-Improvement Survey]] — Unified closed-loop lifecycle framework for LLM self-improvement; covers data acquisition, selection, optimization, inference, and evaluation
 - [[2404.14387|LLM Self-Evolution Survey 2024]] — Structured taxonomy of self-evolution approaches: self-training, self-rewarding, RL-based, and evolutionary methods
 - [[2510.02665|MLLM Self-Improvement Survey]] — First survey focused on multimodal LLM self-improvement; maps methods from text to vision-language
 - [[2412.01951|Sharpening Mechanism]] — Theoretical framework formalizing when and why self-improvement converges; identifies conditions for guaranteed improvement

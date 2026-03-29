@@ -97,7 +97,7 @@ The field evolved through four threads: **model-based RL** (2019-2022) progresse
 The theoretical bedrock of RL — comprehensive overviews, taxonomies, and fundamental theoretical contributions that define the field's vocabulary, scope, and open problems.
 
 **Comprehensive Overviews** — Broad surveys mapping the RL landscape and its major sub-fields.
-- [[2601.12538|Agentic Reasoning Survey]], [[2512.16301|Agentic AI Adaptation Survey]], [[2511.18538|Code Intelligence Survey]], [[2510.02665|MLLM Self-Improvement Survey]], [[2509.08827|RL for LRM Survey]], [[2509.02547|Agentic RL Survey]], [[2508.08189|RL for Large Models Survey]], [[2505.04921|LMRM Survey]], [[2505.02665|Slow Thinking LLM Survey]], [[2505.00551|DeepSeek-R1 Replication Survey]], [[2504.21277|Reinforced MLLM Survey]], [[2504.09037|LLM Reasoning Frontiers Survey]], [[2504.03151|Multimodal Reasoning Survey]], [[2501.09686|Large Reasoning Models Survey]], [[2501.09223|LLM Foundations]], [[2501.02189|VLM Survey 2025]], [[2412.05265|RL Overview]], [[2410.19878|PEFT Methodologies Survey]], [[2408.13296|LLM Fine-Tuning Guide]], [[2408.07666|Model Merging Survey]], [[2603.24517|AVO]]
+- [[2603.25681|LLM Self-Improvement Survey]], [[2603.24517|AVO]], [[2601.12538|Agentic Reasoning Survey]], [[2512.16301|Agentic AI Adaptation Survey]], [[2511.18538|Code Intelligence Survey]], [[2510.02665|MLLM Self-Improvement Survey]], [[2509.08827|RL for LRM Survey]], [[2509.02547|Agentic RL Survey]], [[2508.08189|RL for Large Models Survey]], [[2505.04921|LMRM Survey]], [[2505.02665|Slow Thinking LLM Survey]], [[2505.00551|DeepSeek-R1 Replication Survey]], [[2504.21277|Reinforced MLLM Survey]], [[2504.09037|LLM Reasoning Frontiers Survey]], [[2504.03151|Multimodal Reasoning Survey]], [[2501.09686|Large Reasoning Models Survey]], [[2501.09223|LLM Foundations]], [[2501.02189|VLM Survey 2025]], [[2412.05265|RL Overview]], [[2410.19878|PEFT Methodologies Survey]], [[2408.13296|LLM Fine-Tuning Guide]], [[2408.07666|Model Merging Survey]]
 
 > [!star] Key Papers
 > - [[2412.05265|RL Overview]] — Sutton's comprehensive modern overview; the definitive reference for RL fundamentals
@@ -111,7 +111,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2302.05209|Causal RL Survey 2023]] — First comprehensive taxonomy connecting causal inference with RL
 
 **Continual & Lifelong RL** — Agents that learn across sequential tasks without catastrophic forgetting.
-- [[2506.21872|Continual RL Survey]], [[2410.19925|MLLM Continual Learning]], [[1612.00796|EWC]]
+- [[2603.24350|Emergent Self]], [[2506.21872|Continual RL Survey]], [[2410.19925|MLLM Continual Learning]], [[1612.00796|EWC]]
 
 > [!star] Key Papers
 > - [[1612.00796|EWC]] — Foundational method for overcoming catastrophic forgetting; Elastic Weight Consolidation remains the baseline for all continual learning
@@ -347,7 +347,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.10425|L2T]] — Learning to Think: fine-tunes LLMs to achieve higher reasoning accuracy with significantly fewer tokens
 
 **Adaptive & Efficient Reasoning** — Methods that teach models when and how much to reason, optimizing the compute-accuracy tradeoff.
-- [[2601.22628|TTCS]], [[2512.06835|DoGe]], [[2512.02472|R-FEW]], [[2511.07317|RLVE]], [[2510.25992|SRL]], [[2510.09001|DARO]], [[2510.01135|PCL]], [[2508.02150|Self-Supervised RL IF]], [[2507.22607|VL-Cogito]], [[2506.03295|CFT]], [[2505.20258|ARM]], [[2505.15612|LASER]], [[2505.14970|SEC]], [[2505.13438|AnytimeReasoner]], [[2505.13379|Thinkless]], [[2504.05520|ADARFT]], [[2503.16188|Think or Not Think]]
+- [[2601.22628|TTCS]], [[2601.19280|GDRO]], [[2512.06835|DoGe]], [[2512.02472|R-FEW]], [[2511.07317|RLVE]], [[2510.25992|SRL]], [[2510.09001|DARO]], [[2510.01135|PCL]], [[2508.02150|Self-Supervised RL IF]], [[2507.22607|VL-Cogito]], [[2506.03295|CFT]], [[2505.20258|ARM]], [[2505.15612|LASER]], [[2505.14970|SEC]], [[2505.13438|AnytimeReasoner]], [[2505.13379|Thinkless]], [[2504.05520|ADARFT]], [[2503.16188|Think or Not Think]]
 
 > [!star] Key Papers
 > - [[2505.13379|Thinkless]] — RL-based framework that teaches LLMs to skip reasoning when unnecessary; optimizes compute allocation
@@ -412,7 +412,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 Applying RL (especially GRPO) to teach VLMs to reason visually — a direct extension of the LLM reasoning paradigm to multimodal models. The largest and fastest-growing thread in RL research.
 
 **R1-Style Visual Reasoning** — Applying the DeepSeek-R1 recipe (GRPO + verifiable rewards) to vision-language models for visual chain-of-thought reasoning.
-- [[2602.07605|Fine-R1]], [[2602.03120|QES]], [[2601.10094|V-Zero]], [[2601.09667|MATTRL]], [[2601.09536|Omni-R1]], [[2601.07055|Dr. Zero]], [[2601.03872|ATLAS]], [[2511.16901|AVST-Zero]], [[2511.13054|ViSS-R1]], [[2511.01191|Self-Harmony]], [[2510.03259|MASA]], [[2510.02752|Self-Aware RL for LLMs]], [[2510.02263|RLAD]], [[2509.25541|Vision-Zero]], [[2509.15194|EVOL-RL]], [[2509.12132|Reflection-V]], [[2509.02479|SimpleTIR]], [[2509.01656|ReV PT]], [[2508.11737|Ovis2.5]], [[2508.04416|VITAL]], [[2507.20766|RRVF]], [[2507.19849|ARPO]], [[2507.16814|SOPHIA]], [[2507.16518|C2-Evo]], [[2507.08838|wd1]], [[2507.01949|Kwai Keye-VL]], [[2507.01006|GLM-4.5V]], [[2506.24119|SPIRAL]], [[2506.09033|Router-R1]], [[2506.08989|SwS]], [[2506.07218|Perception-R1]], [[2506.04207|ReVisual-R1]], [[2506.03569|MiMo-VL]], [[2505.24726|Reflect Retry Reward]], [[2505.17018|SophiaVL-R1]], [[2505.16854|TON]], [[2505.15809|MMaDA]], [[2505.14677|Visionary-R1]], [[2505.13934|RLVR-World]], [[2505.13031|MindOmni]], [[2505.12434|VIDEORFT]], [[2505.08617|OpenThinkIMG]], [[2505.07062|Seed1.5-VL]], [[2505.03981|X-Reasoner]], [[2505.00703|T2I-R1]], [[2504.18397|UV-CoT]], [[2504.16656|Skywork R1V2]], [[2504.16129|MARFT]], [[2504.16084|TTRL]], [[2504.08837|VL-Rethinker]], [[2504.08672|Genius]], [[2504.07615|VLM-R1]], [[2504.07491|Kimi-VL]], [[2504.04736|SWiRL]], [[2503.21776|Video-R1]], [[2503.20752|Reason-RFT]], [[2503.17352|OpenVLThinker]], [[2503.12797|DeepPerception]], [[2503.07523|VisRL]], [[2503.07365|MM-Eureka]], [[2503.06749|Vision-R1]], [[2503.01785|Visual-RFT]], [[2603.09206|MM-Zero]]
+- [[2603.23500|UniGRPO]], [[2603.22847|PEPO]], [[2603.09206|MM-Zero]], [[2602.07605|Fine-R1]], [[2602.03120|QES]], [[2601.10094|V-Zero]], [[2601.09667|MATTRL]], [[2601.09536|Omni-R1]], [[2601.07055|Dr. Zero]], [[2601.03872|ATLAS]], [[2511.16901|AVST-Zero]], [[2511.13054|ViSS-R1]], [[2511.01191|Self-Harmony]], [[2510.03259|MASA]], [[2510.02752|Self-Aware RL for LLMs]], [[2510.02263|RLAD]], [[2509.25541|Vision-Zero]], [[2509.15194|EVOL-RL]], [[2509.12132|Reflection-V]], [[2509.02479|SimpleTIR]], [[2509.01656|ReV PT]], [[2508.11737|Ovis2.5]], [[2508.04416|VITAL]], [[2507.20766|RRVF]], [[2507.19849|ARPO]], [[2507.16814|SOPHIA]], [[2507.16518|C2-Evo]], [[2507.08838|wd1]], [[2507.01949|Kwai Keye-VL]], [[2507.01006|GLM-4.5V]], [[2506.24119|SPIRAL]], [[2506.09033|Router-R1]], [[2506.08989|SwS]], [[2506.07218|Perception-R1]], [[2506.04207|ReVisual-R1]], [[2506.03569|MiMo-VL]], [[2505.24726|Reflect Retry Reward]], [[2505.17018|SophiaVL-R1]], [[2505.16854|TON]], [[2505.15809|MMaDA]], [[2505.14677|Visionary-R1]], [[2505.13934|RLVR-World]], [[2505.13031|MindOmni]], [[2505.12434|VIDEORFT]], [[2505.08617|OpenThinkIMG]], [[2505.07062|Seed1.5-VL]], [[2505.03981|X-Reasoner]], [[2505.00703|T2I-R1]], [[2504.18397|UV-CoT]], [[2504.16656|Skywork R1V2]], [[2504.16129|MARFT]], [[2504.16084|TTRL]], [[2504.08837|VL-Rethinker]], [[2504.08672|Genius]], [[2504.07615|VLM-R1]], [[2504.07491|Kimi-VL]], [[2504.04736|SWiRL]], [[2503.21776|Video-R1]], [[2503.20752|Reason-RFT]], [[2503.17352|OpenVLThinker]], [[2503.12797|DeepPerception]], [[2503.07523|VisRL]], [[2503.07365|MM-Eureka]], [[2503.06749|Vision-R1]], [[2503.01785|Visual-RFT]]
 
 > [!star] Key Papers
 > - [[2503.06749|Vision-R1]] — First R1-style RL for VLMs with visual CoT; opened the floodgate
@@ -421,7 +421,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2506.03569|MiMo-VL]] — Xiaomi's 7B model achieving SOTA visual reasoning; proves small models can reason
 
 **Visual Grounding & Spatial RL** — Teaching VLMs to ground reasoning in precise visual regions, coordinates, and spatial relationships via RL.
-- [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.03733|RegionReasoner]], [[2601.21634|RSGround-R1]], [[2601.15224|PROGRESSLM]], [[2601.04777|GeM-VG]], [[2512.20617|SpatialTree]], [[2512.15160|EagleVision]], [[2512.12633|DiG]], [[2512.10554|GETok]], [[2511.05491|VST]], [[2510.27606|Spatial-SSRL]], [[2507.13362|VLM Spatial Reasoning RL]], [[2507.08306|M2-Reasoning]], [[2507.05920|MGPO]], [[2507.05255|OVR]], [[2506.22624|Seg-R1]], [[2506.21656|SpatialReasoner-R1]], [[2506.21458|MINDCUBE]], [[2506.09965|VILASR]], [[2505.19702|Point-RFT]], [[2505.19255|VTool-R1]], [[2505.19094|SATORI]], [[2505.15879|GRIT]], [[2505.15804|STAR-R1]], [[2505.14231|UniVG-R1]]
+- [[2603.25629|LanteRn]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.03733|RegionReasoner]], [[2601.21634|RSGround-R1]], [[2601.15224|PROGRESSLM]], [[2601.04777|GeM-VG]], [[2512.20617|SpatialTree]], [[2512.15160|EagleVision]], [[2512.12633|DiG]], [[2512.10554|GETok]], [[2511.05491|VST]], [[2510.27606|Spatial-SSRL]], [[2507.13362|VLM Spatial Reasoning RL]], [[2507.08306|M2-Reasoning]], [[2507.05920|MGPO]], [[2507.05255|OVR]], [[2506.22624|Seg-R1]], [[2506.21656|SpatialReasoner-R1]], [[2506.21458|MINDCUBE]], [[2506.09965|VILASR]], [[2505.19702|Point-RFT]], [[2505.19255|VTool-R1]], [[2505.19094|SATORI]], [[2505.15879|GRIT]], [[2505.15804|STAR-R1]], [[2505.14231|UniVG-R1]]
 
 > [!star] Key Papers
 > - [[2505.15804|STAR-R1]] — State-of-the-art spatial reasoning by anchoring each CoT step to visual regions
@@ -574,7 +574,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2603.05218|KARL]] — Off-policy RL for knowledge agents; Pareto-optimal on enterprise search, 37% shorter trajectories
 
 **Self-Evolving Agents** — Agents that improve their own strategies, generate their own curricula, and bootstrap their own training data.
-- [[2603.18743|Memento-Skills]], [[2602.20133|AdaEvolve]], [[2511.16043|Agent0]], [[2511.10395|AgentEvolver]]
+- [[2603.25111|SEVerA]], [[2603.24533|UI-Voyager]], [[2603.18743|Memento-Skills]], [[2602.20133|AdaEvolve]], [[2511.16043|Agent0]], [[2511.10395|AgentEvolver]]
 
 > [!star] Key Papers
 > - [[2603.18743|Memento-Skills]] — Skill library as external memory; agents evolve without parameter updates, +13.7pp on GAIA

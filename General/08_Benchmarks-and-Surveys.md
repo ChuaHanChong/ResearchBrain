@@ -217,7 +217,7 @@ Surveys mapping the robotics landscape from embodied AI simulators through VLA a
 Surveys covering AI systems that improve themselves through experience, self-play, or evolutionary mechanisms — spanning both LLMs and embodied agents.
 
 **LLM Self-Evolution** — How language models improve autonomously through self-training, self-play, and feedback loops.
-- [[2602.04411|Self-evolving Embodied AI]], [[2510.02665|MLLM Self-Improvement Survey]], [[2508.07407|Self-Evolving AI Agents Survey]], [[2404.14387|LLM Self-Evolution Survey]]
+- [[2603.25681|LLM Self-Improvement Survey]], [[2602.04411|Self-evolving Embodied AI]], [[2510.02665|MLLM Self-Improvement Survey]], [[2508.07407|Self-Evolving AI Agents Survey]], [[2404.14387|LLM Self-Evolution Survey]]
 
 > [!star] Key Papers
 > - [[2404.14387|LLM Self-Evolution Survey]] — Defines the taxonomy: self-training, self-play, and self-refinement as distinct mechanisms

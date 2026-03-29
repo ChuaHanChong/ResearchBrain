@@ -178,7 +178,7 @@ The hottest design question in generative AI: can one model both understand and 
 Reinforcement learning is transforming how diffusion and flow-matching models are trained. Instead of relying solely on maximum likelihood, these methods use reward signals (human preference, text-image alignment, task success) to directly optimize generation quality. The paradigm parallels RLHF for LLMs but requires novel algorithms for the continuous, multi-step denoising process.
 
 **Flow Matching + RL** — Apply policy optimization to flow-matching and continuous diffusion models, treating the denoising trajectory as a sequential decision process.
-- [[2603.04333|floq]], [[2509.06040|BranchGRPO]], [[2507.21053|FPO]], [[2505.05470|Flow-GRPO]]
+- [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2509.06040|BranchGRPO]], [[2507.21053|FPO]], [[2505.05470|Flow-GRPO]]
 
 > [!star] Key Papers
 > - [[2505.05470|Flow-GRPO]] — First framework adapting GRPO to flow matching; enables online RL for continuous generative models
@@ -287,7 +287,7 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2302.00111|UniPi]] — Universal policy as text-conditioned video generation; crosses the boundary between video models and robot control
 
 **Video Diffusion as World Models** — Adapt pre-trained video diffusion models to robotic tasks, using generated future video as a physics simulator for planning.
-- [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2510.19430|GigaBrain-0]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.13340|LPS]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2412.14803|VPP]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]]
+- [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2510.19430|GigaBrain-0]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.13340|LPS]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2412.14803|VPP]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]]
 
 > [!star] Key Papers
 > - [[2512.13644|DexWM]] — Leverages human video data for dexterous manipulation; 83% zero-shot success without real-world training

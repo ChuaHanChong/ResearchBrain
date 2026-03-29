@@ -128,14 +128,14 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.17693|SynRL]] — Synthetic video post-training achieves 21x data efficiency over model-generated data
 
 **Chain-of-Thought for Video** — Methods that extend textual CoT reasoning to the video domain, explicitly grounding reasoning steps in specific frames or temporal segments.
-- [[2603.16870|Chain-of-Steps]], [[2601.21037|Thinking in Frames]], [[2507.09876|ViTCoT]], [[2506.03525|VIDEO-SKOT]], [[2506.00318|CoF]]
+- [[2603.24558|LensWalk]], [[2603.16870|Chain-of-Steps]], [[2601.21037|Thinking in Frames]], [[2507.09876|ViTCoT]], [[2506.03525|VIDEO-SKOT]], [[2506.00318|CoF]]
 
 > [!star] Key Papers
 > - [[2506.00318|CoF]] — Frame-aware reasoning traces with explicit temporal grounding; SOTA on VSI-Bench and Video-MME
 > - [[2603.16870|Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Spatiotemporal Grounding & Perception** — Architectures for precise spatial and temporal localization in video, including segmentation, tracking, and pixel-grounded language understanding.
-- [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]]
+- [[2603.23404|TRACE]], [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]]
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
@@ -166,7 +166,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 The paradigm shift: video generation models that simulate ==physically plausible futures==, becoming the foundation for planning and control. These models bridge content creation and robotic planning by learning physics, causality, and dynamics from temporal data.
 
 **Foundational Video World Models** — Systems that treat video generation as world simulation, learning to produce physically coherent future states from observation.
-- [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
+- [[2603.25716|HyDRA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
 
 > [!star] Key Papers
 > - [[2302.00111|UniPi]] — First to use text-guided video generation as a universal policy; bridges video generation and robot control
