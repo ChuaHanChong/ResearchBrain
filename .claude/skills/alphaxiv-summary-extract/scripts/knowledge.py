@@ -506,7 +506,7 @@ papers = [
     "https://arxiv.org/abs/2603.22057", # SpatialBoost: Enhancing Visual Representation through Language-Guided Reasoning
     "https://arxiv.org/abs/2603.21383", # PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost
     "https://arxiv.org/abs/2511.16652", # Evolution Strategies at the Hyperscale
-    "https://arxiv.org/pdf/2603.15255", # SAGE: Multi-Agent Self-Evolution for LLM Reasoning
+    "https://arxiv.org/abs/2603.15255", # SAGE: Multi-Agent Self-Evolution for LLM Reasoning
     "https://arxiv.org/abs/2601.19280", # Group Distributionally Robust Optimization-Driven Reinforcement Learning for LLM Reasoning
     "https://arxiv.org/abs/2603.24800", # Calibri: Enhancing Diffusion Transformers via Parameter-Efficient Calibration
     "https://arxiv.org/abs/2603.24422", # OneSearch-V2: The Latent Reasoning Enhanced Self-distillation Generative Search Framework
@@ -516,6 +516,16 @@ papers = [
     "https://arxiv.org/abs/2603.25411", # HiSpatial: Taming Hierarchical 3D Spatial Understanding in Vision-Language Models
     "https://arxiv.org/abs/2603.25723", # Natural-Language Agent Harnesses
     "https://arxiv.org/abs/2603.24533", # UI-Voyager: A Self-Evolving GUI Agent Learning via Failed Experience
+    "https://arxiv.org/abs/2603.24984", # MoE-GRPO: Optimizing Mixture-of-Experts via Reinforcement Learning in Vision-Language Models
+    "https://arxiv.org/abs/2603.22953", # Cluster-Wise Spatio-Temporal Masking for Efficient Video-Language Pretraining
+    "https://arxiv.org/abs/2603.25077", # Bridging Perception and Reasoning: Token Reweighting for RLVR in Multimodal LLMs
+    "https://arxiv.org/abs/2603.22815", # Focus, Don’t Prune: Identifying Instruction-Relevant Regions for Information-Rich Image Understanding
+    "https://arxiv.org/abs/2603.25629", # LanteRn: Latent Visual Structured Reasoning
+    "https://arxiv.org/abs/2603.15553", # Self-Distillation of Hidden Layers for Self-Supervised Representation Learning
+    "https://arxiv.org/abs/2603.22387", # Efficient Universal Perception Encoder
+    "https://arxiv.org/abs/2603.25723", # Natural-Language Agent Harnesses
+    "https://arxiv.org/abs/2601.21725", # Procedural Pretraining: Warming Up Language Models with Abstract Data
+    "https://arxiv.org/abs/2511.13945", # Can You Learn to See Without Images? Procedural Warm-Up for Vision Transformers
 
     "https://arxiv.org/abs/2210.17067", # Unified Optimal Transport Framework for Universal Domain Adaptation
     "https://arxiv.org/abs/2312.07871", # MLNet: Mutual Learning Network with Neighborhood Invariance for Universal Domain Adaptation
@@ -660,5 +670,36 @@ papers = [
     "https://arxiv.org/abs/2603.24393", # 3D-MIX for VLA: A Plug-and-Play Module for Integrating VGGT-based 3D Information into Vision-Language-Action Models
     "https://arxiv.org/abs/2603.22281", # ThinkJEPA: Empowering Latent World Models with Large Vision-Language Reasoning Model
     "https://arxiv.org/abs/2603.24517", # AVO: Agentic Variation Operators for Autonomous Evolutionary Search
+
+    "https://arxiv.org/abs/2603.26499", # AIRA_2: Overcoming Bottlenecks in AI Research Agents
+    "https://arxiv.org/abs/2511.16043", # Agent0: Unleashing Self-Evolving Agents from Zero Data via Tool-Integrated Reasoning
+    "https://arxiv.org/abs/2603.26320", # DFM-VLA: Iterative Action Refinement for Robot Manipulation via Discrete Flow Matching
+    "https://arxiv.org/abs/2603.22179", # MARCUS: An Agentic, Multimodal Vision-Language Model for Cardiac Diagnosis and Management
+    "https://arxiv.org/abs/2603.25744", # MuRF: Unlocking the Multi-Scale Potential of Vision Foundation Models
+    "https://arxiv.org/abs/2603.26599", # VGGRPO: Towards World-Consistent Video Generation with 4D Latent Reward
+    "https://arxiv.org/abs/2603.25038", # π, But Make It Fly: Physics-Guided Transfer of VLA Models to Aerial Manipulation
+    "https://arxiv.org/abs/2603.15789", # Emergent Dexterity via Diverse Resets and Large-Scale Reinforcement Learning
+    "https://arxiv.org/abs/2509.18830", # DexSkin: High-Coverage Conformable Robotic Skin for Learning Contact-Rich Manipulation
+    "https://arxiv.org/abs/2603.22264", # UniDex: A Robot Foundation Suite for Universal Dexterous Hand Control from Egocentric Human Videos
+    "https://arxiv.org/abs/2603.03243", # HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations
+    "https://arxiv.org/abs/2603.18336", # ManiDreams: An Open-Source Library for Robust Object Manipulation via Uncertainty-aware Task-specific Intuitive Physics
+    "https://arxiv.org/abs/2603.13825", # Building Explicit World Model for Zero-Shot Open-World Object Manipulation
+    "https://arxiv.org/abs/2512.15692", # mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs
+    "https://arxiv.org/abs/2510.22201", # ACG: Action Coherence Guidance for Flow-based Vision-Language-Action models
+    "https://arxiv.org/abs/2603.11653", # Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning
+    "https://arxiv.org/abs/2603.10052", # OmniGuide: Universal Guidance Fields for Enhancing Generalist Robot Policies
+    "https://arxiv.org/abs/2603.04639", # RoboMME: Benchmarking and Understanding Memory for Robotic Generalist Policies
+    "https://arxiv.org/abs/2603.03279", # ULTRA: Unified Multimodal Control for Autonomous Humanoid Whole-Body Loco-Manipulation
+    "https://arxiv.org/abs/2603.25716", # Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World Models
+    "https://arxiv.org/abs/2508.07917", # MolmoAct: Action Reasoning Models that can Reason in Space
+    "https://arxiv.org/abs/2603.25887", # World Reasoning Arena
+    "https://arxiv.org/abs/2602.20057", # AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation
+    "https://arxiv.org/abs/2511.00091", # Self-Improving Vision-Language-Action Models with Data Generation via Residual RL
+    "https://arxiv.org/abs/2504.18471", # Action Flow Matching for Continual Robot Learning
+    "https://arxiv.org/abs/2602.11832", # JEPA-VLA: Video Predictive Embedding is Needed for VLA Models
+    "https://arxiv.org/abs/2509.17057", # RoboManipBaselines: A Unified Framework for Imitation Learning in Robotic Manipulation across Real and Simulation Environments
+    "https://arxiv.org/abs/2603.27287", # Uni-World VLA: Interleaved World Modeling and Planning for Autonomous Driving
+    "https://arxiv.org/abs/2603.22435", # CaP-X: A Framework for Benchmarking and Improving Coding Agents for Robot Manipulation
+
 ]
 

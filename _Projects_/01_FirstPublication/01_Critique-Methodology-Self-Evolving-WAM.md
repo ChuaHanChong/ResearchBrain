@@ -16,7 +16,7 @@ aliases:
 > [!abstract] Purpose
 > A structural analysis of [[00_How-to-Build-Self-Evolving-WAM|the Self-Evolving WAM Blueprint]], arguing that even if every cited paper's results transferred perfectly to manipulation, the proposed methodology still cannot produce a self-evolving WAM. This critique targets the mechanisms themselves, not domain transfer gaps.
 >
-> See also: [[00_Critique-Self-Evolving-WAM]] for the domain transfer and miscitation critique.
+> See also: [[01_Critique-Self-Evolving-WAM]] for the domain transfer and miscitation critique.
 
 > [!info] Methodology
 > Every claim below has been verified against the corresponding `_KnowledgeHub_` note. The critique assumes the *best case* for every component — full domain transfer, unlimited compute, perfect implementation — and shows that the architecture still breaks at the methodology level.
