@@ -69,6 +69,16 @@ where $\mu_S, \sigma_S$ are rolling mean and standard deviation across recent ep
 
 > **Output of Step 2**: A set of ==high-surprise episodes== $\mathcal{D}_{\text{hard}} = \{\tau : S_{\text{env}}(\tau) > \text{threshold}\}$ — environments the world model doesn't understand. These feed into Step 3 (EXPLORE) as the scenarios to probe further.
 
+### VLA-JEPA Variant ([[2602.10098|VLA-JEPA]])
+
+For VLA-JEPA, prediction error uses V-JEPA2's latent predictor (==dormant at inference by default== — must be explicitly activated):
+
+$$\hat{z}_{t+1}^{\text{JEPA}} = \text{VJ2\_Predictor}(z_t^{\text{target}}, a_t)$$
+
+$$L_{\text{JEPA}}(t) = \|z_{t+1}^{\text{target}} - \hat{z}_{t+1}^{\text{JEPA}}\|_2^2$$
+
+where $z^{\text{target}}$ is V-JEPA2's target encoder output (frozen, stop-gradient). This is ==simpler== than Fast-WAM's Video DiT prediction (no pixel-level generation, no VAE encoding step) and ==cheaper== (no 5B model needed). Same thresholding logic applies: $S_{\text{env}}(\tau) > \mu_S + 2\sigma_S$.
+
 ---
 
 ## 3a. EXPLORE (Action Uncertainty): πRL Flow-SDE ([[2510.25889|πRL]], [[2505.05470|Flow-GRPO]])
@@ -115,7 +125,11 @@ $$\tilde{z} = \mu_\theta(o) + \alpha \cdot \sigma_\theta(o) \cdot \epsilon, \qua
 
 where $\alpha > 1$ amplifies the perturbation beyond the learned variance.
 
-**Decode to action via ActionDiT's flow matching** (adapted for FM — swap decoder):
+**Adapted VIB reconstruction loss for flow matching** (replacing DDPM noise prediction):
+
+$$L_{\text{VIB-FM}} = \underbrace{\mathbb{E}_{z \sim p_\theta(z|o)} \left[\|f_\theta(a_t, t, \tilde{z}, o, l) - (\epsilon - a)\|_2^2\right]}_{\text{FM velocity prediction conditioned on perturbed } \tilde{z}} + \underbrace{\beta \cdot \text{KL}\left[p_\theta(z|o) \| \mathcal{N}(0, I)\right]}_{\text{information bottleneck (unchanged)}}$$
+
+**Decode to action via ActionDiT's flow matching**:
 
 $$\tilde{a}_{1:H} = \text{ActionDiT}(\tilde{z}, o, l) \quad \text{(conditioned on perturbed } \tilde{z} \text{)}$$
 
@@ -270,11 +284,17 @@ $$\theta^{(n+1)} = \theta^{(n)} + \Delta\theta$$
 
 where $\Delta\theta = AB$ (LoRA update) is trained on:
 
-$$L^{(n)} = \underbrace{\mathbb{E}_{\mathcal{D}_{\text{recovery}}^{(n)}} \left[L_{FM}\right]}_{\text{PLD recovery data}} + \underbrace{\mathbb{E}_{\mathcal{D}_{\text{dream}}^{(n)}} \left[L_{FM}\right]}_{\text{Video DiT dreams}} + \underbrace{\mathbb{E}_{\mathcal{D}_{\text{replay}}} \left[L_{FM}\right]}_{\text{2\% replay buffer}}$$
+$$L^{(n)} = \underbrace{\mathbb{E}_{\mathcal{D}_{\text{recovery}}^{(n)}} \left[L_{FM}\right]}_{\text{PLD recovery data}} + \underbrace{\mathbb{E}_{\mathcal{D}_{\text{SOE}}^{(n)}} \left[L_{FM}\right]}_{\text{SOE exploration successes}} + \underbrace{\mathbb{E}_{\mathcal{D}_{\text{dream}}^{(n)}} \left[L_{FM}\right]}_{\text{Video DiT / V-JEPA2 dreams}} + \underbrace{\mathbb{E}_{\mathcal{D}_{\text{replay}}} \left[L_{FM}\right]}_{\text{2\% replay buffer}}$$
 
-And the data $\mathcal{D}_{\text{recovery}}^{(n)}$ is self-generated via:
+The self-generated data comes from three discovery mechanisms:
 
-$$\mathcal{D}_{\text{recovery}}^{(n)} = \text{PLD}\left(\pi_{\theta^{(n)}}, \; \underbrace{\mathcal{D}_{\text{hard}}^{(n)}}_{\text{from Video DiT prediction error}} \cup \underbrace{\mathcal{E}_{\text{hard}}^{(n)}}_{\text{from RoboMD adversary}}\right)$$
+$$\mathcal{D}_{\text{recovery}}^{(n)} = \text{PLD}\left(\pi_{\theta^{(n)}}, \; \underbrace{\mathcal{D}_{\text{hard}}^{(n)}}_{\text{from prediction error}} \cup \underbrace{\mathcal{E}_{\text{hard}}^{(n)}}_{\text{from RoboMD adversary}}\right)$$
+
+$$\mathcal{D}_{\text{SOE}}^{(n)} = \left\{\tilde{a}_{1:H} : \text{SOE}(\alpha, o) \text{ succeeds} \wedge \alpha > \alpha^*_{\text{prev}}\right\}$$
+
+$$\mathcal{D}_{\text{hard}}^{(n)} = \left\{\tau : S_{\text{env}}(\tau) > \mu_S + 2\sigma_S\right\} \cup \left\{\tau : \text{Var}_{\text{action}}(o) > \theta_{\text{var}}\right\}$$
+
+The last term includes episodes flagged by ==both== Video DiT/V-JEPA2 prediction error (environment-level) and πRL Flow-SDE variance (action-level).
 
 This is a ==fixed-point iteration==: the model generates its own training signal, improves, then generates a new training signal from the improved model. Convergence is measured externally via OOD benchmarks.
 
