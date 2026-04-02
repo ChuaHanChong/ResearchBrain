@@ -700,6 +700,28 @@ papers = [
     "https://arxiv.org/abs/2509.17057", # RoboManipBaselines: A Unified Framework for Imitation Learning in Robotic Manipulation across Real and Simulation Environments
     "https://arxiv.org/abs/2603.27287", # Uni-World VLA: Interleaved World Modeling and Planning for Autonomous Driving
     "https://arxiv.org/abs/2603.22435", # CaP-X: A Framework for Benchmarking and Improving Coding Agents for Robot Manipulation
-
+    "https://arxiv.org/abs/2603.25887", # World Reasoning Arena
+    "https://arxiv.org/abs/2603.27967", # Learning Multi-View Spatial Reasoning from Cross-View Relations
+    "https://arxiv.org/abs/2603.29089", # WorldFlow3D: Flowing Through 3D Distributions for Unbounded World Generation
+    "https://arxiv.org/abs/2603.27866", # Wan-R1: Verifiable-Reinforcement Learning for Video Reasoning
+    "https://arxiv.org/abs/2603.28204", # ERPO: Token-Level Entropy-Regulated Policy Optimization for Large Reasoning Models
+    "https://arxiv.org/abs/2603.28730", # SOLE-R1: Video-Language Reasoning as the Sole Reward for On-Robot Reinforcement Learning
+    "https://arxiv.org/abs/2603.29165", # LatentPilot: Scene-Aware Vision-and-Language Navigation by Dreaming Ahead with Latent Visual Reasoning
+    "https://arxiv.org/abs/2603.30036", # Aligned, Orthogonal or In-conflict: When can we safely optimize Chain-of-Thought?
+    "https://arxiv.org/abs/2603.27164", # daVinci-LLM:Towards the Science of Pretraining
+    "https://arxiv.org/abs/2603.29557", # FlowPIE: Test-Time Scientific Idea Evolution with Flow-Guided Literature Exploration
+    "https://arxiv.org/abs/2603.28887", # OccSim: Multi-kilometer Simulation with Long-horizon Occupancy World Models
+    "https://arxiv.org/abs/2603.28963", # AutoWorld: Scaling Multi-Agent Traffic Simulation with Self-Supervised World Models
+    "https://arxiv.org/abs/2603.29493", # MemFactory: Unified Inference & Training Framework for Agent Memory
+    "https://arxiv.org/abs/2603.29844", # DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA
+    "https://arxiv.org/abs/2603.28480", # INSID3: Training-Free In-Context Segmentation with DINOv3
+    "https://arxiv.org/abs/2603.28713", # DreamLite: A Lightweight On-Device Unified Model for Image Generation and Editing
+    "https://arxiv.org/abs/2603.30045", # OmniRoam: World Wandering via Long-Horizon Panoramic Video Generation
+    "https://arxiv.org/abs/2603.28618", # Seeing with You: Perception–Reasoning Coevolution for Multimodal Reasoning
+    "https://arxiv.org/abs/2512.13644", # World Models for Learning Dexterous Hand-Object Interactions from Human Videos
+    "https://arxiv.org/abs/2510.08575", # ReSplat: Learning Recurrent Gaussian Splatting
+    "https://arxiv.org/abs/2603.29620", # Unify-Agent: A Unified Multimodal Agent for World-Grounded Image Synthesis
+    "https://arxiv.org/abs/2512.01119", # World Model Robustness via Surprise Recognition
+    "https://arxiv.org/abs/2507.07969", # Reinforcement Learning with Action Chunking
 ]
 

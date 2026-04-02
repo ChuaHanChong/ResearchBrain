@@ -142,7 +142,7 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
 |-------|------------------|-------------------|--------|
 | **Environment** | Which ==sim conditions== the model can't handle | ==Active==: RL adversary searches for failure-inducing conditions | [[2412.02818|RoboMD]] (RL adversary, policy-agnostic) |
 | **Environment** | Which conditions the world model ==doesn't understand== | Passive: prediction error flags surprise | Fast-WAM: Video DiT prediction error; VLA-JEPA: ==V-JEPA2 latent prediction error (free)== (inspired by [[2602.20057\|AdaWorldPolicy]]) |
-| **Action** | Which ==action variations== cause failure | ==Active==: perturb conditioning via VIB (4-dim latent) → find behavioral boundaries | [[2509.19292\|SOE]] adapted for FM — swap DDPM decoder for ActionDiT, keep VIB MLPs |
+| **Action** | Which ==action variations== cause failure | ==Active==: perturb conditioning via VIB (compact latent) → find behavioral boundaries | [[2509.19292\|SOE]] adapted for FM — swap DDPM decoder for ActionDiT, keep VIB MLPs |
 | **Action** | Where the model is ==uncertain== | Passive: stochastic sampling measures spread | [[2510.25889\|πRL]] Flow-SDE |
 | **Behavioral** | Where the model ==actually fails== | ==Active==: deploy and observe | [[2511.00091\|PLD]] probing |
 
