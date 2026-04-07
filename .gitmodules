@@ -1,3 +1,0 @@
-[submodule ".claude/skills/excalidraw"]
-	path = .claude/skills/excalidraw
-	url = git@github.com:ChuaHanChong/excalidraw-diagram-skill.git

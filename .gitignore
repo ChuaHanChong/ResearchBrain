@@ -1,8 +1,10 @@
+.DS_Store
 __pycache__/
 .obsidian/
 .venv/
 .playwright*/
+_Artefacts_/
+papers/
 data/
-X02_Artefacts/
 docs/superpowers/
-.claude/scripts/eval_results/
+TODO.md
