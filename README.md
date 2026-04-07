@@ -1,53 +1,61 @@
-# ResearchBrain
+# Research Brain
 
-An Obsidian vault powered by Claude Code for AI research paper analysis. It automates paper ingestion, generates structured summaries, creates visual diagrams, and organizes 1,761 papers into a navigable knowledge graph.
+An Obsidian vault powered by Claude Code for **full-stack AI research** — from literature discovery and paper synthesis to idea formulation, mathematical verification, and research documentation.
 
-## What It Does
+## Research Flow
 
 ```
-arxiv paper ID
-  → fetch summary from alphaxiv.org
-  → extract structured notes (Problem/Method/Results/Takeaways)
-  → enrich with authors, tags, highlights
-  → assign to topic overview
-  → (optional) generate Excalidraw diagram
+General/ (topic overview, landscape, key papers)
+  → _KnowledgeHub_/ (paper details: Problem/Method/Results)
+    → alphaxiv MCP (full paper content, PDF Q&A, math understanding)
+      → Code & PDFs (local repos, GitHub reader, paper PDFs)
 ```
 
 ## Vault Structure
 
 ```
 ResearchBrain/
-├── _KnowledgeHub_/          # 1,761 paper notes ({arxiv_ID}.md)
-├── General/                  # 12 topic overviews with evolution graphs
-│   ├── 00_Index.md
-│   ├── 01_Foundation-Models.md
-│   ├── 02_Vision-Language-Models.md
-│   ├── 03_Reasoning-and-Planning.md
-│   ├── 04_Reinforcement-Learning.md
-│   ├── 05_Computer-Vision-and-3D.md
-│   ├── 06_Video-and-Temporal.md
-│   ├── 07_Robotics-and-Embodied-AI.md
-│   ├── 08_Benchmarks-and-Surveys.md
-│   ├── 09_Multimodal-LLMs.md
-│   ├── 10_Agents-and-Tool-Use.md
-│   ├── 11_Self-Evolving-AI.md
-│   ├── 12_Diffusion-and-Generation.md
-│   └── scripts/              # Paper assignment & listing generation
-├── _Projects_/               # Research project planning
-├── _Artefacts_/              # Excalidraw diagrams & PNGs (gitignored)
-└── .claude/                  # Claude Code agents, skills, config
+├── _KnowledgeHub_/          # Paper notes ({arxiv_ID}.md)
+├── _Projects_/               # Research projects, blueprints, code repos
+├── General/                  # Topic overviews with evolution graphs
+├── VLA-WAM/                  # Deep-dive notes on VLA, WAM, JEPA, etc.
+├── data/papers/              # Local PDFs (downloaded on demand)
+├── data/repo/                # Local code repos (cloned on demand)
+└── .claude/                  # Agent, skills, config
+    ├── agents/
+    │   └── research-assistant.md
+    └── skills/
+        ├── alphaxiv-search/
+        ├── alphaxiv-summary-extract/
+        ├── knowledgehub-query/
+        └── paper-curate/
 ```
+
+## Agent & Skills
+
+| Component | Purpose |
+|-----------|---------|
+| **research-assistant** agent | Full-stack research: discovery, idea formulation, math verification, synthesis, documentation |
+| **alphaxiv-search** skill | Search guide for alphaxiv MCP tools with query patterns and strategies |
+| **alphaxiv-summary-extract** skill | Batch-scrape papers into KnowledgeHub notes with enrichment |
+| **knowledgehub-query** skill | Read and synthesize from existing paper notes |
+| **paper-curate** skill | Assign papers to General/ topics, audit coverage |
 
 ## Paper Note Format
 
-Each `_KnowledgeHub_/{ID}.md` note follows a consistent template:
+Each `_KnowledgeHub_/{ID}.md` note:
 
 ```yaml
 ---
 title: "Paper Title"
-authors: [First Author, ...]
-tags: [topic-1, topic-2]
-aliases: [ModelName]
+authors:
+  - "First Author"
+  - "Second Author"
+tags:
+  - topic-1
+  - topic-2
+aliases:
+  - "ModelName"
 ---
 ```
 
@@ -56,73 +64,16 @@ aliases: [ModelName]
 - **Method** — how they solved it (`==technical terms==` highlighted, `**ModelName**` bolded)
 - **Results** — key metrics (`**X%**` bolded)
 - **Takeaways** — key insights
-- **BibTeX** — citation block (hidden in Obsidian reading view)
+- **BibTeX** — citation block
 
-## Topic Overviews
+## Prerequisites
 
-Each `General/` file provides:
-- Curated narrative with landmark papers and Mermaid evolution graphs
-- Complete paper listing — every KnowledgeHub paper appears in exactly one topic
-- Cross-references to related topics and deep-dive folders
-
-## Claude Code Integration
-
-### Skills
-
-| Skill | Trigger | What It Does |
-|-------|---------|--------------|
-| `alphaxiv-summary-extract` | "update knowledge hub" | Batch-scrape papers from alphaxiv.org into notes |
-| `alphaxiv-paper-lookup` | Share an arxiv URL/ID | Fetch and explain a single paper |
-| `knowledgehub-query` | Reference paper IDs | Answer questions from existing notes |
-| `excalidraw` | "diagram this" | Generate visual Excalidraw diagrams |
-
-### Agents
-
-| Agent | Purpose |
-|-------|---------|
-| `paper-visual-explainer` | Extract visual dimensions from papers and create diagrams |
-
-## Quick Start
-
-### Prerequisites
-
-- [Obsidian](https://obsidian.md/) (for viewing the vault)
-- [Claude Code](https://claude.ai/code) (for automation)
+- [Obsidian](https://obsidian.md/) for viewing the vault
+- [Claude Code](https://claude.ai/code) for automation
 - Python 3.13+ via [uv](https://github.com/astral-sh/uv)
-- Chrome + ChromeDriver (for alphaxiv scraping)
-
-### Add Papers
-
-```bash
-# Single paper
-# Just share the arxiv URL in Claude Code — the skill handles the rest
-
-# Batch update (from knowledge.py paper list)
-python .claude/skills/alphaxiv-summary-extract/scripts/run.py \
-  --input .claude/skills/alphaxiv-summary-extract/scripts/knowledge.py \
-  --out _KnowledgeHub_
-
-# Regenerate General/ topic listings after adding papers
-python General/scripts/assign_papers.py
-python General/scripts/generate_listings.py
-```
-
-### Generate Diagrams
-
-```bash
-# First-time setup
-cd .claude/skills/excalidraw/references && uv sync && uv run playwright install chromium
-
-# Render a diagram to PNG
-cd .claude/skills/excalidraw/references && uv run python render_excalidraw.py /path/to/file.excalidraw
-```
-
-## Stats
-
-- **1,761** paper notes in KnowledgeHub
-- **12** topic overview files in General/
-- Papers spanning **2016–2026** across RL, VLMs, robotics, diffusion, and more
+- Chrome + ChromeDriver for Selenium-based extraction
+- [alphaxiv MCP](https://www.alphaxiv.org/docs/mcp) for paper search and retrieval
 
 ## License
 
-This is a personal research vault. Paper summaries are derived from [alphaxiv.org](https://alphaxiv.org). BibTeX entries are from [arXiv](https://arxiv.org).
+Personal research vault. Paper summaries derived from [alphaxiv.org](https://alphaxiv.org). BibTeX entries from [arXiv](https://arxiv.org).

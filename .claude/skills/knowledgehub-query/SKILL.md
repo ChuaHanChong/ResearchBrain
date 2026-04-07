@@ -1,6 +1,6 @@
 ---
 name: knowledgehub-query
-description: Read _KnowledgeHub_ paper notes and answer questions about them. Use this whenever the user references @_KnowledgeHub_, provides a list of arxiv IDs or URLs, and wants to compare, summarize, categorize, or analyze papers. Also trigger when the user says "from my notes", "from the knowledge hub", or "what do my notes say about". Runs a script to extract and print all matching note content, then synthesizes the answer from the structured summaries.
+description: "Read _KnowledgeHub_ paper notes and answer questions about them. Use whenever the user references @_KnowledgeHub_, provides arxiv IDs or URLs, or wants to compare, summarize, categorize, or analyze papers from the vault. Also trigger when the user says 'from my notes', 'from the knowledge hub', 'what do my notes say about', 'compare these papers', 'summarize these papers', or asks about specific papers by ID. This is the go-to skill for answering questions grounded in existing KnowledgeHub content."
 ---
 
 # KnowledgeHub Query
@@ -30,3 +30,7 @@ Use the printed note content to answer the user's question. Each note contains:
 - **Problem / Method / Results / Takeaways**: structured sections
 
 Refer to papers by their alias (e.g., "DreamZero"), not their arxiv ID. Ground your answer in what the notes say — don't extrapolate from memory.
+
+### Step 3: Handle missing papers
+
+If any IDs have no matching KH note (reported to stderr), inform the user and offer to fetch the paper using the `alphaxiv-search` skill or `alphaxiv-summary-extract` skill to add it to the vault.

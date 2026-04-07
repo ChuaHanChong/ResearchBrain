@@ -1,6 +1,6 @@
 ---
 name: paper-curate
-description: "Assign new KnowledgeHub papers to General/ topic overviews and maintain the folder structure. Use this skill whenever the user says 'update General', 'assign papers', 'add papers to General', 'maintain General folder', or after a batch KnowledgeHub update. Also use when the user wants to create a new topic file, reorganize sections, check which papers are missing from General/, or refresh callouts and insights."
+description: "Assign new KnowledgeHub papers to General/ topic overviews and maintain the folder structure. Use whenever the user says 'update General', 'assign papers', 'add papers to General', 'maintain General folder', 'check coverage', 'audit papers', 'refresh callouts', or after a batch KnowledgeHub update. Also trigger when the user wants to create a new topic file, reorganize sections, check which papers are missing from General/, or update key paper highlights and insights."
 ---
 
 # General/ Topic Overview Maintainer

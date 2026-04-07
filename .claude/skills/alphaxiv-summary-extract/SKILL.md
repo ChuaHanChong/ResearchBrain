@@ -1,6 +1,6 @@
 ---
 name: alphaxiv-summary-extract
-description: Use when the user wants to save a paper (or papers) as an Obsidian note in the KnowledgeHub — whether that's a single arxiv URL/ID or a full batch update ("update knowledge hub"). Scrapes structured summaries from alphaxiv.org and writes one Obsidian markdown note per paper into the output directory, skipping papers that already have a note.
+description: "Extract paper summaries from alphaxiv.org and write enriched Obsidian notes into KnowledgeHub. Use whenever the user says 'update knowledge hub', 'add this paper', 'save this paper', 'extract this paper', shares an arxiv URL/ID and wants it saved as a note, or wants to batch-process new papers. Also trigger when the user asks about enrichment rules, tag taxonomy, or KnowledgeHub note formatting conventions."
 ---
 
 # AlphaXiv Summary Extract
@@ -9,8 +9,8 @@ Scrape paper summaries from alphaxiv.org and write Obsidian markdown notes (`{ID
 
 ## When to Use
 
-- User says "update knowledge hub" → batch mode
-- User shares an arxiv URL/ID and wants it saved as a note → single-paper mode
+- User says "update knowledge hub" → **batch mode** (processes all papers in `knowledge.py`)
+- User shares an arxiv URL/ID and wants it saved as a note → **single-paper mode**
 
 ## Prerequisites
 
@@ -67,9 +67,9 @@ python .claude/skills/alphaxiv-summary-extract/scripts/run.py \
 
 Use `--force` to overwrite existing notes.
 
-### Step 3: Enrich newly generated notes (obsidian-markdown skill)
+### Step 3: Enrich newly generated notes
 
-For each newly written `.md` file, use the `obsidian-markdown` skill to:
+After extraction (both single-paper and batch mode), use the `obsidian-markdown` skill and Edit tool to enrich each new `.md` file:
 
 1. **Extract `authors`** from the BibTeX block (maximum of 5 total; keep the first 3 and the last 2 if there are more than 5 authors) and add them to the frontmatter. Never include `- ...` as a placeholder entry.
 2. **Infer `tags`** (3–6 tags from the canonical taxonomy below) and add them to the frontmatter.
@@ -127,3 +127,5 @@ python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
 - `authors`, `tags`, and `aliases` in frontmatter start empty (`[]`) — Step 3 fills them in
 - `authors` must never contain `- ...` as a placeholder — use real names only, or omit the field
 - `aliases` must never remain `[]` — always derive at least one alias from the title or paper content
+- `authors` and `aliases` values must always be double-quoted in YAML (e.g., `- "Author Name"`, `- "ModelName"`)
+- Use the Edit tool + obsidian-markdown skill for enrichment — do not write custom Python scripts for frontmatter changes
