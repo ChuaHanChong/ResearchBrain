@@ -199,7 +199,7 @@ Self-evolving systems need to practice on the right problems at the right diffic
 When self-improvement meets agentic AI: systems that autonomously explore environments, accumulate experience, distill lessons, and evolve their own capabilities across tasks. These go beyond single-turn reasoning to multi-step, tool-using, environment-interacting agents that learn from deployment.
 
 **Agent Self-Evolution Frameworks** — End-to-end frameworks where agents improve by interacting with diverse environments, distilling experience into reusable strategies, and iterating.
-- [[2603.19461|HyperAgents]], [[2511.16166|EvoVLA]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2406.04151|AgentGym]]
+- [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.04029|Self-Adapting RL]], [[2602.00359|A-EVOLVE]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective Self-Adaptation]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2406.04151|AgentGym]]
 
 > [!star] Key Papers
 > - [[2406.04151|AgentGym]] — Multi-environment agent evolution via behavioral cloning + self-evolution (AGENTEVOL); showed agents can generalize across diverse tasks
@@ -207,7 +207,7 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 > - [[2506.01716|SCA]] — Self-Challenging Agent: generates its own hard problems to practice on, driving continuous capability growth
 
 **Co-Evolutionary & Multi-Agent** — Multiple agents or model components (policy + environment, actor + critic) evolve together, each improving the other in a virtuous cycle.
-- [[2603.17621|Complementary RL]], [[2603.08403|SPIRAL]], [[2602.23413|EvoX]], [[2601.06794|ECHO]], [[2510.26433|CoLA-World]], [[2507.16518|C2-Evo]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2502.05907|EvoAgent]], [[2302.01877|AdaptDiffuser]]
+- [[2603.17621|Complementary RL]], [[2603.08403|SPIRAL]], [[2602.23413|EvoX]], [[2602.20057|AdaWorldPolicy]], [[2601.06794|ECHO]], [[2510.26433|CoLA-World]], [[2507.16518|C2-Evo]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2502.05907|EvoAgent]], [[2302.01877|AdaptDiffuser]]
 
 > [!star] Key Papers
 > - [[2601.06794|ECHO]] — Policy and environment co-evolve: the environment generates harder challenges as the policy improves, and vice versa
@@ -284,7 +284,7 @@ Extending self-evolution beyond text-only LLMs to multimodal models that process
 Self-evolution over time: systems that accumulate knowledge from ongoing experience without catastrophic forgetting. While sections 1-4 focus on improving within a training run, continual learning ensures improvements persist across deployment episodes and new environments.
 
 **Experience-Driven Lifelong Learning** — Agents that build persistent memory banks of experiences and learn to retrieve and apply relevant past knowledge to new situations.
-- [[2603.24350|Emergent Self]], [[2603.16856|OEL]], [[2512.24695|Hope]], [[2512.09441|MoP-CIL]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2508.19005|ELL Framework]], [[2507.10434|CLA]], [[2507.09177|Online Agent (OA)]], [[2411.13852|ESRM]], [[2402.15109|MU-Mis]], [[2305.13622|SER]], [[2211.15944|Continual-Dreamer]]
+- [[2604.01007|Omni-SimpleMem]], [[2603.24350|Emergent Self]], [[2603.16856|OEL]], [[2512.24695|Hope]], [[2512.09441|MoP-CIL]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2508.19005|ELL Framework]], [[2507.10434|CLA]], [[2507.09177|Online Agent (OA)]], [[2411.13852|ESRM]], [[2402.15109|MU-Mis]], [[2305.13622|SER]], [[2211.15944|Continual-Dreamer]]
 
 > [!star] Key Papers
 > - [[2508.19005|ELL Framework]] — Experience-driven Lifelong Learning: introduces the framework and StuLife benchmark for measuring continual self-improvement in realistic settings
@@ -292,7 +292,7 @@ Self-evolution over time: systems that accumulate knowledge from ongoing experie
 > - [[2509.25140|ReasoningBank]] — Memory-aware test-time scaling: stores and retrieves reasoning patterns for efficient reuse across problems
 
 **Multimodal Continual Skill Acquisition** — Agents that continually learn new skills from visual and language grounding, building an expanding repertoire without losing prior capabilities.
-- [[2603.18743|Memento-Skills]], [[2603.17621|Complementary RL]], [[2603.12056|XSkill]], [[2511.18085|Stellar VLA]], [[2504.21024|WebEvolver]]
+- [[2603.18743|Memento-Skills]], [[2603.17621|Complementary RL]], [[2603.12056|XSkill]], [[2603.07648|AtomicVLA]], [[2511.18085|Stellar VLA]], [[2504.21024|WebEvolver]], [[2504.18471|AFM]]
 
 > [!star] Key Papers
 > - [[2603.12056|XSkill]] — Dual-stream framework for continual learning from visually-grounded experience; skills transfer across tasks and modalities

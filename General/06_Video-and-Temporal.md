@@ -97,14 +97,14 @@ From video classification to self-supervised video representation learning. The 
 > - [[2112.01526|MViTv2]] — Refined pooling mechanism and added decomposed relative position embeddings; strong on both classification and detection
 
 **Self-Supervised Video Models** — Learn general video representations from unlabeled data, progressing toward world models that support zero-shot downstream transfer.
-- [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA 2.1]], [[2507.19468|DINO-world]], [[2506.09985|V-JEPA 2]], [[2505.11129|PhiNet v2]]
+- [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA 2.1]], [[2602.11832|JEPA-VLA]], [[2507.19468|DINO-world]], [[2506.09985|V-JEPA 2]], [[2505.11129|PhiNet v2]]
 
 > [!star] Key Papers
 > - [[2506.09985|V-JEPA 2]] — Self-supervised model trained on 1M+ hours of video; learned world model enables zero-shot robotic control via MPC
 > - [[2603.14482|V-JEPA 2.1]] — Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation
 
 **Video-Language Foundation Models** — Large-scale models that jointly process video and language for fine-grained understanding, captioning, and long-context comprehension.
-- [[2507.04590|VLM2Vec-V2]], [[2507.01949|Kwai Keye-VL]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]]
+- [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2507.04590|VLM2Vec-V2]], [[2507.01949|Kwai Keye-VL]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]]
 
 > [!star] Key Papers
 > - [[2504.15271|Eagle 2.5]] — Efficient 8B model processing 512 video frames; achieves 72.4% on Video-MME, rivaling 72B+ models
@@ -120,7 +120,7 @@ From video classification to self-supervised video representation learning. The 
 Understanding *why* things happen in video, not just *what* happens. This section covers RL-based post-training, chain-of-thought reasoning, and spatiotemporal grounding methods that push Video-LLMs beyond perception toward genuine temporal reasoning.
 
 **RL Post-Training for Video Reasoning** — Reinforcement learning frameworks that teach Video-LLMs temporal reasoning capabilities through rule-based rewards, self-supervised signals, or synthetic data.
-- [[2603.17693|SynRL]], [[2602.20159|VBVR]], [[2602.05986|RISE-Video]], [[2601.19686|Video-KTR]], [[2511.13054|ViSS-R1]], [[2511.11113|VIDEOP2R]], [[2510.23473|Video-Thinker]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2505.13934|RLVR-World]], [[2505.12434|VIDEORFT]], [[2503.21776|Video-R1]]
+- [[2603.28730|SOLE-R1]], [[2603.27866|Wan-R1]], [[2603.17693|SynRL]], [[2602.20159|VBVR]], [[2602.05986|RISE-Video]], [[2601.19686|Video-KTR]], [[2511.13054|ViSS-R1]], [[2511.11113|VIDEOP2R]], [[2510.23473|Video-Thinker]], [[2509.23958|RLIR]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2505.13934|RLVR-World]], [[2505.12434|VIDEORFT]], [[2503.21776|Video-R1]]
 
 > [!star] Key Papers
 > - [[2503.21776|Video-R1]] — First rule-based RL framework for video temporal reasoning; 37.1% on VSI-Bench surpassing GPT-4o
@@ -135,7 +135,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.16870|Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Spatiotemporal Grounding & Perception** — Architectures for precise spatial and temporal localization in video, including segmentation, tracking, and pixel-grounded language understanding.
-- [[2603.23404|TRACE]], [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]]
+- [[2604.02829|STRNet]], [[2603.23404|TRACE]], [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]]
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
@@ -166,7 +166,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 The paradigm shift: video generation models that simulate ==physically plausible futures==, becoming the foundation for planning and control. These models bridge content creation and robotic planning by learning physics, causality, and dynamics from temporal data.
 
 **Foundational Video World Models** — Systems that treat video generation as world simulation, learning to produce physically coherent future states from observation.
-- [[2603.25716|HyDRA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
+- [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
 
 > [!star] Key Papers
 > - [[2302.00111|UniPi]] — First to use text-guided video generation as a universal policy; bridges video generation and robot control
@@ -180,21 +180,21 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2503.18938|AdaWorld]] — Context-invariant latent actions for adaptable world models; FVD of 767.0
 
 **Video Generation for Planning & Grounding** — Methods that use generated video as a planning medium, grounding visual plans in physically feasible actions.
-- [[2603.08403|SPIRAL]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]]
+- [[2604.03181|MV-VDP]], [[2603.08403|SPIRAL]], [[2603.03195|CoWVLA]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]]
 
 > [!star] Key Papers
 > - [[2602.01960|GVP-WM]] — Converts physically inconsistent video plans into feasible action sequences via latent-space trajectory optimization
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improving framework for controllable, long-horizon video generation
 
 **Controllable Video Synthesis** — Dedicated architectures for high-fidelity, subject-driven, or reason-informed video editing and generation.
-- [[2603.18524|3DreamBooth]], [[2512.09924|ReViSE]]
+- [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2512.09924|ReViSE]], [[2503.20314|Wan]]
 
 > [!star] Key Papers
 > - [[2603.18524|3DreamBooth]] — 3D-consistent subject-driven video generation; Chamfer Distance of 0.0177
 > - [[2512.09924|ReViSE]] — Reason-informed video editing via self-reflective learning; +32% on RVE-Bench
 
 **Surveys & Roadmaps** — Comprehensive overviews of the video-to-world-model progression.
-- [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]]
+- [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]]
 
 > [!star] Key Papers
 > - [[2511.08585|Visual World Roadmap]] — Four-generation taxonomy from video generators to planning-capable world simulators

@@ -137,7 +137,7 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 > - [[2506.02843|REAP]] — Revealed that learnable prompts can hinder ViT generalization in cross-domain few-shot settings
 
 **Adapters & Residual Tuning** — Lightweight modules that add task-specific capacity alongside frozen pre-trained weights.
-- [[2504.21447|Shallow ViT Features]], [[2503.06063|Multi-Layer Visual Fusion]], [[2412.14640|APT]], [[2311.09191|DAC]], [[2308.05659|AD-CLIP]], [[2211.10277|TaskRes]], [[2111.03930|Tip-Adapter]]
+- [[2604.02327|SteerViT]], [[2504.21447|Shallow ViT Features]], [[2503.06063|Multi-Layer Visual Fusion]], [[2412.14640|APT]], [[2311.09191|DAC]], [[2308.05659|AD-CLIP]], [[2211.10277|TaskRes]], [[2111.03930|Tip-Adapter]]
 
 > [!star] Key Papers
 > - [[2111.03930|Tip-Adapter]] — Training-free CLIP adapter using a cache model from few-shot support sets
@@ -193,7 +193,7 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 > - [[2306.09683|OWLv2]] — Scaled OWL-ViT with self-training to achieve SOTA open-vocabulary detection
 
 **Region-Level Alignment** — Learning fine-grained region-text correspondences beyond global image-text matching.
-- [[2507.09615|FAIR]], [[2506.12698|KDUP]], [[2404.13013|Groma]], [[2403.13043|S2]], [[2401.09865|SPARC]], [[2206.07643|FIBER]], [[2112.09106|RegionCLIP]]
+- [[2604.01179|Florence-2 ROS 2 Wrapper]], [[2507.09615|FAIR]], [[2506.12698|KDUP]], [[2404.13013|Groma]], [[2403.13043|S2]], [[2401.09865|SPARC]], [[2206.07643|FIBER]], [[2112.09106|RegionCLIP]]
 
 > [!star] Key Papers
 > - [[2112.09106|RegionCLIP]] — Extended CLIP to region-level representations via region-text pre-training on pseudo-labels
@@ -333,7 +333,7 @@ VLMs confidently describe things that are not in the image — a critical obstac
 
 A growing focus area bridging VLMs toward embodied tasks — understanding where things are relative to each other in 3D space.
 
-- [[2603.25629|LanteRn]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2602.21619|VSR Information Injection Analysis]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.04413|H-GIVR]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2511.21471|SpatialBench]], [[2510.09606|SpaceVista]], [[2507.07610|SpatialViz-Bench]], [[2506.18385|InternSpatial]], [[2506.03135|OmniSpatial]], [[2505.23747|Spatial-MLLM]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2503.19707|VLM Spatial Reasoning Benchmark]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2502.03214|iVISPAR]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]], [[2205.00363|VSR]]
+- [[2603.27967|XVR]], [[2603.25629|LanteRn]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2602.21619|VSR Information Injection Analysis]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.04413|H-GIVR]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2511.21471|SpatialBench]], [[2510.09606|SpaceVista]], [[2507.07610|SpatialViz-Bench]], [[2506.18385|InternSpatial]], [[2506.03135|OmniSpatial]], [[2505.23747|Spatial-MLLM]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2503.19707|VLM Spatial Reasoning Benchmark]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2502.03214|iVISPAR]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]], [[2205.00363|VSR]]
 
 > [!star] Key Papers
 > - [[2401.12168|SpatialVLM]] — Endowed VLMs with spatial reasoning via 3D-aware training data
@@ -364,7 +364,7 @@ Large multimodal models — the workhorses of modern vision-language understandi
 > - [[2504.15271|Eagle 2.5]] — 8B model matching 72B+ performance on video understanding via information-first sampling and progressive mixed post-training
 
 **Unified Understanding & Generation MLLMs** — Models that jointly handle visual understanding, generation, and editing in a single architecture.
-- [[2603.03276|Transfusion]], [[2510.08673|Puffin]], [[2506.22880|DeSa2VA]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.16933|LLaDA-V]], [[2505.05472|Mogao]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2501.17811|Janus-Pro]], [[2501.00289|D-DiT]], [[2412.03069|TokenFlow]], [[2410.13848|Janus]], [[2408.12528|Show-o]], [[2408.11039|Transfusion]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
+- [[2604.02097|LatentUM]], [[2603.29620|Unify-Agent]], [[2603.03276|Transfusion]], [[2510.08673|Puffin]], [[2506.22880|DeSa2VA]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.16933|LLaDA-V]], [[2505.05472|Mogao]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2501.17811|Janus-Pro]], [[2501.00289|D-DiT]], [[2412.03069|TokenFlow]], [[2410.13848|Janus]], [[2408.12528|Show-o]], [[2408.11039|Transfusion]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 > [!star] Key Papers
 > - [[2408.12528|Show-o]] — Single transformer unifying understanding and generation via omni-attention that switches between causal and full attention per modality
@@ -388,14 +388,14 @@ Large multimodal models — the workhorses of modern vision-language understandi
 Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-thought, and multimodal decision-making.
 
 **RL-Trained Visual Reasoners** — VLMs fine-tuned with RL for improved visual reasoning and chain-of-thought.
-- [[2603.25629|LanteRn]], [[2603.24533|UI-Voyager]], [[2603.22847|PEPO]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
+- [[2604.03128|Self-Distilled RLVR]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.25629|LanteRn]], [[2603.25077|ToR]], [[2603.24984|MoE-GRPO]], [[2603.24533|UI-Voyager]], [[2603.22847|PEPO]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
 
 > [!star] Key Papers
 > - [[2503.01785|Visual-RFT]] — Pioneered RL fine-tuning for visual tasks with verifiable rewards; 24.3% accuracy boost in fine-grained classification
 > - [[2505.19094|SATORI]] — Glance-Focus-Think paradigm anchoring RL training in explicit visual grounding; 76.2% on MathVista surpassing GPT-4o
 
 **VLM Chain-of-Thought & Thinking** — Methods for step-by-step visual reasoning in multimodal models.
-- [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
+- [[2604.02073|PLUME]], [[2603.29165|LatentPilot]], [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
 
 > [!star] Key Papers
 > - [[2411.10440|LLaVA-CoT]] — Autonomous multistage reasoning with stage-wise retracing; 5.8% improvement enabling 11B model to rival larger closed-source MLLMs
@@ -409,7 +409,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2406.18925|VisArgs]] — Evaluates VLM ability to construct and assess visual arguments, probing beyond factual accuracy into persuasion and reasoning
 
 **VLM Continual & Incremental Learning** — Adapting VLMs to new tasks and domains without forgetting.
-- [[2602.21628|RuCL]], [[2512.12822|LEMON]], [[2505.22453|MM-UPT]], [[2410.19925|MLLM Continual Learning]]
+- [[2604.01007|Omni-SimpleMem]], [[2602.21628|RuCL]], [[2512.12822|LEMON]], [[2505.22453|MM-UPT]], [[2410.19925|MLLM Continual Learning]]
 
 > [!star] Key Papers
 > - [[2410.19925|MLLM Continual Learning]] — Systematic quantification of linguistic forgetting in MLLMs; showed mSGM+Rehearsal preserves language abilities during multimodal adaptation
@@ -423,28 +423,28 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2506.08391|SECOND]] — Training-free contrastive decoding that reduces hallucination while improving general VLM accuracy
 
 **VLM Agents & Tool Use** — VLMs deployed as interactive agents, tool users, or in agentic workflows.
-- [[2603.24558|LensWalk]], [[2601.18631|AdaReasoner]], [[2512.15885|JARVIS]], [[2511.21688|G2VLM]], [[2506.11515|Manager]], [[2505.23766|Argus]], [[2505.21497|PosterAgent]], [[2505.21457|ACTIVE-O3]], [[2411.17673|SketchAgent]], [[2410.16400|VipAct]], [[2311.05437|LLaVA-Plus]]
+- [[2604.03016|Agentic-MME]], [[2603.24558|LensWalk]], [[2601.18631|AdaReasoner]], [[2512.15885|JARVIS]], [[2511.21688|G2VLM]], [[2506.11515|Manager]], [[2505.23766|Argus]], [[2505.21497|PosterAgent]], [[2505.21457|ACTIVE-O3]], [[2411.17673|SketchAgent]], [[2410.16400|VipAct]], [[2311.05437|LLaVA-Plus]]
 
 > [!star] Key Papers
 > - [[2311.05437|LLaVA-Plus]] — Trains MLLMs to orchestrate a skill repository of vision tools; SOTA on VisiT-Bench with emergent tool composition
 > - [[2512.15885|JARVIS]] — JEPA-inspired self-supervised objective giving MLLMs fine-grained visual perception beyond textual descriptions
 
 **VLM Efficiency & Inference** — Methods for accelerating VLM inference through token compression, resolution adaptation, and routing.
-- [[2602.01984|Delimiter Token Scaling]], [[2507.23070|E-FineR]], [[2507.10302|DisCo]], [[2506.22434|MiCo]], [[2506.21710|FOCUS]], [[2506.09522|ReVisiT]], [[2506.05302|PAM]], [[2506.01850|MoDA]], [[2506.01663|Zoom-Refine]], [[2505.21538|PAM-CVR]], [[2504.17040|DyMU]], [[2503.20680|VoRA]], [[2411.16044|ZoomEye]]
+- [[2603.22815|PinPoint]], [[2603.22387|EUPE]], [[2602.01984|Delimiter Token Scaling]], [[2507.23070|E-FineR]], [[2507.10302|DisCo]], [[2506.22434|MiCo]], [[2506.21710|FOCUS]], [[2506.09522|ReVisiT]], [[2506.05302|PAM]], [[2506.01850|MoDA]], [[2506.01663|Zoom-Refine]], [[2505.21538|PAM-CVR]], [[2504.17040|DyMU]], [[2503.20680|VoRA]], [[2411.16044|ZoomEye]]
 
 > [!star] Key Papers
 > - [[2411.16044|ZoomEye]] — Training-free tree-based image exploration enabling 3B models to outperform GPT-4o on high-resolution benchmarks
 > - [[2506.21710|FOCUS]] — Internal MLLM representations for efficient visual cropping; 42% accuracy boost at 3-6.5x less compute than baselines
 
 **Multimodal Representation & Embedding** — Learning improved multimodal embeddings and representations.
-- [[2511.11007|VisMem]], [[2509.26625|LLM Visual Priors]], [[2507.04590|VLM2Vec-V2]], [[2506.23115|MoCa]], [[2506.17629|CLiViS]], [[2505.19707|MVFT-JI]], [[2505.17812|VaLSe]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.17422|MLLM Small Visual Details]], [[2502.16435|VISFACTOR]]
+- [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2511.11007|VisMem]], [[2509.26625|LLM Visual Priors]], [[2507.04590|VLM2Vec-V2]], [[2506.23115|MoCa]], [[2506.17629|CLiViS]], [[2505.19707|MVFT-JI]], [[2505.17812|VaLSe]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.17422|MLLM Small Visual Details]], [[2502.16707|ReflectVLM]], [[2502.16435|VISFACTOR]]
 
 > [!star] Key Papers
 > - [[2504.17432|UniME]] — Universal multimodal embeddings via distillation and hard-negative tuning; SOTA on MMEB with 14-18% gains on long-caption retrieval
 > - [[2507.04590|VLM2Vec-V2]] — Unified embedding model for videos, images, and documents achieving top scores on the 78-task MMEB-V2 benchmark
 
 **Domain-Specific VLMs** — VLMs adapted for specific domains like medicine, science, video, and document understanding.
-- [[2603.19235|VEGA-3D]], [[2603.17729|SARE]], [[2603.14497|WorldVLM]], [[2603.14145|MMOU]], [[2603.14117|SIEVE]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.24041|AIR]], [[2602.15727|LoRWeB]], [[2602.11144|GENIUS]], [[2602.04884|RAL]], [[2602.03361|Z3D]], [[2602.02951|NUWA]], [[2602.02453|TwC]], [[2602.02004|ClueTracer]], [[2601.23265|PaperBanana]], [[2601.21187|FRISM]], [[2601.19099|m2sv]], [[2601.09430|Video-MSR]], [[2601.04777|GeM-VG]], [[2601.03193|UniCorn]], [[2601.00561|AEGIS]], [[2512.22799|VPTracker]], [[2512.12633|DiG]], [[2512.06281|LaVer]], [[2512.04563|COOPER]], [[2508.13142|EASI]], [[2507.10203|ARL]], [[2507.10202|ECP]], [[2507.01544|MARVIS]], [[2506.17218|Mirage]], [[2506.16112|AutoV]], [[2506.04220|Struct2D]], [[2506.03569|MiMo-VL]], [[2506.03147|UniWorld-V1]], [[2505.23705|Knowledge Insulation VLA]], [[2505.02056|VLM Pseudo-label Calibration]], [[2504.13055|NoisyRollout]], [[2504.10462|SAIL]], [[2503.15621|LLaVA-MORE]], [[2503.01773|ADAPTVIS]], [[2503.01584|SENSEI]]
+- [[2604.02190|UniDriveVLA]], [[2603.28116|AutoDrive-P3]], [[2603.22179|MARCUS]], [[2603.22003|VP-VLA]], [[2603.19235|VEGA-3D]], [[2603.17729|SARE]], [[2603.14497|WorldVLM]], [[2603.14145|MMOU]], [[2603.14117|SIEVE]], [[2603.13825|Explicit World Model Zero-Shot Manipulation]], [[2603.10052|OmniGuide]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.24041|AIR]], [[2602.15727|LoRWeB]], [[2602.11144|GENIUS]], [[2602.04884|RAL]], [[2602.03361|Z3D]], [[2602.02951|NUWA]], [[2602.02453|TwC]], [[2602.02004|ClueTracer]], [[2601.23265|PaperBanana]], [[2601.21187|FRISM]], [[2601.19099|m2sv]], [[2601.09430|Video-MSR]], [[2601.04777|GeM-VG]], [[2601.03193|UniCorn]], [[2601.00561|AEGIS]], [[2512.22799|VPTracker]], [[2512.12633|DiG]], [[2512.06281|LaVer]], [[2512.04563|COOPER]], [[2508.13142|EASI]], [[2507.10203|ARL]], [[2507.10202|ECP]], [[2507.01544|MARVIS]], [[2506.17218|Mirage]], [[2506.16112|AutoV]], [[2506.04220|Struct2D]], [[2506.03569|MiMo-VL]], [[2506.03147|UniWorld-V1]], [[2505.23705|Knowledge Insulation VLA]], [[2505.19017|WorldEval]], [[2505.02056|VLM Pseudo-label Calibration]], [[2504.13055|NoisyRollout]], [[2504.10462|SAIL]], [[2503.15621|LLaVA-MORE]], [[2503.01773|ADAPTVIS]], [[2503.01584|SENSEI]]
 
 > [!tip] RL is Reshaping VLM Training
 > The RL-for-vision wave (Visual-RFT, SATORI, VLM-R1) is the biggest shift since instruction tuning. Key insight: verifiable visual rewards (bounding box accuracy, count correctness) work far better than language-only RLHF for grounding. Meanwhile, inference-time scaling via chain-of-thought (LLaVA-CoT) and dynamic zooming (ZoomEye, FOCUS) lets smaller models punch above their weight without retraining.
@@ -462,7 +462,7 @@ In-context learning, few-shot detection, and meta-learning methods applied to vi
 - [[2603.15975|UMO]], [[2602.00795|DVLA-RL]], [[2512.24766|Dream2Flow]], [[2512.15934|IC-SSL]], [[2510.26493|Context Engineering 2.0]], [[2510.04618|ACE]], [[2509.06806|MachineLearningLM]], [[2507.16003|ICL Implicit Dynamics]], [[2506.07936|MM-ICL Mimicking vs Reasoning]], [[2506.06105|T2L]], [[2505.01812|New News]], [[2502.17666|IC-QL]], [[2502.14010|ICL Attention Heads]], [[2311.12424|Looped Transformers]], [[2309.05858|Mesa-Optimization Transformers]], [[2302.00674|FLAD]], [[2301.08028|Meta-RL Tutorial]], [[2301.02419|eTT]], [[2203.09093|SaFT]]
 
 **VLM Reasoning & Tool Use via ICL** — In-context approaches for visual reasoning, tool use, and task planning.
-- [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain FSL with DKM]], [[2503.01785|Visual-RFT]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic Models]]
+- [[2604.02812|Neuro-Symbolic Robot Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2603.28301|LIBERO-Para]], [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain FSL with DKM]], [[2503.01785|Visual-RFT]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic Models]]
 
 **Visual Grounding via ICL** — In-context visual grounding, referring, and perception methods.
 - [[2603.16253|EVPV]], [[2603.12382|SPARROW]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.21497|ECRD]], [[2602.21054|VAUQ]], [[2602.20980|CrystaL]], [[2602.16702|SAP]], [[2602.11858|ZwZ]], [[2602.11737|OA-VCD]], [[2602.11073|VILAVT]], [[2602.08241|SAYO]], [[2601.11322|VLM Logic Situational Awareness]], [[2601.10129|LaViT]], [[2601.07645|PlaM]], [[2601.06993|ReFine-RFT]], [[2601.06521|BabyVision]], [[2601.05600|SceneAlign]], [[2601.05552|UniADet]], [[2601.05344|Im2Sim]], [[2601.05328|BFD]], [[2601.05244|GREx]], [[2601.02771|AbductiveMLLM]], [[2601.02356|Talk2Move]], [[2601.00659|CRoPS]], [[2601.00215|Sight to Insight]], [[2512.24297|FIGR]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.21218|LIVR]], [[2512.19605|KerJEPA]], [[2512.16584|SkiLa]], [[2510.23603|PixelRefer]], [[2510.21311|FineRS]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.12798|Rex-Omni]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2301.05226|IPVR]]
