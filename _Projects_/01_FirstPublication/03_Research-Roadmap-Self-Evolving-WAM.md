@@ -141,10 +141,10 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
 | Level | What It Discovers | Passive or Active? | Method |
 |-------|------------------|-------------------|--------|
 | **Environment** | Which ==sim conditions== the model can't handle | ==Active==: RL adversary searches for failure-inducing conditions | [[2412.02818|RoboMD]] (RL adversary, policy-agnostic) |
-| **Environment** | Which conditions the world model ==doesn't understand== | Passive: prediction error flags surprise | Fast-WAM: Video DiT prediction error; VLA-JEPA: ==V-JEPA2 latent prediction error (free)== (inspired by [[2602.20057\|AdaWorldPolicy]]) |
+| **Environment** | Which conditions the world model ==doesn't understand== | Passive: multi-signal detection | ==SAFE== VLA feature probing ([[2506.09937\|SAFE]]) + world model prediction error (inspired by [[2602.20057\|AdaWorldPolicy]]) + action-chunk entropy ([[2510.09459\|FIPER]]). Flag if ≥2 signals fire. |
 | **Action** | Which ==action variations== cause failure | ==Active==: perturb conditioning via VIB (compact latent) → find behavioral boundaries | [[2509.19292\|SOE]] adapted for FM — swap DDPM decoder for ActionDiT, keep VIB MLPs |
 | **Action** | Where the model is ==uncertain== | Passive: stochastic sampling measures spread | [[2510.25889\|πRL]] Flow-SDE |
-| **Behavioral** | Where the model ==actually fails== | ==Active==: deploy and observe | [[2511.00091\|PLD]] probing |
+| **Behavioral** | Where the model ==actually fails== | ==Active==: deploy and observe | Residual RL probing: [[2509.19301\|ResFiT]] (baseline) + [[2511.00091\|PLD]] (enhancements) |
 
 > [!tip] Key Insight: World Model Enables True Self-Discovery
 > Both models can ==imagine what SHOULD happen== and compare with what ACTUALLY happens. Fast-WAM uses Video DiT (pixel-level, A100); VLA-JEPA uses V-JEPA2 (==latent-level, free==). High prediction error = "I don't understand this physics." We don't design perturbation types — we randomize broadly (like [[2603.16861|MolmoBot]]'s 232K environments), and ==the world model's own surprise discovers which conditions matter.==
@@ -157,11 +157,11 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
    VLA-JEPA: full model (standard GPU — no 5B branch)
    + Language augmentation: LLM generates 3-5 paraphrases per task
     ↓
-2. IMAGINE + DETECT: World model predicts future states →
-   compare with actual sim states →
-   Fast-WAM: Video DiT prediction error (pixel-level, A100)
-   VLA-JEPA: V-JEPA2 prediction error (latent-level, free)
-   high error = "I don't understand this physics"
+2. DETECT: Multi-signal failure detection →
+   Signal 1: SAFE VLA feature probing (NeurIPS 2025, <1ms)
+   Signal 2: World model prediction error (Video DiT / V-JEPA2)
+   Signal 3: Action-chunk entropy (FIPER, optional)
+   Flag episode if ≥2 signals fire simultaneously
     ↓
 3. EXPLORE (three active probing levels):
    a. BEHAVIORAL: PLD deploys model → observes actual failures
@@ -171,8 +171,10 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
       perturbs conditioning → finds action-level weaknesses
    + πRL Flow-SDE provides passive uncertainty signal
     ↓
-4. LEARN: PLD trains recovery specialists
-   (πRL provides flow-matching-compatible RL mechanism)
+4. LEARN: Layered residual recovery
+   Layer 1: ResFiT residual off-policy RL (baseline)
+   Layer 2: PLD enhancements (SAC + Cal-QL + hybrid rollout)
+   Layer 3: Q-chunking (chunk-aware Q) + RFS (dual modulation)
     ↓
 5. DISTILL: Recovery data → LoRA fine-tune action model
    Fast-WAM: LoRA on ActionDiT (non-mixed-attention layers only)
@@ -192,12 +194,14 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
 | Step | Level | Method | Paper | What It Does |
 |------|-------|--------|-------|-------------|
 | DIVERSIFY | Environment | Broad procedural randomization + language augmentation | [[2603.16861\|MolmoBot]], [[2506.12851\|KungfuBot]] | Diverse sim conditions + paraphrased instructions. Model encounters unknown physics and language naturally |
-| IMAGINE + DETECT | ==Environment== | ==Video DiT prediction error (latent space)== | Inspired by [[2602.20057\|AdaWorldPolicy]] | Video DiT predicts future → compare in latent space → high error = "I don't understand this." ==Our novel use of Fast-WAM's world model for self-discovery.== |
-| EXPLORE (behavioral) | ==Failure states== | Probe-Learn-Distill | [[2511.00091\|PLD]] | Deploys model → observes WHERE it fails → active behavioral probing. |
+| DETECT (signal 1) | ==VLA confidence== | ==SAFE VLA feature probing== | [[2506.09937\|SAFE]] (NeurIPS 2025) | Probe VLA hidden states → conformal prediction threshold → flag confidence failures. <1ms overhead, zero-shot to unseen tasks. |
+| DETECT (signal 2) | ==World model== | ==Prediction error (latent space)== | Inspired by [[2602.20057\|AdaWorldPolicy]] | World model predicts future → compare in latent space → high error = "I don't understand this." |
+| DETECT (fusion) | ==Both== | ==Multi-signal fusion (≥2 of 3)== | ==Our design== | Combine SAFE + prediction error + action entropy. Flag if ≥2 fire simultaneously — reduces false positives. |
+| EXPLORE (behavioral) | ==Failure states== | Layered residual RL | [[2509.19301\|ResFiT]] + [[2511.00091\|PLD]] | ResFiT residual + PLD enhancements (SAC, Cal-QL, hybrid rollout) → active behavioral probing. |
 | EXPLORE (environmental) | ==Environment== | RL adversary | [[2412.02818|RoboMD]] | RL adversary actively searches for failure-inducing sim conditions. ==Policy-agnostic== — works with any model. |
 | EXPLORE (latent) | ==Action== | ==SOE adapted for flow matching== | [[2509.19292\|SOE]] | SOE's VIB is architecture-agnostic (just MLPs). Swap DDPM decoder for ActionDiT's FM decoder. Exploration = noise injection into conditioning — works regardless of decoder type. Straightforward adaptation, not major re-engineering. |
 | Uncertainty signal | Action | Flow-SDE stochastic sampling | [[2510.25889\|πRL]], [[2505.05470\|Flow-GRPO]] | ODE → SDE conversion → passive uncertainty measurement. High variance = "model is unsure." |
-| LEARN | Both | RL fine-tuning | [[2510.25889\|πRL]] + [[2511.00091\|PLD]] | πRL provides flow-matching-compatible RL. PLD trains recovery specialists. |
+| LEARN | Both | Layered residual RL | [[2509.19301\|ResFiT]] + [[2511.00091\|PLD]] + [[2507.07969\|Q-chunking]] + [[2602.01789\|RFS]] | ResFiT (residual baseline) → PLD (SAC + Cal-QL) → Q-chunking (chunk-aware Q) + RFS (dual modulation). |
 | DREAM | Environment | Video DiT imagination | [[2603.16666\|Fast-WAM]] Video DiT | Future-state rollouts from imagination — extra training data. |
 | Data collection | Both | Self-play rollouts | [[2603.09030\|PlayWorld]] | Autonomous diverse rollouts including failures. |
 
@@ -208,11 +212,11 @@ The self-evolving loop is ==identical for both models== except the DETECT step:
 | Step | Fast-WAM | VLA-JEPA | Same? |
 |------|----------|----------|-------|
 | DIVERSIFY | Broad MuJoCo randomization + LLM paraphrases | Same | ==Yes== |
-| DETECT | Video DiT prediction error (5B, A100, pixel-level) | ==V-JEPA2 prediction error (ViT-L, cheap, latent-level)== | Different mechanism, same purpose |
+| DETECT | SAFE feature probing + Video DiT prediction error (5B, A100) | SAFE feature probing + ==V-JEPA2 prediction error (cheap)== | SAFE is same; world model signal differs |
 | EXPLORE (env) | RoboMD adversary (policy-agnostic) | Same | ==Yes== |
 | EXPLORE (action) | SOE adapted for FM (flow matching action head) | SOE adapted for FM (==same flow matching action head==) | ==Yes== |
 | EXPLORE (uncertainty) | πRL Flow-SDE (flow matching ODE → SDE) | πRL Flow-SDE (==same flow matching ODE → SDE==) | ==Yes== |
-| PROBE + LEARN | PLD + πRL RL training | Same | ==Yes== |
+| PROBE + LEARN | ResFiT + PLD + Q-chunking + RFS | Same | ==Yes== |
 | DISTILL | LoRA on ActionDiT (640M) | LoRA on Qwen3-VL-2B action head | Different target, same technique |
 | DREAM | Video DiT generates pixel futures | V-JEPA2 generates ==latent== futures | Different representation, same purpose |
 | MEASURE | OOD benchmarks | Same | ==Yes== |

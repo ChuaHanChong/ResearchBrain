@@ -173,12 +173,16 @@ This is validation, not training. Should take hours, not days.
 
 | Method | Paper | Compatibility | Role |
 |--------|-------|---------------|------|
-| **πRL Flow-SDE** | [[2510.25889\|πRL]] | ==95%== | ==Action-level uncertainty + RL training==: converts ODE to SDE for stochastic sampling. Provides flow-matching-compatible RL for PLD specialists. Tested on pi0/pi0.5, 29-31% gains ([[2510.25889\|πRL]]) |
-| **SOE adapted for FM** | [[2509.19292\|SOE]] | ==90%== | ==Action-level active probing==: VIB is architecture-agnostic MLPs + conditioning noise injection. Requires replacing both DDPM decoder AND DDPM-specific method calls (compute_loss, predict_action) with FM equivalents ([[2509.19292\|SOE]]) |
-| **Video DiT prediction error** | Inspired by [[2602.20057\|AdaWorldPolicy]] | ==70% (needs adaptation)== | ==Environment-level discovery==: prediction error in latent space. ==Our novel use== of Fast-WAM's world model. Note: AdaWorldPolicy uses MMSA (different from Fast-WAM's MoT) — the ==principle== transfers, not the architecture |
-| **RoboMD RL adversary** | [[2412.02818|RoboMD]] | ==98%== | ==Environment-level active probing==: RL adversary actively searches for failure-inducing conditions. Policy-agnostic (tested on 5 policy types). Black-box I/O only ([[2412.02818\|RoboMD]]) |
-| **PLD** | [[2511.00091\|PLD]] | ==95%== | ==Failure recovery==: probe failures → residual RL → distill back. Tested on pi0 (flow matching). 99% LIBERO ([[2511.00091\|PLD]]) |
-| **PlayWorld** | [[2603.09030\|PlayWorld]] | ==100%== | ==Data collection==: autonomous self-play rollouts including failures. Architecture-agnostic. 65% improvement ([[2603.09030\|PlayWorld]]) |
+| **SAFE VLA feature probing** | [[2506.09937\|SAFE]] | ==98%== | ==Failure detection baseline==: probe VLA hidden states → conformal prediction threshold. Tested on pi0, pi0-FAST, OpenVLA. <1ms overhead. NeurIPS 2025 |
+| **πRL Flow-SDE** | [[2510.25889\|πRL]] | ==95%== | ==Action-level uncertainty==: converts ODE to SDE for stochastic sampling. Tested on pi0/pi0.5, 29-31% gains |
+| **SOE adapted for FM** | [[2509.19292\|SOE]] | ==90%== | ==Action-level active probing==: VIB is architecture-agnostic MLPs + conditioning noise injection. Swap DDPM decoder for FM equivalents |
+| **World model prediction error** | Inspired by [[2602.20057\|AdaWorldPolicy]] | ==70%== | ==Environment-level discovery==: prediction error in latent space. ==Our novel use== of the world model — the principle transfers, not the architecture |
+| **RoboMD RL adversary** | [[2412.02818\|RoboMD]] | ==98%== | ==Environment-level active probing==: RL adversary actively searches for failure-inducing conditions. Policy-agnostic black-box |
+| **ResFiT residual RL** | [[2509.19301\|ResFiT]] | ==95%== | ==Recovery baseline==: frozen base + bounded residual + off-policy TD3 + distributional critic. Treats base as black box |
+| **PLD enhancements** | [[2511.00091\|PLD]] | ==95%== | ==Recovery improvements==: SAC entropy + Cal-QL conservative warmup + hybrid data collection. Tested on π0 + OpenVLA |
+| **Q-chunking** | [[2507.07969\|Q-chunking]] | ==90%== | ==Chunk-aware Q==: Q-function over H-step action chunks, not per-step. Unbiased n-step backups. NeurIPS 2025 |
+| **RFS dual modulation** | [[2602.01789\|RFS]] | ==85%== | ==Noise steering + residual==: joint input/output modulation for FM policies. Enables global behavioral shifts + local corrections |
+| **PlayWorld** | [[2603.09030\|PlayWorld]] | ==100%== | ==Data collection==: autonomous self-play rollouts including failures. Architecture-agnostic |
 
 ### Verified Incompatible Methods
 
@@ -200,9 +204,9 @@ This is validation, not training. Should take hours, not days.
 
 | Level | What It Discovers | Active (stress-tests) | Passive (measures signals) |
 |-------|------------------|----------------------|--------------------------|
-| **Environment** | Which sim conditions are hard | [[2412.02818|RoboMD]] RL adversary (policy-agnostic) | Video DiT prediction error (latent space) |
+| **Environment** | Which sim conditions are hard | [[2412.02818\|RoboMD]] RL adversary (policy-agnostic) | SAFE VLA feature probing ([[2506.09937\|SAFE]]) + world model prediction error |
 | **Action** | Which action variations cause failure | [[2509.19292\|SOE]] adapted for FM — VIB MLPs + conditioning noise, swap decoder | [[2510.25889\|πRL]] Flow-SDE stochastic sampling |
-| **Behavioral** | Where the model actually fails | [[2511.00091\|PLD]] deployment probing | — |
+| **Behavioral** | Where the model actually fails | Residual RL probing: [[2509.19301\|ResFiT]] + [[2511.00091\|PLD]] + [[2507.07969\|Q-chunking]] + [[2602.01789\|RFS]] | — |
 | **Language** | Instruction phrasing sensitivity | LLM paraphrase augmentation | Action divergence across paraphrases |
 
 ### The Method: DIVERSIFY → IMAGINE + DETECT → EXPLORE → PROBE → LEARN → DISTILL + DREAM → MEASURE
@@ -212,9 +216,11 @@ This is validation, not training. Should take hours, not days.
    in broadly randomized sim environments on A100
    + Language augmentation: LLM generates 3-5 paraphrases per task
     ↓
-2. IMAGINE + DETECT: Video DiT predicts future states →
-   compare with actual sim states (in latent space, not pixels) →
-   high prediction error = "I don't understand this physics"
+2. DETECT: Multi-signal failure detection →
+   Signal 1: SAFE VLA feature probing (NeurIPS 2025, <1ms)
+   Signal 2: World model prediction error (Video DiT latent space)
+   Signal 3: Action-chunk entropy (FIPER, optional)
+   Flag episode if ≥2 signals fire simultaneously
     ↓
 3. EXPLORE (three active probing levels):
    a. ENVIRONMENTAL: RoboMD RL adversary searches for
@@ -224,8 +230,10 @@ This is validation, not training. Should take hours, not days.
    c. UNCERTAINTY: πRL Flow-SDE → diverse action sampling →
       high variance = model is uncertain
     ↓
-4. PROBE: PLD confirms actual failure states
-   → πRL trains residual RL recovery specialists
+4. PROBE + LEARN: Layered residual recovery
+   Layer 1: ResFiT residual off-policy RL (baseline)
+   Layer 2: PLD enhancements (SAC + Cal-QL + hybrid rollout)
+   Layer 3: Q-chunking (chunk-aware Q) + RFS (dual modulation)
     ↓
 5. DISTILL: Recovery data → LoRA fine-tune ActionDiT
    (Video DiT frozen — provides supervision only)
@@ -245,11 +253,13 @@ This is validation, not training. Should take hours, not days.
 | Step | Level | Method | Paper | What It Does |
 |------|-------|--------|-------|-------------|
 | DIVERSIFY | Environment | Broad procedural randomization + language augmentation | [[2603.16861\|MolmoBot]], [[2506.12851\|KungfuBot]] | Diverse sim conditions + paraphrased instructions |
-| IMAGINE + DETECT | Environment | Video DiT prediction error (latent space) | Inspired by [[2602.20057\|AdaWorldPolicy]] | World model predicts future → high error = surprise. ==Our novel use of Fast-WAM's world model.== |
-| EXPLORE (env) | Environment | RL adversary | [[2412.02818|RoboMD]] | Actively searches for failure-inducing conditions. Policy-agnostic. |
-| EXPLORE (action) | Action | SOE adapted for FM | [[2509.19292\|SOE]] | VIB MLPs + conditioning noise. Replace DDPM decoder + method calls with FM equivalents. |
+| DETECT (signal 1) | VLA confidence | SAFE VLA feature probing | [[2506.09937\|SAFE]] (NeurIPS 2025) | Probe VLA hidden states → conformal prediction threshold. <1ms, zero-shot to unseen tasks. |
+| DETECT (signal 2) | World model | Prediction error (latent space) | Inspired by [[2602.20057\|AdaWorldPolicy]] | World model predicts future → high error = surprise. ==Our novel use of the world model.== |
+| DETECT (fusion) | Both | Multi-signal fusion (≥2 of 3) | ==Our design== | Combine SAFE + prediction error + action entropy → flag if ≥2 fire. |
+| EXPLORE (env) | Environment | RL adversary | [[2412.02818\|RoboMD]] | Actively searches for failure-inducing conditions. Policy-agnostic. |
+| EXPLORE (action) | Action | SOE adapted for FM | [[2509.19292\|SOE]] | VIB MLPs + conditioning noise. Replace DDPM decoder with FM equivalents. |
 | EXPLORE (uncertainty) | Action | Flow-SDE stochastic sampling | [[2510.25889\|πRL]], [[2505.05470\|Flow-GRPO]] | ODE → SDE → stochastic action samples → high variance = uncertainty |
-| PROBE + LEARN | Behavioral | PLD + πRL RL training | [[2511.00091\|PLD]] + [[2510.25889\|πRL]] | PLD probes failures. πRL provides flow-matching-compatible RL for recovery specialists. |
+| PROBE + LEARN | Behavioral | Layered residual RL | [[2509.19301\|ResFiT]] + [[2511.00091\|PLD]] + [[2507.07969\|Q-chunking]] + [[2602.01789\|RFS]] | ResFiT residual baseline → PLD SAC/Cal-QL/hybrid → Q-chunking + RFS dual modulation. |
 | DREAM | Environment | Video DiT imagination | [[2603.16666\|Fast-WAM]] Video DiT | Future-state rollouts from imagination — extra training data. |
 | Data collection | Both | Self-play rollouts | [[2603.09030\|PlayWorld]] | Autonomous diverse rollouts including failures. |
 
