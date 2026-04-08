@@ -129,3 +129,12 @@ python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
 - `aliases` must never remain `[]` — always derive at least one alias from the title or paper content
 - `authors` and `aliases` values must always be double-quoted in YAML (e.g., `- "Author Name"`, `- "ModelName"`)
 - Use the Edit tool + obsidian-markdown skill for enrichment — do not write custom Python scripts for frontmatter changes
+
+## Enrichment Health Check
+
+When asked to "lint", "check quality", or "audit enrichment", scan KH notes for:
+- `authors: []` — missing authors, re-extract from BibTeX
+- `tags: []` — missing tags, infer from title and content
+- `aliases: []` — missing aliases, derive from title
+- Method sections without `==highlights==` or `**bold**` formatting
+- Results sections without `**bold**` metrics

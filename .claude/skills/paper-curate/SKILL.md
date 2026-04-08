@@ -1,6 +1,6 @@
 ---
 name: paper-curate
-description: "Assign new KnowledgeHub papers to General/ topic overviews and maintain the folder structure. Use whenever the user says 'update General', 'assign papers', 'add papers to General', 'maintain General folder', 'check coverage', 'audit papers', 'refresh callouts', or after a batch KnowledgeHub update. Also trigger when the user wants to create a new topic file, reorganize sections, check which papers are missing from General/, or update key paper highlights and insights."
+description: "Assign new KnowledgeHub papers to General/ topic overviews and maintain the folder structure. Use whenever the user says 'update General', 'assign papers', 'add papers to General', 'maintain General folder', 'check coverage', 'audit papers', 'refresh callouts', 'lint', 'health check', 'audit quality', 'check vault', or after a batch KnowledgeHub update. Also trigger when the user wants to create a new topic file, reorganize sections, check which papers are missing from General/, find inconsistencies, discover missing connections, or update key paper highlights and insights."
 ---
 
 # General/ Topic Overview Maintainer
@@ -146,6 +146,52 @@ When the user asks to refresh or maintain quality, review each topic file's call
 2. **Read each `[!tip]` callout** — does the insight still reflect the current state of the field? Update with new trends from recently added papers.
 3. **Check `[!success]` callouts** — if a recipe or approach has been improved by newer work, update it.
 4. **Sort all paper lists** by arxiv ID descending (newest first).
+
+### Mode E: Vault Linting & Health Checks
+
+Run periodic health checks to maintain data integrity and discover new connections. Trigger when the user says "lint", "health check", "audit quality", or "check vault".
+
+#### Data Quality
+- **Weak notes** — find KH notes with empty or very short Problem/Method/Results sections; offer to re-fetch from alphaxiv
+- **Empty frontmatter** — find notes with `authors: []`, `tags: []`, or `aliases: []` and enrich them
+- **Tag consistency** — check if related papers use consistent tags (e.g., two GRPO papers where one has `reinforcement-learning` and the other doesn't)
+
+```bash
+cd "/Users/hanchong/Documents/Obsidian Vault/ResearchBrain"
+python3 -c "
+import os, re
+
+KH = '_KnowledgeHub_'
+issues = []
+for f in sorted(os.listdir(KH)):
+    if not f.endswith('.md'): continue
+    content = open(os.path.join(KH, f)).read()
+    pid = f.replace('.md','')
+    if 'authors: []' in content: issues.append(f'  {pid}: empty authors')
+    if 'tags: []' in content: issues.append(f'  {pid}: empty tags')
+    if 'aliases: []' in content: issues.append(f'  {pid}: empty aliases')
+    # Check for very short Method sections
+    m = re.search(r'## Method\n(.*?)(\n## )', content, re.DOTALL)
+    if m and len(m.group(1).strip()) < 50:
+        issues.append(f'  {pid}: weak Method section ({len(m.group(1).strip())} chars)')
+
+print(f'Issues found: {len(issues)}')
+for i in issues[:30]:
+    print(i)
+if len(issues) > 30:
+    print(f'  ... and {len(issues)-30} more')
+"
+```
+
+#### Missing Connections
+- **Cross-citation gaps** — find papers that reference each other (check Method/Results for mentions of other paper names/aliases) but aren't grouped together in General/
+- **New sub-topic candidates** — identify clusters of 3+ related papers in a General/ sub-topic that could form their own more specific group
+- **Orphan papers** — same as Mode B coverage audit
+
+#### General/ Freshness
+- **Stale `[!star]` callouts** — check if newer papers (higher arxiv IDs) in a sub-topic have superseded the currently starred papers
+- **Outdated `[!tip]` insights** — check if recent papers contradict or evolve beyond the current insight text
+- **Auto-refresh `00_Index.md`** — update paper counts and topic summaries to reflect current vault state
 
 ## Formatting Rules
 
