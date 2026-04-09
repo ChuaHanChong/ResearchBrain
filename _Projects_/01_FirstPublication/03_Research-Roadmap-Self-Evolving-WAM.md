@@ -1,27 +1,28 @@
 ---
-title: "Research Roadmap: Self-Evolving Fast-WAM"
+title: "Research Roadmap: Self-Evolving WAM (Fast-WAM + VLA-JEPA)"
 tags:
   - self-evolving
   - WAM
   - robotics
   - Fast-WAM
+  - VLA-JEPA
   - roadmap
 aliases:
   - "Self-Evolving WAM Roadmap"
-  - "Fast-WAM Research Steps"
+  - "Self-Evolving WAM Research Steps"
 ---
 
-# Research Roadmap: Self-Evolving Fast-WAM
+# Research Roadmap: Self-Evolving WAM (Fast-WAM + VLA-JEPA)
 
 > [!abstract] What This Document Is
-> A step-by-step research and implementation roadmap for making [[2603.16666|Fast-WAM]] self-evolving. Each phase lists: what to do, what data/benchmarks are needed, which papers' methods matter, and how to know when you're done. For the full reasoning, see [[02_How-to-Build-a-Light-Fast-Self-Evolving-WAM|the methodology document]].
+> A step-by-step research and implementation roadmap for making [[2603.16666|Fast-WAM]] and [[2602.10098|VLA-JEPA]] self-evolving. Each phase lists: what to do, what data/benchmarks are needed, which papers' methods matter, and how to know when you're done. For the full reasoning, see [[02_How-to-Build-a-Light-Fast-Self-Evolving-WAM|the methodology document]].
 
 > [!info] One-Line Pitch
-> **Fast-WAM gets 97.6% on standard LIBERO — but what happens when the world changes?** We add self-evolution to extend a strong WAM's competence to unseen scenarios (perturbed physics, novel compositions, detail-oriented tasks) where all static models fail.
+> **Fast-WAM gets 97.6% and VLA-JEPA gets 97.2% on standard LIBERO — but what happens when the world changes?** We add self-evolution to extend two strong WAMs' competence to unseen scenarios (perturbed physics, novel compositions, detail-oriented tasks) where all static models fail.
 
 ---
 
-## Base Model
+## Base Models
 
 > [!info] Why Fast-WAM?
 > ==Strongest open-source WAM== (97.6% [[2306.03310|LIBERO]], 91.8% [[2506.18088|RoboTwin]]). Published code ([GitHub](https://github.com/yuantianyuan01/FastWAM)) + checkpoints ([HuggingFace](https://huggingface.co/yuanty/fastwam)). MoT architecture: ActionDiT (~640M) + Video DiT (~5B, [Wan2.2-TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B)). ==Flow-matching action head==. World model: Video DiT predicts future frames in pixel/video space. Video DiT kept during self-evolving loop (810ms, A100) for prediction error + dreams; stripped for deployment (190ms, 20-30 Hz). Trade-off: prediction error requires A100 (5B Video DiT); OOD performance untested. See [[02_How-to-Build-a-Light-Fast-Self-Evolving-WAM#Base Models|methodology]].
@@ -62,10 +63,10 @@ We evaluate on ==two WAMs== to prove framework-agnostic applicability. Both use 
 
 ---
 
-## Phase 0: Reproduce Baseline
+## Phase 0: Reproduce Baselines (Both Models)
 
 > [!tip] Goal
-> Confirm Fast-WAM's published results using released checkpoints. Validation only — no training.
+> Confirm published results for both WAMs using released checkpoints. Validation only — no training.
 
 ### Steps
 
@@ -73,7 +74,9 @@ We evaluate on ==two WAMs== to prove framework-agnostic applicability. Both use 
 2. Set up [[2306.03310|LIBERO]] evaluation environment ([GitHub](https://github.com/Lifelong-Robot-Learning/LIBERO)) with [MuJoCo](https://mujoco.org) ([GitHub](https://github.com/google-deepmind/mujoco))
 3. Run Fast-WAM on standard LIBERO (4 suites: libero_10, libero_goal, libero_object, libero_spatial)
 4. Run Fast-WAM on standard [[2506.18088|RoboTwin]] ([GitHub](https://github.com/TianxingChen/RoboTwin))
-5. Confirm results match published numbers
+5. Download VLA-JEPA checkpoints from [HuggingFace](https://huggingface.co/ginwind/VLA-JEPA)
+6. Run VLA-JEPA on standard LIBERO, LIBERO-Plus, and [[2405.05941|SimplerEnv]]
+7. Confirm all results match published numbers for both models
 
 ### Success Criteria
 
@@ -85,27 +88,27 @@ We evaluate on ==two WAMs== to prove framework-agnostic applicability. Both use 
 ## Phase 1: Establish Failure Cases
 
 > [!tip] Goal
-> Demonstrate WHERE Fast-WAM fails on out-of-distribution scenarios. ==This is the first publishable contribution== — nobody has tested Fast-WAM on these benchmarks.
+> Demonstrate WHERE both WAMs fail on out-of-distribution scenarios. ==This is the first publishable contribution== — nobody has tested Fast-WAM on these benchmarks, and VLA-JEPA's OOD coverage is partial (LIBERO-Plus only).
 
 ### Steps
 
-1. Run Fast-WAM on [[2510.03827|LIBERO-PRO]] (4 perturbation dims: object attributes, positions, language, environment)
-2. Run Fast-WAM on [[2602.06556|LIBERO-X]] (5 hierarchical difficulty levels, 600 tasks)
-3. Run Fast-WAM on [[2603.22078|LIBERO-Plus]] (7 visual perturbation dimensions, 21 sub-dims)
-4. Run Fast-WAM on [[2603.28301|LIBERO-Para]] (paraphrased instruction robustness)
-5. Run Fast-WAM on [[2601.11421|GM-100]] (100 detail-oriented tasks)
-6. Run Fast-WAM on [[2112.03227|CALVIN]] (5-step instruction chains) ([GitHub](https://github.com/mees/calvin))
-7. Record all results — these are the ==baselines that self-evolution must improve==
+1. Run both WAMs on [[2510.03827|LIBERO-PRO]] (4 perturbation dims: object attributes, positions, language, environment)
+2. Run both WAMs on [[2602.06556|LIBERO-X]] (5 hierarchical difficulty levels, 600 tasks)
+3. Run both WAMs on [[2603.22078|LIBERO-Plus]] (7 visual perturbation dimensions, 21 sub-dims) — VLA-JEPA already has 79.5% baseline
+4. Run both WAMs on [[2603.28301|LIBERO-Para]] (paraphrased instruction robustness)
+5. Run both WAMs on [[2601.11421|GM-100]] (100 detail-oriented tasks)
+6. Run both WAMs on [[2112.03227|CALVIN]] (5-step instruction chains) ([GitHub](https://github.com/mees/calvin))
+7. Record all results for both models — these are the ==baselines that self-evolution must improve==
 
 ### Datasets & Benchmarks
 
-| Resource | Role | Source | Expected Fast-WAM Performance |
+| Resource | Role | Source | Expected Performance |
 |----------|------|--------|------|
-| [[2510.03827\|LIBERO-PRO]] | Spatial/object perturbation eval | LIBERO-PRO benchmark | VLAs: >90% → ==near 0%==. Fast-WAM: untested |
-| [[2602.06556\|LIBERO-X]] | Hierarchical robustness eval (5 levels) | LIBERO-X benchmark (600 tasks) | VLAs: ==39.4%== at easiest level. Fast-WAM: untested |
-| [[2603.22078\|LIBERO-Plus]] | Visual perturbation eval | From WAM vs VLA Robustness paper | π0.5: 85.7% → 58.6% on perturbed RoboTwin |
-| [[2603.28301\|LIBERO-Para]] | Language paraphrase eval | LIBERO-Para benchmark | VLAs drop ==22.8-51.9pp==. Fast-WAM: untested |
-| [[2601.11421\|GM-100]] | Detail-oriented task eval | GM-100 benchmark | Best VLA ([[2410.24164\|π0.5]]): 24.9% |
+| [[2510.03827\|LIBERO-PRO]] | Spatial/object perturbation eval | LIBERO-PRO benchmark | VLAs: >90% → ==near 0%==. Both WAMs: untested |
+| [[2602.06556\|LIBERO-X]] | Hierarchical robustness eval (5 levels) | LIBERO-X benchmark (600 tasks) | VLAs: ==39.4%== at easiest level. Both WAMs: untested |
+| [[2603.22078\|LIBERO-Plus]] | Visual perturbation eval | From WAM vs VLA Robustness paper | π0.5: 85.7% → 58.6%. VLA-JEPA: ==79.5%==. Fast-WAM: untested |
+| [[2603.28301\|LIBERO-Para]] | Language paraphrase eval | LIBERO-Para benchmark | VLAs drop ==22.8-51.9pp==. Both WAMs: untested |
+| [[2601.11421\|GM-100]] | Detail-oriented task eval | GM-100 benchmark | Best VLA ([[2410.24164\|π0.5]]): 24.9%. Both WAMs: untested |
 | [[2112.03227\|CALVIN]] | Long-horizon multi-step | [GitHub](https://github.com/mees/calvin) | Best: 4.33 by [[2412.14803\|VPP]] |
 
 ### Key Papers (Why This Phase Matters)
@@ -124,8 +127,8 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
 
 ### Success Criteria
 
-- [ ] Fast-WAM tested on all 5 OOD benchmarks (all untested — first results)
-- [ ] VLA-JEPA tested on remaining OOD benchmarks (LIBERO-Plus already 79.5% — test LIBERO-PRO, LIBERO-X, LIBERO-Para, GM-100)
+- [ ] Fast-WAM tested on all 6 OOD benchmarks (all untested — first results)
+- [ ] VLA-JEPA tested on remaining OOD benchmarks (LIBERO-Plus already 79.5% — test LIBERO-PRO, LIBERO-X, LIBERO-Para, GM-100, CALVIN)
 - [ ] Results documented — drops from baseline quantified for BOTH models
 - [ ] The performance gaps are clear enough to motivate self-evolution
 
@@ -134,7 +137,7 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
 ## Phase 2: The Self-Evolving Loop
 
 > [!tip] Goal
-> Both Fast-WAM and VLA-JEPA ==discover their own weaknesses at three levels== — environment (which conditions are hard), action (which behaviors fail), and language (which instructions confuse it) — using active probing + passive signals. No human-designed perturbation types. The loop is ==identical for both models== except the DETECT and DREAM steps (see comparison table below).
+> Both Fast-WAM and VLA-JEPA ==discover their own weaknesses at three levels== — environment (which conditions are hard), action (which behaviors fail), and language (which instructions confuse it) — using active probing + passive signals. No human-designed perturbation types. The loop is ==identical for both models== except DETECT (Video DiT vs V-JEPA2), DISTILL (ActionDiT vs Qwen3-VL action head), and DREAM (pixel vs latent dreams). See comparison table below.
 
 ### Three Levels of Self-Discovery
 
@@ -149,7 +152,7 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
 > [!tip] Key Insight: World Model Enables True Self-Discovery
 > Both models can ==imagine what SHOULD happen== and compare with what ACTUALLY happens. Fast-WAM uses Video DiT (pixel-level, A100); VLA-JEPA uses V-JEPA2 (==latent-level, free==). High prediction error = "I don't understand this physics." We don't design perturbation types — we randomize broadly (like [[2603.16861|MolmoBot]]'s 232K environments), and ==the world model's own surprise discovers which conditions matter.==
 
-### The Method: DIVERSIFY → DETECT → EXPLORE → PROBE → LEARN → DISTILL → MEASURE
+### The Method: DIVERSIFY → DETECT → EXPLORE → PROBE → LEARN → DISTILL → DREAM → MEASURE
 
 ```
 1. DIVERSIFY: Deploy WAM in broadly randomized sim environments
@@ -199,15 +202,15 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
 | DETECT (fusion) | ==Both== | ==Multi-signal fusion (≥2 of 3)== | ==Our design== | Combine SAFE + prediction error + action entropy. Flag if ≥2 fire simultaneously — reduces false positives. |
 | EXPLORE (behavioral) | ==Failure states== | Layered residual RL | [[2509.19301\|ResFiT]] + [[2511.00091\|PLD]] | ResFiT residual + PLD enhancements (SAC, Cal-QL, hybrid rollout) → active behavioral probing. |
 | EXPLORE (environmental) | ==Environment== | RL adversary | [[2412.02818|RoboMD]] | RL adversary actively searches for failure-inducing sim conditions. ==Policy-agnostic== — works with any model. |
-| EXPLORE (latent) | ==Action== | ==SOE adapted for flow matching== | [[2509.19292\|SOE]] | SOE's VIB is architecture-agnostic (just MLPs). Swap DDPM decoder for ActionDiT's FM decoder. Exploration = noise injection into conditioning — works regardless of decoder type. Straightforward adaptation, not major re-engineering. |
+| EXPLORE (latent) | ==Action== | ==SOE adapted for flow matching== | [[2509.19292\|SOE]] | SOE's VIB is architecture-agnostic (just MLPs). Swap DDPM decoder for the action model's FM decoder. Exploration = noise injection into conditioning — works regardless of decoder type. Straightforward adaptation, not major re-engineering. |
 | Uncertainty signal | Action | Flow-SDE stochastic sampling | [[2510.25889\|πRL]], [[2505.05470\|Flow-GRPO]] | ODE → SDE conversion → passive uncertainty measurement. High variance = "model is unsure." |
 | LEARN | Both | Layered residual RL | [[2509.19301\|ResFiT]] + [[2511.00091\|PLD]] + [[2507.07969\|Q-chunking]] + [[2602.01789\|RFS]] | ResFiT (residual baseline) → PLD (SAC + Cal-QL) → Q-chunking (chunk-aware Q) + RFS (dual modulation). |
-| DREAM | Environment | Video DiT imagination | [[2603.16666\|Fast-WAM]] Video DiT | Future-state rollouts from imagination — extra training data. |
+| DREAM | Environment | World model imagination | [[2603.16666\|Fast-WAM]] Video DiT / [[2602.10098\|VLA-JEPA]] V-JEPA2 | Future-state rollouts from imagination — extra training data. Fast-WAM: pixel-level; VLA-JEPA: latent-level. |
 | Data collection | Both | Self-play rollouts | [[2603.09030\|PlayWorld]] | Autonomous diverse rollouts including failures. |
 
 ### How the Loop Maps to Each Model
 
-The self-evolving loop is ==identical for both models== except the DETECT step:
+The self-evolving loop is ==identical for both models== except DETECT (world model signal), DISTILL (LoRA target), and DREAM (pixel vs latent):
 
 | Step | Fast-WAM | VLA-JEPA | Same? |
 |------|----------|----------|-------|
@@ -222,7 +225,7 @@ The self-evolving loop is ==identical for both models== except the DETECT step:
 | MEASURE | OOD benchmarks | Same | ==Yes== |
 
 > [!tip] Why This Is Truly Self-Evolving
-> - **Environment discovery**: Broad randomization + Video DiT prediction error → model discovers which conditions are hard (not human-designed)
+> - **Environment discovery**: Broad randomization + world model prediction error (Video DiT / V-JEPA2) → model discovers which conditions are hard (not human-designed)
 > - **Action discovery**: πRL's Flow-SDE → stochastic action sampling reveals uncertainty; PLD probing confirms failures (not human-designed)
 > - **Language discovery**: Instruction augmentation + success rate comparison across paraphrases → reveals language fragility
 > - **Benchmarks** ([[2510.03827|LIBERO-PRO]], [[2602.06556|LIBERO-X]], etc.) ==measure== whether self-discovered improvements transfer — they don't ==design== the curriculum
@@ -308,7 +311,7 @@ For faster improvement on specific benchmarks, you CAN additionally generate per
 
 ### Why NOT VLAW?
 
-> [[2602.12063|VLAW]]'s "co-evolution" requires ==separate== world model and policy. Fast-WAM trains them ==jointly== via MoT. We use "self-evolving loop" instead: the model discovers its own weaknesses via Video DiT prediction error (inspired by [[2602.20057|AdaWorldPolicy]]) + Flow-SDE stochastic exploration ([[2510.25889|πRL]]) + failure probing ([[2511.00091|PLD]]).
+> [[2602.12063|VLAW]]'s "co-evolution" requires ==separate== world model and policy. Both our WAMs integrate them: Fast-WAM trains jointly via MoT; VLA-JEPA unifies V-JEPA2 and the action head. We use "self-evolving loop" instead: the model discovers its own weaknesses via world model prediction error (inspired by [[2602.20057|AdaWorldPolicy]]) + Flow-SDE stochastic exploration ([[2510.25889|πRL]]) + failure probing ([[2511.00091|PLD]]).
 
 ### Key Papers — Supporting Evidence
 
@@ -327,7 +330,7 @@ For faster improvement on specific benchmarks, you CAN additionally generate per
 |------|----------|-----------|-----------|
 | **Mixed attention drift**: LoRA changes ActionDiT but Video DiT is frozen — mixed attention alignment breaks | HIGH | LoRA on ==non-mixed-attention layers only==. Monitor cosine similarity of mixed attention outputs before/after LoRA | Verified from Fast-WAM's `mot.py` architecture |
 | **LoRA rank-32 saturation**: Accumulated corrections across rounds may exceed rank-32 capacity | MEDIUM | Monitor LoRA singular values. If saturated, ==merge LoRA into base weights and restart fresh adapters== | [[2603.11653\|VLA RL CL]] supports merge-and-restart |
-| **Dream validity after LoRA**: Video DiT generates dreams based on pre-LoRA ActionDiT dynamics | MEDIUM | LoRA changes <1.2% of params per round — drift is small. Add ==dream validity check==: compare dreams vs sim for same initial conditions | Architectural analysis |
+| **Dream validity after LoRA**: World model generates dreams based on pre-LoRA action model dynamics (Fast-WAM: Video DiT; VLA-JEPA: V-JEPA2) | MEDIUM | LoRA changes <1.2% of params per round — drift is small. Add ==dream validity check==: compare dreams vs sim for same initial conditions | Architectural analysis |
 | **Compute throughput**: Full MoT at 1.2Hz = ~170 episodes/day | MEDIUM | ==Two-speed strategy==: fast screening (ActionDiT only, ~5Hz) for broad exploration; full MoT only for prediction error computation on flagged scenarios | Compute estimate from architecture |
 | **Language blind spot**: Prediction error catches physics/visual weaknesses but NOT language paraphrasing | HIGH | ==Mandatory language augmentation== in DIVERSIFY step. Detect language weakness via action divergence across paraphrases, not prediction error | [[2603.28301\|LIBERO-Para]] |
 | **PLD uses SFT, not LoRA**: PLD's distillation step was validated with full SFT | MEDIUM | Use LoRA for efficiency (less forgetting). Benchmark LoRA vs SFT distillation in early rounds. If gap >20%, increase LoRA rank or use SFT for action head only | [[2511.00091\|PLD]] |
@@ -348,35 +351,40 @@ For faster improvement on specific benchmarks, you CAN additionally generate per
 ## Summary: The Full Pipeline
 
 ```
-Phase 0 → Reproduce Fast-WAM baseline (hours, A100)
+Phase 0 → Reproduce baselines for both WAMs (hours)
     ↓
-Phase 1 → Test on OOD benchmarks, establish failure gaps (days)
+Phase 1 → Test both on OOD benchmarks, establish failure gaps (days)
     ↓
-Phase 2 → Self-Evolving Loop (iterative, on A100):
-    ┌────────────────────────────────────────────────────┐
-    │  DIVERSIFY: deploy in randomized sim environments  │
-    │      ↓                                             │
-    │  IMAGINE: Video DiT predicts future states         │
-    │  DETECT: compare prediction vs reality →           │
-    │          high error = "I don't understand this"    │
-    │      ↓                                             │
-    │  EXPLORE (3 levels):                               │
-    │    env: RoboMD RL adversary (policy-agnostic)      │
-    │    action: SOE VIB perturbation (adapted for FM)   │
-    │    uncertainty: πRL Flow-SDE (passive signal)      │
-    │      ↓                                             │
-    │  PROBE: PLD confirms failures                      │
-    │  LEARN: πRL trains recovery specialists            │
-    │      ↓                                             │
-    │  DISTILL: recovery data → LoRA fine-tune ActionDiT │
-    │  DREAM: Video DiT generates extra training data    │
-    │      ↓                                             │
-    │  MEASURE: benchmark evaluation                     │
-    │      ↓                                             │
-    │  Repeat — world model discovers new weaknesses     │
-    └────────────────────────────────────────────────────┘
+Phase 2 → Self-Evolving Loop (iterative, per model):
+    ┌──────────────────────────────────────────────────────────┐
+    │  DIVERSIFY: deploy in randomized sim environments        │
+    │      ↓                                                   │
+    │  IMAGINE: world model predicts future states             │
+    │    Fast-WAM: Video DiT (pixel, A100)                     │
+    │    VLA-JEPA: V-JEPA2 (latent, standard GPU)              │
+    │  DETECT: compare prediction vs reality →                 │
+    │          high error = "I don't understand this"          │
+    │      ↓                                                   │
+    │  EXPLORE (3 levels, identical for both):                 │
+    │    env: RoboMD RL adversary (policy-agnostic)            │
+    │    action: SOE VIB perturbation (adapted for FM)         │
+    │    uncertainty: πRL Flow-SDE (passive signal)            │
+    │      ↓                                                   │
+    │  PROBE: PLD confirms failures                            │
+    │  LEARN: πRL trains recovery specialists                  │
+    │      ↓                                                   │
+    │  DISTILL: recovery data → LoRA fine-tune action model    │
+    │    Fast-WAM: ActionDiT; VLA-JEPA: Qwen3-VL action head  │
+    │  DREAM: world model generates extra training data        │
+    │    Fast-WAM: pixel dreams; VLA-JEPA: latent dreams       │
+    │      ↓                                                   │
+    │  MEASURE: benchmark evaluation                           │
+    │      ↓                                                   │
+    │  Repeat — world model discovers new weaknesses           │
+    └──────────────────────────────────────────────────────────┘
     ↓
 Final benchmarks: LIBERO-PRO, LIBERO-X, LIBERO-Para, GM-100
+(both models, side-by-side comparison)
 ```
 
 ---
@@ -384,10 +392,10 @@ Final benchmarks: LIBERO-PRO, LIBERO-X, LIBERO-Para, GM-100
 ## FAQ
 
 > [!question] What are the core methods?
-> **Fast-WAM (full MoT) + 6 methods = Self-Evolving Fast-WAM:**
+> **WAM (with world model active) + 6 methods = Self-Evolving WAM.** Applied identically to both Fast-WAM and VLA-JEPA:
 > - [[2510.25889|πRL]]: ==Flow-SDE stochastic sampling + RL training== for flow matching. Passive uncertainty signal + RL mechanism for PLD specialists.
-> - [[2509.19292|SOE]] adapted for FM: ==Active action-level probing==. VIB = MLPs + conditioning noise injection. Swap DDPM decoder for ActionDiT.
-> - Video DiT prediction error (inspired by [[2602.20057|AdaWorldPolicy]]): ==Environment-level passive discovery==. Our novel use of Fast-WAM's world model.
+> - [[2509.19292|SOE]] adapted for FM: ==Active action-level probing==. VIB = MLPs + conditioning noise injection. Swap DDPM decoder for the action model's FM decoder.
+> - World model prediction error (inspired by [[2602.20057|AdaWorldPolicy]]): ==Environment-level passive discovery==. Our novel use of each WAM's world model (Video DiT for Fast-WAM, V-JEPA2 for VLA-JEPA).
 > - [[2412.02818|RoboMD]]: ==Environment-level active probing==. RL adversary, policy-agnostic.
 > - [[2511.00091|PLD]]: ==Behavioral probing + failure recovery== (probe → learn → distill).
 > - [[2603.09030|PlayWorld]]: ==Autonomous data collection==.
@@ -399,24 +407,24 @@ Final benchmarks: LIBERO-PRO, LIBERO-X, LIBERO-Para, GM-100
 > Correct. Benchmarks ([[2510.03827|LIBERO-PRO]], [[2602.06556|LIBERO-X]], [[2603.28301|LIBERO-Para]], [[2601.11421|GM-100]]) are ==held-out evaluation only==. Never trained on. Used before the self-evolving loop (Phase 1: measure the gap) and after (measure improvement). The training data is self-generated sim rollouts from perturbed scenarios that ==match the same perturbation types== as the benchmarks.
 
 > [!question] How does the model find its own weaknesses?
-> ==Active + passive signals at three levels, no human-designed perturbations:==
+> ==Active + passive signals at three levels (identical for both WAMs), no human-designed perturbations:==
 > 1. **Environment (active)**: [[2412.02818|RoboMD]] RL adversary ==actively searches== for failure-inducing sim conditions (policy-agnostic).
-> 2. **Environment (passive)**: Video DiT prediction error flags ==surprise== ("I don't understand this physics").
-> 3. **Action (active)**: [[2509.19292|SOE]] adapted for FM — VIB is just MLPs, exploration is conditioning noise injection. Swap DDPM decoder for ActionDiT. Finds ==behavioral boundaries==.
+> 2. **Environment (passive)**: World model prediction error flags ==surprise== ("I don't understand this physics") — Fast-WAM: Video DiT (pixel/VAE latent); VLA-JEPA: V-JEPA2 (JEPA latent).
+> 3. **Action (active)**: [[2509.19292|SOE]] adapted for FM — VIB is just MLPs, exploration is conditioning noise injection. Swap DDPM decoder for the action model's FM decoder. Finds ==behavioral boundaries==.
 > 4. **Action (passive)**: [[2510.25889|πRL]] Flow-SDE measures ==action uncertainty== (high sample variance).
 > 5. **Language**: LLM paraphrases instructions → compares action sequences → ==language fragility==.
 > 6. **Behavioral**: [[2511.00091|PLD]] ==deploys and observes== actual failures → trains recovery.
 >
 > Benchmarks ==measure== whether improvements transfer — they don't design the curriculum.
 
-> [!question] Can Fast-WAM imagine future states?
-> ==Yes, when Video DiT is kept at inference.== Fast-WAM has two modes: stripped (190ms, no imagination) and full MoT (810ms, with imagination). We use the full MoT mode — slower but the Video DiT enables prediction error, dream generation, and world model supervision. The 810ms (~1.2 Hz) is fine for sim data collection on A100.
+> [!question] Can both WAMs imagine future states?
+> ==Yes, when the world model is kept active.== Fast-WAM has two modes: stripped (190ms, no imagination) and full MoT (810ms, with imagination via Video DiT on A100). VLA-JEPA: V-JEPA2's prediction modules (`vj_predictor`) are dormant at inference by default — we activate them for the self-evolving loop (lightweight, standard GPU). Both world models enable prediction error, dream generation, and supervision.
 
 > [!question] What does "self-evolving" mean? (Not "co-evolution")
-> "Co-evolution" was [[2602.12063|VLAW]]'s term for alternating between training a separate world model and policy. Fast-WAM trains them jointly via MoT — there's nothing to alternate. We use **"self-evolving loop"** instead: the model generates its own training data through targeted failure discovery, adapts on-the-fly, and distills improvements back into itself. The model evolves itself, not two models co-evolving.
+> "Co-evolution" was [[2602.12063|VLAW]]'s term for alternating between training a separate world model and policy. Both our WAMs integrate them: Fast-WAM trains jointly via MoT; VLA-JEPA unifies V-JEPA2 and the action head. There's nothing to alternate. We use **"self-evolving loop"** instead: the model generates its own training data through targeted failure discovery, adapts on-the-fly, and distills improvements back into itself. One model evolving itself — demonstrated on two architectures.
 
 > [!question] Is this post-training research?
-> Yes. Fast-WAM is already pre-trained (by its authors, on 8-64 GPUs). We use their released checkpoint and apply ==post-training== methods (LoRA fine-tuning, online adaptation, targeted data generation) to extend its capabilities to OOD scenarios. This is the same framing as [[2511.00091|PLD]] ("Self-Improving VLAs"), [[2602.20057|AdaWorldPolicy]] ("Online Adaptive Learning"), and [[2603.11653|VLA RL CL]] ("Continual RL for VLAs") — all post-training on pre-trained models.
+> Yes. Both WAMs are already pre-trained (by their respective authors). We use their released checkpoints and apply ==post-training== methods (LoRA fine-tuning, online adaptation, targeted data generation) to extend their capabilities to OOD scenarios. This is the same framing as [[2511.00091|PLD]] ("Self-Improving VLAs"), [[2602.20057|AdaWorldPolicy]] ("Online Adaptive Learning"), and [[2603.11653|VLA RL CL]] ("Continual RL for VLAs") — all post-training on pre-trained models.
 
 ---
 
