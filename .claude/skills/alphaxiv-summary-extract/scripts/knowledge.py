@@ -869,4 +869,81 @@ papers = [
     "https://arxiv.org/abs/2604.02329", # Generative World Renderer
     "https://arxiv.org/abs/2604.02288", # Unifying Group-Relative and Self-Distillation Policy Optimization via Sample Routing
     "https://arxiv.org/abs/2604.04707", # OpenWorldLib: A Unified Codebase and Definition of Advanced World Models
+    "https://arxiv.org/abs/2604.04539", # FlashSAC: Fast and Stable Off-Policy Reinforcement Learning for High-Dimensional Robot Control
+    "https://arxiv.org/abs/2602.04837", # Group-Evolving Agents: Open-Ended Self-Improvement via Experience Sharing
+    "https://arxiv.org/abs/2604.02317", # A Simple Baseline for Streaming Video Understanding
+    "https://arxiv.org/abs/2604.04917", # Vero: An Open RL Recipe for General Visual Reasoning
+    "https://arxiv.org/abs/2509.19301", # Residual Off-Policy RL for Finetuning Behavior Cloning Policies
+    "https://arxiv.org/abs/2506.09937", # SAFE: Multitask Failure Detection for Vision-Language-Action Models
+    "https://arxiv.org/abs/2602.01789", # RFS: Reinforcement Learning with Residual Flow Steering for Dexterous Manipulation
+    "https://arxiv.org/abs/2507.07969", # Reinforcement Learning with Action Chunking
+    "https://arxiv.org/abs/2604.07209", # INSPATIO-WORLD: A Real-Time 4D World Simulator via Spatiotemporal Autoregressive Modeling
+    "https://arxiv.org/abs/2603.25111", # SEVerA: Verified Synthesis of Self-Evolving Agents
+    "https://arxiv.org/abs/2604.04913", # A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens
+    "https://arxiv.org/abs/2604.07430", # HY-Embodied-0.5: Embodied Foundation Models for Real-World Agents
+    "https://arxiv.org/abs/2511.16518", # MiMo-Embodied: X-Embodied Foundation Model Technical Report
+    "https://arxiv.org/abs/2604.06126", # Gym-Anything: Turn any Software into an Agent Environment
+    "https://arxiv.org/abs/2604.06169", # In-Place Test-Time Training
+    "https://arxiv.org/abs/2604.06268", # RAGEN-2: Reasoning Collapse in Agentic RL
+    "https://arxiv.org/abs/2604.04746", # Think in Strokes, Not Pixels: Process-Driven Image Generation via Interleaved Reasoning
+    "https://arxiv.org/abs/2602.10106", # EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration
+    "https://arxiv.org/abs/2604.04247", # Combee: Scaling Prompt Learning for Self-Improving Language Model Agents
+    "https://arxiv.org/abs/2604.04913", # A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens
+    "https://arxiv.org/abs/2604.04872", # Synthetic Sandbox for Training Machine Learning Engineering Agents
+    "https://arxiv.org/abs/2603.29844", # DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA
+    "https://arxiv.org/abs/2604.05323", # VLA-InfoEntropy: A Training-Free Vision-Attention Information Entropy Approach for Vision-Language-Action Models Inference Acceleration and Success
+    "https://arxiv.org/abs/2604.04974", # From Video to Control: A Survey of Learning Manipulation Interfaces from Temporal Visual Data
+    "https://arxiv.org/abs/2604.05498", # JailWAM: Jailbreaking World Action Models in Robot Control
+    "https://arxiv.org/abs/2604.03037", # ARM: Advantage Reward Modeling for Long-Horizon Manipulation
+    "https://arxiv.org/abs/2604.04055", # DINO-VO: Learning Where to Focus for Enhanced State Estimation
+    "https://arxiv.org/abs/2604.03181", # Multi-View Video Diffusion Policy: A 3D Spatio-Temporal-Aware Video Action Model
+    "https://arxiv.org/abs/2604.07105", # Genie Sim PanoRecon: Fast Immersive Scene Generation from Single-View Panorama
+    "https://arxiv.org/abs/2604.05614", # Grounding Hierarchical Vision-Language-Action Models Through Explicit Language-Action Alignment
+    "https://arxiv.org/abs/2604.04161", # Adaptive Action Chunking at Inference-time for Vision-Language-Action Models
+    "https://arxiv.org/abs/2604.04664", # ROSClaw: A Hierarchical Semantic-Physical Framework for Heterogeneous Multi-Agent Collaboration
+    "https://arxiv.org/abs/2604.06067", # HiPolicy: Hierarchical Multi-Frequency Action Chunking for Policy Learning
+    "https://arxiv.org/abs/2604.06168", # Action Images: End-to-End Policy Learning via Multiview Video Generation
+    "https://arxiv.org/abs/2604.01765", # DriveDreamer-Policy: A Geometry-Grounded World–Action Model for Unified Generation and Planning
+    "https://arxiv.org/abs/2604.03181", # Multi-View Video Diffusion Policy: A 3D Spatio-Temporal-Aware Video Action Model
+    "https://arxiv.org/abs/2604.05656", # SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation
+    "https://arxiv.org/abs/2604.05484", # CoEnv: Driving Embodied Multi–Agent Collaboration via Compositional Environment
+    "https://arxiv.org/abs/2604.01985", # World Action Verifier: Self-Improving World Models via Forward-Inverse Asymmetry
+    "https://arxiv.org/abs/2604.07084", # Flow Motion Policy: Manipulator Motion Planning with Flow Matching Models
+    "https://arxiv.org/abs/2604.04646", # Training-Free Refinement of Flow Matching with Divergence-based Sampling
+    "https://arxiv.org/abs/2604.00626", # A Survey of On-Policy Distillation for Large Language Models
+    "https://arxiv.org/abs/2604.05355", # ETR: Entropy Trend Reward for Efficient Chain-of-Thought Reasoning
+    "https://arxiv.org/abs/2604.04161", # Adaptive Action Chunking at Inference-time for Vision-Language-Action Models
+    "https://arxiv.org/abs/2604.06067", # HiPolicy: Hierarchical Multi-Frequency Action Chunking for Policy Learning
+    "https://arxiv.org/abs/2604.04911", # SpatialEdit: Benchmarking Fine-Grained Image Spatial Editing
+    "https://arxiv.org/abs/2604.05672", # A1: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model
+    "https://arxiv.org/abs/2604.07209", # INSPATIO-WORLD: A Real-Time 4D World Simulator via Spatiotemporal Autoregressive Modeling
+    "https://arxiv.org/abs/2604.05091", # MegaTrain: Full Precision Training of 100B+ Parameter Large Language Models on a Single GPU
+    "https://arxiv.org/abs/2603.16790", # InCoder-32B: Code Foundation Model for Industrial Scenarios
+    "https://arxiv.org/abs/2604.06628", # Rethinking Generalization in Reasoning SFT: A Conditional Analysis on Optimization, Data, and Model Capability
+    "https://arxiv.org/abs/2603.19201", # OmniVTA: Visuo-Tactile World Modeling for Contact-Rich Robotic Manipulation
+    "https://arxiv.org/abs/2604.08534", # ActiveGlasses: Learning Manipulation with Active Vision from Ego-centric Human Demonstration
+    "https://arxiv.org/abs/2305.00976", # TMR: Text-to-Motion Retrieval Using Contrastive 3D Human Motion Synthesis
+    "https://arxiv.org/abs/2603.15546", # Kimodo: Scaling Controllable Human Motion Generation
+    "https://arxiv.org/abs/2604.08532", # Self-Improving 4D Perception via Self-Distillation
+    "https://arxiv.org/abs/2604.08509", # Visually-grounded Humanoid Agents
+    "https://arxiv.org/abs/2604.08534", # ActiveGlasses: Learning Manipulation with Active Vision from Ego-centric Human Demonstration
+    "https://arxiv.org/abs/2604.08544", # SIM1: Physics-Aligned Simulator as Zero-Shot Data Scaler in Deformable Worlds
+    "https://arxiv.org/abs/2604.08168", # ViVa: A Video-Generative Value Model for Robot Reinforcement Learning
+    "https://arxiv.org/abs/2604.07607", # EgoVerse: An Egocentric Human Dataset for Robot Learning from Around the World
+    "https://arxiv.org/abs/2604.07993", # HEX: Humanoid-Aligned Experts for Cross-Embodiment Whole-Body Manipulation
+    "https://arxiv.org/abs/2604.07774", # RoboAgent: Chaining Basic Capabilities for Embodied Task Planning
+    "https://arxiv.org/abs/2604.07957", # WorldMAP: Bootstrapping Vision-Language Navigation Trajectory Prediction with Generative World Models
+    "https://arxiv.org/abs/2604.07457", # CMP: Robust Whole-Body Tracking for Loco-Manipulation via Competence Manifold Projection
+    "https://arxiv.org/abs/2604.07480", # Active Reward Machine Inference From Raw State Trajectories
+    "https://arxiv.org/abs/2604.07392", # Event-Centric World Modeling with Memory-Augmented Retrieval for Embodied Decision-Making
+    "https://arxiv.org/abs/2604.08418", # Exploring Temporal Representation in Neural Processes for Multimodal Action Prediction
+    "https://arxiv.org/abs/2604.06778", # RichMap: A Reachability Map Balancing Precision, Efficiency, and Flexibility for Rich Robot Manipulation Tasks
+    "https://arxiv.org/abs/2604.06943", # Sustainable Transfer Learning for Adaptive Robot Skills
+    "https://arxiv.org/abs/2604.07799", # Learning Without Losing Identity: Capability Evolution for Embodied Agents
+    "https://arxiv.org/abs/2604.07592", # Spatio-Temporal Grounding of Large Language Models from Perception Streams
+    "https://arxiv.org/abs/2604.08258", # EvoGymCM: Harnessing Continuous Material Stiffness for Soft Robot Co-Design
+    "https://arxiv.org/abs/2010.11944", # Accelerating Reinforcement Learning with Learned Skill Priors
+    "https://arxiv.org/abs/2207.07560", # Skill-based Model-based Reinforcement Learning
+    "https://arxiv.org/abs/2604.07348", # MoRight: Motion Control Done Right
+    "https://arxiv.org/abs/2604.04503", # Memory Intelligence Agent
 ]

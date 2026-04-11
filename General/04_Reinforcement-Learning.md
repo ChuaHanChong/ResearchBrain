@@ -347,7 +347,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.10425|L2T]] — Learning to Think: fine-tunes LLMs to achieve higher reasoning accuracy with significantly fewer tokens
 
 **Adaptive & Efficient Reasoning** — Methods that teach models when and how much to reason, optimizing the compute-accuracy tradeoff.
-- [[2604.01658|CORAL]], [[2603.28730|SOLE-R1]], [[2603.27866|Wan-R1]], [[2601.22628|TTCS]], [[2601.19280|GDRO]], [[2601.18067|EvolVE]], [[2512.06835|DoGe]], [[2512.02472|R-FEW]], [[2511.07317|RLVE]], [[2510.25992|SRL]], [[2510.09001|DARO]], [[2510.01135|PCL]], [[2508.02150|Self-Supervised RL IF]], [[2507.22607|VL-Cogito]], [[2506.03295|CFT]], [[2505.20258|ARM]], [[2505.15612|LASER]], [[2505.14970|SEC]], [[2505.13438|AnytimeReasoner]], [[2505.13379|Thinkless]], [[2504.05520|ADARFT]], [[2503.16188|Think or Not Think]]
+- [[2604.05355|ETR]], [[2604.01658|CORAL]], [[2603.28730|SOLE-R1]], [[2603.27866|Wan-R1]], [[2601.22628|TTCS]], [[2601.19280|GDRO]], [[2601.18067|EvolVE]], [[2512.06835|DoGe]], [[2512.02472|R-FEW]], [[2511.07317|RLVE]], [[2510.25992|SRL]], [[2510.09001|DARO]], [[2510.01135|PCL]], [[2508.02150|Self-Supervised RL IF]], [[2507.22607|VL-Cogito]], [[2506.03295|CFT]], [[2505.20258|ARM]], [[2505.15612|LASER]], [[2505.14970|SEC]], [[2505.13438|AnytimeReasoner]], [[2505.13379|Thinkless]], [[2504.05520|ADARFT]], [[2503.16188|Think or Not Think]]
 
 > [!star] Key Papers
 > - [[2505.13379|Thinkless]] — RL-based framework that teaches LLMs to skip reasoning when unnecessary; optimizes compute allocation
@@ -517,7 +517,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2506.23235|EndoRM]] — Reveals powerful reward models are already latent within any LLM; no separate training needed
 
 **Reward Model Surveys & Analysis** — Understanding what reward models learn, how they fail, and how to improve them.
-- [[2506.07326|Reward Model Interpretability]], [[2504.12328|Reward Model Survey]]
+- [[2604.07480|Active RM Inference]], [[2506.07326|Reward Model Interpretability]], [[2504.12328|Reward Model Survey]]
 
 > [!star] Key Papers
 > - [[2504.12328|Reward Model Survey]] — Comprehensive survey consolidating RM research in the LLM era; introduces unified taxonomy
@@ -566,7 +566,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 RL for multi-turn, tool-using, and self-evolving agents — the bridge between reasoning models and autonomous systems. These agents don't just answer questions; they take actions, observe results, and adapt.
 
 **Multi-Turn Agent Frameworks** — RL training for agents that interact with environments over multiple steps, using tools and APIs.
-- [[2603.17621|Complementary RL]], [[2603.05218|KARL]], [[2507.21046|Self-Evolving Agents Survey]], [[2504.20073|RAGEN]], [[2406.04151|AgentGym]]
+- [[2604.06268|RAGEN-2]], [[2603.17621|Complementary RL]], [[2603.05218|KARL]], [[2507.21046|Self-Evolving Agents Survey]], [[2504.20073|RAGEN]], [[2406.04151|AgentGym]]
 
 > [!star] Key Papers
 > - [[2406.04151|AgentGym]] — Cross-environment agent training with behavioral cloning + reward-weighted RL
@@ -621,14 +621,14 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 RL methods designed for or applied to physical robot learning — sample efficiency, safety, and real-world deployment constraints make robotics RL fundamentally different from LLM RL.
 
 **VLA RL Post-Training** — Applying RL to fine-tune Vision-Language-Action models beyond what imitation learning alone achieves.
-- [[2604.02523|Tune to Learn]], [[2603.27670|ProgressVLA]], [[2603.27164|daVinci-LLM]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.28116|AutoDrive-P3]], [[2509.09674|SimpleVLA-RL]], [[2508.18269|FlowVLA]], [[2506.08440|TGRPO]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]], [[2504.04259|ORCA Hand]], [[2503.16806|DyWA]], [[2502.14795|Humanoid-VLA]]
+- [[2604.08168|ViVa]], [[2604.05614|GPLA]], [[2604.02523|Tune to Learn]], [[2603.27670|ProgressVLA]], [[2603.27164|daVinci-LLM]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.28116|AutoDrive-P3]], [[2602.01789|RFS]], [[2509.19301|ResFiT]], [[2509.09674|SimpleVLA-RL]], [[2508.18269|FlowVLA]], [[2506.08440|TGRPO]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]], [[2504.04259|ORCA Hand]], [[2503.16806|DyWA]], [[2502.14795|Humanoid-VLA]]
 
 > [!star] Key Papers
 > - [[2505.18719|VLA-RL]] — First systematic RL framework for VLAs; showed RL post-training consistently improves over SFT
 > - [[2506.08440|TGRPO]] — Trajectory-wise GRPO adapted for VLA fine-tuning; bridges LLM RL and robot RL
 
 **Model-Based Robot RL** — World-model-based approaches for sample-efficient robot learning.
-- [[2604.02260|Time-Varying MBRL]], [[2603.18336|ManiDreams]], [[2504.16680|RWM-U]], [[2501.10100|RWM]], [[2410.00564|JOWA]], [[2206.14176|DayDreamer]]
+- [[2604.02260|Time-Varying MBRL]], [[2603.18336|ManiDreams]], [[2504.16680|RWM-U]], [[2501.10100|RWM]], [[2410.00564|JOWA]], [[2207.07560|SkiMo]], [[2206.14176|DayDreamer]]
 
 > [!star] Key Papers
 > - [[2206.14176|DayDreamer]] — Dreamer on physical robots (A1, UR5); learning from scratch in hours via imagination
@@ -647,13 +647,13 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2603.02203|T3RL]] — Test-Time Training for RL: adapts robot policies online using world model gradients
 
 **Sim-to-Real & Transfer** — Bridging the gap between simulation and physical deployment for robot RL.
-- [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
+- [[2604.07457|CMP]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
 
 > [!star] Key Papers
 > - [[2201.02373|Mirror Learning]] — Unifying theoretical framework for diverse policy optimization methods; connects RL algorithms under one roof
 
 **RL Infrastructure & Scaling** — Engineering and scaling RL systems for real-world robot deployment.
-- [[2604.01158|SMASH]], [[2603.03279|ULTRA]], [[2512.20605|Internal RL]], [[2510.22512|TRL]], [[2505.24864|ProRL]], [[2009.12293|robosuite]]
+- [[2604.06943|Sustainable Transfer RL]], [[2604.04539|FlashSAC]], [[2604.01158|SMASH]], [[2603.03279|ULTRA]], [[2512.20605|Internal RL]], [[2510.22512|TRL]], [[2505.24864|ProRL]], [[2009.12293|robosuite]]
 
 > [!star] Key Papers
 > - [[2505.24864|ProRL]] — NVIDIA's Prolonged RL for expanding LLM reasoning to complex robot planning domains

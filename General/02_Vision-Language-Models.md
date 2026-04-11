@@ -349,7 +349,7 @@ A growing focus area bridging VLMs toward embodied tasks — understanding where
 Large multimodal models — the workhorses of modern vision-language understanding, spanning from sub-3B efficient designs to unified generation architectures.
 
 **Large-Scale MLLMs** — General-purpose instruction-tuned multimodal models at scale.
-- [[2508.11737|Ovis2.5]], [[2507.23278|UniLiP]], [[2507.01949|Kwai Keye-VL]], [[2507.01006|GLM-4.5V]], [[2505.18842|v1]], [[2505.14683|BAGEL]], [[2505.07062|Seed1.5-VL]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2504.10479|InternVL3]], [[2504.07491|Kimi-VL]], [[2504.00595|Open-Qwen2VL]], [[2410.13733|Arcana]], [[2410.10855|CoreCognition]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2407.07726|PaliGemma]], [[2306.13549|MLLM Survey]], [[2305.06500|InstructBLIP]], [[2304.07193|DINOv2]], [[2201.12086|BLIP]]
+- [[2604.07430|HY-Embodied-0.5]], [[2511.16518|MiMo-Embodied]], [[2508.11737|Ovis2.5]], [[2507.23278|UniLiP]], [[2507.01949|Kwai Keye-VL]], [[2507.01006|GLM-4.5V]], [[2505.18842|v1]], [[2505.14683|BAGEL]], [[2505.07062|Seed1.5-VL]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2504.10479|InternVL3]], [[2504.07491|Kimi-VL]], [[2504.00595|Open-Qwen2VL]], [[2410.13733|Arcana]], [[2410.10855|CoreCognition]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2407.07726|PaliGemma]], [[2306.13549|MLLM Survey]], [[2305.06500|InstructBLIP]], [[2304.07193|DINOv2]], [[2201.12086|BLIP]]
 
 > [!star] Key Papers
 > - [[2504.10479|InternVL3]] — Native multimodal pre-training paradigm achieving 72.2 on MMMU; top open-source MLLM competitive with proprietary models
@@ -357,7 +357,7 @@ Large multimodal models — the workhorses of modern vision-language understandi
 > - [[2505.14683|BAGEL]] — Unified MoT architecture with emergent reasoning; SOTA open-source on understanding and generation benchmarks
 
 **Efficient & Compressed MLLMs** — Lightweight, fast, or token-efficient multimodal models for practical deployment.
-- [[2603.06569|Penguin-VL]], [[2603.00136|TinyVLM]], [[2511.19820|CropVLM]], [[2507.00505|LLaVA-SP]], [[2506.17608|HIRE]], [[2506.12776|NativeRes-LLaVA]], [[2506.10967|CDPruner]], [[2505.24541|Mixpert]], [[2505.05626|PERCEPTLLM]], [[2505.01064|NeaR]], [[2504.05299|SmolVLM]], [[2503.16660|Adaptive Token Reduction]], [[2412.13871|LLaVA-UHD v2]], [[2412.13303|FastVLM]], [[2412.04468|NVILA]]
+- [[2604.02317|SIMPLESTREAM]], [[2603.06569|Penguin-VL]], [[2603.00136|TinyVLM]], [[2511.19820|CropVLM]], [[2507.00505|LLaVA-SP]], [[2506.17608|HIRE]], [[2506.12776|NativeRes-LLaVA]], [[2506.10967|CDPruner]], [[2505.24541|Mixpert]], [[2505.05626|PERCEPTLLM]], [[2505.01064|NeaR]], [[2504.05299|SmolVLM]], [[2503.16660|Adaptive Token Reduction]], [[2412.13871|LLaVA-UHD v2]], [[2412.13303|FastVLM]], [[2412.04468|NVILA]]
 
 > [!star] Key Papers
 > - [[2412.04468|NVILA]] — Scale-then-compress paradigm reducing training cost 5x and enabling VLM fine-tuning under 24GB; real-time robotic deployment on a laptop GPU
@@ -388,7 +388,7 @@ Large multimodal models — the workhorses of modern vision-language understandi
 Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-thought, and multimodal decision-making.
 
 **RL-Trained Visual Reasoners** — VLMs fine-tuned with RL for improved visual reasoning and chain-of-thought.
-- [[2604.03128|Self-Distilled RLVR]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.25629|LanteRn]], [[2603.25077|ToR]], [[2603.24984|MoE-GRPO]], [[2603.24533|UI-Voyager]], [[2603.22847|PEPO]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
+- [[2604.04917|Vero]], [[2604.03128|Self-Distilled RLVR]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.25629|LanteRn]], [[2603.25077|ToR]], [[2603.24984|MoE-GRPO]], [[2603.24533|UI-Voyager]], [[2603.22847|PEPO]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
 
 > [!star] Key Papers
 > - [[2503.01785|Visual-RFT]] — Pioneered RL fine-tuning for visual tasks with verifiable rewards; 24.3% accuracy boost in fine-grained classification

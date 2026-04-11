@@ -195,7 +195,7 @@ Surveys mapping the robotics landscape from embodied AI simulators through VLA a
 > - [[2103.04918|Embodied AI Survey 2021]] — Established the simulator-task-agent pyramid that later work builds on
 
 **VLA & World Model Architectures** — Surveys focused specifically on vision-language-action models and world models for robot control.
-- [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.20134|3D World Models Survey]], [[2505.04769|VLA Survey]], [[2411.14499|World Models Survey 2024]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]]
+- [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.20134|3D World Models Survey]], [[2505.04769|VLA Survey]], [[2411.14499|World Models Survey 2024]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]]
 
 > [!star] Key Papers
 > - [[2509.20021|Embodied AI LLM-WM Survey]] — Maps the joint MLLM + world model architecture roadmap; the most forward-looking survey in this space
@@ -310,7 +310,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2503.06669|AgiBot World]] — Large-scale manipulation platform with diverse environments and embodiments
 
 **Simulation Benchmarks** — Standardized simulation environments for reproducible policy evaluation.
-- [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.13710|HBVLA]], [[2602.06556|LIBERO-X]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2503.14734|GR00T N1]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
+- [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.13710|HBVLA]], [[2602.06556|LIBERO-X]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2503.14734|GR00T N1]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
 
 > [!star] Key Papers
 > - [[2306.03310|LIBERO]] — Lifelong robot learning benchmark with 5 suites and 130 tasks; tests continual learning
@@ -348,7 +348,7 @@ Benchmarks that test whether models truly understand spatial relationships, 3D s
 
 Benchmarks for video-level reasoning that require understanding temporal dynamics, audio-visual integration, and spatio-temporal relationships.
 
-- [[2603.14145|MMOU]], [[2602.05986|RISE-Video]], [[2601.09430|Video-MSR]], [[2507.18342|EgoExoBench]], [[2503.23765|STI-Bench]]
+- [[2604.07592|FESTS]], [[2603.14145|MMOU]], [[2602.05986|RISE-Video]], [[2601.09430|Video-MSR]], [[2507.18342|EgoExoBench]], [[2503.23765|STI-Bench]]
 
 > [!star] Key Papers
 > - [[2603.14145|MMOU]] — Joint audio-visual reasoning benchmark with 15K questions; tests true multimodal video understanding
