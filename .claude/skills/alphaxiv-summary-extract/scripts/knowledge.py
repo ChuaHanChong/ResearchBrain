@@ -1125,4 +1125,6 @@ papers = [
     "https://arxiv.org/abs/2601.10402", # Toward Ultra-Long-Horizon Agentic Science: Cognitive Accumulation for Machine Learning Engineering
     "https://arxiv.org/abs/2603.26499", # AIRA2: Overcoming Bottlenecks in AI Research Agents
     "https://arxiv.org/abs/2604.11626", # RationalRewards: Reasoning Rewards Scale Visual Generation Both Training and Test Time
+    "https://arxiv.org/abs/2603.05815", # Hierarchical Latent Action Model
+    "https://arxiv.org/abs/2512.04952", # FASTer: Toward Efficient Autoregressive Vision Language Action Modeling via Neural Action Tokenization
 ]
