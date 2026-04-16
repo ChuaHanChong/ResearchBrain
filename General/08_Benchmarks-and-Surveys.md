@@ -74,6 +74,16 @@ The field evolved through four tracks: **simulation infrastructure** (2019-2021)
 
 ---
 
+- [[2602.08145|Reliable Foundation Models Survey]] — Reliable and responsible foundation models comprehensive survey
+- [[2601.15533|Actionable Simulators]] — Physical grounding imperative for world models
+- [[2510.24795|Efficient VLA Survey]] — First survey on efficient VLA models
+- [[2509.19012|Pure VLA Survey]] — Taxonomy of pure VLA action-generation paradigms
+- [[2508.13073|VLA Survey 2025]] — First taxonomy-oriented VLA review for robotic manipulation
+- [[2505.12224|RoboFAC]] — Robotic failure analysis benchmark and framework
+- [[2504.18875|Generative to Agentic AI Survey]] — Evolution from generative to agentic AI
+- [[2503.23037|Agentic LLM Survey]] — Comprehensive survey of agentic LLMs
+- [[2402.07927|Prompt Engineering Survey]] — Systematic survey of 41 prompt engineering techniques
+- [[2310.08367|MCU]] — Evaluation framework for open-ended game agents
 ## 1. Foundation Model & Transformer Surveys
 
 Surveys that chart the Transformer architecture landscape — from efficient attention mechanisms through training recipes to parameter-efficient adaptation. Together they define the "how to build" side of modern AI.
@@ -188,14 +198,14 @@ Surveys spanning classical RL, its intersection with causal inference, continual
 Surveys mapping the robotics landscape from embodied AI simulators through VLA architectures to world-model-augmented control. This domain has the highest survey density, reflecting rapid growth from 2021 to 2025.
 
 **Embodied AI Foundations** — Broad surveys covering simulators, task hierarchies, and the overall embodied AI research landscape.
-- [[2407.06886|ARIO]], [[2103.04918|Embodied AI Survey 2021]]
+- [[2407.06886|ARIO]], [[2301.11972|Social Cues HRI Survey]], [[2103.04918|Embodied AI Survey 2021]]
 
 > [!star] Key Papers
 > - [[2407.06886|ARIO]] — Comprehensive 2024 survey introducing the ARIO dataset standard for cross-study comparison
 > - [[2103.04918|Embodied AI Survey 2021]] — Established the simulator-task-agent pyramid that later work builds on
 
 **VLA & World Model Architectures** — Surveys focused specifically on vision-language-action models and world models for robot control.
-- [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.20134|3D World Models Survey]], [[2505.04769|VLA Survey]], [[2411.14499|World Models Survey 2024]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]]
+- [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2508.13073|VLA Survey 2025]], [[2506.20134|3D World Models Survey]], [[2505.04769|VLA Survey]], [[2411.14499|World Models Survey 2024]], [[2408.15511|AeroVerse]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]]
 
 > [!star] Key Papers
 > - [[2509.20021|Embodied AI LLM-WM Survey]] — Maps the joint MLLM + world model architecture roadmap; the most forward-looking survey in this space
@@ -245,7 +255,7 @@ An emerging survey domain covering how to optimize the information supplied to L
 > - [[2510.26493|Context Engineering 2.0]] — Redefines context engineering with dynamic, adaptive context management strategies
 
 **Agent Memory Systems** — How AI agents store, retrieve, and manage information across interactions and tasks.
-- [[2603.22862|LLM Tool Use Survey]], [[2601.12538|Agentic Reasoning Survey]], [[2512.13564|AI Agent Memory Survey]], [[2508.17692|Agentic Reasoning Survey]], [[2505.10468|AI Agents vs Agentic AI]], [[2504.01990|Foundation Agents Survey]]
+- [[2603.22862|LLM Tool Use Survey]], [[2601.12538|Agentic Reasoning Survey]], [[2512.13564|AI Agent Memory Survey]], [[2508.17692|Agentic Reasoning Survey]], [[2505.10468|AI Agents vs Agentic AI]], [[2504.01990|Foundation Agents Survey]], [[2410.16392|Scaffolded LM Survey]]
 
 > [!star] Key Papers
 > - [[2512.13564|AI Agent Memory Survey]] — Introduces a "Forms-Functions-Dynamics" framework for analyzing memory in AI agents
@@ -273,7 +283,7 @@ Surveys covering specific domains and emerging fields.
 > - [[2511.18538|Code Intelligence Survey]] — End-to-end guide from data curation to autonomous coding agents; the most comprehensive code LLM survey
 
 **Miscellaneous Surveys** — Other notable surveys spanning diverse topics.
-- [[2602.17270|UL]], [[2602.01630|Unified World Model Framework]], [[2601.21187|FRISM]], [[2601.03220|Epiplexity]], [[2512.24880|mHC]], [[2510.00034|MOWI]], [[2509.04501|GRAPE]], [[2509.00421|Prompt Tuning Memory Limits]], [[2507.23276|AI Scientist Survey]], [[2507.18074|ASI-ARCH]], [[2507.17634|WSM]], [[2506.19360|Synthetic Image Privacy SoK]], [[2506.13018|NN Parameter Space Symmetry Survey]], [[2505.23725|MuLoCo]], [[2504.20966|Softpick]], [[2504.13173|Miras]], [[2503.12811|MPL]], [[2210.17067|UniOT]], [[2207.13050|Efficient High-Resolution Survey]], [[2203.12555|GriTS]], [[2201.02373|Mirror Learning]], [[2112.02814|Low-Shot Detection Survey]], [[2002.07421|EHSOD]]
+- [[2602.17270|UL]], [[2602.01630|Unified World Model Framework]], [[2502.05206|Safety at Scale Survey]], [[2601.21187|FRISM]], [[2601.03220|Epiplexity]], [[2512.24880|mHC]], [[2510.00034|MOWI]], [[2509.04501|GRAPE]], [[2509.00421|Prompt Tuning Memory Limits]], [[2507.23276|AI Scientist Survey]], [[2507.18074|ASI-ARCH]], [[2507.17634|WSM]], [[2506.19360|Synthetic Image Privacy SoK]], [[2506.13018|NN Parameter Space Symmetry Survey]], [[2505.23725|MuLoCo]], [[2504.20966|Softpick]], [[2504.13173|Miras]], [[2503.12811|MPL]], [[2210.17067|UniOT]], [[2207.13050|Efficient High-Resolution Survey]], [[2203.12555|GriTS]], [[2201.02373|Mirror Learning]], [[2112.02814|Low-Shot Detection Survey]], [[2002.07421|EHSOD]]
 
 > [!star] Key Papers
 > - [[2602.01630|Unified World Model Framework]] — Proposes a unified framework for world models spanning simulation, prediction, and generation
@@ -310,7 +320,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2503.06669|AgiBot World]] — Large-scale manipulation platform with diverse environments and embodiments
 
 **Simulation Benchmarks** — Standardized simulation environments for reproducible policy evaluation.
-- [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.13710|HBVLA]], [[2602.06556|LIBERO-X]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2503.14734|GR00T N1]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
+- [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.13710|HBVLA]], [[2602.06556|LIBERO-X]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2503.14734|GR00T N1]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]], [[2506.18701|Matrix-Game]], [[2604.11674|AffordSim]]
 
 > [!star] Key Papers
 > - [[2306.03310|LIBERO]] — Lifelong robot learning benchmark with 5 suites and 130 tasks; tests continual learning
@@ -406,7 +416,7 @@ Papers addressing how to build better training datasets through curation, select
 Benchmarks and analytical studies focused on evaluating model architectures, detection systems, and interpretability.
 
 **Detection & Recognition** — Benchmarks and methods for evaluating object detection and interpretable visual recognition.
-- [[2510.21501|GranViT]], [[2506.15692|MLE-STAR]], [[2506.08429|SCALE]], [[2506.08391|SECOND]], [[2506.07850|SAM2Auto]], [[2505.01109|SSL-MIL Pathology Benchmark]], [[2504.14988|FG-BMK]], [[2504.09819|Density-Guided Object Detection]], [[2410.20722|ProtoViT]], [[2410.13842|D-FINE]], [[2410.06468|SPACE]], [[2408.14371|SelEx]], [[2404.15817|VT-ADA]], [[2404.13013|Groma]], [[2404.09216|DetCLIPv3]], [[2403.14410|GLC++]], [[2311.04157|INTR]], [[2308.00692|LISA]], [[2307.12813|DOD]], [[2306.03514|RAM]], [[2305.07011|RO-ViT]], [[2303.13076|CORA]], [[2303.07110|GLC]], [[2303.05499|Grounding DINO]], [[2203.16265|SeqTR]], [[2201.02605|Detic]], [[2109.06165|CDTrans]], [[1810.09091|SG-One]], [[1806.04728|RepMet]], [[1803.01534|PANet]], [[1612.03144|FPN]]
+- [[2510.21501|GranViT]], [[2506.15692|MLE-STAR]], [[2506.08429|SCALE]], [[2506.08391|SECOND]], [[2506.07850|SAM2Auto]], [[2505.01109|SSL-MIL Pathology Benchmark]], [[2504.14988|FG-BMK]], [[2504.09819|Density-Guided Object Detection]], [[2410.20722|ProtoViT]], [[2410.13842|D-FINE]], [[2410.06468|SPACE]], [[2408.14371|SelEx]], [[2404.15817|VT-ADA]], [[2404.13013|Groma]], [[2404.09216|DetCLIPv3]], [[2403.14410|GLC++]], [[2311.04157|INTR]], [[2308.00692|LISA]], [[2307.12813|DOD]], [[2306.03514|RAM]], [[2305.07011|RO-ViT]], [[2303.13076|CORA]], [[2303.07110|GLC]], [[2303.05499|Grounding DINO]], [[2203.16265|SeqTR]], [[2201.02605|Detic]], [[2109.06165|CDTrans]], [[1810.09091|SG-One]], [[1806.04728|RepMet]], [[1803.01534|PANet]], [[1612.03144|FPN]], [[2604.10856|BridgeSim]]
 
 > [!star] Key Papers
 > - [[2410.13842|D-FINE]] — Redefines bounding box regression in DETR models; transforms coordinate prediction into fine-grained distribution refinement

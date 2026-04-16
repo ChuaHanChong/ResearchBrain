@@ -14,6 +14,22 @@ aliases:
 > [!abstract] Overview
 > AI systems that improve themselves through experience — from self-taught reasoning (STaR) to self-evolving agents (EvoAgent) to self-improving world models (SPIRAL). This topic bridges RL, continual learning, and meta-learning into autonomous self-improvement. The field has matured from simple bootstrapping loops (2022) to fully autonomous, zero-data self-play systems (2025-2026).
 
+- [[2604.11306|Hierarchical Episodic Memory]]
+
+- [[2604.10892|HECTOR]]
+
+- [[2604.10096|ABot-Claw]]
+
+- [[2602.10503|Long-Lived Robots]]
+
+- [[2602.03445|CRL-VLA]]
+
+- [[2508.04700|SEAgent]]
+
+- [[2507.13152|SE-VLN]]
+
+- [[2409.00872|SAGE]]
+
 ## Evolution Graph
 
 ```mermaid
@@ -207,7 +223,7 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 > - [[2506.01716|SCA]] — Self-Challenging Agent: generates its own hard problems to practice on, driving continuous capability growth
 
 **Co-Evolutionary & Multi-Agent** — Multiple agents or model components (policy + environment, actor + critic) evolve together, each improving the other in a virtuous cycle.
-- [[2603.17621|Complementary RL]], [[2603.08403|SPIRAL]], [[2602.23413|EvoX]], [[2602.20057|AdaWorldPolicy]], [[2601.06794|ECHO]], [[2510.26433|CoLA-World]], [[2507.16518|C2-Evo]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2502.05907|EvoAgent]], [[2302.01877|AdaptDiffuser]]
+- [[2603.28386|COvolve]], [[2603.17621|Complementary RL]], [[2603.08403|SPIRAL]], [[2602.23413|EvoX]], [[2602.20057|AdaWorldPolicy]], [[2601.10402|ML-Master 2.0]], [[2601.06794|ECHO]], [[2510.26433|CoLA-World]], [[2509.03771|Co-Evolving MARL]], [[2507.16518|C2-Evo]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2502.05907|EvoAgent]], [[2302.01877|AdaptDiffuser]]
 
 > [!star] Key Papers
 > - [[2601.06794|ECHO]] — Policy and environment co-evolve: the environment generates harder challenges as the policy improves, and vice versa
@@ -231,7 +247,7 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 Learning to learn: models that adapt their own learning process, discover optimization algorithms, or rapidly adjust to new tasks from minimal data. While self-training improves outputs, meta-learning improves the learning procedure itself.
 
 **Meta-Reinforcement Learning** — Agents that learn an RL algorithm implicitly through experience, enabling rapid adaptation to new reward structures without retraining from scratch.
-- [[2309.05858|Mesa-Optimization Transformers]], [[2301.08028|Meta-RL Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]]
+- [[2309.05858|Mesa-Optimization Transformers]], [[2301.08028|Meta-RL Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]], [[2604.11768|GC-PFO]]
 
 > [!star] Key Papers
 > - [[2301.08028|Meta-RL Tutorial]] — Definitive survey structuring the meta-RL landscape: context-based, task-inference, and black-box approaches

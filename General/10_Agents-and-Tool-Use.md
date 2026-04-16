@@ -14,6 +14,24 @@ aliases:
 > [!abstract] Overview
 > AI agents that reason, plan, and use tools to accomplish multi-step tasks. This topic covers the full arc from ReAct-style reasoning-acting loops (2022) through RL-trained tool-using agents (2025) to self-evolving multi-agent systems (2026). The field has matured along several axes: single-turn to multi-turn, fixed tools to tool creation, single-agent to multi-agent orchestration, and handcrafted prompting to reinforcement-learned agentic behavior.
 
+- [[2604.10929|Ro-SLM]]
+
+- [[2604.10096|ABot-Claw]]
+
+- [[2511.20085|VICoT-Agent]]
+
+- [[2508.04700|SEAgent]]
+
+- [[2504.18875|Generative to Agentic AI Survey]]
+
+- [[2503.23037|Agentic LLM Survey]]
+
+- [[2410.08328|Talker-Reasoner]]
+
+- [[2409.00872|SAGE]]
+
+- [[2310.08367|MCU]]
+
 ## Evolution Graph
 
 ```mermaid
@@ -106,7 +124,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992\|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Reasoning Surveys & Taxonomies** — Comprehensive reviews mapping the rapidly evolving landscape of LLM-based agents, establishing conceptual frameworks and evaluation methodologies.
-- [[2603.22862\|LLM Tool Use Survey]], [[2601.12538\|Agentic Reasoning Survey]], [[2512.16301\|Agentic AI Adaptation Survey]], [[2509.02547\|Agentic RL Survey]], [[2508.17692\|Agentic Reasoning Survey]], [[2508.07407\|Self-Evolving AI Agents Survey]], [[2507.23276\|AI Scientist Survey]], [[2507.21046\|Self-Evolving Agents Survey]], [[2505.10468\|AI Agents vs Agentic AI]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2503.16416\|LLM Agent Eval Survey]]
+- [[2603.22862\|LLM Tool Use Survey]], [[2601.12538\|Agentic Reasoning Survey]], [[2512.16301\|Agentic AI Adaptation Survey]], [[2509.02547\|Agentic RL Survey]], [[2508.17692\|Agentic Reasoning Survey]], [[2508.07407\|Self-Evolving AI Agents Survey]], [[2507.23276\|AI Scientist Survey]], [[2507.21046\|Self-Evolving Agents Survey]], [[2505.10468\|AI Agents vs Agentic AI]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2410.16392\|Scaffolded LM Survey]]
 
 > [!star] Key Papers
 > - [[2505.10468\|AI Agents vs Agentic AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
@@ -278,7 +296,7 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 Agents that accumulate experience over time, build persistent memory, and autonomously improve their own capabilities. This represents the frontier where agents become self-evolving systems.
 
 **Skill Libraries & External Memory** — Agents that maintain persistent skill repositories or memory banks, enabling them to reuse learned capabilities across tasks without retraining.
-- [[2604.04503\|MIA]], [[2604.02268\|SKILL0]], [[2604.01007\|Omni-SimpleMem]], [[2603.29493\|MemFactory]], [[2603.24639\|ERL]], [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24517|AVO]]
+- [[2604.04503\|MIA]], [[2604.02268\|SKILL0]], [[2604.01007\|Omni-SimpleMem]], [[2603.29493\|MemFactory]], [[2603.24639\|ERL]], [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24517|AVO]], [[2509.23285|Tool-Light]]
 
 > [!star] Key Papers
 > - [[2603.18743\|Memento-Skills]] — Skill library as external memory for continual learning; agents store and retrieve reusable skills without weight updates
@@ -317,7 +335,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2311.05437\|LLaVA-Plus]] — Training VLMs to learn when and how to use external visual tools for any task
 
 **VLM Fine-Tuning & Reinforcement for Agency** — Methods for fine-tuning vision-language models via RL to act as agents in visual environments.
-- [[2511.19900\|Agent0-VL]], [[2510.22832\|HRM-Agent]], [[2507.07998\|PyVision]], [[2505.14246\|Visual-ARFT]], [[2405.10292\|VLM-RL Fine-Tuning]]
+- [[2511.19900\|Agent0-VL]], [[2510.22832\|HRM-Agent]], [[2507.07998\|PyVision]], [[2505.14246\|Visual-ARFT]], [[2405.10292\|VLM-RL Fine-Tuning]], [[2604.08545|Metis]]
 
 > [!star] Key Papers
 > - [[2405.10292\|VLM-RL Fine-Tuning]] — Directly fine-tuning VLMs with RL for agentic visual tasks; bridges perception and action
@@ -331,7 +349,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2603.15386\|RieMind]] — Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations
 
 **Scientific & Research Agents** — Agents designed for autonomous scientific research, from literature review to experiment design and execution.
-- [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2511.02824\|Kosmos AI Scientist]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
+- [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
 
 > [!star] Key Papers
 > - [[2505.16938\|InternAgent]] — Unified closed-loop multi-agent system for fully autonomous scientific research

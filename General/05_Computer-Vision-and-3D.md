@@ -19,6 +19,12 @@ aliases:
 > [!abstract] Overview
 > From feature pyramids to open-vocabulary detection to 3D scene understanding, this note covers the perception stack that underpins embodied AI. The key trends: (1) moving from closed-set recognition to open-world, grounded, and 3D-aware perception, (2) self-supervised pre-training replacing supervised ImageNet features, (3) Vision Transformers replacing CNNs across every sub-task, and (4) efficient architectures enabling real-time deployment.
 
+- [[2604.11302|3D-ALP]]
+
+- [[2604.10953|DRL-3DBP]]
+
+- [[2511.01294|Kinematify]]
+
 ## Evolution Graph
 
 ```mermaid
@@ -470,7 +476,7 @@ Learning from minimal examples or no examples at all. These methods enable visua
 Understanding what vision models learn, explaining their decisions, and providing transparent reasoning. Essential for deploying vision systems in safety-critical applications.
 
 **Interpretable Architectures** — Models designed from the ground up to produce human-understandable explanations of their predictions.
-- [[2501.09333|Prompt-CAM]], [[2311.04157|INTR]], [[2205.10268|B-cos Networks]]
+- [[2501.09333|Prompt-CAM]], [[2311.04157|INTR]], [[2205.10268|B-cos Networks]], [[2604.10982|Psi-Map]]
 
 > [!star] Key Papers
 > - [[2205.10268|B-cos Networks]] — Inherently interpretable deep networks via B-cos transform; explanations emerge from the architecture itself
@@ -498,13 +504,13 @@ Understanding what vision models learn, explaining their decisions, and providin
 Practical methods for training vision models efficiently: dataset pruning, continual learning, knowledge distillation, and parameter-efficient fine-tuning. These techniques determine whether a method is publishable versus deployable.
 
 **Dataset Curation & Pruning** — Select the most informative training examples to reduce dataset size without sacrificing model quality.
-- [[2205.09329|Dataset Pruning]]
+- [[2205.09329|Dataset Pruning]], [[2604.11386|ComSim]]
 
 > [!star] Key Papers
 > - [[2205.09329|Dataset Pruning]] — Optimization-based pruning using influence functions; reduces training data while maintaining accuracy
 
 **Knowledge Distillation** — Transfer knowledge from large teacher models to smaller, deployable student models.
-- [[2306.08543|MiniLLM]]
+- [[2306.08543|MiniLLM]], [[2604.10856|BridgeSim]]
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] — Reverse KL divergence + on-policy optimization for LLM distillation; produces higher-precision student models
@@ -522,13 +528,13 @@ Practical methods for training vision models efficiently: dataset pruning, conti
 > - [[2402.02242|V-PEFT Bench]] — Comprehensive benchmark of visual PEFT methods; reveals which adapter designs actually matter
 
 **Weakly-Supervised Pre-Training** — Pre-train on weakly-labeled data (e.g., image-level tags for pixel-level tasks) to scale annotation-efficient learning.
-- [[2505.06710|SimMIL]]
+- [[2505.06710|SimMIL]], [[2604.08626|WildDet3D]], [[2604.11674|AffordSim]]
 
 > [!star] Key Papers
 > - [[2505.06710|SimMIL]] — Propagates bag-level labels to instances for MIL pre-training; improves pathology classification without pixel annotations
 
 **Adversarial Robustness** — Understanding and improving model resilience to adversarial perturbations.
-- [[2506.21046|dSVA]]
+- [[2506.21046|dSVA]], [[2604.11138|ViserDex]]
 
 > [!star] Key Papers
 > - [[2506.21046|dSVA]] — Exploits self-supervised ViT features for adversarial attacks; outperforms prior methods by 13.7% on average transferability

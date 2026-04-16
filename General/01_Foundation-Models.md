@@ -15,6 +15,10 @@ aliases:
 > [!abstract] Overview
 > From ViT to billion-parameter VLMs, foundation models define the backbone of modern AI. This note traces the evolution from vision transformers through self-supervised learning to the large multi-modal models that power VLAs, reasoning systems, and autonomous agents. It also covers the training recipes, attention innovations, and adaptation strategies that make these models practical.
 
+- [[2602.05449|DisCa]]
+
+- [[2511.20085|VICoT-Agent]]
+
 ## Evolution Graph
 
 ```mermaid
@@ -495,7 +499,7 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 Foundation models applied to robotics — VLAs, action pretraining, world models, and sim-to-real transfer.
 
 **Vision-Language-Action Models** — Models that bridge perception, language understanding, and physical action for robot control.
-- [[2604.02408|F2F-AP]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.16195|S-VAM]], [[2603.11653|VLA RL Continual Learning]], [[2602.12062|HoloBrain-0]], [[2602.11832|JEPA-VLA]], [[2602.11236|ABot-M0]], [[2602.10098|VLA-JEPA]], [[2601.18692|LingBot-VLA]], [[2512.00975|MM-ACT]], [[2510.10274|X-VLA]], [[2509.04996|FLOWER]], [[2509.00576|G0]], [[2508.07917|MolmoAct]], [[2506.22242|4D-VLA]], [[2505.08971|PRIOR]], [[2505.03500|TLI]], [[2504.16054|pi0.5]], [[2502.14795|Humanoid-VLA]], [[2501.18867|UP-VLA]], [[2501.15830|SpatialVLA]], [[2501.09747|FAST]], [[2412.14058|RoboVLMs]], [[2410.24164|π0]], [[2409.20537|HPT]]
+- [[2604.02408|F2F-AP]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.16195|S-VAM]], [[2603.11653|VLA RL Continual Learning]], [[2602.12062|HoloBrain-0]], [[2602.11832|JEPA-VLA]], [[2602.11236|ABot-M0]], [[2602.10098|VLA-JEPA]], [[2601.18692|LingBot-VLA]], [[2512.00975|MM-ACT]], [[2510.10274|X-VLA]], [[2509.04996|FLOWER]], [[2509.00576|G0]], [[2508.07917|MolmoAct]], [[2506.22242|4D-VLA]], [[2505.08971|PRIOR]], [[2505.03500|TLI]], [[2504.16054|pi0.5]], [[2502.14795|Humanoid-VLA]], [[2501.18867|UP-VLA]], [[2501.15830|SpatialVLA]], [[2501.09747|FAST]], [[2412.14058|RoboVLMs]], [[2410.24164|π0]], [[2409.20537|HPT]], [[2511.07820|SONIC]], [[2501.03575|Cosmos]]
 
 > [!star] Key Papers
 > - [[2504.16054|pi0.5]] — VLA model enabling mobile robots to perform complex household tasks in entirely new homes
@@ -503,14 +507,14 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 > - [[2508.07917|MolmoAct]] — Action Reasoning Models integrating depth-aware perception with visual reasoning for spatial tasks
 
 **Action Pretraining & Latent Actions** — Learning action representations from video without explicit action labels.
-- [[2602.22010|WoG]], [[2512.13030|Motus]], [[2512.10950|E-RayZer]], [[2512.07203|MMRPT]], [[2507.01643|SAILViT]], [[2506.11136|JAFAR]], [[2503.06669|AgiBot World]], [[2410.11758|LAPA]], [[2410.06158|GR-2]], [[2310.08864|OXE]], [[2310.08576|AVDC]], [[2307.00595|RH20T]], [[2306.10007|RPT]], [[2306.03310|LIBERO]]
+- [[2602.22010|WoG]], [[2512.13030|Motus]], [[2512.10950|E-RayZer]], [[2512.07203|MMRPT]], [[2507.01643|SAILViT]], [[2506.11136|JAFAR]], [[2503.06669|AgiBot World]], [[2410.11758|LAPA]], [[2410.06158|GR-2]], [[2310.08864|OXE]], [[2310.08576|AVDC]], [[2307.00595|RH20T]], [[2306.10007|RPT]], [[2306.03310|LIBERO]], [[2402.15391|Genie]], [[2601.02427|NitroGen]]
 
 > [!star] Key Papers
 > - [[2410.11758|LAPA]] — Latent Action Pretraining from videos; learns action representations without action labels
 > - [[2310.08576|AVDC]] — Learns manipulation tasks from actionless video via dense visual correspondences
 
 **World Models for Robotics** — Learned simulators that predict future states for planning and policy training.
-- [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28713|DreamLite]], [[2603.12231|Temporal Straightening]], [[2602.11389|Causal-JEPA]], [[2602.06130|SWIRL]], [[2601.05230|Latent Action World Models]], [[2512.19693|Prism Hypothesis]], [[2512.09929|OWM]], [[2512.05665|ILVR]], [[2511.21395|Monet]], [[2511.20639|LatentMAS]], [[2511.09057|PAN]], [[2507.19468|DINO-world]], [[2502.14819|PLDM]], [[2411.04983|DINO-WM]], [[2410.00564|JOWA]], [[2005.05960|Plan2Explore]]
+- [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28713|DreamLite]], [[2603.12231|Temporal Straightening]], [[2602.11389|Causal-JEPA]], [[2602.06130|SWIRL]], [[2601.05230|Latent Action World Models]], [[2512.19693|Prism Hypothesis]], [[2512.09929|OWM]], [[2512.05665|ILVR]], [[2511.21395|Monet]], [[2511.20639|LatentMAS]], [[2511.09057|PAN]], [[2507.19468|DINO-world]], [[2502.14819|PLDM]], [[2411.04983|DINO-WM]], [[2410.00564|JOWA]], [[2005.05960|Plan2Explore]], [[2602.06949|DreamDojo]], [[2604.10333|ZWM]]
 
 > [!star] Key Papers
 > - [[2511.09057|PAN]] — World model using Generative Latent Prediction for general, interactable, long-horizon simulation
@@ -538,14 +542,14 @@ Unconventional approaches that do not fit neatly into the above categories but r
 > - [[2307.04054|Deep-STDP]] — Spike-timing-dependent plasticity for deep unsupervised learning; explores biologically plausible alternatives to backpropagation
 
 **LLM-Assisted Research Tools** — Using LLMs to automate aspects of the research process itself.
-- [[2508.17971|LLM-NAR]], [[2504.17192|PaperCoder]], [[2203.03485|Self-directed Exploratory Planning]]
+- [[2508.17971|LLM-NAR]], [[2504.17192|PaperCoder]], [[2203.03485|Self-directed Exploratory Planning]], [[2604.09258|Nexus]], [[2604.13016|OPD Distillation Study]]
 
 > [!star] Key Papers
 > - [[2504.17192|PaperCoder]] — Multi-agent LLM framework that generates functional code from scientific papers
 > - [[2508.17971|LLM-NAR]] — Integrates LLMs with Graph Neural Networks for multi-agent path finding
 
 **Visual Generation & Style Transfer** — Foundation model approaches to image generation, editing, and style-driven synthesis.
-- [[2603.28713|DreamLite]], [[2510.08575|ReSplat]], [[2508.18966|USO]], [[2505.17022|GoT-R1]], [[2503.20314|Wan]], [[2411.10231|TaylorIR]]
+- [[2603.28713|DreamLite]], [[2510.08575|ReSplat]], [[2508.18966|USO]], [[2505.17022|GoT-R1]], [[2503.20314|Wan]], [[2411.10231|TaylorIR]], [[2604.09168|ELT]]
 
 > [!star] Key Papers
 > - [[2505.17022|GoT-R1]] — Applies RL to unleash MLLM reasoning for visual generation; bridges reasoning and image synthesis

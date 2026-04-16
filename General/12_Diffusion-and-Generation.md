@@ -16,6 +16,14 @@ aliases:
 > [!abstract] Overview
 > Diffusion models and related generative architectures have expanded far beyond image synthesis. This topic tracks the full generative landscape: from foundational diffusion theory through discrete diffusion language models, unified multimodal architectures that combine understanding and generation, RL-based alignment of generative models, and applications in image editing, 3D, and robotics. The core question has shifted from "can diffusion generate images?" to "can diffusion replace autoregression as the foundation for general intelligence?"
 
+- [[2604.11734|Multi-ORFT]]
+
+- [[2604.10953|DRL-3DBP]]
+
+- [[2604.09330|VAG]]
+
+- [[2602.05449|DisCa]]
+
 ## Evolution Graph
 
 ```mermaid
@@ -192,7 +200,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2506.02095|CycleReward]] — Self-supervised reward via cycle consistency; eliminates need for human preference data
 
 **Reward Models for Image Generation** — Learning reward functions that capture human preferences for image quality, text-image alignment, or edit fidelity to guide RL training.
-- [[2509.26346|EditReward]], [[2507.22003|ViHallu]]
+- [[2604.11626|RationalRewards]], [[2509.26346|EditReward]], [[2507.22003|ViHallu]]
 
 > [!star] Key Papers
 > - [[2509.26346|EditReward]] — Human-aligned reward model for instruction-guided image editing; enables curation of high-quality training data
@@ -252,7 +260,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 > - [[2503.13436|UniFluid]] — Google DeepMind's unified AR framework using continuous and discrete tokens for seamless visual generation and understanding
 
 **Image Editing & Controllable Generation** — Methods for precise, instruction-guided image manipulation and controllable synthesis.
-- [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2505.18600|CoZ]], [[2403.19103|PRISM]]
+- [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2505.18600|CoZ]], [[2403.19103|PRISM]], [[2604.06870|RefineAnything]]
 
 > [!star] Key Papers
 > - [[2601.02356|Talk2Move]] — RL-based text-instructed geometric transformations with spatially grounded rewards
@@ -274,10 +282,10 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 Diffusion models applied to physical action generation rather than image synthesis. These methods treat robot trajectories, action sequences, or video predictions as data to denoise, enabling smooth multi-step planning that handles multimodal action distributions better than regression.
 
 **Denoising Diffusion for Planning** — Use diffusion models not for image generation but for planning robot trajectories, treating action sequences as data to denoise.
-- [[2604.03191|Compression Gap]], [[2604.03181|MV-VDP]], [[2604.00202|DreamControl-v2]], [[2603.27670|ProgressVLA]], [[2603.25406|MMaDA-VLA]], [[2603.15975|UMO]], [[2603.12263|Psi0]], [[2603.10052|OmniGuide]], [[2603.03243|HoMMI]], [[2602.11236|ABot-M0]], [[2601.07060|PALM]], [[2601.02456|InternVLA-A1]], [[2512.22688|ARFM]], [[2510.09459|FIPER]], [[2509.19292|SOE]], [[2508.10333|ReconVLA]], [[2503.14734|GR00T N1]], [[2502.16707|ReflectVLM]], [[2411.19650|CogACT]], [[2410.07864|RDT-1B]], [[2407.05996|MDT]], [[2405.12213|Octo]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2302.00111|UniPi]], [[2205.09991|Diffuser]]
+- [[2604.03191|Compression Gap]], [[2604.03181|MV-VDP]], [[2604.00202|DreamControl-v2]], [[2603.27670|ProgressVLA]], [[2603.25406|MMaDA-VLA]], [[2603.16368|SCDP]], [[2603.15975|UMO]], [[2603.12263|Psi0]], [[2603.10052|OmniGuide]], [[2603.03243|HoMMI]], [[2602.11236|ABot-M0]], [[2601.07060|PALM]], [[2601.02456|InternVLA-A1]], [[2512.22688|ARFM]], [[2510.09459|FIPER]], [[2509.19292|SOE]], [[2508.10333|ReconVLA]], [[2503.14734|GR00T N1]], [[2502.16707|ReflectVLM]], [[2411.19650|CogACT]], [[2410.07864|RDT-1B]], [[2407.05996|MDT]], [[2405.12213|Octo]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2302.00111|UniPi]], [[2205.09991|Diffuser]]
 
 **Flow-Based VLA Policies** — Vision-language-action models using flow matching for continuous action generation, enabling smooth and efficient robot control.
-- [[2604.07084|FMP]], [[2604.05672|A1]], [[2604.05656|SnapFlow]], [[2604.04646|FDS]], [[2604.02759|OMNI-PoseX]], [[2603.29844|DIAL]], [[2603.28565|StreamingVLA]], [[2603.26320|DFM-VLA]], [[2603.24800|Calibri]], [[2602.01789|RFS]], [[2602.01166|LaRA-VLA]], [[2601.18692|LingBot-VLA]], [[2512.24125|GenieReasoner]], [[2511.14759|RECAP]], [[2511.14148|AsyncVLA]], [[2510.25889|piRL]], [[2510.22201|ACG]], [[2510.10274|X-VLA]], [[2509.04996|FLOWER]], [[2506.01844|SmolVLA]], [[2505.22094|ReinFlow]], [[2504.18471|AFM]], [[2410.24164|π0]], [[2403.09631|3D-VLA]]
+- [[2604.07084|FMP]], [[2604.05672|A1]], [[2604.05656|SnapFlow]], [[2604.04646|FDS]], [[2604.02759|OMNI-PoseX]], [[2603.29844|DIAL]], [[2603.28565|StreamingVLA]], [[2603.26320|DFM-VLA]], [[2603.24800|Calibri]], [[2602.01789|RFS]], [[2602.01166|LaRA-VLA]], [[2601.18692|LingBot-VLA]], [[2512.24125|GenieReasoner]], [[2511.14759|RECAP]], [[2511.14148|AsyncVLA]], [[2510.25889|piRL]], [[2510.22201|ACG]], [[2510.10274|X-VLA]], [[2509.04996|FLOWER]], [[2506.01844|SmolVLA]], [[2505.22094|ReinFlow]], [[2504.18471|AFM]], [[2410.24164|π0]], [[2403.09631|3D-VLA]], [[2604.10962|ScoRe-Flow]]
 
 > [!star] Key Papers
 > - [[2410.24164|pi0]] — Vision-language-action flow model for general robot control; established flow matching as the standard for VLA action generation
@@ -290,7 +298,7 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2302.00111|UniPi]] — Universal policy as text-conditioned video generation; crosses the boundary between video models and robot control
 
 **Video Diffusion as World Models** — Adapt pre-trained video diffusion models to robotic tasks, using generated future video as a physics simulator for planning.
-- [[2603.30045|OmniRoam]], [[2603.28963|AutoWorld]], [[2603.28887|OccSim]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.10448|DiT4DiT]], [[2602.20057|AdaWorldPolicy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2510.19430|GigaBrain-0]], [[2510.10125|CTRL-WORLD]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.13340|LPS]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2412.14803|VPP]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]]
+- [[2603.30045|OmniRoam]], [[2603.28963|AutoWorld]], [[2603.28887|OccSim]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.12639|RoboStereo]], [[2603.10448|DiT4DiT]], [[2602.20057|AdaWorldPolicy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2510.19430|GigaBrain-0]], [[2510.10125|CTRL-WORLD]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.13340|LPS]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2412.14803|VPP]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[1507.08750|Action-Conditional Video Prediction]], [[2402.15391|Genie]], [[2412.03568|The Matrix]], [[2501.03575|Cosmos]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.09995|PlayerOne]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]], [[2512.11061|VDAWorld]], [[2602.06949|DreamDojo]]
 
 > [!star] Key Papers
 > - [[2512.13644|DexWM]] — Leverages human video data for dexterous manipulation; 83% zero-shot success without real-world training
@@ -312,7 +320,7 @@ Diffusion models applied to physical action generation rather than image synthes
 Foundational work on how diffusion models learn representations, the theoretical underpinnings that unify different formulations, and methods for leveraging diffusion dynamics for pre-training and downstream tasks beyond generation.
 
 **Diffusion as Pre-Training** — Use the diffusion denoising objective as a self-supervised pre-training method for representation learning, improving downstream classification and understanding tasks.
-- [[2512.19693|Prism Hypothesis]], [[2505.06890|RCLDT]], [[2505.02831|SRA]], [[2503.06132|USP]]
+- [[2512.19693|Prism Hypothesis]], [[2505.06890|RCLDT]], [[2505.02831|SRA]], [[2503.06132|USP]], [[2604.11386|ComSim]]
 
 > [!star] Key Papers
 > - [[2503.06132|USP]] — Unified pretraining in VAE latent space that 11.7x accelerates DiT convergence and improves both generation and understanding
@@ -332,7 +340,7 @@ Foundational work on how diffusion models learn representations, the theoretical
 > - [[2506.19360|Synthetic Image Privacy SoK]] — Empirical evaluation showing diffusion models offer superior utility-privacy tradeoffs for synthetic data
 
 **Unified Generation Frameworks** — Architectural frameworks designed to consolidate multiple generation capabilities (understanding, generation, editing) in a single model.
-- [[2510.20607|Compositional Energy Minimization]], [[2507.02092|EBT]], [[2506.21046|dSVA]], [[2506.03147|UniWorld-V1]], [[2404.09216|DetCLIPv3]], [[2403.10191|GenerateU]]
+- [[2510.20607|Compositional Energy Minimization]], [[2507.02092|EBT]], [[2506.21046|dSVA]], [[2506.03147|UniWorld-V1]], [[2404.09216|DetCLIPv3]], [[2403.10191|GenerateU]], [[2604.08121|Uni-ViGU]], [[2604.09168|ELT]]
 
 > [!star] Key Papers
 > - [[2506.03147|UniWorld-V1]] — Integrates VL understanding, image generation, perception, and grounding in one model

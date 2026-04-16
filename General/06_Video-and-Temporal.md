@@ -16,6 +16,12 @@ aliases:
 > [!abstract] Overview
 > Video models are evolving from passive understanding (classification, QA) toward active generation (world simulation, motion synthesis). The key convergence: ==video generation models are becoming world models== — they learn physics, causality, and dynamics from temporal data, enabling both content creation and robotic planning. Meanwhile, a parallel revolution in video reasoning is teaching MLLMs to think temporally through RL-based post-training and chain-of-thought methods.
 
+- [[2604.09330|VAG]]
+
+- [[2602.10717|SDA]]
+
+- [[2602.05449|DisCa]]
+
 ## Evolution Graph
 
 ```mermaid
@@ -104,7 +110,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2603.14482|V-JEPA 2.1]] — Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation
 
 **Video-Language Foundation Models** — Large-scale models that jointly process video and language for fine-grained understanding, captioning, and long-context comprehension.
-- [[2604.02317|SIMPLESTREAM]], [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2507.04590|VLM2Vec-V2]], [[2507.01949|Kwai Keye-VL]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]]
+- [[2604.02317|SIMPLESTREAM]], [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2601.17868|VidLaDA]], [[2507.04590|VLM2Vec-V2]], [[2507.01949|Kwai Keye-VL]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]]
 
 > [!star] Key Papers
 > - [[2504.15271|Eagle 2.5]] — Efficient 8B model processing 512 video frames; achieves 72.4% on Video-MME, rivaling 72B+ models
@@ -135,7 +141,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.16870|Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Spatiotemporal Grounding & Perception** — Architectures for precise spatial and temporal localization in video, including segmentation, tracking, and pixel-grounded language understanding.
-- [[2604.02829|STRNet]], [[2603.23404|TRACE]], [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]]
+- [[2604.02829|STRNet]], [[2603.23404|TRACE]], [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]], [[2604.12148|ViLL-E]]
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
@@ -166,14 +172,14 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 The paradigm shift: video generation models that simulate ==physically plausible futures==, becoming the foundation for planning and control. These models bridge content creation and robotic planning by learning physics, causality, and dynamics from temporal data.
 
 **Foundational Video World Models** — Systems that treat video generation as world simulation, learning to produce physically coherent future states from observation.
-- [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
+- [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
 
 > [!star] Key Papers
 > - [[2302.00111|UniPi]] — First to use text-guided video generation as a universal policy; bridges video generation and robot control
 > - [[2310.06114|UniSim]] — Learned interactive real-world simulator from video data; key inspiration for the WAM paradigm
 
 **Latent-Action & Scalable World Models** — World models that extract latent action representations from unlabeled video, enabling RL-based agent training entirely within imagination.
-- [[2510.26433|CoLA-World]], [[2509.24527|Dreamer 4]], [[2505.13934|RLVR-World]], [[2503.18938|AdaWorld]]
+- [[2510.26433|CoLA-World]], [[2509.24527|Dreamer 4]], [[2505.13934|RLVR-World]], [[2503.18938|AdaWorld]], [[2402.15391|Genie]], [[2501.03575|Cosmos]], [[2506.09995|PlayerOne]], [[2604.10333|ZWM]]
 
 > [!star] Key Papers
 > - [[2509.24527|Dreamer 4]] — First offline diamond acquisition in Minecraft; scalable world model with real-time 21 fps inference
@@ -187,7 +193,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improving framework for controllable, long-horizon video generation
 
 **Controllable Video Synthesis** — Dedicated architectures for high-fidelity, subject-driven, or reason-informed video editing and generation.
-- [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2512.09924|ReViSE]], [[2503.20314|Wan]]
+- [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2512.09924|ReViSE]], [[2503.20314|Wan]], [[2412.03568|The Matrix]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]]
 
 > [!star] Key Papers
 > - [[2603.18524|3DreamBooth]] — 3D-consistent subject-driven video generation; Chamfer Distance of 0.0177
@@ -209,7 +215,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 Synthesizing human and robot motion — bridging video understanding with physical action. The field is converging on unified architectures that handle diverse motion tasks through a single model rather than task-specific pipelines.
 
 **Unified Motion Architectures** — Single models that handle multiple motion generation tasks (text-to-motion, motion prediction, motion editing) through shared representations.
-- [[2603.19227|MoTok]], [[2603.15975|UMO]]
+- [[2603.19227|MoTok]], [[2603.15975|UMO]], [[2604.08121|Uni-ViGU]]
 
 > [!star] Key Papers
 > - [[2603.15975|UMO]] — Unified in-context learning for diverse motion tasks via meta-operation embeddings on a pretrained DiT; FID of 9.460

@@ -128,6 +128,7 @@ python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
 - `authors` must never contain `- ...` as a placeholder — use real names only, or omit the field
 - `aliases` must never remain `[]` — always derive at least one alias from the title or paper content
 - `authors` and `aliases` values must always be double-quoted in YAML (e.g., `- "Author Name"`, `- "ModelName"`)
+- `tags` must NOT be quoted — use plain values (e.g., `- robotics`, NOT `- "robotics"`)
 - Use the Edit tool + obsidian-markdown skill for enrichment — do not write custom Python scripts for frontmatter changes
 
 ## Enrichment Health Check
