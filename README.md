@@ -18,7 +18,7 @@ ResearchBrain/
 ├── _KnowledgeHub_/          # Paper notes ({arxiv_ID}.md)
 ├── _Projects_/               # Research projects, blueprints, code repos
 ├── General/                  # Topic overviews with evolution graphs
-├── VLA-WAM/                  # Deep-dive notes on VLA, WAM, JEPA, etc.
+├── Embodied-AI/              # Deep-dive notes on VLA, WAM, JEPA, self-evolving
 ├── data/papers/              # Local PDFs (downloaded on demand)
 ├── data/repo/                # Local code repos (cloned on demand)
 └── .claude/                  # Agent, skills, config

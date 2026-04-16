@@ -3,8 +3,8 @@ title: "Research Topics — Index"
 tags:
   - index
 aliases:
-  - General Index
-  - Topic Map
+  - "General Index"
+  - "Topic Map"
 ---
 
 ## Research Topics — Index
@@ -47,16 +47,16 @@ graph LR
 | [[04_Reinforcement-Learning]] | Model-based RL, RLHF, GRPO, agentic RL | Dreamer → DreamerV3; STaR → GRPO → Absolute Zero | 730 |
 | [[05_Computer-Vision-and-3D]] | Detection, segmentation, 3D, spatial reasoning | FPN → Grounding DINO; DINO → RieMind | 386 |
 | [[06_Video-and-Temporal]] | Video SSL, generation as world models, motion | V-JEPA → V-JEPA 2.1; UniPi → UniSim → WAMs | 114 |
-| [[07_Robotics-and-Embodied-AI]] | VLAs, WAMs, self-evolving, driving, datasets | RT-1 → RT-2 → OpenVLA → π0 → DreamZero → SPIRAL | 511 |
+| [[07_Robotics-and-Embodied-AI]] | VLAs, WAMs, self-evolving, driving, datasets | RT-1 → RT-2 → OpenVLA → π0 → DreamZero → SPIRAL | 513 |
 | [[08_Benchmarks-and-Surveys]] | Cross-cutting surveys and evaluation resources | LIBERO, CALVIN, OXE, MMOU, MultihopSpatial | 539 |
 | [[09_Multimodal-LLMs]] | MLLMs, instruction tuning, omni-modal | InstructBLIP → KOSMOS-2 → PaliGemma → Magma | 799 |
 | [[10_Agents-and-Tool-Use]] | LLM agents, tool use, multi-agent, code gen | ReAct → LATS → AgentGym → KARL → Memento-Skills | 219 |
-| [[11_Self-Evolving-AI]] | Self-training, bootstrapping, curriculum, meta | STaR → Self-Rewarding → Absolute Zero → SPIRAL | 137 |
-| [[12_Diffusion-and-Generation]] | Diffusion, flow matching, image/text generation | Diffuser → Diffusion Policy → Transfusion → Flow-GRPO | 214 |
+| [[11_Self-Evolving-AI]] | Self-training, bootstrapping, curriculum, meta | STaR → Self-Rewarding → Absolute Zero → SPIRAL | 174 |
+| [[12_Diffusion-and-Generation]] | Diffusion, flow matching, image/text generation | Diffuser → Diffusion Policy → Transfusion → Flow-GRPO | 215 |
 
 **Total: 2,190 papers** — papers may appear in multiple topic files where relevant.
 
 ### Deep-Dive Folders
 
-- `VLA-WAM/` — VLA vs WAM comparison, design principles, WAM survey, JEPA evolution
+- `Embodied-AI/` — VLA deep dive, WAM deep dive, latent world models (JEPA), self-evolving VLAs & WAMs
 - `_Projects_/01_FirstPublication/` — Self-evolving WAM blueprint and RL vs CL analysis

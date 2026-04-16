@@ -17,7 +17,7 @@ aliases:
 > A 3-loop architecture for adding self-evolution to a trained [[2602.15922|DreamZero]] or [[2602.10098|VLA-JEPA]]: an ==Inner Loop== (test-time adaptation), a ==Middle Loop== (training-time co-evolution of Imaginer + Actor), and an ==Outer Loop== (auto-curriculum + environment generation) — stabilized by continual learning across all layers.
 
 > [!info] Prerequisite Reading
-> [[04-2_Self-Evolving-WAM-101]] | [[04_WAM]] | [[04-1_JEPA]]
+> [[06_Self-Evolving-VLA-WAM]] | [[04_WAM]] | [[05_Latent-World-Models]]
 
 ---
 
@@ -294,7 +294,7 @@ ECHO demonstrated that the ==critic must co-evolve with the policy== to avoid "s
 
 ### Borrowing from Self-Evolving Agents
 
-Ideas from General/11 that translate to WAMs:
+Ideas that translate to WAMs:
 
 | Agent Mechanism | WAM Translation | Source |
 |-----------------|-----------------|--------|
@@ -627,4 +627,4 @@ Edge cases are where self-evolving WAMs differentiate from static models — the
 
 ---
 
-*See [[04-2_Self-Evolving-WAM-101]] for conceptual foundations, [[04_WAM]] for the WAM landscape, and [[03_VLA]] for VLA design principles.*
+*See [[06_Self-Evolving-VLA-WAM]] for conceptual foundations, [[04_WAM]] for the WAM landscape, and [[03_VLA]] for VLA design principles.*

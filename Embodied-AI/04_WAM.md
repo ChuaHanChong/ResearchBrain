@@ -7,8 +7,8 @@ tags:
   - diffusion
   - JEPA
 aliases:
-  - WAM Deep Dive
-  - WAM Survey
+  - "WAM Deep Dive"
+  - "WAM Survey"
 ---
 
 # World Action Models — Deep Dive
@@ -88,6 +88,12 @@ Three axes define where a WAM sits in the design landscape:
 | **When to predict** | Training-time only (Fast-WAM), Test-time imagination (DreamZero) | Training-time = fast inference; Test-time = more robust but 4.8x slower |
 | **What to predict** | Full video (Cosmos), Optical flow (FlowVLA), Compressed latent (WoG), Future embeddings (JEPA) | Full video = interpretable but expensive; Latent = efficient but opaque |
 
+**Where to predict** determines computational cost and expressiveness. Pixel-space prediction (DreamZero's 14B DiT) generates full video frames — maximally expressive but requires iterative denoising (~150ms per frame). Latent-space prediction (VLA-JEPA's V-JEPA2 predictor) operates on compressed embeddings — a single forward pass (~10ms) but loses fine visual detail. Action-space prediction (Diffuser) skips visual prediction entirely — fastest but provides no visual feedback for planning or debugging.
+
+**When to predict** is the 2026 insight from Fast-WAM: you need video generation at training time (to learn spatiotemporal priors from internet video) but NOT at test time (where it adds 4.8x latency). The world model's value is in the representations it creates during training, not in the predictions it makes during deployment.
+
+**What to predict** trades off between interpretability and efficiency. Full video (Cosmos) is human-readable but expensive. Optical flow (FlowVLA) captures motion efficiently. Future embeddings (JEPA) are opaque but compact. The choice depends on whether a human needs to inspect the predictions (development/debugging) or only the policy needs them (deployment).
+
 > [!tip] The Core Trade-off
 > VideoGen WAMs are the most robust (spatiotemporal priors from internet video) but the slowest. Latent prediction WAMs are fast and sample-efficient. [[2603.16666|Fast-WAM]] shows you can bridge this gap: train with video generation objectives but deploy without test-time imagination.
 
@@ -98,10 +104,13 @@ Three axes define where a WAM sits in the design landscape:
 Video diffusion models repurposed as world simulators. The richest source of physics priors — trained on internet-scale video data.
 
 **Planning as Video Generation** — The foundational insight: generating a video of the future IS a plan.
+
+Video diffusion models learn physics by training on internet-scale video data — billions of clips showing objects falling, liquids pouring, hands manipulating. The denoising process implicitly learns the rules: 'if I push this cup, it slides; if I push it off the edge, it falls.' To generate a robot plan, you condition the diffusion model on the current observation and a language instruction, then denoise to produce a future video. The key insight (UniPi): the generated video IS the plan — an inverse dynamics model extracts the corresponding motor commands from the video frames. DreamZero scaled this to 14B parameters, jointly generating video and actions in a single forward pass, achieving zero-shot generalization to unseen tasks and embodiments.
+
 - [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[2310.10625|VLP]]
 
 **Video Pretraining for Robot Policies** — Train on internet video, fine-tune for robot control.
-- [[2602.15922|DreamZero]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2508.00795|Video Policy]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
+- [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2508.00795|Video Policy]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
 
 > [!star] Key Papers
 > - [[2602.15922|DreamZero]] — 14B joint video+action model; 39.5% on unseen tasks, 42% cross-embodiment improvement, 7Hz real-time
@@ -111,7 +120,7 @@ Video diffusion models repurposed as world simulators. The richest source of phy
 - [[2512.24766|Dream2Flow]], [[2512.13644|DexWM]], [[2505.12705|DreamGen]], [[2504.15369|Inverse Probabilistic Adaptation]]
 
 **Physics-Aligned Video Generation** — Explicitly enforce physical plausibility during video generation.
-- [[2603.23376|ABot-PhysWorld]], [[2602.05986|RISE-Video]], [[2409.18964|PhysGen]]
+- [[2604.07348|MoRight]], [[2604.07209|INSPATIO-WORLD]], [[2603.23376|ABot-PhysWorld]], [[2602.05986|RISE-Video]], [[2409.18964|PhysGen]]
 
 > [!star] Key Papers
 > - [[2603.23376|ABot-PhysWorld]] — Diffusion-DPO for physics alignment; suppresses implausible predictions (object penetration, anti-gravity)
@@ -123,10 +132,12 @@ Video diffusion models repurposed as world simulators. The richest source of phy
 
 ## 3. Latent Prediction WAMs
 
-Predict in representation space rather than pixel space — faster, more abstract, and avoids wasting capacity on irrelevant visual details. See [[04-1_JEPA]] for the detailed JEPA evolution.
+Predict in representation space rather than pixel space — faster, more abstract, and avoids wasting capacity on irrelevant visual details. See [[05_Latent-World-Models]] for the detailed JEPA evolution.
+
+Latent prediction avoids the computational expense of pixel-level video generation by operating in a compressed representation space. The JEPA family predicts future *embeddings* rather than future *pixels*: given the current state embedding and a candidate action, the predictor outputs the expected next-state embedding. This is orders of magnitude cheaper (~10ms vs ~150ms per prediction), enables real-time Model Predictive Control, and naturally filters out irrelevant visual noise (textures, lighting). The trade-off: latent predictions are opaque — a human cannot visually inspect whether the predicted future 'makes sense', complicating debugging and safety verification.
 
 **JEPA Family** — Joint Embedding Predictive Architecture: predict future embeddings from current embeddings.
-- [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA 2.1]], [[2602.11389|Causal-JEPA]], [[2602.10098|VLA-JEPA]], [[2512.10942|VL-JEPA]], [[2506.09985|V-JEPA 2]]
+- [[2603.22281|ThinkJEPA]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.11389|Causal-JEPA]], [[2602.10098|VLA-JEPA]], [[2512.10942|VL-JEPA]], [[2506.09985|V-JEPA 2]]
 
 > [!star] Key Papers
 > - [[2602.10098|VLA-JEPA]] — Full VLA+JEPA pipeline: 97.2% LIBERO in-distribution, 79.5% LIBERO-Plus OOD, 65.2% SimplerEnv real robot
@@ -140,7 +151,7 @@ Predict in representation space rather than pixel space — faster, more abstrac
 > - [[2504.02792|UWM]] — Unified World Models: coupled video and action diffusion pretraining; clean modern approach
 
 **Self-Supervised Latent Models** — Learn world representations from unlabeled data using self-supervised objectives.
-- [[2511.08544|LeJEPA]], [[2509.14252|LLM-JEPA]], [[2507.19468|DINO-world]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2512.19605|KerJEPA]], [[2411.04983|DINO-WM]]
+- [[2604.10333|ZWM]], [[2604.03208|HWM]], [[2603.29090|HCLSM]], [[2511.08544|LeJEPA]], [[2509.14252|LLM-JEPA]], [[2507.19468|DINO-world]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2512.19605|KerJEPA]], [[2411.04983|DINO-WM]]
 
 > [!star] Key Papers
 > - [[2511.08544|LeJEPA]] — Provable and scalable SSL framework based on Euclidean latent geometry
@@ -155,6 +166,8 @@ Predict in representation space rather than pixel space — faster, more abstrac
 
 Model-based RL from scratch: learn a latent dynamics model (RSSM) and plan via imagination in latent space. The oldest WAM paradigm, still evolving.
 
+The Dreamer architecture centers on the Recurrent State-Space Model (RSSM): a recurrent neural network that maintains a compact latent state summarizing the agent's history, combined with a learned dynamics model that predicts how this state changes given an action. The key innovation: planning happens entirely in latent space — the agent 'imagines' thousands of possible action sequences by rolling forward through the RSSM, evaluates each via a learned value function, and selects the best without ever executing a physical action. DreamerV3's breakthrough was proving this works with *fixed hyperparameters* across 150+ diverse domains — from Atari to robot locomotion — by using symlog normalization and KL balancing to stabilize training. This domain-agnosticism makes Dreamer the most reliable option when you don't have internet-scale video data or a pretrained VLM.
+
 | Year | Paper | Contribution |
 |------|-------|-------------|
 | 2019 | [[1912.01603\|Dreamer]] | Latent imagination via RSSM; learned behaviors from pixels |
@@ -164,10 +177,11 @@ Model-based RL from scratch: learn a latent dynamics model (RSSM) and plan via i
 | 2022 | [[2211.15944\|Continual-Dreamer]] | Explored continual RL with world models; measured forgetting |
 | 2023 | [[2301.04104\|DreamerV3]] | Universal: fixed hyperparameters across 150+ diverse tasks |
 | 2025 | [[2503.21047\|CBET-DreamerV3]] | Change-based intrinsic motivation for harder exploration |
+| 2026 | [[2604.02911\|DreamTIP]] | Task-invariant Dreamer properties for efficient quadruped policy transfer |
 | 2026 | [[2509.24527\|Dreamer 4]] | Scalable world model in complex video game environments |
 
 **Related Model-Based Planning** — Planning algorithms that leverage learned world models.
-- [[2602.00475|GRASP]], [[2410.00564|JOWA]], [[2302.01877|AdaptDiffuser]], [[2205.09991|Diffuser]]
+- [[2604.08958|WOMBET]], [[2602.00475|GRASP]], [[2410.00564|JOWA]], [[2302.01877|AdaptDiffuser]], [[2205.09991|Diffuser]]
 
 > [!star] Key Papers
 > - [[2301.04104|DreamerV3]] — Fixed hyperparameters across 150+ tasks; proved model-based RL generalizes without per-task tuning
@@ -182,8 +196,10 @@ Model-based RL from scratch: learn a latent dynamics model (RSSM) and plan via i
 
 VLMs provide semantic understanding; world models provide dynamics prediction. These papers combine both.
 
+The integration challenge: VLMs provide semantic understanding (what objects are, what instructions mean) while world models provide dynamics prediction (what happens when you push this). Combining them requires bridging two very different representations — language-aligned token embeddings (VLM) and physics-aligned state dynamics (world model). Four integration strategies have emerged: **visual chain-of-thought** (VLM generates visual subgoals, world model plans between them), **unified architecture** (single model handles both reasoning and dynamics), **test-time imagination** (world model simulates futures, VLM evaluates them), and **compact motion** (predict condensed motion signals instead of full video). The choice depends on the bottleneck: if reasoning is hard, use VLM-dominated architectures; if physics is hard, use WM-dominated architectures.
+
 **Visual Chain-of-Thought** — VLMs predict visual subgoals before generating actions.
-- [[2603.14497|WorldVLM]], [[2509.02722|VLWM]], [[2507.23773|SimuRA]], [[2601.02456|InternVLA-A1]]
+- [[2604.07957|WorldMAP]], [[2603.14497|WorldVLM]], [[2509.02722|VLWM]], [[2507.23773|SimuRA]], [[2601.02456|InternVLA-A1]]
 
 **Unified Policy + World Model** — Single framework that jointly trains policy and world model.
 - [[2602.12063|VLAW]], [[2511.17502|RynnVLA-002]], [[2506.21539|WorldVLA]], [[2506.19850|UniVLA]]
@@ -193,7 +209,7 @@ VLMs provide semantic understanding; world models provide dynamics prediction. T
 > - [[2603.14497|WorldVLM]] — Hybrid: VLM for high-level reasoning + world model for low-level dynamics
 
 **Imagination & Test-Time Reasoning** — World models used for test-time simulation and planning.
-- [[2602.08236|AVIC]], [[2507.12508|MindJourney]], [[2602.01960|GVP-WM]], [[2601.14514|JIT]]
+- [[2604.11751|GWM-MPC]], [[2604.11302|3D-ALP]], [[2604.07392|ERA]], [[2602.08236|AVIC]], [[2507.12508|MindJourney]], [[2602.01960|GVP-WM]], [[2601.14514|JIT]]
 
 > [!star] Key Papers
 > - [[2602.08236|AVIC]] — Adaptive: decides *when and how much* to imagine based on task difficulty
@@ -217,7 +233,11 @@ Full video generation at test time is 4.8x slower than pure VLAs. These models k
 | [[2512.19133\|WorldRFT]] | Latent world model + RL fine-tuning | Planning in latent space for driving |
 | [[2504.16680\|RWM-U]] | Uncertainty-aware robotic world model | Offline model-based RL on real robots |
 | [[2503.16806\|DyWA]] | Dynamics-adaptive world action model | Generalizable non-prehensile manipulation |
+| [[2604.11351\|WM-DAgger]] | World model-based data aggregation | Eliminates need for online expert queries |
+| [[2604.01985\|WAV]] | Forward-inverse asymmetry verification | Self-correcting world model verification |
 | [[2410.00564\|JOWA]] | Jointly-optimized world-action pretraining | Scaled offline model-based RL |
+
+Each efficiency strategy makes a different trade-off: **Fast-WAM** keeps the full video generation pipeline during training (learning spatiotemporal priors from internet video) but strips it at deployment — the ActionDiT runs alone at ~190ms/step while retaining the robustness benefits of video co-training. **GigaWorld-Policy** redesigns the architecture to be action-centered from the start, avoiding the need for a video branch entirely. **WorldRFT** uses a compact latent world model for RL fine-tuning — planning in latent space is fast enough for real-time driving. **RWM-U** adds epistemic uncertainty estimation to the world model, enabling the agent to know when its predictions are unreliable and fall back to cautious behavior.
 
 > [!success] The Efficiency Recipe
 > ==Train with video objectives== (to get spatiotemporal priors) → ==Deploy without video generation== (no test-time imagination). Fast-WAM proved this works: you get most of the robustness benefit without the latency penalty.
@@ -229,18 +249,24 @@ Full video generation at test time is 4.8x slower than pure VLAs. These models k
 
 ## 7. Self-Evolving WAMs
 
-WAMs that autonomously improve through experience, self-play, or co-evolution. See [[04-2_Self-Evolving-WAM-101]] for the conceptual foundations.
+WAMs that autonomously improve through experience, self-play, or co-evolution. See [[06_Self-Evolving-VLA-WAM]] for the full deep-dive on self-evolving mechanisms, VLA vs WAM comparison, failure modes, and research directions.
 
 | Model | Self-Improvement Mechanism |
 |-------|--------------------------|
+| [[2603.08403\|SPIRAL]] | Closed-loop self-improving action world model via reflective planning |
+| [[2603.19370\|VAMPO]] | RL optimization of video action model dynamics via GRPO |
 | [[2603.09030\|PlayWorld]] | Autonomous self-play data collection → world model training |
-| [[2603.08403\|SPIRAL]] | Closed-loop self-improving action world model |
+| [[2503.01584\|SENSEI]] | Semantic exploration with epistemic uncertainty + Go-Explore |
 | [[2506.23468\|NavMorph]] | Self-evolving world model for VLN in continuous environments |
 | [[2504.21024\|WebEvolver]] | Co-evolving web agent and world model |
 | [[2502.05907\|EvoAgent]] | Continual self-evolving via world model; +105% on long-horizon tasks |
 
+**SPIRAL's Reflective Planning Loop**: The agent generates a video plan (long-horizon action-conditioned video), then a CriticAgent evaluates it for temporal coherence and action completeness. Plans that fail the critic are rejected and regenerated with the critic's feedback incorporated. This creates a closed-loop self-improvement cycle: generate → critique → regenerate → deploy. The key insight is that judging plan quality is easier than generating good plans — the critic can leverage VLM reasoning to assess whether a video plan "makes physical sense" even if the generator can't produce perfect physics on the first try.
+
+**EvoAgent's Three-Part Loop**: (1) Self-planning — the agent uses its world model to propose a plan for the current task; (2) Self-control — the agent executes the plan while monitoring prediction error; (3) Self-reflection — after execution, the agent compares predicted vs. actual outcomes and updates its world model and policy. The continual world model is the key enabler: it provides the prediction error signal for self-control and the training signal for self-reflection. EvoAgent showed this loop contributes 72% of total performance gain (though this was measured in Minecraft, not physical manipulation).
+
 > [!tip] Why WAMs Enable Self-Evolution
-> WAMs have a unique advantage for self-evolution: they already have a learned dynamics model that can generate synthetic experience. This means the agent can "rehearse" in imagination, discover failure modes, and improve without costly real-world interaction. SPIRAL and EvoAgent show this creates positive feedback loops.
+> WAMs already have a learned dynamics model that generates synthetic experience — the agent can "rehearse" in imagination, discover failure modes, and improve without costly real-world interaction. See [[06_Self-Evolving-VLA-WAM]] for the comprehensive comparison of self-evolving VLAs, WAMs, and embodied agents.
 
 ---
 
@@ -251,7 +277,13 @@ WAMs that autonomously improve through experience, self-play, or co-evolution. S
 | **Hallucinated dynamics** | Video generation models may predict physically impossible futures | ABot-PhysWorld addresses this with Diffusion-DPO |
 | **Artifact exploitation** | Agents may exploit unrealistic artifacts in generated video | Need physics-grounded training objectives |
 | **Inference latency** | WAMs are ≥4.8x slower than VLAs ([[2603.22078\|WAM vs VLA Robustness]]) | Use Fast-WAM or training-only video |
+| **Adversarial jailbreaking** | [[2604.05498\|JailWAM]] shows WAMs vulnerable to adversarial attacks on action generation | Need adversarial robustness training |
 | **Visual perturbation robustness** | WAMs outperform VLAs on camera/light/background changes | Spatiotemporal priors from video pretraining help |
+
+**OOD Detection for WAMs** — When should a WAM distrust its own predictions? Three approaches emerging:
+- **Prediction error monitoring**: [[2603.04029|Self-Adapting RL]] tracks the residual between predicted and observed next states. When the residual exceeds a threshold, the world model flags the state as OOD and triggers targeted adaptation.
+- **Surprise filtering**: [[2512.01119|WM Surprise Robustness]] distinguishes genuine OOD events (new physics) from sensor noise (camera glitch) by filtering prediction errors through a learned noise model.
+- **Forward-inverse asymmetry**: [[2604.01985|WAV]] compares the forward model (predict next state from action) with the inverse model (infer action from state transition). When they disagree, the world model is unreliable — the asymmetry reveals states where the dynamics are poorly modeled.
 
 > [!tip] When to Use WAM vs VLA
 > **Use WAM when:** robustness to visual perturbations matters, physics-aware planning is needed, or real-world data is limited (world model enables imagination). **Use pure VLA when:** inference speed is critical, tasks are simple enough for direct imitation, or in-domain data is abundant.
@@ -281,18 +313,18 @@ WAMs that autonomously improve through experience, self-play, or co-evolution. S
 | Need self-improvement? | Self-Evolving (EvoAgent, SPIRAL) |
 | Need cross-embodiment? | VideoGen (DreamZero) — video priors transfer |
 | Production deployment? | Efficient (Fast-WAM) — training-time video, test-time speed |
-| Full JEPA lineage? | [[04-1_JEPA]] for V-JEPA 2 → 2.1 → VL-JEPA → VLA-JEPA |
+| Full JEPA lineage? | [[05_Latent-World-Models]] for V-JEPA 2 → 2.1 → VL-JEPA → VLA-JEPA |
 
 ---
 
 ## Cross-References
 
 - [[03_VLA]] — VLA deep-dive (Section 6 covers WAM-augmented VLAs)
-- [[04-1_JEPA]] — Detailed JEPA evolution (V-JEPA 2 → 2.1 → VL-JEPA → VLA-JEPA)
-- [[04-2_Self-Evolving-WAM-101]] — Conceptual foundations of self-evolving WAMs
-- [[01_VLA-WAM-101]] — VLA vs WAM basics and four learning strategies
+- [[05_Latent-World-Models]] — Detailed JEPA evolution (V-JEPA 2 → 2.1 → VL-JEPA → VLA-JEPA)
+- [[06_Self-Evolving-VLA-WAM]] — Self-evolving VLAs & WAMs deep dive
+- [[01_Embodied-AI-101]] — VLA vs WAM basics and four learning strategies
 - [[02_Dataset-Benchmark-Environment]] — Datasets, benchmarks, and simulation platforms
 
 ---
 
-*See [[03_VLA]] for the VLA alternative, or [[01_VLA-WAM-101]] to start from the basics.*
+*See [[03_VLA]] for the VLA alternative, or [[01_Embodied-AI-101]] to start from the basics.*

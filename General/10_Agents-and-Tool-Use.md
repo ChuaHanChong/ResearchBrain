@@ -6,31 +6,13 @@ tags:
   - multi-agent
   - agentic-ai
 aliases:
-  - Agents Overview
+  - "Agents Overview"
 ---
 
 # Agents & Tool Use
 
 > [!abstract] Overview
 > AI agents that reason, plan, and use tools to accomplish multi-step tasks. This topic covers the full arc from ReAct-style reasoning-acting loops (2022) through RL-trained tool-using agents (2025) to self-evolving multi-agent systems (2026). The field has matured along several axes: single-turn to multi-turn, fixed tools to tool creation, single-agent to multi-agent orchestration, and handcrafted prompting to reinforcement-learned agentic behavior.
-
-- [[2604.10929|Ro-SLM]]
-
-- [[2604.10096|ABot-Claw]]
-
-- [[2511.20085|VICoT-Agent]]
-
-- [[2508.04700|SEAgent]]
-
-- [[2504.18875|Generative to Agentic AI Survey]]
-
-- [[2503.23037|Agentic LLM Survey]]
-
-- [[2410.08328|Talker-Reasoner]]
-
-- [[2409.00872|SAGE]]
-
-- [[2310.08367|MCU]]
 
 ## Evolution Graph
 
@@ -116,7 +98,7 @@ The field evolved through five threads: **reasoning-acting foundations** (2022-2
 The foundational paradigm for LLM agents: interleaving reasoning traces with environment actions in think-act-observe loops. These methods established that LLMs could autonomously plan and execute multi-step tasks, not just answer questions.
 
 **Reasoning-Acting Loops** — The core think-act-observe pattern that grounds LLM reasoning in real environment feedback, enabling self-correcting multi-step execution.
-- [[2507.23773\|SimuRA]], [[2507.06261\|Gemini 2.5]], [[2310.04406\|LATS]], [[2309.15129\|CogEval]], [[2305.14992\|RAP]], [[2210.03629\|ReAct]]
+- [[2507.23773\|SimuRA]], [[2507.06261\|Gemini 2.5]], [[2410.08328\|Talker-Reasoner]], [[2310.04406\|LATS]], [[2309.15129\|CogEval]], [[2305.14992\|RAP]], [[2210.03629\|ReAct]]
 
 > [!star] Key Papers
 > - [[2210.03629\|ReAct]] — Synergizing reasoning and acting: the foundational think-act-observe loop that launched all modern LLM agents
@@ -124,7 +106,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992\|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Reasoning Surveys & Taxonomies** — Comprehensive reviews mapping the rapidly evolving landscape of LLM-based agents, establishing conceptual frameworks and evaluation methodologies.
-- [[2603.22862\|LLM Tool Use Survey]], [[2601.12538\|Agentic Reasoning Survey]], [[2512.16301\|Agentic AI Adaptation Survey]], [[2509.02547\|Agentic RL Survey]], [[2508.17692\|Agentic Reasoning Survey]], [[2508.07407\|Self-Evolving AI Agents Survey]], [[2507.23276\|AI Scientist Survey]], [[2507.21046\|Self-Evolving Agents Survey]], [[2505.10468\|AI Agents vs Agentic AI]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2410.16392\|Scaffolded LM Survey]]
+- [[2603.22862\|LLM Tool Use Survey]], [[2601.12538\|Agentic Reasoning Survey]], [[2512.16301\|Agentic AI Adaptation Survey]], [[2509.02547\|Agentic RL Survey]], [[2508.17692\|Agentic Reasoning Survey]], [[2508.07407\|Self-Evolving AI Agents Survey]], [[2507.23276\|AI Scientist Survey]], [[2507.21046\|Self-Evolving Agents Survey]], [[2505.10468\|AI Agents vs Agentic AI]], [[2504.18875\|Generative to Agentic AI Survey]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2503.23037\|Agentic LLM Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2410.16392\|Scaffolded LM Survey]], [[2310.08367\|MCU]]
 
 > [!star] Key Papers
 > - [[2505.10468\|AI Agents vs Agentic AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
@@ -140,7 +122,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 Agents that generate and execute code as their primary action modality. Instead of reasoning in natural language alone, these systems write programs to offload computation, compose vision modules, or perform scientific discovery.
 
 **Program-Aided Reasoning** — LLMs generate executable code to handle computation, separating logical reasoning from arithmetic and procedural execution.
-- [[2509.25810\|RA3]], [[2503.01619\|Flame]], [[2401.08190\|MARIO]], [[2211.12588\|PoT]], [[2211.10435\|PAL]]
+- [[2604.10929\|Ro-SLM]], [[2509.25810\|RA3]], [[2503.01619\|Flame]], [[2401.08190\|MARIO]], [[2211.12588\|PoT]], [[2211.10435\|PAL]]
 
 > [!star] Key Papers
 > - [[2211.10435\|PAL]] — Program-aided Language Models: offload computation to a Python interpreter, separating reasoning from calculation
@@ -186,7 +168,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 > - [[2507.05707\|Agentic-R1]] — DualDistill framework training language models as tool-using agents via distillation and RL
 
 **Visual Tool Use & Adaptive Tool Selection** — Methods enabling vision-language models to select and invoke visual tools (detectors, segmenters, editors) on demand during reasoning.
-- [[2603.17729\|SARE]], [[2601.13942\|GoG]], [[2512.16918\|AdaTooler-V]], [[2512.10359\|STAR]], [[2510.27363\|ToolScope]], [[2510.09733\|EVisRAG]], [[2509.01656\|ReV PT]], [[2508.04416\|VITAL]], [[2505.08617\|OpenThinkIMG]], [[2503.19263\|DWIM]], [[2412.18072\|MMFactory]], [[2412.13810\|CAD-Assistant]], [[2412.05479\|LATTE]]
+- [[2603.17729\|SARE]], [[2601.13942\|GoG]], [[2512.16918\|AdaTooler-V]], [[2512.10359\|STAR]], [[2511.20085\|VICoT-Agent]], [[2510.27363\|ToolScope]], [[2510.09733\|EVisRAG]], [[2509.01656\|ReV PT]], [[2508.04416\|VITAL]], [[2505.08617\|OpenThinkIMG]], [[2503.19263\|DWIM]], [[2412.18072\|MMFactory]], [[2412.13810\|CAD-Assistant]], [[2412.05479\|LATTE]]
 
 > [!star] Key Papers
 > - [[2412.05479\|LATTE]] — Trains open-source VLMs to integrate external tools for complex multimodal reasoning
@@ -303,7 +285,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 > - [[2603.05218\|KARL]] — Knowledge agent via off-policy RL for grounded reasoning over enterprise knowledge bases
 
 **Self-Evolving Agent Frameworks** — Agents that autonomously improve their own strategies, prompts, or tool-use policies through self-reflection and iterative optimization.
-- [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]]
+- [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
 
 > [!star] Key Papers
 > - [[2508.02085\|SE-Agent]] — Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement
@@ -327,7 +309,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Multimodal Agent Architectures** — Integrated architectures combining vision-language understanding with agent capabilities for complex multimodal tasks.
-- [[2604.07774\|RoboAgent]], [[2604.05484\|CoEnv]], [[2604.04664\|ROSClaw]], [[2604.03016\|Agentic-MME]], [[2603.29620\|Unify-Agent]], [[2603.24558\|LensWalk]], [[2603.22179\|MARCUS]], [[2601.03054\|IBISAgent]], [[2512.08511\|SubagentVL]], [[2506.16895\|STRUCTURE Alignment]], [[2505.21549\|DCLIP]], [[2505.21533\|SOP]], [[2505.19707\|MVFT-JI]], [[2505.03703\|Modality Gap Reduction]], [[2504.14988\|FG-BMK]], [[2503.23508\|Real-LOD]], [[2503.01776\|CSR]], [[2411.17673\|SketchAgent]], [[2403.12884\|HYDRA]], [[2402.15116\|LMA Survey]], [[2311.05437\|LLaVA-Plus]], [[2303.04671\|Visual ChatGPT]], [[2301.11915\|Part-Aware SSL]], [[2205.01917\|CoCa]], [[2201.12086\|BLIP]]
+- [[2604.10096\|ABot-Claw]], [[2604.07774\|RoboAgent]], [[2604.05484\|CoEnv]], [[2604.04664\|ROSClaw]], [[2604.03016\|Agentic-MME]], [[2603.29620\|Unify-Agent]], [[2603.24558\|LensWalk]], [[2603.22179\|MARCUS]], [[2601.03054\|IBISAgent]], [[2512.08511\|SubagentVL]], [[2506.16895\|STRUCTURE Alignment]], [[2505.21549\|DCLIP]], [[2505.21533\|SOP]], [[2505.19707\|MVFT-JI]], [[2505.03703\|Modality Gap Reduction]], [[2504.14988\|FG-BMK]], [[2503.23508\|Real-LOD]], [[2503.01776\|CSR]], [[2411.17673\|SketchAgent]], [[2403.12884\|HYDRA]], [[2402.15116\|LMA Survey]], [[2311.05437\|LLaVA-Plus]], [[2303.04671\|Visual ChatGPT]], [[2301.11915\|Part-Aware SSL]], [[2205.01917\|CoCa]], [[2201.12086\|BLIP]]
 
 > [!star] Key Papers
 > - [[2402.15116\|LMA Survey]] — Systematic review of Large Multimodal Agents deconstructing their core components and capabilities

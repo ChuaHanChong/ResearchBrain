@@ -1,26 +1,27 @@
 ---
-title: VLA vs WAM — 101
+title: "Embodied AI — 101"
 tags:
   - VLA
   - WAM
   - robotics
   - embodied-AI
 aliases:
-  - VLA vs WAM
-  - VLA 101
-  - WAM 101
+  - "Embodied AI 101"
+  - "VLA vs WAM"
+  - "VLA 101"
+  - "WAM 101"
 ---
 
-# Vision-Language-Action (VLA) vs World Action Model (WAM)
+# Embodied AI — 101
 
-The shift from ==Vision-Language-Action (VLA)== models to ==World Action Models (WAM)== represents a fundamental evolution in how AI agents and robots learn to interact with their environments. While VLAs rely heavily on imitating past actions, WAMs are designed to predict the future.
+Embodied AI gives intelligent systems physical presence — robots that manipulate objects, navigate environments, drive vehicles, and interact with the real world. The two core model families are **Vision-Language-Action (VLA)** models that learn from demonstrations, and **World Action Models (WAM)** that learn to predict the future. This note covers both paradigms and how they fit together.
 
 > [!abstract] One-Line Summary
-> **VLAs** copy what they've seen. **WAMs** imagine what will happen next.
+> **VLAs** copy what they've seen. **WAMs** imagine what will happen next. **Self-evolving systems** improve from experience. See [[03_VLA]], [[04_WAM]], and [[06_Self-Evolving-VLA-WAM]] for deep dives.
 
 ---
 
-## Vision-Language-Action (VLA) Models
+## 1. Vision-Language-Action (VLA) Models
 
 VLAs are essentially multimodal large language models fine-tuned for robotic control. Well-known examples include [[2307.15818|RT-2]] and [[2406.09246|OpenVLA]].
 
@@ -36,7 +37,7 @@ VLAs are essentially multimodal large language models fine-tuned for robotic con
 
 ---
 
-## World Action Models (WAM)
+## 2. World Action Models (WAM)
 
 WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]]) that unify action generation with a predictive "world model."
 
@@ -53,7 +54,7 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 
 ---
 
-## Head-to-Head Comparison
+## 3. Head-to-Head Comparison
 
 | Feature | Vision-Language-Action (VLA) | World Action Models (WAM) |
 | --- | --- | --- |
@@ -63,9 +64,11 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 | Data Reliance | Repetitive, action-labeled demonstrations | Diverse data, including passive video |
 | Generalization | High semantic, low physical | Zero-shot task, environment, and embodiment |
 
+**When to Choose VLA**: Your task is language-heavy (complex instructions), you have abundant demonstration data, and inference speed matters (real-time control at 10-50Hz). VLAs inherit semantic understanding from web-scale VLM pre-training, making them strong at understanding novel instructions. **When to Choose WAM**: You need robustness to visual perturbations (lighting, camera, background changes), your task requires physics-aware planning (predicting consequences of actions), or real-world training data is limited (world model imagination compensates). **When to Combine**: The 2026 consensus is converging on integration — Fast-WAM and VLA-JEPA show you can get WAM-level robustness with VLA-level speed by using world model objectives during training only.
+
 ---
 
-## Deep Dive: Robotic Foundation Model Architectures
+## 4. Robotic Foundation Model Architectures
 
 ### Four Learning Strategies
 
@@ -75,6 +78,8 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 | ==Model-Based== | Explicit dynamics models decompose the task | Requires accurate dynamics; configuration-specific |
 | ==WAM== | Predicts future goal-images, derives actions via inverse dynamics | Hard to learn for complex interactions (doors, deformables) |
 | ==VLA== | Pre-trained VLMs encode state, predict actions directly | High compute for history-dependent processing |
+
+**Model-Free** approaches (DQN, SAC, PPO) learn a direct mapping from observations to actions through trial and error. They are powerful for specific tasks but require millions of environment interactions and don't transfer well to new tasks. **Model-Based** approaches (MPC, MBPO) learn an explicit dynamics model and use it for planning. They are sample-efficient but require accurate dynamics — errors in the model compound during long-horizon planning. **WAMs** take model-based to the extreme: learn dynamics from internet-scale video, then derive actions via inverse dynamics. The video backbone provides rich physics priors but makes the model large and slow. **VLAs** bypass explicit dynamics entirely: the VLM backbone provides implicit physical understanding from web-scale pre-training, and the model directly predicts actions. This is simpler and faster, but the physical understanding is brittle — it hasn't truly 'learned' physics, just correlated visual patterns with actions.
 
 > [!tip] WAM vs VLA — The Key Differentiator
 > WAMs predict a future goal-state then calculate actions via inverse dynamics — powerful but hard to learn for complex physics. VLAs bypass explicit world-modeling by inheriting spatial reasoning from web-scale VLM pre-training, mapping observations directly to control signals.
@@ -123,7 +128,7 @@ Three training recipes for bridging sim-to-real:
 
 ---
 
-## ELI5
+## 5. ELI5
 
 > [!example] Catching a Ball
 > Imagine you are teaching a robot how to catch a ball. Here is how the two robot brains would learn:
@@ -146,7 +151,7 @@ Because it actually understands the rules of the world (like gravity and momentu
 
 ---
 
-## How to Build: The Open-Source Stack
+## 6. How to Build: The Open-Source Stack
 
 The open-source robotics ecosystem now provides every component needed to build, train, and deploy both VLAs and WAMs — from data to deployment on a $100 robot arm.
 
@@ -187,6 +192,26 @@ Researcher → Data → Training → Simulation → Deployment
 > [!tip] Start Simple, Add Complexity
 > Begin with a VLA (simpler, faster to iterate). Add world model augmentation only if you need robustness to visual perturbations or physics-aware planning. The [[2603.16666|Fast-WAM]] finding: you can get WAM-level robustness with VLA-level speed by using video objectives at training time only.
 
+### The Self-Evolving Frontier
+
+Both VLAs and WAMs can be made self-evolving — autonomously discovering failure modes and improving through experience. Three paths to self-evolution:
+
+1. **RL Fine-Tuning** (VLA path): Apply reinforcement learning after initial imitation learning. The VLA explores, receives task-success reward, and adapts its policy. Simple and effective — VLAs are naturally resistant to catastrophic forgetting ([[2603.03818|VLA Continual Learning]]). Best for: in-domain improvement.
+2. **Imagination Loops** (WAM path): The world model generates synthetic "dream" rollouts. The policy trains on dreams, improving without real-world interaction. SPIRAL and EvoAgent show this creates positive feedback loops. Best for: safe exploration, data-scarce settings.
+3. **Curiosity-Driven Exploration**: The agent actively seeks states where its world model is uncertain (SENSEI) or where an adversary finds failures (RoboMD). This creates a self-directed curriculum that focuses practice on the agent's weaknesses.
+
+The critical prerequisite for all three paths: **the agent must first detect that it IS failing**. See [[06_Self-Evolving-VLA-WAM]] for how failure detection, self-correction, and active probing enable the self-evolution loop.
+
+### Key Challenges in Embodied AI
+
+| Challenge | Why It's Hard | Current Best Approach |
+|-----------|--------------|----------------------|
+| **Sim-to-real gap** | Physics simulators approximate reality; policies that work in sim break on real robots | Domain randomization + real-world fine-tuning (SimplerEnv for evaluation) |
+| **Data scarcity** | Real robot data is expensive (RT-1: 17 months, 13 robots for 130K demos) | Cross-embodiment pre-training (OXE) + world model imagination |
+| **Real-time control** | Robots need actions at 10-50 Hz; large models are slow | Efficient VLAs (SmolVLA: 450M params), Fast-WAM (strip video at deploy) |
+| **Safety** | Robots operate near humans; catastrophic failures are physical | Failure prediction (FIPER), uncertainty-aware planning (RWM-U) |
+| **Generalization** | Novel objects, new environments, unseen instructions | Self-evolving systems that adapt from deployment experience |
+
 ---
 
-*For a deep dive into VLA design, see [[03_VLA]]. For WAM papers by category, see [[04_WAM]].*
+*For a deep dive into VLA design, see [[03_VLA]]. For WAM papers by category, see [[04_WAM]]. For latent world models, see [[05_Latent-World-Models]]. For datasets and benchmarks, see [[02_Dataset-Benchmark-Environment]]. For self-evolving systems, see [[06_Self-Evolving-VLA-WAM]].*

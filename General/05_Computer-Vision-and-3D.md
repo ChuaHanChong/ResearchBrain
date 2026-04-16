@@ -11,19 +11,13 @@ tags:
   - domain-adaptation
   - few-shot
 aliases:
-  - CV and 3D Overview
+  - "CV and 3D Overview"
 ---
 
 # Computer Vision & 3D Understanding
 
 > [!abstract] Overview
 > From feature pyramids to open-vocabulary detection to 3D scene understanding, this note covers the perception stack that underpins embodied AI. The key trends: (1) moving from closed-set recognition to open-world, grounded, and 3D-aware perception, (2) self-supervised pre-training replacing supervised ImageNet features, (3) Vision Transformers replacing CNNs across every sub-task, and (4) efficient architectures enabling real-time deployment.
-
-- [[2604.11302|3D-ALP]]
-
-- [[2604.10953|DRL-3DBP]]
-
-- [[2511.01294|Kinematify]]
 
 ## Evolution Graph
 
@@ -342,14 +336,14 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 The frontier of perception: giving AI models true 3D spatial awareness. This capability is critical for embodied AI, where robots must reason about object positions, spatial relationships, and scene geometry from limited viewpoints.
 
 **3D Spatial Reasoning** — Methods that enable VLMs and agents to reason about 3D spatial relationships, layouts, and multi-hop spatial queries.
-- [[2603.27967|XVR]], [[2603.27287|Uni-World VLA]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2603.00905|pySpatial]], [[2603.00515|MLLM-4D]], [[2602.19063|Direction-aware 3D LMM]], [[2602.11236|ABot-M0]], [[2601.22231|PE Spatial Reasoning Analysis]], [[2601.16538|OnlineSI]], [[2601.14339|CityCube]], [[2601.13304|CausalSpatial]], [[2601.11729|SpaRRTa]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2601.00092|Spatial4D-Bench]], [[2512.24331|LVLDrive]], [[2512.23365|SpatialMosaic]], [[2512.19683|OpenBench]], [[2512.12822|LEMON]], [[2511.01618|Actial]], [[2510.18873|DSI-Bench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.11549|ODI-Bench]], [[2510.08673|Puffin]], [[2507.20174|LRR-Bench]], [[2507.12508|MindJourney]], [[2507.07610|SpatialViz-Bench]], [[2507.05258|REA]], [[2507.02978|Inf-Bench]], [[2506.23120|R2S]], [[2506.18385|InternSpatial]], [[2506.14512|SIRI-Bench]], [[2506.07966|SpaCE-10]], [[2506.04633|STARE]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2506.03135|OmniSpatial]], [[2505.24257|DISJOINT-3DQA]], [[2505.23747|Spatial-MLLM]], [[2505.21500|MVSM]], [[2505.20279|VLM-3R]], [[2505.17015|Multi-SpatialMLLM]], [[2505.17012|SpatialScore]], [[2505.12448|SSR]], [[2505.12363|ViCA2]], [[2505.12312|ViCA-7B]], [[2505.11907|OSR-Bench]], [[2504.05786|3D Spatial Reasoning in LLM Survey]], [[2504.01805|SpaceR]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2410.06468|SPACE]], [[2408.16662|Space3D-Bench]]
+- [[2604.11302|3D-ALP]], [[2603.27967|XVR]], [[2603.27287|Uni-World VLA]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2603.00905|pySpatial]], [[2603.00515|MLLM-4D]], [[2602.19063|Direction-aware 3D LMM]], [[2602.11236|ABot-M0]], [[2601.22231|PE Spatial Reasoning Analysis]], [[2601.16538|OnlineSI]], [[2601.14339|CityCube]], [[2601.13304|CausalSpatial]], [[2601.11729|SpaRRTa]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2601.00092|Spatial4D-Bench]], [[2512.24331|LVLDrive]], [[2512.23365|SpatialMosaic]], [[2512.19683|OpenBench]], [[2512.12822|LEMON]], [[2511.01618|Actial]], [[2510.18873|DSI-Bench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.11549|ODI-Bench]], [[2510.08673|Puffin]], [[2507.20174|LRR-Bench]], [[2507.12508|MindJourney]], [[2507.07610|SpatialViz-Bench]], [[2507.05258|REA]], [[2507.02978|Inf-Bench]], [[2506.23120|R2S]], [[2506.18385|InternSpatial]], [[2506.14512|SIRI-Bench]], [[2506.07966|SpaCE-10]], [[2506.04633|STARE]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2506.03135|OmniSpatial]], [[2505.24257|DISJOINT-3DQA]], [[2505.23747|Spatial-MLLM]], [[2505.21500|MVSM]], [[2505.20279|VLM-3R]], [[2505.17015|Multi-SpatialMLLM]], [[2505.17012|SpatialScore]], [[2505.12448|SSR]], [[2505.12363|ViCA2]], [[2505.12312|ViCA-7B]], [[2505.11907|OSR-Bench]], [[2504.05786|3D Spatial Reasoning in LLM Survey]], [[2504.01805|SpaceR]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2410.06468|SPACE]], [[2408.16662|Space3D-Bench]]
 
 > [!star] Key Papers
 > - [[2603.15386|RieMind]] — 3D Scene Graph + agentic framework; decouples perception from reasoning, achieving 89.5% on VSI-Bench
 > - [[2603.16506|VIEW2SPACE]] — Benchmark for sparse multi-view spatial reasoning; +77% accuracy with grounded chain-of-thought
 
 **Geometry Estimation & Reconstruction** — Estimate depth, surface normals, or full 3D reconstructions from single images or sparse views.
-- [[2604.08532|SelfEvo]], [[2604.07105|Genie Sim PanoRecon]], [[2604.02696|VBGS-SLAM]], [[2604.02329|Generative World Renderer]], [[2603.30045|OmniRoam]], [[2603.29089|WorldFlow3D]], [[2603.26599|VGGRPO]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.19231|MonoArt]], [[2603.18524|3DreamBooth]], [[2603.03026|URGT]], [[2602.21992|PanoEnv]], [[2602.21186|Spa3R]], [[2602.03361|Z3D]], [[2601.13132|GaussExplorer]], [[2512.15160|EagleVision]], [[2512.13683|I-Scene]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.06908|Mono3DVG-EnSD]], [[2510.08575|ReSplat]], [[2510.01183|EvoWorld]]
+- [[2604.08532|SelfEvo]], [[2604.07105|Genie Sim PanoRecon]], [[2604.02696|VBGS-SLAM]], [[2604.02329|Generative World Renderer]], [[2603.30045|OmniRoam]], [[2603.29089|WorldFlow3D]], [[2603.26599|VGGRPO]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.19231|MonoArt]], [[2603.18524|3DreamBooth]], [[2603.03026|URGT]], [[2602.21992|PanoEnv]], [[2602.21186|Spa3R]], [[2602.03361|Z3D]], [[2601.13132|GaussExplorer]], [[2512.15160|EagleVision]], [[2512.13683|I-Scene]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.06908|Mono3DVG-EnSD]], [[2511.01294|Kinematify]], [[2510.08575|ReSplat]], [[2510.01183|EvoWorld]]
 
 > [!star] Key Papers
 > - [[2603.19235|VEGA-3D]] — Video diffusion as a latent world simulator producing dense geometric cues
@@ -362,7 +356,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2306.13643|LightGlue]] — Adaptive deep feature matching that prunes easy pairs early; fast and accurate for real-time SLAM
 
 **3D Diffusion Policies** — Use 3D point cloud representations with diffusion-based action generation for robotic manipulation.
-- [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit World Model Zero-Shot Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2409.01652|ReKep]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2209.05451|PerAct]]
+- [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit World Model Zero-Shot Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2409.01652|ReKep]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2209.05451|PerAct]]
 
 > [!star] Key Papers
 > - [[2403.03954|DP3]] — 3D Diffusion Policy: generalizable visuomotor policy from point clouds; enables sim-to-real without camera calibration
@@ -424,7 +418,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 - [[2508.05547|VLM Unsupervised Adaptation Survey]], [[2506.18504|VLM Generalization Survey]], [[2506.02843|REAP]]
 
 > [!star] Key Papers
-> - [[2410.02735|OOD-Chameleon]] — Meta-learning framework that predicts which OOD generalization strategy will work best for a given shift
+> - [[2506.18504|VLM Generalization Survey]] — Comprehensive survey of VLM generalization and adaptation methods; maps the taxonomy of domain shift strategies
 
 > [!tip] Adaptation Strategy
 > If source data is available, use TVT or TransAdapter. If source-free, use CoNMix. For combining specialists, TIES-Merging + MergeKit. For unknown domain shifts, OOD-Chameleon selects the right strategy automatically.

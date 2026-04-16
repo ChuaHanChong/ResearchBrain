@@ -7,21 +7,13 @@ tags:
   - tool-use
   - agent
 aliases:
-  - Reasoning Overview
+  - "Reasoning Overview"
 ---
 
 # Reasoning & Planning
 
 > [!abstract] Overview
 > AI reasoning has evolved from explicit chain-of-thought prompting to learned internal reasoning (Quiet-STaR), tool-augmented planning (ReAct, LATS), and RL-trained visual reasoning (R1-style models). This note covers the key paradigms and their progression across seven major threads: classic CoT, multimodal CoT, latent/implicit reasoning, agentic planning, program-aided reasoning, visual reasoning, and test-time scaling.
-
-- [[2604.07725|Squeeze Evolve]]
-
-- [[2604.03993|Noisy Supervision Reasoning]]
-
-- [[2410.08328|Talker-Reasoner]]
-
-- [[2402.07927|Prompt Engineering Survey]]
 
 ## Evolution Graph
 
@@ -125,7 +117,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2506.14641\|Zero-shot vs Few-shot CoT]] — Demonstrates that for recent powerful LLMs, zero-shot CoT often outperforms few-shot, challenging the canonical prompting wisdom
 
 **Self-Taught & Bootstrapped Reasoning** — LLMs that iteratively improve their own rationales through self-training loops, learning to reason without human-written chains.
-- [[2604.06628\|Reasoning SFT Analysis]], [[2604.03128\|Self-Distilled RLVR]], [[2604.03098\|Self-Guide]], [[2603.24422\|OneSearch-V2]], [[2602.03143\|SAGE]], [[2601.21725\|Procedural Pretraining]], [[2601.21343\|Self-Improving Pretraining]], [[2512.03442\|PretrainZero]], [[2508.03682\|SQLM]], [[2507.23751\|CoT-Self-Instruct]], [[2505.11614\|RL for Human Decision Explanation]], [[2504.14945\|LUFFY]], [[2504.11343\|RAFT++]], [[2503.03746\|Process-based Self-Rewarding]], [[2502.03387\|LIMO]], [[2405.14838\|Stepwise Internalization]], [[2403.09629\|Quiet-STaR]], [[2401.08190\|MARIO]], [[2312.04684\|LaRS]], [[2203.14465\|STaR]]
+- [[2604.06628\|Reasoning SFT Analysis]], [[2604.03993\|Noisy Supervision Reasoning]], [[2604.03128\|Self-Distilled RLVR]], [[2604.03098\|Self-Guide]], [[2603.24422\|OneSearch-V2]], [[2602.03143\|SAGE]], [[2601.21725\|Procedural Pretraining]], [[2601.21343\|Self-Improving Pretraining]], [[2512.03442\|PretrainZero]], [[2508.03682\|SQLM]], [[2507.23751\|CoT-Self-Instruct]], [[2505.11614\|RL for Human Decision Explanation]], [[2504.14945\|LUFFY]], [[2504.11343\|RAFT++]], [[2503.03746\|Process-based Self-Rewarding]], [[2502.03387\|LIMO]], [[2405.14838\|Stepwise Internalization]], [[2403.09629\|Quiet-STaR]], [[2401.08190\|MARIO]], [[2312.04684\|LaRS]], [[2203.14465\|STaR]]
 
 > [!star] Key Papers
 > - [[2203.14465\|STaR]] — Self-taught reasoner: LLM bootstraps its own rationales iteratively, creating a flywheel for reasoning improvement
@@ -155,7 +147,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2511.08577\|TaH]] — Think-at-Hard framework selectively activates deep reasoning only at genuinely difficult steps
 
 **Surveys & Taxonomies** — Comprehensive surveys mapping the CoT landscape, benchmarking, and evaluation methodologies.
-- [[2604.02029\|Latent Space Survey]], [[2603.22862\|LLM Tool Use Survey]], [[2601.06002\|Mole-Syn]], [[2511.20836\|DSPy+HELM]], [[2509.02350\|Implicit Reasoning Survey]], [[2508.17298\|Compositional Visual Reasoning Survey]], [[2507.06203\|Latent Reasoning Survey]], [[2506.10979\|LLM Unhelpful Thought Recovery]], [[2506.04374\|SLDS LLM Reasoning]], [[2505.16782\|Latent CoT Survey]], [[2505.02665\|Slow Thinking LLM Survey]], [[2505.00551\|DeepSeek-R1 Replication Survey]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2504.03151\|Multimodal Reasoning Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2503.12605\|MCoT Survey]], [[2502.21321\|LLM Post-Training Survey]]
+- [[2604.02029\|Latent Space Survey]], [[2603.22862\|LLM Tool Use Survey]], [[2601.06002\|Mole-Syn]], [[2511.20836\|DSPy+HELM]], [[2509.02350\|Implicit Reasoning Survey]], [[2508.17298\|Compositional Visual Reasoning Survey]], [[2507.06203\|Latent Reasoning Survey]], [[2506.10979\|LLM Unhelpful Thought Recovery]], [[2506.04374\|SLDS LLM Reasoning]], [[2505.16782\|Latent CoT Survey]], [[2505.02665\|Slow Thinking LLM Survey]], [[2505.00551\|DeepSeek-R1 Replication Survey]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2504.03151\|Multimodal Reasoning Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2503.12605\|MCoT Survey]], [[2502.21321\|LLM Post-Training Survey]], [[2402.07927\|Prompt Engineering Survey]]
 
 > [!star] Key Papers
 > - [[2503.12605\|MCoT Survey]] — First comprehensive survey of multimodal chain-of-thought, analyzing evolution from text-only to vision-language CoT
@@ -257,7 +249,7 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 LLMs as agents that interleave reasoning with actions -- the bridge to embodied AI. These methods combine deliberation with environment interaction.
 
 **ReAct & Interleaved Reasoning-Acting** — The foundational paradigm of synergizing reasoning and acting in LLMs through think-act-observe loops.
-- [[2602.22010\|WoG]], [[2602.20133\|AdaEvolve]], [[2602.13949\|ERL]], [[2601.12538\|Agentic Reasoning Survey]], [[2601.09295\|MACRO-LLM]], [[2512.23167\|SPIRAL]], [[2510.22832\|HRM-Agent]], [[2508.07976\|ASearcher]], [[2508.03923\|CoAct-1]], [[2507.16815\|ThinkAct]], [[2507.08664\|INoT]], [[2507.05707\|Agentic-R1]], [[2507.01701\|LbMAS]], [[2506.12508\|AgentOrchestra]], [[2505.16938\|InternAgent]], [[2504.21776\|WebThinker]], [[2504.14920\|DyFo]], [[2504.09130\|VisuoThink]], [[2503.19263\|DWIM]], [[2305.14992\|RAP]], [[2210.03629\|ReAct]], [[2201.07207\|LLM Zero-Shot Planners]]
+- [[2602.22010\|WoG]], [[2602.20133\|AdaEvolve]], [[2602.13949\|ERL]], [[2601.12538\|Agentic Reasoning Survey]], [[2601.09295\|MACRO-LLM]], [[2512.23167\|SPIRAL]], [[2510.22832\|HRM-Agent]], [[2508.07976\|ASearcher]], [[2508.03923\|CoAct-1]], [[2507.16815\|ThinkAct]], [[2507.08664\|INoT]], [[2507.05707\|Agentic-R1]], [[2507.01701\|LbMAS]], [[2506.12508\|AgentOrchestra]], [[2505.16938\|InternAgent]], [[2504.21776\|WebThinker]], [[2504.14920\|DyFo]], [[2504.09130\|VisuoThink]], [[2503.19263\|DWIM]], [[2410.08328\|Talker-Reasoner]], [[2305.14992\|RAP]], [[2210.03629\|ReAct]], [[2201.07207\|LLM Zero-Shot Planners]]
 
 > [!star] Key Papers
 > - [[2210.03629\|ReAct]] — Synergizing reasoning and acting: think, act, observe, think -- the foundation of all agentic reasoning
@@ -345,7 +337,7 @@ RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal m
 > - [[2507.12508\|MindJourney]] — Enhances VLMs in spatial reasoning by enabling interactive exploration of visual spaces
 
 > [!success] R1-Style Visual Reasoning Recipe
-> ==SFT for format compliance== → ==GRPO with verifiable rewards== (code execution, math verification) → ==Synthetic CoT data at scale== via [[2510.12225|HoneyBee]]. Works for vision: [[2503.06749|Vision-R1]] and [[2505.00703|T2I-R1]] prove the text RL recipe transfers directly to VLMs.
+> ==SFT for format compliance== → ==GRPO with verifiable rewards== (code execution, math verification) → ==Synthetic CoT data at scale== (systematic data curation). The text RL recipe transfers directly to VLMs across visual grounding, spatial reasoning, and image generation tasks.
 
 > [!tip] RL for Vision Reasoning
 > The R1 paradigm applied to VLMs shows that RL can train visual reasoning just as effectively as it trains text reasoning. The key bottleneck has shifted from algorithms to data: methods like HoneyBee and Zebra-CoT focus on generating high-quality visual reasoning chains at scale.
@@ -390,7 +382,7 @@ Understanding and reasoning about spatial relationships, 3D geometry, and physic
 The emerging paradigm: spend more compute at inference time to improve reasoning, or learn when to skip reasoning entirely.
 
 **Test-Time Scaling Methods** — Surveys and techniques for allocating additional compute at inference to boost reasoning quality.
-- [[2603.29557\|FlowPIE]], [[2603.00461\|ReMoT]], [[2602.01984\|Delimiter Token Scaling]], [[2601.22628\|TTCS]], [[2601.16175\|TTT-Discover]], [[2601.18067\|EvolVE]], [[2504.13828\|Cognition Engineering]], [[2504.10449\|M1]], [[2503.24235\|Test-Time Scaling Survey]], [[2503.07572\|MRT]], [[2501.09686\|Large Reasoning Models Survey]], [[2604.10333|ZWM]]
+- [[2604.10333\|ZWM]], [[2604.07725\|Squeeze Evolve]], [[2603.29557\|FlowPIE]], [[2603.00461\|ReMoT]], [[2602.01984\|Delimiter Token Scaling]], [[2601.22628\|TTCS]], [[2601.16175\|TTT-Discover]], [[2601.18067\|EvolVE]], [[2504.13828\|Cognition Engineering]], [[2504.10449\|M1]], [[2503.24235\|Test-Time Scaling Survey]], [[2503.07572\|MRT]], [[2501.09686\|Large Reasoning Models Survey]]
 
 > [!star] Key Papers
 > - [[2503.24235\|Test-Time Scaling Survey]] — Comprehensive survey with unified four-axis taxonomy for TTS methods

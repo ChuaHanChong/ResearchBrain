@@ -7,17 +7,13 @@ tags:
   - pre-training
   - self-supervised
 aliases:
-  - Foundation Models Overview
+  - "Foundation Models Overview"
 ---
 
 # Foundation Models & Transformers
 
 > [!abstract] Overview
 > From ViT to billion-parameter VLMs, foundation models define the backbone of modern AI. This note traces the evolution from vision transformers through self-supervised learning to the large multi-modal models that power VLAs, reasoning systems, and autonomous agents. It also covers the training recipes, attention innovations, and adaptation strategies that make these models practical.
-
-- [[2602.05449|DisCa]]
-
-- [[2511.20085|VICoT-Agent]]
 
 ## Evolution Graph
 
@@ -271,7 +267,8 @@ Connecting visual and textual representations in a shared embedding space, enabl
 - [[2507.09961|TDCRL]], [[2507.09615|FAIR]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.15757|WPCL]], [[2506.12698|KDUP]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Augmentation-Aware Contrastive Learning Theory]], [[2505.21533|SOP]], [[2505.02278|GCLIP]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.02202|MLCL]], [[2401.09865|SPARC]], [[2206.05836|GLIPv2]], [[2203.12555|GriTS]], [[2112.09106|RegionCLIP]], [[2104.12763|MDETR]]
 
 > [!star] Key Papers
-> - [[2201.12086|BLIP]] — Unified understanding and generation with bootstrapped captioning; self-cleans noisy web data
+> - [[2401.09865|SPARC]] — Sparse fine-grained contrastive alignment from Google DeepMind; learns region-text correspondences without dense annotations
+> - [[2504.17432|UniME]] — Universal multimodal embeddings; SOTA on MMEB benchmark for fine-grained retrieval
 
 > [!tip] Beyond Image-Text Pairs
 > CLIP showed that contrastive learning on web-scale data creates powerful zero-shot models. The next frontier (ImageBind, Being-VL, Heptapod) extends this to arbitrary modalities. The key insight: a single well-aligned embedding space transfers better than modality-specific encoders.
@@ -298,7 +295,7 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 > - [[2601.13633|EGM]] — Enables smaller VLMs to scale test-time inference for visual grounding
 
 **Any-to-Any & Agent-Oriented MLLMs** — Models designed for arbitrary modality conversion or as foundations for autonomous agents.
-- [[2502.13130|Magma]], [[2309.05519|NExT-GPT]], [[2303.11381|MM-REACT]]
+- [[2511.20085|VICoT-Agent]], [[2502.13130|Magma]], [[2309.05519|NExT-GPT]], [[2303.11381|MM-REACT]]
 
 > [!star] Key Papers
 > - [[2309.05519|NExT-GPT]] — Any-to-any multimodal LLM handling text, image, audio, and video
@@ -327,7 +324,7 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 > - [[2405.10739|Efficient MLLM Survey]] — Comprehensive guide to making MLLMs practical through efficiency techniques across model, data, and inference
 
 > [!success] The Modern VLM Stack
-> ==Frozen vision encoder== (SigLIP or DINOv2) + ==lightweight connector== (linear projection) + ==LLM backbone== (Gemma, Llama) + ==instruction tuning== on diverse V-L tasks. [[2407.07726|PaliGemma]] proved sub-3B SOTA on 40+ tasks; [[2505.09568|BLIP3-o]] and [[2310.03744|LLaVA-1.5]] showed open models match proprietary ones.
+> ==Frozen vision encoder== (SigLIP or DINOv2) + ==lightweight connector== (linear projection) + ==LLM backbone== (Gemma, Llama) + ==instruction tuning== on diverse V-L tasks. Sub-3B models now achieve SOTA on 40+ tasks; open-source MLLMs match proprietary ones across understanding and generation.
 
 > [!tip] The VLM Stack
 > Modern VLMs follow a consistent pattern: frozen vision encoder (often SigLIP or DINOv2) + lightweight connector (linear projection or Q-Former) + LLM backbone. PaliGemma proved this can work at sub-3B scale, while BLIP3-o and LLaVA-1.5 showed that open models can compete with proprietary ones. The frontier is now visual reasoning (GoT-R1, Vision-SR1) and test-time RL (TTRV).
@@ -404,7 +401,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2505.12082|PMA]] — Pre-trained Model Average for effective merging of LLM checkpoints
 
 **Knowledge Distillation** — Compressing large models into smaller ones via teacher-student training or multi-teacher distillation.
-- [[2604.01193|SSD Code Generation]], [[2604.00626|On-Policy Distillation Survey]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
+- [[2604.01193|SSD Code Generation]], [[2604.00626|On-Policy Distillation Survey]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2602.05449|DisCa]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] — Foundational KD method for LLMs using reverse KL divergence; set the standard for language model compression
@@ -552,7 +549,6 @@ Unconventional approaches that do not fit neatly into the above categories but r
 - [[2603.28713|DreamLite]], [[2510.08575|ReSplat]], [[2508.18966|USO]], [[2505.17022|GoT-R1]], [[2503.20314|Wan]], [[2411.10231|TaylorIR]], [[2604.09168|ELT]]
 
 > [!star] Key Papers
-> - [[2505.17022|GoT-R1]] — Applies RL to unleash MLLM reasoning for visual generation; bridges reasoning and image synthesis
 > - [[2508.18966|USO]] — Unified style and subject-driven generation via disentangled reward learning; achieves controllable personalization
 
 **Detection & Segmentation Foundations** — Self-supervised and weakly-supervised methods for object detection and segmentation.

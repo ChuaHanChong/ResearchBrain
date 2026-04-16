@@ -7,7 +7,7 @@ tags:
   - visual-grounding
   - hallucination
 aliases:
-  - VLM Overview
+  - "VLM Overview"
 ---
 
 # Vision-Language Models

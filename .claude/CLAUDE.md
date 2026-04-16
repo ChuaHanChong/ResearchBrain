@@ -30,7 +30,7 @@ General/ (topic overview, landscape, key papers)
 |--------|---------|
 | `_KnowledgeHub_/` | Individual paper notes (`{arxiv_ID}.md`) with structured summaries |
 | `General/` | Topic overview files grouping papers by theme with sub-topics, callouts, mermaid graphs |
-| `VLA-WAM/` | Deep-dive notes on Vision-Language-Action models, World Action Models, JEPA evolution |
+| `Embodied-AI/` | Deep-dive notes on VLAs, WAMs, JEPA/latent world models, self-evolving embodied AI |
 | `_Projects_/` | Research projects; `01_FirstPublication/` has blueprint, roadmap, math formulations + code repos in `repo/` |
 | `data/papers/` | Local PDF files for papers (downloaded on demand with version suffix, e.g., `2602.15922v2.pdf`) |
 | `data/repo/` | Local code repositories for referenced papers (cloned on demand) |

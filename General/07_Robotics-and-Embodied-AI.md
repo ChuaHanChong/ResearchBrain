@@ -9,7 +9,7 @@ tags:
   - self-evolving
   - manipulation
 aliases:
-  - Robotics Overview
+  - "Robotics Overview"
 ---
 
 # Robotics & Embodied AI
@@ -258,7 +258,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 - [[2604.02190|UniDriveVLA]], [[2603.28963|AutoWorld]], [[2603.28116|AutoDrive-P3]], [[2603.27287|Uni-World VLA]], [[2603.14497|WorldVLM]], [[2602.15549|VLM-DEWM]], [[2602.08236|AVIC]], [[2602.01960|GVP-WM]], [[2602.00475|GRASP]], [[2601.14514|JIT]], [[2512.15885|JARVIS]], [[2512.07733|SpatialDreamer]], [[2511.02824|Kosmos AI Scientist]], [[2510.00855|DyVA]], [[2509.02722|VLWM]], [[2507.23773|SimuRA]], [[2507.12508|MindJourney]], [[2505.05626|PERCEPTLLM]], [[2503.00761|TRACE]], [[2403.06845|DriveDreamer-2]]
 
 > [!star] Key Papers
-> - [[2603.14497|WorldVLM]] — Hybrid VLM + world model for autonomous driving; contextual reasoning meets physics prediction
+> - [[2602.08236|AVIC]] — Adaptive: decides when and how much to imagine based on task difficulty; 17x fewer world-model calls
 
 **Self-Evolving WAMs** — WAMs designed to continuously improve through experience-driven loops, curiosity, and reflective planning.
 - [[2604.07392|ERA]], [[2603.15381|Autonomous Learning Framework]], [[2602.04411|Self-evolving Embodied AI]], [[2509.15155|Self-Improving EFM]], [[2507.09177|Online Agent (OA)]], [[2504.21024|WebEvolver]]

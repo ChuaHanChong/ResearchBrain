@@ -8,19 +8,13 @@ tags:
   - world-model
   - video-reasoning
 aliases:
-  - Video Overview
+  - "Video Overview"
 ---
 
 # Video & Temporal Understanding
 
 > [!abstract] Overview
 > Video models are evolving from passive understanding (classification, QA) toward active generation (world simulation, motion synthesis). The key convergence: ==video generation models are becoming world models== — they learn physics, causality, and dynamics from temporal data, enabling both content creation and robotic planning. Meanwhile, a parallel revolution in video reasoning is teaching MLLMs to think temporally through RL-based post-training and chain-of-thought methods.
-
-- [[2604.09330|VAG]]
-
-- [[2602.10717|SDA]]
-
-- [[2602.05449|DisCa]]
 
 ## Evolution Graph
 
@@ -172,7 +166,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 The paradigm shift: video generation models that simulate ==physically plausible futures==, becoming the foundation for planning and control. These models bridge content creation and robotic planning by learning physics, causality, and dynamics from temporal data.
 
 **Foundational Video World Models** — Systems that treat video generation as world simulation, learning to produce physically coherent future states from observation.
-- [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
+- [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2602.10717|SDA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
 
 > [!star] Key Papers
 > - [[2302.00111|UniPi]] — First to use text-guided video generation as a universal policy; bridges video generation and robot control
@@ -186,14 +180,14 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2503.18938|AdaWorld]] — Context-invariant latent actions for adaptable world models; FVD of 767.0
 
 **Video Generation for Planning & Grounding** — Methods that use generated video as a planning medium, grounding visual plans in physically feasible actions.
-- [[2604.06168|Action Images]], [[2604.03181|MV-VDP]], [[2603.08403|SPIRAL]], [[2603.03195|CoWVLA]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]]
+- [[2604.09330|VAG]], [[2604.06168|Action Images]], [[2604.03181|MV-VDP]], [[2603.08403|SPIRAL]], [[2603.03195|CoWVLA]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]]
 
 > [!star] Key Papers
 > - [[2602.01960|GVP-WM]] — Converts physically inconsistent video plans into feasible action sequences via latent-space trajectory optimization
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improving framework for controllable, long-horizon video generation
 
 **Controllable Video Synthesis** — Dedicated architectures for high-fidelity, subject-driven, or reason-informed video editing and generation.
-- [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2512.09924|ReViSE]], [[2503.20314|Wan]], [[2412.03568|The Matrix]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]]
+- [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2503.20314|Wan]], [[2412.03568|The Matrix]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]]
 
 > [!star] Key Papers
 > - [[2603.18524|3DreamBooth]] — 3D-consistent subject-driven video generation; Chamfer Distance of 0.0177

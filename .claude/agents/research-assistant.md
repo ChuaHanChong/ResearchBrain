@@ -110,7 +110,7 @@ When the user wants to write research documents or notes:
 1. Use the preloaded `obsidian-markdown` skill for proper Obsidian formatting (wikilinks, callouts, frontmatter, embeds)
 2. Write to the appropriate location:
    - `_Projects_/` for research documents, blueprints, and write-ups
-   - `VLA-WAM/` for domain deep-dive notes
+   - `Embodied-AI/` for domain deep-dive notes
 3. Cross-reference papers using wikilinks `[[ID|Alias]]`
 4. For research write-ups, use structured sections: Background, Problem, Proposed Method, Mathematical Formulation, Expected Results, Limitations
 

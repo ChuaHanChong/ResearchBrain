@@ -7,8 +7,8 @@ tags:
   - manipulation
   - VLA
 aliases:
-  - Robotics Benchmarks
-  - Embodied AI Datasets
+  - "Robotics Benchmarks"
+  - "Embodied AI Datasets"
 ---
 
 # Datasets, Benchmarks & Environments
@@ -21,6 +21,8 @@ aliases:
 ## 1. Cross-Embodiment Scale Datasets
 
 The biggest unlock in robot learning: training across many robot types simultaneously. Scale and diversity matter more than curation.
+
+Cross-embodiment transfer works because diverse robot morphologies force the model to learn *task-invariant* representations — grasping a cup looks different on a Franka vs a UR5, but the semantic understanding of 'grasp the cup' is shared. OXE proved that training on 22 robot types simultaneously produces better policies than training on any single type, even for that specific robot. The mechanism: visual and language encoders learn to project morphology-specific observations into a shared task space. DROID extended this by showing that *environmental* diversity (16 institutions, different kitchens, labs, offices) matters as much as robot diversity.
 
 - [[2503.06669|AgiBot World]], [[2403.12945|DROID]], [[2310.08864|OXE]], [[2307.00595|RH20T]]
 
@@ -37,6 +39,8 @@ The biggest unlock in robot learning: training across many robot types simultane
 ## 2. Multi-Modal & Specialist Datasets
 
 Rich sensing (tactile, force, dual-arm) or specific manipulation challenges. For when scale alone isn't enough.
+
+Standard VLA datasets capture RGB images + actions — sufficient for simple pick-and-place but inadequate for contact-rich tasks (insertion, polishing, assembly) where force feedback determines success or failure. Bimanual datasets (RoboMIND 2.0) must capture coordinated dual-arm trajectories with synchronization — the timing between left and right arm matters as much as the positions. Egocentric datasets capture human-perspective video that maps more naturally to robot head-mounted cameras, reducing the viewpoint gap in cross-embodiment transfer.
 
 **Bimanual Manipulation** — Coordinated two-arm control requires specialized data.
 - [[2512.24653|RoboMIND 2.0]], [[2511.17441|RoboCOIN]], [[2412.13877|RoboMIND]]
@@ -64,6 +68,8 @@ Rich sensing (tactile, force, dual-arm) or specific manipulation challenges. For
 
 Not for training — for exposing failure modes and measuring real capability.
 
+Diagnostic benchmarks differ from training benchmarks in a crucial way: they are designed to *expose specific failure modes*, not measure overall performance. GM-100's 100 detail-oriented tasks (precise insertion, fine alignment, tool manipulation) systematically test manipulation capabilities that standard benchmarks miss — current VLAs achieve very low success rates, revealing that 'grasping things' and 'precise manipulation' are fundamentally different capabilities. EmbRACE-3K evaluates embodied reasoning across 3,000 scenarios, testing whether models understand spatial relationships, physical causality, and task decomposition — not just whether they can pick up objects.
+
 - [[2601.11421|GM-100]], [[2507.10548|EmbRACE-3K]], [[2507.05258|REA]], [[2508.13142|EASI]]
 
 > [!star] Key Papers
@@ -77,13 +83,15 @@ Not for training — for exposing failure modes and measuring real capability.
 The physical simulation substrate on which benchmarks are built. Choice of environment determines what you can test.
 
 **Foundation Simulators** — General-purpose physics platforms for robot learning.
-- [[2003.08515|SAPIEN]], [[1909.12271|RLBench]], [Genesis](https://genesis-world.readthedocs.io/en/latest/), [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics)
+- [[2604.08258|EvoGymCM]], [[2003.08515|SAPIEN]], [[1909.12271|RLBench]], [Genesis](https://genesis-world.readthedocs.io/en/latest/), [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics)
 
 **Household-Scale** — Realistic home environments with diverse objects and tasks.
 - [[2406.02523|RoboCasa]]
 
 **Teleoperation-Friendly** — Environments designed for collecting human demonstrations.
 - [[2310.06114|UniSim]]
+
+Simulator choice has profound implications for what you can test. SAPIEN provides 2,346 articulated objects with accurate joint mechanics — essential for tasks involving doors, drawers, and tools. RLBench offers 100 standardized tasks with infinite expert demonstrations via motion planning — making it the default for few-shot evaluation. RoboCasa generates photorealistic kitchen environments at scale — proving that synthetic data from realistic simulators can substitute for expensive real demonstrations. The emerging platform Genesis (GPU-accelerated, open-source) and NVIDIA Newton aim to combine PhysX's parallelism with MuJoCo's contact accuracy.
 
 > [!star] Key Papers
 > - [[2003.08515|SAPIEN]] — 2,346 articulated objects with physics-accurate simulation; foundational platform for manipulation research
@@ -109,6 +117,16 @@ Testing the harder problem: following language instructions over extended task h
 
 - [[2510.13626|LIBERO-Plus]], [[2506.18088|RoboTwin 2.0]], [[2306.03310|LIBERO]], [[2305.12821|FurnitureBench]], [[2112.03227|CALVIN]], [[2505.15660|AGNOSTOS]]
 
+**The LIBERO Family — Testing Different Failure Modes**:
+
+| Benchmark | What It Tests | Key Finding |
+|-----------|--------------|-------------|
+| [[2306.03310\|LIBERO]] | Standard manipulation (4 suites) | VLAs and WAMs both achieve ~97% — ceiling reached |
+| [[2603.22078\|LIBERO-Plus]] | Visual perturbations (camera, lighting, background) | WAMs outperform VLAs by large margins; VLA-JEPA: 79.5% |
+| [[2510.03827\|LIBERO-PRO]] | Minor perturbations on LIBERO tasks | VLAs collapse from >90% to near 0% under small changes |
+| [[2602.06556\|LIBERO-X]] | Cross-task generalization | Only 39.4% at easiest level — massive unsolved gap |
+| [[2603.28301\|LIBERO-Para]] | Paraphrased instructions | 22-52pp drops — models overfit to exact instruction phrasing |
+
 > [!star] Key Papers
 > - [[2306.03310|LIBERO]] — Lifelong robot learning benchmark; tests continual learning and long-horizon capability
 > - [[2112.03227|CALVIN]] — Standard for long-horizon, language-conditioned policy evaluation; most-cited compositionality benchmark
@@ -123,7 +141,9 @@ Testing the harder problem: following language instructions over extended task h
 
 Bridging the reality gap: does simulation performance predict real-world success?
 
-- [[2405.05941|SimplerEnv]], [[2602.20687|NativeEmbodied]], [[2602.21992|PanoEnv]]
+- [[2604.10856|BridgeSim]], [[2405.05941|SimplerEnv]], [[2602.20687|NativeEmbodied]], [[2602.21992|PanoEnv]]
+
+The sim-to-real gap has two components: the *visual* gap (rendered vs real images) and the *dynamics* gap (simulated vs real physics). SimplerEnv addresses the visual gap by using high-fidelity rendering of real robot scenes — achieving strong correlation between sim and real performance. BridgeSim measures the dynamics gap specifically for autonomous driving, where tire friction, wind, and road surface vary unpredictably. The key finding: visual fidelity matters more than dynamics accuracy for manipulation (objects are rigid, contacts are brief), but dynamics accuracy matters more for locomotion and driving (continuous contact, long-horizon effects).
 
 > [!star] Key Papers
 > - [[2405.05941|SimplerEnv]] — Strong correlation between sim and real performance; enables cheap, reproducible policy evaluation without hardware
@@ -135,6 +155,8 @@ Bridging the reality gap: does simulation performance predict real-world success
 Evaluating whether robots (and their VLM backbones) actually understand 3D space, object relationships, and spatial reasoning.
 
 - [[2602.20901|SpatiaLQA]], [[2601.09430|Video-MSR]], [[2601.15224|PROGRESSLM]], [[2505.05456|SITE]], [[2503.23765|STI-Bench]], [[2507.18342|EgoExoBench]], [[2603.18892|MultihopSpatial]], [[2603.19231|MonoArt]], [[2511.04670|Cambrian-S]], [[2410.06468|SPACE]]
+
+Spatial reasoning evaluation tests whether models understand *where things are relative to each other* — not just what they are. SPACE probes five spatial capabilities: distance estimation, size comparison, containment (is X inside Y?), spatial relations (X is left of Y), and counting. Most frontier VLMs fail at basic spatial tasks that humans find trivial, exposing a fundamental gap between language understanding and physical understanding. MultihopSpatial extends this to multi-step spatial reasoning: 'the cup is on the table, the table is in the kitchen, where is the cup?' — requiring compositional spatial inference.
 
 > [!star] Key Papers
 > - [[2505.05456|SITE]] — Comprehensive spatial intelligence evaluation across multiple reasoning types
@@ -152,6 +174,8 @@ Evaluating whether learned world models generate physically plausible, action-co
 
 - [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2602.05986|RISE-Video]]
 
+World model evaluation has shifted from passive video quality metrics (FVD, SSIM) to *interactive* benchmarks that test whether the model can predict consequences of actions. WR-Arena evaluates action-following fidelity: given an action, does the predicted next frame show the correct outcome? Causal consistency testing checks counterfactuals: if the action changes, does the predicted future change accordingly? OpenWorldLib provides a unified codebase for comparing world models across interactive video generation, 3D generation, and VLA tasks — standardizing evaluation that was previously fragmented across papers.
+
 > [!star] Key Papers
 > - [[2603.22212|Omni-WorldBench]] — First interaction-centric evaluation for world models; tests causal consistency and action following
 > - [[2603.22078|WAM vs VLA Robustness]] — Systematic comparison: WAMs are more robust to visual perturbations but 4.8x slower
@@ -167,6 +191,8 @@ Evaluating whether learned world models generate physically plausible, action-co
 Systematic studies that benchmark VLA design decisions rather than individual models.
 
 - [[2412.14058|RoboVLMs]], [[2601.18692|LingBot-VLA]], [[2503.14734|GR00T N1]], [[2512.14666|EVOLVE-VLA]]
+
+RoboVLMs conducted the most systematic VLA design study to date: 600+ experiments varying backbone, fusion method, action space, training recipe, and data strategy. The key finding is that design choices *interact*: the best backbone depends on the fusion method, which depends on the action space. For example, PaliGemma excels with policy-head fusion but underperforms with cross-attention fusion. This interaction effect means you can't optimize each choice independently — the design space must be explored jointly.
 
 > [!star] Key Papers
 > - [[2412.14058|RoboVLMs]] — 600+ experiments systematically testing backbone, action space, history fusion, and data strategy choices
@@ -197,7 +223,9 @@ Use this progression to evaluate robot policies at increasing levels of rigor:
 
 - [[03_VLA]] — VLA deep-dive (Section 2 uses RoboVLMs findings)
 - [[04_WAM]] — WAM deep-dive (Section 8 covers failure modes found by benchmarks)
-- [[01_VLA-WAM-101]] — VLA vs WAM basics
+- [[05_Latent-World-Models]] — Latent world models (JEPA benchmarks, latent vs pixel comparison)
+- [[06_Self-Evolving-VLA-WAM]] — Self-evolving systems (evaluation of self-improvement methods)
+- [[01_Embodied-AI-101]] — VLA vs WAM basics
 
 ---
 
