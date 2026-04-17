@@ -110,7 +110,7 @@ Video diffusion models learn physics by training on internet-scale video data �
 - [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[2310.10625|VLP]]
 
 **Video Pretraining for Robot Policies** — Train on internet video, fine-tune for robot control.
-- [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2508.00795|Video Policy]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
+- [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2602.12099|GigaBrain-0.5M*]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2508.00795|Video Policy]], [[2505.15659|FLARE]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
 
 > [!star] Key Papers
 > - [[2602.15922|DreamZero]] — 14B joint video+action model; 39.5% on unseen tasks, 42% cross-embodiment improvement, 7Hz real-time
@@ -145,10 +145,11 @@ Latent prediction avoids the computational expense of pixel-level video generati
 > - [[2602.11389|Causal-JEPA]] — Object-centric world model with causal reasoning via latent interventions
 
 **Unified Latent Diffusion** — Shared diffusion transformer for both video and action in latent space.
-- [[2512.13030|Motus]], [[2504.02792|UWM]], [[2503.18938|AdaWorld]]
+- [[2512.13030|Motus]], [[2505.11528|LaDi-WM]], [[2504.02792|UWM]], [[2503.18938|AdaWorld]]
 
 > [!star] Key Papers
 > - [[2504.02792|UWM]] — Unified World Models: coupled video and action diffusion pretraining; clean modern approach
+> - [[2505.11528|LaDi-WM]] — Latent diffusion WM on DINOv2+Siglip with imagination-guided iterative action refinement; +15.1% over SOTA on LIBERO-LONG with 10 demos
 
 **Self-Supervised Latent Models** — Learn world representations from unlabeled data using self-supervised objectives.
 - [[2604.10333|ZWM]], [[2604.03208|HWM]], [[2603.29090|HCLSM]], [[2511.08544|LeJEPA]], [[2509.14252|LLM-JEPA]], [[2507.19468|DINO-world]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2512.19605|KerJEPA]], [[2411.04983|DINO-WM]]

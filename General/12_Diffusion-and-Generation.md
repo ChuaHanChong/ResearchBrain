@@ -192,7 +192,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2506.02095|CycleReward]] — Self-supervised reward via cycle consistency; eliminates need for human preference data
 
 **Reward Models for Image Generation** — Learning reward functions that capture human preferences for image quality, text-image alignment, or edit fidelity to guide RL training.
-- [[2604.11626|RationalRewards]], [[2509.26346|EditReward]], [[2507.22003|ViHallu]]
+- [[2604.11626|RationalRewards]], [[2509.26346|EditReward]], [[2507.22003|ViHallu]], [[2502.20946|Generative Uncertainty Diffusion]]
 
 > [!star] Key Papers
 > - [[2509.26346|EditReward]] — Human-aligned reward model for instruction-guided image editing; enables curation of high-quality training data
@@ -242,7 +242,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 > - [[2504.06256|MetaQueries]] — Bridges frozen MLLMs with diffusion generators via learned meta-query tokens
 
 **End-to-End Multimodal Generators** — Models that natively produce interleaved text and images, trained end-to-end for seamless multimodal output.
-- [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
+- [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 **Text-to-Motion Generation** — Diffusion and contrastive methods for synthesizing and retrieving 3D human motions from natural language.
 - [[2603.15546|Kimodo]], [[2305.00976|TMR]]
@@ -290,7 +290,7 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2302.00111|UniPi]] — Universal policy as text-conditioned video generation; crosses the boundary between video models and robot control
 
 **Video Diffusion as World Models** — Adapt pre-trained video diffusion models to robotic tasks, using generated future video as a physics simulator for planning.
-- [[2604.09330|VAG]], [[2603.30045|OmniRoam]], [[2603.28963|AutoWorld]], [[2603.28887|OccSim]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.12639|RoboStereo]], [[2603.10448|DiT4DiT]], [[2602.20057|AdaWorldPolicy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2510.19430|GigaBrain-0]], [[2510.10125|CTRL-WORLD]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.13340|LPS]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2412.14803|VPP]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[1507.08750|Action-Conditional Video Prediction]], [[2402.15391|Genie]], [[2412.03568|The Matrix]], [[2501.03575|Cosmos]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.09995|PlayerOne]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]], [[2512.11061|VDAWorld]], [[2602.06949|DreamDojo]]
+- [[2604.14732|WVA]], [[2604.09330|VAG]], [[2603.30045|OmniRoam]], [[2603.28963|AutoWorld]], [[2603.28887|OccSim]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.12639|RoboStereo]], [[2603.10448|DiT4DiT]], [[2602.20057|AdaWorldPolicy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2510.19430|GigaBrain-0]], [[2510.10125|CTRL-WORLD]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.13340|LPS]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2412.14803|VPP]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[1507.08750|Action-Conditional Video Prediction]], [[2402.15391|Genie]], [[2412.03568|The Matrix]], [[2501.03575|Cosmos]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.09995|PlayerOne]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]], [[2512.11061|VDAWorld]], [[2602.06949|DreamDojo]]
 
 > [!star] Key Papers
 > - [[2512.13644|DexWM]] — Leverages human video data for dexterous manipulation; 83% zero-shot success without real-world training

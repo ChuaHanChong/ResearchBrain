@@ -187,7 +187,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improving framework for controllable, long-horizon video generation
 
 **Controllable Video Synthesis** — Dedicated architectures for high-fidelity, subject-driven, or reason-informed video editing and generation.
-- [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2503.20314|Wan]], [[2412.03568|The Matrix]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]]
+- [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The Matrix]]
 
 > [!star] Key Papers
 > - [[2603.18524|3DreamBooth]] — 3D-consistent subject-driven video generation; Chamfer Distance of 0.0177

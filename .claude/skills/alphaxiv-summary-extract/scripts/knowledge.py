@@ -1127,4 +1127,61 @@ papers = [
     "https://arxiv.org/abs/2604.11626", # RationalRewards: Reasoning Rewards Scale Visual Generation Both Training and Test Time
     "https://arxiv.org/abs/2603.05815", # Hierarchical Latent Action Model
     "https://arxiv.org/abs/2512.04952", # FASTer: Toward Efficient Autoregressive Vision Language Action Modeling via Neural Action Tokenization
+    "https://arxiv.org/abs/2508.19005", # Building Self-Evolving Agents via Experience-Driven Lifelong Learning: A Framework and Benchmark
+    "https://arxiv.org/abs/2507.00917", # A Survey: Learning Embodied Intelligence from Physical Simulators and World Models
+    "https://arxiv.org/abs/2505.07634", # Neural Brain: A Neuroscience-inspired Framework for Embodied Agents
+    "https://arxiv.org/abs/2506.22355", # Embodied AI Agents: Modeling the World
+    "https://arxiv.org/abs/2510.16732", # A Comprehensive Survey on World Models for Embodied AI
+    "https://arxiv.org/abs/2509.20021", # Embodied AI: From LLMs to World Models
+    "https://arxiv.org/abs/2505.05108", # Multi-agent Embodied AI: Advances and Future Directions
+    "https://arxiv.org/abs/2401.03568", # Agent AI: Surveying the Horizons of Multimodal Interaction
+    "https://arxiv.org/abs/2508.07407", # A Comprehensive Survey of Self-Evolving AI Agents: A New Paradigm Bridging Foundation Models and Lifelong Agentic Systems
+    "https://arxiv.org/abs/2507.21046", # A Survey of Self-Evolving Agents: What, When, How, and Where to Evolve on the Path to Artificial Super Intelligence
+    "https://arxiv.org/abs/2510.00406", # VLA-RFT: Vision-Language-Action Reinforcement Fine-tuning with Verified Rewards in World Simulators
+    "https://arxiv.org/abs/2602.12099", # GigaBrain-0.5M*: a VLA That Learns From World Model-Based Reinforcement Learning
+    "https://arxiv.org/abs/2505.13934", # RLVR-World: Training World Models with Reinforcement Learning
+    "https://arxiv.org/abs/2511.17502", # RynnVLA-002: A Unified Vision-Language-Action and World Model
+    "https://arxiv.org/abs/2511.09515", # WMPO: World Model-based Policy Optimization for Vision-Language-Action Models
+    "https://arxiv.org/abs/2501.16664", # Improving Vision-Language-Action Model with Online Reinforcement Learning
+    "https://arxiv.org/abs/2507.04447", # DreamVLA: A Vision-Language-Action Model Dreamed with Comprehensive World Knowledge
+    "https://arxiv.org/abs/2505.18719", # VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning
+    "https://arxiv.org/abs/2505.15659", # FLARE: Robot Learning with Implicit World Modeling
+    "https://arxiv.org/abs/2601.21998", # Causal World Modeling for Robot Control
+    "https://arxiv.org/abs/2503.11089", # EmbodiedVSR: Dynamic Scene Graph-Guided Chain-of-Thought Reasoning for Visual Spatial Tasks
+    "https://arxiv.org/abs/2603.08561", # RetroAgent: From Solving to Evolving via Retrospective Dual Intrinsic Feedback
+    "https://arxiv.org/abs/2508.02085", # SE-Agent: Self-Evolution Trajectory Optimization in Multi-Step Reasoning with LLM-Based Agents
+    "https://arxiv.org/abs/2511.10395", # AgentEvolver: Towards Efficient Self-Evolving Agent System
+    "https://arxiv.org/abs/2503.02310", # PD-VLA: Accelerating Vision-Language-Action Model Integrated with Action Chunking via Parallel Decoding
+    "https://arxiv.org/abs/2401.16650", # Augmenting Replay in World Models for Continual Reinforcement Learning
+    "https://arxiv.org/abs/2509.23958", # Reinforcement Learning with Inverse Rewards for World Model Post-training
+    "https://arxiv.org/abs/2505.13696", # Building spatial world models from sparse transitional episodic memories
+    "https://arxiv.org/abs/2603.12942", # ReMem-VLA: Empowering Vision-Language-Action Model with Memory via Dual-Level Recurrent Queries
+    "https://arxiv.org/abs/2603.03596", # MEM: Multi-Scale Embodied Memory for Vision Language Action Model                                                                                                                              
+    "https://arxiv.org/abs/2410.04640", # Sentinel/STAC                                                                                            
+    "https://arxiv.org/abs/2510.02298", # ARMADA                                                                                                   
+    "https://arxiv.org/abs/2603.11106", # RC-NF                                                                                                    
+    "https://arxiv.org/abs/2602.01515", # RAPT                                                                                                     
+    "https://arxiv.org/abs/2602.16182", # WM-OOD                                                                                                   
+    "https://arxiv.org/abs/2504.11170", # Flexible sparse latent AD                                                                                
+    "https://arxiv.org/abs/2505.05811", # Mahalanobis-SVDD                                                                                         
+    "https://arxiv.org/abs/2310.17552", # Model-based runtime monitor                                                                              
+    "https://arxiv.org/abs/2407.08735", # Real-time LLM anomaly                                                                                    
+    "https://arxiv.org/abs/2510.17472", # Certified Self-Consistency                                                                               
+    "https://arxiv.org/abs/2502.06233", # CISC                                                                                                                                                                                                                              
+    "https://arxiv.org/abs/2507.17383", # VLA Confidence Calibration                                                                               
+    "https://arxiv.org/abs/2503.08558", # FAIL-Detect                                                                                              
+    "https://arxiv.org/abs/2410.14868", # Diff-DAgger                                                                                              
+    "https://arxiv.org/abs/2502.20946", # Generative Uncertainty Diffusion                                                                         
+    "https://arxiv.org/abs/2501.08316", # Seaweed-APT                                                                                              
+    "https://arxiv.org/abs/2505.11528", # LaDi-WM                                                                                                  
+    "https://arxiv.org/abs/2602.17659", # Vision Overrides Language                                                                                                                                                                                                   
+    "https://arxiv.org/abs/2511.14148", # AsyncVLA                                                                                                 
+    "https://arxiv.org/abs/2510.22201", # ACG                                                                                                      
+    "https://arxiv.org/abs/2506.09985", # V-JEPA 2                                                                                                 
+    "https://arxiv.org/abs/2506.09937", # SAFE                                                                                                     
+    "https://arxiv.org/abs/2603.06987", # Foundational WM Failure Detection   
+    "https://arxiv.org/pdf/2604.14144", # SpatialEvo: Self-Evolving Spatial Intelligence via Deterministic Geometric Environments
+    "https://arxiv.org/pdf/2604.11805", # Solving Physics Olympiad via Reinforcement Learning on Physics Simulators
+    "https://arxiv.org/abs/2604.12002", # Self-Distillation Zero: Self-Revision Turns Binary Rewards into Dense Supervision
+    "https://arxiv.org/abs/2604.14732", # World-Value-Action Model: Implicit Planning for Vision-Language-Action Systems
 ]

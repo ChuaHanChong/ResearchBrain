@@ -153,7 +153,7 @@ Beyond the JEPA lineage, other architectures also predict in latent space for em
 > - [[2511.08544|LeJEPA]] — Provable and scalable SSL framework based on Euclidean latent geometry
 
 **Non-JEPA Latent Models** — Alternative architectures achieving latent prediction without the JEPA framework.
-- [[2604.10333|ZWM]], [[2603.29090|HCLSM]], [[2411.04983|DINO-WM]], [[2507.19468|DINO-world]], [[2504.02792|UWM]], [[2512.13030|Motus]], [[2503.18938|AdaWorld]]
+- [[2604.10333|ZWM]], [[2603.29090|HCLSM]], [[2512.13030|Motus]], [[2507.19468|DINO-world]], [[2505.15659|FLARE]], [[2505.13696|ESWM]], [[2505.11528|LaDi-WM]], [[2504.02792|UWM]], [[2503.18938|AdaWorld]], [[2411.04983|DINO-WM]]
 
 > [!star] Key Papers
 > - [[2411.04983|DINO-WM]] — Task-agnostic world model on frozen DINOv2 features; zero-shot planning without task-specific training

@@ -106,7 +106,7 @@ Based on [[2412.14058|RoboVLMs]]' 600+ experiments — the most systematic VLA d
 
 **Action Space**: ==Continuous== (recommended) — avoids compounding ==discretization errors== that plague tokenized approaches. When you discretize a 7-DoF arm into 256 bins per dimension, you get $256^7 \approx 72$ quadrillion possible actions — most of which are physically impossible. [[2510.13054|VLA-0]] showed that even representing actions as plain text numbers works, because the VLM's tokenizer already handles numerical sequences — no custom action head needed. ==Flow matching== ([[2410.24164|π0]]) goes further: it models the action distribution as a continuous flow, enabling smooth, multi-modal action generation that captures the full diversity of valid solutions rather than collapsing to a single mode.
 
-**History Fusion**: ==Policy Head== (best balance) — VLM provides per-step features; separate head fuses history. [[2506.19816|CronusVLA]] extends this to multi-frame observations for temporal robustness.
+**History Fusion**: ==Policy Head== (best balance) — VLM provides per-step features; separate head fuses history. [[2506.19816|CronusVLA]] extends this to multi-frame observations for temporal robustness. For truly long-horizon tasks requiring memory over minutes, [[2603.03596|MEM]] factorizes memory into ==dense short-term visual== (space-time separable attention over seconds) + ==compressed long-term language== (LLM summaries), enabling tasks requiring up to 15 minutes of memory. [[2603.12942|ReMem-VLA]] takes a different approach via ==dual-level recurrent queries== (frame-level EMA + chunk-level EMA) with gradient-free updates, hitting **94.5%** on memory-dependent simulation tasks.
 
 **Training Loss**: ==Flow Matching== and ==MSE+BCE== achieve similar results. [[2602.18224|SimVLA]] confirmed this with a streamlined 0.5B model achieving 98.6% on LIBERO.
 
@@ -140,6 +140,7 @@ Full-size VLAs (7B+) are impractical for real-time robot control. This frontier 
 | [[2510.13054\|VLA-0]] | Any VLM | Zero modification — actions as text strings | Varies |
 | [[2509.09372\|VLA-Adapter]] | 0.5B | Lightweight adapter bridges VLM representations to actions | Fast |
 | [[2506.01844\|SmolVLA]] | 450M | 7x less memory, 40% faster training than OpenVLA | Real-time |
+| [[2503.02310\|PD-VLA]] | Any VLA | Training-free parallel decoding via Jacobi fixed-point iteration; 2.52x speedup | Real-time |
 | [[2501.09747\|FAST]] | Compression | Action tokenization via DCT+Huffman; 5x faster inference | Real-time |
 | [[2409.12514\|TinyVLA]] | Small | Diffusion action head + efficient VLM backbone | Fast |
 
@@ -183,6 +184,7 @@ Pure imitation is brittle — these models add test-time reasoning (chain-of-tho
 | [[2509.22643\|VLA-Reasoner]] | Online MCTS with world model | Simulates futures to select optimal actions |
 | [[2506.00123\|VeBrain]] | Unified spatial reasoning + control | See-Think-Control pipeline |
 | [[2505.03500\|TLI]] | Text Latent Interpolation for skill recombination | Extrapolation: 9% → 83% on OOD tasks |
+| [[2503.11089\|EmbodiedVSR]] | Dynamic scene graph + physics-constrained CoT | 18.4% gain in Arm Feasibility; 80% success in real-world reassembly |
 
 **Action Chain-of-Thought** (ACoT-VLA) adds explicit reasoning in the *action* space rather than language space — the model generates intermediate action waypoints as 'reasoning steps' before committing to the final trajectory. This is fundamentally different from language CoT: the reasoning is grounded in physical coordinates, not tokens. **Online MCTS** (VLA-Reasoner) uses the world model as a simulator during inference: sample multiple action candidates, simulate each forward via the world model, score outcomes, and select the best — essentially playing 'chess' with physical actions. The latency cost is real (~3-5x slower), so ADV's draft-and-verify approach offers a middle ground: generate a fast open-loop action draft, then verify it with a closed-loop check.
 
@@ -197,6 +199,7 @@ VLAs that incorporate learned dynamics models for planning, imagination, or co-t
 
 | Model | Integration Style | Key Insight |
 |-------|------------------|-------------|
+| [[2604.14732\|WVA]] | Video generator + trajectory value + action decoder with MPPI latent optimization | Implicit planning via latent-space trajectory refinement; 98.1% LIBERO, 75.6% real dual-arm |
 | [[2604.11135\|AIM]] | Spatial value maps bridge video prediction to actions | Intent-aware unified world-action model; 94% RoboTwin |
 | [[2604.08168\|ViVa]] | Video diffusion Transformer as value function | Video-generative value model for robot RL |
 | [[2604.06168\|Action Images]] | Actions as pixel-grounded multiview images | Unified video-action generation; zero-shot transfer |
@@ -204,6 +207,7 @@ VLAs that incorporate learned dynamics models for planning, imagination, or co-t
 | [[2603.16666\|Fast-WAM]] | Video co-training without test-time imagination | WAM benefits without WAM latency |
 | [[2603.10448\|DiT4DiT]] | Video DiT conditions action DiT via denoising features | Joint video-action model; 98.6% LIBERO, 10x sample efficiency |
 | [[2603.03195\|CoWVLA]] | Structure-motion disentangled latent world model | Chain-of-world reasoning in latent motion space |
+| [[2602.12099\|GigaBrain-0.5M*]] | World model predicts future states + values; RAMP policy conditioned on dense predictions | +30 pts over RL baselines on long-horizon manipulation; 51.67% RoboChallenge |
 | [[2602.12063\|VLAW]] | Iterative co-improvement of VLA + world model | VLA and WM reinforce each other |
 | [[2602.10098\|VLA-JEPA]] | JEPA-based latent world model attached to VLA | Latent prediction improves action quality |
 | [[2601.16163\|Cosmos Policy]] | Video diffusion model fine-tuned as policy | Video prediction = action planning |
@@ -211,6 +215,8 @@ VLAs that incorporate learned dynamics models for planning, imagination, or co-t
 | [[2509.24948\|RehearseVLA]] | Simulated post-training with VLM-guided reflection | World model for rehearsal, not inference |
 | [[2507.04447\|DreamVLA]] | Forecasts depth + semantics + dynamics | Comprehensive world knowledge |
 | [[2506.19850\|UniVLA]] | All modalities as discrete tokens in one Transformer | Unified autoregressive generation |
+| [[2505.15659\|FLARE]] | Predicts future latent representations (not pixels) + diffusion policy | Up to +26% over baselines; learns from action-free human videos |
+| [[2505.11528\|LaDi-WM]] | Latent diffusion WM with DINOv2 + Siglip; imagination-guided iterative action refinement | 68.7% LIBERO-LONG with 10 demos; +15.1% over SOTA |
 
 Four integration styles exist, each with different trade-offs: **Iterative co-improvement** (VLAW) alternates between training the VLA policy and the world model — the world model generates synthetic training data for the VLA, and the VLA's improving actions give the world model harder scenarios. Each round improves both, but the world model is always one step behind the current policy. **Latent world model** (VLA-JEPA) attaches a JEPA-style predictor to the VLA backbone — predictions happen in embedding space (fast, ~10ms) rather than video space (slow, ~150ms). **Video co-training** (Fast-WAM) trains jointly with video prediction objectives but strips the video head at deployment — getting WAM-level representations with VLA-level speed. **Rehearsal** (RehearseVLA) uses the world model only during post-training: simulate trajectories, have a VLM reflect on failures, and fine-tune — the world model is a training tool, not a deployment component.
 
@@ -230,6 +236,7 @@ Imitation learning alone leaves performance on the table. RL fine-tuning after i
 | Simple Sequential Fine-Tuning (LoRA + RL) shows high plasticity with minimal forgetting | [[2603.11653\|VLA RL Continual Learning]] |
 | VLAs are surprisingly resistant to catastrophic forgetting under continual RL | [[2603.03818\|VLA Continual Learning]] |
 | Knowledge insulation: stop gradient flow from action expert to VLM backbone | [[2505.23705\|Knowledge Insulation VLA]] |
+| Two-stage alternation between online RL and SFT keeps VLA training stable; LoRA + frozen VLM | [[2501.16664\|iRe-VLA]] |
 
 > [!success] The RL Recipe for VLAs
 > 1. ==SFT== on demonstration data (format learning)
@@ -322,15 +329,22 @@ Understanding when VLAs break is as important as knowing when they work.
 | **Spatial overfitting** | [[2505.03500\|TLI]] — VLAs map object names to *fixed training locations* instead of abstract identities | Novel object positions break policies |
 | **Visual perturbation brittleness** | [[2603.22078\|WAM vs VLA Robustness]] — VLAs struggle under camera/light/background changes | WAMs are more robust (spatiotemporal priors from video pretraining) |
 | **Detail-oriented failure** | [[2601.11421\|GM-100]] — 100 detail-oriented tasks expose very low VLA success rates | Current VLAs are coarse-grained; fine manipulation is unsolved |
+| **Counterfactual failures (vision > language)** | [[2602.17659\|CAG]] — OpenVLA-OFT: 0.4% on counterfactual tasks vs 78.6% on originals; VLAs ignore language when visual cues conflict | Inference-time CAG scheme with a VA prior mitigates; +15.5% grounding |
 | **Inference speed** | WAMs are ≥4.8x slower than VLAs (π0.5 at 63ms/chunk is fastest) | Real-time control needs efficient architectures |
 
 ### Failure Detection for VLAs
 
-How does a deployed VLA know when it is failing? Three complementary approaches have emerged:
+How does a deployed VLA know when it is failing? Multiple complementary approaches have emerged:
 
 1. **Internal feature monitoring**: [[2506.09937|SAFE]] extracts features from the VLA's own hidden layers and uses ==conformal prediction== to flag when the model's internal state differs from its training distribution — no external sensors needed. This works because VLA representations encode task-relevant uncertainty even when the output actions look confident.
 2. **Semantic misalignment**: [[2509.16072|I-FailSense]] uses a VLM to compare the expected task outcome with the observed scene — detecting failures through ==semantic reasoning== rather than numerical thresholds. This catches failures that look normal in feature space but are semantically wrong (e.g., picking up the wrong object).
 3. **Predictive failure**: [[2510.09459|FIPER]] combines ==OOD detection== with ==action uncertainty== to predict failures *before* they happen, giving the system time to intervene or hand off to a human operator. This is especially valuable for safety-critical tasks where post-hoc detection is too late.
+4. **Density-based OOD via normalizing flows**: [[2603.11106|RC-NF]] learns the joint distribution of successful task execution via ==robot-conditioned normalizing flows==, signaling deviations in under **100ms** for real-time intervention. [[2503.08558|FAIL-Detect]] uses a novel ==logpZO== flow-based density estimator with ==Conformal Prediction== thresholds, achieving 78% balanced accuracy without any failure data.
+5. **Multi-detector ensembles**: [[2410.04640|Sentinel]] runs ==STAC== (Statistical Temporal Action Consistency via ==MMD==/KL-divergence) for erratic failures in parallel with a VLM for task progression failures — together detecting 18% more failures than either alone.
+6. **Confidence calibration**: [[2507.17383|VLA Confidence Calibration]] introduces ==Action-Wise Platt Scaling== + prompt ensembles to reduce Expected Calibration Error by over **20%** — trustworthy uncertainty scores for each action dimension.
+7. **Uncertainty from the policy's own loss**: [[2410.14868|Diff-DAgger]] uses the diffusion policy's training objective directly as an uncertainty signal, achieving **39%** higher F1 in failure prediction than ensemble baselines.
+8. **LLM-driven reactive recovery**: [[2407.08735|AESOP]] combines a fast embedding-based LLM anomaly detector with a slow generative LLM for deliberative intervention, using latency-aware multi-contingency MPC to achieve **100%** recovery in simulated quadrotor anomalies.
+9. **Human-shared-control scaling**: [[2510.02298|ARMADA]] uses ==FLOAT== (optimal-transport-based failure detection) to achieve **95%** accuracy and pool interventions across multiple robots, cutting human intervention by **23.3%**.
 
 > [!tip] The Robustness Hierarchy
 > From most to least robust: (1) WAMs with video pretraining, (2) VLAs with diverse cross-embodiment training (π0.5), (3) VLAs with in-domain-only training. If robustness matters more than speed, consider WAM augmentation. If speed matters, use knowledge insulation + diverse training.

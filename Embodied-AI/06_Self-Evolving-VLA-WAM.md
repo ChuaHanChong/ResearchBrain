@@ -126,8 +126,8 @@ Self-evolution requires self-awareness. Before an agent can improve, it must fir
 
 ### 4.1 Runtime Failure Detection
 
-VLMs and learned classifiers detect task failure in real-time, enabling the agent to abort early rather than waste execution time on doomed plans. Three complementary approaches have emerged: (1) *internal feature monitoring* — SAFE uses the VLA's own hidden-state activations combined with ==conformal prediction== to flag failures without any external sensor, achieving provable false-positive guarantees; (2) *semantic misalignment* — I-FailSense uses VLMs to compare observed outcomes against language-described expected outcomes, detecting when the semantic meaning of the scene diverges from the task specification; (3) *OOD scoring* — FIPER combines out-of-distribution detection with action uncertainty estimation to produce predictive failure signals *before* the failure actually occurs, giving the agent a window to intervene.
-- [[2510.09459|FIPER]], [[2506.09937|SAFE]], [[2410.00371|AHA]], [[2509.16072|I-FailSense]], [[2510.01642|FailSafe]]
+VLMs and learned classifiers detect task failure in real-time, enabling the agent to abort early rather than waste execution time on doomed plans. Complementary approaches have emerged: (1) *internal feature monitoring* — SAFE uses the VLA's own hidden-state activations combined with ==conformal prediction== to flag failures without any external sensor, achieving provable false-positive guarantees; (2) *semantic misalignment* — I-FailSense uses VLMs to compare observed outcomes against language-described expected outcomes, detecting when the semantic meaning of the scene diverges from the task specification; (3) *OOD scoring* — FIPER combines out-of-distribution detection with action uncertainty estimation to produce predictive failure signals *before* the failure actually occurs, giving the agent a window to intervene; (4) *density-based OOD* — RC-NF learns the joint distribution of successful execution via ==robot-conditioned normalizing flows==, flagging deviations in <100ms; FAIL-Detect uses flow-based density (==logpZO==) + Conformal Prediction to achieve 78% balanced accuracy *without any failure data*; Diff-DAgger repurposes the diffusion policy's own training loss as an uncertainty signal, giving 39% higher F1 than ensemble baselines; (5) *multi-detector ensembles* — Sentinel runs ==STAC== (Statistical Temporal Action Consistency) for erratic failures in parallel with a VLM for task-progression failures, catching 18% more failures than either alone; (6) *calibrated confidence scores* — VLA Confidence Calibration introduces ==Action-Wise Platt Scaling== that reduces Expected Calibration Error by >20%; (7) *LLM-driven reactive planning* — AESOP combines a fast embedding-based anomaly detector with a slow generative LLM for deliberative intervention, using latency-aware MPC for 100% recovery in simulated anomalies; (8) *human-shared-control scaling* — ARMADA's FLOAT detector (95% accuracy) pools interventions across multiple robots, cutting human intervention by 23.3%.
+- [[2510.09459|FIPER]], [[2506.09937|SAFE]], [[2410.00371|AHA]], [[2509.16072|I-FailSense]], [[2510.01642|FailSafe]], [[2603.11106|RC-NF]], [[2503.08558|FAIL-Detect]], [[2410.14868|Diff-DAgger]], [[2410.04640|Sentinel]], [[2507.17383|VLA Confidence Calibration]], [[2407.08735|AESOP]], [[2510.02298|ARMADA]]
 
 ### 4.2 Proactive Self-Correction
 
@@ -186,6 +186,7 @@ WAMs have a unique advantage for self-evolution: they already have a learned dyn
 | [[2506.23468\|NavMorph]] | Self-evolving world model for VLN in continuous environments |
 | [[2504.21024\|WebEvolver]] | Co-evolving web agent and world model |
 | [[2602.20057\|AdaWorldPolicy]] | World model prediction error as self-improvement signal |
+| [[2401.16650\|WMAR]] | Memory-efficient augmented replay (FIFO + reservoir) in DreamerV3 for continual RL; +0.071 vs 0.665 forgetting |
 
 **How SPIRAL's Reflective Loop Works**: SPIRAL generates a long-horizon video plan conditioned on semantic actions, then a CriticAgent evaluates the plan for temporal coherence (do frames flow smoothly?) and action completeness (does the video show the full task?). Plans that fail the critic are rejected and regenerated with feedback incorporated — the critic's natural-language assessment guides the next generation attempt. This creates an iterative refinement loop without human intervention.
 
@@ -216,6 +217,8 @@ VLAs can self-evolve *without* an explicit world model — their rich VLM repres
 | [[2602.03445\|CRL-VLA]] | Continual RL for VLA policies across sequential tasks |
 | [[2603.07648\|AtomicVLA]] | Atomic skill abstraction + SG-MoE; scalable continual learning |
 | [[2602.21633\|Self-Correcting VLA]] | Self-correction mechanism for VLA deployment |
+| [[2501.16664\|iRe-VLA]] | Two-stage alternation between online RL and SFT; LoRA + frozen VLM preserves prior knowledge |
+| [[2510.02298\|ARMADA]] | Autonomous failure detection + multi-robot shared control; adaptive rewinding collects high-quality corrective demos |
 
 **How EvoVLA Overcomes Stage Hallucination**: In multi-step tasks, VLAs often 'hallucinate' task progress — reporting a subtask as complete based on superficial visual cues rather than actual completion. EvoVLA addresses this by maintaining an explicit stage tracker that verifies completion before advancing. The evolutionary strategy generates multiple candidate plans and selects the most reliable.
 

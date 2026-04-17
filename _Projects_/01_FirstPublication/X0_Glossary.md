@@ -64,3 +64,20 @@ After each episode, compute mean prediction error: S_env = (1/T) Σ L_pred(t). K
 "Rolling" means the threshold adapts over time — as the model improves, baseline error drops, so what counts as "surprising" adjusts automatically. An episode that was normal in round 1 might be flagged in round 5 if the model has improved on everything else.
 
 Note: in the updated loop, this is one of three detection signals. The full DETECT uses [[X0_Glossary#Active probing vs passive signals — what's the difference?|multi-signal fusion]] (≥2 of 3 must fire), so the rolling threshold alone doesn't flag an episode — it needs at least one other signal (SAFE or action variance) to agree.
+
+## Why not adopt existing self-evolving VLA methods directly?
+
+Papers like [[2602.06508|World-VLA-Loop]], [[2511.16166|EvoVLA]], [[2511.15605|SRPO]], [[2506.21669|SEEA-R1]], and [[2509.15155|Self-Improving EFM]] each tackle self-improvement for VLAs, but none can be directly applied to Fast-WAM or VLA-JEPA for two reasons:
+
+1. **Action representation mismatch** — 3 of 5 (SRPO, SEEA-R1, Self-Improving EFM) use discrete token actions with PPO/GRPO/REINFORCE on token log-probabilities. Our WAMs use continuous action chunks via flow matching — the RL algorithms don't transfer. Even SRPO, which tested on π0 in real-world, only transferred the *reward* via offline RL — not the full online optimization loop.
+
+2. **Stage coverage gaps** — No single method covers detection + exploration + recovery. World-VLA-Loop has dreams but no OOD detection. EvoVLA has intrinsic reward but no world model. SRPO has dense reward but no active exploration. None addresses all three OOD failure modes (perturbed physics, novel compositions, detail-oriented tasks).
+
+## Why flow matching over discrete action tokens?
+
+Flow matching generates actions by solving an ODE from noise to continuous action chunks (e.g., 8 steps × 7-DoF = 56 continuous values). Discrete token VLAs (OpenVLA, RT-2) bin each dimension into ~256 tokens.
+
+- **Precision** — no quantization error. Sub-mm tasks (GM-100: 0.2mm peg-in-hole) need arbitrary-precision outputs, not 0.008-wide bins
+- **Multi-modal actions** — different noise seeds → different valid strategies. This is what πRL Flow-SDE exploits for uncertainty estimation
+- **Chunk coherence** — the entire chunk is generated jointly by one ODE solve, not as independent tokens
+- **Richer RL gradients** — continuous velocity field gives directional gradient signal, not just "right/wrong token"

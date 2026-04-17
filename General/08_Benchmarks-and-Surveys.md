@@ -188,7 +188,7 @@ Surveys spanning classical RL, its intersection with causal inference, continual
 Surveys mapping the robotics landscape from embodied AI simulators through VLA architectures to world-model-augmented control. This domain has the highest survey density, reflecting rapid growth from 2021 to 2025.
 
 **Embodied AI Foundations** — Broad surveys covering simulators, task hierarchies, and the overall embodied AI research landscape.
-- [[2407.06886|ARIO]], [[2301.11972|Social Cues HRI Survey]], [[2103.04918|Embodied AI Survey 2021]]
+- [[2507.00917|Embodied Intelligence Survey]], [[2505.07634|Neural Brain Framework]], [[2505.05108|Multi-agent Embodied AI Survey]], [[2407.06886|ARIO]], [[2401.03568|Agent AI Survey]], [[2301.11972|Social Cues HRI Survey]], [[2103.04918|Embodied AI Survey 2021]]
 
 > [!star] Key Papers
 > - [[2407.06886|ARIO]] — Comprehensive 2024 survey introducing the ARIO dataset standard for cross-study comparison

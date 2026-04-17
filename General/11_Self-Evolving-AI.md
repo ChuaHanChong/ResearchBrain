@@ -98,7 +98,7 @@ The field evolved through five threads: **self-training origins** (2022) where S
 The original self-improvement paradigm: models generate their own training data by sampling reasoning chains, filtering correct ones, and retraining on successes. Each iteration bootstraps quality beyond the original training distribution. This is the foundation on which all later self-evolving methods build.
 
 **Iterative Rationale Bootstrapping** — Generate candidate reasoning traces, keep the ones that reach correct answers, retrain, repeat. The simplest form of self-improvement, requiring only a verifier (ground-truth or model-based).
-- [[2506.00467|SST]], [[2504.08672|Genius]], [[2403.09629|Quiet-STaR]], [[2203.14465|STaR]]
+- [[2604.12002|SD-ZERO]], [[2506.00467|SST]], [[2504.08672|Genius]], [[2403.09629|Quiet-STaR]], [[2203.14465|STaR]]
 
 > [!star] Key Papers
 > - [[2203.14465|STaR]] — Pioneered iterative self-improvement: generate rationales, keep correct ones, retrain; each round improves reasoning beyond the original distribution
@@ -131,7 +131,7 @@ The original self-improvement paradigm: models generate their own training data 
 The most radical branch of self-evolution: models that improve with zero human-curated data. They either generate their own training problems (Absolute Zero), derive reward from consensus (TTRL), or use evolutionary self-play (EVOL-RL). This eliminates the last human bottleneck — the training dataset itself.
 
 **Task Self-Generation** — The model both proposes and solves its own problems, using only a code executor or environment for verification. No human data at any stage.
-- [[2603.09206|MM-Zero]], [[2509.25541|Vision-Zero]], [[2509.24726|Socratic-Zero]], [[2506.24119|SPIRAL]], [[2506.08989|SwS]], [[2506.06499|SPARQ]], [[2506.00103|Writing-Zero]], [[2505.03335|Absolute Zero]]
+- [[2604.14144|SpatialEvo]], [[2603.09206|MM-Zero]], [[2509.25541|Vision-Zero]], [[2509.24726|Socratic-Zero]], [[2506.24119|SPIRAL]], [[2506.08989|SwS]], [[2506.06499|SPARQ]], [[2506.00103|Writing-Zero]], [[2505.03335|Absolute Zero]]
 
 > [!star] Key Papers
 > - [[2505.03335|Absolute Zero]] — The defining paper: model proposes tasks, solves them, verifies via code execution, and retrains; SOTA on coding and math with literally zero human data
@@ -198,7 +198,7 @@ Self-evolving systems need to practice on the right problems at the right diffic
 When self-improvement meets agentic AI: systems that autonomously explore environments, accumulate experience, distill lessons, and evolve their own capabilities across tasks. These go beyond single-turn reasoning to multi-step, tool-using, environment-interacting agents that learn from deployment.
 
 **Agent Self-Evolution Frameworks** — End-to-end frameworks where agents improve by interacting with diverse environments, distilling experience into reusable strategies, and iterating.
-- [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.04029|Self-Adapting RL]], [[2602.00359|A-EVOLVE]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective Self-Adaptation]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]]
+- [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting RL]], [[2602.00359|A-EVOLVE]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective Self-Adaptation]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]]
 
 > [!star] Key Papers
 > - [[2406.04151|AgentGym]] — Multi-environment agent evolution via behavioral cloning + self-evolution (AGENTEVOL); showed agents can generalize across diverse tasks
@@ -235,7 +235,7 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 > - [[2603.03818|VLA Continual Learning]] — Showed pre-trained VLAs are naturally resistant to catastrophic forgetting; simple sequential fine-tuning works
 
 **Self-Evolving WAMs** — World models that autonomously improve through imagination, self-play, or co-evolution with their policy. The world model generates synthetic experience, enabling self-improvement without costly real-world interaction.
-- [[2603.08403|SPIRAL]], [[2603.19370|VAMPO]], [[2503.01584|SENSEI]], [[2502.05907|EvoAgent]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2509.19292|SOE]]
+- [[2603.19370|VAMPO]], [[2603.08403|SPIRAL]], [[2509.19292|SOE]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2503.01584|SENSEI]], [[2502.05907|EvoAgent]], [[2401.16650|WMAR]]
 
 > [!star] Key Papers
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improvement for action world models via reflective planning; the system critiques its own failures and adapts
