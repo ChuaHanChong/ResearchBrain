@@ -157,6 +157,7 @@ Standard VLAs process 2D images — they lack explicit 3D understanding. These m
 
 | Model | Spatial Feature | Result |
 |-------|----------------|--------|
+| [[2604.12908\|VGA]] | VGGT 3D world model backbone + Progressive Volumetric Modulation | Vision-to-geometry mapping; 98.1% LIBERO with +6% OOD |
 | [[2603.25399\|LaMP]] | 3D scene flow as latent motion prior | Physical foresight via dense 3D flow; 98.3% LIBERO |
 | [[2603.24393\|3D-MIX]] | VGGT-based 3D feature plug-and-play module | +12.51% OOD gains via adaptive gated 3D fusion |
 | [[2602.11236\|ABot-M0]] | Action Manifold Learning on 6M+ trajectories | Learned spatial action representations |
@@ -212,6 +213,7 @@ VLAs that incorporate learned dynamics models for planning, imagination, or co-t
 | [[2602.10098\|VLA-JEPA]] | JEPA-based latent world model attached to VLA | Latent prediction improves action quality |
 | [[2601.16163\|Cosmos Policy]] | Video diffusion model fine-tuned as policy | Video prediction = action planning |
 | [[2511.17502\|RynnVLA-002]] | Unified VLA + world model architecture | Environmental dynamics + action planning |
+| [[2511.07732\|ViPRA]] | Motion-centric latent actions from videos + flow matching action head | Learns control priors from actionless video; 69.8% SIMPLER, 79% LIBERO-Long, 22 Hz real-time |
 | [[2509.24948\|RehearseVLA]] | Simulated post-training with VLM-guided reflection | World model for rehearsal, not inference |
 | [[2507.04447\|DreamVLA]] | Forecasts depth + semantics + dynamics | Comprehensive world knowledge |
 | [[2506.19850\|UniVLA]] | All modalities as discrete tokens in one Transformer | Unified autoregressive generation |
@@ -261,6 +263,7 @@ Vision-only policies fail on contact-rich tasks (insertion, assembly, surface fo
 
 | Model | Additional Modality | Task Focus |
 |-------|-------------------|-----------|
+| [[2603.15169\|ForceVLA2]] | Cross-Scale MoE + VLM force prompts | Contact-rich manipulation (66% avg SR; +48 over π0) |
 | [[2505.22159\|ForceVLA]] | 6-axis force/torque via Force-aware MoE | Contact-rich manipulation |
 | [[2502.14420\|ChatVLA]] | Unified multimodal understanding + control | Vision + language + action in one model |
 | [[2508.19236\|MemoryVLA]] | Bio-inspired dual-memory system | Long-horizon tasks with perceptual memory |

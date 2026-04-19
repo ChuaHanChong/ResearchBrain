@@ -1184,4 +1184,28 @@ papers = [
     "https://arxiv.org/pdf/2604.11805", # Solving Physics Olympiad via Reinforcement Learning on Physics Simulators
     "https://arxiv.org/abs/2604.12002", # Self-Distillation Zero: Self-Revision Turns Binary Rewards into Dense Supervision
     "https://arxiv.org/abs/2604.14732", # World-Value-Action Model: Implicit Planning for Vision-Language-Action Systems
+    "https://arxiv.org/abs/2603.13528", # Learning Actionable Manipulation Recovery via Counterfactual Failure Synthesis
+    "https://arxiv.org/abs/2601.02295", # CycleVLA: Proactive Self-Correcting Vision-Language-Action Models via Subtask Backtracking and Minimum Bayes Risk Decoding
+    "https://arxiv.org/abs/2512.02787", # Diagnose, Correct, and Learn from Manipulation Failures via Visual Symbols
+    "https://arxiv.org/abs/2405.14093", # A Survey on Vision-Language-Action Models for Embodied AI
+    "https://arxiv.org/abs/2603.15169", # ForceVLA2: Unleashing Hybrid Force-Position Control with Force Awareness for Contact-Rich Manipulation
+    "https://arxiv.org/abs/2603.29791", # Reasoning-Driven Synthetic Data Generation and Evaluation
+    "https://arxiv.org/abs/2604.13036", # Lyra 2.0: Explorable Generative 3D Worlds
+    "https://arxiv.org/abs/2511.07732", # ViPRA: Video Prediction for Robot Actions
+    "https://arxiv.org/abs/2604.10949", # Pseudo-Unification: Entropy Probing Reveals Divergent Information Patterns in Unified Multimodal Models
+    "https://arxiv.org/abs/2604.11201", # CocoaBench: Evaluating Unified Digital Agents in the Wild
+    "https://arxiv.org/abs/2604.15034", # Autogenesis: A Self-Evolving Agent Protocol
+    "https://arxiv.org/abs/2604.06169", # In-Place Test-Time Training
+    "https://arxiv.org/abs/2604.12908", # Robotic Manipulation is Vision-to-Geometry Mapping (𝑓(𝑣) → 𝐺): Vision-Geometry Backbones over Language and Video Models
+    "https://arxiv.org/abs/2604.11992", # ReefMapGS: Enabling Large-Scale Underwater Reconstruction by Closing the Loop Between Multimodal SLAM and Gaussian Splatting
+    "https://arxiv.org/abs/2604.12837", # GGD-SLAM: Monocular 3DGS SLAM Powered by Generalizable Motion Model for Dynamic Environments
+    "https://arxiv.org/abs/2604.12942", # RMGS-SLAM: Real-time Multi-sensor Gaussian Splatting SLAM
+    "https://arxiv.org/abs/2604.10962", # ScoRe-Flow: Complete Distributional Control via Score-Based Reinforcement Learning for Flow Matching
+    "https://arxiv.org/abs/2604.10677", # LIDEA: Human-to-Robot Imitation Learning via Implicit Feature Distillation and Explicit Geometry Alignment
+    "https://arxiv.org/abs/2604.11689", # LARY: A Latent Action Representation Yielding Benchmark for Generalizable Vision-to-Action Alignment
+    "https://arxiv.org/abs/2604.10836", # HO-Flow: Generalizable Hand-Object Interaction Generation with Latent Flow Matching
+    "https://arxiv.org/abs/2604.11768", # Identifying Inductive Biases for Robot Co-Design
+    "https://arxiv.org/abs/2604.11306", # Learning to Forget – Hierarchical Episodic Memory for Lifelong Robot Deployment
+    "https://arxiv.org/abs/2604.11351", # WM-DAgger: Enabling Efficient Data Aggregation for Imitation Learning with World Models
+    "https://arxiv.org/abs/2604.11135", # AIM: Intent-Aware Unified world action Modeling with Spatial Value Maps
 ]

@@ -172,7 +172,7 @@ Spatial reasoning evaluation tests whether models understand *where things are r
 
 Evaluating whether learned world models generate physically plausible, action-consistent, long-horizon predictions.
 
-- [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2602.05986|RISE-Video]]
+- [[2604.11689|LARY]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2602.05986|RISE-Video]]
 
 World model evaluation has shifted from passive video quality metrics (FVD, SSIM) to *interactive* benchmarks that test whether the model can predict consequences of actions. WR-Arena evaluates action-following fidelity: given an action, does the predicted next frame show the correct outcome? Causal consistency testing checks counterfactuals: if the action changes, does the predicted future change accordingly? OpenWorldLib provides a unified codebase for comparing world models across interactive video generation, 3D generation, and VLA tasks — standardizing evaluation that was previously fragmented across papers.
 

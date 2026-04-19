@@ -330,7 +330,7 @@ RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal m
 > - [[2603.14117\|SIEVE]] — Self-revisiting visual evidence via RL, +7.85% on V*Bench
 
 **Synthetic Data & Training Pipelines for Visual CoT** — Methods for generating high-quality visual reasoning training data at scale.
-- [[2603.27866\|Wan-R1]], [[2603.22117\|RLVR Direction]], [[2603.17693\|SynRL]], [[2512.05665\|ILVR]], [[2510.12225\|HoneyBee]], [[2507.20529\|SpatialVTS]], [[2507.12508\|MindJourney]], [[2506.02096\|SynthRL]], [[2505.23224\|MMBoundary]], [[2505.22651\|Sherlock]], [[2505.22453\|MM-UPT]], [[2505.22334\|Multimodal RL Cold Start]], [[2505.05464\|Bring Reason to Vision]], [[2504.13055\|NoisyRollout]], [[2501.13926\|CoT Image Generation]]
+- [[2603.29791\|Simula]], [[2603.27866\|Wan-R1]], [[2603.22117\|RLVR Direction]], [[2603.17693\|SynRL]], [[2512.05665\|ILVR]], [[2510.12225\|HoneyBee]], [[2507.20529\|SpatialVTS]], [[2507.12508\|MindJourney]], [[2506.02096\|SynthRL]], [[2505.23224\|MMBoundary]], [[2505.22651\|Sherlock]], [[2505.22453\|MM-UPT]], [[2505.22334\|Multimodal RL Cold Start]], [[2505.05464\|Bring Reason to Vision]], [[2504.13055\|NoisyRollout]], [[2501.13926\|CoT Image Generation]]
 
 > [!star] Key Papers
 > - [[2510.12225\|HoneyBee]] — Meta FAIR's systematic investigation into constructing high-quality visual CoT training data

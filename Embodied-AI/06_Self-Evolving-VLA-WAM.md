@@ -237,21 +237,21 @@ VLAs can self-evolve *without* an explicit world model — their rich VLM repres
 
 Agents that go beyond weight updates to evolve their *behavior* — distilling interaction trajectories into reusable strategies, building skill libraries, and co-evolving with their environments.
 
-| Model | Self-Improvement Mechanism |
-|-------|--------------------------|
-| [[2604.11306\|Hierarchical Episodic Memory]] | Hierarchical episodic memory with relevance-based forgetting |
-| [[2604.10892\|HECTOR]] | Human-centric hierarchical coordination of robotic fleets |
-| [[2604.10096\|ABot-Claw]] | Persistent, cooperative, self-evolving robotic agents |
-| [[2604.07799\|ECM]] | Modular, versioned capability modules; 91.3% success, zero drift |
-| [[2603.24350\|Emergent Self]] | Emergent stable self-representation in continual deep RL robots |
-| [[2510.16079\|EVOLVER]] | Distills raw interaction trajectories into strategic principles |
-| [[2508.02085\|SE-Agent]] | Self-evolutionary framework optimizing multi-step agent behavior |
-| [[2601.07055\|Dr. Zero]] | Meta's framework: search agents self-evolve without human training data |
-| [[2506.21669\|SEEA-R1]] | Tree-structured RL for self-evolving embodied agents; +24% via MCTS |
-| [[2601.06794\|ECHO]] | Policy and environment co-evolve: harder challenges as policy improves |
-| [[2603.04029\|Self-Adapting RL]] | World model residuals detect OOD; triggers targeted self-adaptation |
-| [[2509.19292\|SOE]] | Action-level probing via VIB for self-improvement |
-| [[2409.00872|SAGE]] | Reflective and memory-augmented self-evolving agents |
+| Model                                        | Self-Improvement Mechanism                                              |                                                      |
+| -------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------- |
+| [[2604.11306\|Hierarchical Episodic Memory]] | Hierarchical episodic memory with relevance-based forgetting            |                                                      |
+| [[2604.10892\|HECTOR]]                       | Human-centric hierarchical coordination of robotic fleets               |                                                      |
+| [[2604.10096\|ABot-Claw]]                    | Persistent, cooperative, self-evolving robotic agents                   |                                                      |
+| [[2604.07799\|ECM]]                          | Modular, versioned capability modules; 91.3% success, zero drift        |                                                      |
+| [[2603.24350\|Emergent Self]]                | Emergent stable self-representation in continual deep RL robots         |                                                      |
+| [[2510.16079\|EVOLVER]]                      | Distills raw interaction trajectories into strategic principles         |                                                      |
+| [[2508.02085\|SE-Agent]]                     | Self-evolutionary framework optimizing multi-step agent behavior        |                                                      |
+| [[2601.07055\|Dr. Zero]]                     | Meta's framework: search agents self-evolve without human training data |                                                      |
+| [[2506.21669\|SEEA-R1]]                      | Tree-structured RL for self-evolving embodied agents; +24% via MCTS     |                                                      |
+| [[2601.06794\|ECHO]]                         | Policy and environment co-evolve: harder challenges as policy improves  |                                                      |
+| [[2603.04029\|Self-Adapting RL]]             | World model residuals detect OOD; triggers targeted self-adaptation     |                                                      |
+| [[2509.19292\|SOE]]                          | Action-level probing via VIB for self-improvement                       |                                                      |
+| [[2409.00872\|SAGE]]                         | Reflective and memory-augmented self-evolving agents                    |                                                      |
 
 **How EVOLVER Distills Experience into Principles**: After each interaction episode, EVOLVER extracts a structured 'experience card' — a summary of what happened, what worked, what failed, and what strategic principle can be derived. These cards accumulate in a persistent experience bank. Before each new task, the agent retrieves relevant cards and conditions its behavior on the distilled principles — the agent's weights don't change, but its behavior evolves through accumulated knowledge.
 

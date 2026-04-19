@@ -110,7 +110,7 @@ Video diffusion models learn physics by training on internet-scale video data �
 - [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[2310.10625|VLP]]
 
 **Video Pretraining for Robot Policies** — Train on internet video, fine-tune for robot control.
-- [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2602.12099|GigaBrain-0.5M*]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2508.00795|Video Policy]], [[2505.15659|FLARE]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
+- [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2602.12099|GigaBrain-0.5M*]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2511.07732|ViPRA]], [[2508.00795|Video Policy]], [[2505.15659|FLARE]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
 
 > [!star] Key Papers
 > - [[2602.15922|DreamZero]] — 14B joint video+action model; 39.5% on unseen tasks, 42% cross-embodiment improvement, 7Hz real-time
@@ -120,7 +120,7 @@ Video diffusion models learn physics by training on internet-scale video data �
 - [[2512.24766|Dream2Flow]], [[2512.13644|DexWM]], [[2505.12705|DreamGen]], [[2504.15369|Inverse Probabilistic Adaptation]]
 
 **Physics-Aligned Video Generation** — Explicitly enforce physical plausibility during video generation.
-- [[2604.07348|MoRight]], [[2604.07209|INSPATIO-WORLD]], [[2603.23376|ABot-PhysWorld]], [[2602.05986|RISE-Video]], [[2409.18964|PhysGen]]
+- [[2604.13036|Lyra 2.0]], [[2604.07348|MoRight]], [[2604.07209|INSPATIO-WORLD]], [[2603.23376|ABot-PhysWorld]], [[2602.05986|RISE-Video]], [[2409.18964|PhysGen]]
 
 > [!star] Key Papers
 > - [[2603.23376|ABot-PhysWorld]] — Diffusion-DPO for physics alignment; suppresses implausible predictions (object penetration, anti-gravity)

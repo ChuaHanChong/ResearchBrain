@@ -242,7 +242,7 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 Understanding what VLMs learn internally — which features matter, how representations are structured, and why models make specific predictions.
 
 **Mechanistic Interpretability** — Dissecting VLM internals through sparse autoencoders, attention analysis, and probing.
-- [[2602.06218|SAE-A]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2507.10442|VLM Three-Space Analysis]], [[2506.11976|VLM Visual-Language Alignment]], [[2506.01247|VS2]], [[2505.22664|VLM Surrogate Grafting]], [[2505.20229|CLIP Attribution SAE]], [[2504.19475|Prisma]], [[2310.05916|TEXTSPAN]]
+- [[2604.10949|Pseudo-Unification Probing]], [[2602.06218|SAE-A]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2507.10442|VLM Three-Space Analysis]], [[2506.11976|VLM Visual-Language Alignment]], [[2506.01247|VS2]], [[2505.22664|VLM Surrogate Grafting]], [[2505.20229|CLIP Attribution SAE]], [[2504.19475|Prisma]], [[2310.05916|TEXTSPAN]]
 
 > [!star] Key Papers
 > - [[2310.05916|TEXTSPAN]] — Systematic method to interpret CLIP's image representations by decomposing them into text-describable components
