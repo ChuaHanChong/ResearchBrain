@@ -84,6 +84,8 @@ Full analysis — including baseline-by-baseline compute comparison and three ho
 |---|---|---|
 | Detection | [[2510.09459\|FIPER]] (AND-gate) | No |
 | Detection | [[2506.09937\|SAFE]] probe + CP | **Yes** |
+| Detection | [[2507.17383\|VLA-Calib]] (Platt + prompt ensembles) | **Yes** |
+| Detection | [[2601.02295\|CycleVLA]] subtask-progress classifier | **Yes** |
 | Attribution | [[2604.01985\|WAV]] forward-inverse | Needs expert IDM data |
 | Attribution | [[2512.01946\|Guardian / FailCoT]] | **Yes** (30K+ examples) |
 | Attribution | [[2602.01515\|RAPT]] LLM root-cause | **Yes** |

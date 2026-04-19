@@ -439,6 +439,8 @@ These require failure labels, expert trajectories, or preference data. Included 
 | ID | Baseline | Extra supervision needed |
 |---|---|---|
 | **B-SAFE** | [[2506.09937\|SAFE]] MLP/LSTM probe + Functional CP | Labeled success+failure rollouts per task |
+| **B-CALIB** | [[2507.17383\|VLA-Calib]] — action-wise Platt scaling + prompt ensembles, per-DOF scalar confidence | Labeled failure rollouts for Platt calibration |
+| **B-CYCLE** | [[2601.02295\|CycleVLA]] — subtask-progress classifier + MBR decoding (detection slice only, recovery out of scope) | Subtask-progress labels |
 | **B-RND** | Random Network Distillation: $f_{\text{succ}}^{\text{ood}}(e) - f_{\text{fail}}^{\text{ood}}(e)$ | Labeled success+failure embeddings |
 | **B-WMFC** | 3-way success / known-failure / OOD | Labeled success+failure+OOD rollouts |
 | **B-ARMADA** | Online OT on policy embeddings vs. expert trajectories | Expert demonstration trajectories |
@@ -547,6 +549,8 @@ For each competitor we specify (a) what it outputs, (b) its supervision requirem
 | Competitor | Output | Supervision they use | Our advantage | Demonstrated in |
 |---|---|---|---|---|
 | [[2506.09937\|SAFE]] | Scalar failure score | Labeled success + failure rollouts | No failure labels needed; and component-level attribution | §5.3.1 detection parity + §5.3.2 attribution |
+| [[2507.17383\|VLA-Calib]] | Per-DOF scalar confidence (output-layer Platt scaling) | Labeled failure rollouts for Platt calibration | No failure labels needed; per-DOF confidence is finer-grained than cell-level attribution but still single-bit semantically (uncertain vs. confident) — ours decomposes *cause* | §5.3.1 detection parity + §5.3.2 attribution |
+| [[2601.02295\|CycleVLA]] | Binary subtask-complete flag (runtime) + recovery action (out of scope) | Subtask-progress labels | No labels needed; CycleVLA detects *when* subtask fails but not *why* (WM vs. action-head); diagnosis cleanly separated from recovery | §5.3.1 detection parity + §5.3.2 attribution |
 | [[2510.02298\|ARMADA]] | OT distance on embeddings | Expert trajectories | No expert data needed | §5.3.1 detection parity |
 | [[2603.02115\|Robometer]] | VLM reward-inversion | Expert progress + preferences | Reward-based signal is global not component-level | §5.3.2 attribution |
 | [[2602.01515\|RAPT]] | LLM environmental root-cause | VLM fine-tuned on root-cause labels | Different taxonomy — we attribute to component (fix target), RAPT to environment (avoid target) | §5.3.2 cross-taxonomy analysis |
