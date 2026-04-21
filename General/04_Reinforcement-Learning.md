@@ -202,10 +202,12 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2506.01622|General Agents World Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
 
 **Offline Model-Based RL** — Learning world models from fixed datasets without further environment interaction, enabling safe policy improvement.
-- [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[1803.10122|World Models]]
+- [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2310.06253|Objective Mismatch MBRL Survey]], [[1803.10122|World Models]]
 
 > [!star] Key Papers
 > - [[2504.16680|RWM-U]] — Uncertainty-aware world model for real-robot offline RL; bridges sim-to-real with calibrated uncertainty
+> - [[2505.13709|Policy-Driven WM Adaptation]] — Joint WM-policy optimization via Stackelberg dynamics; resolves objective mismatch with state-of-the-art robustness
+> - [[2310.06253|Objective Mismatch MBRL Survey]] — Unified taxonomy for decision-aware MBRL; foundational reference for the objective-mismatch problem
 
 **Continual & Online World Models** — World models that update online without catastrophic forgetting, supporting lifelong learning.
 - [[2604.08958|WOMBET]], [[2603.04029|Self-Adapting RL]], [[2602.00475|GRASP]], [[2507.09177|Online Agent (OA)]]
@@ -517,9 +519,10 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2504.12328|Reward Model Survey]] — Comprehensive survey consolidating RM research in the LLM era; introduces unified taxonomy
 
 **Outcome & Reasoning Reward Models** — Reward models that evaluate full reasoning chains and final outcomes, including self-rewarding and reasoning-based approaches.
-- [[2604.11626|RationalRewards]], [[2603.16253|EVPV]], [[2603.02115|Robometer]], [[2511.10648|SCS]], [[2511.09158|CRM]], [[2511.01758|RLAC]], [[2510.23596|BR-RM]], [[2510.15242|DWRL]], [[2510.08696|LENS]], [[2510.07242|HERO]], [[2506.03637|RewardAnything]], [[2505.14674|RRM]], [[2505.03318|UNIFIEDREWARD-THINK]]
+- [[2604.16004|AgentV-RL]], [[2604.11626|RationalRewards]], [[2603.16253|EVPV]], [[2603.02115|Robometer]], [[2511.10648|SCS]], [[2511.09158|CRM]], [[2511.01758|RLAC]], [[2510.23596|BR-RM]], [[2510.15242|DWRL]], [[2510.08696|LENS]], [[2510.07242|HERO]], [[2506.03637|RewardAnything]], [[2505.14674|RRM]], [[2505.03318|UNIFIEDREWARD-THINK]]
 
 > [!star] Key Papers
+> - [[2604.16004|AgentV-RL]] — Forward/Backward bidirectional agentic verifier with Python-tool integration; beats 70B INF-ORM by 25.2pp on MATH500 with only 4B params
 > - [[2505.03318|UNIFIEDREWARD-THINK]] — First unified reasoning reward model; evaluates all modalities with explicit chain-of-thought
 > - [[2506.03637|RewardAnything]] — Reward models that follow natural language principles; infinitely customizable
 > - [[2510.07242|HERO]] — Integrates sparse verifier signals with dense generative rewards; best of both worlds
@@ -614,9 +617,10 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 RL methods designed for or applied to physical robot learning — sample efficiency, safety, and real-world deployment constraints make robotics RL fundamentally different from LLM RL.
 
 **VLA RL Post-Training** — Applying RL to fine-tune Vision-Language-Action models beyond what imitation learning alone achieves.
-- [[2604.08168|ViVa]], [[2604.05614|GPLA]], [[2604.02523|Tune to Learn]], [[2603.27670|ProgressVLA]], [[2603.27164|daVinci-LLM]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.28116|AutoDrive-P3]], [[2602.01789|RFS]], [[2509.19301|ResFiT]], [[2509.09674|SimpleVLA-RL]], [[2508.18269|FlowVLA]], [[2506.08440|TGRPO]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]], [[2504.04259|ORCA Hand]], [[2503.16806|DyWA]], [[2502.14795|Humanoid-VLA]]
+- [[2604.17706|OmniVLA-RL]], [[2604.08168|ViVa]], [[2604.05614|GPLA]], [[2604.02523|Tune to Learn]], [[2603.27670|ProgressVLA]], [[2603.27164|daVinci-LLM]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.28116|AutoDrive-P3]], [[2602.01789|RFS]], [[2509.19301|ResFiT]], [[2509.09674|SimpleVLA-RL]], [[2508.18269|FlowVLA]], [[2506.08440|TGRPO]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]], [[2504.04259|ORCA Hand]], [[2503.16806|DyWA]], [[2502.14795|Humanoid-VLA]]
 
 > [!star] Key Papers
+> - [[2604.17706|OmniVLA-RL]] — Flow-GSPO: reformulates flow matching as SDE for stable online RL; 97.6% on LIBERO with faster convergence than PPO/GRPO
 > - [[2505.18719|VLA-RL]] — First systematic RL framework for VLAs; showed RL post-training consistently improves over SFT
 > - [[2506.08440|TGRPO]] — Trajectory-wise GRPO adapted for VLA fine-tuning; bridges LLM RL and robot RL
 

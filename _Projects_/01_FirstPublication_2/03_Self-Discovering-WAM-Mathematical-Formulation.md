@@ -39,14 +39,14 @@ aliases:
 > **Backbones, cells, and indices** (disambiguated):
 > - $X \in \{A, B\}$ — backbone index ($A$ = UWM, $B$ = Cosmos Policy).
 > - $c \in \{1, \ldots, 8\}$ — 2×2×2 cell index; $c_\text{inj} \in \{00, 01, 10, 11\}$ — injection class (subscript to distinguish from cell index).
-> - $m \in \{\text{video}, \text{action}, \text{value}\}$ — output modality (used with $z_m^{(K)}$, $\mathcal{D}_m$, $N_m$).
+> - $m \in \{\text{video}, \text{action}, \text{value}\}$ — output modality (used with $z_m^{*}$ for the final clean modality-output latent, $\mathcal{D}_m$, $N_m$). UWM starts from $z_m^{(K)} \sim \mathcal{N}(0,I)$ and reverses to $z_m^{(0)} = z_m^{*}$; Cosmos Policy starts from $z_m^{(0)} \sim \mathcal{N}(0,I)$ and evolves to $z_m^{(K)} = z_m^{*}$.
 > - $K$ — **diffusion/ODE solver steps** in (2.1); $K_\text{samp}$ — **action sample count** for STAC ($K_\text{samp} = 256$) and ACE ($K_\text{samp} = 100$). Different letters to avoid collision.
 >
 > **Parameters and noise**:
-> - $\theta$ — shared DiT weights; $w_L$ — last-layer weights (DIFF-UQ Laplace subject); $\psi$ — CNF weights (logpZO).
+> - $\theta$ — shared DiT weights; $\psi$ — CNF weights (logpZO).
 > - $\alpha \in (0,1)$ — target joint false-positive rate per cell (headline $\alpha = 0.10$).
 > - $\sigma_\mathrm{inj}$ — injected-failure noise scale (per backbone, per modality).
-> - $M \geq 1$ — DIFF-UQ MC sample count; $M \geq 2$ required for CLIP semantic-entropy channel.
+> - $k_\text{ev}$ — number of leading eigenvalues in EigenScore (default 5); $n_\text{iter}$ — central-difference power-iteration steps (default 3); $n_\text{ts}$ — EigenScore timestep-average count (default 5); $\epsilon_\text{ED}$ — central-difference perturbation magnitude.
 >
 > **Convention**: $\tau$ **only ever appears as a threshold** (with subscript and time argument: $\tau_X(t)$). $\omega$ is always a trajectory. $X$ is always a backbone index. $K$ without qualification is always solver steps.
 
@@ -58,16 +58,23 @@ aliases:
 
 Both backbones expose a single map
 
-$$\mathcal{F}_\theta\colon (o_{1:t}, l) \;\mapsto\; \bigl(\hat{O}_{t+1},\; \mathbf{a}_{t:t+H},\; \phi_t\bigr)$$
+$$\mathcal{F}_\theta\colon (o_{1:t}, l) \;\mapsto\; \bigl(\hat{O}_{t+1},\; \mathbf{a}_{t:t+H},\; g_\theta(\cdot, \cdot, c)\bigr)$$
 
-where $\phi_t \in \mathbb{R}^{d_L}$ denotes the **last-layer input activations** of the shared DiT at step $t$ (the quantity consumed by DIFF-UQ's Laplace posterior). The two backbones differ only in how they route $\hat{O}_{t+1}$ and $\mathbf{a}_{t:t+H}$ out of the shared DiT:
+where $g_\theta$ is the shared DiT's denoiser / velocity head (the network query exposed at inference; conditioning $c = (o_{1:t}, l)$) — the quantity consumed by EigenScore's central-difference subspace iteration. The two backbones use **different diffusion parameterizations** and EigenScore adapts to each:
+
+| Backbone | Parameterization | Network $g_\theta$ predicts | Denoiser $\tilde{D}_\theta$ reconstruction |
+|---|---|---|---|
+| **[[2504.02792\|UWM]]** (~90M) | **DDPM ε-prediction, VP schedule** (verified `unified-world-model/models/uwm/uwm.py` — `DDIMScheduler` + `F.mse_loss(noise_pred, noise)`) | $\varepsilon_\theta(x_t, t)$ (noise) | $\tilde{D}_\theta = (x_t - \sigma_t\,\varepsilon_\theta)/\alpha_t$ where $\alpha_t = \sqrt{\bar\alpha_t},\ \sigma_t = \sqrt{1 - \bar\alpha_t}$ |
+| **[[2601.16163\|Cosmos Policy]]** (~2B) | **Rectified Flow** (verified `cosmos-policy/_src/predict2/schedulers/rectified_flow.py` — $x_\tau = \tau\,x_\text{noise} + (1-\tau)\,x_\text{data}$, $v = x_\text{noise} - x_\text{data}$) | $v_\theta(x_\tau, \tau)$ (velocity) | $\tilde{D}_\theta = x_\tau - \tau\,v_\theta$ (see §2.2) |
+
+The two backbones also differ on how they route $\hat{O}_{t+1}$ and $\mathbf{a}_{t:t+H}$ out of the shared DiT:
 
 | Backbone | Decoupling mechanism | What shares $\theta$ | What differs |
 |---|---|---|---|
 | **[[2504.02792\|UWM]]** (~90M) | Modality-independent diffusion timesteps | DiT weights + visual tokenizer | Timestep schedule for video vs. action outputs |
 | **[[2601.16163\|Cosmos Policy]]** (~2B) | Distinct latent-frame roles | Cosmos-Predict2 DiT + tokenizer | Role assignment of latent frames: action / future-image / value |
 
-Let $\pi(O \mid o_{1:t}, l; \theta)$ denote the diffusion-WAM's conditional distribution over next frames, and let $p(\mathbf{a} \mid o_{1:t}, l; \theta)$ denote the conditional over action chunks. Both are score- or velocity-parameterized in the usual diffusion / flow-matching sense.
+Let $\pi(O \mid o_{1:t}, l; \theta)$ denote the diffusion-WAM's conditional distribution over next frames, and let $p(\mathbf{a} \mid o_{1:t}, l; \theta)$ denote the conditional over action chunks. Both are parameterized either through an $\varepsilon$-prediction denoising process (UWM, DDPM-VP) or through a flow-matching velocity field (Cosmos Policy, rectified flow).
 
 ### 1.2 Per-timestep signals (per cell)
 
@@ -75,7 +82,7 @@ Each cell of the 2×2×2 grid pairs one imag signal with one act signal:
 
 | Axis | Options | Input | Output |
 |---|---|---|---|
-| **Imag** | `logpZO` **or** DIFF-UQ | $\hat{O}_{t+1}$ (+ $\phi_t$ for DIFF-UQ) | $s_\text{imag}(t) \in \mathbb{R}_{\geq 0}$ |
+| **Imag** | `logpZO` **or** EigenScore | $\hat{O}_{t+1}$ (+ access to $v_\theta$ for EigenScore central-differences) | $s_\text{imag}(t) \in \mathbb{R}_{\geq 0}$ |
 | **Act** | ACE **or** STAC | $\mathbf{a}_{t:t+H}$ (or $K$ samples thereof) | $s_\text{act}(t) \in \mathbb{R}_{\geq 0}$ |
 
 ### 1.3 Calibration and injection
@@ -90,23 +97,48 @@ Each cell of the 2×2×2 grid pairs one imag signal with one act signal:
 
 > Goal: a notation covering both UWM's timestep-decoupled forward and Cosmos Policy's role-token-decoupled forward, so that every downstream equation applies to both backbones.
 
-### 2.1 Shared latent-flow forward
+### 2.1 Shared latent sampling process (per backbone)
 
-Let $\mathcal{V}$ denote the latent / token space of the shared DiT and let $v_\theta: \mathcal{V} \times [0,1] \times \mathcal{C} \to \mathcal{V}$ be the DiT's velocity field, where $\mathcal{C}$ is the conditioning space (observation + language tokens). Flow matching ([[2504.02792|UWM]] §3; [[2601.16163|Cosmos Policy]] §3, following Cosmos-Predict2) defines, for each output channel $m \in \{\text{video}, \text{action}, \text{value}\}$:
+Let $\mathcal{V}$ denote the latent / token space of the shared DiT and $\mathcal{C}$ the conditioning space (observation + language tokens). The two backbones run different reverse processes; both are $K$-step iterative updates through the same latent DiT but with different parameterizations and step rules, for each output channel $m \in \{\text{video}, \text{action}, \text{value}\}$:
 
-$$z_m^{(k+1)} = z_m^{(k)} + \tfrac{1}{K}\,v_\theta\!\bigl(z_m^{(k)},\;t_k^{(m)},\;c(o_{1:t}, l)\bigr),\qquad z_m^{(0)} \sim \mathcal{N}(0, I),\ k=0,\ldots,K-1. \tag{2.1}$$
+**UWM (DDPM-VP with DDIM sampler, [[2504.02792|UWM]] §III-A Eq. 1)**:
 
-The **distinguishing content** is $t_k^{(m)}$ (UWM: modality-independent schedules) or the channel identity baked into $z_m^{(0)}$ through latent-frame role assignment (Cosmos Policy). Let $\mathcal{D}_m$ denote the decoder that maps the final latent $z_m^{(K)}$ to output space:
+$$z_m^{(k-1)} = \text{DDIMStep}\bigl(z_m^{(k)},\;\varepsilon_\theta(z_m^{(k)},\,t_k^{(m)},\,c),\;\bar\alpha_{t_k^{(m)}}\bigr),\qquad z_m^{(K)} \sim \mathcal{N}(0, I),\ k=K, \ldots, 1. \tag{2.1a}$$
 
-$$\hat{O}_{t+1} = \mathcal{D}_\text{video}\bigl(z_\text{video}^{(K)}\bigr),\qquad \mathbf{a}_{t:t+H} = \mathcal{D}_\text{action}\bigl(z_\text{action}^{(K)}\bigr). \tag{2.2}$$
+**Cosmos Policy (rectified flow Euler update, following Cosmos-Predict2)**:
 
-### 2.2 Last-layer activations (required by DIFF-UQ)
+$$z_m^{(k+1)} = z_m^{(k)} - \tfrac{1}{K}\,v_\theta\!\bigl(z_m^{(k)},\;\tau_k^{(m)},\;c\bigr),\qquad z_m^{(0)} \sim \mathcal{N}(0, I),\ k=0,\ldots,K-1. \tag{2.1b}$$
 
-Let $g_\theta = h_\theta \circ f_{\theta \setminus w_L}$ be a decomposition of the DiT's final block, where $f_{\theta \setminus w_L}$ produces the last-layer input $\phi_t \in \mathbb{R}^{d_L}$ and $h_\theta$ is the affine last-layer map with weights $w_L$:
+The **distinguishing content** is the per-modality schedule $t_k^{(m)}$ / $\tau_k^{(m)}$ (UWM: modality-independent diffusion timesteps — separate $\bar\alpha$ curves for video vs. action) or the channel identity baked into the latent-frame role assignment (Cosmos Policy — separate $v_\theta$ output heads per role). We refer to the abstract network call as $g_\theta(\cdot, \cdot, c)$ ($\varepsilon_\theta$ on UWM, $v_\theta$ on Cosmos) throughout the rest of the document. Let $\mathcal{D}_m$ denote the decoder that maps the final latent to output space:
 
-$$z_m^{(K)} = h_{w_L}(\phi_t) = W_L \phi_t + b_L. \tag{2.3}$$
+$$\hat{O}_{t+1} = \mathcal{D}_\text{video}\bigl(z_\text{video}^{*}\bigr),\qquad \mathbf{a}_{t:t+H} = \mathcal{D}_\text{action}\bigl(z_\text{action}^{*}\bigr), \tag{2.2}$$
 
-DIFF-UQ treats only $w_L = (W_L, b_L)$ as random; all upstream weights are frozen. This is the **Bayesian last-layer** decomposition of [[2502.20946|DIFF-UQ]] §3.1.
+where $z_m^{*}$ denotes the **final clean latent** of modality $m$ after the full $K$-step reverse process: $z_m^{*} = z_m^{(0)}$ for UWM (DDIM reverse) or $z_m^{*}$ for Cosmos Policy (Euler RF forward).
+
+### 2.2 Denoiser reconstruction & score bridge — per backbone (required by EigenScore)
+
+[[2510.07206|EigenScore]] is derived in the EDM (Karras et al.) denoising parameterization, which exposes an explicit denoiser $D_\theta(x_t, \sigma_t)$ predicting the clean sample from the noisy input. Neither UWM nor Cosmos Policy matches this interface natively — UWM outputs $\varepsilon$, Cosmos Policy outputs the flow-matching velocity $v$. We reconstruct an effective denoiser $\tilde{D}_\theta \approx \mathbb{E}[x_0 \mid x_t]$ per backbone:
+
+**UWM (DDPM-VP, $\varepsilon$-prediction).** Under $x_t = \alpha_t\,x_0 + \sigma_t\,\varepsilon,\; \varepsilon \sim \mathcal{N}(0,I)$ with $(\alpha_t, \sigma_t) = (\sqrt{\bar\alpha_t}, \sqrt{1-\bar\alpha_t})$:
+
+$$\tilde{D}_\theta^\text{UWM}(x_t, t) \;=\; \frac{x_t - \sigma_t\,\varepsilon_\theta(x_t, t)}{\alpha_t},\qquad \nabla_{x_t} \log p_t(x_t) \;=\; -\frac{\varepsilon_\theta(x_t, t)}{\sigma_t}. \tag{2.3a}$$
+
+This is standard DDPM x0-prediction (see e.g. Kingma et al. 2021, Song et al. 2021).
+
+**Cosmos Policy (rectified flow, velocity-prediction).** Cosmos-Predict2 uses the convention $x_\tau = \tau\,x_\text{noise} + (1-\tau)\,x_\text{data}$ with $v_\theta \approx x_\text{noise} - x_\text{data}$ (verified in the cloned scheduler source). Solving for the clean component: $x_\text{data} = x_\tau - \tau\,v_\theta(x_\tau, \tau)$, so the reconstructed denoiser is
+
+$$\tilde{D}_\theta^\text{Cos}(x_\tau, \tau) \;=\; x_\tau - \tau\,v_\theta(x_\tau, \tau, c). \tag{2.3b}$$
+
+Because rectified flow has a **signal-scaled** interpolation ($\alpha_\tau = 1-\tau$, $\sigma_\tau = \tau$, signal coefficient $\neq 1$), the score bridge is
+
+$$\nabla_{x_\tau} \log p_\tau(x_\tau) \;=\; \frac{(1-\tau)\,\tilde{D}_\theta^\text{Cos}(x_\tau, \tau) - x_\tau}{\tau^2} \;=\; -\frac{v_\theta(x_\tau, \tau, c)}{\tau}, \tag{2.3c}$$
+
+where the second equality follows by substituting (2.3b). Note that this is **not** the EDM form $\nabla \log p = -(x - D)/\sigma^2$, because EDM has variance-exploding unit signal coefficient while rectified flow is variance-preserving with signal coefficient $1-\tau$ (Meng et al. 2021, "Estimating High-Order Gradients"; Mardani et al. 2024).
+
+Both backbones' networks are accessed as black-box forward evaluations. The identities (2.3a)–(2.3c) are used only to reinterpret $g_\theta$'s output as a denoiser for the purpose of central-difference subspace iteration (§4).
+
+> [!note] Time-shifting in Cosmos-Predict2
+> Cosmos-Predict2 applies time shifting (`shift=3` by default; sometimes dynamic) that rescales the effective noise schedule. At inference, the experimental code must query Cosmos's `rectified_flow.get_sigmas()` rather than assuming $\sigma(\tau) = \tau$. This affects threshold calibration across timesteps.
 
 ### 2.3 Action-chunk sampling
 
@@ -150,46 +182,82 @@ Ablation S9 measures `logpZO(O_t)` vs. `logpZO(\hat{O}_{t+1})` per backbone to i
 
 ---
 
-## 4. Imag Signal #2 — DIFF-UQ (Laplace + CLIP)
+## 4. Imag Signal #2 — EigenScore (posterior-covariance spectrum, Jacobian-free)
 
-### 4.1 Last-layer Laplace posterior ([[2502.20946|DIFF-UQ]] §3.1)
+### 4.1 General posterior-covariance identity (Meng et al. 2021; [[2510.07206|EigenScore]] §3)
 
-With the decomposition (2.3), the last-layer weights are given a Gaussian prior $w_L \sim \mathcal{N}(0, \tau_0^{-1} I)$ (using $\tau_0$ for the prior precision to avoid collision with conformal thresholds $\tau_X(t)$), and the Laplace approximation around the MAP $\hat{w}_L$ yields a Gaussian posterior with a **diagonal empirical-Fisher** precision (verified `DIFF-UQ/diffusion_laplace.py:119-132`; code uses `einsum("bp,bp->p")` — per-parameter squared-gradient sum, not full outer-product):
+For a Gaussian noising process $x_t = \alpha_t\,x_0 + \sigma_t\,\varepsilon,\; \varepsilon \sim \mathcal{N}(0, I)$ (covers both UWM's VP schedule and Cosmos Policy's rectified-flow schedule), Tweedie's formula gives
 
-$$q(w_L \mid \mathcal{D}_\text{cal}) \;=\; \mathcal{N}(\hat{w}_L,\,\Sigma_L),\qquad [\Sigma_L^{-1}]_{jj} \;=\; \tau_0 \;+\; \sum_{x \in \mathcal{D}_\text{cal}} (G_{x,j})^2, \qquad [\Sigma_L^{-1}]_{jk} = 0\ \text{for}\ j \neq k, \tag{4.1}$$
+$$\alpha_t\,\mathbb{E}[x_0 \mid x_t] \;=\; x_t + \sigma_t^2\,\nabla_{x_t}\log p_t(x_t), \tag{4.1}$$
 
-where $G_x = \nabla_{w_L} \ell(f(x; \theta)) \in \mathbb{R}^{|w_L|}$ is the per-sample gradient of the flow-matching loss w.r.t. $w_L$, and $G_{x,j}$ denotes its $j$-th component. The diagonal structure reduces memory from $|w_L|^2$ to $|w_L|$ — essential for the 2B Cosmos Policy last layer.
+and the posterior covariance is related to the Jacobian of the reconstructed denoiser $\tilde{D}_\theta \approx \mathbb{E}[x_0 \mid x_t]$:
 
-### 4.2 MC sampling of predicted frames ([[2502.20946|DIFF-UQ]] §3.2)
+$$\Sigma(x_t, t) \;:=\; \mathrm{Cov}\!\bigl[x_0 \mid x_t\bigr] \;=\; \frac{\sigma_t^2}{\alpha_t}\,\partial_{x_t} \tilde{D}_\theta(x_t, t) \;-\; \Bigl(\frac{\sigma_t}{\alpha_t}\Bigr)^2 I \;+\; O(\sigma_t^4). \tag{4.2}$$
 
-Draw $M$ weight samples $w_L^{(m)} \sim q(w_L \mid \mathcal{D}_\text{cal})$ and, for each, run the diffusion reverse process (2.1) with perturbed last layer:
+When $\alpha_t = 1$ (EDM's variance-exploding schedule, EigenScore's native regime), (4.2) reduces to $\Sigma = \sigma_t^2\,\partial_{x_t} D_\theta - \sigma_t^2 I$ as in EigenScore Prop. 1. For the backbones we use, $\alpha_t \neq 1$ and the $1/\alpha_t$ prefactor is load-bearing for threshold calibration across timesteps. The constant $-(\sigma_t/\alpha_t)^2 I$ shift is rank-degenerate (contributes equally to every eigenvalue) and drops out of eigenvalue *ordering*, so EigenScore's leading-eigenvalue OOD score is invariant to it.
 
-$$\hat{O}_{t+1}^{(m)} \;=\; \mathcal{D}_\text{video}\!\bigl(z_\text{video}^{(K)}(w_L^{(m)})\bigr),\qquad m=1,\ldots,M. \tag{4.2}$$
+### 4.2 Per-backbone spectral operators (==our derivation==)
 
-[[2502.20946|DIFF-UQ]] validates **$M \geq 1$** for the Laplace-only channel; **$M \geq 2$** is required for the CLIP semantic-entropy channel (verified from `DIFF-UQ/semantic_likelihood.py:46-58`, which stacks $M$ CLIP feature vectors and requires cross-sample variance).
+Substituting (2.3a)/(2.3b) into (4.2):
 
-### 4.3 CLIP semantic likelihood ([[2502.20946|DIFF-UQ]] §3.3)
+**UWM (DDPM-VP)**:
 
-Let $\Phi_\text{CLIP}: \mathcal{O} \to \mathbb{R}^{d_\text{CLIP}}$ be the frozen CLIP ViT-B/32 image encoder. Define $\mu_m = \Phi_\text{CLIP}(\hat{O}_{t+1}^{(m)}) \in \mathbb{R}^{d_\text{CLIP}}$. The diagonal per-dim variance across the $M$ samples is
+$$A_\theta^\text{UWM}(x_t, t) \;:=\; \frac{\sigma_t^2}{\alpha_t}\,\partial_{x_t} \tilde{D}_\theta^\text{UWM} \;=\; \frac{\sigma_t}{\alpha_t}\bigl(\sigma_t\,\alpha_t^{-1} I - \sigma_t\,\alpha_t^{-1}\,\partial_{x_t}\varepsilon_\theta\bigr) \;=\; \frac{\sigma_t^2}{\alpha_t^2}\bigl(I - \partial_{x_t}\varepsilon_\theta(x_t, t)\bigr). \tag{4.3a}$$
 
-$$\mathrm{Var}_j\!\bigl[\mu_{\cdot,j}\bigr] \;=\; \tfrac{1}{M}\!\sum_{m=1}^{M} \mu_{m,j}^2 \;-\; \bar{\mu}_j^2,\qquad j = 1, \ldots, d_\text{CLIP}. \tag{4.3}$$
+**Cosmos Policy (rectified flow)** with $\alpha_\tau = 1-\tau,\; \sigma_\tau = \tau$:
 
-The multivariate Gaussian entropy under the diagonal-plus-$\sigma^2 I$ approximation ([[2502.20946|DIFF-UQ]] Eq. 6; verified from `semantic_likelihood.py:17-36`) is
+$$A_\theta^\text{Cos}(x_\tau, \tau) \;:=\; \frac{\sigma_\tau^2}{\alpha_\tau}\,\partial_{x_\tau}\tilde{D}_\theta^\text{Cos} \;=\; \frac{\tau^2}{1-\tau}\bigl(I - \tau\,\partial_{x_\tau}v_\theta(x_\tau, \tau, c)\bigr). \tag{4.3b}$$
 
-$$\mathcal{H}_\text{CLIP}(\hat{O}_{t+1}) \;=\; \tfrac{1}{2}\sum_{j=1}^{d_\text{CLIP}} \log\!\bigl(\mathrm{Var}_j + \sigma^2\bigr) \;+\; \tfrac{d_\text{CLIP}}{2}\bigl(\log(2\pi) + 1\bigr). \tag{4.4}$$
+EigenScore's central-difference subspace iteration (§4.3) estimates the leading eigenvalues of $A_\theta$ up to the rank-degenerate identity shift. In practice we compute the spectrum of the **relevant operator** — the part that varies with $\partial_{x_t} g_\theta$:
 
-### 4.4 Combined per-timestep signal (==our design==)
+| Backbone | Relevant operator $J_\theta$ for EigenScore |
+|---|---|
+| UWM | $J_\theta^\text{UWM}(x_t, t) := -\partial_{x_t}\varepsilon_\theta(x_t, t)$ |
+| Cosmos Policy | $J_\theta^\text{Cos}(x_\tau, \tau) := -\tau\,\partial_{x_\tau}v_\theta(x_\tau, \tau, c)$ |
 
-==The additive combination with a learned $\lambda_\text{CLIP}$ below is our construction.== [[2502.20946|DIFF-UQ]] §3.3 reports Laplace predictive variance and CLIP semantic entropy as **two separate scalar channels** (each with its own calibration). Our 2×2 attribution gate requires a **single scalar per axis per timestep**, so we combine them additively:
+The leading eigenvalues of $J_\theta$ are monotone (up to the $\sigma_t^2/\alpha_t^2$ or $\tau^2/(1-\tau)$ prefactor) in those of $A_\theta - (\sigma_t/\alpha_t)^2 I$. Per-backbone, per-timestep prefactors are absorbed into the functional-CP per-timestep mean $\mu_t^\text{imag}$ and bandwidth $h_t^\text{imag}$ (§8.1), so they **do not need explicit rescaling** at inference.
 
-$$\boxed{\; s_\text{imag}^\text{DIFF-UQ}(t; X) \;=\; \underbrace{\tfrac{1}{M}\sum_{m=1}^{M}\bigl\|\hat{O}_{t+1}^{(m)} - \bar{\hat{O}}_{t+1}\bigr\|_2^2}_{\text{Laplace predictive variance}} \;+\; \lambda_\text{CLIP}\,\mathcal{H}_\text{CLIP}(\hat{O}_{t+1})\;} \tag{4.5}$$
+### 4.3 Jacobian-free subspace iteration ([[2510.07206|EigenScore]] §3.2, `EigenScore/eigenscore_calculate.py`)
 
-with $\lambda_\text{CLIP} \geq 0$ fit on held-out success rollouts per backbone so the two channels contribute comparable dynamic range. Channel ablations (S9): **Laplace-only** ($\lambda_\text{CLIP}=0$, allows $M = 1$) vs. **CLIP-only** (drop first term) vs. **combined** (above). The ablation is necessary because the additive combination is our contribution, not a sourced formula.
+Computing $J_\theta$'s eigenvalues directly requires forming the Jacobian (intractable at $d \sim 10^6$ for latent tokens on 2B DiTs). EigenScore estimates the top $k_\text{ev}$ eigenvalues via **central-difference subspace iteration** using only forward evaluations of the network $g_\theta$ ($\varepsilon_\theta$ on UWM, $v_\theta$ on Cosmos):
+
+$$(J_\theta\,v) \;\approx\; -\frac{\kappa(t)}{2\epsilon_\text{CD}}\bigl[g_\theta(x_t + \epsilon_\text{CD}\,v, t, c) - g_\theta(x_t - \epsilon_\text{CD}\,v, t, c)\bigr], \tag{4.4}$$
+
+where $\kappa(t) = 1$ for UWM (from $J_\theta^\text{UWM} = -\partial_{x_t}\varepsilon_\theta$) and $\kappa(\tau) = \tau$ for Cosmos Policy (from $J_\theta^\text{Cos} = -\tau\,\partial_{x_\tau}v_\theta$), and $\epsilon_\text{CD}$ is a small perturbation magnitude (EigenScore default: $\epsilon_\text{CD} = 10^{-3}\|x_t\|$). The algorithm (matching `EigenScore/eigenscore_calculate.py:12–160` exactly — central-difference + QR + Rayleigh quotient):
+
+```text
+Algorithm EigenScore-Jfree (per backbone, per timestep t)
+Input: current noisy latent x_t, network g_θ (ε_θ or v_θ), conditioning c;
+       hyperparams (k_ev, n_iter, ε_CD), schedule prefactor κ(t)
+1.  V ← random orthonormal matrix, shape (d, k_ev)     # initial eigenvector candidates
+2.  for i = 1 .. n_iter:
+3.      B ← central-difference JVP(x_t, V) via (4.4)    # 2·k_ev forward evals of g_θ
+4.      V, _ ← QR(B)                                    # orthonormalize
+5.  return diag(V^T · B)                                # top k_ev eigenvalues (Rayleigh quotients)
+```
+
+Cost per timestep: $2 k_\text{ev} n_\text{iter}$ forward passes of $g_\theta$.
+
+### 4.4 EigenScore per-timestep signal (==our design==)
+
+==We aggregate the leading eigenvalue over $n_\text{ts}$ timesteps== (EigenScore native image-OOD config uses 13 timesteps on a 1000-step DDPM grid with $n_\text{repetitions} = 20$ independent-random-init runs per timestep; we down-sample to $n_\text{ts} = 5$ **mid-range** timesteps with $n_\text{repetitions} = 1$ as a compute-driven simplification. Rationale: CP calibration in §8 per-timestep-normalizes $s_\text{imag}$, absorbing the per-timestep variance; per-episode max-so-far aggregation (§7) provides implicit variance reduction across the outer episode timesteps $t = 1 \ldots T$. The compute simplification is an **explicit ablation target in S9** (sensitivity of Top-1 attribution to $n_\text{ts}, n_\text{repetitions}$)):
+
+$$\boxed{\; s_\text{imag}^\text{EigenScore}(t; X) \;=\; \frac{1}{n_\text{ts}}\sum_{j=1}^{n_\text{ts}}\; \lambda_1\!\bigl(J_\theta(\hat{O}_{t+1}^{(t_j)}, t_j)\bigr) \;} \tag{4.5}$$
+
+where $\lambda_1$ is the largest eigenvalue estimated by Algorithm EigenScore-Jfree, and $\hat{O}_{t+1}^{(t_j)}$ is the noisy input at backbone-specific timestep $t_j$. Per backbone:
+
+- **UWM**: $\hat{O}_{t+1}^{(t_j)} = \alpha_{t_j}\,\hat{O}_{t+1} + \sigma_{t_j}\,\xi,\; \xi \sim \mathcal{N}(0, I)$ with $(\alpha_{t_j}, \sigma_{t_j}) = (\sqrt{\bar\alpha_{t_j}}, \sqrt{1-\bar\alpha_{t_j}})$ per DDPM-VP schedule.
+- **Cosmos Policy**: $\hat{O}_{t+1}^{(\tau_j)} = (1-\tau_j)\,\hat{O}_{t+1} + \tau_j\,\xi$ per rectified-flow schedule, with $\tau_j$ drawn from Cosmos-Predict2's time-shifted grid (`shift=3` default).
+
+The predicted frame $\hat{O}_{t+1}$ (from (2.2)) is re-noised at each $t_j$ and passed through the central-difference JVP loop.
+
+Aggregation ablations (S9): **leading-$\lambda_1$ only** (above) vs. **top-$k$ trace** $\sum_{i=1}^{k_\text{ev}} \lambda_i$ vs. **geometric mean** $(\prod_{i=1}^{k_\text{ev}} \lambda_i)^{1/k_\text{ev}}$. EigenScore §4.2 reports the leading eigenvalue is competitive with trace at a fraction of compute cost; we pre-register $\lambda_1$ as default.
 
 **Our contributions (flagged)**:
 
-- ==Post-hoc fitting of (4.1) on UWM's / Cosmos Policy's DiT last layer== — neither paper performs this surgery; the anchor paper validates DIFF-UQ on ADM/UViT image models. Laplace-fit Hessian-conditioning is per-backbone (S2 sub-step: estimate #success-rollout-frames for a well-conditioned diagonal Laplace fit; 90M last layer ≈ $10^4$ frames; 2B last layer ≈ $10^5$ frames).
-- ==Channel weight $\lambda_\text{CLIP}$ tuned per backbone on robot scenes== — CLIP was trained on web images; R9 ablation measures whether the CLIP channel transfers.
+- ==Per-backbone Tweedie-reconstruction (§2.2) and spectral operator reformulation (§4.2)== — the anchor paper derives (4.2) under EDM with $\alpha_t = 1$; our derivation retains the correct $1/\alpha_t$ prefactor and specializes to UWM's $\varepsilon$-prediction operator $J_\theta^\text{UWM}$ (4.3a) and Cosmos Policy's rectified-flow operator $J_\theta^\text{Cos}$ (4.3b). Validated empirically in S2 by comparing $\lambda_1$ on a matched EDM-denoiser trained on the same $\hat{O}_{t+1}$ distribution.
+- ==Post-hoc application to WM-predicted $\hat{O}_{t+1}$== — neither paper applies EigenScore to WM-predicted frames; the native validation is on image OOD (CIFAR-10/100, SVHN, CelebA, TinyImageNet). R9 ablation measures the cross-domain transfer.
+- ==Hyperparameter calibration per backbone== — $k_\text{ev}, n_\text{iter}, n_\text{ts}, \epsilon_\text{CD}$ are tuned on success rollouts per backbone; default ($k_\text{ev}, n_\text{iter}, n_\text{ts}) = (5, 3, 5)$ with a lightweight fallback $(1, 3, 3)$ for compute-bound Cell 8. **Caveat**: reference repo uses $n_\text{iter} \in [5, 50]$ with early-stop convergence check (correlation-diagonal threshold ~2.94, ref `eigenscore_calculate.py:134-166`); our fixed $n_\text{iter} = 3$ skips convergence checking as a compute-aggressive default, justified only for leading-$\lambda_1$ estimation (power iteration converges at rate $|\lambda_2/\lambda_1|^{n_\text{iter}}$; for well-separated top eigenvalue at rate 0.5, $n_\text{iter}=3$ gives ~12% accuracy — adequate for ranking-based OOD scoring but **not** for absolute eigenvalue estimation). S2 sub-step must validate leading-eigenvalue rank stability; if unstable, increase $n_\text{iter}$ or add early-stop.
 
 ---
 
@@ -253,7 +321,7 @@ $$\boxed{\; s_\text{act}^\text{STAC-256}(t) \;=\; \mathrm{MMD}^2\!\bigl(\{\mathb
 
 $$\boxed{\; s_\text{act}^\text{STAC-single}(t) \;=\; 1 \;+\; \tfrac{1}{K_\mathcal{P}^2}\!\sum_{j,j'} k(\mathbf{y}^{(j)}, \mathbf{y}^{(j')}) \;-\; \tfrac{2}{K_\mathcal{P}}\!\sum_{j} k(\mathbf{a}_{t:t+H},\, \mathbf{y}^{(j)}). \;} \tag{6.3}$$
 
-The constant $+1$ is retained in the biased form for consistency with (6.1); it shifts the signal by a constant and does not affect CP calibration (which standardizes via per-timestep means in §8). This reduces per-step cost from $K_\text{samp} = 256$ diffusion samples of the action branch to 1, trading variance for ~2 orders of magnitude compute savings. Deployed by default on Cell 8 (Cosmos × DIFF-UQ × STAC) if compute-bound.
+The constant $+1$ is retained in the biased form for consistency with (6.1); it shifts the signal by a constant and does not affect CP calibration (which standardizes via per-timestep means in §8). This reduces per-step cost from $K_\text{samp} = 256$ diffusion samples of the action branch to 1, trading variance for ~2 orders of magnitude compute savings. Deployed by default on Cell 8 (Cosmos × EigenScore × STAC) if compute-bound.
 
 ---
 
@@ -359,10 +427,10 @@ Each claim is restated as a formal proposition, paired with a pre-registered hyp
 
 ### 10.1 Claim A — Both imag signals discriminate imag failure
 
-> **Proposition A.** For each backbone $X \in \{A, B\}$, the imag signal $s_\text{imag} \in \{\text{logpZO}, \text{DIFF-UQ}\}$ separates success from `10`-class rollouts, i.e.
+> **Proposition A.** For each backbone $X \in \{A, B\}$, the imag signal $s_\text{imag} \in \{\text{logpZO}, \text{EigenScore}\}$ separates success from `10`-class rollouts, i.e.
 > $$\mathrm{AUROC}\bigl(s_\text{imag}\;;\;\text{success vs. } c{=}10\bigr) \;\geq\; 0.70. \tag{10.A.1}$$
 
-**Falsifier (S9 ablation)**: per backbone, fit ROC on 500 success + 500 `10`-class rollouts. **Statistic**: empirical AUROC $\hat{A}$. **Pre-registered threshold**: reject Proposition A if $\hat{A} + 1.96 \cdot \mathrm{SE}(\hat{A}) < 0.70$ (one-sided 95% CI upper bound below target). For `logpZO`: additionally compare $\hat{A}_{O_t}$ vs. $\hat{A}_{\hat{O}_{t+1}}$ to isolate the ==our extension== (§3.2) effect.
+**Falsifier (S9 ablation)**: per backbone, fit ROC on 500 success + 500 `10`-class rollouts. **Statistic**: empirical AUROC $\hat{A}$. **Pre-registered threshold**: reject Proposition A if $\hat{A} + 1.96 \cdot \mathrm{SE}(\hat{A}) < 0.70$ (one-sided 95% CI upper bound below target). For `logpZO`: additionally compare $\hat{A}_{O_t}$ vs. $\hat{A}_{\hat{O}_{t+1}}$ to isolate the ==our extension== (§3.2) effect. For EigenScore: additionally compare $\hat{A}_{\text{FM-native}}$ vs. $\hat{A}_{\text{EDM-reference}}$ on a matched task to isolate the FM↔score reformulation effect (§4.2).
 
 ### 10.2 Claim B — Cross-side non-leakage (weakest claim)
 
@@ -387,12 +455,12 @@ $\mathrm{Recall}_{00} \geq 1 - \alpha = 0.90$ follows from the joint FPR control
 ### 10.4 Claim D — Imag-axis internal decorrelation (new for 2×2×2)
 
 > **Proposition D.** The two imag signals are empirically decorrelated on success rollouts:
-> $$\rho_S\bigl(R_\text{logpZO},\; R_\text{DIFF-UQ}\bigr) < 0.6 \quad\text{on both backbones}. \tag{10.D.1}$$
+> $$\rho_S\bigl(R_\text{logpZO},\; R_\text{EigenScore}\bigr) < 0.6 \quad\text{on both backbones}. \tag{10.D.1}$$
 
 **Falsifier (S3.1 pilot)**: 100 success rollouts per backbone. **Statistic**: Spearman $\hat{\rho}_S$ with Fisher-z 95% CI. **Pre-registered thresholds** (per §0 of Roadmap):
 
 - $\hat{\rho}_S < 0.6$ (upper CI) on both backbones → commit to 2×2×2.
-- $\hat{\rho}_S > 0.85$ (lower CI) on either backbone → reject Proposition D; demote DIFF-UQ to ablation; collapse to 2×2 (Cells 1/2/5/6).
+- $\hat{\rho}_S > 0.85$ (lower CI) on either backbone → reject Proposition D; demote EigenScore to ablation; collapse to 2×2 (Cells 1/2/5/6).
 - Intermediate → proceed with caveat.
 
 Fisher-z SE with $n=100$ is $\mathrm{SE}(z) = 1/\sqrt{n-3} \approx 0.1015$. Back-transformed to the $\rho$ scale at $\rho = 0.85$: $z = \mathrm{arctanh}(0.85) \approx 1.256$; 95% CI on $z$ is $[1.057, 1.455]$; 95% CI on $\rho_S$ is $\tanh([1.057, 1.455]) \approx [0.785, 0.897]$. Half-width ≈ 0.056 — enough resolution to distinguish 0.70 from 0.85 at ~80% power per backbone.
@@ -409,7 +477,7 @@ Neither UWM nor Cosmos Policy has distinct WM and action weight modules. "Weight
 
 ### 11.2 Formal noise model per class
 
-Let $z_m^{(K)} \in \mathbb{R}^{N_m \times d}$ be the final DiT output tokens for modality $m$ (video vs. action). Per class $c \in \{00, 01, 10, 11\}$, we define a **corruption operator** $\mathcal{C}_c$:
+Let $z_m^{*} \in \mathbb{R}^{N_m \times d}$ be the final DiT output tokens for modality $m$ (video vs. action). Per class $c \in \{00, 01, 10, 11\}$, we define a **corruption operator** $\mathcal{C}_c$:
 
 $$\mathcal{C}_c\bigl(z_\text{video}^{(K)}, z_\text{action}^{(K)}\bigr) \;=\; \bigl(z_\text{video}^{(K)} + \delta_v,\;\; z_\text{action}^{(K)} + \delta_a\bigr), \tag{11.1}$$
 
@@ -430,7 +498,7 @@ Corruption is applied **mid-episode** at a uniformly sampled timestep $t_\text{i
 
 For each backbone $X$ and each affected modality $m$, measure the per-scalar activation standard deviation $\sigma_\phi^{X,m}$ on success rollouts (average per-element std across all token positions and feature channels):
 
-$$\sigma_\phi^{X,m} \;=\; \sqrt{\tfrac{1}{|\mathcal{D}_\text{cal}| \cdot N_m \cdot d}\sum_{\omega \in \mathcal{D}_\text{cal}} \bigl\|z_m^{(K)}(\omega) - \bar{z}_m^{(K)}\bigr\|_F^2}, \tag{11.2}$$
+$$\sigma_\phi^{X,m} \;=\; \sqrt{\tfrac{1}{|\mathcal{D}_\text{cal}| \cdot N_m \cdot d}\sum_{\omega \in \mathcal{D}_\text{cal}} \bigl\|z_m^{*}(\omega) - \bar{z}_m^{(K)}\bigr\|_F^2}, \tag{11.2}$$
 
 where $\|\cdot\|_F$ is Frobenius norm over the $N_m \times d$ token tensor. The division by $N_m \cdot d$ under the sqrt yields per-scalar std (not per-token).
 
@@ -442,7 +510,7 @@ Sweep $\sigma_\mathrm{inj} \in \{0.1, 0.5, 1.0\} \cdot \sigma_\phi^{X,m}$; pre-r
 
 ### 12.1 Cell structure
 
-Each cell $c \in \{1, \ldots, 8\}$ is defined by a triple $(X, S_\text{imag}, S_\text{act})$ where $X \in \{A, B\}$, $S_\text{imag} \in \{\text{logpZO}, \text{DIFF-UQ}\}$, $S_\text{act} \in \{\text{ACE}, \text{STAC}\}$. Every cell instantiates:
+Each cell $c \in \{1, \ldots, 8\}$ is defined by a triple $(X, S_\text{imag}, S_\text{act})$ where $X \in \{A, B\}$, $S_\text{imag} \in \{\text{logpZO}, \text{EigenScore}\}$, $S_\text{act} \in \{\text{ACE}, \text{STAC}\}$. Every cell instantiates:
 
 1. The same backbone interface (§2).
 2. Its own per-timestep signals $s_\text{imag}(t), s_\text{act}(t)$ (§3–6).
@@ -463,7 +531,7 @@ $$\mathbb{P}\!\bigl(\ell_c(\omega_\text{test}) \neq 00 \;\big|\;\text{success}\b
 **Proposition 12.2 (Cross-cell dependence structure).** The per-cell FPR guarantees in (12.1) each hold **conditional on exchangeability within that cell's calibration set**. However, the 8 cells are **not statistically independent** in general:
 
 - Cells 1–4 share backbone A (UWM); cells 5–8 share backbone B (Cosmos Policy). Within a backbone, calibration rollouts $\{\omega_i^{(A)}\}$ and action samples $\{\mathbf{a}^{(i),(A)}\}$ are **reused across the 4 cells** that use that backbone.
-- Cells 1 and 3 share backbone A and act signal ACE — they differ only in imag signal (logpZO vs. DIFF-UQ). Their $R_\text{imag}$ values are computed on the *same* $\hat{O}_{t+1}$ frames.
+- Cells 1 and 3 share backbone A and act signal ACE — they differ only in imag signal (logpZO vs. EigenScore). Their $R_\text{imag}$ values are computed on the *same* $\hat{O}_{t+1}$ frames.
 
 **Effective independent units**: not 8. Under strongest dependence (full agreement within backbone), n_eff ≈ 2 (one per backbone). Under H2/D holding (signals decorrelated), n_eff is between 2 and 8.
 
@@ -492,10 +560,10 @@ $$z \;=\; \tfrac{1}{2}\log\!\frac{1 + \hat{\rho}_S}{1 - \hat{\rho}_S},\qquad \ma
 | $\hat{\rho}_S$ 95% CI | Decision |
 |---|---|
 | Upper bound $< 0.60$ on both | Commit to 2×2×2 (8 cells) |
-| Lower bound $> 0.85$ on either | Collapse to 2×2 (Cells 1/2/5/6); demote DIFF-UQ to S9 ablation |
+| Lower bound $> 0.85$ on either | Collapse to 2×2 (Cells 1/2/5/6); demote EigenScore to S9 ablation |
 | Else | Proceed with caveat; flag in write-up; H4 claimed only on backbone with upper bound $< 0.60$ |
 
-The test is paired per backbone because DIFF-UQ's Laplace is scale-dependent (90M vs. 2B).
+The test is paired per backbone because EigenScore's FM↔score reformulation numerical stability may depend on model scale and FM noise schedule (90M UWM vs. 2B Cosmos Policy).
 
 ### 12.5 Winning-cell selection (S4)
 
@@ -520,16 +588,16 @@ with the constraint $\hat{\rho}_{c^\star} < 0.7$. If all committed cells violate
 
 | § | Component | Input | Output | Property invoked |
 |---|---|---|---|---|
-| 2 | DiT forward | $(o_{1:t}, l)$ | $(\hat{O}_{t+1}, \mathbf{a}_{t:t+H}, \phi_t)$ | Deterministic mod. diffusion noise; flow-matching well-defined [[2504.02792\|UWM]], [[2601.16163\|Cosmos Policy]] |
+| 2 | DiT forward | $(o_{1:t}, l)$ | $(\hat{O}_{t+1}, \mathbf{a}_{t:t+H}, g_\theta(\cdot, \cdot, c))$ | Deterministic mod. sampling noise; DDPM-VP well-defined (UWM), rectified-flow well-defined (Cosmos Policy) |
 | 3 | logpZO | $\hat{O}_{t+1}$ | $s^\text{logpZO}(t)$ | (3.2) is a continuous function of CNF output; CNF is a trained Lipschitz ODE flow [[2503.08558\|FAIL-Detect]] |
-| 4 | DIFF-UQ | $(\hat{O}_{t+1}^{(m)}, \phi_t)$ | $s^\text{DIFF-UQ}(t)$ | Diagonal Laplace posterior is a valid Gaussian approximation [[2502.20946\|DIFF-UQ]]; CLIP entropy is a continuous function of variance (M≥2 required) |
+| 4 | EigenScore | $(\hat{O}_{t+1}, v_\theta)$ | $s^\text{EigenScore}(t)$ | Central-difference subspace iteration converges to leading eigenvalues of $A_\theta$ under standard power-method conditions [[2510.07206\|EigenScore]]; FM↔score reformulation (2.3) derived via Tweedie, numerically verified in S2 |
 | 5 | ACE | $\{\mathbf{a}^{(i)}_{t+h}\}$ | $s^\text{ACE}(t)$ | Shannon entropy is well-defined on finite multinomials; our generalizations (5.3)–(5.4) are strict extensions for $d_a \neq 3$ |
 | 6 | STAC | $\{\mathbf{a}^{(i)}_{t:t+H}\}$ | $s^\text{STAC}(t)$ | Biased MMD$^2$ V-statistic is well-defined for any $K_\text{samp} \geq 1$; RBF kernel is characteristic [[2410.04640\|Sentinel]] |
 | 7 | Max-so-far | $s_X(1:T)$ | $R_X(\omega)$ | Prop. 7.1–7.2: measurability + exchangeability preserved |
 | 8 | CP | $\{R_X^{(i)}\}$, $\alpha/2$ | $\tau_X(t)$ | Standard split-CP coverage under exchangeability with signed one-sided scores [[2510.09459\|FIPER]] Appx A |
 | 9 | Gate | $(R_\text{imag}, R_\text{act}, \tau_\text{imag}, \tau_\text{act})$ | $\ell \in \{00,01,10,11\}$ | Deterministic cross-tab |
 | 10 | Claims | Prop. A–D | Falsifiers | Hypothesis tests with pre-registered thresholds |
-| 11 | Injection | $z_m^{(K)}$ | $z_m^{(K)} + \delta_m$ | Measurable translation; $\sigma_\mathrm{inj}$ pre-registered |
+| 11 | Injection | $z_m^{*}$ | $z_m^{*} + \delta_m$ | Measurable translation; $\sigma_\mathrm{inj}$ pre-registered |
 | 12 | Factorial | 8× pipelines | $\{\ell_c\}_{c=1}^8$ | Prop. 12.1–12.2: per-cell Bonferroni + cross-cell binomial |
 
 **Each row shows**: inputs are well-defined → the operation is measurable / differentiable / deterministic → outputs feed the next row. Exchangeability for CP is inherited from frozen backbones + i.i.d. success-rollout sampling. Bonferroni over-protects under any positive dependence between axes, so (8.6) is conservative and cannot be violated by empirical signal correlations.
@@ -551,7 +619,8 @@ $\qed$
 | 2 | Diffusion-WAM forward | [[2504.02792\|UWM]] §3; [[2601.16163\|Cosmos Policy]] §3 | Unified notation covering both decoupling mechanisms |
 | 3.1 | CNF training / inference | [[2503.08558\|FAIL-Detect]] §3.4 | — (verbatim) |
 | 3.2 | ==logpZO on $\hat{O}_{t+1}$== | — | ==Novel: re-train CNF on predicted frames, per-backbone== |
-| 4.1–4.4 | Laplace + CLIP combined | [[2502.20946\|DIFF-UQ]] §3.1–3.3 | Per-backbone Laplace fit on DiT last layer; $\lambda_\text{CLIP}$ robot-scene calibration |
+| 4.1, 4.3 | Posterior-covariance identity + Jacobian-free subspace iteration | [[2510.07206\|EigenScore]] §3 | — |
+| 4.2, 4.4 | ==FM↔score reformulation + per-timestep spectral signal== | — | ==Novel: derive posterior-covariance identity for FM velocity fields via Tweedie; port central-difference subspace iteration to UWM + Cosmos Policy== |
 | 5.1 | 3-D ACE | [[2510.09459\|FIPER]] `entropy_eval.py:56-104` | — |
 | 5.3–5.4 | ==ACE generalization== | — | ==Novel: per-dim marginal + PCA fallback for 7-DoF== |
 | 6.1 | MMD-RBF kernel | [[2410.04640\|Sentinel]] `error_utils.py` | — |

@@ -343,9 +343,10 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2603.16506|VIEW2SPACE]] — Benchmark for sparse multi-view spatial reasoning; +77% accuracy with grounded chain-of-thought
 
 **Geometry Estimation & Reconstruction** — Estimate depth, surface normals, or full 3D reconstructions from single images or sparse views.
-- [[2604.12942|RMGS-SLAM]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.10836|HO-Flow]], [[2604.08532|SelfEvo]], [[2604.07105|Genie Sim PanoRecon]], [[2604.02696|VBGS-SLAM]], [[2604.02329|Generative World Renderer]], [[2603.30045|OmniRoam]], [[2603.29089|WorldFlow3D]], [[2603.26599|VGGRPO]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.19231|MonoArt]], [[2603.18524|3DreamBooth]], [[2603.03026|URGT]], [[2602.21992|PanoEnv]], [[2602.21186|Spa3R]], [[2602.03361|Z3D]], [[2601.13132|GaussExplorer]], [[2512.15160|EagleVision]], [[2512.13683|I-Scene]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.06908|Mono3DVG-EnSD]], [[2511.01294|Kinematify]], [[2510.08575|ReSplat]], [[2510.01183|EvoWorld]]
+- [[2604.14141|LingBot-Map]], [[2604.12942|RMGS-SLAM]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.10836|HO-Flow]], [[2604.08532|SelfEvo]], [[2604.07105|Genie Sim PanoRecon]], [[2604.02696|VBGS-SLAM]], [[2604.02329|Generative World Renderer]], [[2603.30045|OmniRoam]], [[2603.29089|WorldFlow3D]], [[2603.26599|VGGRPO]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.19231|MonoArt]], [[2603.18524|3DreamBooth]], [[2603.03026|URGT]], [[2602.21992|PanoEnv]], [[2602.21186|Spa3R]], [[2602.03361|Z3D]], [[2601.13132|GaussExplorer]], [[2512.15160|EagleVision]], [[2512.13683|I-Scene]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.06908|Mono3DVG-EnSD]], [[2511.01294|Kinematify]], [[2510.08575|ReSplat]], [[2510.01183|EvoWorld]]
 
 > [!star] Key Papers
+> - [[2604.14141|LingBot-Map]] — Feed-forward streaming 3D foundation model with Geometric Context Transformer; 20 FPS for sequences up to 10K frames with nearly constant memory
 > - [[2603.19235|VEGA-3D]] — Video diffusion as a latent world simulator producing dense geometric cues
 > - [[2603.19231|MonoArt]] — End-to-end monocular articulated object reconstruction; handles non-rigid objects
 
@@ -356,13 +357,17 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2306.13643|LightGlue]] — Adaptive deep feature matching that prunes easy pairs early; fast and accurate for real-time SLAM
 
 **3D Diffusion Policies** — Use 3D point cloud representations with diffusion-based action generation for robotic manipulation.
-- [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit World Model Zero-Shot Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2409.01652|ReKep]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2209.05451|PerAct]]
+- [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit World Model Zero-Shot Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2409.01652|ReKep]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2209.05451|PerAct]]
 
 > [!star] Key Papers
 > - [[2403.03954|DP3]] — 3D Diffusion Policy: generalizable visuomotor policy from point clouds; enables sim-to-real without camera calibration
 
 **3D World Simulation** — Systems that generate, simulate, or reason about 3D environments as interactive world models for embodied agents and autonomous driving.
-- [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]]
+- [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]]
+
+> [!star] Key Papers
+> - [[2604.14268|HY-World 2.0]] — Tencent Hunyuan's open-source multi-modal 3D world framework unifying reconstruction + generation; high-fidelity 3DGS worlds in ~10 min
+> - [[2604.15805|WorldComposer]] — Generates "Digital Cousins" from single panoramas; 0.91 Pearson correlation between sim and real-world policy success
 
 **Spatial Intelligence Surveys** — Comprehensive reviews of 4D spatial intelligence, encompassing 3D understanding across time.
 - [[2512.24385|Spatial Intelligence Roadmap]], [[2507.21045|4D Spatial Intelligence Survey]], [[2506.20134|3D World Models Survey]], [[2504.15280|All-Angles Bench]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2504.09848|LLM Spatial Intelligence Survey]], [[2412.14171|VSI-Bench]], [[2603.22057|SpatialBoost]]

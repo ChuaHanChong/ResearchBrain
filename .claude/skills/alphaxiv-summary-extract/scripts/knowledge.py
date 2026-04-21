@@ -1215,7 +1215,6 @@ papers = [
     "https://arxiv.org/abs/2502.07408", # Maximal Brain Damage Without Data or Optimization: Disrupting Neural Networks via Sign-Bit Flips
     "https://arxiv.org/abs/2604.16029", # Cut Your Losses! Learning to Prune Paths Early for Efficient Parallel Reasoning
     "https://arxiv.org/abs/2604.11791", # A Mechanistic Analysis of Looped Reasoning Language Models
-    "https://arxiv.org/abs/2010.01158", # MM-Hand: 3D-Aware Multi-Modal Guided Hand Generative Network for 3D Hand Pose Synthesis
     "https://arxiv.org/abs/2604.17651", # Infrastructure-Centric World Models: Bridging Temporal Depth and Spatial Breadth for Roadside Perception
     "https://arxiv.org/abs/2604.17887", # StableIDM: Stabilizing Inverse Dynamics Model against Manipulator Truncation via Spatio-Temporal Refinement
     "https://arxiv.org/abs/2604.18484", # XEmbodied: A Foundation Model with Enhanced Geometric and Physical Cues for Large-Scale Embodied Environments

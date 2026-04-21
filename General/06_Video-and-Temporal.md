@@ -180,7 +180,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2503.18938|AdaWorld]] — Context-invariant latent actions for adaptable world models; FVD of 767.0
 
 **Video Generation for Planning & Grounding** — Methods that use generated video as a planning medium, grounding visual plans in physically feasible actions.
-- [[2604.09330|VAG]], [[2604.06168|Action Images]], [[2604.03181|MV-VDP]], [[2603.08403|SPIRAL]], [[2603.03195|CoWVLA]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]]
+- [[2604.09330|VAG]], [[2604.06168|Action Images]], [[2604.03181|MV-VDP]], [[2603.08403|SPIRAL]], [[2603.03195|CoWVLA]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]], [[2512.06628|MIND-V]]
 
 > [!star] Key Papers
 > - [[2602.01960|GVP-WM]] — Converts physically inconsistent video plans into feasible action sequences via latent-space trajectory optimization
@@ -194,7 +194,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2512.09924|ReViSE]] — Reason-informed video editing via self-reflective learning; +32% on RVE-Bench
 
 **Surveys & Roadmaps** — Comprehensive overviews of the video-to-world-model progression.
-- [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]]
+- [[2604.15911|Efficient Video Diffusion Survey]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]]
 
 > [!star] Key Papers
 > - [[2511.08585|Visual World Roadmap]] — Four-generation taxonomy from video generators to planning-capable world simulators
@@ -209,7 +209,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 Synthesizing human and robot motion — bridging video understanding with physical action. The field is converging on unified architectures that handle diverse motion tasks through a single model rather than task-specific pipelines.
 
 **Unified Motion Architectures** — Single models that handle multiple motion generation tasks (text-to-motion, motion prediction, motion editing) through shared representations.
-- [[2603.19227|MoTok]], [[2603.15975|UMO]], [[2604.08121|Uni-ViGU]]
+- [[2604.11251|CLAW]], [[2604.08121|Uni-ViGU]], [[2603.19227|MoTok]], [[2603.15975|UMO]]
 
 > [!star] Key Papers
 > - [[2603.15975|UMO]] — Unified in-context learning for diverse motion tasks via meta-operation embeddings on a pretrained DiT; FID of 9.460

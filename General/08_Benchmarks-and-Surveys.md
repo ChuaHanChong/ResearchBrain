@@ -195,9 +195,10 @@ Surveys mapping the robotics landscape from embodied AI simulators through VLA a
 > - [[2103.04918|Embodied AI Survey 2021]] — Established the simulator-task-agent pyramid that later work builds on
 
 **VLA & World Model Architectures** — Surveys focused specifically on vision-language-action models and world models for robot control.
-- [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2601.15533|Actionable Simulators]], [[2510.24795|Efficient VLA Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2509.19012|Pure VLA Survey]], [[2508.13073|VLA Survey 2025]], [[2506.20134|3D World Models Survey]], [[2505.04769|VLA Survey]], [[2411.14499|World Models Survey 2024]], [[2408.15511|AeroVerse]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]]
+- [[2604.15395|Foundation Models in Robotics Survey]], [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2601.15533|Actionable Simulators]], [[2510.24795|Efficient VLA Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2509.19012|Pure VLA Survey]], [[2508.13073|VLA Survey 2025]], [[2506.20134|3D World Models Survey]], [[2505.04769|VLA Survey]], [[2411.14499|World Models Survey 2024]], [[2408.15511|AeroVerse]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]], [[2310.06253|Objective Mismatch MBRL Survey]]
 
 > [!star] Key Papers
+> - [[2604.15395|Foundation Models in Robotics Survey]] — 435 papers across 6-criteria taxonomy; maps 5 evolutionary phases of FMs in robotics and identifies tactile/failure data gaps
 > - [[2509.20021|Embodied AI LLM-WM Survey]] — Maps the joint MLLM + world model architecture roadmap; the most forward-looking survey in this space
 > - [[2506.20134|3D World Models Survey]] — Reviews the transition from 2D to 3D world models with spatial understanding
 
@@ -260,11 +261,12 @@ An emerging survey domain covering how to optimize the information supplied to L
 Surveys covering specific domains and emerging fields.
 
 **Diffusion & Generation Surveys** — Surveys on diffusion models, generative architectures, and their principles.
-- [[2510.21890|Diffusion Models Principles]], [[2506.13759|Discrete Diffusion LLM Survey]]
+- [[2604.15911|Efficient Video Diffusion Survey]], [[2510.21890|Diffusion Models Principles]], [[2506.13759|Discrete Diffusion LLM Survey]]
 
 > [!star] Key Papers
 > - [[2510.21890|Diffusion Models Principles]] — Authoritative monograph from Sony AI/OpenAI/Stanford unifying variational, score-based, and flow-based diffusion perspectives
 > - [[2506.13759|Discrete Diffusion LLM Survey]] — Maps dLLMs achieving 10x faster inference than autoregressive models; a key emerging paradigm
+> - [[2604.15911|Efficient Video Diffusion Survey]] — Unified categorization of video diffusion acceleration: step distillation, efficient attention, compression, and cache/trajectory optimization
 
 **Code Intelligence & Software Surveys** — Surveys on AI for code understanding, generation, and software engineering.
 - [[2511.18538|Code Intelligence Survey]], [[2505.24189|SLM vs LLM Low-Code Workflows]]
@@ -310,7 +312,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2503.06669|AgiBot World]] — Large-scale manipulation platform with diverse environments and embodiments
 
 **Simulation Benchmarks** — Standardized simulation environments for reproducible policy evaluation.
-- [[2604.11689|LARY]], [[2604.11674|AffordSim]], [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.13710|HBVLA]], [[2602.06556|LIBERO-X]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2506.18701|Matrix-Game]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2505.12224|RoboFAC]], [[2503.14734|GR00T N1]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2310.08367|MCU]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
+- [[2604.11689|LARY]], [[2604.11674|AffordSim]], [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.13710|HBVLA]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2506.18701|Matrix-Game]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2505.12224|RoboFAC]], [[2503.14734|GR00T N1]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2310.08367|MCU]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
 
 > [!star] Key Papers
 > - [[2306.03310|LIBERO]] — Lifelong robot learning benchmark with 5 suites and 130 tasks; tests continual learning

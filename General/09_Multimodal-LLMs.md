@@ -355,7 +355,7 @@ Enabling MLLMs to localize, reference, and reason about specific objects and reg
 > - [[2512.22799|VPTracker]] — Location-aware visual prompting enabling MLLMs for multi-object tracking
 
 **Spatial Reasoning & Scene Understanding** — Going beyond object detection to understand spatial relationships and scene structure.
-- [[2602.21619|VSR Information Injection Analysis]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.03916|SpatiaLab]], [[2602.03361|Z3D]], [[2601.22231|PE Spatial Reasoning Analysis]], [[2601.05600|SceneAlign]], [[2601.04777|GeM-VG]], [[2511.21688|G2VLM]], [[2507.00505|LLaVA-SP]], [[2506.21710|FOCUS]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2504.13469|HMPE]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2411.16044|ZoomEye]], [[2410.06468|SPACE]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2312.14135|V*]]
+- [[2604.18484|XEmbodied]], [[2602.21619|VSR Information Injection Analysis]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.03916|SpatiaLab]], [[2602.03361|Z3D]], [[2601.22231|PE Spatial Reasoning Analysis]], [[2601.05600|SceneAlign]], [[2601.04777|GeM-VG]], [[2511.21688|G2VLM]], [[2507.00505|LLaVA-SP]], [[2506.21710|FOCUS]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2504.13469|HMPE]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2411.16044|ZoomEye]], [[2410.06468|SPACE]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2312.14135|V*]]
 
 > [!star] Key Papers
 > - [[2601.05600|SceneAlign]] — Aligns MLLMs with scene-level spatial structure for holistic visual understanding
@@ -423,7 +423,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 
 Understanding what MLLMs learn internally — which visual features matter, how cross-modal representations are structured, and why models produce specific outputs.
 
-- [[2603.17063|Transformers as Bayesian Networks]], [[2603.07335|VisualScratchpad]], [[2602.15029|Language Symmetry Representations]], [[2602.11217|Magic Correlations]], [[2602.11144|GENIUS]], [[2602.02140|GAPEVAL]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2506.15679|Dense SAE Latents]], [[2506.11976|VLM Visual-Language Alignment]], [[2506.07326|Reward Model Interpretability]], [[2504.19627|VCM]], [[2502.02013|Layer-by-Layer Representations]], [[2501.09333|Prompt-CAM]]
+- [[2604.11791|Looped Reasoning Mechanistic Analysis]], [[2603.17063|Transformers as Bayesian Networks]], [[2603.07335|VisualScratchpad]], [[2602.15029|Language Symmetry Representations]], [[2602.11217|Magic Correlations]], [[2602.11144|GENIUS]], [[2602.02140|GAPEVAL]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2506.15679|Dense SAE Latents]], [[2506.11976|VLM Visual-Language Alignment]], [[2506.07326|Reward Model Interpretability]], [[2504.19627|VCM]], [[2502.02013|Layer-by-Layer Representations]], [[2501.09333|Prompt-CAM]]
 
 > [!star] Key Papers
 > - [[2602.00462|LatentLens]] — Training-free method interpreting visual token representations layer-by-layer inside MLLMs
@@ -454,11 +454,12 @@ Applying MLLMs and VLMs to downstream tasks including fine-grained recognition, 
 > - [[2506.23115|MoCa]] — Transforms causal VLMs into bidirectional encoders for robust retrieval
 
 **Specialized Applications** — MLLMs applied to specific domains and unconventional tasks.
-- [[2601.12585|MLLM Visualization Literacy]], [[2601.00561|AEGIS]], [[2512.24880|mHC]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2511.11007|VisMem]], [[2509.24207|Humanline]], [[2508.13142|EASI]], [[2507.01955|GPT-4o Vision Evaluation]], [[2506.22395|Test-Time VLM Consistency]], [[2505.24189|SLM vs LLM Low-Code Workflows]], [[2505.21497|PosterAgent]], [[2505.11820|CoLM]], [[2505.01812|New News]], [[2403.19103|PRISM]], [[2312.04684|LaRS]], [[2310.10625|VLP]], [[2305.00104|MMViT]], [[2301.05226|IPVR]]
+- [[2604.13074|PersonaVLM]], [[2601.12585|MLLM Visualization Literacy]], [[2601.00561|AEGIS]], [[2512.24880|mHC]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2511.11007|VisMem]], [[2509.24207|Humanline]], [[2508.13142|EASI]], [[2507.01955|GPT-4o Vision Evaluation]], [[2506.22395|Test-Time VLM Consistency]], [[2505.24189|SLM vs LLM Low-Code Workflows]], [[2505.21497|PosterAgent]], [[2505.11820|CoLM]], [[2505.01812|New News]], [[2403.19103|PRISM]], [[2312.04684|LaRS]], [[2310.10625|VLP]], [[2305.00104|MMViT]], [[2301.05226|IPVR]]
 
 > [!star] Key Papers
 > - [[2505.21497|PosterAgent]] — Automated academic poster generation from papers; demonstrates creative MLLM applications
 > - [[2601.12585|MLLM Visualization Literacy]] — First taxonomy of visualization literacy barriers in MLLMs
+> - [[2604.13074|PersonaVLM]] — Long-term personalized MLLM with dynamic memory architecture; 79% win rate vs. GPT-4o on open-ended personalized generation
 
 > [!tip] MLLMs as General Visual Assistants
 > The fine-grained recognition results (NeaR, E-FineR) show that MLLMs can replace specialized classifiers when paired with the right prompting strategy. For retrieval, MoCa's trick of converting causal models to bidirectional encoders unlocks capabilities that the original training never intended.

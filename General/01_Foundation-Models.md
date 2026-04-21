@@ -571,6 +571,12 @@ Unconventional approaches that do not fit neatly into the above categories but r
 > [!star] Key Papers
 > - [[2403.01299|Photonic PUF ML Resilience]] — Evaluates ML attack resilience of photonic physically unclonable functions; bridges foundation model techniques and hardware security
 
+**Model Robustness & Bit-Level Attacks** — Studies of architectural fragility and weight-space adversarial attacks that expose fundamental vulnerabilities in deployed DNNs.
+- [[2502.07408|DNL]]
+
+> [!star] Key Papers
+> - [[2502.07408|DNL]] — Data-free, optimization-free sign-bit flips catastrophically disrupt DNNs; ResNet-50 accuracy drops 99.8% with just 2 flips across 43/48 ImageNet models
+
 > [!tip] Watch List
 > PaperCoder and LLM-NAR represent a meta-trend: AI systems that accelerate AI research itself. Deep-STDP explores whether biological learning rules can complement backpropagation. These are early signals of potentially transformative directions.
 

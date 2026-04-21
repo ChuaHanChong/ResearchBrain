@@ -244,15 +244,18 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 **End-to-End Multimodal Generators** — Models that natively produce interleaved text and images, trained end-to-end for seamless multimodal output.
 - [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
-**Text-to-Motion Generation** — Diffusion and contrastive methods for synthesizing and retrieving 3D human motions from natural language.
-- [[2604.10836|HO-Flow]], [[2603.15546|Kimodo]], [[2305.00976|TMR]]
+**Text-to-Motion Generation** — Diffusion and contrastive methods for synthesizing and retrieving 3D human motions from natural language, including LLM-planned + physics-aware refinement pipelines.
+- [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.15546|Kimodo]], [[2305.00976|TMR]]
+
+> [!star] Key Papers
+> - [[2604.17807|Re2MoGen]] — MCTS-enhanced LLM keyframe planning + diffusion completion + PPO physics refinement; SOTA open-vocabulary T2M with 2.46 mm float error
 
 > [!star] Key Papers
 > - [[2309.05519|NExT-GPT]] — End-to-end any-to-any multimodal LLM covering text, image, video, and audio
 > - [[2503.13436|UniFluid]] — Google DeepMind's unified AR framework using continuous and discrete tokens for seamless visual generation and understanding
 
 **Image Editing & Controllable Generation** — Methods for precise, instruction-guided image manipulation and controllable synthesis.
-- [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2505.18600|CoZ]], [[2403.19103|PRISM]], [[2604.06870|RefineAnything]]
+- [[2604.06870|RefineAnything]], [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2505.18600|CoZ]], [[2403.19103|PRISM]]
 
 > [!star] Key Papers
 > - [[2601.02356|Talk2Move]] — RL-based text-instructed geometric transformations with spatially grounded rewards
@@ -290,14 +293,14 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2302.00111|UniPi]] — Universal policy as text-conditioned video generation; crosses the boundary between video models and robot control
 
 **Video Diffusion as World Models** — Adapt pre-trained video diffusion models to robotic tasks, using generated future video as a physics simulator for planning.
-- [[2604.14732|WVA]], [[2604.09330|VAG]], [[2603.30045|OmniRoam]], [[2603.28963|AutoWorld]], [[2603.28887|OccSim]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.12639|RoboStereo]], [[2603.10448|DiT4DiT]], [[2602.20057|AdaWorldPolicy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2510.19430|GigaBrain-0]], [[2510.10125|CTRL-WORLD]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.13340|LPS]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2412.14803|VPP]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[1507.08750|Action-Conditional Video Prediction]], [[2402.15391|Genie]], [[2412.03568|The Matrix]], [[2501.03575|Cosmos]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.09995|PlayerOne]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]], [[2512.11061|VDAWorld]], [[2602.06949|DreamDojo]]
+- [[2604.14732|WVA]], [[2604.09330|VAG]], [[2603.30045|OmniRoam]], [[2603.28963|AutoWorld]], [[2603.28887|OccSim]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.12639|RoboStereo]], [[2603.10448|DiT4DiT]], [[2603.07799|MWM]], [[2602.20057|AdaWorldPolicy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2510.19430|GigaBrain-0]], [[2510.10125|CTRL-WORLD]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.13340|LPS]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2502.00622|GPC]], [[2412.14803|VPP]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[1507.08750|Action-Conditional Video Prediction]], [[2402.15391|Genie]], [[2412.03568|The Matrix]], [[2501.03575|Cosmos]], [[2501.08325|GameFactory]], [[2504.12369|WorldMem]], [[2506.09995|PlayerOne]], [[2506.18701|Matrix-Game]], [[2507.17744|Yume]], [[2512.11061|VDAWorld]], [[2602.06949|DreamDojo]]
 
 > [!star] Key Papers
 > - [[2512.13644|DexWM]] — Leverages human video data for dexterous manipulation; 83% zero-shot success without real-world training
 > - [[2504.15369|Inverse Probabilistic Adaptation]] — Adapts internet video models to robot tasks; 3x improvement over unadapted models
 
 **3D and Spatial Generation** — Diffusion models that generate 3D-consistent content or leverage implicit 3D priors for scene understanding.
-- [[2604.13036|Lyra 2.0]], [[2604.02329|Generative World Renderer]], [[2603.29089|WorldFlow3D]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.18524|3DreamBooth]], [[2602.15727|LoRWeB]], [[2512.13683|I-Scene]], [[2510.08575|ReSplat]]
+- [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.13036|Lyra 2.0]], [[2604.02329|Generative World Renderer]], [[2603.29089|WorldFlow3D]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.18524|3DreamBooth]], [[2602.15727|LoRWeB]], [[2512.13683|I-Scene]], [[2510.08575|ReSplat]]
 
 > [!star] Key Papers
 > - [[2603.19235|VEGA-3D]] — Extracts implicit 3D geometric cues from video diffusion for spatial understanding in MLLMs
@@ -319,13 +322,14 @@ Foundational work on how diffusion models learn representations, the theoretical
 > - [[2505.02831|SRA]] — Diffusion transformers provide their own representation guidance; eliminates external encoders
 
 **Latent Space Design** — Principled methods for learning optimal latent representations that diffusion models operate in, controlling information content and generation quality.
-- [[2602.17270|UL]], [[2312.08762|DPMM-CoT]]
+- [[2604.16044|DCW]], [[2602.17270|UL]], [[2312.08762|DPMM-CoT]]
 
 > [!star] Key Papers
 > - [[2602.17270|UL]] — Google DeepMind's Unified Latents framework; principled regularization achieves SOTA on ImageNet-512 and Kinetics-600
+> - [[2604.16044|DCW]] — Characterizes SNR-t bias in DPMs and applies training-free wavelet-domain differential correction; 42.6% FID reduction on CIFAR-10 with 20 steps
 
 **Theoretical Foundations & Surveys** — Monographs and comprehensive surveys that unify variational, score-based, and flow-based perspectives on diffusion.
-- [[2510.21890|Diffusion Models Principles]], [[2510.09586|VLM Survey 26K]], [[2506.19360|Synthetic Image Privacy SoK]], [[2410.19878|PEFT Methodologies Survey]], [[2403.14608|PEFT Survey 2024]]
+- [[2604.15911|Efficient Video Diffusion Survey]], [[2510.21890|Diffusion Models Principles]], [[2510.09586|VLM Survey 26K]], [[2506.19360|Synthetic Image Privacy SoK]], [[2410.19878|PEFT Methodologies Survey]], [[2403.14608|PEFT Survey 2024]]
 
 > [!star] Key Papers
 > - [[2510.21890|Diffusion Models Principles]] — Definitive monograph from Sony AI, OpenAI, and Stanford unifying all diffusion formulations into a continuous-time framework
@@ -337,8 +341,15 @@ Foundational work on how diffusion models learn representations, the theoretical
 > [!star] Key Papers
 > - [[2506.03147|UniWorld-V1]] — Integrates VL understanding, image generation, perception, and grounding in one model
 
+**Generative-Model Signals for OOD & Anomaly Detection** — Use the internals of diffusion or flow-matching models (posterior covariance, reversed-flow vector fields) as distribution-shift signals for unsupervised OOD and anomaly detection.
+- [[2510.07206|EigenScore]], [[2508.05461|WT-Flow]]
+
+> [!star] Key Papers
+> - [[2510.07206|EigenScore]] — Jacobian-free posterior-covariance spectrum as an OOD signal; +5% AUROC over best baseline, especially strong in near-OOD
+> - [[2508.05461|WT-Flow]] — First FM-native unsupervised anomaly detector; Worst-Transport paths fix the non-invertibility of linear-interpolation flow matching
+
 > [!tip] Diffusion Representations
-> Diffusion pre-training is underexplored but powerful. USP shows a single masked-latent pretraining phase improves both generation and understanding. If you need representations and generation from the same model, start here.
+> Diffusion pre-training is underexplored but powerful. USP shows a single masked-latent pretraining phase improves both generation and understanding. If you need representations and generation from the same model, start here. For diagnostic use (OOD, anomaly), EigenScore and WT-Flow show that the generative model's *internals* — its posterior covariance or reversed-flow velocity — are informative distribution-shift signals.
 
 
 ---

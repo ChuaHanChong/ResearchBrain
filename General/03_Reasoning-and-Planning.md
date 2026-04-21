@@ -210,7 +210,7 @@ Extending CoT to jointly reason over vision and language, producing interleaved 
 Moving reasoning from explicit token chains into continuous latent spaces, enabling models to "think" without generating human-readable text.
 
 **Continuous Latent Reasoning** — Models that perform reasoning in a continuous embedding space rather than discrete token sequences.
-- [[2602.05359\|HIVE]], [[2601.10129\|LaViT]], [[2601.06803\|Laser]], [[2601.05877\|iReasoner]], [[2512.21218\|LIVR]], [[2512.16584\|SkiLa]], [[2510.23925\|LaCoT]], [[2510.12603\|IVT-LR]], [[2509.24251\|LVR]], [[2505.13308\|LATENTSEEK]], [[2505.12514\|COCONUT]], [[2505.11484\|SoftCoT++]], [[2502.21074\|CODI]], [[2502.03275\|Token Assorted]], [[2412.13171\|CCoT]], [[2412.06769\|Coconut]]
+- [[2604.18486\|OneVL]], [[2602.05359\|HIVE]], [[2601.10129\|LaViT]], [[2601.06803\|Laser]], [[2601.05877\|iReasoner]], [[2512.21218\|LIVR]], [[2512.16584\|SkiLa]], [[2510.23925\|LaCoT]], [[2510.12603\|IVT-LR]], [[2509.24251\|LVR]], [[2505.13308\|LATENTSEEK]], [[2505.12514\|COCONUT]], [[2505.11484\|SoftCoT++]], [[2502.21074\|CODI]], [[2502.03275\|Token Assorted]], [[2412.13171\|CCoT]], [[2412.06769\|Coconut]]
 
 > [!star] Key Papers
 > - [[2412.06769\|Coconut]] — Meta FAIR's Chain of Continuous Thought: LLM reasons in continuous latent space, outperforming token-based CoT on multi-step problems
@@ -218,12 +218,13 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 > - [[2505.11484\|SoftCoT++]] — First framework for scalable test-time reasoning in continuous latent space with speculative decoding
 
 **Depth-Recurrent & Looped Architectures** — Models that increase reasoning depth through weight-sharing loops or recurrence, decoupling compute from parameter count.
-- [[2604.07822\|Recurrent-Depth Reasoning]], [[2602.02156\|LoopViT]], [[2510.25741\|Ouro]], [[2510.04871\|TRM]], [[2510.00219\|Thoughtbubbles]], [[2507.02199\|Huginn Latent CoT]], [[2505.05522\|CTM]], [[2502.17416\|Looped Transformers]], [[2502.05171\|Huginn]]
+- [[2604.11791\|Looped Reasoning Mechanistic Analysis]], [[2604.07822\|Recurrent-Depth Reasoning]], [[2602.02156\|LoopViT]], [[2510.25741\|Ouro]], [[2510.04871\|TRM]], [[2510.00219\|Thoughtbubbles]], [[2507.02199\|Huginn Latent CoT]], [[2505.05522\|CTM]], [[2502.17416\|Looped Transformers]], [[2502.05171\|Huginn]]
 
 > [!star] Key Papers
 > - [[2502.05171\|Huginn]] — Depth-recurrent Transformer that matches larger models through adaptive compute via loop iterations
 > - [[2502.17416\|Looped Transformers]] — Google Research shows parameter-efficient looped architectures can match or exceed standard deep Transformers
 > - [[2510.25741\|Ouro]] — Looped Language Models with iterative computation embedded directly in pre-training
+> - [[2604.11791\|Looped Reasoning Mechanistic Analysis]] — Reveals that looped models spontaneously organize into cyclic fixed points + feedforward-style "stages of inference"; grounds looped design choices empirically
 
 **Implicit Reasoning Mechanics** — Understanding how Transformers internalize and execute reasoning without explicit chains.
 - [[2601.10679\|Augmented HRM]], [[2510.09312\|CRV]], [[2510.05069\|SwiReasoning]], [[2509.14252\|LLM-JEPA]], [[2506.08552\|Latent Reasoning Refinement]], [[2505.23653\|Transformer Implicit Reasoning Mechanics]]
@@ -298,7 +299,7 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 Instead of reasoning in natural language alone, these methods generate executable code or invoke external tools to perform computation, visual analysis, and grounded reasoning.
 
 **Code-as-Reasoning** — Generating Python programs to offload computation from the language model to an interpreter.
-- [[2512.12623\|DMLR]], [[2512.08511\|SubagentVL]], [[2507.00417\|ASTRO]], [[2505.20164\|VAT]], [[2505.19255\|VTool-R1]], [[2505.00024\|Nemotron-Research-Tool-N1]], [[2504.13958\|ToolRL]], [[2504.11536\|ReTool]], [[2311.05437\|LLaVA-Plus]], [[2303.08128\|ViperGPT]], [[2211.12588\|PoT]], [[2211.11559\|VISPROG]], [[2211.10435\|PAL]], [[2512.11061|VDAWorld]], [[2604.11805|Sim2Reason]]
+- [[2604.16004\|AgentV-RL]], [[2512.12623\|DMLR]], [[2512.08511\|SubagentVL]], [[2507.00417\|ASTRO]], [[2505.20164\|VAT]], [[2505.19255\|VTool-R1]], [[2505.00024\|Nemotron-Research-Tool-N1]], [[2504.13958\|ToolRL]], [[2504.11536\|ReTool]], [[2311.05437\|LLaVA-Plus]], [[2303.08128\|ViperGPT]], [[2211.12588\|PoT]], [[2211.11559\|VISPROG]], [[2211.10435\|PAL]], [[2512.11061|VDAWorld]], [[2604.11805|Sim2Reason]]
 
 > [!star] Key Papers
 > - [[2211.10435\|PAL]] — Program-aided language models: offload computation to a Python interpreter, separating reasoning from calculation
@@ -382,11 +383,12 @@ Understanding and reasoning about spatial relationships, 3D geometry, and physic
 The emerging paradigm: spend more compute at inference time to improve reasoning, or learn when to skip reasoning entirely.
 
 **Test-Time Scaling Methods** — Surveys and techniques for allocating additional compute at inference to boost reasoning quality.
-- [[2604.10333\|ZWM]], [[2604.07725\|Squeeze Evolve]], [[2603.29557\|FlowPIE]], [[2603.00461\|ReMoT]], [[2602.01984\|Delimiter Token Scaling]], [[2601.22628\|TTCS]], [[2601.16175\|TTT-Discover]], [[2601.18067\|EvolVE]], [[2504.13828\|Cognition Engineering]], [[2504.10449\|M1]], [[2503.24235\|Test-Time Scaling Survey]], [[2503.07572\|MRT]], [[2501.09686\|Large Reasoning Models Survey]]
+- [[2604.16029\|STOP]], [[2604.10333\|ZWM]], [[2604.07725\|Squeeze Evolve]], [[2603.29557\|FlowPIE]], [[2603.00461\|ReMoT]], [[2602.01984\|Delimiter Token Scaling]], [[2601.22628\|TTCS]], [[2601.16175\|TTT-Discover]], [[2601.18067\|EvolVE]], [[2504.13828\|Cognition Engineering]], [[2504.10449\|M1]], [[2503.24235\|Test-Time Scaling Survey]], [[2503.07572\|MRT]], [[2501.09686\|Large Reasoning Models Survey]]
 
 > [!star] Key Papers
 > - [[2503.24235\|Test-Time Scaling Survey]] — Comprehensive survey with unified four-axis taxonomy for TTS methods
 > - [[2501.09686\|Large Reasoning Models Survey]] — Survey of RL-based reasoning; maps the post-DeepSeek-R1 landscape
+> - [[2604.16029\|STOP]] — Super-Token path pruning for parallel reasoning; +6pp accuracy while cutting token consumption by >70%
 
 **Adaptive Thinking & Selective Reasoning** — Models that learn when to engage deep reasoning versus when to respond quickly.
 - [[2604.03023\|Behavior-Constrained RL]], [[2604.02035\|RL Speculative Trading]], [[2604.02021\|Discrete-Continuous Planning Bridge]], [[2604.01658\|CORAL]], [[2604.01434\|VOIMCP]], [[2604.00061\|R2X Multi-Robot MLLM Survey]], [[2603.30022\|Hybrid LLM-RL Manipulation]], [[2603.28204\|ERPO]], [[2603.19835\|FIPO]], [[2603.18336\|ManiDreams]], [[2602.06556\|LIBERO-X]], [[2602.01166\|LaRA-VLA]], [[2601.18631\|AdaReasoner]], [[2601.00561\|AEGIS]], [[2601.07060\|PALM]], [[2601.00969\|V-VLAPS]], [[2512.09929\|OWM]], [[2511.00758\|ATM]], [[2510.20607\|Compositional Energy Minimization]], [[2510.03827\|LIBERO-PRO]], [[2508.12211\|VLAPS]], [[2505.20258\|ARM]], [[2505.14631\|LHRM]], [[2505.13379\|Thinkless]], [[2504.18471\|AFM]], [[2501.10100\|RWM]], [[2410.21676\|Critical Batch Size Scaling]], [[2410.02355\|AlphaEdit]], [[2203.03485\|Self-directed Exploratory Planning]], [[2604.08706|RL Experience Replay for LLMs]], [[2604.08865|SPPO]], [[2604.11297|MEDS]], [[2604.13016|OPD Distillation Study]]

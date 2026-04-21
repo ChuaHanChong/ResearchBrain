@@ -10,7 +10,7 @@ aliases:
 ## Research Topics — Index
 
 > [!abstract]
-> Complete overview of all 2,247 papers in [[_KnowledgeHub_]], organized into 12 topic areas. Each topic file has curated narrative sections with evolution graphs, grouped sub-topics, key paper highlights, and practical insights.
+> Complete overview of all 2,278 papers in [[_KnowledgeHub_]], organized into 12 topic areas. Each topic file has curated narrative sections with evolution graphs, grouped sub-topics, key paper highlights, and practical insights.
 
 ### Topic Map
 
@@ -41,20 +41,20 @@ graph LR
 
 | # | Topic | Key Threads | Papers |
 | --- | --- | --- | --- |
-| [[01_Foundation-Models]] | ViT, SSL, CLIP, PEFT, theory | ViT → DINO → DINOv2 → I-JEPA | 473 |
+| [[01_Foundation-Models]] | ViT, SSL, CLIP, PEFT, theory | ViT → DINO → DINOv2 → I-JEPA | 474 |
 | [[02_Vision-Language-Models]] | Grounding, alignment, hallucination, spatial | CLIP → GLIP → Grounding DINO → LISA | 598 |
-| [[03_Reasoning-and-Planning]] | CoT, agentic reasoning, visual reasoning, TTS | CoT → STaR → ReAct → R1-style RL | 955 |
-| [[04_Reinforcement-Learning]] | Model-based RL, RLHF, GRPO, agentic RL | Dreamer → DreamerV3; STaR → GRPO → Absolute Zero | 730 |
-| [[05_Computer-Vision-and-3D]] | Detection, segmentation, 3D, spatial reasoning | FPN → Grounding DINO; DINO → RieMind | 390 |
-| [[06_Video-and-Temporal]] | Video SSL, generation as world models, motion | V-JEPA → V-JEPA 2.1; UniPi → UniSim → WAMs | 115 |
-| [[07_Robotics-and-Embodied-AI]] | VLAs, WAMs, self-evolving, driving, datasets | RT-1 → RT-2 → OpenVLA → π0 → DreamZero → SPIRAL | 551 |
-| [[08_Benchmarks-and-Surveys]] | Cross-cutting surveys and evaluation resources | LIBERO, CALVIN, OXE, MMOU, MultihopSpatial | 546 |
-| [[09_Multimodal-LLMs]] | MLLMs, instruction tuning, omni-modal | InstructBLIP → KOSMOS-2 → PaliGemma → Magma | 799 |
+| [[03_Reasoning-and-Planning]] | CoT, agentic reasoning, visual reasoning, TTS | CoT → STaR → ReAct → R1-style RL | 959 |
+| [[04_Reinforcement-Learning]] | Model-based RL, RLHF, GRPO, agentic RL | Dreamer → DreamerV3; STaR → GRPO → Absolute Zero | 734 |
+| [[05_Computer-Vision-and-3D]] | Detection, segmentation, 3D, spatial reasoning | FPN → Grounding DINO; DINO → RieMind | 395 |
+| [[06_Video-and-Temporal]] | Video SSL, generation as world models, motion | V-JEPA → V-JEPA 2.1; UniPi → UniSim → WAMs | 118 |
+| [[07_Robotics-and-Embodied-AI]] | VLAs, WAMs, self-evolving, driving, datasets | RT-1 → RT-2 → OpenVLA → π0 → DreamZero → SPIRAL | 579 |
+| [[08_Benchmarks-and-Surveys]] | Cross-cutting surveys and evaluation resources | LIBERO, CALVIN, OXE, MMOU, MultihopSpatial | 550 |
+| [[09_Multimodal-LLMs]] | MLLMs, instruction tuning, omni-modal | InstructBLIP → KOSMOS-2 → PaliGemma → Magma | 802 |
 | [[10_Agents-and-Tool-Use]] | LLM agents, tool use, multi-agent, code gen | ReAct → LATS → AgentGym → KARL → Memento-Skills | 221 |
-| [[11_Self-Evolving-AI]] | Self-training, bootstrapping, curriculum, meta | STaR → Self-Rewarding → Absolute Zero → SPIRAL | 179 |
-| [[12_Diffusion-and-Generation]] | Diffusion, flow matching, image/text generation | Diffuser → Diffusion Policy → Transfusion → Flow-GRPO | 221 |
+| [[11_Self-Evolving-AI]] | Self-training, bootstrapping, curriculum, meta | STaR → Self-Rewarding → Absolute Zero → SPIRAL | 181 |
+| [[12_Diffusion-and-Generation]] | Diffusion, flow matching, image/text generation | Diffuser → Diffusion Policy → Transfusion → Flow-GRPO | 230 |
 
-**Total: 2,247 papers** — papers may appear in multiple topic files where relevant.
+**Total: 2,278 papers** — papers may appear in multiple topic files where relevant.
 
 ### Deep-Dive Folders
 
