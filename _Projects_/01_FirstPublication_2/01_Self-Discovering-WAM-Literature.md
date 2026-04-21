@@ -1,64 +1,70 @@
 ---
-title: "Self-Discovering Failure in Diffusion-WAMs — Literature Scan"
+title: "Self-Discovering Imagination vs. Action Failure in Diffusion-WAMs — Literature Scan"
 tags:
-  - self-evolving
   - WAM
   - diffusion
   - failure-detection
   - failure-attribution
+  - self-discovery
   - imagination-error
   - action-error
   - literature
 aliases:
-  - "Self-Discovering Diffusion-WAM Lit Scan"
   - "Diffusion-WAM Attribution Lit"
+  - "Self-Discovering Diffusion-WAM Lit Scan"
+  - "FIPER-Generalized Attribution Gate Lit Scan"
+  - "2x2x2 Factorial Attribution Gate Lit Scan"
 ---
 
-# Self-Discovering Failure in Diffusion-WAMs — Literature Scan
+# Self-Discovering Imagination vs. Action Failure in Diffusion-WAMs — Literature Scan
 
 > [!abstract] Scope
-> A literature scan for a first-publication **failure-discovery method for diffusion-based World Action Models** — a per-episode diagnostic that decomposes an episode's failure into ==imagination failure== (the WM's next-frame prediction diverged from reality) vs. ==action failure== (the WM's prediction was correct but the action head picked a poor action). The paper delivers the **diagnostic gate** only; what to *do* with a diagnosis — targeted retraining, residual RL, data collection — is **out of scope / future work**. Scope restricted to diffusion-WAM architectures across two sub-variants: **AR-video-diffusion** ([[2602.15922|DreamZero]]) and **FM-video-diffusion** (Fast-WAM, Cosmos-Predict2).
+> Literature scan for a first-publication **FIPER-generalized 2×2 attribution gate** for diffusion-WAMs, evaluated as a **2×2×2 factorial = 8 cells**: two diffusion-WAM backbones × two imag signals × two act signals. The paper delivers a per-episode 2-bit diagnostic (==imagination failure== × ==action failure==); what to do with the diagnosis is out of scope. Backbones: [[2504.02792|UWM]] (~90M, modality-independent diffusion timesteps) + [[2601.16163|Cosmos Policy]] (~2B, Cosmos-Predict2 DiT with latent-frame roles). Imag anchors: [[2503.08558|FAIL-Detect]] `logpZO` (distributional OOD) + [[2502.20946|DIFF-UQ]] (Bayesian last-layer Laplace + CLIP semantic likelihood). Act anchors: [[2510.09459|FIPER]]-ACE + [[2410.04640|Sentinel]]-STAC. [[2510.09459|FIPER]] = structural ancestor.
 
-> [!info] How this scan was assembled
-> Vault search across `_KnowledgeHub_/` (2247 paper notes) plus targeted alphaxiv + web queries for 2024–2026 work on (a) uncertainty / OOD detection in diffusion world models, (b) failure prediction in VLA policies, (c) verifier / process-reward models applicable to generative rollouts, (d) the "why diffusion, not latent" motivation (imagination-error well-posedness), and (e) per-episode attribution precedents. Organized as: (§Why Diffusion) motivation, (§Landscape) canonical diffusion WAMs, then three buckets — **(A) imagination-failure detection**, **(B) action-failure detection**, **(C) attribution & verification systems** — plus §The Gap and §Out-of-Scope Future Work.
+> [!tip] Anchor elevation — FIPER-generalized 2×2×2 factorial
+> Method restructured around **FIPER as structural ancestor** with two candidate imag signals and two candidate act signals evaluated on two diffusion-WAM backbones. [[2510.09459|FIPER]] (Römer et al., NeurIPS 2025; public repo `github.com/utiasDSL/fiper`, MIT, 2025-11-03) contributes the **dual-signal success-only CP architecture**. On the imag axis, two label-free anchors with architecturally-distinct signal families: (1) [[2503.08558|FAIL-Detect]] (Xu/Itkina/Nishimura at TRI; public repo `github.com/CXU-TRI/FAIL-Detect`, CC BY-NC, 2025-06-18) — `logpZO` is a CNF density score on the noise latent, natively computed on real observations $O_t$; applying it to WM-predicted $\hat{O}_{t+1}$ is a **novel extension, not a drop-in port** (verified: `train.py` feeds `observation = x_batch` with real $O_t$; no predicted-frame path). (2) [[2502.20946|DIFF-UQ]] (Jazbec et al., UAI 2025; public repo `github.com/metodj/DIFF-UQ`, 2025-06-23) — two-channel signal combining last-layer Laplace variance (epistemic uncertainty on the diffusion model's weights, Monte-Carlo over sampled last-layer weights) and CLIP semantic likelihood on the decoded frame; **post-hoc** on any pretrained diffusion model, so extends naturally to both UWM and Cosmos Policy without retraining. Paper explicitly validates on latent flow matching (Section C.7) — matches both backbones' regime. On the action axis, two candidate anchors with public code: FIPER's own **ACE** (action-chunk entropy, parameter-free, same repo) and [[2410.04640|Sentinel]]'s **STAC** (Agia et al., CoRL 2024; public repo `github.com/agiachris/sentinel`, MIT, 2025-02-05) — MMD on 256 action samples per Sentinel's Push-T config. **2×2×2 factorial = 8 cells**, with a pre-registered S3.1 pilot gate on $\rho(R_{\text{logpZO}}, R_{\text{DIFF-UQ}})$ that collapses the design to 2×2 if the two imag signals are redundant (ρ > 0.85). Backbone anchors: [[2504.02792|UWM]] (WEIRDLabUW, ICRA 2025; public repo, GDrive checkpoints, Robomimic + LIBERO) and [[2601.16163|Cosmos Policy]] (NVIDIA, 2026; public repo `github.com/NVlabs/cosmos-policy`, Apache-2.0 code + NSCLv1 weights, HF checkpoints, LIBERO + RoboCasa + ALOHA). AdaWorldPolicy (2602.20057) dropped as backbone — no public code. Fast-WAM (2603.16666) dropped — its "no test-time imagination" thesis is incompatible with both imag anchors. Alternatives dismissed after verification: [[2506.09937|SAFE]] (labeled success+failure — demoted to B-SAFE baseline); [[2603.06987|Foundational WM]] (no confirmed public code — optional Plan-B ablation); [[2604.01985|WAV]] (sparse-IDM needs expert actions — B-WAV baseline); [[2602.16182|WM Failure Classifier]] (requires labeled known-failure data — B-WMFC baseline).
 
 ---
 
-## Why Diffusion-Based WAMs (and not Dreamer / JEPA)
+## Why Two Imag Signals, Not One
 
-Self-failure-discovery requires a measurable imagination-residual — a signal that says *"my world model's prediction was wrong here, regardless of what the policy did."* **The family of world models determines whether such a signal is well-defined in the first place.**
+The 2×2×2 design is only defensible if the two imag signals measure **structurally distinct** notions of "prediction is off." If they agree too strongly, the second signal adds compute without adding information.
 
-| WM family | Imagination-residual shape | Problem |
+| Axis | [[2503.08558\|FAIL-Detect]] `logpZO` | [[2502.20946\|DIFF-UQ]] |
 |---|---|---|
-| **Dreamer-line** (latent reconstruction; e.g., DreamerV3) | Ensemble variance over $k$ latent-dynamics heads | Compute scales with $k$; infeasible for large WMs. |
-| **JEPA-line** (joint-embedding, no reconstruction; e.g., V-JEPA2) | KL divergence between learned posterior and prior in latent space | **Self-referential**: the target encoder is an EMA of the student; low prediction error can mean "target agreed with student," not "model is right." Representation collapse, scale uninterpretability, non-stationary latent space. |
-| **Diffusion-video-WAM** ([[2602.15922\|DreamZero]], Fast-WAM, Cosmos) | **Pixel-level prediction error** against the *observed* next frame; optional **semantic generative uncertainty** via CLIP / Bayesian last-layer | Grounded in the observation; interpretable in natural units (pixel MSE, PSNR, LPIPS); no self-reference; no collapse risk. |
+| Signal type | Distributional OOD — CNF density $\log p(Z_{\hat{O}})$ on a flow model's noise latent | Bayesian epistemic — last-layer Laplace variance + CLIP semantic-space likelihood |
+| Space | Noise latent of a separately-trained CNF | Diffusion model's own last-layer weight posterior + CLIP feature space |
+| What it detects | "Is $\hat{O}_{t+1}$ off the success-rollout manifold?" | "Is the diffusion model itself uncertain about generating $\hat{O}_{t+1}$?" |
+| Randomness source | Single forward pass on noise latent | Monte-Carlo over $M$ sampled last-layer weights (M=1 suffices per paper appendix) |
+| Training requirements | Separate CNF trained on success-rollout $\hat{O}_{t+1}$ | Post-hoc Laplace fit on pretrained diffusion model; CLIP frozen |
 
-**Diffusion WAMs are the only family whose imagination-residual has external ground truth at the per-step level** — the observation $o_{t+1}$ itself. Every rollout produces a pair $(\hat{o}_{t+1}, o_{t+1})$ that can be compared directly. Latent-WM families compute error in a learned, drifting, self-referential space; their signals require elaborate calibration and are brittle to architectural choices.
-
-> [!tip] The paper's framing consequence
-> The "why diffusion?" question is a *methodological contribution*, not a budget decision. We argue diffusion WAMs are the architecture class in which **per-episode failure attribution becomes well-posed** — and then deliver a principled diagnostic gate.
+H5 (imag-axis internal decorrelation) tests this empirically at S3.1 on **100** UWM success rollouts via Spearman rank correlation (Pearson as secondary reporting; max-so-far aggregates are heavy-tailed so Pearson is not the primary statistic). Decision rule: Spearman ρ < 0.6 → commit 2×2×2; ρ ∈ [0.6, 0.85] → Cosmos Policy pilot also; ρ > 0.85 → DIFF-UQ is redundant with `logpZO`, demoted to a S9 ablation and paper stays 2×2. This pre-registration protects against signal-identity-dilution.
 
 ---
 
-## Diffusion-WAM Landscape (2024–2026)
+## Why Diffusion + Why These Two Backbones
 
-Within diffusion-based WAMs, two sub-variants span the design space of action-head structure:
+Backbone choice is pragmatic and constrained: both imag anchors require a WAM that produces a predicted next-frame at inference, so backbones that remove test-time imagination (Fast-WAM) are structurally ruled out. Among public diffusion-WAMs with future imagination + released checkpoints, **[[2504.02792|UWM]]** and **[[2601.16163|Cosmos Policy]]** span the interesting design axis:
 
-| Sub-variant | Exemplar | Action head | Native action-side uncertainty | Native imagination-side uncertainty |
+| Backbone | Parameters | WM/action coupling | Benchmarks | Decorrelation basis for H2 |
 |---|---|---|---|---|
-| **AR-video-diffusion** | [[2602.15922\|DreamZero]] (NVIDIA, 14 B) | Autoregressive over action tokens | Next-token entropy over the AR head's softmax | Pixel MSE at frame boundaries + multi-seed frame-variance + [[2502.20946\|generative uncertainty]] (Laplace + CLIP) |
-| **FM-video-diffusion** | Fast-WAM / Cosmos-Predict2 ([[2602.20057\|AdaWorldPolicy]]'s backbone) / [[2603.07799\|MWM]] | Flow-matching action chunk | [[2510.25889\|Flow-SDE]] sample variance or multi-sample spread | Pixel MSE + CFG-disagreement / multi-seed denoising variance + [[2502.20946\|generative uncertainty]] |
+| **[[2504.02792\|UWM]]** | ~90M DiT | Shared backbone; **modality-independent diffusion timesteps** for video vs. action | Robomimic Square/Transport/Can + LIBERO-100 | Timestep-level modality decoupling |
+| **[[2601.16163\|Cosmos Policy]]** | ~2B DiT (Cosmos-Predict2) | Shared backbone; **distinct latent-frame roles** for action / future-image / value | LIBERO + RoboCasa + ALOHA | Latent-role-token decoupling |
 
-Additional in-scope diffusion WAMs (cited but not used as experimental backbones):
+Neither has AdaWorldPolicy-style distinct-weight-module separation. H2 decorrelation is weakened on both but through *different* architectural mechanisms — which is why the 2×2×2 factorial is the right evaluation design: it tests whether the signal-level decorrelation is robust across both backbone coupling mechanisms.
 
-- [[2412.14957|DREMA]] — Gaussian-Splatting + physics engine; hybrid-diffusion with explicit physics referee.
-- [[2512.06628|MIND-V]] — Hierarchical diffusion WM with physical-alignment coherence reward.
-- [[2603.07799|MWM]] — Mobile world models; demonstrates visually-faithful rollouts can be action-conditioned inconsistent.
-- [[2502.00622|GPC]] — Generative Predictive Control; uses a diffusion WM for inference-time planning.
-- [[2603.12639|RoboStereo]] — Dual-tower 4D EWM with **Test-Time Policy Augmentation (TTPA)** — a pre-execution verification step.
+Latent-WM families (Dreamer / JEPA) remain excluded by anchor availability.
 
-Out of scope: generic video-diffusion without an action interface.
+---
+
+## Diffusion-WAM Landscape
+
+| Sub-variant | Exemplar(s) | Our scope |
+|---|---|---|
+| **FM-video-diffusion with preserved test-time imagination** | [[2504.02792\|UWM]], [[2601.16163\|Cosmos Policy]] | **In scope — the 2 backbones of the 2×2×2 grid** |
+| **FM-video-diffusion with distinct-weight WM + action modules** | [[2602.20057\|AdaWorldPolicy]] | Referenced for architectural ideal, **no public code** → not usable |
+| **FM-video-diffusion with removed test-time imagination** | [[2603.16666\|Fast-WAM]] | Incompatible with imag anchors — excluded |
+| **AR-video-diffusion** | [[2602.15922\|DreamZero]] | Deferred to publication #2 |
 
 ---
 
@@ -66,181 +72,92 @@ Out of scope: generic video-diffusion without an action interface.
 
 A diffusion-WAM executes an episode by rolling out in imagination (denoising future frames + predicting actions) and acting in reality. When the episode fails, the failure has two possible blame targets:
 
-| | Imagination failure | Action failure |
+| | Imagination failure (cell `10`) | Action failure (cell `01`) |
 |---|---|---|
-| **What's wrong** | Predicted frame $\hat{o}_{t+1}$ diverges from observed $o_{t+1}$ in pixel space | WM's frame prediction was correct, but the action-head choice is poor |
-| **Signal (diffusion-specific)** | Pixel MSE / LPIPS; multi-seed denoising variance; [[2502.20946\|generative uncertainty]] (Laplace + CLIP); CFG-disagreement for CFG-enabled samplers | FM-head: [[2510.25889\|Flow-SDE]] sample variance; AR-head: token entropy; [[2604.01985\|WAV]] sparse inverse-dynamics as a verifier-independent check |
-| **Meaning for future work (out of scope)** | The WM's physics / visual dynamics are wrong here → retrain the WM predictor on this region | The WM is fine; the action head picks bad actions on a correct dream → residual RL on the action head |
+| **What's wrong** | Predicted frame $\hat{O}_{t+1}$ off the success manifold OR diffusion model is uncertain about generating it | WM prediction on-manifold, action head picks poorly |
+| **Signal in our gate** | `logpZO(\hat{O}_{t+1})` (FAIL-Detect) or DIFF-UQ combined score — one per cell | ACE (FIPER) or STAC (Sentinel) — one per cell |
 
-**Prior work on diffusion-WAM failure conflates these signals.** Existing *detection* systems ([[2510.09459|FIPER]], [[2506.09937|SAFE]], [[2503.08558|FAIL-Detect]]) fire a single "failure likely" flag. Existing *closed-loop* systems ([[2602.20057|AdaWorldPolicy]], [[2603.13528|Dream2Fix]]) fire on a single prediction-error signal and update everything. **No prior paper computes the two residuals as separately-interpretable per-episode signals and reports their joint distribution as a diagnosis.**
-
----
-
-## Bucket A — Imagination-Failure Detection
-
-Signals that tell the diffusion WAM *"my next-frame prediction is wrong about this region."*
-
-### A.1 Pixel-Level Prediction Error
-
-- **Post-rollout pixel MSE / LPIPS** — the core diffusion-WAM-native signal. Cheap, grounded, interpretable. No single vault paper proposes it as a *per-episode attribution signal*; we adopt it as the primary $r_{\text{imag}}$.
-- [[2603.07799|MWM]] — pixel-level prediction error (LPIPS, DreamSim) is meaningful for action-conditioned video WMs; **action-consistency** metric is exactly this signal averaged over a rollout. **Borrowable**: confirmation that LPIPS / DreamSim are sensitive to WM failure.
-
-### A.2 Multi-Seed / Bayesian Uncertainty (Self-Discovery)
-
-- [[2502.20946|Generative Uncertainty in Diffusion Models]] — Bayesian **last-layer Laplace** + **semantic likelihood in CLIP feature space**; quantifies sample-quality uncertainty at ~10× lower cost than Monte Carlo seed variance. Directly validated on diffusion and flow-matching models. **Borrowable**: the principled epistemic channel — diffusion-native, computationally tractable.
-- [[2511.04670|Cambrian-S]] — "surprise"-driven latent video-prediction error used for memory management; high latent divergence = WM breakdown. **Pure intrinsic**; stacks with pixel-MSE as a latent-side companion channel on $r_{\text{imag}}$.
-- [[2512.01119|WM Surprise Robustness]] — Bayesian surprise as a principled detection signal. *Historical*: originally JEPA-only; the multi-hypothesis pattern transfers but not the math.
-- [[1705.05363|ICM]] — forward-model prediction error as curiosity. *Historical*: canonical motivation; noisy-TV problem mitigated in diffusion by pixel-ground-truth.
-
-### A.3 Physical-Plausibility Violation
-
-- [[2603.19312|LeWM]]'s **Violation-of-Expectation** — prediction error is higher on physically implausible events than merely novel visual conditions. **Borrowable**: typed surprise signal (physics vs. appearance).
-- [[2603.23376|ABot-PhysWorld]] — Diffusion-DPO to suppress physically implausible predictions (diffusion-native). **Borrowable**: as a data-side future-work remedy (out of scope for this paper).
-- [[2412.14957|DREMA]] — compositional WM with explicit PyBullet physics engine. **Borrowable**: physics-verified rollout as a ground-truth channel when geometry is known.
-- [[2512.06628|MIND-V]] — Physical Foresight Coherence reward with frozen V-JEPA2 as physics referee. **Borrowable**: PFC as a *model-checker-style* imagination-residual component.
-
-### A.4 Conformal / Distributional OOD
-
-- [[2602.16182|WM Failure Classifier]] — hybrid framework: success / known-failure / OOD via latent prediction error + conformal prediction. **Borrowable**: the three-way classifier — extend to four-way (imagination-OOD × action-OOD) via our 4-cell gate. **Critical baseline for the detection task** (purely detection, no updates — exactly the scope of this paper).
-
-### A.5 Historical / Latent-WM Precedents (Context Only)
-
-These are retained as cited prior work to motivate *why diffusion's pixel-ground-truth is preferable*:
-
-- [[2005.05960|Plan2Explore]] — $k$-ensemble of latent dynamics (Dreamer-family). *Historical.*
-- [[2504.16680|RWM-U / MOPO-PPO]] — ensemble epistemic uncertainty validated on physical quadrupeds (Dreamer-family). *Historical*: gold-standard validation of latent ensemble variance, but relies on architectural property (multi-head dynamics) unavailable in large diffusion WMs.
-- [[2603.04029|Self-Adapting RL (Domberg)]] — OPR + RPR residual decomposition (Dreamer-family). *Closest prior decomposition concept* — but OR-gated and Dreamer-only.
+Prior detection systems ([[2510.09459|FIPER]], [[2506.09937|SAFE]], [[2503.08558|FAIL-Detect]], [[2602.16182|WM Failure Classifier]]) fire a single "failure likely" flag and do not decompose the failure. This paper's contribution is the decomposition + joint calibration + 2×2×2 generality validation.
 
 ---
 
-## Bucket B — Action-Failure Detection
+## Bucket A — Imagination-Failure Detection (Trimmed to Two Anchors + Direct Competitors)
 
-Signals that tell the agent *"the diffusion WM was right, but the action head failed."*
+Signals on the WM side.
 
-### B.1 Action-Uncertainty / Stochastic-Sample Spread (Self-Discovery)
-
-- [[2510.09459|FIPER]] — OOD-observation score AND action-chunk entropy; ACE via dimension-wise binning. **Borrowable**: ACE is family-agnostic — works identically for FM continuous actions and AR discrete tokens via binning/softmax entropy. **Critical detection-only baseline**.
-- [[2510.25889|πRL]]'s Flow-SDE — ODE→SDE conversion for flow-matching VLAs enables stochastic sampling and action-variance measurement. **Borrowable**: the FM sub-variant action-residual signal.
-- [[2509.19292|SOE]] — VIB perturbation maps action-level behavioral boundaries. **Borrowable**: architecture-agnostic probing — transfers to both FM and AR action heads via latent perturbation (pre-action-head embedding).
-- [[2604.04161|AAC]] (Adaptive Action Chunking) — Gaussian differential entropy on continuous action components as an inference-time signal for action quality; high entropy → smaller chunk / replan. **Pure intrinsic**; no failure labels. Stacks with Flow-SDE on the action side.
-- [[2603.18091|ADV]] (Action Draft and Verify) — VLM perplexity over generated action candidates filters suboptimal actions before execution. **Pure intrinsic** (uses pretrained VLM perplexity, no failure-specific training). Action-side only.
-- **Token entropy for AR diffusion** — native signal of AR-video-diffusion WAMs; cheap, no additional forward passes.
-
-### B.2 Hidden-State / Internal-Feature Probes
-
-- [[2506.09937|SAFE]] — probes VLA hidden states with a small MLP + conformal prediction. **Borrowable**: conformal calibration scheme; orthogonal internal-feature detector. **Note**: exchangeability assumption holds in our scope (no updates), so SAFE's statistical guarantees are preserved.
-- [[2503.08558|FAIL-Detect]] — `logpZO` flow-based density + conformal prediction; **label-free calibration**. **Borrowable**: calibrate without access to failure labels. Complements the synthetic-injected-failure protocol.
-- [[2310.17552|Sirius-Runtime]] — cVAE dynamics model + human-intervention-informed failure classifier. *Historical cousin of SAFE* (same probe-based paradigm, earlier).
-- [[2603.11106|RC-NF]] — Robot-Conditioned Normalizing Flow; unsupervised density-based anomaly scoring (<100 ms). **Borrowable**: nominal-only training precedent — we use the same success-only calibration principle.
-- [[2603.06987|Foundational WM]] — Cosmos-latent probabilistic WM + predicted std dev + residual calibrated via Conformal Prediction; 3.8% higher detection on real bimanual tasks. **Closest detection-scope competitor in the vault** — same conformal machinery, latent WM though (not diffusion).
-- [[2510.02298|ARMADA]] — Online Optimal Transport on policy embeddings vs. expert trajectories; dynamic threshold adaptation. **Borrowable as baseline**; ~95% embedding-space detection accuracy.
-- [[2410.14868|Diff-DAgger]] — repurposes diffusion policy's training loss as deployment uncertainty; +39% F1 over ensembles. **Diffusion-policy-native** — a direct comparator in the FM sub-variant since Fast-WAM has a diffusion action head.
-
-### B.3 Sim-to-Real / Policy-Specific Diagnosis
-
-- [[2602.01515|RAPT]] — reconstruction-likelihood OOD + integrated gradients + multi-modal LLM for zero-shot root-cause classification (75% Top-1). **Borrowable**: end-to-end diagnostic pipeline; a *competitor paradigm* for this paper (LLM-as-classifier vs. our structured gate) — should be compared head-to-head on attribution accuracy.
-- [[2412.02818|RoboMD]] — RL adversary searches semantic embedding space for failure-inducing environments. **Borrowable**: active probing to construct the injected-failure test suite.
-- [[2603.02115|Robometer]] — VLM reward model trained on absolute progress + pairwise preferences; F1 $= 0.81$ for zero-shot failure detection via **reward inversion**. **Borrowable as reward-model-detector baseline**; reward-based signal is global (no component decomposition).
-- [[2407.08735|AESOP]] — dual-stage LLM runtime monitor (fast embedding-retrieval + slow generative reasoning); 100% recovery in simulation via MPC fallback. **Borrowable**: foundation-model-grounded detection layer; complementary to intrinsic signals.
-
-### B.4 Multi-Detector Ensembles
-
-- [[2410.04640|Sentinel]] — STAC + VLM judge in parallel. **Borrowable**: ensemble philosophy for the baseline comparison.
-- [[2410.14868|Diff-DAgger]] — repurposes diffusion policy's training loss as uncertainty; +39% F1 over ensembles. **Borrowable**: *diffusion-native* uncertainty signal — direct precedent for using training loss at deployment.
+- [[2503.08558|FAIL-Detect]] — **Imag anchor #1 (cells 1, 2, 5, 6).** `logpZO` flow-based density + functional Conformal Prediction; label-free, calibrated on success rollouts only. Public code CC BY-NC (research only). Native use is on real $O_t$; our novel extension is to $\hat{O}_{t+1}$.
+- [[2502.20946|DIFF-UQ]] — **Imag anchor #2 (cells 3, 4, 7, 8).** Generative Uncertainty in Diffusion Models (Jazbec et al., UAI 2025): two-channel signal = last-layer Laplace variance + CLIP semantic likelihood, combined per paper §3.3. Post-hoc on any pretrained diffusion model — fits both UWM and Cosmos Policy without retraining. Paper validates specifically on latent flow matching (§C.7), matching both backbones' regime. M=1/T=25 config is paper-validated competitive with M=5/T=50, keeping compute overhead tractable on 2B Cosmos Policy. Public repo (no LICENSE file; research use standard).
+- [[2603.06987|Foundational WM]] — **Plan-B imag anchor.** Predicted-std + prediction error on Cosmos-Tokenizer latents. No confirmed public code — reimplementation candidate if S3.1 demotes DIFF-UQ AND S4 kills all 4 surviving cells.
+- [[2602.16182|WM Failure Classifier]] — **Supervised baseline.** Success / known-failure / OOD via latent prediction error + CP; **requires labeled known-failure data**. Closest prior system in detection structure.
+- [[2603.11106|RC-NF]] — **Tier-1 baseline.** Robot-Conditioned Normalizing Flow; fully unsupervised. Density-based like `logpZO` — considered for imag anchor #2 but demoted because structurally too similar to `logpZO` (both are CNF densities); DIFF-UQ wins on architectural distinctness.
 
 ---
 
-## Bucket C — Attribution & Verification Systems
+## Bucket B — Action-Failure Detection (Trimmed to Anchors + Direct Competitors)
 
-Systems that combine multiple signals or verify rollouts before / during / after — most directly comparable to our contribution.
+Signals on the action-head side.
 
-### C.1 Verifiers for World-Model Rollouts
+- [[2510.09459|FIPER]] — **Structural ancestor + act anchor #1 (cells 1, 3, 5, 7).** RND-OE + ACE under AND-gate. Headline numbers are AND-gate combined (TWA 0.65, overall 0.78); ACE-alone not cleanly tabulated → R5 risk. Public code (MIT). Repo inspection confirms ACE is currently coded for 3-D position actions (x/y/z) — must be generalized for 7-DoF.
+- [[2410.04640|Sentinel]] — **Act anchor #2 (cells 2, 4, 6, 8).** STAC = MMD on 256 action samples. Published: STAC > 90% balanced acc on Push-T, 96% on Close Box. Public code (MIT). **Gotcha**: default config in `sentinel/bc/ood_detection/error_utils.py:62` is `mmd_rbf_pos` (position-only, 3-D); full-action `mmd_rbf_all` exists but isn't in the paper's headline numbers — parallels R5 on FIPER-ACE. For 7-DoF AdaWorldPolicy-style action chunks we use `mmd_rbf_all`.
+- [[2506.09937|SAFE]] — **Supervised baseline + source of STAC-single reduction.** Labeled success+failure rollouts. Also names **STAC-single** — single-sample fallback we'll implement atop Sentinel's code for Cell 8 (2B × DIFF-UQ × STAC-256 is the most expensive cell).
+- [[2510.25889|Flow-SDE]] — **Future-work component.** Cited only.
 
-- [[2604.01985|WAV (World Action Verifier)]] — **closest prior work**. Decomposes WM verification into (state plausibility via a **subgoal generator**) and (action reachability via **sparse inverse dynamics**). Forward-inverse asymmetry. **Borrowable**: the sparse-IDM is a verifier-independent action-side signal that stacks with Flow-SDE / token entropy. **How we differ**: WAV routes disagreement to *data acquisition*; we route it to *per-episode diagnosis*. WAV assumes latent-WM; we target diffusion-video. WAV's contribution overlaps ours at the decomposition concept but not at the signal form, scope, or downstream use.
-- [[2603.12639|RoboStereo]] — dual-tower 4D EWM with **Test-Time Policy Augmentation (TTPA)** for pre-execution verification. **Borrowable**: TTPA is a pre-execution verification stage that can catch would-be imagination failures before they happen — a *complementary* timing axis to our post-episode diagnostic gate.
-- [[2504.16828|Process Reward Models That Think]] — step-level verifier that attributes failure to specific generation stages. **Borrowable**: step-level attribution as an additional granularity axis.
-- [[2602.08971|WorldArena]] — 2×2 benchmark decomposition at the *model-evaluation* level: perceptual quality vs. functional utility across 14 WMs. **Structural precedent** for the imagination-vs-action decomposition, at benchmark granularity rather than per-episode. Empirical evidence: correlation between the two axes is only **r ≈ 0.36** — the decomposition is not trivial.
+---
 
-### C.1b VLM-Based Failure Attribution (Attribution Competitors — supervised)
+## Bucket C — Attribution & Verification Competitors (Trimmed)
 
-These are the *attribution-task* competitors — all produce a structured cause label but all require labeled failure data:
+- [[2604.01985|WAV]] — **Closest prior decomposition + supervised attribution baseline.** Forward-inverse asymmetry: subgoal generator + sparse IDM. **Requires expert action data.** Latent WM, not diffusion-video. We differ on: (a) diffusion-native pixel ground-truth vs. latent; (b) per-episode diagnostic vs. self-improvement; (c) label-free vs. expert-action.
+- [[2603.04029|Self-Adapting RL]] — **Conceptual precedent for decomposition.** OPR + RPR, OR-gated within Dreamer-RSSM. Not diffusion; threshold-based, not CP. Retained as prior decomposition reference.
+- [[2602.08971|WorldArena]] — **Empirical support.** 2×2 benchmark of 14 WMs reports r ≈ 0.36 between perceptual quality and action-planning utility — evidence the decomposition is non-trivial.
+- [[2603.07799|MWM]] — **Empirical support.** Visually-faithful diffusion rollouts can be action-inconsistent.
 
-- [[2512.01946|Guardian / FailCoT]] — VLM (InternVL3-8B) fine-tuned on **30K+ failure examples with CoT reasoning**; decomposes failures into **planning vs. execution** — the taxonomy most closely aligned with our imagination-vs-action-head axes. Beats GPT-4o on RoboFail. **Most direct taxonomy competitor**; requires extensive labeled failure data (we do not).
-- [[2410.00371|AHA]] — VLM with procedurally generated failure dataset for free-form reasoning over robot failures. **Borrowable as baseline** (free-form output vs. our structured label).
-- [[2505.12224|RoboFAC]] — comprehensive framework for robotic failure analysis and correction. **Borrowable as baseline** — broader scope than just detection, overlaps with future-work correction.
-- [[2510.01642|FailSafe]] — VLM fine-tuned on synthetic failure-action pairs; outputs 7-DoF recovery actions; +22.6% success boost on OpenVLA. **Borrowable**: action-centric cause taxonomy (the recovery action implies the failure type); conflates diagnosis with correction.
-- [[2409.03966|VLM Failure Recovery]] — GPT-4o prompt engineering for failure detection and recovery. *Earlier precedent*; simpler but shows the VLM-as-judge pattern was viable before task-specific fine-tunes.
-
-### C.1c Counterfactual / Sim-Based Attribution
-
-- [[2503.00761|TRACE]] — Tree-of-Thought + counterfactual critic; the critic perturbs VLM-predicted trajectories and the world model (sim access) validates feasibility. **Borrowable as both side**: counterfactual divergence provides evidence for both imagination and action failure. **Caveat**: requires oracle sim-rollouts per counterfactual — expensive; borderline self-discovery (oracle actions are a form of supervision). We keep it as a *baseline* for attribution comparison, not as a stacked component.
-
-### C.2 Multi-Signal Detection Frameworks
-
-- [[2602.16182|WM Failure Classifier]] — three-way success / known-failure / OOD classifier via conformal prediction. *Critical baseline* — the closest prior detection system for our benchmark.
-- [[2603.22078|WAM-vs-VLA Robustness]] — WM-based vs. direct-policy robustness ablation across OOD axes. *Provides the injected-failure protocol* we adopt for the attribution-accuracy benchmark.
-- [[2511.16166|EvoVLA]] — stage-aligned reward reduces stage hallucination by 23.7 pp. **Borrowable**: the stage-hallucination framing maps cleanly to our imagination-failure class.
-
-### C.3 Decision-Aware MBRL Context
-
-- [[2505.13709|Policy-Driven WM Adaptation]] — Stackelberg maximin joint adaptation. *Historical context*: motivates that likelihood-optimal WMs are not policy-optimal — hence the need for *policy-referenced* diagnosis. Not a direct competitor (it's an update method).
-- [[2310.06253|Objective Mismatch MBRL Survey]] — taxonomy of decision-aware MBRL. **Borrowable**: places our contribution as a *per-episode* diagnostic tool that any decision-aware MBRL pipeline can consume.
-- [[1911.10601|Scaling Active Inference]] — free-energy framework unifying prediction error and policy value. *Theoretical grounding* for why observation- and action-residuals should be compared, not summed.
+Supervised VLM-based attribution systems ([[2512.01946|Guardian / FailCoT]], [[2410.00371|AHA]], [[2510.01642|FailSafe]], [[2602.01515|RAPT]]) cited only — label-free constraint rules them out.
 
 ---
 
 ## The Gap
 
 > [!question] What no prior paper does
-> No existing work **computes pixel-ground-truth imagination-residual and action-head-native action-residual in a diffusion-WAM system, reports their joint distribution as a per-episode diagnostic, and validates attribution accuracy on synthetic injected failures across both AR and FM diffusion sub-variants** — independent of any self-improvement loop.
+> No prior work combines **two structurally-distinct WM-prediction-native imag signals** (`logpZO` + DIFF-UQ) with **two success-only action-side signals** (ACE + STAC) into a **Bonferroni-corrected joint CP gate** that reports 2-bit attribution on **two diffusion-WAM backbones** as a 2×2×2 factorial, with zero failure labels.
 
-**Closest prior approaches and why they fall short**:
-
-| Paper | What it does | Why it's not the same |
-|-------|-------------|----------------------|
-| [[2510.09459\|FIPER]] | OOD-score ∧ action-entropy for failure *prediction* | AND-gated for detection; collapses the two signals into a single flag; no attribution |
-| [[2604.01985\|WAV]] | Forward-inverse asymmetry on latent WMs, routed to data acquisition | Latent-WM; scope is self-improvement data loop; not per-episode diagnostic; no diffusion validation |
-| [[2602.16182\|WM Failure Classifier]] | 3-way success / known-failure / OOD classification with conformal | Single signal; no WM-vs-action-head decomposition |
-| [[2506.09937\|SAFE]] | Hidden-state probe + conformal | Single signal; predicts failure but doesn't localize to a component |
-| [[2602.01515\|RAPT]] | LLM root-cause classification | Environmental cause (friction, actuator), not WM-vs-action-head |
-| [[2603.04029\|Self-Adapting RL]] | OPR + RPR residuals, OR-gated | Dreamer-family only (excluded from scope); never treats the two residuals as a joint diagnostic |
-| [[2602.08971\|WorldArena]] | 2×2 perceptual × functional *benchmark* | Benchmark-level decomposition of WMs; not per-episode; no per-trajectory signal definition |
-
-**Evidence the dichotomy is empirically necessary in the diffusion family**:
-
-1. [[2603.07799|MWM]] shows visually-faithful diffusion rollouts can be action-conditioned inconsistent — pixel MSE can be low while the action head still fails. Motivates a separate action-residual channel.
-2. [[2602.08971|WorldArena]] finds a **"perception–functionality gap"** across 14 embodied WMs: correlation between perceptual quality and action-planning utility is only **r ≈ 0.36**.
-3. [[2603.22078|WAM-vs-VLA Robustness]]: robustness gaps between WAM-based and direct-policy agents depend on the OOD axis — some failures stem from the WAM, others from the policy.
-4. [[2604.01985|WAV]]: forward-inverse asymmetry holds empirically on real robots (latent WM); we claim the analogous decomposition is *more principled* in diffusion WMs because pixel-ground-truth removes the self-referential concern.
-
-**The contribution**: a 4-cell *diagnostic* matrix from the joint of `(imagination-residual, action-residual)`, computed natively for each diffusion sub-variant. Each cell is a labeled diagnosis:
-
-| | low action residual | high action residual |
+| Paper | Output | Why it's not the same |
 |---|---|---|
-| **low imag. residual** | **Success** — episode succeeded | **Action failure** — the WM was right; the action head chose poorly |
-| **high imag. residual** | **Imagination failure** — the WM's prediction was wrong; action head was operating on a wrong dream | **Joint failure** — both signals fire; likely compounding cause |
+| [[2510.09459\|FIPER]] | Single flag (RND-OE ∧ ACE) | AND-gate collapses signals; no attribution; policy-observation RND-OE not WM-prediction-native; single backbone |
+| [[2503.08558\|FAIL-Detect]] | Scalar OOD on real $O_t$ | Single axis; native use doesn't touch WM predictions |
+| [[2502.20946\|DIFF-UQ]] | Scalar Laplace + CLIP on generated images | Single axis; no action-side pairing; validated on generation benchmarks, not robot trajectories |
+| [[2410.04640\|Sentinel]] | STAC (action) + VLM (progress) | Action-axis only; VLM companion needs task labels |
+| [[2604.01985\|WAV]] | Forward-inverse asymmetry | Supervised; latent WM; self-improvement loop |
+| [[2602.16182\|WM Failure Classifier]] | 3-way success/known-failure/OOD | Supervised; single signal; no decomposition |
+| [[2506.09937\|SAFE]] | Scalar failure score | Supervised; single signal; no component localization |
+| [[2603.04029\|Self-Adapting RL]] | OPR + RPR, OR-gated | Dreamer-only; threshold-based not CP |
+| [[2602.08971\|WorldArena]] | Per-model 2×2 decomposition | Benchmark-level, not per-episode |
 
-The paper reports per-cell accuracy on a synthetic injected-failure benchmark, baseline comparison against single-signal detectors, and signal-correlation analysis — **nothing else**.
+**Contribution**: the 4-cell diagnostic matrix from the joint of $(R_{\text{imag}}, R_{\text{act}})$, computed on **two diffusion-WAMs** × **two imag signals** × **two act signals** as a 2×2×2 factorial, with a pre-registered redundancy-collapse rule at S3.1.
+
+| | low $R_{\text{act}}$ | high $R_{\text{act}}$ |
+|---|---|---|
+| **low $R_{\text{imag}}$** | Success | Action failure |
+| **high $R_{\text{imag}}$** | Imagination failure | Joint failure |
 
 ---
 
 ## Out-of-Scope / Future Work
 
-These are explicitly deferred. The diagnostic gate produces a *label*; acting on the label is future work that builds on this paper's foundation.
+Explicitly deferred to publication #2:
 
-- **Self-improvement loops** — targeted retraining, residual RL, LoRA updates. Relevant literature: [[2511.00091|PLD]], [[2507.21053|FPO]], [[2602.04879|DPPO]], [[2602.20057|AdaWorldPolicy]], [[2502.00622|GPC]], [[2603.13528|Dream2Fix]].
-- **Failure-conditioned data synthesis** — generating recovery trajectories. Relevant: [[2603.13528|Dream2Fix]], [[2603.23376|ABot-PhysWorld]].
-- **Closed-loop curriculum** — adaptive task-difficulty based on diagnosed failures. Relevant: [[2604.14144|SpatialEvo]], [[2602.16444|RoboGene]].
-- **Reflection / memory over diagnoses** — learning from diagnosis history. Relevant: [[2603.08561|RetroAgent]], [[2502.05907|EvoAgent]].
-
-The paper will include a one-paragraph "Applications" section pointing to these directions without instantiating them.
+- **AR sub-variant** — [[2602.15922|DreamZero]] with categorical-softmax adaptation of `logpZO`.
+- **Multi-component signal stacks** — restore pixel-MSE + [[2502.20946|Laplace+CLIP]]-split channels + [[2510.25889|Flow-SDE]] + [[2604.04161|AAC]] on top of this 2×2×2 foundation.
+- **Closed-loop update routing** — cell `10` → WM LoRA; cell `01` → action-head residual RL. Relevant: [[2511.00091|PLD]], [[2507.21053|FPO]], [[2602.04879|DPPO]], [[2602.20057|AdaWorldPolicy]], [[2603.13528|Dream2Fix]].
+- **Attribution-gated safety** — refuse-to-act on real-time imag-fail.
+- **Distinct-weight-module backbones** — re-run the 2×2×2 gate on AdaWorldPolicy if code becomes public, or on any successor backbone with separate WM / action weight modules.
 
 ---
 
 ## Cross-References
 
-- [[02_Self-Discovering-WAM-Roadmap]] — companion roadmap operationalizing this scan's §The Gap across AR and FM diffusion-WAM sub-variants.
+- [[02_Self-Discovering-WAM-Roadmap]] — operational plan (architecture, hypotheses including H5, execution steps including S3.1, risk register).
+- [[00_Self-Discovering-WAM-Summary]] — one-page pitch.
 
 ---
 
-*Companion to [[02_Self-Discovering-WAM-Roadmap]].*
+*Companion to [[00_Self-Discovering-WAM-Summary]] and [[02_Self-Discovering-WAM-Roadmap]].*

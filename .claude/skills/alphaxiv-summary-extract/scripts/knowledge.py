@@ -1208,4 +1208,39 @@ papers = [
     "https://arxiv.org/abs/2604.11306", # Learning to Forget – Hierarchical Episodic Memory for Lifelong Robot Deployment
     "https://arxiv.org/abs/2604.11351", # WM-DAgger: Enabling Efficient Data Aggregation for Imitation Learning with World Models
     "https://arxiv.org/abs/2604.11135", # AIM: Intent-Aware Unified world action Modeling with Spatial Value Maps
+    "https://arxiv.org/abs/2604.13074", # PersonaVLM: Long-Term Personalized Multimodal LLMs
+    "https://arxiv.org/abs/2604.16044", # Elucidating the SNR-t Bias of Diffusion Probabilistic Models
+    "https://arxiv.org/abs/2604.11251", # CLAW: Composable Language-Annotated Whole-body Motion Generation
+    "https://arxiv.org/abs/2604.08706", # Efficient RL Training for LLMs with Experience Replay
+    "https://arxiv.org/abs/2502.07408", # Maximal Brain Damage Without Data or Optimization: Disrupting Neural Networks via Sign-Bit Flips
+    "https://arxiv.org/abs/2604.16029", # Cut Your Losses! Learning to Prune Paths Early for Efficient Parallel Reasoning
+    "https://arxiv.org/abs/2604.11791", # A Mechanistic Analysis of Looped Reasoning Language Models
+    "https://arxiv.org/abs/2010.01158", # MM-Hand: 3D-Aware Multi-Modal Guided Hand Generative Network for 3D Hand Pose Synthesis
+    "https://arxiv.org/abs/2604.17651", # Infrastructure-Centric World Models: Bridging Temporal Depth and Spatial Breadth for Roadside Perception
+    "https://arxiv.org/abs/2604.17887", # StableIDM: Stabilizing Inverse Dynamics Model against Manipulator Truncation via Spatio-Temporal Refinement
+    "https://arxiv.org/abs/2604.18484", # XEmbodied: A Foundation Model with Enhanced Geometric and Physical Cues for Large-Scale Embodied Environments
+    "https://arxiv.org/abs/2604.18486", # OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation
+    "https://arxiv.org/abs/2604.17807", # Re2MoGen: Open-Vocabulary Motion Generation via LLM Reasoning and Physics-Aware Refinement
+    "https://arxiv.org/abs/2604.17876", # OFlow: Injecting Object-Aware Temporal Flow Matching for Robust Robotic Manipulation
+    "https://arxiv.org/abs/2604.17880", # ST-$π$: Structured SpatioTemporal VLA for Robotic Manipulation
+    "https://arxiv.org/abs/2604.17896", # Can Explicit Physical Feasibility Benefit VLA Learning? An Empirical Study
+    "https://arxiv.org/abs/2604.17706", # OmniVLA-RL: A Vision-Language-Action Model with Spatial Understanding and Online RL
+    "https://arxiv.org/abs/2604.14089", # UMI-3D: Extending Universal Manipulation Interface from Vision-Limited to 3D Spatial Perception
+    "https://arxiv.org/abs/2604.15215", # A Hierarchical Spatiotemporal Action Tokenizer for In-Context Imitation Learning in Robotics
+    "https://arxiv.org/abs/2604.11689", # LARY: A Latent Action Representation Yielding Benchmark for Generalizable Vision-to-Action Alignment
+    "https://arxiv.org/abs/2604.15395", # Foundation Models in Robotics: A Comprehensive Review of Methods, Models, Datasets, Challenges and Future Research Directions
+    "https://arxiv.org/abs/2604.15281", # R3D: Revisiting 3D Policy Learning
+    "https://arxiv.org/abs/2604.15805", # From Seeing to Simulating: Generative High-Fidelity Simulation with Digital Cousins for Generalizable Robot Learning and Evaluation
+    "https://arxiv.org/abs/2604.14125", # HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System
+    "https://arxiv.org/abs/2604.15475", # NeuroMesh: A Unified Neural Inference Framework for Decentralized Multi-Robot Collaboration
+    "https://arxiv.org/abs/2604.15814", # Continual Hand-Eye Calibration for Open-world Robotic Manipulation
+    "https://arxiv.org/abs/2604.15938", # VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation
+    "https://arxiv.org/abs/2604.14732", # World–Value–Action Model: Implicit Planning for Vision–Language–Action Systems
+    "https://arxiv.org/abs/2604.15911", # Efficient Video Diffusion Models: Advancements and Challenges
+    "https://arxiv.org/abs/2604.14268", # HY-World 2.0: A Multi-Modal World Model for Reconstructing, Generating, and Simulating 3D Worlds
+    "https://arxiv.org/abs/2604.15034", # Autogenesis: A Self-Evolving Agent Protocol
+    "https://arxiv.org/abs/2604.14141", # Geometric Context Transformer for Streaming 3D Reconstruction
+    "https://arxiv.org/abs/2604.16004", # AgentV-RL: Scaling Reward Modeling with Agentic Verifier
+    "https://arxiv.org/abs/2604.13016", # Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe
+    "https://arxiv.org/abs/2604.15483", # π0.7​: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities
 ]
