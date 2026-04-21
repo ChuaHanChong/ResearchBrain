@@ -78,20 +78,20 @@ Gate output in every cell is the 4-cell attribution label:
 
 | ID | Claim | Target |
 |---|---|---|
-| **H1** | Top-1 attribution accuracy on injected-failure suite, **winning cell** | ≥ **80%** (chance = 25%); pre-registered floor 70% |
+| **H1** | Top-1 attribution accuracy on injected-failure suite, **winning cell** (4-class `{00, 01, 10, 11}`; chance = 25%) | Target **≥ 75%**; pre-registered floor **≥ 70%** |
 | **H2** | Signal decorrelation $\rho(R_{\text{imag}}, R_{\text{act}})$ per cell, on 500 success rollouts | < 0.7 in at least one cell per (backbone, imag-signal) combination |
 | **H3** | Detection AUROC (4-cell collapsed to fail/succeed) on winning cell | Match FIPER's published TWA (0.65) / overall acc (0.78) within 3 pp |
-| **H4** | Cross-cell generality | Top-1 ≥ 70% in **≥ 6 of 8 cells** — supports "gate is not backbone-specific and not imag-signal-specific" |
+| **H4** | Cross-cell generality (descriptive at n=2 backbones; see Prop. 12.2 of math doc) | **Primary test**: both backbones hit ≥ 3 of 4 cells at Top-1 ≥ 70% (cluster-robust). **Descriptive secondary**: Top-1 ≥ 70% in ≥ 6 of 8 cells overall (anti-conservative under naive Bin(8, π) because within-backbone cells share calibration data, $n_\text{eff} \in [2, 8]$) |
 | **H5** | Imag-axis internal decorrelation $\rho_{\text{Spearman}}(R_{\text{logpZO}}, R_{\text{DIFF-UQ}})$ (Spearman primary; Pearson as secondary) | < 0.6 on **100 success rollouts per backbone** (both UWM and Cosmos Policy) — **precondition for the 2×2×2 design** (validated at S3.1 dual-backbone pilot) |
 
 ## 5. Effectiveness / efficiency envelope
 
-**The headline** — FIPER-generalized 2×2 gate delivers **≥ 80% Top-1 attribution (3.2× chance)** with **≤ 20% compute overhead** on top of published anchor heads, in at least one (backbone, imag-signal, act-signal) configuration, using **zero failure labels**.
+**The headline** — FIPER-generalized 2×2 gate delivers **≥ 75% Top-1 attribution (3.0× chance)** with **≤ 20% compute overhead** on top of published anchor heads, in at least one (backbone, imag-signal, act-signal) configuration, using **zero failure labels**.
 
 | Dimension | Target | Source |
 |---|---|---|
-| Attribution Top-1, winning cell | ≥ 80% | Novel; floor 70% |
-| Per-cell recall on `10` AND `01` | ≥ 75% each | Cross-side non-leakage (load-bearing ablation) |
+| Attribution Top-1, winning cell | ≥ 75% (target); ≥ 70% (floor) | Novel; derived from Claim B row-recall floor under uniform priors (§10 of math doc) |
+| Per-cell recall on `10` AND `01` | ≥ 0.60 each (Claim B floor); ≥ 0.75 stretch | Cross-side non-leakage (load-bearing ablation) |
 | Detection AUROC parity with FIPER | Within 3 pp | FIPER headline |
 | UWM overhead per step (logpZO, ACE) | ≈ 1–2% | CNF forward + parameter-free ACE |
 | UWM overhead per step (logpZO, STAC-256) | ≈ 5–10% | Small WM amortizes 256 samples |
@@ -162,12 +162,13 @@ Gate output in every cell is the 4-cell attribution label:
 - **R7 — Benchmark overlap between backbones is limited to LIBERO.** *Mitigation*: backbone-native secondaries (Robomimic, RoboCasa) provide per-backbone depth; H4 claimed within LIBERO.
 - **R8 — Compute ≈ 2× vs. 2×2 plan, ≈ 4× vs. original single-backbone plan.** *Mitigation*: S3.1 pilot may collapse to 4 cells; UWM cells first; M=1/T=25 for DIFF-UQ on Cosmos; STAC-single fallback; drop Cell 8 (2B × DIFF-UQ × STAC-256) first if forced to cut.
 - **R9 — DIFF-UQ's CLIP was trained on web images, not robot scenes.** *Mitigation*: S9 ablation = Laplace-only vs. CLIP-only vs. combined; if CLIP channel harms robot-scene performance, use Laplace-only on DIFF-UQ cells.
-- **R10 — Imag-axis redundancy collapses 2×2×2 to 2×2.** If logpZO and DIFF-UQ agree too strongly, the second imag anchor is redundant. *Mitigation*: S3.1 pilot gate is the explicit mitigation; pre-registered Spearman threshold ρ > 0.85 on 100 rollouts triggers the demote-to-ablation path.
-- **R11 — LICENSE ambiguity on DIFF-UQ and UWM repos.** Neither `metodj/DIFF-UQ` nor `WEIRDLabUW/unified-world-model` ships a LICENSE file. Research use is community norm but the legal default is "all rights reserved." *Mitigation*: fine for this publication (user has confirmed license is not a constraint for research); flag in supplementary if any code snippets are redistributed; open a GitHub issue with each author requesting explicit license before artifact release.
+- **R10 — Imag-axis redundancy collapses 2×2×2 to 2×2.** If logpZO and DIFF-UQ agree too strongly, the second imag anchor is redundant. *Mitigation*: S3.1 pilot gate is the explicit mitigation; pre-registered Spearman threshold ρ > 0.85 on 100 rollouts per backbone triggers the demote-to-ablation path.
+- **R11 — Both signals sit near CP thresholds on real (subtle) failures; gate collapses to detection (HIGH).** Real manipulation failures (near-misses, subtle physics errors) may produce signals in the 80–95 percentile of success — enough to worry a human but below the α=0.10 CP cutoff. *Mitigation*: §5.3.4 must report the full joint distribution $(R_\text{imag}, R_\text{act})$ on natural failures, not just gate labels; supplement with a soft-scoring variant.
+- **R12 — Real failures are ≥ 80% mixed (class `11`); 4-cell label effectively 2-class (MED-HIGH).** If natural failures concentrate in `11` (both signals fire), the attribution USP degrades to detection-with-extra-bit. *Mitigation*: cheap LIBERO-Plus probe at S1 to estimate class-balance on natural failures; kill gate if `11` > 80%.
 
 ## 10. Where to find more
 
-- **Full roadmap** → [[02_Self-Discovering-WAM-Roadmap]] — §3 dual-backbone + dual-imag architecture, §4 2×2×2 factorial, §4.2 Bonferroni derivation, §5.2 full baseline roster, §5.3.2 output-token-level injection protocol, §6 execution steps (S1.1 LIBERO alignment, S3.1 dual-backbone pilot), §7 kill criteria, §8 eleven-risk register.
+- **Full roadmap** → [[02_Self-Discovering-WAM-Roadmap]] — §3 dual-backbone + dual-imag architecture, §4 2×2×2 factorial, §4.2 Bonferroni derivation, §5.2 full baseline roster, §5.3.2 output-token-level injection protocol, §6 execution steps (S1.1 LIBERO alignment, S3.1 dual-backbone pilot), §7 kill criteria, §8 twelve-risk register.
 - **Literature scan** → [[01_Self-Discovering-WAM-Literature]] — anchor-elevation paragraph, DIFF-UQ's role as second imag anchor, backbone selection rationale, full three-bucket survey.
 
 ---

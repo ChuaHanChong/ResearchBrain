@@ -369,7 +369,11 @@ Each claim is restated as a formal proposition, paired with a pre-registered hyp
 > **Proposition B.** For each cell $c$ of the 2×2×2, the imag signal responds to imag corruption but not to pure act corruption, and vice versa:
 > $$\mathrm{Recall}_{10} \geq 0.60,\quad \mathrm{Recall}_{01} \geq 0.60,\quad \text{per cell}. \tag{10.B.1}$$
 
-**Falsifier (§5.3.2 confusion matrix)**: per-cell 4×4 confusion matrix on $500 \times 4$ injected-failure rollouts. **Statistic**: per-cell recall on rows `10` and `01`. **Pre-registered threshold**: reject Proposition B for cell $c$ if either recall is below 0.60. H4 requires Proposition B to hold in **$\geq 6$ of 8 cells**.
+**Falsifier (§5.3.2 confusion matrix)**: per-cell 4×4 confusion matrix on $500 \times 4$ injected-failure rollouts. **Statistic**: per-cell recall on rows `10` and `01`. **Pre-registered threshold**: reject Proposition B for cell $c$ if either recall is below 0.60. H4 requires Proposition B to hold in **$\geq 6$ of 8 cells** (descriptive; see Prop. 12.2 for cluster-robust primary test).
+
+**Relation to H1 (Top-1 target)**. $\mathrm{Recall}_{c}$ is the row-recall on the 4×4 confusion matrix: $\mathrm{Recall}_c = \mathbb{P}(\hat\ell = c \mid \text{true class} = c)$. Under uniform injected-class priors (500 rollouts per class × 4 classes = 2000 injected rollouts, §5.3.2 of Roadmap), the overall Top-1 is the mean of the diagonal:
+$$\mathrm{Top\text{-}1} = \tfrac{1}{4}\bigl(\mathrm{Recall}_{00} + \mathrm{Recall}_{01} + \mathrm{Recall}_{10} + \mathrm{Recall}_{11}\bigr). \tag{10.B.2}$$
+$\mathrm{Recall}_{00} \geq 1 - \alpha = 0.90$ follows from the joint FPR control of Prop. 8.1. The remaining three recalls are empirical — Claim B pre-registers the $\mathrm{Recall}_{10},\mathrm{Recall}_{01} \geq 0.60$ falsifier; $\mathrm{Recall}_{11}$ is reported alongside but not pre-registered (both axes fire by design under joint corruption, so the floor is expected to be high but is not a falsifier). The H1 target of 75% is a pre-registered aspiration given these inputs; the 70% floor is the kill-gate.
 
 ### 10.3 Claim C — Joint calibration under exchangeability
 
@@ -391,7 +395,7 @@ Each claim is restated as a formal proposition, paired with a pre-registered hyp
 - $\hat{\rho}_S > 0.85$ (lower CI) on either backbone → reject Proposition D; demote DIFF-UQ to ablation; collapse to 2×2 (Cells 1/2/5/6).
 - Intermediate → proceed with caveat.
 
-Fisher-z SE with $n=100$ is $\mathrm{SE}(z) = 1/\sqrt{n-3} \approx 0.1015$. Back-transformed to the $\rho$ scale at $\rho = 0.85$: $z = \mathrm{arctanh}(0.85) \approx 1.256$; 95% CI on $z$ is $[1.057, 1.455]$; 95% CI on $\rho_S$ is $\tanh([1.057, 1.455]) \approx [0.785, 0.897]$. Half-width ≈ $0.056$ (not $0.07$ — corrected from earlier draft) — enough resolution to distinguish 0.70 from 0.85 at ~80% power per backbone.
+Fisher-z SE with $n=100$ is $\mathrm{SE}(z) = 1/\sqrt{n-3} \approx 0.1015$. Back-transformed to the $\rho$ scale at $\rho = 0.85$: $z = \mathrm{arctanh}(0.85) \approx 1.256$; 95% CI on $z$ is $[1.057, 1.455]$; 95% CI on $\rho_S$ is $\tanh([1.057, 1.455]) \approx [0.785, 0.897]$. Half-width ≈ 0.056 — enough resolution to distinguish 0.70 from 0.85 at ~80% power per backbone.
 
 ---
 
@@ -509,8 +513,8 @@ with the constraint $\hat{\rho}_{c^\star} < 0.7$. If all committed cells violate
 >
 > 1. **Well-definedness**: every map in §2–§9 is measurable and has finite, deterministic outputs for any well-formed episode $\omega$.
 > 2. **Per-cell FPR control**: for each cell $c$, $\mathbb{P}(\ell_c(\omega_\text{test}) \neq 00 \mid \text{success}) \leq \alpha$.
-> 3. **Cross-cell inference**: H4 statistic (≥ 6 of 8 cells passing Top-1 ≥ 70%) is testable via standard binomial inference on 8 independent Bernoulli trials.
-> 4. **Decorrelation kill gate**: S3.1 Spearman CI on $n=100$ per backbone has ~80% power to distinguish $\rho_S = 0.70$ from $\rho_S = 0.85$ per backbone (Fisher-z SE ≈ 0.10).
+> 3. **Cross-cell inference (descriptive)**: H4 is evaluated under the cluster-robust framing of Prop. 12.2. The primary test is the backbone-level criterion (≥ 3 of 4 cells passing within *each* backbone); the naive Bin(8, $\pi_\text{pass}$) "≥ 6 of 8 cells" statistic is reported descriptively only, with the explicit caveat that within-backbone cells share calibration data so the effective number of independent trials is $n_\text{eff} \in [2, 8]$. At $n_\text{eff}=2$ backbones, H4 is a descriptive generality statement, not an inferential claim with nominal Type-I control.
+> 4. **Decorrelation kill gate**: S3.1 Spearman CI on $n=100$ per backbone has Fisher-z SE $\approx 0.10$. At true $\rho_S=0.85$, CI on $\rho_S$ is $\approx [0.785, 0.897]$; power to distinguish 0.70 from 0.85 is ~80% per backbone under the pre-registered 3-way decision rule (§12.4).
 
 **Proof sketch by component chain**:
 
@@ -530,16 +534,11 @@ with the constraint $\hat{\rho}_{c^\star} < 0.7$. If all committed cells violate
 
 **Each row shows**: inputs are well-defined → the operation is measurable / differentiable / deterministic → outputs feed the next row. Exchangeability for CP is inherited from frozen backbones + i.i.d. success-rollout sampling. Bonferroni over-protects under any positive dependence between axes, so (8.6) is conservative and cannot be violated by empirical signal correlations.
 
-**Per-cell FPR (part 2)** follows from Prop. 12.1, which applies Prop. 8.1 (proved via union bound on (8.5a)–(8.5b)) to each cell's own calibration set. No cross-cell information sharing occurs in the calibration, so Prop. 12.2 holds, giving part (3): cross-cell inference reduces to 8 independent Bernoulli trials.
+**Per-cell FPR (part 2)** follows from Prop. 12.1, which applies Prop. 8.1 (proved via union bound on (8.5a)–(8.5b)) to each cell's own calibration set.
 
-**Part (4)** — Fisher-z SE with $n=100$ is $1/\sqrt{97} \approx 0.1015$; the 95% CI half-width on $z$ is $1.96 \cdot 0.1015 \approx 0.199$. At a true $\rho_S = 0.85$, the corresponding $z$ is $\mathrm{arctanh}(0.85) \approx 1.256$, so the CI on $\rho_S$ is $\tanh(1.256 \pm 0.199) \approx [0.785, 0.897]$.
+**Part (3) — cross-cell framing**. Cells 1–4 share UWM calibration data; cells 5–8 share Cosmos Policy calibration data; cells 1/3 and 5/7 share $\hat{O}_{t+1}$ across the imag axis. Therefore the 8 cell-level pass/fail outcomes are **not independent Bernoulli trials**, and Proposition 12.2's cluster-robust framing replaces the naive binomial. The **primary H4 test** is the backbone-level statistic (both backbones independently hit ≥ 3 of 4 cells at Top-1 ≥ 70%); the "≥ 6 of 8 cells" statistic is reported descriptively with a note that $n_\text{eff} \in [2, 8]$. At $n_\text{eff} = 2$ backbones the generality claim is **descriptive, not inferential**.
 
-**Decision-rule implications at this CI** (§12.4):
-- Upper bound $0.897 > 0.60$: the "commit" branch (requires upper $< 0.60$ on both backbones) does **not** fire.
-- Lower bound $0.785 < 0.85$: the "collapse" branch (requires lower $> 0.85$ on either backbone) does **not** fire.
-- Therefore the intermediate "proceed with caveat" branch triggers: run full 2×2×2 but flag redundancy; H4 claimed only on a backbone whose upper CI bound $< 0.60$.
-
-This is the correct conclusion at the critical $\rho_S = 0.85$ boundary — the 3-way rule **does** discriminate unambiguously well away from 0.85 (e.g., at true $\rho_S = 0.5$ the CI is $\tanh(0.549 \pm 0.199) \approx [0.32, 0.63]$, upper bound $< 0.85$ and the rule is unambiguous). The earlier draft's claim of "upper bound does not reach 0.60" was incorrectly reasoning from the collapse-threshold side.
+**Part (4) — S3.1 Fisher-z CI at $n=100$**. SE on $z$ is $1/\sqrt{97} \approx 0.1015$; 95% CI half-width on $z$ is $1.96 \cdot 0.1015 \approx 0.199$. At true $\rho_S = 0.85$ the CI on $\rho_S$ is $\tanh(\mathrm{arctanh}(0.85) \pm 0.199) \approx [0.785, 0.897]$. The 3-way decision rule (§12.4) commits on lower $\rho_S$, collapses on high $\rho_S$, and carries an intermediate "proceed with caveat" branch for ambiguous outcomes.
 
 $\qed$
 

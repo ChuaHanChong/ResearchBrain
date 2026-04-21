@@ -75,7 +75,7 @@ The imag axis must use at least two structurally-distinct signal families for th
 - $\rho_S > 0.85$ on **either** backbone → demote DIFF-UQ to S9 ablation; design collapses to 2×2 (Cells 1, 2, 5, 6).
 - $\rho_S \in [0.6, 0.85]$ on one or both → proceed with caution; run full 2×2×2 but flag redundancy in write-up; claim H4 only on the backbone where $\rho_S < 0.6$.
 
-**Statistical note**: Fisher-z analysis with n=100 gives SE ≈ 0.10 on z, which maps to ρ ± ~0.07 at ρ=0.85 — enough resolution to distinguish 0.7 vs. 0.85 at ~80% power per backbone.
+**Statistical note**: Fisher-z analysis with n=100 gives SE ≈ 0.10 on z, which maps to ρ ± ~0.056 at ρ=0.85 — enough resolution to distinguish 0.7 vs. 0.85 at ~80% power per backbone.
 
 ### Why FM-only, not AR
 
@@ -107,7 +107,7 @@ Both imag anchors require flow-matching or score-matching observation decoders. 
 ## 2. Testable Hypotheses
 
 > [!tip] H1 — Attribution accuracy, winning cell
-> On 500 × 4-cell synthetic injected failures, the winning cell of the 2×2×2 factorial achieves $\geq 80\%$ Top-1 cell accuracy. Pre-registered floor: 70%.
+> On 500 × 4-cell synthetic injected failures (uniform class priors), the winning cell of the 2×2×2 factorial achieves $\geq 75\%$ Top-1 cell accuracy. Pre-registered floor: 70%. §10.2 of the math doc relates this to Claim B's row-recall floor under joint-FPR Recall$_{00} \geq 1-\alpha$.
 
 > [!tip] H2 — Act × imag decorrelation, per cell (decides winning cell at S4)
 > On 500 success rollouts per cell: $\rho(R_{\text{imag}}, R_{\text{act}}) < 0.7$ in at least one cell per (backbone, imag-signal) combination. Cell with lowest ρ globally wins. If all committed cells have $\rho > 0.7$ → pivot.
@@ -115,8 +115,9 @@ Both imag anchors require flow-matching or score-matching observation decoders. 
 > [!tip] H3 — Detection AUROC parity with FIPER
 > Winning cell's collapsed-to-binary detection AUROC matches FIPER's published numbers (TWA **0.65** / overall acc **0.78**) within 3 pp on LIBERO.
 
-> [!tip] H4 — Cross-cell generality (2×2×2-native)
-> Top-1 attribution ≥ 70% in **≥ 6 of 8 cells**. This is the generality claim that distinguishes the paper from a single-backbone or single-imag-signal FIPER-generalization.
+> [!tip] H4 — Cross-cell generality (2×2×2-native, descriptive at n=2 backbones)
+> **Primary test**: both backbones independently hit ≥ 3 of 4 cells at Top-1 ≥ 70% (cluster-robust per Prop. 12.2 of the math doc).
+> **Secondary (descriptive)**: Top-1 ≥ 70% in ≥ 6 of 8 cells overall. Reported but anti-conservative under naive Bin(8, π) because within-backbone cells share calibration data ($n_\text{eff} \in [2, 8]$).
 
 > [!tip] H5 — Imag-axis internal decorrelation (S3.1 precondition, dual-backbone)
 > On **100 success rollouts per backbone** (total 200): **Spearman** $\rho_S(R_{\text{logpZO}}, R_{\text{DIFF-UQ}}) < 0.6$ on **both** UWM and Cosmos Policy (Pearson reported for reference only). **This is the precondition for the 2×2×2 design.** If $\rho_S > 0.85$ on either backbone, DIFF-UQ is demoted to ablation and design collapses to 2×2.
@@ -294,7 +295,6 @@ STAC-single fallback available per [[2506.09937|SAFE]]'s protocol — especially
 3. **Cross-side non-leakage has no prior empirical support** on diffusion-WAMs, and both backbones use *shared-weight* decoupling (timestep or latent-role) rather than distinct-weight-module separation.
 4. **Imag-axis internal decorrelation is unmeasured.** S3.1 pilot produces the first data point; redundancy collapse is a real outcome.
 5. **Benchmark overlap across backbones is limited to LIBERO.** Push-T and RoboTwin 2.0 dropped from headline.
-6. **FAIL-Detect CC BY-NC license + UWM no-LICENSE + DIFF-UQ no-LICENSE.** Research publication is fine; commercial release requires relicensing audit.
 
 ---
 
@@ -366,7 +366,7 @@ Metrics: Top-1 cell accuracy, per-cell precision/recall (4×4 confusion matrix),
 
 #### 5.3.3 Decorrelation analysis (H2 + H5 + S3.1/S4)
 
-- **H5 (S3.1)**: **Spearman** $\rho_S(R_{\text{logpZO}}, R_{\text{DIFF-UQ}})$ on **100** UWM success rollouts (Pearson secondary); decision on whether to commit to full 2×2×2.
+- **H5 (S3.1)**: **Spearman** $\rho_S(R_{\text{logpZO}}, R_{\text{DIFF-UQ}})$ on **100 success rollouts per backbone** (total 200) (Pearson secondary); decision on whether to commit to full 2×2×2.
 - **H2 (S4)**: Spearman $\rho_S(R_{\text{imag}}, R_{\text{act}})$ per cell on 500 success rollouts (Pearson secondary); selects winning cell.
 
 Spearman is the primary statistic throughout because max-so-far episode-aggregates are heavy-tailed (Pearson's Gaussian assumption is violated). Report: full 8×8 Spearman correlation heatmap across all signals + cells, with Pearson overlay in supplementary.
@@ -377,7 +377,7 @@ Empirical joint FPR per cell on held-out success vs. Bonferroni-predicted $\alph
 
 #### 5.3.5 Cross-cell generality (H4)
 
-Top-1 attribution across all committed cells on LIBERO. Report: (a) "best cell" headline; (b) "≥ 6 of 8" generality claim (or ≥ 3 of 4 if S3.1 collapses to 2×2); (c) ρ heatmap across cells.
+Top-1 attribution across all committed cells on LIBERO. Report: (a) "best cell" headline; (b) primary statistic — both backbones hit ≥ 3 of 4 committed cells at Top-1 ≥ 70% (cluster-robust per Prop. 12.2); (c) descriptive secondary — "≥ 6 of 8" raw count (or ≥ 3 of 4 if S3.1 collapses to 2×2); (d) ρ heatmap across cells.
 
 #### 5.3.6 Data splits
 
@@ -487,10 +487,16 @@ Compute budget: 1× 8×H100 node. UWM cells first; commit Cosmos Policy compute 
 >
 > **Mitigation**: S3.1 pilot gate is the explicit mitigation. If it fires, DIFF-UQ becomes an ablation; paper still has a clean 2×2 story with four cells and the generality claim is H4 reduced to "≥ 3 of 4 cells."
 
-> [!warning] R11 — LICENSE ambiguity on DIFF-UQ and UWM repos
-> **Severity**: LOW (for this publication). Neither `metodj/DIFF-UQ` nor `WEIRDLabUW/unified-world-model` ships a LICENSE file. Default under copyright law is "all rights reserved"; research use is community norm but not legally documented.
+> [!warning] R11 — Both signals sit near CP thresholds on real (subtle) failures — gate collapses to detection
+> **Severity**: HIGH. Real manipulation failures (near-miss grasps, partial occlusions, subtle physics errors) may produce signal values in the 80–95 percentile of the success distribution — high enough to be concerning but below the α=0.10 CP threshold. The 2×2 gate then labels most real episodes as `00` (success-looking) with only rare `01` / `10` fires, degrading the attribution USP.
 >
-> **Mitigation**: fine for this publication (user has confirmed license is not a constraint for research and public-repo availability implies implicit research-use grant). For any downstream artifact release: (a) open a GitHub issue with each maintainer requesting explicit license; (b) flag ambiguity in the paper's supplementary code-availability section. FAIL-Detect CC BY-NC is separately documented and research-permissive.
+> **Mitigation**: §5.3.4 must report the **full joint distribution** of $(R_\text{imag}, R_\text{act})$ on natural-failure rollouts (not only gate labels); add a soft-scoring variant (rank percentiles) alongside the hard-threshold gate; include heatmap of $(R_\text{imag}, R_\text{act})$ percentiles on the injected vs. natural-failure suites.
+
+> [!warning] R12 — Real failures are ≥ 80% mixed (class `11`) — 4-cell label effectively 2-class
+> **Severity**: MED-HIGH. If natural LIBERO-Plus failures concentrate in the `11` cell (both signals elevated), the 2×2 attribution degenerates into detection with one extra bit, losing the differential-diagnosis USP. WorldArena-style co-fire correlations (r ≈ 0.36 reported in prior work) support this risk.
+>
+> **Mitigation**: S1 cheap probe on LIBERO-Plus to estimate class balance on natural failures; pre-register threshold "kill gate if `11` > 80% of natural failures." If `11` dominates, reframe the paper as "calibrated joint-failure detection with 4-way explanatory breakdown" rather than "attribution."
+
 
 ---
 
