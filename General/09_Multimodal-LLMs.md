@@ -297,7 +297,7 @@ Addressing the fundamental challenge of MLLMs generating text that contradicts v
 > - [[2512.23453|CoFi-Dec]] — Coarse-to-fine decoding leveraging geometric consistency for grounded generation
 
 **Visual Attention & Token Intervention** — Steering the model's visual attention to reduce over-reliance on language priors.
-- [[2603.14117|SIEVE]], [[2603.00207|VisRef]], [[2602.24041|AIR]], [[2602.21497|ECRD]], [[2602.08241|SAYO]], [[2602.02004|ClueTracer]], [[2509.12132|Reflection-V]], [[2508.02419|TVAI]], [[2507.22003|ViHallu]], [[2506.12609|VisFlow]], [[2505.17812|VaLSe]], [[2505.05177|MARK]], [[2411.12591|VIC]]
+- [[2604.15809|AIF]], [[2603.14117|SIEVE]], [[2603.00207|VisRef]], [[2602.24041|AIR]], [[2602.21497|ECRD]], [[2602.08241|SAYO]], [[2602.02004|ClueTracer]], [[2509.12132|Reflection-V]], [[2508.02419|TVAI]], [[2507.22003|ViHallu]], [[2506.12609|VisFlow]], [[2505.17812|VaLSe]], [[2505.05177|MARK]], [[2411.12591|VIC]]
 
 > [!star] Key Papers
 > - [[2506.12609|VisFlow]] — Dual-level attention intervention redirecting model focus toward relevant visual tokens
@@ -311,7 +311,7 @@ Addressing the fundamental challenge of MLLMs generating text that contradicts v
 > - [[2601.00659|CRoPS]] — Dynamic cropping strategy forcing models to attend to relevant image regions
 
 **Preference Optimization & Training-Based** — Aligning MLLM outputs with visual ground truth through preference learning and targeted fine-tuning.
-- [[2602.22859|DPE]], [[2511.15661|VisPlay]], [[2507.16814|SOPHIA]], [[2506.17901|PostAlign]], [[2506.13888|VL-GenRM]], [[2506.10128|ViCrit]], [[2504.15619|AdaViP]]
+- [[2604.20328|HyLaR]], [[2602.22859|DPE]], [[2511.15661|VisPlay]], [[2507.16814|SOPHIA]], [[2506.17901|PostAlign]], [[2506.13888|VL-GenRM]], [[2506.10128|ViCrit]], [[2504.15619|AdaViP]]
 
 > [!star] Key Papers
 > - [[2504.15619|AdaViP]] — Adaptive visual preference optimization reducing hallucination through contrastive visual grounding

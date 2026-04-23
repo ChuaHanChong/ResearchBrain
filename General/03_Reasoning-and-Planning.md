@@ -163,7 +163,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 Extending CoT to jointly reason over vision and language, producing interleaved textual and visual reasoning traces.
 
 **Multimodal CoT Frameworks** — Core methods that enable vision-language models to generate step-by-step reasoning combining text and image understanding.
-- [[2604.02073\|PLUME]], [[2604.01840\|PGPO]], [[2603.28618\|PRCO]], [[2603.25077\|ToR]], [[2603.24984\|MoE-GRPO]], [[2602.00574\|Modal-Mixed CoT]], [[2512.08228\|MM-CoT]], [[2510.27492\|ThinkMorph]], [[2507.16746\|Zebra-CoT]], [[2507.08306\|M2-Reasoning]], [[2507.02978\|Inf-Bench]], [[2505.22525\|TwGI]], [[2505.14404\|ViC-Bench]], [[2505.13031\|MindOmni]], [[2505.05464\|Bring Reason to Vision]], [[2503.10639\|GoT]], [[2503.05255\|CMMCoT]], [[2412.17451\|M-STAR]], [[2412.11974\|EMMA-X]], [[2411.11930\|AtomThink]], [[2411.10440\|LLaVA-CoT]], [[2312.08762\|DPMM-CoT]], [[2302.00923\|Multimodal-CoT]]
+- [[2604.17800\|ReFineVLA]], [[2604.02073\|PLUME]], [[2604.01840\|PGPO]], [[2603.28618\|PRCO]], [[2603.25077\|ToR]], [[2603.24984\|MoE-GRPO]], [[2602.00574\|Modal-Mixed CoT]], [[2512.08228\|MM-CoT]], [[2510.27492\|ThinkMorph]], [[2507.16746\|Zebra-CoT]], [[2507.08306\|M2-Reasoning]], [[2507.02978\|Inf-Bench]], [[2505.22525\|TwGI]], [[2505.14404\|ViC-Bench]], [[2505.13031\|MindOmni]], [[2505.05464\|Bring Reason to Vision]], [[2503.10639\|GoT]], [[2503.05255\|CMMCoT]], [[2412.17451\|M-STAR]], [[2412.11974\|EMMA-X]], [[2411.11930\|AtomThink]], [[2411.10440\|LLaVA-CoT]], [[2312.08762\|DPMM-CoT]], [[2302.00923\|Multimodal-CoT]]
 
 > [!star] Key Papers
 > - [[2302.00923\|Multimodal-CoT]] — Extended CoT to vision + language jointly; foundational work for multimodal reasoning chains

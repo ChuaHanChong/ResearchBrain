@@ -270,9 +270,10 @@ Understanding what VLMs learn internally — which features matter, how represen
 
 Making VLMs reliable under distribution shift, adversarial conditions, and out-of-distribution inputs.
 
-- [[2510.10487|Triangular Consistency]], [[2509.07979|VIRAL]], [[2508.15568|ADAPT]], [[2507.08979|PRISM]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2410.17385|COMFORT]], [[2207.01887|MKT]]
+- [[2604.18867|HyperRobust-VLM]], [[2510.10487|Triangular Consistency]], [[2509.07979|VIRAL]], [[2508.15568|ADAPT]], [[2507.08979|PRISM]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2410.17385|COMFORT]], [[2207.01887|MKT]]
 
 > [!star] Key Papers
+> - [[2604.18867|HyperRobust-VLM]] — Hyperbolic hierarchy-aware adversarial fine-tuning; defends against superclass attacks that transfer to base classes, extends to medical imaging
 > - [[2508.15568|ADAPT]] — Improves VLM robustness to distribution shifts through adaptive prompting
 > - [[2507.08979|PRISM]] — Data-free, task-agnostic framework leveraging LLMs for VLM adaptation without target domain data
 
@@ -317,7 +318,7 @@ Teaching VLMs to reason step-by-step, often by generating programs or invoking e
 
 VLMs confidently describe things that are not in the image — a critical obstacle for embodied AI and trustworthy deployment.
 
-- [[2602.21054|VAUQ]], [[2602.11858|ZwZ]], [[2602.11737|OA-VCD]], [[2509.12132|Reflection-V]], [[2509.03518|LLM Lying]], [[2508.01781|LLM Hallucination Taxonomy]], [[2507.00898|ONLY]], [[2506.09047|Back-Patching VLM]], [[2505.22651|Sherlock]], [[2505.16151|FRANK]], [[2505.05177|MARK]], [[2504.19254|uqlm]], [[2410.12735|CREAM]], [[2406.01920|CODE]], [[2402.00253|LVLM Hallucination Survey]], [[2310.00754|LURE]], [[2211.09699|PromptCap]]
+- [[2604.20328|HyLaR]], [[2604.15809|AIF]], [[2602.21054|VAUQ]], [[2602.11858|ZwZ]], [[2602.11737|OA-VCD]], [[2509.12132|Reflection-V]], [[2509.03518|LLM Lying]], [[2508.01781|LLM Hallucination Taxonomy]], [[2507.00898|ONLY]], [[2506.09047|Back-Patching VLM]], [[2505.22651|Sherlock]], [[2505.16151|FRANK]], [[2505.05177|MARK]], [[2504.19254|uqlm]], [[2410.12735|CREAM]], [[2406.01920|CODE]], [[2402.00253|LVLM Hallucination Survey]], [[2310.00754|LURE]], [[2211.09699|PromptCap]]
 
 > [!star] Key Papers
 > - [[2402.00253|LVLM Hallucination Survey]] — Comprehensive survey of VLM hallucination types, causes, and mitigation strategies
@@ -388,7 +389,7 @@ Large multimodal models — the workhorses of modern vision-language understandi
 Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-thought, and multimodal decision-making.
 
 **RL-Trained Visual Reasoners** — VLMs fine-tuned with RL for improved visual reasoning and chain-of-thought.
-- [[2604.04917|Vero]], [[2604.03128|Self-Distilled RLVR]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.25629|LanteRn]], [[2603.25077|ToR]], [[2603.24984|MoE-GRPO]], [[2603.24533|UI-Voyager]], [[2603.22847|PEPO]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
+- [[2604.20705|SSL-R1]], [[2604.20328|HyLaR]], [[2604.04917|Vero]], [[2604.03128|Self-Distilled RLVR]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.25629|LanteRn]], [[2603.25077|ToR]], [[2603.24984|MoE-GRPO]], [[2603.24533|UI-Voyager]], [[2603.22847|PEPO]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.07605|Fine-R1]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal RL Cold Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.07615|VLM-R1]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]]
 
 > [!star] Key Papers
 > - [[2503.01785|Visual-RFT]] — Pioneered RL fine-tuning for visual tasks with verifiable rewards; 24.3% accuracy boost in fine-grained classification

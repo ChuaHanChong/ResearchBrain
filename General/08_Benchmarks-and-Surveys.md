@@ -311,6 +311,13 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2310.08864|OXE]] — Open X-Embodiment: 1M+ trajectories from 22 robot types; the ImageNet moment for robotics
 > - [[2503.06669|AgiBot World]] — Large-scale manipulation platform with diverse environments and embodiments
 
+**Egocentric Human-Video Datasets** — Large-scale first-person video corpora used to pretrain VLAs and learn dexterous priors from human demonstrations.
+- [[2505.11709|EgoDex]], [[2110.07058|Ego4D]]
+
+> [!star] Key Papers
+> - [[2110.07058|Ego4D]] — 3,670 hours of egocentric video from 931 wearers across 9 countries with rich multimodal annotations; foundational for Being-H0 and EgoScale-style VLA pretraining
+> - [[2505.11709|EgoDex]] — Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation
+
 **Simulation Benchmarks** — Standardized simulation environments for reproducible policy evaluation.
 - [[2604.11689|LARY]], [[2604.11674|AffordSim]], [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.13710|HBVLA]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2506.18701|Matrix-Game]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2505.12224|RoboFAC]], [[2503.14734|GR00T N1]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2310.08367|MCU]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
 
@@ -318,8 +325,14 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2306.03310|LIBERO]] — Lifelong robot learning benchmark with 5 suites and 130 tasks; tests continual learning
 > - [[2405.05941|SIMPLER]] — Evaluates whether simulation performance predicts real-world success; bridges the sim-to-real gap
 
+**Real-World Evaluation Frameworks** — Decentralized, preference-based, or crowd-sourced evaluation protocols for comparing generalist robot policies on real hardware.
+- [[2506.18123|RoboArena]]
+
+> [!star] Key Papers
+> - [[2506.18123|RoboArena]] — Distributed real-world evaluation via double-blind pairwise comparisons across 7 institutions; 0.98 Pearson correlation with oracle rankings and 1.8% Mean Max Rank Violation; paradigm shift from sim-only benchmarking
+
 > [!tip] Benchmark Selection
-> Start with LIBERO or CALVIN for standardized simulation evaluation. Use OXE for cross-embodiment pretraining. SIMPLER tells you whether your sim results will hold up in the real world.
+> Start with LIBERO or CALVIN for standardized simulation evaluation. Use OXE for cross-embodiment pretraining. SIMPLER tells you whether your sim results will hold up in the real world. For generalist policy comparisons on real hardware, RoboArena is the emerging gold standard.
 
 ---
 
@@ -350,14 +363,21 @@ Benchmarks that test whether models truly understand spatial relationships, 3D s
 
 Benchmarks for video-level reasoning that require understanding temporal dynamics, audio-visual integration, and spatio-temporal relationships.
 
+**Video Reasoning Benchmarks** — Evaluate temporal reasoning, audio-visual integration, and spatio-temporal relationships in MLLMs.
 - [[2604.07592|FESTS]], [[2603.14145|MMOU]], [[2602.05986|RISE-Video]], [[2601.09430|Video-MSR]], [[2507.18342|EgoExoBench]], [[2503.23765|STI-Bench]]
 
 > [!star] Key Papers
 > - [[2603.14145|MMOU]] — Joint audio-visual reasoning benchmark with 15K questions; tests true multimodal video understanding
 > - [[2503.23765|STI-Bench]] — Evaluates spatio-temporal world understanding; goes beyond frame-level perception
 
+**Foundational Video Datasets** — Large-scale action and video datasets that shaped video understanding research and continue to serve as training and evaluation resources.
+- [[1706.04261|Something-Something]]
+
+> [!star] Key Papers
+> - [[1706.04261|Something-Something]] — 108,499 clips across 174 fine-grained action classes with contrastive action templates; pioneered the use of caption-template crowd acting to force models to learn physical common sense
+
 > [!tip] Beyond Frame-Level
-> Both benchmarks test capabilities that frame-level VLMs cannot solve. Models need temporal reasoning (STI-Bench) and cross-modal integration (MMOU) to succeed.
+> Both MMOU and STI-Bench test capabilities that frame-level VLMs cannot solve. Models need temporal reasoning (STI-Bench) and cross-modal integration (MMOU) to succeed. For foundational training data, Something-Something remains a strong physical-commonsense stress test for 3D CNN and VideoLLM pretraining.
 
 ---
 

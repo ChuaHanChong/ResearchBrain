@@ -140,17 +140,19 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > ==KosMos/[[2407.07726|PaliGemma]] backbone== + ==Policy Head fusion== + ==Continuous actions== + ==MoE== + ==Post-training on in-domain data==
 
 **Foundation & Generalist** — The pioneering VLA architectures that established the paradigm: fine-tune a VLM to output robot actions as tokens or flow-matching trajectories.
-- [[2604.15483|π0.7]], [[2512.22414|π0.5 + ego]], [[2505.03500|TLI]], [[2503.20020|Gemini Robotics]], [[2502.13130|Magma]], [[2410.24164|π0]], [[2410.06158|GR-2]], [[2406.09246|OpenVLA]], [[2405.12213|Octo]], [[2312.13139|GR-1]], [[2311.01378|RoboFlamingo]], [[2310.08864|OXE / RT-X]], [[2307.15818|RT-2]], [[2212.06817|RT-1]]
+- [[2604.20100|JoyAI-RA]], [[2604.15483|π0.7]], [[2602.16710|EgoScale]], [[2512.22414|π0.5 + ego]], [[2507.15597|Being-H0]], [[2505.03500|TLI]], [[2503.20020|Gemini Robotics]], [[2502.13130|Magma]], [[2410.24164|π0]], [[2410.06158|GR-2]], [[2406.09246|OpenVLA]], [[2405.12213|Octo]], [[2312.13139|GR-1]], [[2311.01378|RoboFlamingo]], [[2310.08864|OXE / RT-X]], [[2307.15818|RT-2]], [[2212.06817|RT-1]]
 
 > [!star] Key Papers
 > - [[2604.15483|π0.7]] — 5B-param steerable generalist VLA from Physical Intelligence with episode-metadata + subgoal-image prompting; cross-embodiment transfer matching human experts
+> - [[2602.16710|EgoScale]] — NVIDIA's **20,854-hour** human-video VLA pretraining; established a log-linear scaling law for human data and enables cross-embodiment transfer
+> - [[2507.15597|Being-H0]] — Physical Instruction Tuning on 150M human-hand motion pairs; first VLA to explicitly tokenize human dexterous actions for robot transfer
 > - [[2212.06817|RT-1]] — Google's first VLA: 130K demonstrations, 700 tasks, Transformer-based; proved the paradigm works
 > - [[2307.15818|RT-2]] — Scaled to PaLI-X/PaLM-E backbones; first to show internet-scale VLM knowledge transfers to robot control
 > - [[2406.09246|OpenVLA]] — Open-source 7B VLA; democratized VLA research
 > - [[2410.24164|π0]] — Flow matching for continuous actions; current SOTA for generalist robot control
 
 **Efficient & Open-Source** — Smaller, faster, or quantized VLAs optimized for real-world deployment where inference speed and cost matter.
-- [[2604.11757|StarVLA-alpha]], [[2604.05672|A1]], [[2604.05656|SnapFlow]], [[2604.05323|VLA-InfoEntropy]], [[2604.04161|AAC]], [[2604.02965|SV-VLA]], [[2603.28740|FocusVLA]], [[2603.28565|StreamingVLA]], [[2602.18224|SimVLA]], [[2602.13710|HBVLA]], [[2601.22153|DynamicVLA]], [[2512.04952|FASTer]], [[2511.14148|AsyncVLA]], [[2509.04996|FLOWER]], [[2506.19816|CronusVLA]], [[2506.01844|SmolVLA]], [[2505.23705|Knowledge Insulation VLA]], [[2504.19854|NORA]], [[2503.02310|PD-VLA]], [[2502.19645|OpenVLA-OFT]], [[2501.09747|FAST]], [[2409.12514|TinyVLA]]
+- [[2604.20834|PokeVLA]], [[2604.11757|StarVLA-alpha]], [[2604.05672|A1]], [[2604.05656|SnapFlow]], [[2604.05323|VLA-InfoEntropy]], [[2604.04161|AAC]], [[2604.02965|SV-VLA]], [[2603.28740|FocusVLA]], [[2603.28565|StreamingVLA]], [[2602.18224|SimVLA]], [[2602.13710|HBVLA]], [[2601.22153|DynamicVLA]], [[2512.04952|FASTer]], [[2511.14148|AsyncVLA]], [[2509.04996|FLOWER]], [[2506.19816|CronusVLA]], [[2506.01844|SmolVLA]], [[2505.23705|Knowledge Insulation VLA]], [[2504.19854|NORA]], [[2503.02310|PD-VLA]], [[2502.19645|OpenVLA-OFT]], [[2501.09747|FAST]], [[2409.12514|TinyVLA]]
 
 > [!star] Key Papers
 > - [[2501.09747|FAST]] — Compression-based action tokenization; makes VLAs 5x faster by compactly encoding continuous actions
@@ -163,7 +165,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2501.15830|SpatialVLA]] — Novel spatial representations that let VLAs understand object arrangements without explicit 3D supervision
 
 **Reasoning & Chain-of-Thought** — VLAs that think before they act: predict subgoals, search over plans, or use MCTS for test-time reasoning.
-- [[2604.18486|OneVL]], [[2604.17880|ST-π]], [[2604.14125|HiVLA]], [[2602.01166|LaRA-VLA]], [[2601.11404|ACoT-VLA]], [[2601.07060|PALM]], [[2601.00969|V-VLAPS]], [[2512.24125|GenieReasoner]], [[2509.25681|dVLA]], [[2509.22643|VLA-Reasoner]], [[2508.12211|VLAPS]], [[2507.16815|ThinkAct]], [[2503.22020|CoT-VLA]], [[2411.19650|CogACT]], [[2405.17418|SC-VLA]]
+- [[2604.18486|OneVL]], [[2604.17880|ST-π]], [[2604.17800|ReFineVLA]], [[2604.14125|HiVLA]], [[2602.01166|LaRA-VLA]], [[2601.11404|ACoT-VLA]], [[2601.07060|PALM]], [[2601.00969|V-VLAPS]], [[2512.24125|GenieReasoner]], [[2509.25681|dVLA]], [[2509.22643|VLA-Reasoner]], [[2508.12211|VLAPS]], [[2507.16815|ThinkAct]], [[2503.22020|CoT-VLA]], [[2411.19650|CogACT]], [[2405.17418|SC-VLA]]
 
 > [!star] Key Papers
 > - [[2604.18486|OneVL]] — First latent CoT to beat explicit autoregressive CoT on driving benchmarks (88.84 PDM-score on NAVSIM) while keeping answer-only inference latency
@@ -206,7 +208,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2507.09160|Tactile-VLA]] — First to integrate 6-axis force feedback into VLAs; critical for assembly and insertion tasks
 
 **Architecture Studies** — Systematic explorations of VLA design choices, scaling laws, and novel architectures.
-- [[2604.17896|Physical-Feasibility VLA]], [[2604.17887|StableIDM]], [[2604.03191|Compression Gap]], [[2604.02523|Tune to Learn]], [[2604.01570|FAN Prior]], [[2603.28301|LIBERO-Para]], [[2603.22078|WAM vs VLA Robustness]], [[2603.16861|MolmoBot]], [[2603.12942|ReMem-VLA]], [[2603.12772|PVI]], [[2603.03596|MEM]], [[2602.20687|NativeEmbodied]], [[2602.17659|CAG]], [[2602.11236|ABot-M0]], [[2601.18692|LingBot-VLA]], [[2601.02456|InternVLA-A1]], [[2512.02834|TACO]], [[2511.18085|Stellar VLA]], [[2511.05275|TwinVLA]], [[2510.22201|ACG]], [[2510.19430|GigaBrain-0]], [[2510.13054|VLA-0]], [[2510.10274|X-VLA]], [[2510.09459|FIPER]], [[2510.05681|MG-Select]], [[2509.14889|CollabVLA]], [[2509.09372|2509.09372]], [[2509.04018|FPC-VLA]], [[2508.19236|MemoryVLA]], [[2506.19850|UniVLA]], [[2506.09937|SAFE]], [[2506.00123|VeBrain]], [[2412.14058|RoboVLMs]], [[2412.10345|TraceVLA]], [[2409.03299|RT-1-X SCARA Transfer]]
+- [[2604.20012|EmbodiedMidtrain]], [[2604.19728|VLA Foundry]], [[2604.17896|Physical-Feasibility VLA]], [[2604.17887|StableIDM]], [[2604.03191|Compression Gap]], [[2604.02523|Tune to Learn]], [[2604.01570|FAN Prior]], [[2603.28301|LIBERO-Para]], [[2603.22078|WAM vs VLA Robustness]], [[2603.16861|MolmoBot]], [[2603.12942|ReMem-VLA]], [[2603.12772|PVI]], [[2603.03596|MEM]], [[2602.20687|NativeEmbodied]], [[2602.17659|CAG]], [[2602.11236|ABot-M0]], [[2601.18692|LingBot-VLA]], [[2601.02456|InternVLA-A1]], [[2512.02834|TACO]], [[2511.18085|Stellar VLA]], [[2511.05275|TwinVLA]], [[2510.22201|ACG]], [[2510.19430|GigaBrain-0]], [[2510.13054|VLA-0]], [[2510.10274|X-VLA]], [[2510.09459|FIPER]], [[2510.05681|MG-Select]], [[2509.14889|CollabVLA]], [[2509.09372|2509.09372]], [[2509.04018|FPC-VLA]], [[2508.19236|MemoryVLA]], [[2506.19850|UniVLA]], [[2506.09937|SAFE]], [[2506.00123|VeBrain]], [[2412.14058|RoboVLMs]], [[2412.10345|TraceVLA]], [[2409.03299|RT-1-X SCARA Transfer]]
 
 > [!star] Key Papers
 > - [[2412.14058|RoboVLMs]] — 600+ experiments systematically testing VLA design choices; the definitive recipe paper
@@ -237,7 +239,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 > - [[2206.14176|DayDreamer]] — First to deploy Dreamer on real robots; proved sample-efficient learning from imagination works physically
 
 **Video Generation as World Models** — Use pre-trained video diffusion models as physics simulators: generate future video frames conditioned on actions, then extract policies from the generated futures.
-- [[2604.14268|HY-World 2.0]], [[2604.13036|Lyra 2.0]], [[2604.11351|WM-DAgger]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.12639|RoboStereo]], [[2603.07799|MWM]], [[2602.15922|DreamZero]], [[2601.20540|LingBot-World]], [[2601.15533|Actionable Simulators]], [[2512.24766|Dream2Flow]], [[2512.15692|mimic-video]], [[2512.06628|MIND-V]], [[2510.26583|Emu3.5]], [[2510.01183|EvoWorld]], [[2508.00795|Video Policy]], [[2505.13934|RLVR-World]], [[2505.12705|DreamGen]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2502.00622|GPC]], [[2412.14957|DREMA]], [[2412.14803|VPP]], [[2310.10625|VLP]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
+- [[2604.18564|MultiWorld]], [[2604.14268|HY-World 2.0]], [[2604.13036|Lyra 2.0]], [[2604.11351|WM-DAgger]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.12639|RoboStereo]], [[2603.07799|MWM]], [[2602.15922|DreamZero]], [[2601.20540|LingBot-World]], [[2601.15533|Actionable Simulators]], [[2512.24766|Dream2Flow]], [[2512.15692|mimic-video]], [[2512.06628|MIND-V]], [[2510.26583|Emu3.5]], [[2510.01183|EvoWorld]], [[2508.00795|Video Policy]], [[2505.13934|RLVR-World]], [[2505.12705|DreamGen]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2502.00622|GPC]], [[2412.14957|DREMA]], [[2412.14803|VPP]], [[2310.10625|VLP]], [[2310.06114|UniSim]], [[2302.00111|UniPi]]
 
 > [!star] Key Papers
 > - [[2602.15922|DreamZero]] — 14B parameter WAM from NVIDIA; zero-shot robot policies via joint video+action prediction; 39.5% on unseen tasks
@@ -425,6 +427,13 @@ The data and evaluation infrastructure that makes all the above research possibl
 > - [[2412.13877|RoboMIND]] — Multi-embodiment benchmark with normative manipulation data; standardizes evaluation across robot types
 > - [[2512.24653|RoboMIND 2.0]] — Extended to bimanual mobile manipulation; the most comprehensive multi-modal robotics dataset
 
+**Egocentric Human-Video Datasets** — Large-scale first-person video corpora with pose/hand annotations used to pretrain VLAs and learn dexterous priors from humans.
+- [[2505.11709|EgoDex]], [[2110.07058|Ego4D]]
+
+> [!star] Key Papers
+> - [[2110.07058|Ego4D]] — 3,670 hours of egocentric video from 931 wearers across 9 countries; foundational resource for first-person perception and Being-H0/EgoScale-style VLA pretraining
+> - [[2505.11709|EgoDex]] — Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation
+
 **Benchmarks — Simulation** — Standardized simulation environments for reproducible evaluation.
 - [[2510.13626|LIBERO-Plus]], [[2408.15511|AeroVerse]], [[2406.02523|RoboCasa]], [[2405.05941|SIMPLER]], [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[1909.12271|RLBench]], [[2604.11674|AffordSim]]
 
@@ -433,9 +442,10 @@ The data and evaluation infrastructure that makes all the above research possibl
 > - [[2405.05941|SIMPLER]] — Bridges sim and real; evaluates whether simulation performance predicts real-world success
 
 **Benchmarks — Diagnostic** — Targeted benchmarks that expose specific failure modes.
-- [[2604.11689|LARY]], [[2604.05498|JailWAM]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2602.05986|RISE-Video]], [[2601.15224|PROGRESSLM]], [[2601.11421|GM-100]], [[2601.09430|Video-MSR]], [[2511.04670|Cambrian-S]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2508.13142|EASI]], [[2508.12211|VLAPS]], [[2507.18342|EgoExoBench]], [[2507.10548|EmbRACE-3K]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2505.15660|AGNOSTOS]], [[2503.23765|STI-Bench]], [[2305.12821|FurnitureBench]], [[2009.12293|robosuite]]
+- [[2604.11689|LARY]], [[2604.05498|JailWAM]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2602.05986|RISE-Video]], [[2601.15224|PROGRESSLM]], [[2601.11421|GM-100]], [[2601.09430|Video-MSR]], [[2511.04670|Cambrian-S]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2508.13142|EASI]], [[2508.12211|VLAPS]], [[2507.18342|EgoExoBench]], [[2507.10548|EmbRACE-3K]], [[2506.18123|RoboArena]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2505.15660|AGNOSTOS]], [[2503.23765|STI-Bench]], [[2305.12821|FurnitureBench]], [[2009.12293|robosuite]]
 
 > [!star] Key Papers
+> - [[2506.18123|RoboArena]] — Distributed real-world VLA eval via crowd-sourced pairwise comparisons; 0.98 Pearson correlation with oracle, paradigm shift from sim-only benchmarking
 > - [[2601.11421|GM-100]] — 100 detail-oriented tasks; current VLAs achieve very low success rates, exposing real capability gaps
 
 **Surveys:**

@@ -1242,4 +1242,31 @@ papers = [
     "https://arxiv.org/abs/2604.16004", # AgentV-RL: Scaling Reward Modeling with Agentic Verifier
     "https://arxiv.org/abs/2604.13016", # Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe
     "https://arxiv.org/abs/2604.15483", # π0.7​: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities
+    "https://arxiv.org/abs/2506.18123", # RoboArena: Distributed Real-World Evaluation of Generalist Robot Policies
+    "https://arxiv.org/abs/2602.08971", # WorldArena: A Unified Benchmark for Evaluating Perception and Functional Utility of Embodied World Models
+    "https://arxiv.org/abs/1706.04261", # The "something something" video database for learning and evaluating visual common sense
+    "https://arxiv.org/abs/2110.07058", # Ego4D: Around the World in 3,000 Hours of Egocentric Video
+    "https://arxiv.org/abs/2505.11709", # EgoDex: Learning Dexterous Manipulation from Large-Scale Egocentric Video
+    "https://arxiv.org/abs/2602.16710", # EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data
+    "https://arxiv.org/abs/2507.15597", # Being-H0: Vision-Language-Action Pretraining from Large-Scale Human Videos
+    "https://arxiv.org/abs/2604.18564", # MultiWorld: Scalable Multi-Agent Multi-View Video World Models
+    "https://arxiv.org/abs/2604.16893", # EasyVideoR1: Easier RL for Video Understanding
+    "https://arxiv.org/abs/2604.18292", # Agent-World: Scaling Real-World Environment Synthesis for Evolving General Agent Intelligence
+    "https://arxiv.org/abs/2604.18867", # Hierarchically Robust Zero-shot Vision-language Models
+    "https://arxiv.org/abs/2604.19728", # VLA Foundry: A Unified Framework for Training Vision-Language-Action Models
+    "https://arxiv.org/abs/2604.20705", # SSL-R1: Self-Supervised Visual Reinforcement Post-Training for Multimodal Large Language Models
+    "https://arxiv.org/abs/2604.20012", # EmbodiedMidtrain: Bridging the Gap between Vision-Language Models and Vision-Language-Action Models via Mid-training
+    "https://arxiv.org/abs/2604.20834", # Pok´eVLA: Empowering Pocket-Sized Vision-Language-Action Model with Comprehensive World Knowledge Guidance
+    "https://arxiv.org/abs/2604.17706", # OmniVLA-RL: A VISION-LANGUAGE-ACTION MODEL WITH SPATIAL UNDERSTANDING AND ONLINE RL
+    "https://arxiv.org/abs/2604.20328", # HyLaR: Hybrid Latent Reasoning with Decoupled Policy Optimization
+    "https://arxiv.org/abs/2604.15809", # Aligning What Vision-Language Models See and Perceive with Adaptive Information Flow
+    "https://arxiv.org/abs/2604.18486", # OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation
+    "https://arxiv.org/abs/2604.17800", # ReFineVLA: Multimodal Reasoning-Aware Generalist Robotic Policies via Teacher-Guided Fine-Tuning
+    "https://arxiv.org/abs/2604.18484", # XEmbodied: A Foundation Model with Enhanced Geometric and Physical Cues for Large-Scale Embodied Environments
+    "https://arxiv.org/abs/2604.20100", # JoyAI-RA 0.1: A Foundation Model for Robotic Autonomy
+    "https://arxiv.org/abs/2604.17880", # ST-$π$: Structured SpatioTemporal VLA for Robotic Manipulation
+    "https://arxiv.org/abs/2604.17876", # OFlow: Injecting Object-Aware Temporal Flow Matching for Robust Robotic Manipulation
+    "https://arxiv.org/abs/2604.19730", # FASTER: Value-Guided Sampling for Fast RL
+    "https://arxiv.org/abs/2506.06658", # Self-Improving Loops for Visual Robotic Planning
+    "https://arxiv.org/abs/2604.18131", # Training LLM Agents for Spontaneous, Reward-Free Self-Evolution via World Knowledge Exploration
 ]
