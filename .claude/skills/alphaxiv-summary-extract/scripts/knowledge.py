@@ -1287,4 +1287,258 @@ papers = [
     "https://arxiv.org/abs/2510.09976", # Reinforcement Fine-Tuning of Flow-Matching Policies for VLAs
     "https://arxiv.org/abs/2604.19734", # UniT: Toward a Unified Physical Language for Human-to-Humanoid Policy Learning and World Modeling
     "https://arxiv.org/abs/2604.21254", # Hyperloop Transformers
+    "https://arxiv.org/abs/2505.19017", # WorldEval: World Model as Real-World Robot Policies Evaluator
+    "https://arxiv.org/abs/2512.15692", # mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs
+    "https://arxiv.org/abs/2503.00200", # Unified Video Action Model
+    "https://arxiv.org/abs/2505.13934", # RLVR-World: Training World Models with Reinforcement Learning
+    "https://arxiv.org/abs/2601.07823", # Video Generation Models in Robotics - Applications, Research Challenges, Future Directions
+    "https://arxiv.org/abs/2603.17240", # GigaWorld-Policy: An Efficient Action-Centered World–Action Model
+    "https://arxiv.org/abs/2512.24766", # Dream2Flow: Bridging Video Generation and Open-World Manipulation with 3D Object Flow
+    "https://arxiv.org/abs/2511.07416", # Robot Learning from a Physical World Model
+    "https://arxiv.org/abs/2509.22970", # Robot Learning from Any Images
+    "https://arxiv.org/abs/2503.09595", # PISA Experiments: Exploring Physics Post-Training for Video Diffusion Models by Watching Stuff Drop
+    "https://arxiv.org/abs/2512.00425", # What about gravity in video generation? Post-Training Newton's Laws with Verifiable Rewards
+    "https://arxiv.org/abs/2601.10553", # Inference-time Physics Alignment of Video Generative Models with Latent World Models
+    "https://arxiv.org/abs/2410.05363", # Towards World Simulator: Crafting Physical Commonsense-Based Benchmark for Video Generation
+    "https://arxiv.org/abs/2509.20570", # PIRF: Physics-Informed Reward Fine-Tuning for Diffusion Models
+    "https://arxiv.org/abs/2603.26285", # PhysVid: Physics Aware Local Conditioning for Generative Video Models
+    "https://arxiv.org/abs/2603.13770", # PhysAlign: Physics-Coherent Image-to-Video Generation through Feature and 3D Representation Alignment
+    "https://arxiv.org/abs/2509.20358", # PhysCtrl: Generative Physics for Controllable and Physics-Grounded Video Generation
+    "https://arxiv.org/abs/2603.13925", # SmoothVLA: Aligning Vision-Language-Action Models with Physical Constraints via Intrinsic Smoothness Optimization
+    "https://arxiv.org/abs/2601.11087", # PhysRVG: Physics-Aware Unified Reinforcement Learning for Video Generative Models
+    "https://arxiv.org/abs/2604.17807", # Re2MoGen: Open-Vocabulary Motion Generation via LLM Reasoning and Physics-Aware Refinement
+    "https://arxiv.org/abs/2504.02918", # Morpheus: Benchmarking Physical Reasoning of Video Generative Models with Real Physical Experiments
+    "https://arxiv.org/abs/2504.15932", # Reasoning Physical Video Generation with Diffusion Timestep Tokens via Reinforcement Learning
+    "https://arxiv.org/abs/2502.02492", # VideoJAM: Joint Appearance-Motion Representations for Enhanced Motion Generation in Video Models
+    "https://arxiv.org/abs/2503.23368", # VLIPP: Towards Physically Plausible Video Generation with Vision and Language Informed Physical Prior
+    "https://arxiv.org/abs/2601.10553", # Inference-time Physics Alignment of Video Generative Models with Latent World Models
+    "https://arxiv.org/abs/2509.20358", # PhysCtrl: Generative Physics for Controllable and Physics-Grounded Video Generation
+    "https://arxiv.org/abs/2503.21765", # Exploring the Evolution of Physics Cognition in Video Generation: A Survey
+    "https://arxiv.org/abs/2411.02385", # How Far is Video Generation from World Model: A Physical Law Perspective
+    "https://arxiv.org/abs/2510.13809", # PhysMaster: Mastering Physical Representation for Video Generation via Reinforcement Learning
+    "https://arxiv.org/abs/2503.06800", # VideoPhy-2: A Challenging Action-Centric Physical Commonsense Evaluation in Video Generation
+    "https://arxiv.org/abs/2409.18964", # PhysGen: Rigid-Body Physics-Grounded Image-to-Video Generation
+    "https://arxiv.org/abs/2406.03816", # ReST-MCTS*: LLM Self-Training via Process Reward Guided Tree Search
+    "https://arxiv.org/abs/2503.18942", # Video-T1: Test-Time Scaling for Video Generation
+    "https://arxiv.org/abs/2603.17051", # Astrolabe: Steering Forward-Process Reinforcement Learning for Distilled Autoregressive Video Models
+    "https://arxiv.org/abs/2601.10553", # Inference-time Physics Alignment of Video Generative Models with Latent World Models
+    "https://arxiv.org/abs/2506.04171", # Physics-Constrained Flow Matching: Sampling Generative Models with Hard Constraints
+    "https://arxiv.org/abs/2512.00425", # What about gravity in video generation? Post-Training Newton's Laws with Verifiable Rewards
+    "https://arxiv.org/abs/2408.08252", # Derivative-Free Guidance in Continuous and Discrete Diffusion Models with Soft Value-Based Decoding
+    "https://arxiv.org/abs/2503.02039", # Dynamic Search for Inference-Time Alignment in Diffusion Models
+    "https://arxiv.org/abs/2602.03627", # Ultra Fast PDE Solving via Physics Guided Few-step Diffusion
+    "https://arxiv.org/abs/2504.00342", # Aligning Diffusion Model with Problem Constraints for Trajectory Optimization
+    "https://arxiv.org/abs/2501.05803", # Test-time Alignment of Diffusion Models without Reward Over-optimization
+    "https://arxiv.org/abs/2501.06848", # A General Framework for Inference-time Scaling and Steering of Diffusion Models
+    "https://arxiv.org/abs/2403.14404", # Physics-Informed Diffusion Models
+    "https://arxiv.org/abs/2305.13301", # Training Diffusion Models with Reinforcement Learning
+    "https://arxiv.org/abs/2309.17400", # Directly Fine-Tuning Diffusion Models on Differentiable Rewards
+    "https://arxiv.org/abs/2211.14680", # A Physics-informed Diffusion Model for High-fidelity Flow Field Reconstruction
+    "https://arxiv.org/abs/2601.10553", # Inference-time Physics Alignment of Video Generative Models with Latent World Models
+    "https://arxiv.org/abs/2604.21924", # Long-Horizon Manipulation via Trace-Conditioned VLA Planning
+    "https://arxiv.org/abs/2604.14084", # TIP: Token Importance in On-Policy Distillation
+    "https://arxiv.org/abs/2604.20209", # Scaling Self-Play with Self-Guidance
+    "https://arxiv.org/abs/2603.15956", # ExpertGen: Scalable Sim-to-Real Expert Policy Learning from Imperfect Behavior Priors
+    "https://arxiv.org/abs/2604.19254", # ShadowPEFT: Shadow Network for Parameter-Efficient Fine-Tuning
+    # Physics Cognition (from Awesome-Physics-Cognition list)
+    "https://arxiv.org/abs/2510.04978", # Aligning Perception, Reasoning, Modeling and Interaction
+    "https://arxiv.org/abs/2504.21853", # A Survey of Interactive Generative Video
+    "https://arxiv.org/abs/2504.04170", # Digital Gene
+    "https://arxiv.org/abs/2503.04641", # Simulating the Real World
+    "https://arxiv.org/abs/2502.07007", # Grounding Creativity in Physics
+    "https://arxiv.org/abs/2501.10928", # Generative Physical AI in Vision
+    "https://arxiv.org/abs/2305.18035", # Physics-Informed Computer Vision
+    "https://arxiv.org/abs/2511.00503", # Diff4Splat
+    "https://arxiv.org/abs/2507.01099", # Geometry-aware 4D Video Generation for Robot Manipulation
+    "https://arxiv.org/abs/2506.19798", # CoCo4D
+    "https://arxiv.org/abs/2506.20703", # Generative Blocks World
+    "https://arxiv.org/abs/2506.15673", # UniRelight
+    "https://arxiv.org/abs/2506.03150", # IllumiCraft
+    "https://arxiv.org/abs/2505.20287", # MotionPro
+    "https://arxiv.org/abs/2504.21855", # ReVision
+    "https://arxiv.org/abs/2503.24379", # Any2Caption
+    "https://arxiv.org/abs/2502.03639", # Towards Physical Understanding in Video Generation: A 3D Point Regularization Approach
+    "https://arxiv.org/abs/2411.04989", # SG-I2V
+    "https://arxiv.org/abs/2408.11475", # TrackGo
+    "https://arxiv.org/abs/2403.17920", # 3DTrajMaster (also TC4D)
+    "https://arxiv.org/abs/2412.02168", # Generative Photography
+    "https://arxiv.org/abs/2503.14485", # Lux Post Facto
+    "https://arxiv.org/abs/2411.17440", # Identity-Preserving Text-to-Video Generation
+    "https://arxiv.org/abs/2412.00148", # Motion Modes
+    "https://arxiv.org/abs/2412.02700", # Motion Prompting
+    "https://arxiv.org/abs/2403.15249", # Spectral Motion Alignment
+    "https://arxiv.org/abs/2412.09551", # Video Creation by Demonstration
+    "https://arxiv.org/abs/2412.11785", # InterDyn
+    "https://arxiv.org/abs/2412.15214", # LeviTor
+    "https://arxiv.org/abs/2412.11224", # GenLit
+    "https://arxiv.org/abs/2411.10836", # AnimateAnything
+    "https://arxiv.org/abs/2411.16804", # InTraGen
+    "https://arxiv.org/abs/2410.13830", # DreamVideo-2
+    "https://arxiv.org/abs/2410.22979", # LumiSculpt
+    "https://arxiv.org/abs/2407.21705", # Tora
+    "https://arxiv.org/abs/2406.01188", # UniAnimate
+    "https://arxiv.org/abs/2406.15339", # Image Conductor
+    "https://arxiv.org/abs/2403.20193", # Motion Inversion
+    "https://arxiv.org/abs/2312.00845", # VMC
+    "https://arxiv.org/abs/2310.08465", # MotionDirector
+    "https://arxiv.org/abs/2312.17681", # FlowVid
+    "https://arxiv.org/abs/2309.07906", # Generative Image Dynamics
+    "https://arxiv.org/abs/2312.03641", # MotionCtrl
+    "https://arxiv.org/abs/2405.20222", # MOFA-Video
+    "https://arxiv.org/abs/2401.15977", # Motion-I2V
+    "https://arxiv.org/abs/2403.07420", # DragAnything
+    "https://arxiv.org/abs/2310.05922", # FLATTEN
+    "https://arxiv.org/abs/2311.17117", # Animate Anyone
+    "https://arxiv.org/abs/2402.03162", # Direct-a-Video
+    "https://arxiv.org/abs/2409.00558", # Compositional 3D-aware Video Generation with LLM Director
+    "https://arxiv.org/abs/2308.08089", # DragNUWA
+    "https://arxiv.org/abs/2305.13840", # Control-A-Video
+    "https://arxiv.org/abs/2306.02018", # VideoComposer
+    "https://arxiv.org/abs/2302.05543", # ControlNet (Adding Conditional Control to Text-to-Image Diffusion Models)
+    "https://arxiv.org/abs/2601.00504", # MotionPhysics
+    "https://arxiv.org/abs/2603.03485", # Phys4D
+    "https://arxiv.org/abs/2603.06408", # Physical Simulator In-the-Loop Video Generation
+    "https://arxiv.org/abs/2603.18639", # PhysVideo
+    "https://arxiv.org/abs/2603.09094", # Chain of Event-Centric Causal Thought
+    "https://arxiv.org/abs/2603.05449", # RealWonder
+    "https://arxiv.org/abs/2601.05848", # Goal Force
+    "https://arxiv.org/abs/2601.22135", # PI-Light
+    "https://arxiv.org/abs/2601.18577", # Self-Refining Video Sampling
+    "https://arxiv.org/abs/2512.10927", # FoundationMotion
+    "https://arxiv.org/abs/2511.20280", # Bootstrapping Physics-Grounded Video Generation
+    "https://arxiv.org/abs/2512.05564", # ProPhy
+    "https://arxiv.org/abs/2511.17450", # Planning with Sketch-Guided Verification
+    "https://arxiv.org/abs/2510.02284", # KineMask (Learning to Generate Object Interactions)
+    "https://arxiv.org/abs/2509.21541", # CONTROLHAIR
+    "https://arxiv.org/abs/2509.21309", # NewtonGen
+    "https://arxiv.org/abs/2508.13911", # PhysGM
+    "https://arxiv.org/abs/2507.06830", # Physics-Grounded Motion Forecasting
+    "https://arxiv.org/abs/2506.08006", # Dreamland
+    "https://arxiv.org/abs/2506.06440", # Vid2Sim
+    "https://arxiv.org/abs/2505.21653", # Think Before You Diffuse (DiffPhy)
+    "https://arxiv.org/abs/2505.19386", # Force Prompting
+    "https://arxiv.org/abs/2505.18151", # WonderPlay
+    "https://arxiv.org/abs/2505.16456", # MAGIC
+    "https://arxiv.org/abs/2505.16971", # UniPhy
+    "https://arxiv.org/abs/2505.13437", # FinePhys
+    "https://arxiv.org/abs/2505.05469", # LegoGPT
+    "https://arxiv.org/abs/2504.01204", # Articulated Kinematics Distillation
+    "https://arxiv.org/abs/2503.21442", # RainyGS
+    "https://arxiv.org/abs/2503.20746", # PhysGen3D
+    "https://arxiv.org/abs/2503.20654", # AccidentSim
+    "https://arxiv.org/abs/2503.20822", # Synthetic Video Enhances Physical Fidelity
+    "https://arxiv.org/abs/2503.17973", # PhysTwin
+    "https://arxiv.org/abs/2502.19868", # C-Drag
+    "https://arxiv.org/abs/2501.16550", # PhysAnimator
+    "https://arxiv.org/abs/2501.18982", # OmniPhysGS
+    "https://arxiv.org/abs/2411.02394", # AutoVFX
+    "https://arxiv.org/abs/2401.15318", # Gaussian Splashing
+    "https://arxiv.org/abs/2411.14423", # PhysFlow (Unleashing the potential of multi-modal foundation models)
+    "https://arxiv.org/abs/2503.04720", # FluidNexus
+    "https://arxiv.org/abs/2406.01476", # DreamPhysics
+    "https://arxiv.org/abs/2412.17804", # GauSim
+    "https://arxiv.org/abs/2412.11258", # GaussianProperty
+    "https://arxiv.org/abs/2411.16800", # Phys4DGen
+    "https://arxiv.org/abs/2411.11343", # TVML (Teaching Video Diffusion Model with Latent Physical Phenomenon Knowledge)
+    "https://arxiv.org/abs/2411.08027", # LLMPhy
+    "https://arxiv.org/abs/2411.12789", # Sim-GS (Automated 3D Physical Simulation of Open-world Scene)
+    "https://arxiv.org/abs/2411.19381", # Enhancing Sketch Animation
+    "https://arxiv.org/abs/2411.17189", # PhysMotion
+    "https://arxiv.org/abs/2410.07155", # Trans4D
+    "https://arxiv.org/abs/2409.07179", # Phy124
+    "https://arxiv.org/abs/2408.10453", # Kubrick
+    "https://arxiv.org/abs/2406.04338", # Physics3D
+    "https://arxiv.org/abs/2405.16849", # Sync4D
+    "https://arxiv.org/abs/2405.15056", # ElastoGen
+    "https://arxiv.org/abs/2405.13557", # MotionCraft
+    "https://arxiv.org/abs/2404.13026", # PhysDreamer
+    "https://arxiv.org/abs/2404.09833", # Video2Game
+    "https://arxiv.org/abs/2311.13099", # PIE-NeRF
+    "https://arxiv.org/abs/2401.16663", # VR-GS
+    "https://arxiv.org/abs/2311.12198", # PhysGaussian
+    "https://arxiv.org/abs/2404.01223", # Feature Splatting
+    "https://arxiv.org/abs/2410.08257", # NeuMA (Neural Material Adaptor)
+    "https://arxiv.org/abs/2308.09713", # Dynamic 3D Gaussians
+    "https://arxiv.org/abs/2309.17444", # LLM-grounded Video Diffusion Models
+    "https://arxiv.org/abs/2311.12631", # GPT4Motion
+    "https://arxiv.org/abs/2312.00583", # DeformGS
+    "https://arxiv.org/abs/2304.14369", # NCLaw
+    "https://arxiv.org/abs/2303.05512", # PAC-NeRF
+    "https://arxiv.org/abs/2603.24506", # Toward Physically Consistent Driving Video World Models (PhyGenesis)
+    "https://arxiv.org/abs/2603.03505", # PhyPrompt
+    "https://arxiv.org/abs/2602.06033", # Can vision language models learn intuitive physics from interaction?
+    "https://arxiv.org/abs/2510.21840", # Improving the Physics of Video Generation with VJEPA-2 Reward Signal
+    "https://arxiv.org/abs/2511.03997", # PhysCorr
+    "https://arxiv.org/abs/2511.00062", # World Simulation with Video Foundation Models for Physical AI
+    "https://arxiv.org/abs/2509.24702", # Enhancing Physical Plausibility in Video Generation by Reasoning the Implausibility
+    "https://arxiv.org/abs/2508.10858", # Hierarchical Fine-grained Preference Optimization (PhysHPO)
+    "https://arxiv.org/abs/2506.23135", # RoboScape
+    "https://arxiv.org/abs/2506.18655", # RDPO
+    "https://arxiv.org/abs/2506.01103", # DeepVerse
+    "https://arxiv.org/abs/2505.23656", # VideoREPA
+    "https://arxiv.org/abs/2505.21996", # Learning World Models for Interactive Video Generation
+    "https://arxiv.org/abs/2505.09723", # EnerVerse-AC
+    "https://arxiv.org/abs/2504.15397", # MirrorVerse
+    "https://arxiv.org/abs/2504.13129", # Science-T2I
+    "https://arxiv.org/abs/2503.18945", # Aether
+    "https://arxiv.org/abs/2503.08153", # WISA
+    "https://arxiv.org/abs/2502.02088", # IPO (Iterative preference optimization)
+    "https://arxiv.org/abs/2501.09038", # Physics-IQ (Do generative video models learn physical principles)
+    "https://arxiv.org/abs/2501.13918", # VideoAlign (Improving video generation with human feedback)
+    "https://arxiv.org/abs/2412.00596", # PhyT2V
+    "https://arxiv.org/abs/2404.05014", # MagicTime
+    "https://arxiv.org/abs/2412.02617", # AIF-Dynamic-T2V (Improving Dynamic Object Interactions)
+    "https://arxiv.org/abs/2412.08410", # DrivePhysica (Physical informed driving world model)
+    "https://arxiv.org/abs/2410.18072", # WorldSimBench (Video generation models as world simulators)
+    "https://arxiv.org/abs/2410.10076", # VideoAgent
+    "https://arxiv.org/abs/2410.05582", # Gen-Drive
+    "https://arxiv.org/abs/2410.13571", # DriveDreamer4D
+    "https://arxiv.org/abs/2412.20404", # Open-Sora
+    "https://arxiv.org/abs/2408.07009", # Imagen 3
+    "https://arxiv.org/abs/2401.09985", # WorldDreamer
+    "https://arxiv.org/abs/2309.17080", # GAIA-1
+    "https://arxiv.org/abs/2603.19607", # Physion-Eval
+    "https://arxiv.org/abs/2602.13294", # VisPhyWorld
+    "https://arxiv.org/abs/2601.18340", # Beyond Rigid: Benchmarking Non-Rigid Video Editing
+    "https://arxiv.org/abs/2601.15282", # Rethinking Video Generation Model for the Embodied World
+    "https://arxiv.org/abs/2512.12756", # FysicsWorld
+    "https://arxiv.org/abs/2512.04221", # MoReGen
+    "https://arxiv.org/abs/2510.11512", # LikePhys
+    "https://arxiv.org/abs/2510.08398", # VideoVerse
+    "https://arxiv.org/abs/2510.07550", # TRAVL
+    "https://arxiv.org/abs/2510.06251", # Does Physics Knowledge Emerge in Frontier Models?
+    "https://arxiv.org/abs/2503.21755", # VBench-2.0
+    "https://arxiv.org/abs/2507.15824", # PhysVidBench (Can Your Model Separate Yolks)
+    "https://arxiv.org/abs/2507.13428", # PhyWorldBench
+    "https://arxiv.org/abs/2506.17198", # Dex1B
+    "https://arxiv.org/abs/2506.10975", # GenWorld
+    "https://arxiv.org/abs/2506.09849", # IntPhys 2
+    "https://arxiv.org/abs/2506.02794", # PhysGaia
+    "https://arxiv.org/abs/2505.24182", # MVPBench
+    "https://arxiv.org/abs/2505.22566", # Universal Visuo-Tactile Video Understanding
+    "https://arxiv.org/abs/2505.00337", # T2VPhysBench
+    "https://arxiv.org/abs/2505.00209", # TRAJAN (Direct Motion Models)
+    "https://arxiv.org/abs/2504.00983", # WorldScore (A Unified Evaluation Benchmark for World Generation)
+    "https://arxiv.org/abs/2503.23715", # HOIGen-1M
+    "https://arxiv.org/abs/2503.21668", # Cognitive Science-Inspired Evaluation
+    "https://arxiv.org/abs/2503.14378", # Impossible Videos
+    "https://arxiv.org/abs/2502.05503", # PhyCoBench
+    "https://arxiv.org/abs/2406.18522", # ChronoMagic-Bench
+    "https://arxiv.org/abs/2412.01800", # PhysGame
+    "https://arxiv.org/abs/2411.13609", # What You See Is What Matters
+    "https://arxiv.org/abs/2406.11802", # PhyBench (text-to-image)
+    "https://arxiv.org/abs/2406.03520", # VideoPhy
+    "https://arxiv.org/abs/2311.10111", # VideoCon
+    "https://arxiv.org/abs/2306.15668", # Physion++
+    "https://arxiv.org/abs/2012.04293", # CRAFT
+    "https://arxiv.org/abs/2106.08261", # Physion
+    "https://arxiv.org/abs/2601.19834", # Visual Generation Unlocks Human-Like Reasoning
+    "https://arxiv.org/abs/2510.02311", # Inferring Dynamic Physical Properties from Video Foundation Models
+    "https://arxiv.org/abs/2506.10778", # SlotPi
+    "https://arxiv.org/abs/2506.08708", # PhyBlock
+    "https://arxiv.org/abs/2603.24866", # How Far Are Vision-Language Models from Constructing the Real World?
+    "https://arxiv.org/abs/2506.09987", # A Shortcut-aware Video-QA Benchmark
+    "https://arxiv.org/abs/2506.00022", # Scaling Physical Reasoning with the PHYSICS Dataset
+    "https://arxiv.org/abs/2506.09943", # CausalVQA
+    "https://arxiv.org/abs/2505.15929", # PhyX
 ]

@@ -177,6 +177,13 @@ The hottest design question in generative AI: can one model both understand and 
 
 Reinforcement learning is transforming how diffusion and flow-matching models are trained. Instead of relying solely on maximum likelihood, these methods use reward signals (human preference, text-image alignment, task success) to directly optimize generation quality. The paradigm parallels RLHF for LLMs but requires novel algorithms for the continuous, multi-step denoising process.
 
+**Foundational Diffusion RL Fine-Tuning** — Seminal methods that established the paradigm of RL/gradient-based fine-tuning of diffusion models against arbitrary reward functions, predating the GRPO/flow-matching wave.
+- [[2309.17400|DRaFT]], [[2305.13301|DDPO]]
+
+> [!star] Key Papers
+> - [[2305.13301|DDPO]] — Reformulated multi-step denoising as an MDP and applied policy gradients; the first principled RL approach to diffusion alignment, outperforming reward-weighted regression across compressibility, aesthetics, and prompt alignment
+> - [[2309.17400|DRaFT]] — Direct backpropagation of differentiable rewards through the entire sampling chain via LoRA + gradient checkpointing; >200× more sample-efficient than DDPO and the foundation for modern reward-gradient methods
+
 **Flow Matching + RL** — Apply policy optimization to flow-matching and continuous diffusion models, treating the denoising trajectory as a sequential decision process.
 - [[2603.27866|Wan-R1]], [[2603.26599|VGGRPO]], [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2509.06040|BranchGRPO]], [[2507.21053|FPO]], [[2505.05470|Flow-GRPO]]
 
@@ -184,12 +191,21 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2505.05470|Flow-GRPO]] — First framework adapting GRPO to flow matching; enables online RL for continuous generative models
 > - [[2509.06040|BranchGRPO]] — Tree-structured branching yields 4.7x training speedup and 16% better alignment over vanilla GRPO
 
+**Inference-Time Alignment & Steering** — Training-free methods that align pre-trained diffusion models with arbitrary rewards at sampling time using particle systems, SMC, beam search, or interacting particle resampling — preserving diversity and avoiding fine-tuning costs.
+- [[2503.18942|Video-T1]], [[2503.02039|DSearch]], [[2501.06848|FK Steering]], [[2501.05803|DAS]], [[2408.08252|SVDD]]
+
+> [!star] Key Papers
+> - [[2503.02039|DSearch]] — Gradient-free dynamic beam search with Monte Carlo look-ahead for inference-time alignment; achieves 35% faster reward-per-second scaling and superior naturalness over SVDD across image, DNA, and molecule domains
+> - [[2501.06848|FK Steering]] — Feynman-Kac Interacting Particle Systems for steering diffusion at inference; enables a 0.8B Stable Diffusion to beat a 2.6B fine-tuned SDXL-DPO and works for both continuous and discrete state spaces
+> - [[2408.08252|SVDD]] — Foundational derivative-free inference-time guidance via soft-value MDP formulation; the reference baseline that DSearch and later beam-search methods build on
+
 **Self-Improving Generative Models** — Frameworks where generative models iteratively improve through self-generated data, reward feedback, or evolutionary strategies without fresh human annotation.
-- [[2603.19370|VAMPO]], [[2508.16204|M2N2]], [[2506.02095|CycleReward]], [[2505.23380|UniRL]], [[2502.02316|DIME]]
+- [[2603.19370|VAMPO]], [[2603.17051|Astrolabe]], [[2508.16204|M2N2]], [[2506.02095|CycleReward]], [[2505.23380|UniRL]], [[2502.02316|DIME]]
 
 > [!star] Key Papers
 > - [[2505.23380|UniRL]] — Unified self-improving post-training for both diffusion and flow models
 > - [[2506.02095|CycleReward]] — Self-supervised reward via cycle consistency; eliminates need for human preference data
+> - [[2603.17051|Astrolabe]] — Forward-process RL with rolling-KV streaming rollouts for distilled autoregressive video models; aligns long-video generation (30–60s) without sacrificing inference speed, and prevents reward hacking via uncertainty-aware selective KL
 
 **Reward Models for Image Generation** — Learning reward functions that capture human preferences for image quality, text-image alignment, or edit fidelity to guide RL training.
 - [[2604.11626|RationalRewards]], [[2509.26346|EditReward]], [[2507.22003|ViHallu]], [[2502.20946|Generative Uncertainty Diffusion]]
@@ -277,7 +293,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 Diffusion models applied to physical action generation rather than image synthesis. These methods treat robot trajectories, action sequences, or video predictions as data to denoise, enabling smooth multi-step planning that handles multimodal action distributions better than regression.
 
 **Denoising Diffusion for Planning** — Use diffusion models not for image generation but for planning robot trajectories, treating action sequences as data to denoise.
-- [[2604.19730|FASTER]], [[2604.11734|Multi-ORFT]], [[2604.10953|DRL-3DBP]], [[2604.03191|Compression Gap]], [[2604.03181|MV-VDP]], [[2604.00202|DreamControl-v2]], [[2603.27670|ProgressVLA]], [[2603.25406|MMaDA-VLA]], [[2603.16368|SCDP]], [[2603.15975|UMO]], [[2603.12263|Psi0]], [[2603.10052|OmniGuide]], [[2603.03243|HoMMI]], [[2602.11236|ABot-M0]], [[2601.07060|PALM]], [[2601.02456|InternVLA-A1]], [[2512.22688|ARFM]], [[2510.09459|FIPER]], [[2509.22652|DAWN]], [[2509.19292|SOE]], [[2508.10333|ReconVLA]], [[2503.14734|GR00T N1]], [[2502.16707|ReflectVLM]], [[2411.19650|CogACT]], [[2410.07864|RDT-1B]], [[2407.05996|MDT]], [[2405.12213|Octo]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2302.00111|UniPi]], [[2205.09991|Diffuser]]
+- [[2604.19730|FASTER]], [[2604.11734|Multi-ORFT]], [[2604.10953|DRL-3DBP]], [[2604.03191|Compression Gap]], [[2604.03181|MV-VDP]], [[2604.00202|DreamControl-v2]], [[2603.27670|ProgressVLA]], [[2603.25406|MMaDA-VLA]], [[2603.16368|SCDP]], [[2603.15975|UMO]], [[2603.12263|Psi0]], [[2603.10052|OmniGuide]], [[2603.03243|HoMMI]], [[2602.11236|ABot-M0]], [[2601.07060|PALM]], [[2601.02456|InternVLA-A1]], [[2512.22688|ARFM]], [[2510.09459|FIPER]], [[2509.22652|DAWN]], [[2509.19292|SOE]], [[2508.10333|ReconVLA]], [[2504.00342|Constraint-Aligned Diffusion]], [[2503.14734|GR00T N1]], [[2502.16707|ReflectVLM]], [[2411.19650|CogACT]], [[2410.07864|RDT-1B]], [[2407.05996|MDT]], [[2405.12213|Octo]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2302.00111|UniPi]], [[2205.09991|Diffuser]]
 
 **Flow-Based VLA Policies** — Vision-language-action models using flow matching for continuous action generation, enabling smooth and efficient robot control.
 - [[2604.10962|ScoRe-Flow]], [[2604.07084|FMP]], [[2604.05672|A1]], [[2604.05656|SnapFlow]], [[2604.04646|FDS]], [[2604.02759|OMNI-PoseX]], [[2603.29844|DIAL]], [[2603.28565|StreamingVLA]], [[2603.26320|DFM-VLA]], [[2603.24800|Calibri]], [[2602.01789|RFS]], [[2602.01166|LaRA-VLA]], [[2601.18692|LingBot-VLA]], [[2512.24125|GenieReasoner]], [[2511.14759|RECAP]], [[2511.14148|AsyncVLA]], [[2511.07732|ViPRA]], [[2510.25889|piRL]], [[2510.22201|ACG]], [[2510.10274|X-VLA]], [[2509.04996|FLOWER]], [[2506.01844|SmolVLA]], [[2505.22094|ReinFlow]], [[2504.18471|AFM]], [[2410.24164|π0]], [[2403.09631|3D-VLA]]
@@ -310,7 +326,113 @@ Diffusion models applied to physical action generation rather than image synthes
 
 ---
 
-## 7. Representation Learning & Theory
+## 7. Physics-Aware Training for Generative Models
+
+A focused thread on injecting physical laws into generative pipelines. Standard diffusion and flow models learn from pixels alone, so they reliably violate gravity, conservation, and rigid-body constraints — limiting their use as world simulators for robotics, scientific computing, and embodied AI. Methods in this section span four mechanisms: (1) **physics-grounded training data** with synthetic simulators, (2) **physics-conditioned architectures** that consume material/force inputs, (3) **physics losses** (PDE residuals, kinematic residuals, mass conservation) backpropagated during fine-tuning, and (4) **inference-time physics rewards** from latent world models or rule-based proxies.
+
+**Physics-Conditioned Generation** — Generative models that consume explicit physical inputs (material properties, forces, rigid-body parameters) or reconstruct physical scenes as part of the generation pipeline.
+- [[2603.26285|PhysVid]], [[2603.13770|PhysAlign]], [[2511.20280|PhysiCheck]], [[2509.21541|ControlHair]], [[2509.21309|NewtonGen]], [[2509.20358|PhysCtrl]], [[2504.00342|Constraint-Aligned Diffusion]], [[2503.23368|VLIPP]], [[2503.21442|RainyGS]], [[2502.02492|VideoJAM]], [[2409.18964|PhysGen]], [[2211.14680|PIDM Flow Reconstruction]]
+
+> [!star] Key Papers
+> - [[2509.20358|PhysCtrl]] — Diffusion-based generative physics network conditioned on material properties and external forces; produces 3D point trajectories with spatio-temporal attention regularized by physics, velocity, and boundary losses
+> - [[2603.13770|PhysAlign]] — LoRA adapter for DiT-based I2V models; dual latent-space alignment with V-JEPA2 kinematic priors and 3D-geometry depth heads, trained on only 3,000 Blender-simulated clips
+> - [[2509.21309|NewtonGen]] — Physics-informed neural ODE module (Neural Newtonian Dynamics) embedded inside T2V; explicit Newtonian motion control over 12 motion types with **0.98** Physical Invariance Score
+
+**Physics-Loss & Reward Fine-Tuning** — Post-training methods that fine-tune pre-trained generators with physics-derived loss functions or verifiable rewards (PDE residuals, Newtonian kinematic constraints, mass conservation).
+- [[2603.13925|SmoothVLA]], [[2602.03627|Phys-Instruct]], [[2601.11087|PhysRVG]], [[2512.00425|NewtonRewards]], [[2510.13809|PhysMaster]], [[2509.20570|PIRF]], [[2506.02244|PGML]], [[2504.15932|Phys-AR]], [[2503.09595|PISA]], [[2403.14404|PIDM]]
+
+> [!star] Key Papers
+> - [[2512.00425|NewtonRewards]] — Verifiable rule-based rewards from optical-flow proxies and visual-feature mass conservation; +9.75% physical fidelity on NewtonBench-60K with explicit anti-reward-hacking design
+> - [[2509.20570|PIRF]] — Backpropagates trajectory-level PDE-residual rewards through the entire denoising process; layer-wise truncation prevents reward hacking and beats SOTA on 4/5 PDE benchmarks
+> - [[2503.09595|PISA]] — Physics Supervised Fine-Tuning + Object Reward Optimization on small simulated datasets; first systematic post-training recipe for object freefall
+
+**Inference-Time Physics Alignment** — Steer pre-trained generators at sampling time using physics reward models, world-model surprise signals, or counterfactual guidance — without retraining the base model.
+- [[2601.10553|WMReward]], [[2506.04171|PCFM]]
+
+> [!star] Key Papers
+> - [[2601.10553|WMReward]] — Differentiable physics reward derived from V-JEPA2 prediction surprise; first place at ICCV 2025 PhysicsIQ Challenge with 62.64%, +11.4% human-preference win rate via Best-of-N + gradient guidance
+
+**Physics-Aware Robotic World Models** — Generative video models repurposed as physically-interactable digital twins for robot policy learning, bridging visual plausibility and physical feasibility.
+- [[2604.08544|SIM1]], [[2603.23376|ABot-PhysWorld]], [[2511.07416|PhysWorld]], [[2310.06114|UniSim]]
+
+> [!star] Key Papers
+> - [[2511.07416|PhysWorld]] — Reconstructs a physically interactable digital twin from generated task-conditioned videos; object-centric residual RL achieves 82% real-world success and reduces grasping failures from 18% to 3%
+
+**Physics Cognition Limits & Surveys** — Diagnostic studies and surveys analyzing whether scaling alone yields physical understanding, and taxonomies of physics cognition tiers in video generators.
+- [[2602.06033|VLM Intuitive Physics]], [[2510.06251|Physics Frontier Diagnostic]], [[2503.21765|Physics Cognition Survey]], [[2503.21668|Object Cog-Eval]], [[2503.04641|Multimodal Generative Survey]], [[2502.07007|Grounding Creativity in Physics]], [[2411.02385|Physical Law Video Gen]]
+
+> [!star] Key Papers
+> - [[2411.02385|Physical Law Video Gen]] — Definitive scaling study showing video models generalize "case-based" rather than learning abstract physics; OOD errors stay an order of magnitude above ID even at DiT-XL/6M-video scale, and the visual-attribute hierarchy (color > size > velocity > shape) explains object-consistency failures
+> - [[2503.21765|Physics Cognition Survey]] — Three-tier Piaget-inspired taxonomy (Basic Schema Perception → Passive Cognition → Active Cognition) for video generators; surveys mechanics/optics/thermal/materials coverage and identifies neuro-symbolic + differentiable physics as future frontiers
+
+**Physical Commonsense Benchmarks** — Evaluation suites that systematically measure whether generated videos obey gravity, optics, thermodynamics, and material properties.
+- [[2512.12756|FysicsWorld]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.02311|PhysVid]], [[2507.15824|PhysVidBench]], [[2506.00022|PHYSICS Dataset]], [[2505.15929|PhyX]], [[2504.02918|Morpheus]], [[2503.06800|VideoPhy-2]], [[2411.13609|VAMP]], [[2410.05363|PhyGenBench]], [[2406.18522|ChronoMagic-Bench]], [[2311.10111|VideoCon]], [[2106.08261|Physion]], [[2012.04293|CRAFT]]
+
+> [!star] Key Papers
+> - [[2504.02918|Morpheus]] — 130 real-world Newtonian mechanics videos with hierarchical Discard/Dynamical/Invariance scoring; even SOTA generators (WAN-2.1, COSMOS-predict2) score only 0.52–0.55 vs. real-world's 0.98+
+> - [[2503.06800|VideoPhy-2]] — Action-centric physical commonsense benchmark; best models hit only 32.6% joint performance (22% on hard subset), with VideoPhy-2-AutoEval offering 47–49% relative gains as automated judge
+> - [[2410.05363|PhyGenBench]] — 160-prompt benchmark across Mechanics/Optics/Thermal/Materials with PhyGenEval auto-scoring (Spearman ρ=0.81 with humans); top T2V model scored only 0.51/3.0, exposing the physics gap
+> - [[2106.08261|Physion]] — Foundational dataset that pioneered "physics prediction from video" as a benchmark setting; the original benchmark that defined the model-vs-human physical-prediction gap
+
+**Physics-Conditioned Video Generation (Extended)** — A broader sweep of physics-conditioned T2V/I2V/V2V methods that consume forces, sketches, kinematic priors, or simulator outputs to generate physically plausible video. Covers force prompting, kinematic masking, multi-stage simulators in the loop, and video models distilling physics knowledge from pre-trained foundations.
+- [[2603.18639|PhysVideo]], [[2603.09094|CoECT]], [[2603.06408|Physical Simulator In-the-Loop Video]], [[2603.05449|RealWonder]], [[2601.22135|PI-Light]], [[2601.18577|Self-Refining Video Sampling]], [[2601.00504|MotionPhysics]], [[2512.10927|FoundationMotion]], [[2512.05564|ProPhy]], [[2511.17450|Sketch-Guided Plan Verification]], [[2510.02284|KineMask]], [[2509.24702|Implausibility Reasoning]], [[2509.21309|NewtonGen]], [[2508.13911|PhysGM]], [[2507.06830|Phys-Motion-Forecast]], [[2506.08006|Dreamland]], [[2506.06440|Vid2Sim]], [[2505.21653|DiffPhy]], [[2505.19386|Force Prompting]], [[2505.18151|WonderPlay]], [[2505.16971|UniPhy]], [[2505.16456|MAGIC]], [[2505.13437|FinePhys]], [[2503.20822|Synthetic Video Physical Fidelity]], [[2503.20746|PhysGen3D]], [[2503.20654|AccidentSim]], [[2502.19868|C-Drag]], [[2501.16550|PhysAnimator]], [[2412.02617|AIF-Dynamic]], [[2411.19381|Sketch Animation]], [[2411.17189|PhysMotion]], [[2411.14423|PhysFlow]], [[2409.07179|Phy124]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2405.13557|MotionCraft]], [[2401.16663|VR-GS]], [[2305.13840|Control-A-Video]]
+
+> [!star] Key Papers
+> - [[2505.19386|Force Prompting]] — Force vectors as a controllable generation prompt; first to enable physics-driven I2V where users specify push/drag forces
+> - [[2510.02284|KineMask]] — Object-mask-conditioned kinematics for diffusion video; teaches the model object-interaction physics by guiding the masking pattern
+> - [[2505.18151|WonderPlay]] — Action-conditioned dynamic 3D scene generation via differentiable physics + video diffusion; supports user-specified force interventions for one-shot replanning
+
+**Physics-Grounded Gaussians and NeRFs** — Couples explicit 3D Gaussian / NeRF representations with physical simulators (MPM, FEM, PBD) so that each Gaussian carries material properties and obeys conservation laws under deformation. The dominant pattern for 4D dynamics: scene reconstruction first, then simulator-driven evolution.
+- [[2503.21442|RainyGS]], [[2503.04720|FluidNexus]], [[2501.18982|OmniPhysGS]], [[2412.17804|GausSim]], [[2412.11258|GaussianProperty]], [[2411.14423|PhysFlow]], [[2410.08257|NeuMA]], [[2409.07179|Phy124]], [[2406.04338|Physics3D]], [[2404.01223|Feature Splatting]], [[2401.15318|Gaussian Splashing]], [[2312.00583|DeformGS]], [[2311.13099|PIE-NeRF]], [[2311.12198|PhysGaussian]], [[2308.09713|Dynamic 3D Gaussians]], [[2304.14369|NCLaw]], [[2303.05512|PAC-NeRF]]
+
+> [!star] Key Papers
+> - [[2311.12198|PhysGaussian]] — Couples 3D Gaussian Splatting with continuum mechanics MPM solver; first to make 3DGS scenes physically interactive without rebuilding meshes
+> - [[2303.05512|PAC-NeRF]] — Physics-Augmented Continuum NeRF; jointly recovers geometry and material parameters (Young's modulus, density, plasticity) from video, foundational for material-property estimation from pixels
+> - [[2412.11258|GaussianProperty]] — Distills Vision Foundation Model priors into 3D Gaussians to predict per-Gaussian material properties; bridges VLMs and physical simulation
+> - [[2501.18982|OmniPhysGS]] — Constitutive Gaussians with learnable per-particle constitutive networks; ensemble of 12 expert models + custom PyTorch MPM reduces memory **75%** vs Warp solvers
+> - [[2406.04338|Physics3D]] — Distills physical properties (Young's modulus, viscosity, plasticity) into 3D Gaussians via video diffusion priors; the canonical Score-Distillation-from-video-prior recipe for material inference
+
+**Articulated and 4D Physics** — Methods specialized for articulated objects (joints, kinematic chains) and 4D dynamics where geometry, motion, and physics co-evolve over time.
+- [[2603.03485|Phys4D]], [[2504.01204|Articulated Kinematics Distillation]], [[2411.16800|Phys4DGen]], [[2410.07155|Trans4D]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2403.17920|TC4D]]
+
+> [!star] Key Papers
+> - [[2504.01204|Articulated Kinematics Distillation]] — Distills articulated kinematics from video diffusion priors into rigged-skeleton 3D models; bridges generative video and physically-driven character animation
+> - [[2410.07155|Trans4D]] — Realistic geometry-aware transitions for compositional text-to-4D synthesis; handles topological changes (e.g., breaking, melting) that prior methods could not
+> - [[2405.15056|ElastoGen]] — 4D generative elastodynamics via convolution-like local quadratic approximation + Neural Material Module; **0.98** correlation with FEM ground truth across hyperelastic materials
+
+**Material and Elastic Physics** — Recover and edit material properties (elasticity, plasticity, fluid, granular) from video or single images, then re-simulate under new forces.
+- [[2503.17973|PhysTwin]], [[2411.11343|TVML]], [[2410.08257|NeuMA]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2404.13026|PhysDreamer]], [[2304.14369|NCLaw]]
+
+> [!star] Key Papers
+> - [[2503.17973|PhysTwin]] — Single-image-to-physical-twin pipeline; estimates material parameters and rigging that re-simulate under arbitrary forces
+> - [[2406.04338|Physics3D]] — Distills physical properties (elasticity, viscoelasticity, plasticity) into 3D Gaussians via SDS from video diffusion; canonical material-from-pixels recipe
+> - [[2406.01476|DreamPhysics]] — Physics-based 3D dynamics learned from video diffusion priors via score distillation; among the first to make image/video diffusion supervise material parameter inference
+
+**Simulator-in-the-Loop Generation** — Use a physics renderer/engine (Blender, MPM, MuJoCo) inside the generation loop, either to provide ground-truth scaffolding or to fix violations after diffusion sampling.
+- [[2411.12789|Sim-GS]], [[2411.02394|AutoVFX]], [[2408.10453|Kubrick]], [[2404.09833|Video2Game]], [[2311.12631|GPT4Motion]]
+
+> [!star] Key Papers
+> - [[2411.02394|AutoVFX]] — End-to-end automatic VFX pipeline using LLMs to script Blender simulations driven by visual context; bridges generative AI and traditional rendering
+> - [[2311.12631|GPT4Motion]] — GPT-4 plans Blender scenes that drive ControlNet-guided text-to-video; one of the earliest LLM+simulator+diffusion stacks for physically-grounded video
+
+**LLM-Driven Physics Reasoning** — LLMs acting as reasoning engines to derive physical equations, force fields, or simulation parameters that drive downstream generators.
+- [[2603.09094|CoECT]], [[2601.05848|Goal Force]], [[2512.04221|MoReGen]], [[2507.06830|Phys-Motion-Forecast]], [[2505.05469|LegoGPT]], [[2503.20654|AccidentSim]], [[2502.19868|C-Drag]], [[2411.08027|LLMPhy]], [[2309.17444|LVD]]
+
+> [!star] Key Papers
+> - [[2505.05469|LegoGPT]] — LLM-driven physically-stable LEGO assembly generation; the LLM proposes brick layouts that are then verified for structural physics
+> - [[2603.09094|CoECT]] — Chain of Event-Centric Causal Thought; LLM decomposes physical phenomena into causally ordered event units grounded in formulas; **+8.19%** over PhysHPO on PhyGenBench
+> - [[2507.06830|Phys-Motion-Forecast]] — Retrieval-based Symbolic Regression discovers physical equations from video trajectories; predicts physically aligned futures used as I2V guidance — neuro-symbolic precursor to physics-grounded T2V
+> - [[2502.19868|C-Drag]] — Training-free chain-of-thought motion controller using VLM reasoning over object physics; bridges multimodal LLM perception and trajectory-based video generation
+
+> [!tip] Physics-Aware Training Recipe
+> The community has converged on a layered approach: (1) start with a strong pre-trained video diffusion / flow model, (2) fine-tune on a small (~3K-60K) synthetic physics dataset from a controllable simulator (Blender, MPM), (3) add a physics-derived loss or reward — kinematic residuals (NewtonRewards), PDE residuals (PIRF), or world-model surprise (WMReward) — with layer-wise truncation to prevent reward hacking, and (4) evaluate on PhyGenBench/VideoPhy/PhysicsIQ/VideoVerse rather than visual fidelity alone. Always include a *conservation* term (mass, feature consistency) — without it, models collapse to trivial reward-hacked solutions where objects vanish or freeze. The **neuro-symbolic frontier** (NewtonGen, Phys-Motion-Forecast, CoECT) is now competitive: physics-informed neural ODEs and equation-discovery modules embedded *inside* T2V pipelines achieve explicit Newtonian control where reward-only fine-tuning struggled.
+
+> [!success] Validated Physics-Aware Pipeline
+> ==Pre-trained generator (DiT/flow)== → ==LoRA-adapted alignment== with V-JEPA2 kinematic teacher + 3D depth head (PhysAlign) OR ==full fine-tuning== with PDE/kinematic residual reward (PIRF, NewtonRewards) → ==inference-time== Best-of-N with WMReward for an extra +6-11% physics gain at zero retraining cost. Anchor evaluation on PhyGenBench, VideoPhy, and PhysicsIQ — visual quality metrics alone do not detect physics violations.
+
+---
+
+## 8. Representation Learning & Theory
 
 Foundational work on how diffusion models learn representations, the theoretical underpinnings that unify different formulations, and methods for leveraging diffusion dynamics for pre-training and downstream tasks beyond generation.
 

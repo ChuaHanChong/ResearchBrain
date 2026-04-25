@@ -364,6 +364,13 @@ Enabling MLLMs to localize, reference, and reason about specific objects and reg
 > [!tip] Grounding as First-Class Capability
 > Grounding is no longer an afterthought — KOSMOS-2 and Shikra (Section 2) showed it can be native. The trend is toward models that ground by default (Groma, PixelRefer) rather than requiring external detection modules. For robotics applications, this shift is critical — see [[07_Robotics-and-Embodied-AI]].
 
+**Physical Understanding** — Probing whether VLMs/MLLMs reason about physical properties (gravity, mass, materials, dynamics) from images and video. A capability distinct from geometric/spatial reasoning: it requires inferring *physical state* and predicting outcomes.
+- [[2601.19834|Visual Generation Reasoning]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]]
+
+> [!star] Key Papers
+> -  — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhyGenBench-style generation tests
+> - [[2506.08708|PhyBlock]] — Block-stacking benchmark exposing whether MLLMs reason about gravitational stability from images alone
+
 ---
 
 ## 9. Video & Temporal MLLMs

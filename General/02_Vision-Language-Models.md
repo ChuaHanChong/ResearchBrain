@@ -343,6 +343,13 @@ A growing focus area bridging VLMs toward embodied tasks — understanding where
 > [!tip] The Spatial Gap
 > Standard VLMs struggle with spatial relations because they are trained on 2D image-text pairs. SpatialVLM and SpatialRGPT address this with 3D-aware training, while RieMind takes an agentic approach. For robotics, spatial understanding is non-negotiable — see [[05_Computer-Vision-and-3D]].
 
+**Physical Understanding in VLMs** — Probing whether VLMs and MLLMs can reason about physical properties (mass, stability, materials, dynamics) from images and video, not just spatial relations. This is a distinct capability from spatial reasoning: it requires inferring *physical* state and predicting outcomes.
+- [[2602.06033|VLM Intuitive Physics]], [[2601.19834|Visual Generation Reasoning]], [[2511.20280|PhysiCheck]], [[2510.06251|Physics Frontier Diagnostic]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object Cog-Eval]], [[2502.19868|C-Drag]], [[2311.10111|VideoCon]]
+
+> [!star] Key Papers
+> -  — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhysGenBench
+> - [[2506.08708|PhyBlock]] — Block-stacking benchmark exposing whether MLLMs reason about gravitational stability from images alone
+
 ---
 
 ## 11. MLLM Architectures & Scaling

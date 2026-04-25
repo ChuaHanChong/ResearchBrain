@@ -195,7 +195,7 @@ Surveys mapping the robotics landscape from embodied AI simulators through VLA a
 > - [[2103.04918|Embodied AI Survey 2021]] — Established the simulator-task-agent pyramid that later work builds on
 
 **VLA & World Model Architectures** — Surveys focused specifically on vision-language-action models and world models for robot control.
-- [[2604.15395|Foundation Models in Robotics Survey]], [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2601.15533|Actionable Simulators]], [[2510.24795|Efficient VLA Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2509.19012|Pure VLA Survey]], [[2508.13073|VLA Survey 2025]], [[2506.20134|3D World Models Survey]], [[2505.04769|VLA Survey]], [[2411.14499|World Models Survey 2024]], [[2408.15511|AeroVerse]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]], [[2310.06253|Objective Mismatch MBRL Survey]]
+- [[2604.15395|Foundation Models in Robotics Survey]], [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2601.15533|Actionable Simulators]], [[2601.07823|Video Generation in Robotics Survey]], [[2510.24795|Efficient VLA Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2509.19012|Pure VLA Survey]], [[2508.13073|VLA Survey 2025]], [[2506.20134|3D World Models Survey]], [[2505.04769|VLA Survey]], [[2503.21765|Physics Cognition Survey]], [[2411.14499|World Models Survey 2024]], [[2408.15511|AeroVerse]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]], [[2310.06253|Objective Mismatch MBRL Survey]]
 
 > [!star] Key Papers
 > - [[2604.15395|Foundation Models in Robotics Survey]] — 435 papers across 6-criteria taxonomy; maps 5 evolutionary phases of FMs in robotics and identifies tactile/failure data gaps
@@ -259,6 +259,15 @@ An emerging survey domain covering how to optimize the information supplied to L
 ## 7. Specialized Domain Surveys
 
 Surveys covering specific domains and emerging fields.
+
+**Physics-Cognition for Generation Surveys** — Surveys mapping the emerging "physics-aware generation" agenda: physics-informed CV, physical AI, generative physics in robotics, and the taxonomy of physics cognition tiers in video generators.
+- [[2510.04978|Physical AI Survey]], [[2504.21853|Interactive Generative Video Survey]], [[2504.04170|Digital Gene]], [[2503.21765|Physics Cognition Survey]], [[2503.04641|Multimodal Generative Survey]], [[2502.07007|Grounding Creativity in Physics]], [[2501.10928|Generative Physical AI Survey]], [[2305.18035|PICV Survey]]
+
+> [!star] Key Papers
+> - [[2503.21765|Physics Cognition Survey]] — Three-tier Piaget-inspired taxonomy (Basic Schema Perception → Passive Cognition → Active Cognition) covering 250+ T2V/V2V/4D-generation papers; the canonical roadmap for the physics-aware generation agenda
+> - [[2510.04978|Physical AI Survey]] — Newest unified framework progressing through perception → reasoning → world modeling → embodied interaction; argues current AI lacks causal physical understanding despite scaling
+> - [[2305.18035|PICV Survey]] — Physics-Informed Computer Vision: foundational taxonomy of how physical knowledge integrates into CV pipelines (observational/inductive/learning biases); covers 250+ papers across imaging, medical, robotics, fluids
+> - [[2502.07007|Grounding Creativity in Physics]] — Brief but influential synthesis arguing video generators must "ground creativity in physics" to reach world-simulator status
 
 **Diffusion & Generation Surveys** — Surveys on diffusion models, generative architectures, and their principles.
 - [[2604.15911|Efficient Video Diffusion Survey]], [[2510.21890|Diffusion Models Principles]], [[2506.13759|Discrete Diffusion LLM Survey]]
@@ -376,8 +385,28 @@ Benchmarks for video-level reasoning that require understanding temporal dynamic
 > [!star] Key Papers
 > - [[1706.04261|Something-Something]] — 108,499 clips across 174 fine-grained action classes with contrastive action templates; pioneered the use of caption-template crowd acting to force models to learn physical common sense
 
+**Physical Commonsense & World-Simulator Benchmarks** — Benchmarks that measure whether generative video models obey fundamental physical laws (gravity, mechanics, optics, thermodynamics, material properties). The Awesome-Physics-Cognition survey ([[2503.21765|Physics Cognition Survey]]) adds dozens of new entries here.
+- [[2603.19607|Physion-Eval]], [[2602.13294|VisPhyWorld]], [[2601.18340|Beyond Rigid]], [[2601.15282|Embodied World Video Gen Bench]], [[2512.12756|FysicsWorld]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.07550|TRAVL]], [[2507.15824|PhysVidBench]], [[2507.13428|PhyWorldBench]], [[2506.17198|Dex1B]], [[2506.10975|GenWorld]], [[2506.09849|IntPhys 2]], [[2506.02794|PhysGaia]], [[2505.24182|MVPBench]], [[2505.22566|Universal Visuo-Tactile]], [[2505.00337|T2VPhysBench]], [[2505.00209|TRAJAN]], [[2504.02918|Morpheus]], [[2504.00983|WorldScore]], [[2503.23715|HOIGen-1M]], [[2503.21755|VBench-2.0]], [[2503.14378|Impossible Videos]], [[2503.09595|PISA]], [[2503.06800|VideoPhy-2]], [[2502.05503|PhyCoBench]], [[2412.01800|PhysGame]], [[2411.13609|VAMP]], [[2410.05363|PhyGenBench]], [[2406.18522|ChronoMagic-Bench]], [[2406.11802|PhyBench]], [[2406.03520|VideoPhy]], [[2311.10111|VideoCon]], [[2306.15668|Physion++]], [[2106.08261|Physion]], [[2012.04293|CRAFT]]
+
+> [!star] Key Papers
+> - [[2106.08261|Physion]] — The foundational dataset that defined "physics prediction from video" as a benchmark setting; basis for all subsequent physical-commonsense evaluation
+> - [[2504.02918|Morpheus]] — 130 real-world Newtonian mechanics videos with hierarchical Discard/Dynamical/Physical-Invariance scoring via PINNs; even SOTA generators score 0.52–0.55 vs. real-world's 0.98+ — first benchmark grounded in actual physical experiments
+> - [[2503.06800|VideoPhy-2]] — Action-centric physical commonsense benchmark; best models hit only 32.6% joint performance, with VideoPhy-2-AutoEval providing 47–49% relative gains as automated judge
+> - [[2410.05363|PhyGenBench]] — 160-prompt benchmark across Mechanics, Optics, Thermal, and Material Properties with PhyGenEval auto-scoring (Spearman ρ = 0.81 with humans); top T2V model scored only 0.51/3.0
+> - [[2503.09595|PISA]] — Object-freefall benchmark spanning real and simulated environments; introduces Physics Supervised Fine-Tuning + Object Reward Optimization as the standard post-training recipe
+> - [[2406.03520|VideoPhy]] — First benchmark explicitly targeting physical commonsense in T2V models; established the evaluation protocol that VideoPhy-2 and PhyCoBench refined
+
+**Physical Understanding Benchmarks (VLMs/MLLMs)** — Benchmarks that probe whether VLMs and MLLMs can reason about physical scenes, properties, and dynamics — distinct from generation benchmarks above.
+- [[2603.24866|VLM Real World Construction]], [[2602.06033|VLM Intuitive Physics]], [[2510.06251|Physics Frontier Diagnostic]], [[2510.02311|PhysVid]], [[2506.09987|Shortcut-aware Video-QA]], [[2506.09943|CausalVQA]], [[2506.00022|PHYSICS Dataset]], [[2505.15929|PhyX]], [[2503.21668|Object Cog-Eval]]
+
+> [!star] Key Papers
+> - [[2506.09943|CausalVQA]] — Tests whether VLMs answer video questions via genuine causal reasoning rather than shortcut features; exposes the brittleness of language-conditioned video QA
+> - [[2505.15929|PhyX]] — 3,000 university-level multimodal physics questions across six domains (Mechanics, EM, Thermo, Wave/Acoustics, Optics, Modern); GPT-o4-mini hits **45.8%** vs human experts **75.6%**, with **39.6%** errors traced to visual reasoning failures
+> - [[2510.06251|Physics Frontier Diagnostic]] — Two-stage Physion/Physion++/CLEVRER probes that decompose perception vs physics-understanding; VLMs that pass benchmark questions often fail diagnostic subtests, revealing surface-level shortcut behavior
+> - [[2510.02311|PhysVid]] — First quantitative-ground-truth dataset for elasticity/viscosity/density inference from video; complements categorical physics benchmarks with regression-style evaluation
+
 > [!tip] Beyond Frame-Level
-> Both MMOU and STI-Bench test capabilities that frame-level VLMs cannot solve. Models need temporal reasoning (STI-Bench) and cross-modal integration (MMOU) to succeed. For foundational training data, Something-Something remains a strong physical-commonsense stress test for 3D CNN and VideoLLM pretraining.
+> Both MMOU and STI-Bench test capabilities that frame-level VLMs cannot solve. Models need temporal reasoning (STI-Bench) and cross-modal integration (MMOU) to succeed. For foundational training data, Something-Something remains a strong physical-commonsense stress test for 3D CNN and VideoLLM pretraining. For physics-aware generation, PhyGenBench and PISA expose how far T2V models are from being usable world simulators.
 
 ---
 

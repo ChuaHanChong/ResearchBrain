@@ -173,7 +173,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 The paradigm shift: video generation models that simulate ==physically plausible futures==, becoming the foundation for planning and control. These models bridge content creation and robotic planning by learning physics, causality, and dynamics from temporal data.
 
 **Foundational Video World Models** — Systems that treat video generation as world simulation, learning to produce physically coherent future states from observation.
-- [[2604.18564|MultiWorld]], [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2602.10717|SDA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
+- [[2604.18564|MultiWorld]], [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2602.10717|SDA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2411.02385|Physical Law Video Gen]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
 
 > [!star] Key Papers
 > - [[2302.00111|UniPi]] — First to use text-guided video generation as a universal policy; bridges video generation and robot control
@@ -194,20 +194,61 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improving framework for controllable, long-horizon video generation
 
 **Controllable Video Synthesis** — Dedicated architectures for high-fidelity, subject-driven, or reason-informed video editing and generation.
-- [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The Matrix]]
+- [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2603.17051|Astrolabe]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2502.02492|VideoJAM]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The Matrix]]
 
 > [!star] Key Papers
 > - [[2603.18524|3DreamBooth]] — 3D-consistent subject-driven video generation; Chamfer Distance of 0.0177
 > - [[2512.09924|ReViSE]] — Reason-informed video editing via self-reflective learning; +32% on RVE-Bench
 
 **Surveys & Roadmaps** — Comprehensive overviews of the video-to-world-model progression.
-- [[2604.15911|Efficient Video Diffusion Survey]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]]
+- [[2604.15911|Efficient Video Diffusion Survey]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]], [[2504.21853|Interactive Generative Video Survey]]
 
 > [!star] Key Papers
 > - [[2511.08585|Visual World Roadmap]] — Four-generation taxonomy from video generators to planning-capable world simulators
+> - [[2504.21853|Interactive Generative Video Survey]] — Maps the emerging interactive-video-generation paradigm where users steer model rollouts in real time, bridging T2V and world-simulation
 
 > [!tip] Video World Models Feed WAMs
 > This cluster directly feeds into World Action Models. If you can generate video of the future, you can plan by imagining outcomes. UniPi and UniSim established the pattern; Dreamer 4 and AdaWorld scale it. See [[04_Reinforcement-Learning]] for RL inside world models and [[07_Robotics-and-Embodied-AI]] for the embodied applications.
+
+**Controllable Video Synthesis (Schematic Perception)** — Architectures for fine-grained controllability over motion, identity, lighting, camera, and dynamics in video generation. This is the "basic schematic perception" tier of physics cognition: models that respect user-supplied constraints (drag points, trajectories, force vectors, identities) without yet learning physical laws from scratch.
+- [[2511.00503|Diff4Splat]], [[2507.01099|Geometry-aware 4D Robot Video]], [[2506.20703|Generative Blocks World]], [[2506.19798|CoCo4D]], [[2506.15673|UniRelight]], [[2506.03150|IllumiCraft]], [[2505.20287|MotionPro]], [[2504.21855|ReVision]], [[2503.24379|Any2Caption]], [[2503.14485|Lux Post Facto]], [[2502.03639|3DPointReg I2V]], [[2412.15214|LeviTor]], [[2412.11785|InterDyn]], [[2412.11224|GenLit]], [[2412.09551|δ-Diffusion]], [[2412.02700|Motion Prompting]], [[2412.02168|Generative Photography]], [[2412.00148|Motion Modes]], [[2411.17440|Identity-Preserving T2V]], [[2411.16804|InTraGen]], [[2411.10836|AnimateAnything]], [[2411.04989|SG-I2V]], [[2410.22979|LumiSculpt]], [[2410.13830|DreamVideo-2]], [[2409.00558|Compositional 3D Video]], [[2408.11475|TrackGo]], [[2407.21705|Tora]], [[2406.15339|Image Conductor]], [[2406.01188|UniAnimate]], [[2405.20222|MOFA-Video]], [[2403.20193|Motion Inversion]], [[2403.17920|TC4D]], [[2403.15249|SMA]], [[2403.07420|DragAnything]], [[2402.03162|Direct-a-Video]], [[2401.15977|Motion-I2V]], [[2312.17681|FlowVid]], [[2312.03641|MotionCtrl]], [[2312.00845|VMC]], [[2311.17117|Animate Anyone]], [[2310.08465|MotionDirector]], [[2310.05922|FLATTEN]], [[2309.07906|Generative Image Dynamics]], [[2308.08089|DragNUWA]], [[2306.02018|VideoComposer]], [[2305.13840|Control-A-Video]], [[2302.05543|ControlNet]]
+
+> [!star] Key Papers
+> - [[2302.05543|ControlNet]] — Foundational conditional control framework for diffusion (image-level), the architectural ancestor of every controllable video method below
+> - [[2308.08089|DragNUWA]] — Trajectory-controllable video generation via drag-style point trajectories; defined the user-interaction pattern many later T2V tools adopted
+> - [[2407.21705|Tora]] — First trajectory-oriented Diffusion Transformer (DiT) for video generation; brought DiT-scale architectures to controllable T2V
+> - [[2511.00503|Diff4Splat]] — Feed-forward 4D scene generation as deformable 3D Gaussian fields with explicit camera control; 60x faster than per-scene optimization while preserving geometric integrity
+
+**Physics-Aware Video Generation** — Video diffusion / flow models that condition on or learn from physical knowledge (forces, materials, kinematics, simulator outputs). The bridge between schematic controllable video and full world simulators: papers here aim for *physically plausible* motion rather than just controllable motion.
+- [[2603.18639|PhysVideo]], [[2603.09094|CoECT]], [[2603.06408|Physical Simulator In-the-Loop Video]], [[2603.05449|RealWonder]], [[2603.03485|Phys4D]], [[2601.18577|Self-Refining Video Sampling]], [[2601.05848|Goal Force]], [[2512.10927|FoundationMotion]], [[2511.20280|PhysiCheck]], [[2511.17450|Sketch-Guided Plan Verification]], [[2510.02284|KineMask]], [[2509.21541|ControlHair]], [[2509.21309|NewtonGen]], [[2507.06830|Phys-Motion-Forecast]], [[2506.06440|Vid2Sim]], [[2505.21653|DiffPhy]], [[2505.19386|Force Prompting]], [[2504.01204|Articulated Kinematics Distillation]], [[2503.21442|RainyGS]], [[2503.20822|Synthetic Video Physical Fidelity]], [[2503.20654|AccidentSim]], [[2503.17973|PhysTwin]], [[2503.04720|FluidNexus]], [[2502.19868|C-Drag]], [[2501.18982|OmniPhysGS]], [[2501.16550|PhysAnimator]], [[2412.17804|GausSim]], [[2411.19381|Sketch Animation]], [[2411.14423|PhysFlow]], [[2411.11343|TVML]], [[2411.02394|AutoVFX]], [[2410.08257|NeuMA]], [[2410.07155|Trans4D]], [[2409.07179|Phy124]], [[2408.10453|Kubrick]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2405.13557|MotionCraft]], [[2404.13026|PhysDreamer]], [[2404.09833|Video2Game]], [[2312.00583|DeformGS]], [[2311.12631|GPT4Motion]], [[2309.17444|LVD]], [[2304.14369|NCLaw]]
+
+> [!star] Key Papers
+> - [[2505.19386|Force Prompting]] — Force vectors as a controllable generation prompt; first to enable physics-driven I2V where users specify push/drag interactions
+> - [[2509.21309|NewtonGen]] — Neural Newtonian Dynamics (physics-informed neural ODEs) integrated into T2V; explicit Newtonian motion control with **0.98** Physical Invariance Score vs Sora's **0.65**
+> - [[2501.18982|OmniPhysGS]] — General physics-based dynamics for 3D Gaussians via learnable constitutive models; ensemble of 12 expert constitutive networks + custom PyTorch MPM solver
+> - [[2406.04338|Physics3D]] — Distills physical properties (Young's modulus, viscosity, plasticity) into 3D Gaussians via video diffusion priors; canonical recipe for material-from-pixels
+> - [[2503.17973|PhysTwin]] — Single-image-to-physical-twin pipeline; estimates material parameters and rigging that re-simulate under arbitrary forces
+
+**Active World Simulators (Physics)** — The next tier above physics-aware generation: models that act as full interactive world simulators with action conditioning, RL alignment, or world-model-driven physics rewards. Includes Cosmos, Genie, UniSim, GAIA-1 and their physics-aware descendants.
+- [[2603.24506|PhyGenesis]], [[2603.03505|PhyPrompt]], [[2511.03997|PhysCorr]], [[2511.00062|Physical AI World Sim]], [[2510.21840|V-JEPA-2 Physics Reward]], [[2509.24702|Implausibility Reasoning]], [[2508.10858|PhysHPO]], [[2506.23135|RoboScape]], [[2506.18655|RDPO]], [[2506.01103|DeepVerse]], [[2505.23656|VideoREPA]], [[2505.21996|VRAG-WM]], [[2505.09723|EnerVerse-AC]], [[2504.15397|MirrorVerse]], [[2504.13129|Science-T2I]], [[2503.18945|Aether]], [[2503.08153|WISA]], [[2502.02088|IPO]], [[2501.13918|VideoAlign]], [[2501.09038|Physics-IQ]], [[2412.20404|Open-Sora]], [[2412.08410|DrivePhysica]], [[2412.02617|AIF-Dynamic]], [[2412.00596|PhyT2V]], [[2410.18072|WorldSimBench]], [[2410.13571|DriveDreamer4D]], [[2410.10076|VideoAgent]], [[2410.05582|Gen-Drive]], [[2408.07009|Imagen 3]], [[2404.05014|MagicTime]], [[2401.09985|WorldDreamer]], [[2309.17080|GAIA-1]]
+
+> [!star] Key Papers
+> - [[2501.09038|Physics-IQ]] — Definitive evaluation of whether generative video models learn physical principles; showed visual realism does not imply physics understanding
+> - [[2309.17080|GAIA-1]] — Wayve's 9B autoregressive driving world model; foundational result that internet-scale video pretraining yields a useful driving world simulator
+> - [[2410.18072|WorldSimBench]] — First benchmark explicitly framing video generators as world simulators; introduced explicit/implicit evaluation pipeline
+
+**Physics-Aware Video Benchmarks** — Diagnostic benchmarks specifically built to expose physics violations in video generators (gravity, collision, conservation, optics, materials). These are the evaluation backbone of the physics-cognition agenda.
+- [[2603.19607|Physion-Eval]], [[2602.13294|VisPhyWorld]], [[2602.06033|VLM Intuitive Physics]], [[2601.18340|Beyond Rigid]], [[2601.15282|Embodied World Video Gen Bench]], [[2512.12756|FysicsWorld]], [[2512.04221|MoReGen]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.07550|TRAVL]], [[2510.06251|Physics Frontier Diagnostic]], [[2510.02311|PhysVid]], [[2507.15824|PhysVidBench]], [[2506.10975|GenWorld]], [[2506.09849|IntPhys 2]], [[2506.02794|PhysGaia]], [[2506.00022|PHYSICS Dataset]], [[2505.24182|MVPBench]], [[2505.22566|Universal Visuo-Tactile]], [[2505.15929|PhyX]], [[2505.00337|T2VPhysBench]], [[2505.00209|TRAJAN]], [[2503.23715|HOIGen-1M]], [[2503.21755|VBench-2.0]], [[2503.21668|Object Cog-Eval]], [[2503.14378|Impossible Videos]], [[2502.05503|PhyCoBench]], [[2412.01800|PhysGame]], [[2411.13609|VAMP]], [[2406.18522|ChronoMagic-Bench]], [[2406.11802|PhyBench]], [[2406.03520|VideoPhy]], [[2311.10111|VideoCon]], [[2306.15668|Physion++]], [[2106.08261|Physion]], [[2012.04293|CRAFT]]
+
+> [!star] Key Papers
+> - [[2106.08261|Physion]] — Foundational benchmark that defined the model-vs-human physical-prediction gap; basis for Physion++ and many follow-ups
+> - [[2406.03520|VideoPhy]] — First benchmark explicitly evaluating physical commonsense in T2V models; revealed even SOTA generators score far below human accuracy
+> - [[2506.09849|IntPhys 2]] — Updated version of the influential intuitive-physics benchmark; richer scenarios for testing object permanence, continuity, and solidity
+> - [[2510.08398|VideoVerse]] — Tests "world model capability" via hidden-semantics prompts; reveals open-vs-closed-source gap on Mechanics/Interaction/Material dimensions even when basic T2V is comparable
+> - [[2512.12756|FysicsWorld]] — Unified full-modality benchmark for any-to-any (image+video+audio+text) understanding/generation/reasoning; CMCS strategy filters out unimodal shortcuts
+
+> [!tip] Physics Cognition Tiers
+> Three tiers across this expansion of §3: (1) **schematic perception** — controllable video (DragNUWA, ControlNet, Tora, motion prompting) where users specify constraints; (2) **passive physics cognition** — physics-aware T2V/I2V (Force Prompting, NewtonGen, OmniPhysGS, Physics3D, PhysTwin, PhysGaussian) that learns implicit or explicit physics from data; (3) **active cognition** — full world simulators (Cosmos, GAIA-1, Genie, Physics-IQ-aligned models, PhyGenesis) that close the action loop. Most ICML/NeurIPS 2025 effort is in tier 2; the frontier is moving to tier 3 with V-JEPA reward signals, PhysWorld digital twins, and physics-informed neural ODEs (NewtonGen). Benchmarks (FysicsWorld, VideoVerse, LikePhys) are catching up faster than generators — the world-model gap is now well-quantified.
 
 ---
 

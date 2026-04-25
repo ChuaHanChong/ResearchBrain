@@ -365,6 +365,23 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 **3D World Simulation** — Systems that generate, simulate, or reason about 3D environments as interactive world models for embodied agents and autonomous driving.
 - [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]]
 
+**Physics-Aware 3D / 4D Generation** — Coupling 3D Gaussian Splatting, NeRF, or point-cloud representations with physical simulators (MPM, FEM, PBD) so that scene reconstructions become physically interactive. The dominant pattern: reconstruct a 3D scene first, then evolve it with physics. Includes 4D dynamic scene generation that integrates time + geometry + physics.
+- [[2603.03485|Phys4D]], [[2511.00503|Diff4Splat]], [[2509.21541|ControlHair]], [[2508.13911|PhysGM]], [[2507.01099|Geometry-aware 4D Robot Video]], [[2506.19798|CoCo4D]], [[2506.03150|IllumiCraft]], [[2505.18151|WonderPlay]], [[2503.21442|RainyGS]], [[2503.20746|PhysGen3D]], [[2503.04720|FluidNexus]], [[2502.03639|3DPointReg I2V]], [[2501.18982|OmniPhysGS]], [[2412.17804|GausSim]], [[2412.11785|InterDyn]], [[2412.11258|GaussianProperty]], [[2411.16800|Phys4DGen]], [[2411.14423|PhysFlow]], [[2411.12789|Sim-GS]], [[2410.08257|NeuMA]], [[2410.07155|Trans4D]], [[2409.07179|Phy124]], [[2409.00558|Compositional 3D Video]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2404.13026|PhysDreamer]], [[2404.09833|Video2Game]], [[2404.01223|Feature Splatting]], [[2403.17920|TC4D]], [[2401.16663|VR-GS]], [[2401.15318|Gaussian Splashing]], [[2312.00583|DeformGS]], [[2311.13099|PIE-NeRF]], [[2311.12198|PhysGaussian]], [[2309.07906|Generative Image Dynamics]], [[2308.09713|Dynamic 3D Gaussians]], [[2304.14369|NCLaw]], [[2303.05512|PAC-NeRF]]
+
+> [!star] Key Papers
+> - [[2311.12198|PhysGaussian]] — Couples 3D Gaussian Splatting with continuum mechanics MPM solver; the foundational result that made 3DGS scenes physically interactive
+> - [[2303.05512|PAC-NeRF]] — Physics-Augmented Continuum NeRF; jointly recovers geometry and material parameters (Young's modulus, density, plasticity) from video — the canonical material-from-pixels reference
+> - [[2511.00503|Diff4Splat]] — Feed-forward 4D scene generation as deformable 3D Gaussian fields with explicit camera control; **60x** faster than per-scene optimization
+> - [[2501.18982|OmniPhysGS]] — Constitutive Gaussians with ensemble of 12 expert constitutive networks (elastic/viscoelastic/plastic/fluid); custom PyTorch MPM solver cuts memory **75%** vs Warp-based baselines
+> - [[2406.04338|Physics3D]] — Distills Young's modulus, viscosity, and plasticity into 3D Gaussians via SDS from video diffusion priors
+> - [[2412.11258|GaussianProperty]] — Distills VLM priors into 3D Gaussians to predict per-Gaussian material properties; bridges VLMs and physical simulation
+
+**Physics-Cognition Surveys** — Surveys covering physics-informed CV and generative physics in vision systems.
+- [[2503.04641|Multimodal Generative Survey]], [[2501.10928|Generative Physical AI Survey]], [[2305.18035|PICV Survey]]
+
+> [!star] Key Papers
+> - [[2305.18035|PICV Survey]] — Foundational taxonomy of physics-informed computer vision; covers observational/inductive/learning biases across 250+ papers
+
 > [!star] Key Papers
 > - [[2604.14268|HY-World 2.0]] — Tencent Hunyuan's open-source multi-modal 3D world framework unifying reconstruction + generation; high-fidelity 3DGS worlds in ~10 min
 > - [[2604.15805|WorldComposer]] — Generates "Digital Cousins" from single panoramas; 0.91 Pearson correlation between sim and real-world policy success

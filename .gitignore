@@ -3,6 +3,7 @@ __pycache__/
 .obsidian/
 .venv/
 .playwright*/
+.claude/agent-memory-local/
 _Artefacts_/
 papers/
 data/
