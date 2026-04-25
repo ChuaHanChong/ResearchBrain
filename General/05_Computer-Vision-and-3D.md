@@ -105,7 +105,7 @@ The field evolved through four phases: **backbone design** (2016-2022) where ViT
 The backbone revolution: Vision Transformers replaced CNNs as the default architecture for nearly all perception tasks. The design space spans pure transformers (ViT), hierarchical multi-scale architectures (Swin, MPViT), CNN-transformer hybrids (CMT, ViT-CoMer), and efficiency-focused designs for high-resolution or resource-constrained deployment.
 
 **Foundational Architectures** — The original ViT and its hierarchical extensions that introduced multi-scale feature processing to transformers.
-- [[2312.17686|BMViT]], [[2204.01697|MaxViT]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.09883|Swin Transformer V2]], [[2105.13677|ResT]], [[2010.11929|ViT]], [[2603.25744|MuRF]]
+- [[2603.25744|MuRF]], [[2312.17686|BMViT]], [[2204.01697|MaxViT]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.09883|Swin Transformer V2]], [[2105.13677|ResT]], [[2010.11929|ViT]]
 
 > [!star] Key Papers
 > - [[2010.11929|ViT]] — Proved a pure Transformer can match CNNs on image classification; launched the ViT era
@@ -370,7 +370,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2604.15805|WorldComposer]] — Generates "Digital Cousins" from single panoramas; 0.91 Pearson correlation between sim and real-world policy success
 
 **Spatial Intelligence Surveys** — Comprehensive reviews of 4D spatial intelligence, encompassing 3D understanding across time.
-- [[2512.24385|Spatial Intelligence Roadmap]], [[2507.21045|4D Spatial Intelligence Survey]], [[2506.20134|3D World Models Survey]], [[2504.15280|All-Angles Bench]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2504.09848|LLM Spatial Intelligence Survey]], [[2412.14171|VSI-Bench]], [[2603.22057|SpatialBoost]]
+- [[2603.22057|SpatialBoost]], [[2512.24385|Spatial Intelligence Roadmap]], [[2507.21045|4D Spatial Intelligence Survey]], [[2506.20134|3D World Models Survey]], [[2504.15280|All-Angles Bench]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2504.09848|LLM Spatial Intelligence Survey]], [[2412.14171|VSI-Bench]]
 
 > [!star] Key Papers
 > - [[2507.21045|4D Spatial Intelligence Survey]] — Five-level hierarchical taxonomy for 4D reconstruction; the most structured overview of spatial intelligence
@@ -475,7 +475,7 @@ Learning from minimal examples or no examples at all. These methods enable visua
 Understanding what vision models learn, explaining their decisions, and providing transparent reasoning. Essential for deploying vision systems in safety-critical applications.
 
 **Interpretable Architectures** — Models designed from the ground up to produce human-understandable explanations of their predictions.
-- [[2501.09333|Prompt-CAM]], [[2311.04157|INTR]], [[2205.10268|B-cos Networks]], [[2604.10982|Psi-Map]]
+- [[2604.10982|Psi-Map]], [[2501.09333|Prompt-CAM]], [[2311.04157|INTR]], [[2205.10268|B-cos Networks]]
 
 > [!star] Key Papers
 > - [[2205.10268|B-cos Networks]] — Inherently interpretable deep networks via B-cos transform; explanations emerge from the architecture itself
@@ -503,13 +503,13 @@ Understanding what vision models learn, explaining their decisions, and providin
 Practical methods for training vision models efficiently: dataset pruning, continual learning, knowledge distillation, and parameter-efficient fine-tuning. These techniques determine whether a method is publishable versus deployable.
 
 **Dataset Curation & Pruning** — Select the most informative training examples to reduce dataset size without sacrificing model quality.
-- [[2205.09329|Dataset Pruning]], [[2604.11386|ComSim]]
+- [[2604.11386|ComSim]], [[2205.09329|Dataset Pruning]]
 
 > [!star] Key Papers
 > - [[2205.09329|Dataset Pruning]] — Optimization-based pruning using influence functions; reduces training data while maintaining accuracy
 
 **Knowledge Distillation** — Transfer knowledge from large teacher models to smaller, deployable student models.
-- [[2306.08543|MiniLLM]], [[2604.10856|BridgeSim]]
+- [[2604.10856|BridgeSim]], [[2306.08543|MiniLLM]]
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] — Reverse KL divergence + on-policy optimization for LLM distillation; produces higher-precision student models
@@ -527,13 +527,13 @@ Practical methods for training vision models efficiently: dataset pruning, conti
 > - [[2402.02242|V-PEFT Bench]] — Comprehensive benchmark of visual PEFT methods; reveals which adapter designs actually matter
 
 **Weakly-Supervised Pre-Training** — Pre-train on weakly-labeled data (e.g., image-level tags for pixel-level tasks) to scale annotation-efficient learning.
-- [[2505.06710|SimMIL]], [[2604.08626|WildDet3D]], [[2604.11674|AffordSim]]
+- [[2604.11674|AffordSim]], [[2604.08626|WildDet3D]], [[2505.06710|SimMIL]]
 
 > [!star] Key Papers
 > - [[2505.06710|SimMIL]] — Propagates bag-level labels to instances for MIL pre-training; improves pathology classification without pixel annotations
 
 **Adversarial Robustness** — Understanding and improving model resilience to adversarial perturbations.
-- [[2506.21046|dSVA]], [[2604.11138|ViserDex]]
+- [[2604.11138|ViserDex]], [[2506.21046|dSVA]]
 
 > [!star] Key Papers
 > - [[2506.21046|dSVA]] — Exploits self-supervised ViT features for adversarial attacks; outperforms prior methods by 13.7% on average transferability

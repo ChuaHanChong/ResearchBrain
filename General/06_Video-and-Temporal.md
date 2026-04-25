@@ -142,7 +142,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.16870|Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Spatiotemporal Grounding & Perception** — Architectures for precise spatial and temporal localization in video, including segmentation, tracking, and pixel-grounded language understanding.
-- [[2604.02829|STRNet]], [[2603.23404|TRACE]], [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]], [[2604.12148|ViLL-E]]
+- [[2604.12148|ViLL-E]], [[2604.02829|STRNet]], [[2603.23404|TRACE]], [[2603.12382|SPARROW]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2508.09736|M3-Agent]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]]
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
@@ -180,7 +180,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2310.06114|UniSim]] — Learned interactive real-world simulator from video data; key inspiration for the WAM paradigm
 
 **Latent-Action & Scalable World Models** — World models that extract latent action representations from unlabeled video, enabling RL-based agent training entirely within imagination.
-- [[2510.26433|CoLA-World]], [[2509.24527|Dreamer 4]], [[2505.13934|RLVR-World]], [[2503.18938|AdaWorld]], [[2402.15391|Genie]], [[2501.03575|Cosmos]], [[2506.09995|PlayerOne]], [[2604.10333|ZWM]]
+- [[2604.10333|ZWM]], [[2510.26433|CoLA-World]], [[2509.24527|Dreamer 4]], [[2506.09995|PlayerOne]], [[2505.13934|RLVR-World]], [[2503.18938|AdaWorld]], [[2501.03575|Cosmos]], [[2402.15391|Genie]]
 
 > [!star] Key Papers
 > - [[2509.24527|Dreamer 4]] — First offline diamond acquisition in Minecraft; scalable world model with real-time 21 fps inference

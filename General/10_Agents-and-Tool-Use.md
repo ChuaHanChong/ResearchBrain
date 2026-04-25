@@ -278,14 +278,14 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 Agents that accumulate experience over time, build persistent memory, and autonomously improve their own capabilities. This represents the frontier where agents become self-evolving systems.
 
 **Skill Libraries & External Memory** — Agents that maintain persistent skill repositories or memory banks, enabling them to reuse learned capabilities across tasks without retraining.
-- [[2604.04503\|MIA]], [[2604.02268\|SKILL0]], [[2604.01007\|Omni-SimpleMem]], [[2603.29493\|MemFactory]], [[2603.24639\|ERL]], [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24517|AVO]], [[2509.23285|Tool-Light]]
+- [[2604.04503\|MIA]], [[2604.02268\|SKILL0]], [[2604.01007\|Omni-SimpleMem]], [[2603.29493\|MemFactory]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24639\|ERL]], [[2603.24517|AVO]], [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2509.23285|Tool-Light]]
 
 > [!star] Key Papers
 > - [[2603.18743\|Memento-Skills]] — Skill library as external memory for continual learning; agents store and retrieve reusable skills without weight updates
 > - [[2603.05218\|KARL]] — Knowledge agent via off-policy RL for grounded reasoning over enterprise knowledge bases
 
 **Self-Evolving Agent Frameworks** — Agents that autonomously improve their own strategies, prompts, or tool-use policies through self-reflection and iterative optimization.
-- [[2604.18292\|Agent-World]], [[2604.15034\|Autogenesis]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
+- [[2604.18292\|Agent-World]], [[2604.18131\|Native Evolution]], [[2604.15034\|Autogenesis]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
 
 > [!star] Key Papers
 > - [[2508.02085\|SE-Agent]] — Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement
@@ -317,7 +317,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2311.05437\|LLaVA-Plus]] — Training VLMs to learn when and how to use external visual tools for any task
 
 **VLM Fine-Tuning & Reinforcement for Agency** — Methods for fine-tuning vision-language models via RL to act as agents in visual environments.
-- [[2511.19900\|Agent0-VL]], [[2510.22832\|HRM-Agent]], [[2507.07998\|PyVision]], [[2505.14246\|Visual-ARFT]], [[2405.10292\|VLM-RL Fine-Tuning]], [[2604.08545|Metis]]
+- [[2604.08545|Metis]], [[2511.19900\|Agent0-VL]], [[2510.22832\|HRM-Agent]], [[2507.07998\|PyVision]], [[2505.14246\|Visual-ARFT]], [[2405.10292\|VLM-RL Fine-Tuning]]
 
 > [!star] Key Papers
 > - [[2405.10292\|VLM-RL Fine-Tuning]] — Directly fine-tuning VLMs with RL for agentic visual tasks; bridges perception and action

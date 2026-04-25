@@ -112,7 +112,7 @@ The architectural revolution that brought attention mechanisms to computer visio
 > - [[2309.02031|Efficient ViT Survey]] — Systematic taxonomy of efficiency methods for vision Transformers; essential reference for practical deployment
 
 **Efficient & Adaptive ViTs** — Adapting ViTs with lightweight modules, patch-level optimization, and resolution flexibility.
-- [[2603.22815|PinPoint]], [[2603.22570|CanViT]], [[2603.22387|EUPE]], [[2601.08499|EfficientFSL]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2505.23769|TextRegion]], [[2505.21501|PH-Reg]], [[2505.19985|Structured ViT Initialization]], [[2505.17316|Patch-Aligned Training]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2307.09120|LW PLG-ViT]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2108.05988|TVT]], [[2107.02239|ViX]], [[2603.25744|MuRF]]
+- [[2603.25744|MuRF]], [[2603.22815|PinPoint]], [[2603.22570|CanViT]], [[2603.22387|EUPE]], [[2601.08499|EfficientFSL]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2505.23769|TextRegion]], [[2505.21501|PH-Reg]], [[2505.19985|Structured ViT Initialization]], [[2505.17316|Patch-Aligned Training]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2307.09120|LW PLG-ViT]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2108.05988|TVT]], [[2107.02239|ViX]]
 
 > [!star] Key Papers
 > - [[2205.08534|ViT-Adapter]] — Foundational adapter method enabling plain ViTs to handle dense prediction tasks without architectural changes
@@ -150,7 +150,7 @@ New attention patterns, normalization strategies, and structural modifications t
 > - [[2512.24695|Hope]] — Nested Learning reinterprets deep learning as nested multi-level optimization
 
 **Hybrid Architectures** — Combining Transformers with state-space models, recurrence, or looped computation for improved efficiency.
-- [[2601.15275|RayRoPE]], [[2507.22448|Falcon-H1]], [[2505.16416|Circle-RoPE]], [[2505.05522|CTM]], [[2503.24067|TransMamba]], [[2501.00663|Titans]], [[2311.12424|Looped Transformers]]
+- [[2604.21254|Hyperloop Transformers]], [[2601.15275|RayRoPE]], [[2507.22448|Falcon-H1]], [[2505.16416|Circle-RoPE]], [[2505.05522|CTM]], [[2503.24067|TransMamba]], [[2501.00663|Titans]], [[2311.12424|Looped Transformers]]
 
 > [!star] Key Papers
 > - [[2507.22448|Falcon-H1]] — Hybrid-head models integrating parallel Transformer and Mamba blocks; redefines the efficiency-performance frontier
@@ -173,7 +173,7 @@ New attention patterns, normalization strategies, and structural modifications t
 Learning visual representations without labels — the foundation for data-efficient downstream tasks.
 
 **Contrastive & Self-Distillation** — Methods that learn by comparing or distilling representations without labeled data.
-- [[2603.28480|INSID3]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2406.09294|DINOv2]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]], [[2603.15553|Bootleg]]
+- [[2603.28480|INSID3]], [[2603.15553|Bootleg]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2406.09294|DINOv2]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
 
 > [!star] Key Papers
 > - [[2104.14294|DINO]] — Self-distillation with no labels; emergent object segmentation in attention maps
@@ -188,7 +188,7 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2106.08254|BEiT]] — BERT-style pre-training for vision: predict discrete visual tokens from masked patches
 
 **JEPA & Latent Prediction** — Joint-Embedding Predictive Architectures that predict in representation space rather than pixel space, avoiding reconstruction artifacts.
-- [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2512.24497|JEPA-WM]], [[2512.19605|KerJEPA]], [[2512.10942|VL-JEPA]], [[2511.08544|LeJEPA]], [[2509.14252|LLM-JEPA]], [[2506.09985|V-JEPA 2]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2301.08243|I-JEPA]]
+- [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2512.24497|JEPA-WM]], [[2512.19605|KerJEPA]], [[2512.10942|VL-JEPA]], [[2511.08544|LeJEPA]], [[2510.00739|TD-JEPA]], [[2509.14252|LLM-JEPA]], [[2506.09985|V-JEPA 2]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2301.08243|I-JEPA]]
 
 > [!star] Key Papers
 > - [[2301.08243|I-JEPA]] — Predicts in latent space instead of pixel space; avoids reconstruction artifacts
@@ -444,7 +444,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 Reinforcement learning applied to improve language model reasoning, self-improvement, and verifiable reward systems.
 
 **RL with Verifiable Rewards** — Training LLMs with RL using automatically verifiable reward signals rather than human feedback.
-- [[2604.02288|SRPO]], [[2512.16649|JustRL]], [[2512.03442|PretrainZero]], [[2511.17473|MR-RLVR]], [[2510.06499|Webscale-RL]], [[2510.01265|RLP]], [[2509.26074|LENS]], [[2508.18588|RhymeRL]], [[2508.14460|DuPO]], [[2508.05004|R-Zero]], [[2506.08388|RLTs]], [[2506.08007|RPT]], [[2506.00103|Writing-Zero]], [[2505.03335|Absolute Zero]], [[2503.23829|RLVR]]
+- [[2604.20733|NPO]], [[2604.20209|SGS]], [[2604.17654|Poly-EPO]], [[2604.02288|SRPO]], [[2512.16649|JustRL]], [[2512.03442|PretrainZero]], [[2511.17473|MR-RLVR]], [[2510.06499|Webscale-RL]], [[2510.01265|RLP]], [[2509.26074|LENS]], [[2508.18588|RhymeRL]], [[2508.14460|DuPO]], [[2508.05004|R-Zero]], [[2506.08388|RLTs]], [[2506.08007|RPT]], [[2506.00103|Writing-Zero]], [[2505.03335|Absolute Zero]], [[2503.23829|RLVR]]
 
 > [!star] Key Papers
 > - [[2503.23829|RLVR]] — Extends RL with verifiable rewards beyond math/code to diverse domains
@@ -496,7 +496,7 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 Foundation models applied to robotics — VLAs, action pretraining, world models, and sim-to-real transfer.
 
 **Vision-Language-Action Models** — Models that bridge perception, language understanding, and physical action for robot control.
-- [[2604.02408|F2F-AP]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.16195|S-VAM]], [[2603.11653|VLA RL Continual Learning]], [[2602.12062|HoloBrain-0]], [[2602.11832|JEPA-VLA]], [[2602.11236|ABot-M0]], [[2602.10098|VLA-JEPA]], [[2601.18692|LingBot-VLA]], [[2512.00975|MM-ACT]], [[2510.10274|X-VLA]], [[2509.04996|FLOWER]], [[2509.00576|G0]], [[2508.07917|MolmoAct]], [[2506.22242|4D-VLA]], [[2505.08971|PRIOR]], [[2505.03500|TLI]], [[2504.16054|pi0.5]], [[2502.14795|Humanoid-VLA]], [[2501.18867|UP-VLA]], [[2501.15830|SpatialVLA]], [[2501.09747|FAST]], [[2412.14058|RoboVLMs]], [[2410.24164|π0]], [[2409.20537|HPT]], [[2511.07820|SONIC]], [[2501.03575|Cosmos]]
+- [[2604.19734|UniT]], [[2604.19730|FASTER]], [[2604.02408|F2F-AP]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.16195|S-VAM]], [[2603.11653|VLA RL Continual Learning]], [[2602.12062|HoloBrain-0]], [[2602.11832|JEPA-VLA]], [[2602.11236|ABot-M0]], [[2602.10098|VLA-JEPA]], [[2601.18692|LingBot-VLA]], [[2512.00975|MM-ACT]], [[2511.07820|SONIC]], [[2510.10274|X-VLA]], [[2509.22652|DAWN]], [[2509.04996|FLOWER]], [[2509.00576|G0]], [[2508.07917|MolmoAct]], [[2506.22242|4D-VLA]], [[2505.08971|PRIOR]], [[2505.03500|TLI]], [[2504.16054|pi0.5]], [[2502.14795|Humanoid-VLA]], [[2501.18867|UP-VLA]], [[2501.15830|SpatialVLA]], [[2501.09747|FAST]], [[2501.03575|Cosmos]], [[2412.14058|RoboVLMs]], [[2410.24164|π0]], [[2409.20537|HPT]]
 
 > [!star] Key Papers
 > - [[2504.16054|pi0.5]] — VLA model enabling mobile robots to perform complex household tasks in entirely new homes
@@ -504,14 +504,14 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 > - [[2508.07917|MolmoAct]] — Action Reasoning Models integrating depth-aware perception with visual reasoning for spatial tasks
 
 **Action Pretraining & Latent Actions** — Learning action representations from video without explicit action labels.
-- [[2602.22010|WoG]], [[2512.13030|Motus]], [[2512.10950|E-RayZer]], [[2512.07203|MMRPT]], [[2507.01643|SAILViT]], [[2506.11136|JAFAR]], [[2503.06669|AgiBot World]], [[2410.11758|LAPA]], [[2410.06158|GR-2]], [[2310.08864|OXE]], [[2310.08576|AVDC]], [[2307.00595|RH20T]], [[2306.10007|RPT]], [[2306.03310|LIBERO]], [[2402.15391|Genie]], [[2601.02427|NitroGen]]
+- [[2602.22010|WoG]], [[2601.02427|NitroGen]], [[2512.13030|Motus]], [[2512.10950|E-RayZer]], [[2512.07203|MMRPT]], [[2507.01643|SAILViT]], [[2506.11136|JAFAR]], [[2503.06669|AgiBot World]], [[2410.11758|LAPA]], [[2410.06158|GR-2]], [[2402.15391|Genie]], [[2310.08864|OXE]], [[2310.08576|AVDC]], [[2307.00595|RH20T]], [[2306.10007|RPT]], [[2306.03310|LIBERO]]
 
 > [!star] Key Papers
 > - [[2410.11758|LAPA]] — Latent Action Pretraining from videos; learns action representations without action labels
 > - [[2310.08576|AVDC]] — Learns manipulation tasks from actionless video via dense visual correspondences
 
 **World Models for Robotics** — Learned simulators that predict future states for planning and policy training.
-- [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28713|DreamLite]], [[2603.12231|Temporal Straightening]], [[2602.11389|Causal-JEPA]], [[2602.06130|SWIRL]], [[2601.05230|Latent Action World Models]], [[2512.19693|Prism Hypothesis]], [[2512.09929|OWM]], [[2512.05665|ILVR]], [[2511.21395|Monet]], [[2511.20639|LatentMAS]], [[2511.09057|PAN]], [[2507.19468|DINO-world]], [[2502.14819|PLDM]], [[2411.04983|DINO-WM]], [[2410.00564|JOWA]], [[2005.05960|Plan2Explore]], [[2602.06949|DreamDojo]], [[2604.10333|ZWM]]
+- [[2604.10333|ZWM]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28713|DreamLite]], [[2603.12231|Temporal Straightening]], [[2602.11389|Causal-JEPA]], [[2602.06949|DreamDojo]], [[2602.06130|SWIRL]], [[2601.05230|Latent Action World Models]], [[2512.19693|Prism Hypothesis]], [[2512.09929|OWM]], [[2512.05665|ILVR]], [[2511.21395|Monet]], [[2511.20639|LatentMAS]], [[2511.09057|PAN]], [[2507.19468|DINO-world]], [[2502.14819|PLDM]], [[2411.04983|DINO-WM]], [[2410.00564|JOWA]], [[2005.05960|Plan2Explore]]
 
 > [!star] Key Papers
 > - [[2511.09057|PAN]] — World model using Generative Latent Prediction for general, interactable, long-horizon simulation
@@ -539,14 +539,14 @@ Unconventional approaches that do not fit neatly into the above categories but r
 > - [[2307.04054|Deep-STDP]] — Spike-timing-dependent plasticity for deep unsupervised learning; explores biologically plausible alternatives to backpropagation
 
 **LLM-Assisted Research Tools** — Using LLMs to automate aspects of the research process itself.
-- [[2508.17971|LLM-NAR]], [[2504.17192|PaperCoder]], [[2203.03485|Self-directed Exploratory Planning]], [[2604.09258|Nexus]], [[2604.13016|OPD Distillation Study]]
+- [[2604.13016|OPD Distillation Study]], [[2604.09258|Nexus]], [[2508.17971|LLM-NAR]], [[2504.17192|PaperCoder]], [[2203.03485|Self-directed Exploratory Planning]]
 
 > [!star] Key Papers
 > - [[2504.17192|PaperCoder]] — Multi-agent LLM framework that generates functional code from scientific papers
 > - [[2508.17971|LLM-NAR]] — Integrates LLMs with Graph Neural Networks for multi-agent path finding
 
 **Visual Generation & Style Transfer** — Foundation model approaches to image generation, editing, and style-driven synthesis.
-- [[2603.28713|DreamLite]], [[2510.08575|ReSplat]], [[2508.18966|USO]], [[2505.17022|GoT-R1]], [[2503.20314|Wan]], [[2411.10231|TaylorIR]], [[2604.09168|ELT]]
+- [[2604.09168|ELT]], [[2603.28713|DreamLite]], [[2510.08575|ReSplat]], [[2508.18966|USO]], [[2505.17022|GoT-R1]], [[2503.20314|Wan]], [[2411.10231|TaylorIR]]
 
 > [!star] Key Papers
 > - [[2508.18966|USO]] — Unified style and subject-driven generation via disentangled reward learning; achieves controllable personalization

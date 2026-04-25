@@ -198,7 +198,7 @@ Self-evolving systems need to practice on the right problems at the right diffic
 When self-improvement meets agentic AI: systems that autonomously explore environments, accumulate experience, distill lessons, and evolve their own capabilities across tasks. These go beyond single-turn reasoning to multi-step, tool-using, environment-interacting agents that learn from deployment.
 
 **Agent Self-Evolution Frameworks** — End-to-end frameworks where agents improve by interacting with diverse environments, distilling experience into reusable strategies, and iterating.
-- [[2604.18292|Agent-World]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting RL]], [[2602.00359|A-EVOLVE]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective Self-Adaptation]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]]
+- [[2604.18292|Agent-World]], [[2604.18131|Native Evolution]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting RL]], [[2602.00359|A-EVOLVE]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective Self-Adaptation]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]]
 
 > [!star] Key Papers
 > - [[2604.18292|Agent-World]] — ByteDance/Renmin's framework unifying real-world environment synthesis with continuous self-evolution; 14B agent evaluated on 23 benchmarks, with average tool-use scores more than doubling as environment diversity scales from 0 to 1,978
@@ -229,7 +229,7 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomously discover failure modes, generate new experience, and improve through real-world or simulated interaction. The embodied setting adds unique challenges — physical safety, sensor noise, and the cost of real-world data collection — making world-model-based imagination particularly valuable.
 
 **Self-Evolving VLAs** — VLAs that improve through RL post-training, continual learning, or self-play without requiring an explicit world model.
-- [[2603.09030|PlayWorld]], [[2603.11653|VLA RL Continual Learning]], [[2603.03818|VLA Continual Learning]], [[2512.14666|EVOLVE-VLA]], [[2511.16166|EvoVLA]], [[2602.10503|Long-Lived Robots]], [[2602.03445|CRL-VLA]], [[2602.21633|Self-Correcting VLA]]
+- [[2603.11653|VLA RL Continual Learning]], [[2603.09030|PlayWorld]], [[2603.03818|VLA Continual Learning]], [[2602.21633|Self-Correcting VLA]], [[2602.10503|Long-Lived Robots]], [[2602.03445|CRL-VLA]], [[2512.14666|EVOLVE-VLA]], [[2511.16166|EvoVLA]]
 
 > [!star] Key Papers
 > - [[2511.16166|EvoVLA]] — Self-evolving VLA framework that overcomes stage hallucination and fragile memory; the first end-to-end self-evolving VLA
@@ -244,14 +244,14 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 > - [[2603.19370|VAMPO]] — RL optimization of visual dynamics in video action models via GRPO; bridges world model quality and action quality
 
 **Self-Evolving Robots & Navigation** — Embodied agents that discover their own failure modes and improve through real-world or simulated experience, combining exploration, curiosity, and RL.
-- [[2604.07392|ERA]], [[2506.21669|SEEA-R1]], [[2510.12693|ERA]], [[2507.13152|SE-VLN]], [[2508.04700|SEAgent]], [[2603.04029|Self-Adapting RL]], [[2602.20057|AdaWorldPolicy]]
+- [[2604.07392|ERA]], [[2603.04029|Self-Adapting RL]], [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.06658|SILVR]]
 
 > [!star] Key Papers
 > - [[2506.21669|SEEA-R1]] — Tree-structured RL for self-evolving embodied agents; +24% via MCTS + generative reward
 > - [[2603.04029|Self-Adapting RL]] — World model residuals detect OOD states, triggering targeted self-adaptation
 
 **Self-Discovery & Failure Detection** — Before self-evolution can happen, the agent must detect WHERE and WHY it's failing. These methods enable the detection step.
-- [[2604.02965|SV-VLA]], [[2603.13528|Counterfactual Failure Synthesis]], [[2601.02295|CycleVLA]], [[2512.24426|CF-VLA]], [[2512.01119|WM Surprise Robustness]], [[2511.14148|AsyncVLA]], [[2510.09459|FIPER]], [[2510.01642|FailSafe]], [[2509.16072|I-FailSense]], [[2509.04018|FPC-VLA]], [[2506.09937|SAFE]], [[2505.12224|RoboFAC]], [[2412.02818|RoboMD]], [[2410.00371|AHA]], [[2409.03966|VLM Failure Recovery]], [[2503.01584|SENSEI]], [[2005.05960|Plan2Explore]], [[1705.05363|ICM]], [[2404.00756|Recover]]
+- [[2604.02965|SV-VLA]], [[2603.13528|Counterfactual Failure Synthesis]], [[2601.02295|CycleVLA]], [[2512.24426|CF-VLA]], [[2512.01119|WM Surprise Robustness]], [[2511.14148|AsyncVLA]], [[2510.09459|FIPER]], [[2510.01642|FailSafe]], [[2509.16072|I-FailSense]], [[2509.04018|FPC-VLA]], [[2506.09937|SAFE]], [[2505.12224|RoboFAC]], [[2503.01584|SENSEI]], [[2412.02818|RoboMD]], [[2410.00371|AHA]], [[2409.03966|VLM Failure Recovery]], [[2404.00756|Recover]], [[2005.05960|Plan2Explore]], [[1705.05363|ICM]]
 
 > [!star] Key Papers
 > - [[2510.09459|FIPER]] — Runtime failure prediction combining OOD detection with action uncertainty; predicts failures before they happen
@@ -267,7 +267,7 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 Learning to learn: models that adapt their own learning process, discover optimization algorithms, or rapidly adjust to new tasks from minimal data. While self-training improves outputs, meta-learning improves the learning procedure itself.
 
 **Meta-Reinforcement Learning** — Agents that learn an RL algorithm implicitly through experience, enabling rapid adaptation to new reward structures without retraining from scratch.
-- [[2309.05858|Mesa-Optimization Transformers]], [[2301.08028|Meta-RL Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]], [[2604.11768|GC-PFO]]
+- [[2604.11768|GC-PFO]], [[2309.05858|Mesa-Optimization Transformers]], [[2301.08028|Meta-RL Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]]
 
 > [!star] Key Papers
 > - [[2301.08028|Meta-RL Tutorial]] — Definitive survey structuring the meta-RL landscape: context-based, task-inference, and black-box approaches

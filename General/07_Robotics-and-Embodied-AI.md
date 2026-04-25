@@ -88,7 +88,7 @@ The field evolved through four phases: **foundations** (2022-2023) where RT-1 an
 How robots learn to act from demonstrations. The field evolved from perception-based agents (PerAct) through diffusion-based action generation to spatial and language-conditioned policies. Manipulation is the proving ground — if a method works for dexterous object interaction, it can generalize to broader embodied tasks.
 
 **Diffusion-Based Policies** — Treat robot actions as a noise-removal process, generating smooth multi-step trajectories that handle multimodal action distributions (e.g., reaching from the left vs. right) better than regression.
-- [[2604.15938|VADF]], [[2604.07084|FMP]], [[2604.06067|HiPolicy]], [[2604.03181|MV-VDP]], [[2604.00202|DreamControl-v2]], [[2603.26320|DFM-VLA]], [[2603.25406|MMaDA-VLA]], [[2603.16368|SCDP]], [[2512.22688|ARFM]], [[2507.21053|FPO]], [[2503.02881|Reactive Diffusion Policy]], [[2502.02316|DIME]], [[2407.05996|MDT]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2205.09991|Diffuser]]
+- [[2604.15938|VADF]], [[2604.07084|FMP]], [[2604.06067|HiPolicy]], [[2604.03181|MV-VDP]], [[2604.00202|DreamControl-v2]], [[2603.26320|DFM-VLA]], [[2603.25406|MMaDA-VLA]], [[2603.16368|SCDP]], [[2512.22688|ARFM]], [[2509.22652|DAWN]], [[2507.21053|FPO]], [[2503.02881|Reactive Diffusion Policy]], [[2502.02316|DIME]], [[2407.05996|MDT]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2205.09991|Diffuser]]
 
 > [!star] Key Papers
 > - [[2303.04137|Diffusion Policy]] — Pioneered action diffusion for robotics; proved denoising beats regression for multimodal distributions
@@ -181,7 +181,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2601.16163|Cosmos Policy]] — Fine-tunes NVIDIA's Cosmos video diffusion model; 98.5% on LIBERO
 
 **RL-Enhanced** — VLAs improved via reinforcement learning post-training, pushing performance beyond what imitation alone achieves.
-- [[2604.17706|OmniVLA-RL]], [[2604.10165|MoRI]], [[2604.08168|ViVa]], [[2604.05614|GPLA]], [[2603.27670|ProgressVLA]], [[2603.26666|VLA-OPD]], [[2602.01789|RFS]], [[2511.15605|SRPO]], [[2511.14759|RECAP]], [[2510.26406|Hi-ORS]], [[2510.25889|piRL]], [[2510.00406|VLA-RFT]], [[2509.19301|ResFiT]], [[2509.15937|VLAC]], [[2509.09674|SimpleVLA-RL]], [[2506.08440|TGRPO]], [[2505.22094|ReinFlow]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]], [[2502.05450|ConRFT]], [[2501.16664|iRe-VLA]], [[2411.19309|GRAPE]]
+- [[2604.19730|FASTER]], [[2604.17706|OmniVLA-RL]], [[2604.10165|MoRI]], [[2604.08168|ViVa]], [[2604.05614|GPLA]], [[2603.27670|ProgressVLA]], [[2603.26666|VLA-OPD]], [[2602.01789|RFS]], [[2511.15605|SRPO]], [[2511.14759|RECAP]], [[2510.26406|Hi-ORS]], [[2510.25889|piRL]], [[2510.00406|VLA-RFT]], [[2509.19301|ResFiT]], [[2509.15937|VLAC]], [[2509.09674|SimpleVLA-RL]], [[2506.08440|TGRPO]], [[2505.22094|ReinFlow]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]], [[2502.05450|ConRFT]], [[2501.16664|iRe-VLA]], [[2411.19309|GRAPE]]
 
 > [!star] Key Papers
 > - [[2604.17706|OmniVLA-RL]] — Introduces Flow-GSPO (SDE reformulation of flow matching); 97.6% on LIBERO with faster, more stable RL than PPO/GRPO
@@ -189,13 +189,13 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2505.17016|RIPT-VLA]] — Adds a "third stage" of RL training that bridges the gap between simulation and real-world
 
 **Self-Evolving & Continual** — VLAs that can adapt, merge, or evolve autonomously from ongoing experience without catastrophic forgetting.
-- [[2602.10503|Long-Lived Robots]], [[2602.03445|CRL-VLA]], [[2602.01811|VLA-SCT]], [[2601.02295|CycleVLA]], [[2512.14666|EVOLVE-VLA]], [[2511.18810|MergeVLA]], [[2511.16166|EvoVLA]], [[2511.02239|LACY]], [[2511.00091|PLD]], [[2510.12710|Reflective Self-Adaptation]], [[2509.24948|RehearseVLA]]
+- [[2602.10503|Long-Lived Robots]], [[2602.03445|CRL-VLA]], [[2602.01811|VLA-SCT]], [[2601.02295|CycleVLA]], [[2512.14666|EVOLVE-VLA]], [[2511.18810|MergeVLA]], [[2511.16166|EvoVLA]], [[2511.02239|LACY]], [[2511.00091|PLD]], [[2510.12710|Reflective Self-Adaptation]], [[2509.24948|RehearseVLA]], [[2506.06658|SILVR]]
 
 > [!star] Key Papers
 > - [[2512.14666|EVOLVE-VLA]] — Continuous adaptation from environmental feedback; addresses the deploy-and-forget problem
 
 **Humanoid & Platform-Specific** — VLAs designed for humanoid robots, loco-manipulation, or domain-specific applications.
-- [[2604.17807|Re2MoGen]], [[2604.07993|HEX]], [[2604.07457|CMP]], [[2604.07430|HY-Embodied-0.5]], [[2604.02707|Humanoid Surgical Instrument Exchange]], [[2604.01158|SMASH]], [[2603.25038|AirVLA]], [[2603.15789|OmniReset]], [[2603.12263|Psi0]], [[2603.03279|ULTRA]], [[2602.10106|EgoHumanoid]], [[2511.20351|HVS]], [[2511.16518|MiMo-Embodied]], [[2506.12851|KungfuBot]], [[2503.14734|GR00T N1]], [[2503.09527|CombatVLA]], [[2502.14795|Humanoid-VLA]]
+- [[2604.19734|UniT]], [[2604.17807|Re2MoGen]], [[2604.07993|HEX]], [[2604.07457|CMP]], [[2604.07430|HY-Embodied-0.5]], [[2604.02707|Humanoid Surgical Instrument Exchange]], [[2604.01158|SMASH]], [[2603.25038|AirVLA]], [[2603.15789|OmniReset]], [[2603.12263|Psi0]], [[2603.03279|ULTRA]], [[2602.10106|EgoHumanoid]], [[2511.20351|HVS]], [[2511.16518|MiMo-Embodied]], [[2506.12851|KungfuBot]], [[2503.14734|GR00T N1]], [[2503.09527|CombatVLA]], [[2502.14795|Humanoid-VLA]]
 
 > [!star] Key Papers
 > - [[2503.14734|GR00T N1]] — NVIDIA's open foundation model for humanoid whole-body control
@@ -218,7 +218,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 
 
 **Failure Detection & Recovery** — VLAs and VLMs trained to detect, diagnose, and recover from robotic manipulation failures.
-- [[2603.18091|ADV]], [[2603.13528|Counterfactual Failure Synthesis]], [[2603.11106|RC-NF]], [[2603.06987|Foundational WM]], [[2602.16182|WM Failure Classifier]], [[2602.01515|RAPT]], [[2512.02787|ViFailback]], [[2512.03913|VINE]], [[2512.01946|FailCoT]], [[2510.02298|ARMADA]], [[2510.01642|FailSafe]], [[2509.16072|I-FailSense]], [[2509.04018|FPC-VLA]], [[2507.17383|VLA Confidence Calibration]], [[2505.12224|RoboFAC]], [[2505.08548|FSD]], [[2505.05811|M-SVDD]], [[2504.11170|Sparse MAF-AAE]], [[2503.08558|FAIL-Detect]], [[2410.14868|Diff-DAgger]], [[2410.04640|Sentinel]], [[2410.00371|AHA]], [[2409.03966|VLM Failure Recovery]], [[2407.08735|AESOP]], [[2406.11548|AIC MLLM]], [[2404.00756|Recover]], [[2310.17552|Sirius-Runtime]], [[2306.15724|REFLECT]]
+- [[2603.18091|ADV]], [[2603.13528|Counterfactual Failure Synthesis]], [[2603.11106|RC-NF]], [[2603.06987|Foundational WM]], [[2602.16182|WM Failure Classifier]], [[2602.01515|RAPT]], [[2512.03913|VINE]], [[2512.02787|ViFailback]], [[2512.01946|FailCoT]], [[2510.02298|ARMADA]], [[2510.01642|FailSafe]], [[2509.16072|I-FailSense]], [[2509.04018|FPC-VLA]], [[2507.17383|VLA Confidence Calibration]], [[2505.12224|RoboFAC]], [[2505.08548|FSD]], [[2505.05811|M-SVDD]], [[2504.11170|Sparse MAF-AAE]], [[2503.08558|FAIL-Detect]], [[2410.14868|Diff-DAgger]], [[2410.04640|Sentinel]], [[2410.00371|AHA]], [[2409.03966|VLM Failure Recovery]], [[2407.08735|AESOP]], [[2406.11548|AIC MLLM]], [[2404.00756|Recover]], [[2310.17552|Sirius-Runtime]], [[2306.15724|REFLECT]]
 
 > [!star] Key Papers
 > - [[2510.01642|FailSafe]] — Automatic pipeline generating failure-action data; boosts VLA success by up to 22.6%
@@ -402,7 +402,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2504.12680|Embodied-R]] — Activates embodied spatial reasoning in foundation models via RL; bridges perception and physical action
 
 **Domain Adaptation** — Transfer policies across visual domains without retraining from scratch.
-- [[2604.02911|DreamTIP]], [[2502.16707|ReflectVLM]], [[2412.02818|RoboMD]], [[2407.13771|Training-Free Model Merging MTDA]], [[2604.11138|ViserDex]], [[2604.11386|ComSim]]
+- [[2604.11386|ComSim]], [[2604.11138|ViserDex]], [[2604.02911|DreamTIP]], [[2502.16707|ReflectVLM]], [[2412.02818|RoboMD]], [[2407.13771|Training-Free Model Merging MTDA]]
 
 > [!tip] Cross-Embodiment Transfer
 > The key challenge: policies trained on one robot must work on others. HPT and OXE show that modular architectures + diverse training data are the path.
@@ -435,7 +435,7 @@ The data and evaluation infrastructure that makes all the above research possibl
 > - [[2505.11709|EgoDex]] — Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation
 
 **Benchmarks — Simulation** — Standardized simulation environments for reproducible evaluation.
-- [[2510.13626|LIBERO-Plus]], [[2408.15511|AeroVerse]], [[2406.02523|RoboCasa]], [[2405.05941|SIMPLER]], [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[1909.12271|RLBench]], [[2604.11674|AffordSim]]
+- [[2604.11674|AffordSim]], [[2510.13626|LIBERO-Plus]], [[2408.15511|AeroVerse]], [[2406.02523|RoboCasa]], [[2405.05941|SIMPLER]], [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[1909.12271|RLBench]]
 
 > [!star] Key Papers
 > - [[2306.03310|LIBERO]] — Lifelong robot learning benchmark; tests continual learning and long-horizon capability

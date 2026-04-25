@@ -1269,4 +1269,22 @@ papers = [
     "https://arxiv.org/abs/2604.19730", # FASTER: Value-Guided Sampling for Fast RL
     "https://arxiv.org/abs/2506.06658", # Self-Improving Loops for Visual Robotic Planning
     "https://arxiv.org/abs/2604.18131", # Training LLM Agents for Spontaneous, Reward-Free Self-Evolution via World Knowledge Exploration
+    "https://arxiv.org/abs/2604.20733", # Near-Future Policy Optimization
+    "https://arxiv.org/abs/2511.07732", # ViPRA: Video Prediction for Robot Actions  ## TODO
+    "https://arxiv.org/abs/2604.17654", # Poly-EPO: Training ExploratoryReasoning Models
+    "https://arxiv.org/abs/2604.19730", # FASTER:Value-Guided Sampling for Fast RL
+    "https://arxiv.org/abs/2604.20209", # Scaling Self-Play with Self-Guidance
+    "https://arxiv.org/abs/2506.06658", # Self-Improving Loops for Visual Robotic Planning
+    "https://arxiv.org/abs/2509.22652", # Pixel Motion Diffusion is What We Need for Robot Control
+    "https://arxiv.org/abs/2510.00739", # TD-JEPA: Latent-predictive Representations for Zero-Shot Reinforcement Learning
+    "https://arxiv.org/abs/2602.11075", # RISE: Self-Improving Robot Policy with Compositional World Model  ## TODO
+    "https://arxiv.org/abs/2604.20570", # Exploring Spatial Intelligence from a Generative Perspective
+    "https://arxiv.org/abs/2506.19807", # KnowRL: Exploring Knowledgeable Reinforcement Learning for Factuality
+    "https://arxiv.org/abs/2604.19734", # UniT: Toward a Unified Physical Language for Human-to-Humanoid Policy Learning and World Modeling
+    "https://arxiv.org/abs/2405.09673", # LoRA Learns Less and Forgets Less (Biderman 2024)
+    "https://arxiv.org/abs/2504.15777", # Tina: Tiny Reasoning Models via LoRA (LoRA+GRPO rank ablation)
+    "https://arxiv.org/abs/2505.22094", # ReinFlow: Fine-tuning Flow Matching Policy with Online RL
+    "https://arxiv.org/abs/2510.09976", # Reinforcement Fine-Tuning of Flow-Matching Policies for VLAs
+    "https://arxiv.org/abs/2604.19734", # UniT: Toward a Unified Physical Language for Human-to-Humanoid Policy Learning and World Modeling
+    "https://arxiv.org/abs/2604.21254", # Hyperloop Transformers
 ]
