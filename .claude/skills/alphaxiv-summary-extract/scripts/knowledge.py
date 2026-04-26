@@ -1541,4 +1541,49 @@ papers = [
     "https://arxiv.org/abs/2506.00022", # Scaling Physical Reasoning with the PHYSICS Dataset
     "https://arxiv.org/abs/2506.09943", # CausalVQA
     "https://arxiv.org/abs/2505.15929", # PhyX
+    "https://arxiv.org/abs/2512.24551", # PhyGDPO: Physics-Aware Groupwise Direct Preference Optimization for Physically Consistent Text-to-Video Generation
+    "https://arxiv.org/abs/2505.09694", # EWMBench: Evaluating Scene, Motion, and Semantic Quality in Embodied World Models
+    "https://arxiv.org/abs/2106.05526", # Simplifying Deep Reinforcement Learning via Self-Supervision
+    "https://arxiv.org/abs/2305.17250", # Self-Supervised Reinforcement Learning that Transfers using Random Features
+    "https://arxiv.org/abs/2510.14420", # Instructions are all you need: Self-supervised Reinforcement Learning for Instruction Following
+    "https://arxiv.org/abs/2502.20396", # Sim-to-Real Reinforcement Learning for Vision-Based Dexterous Manipulation on Humanoids
+    "https://arxiv.org/abs/2407.16677", # From Imitation to Refinement -- Residual RL for Precise Assembly
+    "https://arxiv.org/abs/2604.20841", # DeVI: Physics-based Dexterous Human-Object Interaction via Synthetic Video Imitation
+    "https://arxiv.org/abs/2604.19747", # AnyRecon: Arbitrary-View 3D Reconstruction with Video Diffusion Model
+    "https://arxiv.org/abs/2604.21873", # Grounding Video Reasoning in Physical Signals
+    "https://arxiv.org/abs/2604.21343", # Latent Denoising Improves Visual Alignment in Large Multimodal Models
+    "https://arxiv.org/abs/2604.20473", # Video-ToC: Video Tree-of-Cue Reasoning
+    "https://arxiv.org/abs/2604.19092", # RoboWM-Bench: A Benchmark for Evaluating World Models in Robotic Manipulation
+    "https://arxiv.org/abs/2604.18791", # HELM: Harness-Enhanced Long-horizon Memory for Vision-Language-Action Manipulation
+    "https://arxiv.org/abs/2604.17807", # Re2MoGen: Open-Vocabulary Motion Generation via LLM Reasoning and Physics-Aware Refinement
+    "https://arxiv.org/abs/2604.18564", # MultiWorld: Scalable Multi-Agent Multi-View Video World Models
+    "https://arxiv.org/abs/2604.17880", # ST-𝜋: Structured SpatioTemporal VLA for Robotic Manipulation
+    "https://arxiv.org/abs/2604.18978", # Low-Rank Adaptation for Critic Learning in Off-Policy Reinforcement Learning
+    "https://arxiv.org/abs/2604.19730", # FASTER:Value-Guided Sampling for Fast RL
+    "https://arxiv.org/abs/2604.20472", # Temporal Difference Calibration in Sequential Tasks: Application to Vision-Language-Action Models
+    "https://arxiv.org/abs/2604.19734", # UniT: Toward a Unified Physical Language for Human-to-Humanoid Policy Learning and World Modeling
+    "https://arxiv.org/abs/2604.21192", # How VLAs (Really) Work In Open-World Environments
+    "https://arxiv.org/abs/2604.19839", # Environmental Understanding Vision-Language Model for Embodied Agent
+    "https://arxiv.org/abs/2604.18107", # Test-Time Perturbation Learning with Delayed Feedback for Vision-Language-Action Models
+    "https://arxiv.org/abs/2604.17800", # ReFineVLA: Multimodal Reasoning-Aware Generalist Robotic Policies via Teacher-Guided Fine-Tuning
+    "https://arxiv.org/abs/2604.21686", # WorldMark: A Unified Benchmark Suite for Interactive Video World Models    
+    "https://arxiv.org/abs/2604.21873", # Grounding Video Reasoning in Physical Signals
+    "https://arxiv.org/abs/2604.21568", # A Bayesian Reasoning Framework for Robotic Systems in Autonomous Casualty Triage
+    "https://arxiv.org/abs/2604.21914", # VistaBot: View-Robust Robot Manipulation via Spatiotemporal-Aware View Synthesis
+    "https://arxiv.org/abs/2604.21924", # Long-Horizon Manipulation via Trace-Conditioned VLA Planning
+    "https://arxiv.org/abs/2604.20570", # Exploring Spatial Intelligence from a Generative Perspective
+    "https://arxiv.org/abs/2604.18486", # OneVL: One-Step Latent Reasoning and Planning with Vision-Language Explanation
+    "https://arxiv.org/abs/2604.18075", # Enhancing Continual Learning of Vision-Language Models via Dynamic Prefix Weighting
+    "https://arxiv.org/abs/2604.20012", # EmbodiedMidtrain: Bridging the Gap between VisionLanguage Models and Vision-Language-Action Models via Mid-training
+    "https://arxiv.org/abs/2604.18484", # XEmbodied: A Foundation Model with Enhanced Geometric and Physical Cues for Large-Scale Embodied Environments
+    "https://arxiv.org/abs/2604.21764", # Thinking with Reasoning Skills: Fewer Tokens, More Accuracy
+    "https://arxiv.org/abs/2604.19839", # Environmental Understanding Vision-Language Model for Embodied Agent
+    "https://arxiv.org/abs/2604.21409", # S1-VL: Scientific Multimodal Reasoning Model with Thinking-with-Images
+    "https://arxiv.org/abs/2604.20366", # Mitigating Hallucinations in Large Vision-Language Models without Performance Degradation
+    "https://arxiv.org/abs/2604.21343", # Latent Denoising Improves Visual Alignment in Large Multimodal Models
+    "https://arxiv.org/abs/2604.20328", # HyLaR: Hybrid Latent Reasoning with Decoupled Policy Optimization
+    "https://arxiv.org/abs/2604.17706", # OmniVLA-RL: A Vision-Language-Action Model with Spatial Understanding and Online RL
+    "https://arxiv.org/abs/2604.21396", # VG-CoT: Towards Trustworthy Visual Reasoning via Grounded Chain-of-Thought
+    "https://arxiv.org/abs/2604.20705", # SSL-R1: Self-Supervised Visual Reinforcement Post-Training for Multimodal Large Language Models
+    "https://arxiv.org/abs/2604.14258", # GFT: From Imitation to Reward Fine-Tuning with Unbiased Group Advantages and Dynamic Coefficient Rectification
 ]

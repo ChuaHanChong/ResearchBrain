@@ -139,7 +139,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2509.23250\|VL-PRM]] — Vision-language process reward models trained via hybrid data synthesis for step-level verification
 
 **Long CoT & Efficient Reasoning** — Addressing the length problem: surveys and methods for managing very long chains, reducing overthinking, and allocating reasoning compute adaptively.
-- [[2604.05355\|ETR]], [[2511.17487\|EXTRACT+THINK]], [[2511.08577\|TaH]], [[2508.02120\|Efficient Reasoning Survey]], [[2507.09662\|Concise Adaptive Thinking Survey]], [[2505.16579\|D2R]], [[2505.15612\|LASER]], [[2505.13975\|DRP]], [[2505.13438\|AnytimeReasoner]], [[2505.11896\|AdaCoT]], [[2505.10425\|L2T]], [[2505.00147\|AdaptMI]], [[2504.10903\|Efficient Reasoning Models Survey]], [[2503.23077\|LRM Efficient Inference Survey]], [[2503.21614\|Efficient Reasoning Survey]], [[2503.18866\|BoLT]], [[2503.16419\|Stop Overthinking Survey]], [[2503.09567\|Long CoT Survey]], [[2412.09413\|STILL-2]]
+- [[2604.21764\|TRS]], [[2604.05355\|ETR]], [[2511.17487\|EXTRACT+THINK]], [[2511.08577\|TaH]], [[2508.02120\|Efficient Reasoning Survey]], [[2507.09662\|Concise Adaptive Thinking Survey]], [[2505.16579\|D2R]], [[2505.15612\|LASER]], [[2505.13975\|DRP]], [[2505.13438\|AnytimeReasoner]], [[2505.11896\|AdaCoT]], [[2505.10425\|L2T]], [[2505.00147\|AdaptMI]], [[2504.10903\|Efficient Reasoning Models Survey]], [[2503.23077\|LRM Efficient Inference Survey]], [[2503.21614\|Efficient Reasoning Survey]], [[2503.18866\|BoLT]], [[2503.16419\|Stop Overthinking Survey]], [[2503.09567\|Long CoT Survey]], [[2412.09413\|STILL-2]]
 
 > [!star] Key Papers
 > - [[2503.09567\|Long CoT Survey]] — First systematic survey of long chain-of-thought reasoning, covering generation, optimization, and evaluation
@@ -163,7 +163,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 Extending CoT to jointly reason over vision and language, producing interleaved textual and visual reasoning traces.
 
 **Multimodal CoT Frameworks** — Core methods that enable vision-language models to generate step-by-step reasoning combining text and image understanding.
-- [[2604.17800\|ReFineVLA]], [[2604.02073\|PLUME]], [[2604.01840\|PGPO]], [[2603.28618\|PRCO]], [[2603.25077\|ToR]], [[2603.24984\|MoE-GRPO]], [[2602.00574\|Modal-Mixed CoT]], [[2512.08228\|MM-CoT]], [[2510.27492\|ThinkMorph]], [[2507.16746\|Zebra-CoT]], [[2507.08306\|M2-Reasoning]], [[2507.02978\|Inf-Bench]], [[2505.22525\|TwGI]], [[2505.14404\|ViC-Bench]], [[2505.13031\|MindOmni]], [[2505.05464\|Bring Reason to Vision]], [[2503.10639\|GoT]], [[2503.05255\|CMMCoT]], [[2412.17451\|M-STAR]], [[2412.11974\|EMMA-X]], [[2411.11930\|AtomThink]], [[2411.10440\|LLaVA-CoT]], [[2312.08762\|DPMM-CoT]], [[2302.00923\|Multimodal-CoT]]
+- [[2604.21409\|S1-VL]], [[2604.17800\|ReFineVLA]], [[2604.02073\|PLUME]], [[2604.01840\|PGPO]], [[2603.28618\|PRCO]], [[2603.25077\|ToR]], [[2603.24984\|MoE-GRPO]], [[2602.00574\|Modal-Mixed CoT]], [[2512.08228\|MM-CoT]], [[2510.27492\|ThinkMorph]], [[2507.16746\|Zebra-CoT]], [[2507.08306\|M2-Reasoning]], [[2507.02978\|Inf-Bench]], [[2505.22525\|TwGI]], [[2505.14404\|ViC-Bench]], [[2505.13031\|MindOmni]], [[2505.05464\|Bring Reason to Vision]], [[2503.10639\|GoT]], [[2503.05255\|CMMCoT]], [[2412.17451\|M-STAR]], [[2412.11974\|EMMA-X]], [[2411.11930\|AtomThink]], [[2411.10440\|LLaVA-CoT]], [[2312.08762\|DPMM-CoT]], [[2302.00923\|Multimodal-CoT]]
 
 > [!star] Key Papers
 > - [[2302.00923\|Multimodal-CoT]] — Extended CoT to vision + language jointly; foundational work for multimodal reasoning chains
@@ -187,7 +187,7 @@ Extending CoT to jointly reason over vision and language, producing interleaved 
 > - [[2505.18842\|v1]] — MLLM that natively produces interleaved multimodal chain-of-thought reasoning
 
 **Grounded & Region-Aware CoT** — CoT methods that ground reasoning in specific image regions, bounding boxes, or spatial features.
-- [[2604.03016\|Agentic-MME]], [[2604.02812\|Neuro-Symbolic Robot Policies]], [[2603.22815\|PinPoint]], [[2603.17729\|SARE]], [[2602.02004\|ClueTracer]], [[2601.21634\|RSGround-R1]], [[2512.24297\|FIGR]], [[2512.15160\|EagleVision]], [[2507.00748\|Multi-Image Grounding RL]], [[2506.11991\|VGR]], [[2506.09965\|VILASR]], [[2506.07235\|VTS-V]], [[2506.04277\|RSVP]], [[2505.14362\|DeepEyes]], [[2505.14231\|UniVG-R1]], [[2503.12799\|GCoT]], [[2503.06520\|Seg-Zero]], [[2501.05452\|ReFocus]], [[2411.16044\|ZoomEye]], [[2410.16400\|VipAct]], [[2403.12966\|CoS]], [[2403.12488\|DetToolChain]], [[2402.04236\|CogCoM]]
+- [[2604.21396\|VG-CoT]], [[2604.03016\|Agentic-MME]], [[2604.02812\|Neuro-Symbolic Robot Policies]], [[2603.22815\|PinPoint]], [[2603.17729\|SARE]], [[2602.02004\|ClueTracer]], [[2601.21634\|RSGround-R1]], [[2512.24297\|FIGR]], [[2512.15160\|EagleVision]], [[2507.00748\|Multi-Image Grounding RL]], [[2506.11991\|VGR]], [[2506.09965\|VILASR]], [[2506.07235\|VTS-V]], [[2506.04277\|RSVP]], [[2505.14362\|DeepEyes]], [[2505.14231\|UniVG-R1]], [[2503.12799\|GCoT]], [[2503.06520\|Seg-Zero]], [[2501.05452\|ReFocus]], [[2411.16044\|ZoomEye]], [[2410.16400\|VipAct]], [[2403.12966\|CoS]], [[2403.12488\|DetToolChain]], [[2402.04236\|CogCoM]]
 
 > [!star] Key Papers
 > - [[2403.12966\|CoS]] — Chain-of-Spot: interactive reasoning that attends to relevant image regions at each step

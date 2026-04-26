@@ -118,10 +118,11 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2506.21872|Continual RL Survey]] — First comprehensive survey dedicated to continual RL; defines the taxonomy and open problems
 
 **Meta-RL** — Learning-to-learn for RL: agents that can quickly adapt to new tasks by leveraging prior experience.
-- [[2301.08028|Meta-RL Tutorial]]
+- [[2305.17250|RaMP]], [[2301.08028|Meta-RL Tutorial]]
 
 > [!star] Key Papers
 > - [[2301.08028|Meta-RL Tutorial]] — Definitive tutorial unifying meta-RL definitions and algorithms; essential reference for the sub-field
+> - [[2305.17250|RaMP]] — Random-feature Q-basis decoupling reward from dynamics; rapid online task adaptation via linear combination of pre-learned Q-bases
 
 **Evolutionary Strategies vs Deep RL** — Comparative analysis of gradient-free vs gradient-based approaches to policy optimization.
 - [[2604.07725|Squeeze Evolve]], [[2602.00170|Blessing of Dimensionality LLM]], [[2509.26354|Misevolution]], [[2509.24372|Evolution Strategies at Scale]], [[2501.15129|EvoRL]], [[2402.06912|ES Linear Policy]], [[2110.01411|DRL vs ES Survey]]
@@ -263,7 +264,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2406.03816|ReST-MCTS*]] — Automated process reward model generation via MCTS for LLM self-training
 
 **Off-Policy & Sample Efficiency** — Methods that reuse past experience or manage data more efficiently for RL fine-tuning.
-- [[2604.20733|NPO]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]]
+- [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]]
 
 > [!star] Key Papers
 > - [[2505.11081|ShiQ]] — Off-policy Q-learning for LLM fine-tuning; enables reuse of generated data across iterations
@@ -297,7 +298,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2510.26788|FP16 RL Training]] — Demonstrates FP16 precision works for RL training; halves memory cost
 
 **Hybrid SFT + RL Pipelines** — Methods that combine supervised fine-tuning with RL in unified or staged training recipes.
-- [[2603.12248|EBFT]], [[2602.01058|PEAR]], [[2601.06993|ReFine-RFT]], [[2512.12690|SFT vs RL VLM Study]], [[2510.10606|ViSurf]], [[2507.01679|Prefix-RFT]], [[2506.13056|Metis-RISE]], [[2505.03181|AFSFT]], [[2504.14945|LUFFY]], [[2504.11343|RAFT++]]
+- [[2604.14258|GFT]], [[2603.12248|EBFT]], [[2602.01058|PEAR]], [[2601.06993|ReFine-RFT]], [[2512.12690|SFT vs RL VLM Study]], [[2510.10606|ViSurf]], [[2507.01679|Prefix-RFT]], [[2506.13056|Metis-RISE]], [[2505.03181|AFSFT]], [[2504.14945|LUFFY]], [[2504.11343|RAFT++]]
 
 > [!star] Key Papers
 > - [[2510.10606|ViSurf]] — Unified single-stage post-training integrating SFT and RL; avoids the two-stage overhead
@@ -337,7 +338,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.03335|Absolute Zero]] — Zero-data RL: model proposes its own problems, solves them, uses verifiable answers as reward — no human data at all
 
 **Self-Rewarding & Self-Improvement** — Models that generate their own training signal, eliminating external reward models or human annotation.
-- [[2604.20209|SGS]], [[2604.03128|Self-Distilled RLVR]], [[2604.03098|Self-Guide]], [[2602.12275|OPCD]], [[2601.21343|Self-Improving Pretraining]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]], [[2512.05356|Co-Improving AI]], [[2509.23236|Self-Reflection VLM]], [[2509.15155|Self-Improving EFM]], [[2508.14460|DuPO]], [[2508.05004|R-Zero]], [[2507.16663|MLLM Self-Improvement]], [[2506.10139|ICM]], [[2506.07468|SELF-REDTEAM]], [[2505.19590|INTUITOR]], [[2410.15639|Self-Developing]], [[2401.10020|Self-Rewarding LM]]
+- [[2604.20209|SGS]], [[2604.03128|Self-Distilled RLVR]], [[2604.03098|Self-Guide]], [[2602.12275|OPCD]], [[2601.21343|Self-Improving Pretraining]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]], [[2512.05356|Co-Improving AI]], [[2510.14420|Instructions-RL]], [[2509.23236|Self-Reflection VLM]], [[2509.15155|Self-Improving EFM]], [[2508.14460|DuPO]], [[2508.05004|R-Zero]], [[2507.16663|MLLM Self-Improvement]], [[2506.10139|ICM]], [[2506.07468|SELF-REDTEAM]], [[2505.19590|INTUITOR]], [[2410.15639|Self-Developing]], [[2401.10020|Self-Rewarding LM]]
 
 > [!star] Key Papers
 > - [[2401.10020|Self-Rewarding LM]] — LLM generates its own reward signal; eliminates the need for a separate reward model
@@ -643,7 +644,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2603.02203|T3RL]] — Test-Time Training for RL: adapts robot policies online using world model gradients
 
 **Sim-to-Real & Transfer** — Bridging the gap between simulation and physical deployment for robot RL.
-- [[2604.07457|CMP]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
+- [[2604.07457|CMP]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
 
 > [!star] Key Papers
 > - [[2201.02373|Mirror Learning]] — Unifying theoretical framework for diverse policy optimization methods; connects RL algorithms under one roof
@@ -655,7 +656,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2505.24864|ProRL]] — NVIDIA's Prolonged RL for expanding LLM reasoning to complex robot planning domains
 
 **Contrastive & Self-Supervised RL** — Self-supervised methods that learn useful representations for RL without labeled rewards.
-- [[2604.11805|Sim2Reason]], [[2602.11832|JEPA-VLA]], [[2510.16416|SSL4RL]], [[2506.11967|Annotation Bootstrapping]], [[2503.14858|CRL]]
+- [[2604.11805|Sim2Reason]], [[2602.11832|JEPA-VLA]], [[2510.16416|SSL4RL]], [[2506.11967|Annotation Bootstrapping]], [[2503.14858|CRL]], [[2106.05526|SSRL]]
 
 > [!star] Key Papers
 > - [[2510.16416|SSL4RL]] — Reinterprets self-supervised learning tasks as intrinsic verifiable rewards for RL

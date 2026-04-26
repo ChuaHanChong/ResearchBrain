@@ -328,7 +328,7 @@ Self-evolution over time: systems that accumulate knowledge from ongoing experie
 > - [[2509.25140|ReasoningBank]] — Memory-aware test-time scaling: stores and retrieves reasoning patterns for efficient reuse across problems
 
 **Multimodal Continual Skill Acquisition** — Agents that continually learn new skills from visual and language grounding, building an expanding repertoire without losing prior capabilities.
-- [[2604.08532|SelfEvo]], [[2603.18743|Memento-Skills]], [[2603.17621|Complementary RL]], [[2603.12056|XSkill]], [[2603.07648|AtomicVLA]], [[2602.03445|CRL-VLA]], [[2511.18085|Stellar VLA]], [[2504.21024|WebEvolver]], [[2504.18471|AFM]]
+- [[2604.18075|DPW]], [[2604.08532|SelfEvo]], [[2603.18743|Memento-Skills]], [[2603.17621|Complementary RL]], [[2603.12056|XSkill]], [[2603.07648|AtomicVLA]], [[2602.03445|CRL-VLA]], [[2511.18085|Stellar VLA]], [[2504.21024|WebEvolver]], [[2504.18471|AFM]]
 
 > [!star] Key Papers
 > - [[2603.12056|XSkill]] — Dual-stream framework for continual learning from visually-grounded experience; skills transfer across tasks and modalities

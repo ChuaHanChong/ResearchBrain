@@ -270,7 +270,7 @@ Understanding what VLMs learn internally — which features matter, how represen
 
 Making VLMs reliable under distribution shift, adversarial conditions, and out-of-distribution inputs.
 
-- [[2604.18867|HyperRobust-VLM]], [[2510.10487|Triangular Consistency]], [[2509.07979|VIRAL]], [[2508.15568|ADAPT]], [[2507.08979|PRISM]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2410.17385|COMFORT]], [[2207.01887|MKT]]
+- [[2604.21343|Latent Denoising LMM]], [[2604.18867|HyperRobust-VLM]], [[2510.10487|Triangular Consistency]], [[2509.07979|VIRAL]], [[2508.15568|ADAPT]], [[2507.08979|PRISM]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2410.17385|COMFORT]], [[2207.01887|MKT]]
 
 > [!star] Key Papers
 > - [[2604.18867|HyperRobust-VLM]] — Hyperbolic hierarchy-aware adversarial fine-tuning; defends against superclass attacks that transfer to base classes, extends to medical imaging
@@ -403,7 +403,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2505.19094|SATORI]] — Glance-Focus-Think paradigm anchoring RL training in explicit visual grounding; 76.2% on MathVista surpassing GPT-4o
 
 **VLM Chain-of-Thought & Thinking** — Methods for step-by-step visual reasoning in multimodal models.
-- [[2604.02073|PLUME]], [[2603.29165|LatentPilot]], [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
+- [[2604.21396|VG-CoT]], [[2604.02073|PLUME]], [[2603.29165|LatentPilot]], [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
 
 > [!star] Key Papers
 > - [[2411.10440|LLaVA-CoT]] — Autonomous multistage reasoning with stage-wise retracing; 5.8% improvement enabling 11B model to rival larger closed-source MLLMs
@@ -417,7 +417,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2406.18925|VisArgs]] — Evaluates VLM ability to construct and assess visual arguments, probing beyond factual accuracy into persuasion and reasoning
 
 **VLM Continual & Incremental Learning** — Adapting VLMs to new tasks and domains without forgetting.
-- [[2604.01007|Omni-SimpleMem]], [[2602.21628|RuCL]], [[2512.12822|LEMON]], [[2505.22453|MM-UPT]], [[2410.19925|MLLM Continual Learning]]
+- [[2604.18075|DPW]], [[2604.01007|Omni-SimpleMem]], [[2602.21628|RuCL]], [[2512.12822|LEMON]], [[2505.22453|MM-UPT]], [[2410.19925|MLLM Continual Learning]]
 
 > [!star] Key Papers
 > - [[2410.19925|MLLM Continual Learning]] — Systematic quantification of linguistic forgetting in MLLMs; showed mSGM+Rehearsal preserves language abilities during multimodal adaptation

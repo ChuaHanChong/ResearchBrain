@@ -311,7 +311,7 @@ Addressing the fundamental challenge of MLLMs generating text that contradicts v
 > - [[2601.00659|CRoPS]] — Dynamic cropping strategy forcing models to attend to relevant image regions
 
 **Preference Optimization & Training-Based** — Aligning MLLM outputs with visual ground truth through preference learning and targeted fine-tuning.
-- [[2604.20328|HyLaR]], [[2602.22859|DPE]], [[2511.15661|VisPlay]], [[2507.16814|SOPHIA]], [[2506.17901|PostAlign]], [[2506.13888|VL-GenRM]], [[2506.10128|ViCrit]], [[2504.15619|AdaViP]]
+- [[2604.20366|MPD]], [[2604.20328|HyLaR]], [[2602.22859|DPE]], [[2511.15661|VisPlay]], [[2507.16814|SOPHIA]], [[2506.17901|PostAlign]], [[2506.13888|VL-GenRM]], [[2506.10128|ViCrit]], [[2504.15619|AdaViP]]
 
 > [!star] Key Papers
 > - [[2504.15619|AdaViP]] — Adaptive visual preference optimization reducing hallucination through contrastive visual grounding

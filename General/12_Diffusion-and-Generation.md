@@ -339,7 +339,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2509.21309|NewtonGen]] — Physics-informed neural ODE module (Neural Newtonian Dynamics) embedded inside T2V; explicit Newtonian motion control over 12 motion types with **0.98** Physical Invariance Score
 
 **Physics-Loss & Reward Fine-Tuning** — Post-training methods that fine-tune pre-trained generators with physics-derived loss functions or verifiable rewards (PDE residuals, Newtonian kinematic constraints, mass conservation).
-- [[2603.13925|SmoothVLA]], [[2602.03627|Phys-Instruct]], [[2601.11087|PhysRVG]], [[2512.00425|NewtonRewards]], [[2510.13809|PhysMaster]], [[2509.20570|PIRF]], [[2506.02244|PGML]], [[2504.15932|Phys-AR]], [[2503.09595|PISA]], [[2403.14404|PIDM]]
+- [[2603.13925|SmoothVLA]], [[2602.03627|Phys-Instruct]], [[2601.11087|PhysRVG]], [[2512.24551|PhyGDPO]], [[2512.00425|NewtonRewards]], [[2510.13809|PhysMaster]], [[2509.20570|PIRF]], [[2506.02244|PGML]], [[2504.15932|Phys-AR]], [[2503.09595|PISA]], [[2403.14404|PIDM]]
 
 > [!star] Key Papers
 > - [[2512.00425|NewtonRewards]] — Verifiable rule-based rewards from optical-flow proxies and visual-feature mass conservation; +9.75% physical fidelity on NewtonBench-60K with explicit anti-reward-hacking design
