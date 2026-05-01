@@ -188,7 +188,7 @@ The maturation of MLLMs through systematic instruction tuning, scaling to produc
 A new generation of models trained end-to-end on interleaved multimodal data rather than bolting visual modules onto text-only LLMs, achieving seamless cross-modal understanding and generation.
 
 **Native Multimodal Architectures** — Models pre-trained jointly on vision and language from scratch, eliminating the modular vision encoder + LLM pipeline.
-- [[2603.19227|MoTok]], [[2603.15975|UMO]], [[2601.03193|UniCorn]], [[2507.23278|UniLiP]], [[2506.23044|Ovis-U1]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.19223|LLaDA 1.5]], [[2505.16933|LLaDA-V]], [[2505.14683|BAGEL]], [[2504.20996|X-Fusion]], [[2504.17432|UniME]], [[2504.10479|InternVL3]], [[2504.10462|SAIL]], [[2503.20680|VoRA]], [[2503.13436|UniFluid]], [[2502.09992|LLaDA]], [[2501.17811|Janus-Pro]], [[2412.15188|LMFusion]], [[2412.08635|LatentLM]], [[2410.13848|Janus]], [[2409.04429|VILA-U]], [[2408.12528|Show-o]], [[2408.11039|Transfusion]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]]
+- [[2604.24763|Tuna-2]], [[2603.19227|MoTok]], [[2603.15975|UMO]], [[2601.03193|UniCorn]], [[2507.23278|UniLiP]], [[2506.23044|Ovis-U1]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.19223|LLaDA 1.5]], [[2505.16933|LLaDA-V]], [[2505.14683|BAGEL]], [[2504.20996|X-Fusion]], [[2504.17432|UniME]], [[2504.10479|InternVL3]], [[2504.10462|SAIL]], [[2503.20680|VoRA]], [[2503.13436|UniFluid]], [[2502.09992|LLaDA]], [[2501.17811|Janus-Pro]], [[2412.15188|LMFusion]], [[2412.08635|LatentLM]], [[2410.13848|Janus]], [[2409.04429|VILA-U]], [[2408.12528|Show-o]], [[2408.11039|Transfusion]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]]
 
 > [!star] Key Papers
 > - [[2504.10479|InternVL3]] — Native multimodal pre-training paradigm jointly acquiring visual and linguistic capabilities; new MLLM SOTA
@@ -203,7 +203,7 @@ A new generation of models trained end-to-end on interleaved multimodal data rat
 > - [[2509.26625|LLM Visual Priors]] — Demonstrates that LLM weights carry useful visual priors before any visual training
 
 **Unified Understanding & Generation** — Models bridging the comprehension-generation gap to handle both tasks in a single framework.
-- [[2603.03241|UniG2U-Bench]], [[2602.22766|CapImagine]], [[2601.03193|UniCorn]], [[2506.22880|DeSa2VA]], [[2506.13759|Discrete Diffusion LLM Survey]], [[2403.10191|GenerateU]], [[2305.17216|GILL]]
+- [[2603.03241|UniG2U-Bench]], [[2602.22766|CapImagine]], [[2602.12205|DeepGen 1.0]], [[2601.03193|UniCorn]], [[2506.22880|DeSa2VA]], [[2506.13759|Discrete Diffusion LLM Survey]], [[2403.10191|GenerateU]], [[2305.17216|GILL]]
 
 > [!star] Key Papers
 > - [[2601.03193|UniCorn]] — Autonomously bridges comprehension and generation capabilities within a single model

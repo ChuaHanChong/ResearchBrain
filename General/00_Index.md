@@ -10,7 +10,7 @@ aliases:
 ## Research Topics — Index
 
 > [!abstract]
-> Complete overview of all 2,588 papers in [[_KnowledgeHub_]], organized into 12 topic areas. Each topic file has curated narrative sections with evolution graphs, grouped sub-topics, key paper highlights, and practical insights.
+> Complete overview of all 2,612 papers in [[_KnowledgeHub_]], organized into 12 topic areas. Each topic file has curated narrative sections with evolution graphs, grouped sub-topics, key paper highlights, and practical insights.
 
 ### Topic Map
 
@@ -41,20 +41,20 @@ graph LR
 
 | # | Topic | Key Threads | Papers |
 | --- | --- | --- | --- |
-| [[01_Foundation-Models]] | ViT, SSL, CLIP, PEFT, theory | ViT → DINO → DINOv2 → I-JEPA | 484 |
-| [[02_Vision-Language-Models]] | Grounding, alignment, hallucination, spatial | CLIP → GLIP → Grounding DINO → LISA | 616 |
-| [[03_Reasoning-and-Planning]] | CoT, agentic reasoning, visual reasoning, TTS | CoT → STaR → ReAct → R1-style RL | 966 |
-| [[04_Reinforcement-Learning]] | Model-based RL, RLHF, GRPO, agentic RL | Dreamer → DreamerV3; STaR → GRPO → Absolute Zero | 749 |
-| [[05_Computer-Vision-and-3D]] | Detection, segmentation, 3D, spatial reasoning | FPN → Grounding DINO; DINO → RieMind | 439 |
-| [[06_Video-and-Temporal]] | Video SSL, generation as world models, physics, motion | V-JEPA → V-JEPA 2.1; UniPi → UniSim → WAMs; Force Prompting → Cosmos → NewtonGen | 291 |
-| [[07_Robotics-and-Embodied-AI]] | VLAs, WAMs, self-evolving, driving, datasets | RT-1 → RT-2 → OpenVLA → π0 → DreamZero → SPIRAL | 650 |
-| [[08_Benchmarks-and-Surveys]] | Cross-cutting surveys and evaluation resources | LIBERO, CALVIN, OXE, Physion → VideoPhy → PhyGenBench → FysicsWorld | 614 |
-| [[09_Multimodal-LLMs]] | MLLMs, instruction tuning, omni-modal | InstructBLIP → KOSMOS-2 → PaliGemma → Magma | 808 |
+| [[01_Foundation-Models]] | ViT, SSL, CLIP, PEFT, theory | ViT → DINO → DINOv2 → I-JEPA | 485 |
+| [[02_Vision-Language-Models]] | Grounding, alignment, hallucination, spatial | CLIP → GLIP → Grounding DINO → LISA | 618 |
+| [[03_Reasoning-and-Planning]] | CoT, agentic reasoning, visual reasoning, TTS | CoT → STaR → ReAct → R1-style RL | 968 |
+| [[04_Reinforcement-Learning]] | Model-based RL, RLHF, GRPO, agentic RL | Dreamer → DreamerV3; STaR → GRPO → Absolute Zero | 752 |
+| [[05_Computer-Vision-and-3D]] | Detection, segmentation, 3D, spatial reasoning | FPN → Grounding DINO; DINO → RieMind | 442 |
+| [[06_Video-and-Temporal]] | Video SSL, generation as world models, physics, motion | V-JEPA → V-JEPA 2.1; UniPi → UniSim → WAMs; Force Prompting → Cosmos → NewtonGen | 293 |
+| [[07_Robotics-and-Embodied-AI]] | VLAs, WAMs, self-evolving, driving, datasets | RT-1 → RT-2 → OpenVLA → π0 → DreamZero → SPIRAL | 657 |
+| [[08_Benchmarks-and-Surveys]] | Cross-cutting surveys and evaluation resources | LIBERO, CALVIN, OXE, Physion → VideoPhy → PhyGenBench → FysicsWorld | 618 |
+| [[09_Multimodal-LLMs]] | MLLMs, instruction tuning, omni-modal | InstructBLIP → KOSMOS-2 → PaliGemma → Magma | 810 |
 | [[10_Agents-and-Tool-Use]] | LLM agents, tool use, multi-agent, code gen | ReAct → LATS → AgentGym → KARL → Memento-Skills | 224 |
 | [[11_Self-Evolving-AI]] | Self-training, bootstrapping, curriculum, meta | STaR → Self-Rewarding → Absolute Zero → SPIRAL | 185 |
-| [[12_Diffusion-and-Generation]] | Diffusion, flow matching, image/text, physics-aware | Diffuser → Diffusion Policy → Transfusion → Flow-GRPO → PhysGaussian → NewtonRewards → OmniPhysGS | 359 |
+| [[12_Diffusion-and-Generation]] | Diffusion, flow matching, image/text, physics-aware | Diffuser → Diffusion Policy → Transfusion → Flow-GRPO → PhysGaussian → NewtonRewards → OmniPhysGS | 363 |
 
-**Total: 2,588 papers** — papers may appear in multiple topic files where relevant.
+**Total: 2,612 papers** — papers may appear in multiple topic files where relevant.
 
 ### Deep-Dive Folders
 

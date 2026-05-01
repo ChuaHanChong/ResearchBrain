@@ -1586,4 +1586,37 @@ papers = [
     "https://arxiv.org/abs/2604.21396", # VG-CoT: Towards Trustworthy Visual Reasoning via Grounded Chain-of-Thought
     "https://arxiv.org/abs/2604.20705", # SSL-R1: Self-Supervised Visual Reinforcement Post-Training for Multimodal Large Language Models
     "https://arxiv.org/abs/2604.14258", # GFT: From Imitation to Reward Fine-Tuning with Unbiased Group Advantages and Dynamic Coefficient Rectification
+    "https://arxiv.org/abs/2503.14734", # GR00T N1: An Open Foundation Model for Generalist Humanoid Robots
+    "https://arxiv.org/abs/2602.12205", # DeepGen 1.0: A Lightweight Unified Multimodal Model for Advancing Image Generation and Editing
+    "https://arxiv.org/abs/2604.24300", # ReVSI: Rebuilding Visual Spatial Intelligence Evaluation for Accurate Assessment of VLM 3D Reasoning
+    "https://arxiv.org/abs/2604.20209", # Scaling Self-Play with Self-Guidance
+    "https://arxiv.org/abs/2511.00062", # World Simulation with Video Foundation Models for Physical AI
+    "https://arxiv.org/abs/2604.20689", # FingerEye: Continuous and Unified Vision-Tactile Sensing for Dexterous Manipulation
+    "https://arxiv.org/abs/2601.04061", # CLAP: Contrastive Latent Action Pretraining for Learning Vision-Language-Action Models from Human Videos
+    "https://arxiv.org/abs/2604.16027", # Where does output diversity collapse in post-training?
+    "https://arxiv.org/abs/2604.17245", # MM-Hand: A 21-DOF Multi-modal Modular Dexterous Robotic Hand with Remote Actuation
+    "https://arxiv.org/abs/2505.17508", # On the Design of KL-Regularized Policy Gradient Algorithms for LLM Reasoning
+    "https://arxiv.org/abs/2604.22748", # Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond
+    "https://arxiv.org/abs/2507.13347", # π3 : Permutation-Equivariant Visual Geometry Learning
+    "https://arxiv.org/abs/2604.07430", # HY-Embodied-0.5: Embodied Foundation Models for Real-World Agents
+    "https://arxiv.org/abs/2604.22615", # GazeVLA: Learning Human Intention for Robotic Manipulation
+    "https://arxiv.org/abs/2604.22709", # Thinking Without Words: Efficient Latent Reasoning with Abstract Chain-of-Thought
+    "https://arxiv.org/abs/2602.17270", # Unified Latents (UL): How to train your latents
+    "https://arxiv.org/abs/2604.22884", # Can Multimodal Large Language Models Truly Understand Small Objects?
+    "https://arxiv.org/abs/2604.24583", # Improving Vision-language Models with Perception-centric Process Reward Models
+    "https://arxiv.org/abs/2604.23747", # SFT-then-RL Outperforms Mixed-Policy Methods for LLM Reasoning
+    "https://arxiv.org/abs/2511.10647", # Depth Anything 3: Recovering the Visual Space from Any Views
+    "https://arxiv.org/abs/2604.24763", # Tuna-2: Pixel Embeddings Beat Vision Encoders for Multimodal Understanding and Generation
+    "https://arxiv.org/abs/2512.20856", # NVIDIA Nemotron 3: Efficient and Open Intelligence
+    "https://arxiv.org/abs/2604.24764", # World-R1: Reinforcing 3D Constraints for Text-to-Video Generation
+    "https://arxiv.org/abs/2511.15613", # When to Think and When to Look: Uncertainty-Guided Lookback
+    "https://arxiv.org/abs/2604.14125", # HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System
+    "https://arxiv.org/abs/2601.22153", # DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation
+    "https://arxiv.org/abs/2604.24763", # Tuna-2: Pixel Embeddings Beat Vision Encoders for Multimodal Understanding and Generation
+    "https://arxiv.org/abs/2604.25636", # Refinement via Regeneration: Enlarging Modification Space Boosts Image Refinement in Unified Multimodal Models
+    "https://arxiv.org/abs/2602.16863", # SimToolReal: An Object-Centric Policy for Zero-Shot Dexterous Tool Manipulation
+    "https://arxiv.org/abs/2604.01479", # UniRecGen: Unifying Multi-View 3D Reconstruction and Generation
+    "https://arxiv.org/abs/2507.16406", # Sparse-View 3D Reconstruction: Recent Advances and Open Challenges
+    "https://arxiv.org/abs/2604.24833", # MotionBricks: Scalable Real-Time Motions with Modular Latent Generative Model and Smart Primitives
+    "https://arxiv.org/abs/2603.05687", # Contact-Grounded Policy: Dexterous Visuotactile Policy with Generative Contact Grounding
 ]

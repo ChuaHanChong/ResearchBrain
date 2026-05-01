@@ -150,7 +150,7 @@ New attention patterns, normalization strategies, and structural modifications t
 > - [[2512.24695|Hope]] — Nested Learning reinterprets deep learning as nested multi-level optimization
 
 **Hybrid Architectures** — Combining Transformers with state-space models, recurrence, or looped computation for improved efficiency.
-- [[2604.21254|Hyperloop Transformers]], [[2601.15275|RayRoPE]], [[2507.22448|Falcon-H1]], [[2505.16416|Circle-RoPE]], [[2505.05522|CTM]], [[2503.24067|TransMamba]], [[2501.00663|Titans]], [[2311.12424|Looped Transformers]]
+- [[2604.21254|Hyperloop Transformers]], [[2601.15275|RayRoPE]], [[2512.20856|Nemotron 3]], [[2507.22448|Falcon-H1]], [[2505.16416|Circle-RoPE]], [[2505.05522|CTM]], [[2503.24067|TransMamba]], [[2501.00663|Titans]], [[2311.12424|Looped Transformers]]
 
 > [!star] Key Papers
 > - [[2507.22448|Falcon-H1]] — Hybrid-head models integrating parallel Transformer and Mamba blocks; redefines the efficiency-performance frontier

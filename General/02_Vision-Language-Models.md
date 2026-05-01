@@ -410,7 +410,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2603.22281|ThinkJEPA]] — Integrates JEPA-style world modeling into VLM chain-of-thought for grounded visual prediction
 
 **VLM Evaluation & Benchmarks** — Evaluation frameworks, benchmarks, and quality assessment for multimodal models.
-- [[2603.03944|SCP-Bench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.16520|TangramPuzzle]], [[2601.12585|MLLM Visualization Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2406.18925|VisArgs]]
+- [[2604.24300|ReVSI]], [[2604.22884|SOUBench]], [[2603.03944|SCP-Bench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.16520|TangramPuzzle]], [[2601.12585|MLLM Visualization Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2406.18925|VisArgs]]
 
 > [!star] Key Papers
 > - [[2603.03944|SCP-Bench]] — Spatial causal prediction benchmark revealing a 23% gap between best MLLMs and humans on unseen spatio-temporal reasoning

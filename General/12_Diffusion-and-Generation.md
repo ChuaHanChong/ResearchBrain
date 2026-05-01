@@ -185,7 +185,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2309.17400|DRaFT]] — Direct backpropagation of differentiable rewards through the entire sampling chain via LoRA + gradient checkpointing; >200× more sample-efficient than DDPO and the foundation for modern reward-gradient methods
 
 **Flow Matching + RL** — Apply policy optimization to flow-matching and continuous diffusion models, treating the denoising trajectory as a sequential decision process.
-- [[2603.27866|Wan-R1]], [[2603.26599|VGGRPO]], [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2509.06040|BranchGRPO]], [[2507.21053|FPO]], [[2505.05470|Flow-GRPO]]
+- [[2604.24764|World-R1]], [[2603.27866|Wan-R1]], [[2603.26599|VGGRPO]], [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2509.06040|BranchGRPO]], [[2507.21053|FPO]], [[2505.05470|Flow-GRPO]]
 
 > [!star] Key Papers
 > - [[2505.05470|Flow-GRPO]] — First framework adapting GRPO to flow matching; enables online RL for continuous generative models
@@ -258,10 +258,10 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 > - [[2504.06256|MetaQueries]] — Bridges frozen MLLMs with diffusion generators via learned meta-query tokens
 
 **End-to-End Multimodal Generators** — Models that natively produce interleaved text and images, trained end-to-end for seamless multimodal output.
-- [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
+- [[2602.12205|DeepGen 1.0]], [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 **Text-to-Motion Generation** — Diffusion and contrastive methods for synthesizing and retrieving 3D human motions from natural language, including LLM-planned + physics-aware refinement pipelines.
-- [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.15546|Kimodo]], [[2305.00976|TMR]]
+- [[2604.24833|MotionBricks]], [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.15546|Kimodo]], [[2305.00976|TMR]]
 
 > [!star] Key Papers
 > - [[2604.17807|Re2MoGen]] — MCTS-enhanced LLM keyframe planning + diffusion completion + PPO physics refinement; SOTA open-vocabulary T2M with 2.46 mm float error
@@ -271,7 +271,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 > - [[2503.13436|UniFluid]] — Google DeepMind's unified AR framework using continuous and discrete tokens for seamless visual generation and understanding
 
 **Image Editing & Controllable Generation** — Methods for precise, instruction-guided image manipulation and controllable synthesis.
-- [[2604.06870|RefineAnything]], [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2505.18600|CoZ]], [[2403.19103|PRISM]]
+- [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2505.18600|CoZ]], [[2403.19103|PRISM]]
 
 > [!star] Key Papers
 > - [[2601.02356|Talk2Move]] — RL-based text-instructed geometric transformations with spatially grounded rewards

@@ -88,7 +88,7 @@ The field evolved through four phases: **foundations** (2022-2023) where RT-1 an
 How robots learn to act from demonstrations. The field evolved from perception-based agents (PerAct) through diffusion-based action generation to spatial and language-conditioned policies. Manipulation is the proving ground — if a method works for dexterous object interaction, it can generalize to broader embodied tasks.
 
 **Diffusion-Based Policies** — Treat robot actions as a noise-removal process, generating smooth multi-step trajectories that handle multimodal action distributions (e.g., reaching from the left vs. right) better than regression.
-- [[2604.15938|VADF]], [[2604.07084|FMP]], [[2604.06067|HiPolicy]], [[2604.03181|MV-VDP]], [[2604.00202|DreamControl-v2]], [[2603.26320|DFM-VLA]], [[2603.25406|MMaDA-VLA]], [[2603.16368|SCDP]], [[2512.22688|ARFM]], [[2509.22652|DAWN]], [[2507.21053|FPO]], [[2503.02881|Reactive Diffusion Policy]], [[2502.02316|DIME]], [[2407.05996|MDT]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2205.09991|Diffuser]]
+- [[2604.15938|VADF]], [[2604.07084|FMP]], [[2604.06067|HiPolicy]], [[2604.03181|MV-VDP]], [[2604.00202|DreamControl-v2]], [[2603.26320|DFM-VLA]], [[2603.25406|MMaDA-VLA]], [[2603.16368|SCDP]], [[2603.05687|CGP]], [[2512.22688|ARFM]], [[2509.22652|DAWN]], [[2507.21053|FPO]], [[2503.02881|Reactive Diffusion Policy]], [[2502.02316|DIME]], [[2407.05996|MDT]], [[2403.03954|DP3]], [[2303.04137|Diffusion Policy]], [[2302.01877|AdaptDiffuser]], [[2205.09991|Diffuser]]
 
 > [!star] Key Papers
 > - [[2303.04137|Diffusion Policy]] — Pioneered action diffusion for robotics; proved denoising beats regression for multimodal distributions
@@ -140,7 +140,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > ==KosMos/[[2407.07726|PaliGemma]] backbone== + ==Policy Head fusion== + ==Continuous actions== + ==MoE== + ==Post-training on in-domain data==
 
 **Foundation & Generalist** — The pioneering VLA architectures that established the paradigm: fine-tune a VLM to output robot actions as tokens or flow-matching trajectories.
-- [[2604.20100|JoyAI-RA]], [[2604.15483|π0.7]], [[2602.16710|EgoScale]], [[2512.22414|π0.5 + ego]], [[2507.15597|Being-H0]], [[2505.03500|TLI]], [[2503.20020|Gemini Robotics]], [[2502.13130|Magma]], [[2410.24164|π0]], [[2410.06158|GR-2]], [[2406.09246|OpenVLA]], [[2405.12213|Octo]], [[2312.13139|GR-1]], [[2311.01378|RoboFlamingo]], [[2310.08864|OXE / RT-X]], [[2307.15818|RT-2]], [[2212.06817|RT-1]]
+- [[2604.20100|JoyAI-RA]], [[2604.15483|π0.7]], [[2602.16710|EgoScale]], [[2601.04061|CLAP]], [[2512.22414|π0.5 + ego]], [[2507.15597|Being-H0]], [[2505.03500|TLI]], [[2503.20020|Gemini Robotics]], [[2502.13130|Magma]], [[2410.24164|π0]], [[2410.06158|GR-2]], [[2406.09246|OpenVLA]], [[2405.12213|Octo]], [[2312.13139|GR-1]], [[2311.01378|RoboFlamingo]], [[2310.08864|OXE / RT-X]], [[2307.15818|RT-2]], [[2212.06817|RT-1]]
 
 > [!star] Key Papers
 > - [[2604.15483|π0.7]] — 5B-param steerable generalist VLA from Physical Intelligence with episode-metadata + subgoal-image prompting; cross-embodiment transfer matching human experts
@@ -165,7 +165,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2501.15830|SpatialVLA]] — Novel spatial representations that let VLAs understand object arrangements without explicit 3D supervision
 
 **Reasoning & Chain-of-Thought** — VLAs that think before they act: predict subgoals, search over plans, or use MCTS for test-time reasoning.
-- [[2604.21924|LoHo-Manip]], [[2604.18486|OneVL]], [[2604.17880|ST-π]], [[2604.17800|ReFineVLA]], [[2604.14125|HiVLA]], [[2602.01166|LaRA-VLA]], [[2601.11404|ACoT-VLA]], [[2601.07060|PALM]], [[2601.00969|V-VLAPS]], [[2512.24125|GenieReasoner]], [[2509.25681|dVLA]], [[2509.22643|VLA-Reasoner]], [[2508.12211|VLAPS]], [[2507.16815|ThinkAct]], [[2503.22020|CoT-VLA]], [[2411.19650|CogACT]], [[2405.17418|SC-VLA]]
+- [[2604.22615|GazeVLA]], [[2604.21924|LoHo-Manip]], [[2604.18486|OneVL]], [[2604.17880|ST-π]], [[2604.17800|ReFineVLA]], [[2604.14125|HiVLA]], [[2602.01166|LaRA-VLA]], [[2601.11404|ACoT-VLA]], [[2601.07060|PALM]], [[2601.00969|V-VLAPS]], [[2512.24125|GenieReasoner]], [[2509.25681|dVLA]], [[2509.22643|VLA-Reasoner]], [[2508.12211|VLAPS]], [[2507.16815|ThinkAct]], [[2503.22020|CoT-VLA]], [[2411.19650|CogACT]], [[2405.17418|SC-VLA]]
 
 > [!star] Key Papers
 > - [[2604.18486|OneVL]] — First latent CoT to beat explicit autoregressive CoT on driving benchmarks (88.84 PDM-score on NAVSIM) while keeping answer-only inference latency
@@ -202,7 +202,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2603.12263|Psi0]] — Decoupled locomotion + manipulation for humanoids; practical loco-manipulation
 
 **Multi-Sensor & Force-Aware** — VLAs that go beyond vision by integrating tactile, force, or proprioceptive feedback for contact-rich tasks.
-- [[2603.15169|ForceVLA2]], [[2511.18960|AVA-VLA]], [[2509.18830|DexSkin]], [[2508.10333|ReconVLA]], [[2507.09160|Tactile-VLA]], [[2505.22159|ForceVLA]], [[2505.06451|Adaptive Wiping]], [[2502.14420|ChatVLA]]
+- [[2604.20689|FingerEye]], [[2603.15169|ForceVLA2]], [[2511.18960|AVA-VLA]], [[2509.18830|DexSkin]], [[2508.10333|ReconVLA]], [[2507.09160|Tactile-VLA]], [[2505.22159|ForceVLA]], [[2505.06451|Adaptive Wiping]], [[2502.14420|ChatVLA]]
 
 > [!star] Key Papers
 > - [[2507.09160|Tactile-VLA]] — First to integrate 6-axis force feedback into VLAs; critical for assembly and insertion tasks
@@ -283,7 +283,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 > - [[2509.21309|NewtonGen]] — Embeds physics-informed neural ODEs (linear ODEs + residual MLP) into T2V; explicit Newtonian motion with **0.98** Physical Invariance Score on 12 motion types from only 100 physics-clean clips
 
 **Surveys** — Comprehensive reviews of world model architectures, taxonomies, and design principles.
-- [[2604.04707|OpenWorldLib]], [[2603.25887|WR-Arena]], [[2602.01630|Unified World Model Framework]], [[2511.08585|Visual World Roadmap]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.22355|Embodied AI World Modeling]], [[2506.01622|General Agents World Models]], [[2504.04170|Digital Gene]], [[2411.14499|World Models Survey 2024]], [[2407.06886|ARIO]], [[2310.06253|Objective Mismatch MBRL Survey]]
+- [[2604.22748|Agentic World Modeling Survey]], [[2604.04707|OpenWorldLib]], [[2603.25887|WR-Arena]], [[2602.01630|Unified World Model Framework]], [[2511.08585|Visual World Roadmap]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.22355|Embodied AI World Modeling]], [[2506.01622|General Agents World Models]], [[2504.04170|Digital Gene]], [[2411.14499|World Models Survey 2024]], [[2407.06886|ARIO]], [[2310.06253|Objective Mismatch MBRL Survey]]
 
 - [[2510.24795|Efficient VLA Survey]] — First dedicated survey on efficient VLAs
 - [[2509.19012|Pure VLA Survey]] — Taxonomy of VLA action-generation paradigms
@@ -363,7 +363,7 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 The training paradigm question: pure imitation learning (behavior cloning) is simple but plateaus at the demonstration distribution ceiling. Adding RL post-training pushes policies beyond what demonstrations alone can teach — handling novel situations, recovering from errors, and optimizing long-horizon objectives.
 
 **RL-Augmented Imitation** — Combine imitation learning with RL reward signals to overcome the limitations of pure behavior cloning.
-- [[2604.20841|DeVI]], [[2604.10953|DRL-3DBP]], [[2604.10677|LIDEA]], [[2604.08958|WOMBET]], [[2604.06943|Sustainable Transfer RL]], [[2604.04539|FlashSAC]], [[2604.03037|ARM]], [[2604.02260|Time-Varying MBRL]], [[2603.13925|SmoothVLA]], [[2603.04029|Self-Adapting RL]], [[2510.25992|SRL]], [[2510.22512|TRL]], [[2510.19307|RIL]], [[2509.19292|SOE]], [[2509.04259|RL's Razor]], [[2505.13709|Policy-Driven WM Adaptation]], [[2505.03181|AFSFT]], [[2504.18471|AFM]], [[2503.14858|CRL]], [[2408.05804|Single-Goal Contrastive RL]], [[2407.16677|ResiP]], [[2010.11944|SPiRL]]
+- [[2604.20841|DeVI]], [[2604.10953|DRL-3DBP]], [[2604.10677|LIDEA]], [[2604.08958|WOMBET]], [[2604.06943|Sustainable Transfer RL]], [[2604.04539|FlashSAC]], [[2604.03037|ARM]], [[2604.02260|Time-Varying MBRL]], [[2603.13925|SmoothVLA]], [[2603.04029|Self-Adapting RL]], [[2602.16863|SimToolReal]], [[2510.25992|SRL]], [[2510.22512|TRL]], [[2510.19307|RIL]], [[2509.19292|SOE]], [[2509.04259|RL's Razor]], [[2505.13709|Policy-Driven WM Adaptation]], [[2505.03181|AFSFT]], [[2504.18471|AFM]], [[2503.14858|CRL]], [[2408.05804|Single-Goal Contrastive RL]], [[2407.16677|ResiP]], [[2010.11944|SPiRL]]
 
 > [!star] Key Papers
 > - [[2505.03181|AFSFT]] — Advantage-filtered SFT: uses RL advantage estimates to select which demonstrations to learn from
@@ -396,7 +396,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2409.20537|HPT]] — Heterogeneous Pre-trained Transformers: modular architecture that handles diverse robot embodiments through shared trunk + task-specific heads
 
 **Hardware & Simulation Platforms** — Robotic hardware designs and simulation environments that enable large-scale data collection and policy evaluation.
-- [[2604.15805|WorldComposer]], [[2604.11768|GC-PFO]], [[2604.11251|CLAW]], [[2604.08544|SIM1]], [[2604.08258|EvoGymCM]], [[2604.07105|Genie Sim PanoRecon]], [[2604.04664|ROSClaw]], [[2602.21992|PanoEnv]], [[2509.22970|RoLA]], [[2506.18088|RoboTwin 2.0]], [[2504.04259|ORCA Hand]], [[2503.22122|REMAC]]
+- [[2604.17245|MM-Hand]], [[2604.15805|WorldComposer]], [[2604.11768|GC-PFO]], [[2604.11251|CLAW]], [[2604.08544|SIM1]], [[2604.08258|EvoGymCM]], [[2604.07105|Genie Sim PanoRecon]], [[2604.04664|ROSClaw]], [[2602.21992|PanoEnv]], [[2509.22970|RoLA]], [[2506.18088|RoboTwin 2.0]], [[2504.04259|ORCA Hand]], [[2503.22122|REMAC]]
 
 > [!star] Key Papers
 > - [[2504.04259|ORCA Hand]] — Open-source anthropomorphic hand; bridges the gap between simulation and real dexterous manipulation

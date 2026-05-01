@@ -230,7 +230,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2503.17973|PhysTwin]] — Single-image-to-physical-twin pipeline; estimates material parameters and rigging that re-simulate under arbitrary forces
 
 **Active World Simulators (Physics)** — The next tier above physics-aware generation: models that act as full interactive world simulators with action conditioning, RL alignment, or world-model-driven physics rewards. Includes Cosmos, Genie, UniSim, GAIA-1 and their physics-aware descendants.
-- [[2603.24506|PhyGenesis]], [[2603.03505|PhyPrompt]], [[2511.03997|PhysCorr]], [[2511.00062|Physical AI World Sim]], [[2510.21840|V-JEPA-2 Physics Reward]], [[2509.24702|Implausibility Reasoning]], [[2508.10858|PhysHPO]], [[2506.23135|RoboScape]], [[2506.18655|RDPO]], [[2506.01103|DeepVerse]], [[2505.23656|VideoREPA]], [[2505.21996|VRAG-WM]], [[2505.09723|EnerVerse-AC]], [[2504.15397|MirrorVerse]], [[2504.13129|Science-T2I]], [[2503.18945|Aether]], [[2503.08153|WISA]], [[2502.02088|IPO]], [[2501.13918|VideoAlign]], [[2501.09038|Physics-IQ]], [[2412.20404|Open-Sora]], [[2412.08410|DrivePhysica]], [[2412.02617|AIF-Dynamic]], [[2412.00596|PhyT2V]], [[2410.18072|WorldSimBench]], [[2410.13571|DriveDreamer4D]], [[2410.10076|VideoAgent]], [[2410.05582|Gen-Drive]], [[2408.07009|Imagen 3]], [[2404.05014|MagicTime]], [[2401.09985|WorldDreamer]], [[2309.17080|GAIA-1]]
+- [[2604.24764|World-R1]], [[2603.24506|PhyGenesis]], [[2603.03505|PhyPrompt]], [[2511.03997|PhysCorr]], [[2511.00062|Physical AI World Sim]], [[2510.21840|V-JEPA-2 Physics Reward]], [[2509.24702|Implausibility Reasoning]], [[2508.10858|PhysHPO]], [[2506.23135|RoboScape]], [[2506.18655|RDPO]], [[2506.01103|DeepVerse]], [[2505.23656|VideoREPA]], [[2505.21996|VRAG-WM]], [[2505.09723|EnerVerse-AC]], [[2504.15397|MirrorVerse]], [[2504.13129|Science-T2I]], [[2503.18945|Aether]], [[2503.08153|WISA]], [[2502.02088|IPO]], [[2501.13918|VideoAlign]], [[2501.09038|Physics-IQ]], [[2412.20404|Open-Sora]], [[2412.08410|DrivePhysica]], [[2412.02617|AIF-Dynamic]], [[2412.00596|PhyT2V]], [[2410.18072|WorldSimBench]], [[2410.13571|DriveDreamer4D]], [[2410.10076|VideoAgent]], [[2410.05582|Gen-Drive]], [[2408.07009|Imagen 3]], [[2404.05014|MagicTime]], [[2401.09985|WorldDreamer]], [[2309.17080|GAIA-1]]
 
 > [!star] Key Papers
 > - [[2501.09038|Physics-IQ]] — Definitive evaluation of whether generative video models learn physical principles; showed visual realism does not imply physics understanding
@@ -257,7 +257,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 Synthesizing human and robot motion — bridging video understanding with physical action. The field is converging on unified architectures that handle diverse motion tasks through a single model rather than task-specific pipelines.
 
 **Unified Motion Architectures** — Single models that handle multiple motion generation tasks (text-to-motion, motion prediction, motion editing) through shared representations.
-- [[2604.11251|CLAW]], [[2604.08121|Uni-ViGU]], [[2603.19227|MoTok]], [[2603.15975|UMO]]
+- [[2604.24833|MotionBricks]], [[2604.11251|CLAW]], [[2604.08121|Uni-ViGU]], [[2603.19227|MoTok]], [[2603.15975|UMO]]
 
 > [!star] Key Papers
 > - [[2603.15975|UMO]] — Unified in-context learning for diverse motion tasks via meta-operation embeddings on a pretrained DiT; FID of 9.460

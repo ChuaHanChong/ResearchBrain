@@ -271,7 +271,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.01321|DEPO]] — Data-Efficient Policy Optimization; significantly improves sample efficiency of RLVR
 
 **Entropy & Diversity Regularization** — Combating mode collapse and entropy collapse in RL-trained models through regularization and diversity-aware objectives.
-- [[2604.17654|Poly-EPO]], [[2603.30036|CoT Monitorability]], [[2510.20817|MARA]], [[2510.03222|Lp-Reg]], [[2509.25133|SIREN]], [[2509.02534|Darling]], [[2506.01939|High-Entropy Token RLVR]]
+- [[2604.17654|Poly-EPO]], [[2604.16027|Diversity Collapse Audit]], [[2603.30036|CoT Monitorability]], [[2510.20817|MARA]], [[2510.03222|Lp-Reg]], [[2509.25133|SIREN]], [[2509.02534|Darling]], [[2506.01939|High-Entropy Token RLVR]]
 
 > [!star] Key Papers
 > - [[2509.25133|SIREN]] — Selective entropy regularization to mitigate entropy collapse; targets high-uncertainty tokens
@@ -298,7 +298,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2510.26788|FP16 RL Training]] — Demonstrates FP16 precision works for RL training; halves memory cost
 
 **Hybrid SFT + RL Pipelines** — Methods that combine supervised fine-tuning with RL in unified or staged training recipes.
-- [[2604.14258|GFT]], [[2603.12248|EBFT]], [[2602.01058|PEAR]], [[2601.06993|ReFine-RFT]], [[2512.12690|SFT vs RL VLM Study]], [[2510.10606|ViSurf]], [[2507.01679|Prefix-RFT]], [[2506.13056|Metis-RISE]], [[2505.03181|AFSFT]], [[2504.14945|LUFFY]], [[2504.11343|RAFT++]]
+- [[2604.23747|SFT-then-RL Reaudit]], [[2604.14258|GFT]], [[2603.12248|EBFT]], [[2602.01058|PEAR]], [[2601.06993|ReFine-RFT]], [[2512.12690|SFT vs RL VLM Study]], [[2510.10606|ViSurf]], [[2507.01679|Prefix-RFT]], [[2506.13056|Metis-RISE]], [[2505.03181|AFSFT]], [[2504.14945|LUFFY]], [[2504.11343|RAFT++]]
 
 > [!star] Key Papers
 > - [[2510.10606|ViSurf]] — Unified single-stage post-training integrating SFT and RL; avoids the two-stage overhead
@@ -508,7 +508,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 Learning and designing reward signals for RL training — from hand-crafted rewards through learned reward models to reasoning-based verification. The quality of the reward model is the ceiling for RL performance.
 
 **Process Reward Models** — Models that evaluate individual reasoning steps rather than just final answers, enabling fine-grained credit assignment.
-- [[2604.03037|ARM]], [[2509.23250|VL-PRM]], [[2506.23235|EndoRM]], [[2506.13888|VL-GenRM]], [[2506.02095|CycleReward]], [[2505.02387|RM-R1]], [[2504.16828|THINKPRM]], [[2504.02495|DeepSeek-GRM]], [[2503.13551|HRM]], [[2503.10291|VisualPRM]]
+- [[2604.24583|Perceval]], [[2604.03037|ARM]], [[2509.23250|VL-PRM]], [[2506.23235|EndoRM]], [[2506.13888|VL-GenRM]], [[2506.02095|CycleReward]], [[2505.02387|RM-R1]], [[2504.16828|THINKPRM]], [[2504.02495|DeepSeek-GRM]], [[2503.13551|HRM]], [[2503.10291|VisualPRM]]
 
 > [!star] Key Papers
 > - [[2504.02495|DeepSeek-GRM]] — Self-Principled Critique Tuning: point-wise reward models with self-generated principles

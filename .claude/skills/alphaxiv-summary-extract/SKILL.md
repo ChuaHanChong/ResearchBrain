@@ -71,7 +71,9 @@ Use `--force` to overwrite existing notes.
 
 After extraction (both single-paper and batch mode), use the `obsidian-markdown` skill and Edit tool to enrich each new `.md` file:
 
-1. **Extract `authors`** from the BibTeX block (maximum of 5 total; keep the first 3 and the last 2 if there are more than 5 authors) and add them to the frontmatter. Never include `- ...` as a placeholder entry.
+1. **Extract `authors`** from the BibTeX block. If the paper has 5 or fewer authors, list ALL of them. If the paper has MORE than 5 authors, keep exactly 5 entries: the first 3 authors AND the last 2 authors (i.e., `authors[:3] + authors[-2:]`). Never include `- ...` as a placeholder entry.
+   - **Worked example** — given 8 authors `[A, B, C, D, E, F, G, H]`, the result MUST be `[A, B, C, G, H]` (5 names). DO NOT output `[A, B, C, H]` (4 names — this drops the second-to-last author and is the historical bug).
+   - **Sanity check** — after trimming, if the original list had >5 authors, your result MUST have exactly 5 entries. If it has 4, you have made the historical mistake; redo it including BOTH last-two authors.
 2. **Infer `tags`** (3–6 tags from the canonical taxonomy below) and add them to the frontmatter.
 
 #### Canonical Tag Taxonomy (55 tags)
