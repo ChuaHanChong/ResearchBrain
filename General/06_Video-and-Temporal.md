@@ -97,7 +97,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2112.01526|MViTv2]] — Refined pooling mechanism and added decomposed relative position embeddings; strong on both classification and detection
 
 **Self-Supervised Video Models** — Learn general video representations from unlabeled data, progressing toward world models that support zero-shot downstream transfer.
-- [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA 2.1]], [[2602.11832|JEPA-VLA]], [[2507.19468|DINO-world]], [[2506.09985|V-JEPA 2]], [[2505.11129|PhiNet v2]]
+- [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA 2.1]], [[2602.11832|JEPA-VLA]], [[2507.19468|DINO-world]], [[2507.14793|FERNN]], [[2506.09985|V-JEPA 2]], [[2505.11129|PhiNet v2]]
 
 > [!star] Key Papers
 > - [[2506.09985|V-JEPA 2]] — Self-supervised model trained on 1M+ hours of video; learned world model enables zero-shot robotic control via MPC
@@ -127,7 +127,7 @@ From video classification to self-supervised video representation learning. The 
 Understanding *why* things happen in video, not just *what* happens. This section covers RL-based post-training, chain-of-thought reasoning, and spatiotemporal grounding methods that push Video-LLMs beyond perception toward genuine temporal reasoning.
 
 **RL Post-Training for Video Reasoning** — Reinforcement learning frameworks that teach Video-LLMs temporal reasoning capabilities through rule-based rewards, self-supervised signals, or synthetic data.
-- [[2604.20473|Video-ToC]], [[2604.16893|EasyVideoR1]], [[2603.28730|SOLE-R1]], [[2603.27866|Wan-R1]], [[2603.17693|SynRL]], [[2602.20159|VBVR]], [[2602.05986|RISE-Video]], [[2601.19686|Video-KTR]], [[2511.13054|ViSS-R1]], [[2511.11113|VIDEOP2R]], [[2510.23473|Video-Thinker]], [[2509.23958|RLIR]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2505.13934|RLVR-World]], [[2505.12434|VIDEORFT]], [[2503.21776|Video-R1]]
+- [[2604.26707|CurEvo]], [[2604.20473|Video-ToC]], [[2604.16893|EasyVideoR1]], [[2603.28730|SOLE-R1]], [[2603.27866|Wan-R1]], [[2603.17693|SynRL]], [[2602.20159|VBVR]], [[2602.05986|RISE-Video]], [[2601.19686|Video-KTR]], [[2511.13054|ViSS-R1]], [[2511.11113|VIDEOP2R]], [[2510.23473|Video-Thinker]], [[2509.23958|RLIR]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2505.13934|RLVR-World]], [[2505.12434|VIDEORFT]], [[2503.21776|Video-R1]]
 
 > [!star] Key Papers
 > - [[2503.21776|Video-R1]] — First rule-based RL framework for video temporal reasoning; 37.1% on VSI-Bench surpassing GPT-4o
@@ -173,7 +173,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 The paradigm shift: video generation models that simulate ==physically plausible futures==, becoming the foundation for planning and control. These models bridge content creation and robotic planning by learning physics, causality, and dynamics from temporal data.
 
 **Foundational Video World Models** — Systems that treat video generation as world simulation, learning to produce physically coherent future states from observation.
-- [[2604.18564|MultiWorld]], [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2602.10717|SDA]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2411.02385|Physical Law Video Gen]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
+- [[2604.18564|MultiWorld]], [[2604.08995|Matrix-Game 3.0]], [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.04502|Veo-Act]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2602.10717|SDA]], [[2602.10102|VideoWorld 2]], [[2602.07050|Interpreting Physics Video WM]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2411.02385|Physical Law Video Gen]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
 
 > [!star] Key Papers
 > - [[2302.00111|UniPi]] — First to use text-guided video generation as a universal policy; bridges video generation and robot control
@@ -201,7 +201,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2512.09924|ReViSE]] — Reason-informed video editing via self-reflective learning; +32% on RVE-Bench
 
 **Surveys & Roadmaps** — Comprehensive overviews of the video-to-world-model progression.
-- [[2604.15911|Efficient Video Diffusion Survey]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]], [[2504.21853|Interactive Generative Video Survey]]
+- [[2604.15911|Efficient Video Diffusion Survey]], [[2603.28489|Video Gen as WM Survey]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2511.08585|Visual World Roadmap]], [[2504.21853|Interactive Generative Video Survey]]
 
 > [!star] Key Papers
 > - [[2511.08585|Visual World Roadmap]] — Four-generation taxonomy from video generators to planning-capable world simulators

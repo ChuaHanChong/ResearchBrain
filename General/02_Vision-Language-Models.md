@@ -302,7 +302,7 @@ VLMs that can point to what they are talking about — generating text with spat
 
 Teaching VLMs to reason step-by-step, often by generating programs or invoking external tools rather than producing answers directly.
 
-- [[2603.07335|VisualScratchpad]], [[2505.19255|VTool-R1]], [[2505.05464|Bring Reason to Vision]], [[2504.09828|FATE]], [[2503.16434|Interactive Sketchpad]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]], [[2410.16400|VipAct]], [[2406.19934|VIREO]], [[2406.09403|VisualSketchPad]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2311.05437|LLaVA-Plus]], [[2303.08128|ViperGPT]], [[2303.04671|Visual ChatGPT]], [[2302.00923|Multimodal-CoT]], [[2211.11559|VISPROG]], [[2204.00598|Socratic Models]]
+- [[2604.22875|SketchVLM]], [[2603.07335|VisualScratchpad]], [[2505.19255|VTool-R1]], [[2505.05464|Bring Reason to Vision]], [[2504.09828|FATE]], [[2503.16434|Interactive Sketchpad]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]], [[2410.16400|VipAct]], [[2406.19934|VIREO]], [[2406.09403|VisualSketchPad]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2311.05437|LLaVA-Plus]], [[2303.08128|ViperGPT]], [[2303.04671|Visual ChatGPT]], [[2302.00923|Multimodal-CoT]], [[2211.11559|VISPROG]], [[2204.00598|Socratic Models]]
 
 > [!star] Key Papers
 > - [[2302.00923|Multimodal-CoT]] — First chain-of-thought reasoning in multimodal LLMs, jointly reasoning over vision and language
@@ -334,7 +334,7 @@ VLMs confidently describe things that are not in the image — a critical obstac
 
 A growing focus area bridging VLMs toward embodied tasks — understanding where things are relative to each other in 3D space.
 
-- [[2604.20570|GSI-Bench]], [[2603.27967|XVR]], [[2603.25629|LanteRn]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2602.21619|VSR Information Injection Analysis]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.04413|H-GIVR]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2511.21471|SpatialBench]], [[2510.09606|SpaceVista]], [[2507.07610|SpatialViz-Bench]], [[2506.18385|InternSpatial]], [[2506.03135|OmniSpatial]], [[2505.23747|Spatial-MLLM]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2503.19707|VLM Spatial Reasoning Benchmark]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2502.03214|iVISPAR]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]], [[2205.00363|VSR]]
+- [[2604.26934|World2VLM]], [[2604.20570|GSI-Bench]], [[2603.27967|XVR]], [[2603.25629|LanteRn]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2602.21619|VSR Information Injection Analysis]], [[2602.15950|VLM Spatial Reasoning OCR]], [[2602.15918|EarthSpatialBench]], [[2602.04413|H-GIVR]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2511.21471|SpatialBench]], [[2510.09606|SpaceVista]], [[2507.07610|SpatialViz-Bench]], [[2506.18385|InternSpatial]], [[2506.03135|OmniSpatial]], [[2505.23747|Spatial-MLLM]], [[2504.15037|MLLM Spatial Reasoning Position Paper]], [[2503.19707|VLM Spatial Reasoning Benchmark]], [[2502.11859|VLM Spatial Abilities Benchmark]], [[2502.03214|iVISPAR]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]], [[2205.00363|VSR]]
 
 > [!star] Key Papers
 > - [[2401.12168|SpatialVLM]] — Endowed VLMs with spatial reasoning via 3D-aware training data
@@ -344,7 +344,7 @@ A growing focus area bridging VLMs toward embodied tasks — understanding where
 > Standard VLMs struggle with spatial relations because they are trained on 2D image-text pairs. SpatialVLM and SpatialRGPT address this with 3D-aware training, while RieMind takes an agentic approach. For robotics, spatial understanding is non-negotiable — see [[05_Computer-Vision-and-3D]].
 
 **Physical Understanding in VLMs** — Probing whether VLMs and MLLMs can reason about physical properties (mass, stability, materials, dynamics) from images and video, not just spatial relations. This is a distinct capability from spatial reasoning: it requires inferring *physical* state and predicting outcomes.
-- [[2602.06033|VLM Intuitive Physics]], [[2601.19834|Visual Generation Reasoning]], [[2511.20280|PhysiCheck]], [[2510.06251|Physics Frontier Diagnostic]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object Cog-Eval]], [[2502.19868|C-Drag]], [[2311.10111|VideoCon]]
+- [[2602.06033|VLM Intuitive Physics]], [[2601.19834|Visual Generation Reasoning]], [[2512.19526|QuantiPhy]], [[2511.20280|PhysiCheck]], [[2510.06251|Physics Frontier Diagnostic]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object Cog-Eval]], [[2502.19868|C-Drag]], [[2501.16411|PhysBench]], [[2311.10111|VideoCon]]
 
 > [!star] Key Papers
 > -  — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhysGenBench

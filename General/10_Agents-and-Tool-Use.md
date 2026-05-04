@@ -106,7 +106,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992\|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Reasoning Surveys & Taxonomies** — Comprehensive reviews mapping the rapidly evolving landscape of LLM-based agents, establishing conceptual frameworks and evaluation methodologies.
-- [[2603.22862\|LLM Tool Use Survey]], [[2601.12538\|Agentic Reasoning Survey]], [[2512.16301\|Agentic AI Adaptation Survey]], [[2509.02547\|Agentic RL Survey]], [[2508.17692\|Agentic Reasoning Survey]], [[2508.07407\|Self-Evolving AI Agents Survey]], [[2507.23276\|AI Scientist Survey]], [[2507.21046\|Self-Evolving Agents Survey]], [[2505.10468\|AI Agents vs Agentic AI]], [[2504.18875\|Generative to Agentic AI Survey]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2503.23037\|Agentic LLM Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2410.16392\|Scaffolded LM Survey]], [[2310.08367\|MCU]]
+- [[2604.27859\|Agentic RL Survey 2604]], [[2603.22862\|LLM Tool Use Survey]], [[2601.12538\|Agentic Reasoning Survey]], [[2512.16301\|Agentic AI Adaptation Survey]], [[2509.02547\|Agentic RL Survey]], [[2508.17692\|Agentic Reasoning Survey]], [[2508.07407\|Self-Evolving AI Agents Survey]], [[2507.23276\|AI Scientist Survey]], [[2507.21046\|Self-Evolving Agents Survey]], [[2505.10468\|AI Agents vs Agentic AI]], [[2504.18875\|Generative to Agentic AI Survey]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2503.23037\|Agentic LLM Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2410.16392\|Scaffolded LM Survey]], [[2310.08367\|MCU]]
 
 > [!star] Key Papers
 > - [[2505.10468\|AI Agents vs Agentic AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
@@ -137,7 +137,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2512.03746\|CodeVision]] — Code-as-tool framework equipping MLLMs with dynamically generated visual processing code
 
 **Autonomous Code Discovery & Evolution** — Agents that autonomously discover algorithms, evolve code solutions, or benchmark AI coding capabilities at scale.
-- [[2604.01193\|SSD Code Generation]], [[2603.16790\|InCoder-32B]], [[2601.18067\|EvolVE]], [[2511.18538\|Code Intelligence Survey]], [[2509.19349\|ShinkaEvolve]], [[2506.22419\|LLM Speedrunning Benchmark]], [[2506.13131\|AlphaEvolve]]
+- [[2604.25850|Agentic Harness Engineering]], [[2604.25067|Frontier Coding Agents AlphaZero]], [[2604.01193\|SSD Code Generation]], [[2603.16790\|InCoder-32B]], [[2601.18067\|EvolVE]], [[2511.18538\|Code Intelligence Survey]], [[2509.19349\|ShinkaEvolve]], [[2506.22419\|LLM Speedrunning Benchmark]], [[2506.13131\|AlphaEvolve]]
 
 > [!star] Key Papers
 > - [[2506.13131\|AlphaEvolve]] — Google DeepMind combines LLMs with evolutionary search to autonomously discover algorithms, finding new mathematical results
@@ -192,7 +192,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 Agents trained via reinforcement learning for multi-turn interactions with environments, moving beyond single-call tool use to sustained, stateful task execution across many steps.
 
 **Multi-Turn RL Training** — Frameworks and systematic guides for training LLM agents that maintain state and adapt strategy across extended multi-turn interactions.
-- [[2603.21383\|PivotRL]], [[2510.15047\|SPA]], [[2510.01132\|Multi-turn Agentic RL Guide]], [[2508.03680\|Agent Lightning]], [[2507.19849\|ARPO]], [[2506.06122\|ROLL]], [[2505.03181\|AFSFT]], [[2504.20073\|RAGEN]], [[2404.08233\|GPBT-PL]]
+- [[2603.21383\|PivotRL]], [[2602.02196|TIDE]], [[2510.15047\|SPA]], [[2510.01132\|Multi-turn Agentic RL Guide]], [[2508.03680\|Agent Lightning]], [[2507.19849\|ARPO]], [[2506.06122\|ROLL]], [[2505.03181\|AFSFT]], [[2504.20073\|RAGEN]], [[2404.08233\|GPBT-PL]]
 
 > [!star] Key Papers
 > - [[2504.20073\|RAGEN]] — Multi-turn RL training for LLM agents; establishes the training paradigm for sustained agent-environment interaction
@@ -247,7 +247,7 @@ Agents that operate in real digital environments -- browsing the web, interactin
 Systems where multiple LLM agents collaborate, specialize, or compete. Multi-agent architectures enable division of labor, debate-based reasoning, and scalable task decomposition that single agents cannot achieve.
 
 **Multi-Agent Frameworks & Orchestration** — Architectures for coordinating multiple specialized agents, managing communication, and distributing tasks across agent teams.
-- [[2604.01658\|CORAL]], [[2601.23265\|PaperBanana]], [[2601.19204\|MATA]], [[2601.09295\|MACRO-LLM]], [[2508.13167\|CoA]], [[2507.01701\|LbMAS]], [[2506.12508\|AgentOrchestra]], [[2504.16129\|MARFT]], [[2504.01990\|Foundation Agents Survey]]
+- [[2604.25135\|FAMA]], [[2604.01658\|CORAL]], [[2601.23265\|PaperBanana]], [[2601.19204\|MATA]], [[2601.09295\|MACRO-LLM]], [[2508.13167\|CoA]], [[2507.01701\|LbMAS]], [[2506.12508\|AgentOrchestra]], [[2504.16129\|MARFT]], [[2504.01990\|Foundation Agents Survey]]
 
 > [!star] Key Papers
 > - [[2504.01990\|Foundation Agents Survey]] — Brain-inspired comprehensive framework integrating diverse LLM agent research areas
@@ -255,14 +255,14 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 > - [[2504.16129\|MARFT]] — Multi-Agent Reinforcement Fine-Tuning: RL-based optimization of LLM multi-agent systems
 
 **Latent Communication & Emergent Coordination** — Agents that communicate through learned latent representations rather than natural language, enabling more efficient multi-agent collaboration.
-- [[2601.10825\|Societies of Thought]], [[2511.20639\|LatentMAS]], [[2410.17517\|Maynard-Cross Learning]]
+- [[2604.24881|Latent Agents]], [[2601.10825\|Societies of Thought]], [[2511.20639\|LatentMAS]], [[2410.17517\|Maynard-Cross Learning]]
 
 > [!star] Key Papers
 > - [[2511.20639\|LatentMAS]] — Agents collaborate through latent-space communication rather than verbose natural language exchanges
 > - [[2601.10825\|Societies of Thought]] — Reveals how advanced LLMs implicitly implement multi-agent "society of mind" reasoning internally
 
 **Co-Evolution & Group Dynamics** — Multiple agents that evolve together, with competitive or cooperative dynamics driving collective improvement beyond what individual agents achieve.
-- [[2602.08234\|SkillRL]], [[2602.04837\|GEA]], [[2601.09667\|MATTRL]], [[2510.23595\|MAE]], [[2506.24119\|SPIRAL]], [[2007.07853\|gamma-Progress]]
+- [[2604.22446|Skills to Talent]], [[2604.20987|Co-Evolve Agents]], [[2602.08234\|SkillRL]], [[2602.04837\|GEA]], [[2601.09667\|MATTRL]], [[2510.23595\|MAE]], [[2506.24119\|SPIRAL]], [[2007.07853\|gamma-Progress]]
 
 > [!star] Key Papers
 > - [[2602.04837\|GEA]] — Group-Evolving Agents: agents co-evolve in groups, with emergent specialization and collective capability growth
@@ -278,7 +278,7 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 Agents that accumulate experience over time, build persistent memory, and autonomously improve their own capabilities. This represents the frontier where agents become self-evolving systems.
 
 **Skill Libraries & External Memory** — Agents that maintain persistent skill repositories or memory banks, enabling them to reuse learned capabilities across tasks without retraining.
-- [[2604.04503\|MIA]], [[2604.02268\|SKILL0]], [[2604.01007\|Omni-SimpleMem]], [[2603.29493\|MemFactory]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24639\|ERL]], [[2603.24517|AVO]], [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2509.23285|Tool-Light]]
+- [[2604.04503\|MIA]], [[2604.02268\|SKILL0]], [[2604.01007\|Omni-SimpleMem]], [[2603.29493\|MemFactory]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24639\|ERL]], [[2603.24517|AVO]], [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2601.03192|MemRL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2509.23285|Tool-Light]]
 
 > [!star] Key Papers
 > - [[2603.18743\|Memento-Skills]] — Skill library as external memory for continual learning; agents store and retrieve reusable skills without weight updates
@@ -324,14 +324,14 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2505.14246\|Visual-ARFT]] — Reinforcement fine-tuning framework for visual agents from Shanghai AI Lab
 
 **Spatial Intelligence & Geometry Grounding** — Agents that reason about 3D space, geometric relationships, and physical structure for grounded problem-solving.
-- [[2603.15386\|RieMind]], [[2504.09848\|LLM Spatial Intelligence Survey]], [[2408.16662\|Space3D-Bench]]
+- [[2603.15386\|RieMind]], [[2602.10116|SAGE]], [[2504.09848\|LLM Spatial Intelligence Survey]], [[2408.16662\|Space3D-Bench]]
 
 > [!star] Key Papers
 > - [[2504.09848\|LLM Spatial Intelligence Survey]] — Comprehensive survey examining how LLMs enable spatial intelligence across domains
 > - [[2603.15386\|RieMind]] — Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations
 
 **Scientific & Research Agents** — Agents designed for autonomous scientific research, from literature review to experiment design and execution.
-- [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
+- [[2604.28158|Intern-Atlas]], [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
 
 > [!star] Key Papers
 > - [[2505.16938\|InternAgent]] — Unified closed-loop multi-agent system for fully autonomous scientific research

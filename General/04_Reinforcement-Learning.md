@@ -227,7 +227,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 Direct methods for optimizing policies — from classic PPO through modern GRPO variants, KL-regularized objectives, and tree-structured search. This is the algorithmic engine behind both LLM reasoning and robot control.
 
 **GRPO & Variants** — Group Relative Policy Optimization and its derivatives, the dominant paradigm for RL-based LLM reasoning post-DeepSeek-R1.
-- [[2604.02288|SRPO]], [[2603.24984|MoE-GRPO]], [[2602.05547|MT-GRPO]], [[2511.06411|SofT-GRPO]], [[2509.25849|Knapsack-GRPO]], [[2509.06040|BranchGRPO]], [[2508.09726|GFPO]], [[2507.21848|EDGE-GRPO]], [[2506.16141|GRPO-CARE]], [[2506.13923|Guide-GRPO]], [[2505.22257|Off-Policy GRPO]], [[2505.05470|Flow-GRPO]], [[2504.00883|vsGRPO]], [[2503.20783|Dr. GRPO]], [[2503.14476|DAPO]]
+- [[2604.27998|Latent-GRPO]], [[2604.02288|SRPO]], [[2603.24984|MoE-GRPO]], [[2602.05547|MT-GRPO]], [[2511.06411|SofT-GRPO]], [[2509.25849|Knapsack-GRPO]], [[2509.06040|BranchGRPO]], [[2508.09726|GFPO]], [[2507.21848|EDGE-GRPO]], [[2506.16141|GRPO-CARE]], [[2506.13923|Guide-GRPO]], [[2505.22257|Off-Policy GRPO]], [[2505.05470|Flow-GRPO]], [[2504.00883|vsGRPO]], [[2503.20783|Dr. GRPO]], [[2503.14476|DAPO]]
 
 > [!star] Key Papers
 > - [[2503.14476|DAPO]] — Open-source large-scale GRPO system; demonstrated that RL at scale produces reasoning capabilities that SFT cannot
@@ -250,7 +250,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2411.10442|MPO]] — Mixed Preference Optimization with scalable automated pipeline for constructing multimodal preferences
 
 **Value & Advantage-Based Methods** — Methods that improve value estimation and advantage computation for more stable and efficient RL training.
-- [[2602.02710|MaxRL]], [[2507.20673|GMPO]], [[2505.20686|A*-PO]], [[2504.19599|GVPO]], [[2504.05118|VAPO]]
+- [[2604.28005|KAE]], [[2604.22074|CIR/SR Reasoning]], [[2602.02710|MaxRL]], [[2507.20673|GMPO]], [[2505.20686|A*-PO]], [[2504.19599|GVPO]], [[2504.05118|VAPO]]
 
 > [!star] Key Papers
 > - [[2504.05118|VAPO]] — Value-model-based RL that reliably enhances LLM performance on challenging math reasoning
@@ -264,7 +264,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2406.03816|ReST-MCTS*]] — Automated process reward model generation via MCTS for LLM self-training
 
 **Off-Policy & Sample Efficiency** — Methods that reuse past experience or manage data more efficiently for RL fine-tuning.
-- [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]]
+- [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2601.18795|Reuse FLOPs]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]]
 
 > [!star] Key Papers
 > - [[2505.11081|ShiQ]] — Off-policy Q-learning for LLM fine-tuning; enables reuse of generated data across iterations
@@ -291,7 +291,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2504.20571|1-shot RLVR]] — Achieves competitive reasoning with just 1 rollout per sample; extreme sample efficiency
 
 **Efficient & Practical RL Training** — Infrastructure, precision tricks, and engineering insights for scaling RL training to production.
-- [[2510.26788|FP16 RL Training]], [[2505.24034|LlamaRL]], [[2505.07291|INTELLECT-2]], [[2404.08233|GPBT-PL]]
+- [[2604.26779|Speculative RL Rollouts]], [[2510.26788|FP16 RL Training]], [[2505.24034|LlamaRL]], [[2505.07291|INTELLECT-2]], [[2404.08233|GPBT-PL]]
 
 > [!star] Key Papers
 > - [[2505.24034|LlamaRL]] — Meta's distributed asynchronous RL framework for large-scale LLM training
@@ -338,7 +338,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.03335|Absolute Zero]] — Zero-data RL: model proposes its own problems, solves them, uses verifiable answers as reward — no human data at all
 
 **Self-Rewarding & Self-Improvement** — Models that generate their own training signal, eliminating external reward models or human annotation.
-- [[2604.20209|SGS]], [[2604.03128|Self-Distilled RLVR]], [[2604.03098|Self-Guide]], [[2602.12275|OPCD]], [[2601.21343|Self-Improving Pretraining]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]], [[2512.05356|Co-Improving AI]], [[2510.14420|Instructions-RL]], [[2509.23236|Self-Reflection VLM]], [[2509.15155|Self-Improving EFM]], [[2508.14460|DuPO]], [[2508.05004|R-Zero]], [[2507.16663|MLLM Self-Improvement]], [[2506.10139|ICM]], [[2506.07468|SELF-REDTEAM]], [[2505.19590|INTUITOR]], [[2410.15639|Self-Developing]], [[2401.10020|Self-Rewarding LM]]
+- [[2604.27083|CoPD]], [[2604.20209|SGS]], [[2604.03128|Self-Distilled RLVR]], [[2604.03098|Self-Guide]], [[2602.12275|OPCD]], [[2601.21343|Self-Improving Pretraining]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]], [[2512.05356|Co-Improving AI]], [[2510.14420|Instructions-RL]], [[2509.23236|Self-Reflection VLM]], [[2509.15155|Self-Improving EFM]], [[2508.14460|DuPO]], [[2508.05004|R-Zero]], [[2507.16663|MLLM Self-Improvement]], [[2506.10139|ICM]], [[2506.07468|SELF-REDTEAM]], [[2505.19590|INTUITOR]], [[2410.15639|Self-Developing]], [[2401.10020|Self-Rewarding LM]]
 
 > [!star] Key Papers
 > - [[2401.10020|Self-Rewarding LM]] — LLM generates its own reward signal; eliminates the need for a separate reward model
@@ -442,7 +442,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2503.06520|Seg-Zero]] — Pure RL framework for reasoning segmentation; emergent CoT for segmentation without supervised masks
 
 **Video & Temporal Reasoning** — RL for video understanding, temporal reasoning, and 4D spatial-temporal intelligence.
-- [[2604.16893|EasyVideoR1]], [[2603.00515|MLLM-4D]], [[2603.00461|ReMoT]], [[2601.19686|Video-KTR]], [[2510.23569|EgoThinker]], [[2510.23473|Video-Thinker]], [[2505.19000|VerIPO]], [[2504.01805|SpaceR]]
+- [[2604.16893|EasyVideoR1]], [[2603.00515|MLLM-4D]], [[2603.00461|ReMoT]], [[2601.19686|Video-KTR]], [[2510.23569|EgoThinker]], [[2510.23473|Video-Thinker]], [[2505.19877|Vad-R1]], [[2505.19000|VerIPO]], [[2504.01805|SpaceR]]
 
 > [!star] Key Papers
 > - [[2505.19000|VerIPO]] — Verifier-guided iterative policy optimization for deep, consistent video reasoning
@@ -492,7 +492,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2505.24760|REASONING GYM]] — 100+ procedurally generated environments with verifiable rewards; the gym for RL reasoning research
 
 **General Multimodal RL Infrastructure** — Cross-cutting tools, frameworks, and analysis for multimodal RL research.
-- [[2603.18656|SCALe-SFT]], [[2602.20739|PyVision-RL]], [[2602.14697|E-SPL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.04145|BIS]], [[2601.05242|GDPO]], [[2601.00215|Sight to Insight]]
+- [[2604.24661|ACO-MoE]], [[2603.18656|SCALe-SFT]], [[2602.20739|PyVision-RL]], [[2602.14697|E-SPL]], [[2602.12395|Frankenstein RL Analysis]], [[2602.04145|BIS]], [[2601.05242|GDPO]], [[2601.00215|Sight to Insight]]
 
 > [!star] Key Papers
 > - [[2602.12395|Frankenstein RL Analysis]] — Mechanistic analysis of how RL improves VLMs; reveals which components change and why
@@ -531,7 +531,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2510.07242|HERO]] — Integrates sparse verifier signals with dense generative rewards; best of both worlds
 
 **Reward Design for Images & Vision** — Reward signals specifically designed for visual tasks — perceptual quality, visual grounding, and image reasoning.
-- [[2512.08889|VALOR]], [[2302.08242|Reward Tuning CV]]
+- [[2604.27505|Edit-R1]], [[2602.11393|Visual Motion Pref Modeling]], [[2602.11124|PhyCritic]], [[2512.08889|VALOR]], [[2302.08242|Reward Tuning CV]]
 
 > [!star] Key Papers
 > - [[2302.08242|Reward Tuning CV]] — Pioneered applying RL reward tuning to computer vision tasks
@@ -574,7 +574,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2603.05218|KARL]] — Off-policy RL for knowledge agents; Pareto-optimal on enterprise search, 37% shorter trajectories
 
 **Self-Evolving Agents** — Agents that improve their own strategies, generate their own curricula, and bootstrap their own training data.
-- [[2603.25111|SEVerA]], [[2603.24533|UI-Voyager]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2511.16043|Agent0]], [[2511.10395|AgentEvolver]], [[2508.04700|SEAgent]]
+- [[2604.20987|Co-Evolve Agents]], [[2603.25111|SEVerA]], [[2603.24533|UI-Voyager]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2511.16043|Agent0]], [[2511.10395|AgentEvolver]], [[2508.04700|SEAgent]]
 
 > [!star] Key Papers
 > - [[2603.18743|Memento-Skills]] — Skill library as external memory; agents evolve without parameter updates, +13.7pp on GAIA
@@ -620,7 +620,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 RL methods designed for or applied to physical robot learning — sample efficiency, safety, and real-world deployment constraints make robotics RL fundamentally different from LLM RL.
 
 **VLA RL Post-Training** — Applying RL to fine-tune Vision-Language-Action models beyond what imitation learning alone achieves.
-- [[2604.17706|OmniVLA-RL]], [[2604.08168|ViVa]], [[2604.05614|GPLA]], [[2604.02523|Tune to Learn]], [[2603.28116|AutoDrive-P3]], [[2603.27670|ProgressVLA]], [[2603.27164|daVinci-LLM]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.13925|SmoothVLA]], [[2602.01789|RFS]], [[2509.19301|ResFiT]], [[2509.09674|SimpleVLA-RL]], [[2508.18269|FlowVLA]], [[2506.08440|TGRPO]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]], [[2504.04259|ORCA Hand]], [[2503.16806|DyWA]], [[2502.14795|Humanoid-VLA]]
+- [[2604.17706|OmniVLA-RL]], [[2604.08168|ViVa]], [[2604.05614|GPLA]], [[2604.02523|Tune to Learn]], [[2603.28116|AutoDrive-P3]], [[2603.27670|ProgressVLA]], [[2603.27164|daVinci-LLM]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.15600|Active Critic RL]], [[2603.13925|SmoothVLA]], [[2602.12281|Scaling Verification VLA]], [[2602.01789|RFS]], [[2509.25852|REVER]], [[2509.19301|ResFiT]], [[2509.09674|SimpleVLA-RL]], [[2508.18269|FlowVLA]], [[2506.08440|TGRPO]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]], [[2505.16517|ManipLVM-R1]], [[2505.03238|RobotxR1]], [[2504.04259|ORCA Hand]], [[2503.16806|DyWA]], [[2502.14795|Humanoid-VLA]]
 
 > [!star] Key Papers
 > - [[2604.17706|OmniVLA-RL]] — Flow-GSPO: reformulates flow matching as SDE for stable online RL; 97.6% on LIBERO with faster convergence than PPO/GRPO
@@ -628,7 +628,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.08440|TGRPO]] — Trajectory-wise GRPO adapted for VLA fine-tuning; bridges LLM RL and robot RL
 
 **Model-Based Robot RL** — World-model-based approaches for sample-efficient robot learning.
-- [[2604.02260|Time-Varying MBRL]], [[2603.18336|ManiDreams]], [[2504.16680|RWM-U]], [[2501.10100|RWM]], [[2410.00564|JOWA]], [[2207.07560|SkiMo]], [[2206.14176|DayDreamer]]
+- [[2604.02260|Time-Varying MBRL]], [[2603.18336|ManiDreams]], [[2602.09022|WorldCompass]], [[2504.16680|RWM-U]], [[2501.10100|RWM]], [[2410.00564|JOWA]], [[2207.07560|SkiMo]], [[2206.14176|DayDreamer]]
 
 > [!star] Key Papers
 > - [[2603.18336|ManiDreams]] — World model generates diverse manipulation scenarios; dream-based RL for dexterous tasks
@@ -644,7 +644,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2603.02203|T3RL]] — Test-Time Training for RL: adapts robot policies online using world model gradients
 
 **Sim-to-Real & Transfer** — Bridging the gap between simulation and physical deployment for robot RL.
-- [[2604.07457|CMP]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
+- [[2604.24916|asRoBallet]], [[2604.24018|Sim2Real Betting]], [[2604.23702|QuietWalk]], [[2604.07457|CMP]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
 
 > [!star] Key Papers
 > - [[2201.02373|Mirror Learning]] — Unifying theoretical framework for diverse policy optimization methods; connects RL algorithms under one roof
@@ -656,7 +656,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2505.24864|ProRL]] — NVIDIA's Prolonged RL for expanding LLM reasoning to complex robot planning domains
 
 **Contrastive & Self-Supervised RL** — Self-supervised methods that learn useful representations for RL without labeled rewards.
-- [[2604.11805|Sim2Reason]], [[2602.11832|JEPA-VLA]], [[2510.16416|SSL4RL]], [[2506.11967|Annotation Bootstrapping]], [[2503.14858|CRL]], [[2106.05526|SSRL]]
+- [[2604.11805|Sim2Reason]], [[2603.17305|Contrastive Reasoning Alignment]], [[2602.11832|JEPA-VLA]], [[2510.16416|SSL4RL]], [[2506.11967|Annotation Bootstrapping]], [[2503.14858|CRL]], [[2106.05526|SSRL]]
 
 > [!star] Key Papers
 > - [[2510.16416|SSL4RL]] — Reinterprets self-supervised learning tasks as intrinsic verifiable rewards for RL

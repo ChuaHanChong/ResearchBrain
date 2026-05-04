@@ -157,7 +157,7 @@ New attention patterns, normalization strategies, and structural modifications t
 > - [[2501.00663|Titans]] — Learns to memorize at test time via a dedicated neural memory module; bridges short and long-range context
 
 **Theoretical Foundations of Transformers** — Formal analyses of what Transformers compute, how in-context learning works, and connections to established frameworks.
-- [[2604.00965|Transformers for Applied Mathematicians]], [[2603.17063|Transformers as Bayesian Networks]], [[2509.00421|Prompt Tuning Memory Limits]], [[2507.16003|ICL Implicit Dynamics]], [[2504.13173|Miras]], [[2502.14010|ICL Attention Heads]]
+- [[2604.27077|νGPT]], [[2604.00965|Transformers for Applied Mathematicians]], [[2603.17063|Transformers as Bayesian Networks]], [[2509.00421|Prompt Tuning Memory Limits]], [[2507.16003|ICL Implicit Dynamics]], [[2504.13173|Miras]], [[2502.14010|ICL Attention Heads]]
 
 > [!star] Key Papers
 > - [[2603.17063|Transformers as Bayesian Networks]] — Proves sigmoid Transformers fundamentally operate as Bayesian networks
@@ -343,7 +343,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2505.23725|MuLoCo]] — Muon as inner optimizer for DiLoCo distributed training; significant speedup over AdamW
 
 **Scaling Laws & Training Dynamics** — Understanding how loss curves, learning rates, batch sizes, and training duration interact at scale.
-- [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2603.21191|BST Scaling Rule]], [[2603.15958|Hyperparameter Scaling Laws]], [[2507.12507|Nemotron]], [[2507.07101|Small Batch LLM Training]], [[2505.10559|Neural Thermodynamic Laws]], [[2503.12811|MPL]], [[2405.18392|Compute-Optimal Scaling Laws]], [[2310.18969|ViT Class Embedding Analysis]], [[2309.14322|Transformer Training Instabilities]], [[1812.06162|Large-Batch Training]]
+- [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2603.21191|BST Scaling Rule]], [[2603.15958|Hyperparameter Scaling Laws]], [[2507.12507|Nemotron]], [[2507.07101|Small Batch LLM Training]], [[2505.10559|Neural Thermodynamic Laws]], [[2503.12811|MPL]], [[2405.18392|Compute-Optimal Scaling Laws]], [[2310.18969|ViT Class Embedding Analysis]], [[2309.14322|Transformer Training Instabilities]], [[1812.06162|Large-Batch Training]]
 
 > [!star] Key Papers
 > - [[2503.12811|MPL]] — Multi-Power Law accurately predicts training loss across learning rate schedules
@@ -364,7 +364,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2505.09343|DeepSeek-V3]] — Hardware-software co-design strategy achieving SOTA LLM performance
 
 **Interpretability & Internal Representations** — Understanding what models learn internally and how to analyze their representations.
-- [[2603.12228|Neural Thickets]], [[2602.06218|SAE-A]], [[2602.00462|LatentLens]], [[2506.15679|Dense SAE Latents]], [[2502.03714|USAE]], [[2502.02013|Layer-by-Layer Representations]], [[2410.20722|ProtoViT]], [[2205.10268|B-cos Networks]]
+- [[2604.28119|SAE Concept Manifolds]], [[2603.12228|Neural Thickets]], [[2602.06218|SAE-A]], [[2602.00462|LatentLens]], [[2506.15679|Dense SAE Latents]], [[2502.03714|USAE]], [[2502.02013|Layer-by-Layer Representations]], [[2410.20722|ProtoViT]], [[2205.10268|B-cos Networks]]
 
 > [!star] Key Papers
 > - [[2502.02013|Layer-by-Layer Representations]] — Intermediate layers often provide superior downstream representations compared to final layers
@@ -394,7 +394,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2507.11851|Gated LoRA]] — Enables pretrained autoregressive LLMs to perform multi-token prediction via gated LoRA modules
 
 **Model Merging & Weight Averaging** — Combining multiple fine-tuned models into a single improved model without retraining.
-- [[2510.21223|FDA]], [[2505.12082|PMA]], [[2408.07666|Model Merging Survey]], [[2407.13771|Training-Free Model Merging MTDA]], [[1803.05407|SWA]]
+- [[2604.27155|GeoMerge]], [[2602.05943|Orthogonal Model Merging]], [[2510.21223|FDA]], [[2505.12082|PMA]], [[2408.07666|Model Merging Survey]], [[2407.13771|Training-Free Model Merging MTDA]], [[1803.05407|SWA]]
 
 > [!star] Key Papers
 > - [[1803.05407|SWA]] — Stochastic Weight Averaging: simple technique that finds wider optima and better generalization
