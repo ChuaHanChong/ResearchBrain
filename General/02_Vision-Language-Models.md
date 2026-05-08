@@ -137,7 +137,7 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 > - [[2506.02843|REAP]] — Revealed that learnable prompts can hinder ViT generalization in cross-domain few-shot settings
 
 **Adapters & Residual Tuning** — Lightweight modules that add task-specific capacity alongside frozen pre-trained weights.
-- [[2604.02327|SteerViT]], [[2504.21447|Shallow ViT Features]], [[2503.06063|Multi-Layer Visual Fusion]], [[2412.14640|APT]], [[2311.09191|DAC]], [[2308.05659|AD-CLIP]], [[2211.10277|TaskRes]], [[2111.03930|Tip-Adapter]]
+- [[2605.03677|Uni-OPD]], [[2605.00814|PVM]], [[2604.28123|PRISM]], [[2604.24182|M2-VLA]], [[2604.02327|SteerViT]], [[2504.21447|Shallow ViT Features]], [[2503.06063|Multi-Layer Visual Fusion]], [[2412.14640|APT]], [[2311.09191|DAC]], [[2308.05659|AD-CLIP]], [[2211.10277|TaskRes]], [[2111.03930|Tip-Adapter]]
 
 > [!star] Key Papers
 > - [[2111.03930|Tip-Adapter]] — Training-free CLIP adapter using a cache model from few-shot support sets
@@ -151,7 +151,7 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 > - [[2506.00513|SSAM]] — Self-supervised test-time adaptation for VLMs using dynamic memory alignment
 
 **Domain Adaptation & Generalization** — Transferring VLM knowledge across domains — from source to target distributions.
-- [[2603.17655|CC-CDFSL]], [[2504.06389|SemiDAViL]], [[2502.17159|RobustMerge]], [[2407.15173|CLIP Domain Adaptation]], [[2303.01906|DPCL]]
+- [[2603.17655|CC-CDFSL]], [[2509.11417|VLA Pretrain Preserve]], [[2504.06389|SemiDAViL]], [[2502.17159|RobustMerge]], [[2407.15173|CLIP Domain Adaptation]], [[2303.01906|DPCL]]
 
 > [!star] Key Papers
 > - [[2504.06389|SemiDAViL]] — First language-guided semi-supervised domain adaptation framework for VLMs
@@ -200,7 +200,7 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 > - [[2401.09865|SPARC]] — Sparse fine-grained contrastive alignment for dense region-level VLM features
 
 **Visual Grounding & Referring** — Localizing specific objects or regions described by natural language expressions.
-- [[2603.25411|HiSpatial]], [[2603.16253|EVPV]], [[2603.14609|GroundSet]], [[2603.12382|SPARROW]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.16702|SAP]], [[2602.08241|SAYO]], [[2601.10129|LaViT]], [[2601.07645|PlaM]], [[2601.06993|ReFine-RFT]], [[2601.05328|BFD]], [[2601.05244|GREx]], [[2601.00659|CRoPS]], [[2601.00215|Sight to Insight]], [[2512.24297|FIGR]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.21218|LIVR]], [[2512.16922|NEPA]], [[2512.16584|SkiLa]], [[2510.23603|PixelRefer]], [[2510.21501|GranViT]], [[2510.21311|FineRS]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.12798|Rex-Omni]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image Grounding RL]], [[2506.22624|Seg-R1]], [[2506.11991|VGR]], [[2506.02359|Auto-Labeling]], [[2505.02278|GCLIP]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2307.12813|DOD]], [[2301.05226|IPVR]], [[2203.16265|SeqTR]]
+- [[2605.05163|PhysForge]], [[2605.04128|JoyAI-Image]], [[2605.02881|MolmoAct2]], [[2603.25411|HiSpatial]], [[2603.16860|DreamPlan]], [[2603.16253|EVPV]], [[2603.14609|GroundSet]], [[2603.12382|SPARROW]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.16702|SAP]], [[2602.08241|SAYO]], [[2601.10129|LaViT]], [[2601.07645|PlaM]], [[2601.06993|ReFine-RFT]], [[2601.05328|BFD]], [[2601.05244|GREx]], [[2601.00659|CRoPS]], [[2601.00215|Sight to Insight]], [[2512.24297|FIGR]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.21218|LIVR]], [[2512.16922|NEPA]], [[2512.16584|SkiLa]], [[2511.01571|PixelVLA]], [[2510.23603|PixelRefer]], [[2510.21501|GranViT]], [[2510.21311|FineRS]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.12798|Rex-Omni]], [[2510.11689|Phys2Real]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image Grounding RL]], [[2506.22624|Seg-R1]], [[2506.11991|VGR]], [[2506.02359|Auto-Labeling]], [[2505.02278|GCLIP]], [[2503.15202|VLM-BT Failure Handling]], [[2502.01828|FOREWARN]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2307.12813|DOD]], [[2301.05226|IPVR]], [[2203.16265|SeqTR]]
 
 > [!star] Key Papers
 > - [[2203.16265|SeqTR]] — Reformulated grounding as autoregressive coordinate prediction; unified phrase localization and referring expression tasks
@@ -221,7 +221,7 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 > - [[2410.16512|TIPS]] — Unified image-text and self-supervised objectives for general-purpose vision representations
 
 **Segmentation with VLMs** — Leveraging VLM alignment for open-vocabulary or self-supervised semantic segmentation.
-- [[2602.23759|Selfment]], [[2506.22624|Seg-R1]], [[2303.01906|DPCL]]
+- [[2605.00891|X2SAM]], [[2602.23759|Selfment]], [[2506.22624|Seg-R1]], [[2303.01906|DPCL]]
 
 > [!star] Key Papers
 > - [[2602.23759|Selfment]] — Fully self-supervised framework achieving accurate object segmentation without any labels
@@ -270,7 +270,7 @@ Understanding what VLMs learn internally — which features matter, how represen
 
 Making VLMs reliable under distribution shift, adversarial conditions, and out-of-distribution inputs.
 
-- [[2604.21343|Latent Denoising LMM]], [[2604.18867|HyperRobust-VLM]], [[2510.10487|Triangular Consistency]], [[2509.07979|VIRAL]], [[2508.15568|ADAPT]], [[2507.08979|PRISM]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2410.17385|COMFORT]], [[2207.01887|MKT]]
+- [[2604.21343|Latent Denoising LMM]], [[2604.18867|HyperRobust-VLM]], [[2510.10487|Triangular Consistency]], [[2509.07979|VIRAL]], [[2508.15568|ADAPT]], [[2507.08979|PRISM]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2410.17385|COMFORT]], [[2406.07145|Failure Landscape DRL]], [[2207.01887|MKT]]
 
 > [!star] Key Papers
 > - [[2604.18867|HyperRobust-VLM]] — Hyperbolic hierarchy-aware adversarial fine-tuning; defends against superclass attacks that transfer to base classes, extends to medical imaging
@@ -403,7 +403,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2505.19094|SATORI]] — Glance-Focus-Think paradigm anchoring RL training in explicit visual grounding; 76.2% on MathVista surpassing GPT-4o
 
 **VLM Chain-of-Thought & Thinking** — Methods for step-by-step visual reasoning in multimodal models.
-- [[2604.21396|VG-CoT]], [[2604.02073|PLUME]], [[2603.29165|LatentPilot]], [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
+- [[2605.03782|GLANCE]], [[2605.02735|Silenced Visual Latents]], [[2605.02730|PFlowNet]], [[2604.21396|VG-CoT]], [[2604.02073|PLUME]], [[2603.29165|LatentPilot]], [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
 
 > [!star] Key Papers
 > - [[2411.10440|LLaVA-CoT]] — Autonomous multistage reasoning with stage-wise retracing; 5.8% improvement enabling 11B model to rival larger closed-source MLLMs

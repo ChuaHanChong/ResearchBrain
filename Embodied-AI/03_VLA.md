@@ -38,11 +38,19 @@ graph TD
         H["π0.5<br/><i>2025</i>"]
         I["Gemini Robotics<br/><i>2025</i>"]
         J["DreamZero<br/><i>2026</i>"]
+        M["π0.7<br/><i>2026</i>"]
+        N["Cosmos-Reason1<br/><i>2025</i>"]
     end
 
     subgraph "Efficient (2025)"
         K["SmolVLA<br/><i>2025</i>"]
         L["FAST<br/><i>2025</i>"]
+    end
+
+    subgraph "Egocentric (2025-2026)"
+        O["Being-H0<br/><i>2025</i>"]
+        P["EgoScale<br/><i>2026</i>"]
+        Q["π0.5+ego<br/><i>2026</i>"]
     end
 
     A --> B --> C --> D
@@ -53,8 +61,12 @@ graph TD
     E --> G
     H --> I
     H --> J
+    H --> M
     D --> K
     D --> L
+    O --> P
+    P --> Q
+    Q --> M
 
     style A fill:#e8f4fd,stroke:#4a90d9
     style B fill:#e8f4fd,stroke:#4a90d9
@@ -62,9 +74,13 @@ graph TD
     style H fill:#e8fde8,stroke:#27ae60
     style J fill:#e8fde8,stroke:#27ae60
     style I fill:#e8fde8,stroke:#27ae60
+    style M fill:#e8fde8,stroke:#27ae60
+    style N fill:#e8fde8,stroke:#27ae60
+    style P fill:#fde8f4,stroke:#d94a90
+    style Q fill:#fde8f4,stroke:#d94a90
 ```
 
-The field evolved through three phases: **proving the paradigm** (2022-2023), **scaling and opening** (2024), and **specialization** (2025-2026) — splitting into generalist, efficient, and world-model-augmented branches.
+The field evolved through three phases: **proving the paradigm** (2022-2023), **scaling and opening** (2024), and **specialization** (2025-2026) — splitting into generalist, efficient, world-model-augmented, and egocentric-pretrained branches.
 
 | Year | Model | Key Innovation | Bottleneck Solved |
 |------|-------|----------------|-------------------|
@@ -79,10 +95,16 @@ The field evolved through three phases: **proving the paradigm** (2022-2023), **
 | 2025 | [[2503.20020\|Gemini Robotics]] | Gemini 2.0 extended to physical robots | Industrial-scale VLA |
 | 2025 | [[2501.09747\|FAST]] | DCT+Huffman action compression | 5x faster VLA inference |
 | 2025 | [[2506.01844\|SmolVLA]] | 450M param VLA | 7x less memory, 40% faster training |
+| 2025 | [[2503.15558\|Cosmos-Reason1]] | Physical common-sense + embodied reasoning at WAM scale | Bridges physics priors and reasoning |
+| 2025 | [[2507.15597\|Being-H0]] | VLA pretraining from large-scale human videos | Physical instruction tuning from human hands |
 | 2026 | [[2602.15922\|DreamZero]] | Joint video + action prediction (14B WAM) | Zero-shot robot policies |
+| 2026 | [[2602.16710\|EgoScale]] | 20,854-hour log-linear scaling law on egocentric data | Egocentric-data scaling laws |
+| 2026 | [[2604.15483\|π0.7]] | Steerable generalist with emergent capabilities | Steerable open-world deployment |
+| 2026 | [[2604.20100\|JoyAI-RA]] | Foundation model for robotic autonomy | Robust autonomy across embodiments |
+| 2026 | [[2512.22414\|π0.5 + ego]] | Human→robot transfer via co-trained egocentric pretraining | Human-to-robot transfer emergence |
 
 > [!tip] Three Evolutionary Phases
-> **Phase 1 — Proof of concept** (2022-2023): RT-1 proved Transformers work, RT-2 showed VLM knowledge transfers, OXE built the cross-embodiment data foundation. **Phase 2 — Democratization** (2024): OpenVLA and Octo opened weights/code, π0 introduced flow matching for continuous control. **Phase 3 — Specialization** (2025+): The field split — generalists scaled up (π0.5, Gemini), efficient variants scaled down (FAST, SmolVLA), and WAMs added world prediction (DreamZero).
+> **Phase 1 — Proof of concept** (2022-2023): RT-1 proved Transformers work, RT-2 showed VLM knowledge transfers, OXE built the cross-embodiment data foundation. **Phase 2 — Democratization** (2024): OpenVLA and Octo opened weights/code, π0 introduced flow matching for continuous control. **Phase 3 — Specialization** (2025+): The field split — generalists scaled up (π0.5 → π0.7, Gemini, JoyAI-RA), efficient variants scaled down (FAST, SmolVLA), WAMs added world prediction (DreamZero), and egocentric pretraining emerged as a fourth branch (Being-H0, EgoScale, π0.5+ego). See [[09_Egocentric-Pretraining-and-Human-Video]] for the egocentric scaling story and [[08_VLA-Reasoning-and-CoT]] for reasoning-augmented variants.
 
 ---
 
@@ -176,15 +198,23 @@ Two architectural approaches compete: **explicit 3D integration** adds depth sen
 
 ## 4. Reasoning & Planning-Augmented VLAs
 
-Pure imitation is brittle — these models add test-time reasoning (chain-of-thought, MCTS, subgoal prediction) to improve robustness.
+Pure imitation is brittle — these models add test-time reasoning (chain-of-thought, MCTS, subgoal prediction) to improve robustness. See [[08_VLA-Reasoning-and-CoT]] for the full taxonomy of reasoning insertion points.
 
 | Model | Reasoning Type | Benefit |
 |-------|---------------|---------|
+| [[2604.22709\|Abstract-CoT]] | Latent CoT in abstract embedding space (no words) | Token-free reasoning preserves throughput |
+| [[2604.21396\|VG-CoT]] | Grounded chain-of-thought tied to visual evidence | Trustworthy visual reasoning |
+| [[2604.18486\|OneVL]] | One-step latent reasoning + planning + VL explanation | Reasoning, planning, action in one pass |
+| [[2604.17800\|ReFineVLA]] | Multimodal reasoning-aware policy via teacher-guided fine-tuning | Reasoning as a refinement signal |
 | [[2603.18091\|ADV]] | Action Draft-and-Verify (diffusion draft + VLM verify) | Self-verifying framework; +19.7% real-world success |
 | [[2601.11404\|ACoT-VLA]] | Action Chain-of-Thought (reason in action space) | Explicit action-space reasoning |
+| [[2509.25852\|REVER]] | Reinforced embodied planning with verifiable reward | RL-trained reasoning over real manipulation |
+| [[2509.25681\|dVLA]] | Diffusion VLA with multimodal CoT | Multimodal CoT in a diffusion policy |
 | [[2509.22643\|VLA-Reasoner]] | Online MCTS with world model | Simulates futures to select optimal actions |
+| [[2507.16815\|ThinkAct]] | Reinforced visual latent planning between VLM and action | Visual-latent planning with RL reward |
 | [[2506.00123\|VeBrain]] | Unified spatial reasoning + control | See-Think-Control pipeline |
 | [[2505.03500\|TLI]] | Text Latent Interpolation for skill recombination | Extrapolation: 9% → 83% on OOD tasks |
+| [[2503.22020\|CoT-VLA]] | Visual CoT generates intermediate visual goal frames | Visual sub-goals act as reasoning steps |
 | [[2503.11089\|EmbodiedVSR]] | Dynamic scene graph + physics-constrained CoT | 18.4% gain in Arm Feasibility; 80% success in real-world reassembly |
 
 **Action Chain-of-Thought** (ACoT-VLA) adds explicit reasoning in the *action* space rather than language space — the model generates intermediate action waypoints as 'reasoning steps' before committing to the final trajectory. This is fundamentally different from language CoT: the reasoning is grounded in physical coordinates, not tokens. **Online MCTS** (VLA-Reasoner) uses the world model as a simulator during inference: sample multiple action candidates, simulate each forward via the world model, score outcomes, and select the best — essentially playing 'chess' with physical actions. The latency cost is real (~3-5x slower), so ADV's draft-and-verify approach offers a middle ground: generate a fast open-loop action draft, then verify it with a closed-loop check.
@@ -200,6 +230,12 @@ VLAs that incorporate learned dynamics models for planning, imagination, or co-t
 
 | Model | Integration Style | Key Insight |
 |-------|------------------|-------------|
+| [[2604.28192\|LaST-R1]] | Reinforces action via adaptive physical latent reasoning | RL-driven latent reasoning over physical state |
+| [[2604.27792\|MotuBrain]] | Advanced WAM-conditioned policy for robot control | Motion-centered WAM core |
+| [[2604.26848\|STARRY]] | Spatial-temporal action-centric world modeling | Full ST-action-centric WM |
+| [[2604.26694\|X-WAM]] | Unified 4D world action modeling with asynchronous denoising | 4D unified WAM with async pipeline |
+| [[2604.19730\|FASTER]] | Value-guided sampling for fast RL with WM rollouts | Bridges WM rollouts and fast RL sampling |
+| [[2604.17876\|OFlow]] | Object-aware temporal flow matching | Robust manipulation via object-flow priors |
 | [[2604.14732\|WVA]] | Video generator + trajectory value + action decoder with MPPI latent optimization | Implicit planning via latent-space trajectory refinement; 98.1% LIBERO, 75.6% real dual-arm |
 | [[2604.11135\|AIM]] | Spatial value maps bridge video prediction to actions | Intent-aware unified world-action model; 94% RoboTwin |
 | [[2604.08168\|ViVa]] | Video diffusion Transformer as value function | Video-generative value model for robot RL |
@@ -234,10 +270,18 @@ Imitation learning alone leaves performance on the table. RL fine-tuning after i
 | Finding | Source |
 |---------|--------|
 | Preference-based language-action alignment grounds hierarchical VLA via SimPO | [[2604.05614\|GPLA]] |
+| Online VLA RL with spatial understanding via Flow-GSPO | [[2604.17706\|OmniVLA-RL]] |
+| Test-time perturbation learning with delayed feedback for adaptive RL | [[2604.18107\|PDF]] |
+| Value-guided sampling makes RL fast on flow-matching VLAs | [[2604.19730\|FASTER]] |
+| Primitive reasoning + tasking via contrastive representations | [[2604.27472\|PRTS]] |
 | On-policy distillation with Reverse-KL for dense token-level RL supervision; 3x faster convergence | [[2603.26666\|VLA-OPD]] |
 | Simple Sequential Fine-Tuning (LoRA + RL) shows high plasticity with minimal forgetting | [[2603.11653\|VLA RL Continual Learning]] |
 | VLAs are surprisingly resistant to catastrophic forgetting under continual RL | [[2603.03818\|VLA Continual Learning]] |
+| Self-referential policy optimization for VLA models | [[2511.15605\|SRPO]] |
 | Knowledge insulation: stop gradient flow from action expert to VLM backbone | [[2505.23705\|Knowledge Insulation VLA]] |
+| Scalable RL framework for VLA manipulation training | [[2505.18719\|VLA-RL]] |
+| Interactive post-training (RIPT-VLA) treats deployment trials as RL signal | [[2505.17016\|RIPT-VLA]] |
+| Reinforced fine-tuning via Consistency Policy bridges flow matching and RL | [[2502.05450\|ConRFT]] |
 | Two-stage alternation between online RL and SFT keeps VLA training stable; LoRA + frozen VLM | [[2501.16664\|iRe-VLA]] |
 
 > [!success] The RL Recipe for VLAs
@@ -333,6 +377,8 @@ Understanding when VLAs break is as important as knowing when they work.
 | **Visual perturbation brittleness** | [[2603.22078\|WAM vs VLA Robustness]] — VLAs struggle under camera/light/background changes | WAMs are more robust (spatiotemporal priors from video pretraining) |
 | **Detail-oriented failure** | [[2601.11421\|GM-100]] — 100 detail-oriented tasks expose very low VLA success rates | Current VLAs are coarse-grained; fine manipulation is unsolved |
 | **Counterfactual failures (vision > language)** | [[2602.17659\|CAG]] — OpenVLA-OFT: 0.4% on counterfactual tasks vs 78.6% on originals; VLAs ignore language when visual cues conflict | Inference-time CAG scheme with a VA prior mitigates; +15.5% grounding |
+| **Instruction paraphrase brittleness** | [[2603.28301\|LIBERO-Para]] — paraphrased instructions cause 22-52pp drops | VLAs overfit to exact instruction surface form |
+| **Cross-modal failure recovery** | [[2510.01642\|FailSafe]] reasons over failures and generates recoveries | Recovery requires reasoning beyond reactive policies |
 | **Inference speed** | WAMs are ≥4.8x slower than VLAs (π0.5 at 63ms/chunk is fastest) | Real-time control needs efficient architectures |
 
 ### Failure Detection for VLAs
@@ -360,14 +406,17 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 |----------|--------|
 | Why VLAs? | Strong robustness in real scenarios via VLM pre-training |
 | Which backbone? | KosMos, [[2407.07726\|PaliGemma]] (extensive multi-modal pre-training) |
+| Current generalist SOTA? | [[2604.15483\|π0.7]] (steerable open-world) and [[2604.20100\|JoyAI-RA]] (multi-embodiment) |
+| Egocentric pretraining? | [[2507.15597\|Being-H0]], [[2602.16710\|EgoScale]], [[2512.22414\|π0.5 + ego]] — see [[09_Egocentric-Pretraining-and-Human-Video]] |
 | How to formulate? | ==Continuous actions== + ==Policy Head== for history fusion |
 | How to train? | Flow Matching ≈ MSE; ==MoE== for zero-shot generalization |
 | Data strategy? | ==Post-training==: cross-embodiment pre-train → in-domain fine-tune |
 | Need efficiency? | [[2501.09747\|FAST]] tokenization or [[2506.01844\|SmolVLA]] (450M) |
 | Need 3D? | [[2501.15830\|SpatialVLA]] (explicit) or [[2510.12276\|Spatial Forcing]] (implicit) |
-| Need reasoning? | [[2509.22643\|VLA-Reasoner]] (MCTS) or [[2601.11404\|ACoT-VLA]] (action CoT) |
-| Need world model? | [[2602.12063\|VLAW]] (co-improvement) or [[2603.16666\|Fast-WAM]] (no latency) |
-| Need RL? | Knowledge insulation + LoRA + verifiable rewards |
+| Need reasoning? | [[2503.22020\|CoT-VLA]] (visual CoT), [[2507.16815\|ThinkAct]] (RL latent), or [[2509.22643\|VLA-Reasoner]] (MCTS) — full taxonomy in [[08_VLA-Reasoning-and-CoT]] |
+| Need world model? | [[2602.12063\|VLAW]] (co-improvement), [[2603.16666\|Fast-WAM]] (no latency), or [[2604.26694\|X-WAM]] (4D unified) |
+| Need RL? | [[2505.18719\|VLA-RL]], [[2505.17016\|RIPT-VLA]], or [[2511.15605\|SRPO]] + Knowledge Insulation + LoRA |
+| Need physics priors? | [[2503.15558\|Cosmos-Reason1]] — see [[07_Physics-Aware-Embodied-AI]] for the full physics-aware design space |
 | Need bimanual? | [[2511.05275\|TwinVLA]] (compose two single-arm) or [[2410.07864\|RDT-1B]] |
 | Need robustness? | WAM augmentation or diverse cross-embodiment training |
 
@@ -378,8 +427,12 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 - [[01_Embodied-AI-101]] — VLA vs WAM basics and four learning strategies
 - [[04_WAM]] — Full WAM taxonomy (VideoGen, VLM-based, From Scratch)
 - [[05_Latent-World-Models]] — JEPA evolution lineage (V-JEPA 2 → VLA-JEPA)
+- [[06_Self-Evolving-VLA-WAM]] — Self-evolving VLAs, failure detection, and continual learning
+- [[07_Physics-Aware-Embodied-AI]] — Physics priors for embodied AI; physics-coupled VLA pipelines
+- [[08_VLA-Reasoning-and-CoT]] — Full taxonomy of where to insert reasoning into VLA pipelines
+- [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric scaling laws and human→robot transfer
 - [[02_Dataset-Benchmark-Environment]] — Datasets, benchmarks, and simulation platforms
 
 ---
 
-*See [[04_WAM]] for the world-model alternative, or [[01_Embodied-AI-101]] to start from the basics.*
+*See [[04_WAM]] for the world-model alternative, [[08_VLA-Reasoning-and-CoT]] for reasoning depth, or [[01_Embodied-AI-101]] to start from the basics.*

@@ -118,7 +118,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2506.21872|Continual RL Survey]] — First comprehensive survey dedicated to continual RL; defines the taxonomy and open problems
 
 **Meta-RL** — Learning-to-learn for RL: agents that can quickly adapt to new tasks by leveraging prior experience.
-- [[2305.17250|RaMP]], [[2301.08028|Meta-RL Tutorial]]
+- [[2305.17250|RaMP]], [[2301.08028|Meta-RL Tutorial]], [[1910.10897|Meta-World]]
 
 > [!star] Key Papers
 > - [[2301.08028|Meta-RL Tutorial]] — Definitive tutorial unifying meta-RL definitions and algorithms; essential reference for the sub-field
@@ -147,7 +147,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2512.17636|TRAPO]] — Unifies SFT and RL within a single trajectory-level preference optimization framework
 
 **Test-Time Scaling & Compute** — Trading inference compute for better reasoning — search, verification, and adaptive depth at test time.
-- [[2510.08189|R-Horizon]], [[2503.24235|Test-Time Scaling Survey]], [[2407.14414|System-1.x]]
+- [[2601.06748|TT-VLA]], [[2510.08189|R-Horizon]], [[2503.24235|Test-Time Scaling Survey]], [[2407.14414|System-1.x]]
 
 > [!star] Key Papers
 > - [[2503.24235|Test-Time Scaling Survey]] — Unified four-axis taxonomy for the rapidly growing test-time scaling field
@@ -163,7 +163,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 The Dreamer lineage: learning a latent world model, then "dreaming" in it to train a policy. This is the foundation for World Action Models (WAMs) in robotics.
 
 **Dreamer Lineage** — The core trajectory from latent imagination through scalable general agents to real-robot deployment.
-- [[2604.02911|DreamTIP]], [[2604.02260|Time-Varying MBRL]], [[2503.21047|CBET-DreamerV3]], [[2301.04104|DreamerV3]], [[2211.15944|Continual-Dreamer]], [[2206.14176|DayDreamer]], [[1912.01603|Dreamer]]
+- [[2605.04709|ELVIS]], [[2604.02911|DreamTIP]], [[2604.02260|Time-Varying MBRL]], [[2503.21047|CBET-DreamerV3]], [[2301.04104|DreamerV3]], [[2211.15944|Continual-Dreamer]], [[2206.14176|DayDreamer]], [[1912.01603|Dreamer]]
 
 > [!star] Key Papers
 > - [[1912.01603|Dreamer]] — Pioneered latent imagination: learn a world model in latent space, generate synthetic rollouts, train the policy entirely in imagination
@@ -171,14 +171,14 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2206.14176|DayDreamer]] — First to deploy Dreamer on physical robots (A1 quadruped, UR5 arm), learning from scratch in hours
 
 **Exploration & Curiosity** — Self-supervised exploration strategies that drive world model improvement and zero-shot task adaptation.
-- [[2603.28386|COvolve]], [[2603.15789|OmniReset]], [[2509.03771|Co-Evolving MARL]], [[2503.23631|Intrinsic Motivation Human-Agent Study]], [[2503.01584|SENSEI]], [[2502.05726|ACCEL]], [[2411.13852|ESRM]], [[2408.05804|Single-Goal Contrastive RL]], [[2305.13622|SER]], [[2112.15402|RER]], [[2007.07853|gamma-Progress]], [[2005.05960|Plan2Explore]], [[1901.01753|POET]], [[1810.12894|RND]], [[1705.05363|ICM]]
+- [[2605.03782|GLANCE]], [[2603.28386|COvolve]], [[2603.15789|OmniReset]], [[2509.03771|Co-Evolving MARL]], [[2503.23631|Intrinsic Motivation Human-Agent Study]], [[2503.01584|SENSEI]], [[2502.05726|ACCEL]], [[2411.13852|ESRM]], [[2408.05804|Single-Goal Contrastive RL]], [[2305.13622|SER]], [[2112.15402|RER]], [[2007.07853|gamma-Progress]], [[2005.05960|Plan2Explore]], [[1901.01753|POET]], [[1810.12894|RND]], [[1705.05363|ICM]]
 
 > [!star] Key Papers
 > - [[2005.05960|Plan2Explore]] — Curiosity-driven exploration in world model latent space; explores to maximize world model improvement, then adapts zero-shot
 > - [[2503.01584|SENSEI]] — Semantic exploration with epistemic uncertainty + Go-Explore for versatile world models
 
 **Diffusion & Flow-Based Planning** — Reframing RL as iterative denoising or flow matching over trajectories, enabling flexible conditioning on rewards and constraints.
-- [[2604.19730|FASTER]], [[2604.00202|DreamControl-v2]], [[2603.04333|floq]], [[2205.09991|Diffuser]]
+- [[2605.04568|Dream-MPC]], [[2604.23380|V-GRPO]], [[2604.19730|FASTER]], [[2604.00202|DreamControl-v2]], [[2603.04333|floq]], [[2509.04063|ARFM]], [[2205.09991|Diffuser]]
 
 > [!star] Key Papers
 > - [[2205.09991|Diffuser]] — Planning as diffusion over trajectories; reframed RL as iterative denoising, enabling flexible conditioning on rewards, constraints, and skills
@@ -235,7 +235,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2505.22257|Off-Policy GRPO]] — Formalized off-policy extension for GRPO; enables more sample-efficient training
 
 **PPO & Proximal Methods** — PPO-family algorithms adapted for LLM and multimodal model training, with emphasis on credit assignment and stability.
-- [[2604.20328|DePO]], [[2602.04879|DPPO]], [[2508.17784|PSFT]], [[2508.08221|Lite PPO]], [[2506.15050|T-PPO]], [[2410.01679|VinePPO]]
+- [[2605.04470|CRAFT Driving]], [[2605.03846|SigLoMa]], [[2605.03363|Hierarchical RL-QP Grasp]], [[2604.20328|DePO]], [[2602.04879|DPPO]], [[2511.01331|RobustVLA]], [[2508.17784|PSFT]], [[2508.08221|Lite PPO]], [[2506.15050|T-PPO]], [[2410.01679|VinePPO]], [[2409.16578|FLaRe]]
 
 > [!star] Key Papers
 > - [[2604.20328|DePO]] — Decoupled PPO for hybrid discrete-continuous action spaces; vMF distribution and hyperspherical KL enable stable MLLM latent-reasoning RL
@@ -243,7 +243,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2506.15050|T-PPO]] — Truncated PPO significantly enhances training efficiency for LLM reasoning
 
 **DPO, Preference & Alignment** — Direct Preference Optimization and its multimodal extensions — aligning models with human preferences without explicit reward models.
-- [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.28204|ERPO]], [[2603.25077|ToR]], [[2603.23355|ReVal]], [[2603.22117|RLVR Direction]], [[2603.21383|PivotRL]], [[2603.19835|FIPO]], [[2602.22703|GEODPO]], [[2511.15605|SRPO]], [[2510.16333|PIVOT]], [[2509.26346|EditReward]], [[2509.26074|LENS]], [[2509.14234|CaT]], [[2509.11452|Multi-Objective RL Alignment]], [[2509.07414|LSP]], [[2507.08068|QRPO]], [[2506.21495|Offline-Online RL for LLMs]], [[2506.16895|STRUCTURE Alignment]], [[2504.16801|DeGLA]], [[2504.15619|AdaViP]], [[2504.12717|RaFA]], [[2502.08922|SCIR]], [[2411.19309|GRAPE]], [[2411.10442|MPO]], [[2411.04109|SCPO]], [[2410.12735|CREAM]], [[2410.02355|AlphaEdit]], [[2210.05639|DPO]]
+- [[2605.02087|MSM]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.28204|ERPO]], [[2603.25077|ToR]], [[2603.23355|ReVal]], [[2603.22117|RLVR Direction]], [[2603.21383|PivotRL]], [[2603.19835|FIPO]], [[2602.22703|GEODPO]], [[2511.15605|SRPO]], [[2510.16333|PIVOT]], [[2509.26346|EditReward]], [[2509.26074|LENS]], [[2509.14234|CaT]], [[2509.11452|Multi-Objective RL Alignment]], [[2509.07414|LSP]], [[2507.08068|QRPO]], [[2506.21495|Offline-Online RL for LLMs]], [[2506.16895|STRUCTURE Alignment]], [[2506.07127|APO]], [[2504.16801|DeGLA]], [[2504.15619|AdaViP]], [[2504.12717|RaFA]], [[2503.03480|SafeVLA]], [[2502.08922|SCIR]], [[2411.19309|GRAPE]], [[2411.10442|MPO]], [[2411.04109|SCPO]], [[2410.12735|CREAM]], [[2410.02355|AlphaEdit]], [[2210.05639|DPO]]
 
 > [!star] Key Papers
 > - [[2506.21495|Offline-Online RL for LLMs]] — Shows DPO adapted to online or hybrid settings matches full RL performance at lower cost
@@ -264,7 +264,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2406.03816|ReST-MCTS*]] — Automated process reward model generation via MCTS for LLM self-training
 
 **Off-Policy & Sample Efficiency** — Methods that reuse past experience or manage data more efficiently for RL fine-tuning.
-- [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2601.18795|Reuse FLOPs]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]]
+- [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2311.03351|Uni-O4]]
 
 > [!star] Key Papers
 > - [[2505.11081|ShiQ]] — Off-policy Q-learning for LLM fine-tuning; enables reuse of generated data across iterations
@@ -284,7 +284,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2506.09477|KL Divergence Gradient Pitfalls]] — Meta FAIR identifies widespread implementation errors in KL divergence gradient estimation; critical for correct RLHF
 
 **Multi-Turn & Agentic Policy Optimization** — Extending RLVR beyond single-turn QA to multi-step, multi-turn, and agentic settings.
-- [[2509.22638|FCP]], [[2509.07980|Parallel-R1]], [[2509.02333|DCPO]], [[2504.20571|1-shot RLVR]], [[2504.20073|RAGEN]]
+- [[2605.02730|PFlowNet]], [[2604.28182|Exploration Hacking]], [[2509.22638|FCP]], [[2509.07980|Parallel-R1]], [[2509.02333|DCPO]], [[2504.20571|1-shot RLVR]], [[2504.20073|RAGEN]]
 
 > [!star] Key Papers
 > - [[2504.20073|RAGEN]] — Showed that single-turn RLVR doesn't transfer to multi-step tasks; introduced StarPO for multi-turn RL
@@ -298,7 +298,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2510.26788|FP16 RL Training]] — Demonstrates FP16 precision works for RL training; halves memory cost
 
 **Hybrid SFT + RL Pipelines** — Methods that combine supervised fine-tuning with RL in unified or staged training recipes.
-- [[2604.23747|SFT-then-RL Reaudit]], [[2604.14258|GFT]], [[2603.12248|EBFT]], [[2602.01058|PEAR]], [[2601.06993|ReFine-RFT]], [[2512.12690|SFT vs RL VLM Study]], [[2510.10606|ViSurf]], [[2507.01679|Prefix-RFT]], [[2506.13056|Metis-RISE]], [[2505.03181|AFSFT]], [[2504.14945|LUFFY]], [[2504.11343|RAFT++]]
+- [[2605.03677|Uni-OPD]], [[2605.03269|RLDX-1]], [[2604.28123|PRISM]], [[2604.23747|SFT-then-RL Reaudit]], [[2604.14258|GFT]], [[2603.12248|EBFT]], [[2602.01058|PEAR]], [[2601.06993|ReFine-RFT]], [[2512.12690|SFT vs RL VLM Study]], [[2510.10606|ViSurf]], [[2507.01679|Prefix-RFT]], [[2506.13056|Metis-RISE]], [[2505.03181|AFSFT]], [[2504.14945|LUFFY]], [[2504.11343|RAFT++]]
 
 > [!star] Key Papers
 > - [[2510.10606|ViSurf]] — Unified single-stage post-training integrating SFT and RL; avoids the two-stage overhead
@@ -508,7 +508,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 Learning and designing reward signals for RL training — from hand-crafted rewards through learned reward models to reasoning-based verification. The quality of the reward model is the ceiling for RL performance.
 
 **Process Reward Models** — Models that evaluate individual reasoning steps rather than just final answers, enabling fine-grained credit assignment.
-- [[2604.24583|Perceval]], [[2604.03037|ARM]], [[2509.23250|VL-PRM]], [[2506.23235|EndoRM]], [[2506.13888|VL-GenRM]], [[2506.02095|CycleReward]], [[2505.02387|RM-R1]], [[2504.16828|THINKPRM]], [[2504.02495|DeepSeek-GRM]], [[2503.13551|HRM]], [[2503.10291|VisualPRM]]
+- [[2605.02073|Search-Driven Reward RL]], [[2604.24583|Perceval]], [[2604.03037|ARM]], [[2509.23250|VL-PRM]], [[2506.23235|EndoRM]], [[2506.13888|VL-GenRM]], [[2506.02095|CycleReward]], [[2505.02387|RM-R1]], [[2504.16828|THINKPRM]], [[2504.02495|DeepSeek-GRM]], [[2503.13551|HRM]], [[2503.10291|VisualPRM]]
 
 > [!star] Key Papers
 > - [[2504.02495|DeepSeek-GRM]] — Self-Principled Critique Tuning: point-wise reward models with self-generated principles

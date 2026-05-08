@@ -27,6 +27,9 @@ graph TD
         C["V-JEPA 2.1<br/><i>2026</i>"]
         D["VL-JEPA<br/><i>2025</i>"]
         E["VLA-JEPA<br/><i>2026</i>"]
+        K["JEPA-VLA<br/><i>2026</i>"]
+        L["TD-JEPA<br/><i>2026</i>"]
+        M["Percept-WAM<br/><i>2026</i>"]
     end
 
     subgraph "Other Latent Models"
@@ -38,19 +41,28 @@ graph TD
     subgraph "Latent Reasoning"
         I["ThinkJEPA<br/><i>2026</i>"]
         J["ATP-Latent<br/><i>2026</i>"]
+        N["Abstract-CoT<br/><i>2026</i>"]
     end
 
     A --> B
     B --> C
     B --> D
     B --> E
+    E --> K
+    E --> L
+    E --> M
     E --> I
     F --> G
+    I --> N
 
     style A fill:#e8f4fd,stroke:#4a90d9
     style E fill:#e8fde8,stroke:#27ae60
+    style K fill:#e8fde8,stroke:#27ae60
+    style L fill:#e8fde8,stroke:#27ae60
+    style M fill:#e8fde8,stroke:#27ae60
     style I fill:#f0e8fd,stroke:#9b59b6
     style J fill:#f0e8fd,stroke:#9b59b6
+    style N fill:#f0e8fd,stroke:#9b59b6
 ```
 
 The field evolved through three threads: **JEPA** (2023-2026) where I-JEPA established latent prediction and V-JEPA 2 scaled it to 1M+ hours of video; **alternative latent models** (2024-2025) where DINO-WM and UWM showed other self-supervised features work too; and **latent reasoning** (2026) where ThinkJEPA and ATP-Latent brought reasoning into latent planning for embodied agents.
@@ -146,11 +158,14 @@ This section traces the four-stage evolution from self-supervised video encoder 
 Beyond the JEPA lineage, other architectures also predict in latent space for embodied AI.
 
 **JEPA Extensions** — Papers that build on or extend the JEPA framework for new capabilities.
-- [[2603.22281|ThinkJEPA]], [[2603.19312|LeWM]], [[2602.11389|Causal-JEPA]], [[2505.03176|seq-JEPA]], [[2511.08544|LeJEPA]], [[2504.16591|JEPA for RL]], [[2512.19605|KerJEPA]], [[2509.14252|LLM-JEPA]]
+- [[2603.22281|ThinkJEPA]], [[2603.19312|LeWM]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2511.19221|Percept-WAM]], [[2511.08544|LeJEPA]], [[2510.00739|TD-JEPA]], [[2509.14252|LLM-JEPA]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2512.19605|KerJEPA]]
 
 > [!star] Key Papers
+> - [[2602.11832|JEPA-VLA]] — Demonstrates that video predictive embedding is *needed* for VLA models; closes the JEPA → VLA loop with action-conditioned latent prediction
 > - [[2602.11389|Causal-JEPA]] — Object-centric world model with causal reasoning via latent interventions; disentangles objects for counterfactual planning
+> - [[2511.19221|Percept-WAM]] — Perception-enhanced world-awareness-action model for end-to-end autonomous driving
 > - [[2511.08544|LeJEPA]] — Provable and scalable SSL framework based on Euclidean latent geometry
+> - [[2510.00739|TD-JEPA]] — Latent-predictive representations for zero-shot RL; bridges JEPA to value learning
 
 **Non-JEPA Latent Models** — Alternative architectures achieving latent prediction without the JEPA framework.
 - [[2604.10333|ZWM]], [[2603.29090|HCLSM]], [[2512.13030|Motus]], [[2507.19468|DINO-world]], [[2505.15659|FLARE]], [[2505.13696|ESWM]], [[2505.11528|LaDi-WM]], [[2504.02792|UWM]], [[2503.18938|AdaWorld]], [[2411.04983|DINO-WM]]
@@ -158,6 +173,48 @@ Beyond the JEPA lineage, other architectures also predict in latent space for em
 > [!star] Key Papers
 > - [[2411.04983|DINO-WM]] — Task-agnostic world model on frozen DINOv2 features; zero-shot planning without task-specific training
 > - [[2504.02792|UWM]] — Unified World Models: single architecture handling action-conditioned, action-free, and video prediction tasks
+
+### 3.1 JEPA Variant Design-Space Matrix
+
+JEPA-family models trade off three axes: encoder freezing, modality count, and action conditioning. Choose by deployment constraints.
+
+| Variant | Encoder | Modalities | Action-Conditioned | Best For |
+|---------|---------|-----------|-------------------|----------|
+| [[2301.08243\|I-JEPA]] | Trainable | Image | No | Image SSL pretraining |
+| [[2506.09985\|V-JEPA 2]] | Trainable | Video | No | Video SSL + zero-shot MPC |
+| [[2603.14482\|V-JEPA 2.1]] | Trainable | Video (dense) | No | Depth, navigation, dense tasks |
+| [[2512.10942\|VL-JEPA]] | Trainable | Vision + Lang | No | Discriminative VL retrieval |
+| [[2602.10098\|VLA-JEPA]] | Trainable | Vision + Lang + Action | Yes | Full robot control via latent prediction |
+| [[2602.11832\|JEPA-VLA]] | Trainable | Vision + Action | Yes | Action-conditioned video embedding |
+| [[2510.00739\|TD-JEPA]] | Trainable | Vision + Reward | Yes (zero-shot RL) | Value learning in latent space |
+| [[2511.19221\|Percept-WAM]] | Trainable | Vision (multi-cam) + Action | Yes | End-to-end autonomous driving |
+| [[2411.04983\|DINO-WM]] | Frozen (DINOv2) | Vision + Action | Yes | Zero-shot planning, transfer |
+| [[2602.11389\|Causal-JEPA]] | Trainable | Object-centric | Yes | Counterfactual reasoning |
+
+> [!tip] Picking a JEPA Variant
+> If you need **action conditioning**, use VLA-JEPA, JEPA-VLA, or DINO-WM. If you need **zero-shot transfer**, freeze the encoder (DINO-WM). If you need **dense local features**, use V-JEPA 2.1. If you need **multi-camera autonomous driving**, use Percept-WAM. If you need **value learning**, use TD-JEPA.
+
+### 3.2 Alternative-Latent-Models Thread
+
+Beyond the JEPA lineage, a parallel thread builds latent world models on different SSL substrates. The threads converge on the same insight (predict in latent space) via different routes.
+
+```mermaid
+graph LR
+    A["DINOv2<br/><i>Frozen visual SSL</i>"] --> B["DINO-WM<br/><i>2024</i>"]
+    B --> C["UWM<br/><i>2025</i>"]
+    C --> D["Motus<br/><i>2025</i>"]
+    D --> E["LaDi-WM<br/><i>2025</i>"]
+
+    F["AdaWorld<br/><i>2025</i>"] --> C
+    G["DINO-world<br/><i>2025</i>"] --> B
+
+    style A fill:#e8f4fd,stroke:#4a90d9
+    style B fill:#e8f4fd,stroke:#4a90d9
+    style D fill:#f0e8fd,stroke:#9b59b6
+    style E fill:#f0e8fd,stroke:#9b59b6
+```
+
+DINO-WM established that *frozen* DINOv2 features are rich enough for world modeling. UWM unified action-free, action-conditioned, and video prediction in one diffusion architecture. Motus pushed unified latent diffusion further. LaDi-WM combined DINOv2+Siglip features with imagination-guided iterative action refinement, hitting 68.7% on LIBERO-LONG with only 10 demos.
 
 **How DINO-WM Works**: Rather than training a world model from scratch, DINO-WM builds on frozen DINOv2 features — visual representations already trained on massive image data. A lightweight dynamics module learns to predict how these frozen features change given an action. Because the visual encoder is frozen, the model generalizes to new environments without retraining — the dynamics are separate from the visual representation. This enables zero-shot planning: given a goal image, the agent searches for an action sequence whose predicted feature trajectory ends at the goal features.
 
@@ -188,10 +245,13 @@ The frontier: combining latent world models with **reasoning in representation s
 > - [[2601.11442|Map2Thought]] — Unifies discrete symbolic grids with continuous metric-scale data for explicit 3D latent reasoning; metric cognitive maps enable spatial planning
 > - [[2504.12680|Embodied-R]] — RL activates embodied spatial reasoning in foundation models; bridges perception and physical action through latent representations
 
-**Continuous Thought for Embodied Agents** — Extending the Coconut/Huginn "thinking in latent space" paradigm to physical agents: models reason by iterating on continuous embeddings rather than generating text tokens.
-- [[2601.05877|iReasoner]], [[2511.19418|COVT]]
+**Continuous Thought for Embodied Agents** — Extending the Coconut/Huginn "thinking in latent space" paradigm to physical agents: models reason by iterating on continuous embeddings rather than generating text tokens. See [[08_VLA-Reasoning-and-CoT]] for the full reasoning insertion-point taxonomy.
+- [[2604.22709|Abstract-CoT]], [[2601.05877|iReasoner]], [[2511.19418|COVT]], [[2509.25681|dVLA]], [[2503.15558|Cosmos-Reason1]]
 
 > [!star] Key Papers
+> - [[2604.22709|Abstract-CoT]] — Token-free latent CoT: reasoning happens in abstract embedding space, eliminating the discrete-token bottleneck while preserving reasoning quality
+> - [[2503.15558|Cosmos-Reason1]] — Bridges physical commonsense and embodied reasoning; physics-aware reasoning at WAM scale
+> - [[2509.25681|dVLA]] — Diffusion VLA with multimodal CoT; reasoning interleaved with diffusion-based action generation
 > - [[2601.05877|iReasoner]] — Trajectory-aware intrinsic reasoning supervision for self-evolving LMMs; uses cross-rollout step agreement as intrinsic reward signal
 > - [[2511.19418|COVT]] — Chain-of-Visual-Thought: VLMs generate and reason with continuous visual tokens in latent space, enabling visual reasoning without text bottleneck
 
@@ -252,8 +312,11 @@ Latent world models are powerful but face fundamental limitations that remain un
 - [[03_VLA]] — VLA deep-dive (Section 5 covers WAM-augmented VLAs)
 - [[02_Dataset-Benchmark-Environment]] — Benchmarks for evaluating latent world models
 - [[06_Self-Evolving-VLA-WAM]] — Self-evolving VLAs & WAMs (VLA-JEPA as a self-evolving target)
+- [[07_Physics-Aware-Embodied-AI]] — Physics-aware latent dynamics and physical commonsense
+- [[08_VLA-Reasoning-and-CoT]] — Latent reasoning insertion patterns (Abstract-CoT, dVLA)
+- [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining substrates for latent models
 - [[01_Embodied-AI-101]] — Embodied AI basics
 
 ---
 
-*See [[04_WAM]] for the full WAM taxonomy, or [[06_Self-Evolving-VLA-WAM]] for how latent world models enable self-evolution.*
+*See [[04_WAM]] for the full WAM taxonomy, [[08_VLA-Reasoning-and-CoT]] for latent reasoning insertion, or [[06_Self-Evolving-VLA-WAM]] for how latent world models enable self-evolution.*

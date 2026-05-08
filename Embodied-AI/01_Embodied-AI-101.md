@@ -100,10 +100,12 @@ VLA design choices break into three axes:
 - ==Discrete== — action tokens predicted auto-regressively (compounding errors over long horizons)
 - ==Continuous== — floating-point values via MSE, BCE, or ==Flow Matching== (better temporal coherence)
 
-> [!abstract] Current SOTA Configuration
-> ==Policy Head fusion + Continuous Action Space== — best trade-off between reasoning capacity and inference efficiency.
+==Flow Matching== has emerged as the dominant continuous-action recipe: [[2410.24164|π0]] established it for VLAs, [[2503.20314|Wan]] scaled it for video-conditioned generation, [[2504.18471|Action Flow Matching]] adapted it for continual robot learning, and [[2505.05470|Flow-GRPO]] showed RL fine-tuning works directly on flow-matching policies — closing the loop between flow-matching SFT and RL post-training.
 
-**Representative models:** [[2310.08864|RT-2-X]], [[2406.09246|OpenVLA]] (one-step/discrete) · [[2405.12213|Octo]], [[2312.13139|GR-1]] (interleaved) · [[2311.01378|RoboFlamingo]] (policy head)
+> [!abstract] Current SOTA Configuration (2026)
+> ==Policy Head fusion + Continuous Action Space + Flow-Matching action expert + MoE backbone== — best trade-off between reasoning capacity, throughput, and zero-shot generalization. Frontier exemplars: [[2604.15483|π0.7]] (steerable generalist), [[2602.15922|DreamZero]] (joint video+action 14B WAM), [[2602.10098|VLA-JEPA]] (latent world model + flow head), and [[2603.16666|Fast-WAM]] (training-time video, deployment-time speed).
+
+**Representative models:** [[2310.08864|RT-2-X]], [[2406.09246|OpenVLA]] (one-step/discrete) · [[2405.12213|Octo]], [[2312.13139|GR-1]] (interleaved) · [[2311.01378|RoboFlamingo]] (policy head) · [[2604.07430|HY-Embodied-0.5]] (MoT-MoE multi-embodiment)
 
 ### Data Strategy
 
@@ -121,10 +123,10 @@ Three training recipes for bridging sim-to-real:
 1. **Generalization** — VLAs achieved a **30.3%** improvement on 5-task chains in unseen CALVIN scenes
 2. **Backbone matters** — KosMos and [[2407.07726|PaliGemma]] outperform others due to stronger vision-language alignment from larger pre-training datasets
 3. **Continuous > Discrete** — continuous actions avoid compounding discretization errors; Flow Matching offers slight gains over MSE
-4. **Emergent self-correction** — top VLAs re-locate handles after a missed grasp without explicit error-recovery training; ==Mixture-of-Experts (MoE)== improves zero-shot generalization
+4. **Emergent self-correction** — top VLAs re-locate handles after a missed grasp without explicit error-recovery training; ==Mixture-of-Experts (MoE)== improves zero-shot generalization. Frontier MoE/MoT examples: [[2604.07430|HY-Embodied-0.5]] (MoT for multi-embodiment), [[2603.15169|ForceVLA2]] (Cross-Scale MoE for force fusion), [[2603.07648|AtomicVLA]] (SG-MoE for skill abstraction).
 
 > [!success] Ideal VLA Design Spec
-> ==KosMos/[[2407.07726|PaliGemma]] backbone== + ==Policy Head fusion== + ==Continuous actions== + ==MoE== + ==Post-training on in-domain data==
+> ==KosMos/[[2407.07726|PaliGemma]] backbone== + ==Policy Head fusion== + ==Continuous actions (Flow Matching)== + ==MoE== + ==Post-training on in-domain data==
 
 ---
 
@@ -214,4 +216,4 @@ The critical prerequisite for all three paths: **the agent must first detect tha
 
 ---
 
-*For a deep dive into VLA design, see [[03_VLA]]. For WAM papers by category, see [[04_WAM]]. For latent world models, see [[05_Latent-World-Models]]. For datasets and benchmarks, see [[02_Dataset-Benchmark-Environment]]. For self-evolving systems, see [[06_Self-Evolving-VLA-WAM]].*
+*For a deep dive into VLA design, see [[03_VLA]]. For WAM papers by category, see [[04_WAM]]. For latent world models, see [[05_Latent-World-Models]]. For datasets and benchmarks, see [[02_Dataset-Benchmark-Environment]]. For self-evolving systems, see [[06_Self-Evolving-VLA-WAM]]. For physics-aware embodied AI, see [[07_Physics-Aware-Embodied-AI]]. For VLA reasoning and CoT, see [[08_VLA-Reasoning-and-CoT]]. For egocentric pretraining, see [[09_Egocentric-Pretraining-and-Human-Video]].*

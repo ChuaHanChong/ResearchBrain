@@ -129,7 +129,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2211.12588\|PoT]] — Program of Thoughts prompting: LLMs delegate numerical reasoning to code execution
 
 **Visual Programming & Compositional Code** — Composing vision-and-language modules into executable programs for visual reasoning, enabling training-free compositional problem-solving.
-- [[2603.22435\|CaP-X]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]]
+- [[2605.02600|CoRAL]], [[2603.22435\|CaP-X]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]]
 
 > [!star] Key Papers
 > - [[2303.08128\|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without any training
@@ -200,7 +200,7 @@ Agents trained via reinforcement learning for multi-turn interactions with envir
 > - [[2508.03680\|Agent Lightning]] — Microsoft Research decouples RL training from inference, enabling scalable agent training
 
 **Verifiable Reasoning & Meta-Reasoning** — Agents that verify their own reasoning steps, use meta-cognitive strategies, or integrate judges for reliable multi-step execution.
-- [[2511.01833\|TIR-Bench]], [[2510.23038\|TIR-Judge]], [[2510.08191\|Training-Free GRPO]], [[2509.15172\|MACA]], [[2508.10874\|SSRL]], [[2507.22844\|RLVMR]]
+- [[2605.03782|GLANCE]], [[2511.01833\|TIR-Bench]], [[2510.23038\|TIR-Judge]], [[2510.08191\|Training-Free GRPO]], [[2509.15172\|MACA]], [[2508.10874\|SSRL]], [[2507.22844\|RLVMR]]
 
 > [!star] Key Papers
 > - [[2507.22844\|RLVMR]] — Verifiable meta-reasoning rewards improve long-horizon agent performance by rewarding sound reasoning process, not just outcomes
@@ -285,7 +285,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 > - [[2603.05218\|KARL]] — Knowledge agent via off-policy RL for grounded reasoning over enterprise knowledge bases
 
 **Self-Evolving Agent Frameworks** — Agents that autonomously improve their own strategies, prompts, or tool-use policies through self-reflection and iterative optimization.
-- [[2604.18292\|Agent-World]], [[2604.18131\|Native Evolution]], [[2604.15034\|Autogenesis]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
+- [[2604.27488|Skills-Coach]], [[2604.18292\|Agent-World]], [[2604.18131\|Native Evolution]], [[2604.15034\|Autogenesis]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
 
 > [!star] Key Papers
 > - [[2508.02085\|SE-Agent]] — Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement
@@ -331,7 +331,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2603.15386\|RieMind]] — Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations
 
 **Scientific & Research Agents** — Agents designed for autonomous scientific research, from literature review to experiment design and execution.
-- [[2604.28158|Intern-Atlas]], [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
+- [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
 
 > [!star] Key Papers
 > - [[2505.16938\|InternAgent]] — Unified closed-loop multi-agent system for fully autonomous scientific research

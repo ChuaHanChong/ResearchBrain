@@ -61,6 +61,12 @@ graph TD
     style K fill:#e8fde8,stroke:#27ae60
 ```
 
+> [!info] Graph Legend
+> - **Blue (foundations)** — pre-2024 foundational papers (STaR, Dreamer)
+> - **Purple (WAM thread)** — world-model-driven self-evolution; agent imagines/dreams
+> - **Green (VLA + Agent threads)** — VLA RL post-training and agent-level behavior evolution
+> - Arrows indicate intellectual lineage, not architectural inheritance
+
 Three threads converge: **WAM self-evolution** (Dreamer → EvoAgent → SPIRAL → VAMPO) leverages world model imagination; **VLA self-evolution** (EvoVLA → EVOLVE-VLA → VLA CL) uses RL fine-tuning without explicit world models; **agent self-evolution** (STaR → EVOLVER → ECHO → SE-Agent) operates at the behavior level with persistent experience.
 
 ---
@@ -120,9 +126,9 @@ A ==self-evolving world action model== simultaneously learns to predict environm
 
 ---
 
-## 4. Self-Discovery — How Agents Detect Failure
+## 4. Failure Detection, Diagnosis & Recovery
 
-Self-evolution requires self-awareness. Before an agent can improve, it must first know *what* went wrong, *where* its policy is weak, and *when* to abandon a failing plan. This section covers the prerequisite layer that makes Sections 5-7 possible: the mechanisms by which agents detect, diagnose, and recover from failure.
+Self-evolution requires self-awareness. Before an agent can improve, it must first know *what* went wrong, *where* its policy is weak, and *when* to abandon a failing plan. This section covers the prerequisite layer that makes Sections 5-7 possible: the mechanisms by which agents **detect** failures, **diagnose** their root cause, and **recover** with corrective action.
 
 ### 4.1 Runtime Failure Detection
 
@@ -186,6 +192,7 @@ WAMs have a unique advantage for self-evolution: they already have a learned dyn
 | [[2506.23468\|NavMorph]] | Self-evolving world model for VLN in continuous environments |
 | [[2504.21024\|WebEvolver]] | Co-evolving web agent and world model |
 | [[2602.20057\|AdaWorldPolicy]] | World model prediction error as self-improvement signal |
+| [[2511.18810\|MergeVLA]] | Cross-skill model merging toward a generalist VLA; merges per-skill specialists |
 | [[2401.16650\|WMAR]] | Memory-efficient augmented replay (FIFO + reservoir) in DreamerV3 for continual RL; +0.071 vs 0.665 forgetting |
 
 **How SPIRAL's Reflective Loop Works**: SPIRAL generates a long-horizon video plan conditioned on semantic actions, then a CriticAgent evaluates the plan for temporal coherence (do frames flow smoothly?) and action completeness (does the video show the full task?). Plans that fail the critic are rejected and regenerated with feedback incorporated — the critic's natural-language assessment guides the next generation attempt. This creates an iterative refinement loop without human intervention.
@@ -209,6 +216,7 @@ VLAs can self-evolve *without* an explicit world model — their rich VLM repres
 | Model | Self-Improvement Mechanism |
 |-------|--------------------------|
 | [[2511.16166\|EvoVLA]] | Self-evolving framework overcoming stage hallucination and fragile memory |
+| [[2511.00091\|PLD]] | Self-improving VLA via residual RL data generation |
 | [[2603.11653\|VLA RL Continual Learning]] | Sequential RL fine-tuning with LoRA; minimal forgetting |
 | [[2603.03818\|VLA Continual Learning]] | Pre-trained VLAs are naturally resistant to catastrophic forgetting |
 | [[2603.09030\|PlayWorld]] | Autonomous self-play data collection for VLA training |
@@ -239,6 +247,9 @@ Agents that go beyond weight updates to evolve their *behavior* — distilling i
 
 | Model                                        | Self-Improvement Mechanism                                              |                                                      |
 | -------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------- |
+| [[2604.26707\|CurEvo]]                       | Curriculum-guided self-evolution for video understanding                |                                                      |
+| [[2604.18292\|Agent-World]]                  | Scaling real-world environment synthesis for evolving general agents    |                                                      |
+| [[2604.18131\|Native Evolution]]             | Spontaneous reward-free self-evolution via world knowledge exploration  |                                                      |
 | [[2604.11306\|Hierarchical Episodic Memory]] | Hierarchical episodic memory with relevance-based forgetting            |                                                      |
 | [[2604.10892\|HECTOR]]                       | Human-centric hierarchical coordination of robotic fleets               |                                                      |
 | [[2604.10096\|ABot-Claw]]                    | Persistent, cooperative, self-evolving robotic agents                   |                                                      |
@@ -292,9 +303,12 @@ Self-evolution is not guaranteed to converge or remain aligned. These failure mo
 - [[01_Embodied-AI-101]] — VLA vs WAM basics and four learning strategies
 - [[03_VLA]] — VLA deep-dive (Section 9 covers self-evolving VLAs)
 - [[04_WAM]] — WAM deep-dive (Section 7 covers self-evolving WAMs)
-- [[05_Latent-World-Models]] — JEPA evolution lineage
+- [[05_Latent-World-Models]] — JEPA evolution lineage; latent world models as self-evolution substrate
+- [[07_Physics-Aware-Embodied-AI]] — Physics priors as a stabilizer for self-evolving WAM dreams
+- [[08_VLA-Reasoning-and-CoT]] — Reasoning insertion patterns relevant to self-critique and self-correction
+- [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining provides robust priors that resist forgetting
 - [[02_Dataset-Benchmark-Environment]] — Benchmarks for evaluating self-evolution
 
 ---
 
-*See [[11_Self-Evolving-AI]] for the broader self-evolving AI landscape.*
+*See [[11_Self-Evolving-AI]] for the broader self-evolving AI landscape, or [[05_Latent-World-Models]] for how latent prediction enables imagination loops.*

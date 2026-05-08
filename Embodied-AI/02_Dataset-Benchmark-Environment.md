@@ -43,7 +43,7 @@ Rich sensing (tactile, force, dual-arm) or specific manipulation challenges. For
 Standard VLA datasets capture RGB images + actions — sufficient for simple pick-and-place but inadequate for contact-rich tasks (insertion, polishing, assembly) where force feedback determines success or failure. Bimanual datasets (RoboMIND 2.0) must capture coordinated dual-arm trajectories with synchronization — the timing between left and right arm matters as much as the positions. Egocentric datasets capture human-perspective video that maps more naturally to robot head-mounted cameras, reducing the viewpoint gap in cross-embodiment transfer.
 
 **Bimanual Manipulation** — Coordinated two-arm control requires specialized data.
-- [[2512.24653|RoboMIND 2.0]], [[2511.17441|RoboCOIN]], [[2412.13877|RoboMIND]]
+- [[2603.05687|CGP]], [[2512.24653|RoboMIND 2.0]], [[2511.17441|RoboCOIN]], [[2412.13877|RoboMIND]]
 
 **Single-Embodiment High-Quality** — Depth over breadth: consistent data from one robot in diverse environments.
 - [[2509.00576|G0]]
@@ -75,6 +75,19 @@ Diagnostic benchmarks differ from training benchmarks in a crucial way: they are
 > [!star] Key Papers
 > - [[2601.11421|GM-100]] — 100 detail-oriented tasks; current VLAs achieve very low success rates, exposing real capability gaps
 > - [[2508.13142|EASI]] — Holistic evaluation framework for spatial intelligence in embodied agents
+
+**Diagnostic Datasets by Failure Mode** — Each diagnostic benchmark probes a different VLA failure axis:
+
+| Benchmark | Failure Axis | Primary Mode |
+|-----------|-------------|--------------|
+| [[2306.03310\|LIBERO]] | Standard manipulation | In-distribution skill |
+| [[2510.13626\|LIBERO-Plus]] | Visual perturbations | 7-axis visual robustness |
+| [[2603.28301\|LIBERO-Para]] | Instruction paraphrase | Language surface-form overfit |
+| [[2601.11421\|GM-100]] | Fine manipulation | Detail-oriented precision |
+| [[2507.10548\|EmbRACE-3K]] | Embodied reasoning | Spatial + causal reasoning |
+
+> [!tip] Use the Diagnostic Stack
+> Each benchmark stresses one failure axis. A model can score >90% on LIBERO yet collapse on LIBERO-Plus (visual), LIBERO-Para (language), or GM-100 (precision). Always evaluate across the full diagnostic stack before claiming generalization.
 
 ---
 
@@ -177,9 +190,11 @@ Evaluating whether learned world models generate physically plausible, action-co
 World model evaluation has shifted from passive video quality metrics (FVD, SSIM) to *interactive* benchmarks that test whether the model can predict consequences of actions. WR-Arena evaluates action-following fidelity: given an action, does the predicted next frame show the correct outcome? Causal consistency testing checks counterfactuals: if the action changes, does the predicted future change accordingly? OpenWorldLib provides a unified codebase for comparing world models across interactive video generation, 3D generation, and VLA tasks — standardizing evaluation that was previously fragmented across papers.
 
 > [!star] Key Papers
+> - [[2604.11689|LARY]] — Latent action representation yielding benchmark for generalizable vision-to-action alignment
 > - [[2603.22212|Omni-WorldBench]] — First interaction-centric evaluation for world models; tests causal consistency and action following
 > - [[2603.22078|WAM vs VLA Robustness]] — Systematic comparison: WAMs are more robust to visual perturbations but 4.8x slower
 > - [[2603.23497|WildWorld]] — 108M frames from Monster Hunter: Wilds with explicit state annotations; Action Following and State Alignment metrics
+> - [[2602.05986|RISE-Video]] — Probes whether video generators decode implicit world rules; rule-induction evaluation
 
 > [!tip] Beyond Visual Quality
 > Early world model evals focused on video quality (FID, FVD). 2026 benchmarks (Omni-WorldBench, WildWorld) shifted to *interaction fidelity*: does the model follow actions? Are state transitions consistent? This is what matters for robot control.
@@ -195,10 +210,12 @@ Systematic studies that benchmark VLA design decisions rather than individual mo
 RoboVLMs conducted the most systematic VLA design study to date: 600+ experiments varying backbone, fusion method, action space, training recipe, and data strategy. The key finding is that design choices *interact*: the best backbone depends on the fusion method, which depends on the action space. For example, PaliGemma excels with policy-head fusion but underperforms with cross-attention fusion. This interaction effect means you can't optimize each choice independently — the design space must be explored jointly.
 
 > [!star] Key Papers
-> - [[2412.14058|RoboVLMs]] — 600+ experiments systematically testing backbone, action space, history fusion, and data strategy choices
+> - [[2412.14058|RoboVLMs]] — 600+ experiments systematically testing backbone, action space, history fusion, and data strategy choices — the largest published VLA design-space ablation to date
+> - [[2503.14734|GR00T N1]] — Open foundation model + accompanying design study for generalist humanoid policies
+> - [[2512.14666|EVOLVE-VLA]] — Evolutionary VLA improvement: progressive adaptation over many task iterations
 
 > [!tip] The RoboVLMs Recipe
-> The most rigorous VLA design study: KosMos/PaliGemma backbone + Policy Head fusion + Continuous actions + MoE + Post-training. See [[03_VLA#1. Design-Space Principles]] for the full breakdown.
+> The most rigorous VLA design study to date: 600+ experiments converging on KosMos/PaliGemma backbone + Policy Head fusion + Continuous actions + MoE + Post-training. See [[03_VLA#1. Design-Space Principles]] for the full breakdown.
 
 ---
 
@@ -225,6 +242,8 @@ Use this progression to evaluate robot policies at increasing levels of rigor:
 - [[04_WAM]] — WAM deep-dive (Section 8 covers failure modes found by benchmarks)
 - [[05_Latent-World-Models]] — Latent world models (JEPA benchmarks, latent vs pixel comparison)
 - [[06_Self-Evolving-VLA-WAM]] — Self-evolving systems (evaluation of self-improvement methods)
+- [[07_Physics-Aware-Embodied-AI]] — Physics commonsense benchmarks (PhyGenBench, VideoPhy-2, Physics-IQ, Morpheus)
+- [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric datasets (Ego4D, EgoDex, Something-Something)
 - [[01_Embodied-AI-101]] — VLA vs WAM basics
 
 ---

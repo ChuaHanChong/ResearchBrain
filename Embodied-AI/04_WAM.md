@@ -44,12 +44,21 @@ graph TD
         L["Fast-WAM<br/><i>2026</i>"]
     end
 
+    subgraph "Physics-Aware (2025-2026)"
+        N["NewtonGen<br/><i>2025</i>"]
+        O["PhysCtrl<br/><i>2025</i>"]
+        P["PhysWorld<br/><i>2025</i>"]
+    end
+
     A --> B --> C
     D --> F --> G
     E --> F
     H --> I --> J
     J --> K
     G --> L
+    F --> N
+    N --> O
+    O --> P
 
     style A fill:#e8f4fd,stroke:#4a90d9
     style B fill:#e8f4fd,stroke:#4a90d9
@@ -57,6 +66,9 @@ graph TD
     style J fill:#f0e8fd,stroke:#9b59b6
     style K fill:#e8fde8,stroke:#27ae60
     style L fill:#e8fde8,stroke:#27ae60
+    style N fill:#fde8f4,stroke:#d94a90
+    style O fill:#fde8f4,stroke:#d94a90
+    style P fill:#fde8f4,stroke:#d94a90
 ```
 
 The field evolved through four threads: **model-based RL** (2019-2026) where Dreamer established latent imagination for planning; **video generation** (2023-2026) where diffusion models learned physics from internet video; **latent prediction** (2023-2026) where JEPA showed you can predict in representation space without reconstructing pixels; and **VLM integration** (2025-2026) where world models merged with VLAs for robust, efficient policies.
@@ -75,6 +87,11 @@ The field evolved through four threads: **model-based RL** (2019-2026) where Dre
 | 2026 | [[2602.12063\|VLAW]] | Iterative co-improvement: VLA and world model reinforce each other |
 | 2026 | [[2509.24527\|Dreamer 4]] | Scalable world model training agents inside video game environments |
 | 2026 | [[2603.16666\|Fast-WAM]] | WAM benefits without test-time imagination via video co-training |
+| 2025 | [[2509.21309\|NewtonGen]] | Physics-consistent T2V via neural Newtonian dynamics |
+| 2025 | [[2509.20358\|PhysCtrl]] | Generative physics for controllable video generation |
+| 2025 | [[2511.07416\|PhysWorld]] | Robot learning from a physical world model |
+| 2026 | [[2603.13770\|PhysAlign]] | Feature + 3D-representation alignment for physics-coherent video |
+| 2026 | [[2603.26285\|PhysVid]] | Physics-aware local conditioning for generative video |
 
 ---
 
@@ -119,14 +136,16 @@ Video diffusion models learn physics by training on internet-scale video data �
 **Video Models as Data Engines** — Use generated video as synthetic training data instead of running the world model at test time.
 - [[2512.24766|Dream2Flow]], [[2512.13644|DexWM]], [[2505.12705|DreamGen]], [[2504.15369|Inverse Probabilistic Adaptation]]
 
-**Physics-Aligned Video Generation** — Explicitly enforce physical plausibility during video generation.
-- [[2604.13036|Lyra 2.0]], [[2604.07348|MoRight]], [[2604.07209|INSPATIO-WORLD]], [[2603.23376|ABot-PhysWorld]], [[2602.05986|RISE-Video]], [[2409.18964|PhysGen]]
+**Physics-Aligned Video Generation** — Explicitly enforce physical plausibility during video generation. See [[07_Physics-Aware-Embodied-AI]] for the full physics-aware design space (implicit/explicit/external-simulator approaches).
+- [[2604.13036|Lyra 2.0]], [[2604.07348|MoRight]], [[2604.07209|INSPATIO-WORLD]], [[2603.26285|PhysVid]], [[2603.23376|ABot-PhysWorld]], [[2603.13770|PhysAlign]], [[2602.05986|RISE-Video]], [[2511.07416|PhysWorld]], [[2509.21309|NewtonGen]], [[2509.20358|PhysCtrl]], [[2503.15558|Cosmos-Reason1]], [[2409.18964|PhysGen]]
 
 > [!star] Key Papers
 > - [[2603.23376|ABot-PhysWorld]] — Diffusion-DPO for physics alignment; suppresses implausible predictions (object penetration, anti-gravity)
+> - [[2509.21309|NewtonGen]] — Physics-consistent text-to-video via neural Newtonian dynamics; explicit physics constraints during generation
+> - [[2509.20358|PhysCtrl]] — Generative physics for controllable video generation; control signals tied to physical priors
 
 > [!tip] Video Generation = Physics Engine
-> Video diffusion models trained on internet data implicitly learn physics. DreamZero proved joint video+action generation provides spatiotemporal priors that pure VLAs lack. But test-time video generation is expensive — consider Fast-WAM's training-only approach.
+> Video diffusion models trained on internet data implicitly learn physics. DreamZero proved joint video+action generation provides spatiotemporal priors that pure VLAs lack. But test-time video generation is expensive — consider Fast-WAM's training-only approach. For an explicit physics-priors view, see [[07_Physics-Aware-Embodied-AI]].
 
 ---
 
@@ -137,7 +156,7 @@ Predict in representation space rather than pixel space — faster, more abstrac
 Latent prediction avoids the computational expense of pixel-level video generation by operating in a compressed representation space. The JEPA family predicts future *embeddings* rather than future *pixels*: given the current state embedding and a candidate action, the predictor outputs the expected next-state embedding. This is orders of magnitude cheaper (~10ms vs ~150ms per prediction), enables real-time Model Predictive Control, and naturally filters out irrelevant visual noise (textures, lighting). The trade-off: latent predictions are opaque — a human cannot visually inspect whether the predicted future 'makes sense', complicating debugging and safety verification.
 
 **JEPA Family** — Joint Embedding Predictive Architecture: predict future embeddings from current embeddings.
-- [[2603.22281|ThinkJEPA]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.11389|Causal-JEPA]], [[2602.10098|VLA-JEPA]], [[2512.10942|VL-JEPA]], [[2506.09985|V-JEPA 2]]
+- [[2603.22281|ThinkJEPA]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2602.10098|VLA-JEPA]], [[2512.10942|VL-JEPA]], [[2511.19221|Percept-WAM]], [[2510.00739|TD-JEPA]], [[2506.09985|V-JEPA 2]]
 
 > [!star] Key Papers
 > - [[2602.10098|VLA-JEPA]] — Full VLA+JEPA pipeline: 97.2% LIBERO in-distribution, 79.5% LIBERO-Plus OOD, 65.2% SimplerEnv real robot
@@ -321,11 +340,14 @@ WAMs that autonomously improve through experience, self-play, or co-evolution. S
 ## Cross-References
 
 - [[03_VLA]] — VLA deep-dive (Section 6 covers WAM-augmented VLAs)
-- [[05_Latent-World-Models]] — Detailed JEPA evolution (V-JEPA 2 → 2.1 → VL-JEPA → VLA-JEPA)
+- [[05_Latent-World-Models]] — Detailed JEPA evolution (V-JEPA 2 → 2.1 → VL-JEPA → VLA-JEPA → JEPA-VLA → TD-JEPA → Percept-WAM)
 - [[06_Self-Evolving-VLA-WAM]] — Self-evolving VLAs & WAMs deep dive
+- [[07_Physics-Aware-Embodied-AI]] — Physics-aware video generation, physics priors, and physics-coupled training
+- [[08_VLA-Reasoning-and-CoT]] — Reasoning insertion patterns in WAM-augmented VLAs
+- [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric video as a pretraining substrate for WAMs
 - [[01_Embodied-AI-101]] — VLA vs WAM basics and four learning strategies
 - [[02_Dataset-Benchmark-Environment]] — Datasets, benchmarks, and simulation platforms
 
 ---
 
-*See [[03_VLA]] for the VLA alternative, or [[01_Embodied-AI-101]] to start from the basics.*
+*See [[03_VLA]] for the VLA alternative, [[07_Physics-Aware-Embodied-AI]] for physics-coupled training, or [[01_Embodied-AI-101]] to start from the basics.*

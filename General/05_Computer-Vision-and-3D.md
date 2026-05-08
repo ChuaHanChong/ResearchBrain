@@ -282,7 +282,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 From class-specific masks to open-world, language-guided segmentation. Modern segmentation leverages VLM reasoning to handle arbitrary queries ("the object the person is pointing at") rather than fixed category lists.
 
 **Language-Guided Segmentation** — Segment objects described by natural language queries, combining VLM reasoning with pixel-level prediction.
-- [[2601.05244|GREx]], [[2601.03054|IBISAgent]], [[2507.06261|Gemini 2.5]], [[2506.22880|DeSa2VA]], [[2506.22624|Seg-R1]], [[2506.04277|RSVP]], [[2505.12081|VisionReasoner]], [[2503.06520|Seg-Zero]], [[2310.11441|SoM]], [[2308.00692|LISA]], [[2203.16265|SeqTR]]
+- [[2605.00891|X2SAM]], [[2601.05244|GREx]], [[2601.03054|IBISAgent]], [[2507.06261|Gemini 2.5]], [[2506.22880|DeSa2VA]], [[2506.22624|Seg-R1]], [[2506.04277|RSVP]], [[2505.12081|VisionReasoner]], [[2503.06520|Seg-Zero]], [[2310.11441|SoM]], [[2308.00692|LISA]], [[2203.16265|SeqTR]]
 
 > [!star] Key Papers
 > - [[2308.00692|LISA]] — Reasoning segmentation: handles complex referring expressions that require multi-step inference
@@ -363,7 +363,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2403.03954|DP3]] — 3D Diffusion Policy: generalizable visuomotor policy from point clouds; enables sim-to-real without camera calibration
 
 **3D World Simulation** — Systems that generate, simulate, or reason about 3D environments as interactive world models for embodied agents and autonomous driving.
-- [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]], [[2602.10116|SAGE]]
+- [[2605.05163|PhysForge]], [[2605.01799|Embody4D]], [[2605.00781|Map2World]], [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]], [[2602.10116|SAGE]]
 
 **Physics-Aware 3D / 4D Generation** — Coupling 3D Gaussian Splatting, NeRF, or point-cloud representations with physical simulators (MPM, FEM, PBD) so that scene reconstructions become physically interactive. The dominant pattern: reconstruct a 3D scene first, then evolve it with physics. Includes 4D dynamic scene generation that integrates time + geometry + physics.
 - [[2603.03485|Phys4D]], [[2511.00503|Diff4Splat]], [[2509.21541|ControlHair]], [[2508.13911|PhysGM]], [[2507.01099|Geometry-aware 4D Robot Video]], [[2506.19798|CoCo4D]], [[2506.03150|IllumiCraft]], [[2505.18151|WonderPlay]], [[2503.21442|RainyGS]], [[2503.20746|PhysGen3D]], [[2503.04720|FluidNexus]], [[2502.03639|3DPointReg I2V]], [[2501.18982|OmniPhysGS]], [[2412.17804|GausSim]], [[2412.11785|InterDyn]], [[2412.11258|GaussianProperty]], [[2411.16800|Phys4DGen]], [[2411.14423|PhysFlow]], [[2411.12789|Sim-GS]], [[2410.08257|NeuMA]], [[2410.07155|Trans4D]], [[2409.07179|Phy124]], [[2409.00558|Compositional 3D Video]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2404.13026|PhysDreamer]], [[2404.09833|Video2Game]], [[2404.01223|Feature Splatting]], [[2403.17920|TC4D]], [[2401.16663|VR-GS]], [[2401.15318|Gaussian Splashing]], [[2312.00583|DeformGS]], [[2311.13099|PIE-NeRF]], [[2311.12198|PhysGaussian]], [[2309.07906|Generative Image Dynamics]], [[2308.09713|Dynamic 3D Gaussians]], [[2304.14369|NCLaw]], [[2303.05512|PAC-NeRF]]

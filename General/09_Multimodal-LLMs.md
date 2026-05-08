@@ -132,7 +132,7 @@ The core pretraining paradigms that established how to connect visual encoders w
 The first generation of models that connected visual encoders to large language models, establishing the MLLM paradigm through Q-Former bridges, instruction tuning, and grounded dialogue.
 
 **Pioneering MLLM Architectures** — The initial designs for feeding visual information into frozen or fine-tuned LLMs.
-- [[2311.05437|LLaVA-Plus]], [[2309.05519|NExT-GPT]], [[2306.15195|Shikra]], [[2306.14824|KOSMOS-2]], [[2305.14676|GRILL]], [[2305.06500|InstructBLIP]], [[2303.04671|Visual ChatGPT]], [[2211.09699|PromptCap]], [[2204.00598|Socratic Models]]
+- [[2605.03677|Uni-OPD]], [[2605.02600|CoRAL]], [[2311.05437|LLaVA-Plus]], [[2309.05519|NExT-GPT]], [[2306.15195|Shikra]], [[2306.14824|KOSMOS-2]], [[2305.14676|GRILL]], [[2305.06500|InstructBLIP]], [[2303.04671|Visual ChatGPT]], [[2211.09699|PromptCap]], [[2204.00598|Socratic Models]]
 
 > [!star] Key Papers
 > - [[2305.06500|InstructBLIP]] — Instruction-tuned BLIP-2 with Q-Former; established systematic instruction tuning for vision-language models
@@ -203,7 +203,7 @@ A new generation of models trained end-to-end on interleaved multimodal data rat
 > - [[2509.26625|LLM Visual Priors]] — Demonstrates that LLM weights carry useful visual priors before any visual training
 
 **Unified Understanding & Generation** — Models bridging the comprehension-generation gap to handle both tasks in a single framework.
-- [[2603.03241|UniG2U-Bench]], [[2602.22766|CapImagine]], [[2602.12205|DeepGen 1.0]], [[2601.03193|UniCorn]], [[2506.22880|DeSa2VA]], [[2506.13759|Discrete Diffusion LLM Survey]], [[2403.10191|GenerateU]], [[2305.17216|GILL]]
+- [[2603.03241|UniG2U-Bench]], [[2602.22766|CapImagine]], [[2602.12205|DeepGen 1.0]], [[2601.03193|UniCorn]], [[2506.22880|DeSa2VA]], [[2506.13759|Discrete Diffusion LLM Survey]], [[2503.10631|HybridVLA]], [[2403.10191|GenerateU]], [[2305.17216|GILL]]
 
 > [!star] Key Papers
 > - [[2601.03193|UniCorn]] — Autonomously bridges comprehension and generation capabilities within a single model
@@ -266,7 +266,7 @@ Reducing MLLM inference cost through token compression, model compression, and c
 > - [[2505.22654|VScan]] — Two-stage framework achieving up to 90% visual token reduction with minimal quality loss
 
 **Compact Model Architectures** — Building small but capable MLLMs under 3B parameters for edge deployment.
-- [[2604.10929|Ro-SLM]], [[2603.06569|Penguin-VL]], [[2603.00136|TinyVLM]], [[2504.05299|SmolVLM]], [[2504.00595|Open-Qwen2VL]], [[2412.04468|NVILA]], [[2411.09691|TinyGroundingGPT]]
+- [[2604.27488|Skills-Coach]], [[2604.10929|Ro-SLM]], [[2603.06569|Penguin-VL]], [[2603.00136|TinyVLM]], [[2504.05299|SmolVLM]], [[2504.00595|Open-Qwen2VL]], [[2412.04468|NVILA]], [[2411.09691|TinyGroundingGPT]]
 
 > [!star] Key Papers
 > - [[2504.05299|SmolVLM]] — Family of compact multimodal models (256M-2B) processing images and video; competitive with much larger models
@@ -297,7 +297,7 @@ Addressing the fundamental challenge of MLLMs generating text that contradicts v
 > - [[2512.23453|CoFi-Dec]] — Coarse-to-fine decoding leveraging geometric consistency for grounded generation
 
 **Visual Attention & Token Intervention** — Steering the model's visual attention to reduce over-reliance on language priors.
-- [[2604.15809|AIF]], [[2603.14117|SIEVE]], [[2603.00207|VisRef]], [[2602.24041|AIR]], [[2602.21497|ECRD]], [[2602.08241|SAYO]], [[2602.02004|ClueTracer]], [[2509.12132|Reflection-V]], [[2508.02419|TVAI]], [[2507.22003|ViHallu]], [[2506.12609|VisFlow]], [[2505.17812|VaLSe]], [[2505.05177|MARK]], [[2411.12591|VIC]]
+- [[2605.02735|Silenced Visual Latents]], [[2605.00814|PVM]], [[2604.15809|AIF]], [[2603.14117|SIEVE]], [[2603.00207|VisRef]], [[2602.24041|AIR]], [[2602.21497|ECRD]], [[2602.08241|SAYO]], [[2602.02004|ClueTracer]], [[2509.12132|Reflection-V]], [[2508.02419|TVAI]], [[2507.22003|ViHallu]], [[2506.12609|VisFlow]], [[2505.17812|VaLSe]], [[2505.05177|MARK]], [[2411.12591|VIC]]
 
 > [!star] Key Papers
 > - [[2506.12609|VisFlow]] — Dual-level attention intervention redirecting model focus toward relevant visual tokens
@@ -318,7 +318,7 @@ Addressing the fundamental challenge of MLLMs generating text that contradicts v
 > - [[2506.17901|PostAlign]] — Post-training alignment framework improving visual fidelity without catastrophic forgetting
 
 **Hallucination Analysis & Benchmarks** — Understanding when, why, and how MLLMs hallucinate.
-- [[2604.15574|FT Hallucinations]], [[2601.13304|CausalSpatial]], [[2509.25373|VLM Perception-Cognition Survey]], [[2508.01781|LLM Hallucination Taxonomy]], [[2507.10442|VLM Three-Space Analysis]], [[2505.23224|MMBoundary]], [[2502.17422|MLLM Small Visual Details]], [[2402.00253|LVLM Hallucination Survey]], [[2310.00754|LURE]]
+- [[2605.03808|Agentic-imodels]], [[2605.02087|MSM]], [[2604.28182|Exploration Hacking]], [[2604.15574|FT Hallucinations]], [[2602.09276|Reasoning-ID]], [[2601.13304|CausalSpatial]], [[2509.25373|VLM Perception-Cognition Survey]], [[2508.01781|LLM Hallucination Taxonomy]], [[2507.10442|VLM Three-Space Analysis]], [[2505.23224|MMBoundary]], [[2502.17422|MLLM Small Visual Details]], [[2402.00253|LVLM Hallucination Survey]], [[2310.00754|LURE]]
 
 > [!star] Key Papers
 > - [[2402.00253|LVLM Hallucination Survey]] — Comprehensive taxonomy of hallucination types in large vision-language models

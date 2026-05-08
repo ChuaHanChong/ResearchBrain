@@ -2014,4 +2014,6 @@ papers = [
     "https://arxiv.org/abs/2407.08693", # Robotic Control via Embodied Chain-of-Thought Reasoning
     "https://arxiv.org/abs/2601.11404", # ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models
     "https://arxiv.org/abs/2510.17950", # RoboChallenge: Large-scale Real-robot Evaluation of Embodied Policies
+    "https://arxiv.org/abs/2605.06507", # MARBLE: Multi-Aspect Reward Balance for Diffusion RL
+    "https://arxiv.org/abs/2605.06222", # When to Trust Imagination: Adaptive Action Execution for World Action Models
 ]
