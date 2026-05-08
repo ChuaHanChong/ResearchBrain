@@ -1,0 +1,27 @@
+filters:
+  and:
+    - file.inFolder("Embodied-AI")
+    - file.ext == "md"
+formulas:
+  paper_count: file.links.length
+properties:
+  file.basename:
+    displayName: Deep Dive
+  formula.paper_count:
+    displayName: Paper References
+views:
+  - type: table
+    name: All Deep Dives
+    order:
+      - file.basename
+      - formula.paper_count
+      - tags
+      - file.mtime
+  - type: cards
+    name: By Tag
+    groupBy:
+      property: tags
+      direction: ASC
+    order:
+      - file.basename
+      - formula.paper_count

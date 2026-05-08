@@ -1,12 +1,23 @@
+# OS / editor noise
 .DS_Store
 __pycache__/
 .obsidian/
 .venv/
 .playwright*/
 .claude/agent-memory-local/
-_Artefacts_/
-papers/
+
+# Vault directories that don't go in git (binaries, big, generated)
 data/
 docs/superpowers/
+
+# Personal scratch
 TODO.md
 PROMPT.md
+
+# Graphify-out: commit the graph data, exclude per-machine pointers + transients
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/.graphify_chunk_*.json
+
+# Paper-curate Mode F/G report output (regenerated each run)
+graphs/vault-pilot/proposals/

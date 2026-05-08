@@ -7,6 +7,8 @@ description: "Read _KnowledgeHub_ paper notes and answer questions about them. U
 
 When the user asks about specific papers by providing arxiv IDs or URLs, run the extraction script to load their note content, then answer from what the notes say.
 
+> **Scope**: this skill handles by-ID extraction. For free-form vault questions without IDs ("what does the vault say about X?"), the agent's Vault Search routing handles the discovery step via `Skill(skill="obsidian:obsidian-cli")` first, then passes the resulting IDs back to this skill.
+
 ## Workflow
 
 ### Step 1: Run the extraction script
@@ -33,4 +35,4 @@ Refer to papers by their alias (e.g., "DreamZero"), not their arxiv ID. Ground y
 
 ### Step 3: Handle missing papers
 
-If any IDs have no matching KH note (reported to stderr), inform the user and offer to fetch the paper using the `alphaxiv-search` skill or `alphaxiv-summary-extract` skill to add it to the vault.
+If any IDs have no matching KH note (reported to stderr), inform the user and offer to fetch the paper using `Skill(skill="alphaxiv-search")` or `Skill(skill="alphaxiv-summary-extract")` to add it to the vault.

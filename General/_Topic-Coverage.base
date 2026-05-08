@@ -1,0 +1,28 @@
+filters:
+  and:
+    - file.inFolder("General")
+    - file.ext == "md"
+    - file.basename != "00_Index"
+formulas:
+  paper_count: file.links.length
+properties:
+  file.basename:
+    displayName: Topic
+  formula.paper_count:
+    displayName: Papers (link count)
+views:
+  - type: table
+    name: Coverage
+    order:
+      - file.basename
+      - formula.paper_count
+      - file.mtime
+    summaries:
+      formula.paper_count: Sum
+  - type: table
+    name: Recently Updated
+    order:
+      - file.basename
+      - formula.paper_count
+      - file.mtime
+    limit: 12

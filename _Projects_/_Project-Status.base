@@ -1,0 +1,50 @@
+filters:
+  and:
+    - file.inFolder("_Projects_")
+    - file.ext == "md"
+    - file.basename != "00_Index"
+formulas:
+  link_count: file.links.length
+  age_days: (now() - file.mtime).days
+properties:
+  file.basename:
+    displayName: File
+  file.folder:
+    displayName: Project
+  formula.link_count:
+    displayName: Wikilinks
+  formula.age_days:
+    displayName: Days Since Edit
+views:
+  - type: table
+    name: Active Projects
+    filters:
+      not:
+        - file.inFolder("_Projects_/__archive__")
+    groupBy:
+      property: file.folder
+      direction: ASC
+    order:
+      - file.basename
+      - file.folder
+      - formula.link_count
+      - formula.age_days
+      - file.mtime
+  - type: table
+    name: Recently Edited
+    filters:
+      not:
+        - file.inFolder("_Projects_/__archive__")
+    order:
+      - file.basename
+      - file.folder
+      - file.mtime
+    limit: 10
+  - type: table
+    name: Archived
+    filters:
+      and:
+        - file.inFolder("_Projects_/__archive__")
+    order:
+      - file.basename
+      - file.mtime

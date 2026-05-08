@@ -1,0 +1,47 @@
+filters:
+  and:
+    - file.inFolder("_KnowledgeHub_")
+    - file.ext == "md"
+properties:
+  file.basename:
+    displayName: Arxiv ID
+  aliases:
+    displayName: Alias
+  tags:
+    displayName: Tags
+  authors:
+    displayName: Authors
+views:
+  - type: table
+    name: All Papers
+    order:
+      - file.basename
+      - aliases
+      - tags
+      - authors
+      - file.mtime
+  - type: table
+    name: Recently Added
+    order:
+      - file.basename
+      - aliases
+      - tags
+      - file.mtime
+    limit: 50
+  - type: table
+    name: Untagged
+    filters:
+      and:
+        - tags == null || tags == []
+    order:
+      - file.basename
+      - aliases
+      - file.mtime
+  - type: cards
+    name: By Tag
+    groupBy:
+      property: tags
+      direction: ASC
+    order:
+      - file.basename
+      - aliases
