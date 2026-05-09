@@ -154,11 +154,12 @@ Testing the harder problem: following language instructions over extended task h
 
 Bridging the reality gap: does simulation performance predict real-world success?
 
-- [[2604.10856|BridgeSim]], [[2405.05941|SimplerEnv]], [[2602.20687|NativeEmbodied]], [[2602.21992|PanoEnv]]
+- [[2605.06311|VISER]], [[2604.10856|BridgeSim]], [[2405.05941|SimplerEnv]], [[2602.20687|NativeEmbodied]], [[2602.21992|PanoEnv]]
 
-The sim-to-real gap has two components: the *visual* gap (rendered vs real images) and the *dynamics* gap (simulated vs real physics). SimplerEnv addresses the visual gap by using high-fidelity rendering of real robot scenes — achieving strong correlation between sim and real performance. BridgeSim measures the dynamics gap specifically for autonomous driving, where tire friction, wind, and road surface vary unpredictably. The key finding: visual fidelity matters more than dynamics accuracy for manipulation (objects are rigid, contacts are brief), but dynamics accuracy matters more for locomotion and driving (continuous contact, long-horizon effects).
+The sim-to-real gap has two components: the *visual* gap (rendered vs real images) and the *dynamics* gap (simulated vs real physics). SimplerEnv addresses the visual gap by using high-fidelity rendering of real robot scenes — achieving strong correlation between sim and real performance. BridgeSim measures the dynamics gap specifically for autonomous driving, where tire friction, wind, and road surface vary unpredictably. VISER pushes visual fidelity further by using ray tracing + PBR materials with an MLLM-driven asset pipeline (1,000+ assets), achieving an average **Pearson r = 0.92** between sim and real-robot performance — and it surfaces the specific visual cues that matter (specular highlights for cavity localization; contact shadows for spatial grounding). The key finding: visual fidelity matters more than dynamics accuracy for manipulation (objects are rigid, contacts are brief), but dynamics accuracy matters more for locomotion and driving (continuous contact, long-horizon effects).
 
 > [!star] Key Papers
+> - [[2605.06311|VISER]] — Ray-tracing + PBR materials + MLLM-driven asset generation; **0.92** sim-to-real Pearson correlation; pinpoints specular highlights and contact shadows as the load-bearing visual cues for VLA policies
 > - [[2405.05941|SimplerEnv]] — Strong correlation between sim and real performance; enables cheap, reproducible policy evaluation without hardware
 
 ---

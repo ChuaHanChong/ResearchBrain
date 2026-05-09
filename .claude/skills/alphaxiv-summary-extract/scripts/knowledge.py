@@ -2016,4 +2016,24 @@ papers = [
     "https://arxiv.org/abs/2510.17950", # RoboChallenge: Large-scale Real-robot Evaluation of Embodied Policies
     "https://arxiv.org/abs/2605.06507", # MARBLE: Multi-Aspect Reward Balance for Diffusion RL
     "https://arxiv.org/abs/2605.06222", # When to Trust Imagination: Adaptive Action Execution for World Action Models
+    "https://arxiv.org/abs/2605.04709", # ELVIS: Ensemble-Calibrated Latent Imagination for Long-Horizon Visual MPC
+    "https://arxiv.org/abs/2605.06234", # RobotEQ: Transitioning from Passive Intelligence to Active Intelligence in Embodied AI
+    "https://arxiv.org/abs/2605.06595", # Cross-Modal Navigation with Multi-Agent Reinforcement Learning
+    "https://arxiv.org/abs/2605.05544", # Adaptive Q-Chunking for Offline-to-Online Reinforcement Learning
+    "https://arxiv.org/abs/2605.05017", # Position: Embodied AI Requires a Privacy-Utility Trade-off
+    "https://arxiv.org/abs/2605.04568", # Dream-MPC: Gradient-Based Model Predictive Control with Latent Imaginatio
+    "https://arxiv.org/abs/2605.05328", # Query2Uncertainty: Robust Uncertainty Quantification and Calibration for 3D Object Detection under Distribution Shift
+    "https://arxiv.org/abs/2605.05756", # MaMi-HOI: Harmonizing Global Kinematics and Local Geometry for Human-Object Interaction Generation
+    "https://arxiv.org/abs/2605.05925", # DexSynRefine: Synthesizing and Refining Human-Object Interaction Motion for Physically Feasible Dexterous Robot Actions
+    "https://arxiv.org/abs/2605.05126", # ConsisVLA-4D: Advancing Spatiotemporal Consistency in Efficient 3D-Perception and 4D-Reasoning for Robotic Manipulation
+    "https://arxiv.org/abs/2605.06481", # OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation
+    "https://arxiv.org/abs/2605.04678", # From Pixels to Tokens: A Systematic Study of Latent Action Supervision for Vision-Language-Action Models
+    "https://arxiv.org/abs/2605.05172", # When Life Gives You BC, Make Q-functions: Extracting Q-values from Behavior Cloning for On-Robot Reinforcement Learning
+    "https://arxiv.org/abs/2605.06247", # CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models
+    "https://arxiv.org/abs/2605.06311", # Toward Visually Realistic Simulation: A Benchmark for Evaluating Robot Manipulation in Simulation
+    "https://arxiv.org/abs/2605.06192", # EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields
+    "https://arxiv.org/abs/2605.06593", # ReActor: Reinforcement Learning for Physics-Aware Motion Retargeting
+    "https://arxiv.org/abs/2605.06222", # When to Trust Imagination: Adaptive Action Execution for World Action Models
+    "https://arxiv.org/abs/2605.05204", # D-OPSD: On-Policy Self-Distillation for Continuously Tuning Step-Distilled Diffusion Models
+    "https://arxiv.org/abs/2605.06388", # Reconstruction or Semantics? What Makes aLatent Space Useful for Robotic World Models
 ]

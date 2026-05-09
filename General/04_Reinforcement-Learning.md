@@ -531,7 +531,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2510.07242|HERO]] — Integrates sparse verifier signals with dense generative rewards; best of both worlds
 
 **Reward Design for Images & Vision** — Reward signals specifically designed for visual tasks — perceptual quality, visual grounding, and image reasoning.
-- [[2604.27505|Edit-R1]], [[2602.11393|Visual Motion Pref Modeling]], [[2602.11124|PhyCritic]], [[2512.08889|VALOR]], [[2302.08242|Reward Tuning CV]]
+- [[2605.06507|MARBLE-RL]], [[2604.27505|Edit-R1]], [[2602.11393|Visual Motion Pref Modeling]], [[2602.11124|PhyCritic]], [[2512.08889|VALOR]], [[2302.08242|Reward Tuning CV]]
 
 > [!star] Key Papers
 > - [[2302.08242|Reward Tuning CV]] — Pioneered applying RL reward tuning to computer vision tasks

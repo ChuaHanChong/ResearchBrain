@@ -97,6 +97,7 @@ The field evolved through four parallel tracks. **3D-Gaussian-based implicit phy
 | 2026 | [[2603.26285\|PhysVid]] | Explicit-loss | Physics-aware local conditioning for generative video |
 | 2025 | [[2503.17973\|PhysTwin]] | External-sim | Physics-informed reconstruction of deformable digital twins |
 | 2025 | [[2511.07416\|PhysWorld]] | External-sim | Robot learning from a physical world model |
+| 2026 | [[2605.06593\|ReActor]] | External-sim | Disney bilevel RL + physics simulation for motion retargeting; +15.22pp downstream RL |
 | 2025 | [[2503.15558\|Cosmos-Reason1]] | Reasoning | Physical commonsense and embodied reasoning at WAM scale |
 
 ---
@@ -200,13 +201,16 @@ Constrain *during* sampling rather than during training.
 
 Generative models are great at hypothesizing futures; physical simulators are great at verifying them. Coupling the two gets you the best of both — at the cost of a brittle interface between learned and analytical components.
 
-- [[2511.07416|PhysWorld]], [[2503.17973|PhysTwin]]
+- [[2605.06593|ReActor]], [[2511.07416|PhysWorld]], [[2503.17973|PhysTwin]]
 
 **How PhysTwin works**: Multi-stage optimization that jointly reconstructs geometry, infers physical properties, and models appearance. Spring-mass models + generative shape priors + Gaussian splats produce an interactive digital twin from videos — usable for robot motion planning. The simulator runs in real-time, allowing the robot to plan against the digital twin before acting.
 
 **How PhysWorld works**: Trains the robot policy against a learned physical world model. Unlike pure video-WAMs, PhysWorld embeds explicit physical state (positions, velocities, forces), so policy gradient signals reflect physics-consistent interactions rather than visual consistency only.
 
+**How ReActor works**: Bilevel optimization in which the upper level learns retargeting parameters and the lower level trains a motion-tracking policy via RL inside a physics simulator. A simplified gradient estimator avoids the implicit-function-theorem cost typical of bilevel-RL. Because retargeting happens *inside* the simulator, the produced motions inherit physics consistency for free — zero ground/self-penetration, near-zero foot sliding — and the cleaned data lifts downstream RL success by up to **+15.22 pp**.
+
 > [!star] Key Papers
+> - [[2605.06593|ReActor]] — Bilevel RL inside a physics simulator for human→robot motion retargeting; zero ground/self-penetration, +15.22pp downstream RL success on G1, generalizes to quadrupeds and physical hardware
 > - [[2503.17973|PhysTwin]] — Physics-informed digital twin from video; real-time interactive simulation + robot planning integration
 > - [[2511.07416|PhysWorld]] — Robot learning from a physical world model; explicit physical state as the learning substrate
 

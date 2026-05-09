@@ -127,7 +127,7 @@ Video diffusion models learn physics by training on internet-scale video data �
 - [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[2310.10625|VLP]]
 
 **Video Pretraining for Robot Policies** — Train on internet video, fine-tune for robot control.
-- [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2602.12099|GigaBrain-0.5M*]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2511.07732|ViPRA]], [[2508.00795|Video Policy]], [[2505.15659|FLARE]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
+- [[2605.06192|EA-WM]], [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2602.12099|GigaBrain-0.5M*]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2511.07732|ViPRA]], [[2508.00795|Video Policy]], [[2505.15659|FLARE]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
 
 > [!star] Key Papers
 > - [[2602.15922|DreamZero]] — 14B joint video+action model; 39.5% on unseen tasks, 42% cross-embodiment improvement, 7Hz real-time
@@ -164,9 +164,10 @@ Latent prediction avoids the computational expense of pixel-level video generati
 > - [[2602.11389|Causal-JEPA]] — Object-centric world model with causal reasoning via latent interventions
 
 **Unified Latent Diffusion** — Shared diffusion transformer for both video and action in latent space.
-- [[2512.13030|Motus]], [[2505.11528|LaDi-WM]], [[2504.02792|UWM]], [[2503.18938|AdaWorld]]
+- [[2605.06388|Semantic-LDM-WM]], [[2512.13030|Motus]], [[2505.11528|LaDi-WM]], [[2504.02792|UWM]], [[2503.18938|AdaWorld]]
 
 > [!star] Key Papers
+> - [[2605.06388|Semantic-LDM-WM]] — First systematic head-to-head of reconstruction- vs semantic-aligned latents in action-conditioned LDMs; semantic latents (V-JEPA 2.1, SigLIP 2, Web-DINO) yield **+9.8 pp** VLA closed-loop success and **+13.6 pp** OOD robustness over reconstruction VAEs
 > - [[2504.02792|UWM]] — Unified World Models: coupled video and action diffusion pretraining; clean modern approach
 > - [[2505.11528|LaDi-WM]] — Latent diffusion WM on DINOv2+Siglip with imagination-guided iterative action refinement; +15.1% over SOTA on LIBERO-LONG with 10 demos
 
@@ -178,7 +179,7 @@ Latent prediction avoids the computational expense of pixel-level video generati
 > - [[2411.04983|DINO-WM]] — Task-agnostic world model on frozen DINOv2 features enables zero-shot planning
 
 > [!tip] Latent > Pixel for Efficiency
-> Latent prediction avoids the expensive pixel-level reconstruction of VideoGen WAMs. V-JEPA 2 achieves competitive manipulation performance using self-supervised video pre-training alone. The JEPA family shows that predicting in embedding space produces more semantically meaningful features — you don't waste capacity modeling textures and shadows.
+> Latent prediction avoids the expensive pixel-level reconstruction of VideoGen WAMs. V-JEPA 2 achieves competitive manipulation performance using self-supervised video pre-training alone. The JEPA family shows that predicting in embedding space produces more semantically meaningful features — you don't waste capacity modeling textures and shadows. [[2605.06388|Semantic-LDM-WM]] formalizes this: in a controlled study within a single LDM framework, semantic-aligned latents (V-JEPA 2.1, SigLIP 2) beat reconstruction VAEs by +9.8 pp closed-loop and +13.6 pp OOD — visual fidelity is *not* the right objective for control.
 
 ---
 
@@ -248,6 +249,7 @@ Full video generation at test time is 4.8x slower than pure VLAs. These models k
 
 | Model | Efficiency Strategy | Key Finding |
 |-------|-------------------|-------------|
+| [[2605.06247\|CKT-WAM]] | Parameter-efficient context transfer between WAMs | 86.1% LIBERO-Plus with **1.17%** trainable params; matches full FT |
 | [[2603.16666\|Fast-WAM]] | Video co-training, no test-time imagination | WAM robustness without WAM latency |
 | [[2603.17240\|GigaWorld-Policy]] | Action-centered architecture | Efficient action-focused world modeling |
 | [[2512.19133\|WorldRFT]] | Latent world model + RL fine-tuning | Planning in latent space for driving |
@@ -299,6 +301,7 @@ WAMs that autonomously improve through experience, self-play, or co-evolution. S
 | **Inference latency** | WAMs are ≥4.8x slower than VLAs ([[2603.22078\|WAM vs VLA Robustness]]) | Use Fast-WAM or training-only video |
 | **Adversarial jailbreaking** | [[2604.05498\|JailWAM]] shows WAMs vulnerable to adversarial attacks on action generation | Need adversarial robustness training |
 | **Visual perturbation robustness** | WAMs outperform VLAs on camera/light/background changes | Spatiotemporal priors from video pretraining help |
+| **Object-identity entanglement** | Holistic WAMs fuse target identity with surrounding visual content; small scene changes flip target binding | [[2605.06481\|OA-WAM]] — object-addressable attention with cached identity addresses; +4.8pp LIBERO-Plus geometric robustness over π0.5 |
 
 **OOD Detection for WAMs** — When should a WAM distrust its own predictions? Three approaches emerging:
 - **Prediction error monitoring**: [[2603.04029|Self-Adapting RL]] tracks the residual between predicted and observed next states. When the residual exceeds a threshold, the world model flags the state as OOD and triggers targeted adaptation.
@@ -332,6 +335,8 @@ WAMs that autonomously improve through experience, self-play, or co-evolution. S
 | Need reasoning? | VLM-Integrated (VLAW, WorldVLM, AVIC) |
 | Need self-improvement? | Self-Evolving (EvoAgent, SPIRAL) |
 | Need cross-embodiment? | VideoGen (DreamZero) — video priors transfer |
+| Need object-identity robustness? | [[2605.06481\|OA-WAM]] — object-addressable attention with cached identity addresses |
+| Need parameter-efficient transfer? | [[2605.06247\|CKT-WAM]] — context-knowledge transfer at 1.17% trainable params |
 | Production deployment? | Efficient (Fast-WAM) — training-time video, test-time speed |
 | Full JEPA lineage? | [[05_Latent-World-Models]] for V-JEPA 2 → 2.1 → VL-JEPA → VLA-JEPA |
 
