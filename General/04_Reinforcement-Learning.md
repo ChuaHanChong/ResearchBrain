@@ -156,6 +156,13 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > [!tip] The SFT vs RL Divide
 > The key insight from 2025: SFT teaches models to *reproduce* patterns, RL teaches them to *solve* problems. For reasoning tasks, RL generalizes where SFT memorizes. But SFT remains essential for format/instruction following — the best pipelines use SFT then RL.
 
+**Robust & Adversarial RL** — RL methods designed for worst-case performance under perturbed observations, actions, dynamics, or adversarial co-players. Foundational for safety-critical RL deployment.
+- [[2602.13040|TCRL]], [[2412.18781|Offline RL Action Perturbation Eval]], [[2412.10713|RAT]], [[2406.09976|RMBPO]]
+
+> [!star] Key Papers
+> - [[2602.13040|TCRL]] — Temporal-coupled adversarial training for constrained RL; reduces safety costs by orders of magnitude under worst-case attacks
+> - [[2412.10713|RAT]] — Preference-based targeted attacks on DRL; bi-level intention-policy + adversary + state-weighting; doubles as adversarial-training tool
+
 ---
 
 ## 2. Model-Based RL & World Models
@@ -198,13 +205,13 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[1911.10601|Scaling Active Inference]] — First to scale active inference to continuous control domains; bridges free energy theory with practical deep RL
 
 **World Model Theory & Formal Results** — Theoretical foundations proving when and why world models are necessary for generalization.
-- [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2602.06130|SWIRL]], [[2512.09929|OWM]], [[2506.01622|General Agents World Models]], [[2501.10100|RWM]], [[2206.02072|VSRL]]
+- [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2602.06130|SWIRL]], [[2512.09929|OWM]], [[2510.21232|Confusing World Models]], [[2506.01622|General Agents World Models]], [[2501.10100|RWM]], [[2206.02072|VSRL]]
 
 > [!star] Key Papers
 > - [[2506.01622|General Agents World Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
 
 **Offline Model-Based RL** — Learning world models from fixed datasets without further environment interaction, enabling safe policy improvement.
-- [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2310.06253|Objective Mismatch MBRL Survey]], [[1803.10122|World Models]]
+- [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2406.09976|RMBPO]], [[2310.06253|Objective Mismatch MBRL Survey]], [[1803.10122|World Models]]
 
 > [!star] Key Papers
 > - [[2504.16680|RWM-U]] — Uncertainty-aware world model for real-robot offline RL; bridges sim-to-real with calibrated uncertainty
@@ -610,6 +617,14 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > [!star] Key Papers
 > - [[2505.11614|RL for Human Decision Explanation]] — Novel use of RL to train LLMs as cognitive models of human decision-making; bridges AI and cognitive science
 
+**Adversarial Multi-Agent RL & Red-Teaming** — RL where agents are trained as adversaries — to mine failures, induce targeted behaviors, or stress-test other policies. Companion to robust RL; closely related to [[07_Robotics-and-Embodied-AI|adversarial robustness in VLAs]].
+- [[2604.05595|DAERT]], [[2510.10937|Neutral Adversarial Policy]], [[2510.01264|HARL-A]], [[2508.02027|Dual-DM]], [[1903.10654|FAILMAKER-ADVRL]]
+
+> [!star] Key Papers
+> - [[2604.05595|DAERT]] — RL-based diversity-aware red-teaming against VLAs; bridges adversarial RL with VLA failure-mining (5.85% π0 success under attack)
+> - [[1903.10654|FAILMAKER-ADVRL]] — Foundational MADDPG-based adversarial RL; balances adversarial and personal rewards to produce realistic failure scenarios
+> - [[2510.01264|HARL-A]] — Heterogeneous multi-agent adversarial RL framework in IsaacLab; team-specific critics resolve zero-sum value collapse
+
 > [!tip] The Self-Evolving Connection
 > Agentic RL connects directly to self-evolving AI: agents that use RL to improve their own strategies, generate their own curricula, and bootstrap their own training data. The trajectory: AgentGym to RAGEN to Agent0 to Memento-Skills.
 
@@ -671,6 +686,18 @@ RL methods designed for or applied to physical robot learning — sample efficie
 
 > [!tip] The RL for Robotics Recipe
 > The proven pipeline: pre-train with imitation learning, then post-train with RL (VLA-RL, TGRPO). For sample efficiency, use a world model (DayDreamer, RWM-U). For deployment, combine MPC structure with learned RL policies.
+
+> [!success] Failure-Mining ↔ Avoidance ↔ WAM-Eval Cross-Recipe
+> The same loop appears in robotics and driving:
+> - RL failure-search: [[2412.02818|RoboMD]] (manipulation), [[2604.05595|DAERT]] (VLA linguistic), [[2509.03771|Co-Evolving MARL]] (curiosity), [[1903.10654|FAILMAKER-ADVRL]] (driving NPCs)
+> - Failure-avoidance: [[2601.07821|FARL]] regularizes the policy to avoid mined failures
+> - WAM-as-eval: [[2506.00613|WorldGym]] turns the world model into the evaluator; [[2510.21232|Confusing World Models]] formalizes when WMs themselves are confusable
+> - Non-RL VLA red-team: [[2604.22591|RedVLA]], [[2603.12510|Q-DIG]], [[2604.01618|Tex3D]], [[2511.12149|AttackVLA]], [[2510.13237|EDPA]], [[2506.03350|GCG-VLA]], [[2411.18676|ERT]], [[2411.13587|VLA Adversarial Vulnerabilities]] — see [[07_Robotics-and-Embodied-AI|07 §2 Adversarial Robustness]]
+
+> [!note] Open Research Wedge
+> Two intersection cells are conspicuously empty:
+> - **(RL scene-adversary) × (VLA target)**: DAERT trains an RL adversary on language; RedVLA / Tex3D attack the scene without RL. No paper yet trains a *physics-grounded RL adversary that perturbs the 3D scene* against a VLA target.
+> - **(RL failure-search) × (WAM target)**: WorldGym evaluates inside a WAM; Confusing World Models perturbs WM dynamics statically. No paper closes the loop with an RL adversary that searches the WAM's latent state space for confusing trajectories at training time. Natural intersection of the two cells above and a candidate research direction.
 
 ---
 

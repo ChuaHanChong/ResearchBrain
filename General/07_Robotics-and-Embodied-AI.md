@@ -226,6 +226,32 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2410.00371|AHA]] — NVIDIA's failure reasoning VLM; generalizes from sim to real with procedurally generated failure data
 
 
+**Adversarial Robustness & Red-Teaming** — Auditing VLAs by generating adversarial linguistic, visual, and physical perturbations that surface unsafe or fragile behaviors before deployment. Spans linguistic fragility (DAERT, Q-DIG, ERT), visual/3D patches (EDPA, Tex3D, UADA-UPA-TMA), gradient-coordinate jailbreaks (GCG-VLA), backdoor attacks (AttackVLA), and physically grounded scene attacks (RedVLA).
+- [[2604.22591|RedVLA]], [[2604.05595|DAERT]], [[2604.01618|Tex3D]], [[2603.12510|Q-DIG]], [[2511.12149|AttackVLA]], [[2510.13237|EDPA]], [[2506.03350|GCG-VLA]], [[2411.18676|ERT]], [[2411.13587|VLA Adversarial Vulnerabilities]]
+
+> [!star] Key Papers
+> - [[2604.05595|DAERT]] — RL-based diversity-aware red-teaming reduces π0 success from 93.33% to 5.85% with strong cross-VLA transferability
+> - [[2604.22591|RedVLA]] — Two-stage physical red-teaming via risk-scenario synthesis + trajectory-driven amplification; 64.9-95.5% ASR across six VLAs
+> - [[2506.03350|GCG-VLA]] — Greedy Coordinate Gradient adapts LLM jailbreaking to VLA control authority; 90%+ targeted-action success on OpenVLA, sim-to-real transfer
+> - [[2511.12149|AttackVLA]] — First unified benchmark for adversarial + backdoor attacks on VLAs; BackdoorVLA achieves 50% targeted success on physical Franka arm
+
+> [!success] VLA Red-Team Recipe
+> ==Diversity-aware adversary== (DAERT, Q-DIG) generates linguistic perturbations → ==physical/3D attack surfaces== (Tex3D, RedVLA, EDPA) probe visual robustness → ==gradient-based suffix attacks== (GCG-VLA) test action-space reachability → ==adversarial fine-tuning== (Q-DIG, EDPA-defense) closes the loop. Failure-mining and adversarial robustness are now the same problem viewed from opposite sides.
+
+> [!success] Failure-Mining ↔ Failure-Avoidance ↔ WAM-as-Eval Bridge
+> Three threads converge on the same loop:
+> - **RL failure-search**: [[2412.02818|RoboMD]], [[2604.05595|DAERT]], [[2509.03771|Co-Evolving MARL]], [[1903.10654|FAILMAKER-ADVRL]] — RL learns adversaries that mine failures.
+> - **Non-RL VLA red-team**: [[2604.22591|RedVLA]], [[2604.05595|DAERT]], [[2604.01618|Tex3D]], [[2603.12510|Q-DIG]], [[2511.12149|AttackVLA]], [[2510.13237|EDPA]], [[2506.03350|GCG-VLA]], [[2411.18676|ERT]], [[2411.13587|VLA Adversarial Vulnerabilities]], [[2509.18953|Eva-VLA]] — gradient/QD/scene attacks mine VLA failures without RL.
+> - **Failure-avoidance**: [[2601.07821|FARL]] — failure-aware policy regularization closes the loop.
+> - **WAM-as-eval**: [[2506.00613|WorldGym]], [[2510.21232|Confusing World Models]] — world models become the evaluator, not just the simulator.
+> The cross-recipe: mine failures (RL or QD) → train avoidance (FARL) → re-evaluate inside a WAM (WorldGym) → repeat.
+
+> [!note] Open Research Wedge
+> Two cells are conspicuously empty in the literature:
+> - **(RL scene-adversary) × (VLA target)** — DAERT uses RL on linguistic adversaries against VLAs; FAILMAKER-ADVRL/Co-Evolving MARL use RL on scene/agent adversaries against rule-based or RL agents. No paper yet trains a *physics-grounded RL adversary that perturbs the scene* to attack a VLA. RedVLA does scene attacks but with gradient-free optimization, not RL.
+> - **(RL failure-search) × (WAM target)** — Confusing World Models perturbs world-model dynamics statically; WorldGym evaluates inside a WAM. No paper closes the loop with an RL adversary that searches for WAM-confusing trajectories at training time. This is the natural intersection of [[04_Reinforcement-Learning|adversarial RL]] and [[2506.00613|WorldGym]]-style WAM-as-environment.
+
+
 ---
 
 ## 3. World Action Models (WAMs)
@@ -285,6 +311,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 **Surveys** — Comprehensive reviews of world model architectures, taxonomies, and design principles.
 - [[2605.03413|NEO Theorizer]], [[2605.00080|WM Robot Survey 2026]], [[2604.22748|Agentic World Modeling Survey]], [[2604.16592|Cognition WM Survey]], [[2604.04707|OpenWorldLib]], [[2603.28489|Video Gen as WM Survey]], [[2603.25887|WR-Arena]], [[2602.01630|Unified World Model Framework]], [[2511.08585|Visual World Roadmap]], [[2511.02097|WM Manipulation Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.22355|Embodied AI World Modeling]], [[2506.01622|General Agents World Models]], [[2504.04170|Digital Gene]], [[2411.14499|World Models Survey 2024]], [[2407.06886|ARIO]], [[2310.06253|Objective Mismatch MBRL Survey]]
 
+- [[2604.23775|VLA Safety Survey]] — First comprehensive review of VLA safety threats, defenses, and evaluation; unifies fragmented adversarial-robustness research
 - [[2510.24795|Efficient VLA Survey]] — First dedicated survey on efficient VLAs
 - [[2509.19012|Pure VLA Survey]] — Taxonomy of VLA action-generation paradigms
 - [[2508.13073|VLA Survey 2025]] — First taxonomy-oriented VLA review
@@ -338,6 +365,15 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 
 **Autonomous Driving (World Model Perspective)** — Driving as a world model problem: predict the scene's future, then plan safe trajectories.
 - [[2605.04470|CRAFT Driving]], [[2604.26065|FlowS]], [[2604.25329|ProDrive]], [[2604.18486|OneVL]], [[2604.17651|I-WM]], [[2604.12942|RMGS-SLAM]], [[2604.11734|Multi-ORFT]], [[2604.10856|BridgeSim]], [[2604.03023|Behavior-Constrained RL]], [[2604.01765|DriveDreamer-Policy]], [[2603.28887|OccSim]], [[2603.24581|Latent-WAM]], [[2603.24506|PhyGenesis]], [[2603.15771|CorrectionPlanner]], [[2603.14851|AutoMoT]], [[2603.14497|WorldVLM]], [[2602.18739|PhysAtt]], [[2512.24426|CF-VLA]], [[2512.24331|LVLDrive]], [[2511.23369|SimScale]], [[2509.01944|AutoDrive-R2]], [[2505.17685|FSDrive]], [[2503.20654|AccidentSim]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]]
+
+**Safety-Critical Scenario Generation (Driving)** — Adversarial RL, generative, and counterfactual methods for synthesizing rare safety-critical traffic scenarios that stress-test AV stacks. Bridges driving WMs (above) with adversarial RL ([[04_Reinforcement-Learning|§4]]).
+- [[2605.00880|AFM]], [[2603.21104|CounterScene]], [[2603.04071|SaFeR]], [[2510.10937|Neutral Adversarial Policy]], [[2508.02027|Dual-DM]], [[2206.09682|SafeBench]], [[1903.10654|FAILMAKER-ADVRL]]
+
+> [!star] Key Papers
+> - [[2603.21104|CounterScene]] — Counterfactual causal reasoning in generative WMs; resolves the realism-adversarial trade-off via causal-agent identification + minimal interventions
+> - [[2206.09682|SafeBench]] — Unified Carla benchmarking platform with 8 NHTSA pre-crash scenarios + 4 generation algorithms + 10 multi-level metrics
+> - [[1903.10654|FAILMAKER-ADVRL]] — Foundational MADDPG-based adversarial RL for natural failure-scenario generation; balances adversarial reward with personal reward for realism
+> - [[2605.00880|AFM]] — Adversarial flow matching produces imperceptible 1-NFE perturbations causing 88% attack success on Transformer-backbone end-to-end driving stacks
 
 > [!tip] Infrastructure vs Ego-Centric
 > Most driving WMs are ego-centric (the car's view). I-WM flips the frame: fixed roadside sensors give "temporal depth" over a location, complementing ego-vehicle "spatial breadth". Expect infrastructure + V2X world models to be a growing thread alongside ego-centric DriveDreamer-style generators.
@@ -452,7 +488,7 @@ The data and evaluation infrastructure that makes all the above research possibl
 > - [[2405.05941|SIMPLER]] — Bridges sim and real; evaluates whether simulation performance predicts real-world success
 
 **Benchmarks — Diagnostic** — Targeted benchmarks that expose specific failure modes.
-- [[2604.21686|WorldMark]], [[2604.11689|LARY]], [[2604.05498|JailWAM]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2602.05986|RISE-Video]], [[2602.01640|A2Eval]], [[2601.15224|PROGRESSLM]], [[2601.11421|GM-100]], [[2601.09430|Video-MSR]], [[2512.01989|PAI-Bench]], [[2511.04670|Cambrian-S]], [[2510.17801|Robobench]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2509.15273|Embodied Arena]], [[2508.13142|EASI]], [[2508.12211|VLAPS]], [[2507.18342|EgoExoBench]], [[2507.10548|EmbRACE-3K]], [[2506.18123|RoboArena]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2505.15660|AGNOSTOS]], [[2505.09694|EWMBench]], [[2503.23765|STI-Bench]], [[2501.16411|PhysBench]], [[2305.12821|FurnitureBench]], [[2009.12293|robosuite]]
+- [[2604.21686|WorldMark]], [[2604.11689|LARY]], [[2604.05498|JailWAM]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2602.05986|RISE-Video]], [[2602.01640|A2Eval]], [[2601.15224|PROGRESSLM]], [[2601.11421|GM-100]], [[2601.09430|Video-MSR]], [[2512.01989|PAI-Bench]], [[2511.12149|AttackVLA]], [[2511.04670|Cambrian-S]], [[2510.17801|Robobench]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2509.15273|Embodied Arena]], [[2508.13142|EASI]], [[2508.12211|VLAPS]], [[2507.18342|EgoExoBench]], [[2507.10548|EmbRACE-3K]], [[2506.18123|RoboArena]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2505.15660|AGNOSTOS]], [[2505.09694|EWMBench]], [[2503.23765|STI-Bench]], [[2501.16411|PhysBench]], [[2206.09682|SafeBench]], [[2305.12821|FurnitureBench]], [[2009.12293|robosuite]]
 
 > [!star] Key Papers
 > - [[2506.18123|RoboArena]] — Distributed real-world VLA eval via crowd-sourced pairwise comparisons; 0.98 Pearson correlation with oracle, paradigm shift from sim-only benchmarking
