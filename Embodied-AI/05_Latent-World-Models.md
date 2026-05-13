@@ -15,7 +15,7 @@ aliases:
 # Latent World Models — Deep Dive
 
 > [!abstract] Overview
-> Latent world models predict future states in representation space rather than pixel space — faster, more robust to visual noise, and better suited for real-time robot control. This note covers the JEPA family (the dominant latent prediction architecture), other latent approaches (DINO-WM, UWM, Motus), and **latent reasoning for embodied AI** — using continuous thought and latent planning to enable smarter, faster robot decision-making.
+> Latent world models predict future states in representation space rather than pixel space — faster, more robust to visual noise, and better suited for real-time robot control. This note covers the JEPA family (the dominant latent prediction architecture), other latent approaches ([[2411.04983|DINO-WM]], [[2504.02792|UWM]], [[2512.13030|Motus]]), and **latent reasoning for embodied AI** — using continuous thought and latent planning to enable smarter, faster robot decision-making.
 
 ## Evolution Graph
 
@@ -65,7 +65,7 @@ graph TD
     style N fill:#f0e8fd,stroke:#9b59b6
 ```
 
-The field evolved through three threads: **JEPA** (2023-2026) where I-JEPA established latent prediction and V-JEPA 2 scaled it to 1M+ hours of video; **alternative latent models** (2024-2025) where DINO-WM and UWM showed other self-supervised features work too; and **latent reasoning** (2026) where ThinkJEPA and ATP-Latent brought reasoning into latent planning for embodied agents.
+The field evolved through three threads: **JEPA** (2023-2026) where [[2301.08243|I-JEPA]] established latent prediction and [[2506.09985|V-JEPA 2]] scaled it to 1M+ hours of video; **alternative latent models** (2024-2025) where [[2411.04983|DINO-WM]] and [[2504.02792|UWM]] showed other self-supervised features work too; and **latent reasoning** (2026) where [[2603.22281|ThinkJEPA]] and [[2601.21598|ATP-Latent]] brought reasoning into latent planning for embodied agents.
 
 ---
 
@@ -83,10 +83,10 @@ The Joint Embedding Predictive Architecture (JEPA) was proposed by Yann LeCun as
 
 **The JEPA Architecture**: Three components work together: (1) a ==context encoder== processes visible patches into embeddings, (2) a ==predictor== takes context embeddings + positional information of masked patches and predicts their latent representations, (3) a ==target encoder== (updated via EMA of the context encoder) provides the prediction targets. The asymmetry is crucial: because the target encoder is a slow-moving average, the system can't collapse to trivial solutions (where everything maps to the same embedding). Unlike contrastive learning (which needs negative pairs) or generative models (which reconstruct pixels), JEPA only needs to predict in the embedding space of its own target encoder.
 
-**Why This Matters for Robots**: Pixel reconstruction wastes capacity modeling textures, shadows, and lighting — visual details irrelevant to manipulation. JEPA's latent prediction naturally filters these out, learning representations focused on object positions, orientations, and dynamics. V-JEPA 2 demonstrated this concretely: 80% pick-and-place success from just 62 hours of unlabeled video, because the latent space captures "what matters" for manipulation.
+**Why This Matters for Robots**: Pixel reconstruction wastes capacity modeling textures, shadows, and lighting — visual details irrelevant to manipulation. JEPA's latent prediction naturally filters these out, learning representations focused on object positions, orientations, and dynamics. [[2506.09985|V-JEPA 2]] demonstrated this concretely: 80% pick-and-place success from just 62 hours of unlabeled video, because the latent space captures "what matters" for manipulation.
 
 > [!tip] Why JEPA Wins for Robots
-> Generative world models (DreamZero, Cosmos) produce beautiful video but are expensive and waste capacity modeling irrelevant visual details. JEPA's latent prediction filters out noise and focuses on dynamics — exactly what robots need. V-JEPA 2 achieved 80% pick-and-place success from just 62 hours of unlabeled video.
+> Generative world models ([[2602.15922|DreamZero]], Cosmos) produce beautiful video but are expensive and waste capacity modeling irrelevant visual details. JEPA's latent prediction filters out noise and focuses on dynamics — exactly what robots need. V-JEPA 2 achieved 80% pick-and-place success from just 62 hours of unlabeled video.
 
 ---
 
@@ -107,7 +107,7 @@ This section traces the four-stage evolution from self-supervised video encoder 
 ### Stage 2: V-JEPA 2.1 — Unlocking Dense Features
 
 > [!tip] Key Evolution: Global → Dense
-> V-JEPA 2 only supervised ==masked== tokens, causing context tokens to become global aggregators that lose local detail. V-JEPA 2.1 fixes this by supervising ==all== tokens.
+> [[2506.09985|V-JEPA 2]] only supervised ==masked== tokens, causing context tokens to become global aggregators that lose local detail. [[2603.14482|V-JEPA 2.1]] fixes this by supervising ==all== tokens.
 
 [[2603.14482|V-JEPA 2.1]] introduces three innovations:
 
@@ -123,7 +123,7 @@ This section traces the four-stage evolution from self-supervised video encoder 
 ### Stage 3: VL-JEPA — Adding Language
 
 > [!tip] Key Evolution: Vision-only → Vision-Language
-> VL-JEPA brings language into JEPA — but ==predicts embeddings, not tokens==, making it fundamentally different from generative VLMs.
+> [[2512.10942|VL-JEPA]] brings language into JEPA — but ==predicts embeddings, not tokens==, making it fundamentally different from generative VLMs.
 
 [[2512.10942|VL-JEPA]] (FAIR, Meta) extends JEPA to vision-language by predicting ==abstract semantic embeddings== via ==InfoNCE loss==, not autoregressive text generation. Selective decoding reduces operations by **~2.85x** for video streams.
 
@@ -132,7 +132,7 @@ This section traces the four-stage evolution from self-supervised video encoder 
 ### Stage 4: VLA-JEPA — From Understanding to Action
 
 > [!tip] Key Evolution: Understanding → Control
-> VLA-JEPA closes the loop: JEPA's latent world model becomes the backbone for a full ==Vision-Language-Action== pipeline.
+> [[2602.10098|VLA-JEPA]] closes the loop: JEPA's latent world model becomes the backbone for a full ==Vision-Language-Action== pipeline.
 
 [[2602.10098|VLA-JEPA]] integrates JEPA into robotic manipulation through:
 
@@ -142,8 +142,8 @@ This section traces the four-stage evolution from self-supervised video encoder 
 4. **Flow-matching action head** — Generates smooth trajectories conditioned on ==Qwen3-VL==
 
 **Performance:**
-- LIBERO in-distribution: **97.2%** average success
-- LIBERO-Plus (OOD): **79.5%** average success
+- [[2306.03310|LIBERO]] in-distribution: **97.2%** average success
+- [[2510.13626|LIBERO-Plus]] (OOD): **79.5%** average success
 - SimplerEnv Google Robot: **65.2%** (SOTA)
 
 > [!star] Key Papers
@@ -168,11 +168,19 @@ Beyond the JEPA lineage, other architectures also predict in latent space for em
 > - [[2510.00739|TD-JEPA]] — Latent-predictive representations for zero-shot RL; bridges JEPA to value learning
 
 **Non-JEPA Latent Models** — Alternative architectures achieving latent prediction without the JEPA framework.
-- [[2604.10333|ZWM]], [[2603.29090|HCLSM]], [[2512.13030|Motus]], [[2507.19468|DINO-world]], [[2505.15659|FLARE]], [[2505.13696|ESWM]], [[2505.11528|LaDi-WM]], [[2504.02792|UWM]], [[2503.18938|AdaWorld]], [[2411.04983|DINO-WM]]
+- [[2605.00078|Being-H0.7]], [[2604.10333|ZWM]], [[2603.29090|HCLSM]], [[2512.13030|Motus]], [[2507.19468|DINO-world]], [[2505.15659|FLARE]], [[2505.13696|ESWM]], [[2505.11528|LaDi-WM]], [[2504.02792|UWM]], [[2503.18938|AdaWorld]], [[2411.04983|DINO-WM]]
 
 > [!star] Key Papers
-> - [[2411.04983|DINO-WM]] — Task-agnostic world model on frozen DINOv2 features; zero-shot planning without task-specific training
+> - [[2605.00078|Being-H0.7]] — Latent World-Action Model with dual-branch future-informed training: deployable "prior" branch's hidden states aligned to a "posterior" branch receiving privileged future embeddings (Mixture-of-Transformers); replaces costly pixel-space WAM prediction with implicit latent reasoning. **99.2%** [[2306.03310|LIBERO]], **62.1%** [[2406.02523|RoboCasa]], 3-4 ms/step latency
+> - [[2411.04983|DINO-WM]] — Task-agnostic world model on frozen [[2304.07193|DINOv2]] features; zero-shot planning without task-specific training
 > - [[2504.02792|UWM]] — Unified World Models: single architecture handling action-conditioned, action-free, and video prediction tasks
+
+**Latent-WM Surveys** — Field-defining surveys that taxonomize the latent-prediction landscape.
+- [[2605.00080|WM Robot Survey 2026]], [[2604.16592|Cognition WM Survey]]
+
+> [!star] Key Papers
+> - [[2605.00080|WM Robot Survey 2026]] — Multi-dimensional taxonomy of world models for robot learning; documents the architectural evolution from decoupled "predict-then-act" to unified VLA/MoE/MoT backbones and **latent-space world modeling** as the dominant integration pattern
+> - [[2604.16592|Cognition WM Survey]] — Cognitive-Architecture-Theory taxonomy spanning Video, Embodied, and Epistemic WMs; identifies motivation and meta-cognition as the most under-developed cognitive functions in current latent WMs
 
 ### 3.1 JEPA Variant Design-Space Matrix
 
@@ -214,7 +222,7 @@ graph LR
     style E fill:#f0e8fd,stroke:#9b59b6
 ```
 
-DINO-WM established that *frozen* DINOv2 features are rich enough for world modeling. UWM unified action-free, action-conditioned, and video prediction in one diffusion architecture. Motus pushed unified latent diffusion further. LaDi-WM combined DINOv2+Siglip features with imagination-guided iterative action refinement, hitting 68.7% on LIBERO-LONG with only 10 demos.
+[[2411.04983|DINO-WM]] established that *frozen* [[2304.07193|DINOv2]] features are rich enough for world modeling. [[2504.02792|UWM]] unified action-free, action-conditioned, and video prediction in one diffusion architecture. [[2512.13030|Motus]] pushed unified latent diffusion further. [[2505.11528|LaDi-WM]] combined DINOv2+Siglip features with imagination-guided iterative action refinement, hitting 68.7% on LIBERO-LONG with only 10 demos.
 
 **How DINO-WM Works**: Rather than training a world model from scratch, DINO-WM builds on frozen DINOv2 features — visual representations already trained on massive image data. A lightweight dynamics module learns to predict how these frozen features change given an action. Because the visual encoder is frozen, the model generalizes to new environments without retraining — the dynamics are separate from the visual representation. This enables zero-shot planning: given a goal image, the agent searches for an action sequence whose predicted feature trajectory ends at the goal features.
 
@@ -227,14 +235,15 @@ DINO-WM established that *frozen* DINOv2 features are rich enough for world mode
 
 ## 4. Latent Reasoning for Embodied AI
 
-The frontier: combining latent world models with **reasoning in representation space** — enabling robots to plan, reason about spatial relationships, and think ahead without generating explicit text or video. This is where latent prediction meets the broader "continuous thought" paradigm (Coconut, Huginn), applied specifically to physical agents.
+The frontier: combining latent world models with **reasoning in representation space** — enabling robots to plan, reason about spatial relationships, and think ahead without generating explicit text or video. This is where latent prediction meets the broader "continuous thought" paradigm ([[2412.06769|Coconut]], [[2502.05171|Huginn]]), applied specifically to physical agents.
 
 **Latent Planning** — Robots plan trajectories in embedding space instead of generating video frames. Orders of magnitude faster, enabling real-time MPC.
-- [[2604.03208|HWM]], [[2603.22281|ThinkJEPA]], [[2601.21598|ATP-Latent]], [[2411.04983|DINO-WM]]
+- [[2605.00078|Being-H0.7]], [[2604.03208|HWM]], [[2603.22281|ThinkJEPA]], [[2601.21598|ATP-Latent]], [[2411.04983|DINO-WM]]
 
-**How Latent MPC Works**: Model Predictive Control in latent space follows a simple loop: (1) encode the current observation into the latent state; (2) sample N candidate action sequences; (3) for each, roll forward through the latent dynamics model to predict the future state trajectory; (4) score each trajectory against the goal (e.g., distance between predicted final state and goal state in latent space); (5) execute the first action of the best trajectory; (6) re-observe and repeat. VLA-JEPA uses V-JEPA 2's built-in predictor module for step (3) — a single forward pass per prediction (~10ms), enabling real-time MPC at 10-20 Hz. This is orders of magnitude faster than pixel-space MPC (DreamZero: ~150ms per prediction) because latent states are compact (256-dim embeddings vs 256x256x3 pixel frames).
+**How Latent MPC Works**: Model Predictive Control in latent space follows a simple loop: (1) encode the current observation into the latent state; (2) sample N candidate action sequences; (3) for each, roll forward through the latent dynamics model to predict the future state trajectory; (4) score each trajectory against the goal (e.g., distance between predicted final state and goal state in latent space); (5) execute the first action of the best trajectory; (6) re-observe and repeat. [[2602.10098|VLA-JEPA]] uses [[2506.09985|V-JEPA 2]]'s built-in predictor module for step (3) — a single forward pass per prediction (~10ms), enabling real-time MPC at 10-20 Hz. This is orders of magnitude faster than pixel-space MPC ([[2602.15922|DreamZero]]: ~150ms per prediction) because latent states are compact (256-dim embeddings vs 256x256x3 pixel frames).
 
 > [!star] Key Papers
+> - [[2605.00078|Being-H0.7]] — Future-informed dual-branch latent reasoning: privileged-future supervision at training time, implicit prediction at deployment; eliminates the pixel-space WAM tax. SOTA on LIBERO/RoboCasa with 3-4 ms/step
 > - [[2603.22281|ThinkJEPA]] — Integrates a VLM to semantically guide a JEPA-style latent world model for trajectory prediction; the VLM provides high-level reasoning, JEPA provides low-level dynamics
 > - [[2601.21598|ATP-Latent]] — Two-stage method: VAE creates smooth latent space, then RL plans in that space; enables active latent planning beyond imitation
 
@@ -272,7 +281,7 @@ The frontier: combining latent world models with **reasoning in representation s
 | **Best For** | Real-time control, in-domain | Zero-shot transfer, novel environments |
 
 > [!tip] The 2026 Consensus
-> You need video generation at **training time** (to learn physics priors) but NOT at **test time** (where it causes latency). [[2603.16666|Fast-WAM]] proved this: train with video objectives, deploy without video generation. Latent models like VLA-JEPA take this further — they never generate video at all, operating entirely in representation space.
+> You need video generation at **training time** (to learn physics priors) but NOT at **test time** (where it causes latency). [[2603.16666|Fast-WAM]] proved this: train with video objectives, deploy without video generation. Latent models like [[2602.10098|VLA-JEPA]] take this further — they never generate video at all, operating entirely in representation space.
 
 ---
 
@@ -300,9 +309,25 @@ graph LR
 Latent world models are powerful but face fundamental limitations that remain unsolved:
 
 - **Fine-grained contact physics**: Latent prediction excels at predicting object trajectories and coarse dynamics, but struggles with contact-rich manipulation (insertion, assembly, surface following) where sub-millimeter accuracy matters. Pixel-space models capture contact details better, but at prohibitive computational cost.
-- **Novel object generalization**: JEPA models trained on internet video encode priors about common objects, but struggle with novel materials (deformable, transparent, articulated) not well-represented in training data. DINO-WM's frozen features partially address this for geometry, but material properties remain challenging.
-- **Interpretability gap**: Latent predictions are opaque — a human cannot inspect whether the model's "imagined future" makes physical sense. This limits debugging and safety verification. ThinkJEPA's VLM-guided approach partially bridges this by grounding latent predictions in natural language descriptions.
+- **Novel object generalization**: JEPA models trained on internet video encode priors about common objects, but struggle with novel materials (deformable, transparent, articulated) not well-represented in training data. [[2411.04983|DINO-WM]]'s frozen features partially address this for geometry, but material properties remain challenging.
+- **Interpretability gap**: Latent predictions are opaque — a human cannot inspect whether the model's "imagined future" makes physical sense. This limits debugging and safety verification. [[2603.22281|ThinkJEPA]]'s VLM-guided approach partially bridges this by grounding latent predictions in natural language descriptions.
 - **Latent-pixel alignment**: When is a latent prediction "wrong enough" to warrant concern? Unlike pixel-space models where humans can visually inspect dreams, latent-space errors require learned evaluators — creating a recursive trust problem.
+
+---
+
+## Quick-Reference Matrix
+
+| Question | Answer |
+|----------|--------|
+| Need self-supervised video pretraining? | [[2506.09985\|V-JEPA 2]] (or [[2301.08243\|I-JEPA]] for static images) |
+| Need dense local + global features? | V-JEPA 2.1 (deep self-supervision) |
+| Need vision-language without generation? | [[2512.10942\|VL-JEPA]] (efficient InfoNCE alignment) |
+| Need a full robot controller in latent space? | [[2602.10098\|VLA-JEPA]] or [[2602.11832\|JEPA-VLA]] |
+| Need world model as planning substrate? | [[2510.00739\|TD-JEPA]] or [[2511.19221\|Percept-WAM]] |
+| Need latent reasoning / continuous thought? | [[2603.22281\|ThinkJEPA]] or [[2601.21598\|ATP-Latent]] |
+| Need non-JEPA latent dynamics? | [[2411.04983\|DINO-WM]] (frozen DINO) or [[2504.02792\|UWM]] |
+| Need pretraining without action labels? | [[2512.13030\|Motus]] (latent motion priors) |
+| Want pixel-space WAM instead? | See [[04_WAM]] for VideoGen lineage |
 
 ---
 
@@ -311,10 +336,11 @@ Latent world models are powerful but face fundamental limitations that remain un
 - [[04_WAM]] — WAM deep-dive (Section 3 covers latent prediction WAMs)
 - [[03_VLA]] — VLA deep-dive (Section 5 covers WAM-augmented VLAs)
 - [[02_Dataset-Benchmark-Environment]] — Benchmarks for evaluating latent world models
-- [[06_Self-Evolving-VLA-WAM]] — Self-evolving VLAs & WAMs (VLA-JEPA as a self-evolving target)
+- [[06_Self-Evolving-VLA-WAM]] — Self-evolving VLAs & WAMs ([[2602.10098|VLA-JEPA]] as a self-evolving target)
 - [[07_Physics-Aware-Embodied-AI]] — Physics-aware latent dynamics and physical commonsense
-- [[08_VLA-Reasoning-and-CoT]] — Latent reasoning insertion patterns (Abstract-CoT, dVLA)
+- [[08_VLA-Reasoning-and-CoT]] — Latent reasoning insertion patterns ([[2604.22709|Abstract-CoT]], [[2509.25681|dVLA]])
 - [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining substrates for latent models
+- [[10_Force-Aware-and-Tactile-Policies]] — Force/tactile policies deep-dive; complements latent representation for multi-sensor inputs
 - [[01_Embodied-AI-101]] — Embodied AI basics
 
 ---

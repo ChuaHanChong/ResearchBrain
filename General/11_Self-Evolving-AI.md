@@ -198,7 +198,7 @@ Self-evolving systems need to practice on the right problems at the right diffic
 When self-improvement meets agentic AI: systems that autonomously explore environments, accumulate experience, distill lessons, and evolve their own capabilities across tasks. These go beyond single-turn reasoning to multi-step, tool-using, environment-interacting agents that learn from deployment.
 
 **Agent Self-Evolution Frameworks** — End-to-end frameworks where agents improve by interacting with diverse environments, distilling experience into reusable strategies, and iterating.
-- [[2604.25850|Agentic Harness Engineering]], [[2604.18292|Agent-World]], [[2604.18131|Native Evolution]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting RL]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective Self-Adaptation]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]]
+- [[2605.07465|SEIF]], [[2604.25850|Agentic Harness Engineering]], [[2604.18292|Agent-World]], [[2604.18131|Native Evolution]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting RL]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective Self-Adaptation]], [[2510.08558|Early Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]]
 
 > [!star] Key Papers
 > - [[2604.18292|Agent-World]] — ByteDance/Renmin's framework unifying real-world environment synthesis with continuous self-evolution; 14B agent evaluated on 23 benchmarks, with average tool-use scores more than doubling as environment diversity scales from 0 to 1,978
@@ -244,7 +244,7 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 > - [[2603.19370|VAMPO]] — RL optimization of visual dynamics in video action models via GRPO; bridges world model quality and action quality
 
 **Self-Evolving Robots & Navigation** — Embodied agents that discover their own failure modes and improve through real-world or simulated experience, combining exploration, curiosity, and RL.
-- [[2604.07392|ERA]], [[2603.04029|Self-Adapting RL]], [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.06658|SILVR]]
+- [[2604.07392|ERA]], [[2603.04029|Self-Adapting RL]], [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.12252|Robot Trains Robot]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.06658|SILVR]], [[2503.10949|SCDA]]
 
 > [!star] Key Papers
 > - [[2506.21669|SEEA-R1]] — Tree-structured RL for self-evolving embodied agents; +24% via MCTS + generative reward
@@ -267,7 +267,7 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 Learning to learn: models that adapt their own learning process, discover optimization algorithms, or rapidly adjust to new tasks from minimal data. While self-training improves outputs, meta-learning improves the learning procedure itself.
 
 **Meta-Reinforcement Learning** — Agents that learn an RL algorithm implicitly through experience, enabling rapid adaptation to new reward structures without retraining from scratch.
-- [[2604.11768|GC-PFO]], [[2309.05858|Mesa-Optimization Transformers]], [[2301.08028|Meta-RL Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]], [[1910.10897|Meta-World]]
+- [[2604.11768|GC-PFO]], [[2503.18684|OMLA]], [[2309.05858|Mesa-Optimization Transformers]], [[2301.08028|Meta-RL Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]], [[1910.10897|Meta-World]]
 
 > [!star] Key Papers
 > - [[2301.08028|Meta-RL Tutorial]] — Definitive survey structuring the meta-RL landscape: context-based, task-inference, and black-box approaches

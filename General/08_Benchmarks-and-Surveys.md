@@ -321,16 +321,18 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2503.06669|AgiBot World]] — Large-scale manipulation platform with diverse environments and embodiments
 
 **Egocentric Human-Video Datasets** — Large-scale first-person video corpora used to pretrain VLAs and learn dexterous priors from human demonstrations.
-- [[2505.11709|EgoDex]], [[2110.07058|Ego4D]]
+- [[2605.06747|HumanNet]], [[2605.05945|MobileEgo Anywhere]], [[2505.11709|EgoDex]], [[2110.07058|Ego4D]]
 
 > [!star] Key Papers
+> - [[2605.06747|HumanNet]] — 1M-hour human-centric video; egocentric + exocentric viewpoints with interaction-centric annotations; 1,000 hr pretrain matches/surpasses 100 hr robot-data pretrain
 > - [[2110.07058|Ego4D]] — 3,670 hours of egocentric video from 931 wearers across 9 countries with rich multimodal annotations; foundational for Being-H0 and EgoScale-style VLA pretraining
 > - [[2505.11709|EgoDex]] — Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation
 
 **Simulation Benchmarks** — Standardized simulation environments for reproducible policy evaluation.
-- [[2604.25788|KinDER]], [[2604.21686|WorldMark]], [[2604.21192|VLA Open-World Audit]], [[2604.19092|RoboWM-Bench]], [[2604.11689|LARY]], [[2604.11674|AffordSim]], [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.22579|VLA Metamorphic Testing]], [[2602.13710|HBVLA]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2602.01640|A2Eval]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2510.17801|Robobench]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2509.15273|Embodied Arena]], [[2506.18701|Matrix-Game]], [[2506.18088|RoboTwin 2.0]], [[2505.19017|WorldEval]], [[2505.12224|RoboFAC]], [[2505.09694|EWMBench]], [[2503.14734|GR00T N1]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2310.08367|MCU]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
+- [[2604.25788|KinDER]], [[2604.21686|WorldMark]], [[2604.21192|VLA Open-World Audit]], [[2604.19092|RoboWM-Bench]], [[2604.11689|LARY]], [[2604.11674|AffordSim]], [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.15469|RoCo AAAI 2026]], [[2603.13966|vla-eval]], [[2603.12185|ComFree-Sim]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.22663|CEBench]], [[2602.22579|VLA Metamorphic Testing]], [[2602.13710|HBVLA]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2602.01640|A2Eval]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2511.04831|Isaac Lab]], [[2510.17801|Robobench]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2509.15273|Embodied Arena]], [[2506.18701|Matrix-Game]], [[2506.18088|RoboTwin 2.0]], [[2506.06677|RoboCerebra]], [[2505.19017|WorldEval]], [[2505.12224|RoboFAC]], [[2505.09694|EWMBench]], [[2503.14734|GR00T N1]], [[2502.09560|EmbodiedBench]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2310.08367|MCU]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
 
 > [!star] Key Papers
+> - [[2511.04831|Isaac Lab]] — NVIDIA's GPU simulation framework; up to 1.6M FPS, OpenUSD-based, foundational for GR00T N1/N1.5 training
 > - [[2306.03310|LIBERO]] — Lifelong robot learning benchmark with 5 suites and 130 tasks; tests continual learning
 > - [[2405.05941|SIMPLER]] — Evaluates whether simulation performance predicts real-world success; bridges the sim-to-real gap
 
@@ -340,8 +342,15 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > [!star] Key Papers
 > - [[2506.18123|RoboArena]] — Distributed real-world evaluation via double-blind pairwise comparisons across 7 institutions; 0.98 Pearson correlation with oracle rankings and 1.8% Mean Max Rank Violation; paradigm shift from sim-only benchmarking
 
+**Tactile & Contact-Rich Datasets** — Multimodal datasets with synchronized visuo-tactile-kinematic signals for contact-rich and bimanual manipulation.
+- [[2604.20444|VTouch++]], [[2604.07335|TAMEn]], [[2603.17851|DexViTac]], [[2510.25725|HumanoidVTA]]
+
+> [!star] Key Papers
+> - [[2604.20444|VTouch++]] — 120K episodes / 1,000+ hr / 380+ bimanual tasks with fingertip tactile + multi-view RGB-D; contrastive cross-modal retrieval outperforms baselines by 7×
+> - [[2603.17851|DexViTac]] — Portable visuo-tactile-kinematic capture rig at 248 demos/hr; kinematics-grounded tactile pretraining unlocks 85.8% avg success on contact-rich tasks
+
 > [!tip] Benchmark Selection
-> Start with LIBERO or CALVIN for standardized simulation evaluation. Use OXE for cross-embodiment pretraining. SIMPLER tells you whether your sim results will hold up in the real world. For generalist policy comparisons on real hardware, RoboArena is the emerging gold standard.
+> Start with LIBERO or CALVIN for standardized simulation evaluation. Use OXE for cross-embodiment pretraining. SIMPLER tells you whether your sim results will hold up in the real world. For generalist policy comparisons on real hardware, RoboArena is the emerging gold standard. For contact-rich tasks, VTouch++ / DexViTac provide the largest visuo-tactile corpora.
 
 ---
 

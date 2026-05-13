@@ -188,7 +188,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2309.17400|DRaFT]] — Direct backpropagation of differentiable rewards through the entire sampling chain via LoRA + gradient checkpointing; >200× more sample-efficient than DDPO and the foundation for modern reward-gradient methods
 
 **Flow Matching + RL** — Apply policy optimization to flow-matching and continuous diffusion models, treating the denoising trajectory as a sequential decision process.
-- [[2605.01663|FAN]], [[2604.24764|World-R1]], [[2604.23380|V-GRPO]], [[2603.27866|Wan-R1]], [[2603.26599|VGGRPO]], [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2509.06040|BranchGRPO]], [[2509.04063|ARFM]], [[2507.21053|FPO]], [[2505.05470|Flow-GRPO]]
+- [[2605.01663|FAN]], [[2604.24764|World-R1]], [[2604.23380|V-GRPO]], [[2604.15311|LeapAlign]], [[2603.27866|Wan-R1]], [[2603.26599|VGGRPO]], [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2509.06040|BranchGRPO]], [[2509.04063|ARFM]], [[2507.21053|FPO]], [[2505.05470|Flow-GRPO]]
 
 > [!star] Key Papers
 > - [[2505.05470|Flow-GRPO]] — First framework adapting GRPO to flow matching; enables online RL for continuous generative models
@@ -211,7 +211,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2603.17051|Astrolabe]] — Forward-process RL with rolling-KV streaming rollouts for distilled autoregressive video models; aligns long-video generation (30–60s) without sacrificing inference speed, and prevents reward hacking via uncertainty-aware selective KL
 
 **Reward Models for Image Generation** — Learning reward functions that capture human preferences for image quality, text-image alignment, or edit fidelity to guide RL training.
-- [[2604.27505|Edit-R1]], [[2604.11626|RationalRewards]], [[2509.26346|EditReward]], [[2507.22003|ViHallu]], [[2502.20946|Generative Uncertainty Diffusion]]
+- [[2604.27505|Edit-R1]], [[2604.11626|RationalRewards]], [[2601.04153|Diffusion-DRF]], [[2509.26346|EditReward]], [[2507.22003|ViHallu]], [[2502.20946|Generative Uncertainty Diffusion]]
 
 > [!star] Key Papers
 > - [[2509.26346|EditReward]] — Human-aligned reward model for instruction-guided image editing; enables curation of high-quality training data

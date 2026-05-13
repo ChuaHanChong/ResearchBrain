@@ -111,7 +111,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2302.05209|Causal RL Survey 2023]] — First comprehensive taxonomy connecting causal inference with RL
 
 **Continual & Lifelong RL** — Agents that learn across sequential tasks without catastrophic forgetting.
-- [[2603.24350|Emergent Self]], [[2506.21872|Continual RL Survey]], [[2410.19925|MLLM Continual Learning]], [[1612.00796|EWC]]
+- [[2603.24350|Emergent Self]], [[2506.21872|Continual RL Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2410.19925|MLLM Continual Learning]], [[1612.00796|EWC]]
 
 > [!star] Key Papers
 > - [[1612.00796|EWC]] — Foundational method for overcoming catastrophic forgetting; Elastic Weight Consolidation remains the baseline for all continual learning
@@ -157,7 +157,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > The key insight from 2025: SFT teaches models to *reproduce* patterns, RL teaches them to *solve* problems. For reasoning tasks, RL generalizes where SFT memorizes. But SFT remains essential for format/instruction following — the best pipelines use SFT then RL.
 
 **Robust & Adversarial RL** — RL methods designed for worst-case performance under perturbed observations, actions, dynamics, or adversarial co-players. Foundational for safety-critical RL deployment.
-- [[2602.13040|TCRL]], [[2412.18781|Offline RL Action Perturbation Eval]], [[2412.10713|RAT]], [[2406.09976|RMBPO]]
+- [[2602.13040|TCRL]], [[2510.14246|DR-RPO]], [[2412.18781|Offline RL Action Perturbation Eval]], [[2412.10713|RAT]], [[2406.09976|RMBPO]], [[2204.12581|RAMBO-RL]]
 
 > [!star] Key Papers
 > - [[2602.13040|TCRL]] — Temporal-coupled adversarial training for constrained RL; reduces safety costs by orders of magnitude under worst-case attacks
@@ -211,7 +211,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2506.01622|General Agents World Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
 
 **Offline Model-Based RL** — Learning world models from fixed datasets without further environment interaction, enabling safe policy improvement.
-- [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2406.09976|RMBPO]], [[2310.06253|Objective Mismatch MBRL Survey]], [[1803.10122|World Models]]
+- [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2406.09976|RMBPO]], [[2310.06253|Objective Mismatch MBRL Survey]], [[2204.12581|RAMBO-RL]], [[1803.10122|World Models]]
 
 > [!star] Key Papers
 > - [[2504.16680|RWM-U]] — Uncertainty-aware world model for real-robot offline RL; bridges sim-to-real with calibrated uncertainty
@@ -234,7 +234,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 Direct methods for optimizing policies — from classic PPO through modern GRPO variants, KL-regularized objectives, and tree-structured search. This is the algorithmic engine behind both LLM reasoning and robot control.
 
 **GRPO & Variants** — Group Relative Policy Optimization and its derivatives, the dominant paradigm for RL-based LLM reasoning post-DeepSeek-R1.
-- [[2604.27998|Latent-GRPO]], [[2604.02288|SRPO]], [[2603.24984|MoE-GRPO]], [[2602.05547|MT-GRPO]], [[2511.06411|SofT-GRPO]], [[2509.25849|Knapsack-GRPO]], [[2509.06040|BranchGRPO]], [[2508.09726|GFPO]], [[2507.21848|EDGE-GRPO]], [[2506.16141|GRPO-CARE]], [[2506.13923|Guide-GRPO]], [[2505.22257|Off-Policy GRPO]], [[2505.05470|Flow-GRPO]], [[2504.00883|vsGRPO]], [[2503.20783|Dr. GRPO]], [[2503.14476|DAPO]]
+- [[2605.06139|LPO]], [[2604.27998|Latent-GRPO]], [[2604.02288|SRPO]], [[2603.24984|MoE-GRPO]], [[2602.05547|MT-GRPO]], [[2511.06411|SofT-GRPO]], [[2509.25849|Knapsack-GRPO]], [[2509.06040|BranchGRPO]], [[2508.09726|GFPO]], [[2507.21848|EDGE-GRPO]], [[2506.16141|GRPO-CARE]], [[2506.13923|Guide-GRPO]], [[2505.22257|Off-Policy GRPO]], [[2505.05470|Flow-GRPO]], [[2504.00883|vsGRPO]], [[2503.20783|Dr. GRPO]], [[2503.14476|DAPO]]
 
 > [!star] Key Papers
 > - [[2503.14476|DAPO]] — Open-source large-scale GRPO system; demonstrated that RL at scale produces reasoning capabilities that SFT cannot
@@ -659,7 +659,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2603.02203|T3RL]] — Test-Time Training for RL: adapts robot policies online using world model gradients
 
 **Sim-to-Real & Transfer** — Bridging the gap between simulation and physical deployment for robot RL.
-- [[2604.24916|asRoBallet]], [[2604.24018|Sim2Real Betting]], [[2604.23702|QuietWalk]], [[2604.07457|CMP]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
+- [[2604.24916|asRoBallet]], [[2604.24018|Sim2Real Betting]], [[2604.23702|QuietWalk]], [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2508.21065|Learning on the Fly]], [[2508.12252|Robot Trains Robot]], [[2503.10949|SCDA]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
 
 > [!star] Key Papers
 > - [[2201.02373|Mirror Learning]] — Unifying theoretical framework for diverse policy optimization methods; connects RL algorithms under one roof
