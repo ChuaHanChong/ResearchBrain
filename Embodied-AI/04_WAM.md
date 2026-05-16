@@ -87,6 +87,8 @@ The field evolved through four threads: **model-based RL** (2019-2026) where Dre
 | 2026 | [[2602.12063\|VLAW]] | Iterative co-improvement: VLA and world model reinforce each other |
 | 2026 | [[2509.24527\|Dreamer 4]] | Scalable world model training agents inside video game environments |
 | 2026 | [[2603.16666\|Fast-WAM]] | WAM benefits without test-time imagination via video co-training |
+| 2026 | [[2605.15153\|Pelican-Unified]] | Single-model unification of understanding + reasoning + imagination + action via shared latent z + UFG |
+| 2026 | [[2605.12090\|WAM Survey]] | First formal WAM definition; Cascaded vs Joint architectural taxonomy; four-data-ecosystem analysis |
 | 2026 | [[2605.10942\|HarmoWAM]] | Dual predictive+reactive experts + process-adaptive gating resolve generalization-precision trade-off |
 | 2025 | [[2509.21309\|NewtonGen]] | Physics-consistent T2V via neural Newtonian dynamics |
 | 2025 | [[2509.20358\|PhysCtrl]] | Generative physics for controllable video generation |
@@ -97,6 +99,9 @@ The field evolved through four threads: **model-based RL** (2019-2026) where Dre
 ---
 
 ## 1. The Design Space
+
+> [!star] WAM Definition & Cascaded vs Joint Taxonomy
+> [[2605.12090|WAM Survey]] is the first paper to formally define WAMs and disambiguate them from VLAs (no dynamics model) and pure World Models (no action generation). It splits the architectural landscape along a single axis — ==Cascaded== (sequential: predict next state, then derive action) vs ==Joint== (unified state-action prediction) — and surveys four data-ecosystem axes (robot, human, simulation, internet-scale video) plus emerging evaluation protocols. The Cascaded/Joint distinction is the field-defining taxonomy that subsequent sections of this note implicitly use.
 
 Three axes define where a WAM sits in the design landscape:
 
@@ -128,7 +133,9 @@ Video diffusion models learn physics by training on internet-scale video data �
 - [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[2310.10625|VLP]]
 
 **Video Pretraining for Robot Policies** — Train on internet video, fine-tune for robot control.
-- [[2605.06192|EA-WM]], [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2602.12099|GigaBrain-0.5M*]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2511.07732|ViPRA]], [[2508.00795|Video Policy]], [[2505.15659|FLARE]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
+- [[2605.15178|SANA-WM]], [[2605.06192|EA-WM]], [[2604.06168|Action Images]], [[2602.15922|DreamZero]], [[2602.12099|GigaBrain-0.5M*]], [[2601.16163|Cosmos Policy]], [[2601.21998|LingBot-VA]], [[2511.07732|ViPRA]], [[2508.00795|Video Policy]], [[2505.15659|FLARE]], [[2412.14803|VPP]], [[2410.06158|GR-2]], [[2312.13139|GR-1]]
+
+**How SANA-WM Compresses Minute-Scale World Modeling**: [[2605.15178|SANA-WM]] (NVIDIA) is a **2.6B-parameter open-source** Hybrid Linear Diffusion Transformer generating **one-minute 720p videos** with precise 6-DoF camera control on a single GPU. Key architectural ingredients: a high-compression LTX2 tokenizer, a hybrid backbone fusing **frame-wise Gated DeltaNet (GDN)** (efficient recurrent context aggregation) with standard **softmax attention** (exact long-range recall), and a dual-branch camera controller (Ray-Local UCPE for coarse 6-DoF pose + Raw-Frame Plücker Mixing for fine intra-stride motion). An algebraic key-scaling factor ($1/\sqrt{D \cdot S}$) for GDN prevents state explosion over minute-scale sequences. Result: VBench Overall **80.62/81.89** at 720p single-GPU matching 480p/8-GPU baselines; **22 videos/hour** on H100, **39×** speedup distilled on RTX 5090; RotErr **4.50°** / TransErr **1.39** on simple trajectories. The first viable open-source minute-scale 720p WAM — closing the open-vs-industrial gap.
 
 > [!star] Key Papers
 > - [[2602.15922|DreamZero]] — 14B joint video+action model; 39.5% on unseen tasks, 42% cross-embodiment improvement, 7Hz real-time
@@ -224,11 +231,14 @@ The integration challenge: VLMs provide semantic understanding (what objects are
 - [[2604.07957|WorldMAP]], [[2603.14497|WorldVLM]], [[2509.02722|VLWM]], [[2507.23773|SimuRA]], [[2601.02456|InternVLA-A1]]
 
 **Unified Policy + World Model** — Single framework that jointly trains policy and world model.
-- [[2605.10942|HarmoWAM]], [[2602.12063|VLAW]], [[2511.17502|RynnVLA-002]], [[2506.21539|WorldVLA]], [[2506.19850|UniVLA]]
+- [[2605.15153|Pelican-Unified]], [[2605.10942|HarmoWAM]], [[2602.12063|VLAW]], [[2511.17502|RynnVLA-002]], [[2506.21539|WorldVLA]], [[2506.19850|UniVLA]]
+
+**How Pelican-Unified Achieves True Unification**: Where prior unified models stitch separate VLM + WM + action modules, [[2605.15153|Pelican-Unified]] integrates understanding, reasoning, imagination, and action as *interdependent dimensions* within a single end-to-end trainable loop. A ==VLM backbone== encodes multimodal context and emits a ==chain-of-thought reasoning trace== plus a dense ==shared latent variable z==; a ==Unified Future Generator== (diffusion transformer) conditions on z and *jointly* models future video and actions with shared computational resources and a combined loss. The latent z thereby acts as the central coupling point — simultaneously semantic (for reasoning), predictive (for imagination), and actionable (for control). Achieves **64.7** average on 8 multimodal VLM benchmarks (e.g., **+28.2pp** on Where2Place), **93.5%** on RoboTwin 50-task dual-arm, and ranks first on WorldArena imagination (**EWM 66.03**, 3D Accuracy **98.13**) while demonstrating unseen compositional and zero-shot generalization on real robots.
 
 **How HarmoWAM Resolves the Generalization-Precision Trade-off**: HarmoWAM identifies a fundamental WAM dichotomy — "imagine-then-execute" architectures generalize well on transit but lack precision near contact, while "joint modeling" architectures are precise near targets but explore poorly. HarmoWAM merges both via a ==generative world model== feeding *two* action experts: a ==predictive expert== consumes current-step latent features for precise interaction, and a ==reactive expert== consumes *future predicted frames and latents* for generalizable exploration. A ==Process-Adaptive Gating Mechanism== dynamically switches between them based on visual task stage (transit vs interaction). Result: **89%** in-domain average across six real-world tasks with only **7.9%** drop on OOD — the smallest generalization gap reported among unified WAMs.
 
 > [!star] Key Papers
+> - [[2605.15153|Pelican-Unified]] — First single-model unification of understanding + reasoning + imagination + action via shared latent z + Unified Future Generator; **64.7** multimodal-VLM avg, **93.5%** RoboTwin dual-arm, **1st** on WorldArena (EWM **66.03**); real-robot zero-shot compositional generalization — the cleanest demonstration of structurally shared representations beating modular assembly
 > - [[2605.10942|HarmoWAM]] — Resolves generalization-precision trade-off via dual experts + process-adaptive gating; **89%** in-domain, **−7.9%** OOD drop
 > - [[2603.14497|WorldVLM]] — Hybrid: VLM for high-level reasoning + world model for low-level dynamics
 > - [[2602.12063|VLAW]] — Iterative co-improvement loop: VLA and world model reinforce each other; 39% improvement

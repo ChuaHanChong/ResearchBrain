@@ -173,7 +173,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 The paradigm shift: video generation models that simulate ==physically plausible futures==, becoming the foundation for planning and control. These models bridge content creation and robotic planning by learning physics, causality, and dynamics from temporal data.
 
 **Foundational Video World Models** — Systems that treat video generation as world simulation, learning to produce physically coherent future states from observation.
-- [[2605.03821|RoboAlign-R1]], [[2604.18564|MultiWorld]], [[2604.08995|Matrix-Game 3.0]], [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.04502|Veo-Act]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2602.10717|SDA]], [[2602.10102|VideoWorld 2]], [[2602.07050|Interpreting Physics Video WM]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2411.02385|Physical Law Video Gen]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
+- [[2605.15178|SANA-WM]], [[2605.03821|RoboAlign-R1]], [[2604.18564|MultiWorld]], [[2604.08995|Matrix-Game 3.0]], [[2604.07209|INSPATIO-WORLD]], [[2604.04913|DeltaWorld]], [[2604.04707|OpenWorldLib]], [[2604.04502|Veo-Act]], [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2603.26599|VGGRPO]], [[2603.25716|HyDRA]], [[2602.10717|SDA]], [[2602.10102|VideoWorld 2]], [[2602.07050|Interpreting Physics Video WM]], [[2601.20540|LingBot-World]], [[2510.01183|EvoWorld]], [[2411.02385|Physical Law Video Gen]], [[2409.18964|PhysGen]], [[2403.06845|DriveDreamer-2]], [[2310.06114|UniSim]], [[2302.00111|UniPi]], [[1507.08750|Action-Conditional Video Prediction]]
 
 > [!star] Key Papers
 > - [[2302.00111|UniPi]] — First to use text-guided video generation as a universal policy; bridges video generation and robot control
@@ -194,7 +194,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improving framework for controllable, long-horizon video generation
 
 **Controllable Video Synthesis** — Dedicated architectures for high-fidelity, subject-driven, or reason-informed video editing and generation.
-- [[2605.02641|Mamoda2.5]], [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2603.17051|Astrolabe]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2502.02492|VideoJAM]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The Matrix]]
+- [[2605.13724|AnyFlow]], [[2605.02641|Mamoda2.5]], [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.18524|3DreamBooth]], [[2603.17051|Astrolabe]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2502.02492|VideoJAM]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The Matrix]]
 
 > [!star] Key Papers
 > - [[2603.18524|3DreamBooth]] — 3D-consistent subject-driven video generation; Chamfer Distance of 0.0177

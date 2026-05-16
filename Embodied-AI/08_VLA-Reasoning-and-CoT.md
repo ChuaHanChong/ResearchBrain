@@ -94,6 +94,7 @@ The field evolved through three phases. **Visual CoT** (2025) ported language Co
 | 2026 | [[2605.02735\|Silenced Visual Latents]] | Latent (utilization) | Identifies and fixes the latent-shortcut pathology via inference-time NES |
 | 2026 | [[2604.22074\|CIR/SR Reasoning]] | RL training | Outcome rewards do not guarantee verifiable reasoning |
 | 2026 | [[2604.14125\|HiVLA]] | Output head | Visual-grounded-centric hierarchical embodied manipulation |
+| 2026 | [[2605.13119\|VLAs-as-Tools]] | External agent (hierarchical) | VLAs as bounded callable tools under high-level VLM agent; TAPT post-training |
 
 ---
 
@@ -143,7 +144,9 @@ Treat the VLA as a policy *prior* and search at test time using a world model. M
 
 The first wave of VLA reasoning ported language CoT to *visual* subgoals. The model first predicts a future image (the "subgoal") then generates actions conditioned on that image.
 
-- [[2604.14125|HiVLA]], [[2509.25681|dVLA]], [[2508.07917|MolmoAct]], [[2507.16815|ThinkAct]], [[2503.22020|CoT-VLA]], [[2503.11089|EmbodiedVSR]]
+- [[2605.13632|GTA-VLA]], [[2604.14125|HiVLA]], [[2509.25681|dVLA]], [[2508.07917|MolmoAct]], [[2507.16815|ThinkAct]], [[2503.22020|CoT-VLA]], [[2503.11089|EmbodiedVSR]]
+
+**How GTA-VLA Adds Interactive Spatial Guidance**: [[2605.13632|GTA-VLA]] extends Visual CoT with **interactive** human spatial guidance — points, boxes, and traces can be optionally injected into a structured "Guide-Think-Act" reasoning process, letting humans correct visual ambiguities mid-task. An ==asynchronous "slow reasoning, fast action" design== separates VLM-based reasoning from continuous action generation so interactive control remains real-time. The Interact-306K dataset is auto-synthesized from existing robot datasets, enabling scalable training of the interactive CoT. Results: **98.6%** LIBERO in-domain, **+22pp** on SimplerEnv-Plus unseen-object generalization, and human guidance recovers **+20%** of policy failures (raising SimplerEnv-Bridge from **81.2% → 86.1%**) — the cleanest demonstration that human spatial intent can be a first-class CoT modality.
 
 **How CoT-VLA Works**: A [[2409.04429|VILA-U]] backbone is jointly trained on two objectives — robot demonstrations (visual + action tokens) and action-less video (EPIC-KITCHENS, predicting visual subgoals). At inference, the model emits a future-frame token *first*, then conditions actions on the predicted subgoal. Achieved **+17%** real-world and **+6%** simulation gains over baseline VLAs.
 
@@ -228,7 +231,9 @@ A diagnostic result orthogonal to architecture: MLLM latent reasoning can be **s
 
 When the policy is uncertain, search for a better action. The world model serves as a simulator; a tree-search algorithm rolls out candidates.
 
-- [[2510.16281|SEAL]], [[2509.22643|VLA-Reasoner]], [[2508.12211|VLAPS]]
+- [[2605.13119|VLAs-as-Tools]], [[2510.16281|SEAL]], [[2509.22643|VLA-Reasoner]], [[2508.12211|VLAPS]]
+
+**How VLAs-as-Tools Works**: A distinct flavor of external orchestration — instead of searching candidate actions, [[2605.13119|VLAs-as-Tools]] **delegates** subtasks to specialized VLA tools under a high-level VLM agent. The VLM emits discrete tool-invocation messages (each VLA tool corresponds to a bounded sub-skill), receives continuous progress feedback, and triggers event-driven replanning only when needed. ==Tool-Aligned Post-Training (TAPT)== trains the base VLA on bounded invocations with ==tool-family residual parameterization== (distinct execution paths per tool, shared base representation). Latency-efficient — VLM calls drop from **109.5 → 1.988** per task — while delivering **+35.5pp** RoboTwin and **+34.6pp** invocation fidelity. Distinct from MCTS in that the policy hierarchy itself supplies the reasoning structure rather than a tree-search rollout.
 
 **How VLA-Reasoner Works**: Online MCTS with the world model as the simulator. At each step: (1) sample N action candidates from the VLA; (2) for each, roll forward through the world model to predict the resulting state trajectory; (3) score each trajectory via a learned value function; (4) execute the best action; (5) re-observe and repeat. Latency: ~3-5x slower than the base VLA, but recovers from poorly-calibrated policies.
 
@@ -237,6 +242,7 @@ When the policy is uncertain, search for a better action. The world model serves
 **How SEAL Works**: A different flavor of test-time search — instead of rolling out and scoring trajectories, SEAL **verifies semantic alignment** between the VLA's self-generated textual plan and the predicted outcomes of its candidate actions. The pipeline is three-stage: **Hypothesize** (sample K candidate action sequences from the reasoning VLA), **Predict** (roll each forward through a learned dynamics model), **Verify** (use an off-the-shelf VLM like GPT-4o to check which predicted outcome best matches the VLA's own text plan). The action sequence with the highest semantic-alignment score is executed. This targets the **"embodied Chain-of-Thought faithfulness gap"** — the failure mode where a reasoning VLA generates a sensible text plan but produces actions inconsistent with that plan. Training-free; works with any reasoning VLA backbone. Achieves **94-97%** in-distribution, **+15pp** (to 53%) on novel behavior compositions, **+17pp** under viewpoint shifts, at **347ms/step** with K=10. Conceptually closer to constrained-decoding than tree-search — uses action *diversity* as a robustness mechanism rather than a search-tree.
 
 > [!star] Key Papers
+> - [[2605.13119|VLAs-as-Tools]] — Inverts VLA-as-top-level stack: VLAs become bounded callable tools under a high-level VLM agent via TAPT; VLM calls per task drop **109.5 → 1.988**; **+35.5pp** RoboTwin and **+34.6pp** instruction fidelity — the cleanest hierarchical-reasoning win
 > - [[2509.22643|VLA-Reasoner]] — Online MCTS with world model; recovers from policy mistakes via tree-search
 > - [[2508.12211|VLAPS]] — Model-based search wrapping pre-trained VLAs; improves performance without retraining
 > - [[2510.16281|SEAL]] — Runtime reasoning-action alignment verification; targets the **CoT faithfulness gap** by checking that predicted action outcomes match the VLA's own text plan; training-free, **+15pp** on novel compositional tasks

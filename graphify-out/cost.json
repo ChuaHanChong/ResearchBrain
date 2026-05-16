@@ -6,6 +6,13 @@
       "output_tokens": 0,
       "files": 65,
       "note": "incremental update \u2014 deterministic extraction (frontmatter-based)"
+    },
+    {
+      "date": "2026-05-16T10:05:15.879882+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 3000,
+      "mode": "incremental_deterministic"
     }
   ],
   "total_input_tokens": 0,

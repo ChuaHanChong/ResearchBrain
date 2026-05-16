@@ -165,9 +165,10 @@ Not for training — for exposing failure modes and measuring real capability.
 
 Diagnostic benchmarks differ from training benchmarks in a crucial way: they are designed to *expose specific failure modes*, not measure overall performance. [[2601.11421|GM-100]]'s 100 detail-oriented tasks (precise insertion, fine alignment, tool manipulation) systematically test manipulation capabilities that standard benchmarks miss — current VLAs achieve very low success rates, revealing that 'grasping things' and 'precise manipulation' are fundamentally different capabilities. [[2507.10548|EmbRACE-3K]] evaluates embodied reasoning across 3,000 scenarios, testing whether models understand spatial relationships, physical causality, and task decomposition — not just whether they can pick up objects.
 
-- [[2601.11421|GM-100]], [[2508.13142|EASI]], [[2507.10548|EmbRACE-3K]], [[2507.05258|REA]], [[2502.09560|EmbodiedBench]]
+- [[2605.10921|RoboMemArena]], [[2601.11421|GM-100]], [[2508.13142|EASI]], [[2507.10548|EmbRACE-3K]], [[2507.05258|REA]], [[2502.09560|EmbodiedBench]]
 
 > [!star] Key Papers
+> - [[2605.10921|RoboMemArena]] — First comprehensive robotic-memory benchmark: 26 sim + 5 real-world tasks with multimodal annotations (visual keyframes + language) where **68.9%** of subtasks genuinely require historical information; **PrediMem** (predictive-coding VLA with hierarchical memory) hits **38.5%** TSR vs MemER's **27.3%** — the dedicated memory-failure-axis diagnostic
 > - [[2502.09560|EmbodiedBench]] — 1,128 tasks across 4 environments (ALFRED, Habitat, Nav, Manipulation) × 6 capabilities (commonsense, instructions, spatial, perception, planning, basic). Exposes that **GPT-4o** scores **>60%** on high-level planning but only **28.9%** on low-level manipulation; removing vision drops Nav from **57.7% → 17.4%** — the de-facto capability-disentangling MLLM-agent benchmark
 > - [[2601.11421|GM-100]] — 100 detail-oriented tasks; current VLAs achieve very low success rates, exposing real capability gaps
 > - [[2507.10548|EmbRACE-3K]] — 3,000 scenarios testing embodied reasoning (spatial + causal + task-decomposition); reveals that high [[2306.03310|LIBERO]] scores do not imply embodied intelligence
@@ -186,6 +187,7 @@ Diagnostic benchmarks differ from training benchmarks in a crucial way: they are
 | [[2507.10548\|EmbRACE-3K]] | Embodied reasoning | Spatial + causal reasoning |
 | [[2508.13142\|EASI]] | Spatial intelligence | Holistic spatial cognition |
 | [[2502.09560\|EmbodiedBench]] | MLLM-agent capabilities | 6-axis hierarchical (high vs low level) |
+| [[2605.10921\|RoboMemArena]] | Long-term memory | Memory-dependent tasks (occlusion, counting, sequencing) |
 
 > [!tip] Use the Diagnostic Stack
 > Each benchmark stresses one failure axis. A model can score >90% on LIBERO yet collapse on LIBERO-Plus (visual), LIBERO-Para (language), LIBERO-PRO (minor perturbations), or GM-100 (precision). Always evaluate across the full diagnostic stack before claiming generalization. The LIBERO-PRO collapse from >90% to near 0% under *small* changes is the most damning data point in recent VLA evaluation literature.

@@ -140,6 +140,8 @@ Based on [[2412.14058|RoboVLMs]]' 600+ experiments — the most systematic VLA d
 | **Cross-embodiment (OXE)** | Improves few-shot learning (+17.2% on CALVIN few-shot) |
 | **==Post-training==** (OXE → in-domain fine-tune) | Best overall — highest gains for high-frequency skills |
 
+[[2602.18532|VLANeXt]] distills RoboVLMs's design-space lessons into 12 empirically-validated "recipes" — expressive policy modules with meta queries, action chunking, continuous-action objectives (flow matching), strong VLM backbones with soft VLM-policy connections, multi-view inputs, VLM-integrated proprioception, and an auxiliary frequency-domain loss. The resulting 2.5B-parameter VLANeXt achieves **80.1%** average on LIBERO-Plus, **+10pp** over OpenVLA-OFT (7B). One useful negative finding: temporal observation history is often *not* beneficial, and world modeling is effective but computationally expensive — informing the §5 efficiency arguments below.
+
 > [!tip] The [[2510.13054|VLA-0]] Surprise
 > [[2510.13054|VLA-0]] showed you don't need custom action heads, special tokenizers, or architectural changes at all — just fine-tune an unmodified VLM with actions as text. Sometimes the simplest approach wins.
 
@@ -186,6 +188,7 @@ Standard VLAs process 2D images — they lack explicit 3D understanding. These m
 
 | Model | Spatial Feature | Result |
 |-------|----------------|--------|
+| [[2605.11832\|AML-VLA]] | Geometry-Guided Gated Transformer (G³T) fusing synthesized multi-view + monocular geometric priors + Action Manifold Learning | LIBERO **98.6%**, LIBERO-Plus **85.7%**; RoboTwin 2.0 real bi-manual **86.06%** |
 | [[2605.10485\|VEGA]] | DINOv2-FiT3D teacher alignment of student visual encoder via patch cosine loss | RoboTwin 2.0 SOTA (Easy **67.5%**, Hard **30.7%**, **+3.3%** over OFT+SF); no inference overhead |
 | [[2604.12908\|VGA]] | VGGT 3D world model backbone + Progressive Volumetric Modulation | Vision-to-geometry mapping; 98.1% LIBERO with +6% OOD |
 | [[2603.25399\|LaMP]] | 3D scene flow as latent motion prior | Physical foresight via dense 3D flow; 98.3% LIBERO |
@@ -216,6 +219,7 @@ Pure imitation is brittle — these models add test-time reasoning (chain-of-tho
 
 | Model | Reasoning Type | Benefit |
 |-------|---------------|---------|
+| [[2605.13119\|VLAs-as-Tools]] | VLAs as bounded callable tools under high-level VLM agent (TAPT post-training) | Inverts VLA-as-top-level stack; **+35.5pp** RoboTwin, **+34.6pp** invocation fidelity, VLM calls **109.5 → 1.988** per task |
 | [[2604.22709\|Abstract-CoT]] | Latent CoT in abstract embedding space (no words) | Token-free reasoning preserves throughput |
 | [[2604.21396\|VG-CoT]] | Grounded chain-of-thought tied to visual evidence | Trustworthy visual reasoning |
 | [[2604.18486\|OneVL]] | One-step latent reasoning + planning + VL explanation | Reasoning, planning, action in one pass |
@@ -233,6 +237,11 @@ Pure imitation is brittle — these models add test-time reasoning (chain-of-tho
 
 **Action Chain-of-Thought** (ACoT-VLA) adds explicit reasoning in the *action* space rather than language space — the model generates intermediate action waypoints as 'reasoning steps' before committing to the final trajectory. This is fundamentally different from language CoT: the reasoning is grounded in physical coordinates, not tokens. **Online MCTS** (VLA-Reasoner) uses the world model as a simulator during inference: sample multiple action candidates, simulate each forward via the world model, score outcomes, and select the best — essentially playing 'chess' with physical actions. The latency cost is real (~3-5x slower), so ADV's draft-and-verify approach offers a middle ground: generate a fast open-loop action draft, then verify it with a closed-loop check.
 
+**VLAs-as-Tools** ([[2605.13119|VLAs-as-Tools]]) inverts the typical VLA stack entirely: rather than treating the VLA as a top-level monolithic policy, it formalizes VLAs as ==bounded, callable executors== invoked by a higher-level VLM agent. A ==bidirectional VLA tool-family interface== lets the VLM send discrete invocation messages selecting specific VLA tools, and receive continuous progress feedback for efficient, event-triggered replanning. ==Tool-Aligned Post-Training (TAPT)== adapts base VLAs to function as reliable tools via tool-family residual parameterization. Gains: **+35.5pp** for OpenVLA-OFT on RoboTwin, **+34.6pp** Faithful Rate and **+16.2pp** Non-biased Rate on LIBERO-CF-Long counterfactuals, while reducing VLM calls per task from **109.5 to 1.988**. This redistributes the long-horizon dual burden (planning + execution) across components.
+
+> [!star] Key Architectural Inversion
+> [[2605.13119|VLAs-as-Tools]] — Reframes VLAs as bounded callable tools rather than top-level policies; TAPT-trained tool-family with discrete invocation + continuous progress feedback decouples high-level VLM planning from low-level VLA execution; **+35.5pp** RoboTwin, **+34.6pp** instruction fidelity, ~**55x** reduction in VLM call frequency
+
 > [!tip] When Reasoning Helps
 > Reasoning adds latency, so it's not always worth it. Use it for: (1) long-horizon tasks with many decision points, (2) novel task compositions (TLI), (3) tasks requiring spatial inference. Skip it for: fast pick-and-place where imitation suffices.
 
@@ -244,6 +253,7 @@ VLAs that incorporate learned dynamics models for planning, imagination, or co-t
 
 | Model | Integration Style | Key Insight |
 |-------|------------------|-------------|
+| [[2605.15153\|Pelican-Unified]] | Single-model unification: understanding + reasoning + imagination + action via shared latent z | UFG diffusion transformer jointly generates future video + actions; **64.7** VLM avg, **93.5%** RoboTwin, **1st** WorldArena |
 | [[2604.28192\|LaST-R1]] | Reinforces action via adaptive physical latent reasoning | RL-driven latent reasoning over physical state |
 | [[2604.27792\|MotuBrain]] | Advanced WAM-conditioned policy for robot control | Motion-centered WAM core |
 | [[2604.26848\|STARRY]] | Spatial-temporal action-centric world modeling | Full ST-action-centric WM |

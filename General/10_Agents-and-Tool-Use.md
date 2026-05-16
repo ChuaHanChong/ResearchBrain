@@ -98,7 +98,7 @@ The field evolved through five threads: **reasoning-acting foundations** (2022-2
 The foundational paradigm for LLM agents: interleaving reasoning traces with environment actions in think-act-observe loops. These methods established that LLMs could autonomously plan and execute multi-step tasks, not just answer questions.
 
 **Reasoning-Acting Loops** — The core think-act-observe pattern that grounds LLM reasoning in real environment feedback, enabling self-correcting multi-step execution.
-- [[2507.23773\|SimuRA]], [[2507.06261\|Gemini 2.5]], [[2410.08328\|Talker-Reasoner]], [[2310.04406\|LATS]], [[2309.15129\|CogEval]], [[2305.14992\|RAP]], [[2210.03629\|ReAct]]
+- [[2605.15188\|FutureSim]], [[2605.13119\|VLAs-as-Tools]], [[2605.06614\|SkillOS]], [[2507.23773\|SimuRA]], [[2507.06261\|Gemini 2.5]], [[2410.08328\|Talker-Reasoner]], [[2310.04406\|LATS]], [[2309.15129\|CogEval]], [[2305.14992\|RAP]], [[2210.03629\|ReAct]]
 
 > [!star] Key Papers
 > - [[2210.03629\|ReAct]] — Synergizing reasoning and acting: the foundational think-act-observe loop that launched all modern LLM agents
@@ -168,7 +168,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 > - [[2507.05707\|Agentic-R1]] — DualDistill framework training language models as tool-using agents via distillation and RL
 
 **Visual Tool Use & Adaptive Tool Selection** — Methods enabling vision-language models to select and invoke visual tools (detectors, segmenters, editors) on demand during reasoning.
-- [[2604.21409\|S1-VL]], [[2603.17729\|SARE]], [[2601.13942\|GoG]], [[2512.16918\|AdaTooler-V]], [[2512.10359\|STAR]], [[2511.20085\|VICoT-Agent]], [[2510.27363\|ToolScope]], [[2510.09733\|EVisRAG]], [[2509.01656\|ReV PT]], [[2508.04416\|VITAL]], [[2505.08617\|OpenThinkIMG]], [[2503.19263\|DWIM]], [[2412.18072\|MMFactory]], [[2412.13810\|CAD-Assistant]], [[2412.05479\|LATTE]]
+- [[2605.15198|ATLAS]], [[2605.09218|Flame3D]], [[2605.07177|HyperEyes]], [[2604.21409\|S1-VL]], [[2603.17729\|SARE]], [[2601.13942\|GoG]], [[2512.16918\|AdaTooler-V]], [[2512.10359\|STAR]], [[2511.20085\|VICoT-Agent]], [[2510.27363\|ToolScope]], [[2510.09733\|EVisRAG]], [[2509.01656\|ReV PT]], [[2508.04416\|VITAL]], [[2505.08617\|OpenThinkIMG]], [[2503.19263\|DWIM]], [[2412.18072\|MMFactory]], [[2412.13810\|CAD-Assistant]], [[2412.05479\|LATTE]]
 
 > [!star] Key Papers
 > - [[2412.05479\|LATTE]] — Trains open-source VLMs to integrate external tools for complex multimodal reasoning

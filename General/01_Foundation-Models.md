@@ -395,7 +395,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2507.11851|Gated LoRA]] — Enables pretrained autoregressive LLMs to perform multi-token prediction via gated LoRA modules
 
 **Model Merging & Weight Averaging** — Combining multiple fine-tuned models into a single improved model without retraining.
-- [[2604.27155|GeoMerge]], [[2602.05943|Orthogonal Model Merging]], [[2510.21223|FDA]], [[2505.12082|PMA]], [[2408.07666|Model Merging Survey]], [[2407.13771|Training-Free Model Merging MTDA]], [[1803.05407|SWA]]
+- [[2605.14386|Darwin]], [[2604.27155|GeoMerge]], [[2602.05943|Orthogonal Model Merging]], [[2510.21223|FDA]], [[2505.12082|PMA]], [[2408.07666|Model Merging Survey]], [[2407.13771|Training-Free Model Merging MTDA]], [[1803.05407|SWA]]
 
 > [!star] Key Papers
 > - [[1803.05407|SWA]] — Stochastic Weight Averaging: simple technique that finds wider optima and better generalization

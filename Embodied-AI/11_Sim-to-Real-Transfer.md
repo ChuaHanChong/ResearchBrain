@@ -261,7 +261,9 @@ Treat the sim-real gap as adversarial; train against the worst-case dynamics.
 
 Bake physics priors *into* the policy via curriculum, reward shaping, or motion processing.
 
-- [[2604.24916|asRoBallet]], [[2604.23702|QuietWalk]], [[2506.12851|KungfuBot]], [[2603.03279|ULTRA]]
+- [[2605.10063|EFGCL]], [[2604.24916|asRoBallet]], [[2604.23702|QuietWalk]], [[2506.12851|KungfuBot]], [[2603.03279|ULTRA]]
+
+**How EFGCL Uses Physical Assistance as Curriculum**: [[2605.10063|EFGCL]] tackles the high-risk dynamic-motion learning problem (backflips, lateral flips, jumps) for legged robots via ==spotting-inspired external forces== — physical assistance modeled after a gymnastics spotter. Transient external forces help the robot complete the motion during early training; an ==adaptive curriculum== decays the assistance based on success rate, transitioning to fully autonomous execution. Combined with PPO + teacher-student sim-to-real, EFGCL acquires motions (backflip, lateral flip) that PPO baselines *cannot learn at all*, accelerates jumping by **~2×**, and transfers zero-shot to a real KLEIYN quadruped. The method's robustness to heuristic choice of assistive-force application point/magnitude/timing makes it deployable without per-skill tuning — a rare property for high-risk motor-skill curricula.
 
 **How asRoBallet works**: Reconfigurable humanoid ballbot via ==subtractive reconfiguration== of an open-source quadruped — democratizes ballbot research. The critical sim-to-real ingredient: ==friction-aware MuJoCo simulation== explicitly modeling ==tribological phenomena== (rolling, lateral, torsional friction, discrete omni-roller mechanics) + actuator friction. Combined with domain randomization, achieves **zero-shot sim-to-real** with **100%** velocity-tracking success in sim and **0.05 m/s** real-world MAE; recovers from pushes up to **0.3 m**.
 

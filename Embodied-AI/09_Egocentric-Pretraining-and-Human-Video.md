@@ -124,11 +124,14 @@ The data foundation. Each dataset specializes in a different scale-modality-cove
 
 ### 2.5 Domain-Specific Egocentric+Exocentric for VLA Post-Training
 
-- [[2605.09613|SABER]]
+- [[2605.13083|TouchAnything]], [[2605.09613|SABER]]
+
+**TouchAnything (EgoTouch)** introduces the **first multi-view egocentric + bimanual dense tactile** dataset: **20 hours** of synchronized head-mounted + wrist-mounted egocentric video with bimanual 3D hand pose *and* dense tactile pressure maps. The accompanying **TouchAnything** framework fuses head + wrist views via a shared encoder + cross-view fusion module and uses ==view dropout training== to handle occluded contact regions — pushing Volumetric IoU **+6.1%** over egocentric-only baselines and reducing the all-view → ego-only drop from **−27.20% → −5.78%**. This is the first dataset that bridges egocentric video pretraining and *dense tactile supervision*, opening a new axis: egocentric VLAs that learn force prediction from human hand video alone.
 
 **SABER** captures **100+ hours** of natural human activity in real grocery stores with synchronized ==egocentric== (head-worn) and ==exocentric== (stationary) cameras, then processes raw footage into **three complementary action representation streams** — ==[[2410.11758|LAPA]] latent actions==, ==Dex-Retargeting== for hand poses, ==Body Pose Retargets== for whole-body humanoid poses. Used as a domain-specific post-training layer (SABER-MM with batch-level weighting + conditional flow matching loss), it lifts NVIDIA [[2503.14734|GR00T N1.6]] on RoboBenchMart from **13.4%** to **29.3%** mean SR — a **2.19x** gain — with `close_fridge` hitting **100%** and `open_fridge` jumping from **12%** to **82%**. The result generalizes the egocentric-pretraining-then-post-training recipe from generic pretraining datasets ([[2110.07058|Ego4D]], UniHand) to *domain-specialized* datasets that target a deployment vertical.
 
 > [!star] Key Datasets
+> - [[2605.13083|TouchAnything]] — First multi-view egocentric + dense bimanual tactile dataset (**20 hr**, head + wrist + pressure maps); view dropout cuts the ego-only generalization drop from **−27.20% → −5.78%**; bridges egocentric video pretraining and tactile supervision
 > - [[2605.09613|SABER]] — Domain-specific egocentric+exocentric data for retail VLA post-training; **2.19x** SR gain on RoboBenchMart
 > - [[2507.15597|Being-H0]] — Introduces UniHand: 150M instruction-motion pairs in standardized MANO
 > - [[2505.11709|EgoDex]] — Egocentric dexterous-manipulation video
