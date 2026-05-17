@@ -132,14 +132,14 @@ The field evolved through four parallel research threads. **Sim-side** (2023→2
 | 2026 | [[2602.13040\|TCRL]] | Policy-side | Temporal-coupled adversarial training for constrained RL; up to 19,077% cost reduction |
 | 2026 | [[2603.04029\|Self-Adapting RL]] | Real2sim2real | [[2301.04104\|DreamerV3]] world-model feedback for online sim-to-real adaptation |
 | 2026 | [[2603.15956\|ExpertGen]] | Policy-side | Generative prior + DSRL + visuomotor distillation; 90.5% AutoMate assembly |
-| 2026 | [[2603.16861\|MolmoBot]] | Sim-side | 232K-environment procedural MuJoCo; 79.2% real Franka FR3 — no real-world data |
+| 2026 | [[2603.16861\|MolmoBot]] | Sim-side | 232K-environment procedural [MuJoCo](https://mujoco.org); 79.2% real Franka FR3 — no real-world data |
 | 2026 | [[2604.10856\|BridgeSim]] | Evaluation | Decomposes OL-CL gap; observational shift + objective mismatch; +19.1 DS via TTA |
 | 2026 | [[2604.11138\|ViserDex]] | Policy-side | 3DGS pre-rasterization augmentation + monocular RGB; 37.6 reorientations |
 | 2026 | [[2604.11674\|AffordSim]] | Sim-side | Affordance-aware data generator + 3DGS backgrounds for sim-to-real |
 | 2026 | [[2604.18564\|MultiWorld]] | Sim-side | Multi-agent multi-view video world models; agent-identity + global state encoder |
 | 2026 | [[2604.21686\|WorldMark]] | Evaluation | Unified benchmark suite for interactive video WMs; ρ>0.9 with human |
 | 2026 | [[2604.24018\|Sim2Real Betting]] | Evaluation | Sequential-betting estimator; 70-100% win rate vs Monte Carlo |
-| 2026 | [[2604.24916\|asRoBallet]] | Policy-side | Friction-aware MuJoCo + RL; zero-shot ballbot whole-body locomotion |
+| 2026 | [[2604.24916\|asRoBallet]] | Policy-side | Friction-aware [MuJoCo](https://mujoco.org) + RL; zero-shot ballbot whole-body locomotion |
 | 2026 | [[2604.27367\|DOT-Sim]] | Real2sim2real | Differentiable MPM + residual rendering; 90.5% indenter, 96.6% tumor detection |
 | 2026 | [[2604.23702\|QuietWalk]] | Policy-side | PINN GRF predictor + curriculum; 7.17 dBA noise reduction across footwear |
 | 2026 | [[2605.06311\|VISER]] | Evaluation | Ray-traced PBR + MLLM asset pipeline; r=0.92 Pearson sim-real correlation |
@@ -155,7 +155,7 @@ The field evolved through four parallel research threads. **Sim-side** (2023→2
 Three orthogonal axes determine every sim-to-real strategy. Choose your point on each axis — *what* you simulate, *where* the adaptation happens, and *how* you measure success — and the rest of the design is forced.
 
 > [!success] The Three Axes
-> - **Sim quality**: hand-crafted MPM/PhysX (precise, narrow) vs. learned video simulator (broad, blurry) vs. real2sim digital twin (precise + deployable)
+> - **Sim quality**: hand-crafted MPM/[PhysX](https://developer.nvidia.com/physx-sdk) (precise, narrow) vs. learned video simulator (broad, blurry) vs. real2sim digital twin (precise + deployable)
 > - **Adaptation locus**: in the simulator (domain randomization, system-id) vs. in the policy (robust RL, distillation) vs. at deployment (TTA, online adaptation)
 > - **Evaluation grounding**: sim-only proxy metrics vs. sim-real correlation (Pearson r, MMRV) vs. real-only ground truth
 
@@ -163,7 +163,7 @@ Three orthogonal axes determine every sim-to-real strategy. Choose your point on
 
 | Approach | Mechanism | Example |
 |----------|-----------|---------|
-| **Hand-crafted physics** | PhysX / MuJoCo / Isaac Lab with explicit constitutive laws | [[2210.13702\|DeXtreme]], [[2603.16861\|MolmoBot]] |
+| **Hand-crafted physics** | [PhysX](https://developer.nvidia.com/physx-sdk) / [MuJoCo](https://mujoco.org) / [[2511.04831\|Isaac Lab]] with explicit constitutive laws | [[2210.13702\|DeXtreme]], [[2603.16861\|MolmoBot]] |
 | **Learned video simulator** | Diffusion-based video model conditioned on actions | [[2310.06114\|UniSim]], [[2501.03575\|Cosmos]], [[2402.15391\|Genie]] |
 | **Hybrid (sim + neural rendering)** | Physics sim + 3DGS / NeRF-rendered visuals | [[2604.11138\|ViserDex]], [[2604.11674\|AffordSim]] |
 | **Digital twin from video** | Reconstruct deployment scene as interactable sim | [[2503.17973\|PhysTwin]], [[2404.09833\|Video2Game]], [[2511.07416\|PhysWorld]] |
@@ -186,7 +186,7 @@ Three orthogonal axes determine every sim-to-real strategy. Choose your point on
 | **Real-only ground truth** | Authoritative | Expensive, slow, unsafe |
 
 > [!tip] Pick by Constraint
-> If you need to **scale to internet video data**, pick learned sim ([[2310.06114|UniSim]]/[[2501.03575|Cosmos]]). If you need **physical accuracy on contact**, pick hand-crafted physics (MuJoCo + DR). If you need **fast deployment-specific transfer**, pick a digital twin ([[2503.17973|PhysTwin]]/[[2511.07416|PhysWorld]]). If you need **publishable rigor**, pair any of these with a correlation benchmark ([[2405.05941|SimplerEnv]]/[[2605.06311|VISER]]).
+> If you need to **scale to internet video data**, pick learned sim ([[2310.06114|UniSim]]/[[2501.03575|Cosmos]]). If you need **physical accuracy on contact**, pick hand-crafted physics ([MuJoCo](https://mujoco.org) + DR). If you need **fast deployment-specific transfer**, pick a digital twin ([[2503.17973|PhysTwin]]/[[2511.07416|PhysWorld]]). If you need **publishable rigor**, pair any of these with a correlation benchmark ([[2405.05941|SimplerEnv]]/[[2605.06311|VISER]]).
 
 ---
 
@@ -216,7 +216,7 @@ Hand-crafted physics + massive procedural scale; no learned visual model.
 
 - [[2603.16861|MolmoBot]], [[2604.11674|AffordSim]]
 
-**How [[2603.16861|MolmoBot]] works**: ==MolmoBot-Engine== — open-source procedural data generation in ==MuJoCo== — leverages **232,000** indoor environments and **48,000** manipulable objects to generate **1.8M** expert trajectories. Extensive ==domain randomization== over visual and physical parameters + diverse referring expressions enables zero-shot sim-to-real *without real-world fine-tuning or photorealistic rendering*. Achieves **79.2%** success on real Franka FR3 tabletop pick-and-place — outperforming π0.5-DROID (**39.2%**) which was trained on real-world data. Critically: absolute joint-position action representation transferred better than delta-action despite similar sim performance.
+**How [[2603.16861|MolmoBot]] works**: ==MolmoBot-Engine== — open-source procedural data generation in ==[MuJoCo](https://mujoco.org)== — leverages **232,000** indoor environments and **48,000** manipulable objects to generate **1.8M** expert trajectories. Extensive ==domain randomization== over visual and physical parameters + diverse referring expressions enables zero-shot sim-to-real *without real-world fine-tuning or photorealistic rendering*. Achieves **79.2%** success on real Franka FR3 tabletop pick-and-place — outperforming π0.5-DROID (**39.2%**) which was trained on real-world data. Critically: absolute joint-position action representation transferred better than delta-action despite similar sim performance.
 
 **How [[2604.11674|AffordSim]] works**: Integrates ==VoxAfford== for per-point open-vocabulary 3D affordance detection into simulation data generation. ==3DGS-rendered photorealistic backgrounds== as domain randomization improve average real-world success from **17%** (no DR) to **27%**. Reveals the affordance-task difficulty: simple grasping reaches **60%** zero-shot, but pouring/hanging only **10-20%** — fine-grained semantic affordance is still the bottleneck for sim-to-real.
 
@@ -229,7 +229,7 @@ Hand-crafted physics + massive procedural scale; no learned visual model.
 > [!star] Key Papers
 > - [[2310.06114|UniSim]] — Learned interactive real-world simulator; **3-4x** better zero-shot policy transfer than baselines; foundational learned-sim paper
 > - [[2501.03575|Cosmos]] — NVIDIA WFM platform: **100M** curated clips, **+4 dB** PSNR tokenizer, **10 FPS** real-time autoregressive generation; defines the WFM category
-> - [[2603.16861|MolmoBot]] — **79.2%** real Franka FR3 success trained *exclusively* on procedural MuJoCo data; proves sim-only can outperform real-data baselines (π0.5-DROID **39.2%**)
+> - [[2603.16861|MolmoBot]] — **79.2%** real Franka FR3 success trained *exclusively* on procedural [MuJoCo](https://mujoco.org) data; proves sim-only can outperform real-data baselines (π0.5-DROID **39.2%**)
 > - [[2511.23369|SimScale]] — 3DGS sim-real co-training for autonomous driving; weak baselines see **>20%** relative gains; new **EPDMS 48.0** on navhard
 
 > [!tip] Sim-Side Trade-Off
@@ -245,7 +245,7 @@ Instead of making the simulator perfect, make the *policy* invariant to sim impe
 
 - [[2603.15956|ExpertGen]], [[2602.23253|SPARR]], [[2502.20396|Humanoid Sim2Real Dex]], [[2210.13702|DeXtreme]]
 
-**How [[2210.13702|DeXtreme]] works**: Trains a deep RL policy via ==PPO== in ==Isaac Gym== on the affordable Allegro Hand. The crucial ingredient is ==Vectorized Automatic Domain Randomization== (VADR) — dynamically adjusting simulation parameters based on policy capability. VADR-trained policies achieved **27.8 mean** real reorientations vs **14.8** for hand-tuned DR — auto-DR almost doubles transfer. A Mask-RCNN vision-based pose estimator trained on synthetic Isaac Sim images operates at **15 Hz** under occlusion.
+**How [[2210.13702|DeXtreme]] works**: Trains a deep RL policy via ==[[1707.06347|PPO]]== in ==[Isaac Gym](https://developer.nvidia.com/isaac-gym)== on the affordable Allegro Hand. The crucial ingredient is ==Vectorized Automatic Domain Randomization== (VADR) — dynamically adjusting simulation parameters based on policy capability. VADR-trained policies achieved **27.8 mean** real reorientations vs **14.8** for hand-tuned DR — auto-DR almost doubles transfer. A Mask-RCNN vision-based pose estimator trained on synthetic [Isaac Sim](https://developer.nvidia.com/isaac-sim) images operates at **15 Hz** under occlusion.
 
 **How [[2603.15956|ExpertGen]] works**: Three-phase framework for scalable sim-to-real from *imperfect* behavior priors. (1) Generative behavior prior via state-based ==diffusion policy== on rough demos. (2) Expert policy acquisition via ==Diffusion Steering RL (DSRL)== — optimizes *only* the diffusion's initial noise input, preserving the motion manifold while maximizing sparse rewards via FastTD3 in parallel sim. (3) Visuomotor distillation via ==DAgger== with extensive visual DR. **90.5%** average on 8 AutoMate industrial assembly tasks; **80%** real-world success on Franka Lift Banana from RGB.
 
@@ -259,7 +259,7 @@ Treat the sim-real gap as adversarial; train against the worst-case dynamics.
 
 - [[2204.12581|RAMBO-RL]], [[2602.13040|TCRL]], [[2510.14246|DR-RPO]]
 
-**How [[2204.12581|RAMBO-RL]] works**: Formulates offline RL as a ==two-player zero-sum game== — the agent maximizes value, an adversarial environment model minimizes it by modifying transitions. An ==ensemble of neural networks== represents the dynamics, updated adversarially via a ==Model Gradient== while constrained to remain accurate on observed data. Alternating optimization with an off-policy actor-critic achieves the highest total D4RL MuJoCo locomotion score. The insight: *adversarial training of the dynamics model itself* introduces conservatism *without* requiring explicit uncertainty estimation.
+**How [[2204.12581|RAMBO-RL]] works**: Formulates offline RL as a ==two-player zero-sum game== — the agent maximizes value, an adversarial environment model minimizes it by modifying transitions. An ==ensemble of neural networks== represents the dynamics, updated adversarially via a ==Model Gradient== while constrained to remain accurate on observed data. Alternating optimization with an off-policy actor-critic achieves the highest total D4RL [MuJoCo](https://mujoco.org) locomotion score. The insight: *adversarial training of the dynamics model itself* introduces conservatism *without* requiring explicit uncertainty estimation.
 
 **How [[2510.14246|DR-RPO]] works**: First provably efficient *online* policy optimization for robust MDPs with ==linear function approximation==. Defines policy-regularized d-rectangular ==DRMDPs== and ==RRMDPs== that incorporate a ==KL-divergence== term toward a reference policy. The model-free algorithm uses ==softmax-based policy updates==, ridge linear regression for robust Q-functions, and ==UCB== bonuses for optimism. Achieves ==Õ(d²H²/√K)== average suboptimality — matching value-based robust methods while supporting *stochastic* policies and scalability to continuous action spaces.
 
@@ -273,7 +273,7 @@ Bake physics priors *into* the policy via curriculum, reward shaping, or motion 
 
 **How [[2605.10063|EFGCL]] Uses Physical Assistance as Curriculum**: [[2605.10063|EFGCL]] tackles the high-risk dynamic-motion learning problem (backflips, lateral flips, jumps) for legged robots via ==spotting-inspired external forces== — physical assistance modeled after a gymnastics spotter. Transient external forces help the robot complete the motion during early training; an ==adaptive curriculum== decays the assistance based on success rate, transitioning to fully autonomous execution. Combined with PPO + teacher-student sim-to-real, [[2605.10063|EFGCL]] acquires motions (backflip, lateral flip) that PPO baselines *cannot learn at all*, accelerates jumping by **~2×**, and transfers zero-shot to a real KLEIYN quadruped. The method's robustness to heuristic choice of assistive-force application point/magnitude/timing makes it deployable without per-skill tuning — a rare property for high-risk motor-skill curricula.
 
-**How [[2604.24916|asRoBallet]] works**: Reconfigurable humanoid ballbot via ==subtractive reconfiguration== of an open-source quadruped — democratizes ballbot research. The critical sim-to-real ingredient: ==friction-aware MuJoCo simulation== explicitly modeling ==tribological phenomena== (rolling, lateral, torsional friction, discrete omni-roller mechanics) + actuator friction. Combined with domain randomization, achieves **zero-shot sim-to-real** with **100%** velocity-tracking success in sim and **0.05 m/s** real-world MAE; recovers from pushes up to **0.3 m**.
+**How [[2604.24916|asRoBallet]] works**: Reconfigurable humanoid ballbot via ==subtractive reconfiguration== of an open-source quadruped — democratizes ballbot research. The critical sim-to-real ingredient: ==friction-aware [MuJoCo](https://mujoco.org) simulation== explicitly modeling ==tribological phenomena== (rolling, lateral, torsional friction, discrete omni-roller mechanics) + actuator friction. Combined with domain randomization, achieves **zero-shot sim-to-real** with **100%** velocity-tracking success in sim and **0.05 m/s** real-world MAE; recovers from pushes up to **0.3 m**.
 
 **How [[2604.23702|QuietWalk]] works**: Physics-informed RL for low-noise humanoid locomotion under diverse footwear. An ==inverse-dynamics-constrained PINN== estimates per-foot vertical GRFs from proprioception alone — no force sensors. The frozen, physics-consistent GRF predictor is integrated *into the RL reward function*, directly penalizing impact forces. Combined with footwear-asset parameterization and curriculum learning, achieves **7.17 dBA** mean-noise-level reduction across four indoor surfaces while generalizing across **4** footwear types (barefoot → high heels) and outdoor terrains. The PINN reduces GRF errors **82-86%** vs purely supervised baselines — physical consistency is what enables sim-to-real transfer of the reward signal.
 
@@ -305,7 +305,7 @@ Close the *visual* gap explicitly via neural rendering, teacher-student distilla
 > - [[2210.13702|DeXtreme]] — Foundational VADR result: automatic DR doubles real-world transfer (**27.8** vs **14.8** reorientations); the canonical industrial sim-to-real recipe
 > - [[2511.15200|VIRAL]] — Visual sim-to-real at scale for humanoid loco-manipulation; **54/59** real Unitree G1 success matching expert human teleop; RSI is critical
 > - [[2506.12851|KungfuBot]] — Physics-feasible motion processing + adaptive tracking; **53.25 mm** error vs **>233 mm** baselines; first to zero-shot transfer highly-dynamic skills
-> - [[2604.24916|asRoBallet]] — Friction-aware MuJoCo + RL closes sim2real gap for underactuated dynamics; **zero-shot** ballbot whole-body control with **0.05 m/s** real-world MAE
+> - [[2604.24916|asRoBallet]] — Friction-aware [MuJoCo](https://mujoco.org) + RL closes sim2real gap for underactuated dynamics; **zero-shot** ballbot whole-body control with **0.05 m/s** real-world MAE
 
 > [!tip] Domain Randomization is the Default — But Has Limits
 > Every paper in this section uses DR, but [[2604.11674|AffordSim]] showed DR alone only lifts real-world success from **17%** to **27%** on affordance-demanding tasks — fine-grained semantic transfer still fails. DR works for *dynamics* gaps ([[2210.13702|DeXtreme]], [[2506.12851|KungfuBot]]) but is *brittle* for *semantic* gaps (manipulating novel categories). Combine DR with neural rendering ([[2604.11138|ViserDex]]) or learned simulators ([[2310.06114|UniSim]]) when the visual gap dominates.
@@ -343,7 +343,7 @@ Reverse the direction: reconstruct the *deployment* scene as a high-fidelity int
 
 **How [[2603.04029|Self-Adapting RL]] works**: Online continual RL with world-model feedback. Built on ==[[2301.04104|DreamerV3]]==, monitors prediction residuals: ==Observation Prediction Residual== and ==Reward Prediction Residual== exceed a threshold → OOD event triggers online world-model + policy fine-tuning. Selective replay-buffer management excludes pre-change data. Walker adapts to simulated actuator damage in **10,000** steps (**2 minutes** sim time). F1Tenth vehicle adapts to *both* a real sim-to-real transfer gap *and* subsequent friction reduction within **10,000** real steps (**8 minutes**). The reality gap is treated as just another OOD shift the world model detects and corrects for.
 
-**How Explicit World Model works**: Zero-shot open-world manipulation by constructing physically-grounded digital twins on demand. ==Open-set segmentation== (GPT-4o, Grounded-SAM) + ==grasp pose prediction== (AnyGrasp) → ==digital twin construction== via Hunyuan 3D 2.0 + ==two-stage pose alignment== ([[2304.07193|DINOv2]] coarse + RANSAC/ICP fine) → physics-enabled sampling in Isaac Sim → VLM-based evaluation. **6/9** tasks succeed at ≥75% on a real robot. Two-stage alignment lifts mug-handling from **27%** to **91%** — coarse-appearance + fine-geometric matching is necessary for robust sim-to-real of category-novel objects.
+**How Explicit World Model works**: Zero-shot open-world manipulation by constructing physically-grounded digital twins on demand. ==Open-set segmentation== (GPT-4o, Grounded-SAM) + ==grasp pose prediction== (AnyGrasp) → ==digital twin construction== via Hunyuan 3D 2.0 + ==two-stage pose alignment== ([[2304.07193|DINOv2]] coarse + RANSAC/ICP fine) → physics-enabled sampling in [Isaac Sim](https://developer.nvidia.com/isaac-sim) → VLM-based evaluation. **6/9** tasks succeed at ≥75% on a real robot. Two-stage alignment lifts mug-handling from **27%** to **91%** — coarse-appearance + fine-geometric matching is necessary for robust sim-to-real of category-novel objects.
 
 #### 4.4 Compositional Sim-Real Environments
 
@@ -445,7 +445,7 @@ How these pieces compose into deployable sim-to-real pipelines:
 
 - **Sim-real correlation collapses on OOD perturbations**: [[2405.05941|SimplerEnv]] and [[2605.06311|VISER]] achieve high correlation on *in-distribution* tasks but neither has shown the correlation survives intentional visual or dynamics perturbations. The next frontier is *robust* sim-real correlation under deliberate domain shift.
 - **DR has limits**: [[2604.11674|AffordSim]] reveals that DR lifts simple-grasping zero-shot success only to **27%** on affordance-demanding tasks — fine-grained semantic transfer is still unsolved. Combining DR with learned-sim foundations or digital twins is plausible but unproven at scale.
-- **Learned sims blur on contact**: [[2310.06114|UniSim]] and [[2501.03575|Cosmos]] produce stunning visuals but physical contact regions (collisions, friction transients) look implausible to robots. Hybrid pipelines ([[2604.11138|ViserDex]]: 3DGS rendering + MuJoCo physics) are emerging but compute-expensive.
+- **Learned sims blur on contact**: [[2310.06114|UniSim]] and [[2501.03575|Cosmos]] produce stunning visuals but physical contact regions (collisions, friction transients) look implausible to robots. Hybrid pipelines ([[2604.11138|ViserDex]]: 3DGS rendering + [MuJoCo](https://mujoco.org) physics) are emerging but compute-expensive.
 - **Sim-to-real evaluation is fragmented**: [[2509.15273|Embodied Arena]] unifies **22+** benchmarks but the *correlation* benchmarks ([[2405.05941|SimplerEnv]], [[2605.06311|VISER]]) and *generalization* benchmarks ([[2506.18088|RoboTwin 2.0]]) and *world-model* benchmarks ([[2604.21686|WorldMark]]) remain separate stacks. A unified meta-benchmark would expose where current methods are weakest.
 - **Reward-signal sim-to-real**: Most sim-to-real research transfers *actions*. [[2604.23702|QuietWalk]] shows you can also transfer *reward signals* (a PINN-estimated GRF as RL reward generalizes across footwear). The reward-side sim-to-real problem is underexplored.
 - **Statistical sim-to-real**: [[2604.24018|Sim2Real Betting]] proposes treating sim-real as variance reduction with biased predictors — but the practical impact of running banks of cheap, biased sims vs one expensive accurate sim is open.
@@ -480,7 +480,7 @@ How these pieces compose into deployable sim-to-real pipelines:
 | Need to combine multiple sims? | [[2604.24018\|Sim2Real Betting]] (Kelly portfolio of sims) |
 | Need a unified evaluation platform? | [[2509.15273\|Embodied Arena]] (22+ benchmarks) or [[2604.21686\|WorldMark]] (interactive WMs) |
 | Need physics-informed reward shaping? | [[2604.23702\|QuietWalk]] (PINN GRF predictor as reward) |
-| Need friction modeling for sim-to-real? | [[2604.24916\|asRoBallet]] (multi-channel tribology in MuJoCo) |
+| Need friction modeling for sim-to-real? | [[2604.24916\|asRoBallet]] (multi-channel tribology in [MuJoCo](https://mujoco.org)) |
 
 ---
 

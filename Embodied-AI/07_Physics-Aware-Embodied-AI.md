@@ -123,7 +123,7 @@ Three orthogonal axes define every physics-aware embodied AI system.
 |-------|-----------|---------|
 | **Implicit (in features)** | Each scene element carries physical attributes; standard simulator integrates them | [[2311.12198\|PhysGaussian]], [[2501.18982\|OmniPhysGS]] |
 | **Explicit (in loss)** | Physics residual / Newton's laws / verifiable physical predicate as training signal | [[2509.20570\|PIRF]], [[2509.21309\|NewtonGen]], [[2512.00425\|NewtonRewards]] |
-| **External (in solver)** | Generative model proposes; physics simulator (MPM, FEM, MuJoCo) verifies/refines | [[2503.17973\|PhysTwin]], [[2511.07416\|PhysWorld]] |
+| **External (in solver)** | Generative model proposes; physics simulator (MPM, FEM, [MuJoCo](https://mujoco.org)) verifies/refines | [[2503.17973\|PhysTwin]], [[2511.07416\|PhysWorld]] |
 
 #### Axis 2 — What Is Physical
 

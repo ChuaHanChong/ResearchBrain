@@ -14,7 +14,7 @@ aliases:
 # Datasets, Benchmarks & Environments
 
 > [!abstract] Overview
-> The data and evaluation infrastructure that enables all embodied AI research. Embodied progress depends on three interlocked axes — the **data** the policy trains on, the **environment** it learns in, and the **benchmark** it is judged by. This note maps the full landscape: cross-embodiment scale datasets, multi-modal specialist data (tactile, bimanual, egocentric), simulation environments (rigid, soft-body, differentiable, household-scale), the diagnostic stack ([[2306.03310|LIBERO]] family, [[2601.11421|GM-100]], [[2507.10548|EmbRACE]]), language-conditioned long-horizon evals, sim-to-real transfer benchmarks, spatial reasoning probes, and the new generation of *interaction-centric* world model benchmarks. The field evolved from single-robot setups ([[1909.12271|RLBench]], 2019) through million-trajectory cross-embodiment corpora ([[2310.08864|OXE]], 2023) to household-scale simulation, soft-body Gaussian-splat digital twins (2025) and diagnostic robustness evaluation ([[2510.13626|LIBERO-Plus]], [[2601.11421|GM-100]], [[2507.10548|EmbRACE-3K]]).
+> The data and evaluation infrastructure that enables all embodied AI research. Embodied progress depends on three interlocked axes — the **data** the policy trains on, the **environment** it learns in, and the **benchmark** it is judged by. This note maps the full landscape: cross-embodiment scale datasets, multi-modal specialist data (tactile, bimanual, egocentric), simulation environments (rigid, soft-body, differentiable, household-scale), the diagnostic stack ([[2306.03310|LIBERO]] family, [[2601.11421|GM-100]], [[2507.10548|EmbRACE]]), language-conditioned long-horizon evals, sim-to-real transfer benchmarks, spatial reasoning probes, and the new generation of *interaction-centric* world model benchmarks. The field evolved from single-robot setups ([[1909.12271|RLBench]], 2019) through million-trajectory cross-embodiment corpora ([[2310.08864|OXE]], 2023) to household-scale simulation ([[2406.02523|RoboCasa]], 2024), soft-body Gaussian-splat digital twins ([[2511.04665|Real-to-Sim GS]], 2025) and diagnostic robustness evaluation ([[2510.13626|LIBERO-Plus]], [[2601.11421|GM-100]], [[2507.10548|EmbRACE-3K]]).
 
 > [!example] How Datasets Are Used — Fuel for Every Training Stage
 > Million-trajectory cross-embodiment corpora ([[2310.08864|OXE]], [[2403.12945|DROID]], [[2503.06669|AgiBot World]]) **pretrain VLA backbones** to learn task-invariant representations across robot morphologies; lab-curated single-embodiment data ([[2509.00576|G0]]) **post-trains specialists** when the deployment robot is fixed. Egocentric human video ([[2602.16710|EgoScale]], [[2605.06747|HumanNet]], [[2110.07058|Ego4D]]) supplies **finger-level supervision** that RGB-only robot data omits, while tactile and bimanual datasets ([[2604.20444|VTouch++]], [[2512.24653|RoboMIND 2.0]]) cover **modalities** (force, contact, dual-arm timing) that scale alone cannot. Hand-held collection paradigms ([[2402.10329|UMI]], [[2505.21864|DexUMI]], [[2605.03452|BifrostUMI]]) **replace teleoperation entirely**, unlocking dynamic and dexterous tasks that teleop physically cannot collect.
@@ -23,7 +23,7 @@ aliases:
 > Modern evaluation is a *pipeline*, not a single score. A policy is pushed through ascending rigor: standard in-distribution ([[2306.03310|LIBERO]], [[2112.03227|CALVIN]]) → perturbation robustness ([[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2603.28301|LIBERO-Para]]) → fine manipulation ([[2601.11421|GM-100]]) → embodied reasoning ([[2507.10548|EmbRACE-3K]], [[2508.13142|EASI]]) → sim-to-real correlation ([[2405.05941|SimplerEnv]], [[2605.06311|VISER]]) → distributed real-robot leaderboards ([[2506.18123|RoboArena]], [[2510.17950|RoboChallenge]]). Each tier probes a **different failure axis**: a policy that scores >90% on [[2306.03310|LIBERO]] can collapse to near-0% on [[2510.03827|LIBERO-PRO]] under minor perturbations, so passing any one tier in isolation no longer counts as evidence of generalization. World-model benchmarks ([[2603.22212|Omni-WorldBench]], [[2506.00613|WorldGym]], [[2603.23497|WildWorld]]) extend evaluation from passive video quality into **interactive action-fidelity** and **policy-transfer** measurement.
 
 > [!note] How Environments & Simulators Are Used — The Substrate
-> Engines underwrite **both** data generation and evaluation. GPU-parallel engines ([[2511.04831|Isaac Lab]], [[2003.08515|SAPIEN]], [[2603.12185|ComFree-Sim]]) spawn thousands of environments at once to make **RL data scaling** feasible; photorealistic kitchens ([[2406.02523|RoboCasa]], [[2602.10116|SAGE]]) **close the visual reality gap** during training; bimanual sim+benchmark pairs ([[2506.18088|RoboTwin 2.0]]) ship data generator, evaluation suite, and domain randomization together so the trio stops being separable. The newer **real-to-sim wave** ([[2511.04665|Real-to-Sim GS]], [[2506.06440|Vid2Sim]], [[2510.21447|PhysWorld-Deformable]]) rebuilds the deployment scene from real video into a photorealistic digital twin that the policy can be re-evaluated against — collapsing the sim-real distinction for a specific target. Engine choice is itself a research-design decision (see §4): contact-accurate MuJoCo vs throughput-optimized PhysX shapes which experiments are even runnable.
+> Engines underwrite **both** data generation and evaluation. GPU-parallel engines ([[2511.04831|Isaac Lab]], [[2003.08515|SAPIEN]], [[2603.12185|ComFree-Sim]]) spawn thousands of environments at once to make **RL data scaling** feasible; photorealistic kitchens ([[2406.02523|RoboCasa]], [[2602.10116|SAGE]]) **close the visual reality gap** during training; bimanual sim+benchmark pairs ([[2506.18088|RoboTwin 2.0]]) ship data generator, evaluation suite, and domain randomization together so the trio stops being separable. The newer **real-to-sim wave** ([[2511.04665|Real-to-Sim GS]], [[2506.06440|Vid2Sim]], [[2510.21447|PhysWorld-Deformable]]) rebuilds the deployment scene from real video into a photorealistic digital twin that the policy can be re-evaluated against — collapsing the sim-real distinction for a specific target. Engine choice is itself a research-design decision (see §4): contact-accurate [MuJoCo](https://mujoco.org) vs throughput-optimized [PhysX](https://developer.nvidia.com/physx-sdk) shapes which experiments are even runnable.
 
 ---
 
@@ -141,7 +141,7 @@ The physical simulation substrate on which benchmarks are built. Choice of envir
 **Bimanual Sim + Benchmark** — Sim platforms that ship with a paired benchmark and data generator.
 - [[2506.18088|RoboTwin 2.0]] — Scalable data generator + benchmark with strong domain randomization for bimanual robotic manipulation
 
-Simulator choice has profound implications for what you can test. [[2003.08515|SAPIEN]] provides 2,346 articulated objects with accurate joint mechanics — essential for tasks involving doors, drawers, and tools. [[1909.12271|RLBench]] offers 100 standardized tasks with infinite expert demonstrations via motion planning — making it the default for few-shot evaluation. [[2406.02523|RoboCasa]] generates photorealistic kitchen environments at scale — proving that synthetic data from realistic simulators can substitute for expensive real demonstrations. The emerging platform Genesis (GPU-accelerated, open-source) and NVIDIA Newton aim to combine PhysX's parallelism with MuJoCo's contact accuracy. [[2602.10116|SAGE]] takes a different approach: instead of hand-authoring scenes, it uses an LLM-agentic loop to generate *scene layouts*, retrieve assets, and validate physical feasibility — producing simulation environments at the rate of LLM prompting rather than the rate of 3D artistry.
+Simulator choice has profound implications for what you can test. [[2003.08515|SAPIEN]] provides 2,346 articulated objects with accurate joint mechanics — essential for tasks involving doors, drawers, and tools. [[1909.12271|RLBench]] offers 100 standardized tasks with infinite expert demonstrations via motion planning — making it the default for few-shot evaluation. [[2406.02523|RoboCasa]] generates photorealistic kitchen environments at scale — proving that synthetic data from realistic simulators can substitute for expensive real demonstrations. The emerging platform [Genesis](https://genesis-world.readthedocs.io/) (GPU-accelerated, open-source) and [NVIDIA Newton](https://developer.nvidia.com/newton-physics) aim to combine [PhysX](https://developer.nvidia.com/physx-sdk)'s parallelism with [MuJoCo](https://mujoco.org)'s contact accuracy. [[2602.10116|SAGE]] takes a different approach: instead of hand-authoring scenes, it uses an LLM-agentic loop to generate *scene layouts*, retrieve assets, and validate physical feasibility — producing simulation environments at the rate of LLM prompting rather than the rate of 3D artistry.
 
 > [!star] Key Papers
 > - [[2003.08515|SAPIEN]] — 2,346 articulated objects with physics-accurate simulation; foundational platform for manipulation research
@@ -156,17 +156,17 @@ Simulator choice has profound implications for what you can test. [[2003.08515|S
 
 | Engine | Strengths | Typical Use |
 |--------|-----------|-------------|
-| **PhysX** | GPU-accelerated rigid body + deformable simulation, NVIDIA ecosystem | [[2003.08515\|SAPIEN]], Isaac Gym/Lab, large-scale parallel RL |
-| **MuJoCo** | Fast, accurate contact/tendon dynamics, low overhead | Standard RL benchmarks, OpenAI Gym, DeepMind Control |
-| **PyBullet** | Open-source, easy Python API, good for prototyping | [[1909.12271\|RLBench]], early robot learning pipelines |
-| **MJX (MuJoCo-JAX)** | Differentiable MuJoCo on GPU/TPU | Differentiable physics RL, gradient-based MPC |
-| **Brax** | JAX-native GPU rigid-body sim | Massively-parallel RL ablation studies |
-| **Taichi / DiffTaichi** | Differentiable Lagrangian / MPM | Soft body, fluid, deformable manipulation |
-| **PhysX-5 / Newton (NVIDIA)** | GPU contact-rich + soft + fluid + cloth in one engine | Next-gen general-purpose sim |
-| **Genesis** | GPU-native, open-source, multi-physics (rigid + soft + cloth) | Emerging research substrate |
+| **[PhysX](https://developer.nvidia.com/physx-sdk)** | GPU-accelerated rigid body + deformable simulation, NVIDIA ecosystem | [[2003.08515\|SAPIEN]], [Isaac Gym](https://developer.nvidia.com/isaac-gym)/[[2511.04831\|Lab]], large-scale parallel RL |
+| **[MuJoCo](https://mujoco.org)** | Fast, accurate contact/tendon dynamics, low overhead | Standard RL benchmarks, OpenAI Gym, DeepMind Control |
+| **[PyBullet](https://pybullet.org)** | Open-source, easy Python API, good for prototyping | [[1909.12271\|RLBench]], early robot learning pipelines |
+| **[MJX (MuJoCo-JAX)](https://mujoco.readthedocs.io/en/stable/mjx.html)** | Differentiable [MuJoCo](https://mujoco.org) on GPU/TPU | Differentiable physics RL, gradient-based MPC |
+| **[Brax](https://github.com/google/brax)** | JAX-native GPU rigid-body sim | Massively-parallel RL ablation studies |
+| **[Taichi](https://www.taichi-lang.org) / [DiffTaichi](https://github.com/taichi-dev/difftaichi)** | Differentiable Lagrangian / MPM | Soft body, fluid, deformable manipulation |
+| **[PhysX](https://developer.nvidia.com/physx-sdk)-5 / [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics)** | GPU contact-rich + soft + fluid + cloth in one engine | Next-gen general-purpose sim |
+| **[Genesis](https://genesis-world.readthedocs.io/)** | GPU-native, open-source, multi-physics (rigid + soft + cloth) | Emerging research substrate |
 
 > [!tip] Sim Engine Choice
-> PhysX dominates GPU-parallel training (throughput). MuJoCo is gold standard for contact-rich manipulation accuracy. PyBullet enabled rapid prototyping but is increasingly replaced. For production: PhysX if GPU-parallel, MuJoCo if contact accuracy matters.
+> [PhysX](https://developer.nvidia.com/physx-sdk) dominates GPU-parallel training (throughput). [MuJoCo](https://mujoco.org) is gold standard for contact-rich manipulation accuracy. [PyBullet](https://pybullet.org) enabled rapid prototyping but is increasingly replaced. For production: [PhysX](https://developer.nvidia.com/physx-sdk) if GPU-parallel, [MuJoCo](https://mujoco.org) if contact accuracy matters.
 
 ---
 
@@ -176,25 +176,25 @@ Beyond benchmark-shipped simulators, a separate category of research-grade physi
 
 **Differentiable Physics Engines** — Provide gradients through dynamics, enabling system-identification, gradient-based MPC, and end-to-end policy + physics co-optimization.
 
-- **MJX (MuJoCo-JAX)** — JAX rewrite of MuJoCo; differentiable, GPU/TPU-parallel; replaces MuJoCo for gradient-based RL workflows.
-- **DiffTaichi** — Differentiable Lagrangian/MPM simulator; primary substrate for soft-body and fluid manipulation research (cloth, dough, soft tissue).
-- **Brax** — JAX-native GPU rigid-body engine; the standard for massively-parallel RL ablations.
-- **Drake (TRI)** — Smooth contact + differentiable trajectory optimization for grasping and contact-rich manipulation.
+- **[MJX](https://mujoco.readthedocs.io/en/stable/mjx.html) ([MuJoCo](https://mujoco.org)-JAX)** — JAX rewrite of [MuJoCo](https://mujoco.org); differentiable, GPU/TPU-parallel; replaces [MuJoCo](https://mujoco.org) for gradient-based RL workflows.
+- **[DiffTaichi](https://github.com/taichi-dev/difftaichi)** — Differentiable Lagrangian/MPM simulator; primary substrate for soft-body and fluid manipulation research (cloth, dough, soft tissue).
+- **[Brax](https://github.com/google/brax)** — JAX-native GPU rigid-body engine; the standard for massively-parallel RL ablations.
+- **[Drake (TRI)](https://drake.mit.edu)** — Smooth contact + differentiable trajectory optimization for grasping and contact-rich manipulation.
 
 **GPU-Native Massively-Parallel Engines** — Trade contact accuracy for thousands-of-environment parallelism, enabling RL data scaling that was infeasible on CPU.
 
-- [[2511.04831|Isaac Lab]] (NVIDIA) — Successor to Isaac Gym; PhysX 5 + RTX + OpenUSD; **>900K FPS** state-based, up to **1.6M FPS** in distributed training. Foundational for **[[2503.14734|GR00T N1]]/N1.5** training and Mimic synthetic-data pipeline.
-- **Isaac Gym / Isaac Sim** (NVIDIA, legacy) — Original PhysX-backed parallel sims; 4,096+ envs/GPU; superseded by [[2511.04831|Isaac Lab]] for most use cases.
+- [[2511.04831|Isaac Lab]] (NVIDIA) — Successor to [Isaac Gym](https://developer.nvidia.com/isaac-gym); [PhysX](https://developer.nvidia.com/physx-sdk) 5 + RTX + OpenUSD; **>900K FPS** state-based, up to **1.6M FPS** in distributed training. Foundational for **[[2503.14734|GR00T N1]]/N1.5** training and Mimic synthetic-data pipeline.
+- **[Isaac Gym](https://developer.nvidia.com/isaac-gym) / [Isaac Sim](https://developer.nvidia.com/isaac-sim)** (NVIDIA, legacy) — Original [PhysX](https://developer.nvidia.com/physx-sdk)-backed parallel sims; 4,096+ envs/GPU; superseded by [[2511.04831|Isaac Lab]] for most use cases.
 - [[2603.12185|ComFree-Sim]] — GPU-parallelized analytical contact engine (complementarity-free); **~3×** simulation speed and near-linear scaling with contact count vs MJWarp. Real-time MPPI on physical hardware gains **2.4×** compute speedup and **+27pp** closed-loop SR for dexterous manipulation.
-- **Genesis** — Open-source GPU-native, multi-physics (rigid + soft + cloth + fluid) in one runtime; community-driven alternative to Isaac.
-- **NVIDIA Cosmos** — World-foundation-model + GPU simulator hybrid; couples generative video with parallel physics for synthetic data scaling.
-- **Newton (NVIDIA)** — Successor to Isaac Gym physics; PhysX-5 with full soft-body and fluid in one runtime; aims to be the "universal" sim.
+- **[Genesis](https://genesis-world.readthedocs.io/)** — Open-source GPU-native, multi-physics (rigid + soft + cloth + fluid) in one runtime; community-driven alternative to Isaac.
+- **[[2501.03575|NVIDIA Cosmos]]** — World-foundation-model + GPU simulator hybrid; couples generative video with parallel physics for synthetic data scaling.
+- **[Newton](https://developer.nvidia.com/newton-physics) (NVIDIA)** — Successor to [Isaac Gym](https://developer.nvidia.com/isaac-gym) physics; [PhysX](https://developer.nvidia.com/physx-sdk)-5 with full soft-body and fluid in one runtime; aims to be the "universal" sim.
 
 **Photorealistic + Contact** — Combine visually realistic rendering with contact-accurate dynamics; essential for vision-based policies that must transfer.
 
-- [[2003.08515|SAPIEN]] — 2,346 articulated objects; PhysX rigid body; standard for articulation research.
-- [[2406.02523|RoboCasa]] — Photorealistic kitchens at scale; MuJoCo backend; pioneered data-gen-as-benchmark.
-- **Habitat 3.0** — Photorealistic 3D environments + humanoid avatars; the standard for navigation + HRI research.
+- [[2003.08515|SAPIEN]] — 2,346 articulated objects; [PhysX](https://developer.nvidia.com/physx-sdk) rigid body; standard for articulation research.
+- [[2406.02523|RoboCasa]] — Photorealistic kitchens at scale; [MuJoCo](https://mujoco.org) backend; pioneered data-gen-as-benchmark.
+- **[Habitat 3.0](https://aihabitat.org)** — Photorealistic 3D environments + humanoid avatars; the standard for navigation + HRI research.
 
 **Generative + Real-to-Sim** — Build sim worlds *from real video*, sidestepping authoring entirely.
 
@@ -206,23 +206,23 @@ Beyond benchmark-shipped simulators, a separate category of research-grade physi
 
 | Need | Use |
 |---|---|
-| Differentiable gradients (for system-ID or grad-MPC) | MJX, DiffTaichi, Drake |
-| Massive GPU parallelism (RL data scaling) | [[2511.04831\|Isaac Lab]]/Sim, Genesis, Brax |
-| Photorealistic + articulated | [[2003.08515\|SAPIEN]], [[2406.02523\|RoboCasa]], Habitat 3.0 |
-| Soft-body / cloth / fluid | DiffTaichi, Genesis, Newton |
+| Differentiable gradients (for system-ID or grad-MPC) | [MJX](https://mujoco.readthedocs.io/en/stable/mjx.html), [DiffTaichi](https://github.com/taichi-dev/difftaichi), [Drake](https://drake.mit.edu) |
+| Massive GPU parallelism (RL data scaling) | [[2511.04831\|Isaac Lab]]/Sim, [Genesis](https://genesis-world.readthedocs.io/), [Brax](https://github.com/google/brax) |
+| Photorealistic + articulated | [[2003.08515\|SAPIEN]], [[2406.02523\|RoboCasa]], [Habitat 3.0](https://aihabitat.org) |
+| Soft-body / cloth / fluid | [DiffTaichi](https://github.com/taichi-dev/difftaichi), [Genesis](https://genesis-world.readthedocs.io/), [Newton](https://developer.nvidia.com/newton-physics) |
 | Real-to-sim from video | [[2506.06440\|Vid2Sim]], [[2511.04665\|Real-to-Sim GS]], [[2510.21447\|PhysWorld-Deformable]] |
-| Contact-rich manipulation accuracy | MuJoCo / MJX |
-| Driving / wheeled robots | CARLA, NVIDIA Drive Sim |
+| Contact-rich manipulation accuracy | [MuJoCo](https://mujoco.org) / [MJX](https://mujoco.readthedocs.io/en/stable/mjx.html) |
+| Driving / wheeled robots | [CARLA](https://carla.org), [NVIDIA Drive Sim](https://developer.nvidia.com/drive/simulation) |
 
 > [!star] Key Papers
-> - [[2511.04831|Isaac Lab]] — NVIDIA's GPU-accelerated framework (PhysX 5 + RTX + OpenUSD); **>900K FPS** to **1.6M FPS** distributed; trains [[2503.14734|GR00T N1]]/N1.5. The dominant 2025-2026 GPU-parallel substrate
+> - [[2511.04831|Isaac Lab]] — NVIDIA's GPU-accelerated framework ([PhysX](https://developer.nvidia.com/physx-sdk) 5 + RTX + OpenUSD); **>900K FPS** to **1.6M FPS** distributed; trains [[2503.14734|GR00T N1]]/N1.5. The dominant 2025-2026 GPU-parallel substrate
 > - [[2603.12185|ComFree-Sim]] — Complementarity-free analytical contact engine; **3×** faster than MJWarp with near-linear scaling on dense contact; **+27pp** hardware MPPI SR gain — proves you can drop iterative solvers without losing fidelity
 > - [[2506.06440|Vid2Sim]] — Replaces 3D-asset authoring with video-driven reconstruction; the cheapest path to a custom simulator
 > - [[2511.04665|Real-to-Sim GS]] — Gaussian-splat soft-body twins for policy evaluation; closes the visual + physical gap for deformables in one stack
-> - [[2003.08515|SAPIEN]] — Still the foundational articulated-object benchmark, but Genesis and Newton are catching up on fidelity while leading on throughput
+> - [[2003.08515|SAPIEN]] — Still the foundational articulated-object benchmark, but [Genesis](https://genesis-world.readthedocs.io/) and [Newton](https://developer.nvidia.com/newton-physics) are catching up on fidelity while leading on throughput
 
 > [!tip] Engine Choice is a Policy Decision
-> Choosing an engine constrains what experiments you can run. If you commit to MuJoCo, you can't easily train at 4,096-env parallelism. If you commit to Isaac, you give up the cleanest contact dynamics. Modern projects ([[2406.02523|RoboCasa]], [[2506.18088|RoboTwin 2.0]], Genesis) increasingly use *multiple* engines — one for fast policy training, one for accurate evaluation. Cross-reference [[11_Sim-to-Real-Transfer]] for how engine choice interacts with the sim-real gap.
+> Choosing an engine constrains what experiments you can run. If you commit to [MuJoCo](https://mujoco.org), you can't easily train at 4,096-env parallelism. If you commit to Isaac, you give up the cleanest contact dynamics. Modern projects ([[2406.02523|RoboCasa]], [[2506.18088|RoboTwin 2.0]], [Genesis](https://genesis-world.readthedocs.io/)) increasingly use *multiple* engines — one for fast policy training, one for accurate evaluation. Cross-reference [[11_Sim-to-Real-Transfer]] for how engine choice interacts with the sim-real gap.
 
 ---
 
@@ -271,7 +271,7 @@ Diagnostic benchmarks differ from training benchmarks in a crucial way: they are
 
 > [!star] Key Papers
 > - [[2605.10921|RoboMemArena]] — First comprehensive robotic-memory benchmark: 26 sim + 5 real-world tasks with multimodal annotations (visual keyframes + language) where **68.9%** of subtasks genuinely require historical information; **PrediMem** (predictive-coding VLA with hierarchical memory) hits **38.5%** TSR vs MemER's **27.3%** — the dedicated memory-failure-axis diagnostic
-> - [[2502.09560|EmbodiedBench]] — 1,128 tasks across 4 environments (ALFRED, Habitat, Nav, Manipulation) × 6 capabilities (commonsense, instructions, spatial, perception, planning, basic). Exposes that **GPT-4o** scores **>60%** on high-level planning but only **28.9%** on low-level manipulation; removing vision drops Nav from **57.7% → 17.4%** — the de-facto capability-disentangling MLLM-agent benchmark
+> - [[2502.09560|EmbodiedBench]] — 1,128 tasks across 4 environments (ALFRED, [Habitat](https://aihabitat.org), Nav, Manipulation) × 6 capabilities (commonsense, instructions, spatial, perception, planning, basic). Exposes that **GPT-4o** scores **>60%** on high-level planning but only **28.9%** on low-level manipulation; removing vision drops Nav from **57.7% → 17.4%** — the de-facto capability-disentangling MLLM-agent benchmark
 > - [[2601.11421|GM-100]] — 100 detail-oriented tasks; current VLAs achieve very low success rates, exposing real capability gaps
 > - [[2507.10548|EmbRACE-3K]] — 3,000 scenarios testing embodied reasoning (spatial + causal + task-decomposition); reveals that high [[2306.03310|LIBERO]] scores do not imply embodied intelligence
 > - [[2508.13142|EASI]] — Holistic evaluation framework for spatial intelligence in embodied agents
@@ -512,7 +512,7 @@ Systematic studies that benchmark VLA design decisions rather than individual mo
 
 The field has matured enough that several recent surveys structure the entire benchmark / dataset / sim landscape — useful when you're starting on a new sub-area.
 
-- [[2103.04918|Embodied AI Survey 2021]] — A Survey of Embodied AI: From Simulators to Research Tasks; the foundational survey that mapped the early simulator landscape (Habitat, AI2-THOR, iGibson).
+- [[2103.04918|Embodied AI Survey 2021]] — A Survey of Embodied AI: From Simulators to Research Tasks; the foundational survey that mapped the early simulator landscape ([Habitat](https://aihabitat.org), AI2-THOR, iGibson).
 - [[2507.00917|Embodied Intelligence Survey]] — A Survey: Learning Embodied Intelligence from Physical Simulators and World Models; the modern follow-up that integrates the world-model wave.
 - [[2510.16732|World Models for Embodied AI Survey]] — A Comprehensive Survey on World Models for Embodied AI; the canonical world-model-side survey, organized around evaluation criteria.
 - [[2503.21765|Physics Cognition Survey]] — Exploring the Evolution of Physics Cognition in Video Generation; the canonical video-generation physics survey, useful for sim-from-video and world-model evaluation framing.
@@ -562,12 +562,12 @@ Use this progression to evaluate robot policies at increasing levels of rigor:
 >
 > **Humanoid whole-body**
 > - Data: [[2605.03452|BifrostUMI]] + [[2602.16710|EgoScale]]
-> - Environment: [[2511.04831|Isaac Lab]] / Genesis for parallelism; [[2502.20396|Humanoid Sim2Real Dex]] sim
+> - Environment: [[2511.04831|Isaac Lab]] / [Genesis](https://genesis-world.readthedocs.io/) for parallelism; [[2502.20396|Humanoid Sim2Real Dex]] sim
 > - Benchmark: [[2506.12851|KungfuBot]] (dynamic) + [[2604.07993|HEX]] (cross-embodiment) + [[2512.01061|Sim-to-Real Door]] (transfer)
 >
 > **Force-aware / contact-rich**
 > - Data: [[2506.14754|Sparsh-X]] tactile pretraining + [[2509.18830|DexSkin]] for arm-skin
-> - Environment: MuJoCo / MJX for contact accuracy; [[2511.04665|Real-to-Sim GS]] for soft-body
+> - Environment: [MuJoCo](https://mujoco.org) / [MJX](https://mujoco.readthedocs.io/en/stable/mjx.html) for contact accuracy; [[2511.04665|Real-to-Sim GS]] for soft-body
 > - Benchmark: TacBench ([[2410.24090|Sparsh]]) + [[2510.13324|FARM]] + [[2603.05687|CGP]]
 >
 > **World-model-powered VLA**
