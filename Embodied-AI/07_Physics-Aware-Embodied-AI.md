@@ -104,7 +104,11 @@ The field evolved through four parallel tracks. **3D-Gaussian-based implicit phy
 
 ---
 
-## 1. Design-Space Principles
+## Part A — Design Space & Physics Priors
+
+*How to inject physics: implicit (3DGS), explicit losses, and external simulators.*
+
+### 1. Design-Space Principles
 
 Three orthogonal axes define every physics-aware embodied AI system.
 
@@ -113,7 +117,7 @@ Three orthogonal axes define every physics-aware embodied AI system.
 > - **What is physical**: appearance (3D Gaussians + MPM) / dynamics (video next-frame) / reward (RL)
 > - **When it intervenes**: at generation / at training / at inference
 
-### Axis 1 — Where Physics Lives
+#### Axis 1 — Where Physics Lives
 
 | Where | Mechanism | Example |
 |-------|-----------|---------|
@@ -121,7 +125,7 @@ Three orthogonal axes define every physics-aware embodied AI system.
 | **Explicit (in loss)** | Physics residual / Newton's laws / verifiable physical predicate as training signal | [[2509.20570\|PIRF]], [[2509.21309\|NewtonGen]], [[2512.00425\|NewtonRewards]] |
 | **External (in solver)** | Generative model proposes; physics simulator (MPM, FEM, MuJoCo) verifies/refines | [[2503.17973\|PhysTwin]], [[2511.07416\|PhysWorld]] |
 
-### Axis 2 — What Is Physical
+#### Axis 2 — What Is Physical
 
 | Layer | What Gets Physics-Constrained | Cost |
 |-------|------------------------------|------|
@@ -129,7 +133,7 @@ Three orthogonal axes define every physics-aware embodied AI system.
 | **Dynamics** | Next-frame prediction obeys conservation laws | Mid cost; better visual physics |
 | **Reward** | RL reward = physics consistency score | Low cost; trains generation through RL |
 
-### Axis 3 — When Physics Intervenes
+#### Axis 3 — When Physics Intervenes
 
 | Stage | Intervention | Example |
 |-------|--------------|---------|
@@ -138,11 +142,11 @@ Three orthogonal axes define every physics-aware embodied AI system.
 | **Inference** | Sample candidates; physics solver rejects implausible ones | [[2603.23376\|ABot-PhysWorld]] (Diffusion-DPO) |
 
 > [!tip] Pick by Constraint
-> If you need **photorealistic deformation rendering**, pick implicit (3D Gaussians + MPM). If you need **internet-scale video that respects gravity**, pick explicit-loss (PIRF, [[2509.21309|NewtonGen]]). If you need a **deployable robot policy that won't violate physics**, pick external-simulator ([[2511.07416|PhysWorld]]) or physics-grounded RL (NewtonRewards, PhysMaster).
+> If you need **photorealistic deformation rendering**, pick implicit (3D Gaussians + MPM). If you need **internet-scale video that respects gravity**, pick explicit-loss ([[2509.20570|PIRF]], [[2509.21309|NewtonGen]]). If you need a **deployable robot policy that won't violate physics**, pick external-simulator ([[2511.07416|PhysWorld]]) or physics-grounded RL ([[2512.00425|NewtonRewards]], [[2510.13809|PhysMaster]]).
 
 ---
 
-## 2. Implicit Physics — 3D Gaussians as Simulation Substrate
+### 2. Implicit Physics — 3D Gaussians as Simulation Substrate
 
 The dominant implicit-physics paradigm fuses 3D Gaussian Splatting with continuum-mechanics solvers (typically the ==Material Point Method==). Each Gaussian is *both* a renderable primitive and a simulation particle, eliminating the geometry/render mismatch of traditional pipelines.
 
@@ -158,7 +162,7 @@ The dominant implicit-physics paradigm fuses 3D Gaussian Splatting with continuu
 **Physics-Grounded Asset Generation** — Generating simulator-ready 3D assets with physics metadata, rather than rendering physics-consistent scenes.
 - [[2605.05163|PhysForge]]
 
-**How PhysForge Works**: A decoupled two-stage framework — Stage 1: a VLM performs abstract "physical planning" (decomposing an object into parts and predicting joint types + physical properties); Stage 2: a diffusion model with a Kinematic Voxel Injection (KVI) mechanism realizes geometry + continuous kinematic parameters from the VLM's plan. Trained on PhysDB (150,000 3D objects with a four-tier hierarchical physical annotation system: holistic / static / functional / interactive). The generated assets are **simulation-ready** — directly usable in robotic simulators and game engines for embodied AI training.
+**How [[2605.05163|PhysForge]] Works**: A decoupled two-stage framework — Stage 1: a VLM performs abstract "physical planning" (decomposing an object into parts and predicting joint types + physical properties); Stage 2: a diffusion model with a Kinematic Voxel Injection (KVI) mechanism realizes geometry + continuous kinematic parameters from the VLM's plan. Trained on PhysDB (150,000 3D objects with a four-tier hierarchical physical annotation system: holistic / static / functional / interactive). The generated assets are **simulation-ready** — directly usable in robotic simulators and game engines for embodied AI training.
 
 > [!star] Key Papers
 > - [[2605.05163|PhysForge]] — Two-stage VLM-planner + diffusion-realizer for simulation-ready 3D assets; **0.101** Joint-Axis-Err-5 (SOTA) with VLM-grounded part decomposition and KVI-realized kinematics
@@ -168,33 +172,33 @@ The dominant implicit-physics paradigm fuses 3D Gaussian Splatting with continuu
 
 ---
 
-## 3. Explicit Physics Losses for Video Generation
+### 3. Explicit Physics Losses for Video Generation
 
 The fastest-growing track. Internet-video diffusion models (Sora, Veo, Cosmos, [[2503.20314|Wan]]) learn approximate physics implicitly but routinely violate gravity, conservation of mass, and rigid-body constraints. Explicit-loss approaches add a physics-residual term that *measures* the violation and backpropagates it.
 
-### 3.1 Differentiable Physics Residuals
+#### 3.1 Differentiable Physics Residuals
 
 Write down a physics law as an equation; the negative residual is your reward.
 
 - [[2509.20570|PIRF]], [[2509.21309|NewtonGen]], [[2503.09595|PISA]]
 
-**How PIRF works**: Frames the diffusion denoising as a Markov Decision Process with a sparse reward — the negative PDE residual at the final state. Layer-wise truncation restricts updates to high-resolution U-Net layers, preventing reward hacking and preserving global semantics. **NewtonGen** goes further by injecting an explicit Neural-Newtonian-Dynamics layer that predicts trajectories under F=ma constraints, then conditions T2V generation on those trajectories. **PISA** specializes to drop dynamics: training on physics-verifiable "watching stuff drop" experiments aligns video diffusion with gravity.
+**How [[2509.20570|PIRF]] works**: Frames the diffusion denoising as a Markov Decision Process with a sparse reward — the negative PDE residual at the final state. Layer-wise truncation restricts updates to high-resolution U-Net layers, preventing reward hacking and preserving global semantics. **[[2509.21309|NewtonGen]]** goes further by injecting an explicit Neural-Newtonian-Dynamics layer that predicts trajectories under F=ma constraints, then conditions T2V generation on those trajectories. **[[2503.09595|PISA]]** specializes to drop dynamics: training on physics-verifiable "watching stuff drop" experiments aligns video diffusion with gravity.
 
-### 3.2 RL with Physics-Verifiable Rewards
+#### 3.2 RL with Physics-Verifiable Rewards
 
 Use a physics simulator as the reward signal, then train the generator with RL.
 
 - [[2512.00425|NewtonRewards]], [[2510.13809|PhysMaster]], [[2509.20358|PhysCtrl]]
 
-**How NewtonRewards works**: Formulates Newton's laws as a *verifiable reward* — a checker function that evaluates whether a generated video clip is consistent with mechanics. Post-training the video generator with this reward measurably reduces gravity-violation cases. **PhysMaster** pushes the same idea: RL fine-tuning of video diffusion against physical-representation rewards, mastering material-specific dynamics.
+**How [[2512.00425|NewtonRewards]] works**: Formulates Newton's laws as a *verifiable reward* — a checker function that evaluates whether a generated video clip is consistent with mechanics. Post-training the video generator with this reward measurably reduces gravity-violation cases. **[[2510.13809|PhysMaster]]** pushes the same idea: RL fine-tuning of video diffusion against physical-representation rewards, mastering material-specific dynamics.
 
-### 3.3 Physics-Aware Conditioning at Generation Time
+#### 3.3 Physics-Aware Conditioning at Generation Time
 
 Constrain *during* sampling rather than during training.
 
 - [[2603.13770|PhysAlign]], [[2603.26285|PhysVid]], [[2603.23376|ABot-PhysWorld]]
 
-**PhysAlign** aligns the diffusion model's intermediate features and 3D representation with physics targets, ensuring physics-coherent image-to-video generation. **PhysVid** uses physics-aware local conditioning — local regions of a generative video carry per-region physical priors. **ABot-PhysWorld** uses Diffusion-DPO with physics-rejected negatives, training the diffusion model to suppress object-penetration and anti-gravity outputs.
+**[[2603.13770|PhysAlign]]** aligns the diffusion model's intermediate features and 3D representation with physics targets, ensuring physics-coherent image-to-video generation. **[[2603.26285|PhysVid]]** uses physics-aware local conditioning — local regions of a generative video carry per-region physical priors. **[[2603.23376|ABot-PhysWorld]]** uses Diffusion-DPO with physics-rejected negatives, training the diffusion model to suppress object-penetration and anti-gravity outputs.
 
 > [!star] Key Papers
 > - [[2509.20570|PIRF]] — Lower PDE residual MSE on **4 of 5** PDE benchmarks; zero reward queries at inference; works with **20** sampling steps
@@ -207,17 +211,17 @@ Constrain *during* sampling rather than during training.
 
 ---
 
-## 4. External Simulator Coupling
+### 4. External Simulator Coupling
 
 Generative models are great at hypothesizing futures; physical simulators are great at verifying them. Coupling the two gets you the best of both — at the cost of a brittle interface between learned and analytical components.
 
 - [[2605.06593|ReActor]], [[2511.07416|PhysWorld]], [[2503.17973|PhysTwin]]
 
-**How PhysTwin works**: Multi-stage optimization that jointly reconstructs geometry, infers physical properties, and models appearance. Spring-mass models + generative shape priors + Gaussian splats produce an interactive digital twin from videos — usable for robot motion planning. The simulator runs in real-time, allowing the robot to plan against the digital twin before acting.
+**How [[2503.17973|PhysTwin]] works**: Multi-stage optimization that jointly reconstructs geometry, infers physical properties, and models appearance. Spring-mass models + generative shape priors + Gaussian splats produce an interactive digital twin from videos — usable for robot motion planning. The simulator runs in real-time, allowing the robot to plan against the digital twin before acting.
 
-**How PhysWorld works**: Trains the robot policy against a learned physical world model. Unlike pure video-WAMs, PhysWorld embeds explicit physical state (positions, velocities, forces), so policy gradient signals reflect physics-consistent interactions rather than visual consistency only.
+**How [[2511.07416|PhysWorld]] works**: Trains the robot policy against a learned physical world model. Unlike pure video-WAMs, [[2511.07416|PhysWorld]] embeds explicit physical state (positions, velocities, forces), so policy gradient signals reflect physics-consistent interactions rather than visual consistency only.
 
-**How ReActor works**: Bilevel optimization in which the upper level learns retargeting parameters and the lower level trains a motion-tracking policy via RL inside a physics simulator. A simplified gradient estimator avoids the implicit-function-theorem cost typical of bilevel-RL. Because retargeting happens *inside* the simulator, the produced motions inherit physics consistency for free — zero ground/self-penetration, near-zero foot sliding — and the cleaned data lifts downstream RL success by up to **+15.22 pp**.
+**How [[2605.06593|ReActor]] works**: Bilevel optimization in which the upper level learns retargeting parameters and the lower level trains a motion-tracking policy via RL inside a physics simulator. A simplified gradient estimator avoids the implicit-function-theorem cost typical of bilevel-RL. Because retargeting happens *inside* the simulator, the produced motions inherit physics consistency for free — zero ground/self-penetration, near-zero foot sliding — and the cleaned data lifts downstream RL success by up to **+15.22 pp**.
 
 > [!star] Key Papers
 > - [[2605.06593|ReActor]] — Bilevel RL inside a physics simulator for human→robot motion retargeting; zero ground/self-penetration, +15.22pp downstream RL success on G1, generalizes to quadrupeds and physical hardware
@@ -229,20 +233,24 @@ Generative models are great at hypothesizing futures; physical simulators are gr
 
 ---
 
-## 5. Physics-Aware Reasoning
+## Part B — Reasoning, Benchmarks & Pipelines
+
+*Physics-aware reasoning, commonsense benchmarks, and end-to-end pipelines.*
+
+### 5. Physics-Aware Reasoning
 
 Physical reasoning sits one level above physical generation: the model must *talk about* physics consistently, not just produce physics-compliant pixels.
 
 - [[2503.15558|Cosmos-Reason1]]
 
-**How Cosmos-Reason1 works**: Trains a multi-modal foundation model jointly on physical commonsense (object permanence, material properties, forces) and embodied reasoning (planning under physical constraints). Bridges the gap between video-WAMs (which produce physics-consistent video) and reasoning VLAs (which need physics priors to plan multi-step manipulation).
+**How [[2503.15558|Cosmos-Reason1]] works**: Trains a multi-modal foundation model jointly on physical commonsense (object permanence, material properties, forces) and embodied reasoning (planning under physical constraints). Bridges the gap between video-WAMs (which produce physics-consistent video) and reasoning VLAs (which need physics priors to plan multi-step manipulation).
 
 > [!star] Key Papers
 > - [[2503.15558|Cosmos-Reason1]] — Lifts physics from pixel-level losses to language-level reasoning; physical commonsense + embodied reasoning at WAM scale
 
 ---
 
-## 6. Physics Commonsense Benchmarks
+### 6. Physics Commonsense Benchmarks
 
 You can't optimize what you can't measure. Four benchmarks define current physics-evaluation:
 
@@ -260,11 +268,11 @@ You can't optimize what you can't measure. Four benchmarks define current physic
 > - [[2504.02918|Morpheus]] — Real physical experiments as benchmark; closes the loop with measurable real-world physics
 
 > [!tip] The Visual-Quality Trap
-> Models that score top-tier on FVD/SSIM frequently score below random on physics-IQ probes. Always pair appearance metrics (FVD, FID, SSIM) with physics-commonsense metrics (PhyGenBench, Physics-IQ, Morpheus) — they measure orthogonal axes.
+> Models that score top-tier on FVD/SSIM frequently score below random on physics-IQ probes. Always pair appearance metrics (FVD, FID, SSIM) with physics-commonsense metrics ([[2410.05363|PhyGenBench]], [[2501.09038|Physics-IQ]], [[2504.02918|Morpheus]]) — they measure orthogonal axes.
 
 ---
 
-## 7. Physics-Aware Pipelines for Embodied AI
+### 7. Physics-Aware Pipelines for Embodied AI
 
 How do these pieces connect when you build an end-to-end physics-aware robot system? Three composable patterns:
 
@@ -283,12 +291,19 @@ How do these pieces connect when you build an end-to-end physics-aware robot sys
 
 ---
 
-## 8. Open Problems
+## Part C — Open Problems
+
+*What physics-aware embodied AI still cannot do.*
+
+### 8. Open Problems
 
 - **Verifiable physics scales poorly**: [[2509.20570|PIRF]] and [[2512.00425|NewtonRewards]] work well for narrow PDEs, but writing a verifiable physics check for a cluttered kitchen is open. The next frontier is *learned* physics-verifiers that generalize.
 - **Implicit-vs-explicit trade**: 3D-Gaussian methods produce stunning rendering but cost compute; explicit-loss methods scale to internet video but lose 3D fidelity. Hybrid approaches ([[2603.13770|PhysAlign]] uses both) are emerging but unproven.
-- **Reward hacking in physics RL**: [[2510.13809|PhysMaster]] and NewtonRewards can be gamed by models that produce static or trivially-physical outputs. Layer-wise truncation (PIRF) helps but isn't a full solution.
+- **Reward hacking in physics RL**: [[2510.13809|PhysMaster]] and [[2512.00425|NewtonRewards]] can be gamed by models that produce static or trivially-physical outputs. Layer-wise truncation ([[2509.20570|PIRF]]) helps but isn't a full solution.
 - **Benchmark-vs-deployment gap**: Models scoring well on [[2410.05363|PhyGenBench]] / [[2501.09038|Physics-IQ]] may still fail on real robot deployment. [[2504.02918|Morpheus]] closes part of this gap but covers narrow scenarios.
+
+> [!tip] The Common Root Is Verifiability
+> The four problems above share one bottleneck: physics-aware models produce *plausible* outputs but cannot *prove* their physics is correct under real-world clutter. Until learned physics-verifiers generalize beyond narrow PDEs ([[2509.20570|PIRF]], [[2512.00425|NewtonRewards]]) and resist reward hacking, both training signals and benchmarks ([[2410.05363|PhyGenBench]], [[2501.09038|Physics-IQ]]) will under-specify what deployment actually requires. Cross-reference [[02_Dataset-Benchmark-Environment]] §5 (Tactile & Contact-Rich Benchmarks) and [[04_WAM]] §9 (failure modes) for the evaluation-side view.
 
 ---
 

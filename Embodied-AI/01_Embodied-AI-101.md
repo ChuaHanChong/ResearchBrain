@@ -19,7 +19,7 @@ Embodied AI gives intelligent systems physical presence — robots that manipula
 > [!abstract] One-Line Summary
 > **VLAs** copy what they've seen. **WAMs** imagine what will happen next. **Self-evolving systems** improve from experience. See [[03_VLA]], [[04_WAM]], and [[06_Self-Evolving-VLA-WAM]] for deep dives.
 
-## Field Evolution Graph
+## Evolution Graph
 
 The embodied-AI field evolved through four phases — from single-task imitation foundations, to generalist VLAs, to world-model-augmented systems, to self-evolving agents.
 
@@ -75,7 +75,36 @@ The field progressed through: **Foundations** ([[2212.06817|RT-1]], [[2303.04137
 
 ---
 
-## 1. Vision-Language-Action (VLA) Models
+## Part A — Concepts
+
+*Start here. The intuitive primer, the two paradigms (VLA & WAM), and how they compare side-by-side.*
+
+### 1. ELI5
+
+> [!example] Catching a Ball
+> Imagine you are teaching a robot how to catch a ball. Here is how the two robot brains would learn:
+
+#### The VLA Brain (The Memorizer)
+
+This robot learns by playing **"Simon Says."** You throw the ball exactly the same way 100 times, and you move the robot's arm to the exact right spot to catch it. The robot memorizes, "When I hear 'catch' and see the ball right *here*, I move my arm exactly like *this*."
+
+It is really good at following instructions and recognizing the ball, but it doesn't actually understand how gravity works. If the wind blows the ball a little to the left, or you use a heavier ball, the robot will probably miss because it only knows the exact movements it memorized.
+
+#### The WAM Brain (The Imaginer)
+
+This robot learns by **daydreaming**. Instead of just memorizing arm movements, it watches videos of balls flying through the air and bouncing. When you throw the ball to this robot, its brain actually imagines the future. It thinks, "If the ball is moving this fast, it will land over *there* in two seconds."
+
+Because it actually understands the rules of the world (like gravity and momentum) and can picture what is about to happen, it can figure out how to move its arm to catch the ball — even if it's a brand new bouncy ball or the wind is blowing.
+
+> [!summary] The Short Version
+> - **VLAs** learn by copying exactly what they have seen before.
+> - **WAMs** learn by imagining what will happen next and acting based on that picture.
+
+---
+
+---
+
+### 2. Vision-Language-Action (VLA) Models
 
 VLAs are essentially multimodal large language models fine-tuned for robotic control. Well-known examples include [[2307.15818|RT-2]] and [[2406.09246|OpenVLA]].
 
@@ -91,7 +120,9 @@ VLAs are essentially multimodal large language models fine-tuned for robotic con
 
 ---
 
-## 2. World Action Models (WAM)
+---
+
+### 3. World Action Models (WAM)
 
 WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]]) that unify action generation with a predictive "world model."
 
@@ -108,7 +139,9 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 
 ---
 
-## 3. Head-to-Head Comparison
+---
+
+### 4. Head-to-Head Comparison
 
 | Feature | Vision-Language-Action (VLA) | World Action Models (WAM) |
 | --- | --- | --- |
@@ -120,11 +153,20 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 
 **When to Choose VLA**: Your task is language-heavy (complex instructions), you have abundant demonstration data, and inference speed matters (real-time control at 10-50Hz). VLAs inherit semantic understanding from web-scale VLM pre-training, making them strong at understanding novel instructions. **When to Choose WAM**: You need robustness to visual perturbations (lighting, camera, background changes), your task requires physics-aware planning (predicting consequences of actions), or real-world training data is limited (world model imagination compensates). **When to Combine**: The 2026 consensus is converging on integration — [[2603.16666|Fast-WAM]] and [[2602.10098|VLA-JEPA]] show you can get WAM-level robustness with VLA-level speed by using world model objectives during training only.
 
+> [!tip] Decision Rule
+> - **VLA** — language-heavy tasks, abundant demos, real-time control (10–50 Hz)
+> - **WAM** — visual-perturbation robustness, physics-aware planning, data scarcity
+> - **Both** — train with world-model objectives ([[2602.10098|VLA-JEPA]]), deploy without test-time imagination ([[2603.16666|Fast-WAM]])
+
 ---
 
-## 4. Robotic Foundation Model Architectures
+## Part B — Implementation
 
-### Four Learning Strategies
+*From taxonomy to working code: the formal architecture map, then the open-source stack you can build with today.*
+
+### 5. Robotic Foundation Model Architectures
+
+#### Four Learning Strategies
 
 | Strategy | How It Works | Limitation |
 | --- | --- | --- |
@@ -133,12 +175,12 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 | ==WAM== | Predicts future goal-images, derives actions via inverse dynamics | Hard to learn for complex interactions (doors, deformables) |
 | ==VLA== | Pre-trained VLMs encode state, predict actions directly | High compute for history-dependent processing |
 
-**Model-Free** approaches (DQN, SAC, PPO) learn a direct mapping from observations to actions through trial and error. They are powerful for specific tasks but require millions of environment interactions and don't transfer well to new tasks. **Model-Based** approaches (MPC, MBPO) learn an explicit dynamics model and use it for planning. They are sample-efficient but require accurate dynamics — errors in the model compound during long-horizon planning. **WAMs** take model-based to the extreme: learn dynamics from internet-scale video, then derive actions via inverse dynamics. The video backbone provides rich physics priors but makes the model large and slow. **VLAs** bypass explicit dynamics entirely: the VLM backbone provides implicit physical understanding from web-scale pre-training, and the model directly predicts actions. This is simpler and faster, but the physical understanding is brittle — it hasn't truly 'learned' physics, just correlated visual patterns with actions.
+**Model-Free** approaches ([[1312.5602|DQN]], [[1801.01290|SAC]], [[1707.06347|PPO]]) learn a direct mapping from observations to actions through trial and error. They are powerful for specific tasks but require millions of environment interactions and don't transfer well to new tasks. **Model-Based** approaches (MPC, [[1906.08253|MBPO]]) learn an explicit dynamics model and use it for planning. They are sample-efficient but require accurate dynamics — errors in the model compound during long-horizon planning. **WAMs** take model-based to the extreme: learn dynamics from internet-scale video, then derive actions via inverse dynamics. The video backbone provides rich physics priors but makes the model large and slow. **VLAs** bypass explicit dynamics entirely: the VLM backbone provides implicit physical understanding from web-scale pre-training, and the model directly predicts actions. This is simpler and faster, but the physical understanding is brittle — it hasn't truly 'learned' physics, just correlated visual patterns with actions.
 
 > [!tip] WAM vs VLA — The Key Differentiator
 > WAMs predict a future goal-state then calculate actions via inverse dynamics — powerful but hard to learn for complex physics. VLAs bypass explicit world-modeling by inheriting spatial reasoning from web-scale VLM pre-training, mapping observations directly to control signals.
 
-### VLA Architecture Taxonomy
+#### VLA Architecture Taxonomy
 
 VLA design choices break into three axes:
 
@@ -161,7 +203,7 @@ VLA design choices break into three axes:
 
 **Representative models:** [[2310.08864|RT-2-X]], [[2406.09246|OpenVLA]] (one-step/discrete) · [[2405.12213|Octo]], [[2312.13139|GR-1]] (interleaved) · [[2311.01378|RoboFlamingo]] (policy head) · [[2604.07430|HY-Embodied-0.5]] (MoT-MoE multi-embodiment)
 
-### Data Strategy
+#### Data Strategy
 
 Three training recipes for bridging sim-to-real:
 
@@ -172,10 +214,10 @@ Three training recipes for bridging sim-to-real:
 > [!warning] In-domain data is non-negotiable
 > Even task-agnostic data from the *same robot* outperforms massive cross-embodiment datasets for target tasks. ==Post-training== (diverse pre-train → in-domain refinement) yields the best generalization.
 
-### Key Empirical Findings
+#### Key Empirical Findings
 
 1. **Generalization** — VLAs achieved a **30.3%** improvement on 5-task chains in unseen [[2112.03227|CALVIN]] scenes
-2. **Backbone matters** — KosMos and [[2407.07726|PaliGemma]] outperform others due to stronger vision-language alignment from larger pre-training datasets
+2. **Backbone matters** — [[2306.14824|KOSMOS-2]] and [[2407.07726|PaliGemma]] outperform others due to stronger vision-language alignment from larger pre-training datasets
 3. **Continuous > Discrete** — continuous actions avoid compounding discretization errors; Flow Matching offers slight gains over MSE
 4. **Emergent self-correction** — top VLAs re-locate handles after a missed grasp without explicit error-recovery training; ==Mixture-of-Experts (MoE)== improves zero-shot generalization. Frontier MoE/MoT examples: [[2604.07430|HY-Embodied-0.5]] (MoT for multi-embodiment), [[2603.15169|ForceVLA2]] (Cross-Scale MoE for force fusion), [[2603.07648|AtomicVLA]] (SG-MoE for skill abstraction).
 
@@ -184,34 +226,13 @@ Three training recipes for bridging sim-to-real:
 
 ---
 
-## 5. ELI5
-
-> [!example] Catching a Ball
-> Imagine you are teaching a robot how to catch a ball. Here is how the two robot brains would learn:
-
-### The VLA Brain (The Memorizer)
-
-This robot learns by playing **"Simon Says."** You throw the ball exactly the same way 100 times, and you move the robot's arm to the exact right spot to catch it. The robot memorizes, "When I hear 'catch' and see the ball right *here*, I move my arm exactly like *this*."
-
-It is really good at following instructions and recognizing the ball, but it doesn't actually understand how gravity works. If the wind blows the ball a little to the left, or you use a heavier ball, the robot will probably miss because it only knows the exact movements it memorized.
-
-### The WAM Brain (The Imaginer)
-
-This robot learns by **daydreaming**. Instead of just memorizing arm movements, it watches videos of balls flying through the air and bouncing. When you throw the ball to this robot, its brain actually imagines the future. It thinks, "If the ball is moving this fast, it will land over *there* in two seconds."
-
-Because it actually understands the rules of the world (like gravity and momentum) and can picture what is about to happen, it can figure out how to move its arm to catch the ball — even if it's a brand new bouncy ball or the wind is blowing.
-
-> [!summary] The Short Version
-> - **VLAs** learn by copying exactly what they have seen before.
-> - **WAMs** learn by imagining what will happen next and acting based on that picture.
-
 ---
 
-## 6. How to Build: The Open-Source Stack
+### 6. How to Build: The Open-Source Stack
 
 The open-source robotics ecosystem now provides every component needed to build, train, and deploy both VLAs and WAMs — from data to deployment on a $100 robot arm.
 
-### The Pipeline
+#### The Pipeline
 
 ```
 Researcher → Data → Training → Simulation → Deployment
@@ -221,13 +242,13 @@ Researcher → Data → Training → Simulation → Deployment
 | Component | Tool | Role |
 |-----------|------|------|
 | **Data** | [[2310.08864\|Open X-Embodiment]] | 1M+ cross-embodiment trajectories for pre-training |
-| **Training Framework** | [LeRobot (HuggingFace)](https://github.com/huggingface/lerobot) | End-to-end training pipeline for VLAs (OpenVLA, ACT, Diffusion Policy) |
+| **Training Framework** | [LeRobot (HuggingFace)](https://github.com/huggingface/lerobot) | End-to-end training pipeline for VLAs ([[2406.09246\|OpenVLA]], ACT, [[2303.04137\|Diffusion Policy]]) |
 | **Simulation** | [Genesis](https://genesis-world.readthedocs.io/en/latest/), [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics) | Physics-accurate simulation for verification before real-world deployment |
 | **Hardware** | [SO-100](https://github.com/TheRobotStudio/SO-ARM100) (~$100) | Low-cost robot arm for real-world testing and deployment |
 
-### Building a VLA (Quick Recipe)
+#### Building a VLA (Quick Recipe)
 
-1. **Pick a VLM backbone** — [[2407.07726\|PaliGemma]] or KosMos (best vision-language alignment)
+1. **Pick a VLM backbone** — [[2407.07726\|PaliGemma]] or [[2306.14824\|KOSMOS-2]] (best vision-language alignment)
 2. **Add an action head** — Policy Head with continuous actions via ==Flow Matching==
 3. **Pre-train on [[2310.08864|OXE]]** — cross-embodiment data for broad priors
 4. **Post-train on in-domain data** — fine-tune on your specific robot + tasks
@@ -235,10 +256,10 @@ Researcher → Data → Training → Simulation → Deployment
 
 > See [[03_VLA#2. Design-Space Principles]] for the full design-space analysis.
 
-### Building a WAM (Quick Recipe)
+#### Building a WAM (Quick Recipe)
 
 1. **Choose your prediction space** — Pixel (richest but slowest), Latent (fastest), or Action-only (most efficient)
-2. **Pick a backbone** — Video diffusion (Cosmos/[[2602.15922|DreamZero]]), JEPA ([[2506.09985|V-JEPA 2]]), or RSSM (Dreamer lineage)
+2. **Pick a backbone** — Video diffusion ([[2501.03575|Cosmos]] / [[2602.15922|DreamZero]]), JEPA ([[2506.09985|V-JEPA 2]]), or RSSM ([[1912.01603|Dreamer]] lineage)
 3. **Pre-train on video** — internet-scale video teaches physics priors
 4. **Decide test-time strategy** — Full imagination (robust but 4.8x slower) or training-only video ([[2603.16666|Fast-WAM]] approach)
 5. **Add action decoding** — Flow matching or inverse dynamics from predicted states
@@ -248,7 +269,7 @@ Researcher → Data → Training → Simulation → Deployment
 > [!tip] Start Simple, Add Complexity
 > Begin with a VLA (simpler, faster to iterate). Add world model augmentation only if you need robustness to visual perturbations or physics-aware planning. The [[2603.16666|Fast-WAM]] finding: you can get WAM-level robustness with VLA-level speed by using video objectives at training time only.
 
-### The Self-Evolving Frontier
+#### The Self-Evolving Frontier
 
 Both VLAs and WAMs can be made self-evolving — autonomously discovering failure modes and improving through experience. Three paths to self-evolution:
 
@@ -258,17 +279,31 @@ Both VLAs and WAMs can be made self-evolving — autonomously discovering failur
 
 The critical prerequisite for all three paths: **the agent must first detect that it IS failing**. See [[06_Self-Evolving-VLA-WAM]] for how failure detection, self-correction, and active probing enable the self-evolution loop.
 
-### Key Challenges in Embodied AI
+---
+
+## Part C — Frontier & Open Problems
+
+*The open problems that still bound embodied-AI progress — the load-bearing constraints any new system must address.*
+
+### 7. Open Problems & Key Challenges
 
 | Challenge | Why It's Hard | Current Best Approach |
 |-----------|--------------|----------------------|
-| **Sim-to-real gap** | Physics simulators approximate reality; policies that work in sim break on real robots | Domain randomization + real-world fine-tuning (SimplerEnv for evaluation) |
-| **Data scarcity** | Real robot data is expensive (RT-1: 17 months, 13 robots for 130K demos) | Cross-embodiment pre-training (OXE) + world model imagination |
-| **Real-time control** | Robots need actions at 10-50 Hz; large models are slow | Efficient VLAs (SmolVLA: 450M params), Fast-WAM (strip video at deploy) |
-| **Safety** | Robots operate near humans; catastrophic failures are physical | Failure prediction (FIPER), uncertainty-aware planning (RWM-U) |
+| **Sim-to-real gap** | Physics simulators approximate reality; policies that work in sim break on real robots | Domain randomization + real-world fine-tuning ([[2405.05941\|SimplerEnv]] for evaluation) |
+| **Data scarcity** | Real robot data is expensive ([[2212.06817\|RT-1]]: 17 months, 13 robots for 130K demos) | Cross-embodiment pre-training ([[2310.08864\|OXE]]) + world model imagination |
+| **Real-time control** | Robots need actions at 10-50 Hz; large models are slow | Efficient VLAs ([[2506.01844\|SmolVLA]]: 450M params), [[2603.16666\|Fast-WAM]] (strip video at deploy) |
+| **Safety** | Robots operate near humans; catastrophic failures are physical | Failure prediction ([[2510.09459\|FIPER]]), uncertainty-aware planning ([[2504.16680\|RWM-U]]) |
 | **Generalization** | Novel objects, new environments, unseen instructions | Self-evolving systems that adapt from deployment experience |
 
 ---
+
+> [!tip] Use This as a Reading Compass
+> Each challenge points to the deep-dive note that treats it:
+> sim-to-real → [[11_Sim-to-Real-Transfer]];
+> data scarcity → [[02_Dataset-Benchmark-Environment]] + [[09_Egocentric-Pretraining-and-Human-Video]];
+> real-time control → [[03_VLA]] §2 (efficient VLAs) + [[04_WAM]] §6 (efficient WAMs);
+> safety → [[06_Self-Evolving-VLA-WAM]] §4 (failure detection);
+> generalization → [[06_Self-Evolving-VLA-WAM]] §5–7 (self-evolving systems).
 
 ## Cross-References
 

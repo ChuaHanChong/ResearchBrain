@@ -78,6 +78,7 @@ The field evolved through three phases: **architectural proof-of-concept** (2020
 | 2023 | [[2304.07193\|DINOv2]] | Scaled self-supervised learning to 142M curated images; produced universal visual features competitive with CLIP without text |
 | 2023 | [[2301.08243\|I-JEPA]] | Predicted abstract representations instead of pixels; 10x cheaper pretraining with stronger semantic features |
 | 2023 | [[2305.05665\|ImageBind]] | Aligned six modalities into one embedding space using images as anchor; enabled emergent cross-modal zero-shot transfer |
+| 2023 | [[2302.14045\|KOSMOS-1]] | First MLLM with arbitrarily interleaved image-text inputs; 84.7 CIDEr on COCO, 22% on custom Raven IQ — established the foundational MLLM paradigm |
 | 2023 | [[2305.06500\|InstructBLIP]] | Applied instruction tuning to VLMs with instruction-aware visual features; SOTA zero-shot on unseen tasks |
 | 2023 | [[2306.14824\|KOSMOS-2]] | Grounded MLLMs to spatial regions via bounding box tokens in text; 78.7% R@1 on Flickr30k phrase grounding |
 | 2024 | [[2407.07726\|PaliGemma]] | Open-source 3B VLM matching larger models across 40 tasks; democratized VLM research through efficient transfer |
@@ -281,7 +282,7 @@ Connecting visual and textual representations in a shared embedding space, enabl
 LLMs augmented with visual perception — the backbone for modern VLMs and VLAs. These models bridge language understanding with visual grounding, generation, and action.
 
 **Instruction-Tuned VLMs** — General-purpose multimodal models trained to follow instructions across vision-language tasks.
-- [[2603.25406|MMaDA-VLA]], [[2505.14683|BAGEL]], [[2505.09568|BLIP3-o]], [[2504.13161|Nemotron-CLIMB]], [[2504.10479|InternVL3]], [[2504.00595|Open-Qwen2VL]], [[2407.07726|PaliGemma]], [[2310.03744|LLaVA-1.5]], [[2305.06500|InstructBLIP]]
+- [[2603.25406|MMaDA-VLA]], [[2505.14683|BAGEL]], [[2505.09568|BLIP3-o]], [[2504.13161|Nemotron-CLIMB]], [[2504.10479|InternVL3]], [[2504.00595|Open-Qwen2VL]], [[2407.07726|PaliGemma]], [[2310.03744|LLaVA-1.5]], [[2305.06500|InstructBLIP]], [[2302.14045|KOSMOS-1]]
 
 > [!star] Key Papers
 > - [[2407.07726|PaliGemma]] — Sub-3B VLM achieving SOTA on 40 tasks; SigLIP + Gemma connected by linear projection

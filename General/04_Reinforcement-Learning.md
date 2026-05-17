@@ -211,7 +211,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2506.01622|General Agents World Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
 
 **Offline Model-Based RL** — Learning world models from fixed datasets without further environment interaction, enabling safe policy improvement.
-- [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2406.09976|RMBPO]], [[2310.06253|Objective Mismatch MBRL Survey]], [[2204.12581|RAMBO-RL]], [[1803.10122|World Models]]
+- [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2406.09976|RMBPO]], [[2310.06253|Objective Mismatch MBRL Survey]], [[2204.12581|RAMBO-RL]], [[1906.08253|MBPO]], [[1803.10122|World Models]]
 
 > [!star] Key Papers
 > - [[2504.16680|RWM-U]] — Uncertainty-aware world model for real-robot offline RL; bridges sim-to-real with calibrated uncertainty
@@ -242,7 +242,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2505.22257|Off-Policy GRPO]] — Formalized off-policy extension for GRPO; enables more sample-efficient training
 
 **PPO & Proximal Methods** — PPO-family algorithms adapted for LLM and multimodal model training, with emphasis on credit assignment and stability.
-- [[2605.11473|TOPPO]], [[2605.04470|CRAFT Driving]], [[2605.03846|SigLoMa]], [[2605.03363|Hierarchical RL-QP Grasp]], [[2604.20328|DePO]], [[2602.04879|DPPO]], [[2511.01331|RobustVLA]], [[2508.17784|PSFT]], [[2508.08221|Lite PPO]], [[2506.15050|T-PPO]], [[2410.01679|VinePPO]], [[2409.16578|FLaRe]]
+- [[2605.11473|TOPPO]], [[2605.04470|CRAFT Driving]], [[2605.03846|SigLoMa]], [[2605.03363|Hierarchical RL-QP Grasp]], [[2604.20328|DePO]], [[2602.04879|DPPO]], [[2511.01331|RobustVLA]], [[2508.17784|PSFT]], [[2508.08221|Lite PPO]], [[2506.15050|T-PPO]], [[2410.01679|VinePPO]], [[2409.16578|FLaRe]], [[1707.06347|PPO]]
 
 > [!star] Key Papers
 > - [[2604.20328|DePO]] — Decoupled PPO for hybrid discrete-continuous action spaces; vMF distribution and hyperspherical KL enable stable MLLM latent-reasoning RL
@@ -271,7 +271,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2406.03816|ReST-MCTS*]] — Automated process reward model generation via MCTS for LLM self-training
 
 **Off-Policy & Sample Efficiency** — Methods that reuse past experience or manage data more efficiently for RL fine-tuning.
-- [[2605.11151|RankQ]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2311.03351|Uni-O4]]
+- [[2605.11151|RankQ]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2311.03351|Uni-O4]], [[1801.01290|SAC]]
 
 > [!star] Key Papers
 > - [[2505.11081|ShiQ]] — Off-policy Q-learning for LLM fine-tuning; enables reuse of generated data across iterations
@@ -318,7 +318,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.22637|Variational Reasoning]] — Treats thinking traces as latent variables; principled framework for reasoning optimization
 
 **Miscellaneous Policy Methods** — Other notable approaches to policy optimization that cross boundaries.
-- [[2512.13607|Nemotron-Cascade]], [[2512.01374|MiniRL]], [[2509.24981|ROVER]], [[2509.24207|Humanline]], [[2509.03646|HICRA]]
+- [[2512.13607|Nemotron-Cascade]], [[2512.01374|MiniRL]], [[2509.24981|ROVER]], [[2509.24207|Humanline]], [[2509.03646|HICRA]], [[1312.5602|DQN]]
 
 > [!star] Key Papers
 > - [[2509.24207|Humanline]] — Explains why online RL outperforms offline methods from a human cognitive science perspective

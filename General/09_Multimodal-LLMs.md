@@ -132,7 +132,7 @@ The core pretraining paradigms that established how to connect visual encoders w
 The first generation of models that connected visual encoders to large language models, establishing the MLLM paradigm through Q-Former bridges, instruction tuning, and grounded dialogue.
 
 **Pioneering MLLM Architectures** — The initial designs for feeding visual information into frozen or fine-tuned LLMs.
-- [[2605.03677|Uni-OPD]], [[2605.02600|CoRAL]], [[2311.05437|LLaVA-Plus]], [[2309.05519|NExT-GPT]], [[2306.15195|Shikra]], [[2306.14824|KOSMOS-2]], [[2305.14676|GRILL]], [[2305.06500|InstructBLIP]], [[2303.04671|Visual ChatGPT]], [[2211.09699|PromptCap]], [[2204.00598|Socratic Models]]
+- [[2605.03677|Uni-OPD]], [[2605.02600|CoRAL]], [[2311.05437|LLaVA-Plus]], [[2309.05519|NExT-GPT]], [[2306.15195|Shikra]], [[2306.14824|KOSMOS-2]], [[2305.14676|GRILL]], [[2305.06500|InstructBLIP]], [[2303.04671|Visual ChatGPT]], [[2302.14045|KOSMOS-1]], [[2211.09699|PromptCap]], [[2204.00598|Socratic Models]]
 
 > [!star] Key Papers
 > - [[2305.06500|InstructBLIP]] — Instruction-tuned BLIP-2 with Q-Former; established systematic instruction tuning for vision-language models

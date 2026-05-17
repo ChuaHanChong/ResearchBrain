@@ -2215,4 +2215,11 @@ papers = [
     "https://arxiv.org/abs/2605.15188", # FutureSim: Replaying World Events to Evaluate Adaptive Agents
     "https://arxiv.org/abs/2605.13105", # What to Ignore, What to React: Visually Robust RL Fine-Tuning of VLA Models
     "https://arxiv.org/abs/2605.14386", # Darwin Family: MRI-Trust-Weighted Evolutionary Merging for Training-Free Scaling of Language-Model Reasoning
+    "https://arxiv.org/abs/2412.15109", # Predictive Inverse Dynamics Models are Scalable Learners for Robotic Manipulation
+    "https://arxiv.org/abs/2506.21872", # A Survey of Continual Reinforcement Learning
+    "https://arxiv.org/abs/2302.14045", # KOSMOS-1: Language Is Not All You Need — Aligning Perception with Language Models
+    "https://arxiv.org/abs/1312.5602",  # DQN: Playing Atari with Deep Reinforcement Learning
+    "https://arxiv.org/abs/1801.01290",  # SAC: Soft Actor-Critic
+    "https://arxiv.org/abs/1707.06347",  # PPO: Proximal Policy Optimization Algorithms
+    "https://arxiv.org/abs/1906.08253",  # MBPO: When to Trust Your Model — Model-Based Policy Optimization
 ]
