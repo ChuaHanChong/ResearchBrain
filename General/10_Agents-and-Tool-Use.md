@@ -106,7 +106,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992\|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Reasoning Surveys & Taxonomies** — Comprehensive reviews mapping the rapidly evolving landscape of LLM-based agents, establishing conceptual frameworks and evaluation methodologies.
-- [[2604.27859\|Agentic RL Survey 2604]], [[2603.22862\|LLM Tool Use Survey]], [[2601.12538\|Agentic Reasoning Survey]], [[2512.16301\|Agentic AI Adaptation Survey]], [[2509.02547\|Agentic RL Survey]], [[2508.17692\|Agentic Reasoning Survey]], [[2508.07407\|Self-Evolving AI Agents Survey]], [[2507.23276\|AI Scientist Survey]], [[2507.21046\|Self-Evolving Agents Survey]], [[2505.10468\|AI Agents vs Agentic AI]], [[2504.18875\|Generative to Agentic AI Survey]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2503.23037\|Agentic LLM Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2410.16392\|Scaffolded LM Survey]], [[2310.08367\|MCU]]
+- [[2403.19622|RH20T-P]]
 
 > [!star] Key Papers
 > - [[2505.10468\|AI Agents vs Agentic AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
@@ -192,7 +192,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 Agents trained via reinforcement learning for multi-turn interactions with environments, moving beyond single-call tool use to sustained, stateful task execution across many steps.
 
 **Multi-Turn RL Training** — Frameworks and systematic guides for training LLM agents that maintain state and adapt strategy across extended multi-turn interactions.
-- [[2603.21383\|PivotRL]], [[2602.02196|TIDE]], [[2510.15047\|SPA]], [[2510.01132\|Multi-turn Agentic RL Guide]], [[2508.03680\|Agent Lightning]], [[2507.19849\|ARPO]], [[2506.06122\|ROLL]], [[2505.03181\|AFSFT]], [[2504.20073\|RAGEN]], [[2404.08233\|GPBT-PL]]
+- [[2602.02196|TIDE]], [[2408.10899|ARIO]]
 
 > [!star] Key Papers
 > - [[2504.20073\|RAGEN]] — Multi-turn RL training for LLM agents; establishes the training paradigm for sustained agent-environment interaction
@@ -309,7 +309,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Multimodal Agent Architectures** — Integrated architectures combining vision-language understanding with agent capabilities for complex multimodal tasks.
-- [[2604.10096\|ABot-Claw]], [[2604.07774\|RoboAgent]], [[2604.05484\|CoEnv]], [[2604.04664\|ROSClaw]], [[2604.03016\|Agentic-MME]], [[2603.29620\|Unify-Agent]], [[2603.24558\|LensWalk]], [[2603.22179\|MARCUS]], [[2601.03054\|IBISAgent]], [[2512.08511\|SubagentVL]], [[2506.16895\|STRUCTURE Alignment]], [[2505.21549\|DCLIP]], [[2505.21533\|SOP]], [[2505.19707\|MVFT-JI]], [[2505.03703\|Modality Gap Reduction]], [[2504.14988\|FG-BMK]], [[2503.23508\|Real-LOD]], [[2503.01776\|CSR]], [[2411.17673\|SketchAgent]], [[2403.12884\|HYDRA]], [[2402.15116\|LMA Survey]], [[2311.05437\|LLaVA-Plus]], [[2303.04671\|Visual ChatGPT]], [[2301.11915\|Part-Aware SSL]], [[2205.01917\|CoCa]], [[2201.12086\|BLIP]]
+- [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
 
 > [!star] Key Papers
 > - [[2402.15116\|LMA Survey]] — Systematic review of Large Multimodal Agents deconstructing their core components and capabilities
@@ -317,7 +317,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2311.05437\|LLaVA-Plus]] — Training VLMs to learn when and how to use external visual tools for any task
 
 **VLM Fine-Tuning & Reinforcement for Agency** — Methods for fine-tuning vision-language models via RL to act as agents in visual environments.
-- [[2604.08545|Metis]], [[2511.19900\|Agent0-VL]], [[2510.22832\|HRM-Agent]], [[2507.07998\|PyVision]], [[2505.14246\|Visual-ARFT]], [[2405.10292\|VLM-RL Fine-Tuning]]
+- [[2604.08545|Metis]], [[2512.00961|GenReward]]
 
 > [!star] Key Papers
 > - [[2405.10292\|VLM-RL Fine-Tuning]] — Directly fine-tuning VLMs with RL for agentic visual tasks; bridges perception and action

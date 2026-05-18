@@ -107,7 +107,7 @@ Learning visual representations without labels through contrastive, masked, or j
 > - [[2402.10093|MIM-Refiner]] — Short contrastive refinement converts masked image models into top-performing feature extractors
 
 **SSL Surveys, Theory & Analysis** — Comprehensive overviews and theoretical foundations for self-supervised visual learning.
-- [[2505.13584|SSL Segmentation Survey]], [[2505.13317|Few-shot SSL]], [[2504.20364|SSL Representation Human Alignment]], [[2408.17059|SSL for ViT Survey]], [[2305.13689|SSL Survey]], [[2301.11915|Part-Aware SSL]]
+- [[2510.08807|Humanoid Everyday]], [[2505.13584|SSL Segmentation Survey]], [[2505.13317|Few-shot SSL]], [[2504.20364|SSL Representation Human Alignment]], [[2408.17059|SSL for ViT Survey]], [[2305.13689|SSL Survey]], [[2301.11915|Part-Aware SSL]]
 
 > [!star] Key Papers
 > - [[2305.13689|SSL Survey]] — Comprehensive survey of image-based self-supervised learning covering contrastive, generative, and self-distillation paradigms
@@ -129,7 +129,7 @@ Learning visual representations without labels through contrastive, masked, or j
 Adapting pre-trained VLMs to downstream tasks without full fine-tuning — through learnable prompts, adapters, and test-time strategies.
 
 **Prompt Tuning for VLMs** — Learning task-specific prompt tokens while keeping the backbone frozen.
-- [[2508.04942|ProMIM]], [[2508.02671|AugPT]], [[2507.04511|FA]], [[2506.03195|AutoSEP]], [[2506.02843|REAP]], [[2505.15506|PromptMargin]], [[2505.02406|TCPA]], [[2504.18158|E-InMeMo]], [[2409.15310|Visual Prompting MLLM Survey]], [[2406.03303|Learned Visual Prompts for ViT]], [[2405.16417|CRoFT]], [[2304.06712|Visual Prompt Engineering]], [[2203.05557|CoCoOp]], [[2109.01134|CoOp]]
+- [[2508.04942|ProMIM]], [[2508.02671|AugPT]], [[2507.04511|FA]], [[2506.03195|AutoSEP]], [[2506.02843|REAP]], [[2505.15506|PromptMargin]], [[2505.02406|TCPA]], [[2504.18158|E-InMeMo]], [[2409.15310|Visual Prompting MLLM Survey]], [[2406.03303|Learned Visual Prompts for ViT]], [[2405.16417|CRoFT]], [[2309.17024|HoloAssist]], [[2304.06712|Visual Prompt Engineering]], [[2203.05557|CoCoOp]], [[2109.01134|CoOp]]
 
 > [!star] Key Papers
 > - [[2109.01134|CoOp]] — Pioneered learnable prompt engineering for CLIP; replaced hand-crafted prompts with optimizable context vectors
@@ -157,7 +157,7 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 > - [[2504.06389|SemiDAViL]] — First language-guided semi-supervised domain adaptation framework for VLMs
 
 **Few-Shot & Zero-Shot Transfer** — Maximizing VLM performance with minimal labeled examples.
-- [[2601.08499|EfficientFSL]], [[2508.03102|CCA]], [[2507.03657|ProtoMM]], [[2507.03458|D&D]], [[2506.23822|LaZSL]], [[2506.04005|SiM]], [[2504.12104|Logits DeConfusion]], [[2504.06608|Cross-Domain FSL with DKM]], [[2504.06120|HypCD]], [[2503.19903|PS3]], [[2405.13532|VLM Few-Shot Example Selection]]
+- [[2601.08499|EfficientFSL]], [[2510.08022|FastUMI-100K]], [[2508.03102|CCA]], [[2507.03657|ProtoMM]], [[2507.03458|D&D]], [[2506.23822|LaZSL]], [[2506.04005|SiM]], [[2504.12104|Logits DeConfusion]], [[2504.06608|Cross-Domain FSL with DKM]], [[2504.06120|HypCD]], [[2503.19903|PS3]], [[2405.13532|VLM Few-Shot Example Selection]], [[2210.03094|VIMA]]
 
 > [!star] Key Papers
 > - [[2405.13532|VLM Few-Shot Example Selection]] — Demonstrated that few-shot VLM performance is highly sensitive to example choice; provides optimal selection strategies
@@ -221,7 +221,7 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 > - [[2410.16512|TIPS]] — Unified image-text and self-supervised objectives for general-purpose vision representations
 
 **Segmentation with VLMs** — Leveraging VLM alignment for open-vocabulary or self-supervised semantic segmentation.
-- [[2605.00891|X2SAM]], [[2602.23759|Selfment]], [[2506.22624|Seg-R1]], [[2303.01906|DPCL]]
+- [[2605.00891|X2SAM]], [[2602.23759|Selfment]], [[2506.22624|Seg-R1]], [[2303.01906|DPCL]], [[2206.08522|VLMbench]]
 
 > [!star] Key Papers
 > - [[2602.23759|Selfment]] — Fully self-supervised framework achieving accurate object segmentation without any labels
@@ -344,7 +344,7 @@ A growing focus area bridging VLMs toward embodied tasks — understanding where
 > Standard VLMs struggle with spatial relations because they are trained on 2D image-text pairs. SpatialVLM and SpatialRGPT address this with 3D-aware training, while RieMind takes an agentic approach. For robotics, spatial understanding is non-negotiable — see [[05_Computer-Vision-and-3D]].
 
 **Physical Understanding in VLMs** — Probing whether VLMs and MLLMs can reason about physical properties (mass, stability, materials, dynamics) from images and video, not just spatial relations. This is a distinct capability from spatial reasoning: it requires inferring *physical* state and predicting outcomes.
-- [[2602.06033|VLM Intuitive Physics]], [[2601.19834|Visual Generation Reasoning]], [[2512.19526|QuantiPhy]], [[2511.20280|PhysiCheck]], [[2510.06251|Physics Frontier Diagnostic]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object Cog-Eval]], [[2502.19868|C-Drag]], [[2501.16411|PhysBench]], [[2311.10111|VideoCon]]
+- [[2602.06033|VLM Intuitive Physics]], [[2601.19834|Visual Generation Reasoning]], [[2512.19526|QuantiPhy]], [[2511.20280|PhysiCheck]], [[2510.06251|Physics Frontier Diagnostic]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object Cog-Eval]], [[2502.19868|C-Drag]], [[2501.16411|PhysBench]], [[2311.18259|Ego-Exo4D]], [[2311.10111|VideoCon]]
 
 > [!star] Key Papers
 > -  — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhysGenBench
@@ -380,7 +380,7 @@ Large multimodal models — the workhorses of modern vision-language understandi
 > - [[2501.17811|Janus-Pro]] — Decoupled visual encoding resolving the understanding-generation conflict; 80% on GenEval surpassing DALL-E 3
 
 **Multimodal Surveys & Taxonomies** — Comprehensive surveys covering the MLLM landscape.
-- [[2510.09586|VLM Survey 26K]], [[2508.04227|VLM Continual Learning Survey]], [[2501.02189|VLM SOTA Survey]], [[2412.18619|Multimodal NTP Survey]], [[2405.10739|Efficient MLLM Survey]]
+- [[2510.09586|VLM Survey 26K]], [[2508.04227|VLM Continual Learning Survey]], [[2501.02189|VLM SOTA Survey]], [[2412.18619|Multimodal NTP Survey]], [[2406.09905|Nymeria]], [[2405.10739|Efficient MLLM Survey]]
 
 > [!star] Key Papers
 > - [[2306.13549|MLLM Survey]] — Foundational survey synthesizing MLLM architectures, training paradigms, evaluation methods, and the hallucination challenge
@@ -403,14 +403,14 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2505.19094|SATORI]] — Glance-Focus-Think paradigm anchoring RL training in explicit visual grounding; 76.2% on MathVista surpassing GPT-4o
 
 **VLM Chain-of-Thought & Thinking** — Methods for step-by-step visual reasoning in multimodal models.
-- [[2605.03782|GLANCE]], [[2605.02735|Silenced Visual Latents]], [[2605.02730|PFlowNet]], [[2604.21396|VG-CoT]], [[2604.02073|PLUME]], [[2603.29165|LatentPilot]], [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
+- [[2605.03782|GLANCE]], [[2605.02735|Silenced Visual Latents]], [[2605.02730|PFlowNet]], [[2604.21396|VG-CoT]], [[2604.02073|PLUME]], [[2603.29165|LatentPilot]], [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think or Not Think]], [[2412.07215|RoboData]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
 
 > [!star] Key Papers
 > - [[2411.10440|LLaVA-CoT]] — Autonomous multistage reasoning with stage-wise retracing; 5.8% improvement enabling 11B model to rival larger closed-source MLLMs
 > - [[2603.22281|ThinkJEPA]] — Integrates JEPA-style world modeling into VLM chain-of-thought for grounded visual prediction
 
 **VLM Evaluation & Benchmarks** — Evaluation frameworks, benchmarks, and quality assessment for multimodal models.
-- [[2604.24300|ReVSI]], [[2604.22884|SOUBench]], [[2603.03944|SCP-Bench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.16520|TangramPuzzle]], [[2601.12585|MLLM Visualization Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2406.18925|VisArgs]]
+- [[2604.24300|ReVSI]], [[2604.22884|SOUBench]], [[2603.03944|SCP-Bench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.16520|TangramPuzzle]], [[2601.12585|MLLM Visualization Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2502.05086|REASSEMBLE]], [[2406.18925|VisArgs]]
 
 > [!star] Key Papers
 > - [[2603.03944|SCP-Bench]] — Spatial causal prediction benchmark revealing a 23% gap between best MLLMs and humans on unseen spatio-temporal reasoning
@@ -470,7 +470,7 @@ In-context learning, few-shot detection, and meta-learning methods applied to vi
 - [[2603.15975|UMO]], [[2602.00795|DVLA-RL]], [[2512.24766|Dream2Flow]], [[2512.15934|IC-SSL]], [[2510.26493|Context Engineering 2.0]], [[2510.04618|ACE]], [[2509.06806|MachineLearningLM]], [[2507.16003|ICL Implicit Dynamics]], [[2506.07936|MM-ICL Mimicking vs Reasoning]], [[2506.06105|T2L]], [[2505.01812|New News]], [[2502.17666|IC-QL]], [[2502.14010|ICL Attention Heads]], [[2311.12424|Looped Transformers]], [[2309.05858|Mesa-Optimization Transformers]], [[2302.00674|FLAD]], [[2301.08028|Meta-RL Tutorial]], [[2301.02419|eTT]], [[2203.09093|SaFT]]
 
 **VLM Reasoning & Tool Use via ICL** — In-context approaches for visual reasoning, tool use, and task planning.
-- [[2604.08539|OpenVLThinkerV2]], [[2604.02812|Neuro-Symbolic Robot Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2603.28301|LIBERO-Para]], [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2512.11061|VDAWorld]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain FSL with DKM]], [[2503.01785|Visual-RFT]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic Models]]
+- [[2604.08539|OpenVLThinkerV2]], [[2604.02812|Neuro-Symbolic Robot Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2603.28301|LIBERO-Para]], [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2512.11061|VDAWorld]], [[2511.19684|IndEgo]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain FSL with DKM]], [[2503.01785|Visual-RFT]], [[2501.04693|FuSe]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic Models]]
 
 **Visual Grounding via ICL** — In-context visual grounding, referring, and perception methods.
 - [[2603.16253|EVPV]], [[2603.12382|SPARROW]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.21497|ECRD]], [[2602.21054|VAUQ]], [[2602.20980|CrystaL]], [[2602.16702|SAP]], [[2602.11858|ZwZ]], [[2602.11737|OA-VCD]], [[2602.11073|VILAVT]], [[2602.08241|SAYO]], [[2601.11322|VLM Logic Situational Awareness]], [[2601.10129|LaViT]], [[2601.07645|PlaM]], [[2601.06993|ReFine-RFT]], [[2601.06521|BabyVision]], [[2601.05600|SceneAlign]], [[2601.05552|UniADet]], [[2601.05344|Im2Sim]], [[2601.05328|BFD]], [[2601.05244|GREx]], [[2601.02771|AbductiveMLLM]], [[2601.02356|Talk2Move]], [[2601.00659|CRoPS]], [[2601.00215|Sight to Insight]], [[2512.24297|FIGR]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.21218|LIVR]], [[2512.19605|KerJEPA]], [[2512.16584|SkiLa]], [[2510.23603|PixelRefer]], [[2510.21311|FineRS]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.12798|Rex-Omni]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2301.05226|IPVR]]

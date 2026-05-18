@@ -147,7 +147,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2511.08577\|TaH]] — Think-at-Hard framework selectively activates deep reasoning only at genuinely difficult steps
 
 **Surveys & Taxonomies** — Comprehensive surveys mapping the CoT landscape, benchmarking, and evaluation methodologies.
-- [[2604.02029\|Latent Space Survey]], [[2603.22862\|LLM Tool Use Survey]], [[2601.06002\|Mole-Syn]], [[2511.20836\|DSPy+HELM]], [[2509.02350\|Implicit Reasoning Survey]], [[2508.17298\|Compositional Visual Reasoning Survey]], [[2507.06203\|Latent Reasoning Survey]], [[2506.10979\|LLM Unhelpful Thought Recovery]], [[2506.04374\|SLDS LLM Reasoning]], [[2505.16782\|Latent CoT Survey]], [[2505.02665\|Slow Thinking LLM Survey]], [[2505.00551\|DeepSeek-R1 Replication Survey]], [[2504.09037\|LLM Reasoning Frontiers Survey]], [[2504.03151\|Multimodal Reasoning Survey]], [[2503.16416\|LLM Agent Eval Survey]], [[2503.12605\|MCoT Survey]], [[2502.21321\|LLM Post-Training Survey]], [[2402.07927\|Prompt Engineering Survey]]
+- [[2603.28545|ManipArena]]
 
 > [!star] Key Papers
 > - [[2503.12605\|MCoT Survey]] — First comprehensive survey of multimodal chain-of-thought, analyzing evolution from text-only to vision-language CoT
@@ -163,7 +163,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 Extending CoT to jointly reason over vision and language, producing interleaved textual and visual reasoning traces.
 
 **Multimodal CoT Frameworks** — Core methods that enable vision-language models to generate step-by-step reasoning combining text and image understanding.
-- [[2604.21409\|S1-VL]], [[2604.17800\|ReFineVLA]], [[2604.02073\|PLUME]], [[2604.01840\|PGPO]], [[2603.28618\|PRCO]], [[2603.25077\|ToR]], [[2603.24984\|MoE-GRPO]], [[2602.00574\|Modal-Mixed CoT]], [[2512.08228\|MM-CoT]], [[2510.27492\|ThinkMorph]], [[2507.16746\|Zebra-CoT]], [[2507.08306\|M2-Reasoning]], [[2507.02978\|Inf-Bench]], [[2505.22525\|TwGI]], [[2505.14404\|ViC-Bench]], [[2505.13031\|MindOmni]], [[2505.05464\|Bring Reason to Vision]], [[2503.10639\|GoT]], [[2503.05255\|CMMCoT]], [[2412.17451\|M-STAR]], [[2412.11974\|EMMA-X]], [[2411.11930\|AtomThink]], [[2411.10440\|LLaVA-CoT]], [[2312.08762\|DPMM-CoT]], [[2302.00923\|Multimodal-CoT]]
+- [[2410.01345|GemBench]], [[1812.01717|FVD]]
 
 > [!star] Key Papers
 > - [[2302.00923\|Multimodal-CoT]] — Extended CoT to vision + language jointly; foundational work for multimodal reasoning chains
@@ -257,14 +257,14 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 > - [[2305.14992\|RAP]] — Reasoning as planning: treats the LLM itself as a world model for lookahead search
 
 **Tree Search & MCTS for Reasoning** — Structured search methods that explore reasoning paths as trees, combining breadth and depth.
-- [[2510.17045\|V-Reason]], [[2510.12693\|ERA]], [[2509.06951\|F1]], [[2509.00576\|G0]], [[2507.23773\|SimuRA]], [[2507.22844\|RLVMR]], [[2507.11988\|Aime]], [[2506.11902\|TreeRL]], [[2502.02339\|AStar]], [[2501.19201\|Heima]], [[2407.14414\|System-1.x]], [[2310.04406\|LATS]]
+- [[2407.05530|This&That]]
 
 > [!star] Key Papers
 > - [[2310.04406\|LATS]] — Language Agent Tree Search: unifies reasoning, acting, and planning via MCTS
 > - [[2407.14414\|System-1.x]] — Balances fast System-1 and slow System-2 reasoning adaptively
 
 **World Models for Reasoning** — Learning predictive models of the environment to support planning and decision-making.
-- [[2605.15153|Pelican-Unified]], [[2605.12090|WAM Survey]], [[2605.08732|GC-IDM]], [[2605.03413|NEO Theorizer]], [[2605.01772|Anticipation-VLA]], [[2604.26182\|LWM]], [[2603.25981\|PiJEPA]], [[2603.19312\|LeWM]], [[2603.19227\|MoTok]], [[2602.21198\|Reflective Test-Time Planning]], [[2602.11291\|H-WM]], [[2602.01960\|GVP-WM]], [[2602.01630\|Unified World Model Framework]], [[2601.14354\|VJEPA-Probabilistic]], [[2601.05230\|Latent Action World Models]], [[2512.24497\|JEPA-WM]], [[2512.23676\|WWM]], [[2512.19133\|WorldRFT]], [[2511.08585\|Visual World Roadmap]], [[2509.02722\|VLWM]], [[2507.19468\|DINO-world]], [[2506.22355\|Embodied AI World Modeling]], [[2506.09985\|V-JEPA 2]], [[2506.01622\|General Agents World Models]], [[2505.13934\|RLVR-World]], [[2505.03176\|seq-JEPA]], [[2503.15558\|Cosmos-Reason1]], [[2411.04983\|DINO-WM]]
+- [[2605.15153|Pelican-Unified]], [[2605.12090|WAM Survey]], [[2605.08732|GC-IDM]], [[2605.03413|NEO Theorizer]], [[2605.01772|Anticipation-VLA]], [[2602.05842|RWML]], [[2512.23541|Act2Goal]], [[2511.19684|IndEgo]], [[2506.22007|RoboEnvision]], [[2506.06199|3DFlowAction]], [[2502.05086|REASSEMBLE]], [[2502.01784|VILP]], [[2412.18194|VLABench]], [[2406.13301|ARDuP]], [[2403.13358|QUARD-Auto]], [[2403.09227|BEHAVIOR-1K]], [[2210.06407|Language-Table]], [[1910.11956|Franka Kitchen]]
 
 > [!star] Key Papers
 > - [[2411.04983\|DINO-WM]] — Task-agnostic world model leveraging frozen DINOv2 for visual planning
@@ -331,7 +331,7 @@ RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal m
 > - [[2603.14117\|SIEVE]] — Self-revisiting visual evidence via RL, +7.85% on V*Bench
 
 **Synthetic Data & Training Pipelines for Visual CoT** — Methods for generating high-quality visual reasoning training data at scale.
-- [[2603.29791\|Simula]], [[2603.27866\|Wan-R1]], [[2603.22117\|RLVR Direction]], [[2603.17693\|SynRL]], [[2512.05665\|ILVR]], [[2510.12225\|HoneyBee]], [[2507.20529\|SpatialVTS]], [[2507.12508\|MindJourney]], [[2506.02096\|SynthRL]], [[2505.23224\|MMBoundary]], [[2505.22651\|Sherlock]], [[2505.22453\|MM-UPT]], [[2505.22334\|Multimodal RL Cold Start]], [[2505.05464\|Bring Reason to Vision]], [[2504.13055\|NoisyRollout]], [[2501.13926\|CoT Image Generation]]
+- [[2507.00833|HumanoidGen]]
 
 > [!star] Key Papers
 > - [[2510.12225\|HoneyBee]] — Meta FAIR's systematic investigation into constructing high-quality visual CoT training data
@@ -366,7 +366,7 @@ Understanding and reasoning about spatial relationships, 3D geometry, and physic
 > - [[2505.17015\|Multi-SpatialMLLM]] — Meta AI/CUHK create 1.2M multi-frame spatial instruction dataset for cross-view reasoning
 
 **3D Visual Grounding & Scene Understanding** — Connecting language to 3D space through grounding, reconstruction, and scene-level reasoning.
-- [[2605.05126|ConsisVLA-4D]], [[2602.21186\|Spa3R]], [[2602.19063\|Direction-aware 3D LMM]], [[2602.10551\|C2RoPE]], [[2602.03361\|Z3D]], [[2602.02951\|NUWA]], [[2601.16538\|OnlineSI]], [[2601.13132\|GaussExplorer]], [[2601.11442\|Map2Thought]], [[2601.09430\|Video-MSR]], [[2512.13683\|I-Scene]], [[2512.12822\|LEMON]], [[2512.10950\|E-RayZer]], [[2511.21688\|G2VLM]], [[2511.04670\|Cambrian-S]], [[2510.16714\|SceneCOT]], [[2510.13800\|GS-Reasoner]], [[2505.24257\|DISJOINT-3DQA]], [[2505.21538\|PAM-CVR]], [[2505.12363\|ViCA2]], [[2505.12312\|ViCA-7B]], [[2504.19627\|VCM]], [[2504.17379\|GABMIL]], [[2504.15279\|VisuLogic]], [[2504.15037\|MLLM Spatial Reasoning Position Paper]], [[2504.05786\|3D Spatial Reasoning in LLM Survey]], [[2504.00883\|vsGRPO]], [[2504.00557\|Trimmed Llama]], [[2503.15485\|TULIP]], [[2503.09867\|OH-A-DINO]], [[2502.17425\|VPT]], [[2502.14786\|SigLIP 2]], [[2502.03214\|iVISPAR]], [[2502.02013\|Layer-by-Layer Representations]], [[2501.18954\|LLMDet]], [[2501.02765\|VLLM Survey]], [[2412.18090\|MPI Tuning]], [[2412.18072\|MMFactory]], [[2412.14171\|VSI-Bench]], [[2412.13871\|LLaVA-UHD v2]], [[2412.07755\|SAT]], [[2412.07012\|ProVision]], [[2410.20722\|ProtoViT]], [[2410.16512\|TIPS]], [[2410.13848\|Janus]], [[2410.08021\|OneRef]], [[2409.15310\|Visual Prompting MLLM Survey]], [[2409.14401\|In-Class Data Imbalance]], [[2407.07726\|PaliGemma]], [[2405.08593\|NRAA]], [[2404.14396\|SEED-X]], [[2403.18361\|ViTAR]], [[2403.13298\|RoPE-Mixed]], [[2403.07392\|ViT-CoMer]], [[2312.17686\|BMViT]], [[2312.10439\|SIC-CADS]], [[2306.13643\|LightGlue]], [[2305.18712\|Transfer Score]], [[2305.05665\|ImageBind]], [[2209.15639\|F-VLM]], [[2204.01697\|MaxViT]], [[2203.11926\|FocalNet]], [[2203.09093\|SaFT]], [[2111.06377\|MAE]], [[2111.01236\|HRViT]], [[2110.09408\|HRFormer]], [[2104.14984\|CAT]], [[2104.11227\|MViT]], [[2010.11929\|ViT]], [[2003.06800\|OS2D]], [[1911.12529\|CoAE]], [[1803.05407\|SWA]], [[1612.03144\|FPN]]
+- [[2605.05126|ConsisVLA-4D]], [[2501.04693|FuSe]]
 
 > [!star] Key Papers
 > - [[2504.05786\|3D Spatial Reasoning in LLM Survey]] — Comprehensive survey of methods for 3D spatial reasoning in LLMs

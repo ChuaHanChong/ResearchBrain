@@ -112,7 +112,7 @@ The backbone revolution: Vision Transformers replaced CNNs as the default archit
 > - [[2111.09883|Swin Transformer V2]] — Scaled to 3B parameters with shifted-window attention; established the hierarchical ViT blueprint
 
 **CNN-Transformer Hybrids** — Combine convolutional inductive biases (locality, translation equivariance) with transformer global attention for better speed-accuracy tradeoffs.
-- [[2403.11999|HIRI-ViT]], [[2403.07392|ViT-CoMer]], [[2107.06263|CMT]]
+- [[2403.11999|HIRI-ViT]], [[2403.07392|ViT-CoMer]], [[2203.01577|HOI4D]], [[2107.06263|CMT]]
 
 > [!star] Key Papers
 > - [[2403.07392|ViT-CoMer]] — Convolutional multi-scale feature interaction inside ViT; strong on detection and segmentation without extra FPN
@@ -137,7 +137,7 @@ The backbone revolution: Vision Transformers replaced CNNs as the default archit
 > - [[2307.06304|NaViT]] — Processes images at native resolution and aspect ratio; eliminates distortion from forced resizing
 
 **Dense Prediction Adaptation** — Adapters and modifications that turn plain ViTs into strong backbones for detection, segmentation, and depth estimation without pre-training changes.
-- [[2603.15031|AttnRes]], [[2502.01962|META]], [[2412.18090|MPI Tuning]], [[2205.08534|ViT-Adapter]], [[2203.16527|ViTDet]]
+- [[2603.15031|AttnRes]], [[2502.01962|META]], [[2412.18090|MPI Tuning]], [[2205.08534|ViT-Adapter]], [[2203.16527|ViTDet]], [[2203.13116|EgoPAT3D]]
 
 > [!star] Key Papers
 > - [[2203.16527|ViTDet]] — Proved plain non-hierarchical ViTs can rival specialized architectures on detection when paired with simple FPN
@@ -185,7 +185,7 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 > - [[2301.08243|I-JEPA]] — Joint-Embedding Predictive Architecture; learns semantic features by predicting representations, not pixel reconstructions
 
 **Autoregressive & Multi-Crop** — Pre-training via autoregressive prediction of visual tokens or multi-crop contrastive learning at scale.
-- [[2401.08541|AIM]], [[2303.11331|EVA-02]], [[2302.05442|ViT-22B]]
+- [[2510.08568|NovaFlow]], [[2401.08541|AIM]], [[2303.11331|EVA-02]], [[2302.05442|ViT-22B]]
 
 > [!star] Key Papers
 > - [[2401.08541|AIM]] — Apple's autoregressive image model; proved autoregressive pre-training scales for vision just as for language
@@ -220,7 +220,7 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 From closed-set detectors to open-vocabulary, language-grounded detection. The trajectory: multi-scale feature extraction (FPN) established the paradigm, transformer detectors eliminated hand-crafted components, and grounded pre-training opened detection to arbitrary categories described in natural language.
 
 **Multi-Scale Feature Extraction** — Architectures that build and aggregate multi-resolution feature pyramids for detecting objects at varying scales.
-- [[1803.01534|PANet]], [[1612.03144|FPN]]
+- [[2104.11181|H2O]], [[1803.01534|PANet]], [[1612.03144|FPN]]
 
 > [!star] Key Papers
 > - [[1612.03144|FPN]] — Feature Pyramid Networks: the multi-scale backbone that underlies nearly all modern detectors
@@ -233,7 +233,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 > - [[2112.03857|GLIP]] — Grounded language-image pre-training; unified detection and phrase grounding
 
 **Few-Shot & Low-Shot Detection** — Detecting novel object categories from very few examples, combining metric learning, attention, and co-excitation strategies.
-- [[2408.05674|PS-TTL]], [[2303.14240|BSPG]], [[2207.01887|MKT]], [[2203.09093|SaFT]], [[2203.07669|PE2E]], [[2112.02814|Low-Shot Detection Survey]], [[2104.14984|CAT]], [[2003.06800|OS2D]], [[2002.04741|POTD]], [[1911.12529|CoAE]], [[1909.13032|Meta R-CNN]], [[1908.01998|Attention-RPN]], [[1811.11507|Siamese Mask R-CNN]], [[1806.04728|RepMet]], [[1803.01529|LSTD]]
+- [[2506.06199|3DFlowAction]], [[2411.19167|HOT3D]], [[2408.05674|PS-TTL]], [[2303.14240|BSPG]], [[2207.01887|MKT]], [[2203.09093|SaFT]], [[2203.07669|PE2E]], [[2112.02814|Low-Shot Detection Survey]], [[2104.14984|CAT]], [[2003.06800|OS2D]], [[2002.04741|POTD]], [[1911.12529|CoAE]], [[1909.13032|Meta R-CNN]], [[1908.01998|Attention-RPN]], [[1811.11507|Siamese Mask R-CNN]], [[1806.04728|RepMet]], [[1803.01529|LSTD]]
 
 > [!star] Key Papers
 > - [[2104.14984|CAT]] — Cross-Attention Transformer for one-shot detection; models bidirectional query-target relationships
@@ -259,7 +259,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 > - [[2302.08242|Reward Tuning CV]] — Google's framework for directly optimizing non-differentiable vision metrics via RL; +15.1% mAP on detection
 
 **LLM-Assisted Detection & Automation** — Leveraging LLMs for detection chain-of-thought, auto-labeling, and specialized visual understanding tasks.
-- [[2510.21311|FineRS]], [[2506.07850|SAM2Auto]], [[2506.02359|Auto-Labeling]], [[2503.23508|Real-LOD]], [[2412.18273|SBV]], [[2411.19331|Talk2DINO]], [[2405.17104|LLM-Optic]], [[2405.08593|NRAA]], [[2403.12488|DetToolChain]], [[2401.17981|MLLM Detection Infusion]], [[2401.07629|FPD]]
+- [[2510.21311|FineRS]], [[2506.07850|SAM2Auto]], [[2506.02359|Auto-Labeling]], [[2503.23508|Real-LOD]], [[2412.18273|SBV]], [[2411.19331|Talk2DINO]], [[2405.17104|LLM-Optic]], [[2405.08593|NRAA]], [[2403.12488|DetToolChain]], [[2401.17981|MLLM Detection Infusion]], [[2401.07629|FPD]], [[2203.14712|Assembly101]]
 
 > [!star] Key Papers
 > - [[2403.12488|DetToolChain]] — Detection-specific chain-of-thought with a visual toolkit; enables zero-shot detection via prompting alone
@@ -314,7 +314,7 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 > - [[1810.09091|SG-One]] — Similarity guidance network for one-shot segmentation; halved parameters while exceeding prior methods by 5+ mIoU
 
 **Video & Temporal Segmentation** — Segmentation methods that extend to video sequences, combining spatial precision with temporal consistency.
-- [[2603.12382|SPARROW]], [[2511.16077|VideoSeg-R1]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]]
+- [[2603.12382|SPARROW]], [[2511.16077|VideoSeg-R1]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2502.04144|HD-EPIC]]
 
 > [!star] Key Papers
 > - [[2511.16077|VideoSeg-R1]] — First RL-based framework for video object segmentation; explicit reasoning chains for temporal tracking
@@ -357,13 +357,13 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2306.13643|LightGlue]] — Adaptive deep feature matching that prunes easy pairs early; fast and accurate for real-time SLAM
 
 **3D Diffusion Policies** — Use 3D point cloud representations with diffusion-based action generation for robotic manipulation.
-- [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit-WM Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2409.01652|ReKep]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2209.05451|PerAct]]
+- [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit-WM Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2504.13059|RoboTwin]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2412.07215|RoboData]], [[2410.01345|GemBench]], [[2409.01652|ReKep]], [[2403.19417|OAKINK2]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2402.08191|THE COLOSSEUM]], [[2304.04321|ARNOLD]], [[2209.05451|PerAct]], [[2204.13662|ARCTIC]], [[2107.14483|ManiSkill]]
 
 > [!star] Key Papers
 > - [[2403.03954|DP3]] — 3D Diffusion Policy: generalizable visuomotor policy from point clouds; enables sim-to-real without camera calibration
 
 **3D World Simulation** — Systems that generate, simulate, or reason about 3D environments as interactive world models for embodied agents and autonomous driving.
-- [[2605.05163|PhysForge]], [[2605.01799|Embody4D]], [[2605.00781|Map2World]], [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]], [[2602.10116|SAGE]]
+- [[2605.05163|PhysForge]], [[2605.01799|Embody4D]], [[2605.00781|Map2World]], [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]], [[2602.10116|SAGE]], [[2504.20995|TesserAct]], [[2309.17024|HoloAssist]]
 
 **Physics-Aware 3D / 4D Generation** — Coupling 3D Gaussian Splatting, NeRF, or point-cloud representations with physical simulators (MPM, FEM, PBD) so that scene reconstructions become physically interactive. The dominant pattern: reconstruct a 3D scene first, then evolve it with physics. Includes 4D dynamic scene generation that integrates time + geometry + physics.
 - [[2603.03485|Phys4D]], [[2511.00503|Diff4Splat]], [[2509.21541|ControlHair]], [[2508.13911|PhysGM]], [[2507.01099|Geometry-aware 4D Robot Video]], [[2506.19798|CoCo4D]], [[2506.03150|IllumiCraft]], [[2505.18151|WonderPlay]], [[2503.21442|RainyGS]], [[2503.20746|PhysGen3D]], [[2503.04720|FluidNexus]], [[2502.03639|3DPointReg I2V]], [[2501.18982|OmniPhysGS]], [[2412.17804|GausSim]], [[2412.11785|InterDyn]], [[2412.11258|GaussianProperty]], [[2411.16800|Phys4DGen]], [[2411.14423|PhysFlow]], [[2411.12789|Sim-GS]], [[2410.08257|NeuMA]], [[2410.07155|Trans4D]], [[2409.07179|Phy124]], [[2409.00558|Compositional 3D Video]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2404.13026|PhysDreamer]], [[2404.09833|Video2Game]], [[2404.01223|Feature Splatting]], [[2403.17920|TC4D]], [[2401.16663|VR-GS]], [[2401.15318|Gaussian Splashing]], [[2312.00583|DeformGS]], [[2311.13099|PIE-NeRF]], [[2311.12198|PhysGaussian]], [[2309.07906|Generative Image Dynamics]], [[2308.09713|Dynamic 3D Gaussians]], [[2304.14369|NCLaw]], [[2303.05512|PAC-NeRF]]
@@ -520,7 +520,7 @@ Understanding what vision models learn, explaining their decisions, and providin
 Practical methods for training vision models efficiently: dataset pruning, continual learning, knowledge distillation, and parameter-efficient fine-tuning. These techniques determine whether a method is publishable versus deployable.
 
 **Dataset Curation & Pruning** — Select the most informative training examples to reduce dataset size without sacrificing model quality.
-- [[2604.11386|ComSim]], [[2205.09329|Dataset Pruning]]
+- [[2604.11386|ComSim]], [[2402.13349|Aria Everyday Activities]], [[2205.09329|Dataset Pruning]]
 
 > [!star] Key Papers
 > - [[2205.09329|Dataset Pruning]] — Optimization-based pruning using influence functions; reduces training data while maintaining accuracy

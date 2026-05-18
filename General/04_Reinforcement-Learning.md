@@ -105,7 +105,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2508.08189|RL for Large Models Survey]] — Comprehensive mapping of visual RL applied to large multimodal models
 
 **Causal RL** — Connecting causal inference with RL to enable more principled and generalizable decision-making.
-- [[2307.01452|Causal RL Roadmap]], [[2302.05209|Causal RL Methods Survey]]
+- [[2307.01452|Causal RL Roadmap]], [[2302.05209|Causal RL Methods Survey]], [[2210.13066|DaXBench]], [[2104.03311|PlasticineLab]]
 
 > [!star] Key Papers
 > - [[2302.05209|Causal RL Methods Survey]] — First comprehensive taxonomy connecting causal inference with RL
@@ -132,7 +132,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2602.00170|Blessing of Dimensionality LLM]] — Explains why evolution strategies work for LLM fine-tuning with small populations
 
 **Training Dynamics & Scaling** — Understanding what happens during RL training at scale — batch sizing, network pruning, entropy dynamics, and spectral analysis.
-- [[2509.21128|RL Squeezes SFT Expands]], [[2508.16546|SFT vs RL Spectral Analysis]], [[2507.06187|Delta Learning Hypothesis]], [[2505.22617|Entropy Collapse in RL]], [[2412.01951|Sharpening Mechanism]], [[2410.17517|Maynard-Cross Learning]], [[2407.10490|LLM Finetuning Dynamics]], [[2402.12479|Pruned Networks in Deep RL]], [[1812.06162|Large-Batch Training]]
+- [[2509.21128|RL Squeezes SFT Expands]], [[2508.16546|SFT vs RL Spectral Analysis]], [[2507.06187|Delta Learning Hypothesis]], [[2505.22617|Entropy Collapse in RL]], [[2412.01951|Sharpening Mechanism]], [[2410.17517|Maynard-Cross Learning]], [[2407.10490|LLM Finetuning Dynamics]], [[2402.12479|Pruned Networks in Deep RL]], [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch Training]]
 
 > [!star] Key Papers
 > - [[1812.06162|Large-Batch Training]] — OpenAI's gradient noise scale; foundational for understanding batch size in deep RL
@@ -205,13 +205,13 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[1911.10601|Scaling Active Inference]] — First to scale active inference to continuous control domains; bridges free energy theory with practical deep RL
 
 **World Model Theory & Formal Results** — Theoretical foundations proving when and why world models are necessary for generalization.
-- [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2602.06130|SWIRL]], [[2512.09929|OWM]], [[2510.21232|Confusing World Models]], [[2506.01622|General Agents World Models]], [[2501.10100|RWM]], [[2206.02072|VSRL]]
+- [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2510.21232|Confusing World Models]], [[2506.01622|General Agents World Models]], [[2501.10100|RWM]], [[2206.02072|VSRL]]
 
 > [!star] Key Papers
 > - [[2506.01622|General Agents World Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
 
 **Offline Model-Based RL** — Learning world models from fixed datasets without further environment interaction, enabling safe policy improvement.
-- [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2406.09976|RMBPO]], [[2310.06253|Objective Mismatch MBRL Survey]], [[2204.12581|RAMBO-RL]], [[1906.08253|MBPO]], [[1803.10122|World Models]]
+- [[2509.19080|World4RL]], [[2505.13709|Policy-Driven WM Adaptation]], [[2504.16680|RWM-U]], [[2410.00564|JOWA]], [[2406.09976|RMBPO]], [[2310.06253|Objective Mismatch MBRL Survey]], [[2204.12581|RAMBO-RL]], [[1906.08253|MBPO]], [[1803.10122|World Models]]
 
 > [!star] Key Papers
 > - [[2504.16680|RWM-U]] — Uncertainty-aware world model for real-robot offline RL; bridges sim-to-real with calibrated uncertainty
@@ -242,7 +242,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2505.22257|Off-Policy GRPO]] — Formalized off-policy extension for GRPO; enables more sample-efficient training
 
 **PPO & Proximal Methods** — PPO-family algorithms adapted for LLM and multimodal model training, with emphasis on credit assignment and stability.
-- [[2605.11473|TOPPO]], [[2605.04470|CRAFT Driving]], [[2605.03846|SigLoMa]], [[2605.03363|Hierarchical RL-QP Grasp]], [[2604.20328|DePO]], [[2602.04879|DPPO]], [[2511.01331|RobustVLA]], [[2508.17784|PSFT]], [[2508.08221|Lite PPO]], [[2506.15050|T-PPO]], [[2410.01679|VinePPO]], [[2409.16578|FLaRe]], [[1707.06347|PPO]]
+- [[2605.11473|TOPPO]], [[2605.04470|CRAFT Driving]], [[2605.03846|SigLoMa]], [[2605.03363|Hierarchical RL-QP Grasp]], [[2604.20328|DePO]], [[2602.04879|DPPO]], [[2602.02454|World-Gymnast]], [[2511.01331|RobustVLA]], [[2508.17784|PSFT]], [[2508.08221|Lite PPO]], [[2506.15050|T-PPO]], [[2410.01679|VinePPO]], [[2409.16578|FLaRe]], [[1707.06347|PPO]]
 
 > [!star] Key Papers
 > - [[2604.20328|DePO]] — Decoupled PPO for hybrid discrete-continuous action spaces; vMF distribution and hyperspherical KL enable stable MLLM latent-reasoning RL
@@ -271,7 +271,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2406.03816|ReST-MCTS*]] — Automated process reward model generation via MCTS for LLM self-training
 
 **Off-Policy & Sample Efficiency** — Methods that reuse past experience or manage data more efficiently for RL fine-tuning.
-- [[2605.11151|RankQ]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|RL for Model Training Survey]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2311.03351|Uni-O4]], [[1801.01290|SAC]]
+- [[2605.11151|RankQ]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|RL for Model Training Survey]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2311.03351|Uni-O4]], [[1806.10293|QT-Opt]], [[1801.01290|SAC]]
 
 > [!star] Key Papers
 > - [[2505.11081|ShiQ]] — Off-policy Q-learning for LLM fine-tuning; enables reuse of generated data across iterations
@@ -388,14 +388,14 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.04588|ZeroSearch]] — Trains LLMs to use search by simulating search engines with LLMs; zero real search calls needed
 
 **Verification & Process Rewards** — Learning to verify reasoning steps and assign process-level rewards for more reliable training signals.
-- [[2508.13755|DARS-Breadth]], [[2506.14245|CoT-Pass@K]], [[2506.09026|e3]], [[2506.05316|DOTS]], [[2410.08146|PAV]], [[2408.15240|GenRM]]
+- [[2508.13755|DARS-Breadth]], [[2506.14245|CoT-Pass@K]], [[2506.09026|e3]], [[2506.05316|DOTS]], [[2410.08146|PAV]], [[2408.15240|GenRM]], [[2011.07215|SoftGym]]
 
 > [!star] Key Papers
 > - [[2408.15240|GenRM]] — Reframes reward modeling as next-token prediction; generative verifiers outperform discriminative ones
 > - [[2410.08146|PAV]] — Process Advantage Verifiers measure step-level progress; fine-grained credit assignment
 
 **RLVR Theory & Analysis** — Understanding why and how Reinforcement Learning with Verifiable Rewards works, including failure modes and surprising phenomena.
-- [[2604.03993|Noisy Supervision Reasoning]], [[2512.23165|PEFT for RLVR]], [[2509.04259|RL's Razor]], [[2507.10532|RandomCalculation]], [[2506.17219|RLIF No Free Lunch]], [[2506.10947|Spurious Rewards RLVR]], [[2506.09967|Resa]], [[2505.11711|RL Sparse Subnetwork]]
+- [[2604.03993|Noisy Supervision Reasoning]], [[2512.23165|PEFT for RLVR]], [[2509.04259|RL's Razor]], [[2507.10532|RandomCalculation]], [[2506.17219|RLIF No Free Lunch]], [[2506.10947|Spurious Rewards RLVR]], [[2506.09967|Resa]], [[2505.11711|RL Sparse Subnetwork]], [[1910.11956|Franka Kitchen]]
 
 > [!star] Key Papers
 > - [[2506.10947|Spurious Rewards RLVR]] — Shows RLVR can improve reasoning even with partially spurious rewards; robustness result
@@ -652,14 +652,14 @@ RL methods designed for or applied to physical robot learning — sample efficie
 - [[2502.02133|MPC-RL Survey]]
 
 **RL for LLM-Guided Robotics** — RL methods where LLMs guide robot behavior through reasoning, planning, or reward specification.
-- [[2604.03023|Behavior-Constrained RL]], [[2604.02021|Discrete-Continuous Planning Bridge]], [[2603.02203|T3RL]], [[2602.06556|LIBERO-X]], [[2602.02605|ESMA]], [[2602.01166|LaRA-VLA]], [[2504.13818|PODS]], [[2502.13130|Magma]]
+- [[2604.03023|Behavior-Constrained RL]], [[2604.02021|Discrete-Continuous Planning Bridge]], [[2603.02203|T3RL]], [[2602.06556|LIBERO-X]], [[2602.02605|ESMA]], [[2602.01166|LaRA-VLA]], [[2512.00961|GenReward]], [[2504.13818|PODS]], [[2502.13130|Magma]], [[2407.07788|BiGym]], [[2403.13358|QUARD-Auto]], [[2302.04659|ManiSkill2]]
 
 > [!star] Key Papers
 > - [[2502.13130|Magma]] — Microsoft's foundation model unifying multimodal understanding with physical action generation
 > - [[2603.02203|T3RL]] — Test-Time Training for RL: adapts robot policies online using world model gradients
 
 **Sim-to-Real & Transfer** — Bridging the gap between simulation and physical deployment for robot RL.
-- [[2605.09789|DRIS]], [[2604.24916|asRoBallet]], [[2604.24018|Sim2Real Betting]], [[2604.23702|QuietWalk]], [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2508.21065|Learning on the Fly]], [[2508.12252|Robot Trains Robot]], [[2503.10949|SCDA]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
+- [[2605.09789|DRIS]], [[2604.24916|asRoBallet]], [[2604.24018|Sim2Real Betting]], [[2604.23702|QuietWalk]], [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2508.21065|Learning on the Fly]], [[2508.12252|Robot Trains Robot]], [[2504.18904|RoboVerse]], [[2503.10949|SCDA]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
 
 > [!star] Key Papers
 > - [[2201.02373|Mirror Learning]] — Unifying theoretical framework for diverse policy optimization methods; connects RL algorithms under one roof
@@ -678,7 +678,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.11967|Annotation Bootstrapping]] — Recasts visual pre-training as RL; learns annotation policies that improve downstream performance
 
 **Offline & Batch RL** — Learning policies from fixed datasets without further interaction, critical for safety-sensitive robot applications.
-- [[2603.22201|NMR]], [[2511.07820|SONIC]], [[2509.06870|AggLM]], [[2508.03100|AVATAR]], [[2410.18252|Asynchronous RLHF]], [[2410.01735|LASeR]]
+- [[2603.22201|NMR]], [[2511.07820|SONIC]], [[2509.06870|AggLM]], [[2508.03100|AVATAR]], [[2410.18252|Asynchronous RLHF]], [[2410.01735|LASeR]], [[2108.03298|Robomimic]]
 
 > [!star] Key Papers
 > - [[2508.03100|AVATAR]] — Off-policy RL framework enhancing reasoning from static experience buffers
