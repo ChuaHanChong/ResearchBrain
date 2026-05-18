@@ -2219,7 +2219,39 @@ papers = [
     "https://arxiv.org/abs/2506.21872", # A Survey of Continual Reinforcement Learning
     "https://arxiv.org/abs/2302.14045", # KOSMOS-1: Language Is Not All You Need — Aligning Perception with Language Models
     "https://arxiv.org/abs/1312.5602",  # DQN: Playing Atari with Deep Reinforcement Learning
-    "https://arxiv.org/abs/1801.01290",  # SAC: Soft Actor-Critic
-    "https://arxiv.org/abs/1707.06347",  # PPO: Proximal Policy Optimization Algorithms
-    "https://arxiv.org/abs/1906.08253",  # MBPO: When to Trust Your Model — Model-Based Policy Optimization
+    "https://arxiv.org/abs/1801.01290", # SAC: Soft Actor-Critic
+    "https://arxiv.org/abs/1707.06347", # PPO: Proximal Policy Optimization Algorithms
+    "https://arxiv.org/abs/1906.08253", # MBPO: When to Trust Your Model — Model-Based Policy Optimization
+    "https://arxiv.org/abs/2511.10276", # RoboBenchMart: Benchmarking Robots in Retail Environment
+    "https://arxiv.org/abs/2503.24361", # Sim-and-Real Co-Training: A Simple Recipe for Vision-Based Robotic Manipulation
+    "https://arxiv.org/abs/2507.23523", # H-RDT: Human Manipulation Enhanced Bimanual Robotic Manipulation
+    "https://arxiv.org/abs/2203.01914", # Playable Environments: Video Manipulation in Space and Time.
+    "https://arxiv.org/abs/2101.12195", # Playable Video Generation
+    "https://arxiv.org/abs/2412.04445", # Moto: Latent Motion Token as the Bridging Language for Learning Robot Manipulation from Videos.
+    "https://arxiv.org/abs/2312.10812", # Learning to Act without Actions
+    "https://arxiv.org/abs/1805.07914", # Imitating Latent Policies from Observation
+    "https://arxiv.org/abs/2505.11709", # HumanNet: Scaling Human-centric Video Learning to One Million Hours
+    "https://arxiv.org/abs/2602.12281", # Scaling Verification Can Be More Effective than Scaling Policy Learning for Vision-Language-Action Alignment
+    "https://arxiv.org/abs/2603.22435", # CaP-X: A Framework for Benchmarking and Improving Coding Agents for Robot Manipulation
+    "https://arxiv.org/abs/2512.24766", # Dream2Flow: Bridging Video Generation and Open-World Manipulation with 3D Object Flow
+    "https://arxiv.org/abs/2409.01652", # ReKep: Spatio-Temporal Reasoning of Relational Keypoint Constraints for Robotic Manipulation
+    "https://arxiv.org/abs/2307.05973", # VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models
+    "https://arxiv.org/abs/2209.07753", # Code as Policies: Language Model Programs for Embodied Control
+    "https://arxiv.org/abs/2201.07207", # Language Models as Zero-Shot Planners: Extracting Actionable Knowledge for Embodied Agents
+    "https://arxiv.org/abs/2508.20072", # Discrete Diffusion VLA: Bringing Discrete Diffusion to Action Decoding in Vision-Language-Action Policies
+    "https://arxiv.org/abs/2605.03269", # RLDX-1 Technical Report
+    "https://arxiv.org/abs/2512.24125", # Unified Embodied VLM Reasoning with Robotic Action via Autoregressive Discretized Pre-training
+    "https://arxiv.org/abs/2502.14420", # ChatVLA: Unified Multimodal Understanding and Robot Control with Vision-Language-Action Model
+    "https://arxiv.org/abs/2604.11757", # StarVLA-α: Reducing Complexity in Vision-Language-Action Systems
+    "https://arxiv.org/abs/2604.05014", # StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing
+    "https://arxiv.org/abs/2602.12215", # LDA-1B: Scaling Latent Dynamics Action Model via Universal Embodied Data Ingestion
+    "https://arxiv.org/abs/2510.08807", # Humanoid Everyday: A Comprehensive Robotic Dataset for Open-World Humanoid Manipulation
+    "https://arxiv.org/abs/2605.02881", # MolmoAct2 Action Reasoning Models for Real-World Deployment
+    "https://arxiv.org/abs/2509.02055", # Align-Then-stEer: Adapting the Vision-Language Action Models through Unified Latent Guidance
+    "https://arxiv.org/abs/2510.10274", # X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model
+    "https://arxiv.org/abs/2605.15128", # MemEye: A Visual-Centric Evaluation Framework for Multimodal Agent Memory
+    "https://arxiv.org/abs/2605.09131", # MCP-Cosmos: World Model-Augmented Agents for Complex Task Execution in MCP Environments
+    "https://arxiv.org/abs/2605.08078", # Normalizing Trajectory Models
+    "https://arxiv.org/abs/2605.15157", # Hand-in-the-Loop: Improving Dexterous VLA via Seamless Interventional Correction
+    "https://arxiv.org/abs/2605.07396", # Rubric-based On-policy Distillation
 ]

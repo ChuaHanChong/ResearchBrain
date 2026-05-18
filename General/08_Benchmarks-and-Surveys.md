@@ -93,14 +93,14 @@ Surveys that chart the Transformer architecture landscape — from efficient att
 > - [[2505.13840|EfficientLLM]] — Empirical evaluation framework assessing efficiency techniques across architecture, training, and inference dimensions
 
 **Parameter-Efficient Fine-Tuning (PEFT)** — LoRA, adapters, prompt tuning, and their systematic comparison. The PEFT landscape evolved rapidly from 2023 to 2025.
-- [[2603.01097|LoRA Knowledge Memory]], [[2504.14117|PEFT A2Z]], [[2501.13787|PEFT Survey (2025)]], [[2410.19878|PEFT Methodologies Survey]], [[2403.14608|PEFT Survey 2024]], [[2312.12148|PEFT Survey]]
+- [[2603.01097|LoRA Knowledge Memory]], [[2504.14117|PEFT A2Z]], [[2501.13787|PEFT Survey (2025)]], [[2410.19878|PEFT Methodologies Survey]], [[2403.14608|PEFT Comprehensive Survey]], [[2312.12148|PEFT Critical Review]]
 
 > [!star] Key Papers
-> - [[2312.12148|PEFT Survey]] — The original comprehensive review of PEFT methods for pre-trained models
+> - [[2312.12148|PEFT Critical Review]] — The original comprehensive review of PEFT methods for pre-trained models
 > - [[2603.01097|LoRA Knowledge Memory]] — Audits LoRA as a parametric knowledge store, revealing what fine-tuning actually memorizes
 
 **Model Merging & Composition** — Combining multiple fine-tuned models into a single improved model without retraining.
-- [[2503.08998|Model Merging Survey]], [[2408.07666|Model Merging Survey]]
+- [[2503.08998|Model Merging Approaches Review]], [[2408.07666|Model Merging in LLMs/MLLMs]]
 
 **LLM Fine-Tuning Practice** — End-to-end guides for practitioners covering method selection, hyperparameter tuning, and deployment.
 - [[2408.13296|LLM Fine-Tuning Guide]]
@@ -115,7 +115,7 @@ Surveys that chart the Transformer architecture landscape — from efficient att
 Surveys covering multimodal LLMs, open-vocabulary learning, hallucination, and the emerging field of multimodal reasoning.
 
 **Multimodal LLM Architecture & Efficiency** — How to build and deploy multimodal models that understand both images and text.
-- [[2510.09586|VLM Survey 26K]], [[2509.25373|VLM Perception-Cognition Survey]], [[2508.05547|VLM Unsupervised Adaptation Survey]], [[2508.04227|VLM Continual Learning Survey]], [[2506.18504|VLM Generalization Survey]], [[2505.02567|Unified Multimodal Survey]], [[2503.06063|Multi-Layer Visual Fusion]], [[2501.02765|VLLM Survey]], [[2501.02189|VLM Survey 2025]], [[2405.10739|Efficient MLLM Survey]], [[2306.13549|MLLM Survey]]
+- [[2510.09586|VLM Survey 26K]], [[2509.25373|VLM Perception-Cognition Survey]], [[2508.05547|VLM Unsupervised Adaptation Survey]], [[2508.04227|VLM Continual Learning Survey]], [[2506.18504|VLM Generalization Survey]], [[2505.02567|Unified Multimodal Survey]], [[2503.06063|Multi-Layer Visual Fusion]], [[2501.02765|VLLM Survey]], [[2501.02189|VLM SOTA Survey]], [[2405.10739|Efficient MLLM Survey]], [[2306.13549|MLLM Survey]]
 
 > [!star] Key Papers
 > - [[2306.13549|MLLM Survey]] — The definitive 2023 survey mapping the multimodal LLM landscape
@@ -159,13 +159,13 @@ Surveys covering multimodal LLMs, open-vocabulary learning, hallucination, and t
 Surveys spanning classical RL, its intersection with causal inference, continual learning, and the emerging field of RL-based reasoning in LLMs.
 
 **RL Fundamentals & Paradigms** — Foundational overviews and comparisons of deep RL approaches.
-- [[2604.27859|Agentic RL Survey 2604]], [[2509.08827|RL for LRM Survey]], [[2509.02547|Agentic RL Survey]], [[2508.08189|RL for Large Models Survey]], [[2412.05265|RL Overview]], [[2301.08028|Meta-RL Tutorial]], [[2110.01411|DRL vs ES Survey]]
+- [[2604.27859|Agentic RL Survey 2604]], [[2509.08827|RL for LRM Survey]], [[2509.02547|Agentic RL Landscape Survey]], [[2508.08189|RL for Large Models Survey]], [[2412.05265|RL Overview]], [[2301.08028|Meta-RL Tutorial]], [[2110.01411|DRL vs ES Survey]]
 
 > [!star] Key Papers
 > - [[2412.05265|RL Overview]] — Sutton's modern RL overview; the authoritative reference for the field
 
 **Causal & Continual RL** — Extending RL with causal reasoning and lifelong learning capabilities.
-- [[2506.21872|Continual RL Survey]], [[2307.01452|Causal RL Survey 2307]], [[2302.05209|Causal RL Survey]]
+- [[2506.21872|Continual RL Survey]], [[2307.01452|Causal RL Roadmap]], [[2302.05209|Causal RL Survey]]
 
 > [!star] Key Papers
 > - [[2302.05209|Causal RL Survey]] — Maps the intersection of causal inference and RL; crucial for sample-efficient policy learning
@@ -188,14 +188,14 @@ Surveys spanning classical RL, its intersection with causal inference, continual
 Surveys mapping the robotics landscape from embodied AI simulators through VLA architectures to world-model-augmented control. This domain has the highest survey density, reflecting rapid growth from 2021 to 2025.
 
 **Embodied AI Foundations** — Broad surveys covering simulators, task hierarchies, and the overall embodied AI research landscape.
-- [[2507.00917|Embodied Intelligence Survey]], [[2505.07634|Neural Brain Framework]], [[2505.05108|Multi-agent Embodied AI Survey]], [[2407.06886|ARIO]], [[2401.03568|Agent AI Survey]], [[2301.11972|Social Cues HRI Survey]], [[2212.14020|System-Level OOD Robotics]], [[2103.04918|Embodied AI Survey 2021]], [[1910.10897|Meta-World]]
+- [[2507.00917|Embodied Intelligence Survey]], [[2505.07634|Neural Brain Framework]], [[2505.05108|Multi-agent Embodied AI Survey]], [[2407.06886|ARIO]], [[2401.03568|Agent AI Survey]], [[2301.11972|Social Cues HRI Survey]], [[2212.14020|System-Level OOD Robotics]], [[2103.04918|Embodied AI Survey]], [[1910.10897|Meta-World]]
 
 > [!star] Key Papers
 > - [[2407.06886|ARIO]] — Comprehensive 2024 survey introducing the ARIO dataset standard for cross-study comparison
-> - [[2103.04918|Embodied AI Survey 2021]] — Established the simulator-task-agent pyramid that later work builds on
+> - [[2103.04918|Embodied AI Survey]] — Established the simulator-task-agent pyramid that later work builds on
 
 **VLA & World Model Architectures** — Surveys focused specifically on vision-language-action models and world models for robot control.
-- [[2605.12090|WAM Survey]], [[2605.03941|iWorld-Bench]], [[2605.00080|WM Robot Survey 2026]], [[2604.27621|Robot Learning from Human Videos Survey]], [[2604.26509|3D Generation for Embodied AI Survey]], [[2604.23775|VLA Safety Survey]], [[2604.16592|Cognition WM Survey]], [[2604.15395|Foundation Models in Robotics Survey]], [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2603.28489|Video Gen as WM Survey]], [[2601.15533|Actionable Simulators]], [[2601.07823|Video Generation in Robotics Survey]], [[2511.02097|WM Manipulation Survey]], [[2510.24795|Efficient VLA Survey]], [[2510.17950|RoboChallenge]], [[2510.16732|World Models for Embodied AI Survey]], [[2510.07077|VLA Robotics Review 2025]], [[2510.04354|SureSim]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2509.19012|Pure VLA Survey]], [[2508.13073|VLA Survey 2025]], [[2507.17049|VLA Uncertainty Eval]], [[2507.10672|VLA Manipulation Survey]], [[2507.05331|LBM TRI]], [[2506.20966|VLA Post-Training Survey]], [[2506.20134|3D World Models Survey]], [[2506.17561|VLA-OS]], [[2506.00613|WorldGym]], [[2505.04769|VLA Survey]], [[2503.21765|Physics Cognition Survey]], [[2411.14499|World Models Survey 2024]], [[2408.15511|AeroVerse]], [[2405.14093|VLA Survey]], [[2311.00530|LLM Embodied Navigation Survey]], [[2310.06253|Objective Mismatch MBRL Survey]]
+- [[2605.12090|WAM Survey]], [[2605.03941|iWorld-Bench]], [[2605.00080|WM Robot Learning Survey]], [[2604.27621|Robot Learning from Human Videos Survey]], [[2604.26509|3D Generation for Embodied AI Survey]], [[2604.23775|VLA Safety Survey]], [[2604.16592|Cognition WM Survey]], [[2604.15395|Foundation Models in Robotics Survey]], [[2604.04974|Video-to-Control Survey]], [[2604.04707|OpenWorldLib]], [[2604.00061|R2X Multi-Robot MLLM Survey]], [[2603.28489|Video Gen as WM Survey]], [[2601.15533|Actionable Simulators]], [[2601.07823|Video Generation in Robotics Survey]], [[2511.02097|WM Manipulation Survey]], [[2510.24795|Efficient VLA Survey]], [[2510.17950|RoboChallenge]], [[2510.16732|World Models for Embodied AI Survey]], [[2510.07077|VLA Robotics Real-World Review]], [[2510.04354|SureSim]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2509.19012|Pure VLA Survey]], [[2508.13073|Large VLM-based VLA Survey]], [[2507.17049|VLA Uncertainty Eval]], [[2507.10672|VLA Manipulation Survey]], [[2507.05331|LBM TRI]], [[2506.20966|VLA Post-Training Survey]], [[2506.20134|3D World Models Survey]], [[2506.17561|VLA-OS]], [[2506.00613|WorldGym]], [[2505.04769|VLA Concepts Survey]], [[2503.21765|Physics Cognition Survey]], [[2411.14499|World Models Survey]], [[2408.15511|AeroVerse]], [[2405.14093|VLA for Embodied AI Survey]], [[2311.00530|LLM Embodied Navigation Survey]], [[2310.06253|Objective Mismatch MBRL Survey]]
 
 > [!star] Key Papers
 > - [[2604.15395|Foundation Models in Robotics Survey]] — 435 papers across 6-criteria taxonomy; maps 5 evolutionary phases of FMs in robotics and identifies tactile/failure data gaps
@@ -246,7 +246,7 @@ An emerging survey domain covering how to optimize the information supplied to L
 > - [[2510.26493|Context Engineering 2.0]] — Redefines context engineering with dynamic, adaptive context management strategies
 
 **Agent Memory Systems** — How AI agents store, retrieve, and manage information across interactions and tasks.
-- [[2603.22862|LLM Tool Use Survey]], [[2601.12538|Agentic Reasoning Survey]], [[2512.13564|AI Agent Memory Survey]], [[2508.17692|Agentic Reasoning Survey]], [[2505.10468|AI Agents vs Agentic AI]], [[2504.18875|Generative to Agentic AI Survey]], [[2504.01990|Foundation Agents Survey]], [[2503.23037|Agentic LLM Survey]], [[2410.16392|Scaffolded LM Survey]]
+- [[2603.22862|LLM Tool Use Survey]], [[2601.12538|Agentic Reasoning Survey]], [[2512.13564|AI Agent Memory Survey]], [[2508.17692|Agentic Reasoning Framework Survey]], [[2505.10468|AI Agents vs Agentic AI]], [[2504.18875|Generative to Agentic AI Survey]], [[2504.01990|Foundation Agents Survey]], [[2503.23037|Agentic LLM Survey]], [[2410.16392|Scaffolded LM Survey]]
 
 > [!star] Key Papers
 > - [[2512.13564|AI Agent Memory Survey]] — Introduces a "Forms-Functions-Dynamics" framework for analyzing memory in AI agents
@@ -284,7 +284,7 @@ Surveys covering specific domains and emerging fields.
 > - [[2511.18538|Code Intelligence Survey]] — End-to-end guide from data curation to autonomous coding agents; the most comprehensive code LLM survey
 
 **Miscellaneous Surveys** — Other notable surveys spanning diverse topics.
-- [[2604.22748|Agentic World Modeling Survey]], [[2602.17270|UL]], [[2602.08145|Reliable Foundation Models Survey]], [[2602.01630|Unified World Model Framework]], [[2601.21187|FRISM]], [[2601.03220|Epiplexity]], [[2512.24880|mHC]], [[2510.00034|MOWI]], [[2509.04501|GRAPE]], [[2509.00421|Prompt Tuning Memory Limits]], [[2507.23276|AI Scientist Survey]], [[2507.18074|ASI-ARCH]], [[2507.17634|WSM]], [[2507.16406|Sparse-View 3D Survey 2025]], [[2506.19360|Synthetic Image Privacy SoK]], [[2506.13018|NN Parameter Space Symmetry Survey]], [[2505.23725|MuLoCo]], [[2504.20966|Softpick]], [[2504.13173|Miras]], [[2503.12811|MPL]], [[2502.05206|Safety at Scale Survey]], [[2210.17067|UniOT]], [[2207.13050|Efficient High-Resolution Survey]], [[2203.12555|GriTS]], [[2201.02373|Mirror Learning]], [[2112.02814|Low-Shot Detection Survey]], [[2002.07421|EHSOD]]
+- [[2604.22748|Agentic World Modeling Survey]], [[2602.17270|UL]], [[2602.08145|Reliable Foundation Models Survey]], [[2602.01630|Unified World Model Framework]], [[2601.21187|FRISM]], [[2601.03220|Epiplexity]], [[2512.24880|mHC]], [[2510.00034|MOWI]], [[2509.04501|RL for Model Training Survey]], [[2509.00421|Prompt Tuning Memory Limits]], [[2507.23276|AI Scientist Survey]], [[2507.18074|ASI-ARCH]], [[2507.17634|WSM]], [[2507.16406|Sparse-View 3D Recon Survey]], [[2506.19360|Synthetic Image Privacy SoK]], [[2506.13018|NN Parameter Space Symmetry Survey]], [[2505.23725|MuLoCo]], [[2504.20966|Softpick]], [[2504.13173|Miras]], [[2503.12811|MPL]], [[2502.05206|Safety at Scale Survey]], [[2210.17067|UniOT]], [[2207.13050|Efficient High-Resolution Survey]], [[2203.12555|GriTS]], [[2201.02373|Mirror Learning]], [[2112.02814|Low-Shot Detection Survey]], [[2002.07421|EHSOD]]
 
 > [!star] Key Papers
 > - [[2602.01630|Unified World Model Framework]] — Proposes a unified framework for world models spanning simulation, prediction, and generation
@@ -329,7 +329,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2505.11709|EgoDex]] — Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation
 
 **Simulation Benchmarks** — Standardized simulation environments for reproducible policy evaluation.
-- [[2605.14712|IntentVLA]], [[2605.10921|RoboMemArena]], [[2604.25788|KinDER]], [[2604.21686|WorldMark]], [[2604.21192|VLA Open-World Audit]], [[2604.19092|RoboWM-Bench]], [[2604.11689|LARY]], [[2604.11674|AffordSim]], [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.15469|RoCo AAAI 2026]], [[2603.13966|vla-eval]], [[2603.12185|ComFree-Sim]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.22663|CEBench]], [[2602.22579|VLA Metamorphic Testing]], [[2602.13710|HBVLA]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2602.01640|A2Eval]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2511.04831|Isaac Lab]], [[2510.17801|Robobench]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2509.15273|Embodied Arena]], [[2506.18701|Matrix-Game]], [[2506.18088|RoboTwin 2.0]], [[2506.06677|RoboCerebra]], [[2505.19017|WorldEval]], [[2505.12224|RoboFAC]], [[2505.09694|EWMBench]], [[2503.14734|GR00T N1]], [[2502.09560|EmbodiedBench]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2310.08367|MCU]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
+- [[2605.14712|IntentVLA]], [[2605.10921|RoboMemArena]], [[2604.25788|KinDER]], [[2604.21686|WorldMark]], [[2604.21192|VLA Open-World Audit]], [[2604.19092|RoboWM-Bench]], [[2604.11689|LARY]], [[2604.11674|AffordSim]], [[2604.08258|EvoGymCM]], [[2603.28301|LIBERO-Para]], [[2603.25887|WR-Arena]], [[2603.23497|WildWorld]], [[2603.22435|CaP-X]], [[2603.22212|Omni-WorldBench]], [[2603.22078|WAM vs VLA Robustness]], [[2603.15469|RoCo Challenge]], [[2603.13966|vla-eval]], [[2603.12185|ComFree-Sim]], [[2603.09030|PlayWorld]], [[2603.04639|RoboMME]], [[2602.22663|CEBench]], [[2602.22579|VLA Metamorphic Testing]], [[2602.13710|HBVLA]], [[2602.08971|WorldArena]], [[2602.06556|LIBERO-X]], [[2602.01640|A2Eval]], [[2601.18692|LingBot-VLA]], [[2601.05344|Im2Sim]], [[2512.24653|RoboMIND 2.0]], [[2511.04831|Isaac Lab]], [[2510.17801|Robobench]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.18953|Eva-VLA]], [[2509.17057|RoboManipBaselines]], [[2509.15273|Embodied Arena]], [[2506.18701|Matrix-Game]], [[2506.18088|RoboTwin 2.0]], [[2506.06677|RoboCerebra]], [[2505.19017|WorldEval]], [[2505.12224|RoboFAC]], [[2505.09694|EWMBench]], [[2503.14734|GR00T N1]], [[2502.09560|EmbodiedBench]], [[2412.14058|RoboVLMs]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2310.08367|MCU]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2304.13705|ALOHA]], [[2112.03227|CALVIN]], [[2009.12293|robosuite]], [[1909.12271|RLBench]]
 
 > [!star] Key Papers
 > - [[2511.04831|Isaac Lab]] — NVIDIA's GPU simulation framework; up to 1.6M FPS, OpenUSD-based, foundational for GR00T N1/N1.5 training
@@ -406,13 +406,13 @@ Benchmarks for video-level reasoning that require understanding temporal dynamic
 > - [[2406.03520|VideoPhy]] — First benchmark explicitly targeting physical commonsense in T2V models; established the evaluation protocol that VideoPhy-2 and PhyCoBench refined
 
 **Physical Understanding Benchmarks (VLMs/MLLMs)** — Benchmarks that probe whether VLMs and MLLMs can reason about physical scenes, properties, and dynamics — distinct from generation benchmarks above.
-- [[2603.24866|VLM Real World Construction]], [[2602.06033|VLM Intuitive Physics]], [[2512.01989|PAI-Bench]], [[2510.06251|Physics Frontier Diagnostic]], [[2510.02311|PhysVid]], [[2506.09987|Shortcut-aware Video-QA]], [[2506.09943|CausalVQA]], [[2506.00022|PHYSICS Dataset]], [[2505.15929|PhyX]], [[2503.21668|Object Cog-Eval]], [[2501.16411|PhysBench]]
+- [[2603.24866|VLM Real World Construction]], [[2602.06033|VLM Intuitive Physics]], [[2512.01989|PAI-Bench]], [[2510.06251|Physics Frontier Diagnostic]], [[2510.02311|IDPP]], [[2506.09987|Shortcut-aware Video-QA]], [[2506.09943|CausalVQA]], [[2506.00022|PHYSICS Dataset]], [[2505.15929|PhyX]], [[2503.21668|Object Cog-Eval]], [[2501.16411|PhysBench]]
 
 > [!star] Key Papers
 > - [[2506.09943|CausalVQA]] — Tests whether VLMs answer video questions via genuine causal reasoning rather than shortcut features; exposes the brittleness of language-conditioned video QA
 > - [[2505.15929|PhyX]] — 3,000 university-level multimodal physics questions across six domains (Mechanics, EM, Thermo, Wave/Acoustics, Optics, Modern); GPT-o4-mini hits **45.8%** vs human experts **75.6%**, with **39.6%** errors traced to visual reasoning failures
 > - [[2510.06251|Physics Frontier Diagnostic]] — Two-stage Physion/Physion++/CLEVRER probes that decompose perception vs physics-understanding; VLMs that pass benchmark questions often fail diagnostic subtests, revealing surface-level shortcut behavior
-> - [[2510.02311|PhysVid]] — First quantitative-ground-truth dataset for elasticity/viscosity/density inference from video; complements categorical physics benchmarks with regression-style evaluation
+> - [[2510.02311|IDPP]] — First quantitative-ground-truth dataset for elasticity/viscosity/density inference from video; complements categorical physics benchmarks with regression-style evaluation
 
 > [!tip] Beyond Frame-Level
 > Both MMOU and STI-Bench test capabilities that frame-level VLMs cannot solve. Models need temporal reasoning (STI-Bench) and cross-modal integration (MMOU) to succeed. For foundational training data, Something-Something remains a strong physical-commonsense stress test for 3D CNN and VideoLLM pretraining. For physics-aware generation, PhyGenBench and PISA expose how far T2V models are from being usable world simulators.
@@ -423,7 +423,7 @@ Benchmarks for video-level reasoning that require understanding temporal dynamic
 
 Benchmarks that evaluate logical reasoning, cognitive planning, and visual logic in language and multimodal models.
 
-- [[2605.15188|FutureSim]], [[2605.12474|Rubric-RL-Diagnostic]], [[2604.25067|Frontier Coding Agents AlphaZero]], [[2604.02029|Latent Space Survey]], [[2602.02196|TIDE]], [[2512.14693|URM]], [[2512.06104|CompressARC]], [[2509.02350|Implicit Reasoning Survey]], [[2508.02120|Efficient Reasoning Survey]], [[2507.09662|Concise Adaptive Thinking Survey]], [[2507.06203|Latent Reasoning Survey]], [[2505.24760|REASONING GYM]], [[2505.16782|Latent CoT Survey]], [[2504.15279|VisuLogic]], [[2504.13828|Cognition Engineering]], [[2504.10903|Efficient Reasoning Models Survey]], [[2503.24235|Test-Time Scaling Survey]], [[2503.23077|LRM Efficient Inference Survey]], [[2503.21614|Efficient Reasoning Survey]], [[2503.16419|Stop Overthinking Survey]], [[2503.16416|LLM Agent Eval Survey]], [[2503.09567|Long CoT Survey]], [[2502.21321|LLM Post-Training Survey]], [[2501.11223|RLM Blueprint]], [[2309.15129|CogEval]]
+- [[2605.15188|FutureSim]], [[2605.12474|Rubric-RL-Diagnostic]], [[2604.25067|Frontier Coding Agents AlphaZero]], [[2604.02029|Latent Space Survey]], [[2602.02196|TIDE]], [[2512.14693|URM]], [[2512.06104|CompressARC]], [[2509.02350|Implicit Reasoning Survey]], [[2508.02120|Efficient R1-style Reasoning Survey]], [[2507.09662|Concise Adaptive Thinking Survey]], [[2507.06203|Latent Reasoning Survey]], [[2505.24760|REASONING GYM]], [[2505.16782|Latent CoT Survey]], [[2504.15279|VisuLogic]], [[2504.13828|Cognition Engineering]], [[2504.10903|Efficient Reasoning Models Survey]], [[2503.24235|Test-Time Scaling Survey]], [[2503.23077|LRM Efficient Inference Survey]], [[2503.21614|Efficient Reasoning Survey]], [[2503.16419|Stop Overthinking Survey]], [[2503.16416|LLM Agent Eval Survey]], [[2503.09567|Long CoT Survey]], [[2502.21321|LLM Post-Training Survey]], [[2501.11223|RLM Blueprint]], [[2309.15129|CogEval]]
 
 > [!star] Key Papers
 > - [[2309.15129|CogEval]] — Tests cognitive maps and planning in LLMs; inspired by cognitive science experiments
@@ -447,7 +447,7 @@ Papers addressing how to build better training datasets through curation, select
 > - [[2504.13161|Nemotron-CLIMB]] — NVIDIA's automated framework for discovering and curating high-quality training data
 
 **Annotation & Semi-Supervised Tools** — Reducing annotation cost through foundation-model-assisted labeling.
-- [[2407.11464|Crowd-SAM]], [[2406.09294|DINOv2 (dataset application)]]
+- [[2407.11464|Crowd-SAM]], [[2406.09294|JEA Scaling Study]]
 
 **Data Quality Analysis** — Understanding and diagnosing issues in training data.
 - [[2602.11217|Magic Correlations]], [[2409.14401|In-Class Data Imbalance]]

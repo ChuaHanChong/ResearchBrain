@@ -97,7 +97,7 @@ The field evolved through four threads: **model-based RL** (2019-2022) progresse
 The theoretical bedrock of RL — comprehensive overviews, taxonomies, and fundamental theoretical contributions that define the field's vocabulary, scope, and open problems.
 
 **Comprehensive Overviews** — Broad surveys mapping the RL landscape and its major sub-fields.
-- [[2604.00626|On-Policy Distillation Survey]], [[2603.25681|LLM Self-Improvement Survey]], [[2603.24517|AVO]], [[2601.12538|Agentic Reasoning Survey]], [[2512.16301|Agentic AI Adaptation Survey]], [[2511.18538|Code Intelligence Survey]], [[2510.02665|MLLM Self-Improvement Survey]], [[2509.08827|RL for LRM Survey]], [[2509.02547|Agentic RL Survey]], [[2508.08189|RL for Large Models Survey]], [[2505.04921|LMRM Survey]], [[2505.02665|Slow Thinking LLM Survey]], [[2505.00551|DeepSeek-R1 Replication Survey]], [[2504.21277|Reinforced MLLM Survey]], [[2504.09037|LLM Reasoning Frontiers Survey]], [[2504.03151|Multimodal Reasoning Survey]], [[2501.09686|Large Reasoning Models Survey]], [[2501.09223|LLM Foundations]], [[2501.02189|VLM Survey 2025]], [[2412.05265|RL Overview]], [[2410.19878|PEFT Methodologies Survey]], [[2408.13296|LLM Fine-Tuning Guide]], [[2408.07666|Model Merging Survey]]
+- [[2604.00626|On-Policy Distillation Survey]], [[2603.25681|LLM Self-Improvement Survey]], [[2603.24517|AVO]], [[2601.12538|Agentic Reasoning Survey]], [[2512.16301|Agentic AI Adaptation Survey]], [[2511.18538|Code Intelligence Survey]], [[2510.02665|MLLM Self-Improvement Survey]], [[2509.08827|RL for LRM Survey]], [[2509.02547|Agentic RL Landscape Survey]], [[2508.08189|RL for Large Models Survey]], [[2505.04921|LMRM Survey]], [[2505.02665|Slow Thinking LLM Survey]], [[2505.00551|DeepSeek-R1 Replication Survey]], [[2504.21277|Reinforced MLLM Survey]], [[2504.09037|LLM Reasoning Frontiers Survey]], [[2504.03151|Multimodal Reasoning Survey]], [[2501.09686|Large Reasoning Models Survey]], [[2501.09223|LLM Foundations]], [[2501.02189|VLM SOTA Survey]], [[2412.05265|RL Overview]], [[2410.19878|PEFT Methodologies Survey]], [[2408.13296|LLM Fine-Tuning Guide]], [[2408.07666|Model Merging in LLMs/MLLMs]]
 
 > [!star] Key Papers
 > - [[2412.05265|RL Overview]] — Sutton's comprehensive modern overview; the definitive reference for RL fundamentals
@@ -105,10 +105,10 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2508.08189|RL for Large Models Survey]] — Comprehensive mapping of visual RL applied to large multimodal models
 
 **Causal RL** — Connecting causal inference with RL to enable more principled and generalizable decision-making.
-- [[2307.01452|Causal RL Survey 2307]], [[2302.05209|Causal RL Survey 2023]]
+- [[2307.01452|Causal RL Roadmap]], [[2302.05209|Causal RL Methods Survey]]
 
 > [!star] Key Papers
-> - [[2302.05209|Causal RL Survey 2023]] — First comprehensive taxonomy connecting causal inference with RL
+> - [[2302.05209|Causal RL Methods Survey]] — First comprehensive taxonomy connecting causal inference with RL
 
 **Continual & Lifelong RL** — Agents that learn across sequential tasks without catastrophic forgetting.
 - [[2603.24350|Emergent Self]], [[2506.21872|Continual RL Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2410.19925|MLLM Continual Learning]], [[1612.00796|EWC]]
@@ -271,7 +271,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2406.03816|ReST-MCTS*]] — Automated process reward model generation via MCTS for LLM self-training
 
 **Off-Policy & Sample Efficiency** — Methods that reuse past experience or manage data more efficiently for RL fine-tuning.
-- [[2605.11151|RankQ]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|GRAPE]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2311.03351|Uni-O4]], [[1801.01290|SAC]]
+- [[2605.11151|RankQ]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2510.18927|BAPO]], [[2510.02245|ExGRPO]], [[2509.04501|RL for Model Training Survey]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2311.03351|Uni-O4]], [[1801.01290|SAC]]
 
 > [!star] Key Papers
 > - [[2505.11081|ShiQ]] — Off-policy Q-learning for LLM fine-tuning; enables reuse of generated data across iterations

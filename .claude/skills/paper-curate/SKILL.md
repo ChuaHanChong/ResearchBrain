@@ -53,13 +53,13 @@ $PY $HELPER neighbors 2604.28192   # any unassigned arxiv ID
 | `reasoning`, `spatial-reasoning`, `chain-of-thought`, `planning` | `03_Reasoning-and-Planning.md` |
 | `reinforcement-learning`, `RLHF`, `reward-model`, `self-play`, `curriculum-learning` | `04_Reinforcement-Learning.md` |
 | `object-detection`, `segmentation`, `3D-understanding`, `domain-adaptation` | `05_Computer-Vision-and-3D.md` |
-| `video-understanding` | `06_Video-and-Temporal.md` |
-| `robotics`, `VLA`, `world-model`, `manipulation`, `embodied-AI`, `navigation`, `imitation-learning`, `autonomous-driving` | `07_Robotics-and-Embodied-AI.md` |
+| `video-understanding`, `egocentric` | `06_Video-and-Temporal.md` |
+| `robotics`, `VLA`, `world-model`, `manipulation`, `embodied-AI`, `navigation`, `imitation-learning`, `autonomous-driving`, `humanoid`, `dexterous`, `tactile`, `sim-to-real`, `egocentric` | `07_Robotics-and-Embodied-AI.md` |
 | `survey`, `benchmark` | `08_Benchmarks-and-Surveys.md` |
 | `LLM`, `hallucination` | `09_Multimodal-LLMs.md` |
 | `agentic-AI`, `tool-use`, `code-generation` | `10_Agents-and-Tool-Use.md` |
 | `continual-learning`, `meta-learning` | `11_Self-Evolving-AI.md` |
-| `diffusion`, `image-generation`, `flow-matching`, `generative-model` | `12_Diffusion-and-Generation.md` |
+| `diffusion`, `image-generation`, `flow-matching`, `generative-model`, `physics-aware` | `12_Diffusion-and-Generation.md` |
 
 Edge cases:
 - **Tag absent from the table** — pick the closest topic by reading the KH note's content. Add a row here if the same un-mapped tag recurs across 3+ papers.

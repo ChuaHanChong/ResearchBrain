@@ -3,9 +3,9 @@
 Batch-extract paper summaries from alphaxiv.org and write Obsidian markdown notes.
 
 Usage:
-    python run.py --input scripts/knowledge.py --out VLA-WAM/KnowledgeHub
-    python run.py --input scripts/knowledge.py --out VLA-WAM/KnowledgeHub --limit 3
-    python run.py --input scripts/knowledge.py --out VLA-WAM/KnowledgeHub --force
+    python run.py --input scripts/knowledge.py --out _KnowledgeHub_
+    python run.py --input scripts/knowledge.py --out _KnowledgeHub_ --limit 3
+    python run.py --input scripts/knowledge.py --out _KnowledgeHub_ --force
 """
 
 import argparse
@@ -102,7 +102,7 @@ def main():
     parser = argparse.ArgumentParser(description="Scrape alphaxiv and write Obsidian notes")
     parser.add_argument("--input", default=None, help="Path to knowledge.py with papers list (batch mode)")
     parser.add_argument("--ids", nargs="+", help="One or more arxiv IDs or URLs to process directly")
-    parser.add_argument("--out", default="X01_KnowledgeHub", help="Output directory for .md notes")
+    parser.add_argument("--out", default="_KnowledgeHub_", help="Output directory for .md notes")
     parser.add_argument("--limit", type=int, default=None, help="Process at most N papers (for testing)")
     parser.add_argument("--force", action="store_true", help="Overwrite existing notes")
     args = parser.parse_args()

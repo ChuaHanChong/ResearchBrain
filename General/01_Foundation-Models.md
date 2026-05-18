@@ -174,7 +174,7 @@ New attention patterns, normalization strategies, and structural modifications t
 Learning visual representations without labels — the foundation for data-efficient downstream tasks.
 
 **Contrastive & Self-Distillation** — Methods that learn by comparing or distilling representations without labeled data.
-- [[2605.03517|LDM SSL]], [[2603.28480|INSID3]], [[2603.15553|Bootleg]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.14754|Sparsh-X]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2410.24090|Sparsh]], [[2406.09294|DINOv2]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
+- [[2605.03517|LDM SSL]], [[2603.28480|INSID3]], [[2603.15553|Bootleg]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.14754|Sparsh-X]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2410.24090|Sparsh]], [[2406.09294|JEA Scaling Study]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
 
 > [!star] Key Papers
 > - [[2104.14294|DINO]] — Self-distillation with no labels; emergent object segmentation in attention maps
@@ -266,7 +266,7 @@ Connecting visual and textual representations in a shared embedding space, enabl
 > - [[2503.01776|CSR]] — Sparse coding-based adaptive representations that go beyond Matryoshka for flexible embedding dimensionality
 
 **Region-Level & Fine-Grained Alignment** — Learning region-text correspondences and fine-grained visual-language representations.
-- [[2507.09961|TDCRL]], [[2507.09615|FAIR]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.15757|WPCL]], [[2506.12698|KDUP]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Augmentation-Aware Contrastive Learning Theory]], [[2505.21533|SOP]], [[2505.02278|GCLIP]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.02202|MLCL]], [[2401.09865|SPARC]], [[2206.05836|GLIPv2]], [[2203.12555|GriTS]], [[2112.09106|RegionCLIP]], [[2104.12763|MDETR]]
+- [[2507.09961|TDCRL]], [[2507.09615|FAIR]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.15757|WPCL]], [[2506.12698|KDUP]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Aug-Aware SSL Theory]], [[2505.21533|SOP]], [[2505.02278|GCLIP]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.02202|MLCL]], [[2401.09865|SPARC]], [[2206.05836|GLIPv2]], [[2203.12555|GriTS]], [[2112.09106|RegionCLIP]], [[2104.12763|MDETR]]
 
 > [!star] Key Papers
 > - [[2401.09865|SPARC]] — Sparse fine-grained contrastive alignment from Google DeepMind; learns region-text correspondences without dense annotations
@@ -389,14 +389,14 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2309.16797|PromptBreeder]] — Self-referential self-improvement via prompt evolution; automates prompt engineering
 
 **LoRA & Parameter-Efficient Fine-Tuning** — Methods that adapt large models by training only a small fraction of parameters.
-- [[2604.19254|ShadowPEFT]], [[2507.11851|Gated LoRA]], [[2506.06105|T2L]], [[2504.13292|GrokTransfer]], [[2502.16025|FeatSharp]], [[2410.19878|PEFT Methodologies Survey]], [[2406.10973|ExPLoRA]], [[2312.12148|PEFT Survey]]
+- [[2604.19254|ShadowPEFT]], [[2507.11851|Gated LoRA]], [[2506.06105|T2L]], [[2504.13292|GrokTransfer]], [[2502.16025|FeatSharp]], [[2410.19878|PEFT Methodologies Survey]], [[2406.10973|ExPLoRA]], [[2312.12148|PEFT Critical Review]]
 
 > [!star] Key Papers
 > - [[2506.06105|T2L]] — Text-to-LoRA: hypernetwork that dynamically generates task-specific LoRA adapters from text descriptions
 > - [[2507.11851|Gated LoRA]] — Enables pretrained autoregressive LLMs to perform multi-token prediction via gated LoRA modules
 
 **Model Merging & Weight Averaging** — Combining multiple fine-tuned models into a single improved model without retraining.
-- [[2605.14386|Darwin]], [[2604.27155|GeoMerge]], [[2602.05943|Orthogonal Model Merging]], [[2510.21223|FDA]], [[2505.12082|PMA]], [[2408.07666|Model Merging Survey]], [[2407.13771|Training-Free Model Merging MTDA]], [[1803.05407|SWA]]
+- [[2605.14386|Darwin]], [[2604.27155|GeoMerge]], [[2602.05943|Orthogonal Model Merging]], [[2510.21223|FDA]], [[2505.12082|PMA]], [[2408.07666|Model Merging in LLMs/MLLMs]], [[2407.13771|Training-Free Model Merging MTDA]], [[1803.05407|SWA]]
 
 > [!star] Key Papers
 > - [[1803.05407|SWA]] — Stochastic Weight Averaging: simple technique that finds wider optima and better generalization

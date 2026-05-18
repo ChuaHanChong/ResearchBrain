@@ -198,7 +198,7 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 > - [[2312.06709|AM-RADIO]] — Unifies CLIP, DINOv2, and SAM into one student model; best of all worlds in a single forward pass
 
 **Domain-Specific Adaptation** — Adapting self-supervised models to specialized visual domains with limited labels.
-- [[2511.20844|Pre-train to Gain]], [[2510.20994|VESSA]], [[2505.22196|Augmentation-Aware Contrastive Learning Theory]], [[2505.13584|SSL Segmentation Survey]], [[2406.09294|DINOv2]], [[2404.17202|Low-Data SSL Evaluation]]
+- [[2511.20844|Pre-train to Gain]], [[2510.20994|VESSA]], [[2505.22196|Aug-Aware SSL Theory]], [[2505.13584|SSL Segmentation Survey]], [[2406.09294|JEA Scaling Study]], [[2404.17202|Low-Data SSL Evaluation]]
 
 > [!star] Key Papers
 > - [[2510.20994|VESSA]] — Self-supervised adaptation to new visual domains without any labels; practical for medical/industrial deployment
@@ -357,7 +357,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2306.13643|LightGlue]] — Adaptive deep feature matching that prunes easy pairs early; fast and accurate for real-time SLAM
 
 **3D Diffusion Policies** — Use 3D point cloud representations with diffusion-based action generation for robotic manipulation.
-- [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit World Model Zero-Shot Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2409.01652|ReKep]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2209.05451|PerAct]]
+- [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit-WM Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2409.01652|ReKep]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2209.05451|PerAct]]
 
 > [!star] Key Papers
 > - [[2403.03954|DP3]] — 3D Diffusion Policy: generalizable visuomotor policy from point clouds; enables sim-to-real without camera calibration
@@ -416,7 +416,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 > - [[2406.10973|ExPLoRA]] — Parameter-efficient extended pre-training that adapts ViTs to new visual domains with minimal data
 
 **Model Merging** — Combine multiple fine-tuned models into a single multitask model without retraining, by operating on parameter deltas.
-- [[2601.10497|MERGETUNE]], [[2510.21223|FDA]], [[2507.04380|Explainability Task Arithmetic]], [[2503.08998|Model Merging Survey]], [[2403.13257|MergeKit]], [[2403.01753|MuDSC]], [[2311.03099|DARE]], [[2306.01708|TIES-Merging]], [[2211.10277|TaskRes]]
+- [[2601.10497|MERGETUNE]], [[2510.21223|FDA]], [[2507.04380|Explainability Task Arithmetic]], [[2503.08998|Model Merging Approaches Review]], [[2403.13257|MergeKit]], [[2403.01753|MuDSC]], [[2311.03099|DARE]], [[2306.01708|TIES-Merging]], [[2211.10277|TaskRes]]
 
 > [!star] Key Papers
 > - [[2306.01708|TIES-Merging]] — Three-step approach to resolve sign conflicts and redundancy when merging fine-tuned model parameters

@@ -350,10 +350,10 @@ Self-evolution over time: systems that accumulate knowledge from ongoing experie
 Comprehensive reviews and theoretical analyses that map the self-evolving AI landscape, formalize when self-improvement converges, and identify open challenges.
 
 - [[2603.25681|LLM Self-Improvement Survey]] — Unified closed-loop lifecycle framework for LLM self-improvement; covers data acquisition, selection, optimization, inference, and evaluation
-- [[2404.14387|LLM Self-Evolution Survey 2024]] — Structured taxonomy of self-evolution approaches: self-training, self-rewarding, RL-based, and evolutionary methods
+- [[2404.14387|LLM Self-Evolution Survey]] — Structured taxonomy of self-evolution approaches: self-training, self-rewarding, RL-based, and evolutionary methods
 - [[2510.02665|MLLM Self-Improvement Survey]] — First survey focused on multimodal LLM self-improvement; maps methods from text to vision-language
 - [[2412.01951|Sharpening Mechanism]] — Theoretical framework formalizing when and why self-improvement converges; identifies conditions for guaranteed improvement
-- [[2408.07666|Model Merging Survey]] — Comprehensive survey of model merging methods for combining knowledge across fine-tuned models
+- [[2408.07666|Model Merging in LLMs/MLLMs]] — Comprehensive survey of model merging methods for combining knowledge across fine-tuned models
 - [[2504.13173|Miras]] — Unified framework connecting test-time memorization, attentional bias, retention, and online optimization
 - [[2506.21872|Continual RL Survey]] — Survey of continual reinforcement learning methods across environments and tasks
 - [[2507.21046|Self-Evolving Agents Survey]] — Comprehensive survey on self-evolving LLM-based agents

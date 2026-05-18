@@ -94,7 +94,7 @@ The foundational approach: learning shared vision-language embeddings from web-s
 Learning visual representations without labels through contrastive, masked, or joint-embedding objectives — the foundation for data-efficient downstream VLM tasks.
 
 **Contrastive & Joint-Embedding SSL** — Methods that align representations across augmented views or modalities without reconstruction.
-- [[2602.11241|Active-Zero]], [[2602.02381|AdaSSL]], [[2507.09961|TDCRL]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Augmentation-Aware Contrastive Learning Theory]], [[2505.21533|SOP]], [[2505.11815|UniMoCo]], [[2504.16929|I-Con]], [[2502.02202|MLCL]], [[2105.04553|MoBY]], [[2104.02057|MoCo v3]]
+- [[2602.11241|Active-Zero]], [[2602.02381|AdaSSL]], [[2507.09961|TDCRL]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Aug-Aware SSL Theory]], [[2505.21533|SOP]], [[2505.11815|UniMoCo]], [[2504.16929|I-Con]], [[2502.02202|MLCL]], [[2105.04553|MoBY]], [[2104.02057|MoCo v3]]
 
 > [!star] Key Papers
 > - [[2104.02057|MoCo v3]] — Established robust self-supervised training recipes for Vision Transformers; bridged the gap from CNNs to ViTs
@@ -170,7 +170,7 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 > - [[2403.13187|EvoLLM-JP]] — Evolutionary Model Merge: automated framework using evolutionary algorithms to combine VLMs across languages and modalities
 
 **Surveys** — Comprehensive reviews of VLM adaptation and generalization strategies.
-- [[2510.11106|CZSL Survey]], [[2510.09586|VLM Survey 26K]], [[2508.05547|VLM Unsupervised Adaptation Survey]], [[2508.04227|VLM Continual Learning Survey]], [[2506.18504|VLM Generalization Survey]], [[2501.02189|VLM Survey 2025]]
+- [[2510.11106|CZSL Survey]], [[2510.09586|VLM Survey 26K]], [[2508.05547|VLM Unsupervised Adaptation Survey]], [[2508.04227|VLM Continual Learning Survey]], [[2506.18504|VLM Generalization Survey]], [[2501.02189|VLM SOTA Survey]]
 
 > [!star] Key Papers
 > - [[2506.18504|VLM Generalization Survey]] — First comprehensive review of knowledge transfer and generalization strategies for pre-trained VLMs
@@ -372,7 +372,7 @@ Large multimodal models — the workhorses of modern vision-language understandi
 > - [[2504.15271|Eagle 2.5]] — 8B model matching 72B+ performance on video understanding via information-first sampling and progressive mixed post-training
 
 **Unified Understanding & Generation MLLMs** — Models that jointly handle visual understanding, generation, and editing in a single architecture.
-- [[2604.02097|LatentUM]], [[2603.29620|Unify-Agent]], [[2603.03276|Transfusion]], [[2510.08673|Puffin]], [[2506.22880|DeSa2VA]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.16933|LLaDA-V]], [[2505.05472|Mogao]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2501.17811|Janus-Pro]], [[2501.00289|D-DiT]], [[2412.03069|TokenFlow]], [[2410.13848|Janus]], [[2408.12528|Show-o]], [[2408.11039|Transfusion]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
+- [[2604.02097|LatentUM]], [[2603.29620|Unify-Agent]], [[2603.03276|Beyond LLMs]], [[2510.08673|Puffin]], [[2506.22880|DeSa2VA]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.16933|LLaDA-V]], [[2505.05472|Mogao]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2501.17811|Janus-Pro]], [[2501.00289|D-DiT]], [[2412.03069|TokenFlow]], [[2410.13848|Janus]], [[2408.12528|Show-o]], [[2408.11039|Transfusion]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 > [!star] Key Papers
 > - [[2408.12528|Show-o]] — Single transformer unifying understanding and generation via omni-attention that switches between causal and full attention per modality
@@ -380,11 +380,11 @@ Large multimodal models — the workhorses of modern vision-language understandi
 > - [[2501.17811|Janus-Pro]] — Decoupled visual encoding resolving the understanding-generation conflict; 80% on GenEval surpassing DALL-E 3
 
 **Multimodal Surveys & Taxonomies** — Comprehensive surveys covering the MLLM landscape.
-- [[2510.09586|VLM Survey 26K]], [[2508.04227|VLM Continual Learning Survey]], [[2501.02189|VLM Survey 2025]], [[2412.18619|Multimodal NTP Survey]], [[2405.10739|Efficient MLLM Survey]]
+- [[2510.09586|VLM Survey 26K]], [[2508.04227|VLM Continual Learning Survey]], [[2501.02189|VLM SOTA Survey]], [[2412.18619|Multimodal NTP Survey]], [[2405.10739|Efficient MLLM Survey]]
 
 > [!star] Key Papers
 > - [[2306.13549|MLLM Survey]] — Foundational survey synthesizing MLLM architectures, training paradigms, evaluation methods, and the hallucination challenge
-> - [[2501.02189|VLM Survey 2025]] — Comprehensive 2025 review covering 95 benchmarks and identifying the shift from trained-from-scratch to LLM-backbone VLMs
+> - [[2501.02189|VLM SOTA Survey]] — Comprehensive 2025 review covering 95 benchmarks and identifying the shift from trained-from-scratch to LLM-backbone VLMs
 
 > [!tip] The Architecture Convergence
 > MLLMs are converging on a shared blueprint: frozen vision encoder + connector + instruction-tuned LLM. The differentiators are now training recipe (native multimodal pre-training in InternVL3 vs post-hoc adaptation) and efficiency (NVILA shows 5x training cost reduction). For unified understanding+generation, the key design choice is whether to use a single token space (Chameleon) or decoupled encoders (Janus-Pro) -- the latter currently wins on quality.
@@ -452,7 +452,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2507.04590|VLM2Vec-V2]] — Unified embedding model for videos, images, and documents achieving top scores on the 78-task MMEB-V2 benchmark
 
 **Domain-Specific VLMs** — VLMs adapted for specific domains like medicine, science, video, and document understanding.
-- [[2604.02190|UniDriveVLA]], [[2603.28116|AutoDrive-P3]], [[2603.22179|MARCUS]], [[2603.22003|VP-VLA]], [[2603.19235|VEGA-3D]], [[2603.17729|SARE]], [[2603.14497|WorldVLM]], [[2603.14145|MMOU]], [[2603.14117|SIEVE]], [[2603.13825|Explicit World Model Zero-Shot Manipulation]], [[2603.10052|OmniGuide]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.24041|AIR]], [[2602.15727|LoRWeB]], [[2602.11144|GENIUS]], [[2602.04884|RAL]], [[2602.03361|Z3D]], [[2602.02951|NUWA]], [[2602.02453|TwC]], [[2602.02004|ClueTracer]], [[2601.23265|PaperBanana]], [[2601.21187|FRISM]], [[2601.19099|m2sv]], [[2601.09430|Video-MSR]], [[2601.04777|GeM-VG]], [[2601.03193|UniCorn]], [[2601.00561|AEGIS]], [[2512.22799|VPTracker]], [[2512.12633|DiG]], [[2512.06281|LaVer]], [[2512.04563|COOPER]], [[2508.13142|EASI]], [[2507.10203|ARL]], [[2507.10202|ECP]], [[2507.01544|MARVIS]], [[2506.17218|Mirage]], [[2506.16112|AutoV]], [[2506.04220|Struct2D]], [[2506.03569|MiMo-VL]], [[2506.03147|UniWorld-V1]], [[2505.23705|Knowledge Insulation VLA]], [[2505.19017|WorldEval]], [[2505.02056|VLM Pseudo-label Calibration]], [[2504.13055|NoisyRollout]], [[2504.10462|SAIL]], [[2503.15621|LLaVA-MORE]], [[2503.01773|ADAPTVIS]], [[2503.01584|SENSEI]]
+- [[2604.02190|UniDriveVLA]], [[2603.28116|AutoDrive-P3]], [[2603.22179|MARCUS]], [[2603.22003|VP-VLA]], [[2603.19235|VEGA-3D]], [[2603.17729|SARE]], [[2603.14497|WorldVLM]], [[2603.14145|MMOU]], [[2603.14117|SIEVE]], [[2603.13825|Explicit-WM Manipulation]], [[2603.10052|OmniGuide]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.24041|AIR]], [[2602.15727|LoRWeB]], [[2602.11144|GENIUS]], [[2602.04884|RAL]], [[2602.03361|Z3D]], [[2602.02951|NUWA]], [[2602.02453|TwC]], [[2602.02004|ClueTracer]], [[2601.23265|PaperBanana]], [[2601.21187|FRISM]], [[2601.19099|m2sv]], [[2601.09430|Video-MSR]], [[2601.04777|GeM-VG]], [[2601.03193|UniCorn]], [[2601.00561|AEGIS]], [[2512.22799|VPTracker]], [[2512.12633|DiG]], [[2512.06281|LaVer]], [[2512.04563|COOPER]], [[2508.13142|EASI]], [[2507.10203|ARL]], [[2507.10202|ECP]], [[2507.01544|MARVIS]], [[2506.17218|Mirage]], [[2506.16112|AutoV]], [[2506.04220|Struct2D]], [[2506.03569|MiMo-VL]], [[2506.03147|UniWorld-V1]], [[2505.23705|Knowledge Insulation VLA]], [[2505.19017|WorldEval]], [[2505.02056|VLM Pseudo-label Calibration]], [[2504.13055|NoisyRollout]], [[2504.10462|SAIL]], [[2503.15621|LLaVA-MORE]], [[2503.01773|ADAPTVIS]], [[2503.01584|SENSEI]]
 
 > [!tip] RL is Reshaping VLM Training
 > The RL-for-vision wave (Visual-RFT, SATORI, VLM-R1) is the biggest shift since instruction tuning. Key insight: verifiable visual rewards (bounding box accuracy, count correctness) work far better than language-only RLHF for grounding. Meanwhile, inference-time scaling via chain-of-thought (LLaVA-CoT) and dynamic zooming (ZoomEye, FOCUS) lets smaller models punch above their weight without retraining.

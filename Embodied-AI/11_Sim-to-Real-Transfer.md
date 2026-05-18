@@ -132,7 +132,7 @@ The field evolved through four parallel research threads. **Sim-side** (2023→2
 | 2026 | [[2602.13040\|TCRL]] | Policy-side | Temporal-coupled adversarial training for constrained RL; up to 19,077% cost reduction |
 | 2026 | [[2603.04029\|Self-Adapting RL]] | Real2sim2real | [[2301.04104\|DreamerV3]] world-model feedback for online sim-to-real adaptation |
 | 2026 | [[2603.15956\|ExpertGen]] | Policy-side | Generative prior + DSRL + visuomotor distillation; 90.5% AutoMate assembly |
-| 2026 | [[2603.16861\|MolmoBot]] | Sim-side | 232K-environment procedural [MuJoCo](https://mujoco.org); 79.2% real Franka FR3 — no real-world data |
+| 2026 | [[2603.16861\|MolmoBot]] | Sim-side | 232K-environment procedural [MuJoCo](https://mujoco.org); 79.2% real [Franka FR3](https://franka.de) — no real-world data |
 | 2026 | [[2604.10856\|BridgeSim]] | Evaluation | Decomposes OL-CL gap; observational shift + objective mismatch; +19.1 DS via TTA |
 | 2026 | [[2604.11138\|ViserDex]] | Policy-side | 3DGS pre-rasterization augmentation + monocular RGB; 37.6 reorientations |
 | 2026 | [[2604.11674\|AffordSim]] | Sim-side | Affordance-aware data generator + 3DGS backgrounds for sim-to-real |
@@ -216,7 +216,7 @@ Hand-crafted physics + massive procedural scale; no learned visual model.
 
 - [[2603.16861|MolmoBot]], [[2604.11674|AffordSim]]
 
-**How [[2603.16861|MolmoBot]] works**: ==MolmoBot-Engine== — open-source procedural data generation in ==[MuJoCo](https://mujoco.org)== — leverages **232,000** indoor environments and **48,000** manipulable objects to generate **1.8M** expert trajectories. Extensive ==domain randomization== over visual and physical parameters + diverse referring expressions enables zero-shot sim-to-real *without real-world fine-tuning or photorealistic rendering*. Achieves **79.2%** success on real Franka FR3 tabletop pick-and-place — outperforming π0.5-DROID (**39.2%**) which was trained on real-world data. Critically: absolute joint-position action representation transferred better than delta-action despite similar sim performance.
+**How [[2603.16861|MolmoBot]] works**: ==MolmoBot-Engine== — open-source procedural data generation in ==[MuJoCo](https://mujoco.org)== — leverages **232,000** indoor environments and **48,000** manipulable objects to generate **1.8M** expert trajectories. Extensive ==domain randomization== over visual and physical parameters + diverse referring expressions enables zero-shot sim-to-real *without real-world fine-tuning or photorealistic rendering*. Achieves **79.2%** success on real [Franka FR3](https://franka.de) tabletop pick-and-place — outperforming π0.5-DROID (**39.2%**) which was trained on real-world data. Critically: absolute joint-position action representation transferred better than delta-action despite similar sim performance.
 
 **How [[2604.11674|AffordSim]] works**: Integrates ==VoxAfford== for per-point open-vocabulary 3D affordance detection into simulation data generation. ==3DGS-rendered photorealistic backgrounds== as domain randomization improve average real-world success from **17%** (no DR) to **27%**. Reveals the affordance-task difficulty: simple grasping reaches **60%** zero-shot, but pouring/hanging only **10-20%** — fine-grained semantic affordance is still the bottleneck for sim-to-real.
 
@@ -229,7 +229,7 @@ Hand-crafted physics + massive procedural scale; no learned visual model.
 > [!star] Key Papers
 > - [[2310.06114|UniSim]] — Learned interactive real-world simulator; **3-4x** better zero-shot policy transfer than baselines; foundational learned-sim paper
 > - [[2501.03575|Cosmos]] — NVIDIA WFM platform: **100M** curated clips, **+4 dB** PSNR tokenizer, **10 FPS** real-time autoregressive generation; defines the WFM category
-> - [[2603.16861|MolmoBot]] — **79.2%** real Franka FR3 success trained *exclusively* on procedural [MuJoCo](https://mujoco.org) data; proves sim-only can outperform real-data baselines (π0.5-DROID **39.2%**)
+> - [[2603.16861|MolmoBot]] — **79.2%** real [Franka FR3](https://franka.de) success trained *exclusively* on procedural [MuJoCo](https://mujoco.org) data; proves sim-only can outperform real-data baselines (π0.5-DROID **39.2%**)
 > - [[2511.23369|SimScale]] — 3DGS sim-real co-training for autonomous driving; weak baselines see **>20%** relative gains; new **EPDMS 48.0** on navhard
 
 > [!tip] Sim-Side Trade-Off
@@ -247,7 +247,7 @@ Instead of making the simulator perfect, make the *policy* invariant to sim impe
 
 **How [[2210.13702|DeXtreme]] works**: Trains a deep RL policy via ==[[1707.06347|PPO]]== in ==[Isaac Gym](https://developer.nvidia.com/isaac-gym)== on the affordable Allegro Hand. The crucial ingredient is ==Vectorized Automatic Domain Randomization== (VADR) — dynamically adjusting simulation parameters based on policy capability. VADR-trained policies achieved **27.8 mean** real reorientations vs **14.8** for hand-tuned DR — auto-DR almost doubles transfer. A Mask-RCNN vision-based pose estimator trained on synthetic [Isaac Sim](https://developer.nvidia.com/isaac-sim) images operates at **15 Hz** under occlusion.
 
-**How [[2603.15956|ExpertGen]] works**: Three-phase framework for scalable sim-to-real from *imperfect* behavior priors. (1) Generative behavior prior via state-based ==diffusion policy== on rough demos. (2) Expert policy acquisition via ==Diffusion Steering RL (DSRL)== — optimizes *only* the diffusion's initial noise input, preserving the motion manifold while maximizing sparse rewards via FastTD3 in parallel sim. (3) Visuomotor distillation via ==DAgger== with extensive visual DR. **90.5%** average on 8 AutoMate industrial assembly tasks; **80%** real-world success on Franka Lift Banana from RGB.
+**How [[2603.15956|ExpertGen]] works**: Three-phase framework for scalable sim-to-real from *imperfect* behavior priors. (1) Generative behavior prior via state-based ==diffusion policy== on rough demos. (2) Expert policy acquisition via ==Diffusion Steering RL (DSRL)== — optimizes *only* the diffusion's initial noise input, preserving the motion manifold while maximizing sparse rewards via FastTD3 in parallel sim. (3) Visuomotor distillation via ==DAgger== with extensive visual DR. **90.5%** average on 8 AutoMate industrial assembly tasks; **80%** real-world success on [Franka](https://franka.de) Lift Banana from RGB.
 
 **How [[2502.20396|Humanoid Sim2Real Dex]] works**: Full vision-based dexterous manipulation sim-to-real recipe on Fourier GR-1. ==Autotuned robot modeling== bridges the dynamics gap via minimal real-world calibration data. ==Contact stickers== + ==stage-based rewards== structure bimanual task rewards. ==Task-aware hand pose initialization== from human priors + ==divide-and-conquer distillation== scale to generalist policies. **80%** box-lift, **62.3%** grasp-and-reach, **52.5%** bimanual handover with **60-80%** zero-shot unseen-object generalization.
 
@@ -339,7 +339,7 @@ Reverse the direction: reconstruct the *deployment* scene as a high-fidelity int
 
 #### 4.3 World-Model-Driven Online Adaptation
 
-- [[2603.04029|Self-Adapting RL]], [[2603.13825|Explicit World Model Manipulation]]
+- [[2603.04029|Self-Adapting RL]], [[2603.13825|Explicit-WM Manipulation]]
 
 **How [[2603.04029|Self-Adapting RL]] works**: Online continual RL with world-model feedback. Built on ==[[2301.04104|DreamerV3]]==, monitors prediction residuals: ==Observation Prediction Residual== and ==Reward Prediction Residual== exceed a threshold → OOD event triggers online world-model + policy fine-tuning. Selective replay-buffer management excludes pre-change data. Walker adapts to simulated actuator damage in **10,000** steps (**2 minutes** sim time). F1Tenth vehicle adapts to *both* a real sim-to-real transfer gap *and* subsequent friction reduction within **10,000** real steps (**8 minutes**). The reality gap is treated as just another OOD shift the world model detects and corrects for.
 
@@ -434,7 +434,7 @@ How these pieces compose into deployable sim-to-real pipelines:
 > - **Long-deployment continual adaptation?** Pattern D (Online world-model)
 
 > [!star] Key Papers — Integration Pattern Exemplars
-> - [[2603.16861|MolmoBot]] — Pattern A exemplar: **79.2%** real Franka FR3 from 232K procedural environments, no real data
+> - [[2603.16861|MolmoBot]] — Pattern A exemplar: **79.2%** real [Franka FR3](https://franka.de) from 232K procedural environments, no real data
 > - [[2501.03575|Cosmos]] — Pattern B exemplar: WFM platform with 100M curated clips for learned-sim foundation
 > - [[2511.07416|PhysWorld]] — Pattern C exemplar: **82%** real success across 10 tasks via task-conditioned video → physical twin → residual RL
 > - [[2603.04029|Self-Adapting RL]] — Pattern D exemplar: [[2301.04104|DreamerV3]] prediction residuals trigger online world-model + policy fine-tuning
@@ -463,7 +463,7 @@ How these pieces compose into deployable sim-to-real pipelines:
 | Question | Answer |
 |----------|--------|
 | Need a learned video simulator? | [[2310.06114\|UniSim]] (foundational), [[2501.03575\|Cosmos]] (platform), or [[2402.15391\|Genie]] (latent actions) |
-| Need procedural sim at scale? | [[2603.16861\|MolmoBot]] (232K environments, 79.2% real Franka) |
+| Need procedural sim at scale? | [[2603.16861\|MolmoBot]] (232K environments, 79.2% real [Franka](https://franka.de)) |
 | Need photoreal autonomous driving sim? | [[2511.23369\|SimScale]] (3DGS + sim-real co-training) or [[2309.17080\|GAIA-1]] |
 | Need multi-agent sim? | [[2604.18564\|MultiWorld]] (action-identity + global state encoder) |
 | Need domain randomization? | [[2210.13702\|DeXtreme]] (VADR) — auto-DR doubles transfer over hand-tuned |

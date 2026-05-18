@@ -135,7 +135,7 @@ Diffusion is no longer just for images. Masked diffusion models (MDMs) generate 
 The hottest design question in generative AI: can one model both understand and generate across text and images? Unified models replace the pipeline of separate encoders, LLMs, and diffusion decoders with a single architecture that handles all modalities natively. The field splits into two camps: token-based (discretize everything) and hybrid (mix AR for text + diffusion for images).
 
 **Hybrid AR + Diffusion** — Use autoregressive generation for text tokens and diffusion for continuous image patches within a single Transformer, avoiding information loss from discretization.
-- [[2603.03276|Transfusion (2026)]], [[2503.10631|HybridVLA]], [[2501.00289|D-DiT]], [[2412.15188|LMFusion]], [[2412.08635|LatentLM]], [[2408.11039|Transfusion]]
+- [[2603.03276|Beyond LLMs]], [[2503.10631|HybridVLA]], [[2501.00289|D-DiT]], [[2412.15188|LMFusion]], [[2412.08635|LatentLM]], [[2408.11039|Transfusion]]
 
 > [!star] Key Papers
 > - [[2408.11039|Transfusion]] — Pioneered mixing next-token prediction with diffusion loss in one model; outperformed quantization-based approaches in scaling efficiency
@@ -369,7 +369,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2503.21765|Physics Cognition Survey]] — Three-tier Piaget-inspired taxonomy (Basic Schema Perception → Passive Cognition → Active Cognition) for video generators; surveys mechanics/optics/thermal/materials coverage and identifies neuro-symbolic + differentiable physics as future frontiers
 
 **Physical Commonsense Benchmarks** — Evaluation suites that systematically measure whether generated videos obey gravity, optics, thermodynamics, and material properties.
-- [[2512.12756|FysicsWorld]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.02311|PhysVid]], [[2507.15824|PhysVidBench]], [[2506.00022|PHYSICS Dataset]], [[2505.15929|PhyX]], [[2504.02918|Morpheus]], [[2503.06800|VideoPhy-2]], [[2411.13609|VAMP]], [[2410.05363|PhyGenBench]], [[2406.18522|ChronoMagic-Bench]], [[2311.10111|VideoCon]], [[2106.08261|Physion]], [[2012.04293|CRAFT]]
+- [[2512.12756|FysicsWorld]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.02311|IDPP]], [[2507.15824|PhysVidBench]], [[2506.00022|PHYSICS Dataset]], [[2505.15929|PhyX]], [[2504.02918|Morpheus]], [[2503.06800|VideoPhy-2]], [[2411.13609|VAMP]], [[2410.05363|PhyGenBench]], [[2406.18522|ChronoMagic-Bench]], [[2311.10111|VideoCon]], [[2106.08261|Physion]], [[2012.04293|CRAFT]]
 
 > [!star] Key Papers
 > - [[2504.02918|Morpheus]] — 130 real-world Newtonian mechanics videos with hierarchical Discard/Dynamical/Invariance scoring; even SOTA generators (WAN-2.1, COSMOS-predict2) score only 0.52–0.55 vs. real-world's 0.98+
@@ -454,7 +454,7 @@ Foundational work on how diffusion models learn representations, the theoretical
 > - [[2604.16044|DCW]] — Characterizes SNR-t bias in DPMs and applies training-free wavelet-domain differential correction; 42.6% FID reduction on CIFAR-10 with 20 steps
 
 **Theoretical Foundations & Surveys** — Monographs and comprehensive surveys that unify variational, score-based, and flow-based perspectives on diffusion.
-- [[2604.15911|Efficient Video Diffusion Survey]], [[2510.21890|Diffusion Models Principles]], [[2510.09586|VLM Survey 26K]], [[2506.19360|Synthetic Image Privacy SoK]], [[2410.19878|PEFT Methodologies Survey]], [[2403.14608|PEFT Survey 2024]]
+- [[2604.15911|Efficient Video Diffusion Survey]], [[2510.21890|Diffusion Models Principles]], [[2510.09586|VLM Survey 26K]], [[2506.19360|Synthetic Image Privacy SoK]], [[2410.19878|PEFT Methodologies Survey]], [[2403.14608|PEFT Comprehensive Survey]]
 
 > [!star] Key Papers
 > - [[2510.21890|Diffusion Models Principles]] — Definitive monograph from Sony AI, OpenAI, and Stanford unifying all diffusion formulations into a continuous-time framework

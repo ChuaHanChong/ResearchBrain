@@ -186,10 +186,10 @@ Beyond the JEPA lineage, other architectures also predict in latent space for em
 > - [[2504.02792|UWM]] — Unified World Models: single architecture handling action-conditioned, action-free, and video prediction tasks
 
 **Latent-WM Surveys** — Field-defining surveys that taxonomize the latent-prediction landscape.
-- [[2605.00080|WM Robot Survey 2026]], [[2604.16592|Cognition WM Survey]]
+- [[2605.00080|WM Robot Learning Survey]], [[2604.16592|Cognition WM Survey]]
 
 > [!star] Key Papers
-> - [[2605.00080|WM Robot Survey 2026]] — Multi-dimensional taxonomy of world models for robot learning; documents the architectural evolution from decoupled "predict-then-act" to unified VLA/MoE/MoT backbones and **latent-space world modeling** as the dominant integration pattern
+> - [[2605.00080|WM Robot Learning Survey]] — Multi-dimensional taxonomy of world models for robot learning; documents the architectural evolution from decoupled "predict-then-act" to unified VLA/MoE/MoT backbones and **latent-space world modeling** as the dominant integration pattern
 > - [[2604.16592|Cognition WM Survey]] — Cognitive-Architecture-Theory taxonomy spanning Video, Embodied, and Epistemic WMs; identifies motivation and meta-cognition as the most under-developed cognitive functions in current latent WMs
 
 #### 3.1 JEPA Variant Design-Space Matrix

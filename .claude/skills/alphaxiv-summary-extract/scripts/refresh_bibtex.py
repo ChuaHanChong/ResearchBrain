@@ -4,8 +4,8 @@ Refresh the BibTeX block in existing Obsidian notes under a notes directory.
 Reads the arxiv ID from each filename, fetches fresh BibTeX, and updates in-place.
 
 Usage:
-    python refresh_bibtex.py --notes-dir VLA-WAM/KnowledgeHub
-    python refresh_bibtex.py --notes-dir VLA-WAM/KnowledgeHub --ids 2602.15922 2601.16163
+    python refresh_bibtex.py --notes-dir _KnowledgeHub_
+    python refresh_bibtex.py --notes-dir _KnowledgeHub_ --ids 2602.15922 2601.16163
 """
 
 import argparse
@@ -37,7 +37,7 @@ def update_bibtex_in_note(note_path: Path, bibtex: str) -> bool:
 
 def main():
     parser = argparse.ArgumentParser(description="Refresh BibTeX in Obsidian notes")
-    parser.add_argument("--notes-dir", default="VLA-WAM/KnowledgeHub", help="Directory of .md notes")
+    parser.add_argument("--notes-dir", default="_KnowledgeHub_", help="Directory of .md notes")
     parser.add_argument("--ids", nargs="*", help="Specific arxiv IDs to refresh (e.g. 2602.15922)")
     args = parser.parse_args()
 

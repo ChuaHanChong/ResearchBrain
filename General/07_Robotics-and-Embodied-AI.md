@@ -110,7 +110,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2304.13705|ALOHA]] — Low-cost open-source bimanual system; proved co-training on diverse data dramatically improves performance
 
 **Spatial Reasoning for Manipulation** — Leverage 3D point clouds, depth maps, or learned spatial features to improve generalization across camera viewpoints and object arrangements.
-- [[2605.05163|PhysForge]], [[2604.21914|VistaBot]], [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.08534|ActiveGlasses]], [[2604.06778|RichMap]], [[2604.02696|VBGS-SLAM]], [[2603.27967|XVR]], [[2603.13825|Explicit World Model Zero-Shot Manipulation]], [[2603.00905|pySpatial]], [[2602.20901|SpatiaLQA]], [[2602.19063|Direction-aware 3D LMM]], [[2602.18374|ZS-IP]], [[2601.05172|CoV]], [[2512.13660|RoboTracer]], [[2511.05491|VST]], [[2510.12276|Spatial Forcing]], [[2509.18644|State-Free Visuomotor Policy]], [[2503.11089|EmbodiedVSR]], [[2501.10074|SpatialCoT]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]]
+- [[2605.05163|PhysForge]], [[2604.21914|VistaBot]], [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.08534|ActiveGlasses]], [[2604.06778|RichMap]], [[2604.02696|VBGS-SLAM]], [[2603.27967|XVR]], [[2603.13825|Explicit-WM Manipulation]], [[2603.00905|pySpatial]], [[2602.20901|SpatiaLQA]], [[2602.19063|Direction-aware 3D LMM]], [[2602.18374|ZS-IP]], [[2601.05172|CoV]], [[2512.13660|RoboTracer]], [[2511.05491|VST]], [[2510.12276|Spatial Forcing]], [[2509.18644|State-Free Visuomotor Policy]], [[2503.11089|EmbodiedVSR]], [[2501.10074|SpatialCoT]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]]
 
 > [!star] Key Papers
 > - [[2501.10074|SpatialCoT]] — Chain-of-thought reasoning in 3D space; bridges VLM reasoning with spatial manipulation
@@ -212,7 +212,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2602.23648|FAVLA]] — Force-injected fast-slow architecture with adaptive frequency control; **80.8%** SR (+38.0 pp over vision-only)
 
 **Architecture Studies** — Systematic explorations of VLA design choices, scaling laws, and novel architectures.
-- [[2605.11564|RIO]], [[2605.06175|VLA-GSE]], [[2605.04678|Pixels-to-Tokens VLA]], [[2605.03941|iWorld-Bench]], [[2605.02757|VideoTransfer-VLA]], [[2604.24182|M2-VLA]], [[2604.23121|DeLock]], [[2604.20012|EmbodiedMidtrain]], [[2604.19728|VLA Foundry]], [[2604.17896|Physical-Feasibility VLA]], [[2604.17887|StableIDM]], [[2604.03191|Compression Gap]], [[2604.02523|Tune to Learn]], [[2604.01570|FAN Prior]], [[2603.28301|LIBERO-Para]], [[2603.24584|TAG]], [[2603.22078|WAM vs VLA Robustness]], [[2603.16861|MolmoBot]], [[2603.12942|ReMem-VLA]], [[2603.12772|PVI]], [[2603.03596|MEM]], [[2602.20687|NativeEmbodied]], [[2602.17659|CAG]], [[2602.11236|ABot-M0]], [[2601.18692|LingBot-VLA]], [[2601.02456|InternVLA-A1]], [[2512.02834|TACO]], [[2511.18085|Stellar VLA]], [[2511.05275|TwinVLA]], [[2510.22201|ACG]], [[2510.19430|GigaBrain-0]], [[2510.17950|RoboChallenge]], [[2510.13054|VLA-0]], [[2510.10274|X-VLA]], [[2510.09459|FIPER]], [[2510.07077|VLA Robotics Review 2025]], [[2510.05681|MG-Select]], [[2510.04354|SureSim]], [[2509.14889|CollabVLA]], [[2509.11417|VLA Pretrain Preserve]], [[2509.09372|2509.09372]], [[2509.04018|FPC-VLA]], [[2508.19236|MemoryVLA]], [[2507.17049|VLA Uncertainty Eval]], [[2507.10672|VLA Manipulation Survey]], [[2506.19850|UniVLA]], [[2506.17561|VLA-OS]], [[2506.09937|SAFE]], [[2506.00123|VeBrain]], [[2412.14058|RoboVLMs]], [[2412.10345|TraceVLA]], [[2409.03299|RT-1-X SCARA Transfer]]
+- [[2605.11564|RIO]], [[2605.06175|VLA-GSE]], [[2605.04678|Pixels-to-Tokens VLA]], [[2605.03941|iWorld-Bench]], [[2605.02757|VideoTransfer-VLA]], [[2604.24182|M2-VLA]], [[2604.23121|DeLock]], [[2604.20012|EmbodiedMidtrain]], [[2604.19728|VLA Foundry]], [[2604.17896|Physical-Feasibility VLA]], [[2604.17887|StableIDM]], [[2604.03191|Compression Gap]], [[2604.02523|Tune to Learn]], [[2604.01570|FAN Prior]], [[2603.28301|LIBERO-Para]], [[2603.24584|TAG]], [[2603.22078|WAM vs VLA Robustness]], [[2603.16861|MolmoBot]], [[2603.12942|ReMem-VLA]], [[2603.12772|PVI]], [[2603.03596|MEM]], [[2602.20687|NativeEmbodied]], [[2602.17659|CAG]], [[2602.11236|ABot-M0]], [[2601.18692|LingBot-VLA]], [[2601.02456|InternVLA-A1]], [[2512.02834|TACO]], [[2511.18085|Stellar VLA]], [[2511.05275|TwinVLA]], [[2510.22201|ACG]], [[2510.19430|GigaBrain-0]], [[2510.17950|RoboChallenge]], [[2510.13054|VLA-0]], [[2510.10274|X-VLA]], [[2510.09459|FIPER]], [[2510.07077|VLA Robotics Real-World Review]], [[2510.05681|MG-Select]], [[2510.04354|SureSim]], [[2509.14889|CollabVLA]], [[2509.11417|VLA Pretrain Preserve]], [[2509.09372|2509.09372]], [[2509.04018|FPC-VLA]], [[2508.19236|MemoryVLA]], [[2507.17049|VLA Uncertainty Eval]], [[2507.10672|VLA Manipulation Survey]], [[2506.19850|UniVLA]], [[2506.17561|VLA-OS]], [[2506.09937|SAFE]], [[2506.00123|VeBrain]], [[2412.14058|RoboVLMs]], [[2412.10345|TraceVLA]], [[2409.03299|RT-1-X SCARA Transfer]]
 
 > [!star] Key Papers
 > - [[2412.14058|RoboVLMs]] — 600+ experiments systematically testing VLA design choices; the definitive recipe paper
@@ -313,14 +313,14 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 > - [[2509.21309|NewtonGen]] — Embeds physics-informed neural ODEs (linear ODEs + residual MLP) into T2V; explicit Newtonian motion with **0.98** Physical Invariance Score on 12 motion types from only 100 physics-clean clips
 
 **Surveys** — Comprehensive reviews of world model architectures, taxonomies, and design principles.
-- [[2605.12090|WAM Survey]], [[2605.03413|NEO Theorizer]], [[2605.00080|WM Robot Survey 2026]], [[2604.22748|Agentic World Modeling Survey]], [[2604.16592|Cognition WM Survey]], [[2604.04707|OpenWorldLib]], [[2603.28489|Video Gen as WM Survey]], [[2603.25887|WR-Arena]], [[2602.01630|Unified World Model Framework]], [[2511.08585|Visual World Roadmap]], [[2511.02097|WM Manipulation Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.22355|Embodied AI World Modeling]], [[2506.01622|General Agents World Models]], [[2504.04170|Digital Gene]], [[2411.14499|World Models Survey 2024]], [[2407.06886|ARIO]], [[2310.06253|Objective Mismatch MBRL Survey]]
+- [[2605.12090|WAM Survey]], [[2605.03413|NEO Theorizer]], [[2605.00080|WM Robot Learning Survey]], [[2604.22748|Agentic World Modeling Survey]], [[2604.16592|Cognition WM Survey]], [[2604.04707|OpenWorldLib]], [[2603.28489|Video Gen as WM Survey]], [[2603.25887|WR-Arena]], [[2602.01630|Unified World Model Framework]], [[2511.08585|Visual World Roadmap]], [[2511.02097|WM Manipulation Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2509.20021|Embodied AI LLM-WM Survey]], [[2506.22355|Embodied AI World Modeling]], [[2506.01622|General Agents World Models]], [[2504.04170|Digital Gene]], [[2411.14499|World Models Survey]], [[2407.06886|ARIO]], [[2310.06253|Objective Mismatch MBRL Survey]]
 
 - [[2604.23775|VLA Safety Survey]] — First comprehensive review of VLA safety threats, defenses, and evaluation; unifies fragmented adversarial-robustness research
 - [[2510.24795|Efficient VLA Survey]] — First dedicated survey on efficient VLAs
 - [[2509.19012|Pure VLA Survey]] — Taxonomy of VLA action-generation paradigms
-- [[2508.13073|VLA Survey 2025]] — First taxonomy-oriented VLA review
+- [[2508.13073|Large VLM-based VLA Survey]] — First taxonomy-oriented VLA review
 > [!star] Key Papers
-> - [[2411.14499|World Models Survey 2024]] — Most comprehensive world model survey; distinguishes "understanding" vs "predicting" paradigms
+> - [[2411.14499|World Models Survey]] — Most comprehensive world model survey; distinguishes "understanding" vs "predicting" paradigms
 > - [[2602.01630|Unified World Model Framework]] — Argues world model research must go beyond task-specific injection; proposes a unified framework
 
 > [!tip] Video vs Latent
@@ -494,7 +494,7 @@ The data and evaluation infrastructure that makes all the above research possibl
 > - [[2505.11709|EgoDex]] — Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation
 
 **Benchmarks — Simulation** — Standardized simulation environments for reproducible evaluation.
-- [[2605.06311|VISER]], [[2604.11674|AffordSim]], [[2603.15469|RoCo AAAI 2026]], [[2603.12185|ComFree-Sim]], [[2602.22663|CEBench]], [[2511.04831|Isaac Lab]], [[2510.13626|LIBERO-Plus]], [[2506.06677|RoboCerebra]], [[2502.09560|EmbodiedBench]], [[2408.15511|AeroVerse]], [[2406.02523|RoboCasa]], [[2405.05941|SIMPLER]], [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[1909.12271|RLBench]]
+- [[2605.06311|VISER]], [[2604.11674|AffordSim]], [[2603.15469|RoCo Challenge]], [[2603.12185|ComFree-Sim]], [[2602.22663|CEBench]], [[2511.04831|Isaac Lab]], [[2510.13626|LIBERO-Plus]], [[2506.06677|RoboCerebra]], [[2502.09560|EmbodiedBench]], [[2408.15511|AeroVerse]], [[2406.02523|RoboCasa]], [[2405.05941|SIMPLER]], [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[1909.12271|RLBench]]
 
 > [!star] Key Papers
 > - [[2306.03310|LIBERO]] — Lifelong robot learning benchmark; tests continual learning and long-horizon capability
@@ -526,10 +526,10 @@ The data and evaluation infrastructure that makes all the above research possibl
 - [[2501.02765|VLLM Survey]] — visual LLMs for generalized/specialized applications
 - [[2409.15310|Visual Prompting MLLM Survey]] — visual prompting methods for MLLMs
 - [[2407.06886|ARIO / Embodied AI Survey 2024]] — comprehensive survey with ARIO dataset standard
-- [[2405.14093|VLA Survey]] — survey of VLA models for embodied AI
+- [[2405.14093|VLA for Embodied AI Survey]] — survey of VLA models for embodied AI
 - [[2401.03568|Agent AI Survey]] — surveys Agent AI at the intersection of LLMs/VLMs and multimodal interaction
 - [[2301.11972|Social Cues HRI Survey]] — recognizing robot task failures via human social cues
-- [[2103.04918|Embodied AI Survey 2021]] — simulators and research tasks
+- [[2103.04918|Embodied AI Survey]] — simulators and research tasks
 
 > [!tip] The Dataset Hierarchy
 > Start with simulation (RLBench, CALVIN) → scale with in-the-wild data (DROID, OXE) → diagnose with targeted benchmarks (GM-100, LIBERO-Plus).

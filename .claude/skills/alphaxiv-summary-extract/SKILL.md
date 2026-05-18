@@ -75,7 +75,7 @@ Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each
 
 > Do NOT add highlights or bold to Summary, Problem, or Takeaways sections.
 
-##### Canonical Tag Taxonomy (55 tags)
+##### Canonical Tag Taxonomy (61 tags)
 
 > **Single source of truth for the tag vocabulary used across all skills.** `Skill(skill="paper-curate")` references this table for routing — keep tag names exact (renames must propagate). Run `validate-tags` (see `Skill(skill="paper-curate")`) after any change to detect drift.
 
@@ -84,12 +84,20 @@ Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 | Category | Tags |
 |----------|------|
 | **Models/Architectures** | `LLM`, `VLM`, `VLA`, `world-model`, `diffusion`, `vision-transformer`, `mixture-of-experts`, `reward-model`, `generative-model` |
-| **Methods/Techniques** | `reinforcement-learning`, `self-supervised-learning`, `contrastive-learning`, `knowledge-distillation`, `domain-adaptation`, `continual-learning`, `imitation-learning`, `fine-tuning`, `chain-of-thought`, `RLHF`, `meta-learning`, `curriculum-learning`, `in-context-learning`, `self-play`, `flow-matching`, `model-merging` |
+| **Methods/Techniques** | `reinforcement-learning`, `self-supervised-learning`, `contrastive-learning`, `knowledge-distillation`, `domain-adaptation`, `continual-learning`, `imitation-learning`, `fine-tuning`, `chain-of-thought`, `RLHF`, `meta-learning`, `curriculum-learning`, `in-context-learning`, `self-play`, `flow-matching`, `model-merging`, `sim-to-real` |
 | **Training/Scaling** | `pre-training`, `scaling`, `synthetic-data`, `parameter-efficient`, `test-time-scaling` |
-| **Applications** | `robotics`, `autonomous-driving`, `embodied-AI`, `agentic-AI`, `code-generation`, `medical-imaging` |
-| **Tasks/Capabilities** | `reasoning`, `spatial-reasoning`, `visual-grounding`, `planning`, `object-detection`, `segmentation`, `3D-understanding`, `video-understanding`, `image-generation`, `navigation`, `manipulation`, `tool-use` |
-| **Properties/Concerns** | `hallucination`, `efficiency`, `interpretability`, `robustness`, `safety` |
+| **Applications** | `robotics`, `autonomous-driving`, `embodied-AI`, `agentic-AI`, `code-generation`, `medical-imaging`, `humanoid`, `dexterous` |
+| **Tasks/Capabilities** | `reasoning`, `spatial-reasoning`, `visual-grounding`, `planning`, `object-detection`, `segmentation`, `3D-understanding`, `video-understanding`, `image-generation`, `navigation`, `manipulation`, `tool-use`, `tactile`, `egocentric` |
+| **Properties/Concerns** | `hallucination`, `efficiency`, `interpretability`, `robustness`, `safety`, `physics-aware` |
 | **Paper Type** | `survey`, `benchmark` |
+
+**Definitions for the 6 newly-added tags** (added 2026-05-18 after vault-wide audit):
+- `physics-aware` — paper grounds models in physical priors / Newtonian / commonsense physics (methods, datasets, or benchmarks that test physical fidelity)
+- `sim-to-real` — focuses on the simulation-to-real transfer problem (domain randomization, real-to-sim, etc.)
+- `humanoid` — humanoid / whole-body / bipedal robot platforms
+- `dexterous` — multi-finger / dexterous manipulation (vs. parallel-jaw)
+- `tactile` — touch / force / haptic sensing (GelSight, DIGIT, visuo-tactile)
+- `egocentric` — first-person / hand-cam / Ego4D-style data and pretraining
 
 #### Report results
 

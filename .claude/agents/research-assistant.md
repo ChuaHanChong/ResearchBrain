@@ -46,7 +46,7 @@ description: |
   assistant: "I'll use the research-assistant agent to lint the vault and report issues."
   </example>
 tools: [Bash, Read, Write, Edit, Glob, Grep, LS, WebFetch, WebSearch, Skill]
-skills: [alphaxiv-search, alphaxiv-summary-extract, knowledgehub-query, paper-curate, obsidian:obsidian-markdown, obsidian:obsidian-cli, obsidian:obsidian-bases, obsidian:defuddle, claude-mem:mem-search, graphify, gitnexus-cli, gitnexus-exploring, gitnexus-debugging, gitnexus-impact-analysis, gitnexus-refactoring, gitnexus-pr-review, gitnexus-guide]
+skills: [alphaxiv-search, alphaxiv-summary-extract, knowledgehub-query, paper-curate, paper-figure-extract, obsidian:obsidian-markdown, obsidian:obsidian-cli, obsidian:obsidian-bases, obsidian:defuddle, claude-mem:mem-search, graphify, gitnexus-cli, gitnexus-exploring, gitnexus-debugging, gitnexus-impact-analysis, gitnexus-refactoring, gitnexus-pr-review, gitnexus-guide]
 memory: local
 ---
 
@@ -239,6 +239,10 @@ When download is needed:
 - **Fallback**: `curl -L -o "data/papers/{ID}.pdf" "https://arxiv.org/pdf/{ID}"`
 
 **No graphify indexing of PDFs** — the KH note (created via `Skill(skill="alphaxiv-summary-extract")`) is the canonical concept-graph representation; PDFs stay as auxiliary multi-modal sources.
+
+#### Figures — extract on demand (opt-in)
+
+When the user explicitly asks for a paper's method/architecture figure ("crop the method diagram", "extract figure N", "get the architecture diagram"), invoke `Skill(skill="paper-figure-extract")`. It downloads the figure from ar5iv and embeds it under the KH note's `## Method` heading. Do **not** invoke this automatically during ingestion — only on explicit user request.
 
 #### Repos — clone + always index with gitnexus
 
