@@ -93,7 +93,7 @@ The field evolved through three overlapping phases. **Phase 1 — Force as auxil
 | 2026 | [[2604.28156\|FlexiTac]] | Tactile sensor | $30 FPC piezoresistive plug-in skin; 8×16 to 32×32 layouts at 100Hz |
 
 > [!tip] Three Phases, One Architectural Convergence
-> Across all three phases, the field converged on the same architectural pattern: **force gets its own encoder, its own attention path, and its own gated expert** — never naive concatenation with visual tokens. From [[2507.09160|Tactile-VLA]]'s force-aware action expert to [[2505.22159|ForceVLA]]'s FVLMoE to [[2603.15169|ForceVLA2]]'s Cross-Scale MoE, the consistent finding is that contact dynamics require dedicated parameters that activate phase-aware (free-space vs in-contact). See [[03_VLA]] §7 for how this fits the broader VLA design space.
+> Across all three phases, the field converged on the same architectural pattern: **force gets its own encoder, its own attention path, and its own gated expert** — never naive concatenation with visual tokens. From [[2507.09160|Tactile-VLA]]'s force-aware action expert to [[2505.22159|ForceVLA]]'s FVLMoE to [[2603.15169|ForceVLA2]]'s Cross-Scale MoE, the consistent finding is that contact dynamics require dedicated parameters that activate phase-aware (free-space vs in-contact). See [[03_VLA#7. Multi-Sensor & Force-Aware VLAs]] for how this fits the broader VLA design space.
 
 ---
 
@@ -103,63 +103,86 @@ The field evolved through three overlapping phases. **Phase 1 — Force as auxil
 
 ### 1. Design-Space Principles
 
-Three orthogonal axes define every force-aware/tactile policy.
+> [!info] Survey Anchor
+> [[2504.03515|Dexterous IL Survey]] (2025) is the standing reference for the broader landscape this note carves out: it systematically reviews Behavioral Cloning, IRL, GAIL, Hierarchical IL, and Continual IL applied to dexterous manipulation; surveys end-effector hardware (simple grippers → multi-fingered anthropomorphic hands) and emphasises tactile sensing as a critical modality; details teleoperation systems and learning-from-video data acquisition; and catalogues the persistent open problems (data sparsity, generalization gaps, sim-to-real, real-time control, safety). When the present note discusses where force/tactile enters a *contact-rich VLA*, the survey covers the parallel question of how IL methods *more broadly* incorporate the same sensing modality.
 
-> [!success] The Three Axes
-> - **Sensor modality**: extrinsic 6-axis F/T at wrist (cheap, coarse) → high-coverage tactile skin (rich, hardware-heavy) → vision-tactile fingertip (continuous pre→post contact)
-> - **Where force enters the model**: at controller (admittance) / at action head (force-aware expert) / at VLM (force prompts) / at all three ([[2603.15169|ForceVLA2]])
-> - **Pretraining strategy**: scratch policy on demonstrations / pretrain a tactile encoder unsupervised / pretrain a video generator with force prompts then attach action head
+Every force-aware/tactile policy commits to three orthogonal choices — *what sensor*, *where the force signal enters the model*, and *how the model is pretrained*. The interesting work in the cluster lives at the intersection of these axes; the axes themselves are *almost* independent (e.g. you can pair any sensor with any entry point), but specific combinations win specific contact regimes. The sub-sections below treat each axis as a separate decision dimension.
 
-#### Axis 1 — Sensor Modality
+#### 1.1 Sensor Modality — What Force Signal You Can Even Measure
 
-| Modality | Information | Cost | Example |
-|----------|-------------|------|---------|
-| **6-axis F/T at wrist** | Aggregated force/torque vector; coarse spatial info | $200-2k off-the-shelf | [[2505.06451\|Adaptive Wiping]], [[2505.22159\|ForceVLA]], [[2603.15169\|ForceVLA2]] |
-| **High-coverage tactile skin** | Dense contact pressure map across end-effector | $10-30 (DIY) to $thousands | [[2509.18830\|DexSkin]], [[2604.28156\|FlexiTac]] |
-| **Vision-tactile fingertip** | Continuous pre-contact vision + post-contact deformation | Mid-range ($100s) | [[2604.20689\|FingerEye]] |
-| **Predicted tactile** (no sensor) | Diffusion-generated tactile trajectory; controller-translated | Compute-only | [[2603.05687\|CGP]] |
+==The upstream choice that bounds everything downstream.== Sensors range from coarse aggregated F/T at the wrist (cheap, ubiquitous) to dense per-taxel skin (rich, hardware-bound). The richer the sensor, the higher the data-scale floor before a policy generalizes.
 
-#### Axis 2 — Where Force Enters the Model
+- **[[2505.06451|Adaptive Wiping]]**, **[[2505.22159|ForceVLA]]**, **[[2603.15169|ForceVLA2]]** — ==6-axis F/T at wrist==: aggregated force/torque vector, **$200–2k** off-the-shelf; coarse spatial info but immediately deployable.
+- **[[2509.18830|DexSkin]]**, **[[2604.28156|FlexiTac]]** — ==high-coverage tactile skin==: dense contact pressure map across end-effector; **$10–30 DIY** to **thousands** for high-fidelity capacitive variants.
+- **[[2604.20689|FingerEye]]** — ==vision-tactile fingertip==: continuous pre-contact vision + post-contact deformation in one sensor; mid-range cost (~$100s) but closes the contact-discontinuity gap.
+- **[[2603.05687|CGP]]** — ==predicted tactile, no sensor==: diffusion-generated tactile trajectory translated to controller targets; compute-only, but adds long-horizon drift risk.
 
-| Entry point | Mechanism | Example |
-|-------------|-----------|---------|
-| **At low-level controller** | Hybrid position-force / admittance control over policy output | [[2505.06451\|Adaptive Wiping]], [[2507.09160\|Tactile-VLA]], [[2510.13324\|FARM]] |
-| **At action head** | Force-aware action expert / dedicated F/T encoder feeding action expert | [[2507.09160\|Tactile-VLA]], [[2505.22159\|ForceVLA]], [[2602.23648\|FAVLA]] |
-| **At MoE gating** | Force-aware MoE / Cross-Scale MoE routes between phase-specialized experts | [[2505.22159\|ForceVLA]], [[2603.15169\|ForceVLA2]] |
-| **At contact-aware token gating** | Tactile tokens activated only on contact onset | [[2603.12665\|TacVLA]] |
-| **At force-grounded latent (VQ-VAE)** | Tactile sequence aligned to force latent in shared codebook | [[2601.20321\|TaF-VLA]] |
-| **At VLM (as prompt)** | Force readings tokenized and fed to VLM for long-horizon force-aware planning | [[2603.15169\|ForceVLA2]] |
-| **As predicted/distilled signal** | Tactile token predicted from vision/state — no sensor at inference | [[2603.15257\|HapticVLA]] |
-| **At video backbone** | Force conditioning of video generator (pre-action stage) | [[2505.19386\|Force Prompting]] |
+#### 1.2 Where Force Enters the Model — The Integration Axis
 
-#### Axis 3 — Pretraining Strategy
+==The architectural choice that determines whether force is a first-class modality or a bolted-on side-channel.== The same F/T stream can be injected at the controller, the action head, the MoE gating, or the VLM prompt — and the field has converged on *late fusion above the visual backbone* as the canonical recipe.
 
-| Strategy | Trade-off | Example |
-|----------|-----------|---------|
-| **From-scratch on contact demos** | Sample-efficient per task; brittle across tasks | [[2505.06451\|Adaptive Wiping]] |
-| **Unsupervised tactile encoder pretrain** | VAE/contrastive on exploratory contact; reusable representation | [[2505.06451\|Adaptive Wiping]] (VAE), [[2603.05687\|CGP]] (KL-VAE) |
-| **SSL touch foundation model** | Frozen/finetuned encoder reusable across tasks via [[2111.06377\|MAE]]/[[2104.14294\|DINO]]/JEPA over **460k–1M** unlabeled contacts | [[2410.24090\|Sparsh]], [[2506.14754\|Sparsh-X]] |
-| **VLA fine-tune with force expert** | Inherits VLM generalization + adds force capacity via dedicated parameters | [[2507.09160\|Tactile-VLA]], [[2505.22159\|ForceVLA]], [[2603.15169\|ForceVLA2]], [[2602.23648\|FAVLA]], [[2603.12665\|TacVLA]] |
-| **Force-grounded latent alignment** | VQ-VAE binds tactile streams to force codebook; plug-and-play across sensors | [[2601.20321\|TaF-VLA]] |
-| **Sensor-free distillation** | Teacher uses tactile sensors, student distills to inference without them | [[2603.15257\|HapticVLA]] |
-| **Force-conditioned video pretraining** | Latent physical understanding from video; transfers via action head | [[2505.19386\|Force Prompting]] |
+- **[[2505.06451|Adaptive Wiping]]**, **[[2507.09160|Tactile-VLA]]**, **[[2510.13324|FARM]]** — ==at low-level controller==: hybrid position-force / admittance control regulates the policy's output; simplest and most data-efficient when reference force is known.
+- **[[2507.09160|Tactile-VLA]]**, **[[2505.22159|ForceVLA]]**, **[[2602.23648|FAVLA]]** — ==at action head==: dedicated F/T encoder feeds a force-aware action expert; preserves pretrained VLM representations.
+- **[[2505.22159|ForceVLA]]**, **[[2603.15169|ForceVLA2]]** — ==at MoE gating==: force-aware MoE / Cross-Scale MoE routes between phase-specialized experts (free-space vs in-contact).
+- **[[2603.12665|TacVLA]]** — ==at contact-aware token gating==: tactile tokens activated *only* on contact onset; prevents free-space noise injection.
+- **[[2601.20321|TaF-VLA]]** — ==at force-grounded latent==: tactile sequence aligned to force latent via VQ-VAE codebook; plug-and-play across sensors.
+- **[[2603.15169|ForceVLA2]]** — ==at VLM (as prompt)==: force readings tokenized as linguistic prompts feeding the VLM for long-horizon force-aware planning.
+- **[[2603.15257|HapticVLA]]** — ==as predicted/distilled signal==: tactile token predicted from vision/state — no sensor needed at inference.
+- **[[2505.19386|Force Prompting]]** — ==at video backbone==: force conditioning of video generator at the pre-action stage; force-aware *world modeling* rather than control.
+
+#### 1.3 Pretraining Strategy — Where Generalization Comes From
+
+==The data-axis choice that determines whether a contact policy survives task variation.== Options run from per-task from-scratch (sample-efficient, brittle) to SSL touch foundation models pretrained on **460k–1M** unlabeled contacts (data-hungry, transferable).
+
+- **[[2505.06451|Adaptive Wiping]]** — ==from-scratch on contact demos==: sample-efficient per task; brittle across tasks.
+- **[[2505.06451|Adaptive Wiping]] (VAE)**, **[[2603.05687|CGP]] (KL-VAE)** — ==unsupervised tactile encoder pretrain==: VAE/contrastive on exploratory contact; reusable representation within a task family.
+- **[[2410.24090|Sparsh]]**, **[[2506.14754|Sparsh-X]]** — ==SSL touch foundation model==: frozen/finetuned encoder reusable across tasks via [[2111.06377|MAE]] / [[2104.14294|DINO]] / JEPA over **460k–1M** unlabeled contacts.
+- **[[2507.09160|Tactile-VLA]]**, **[[2505.22159|ForceVLA]]**, **[[2603.15169|ForceVLA2]]**, **[[2602.23648|FAVLA]]**, **[[2603.12665|TacVLA]]** — ==VLA fine-tune with force expert==: inherits VLM generalization + adds force capacity via dedicated parameters.
+- **[[2601.20321|TaF-VLA]]** — ==force-grounded latent alignment==: VQ-VAE binds tactile streams to a force codebook; plug-and-play across sensors and student backbones.
+- **[[2603.15257|HapticVLA]]** — ==sensor-free distillation==: teacher uses tactile sensors during training, student distills to inference without them.
+- **[[2505.19386|Force Prompting]]** — ==force-conditioned video pretraining==: latent physical understanding from video; transfers to control via downstream action head.
+
+**[Design-Space — Decision Matrix]**
+
+| Need | Recommendation |
+|---|---|
+| Known reference force, single contact-rich task (wiping, polishing, insertion) | Closed-loop admittance at controller — [[2505.06451\|Adaptive Wiping]] |
+| Multi-stage task with free-space → contact transitions | Force-aware MoE — [[2505.22159\|ForceVLA]], [[2603.15169\|ForceVLA2]] |
+| Dense per-taxel contact info (in-hand reorient, fragile grasp) | Hardware first — [[2509.18830\|DexSkin]], [[2604.28156\|FlexiTac]] before policy architecture |
+| Continuous pre→post-contact perception (alignment, insertion approach) | Vision-tactile fingertip — [[2604.20689\|FingerEye]] |
+| Reusable tactile encoder across tasks | SSL touch foundation — [[2410.24090\|Sparsh]] / [[2506.14754\|Sparsh-X]] |
+| Inference-time deployment without tactile sensor | Sensor-free distillation — [[2603.15257\|HapticVLA]] |
+| Cross-sensor portability for tactile signal | Force-grounded latent — [[2601.20321\|TaF-VLA]] |
+| Bootstrap physical priors from video pretraining | Force-conditioned video generator — [[2505.19386\|Force Prompting]] |
+
+> [!star] Key Design-Space Papers
+> - [[2603.15169|ForceVLA2]] — The only architecture to integrate force at *all three* axis-2 entry points simultaneously (controller + MoE + VLM prompt); demonstrates the cluster's architectural ceiling at **66%** avg SR, **+48pp** over [[2410.24164|π0]]
+> - [[2505.22159|ForceVLA]] — The canonical late-fusion design — the field's most-copied template for treating F/T as a first-class modality through a dedicated expert and phase-aware gating
+> - [[2410.24090|Sparsh]] — The cluster's pretraining-axis founder; **460k** unlabeled tactile images + ==TacBench== established that the touch analog of [[2304.07193|DINOv2]] beats end-to-end training by **~95.1%** average
 
 > [!tip] Picking by Constraint
-> If your task has a known reference force (wiping, polishing, insertion with known tolerance), use **closed-loop admittance over the action head** ([[2505.06451|Adaptive Wiping]]) — simplest and most data-efficient. If the task is multi-stage with free-space → contact transitions, use a **force-aware MoE** ([[2505.22159|ForceVLA]], [[2603.15169|ForceVLA2]]) so the gating switches experts at contact onset. If the task requires dense per-taxel contact info (in-hand reorientation, fragile grasping), the bottleneck is **sensor hardware** ([[2509.18830|DexSkin]], [[2604.28156|FlexiTac]]) before the policy architecture matters.
+> If your task has a known reference force (wiping, polishing, insertion with known tolerance), use **closed-loop admittance over the action head** ([[2505.06451|Adaptive Wiping]]) — simplest and most data-efficient. If the task is multi-stage with free-space → contact transitions, use a **force-aware MoE** ([[2505.22159|ForceVLA]], [[2603.15169|ForceVLA2]]) so the gating switches experts at contact onset. If the task requires dense per-taxel contact info (in-hand reorientation, fragile grasping), the bottleneck is **sensor hardware** ([[2509.18830|DexSkin]], [[2604.28156|FlexiTac]]) before the policy architecture matters. See [[03_VLA#7. Multi-Sensor & Force-Aware VLAs]] for how the multi-modal entry-point taxonomy fits the broader VLA design space, and [[11_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for sensor-side calibration needed before any of these axes generalize.
 
 ---
 
 ### 2. Tactile Sensors as a Sensing Modality
 
-Hardware is the upstream bottleneck for the entire field. Until 2025, dense tactile sensing meant either expensive GelSight-style optical tactile sensors (slow, bulky, single-fingertip) or hand-rolled piezoresistive arrays (brittle, inconsistent across instances). The three sensor papers below attack this bottleneck on three different fronts.
+Hardware is the upstream bottleneck. Until 2025, dense tactile sensing meant expensive GelSight-style optical sensors (slow, bulky, single-fingertip) or hand-rolled piezoresistive arrays (brittle, inconsistent). Three sensor papers attack this bottleneck on different fronts — high-coverage skin, affordable open-source FPC, and continuous vision-tactile.
 
-- [[2604.28156|FlexiTac]], [[2604.20689|FingerEye]], [[2509.18830|DexSkin]]
+- **[[2509.18830|DexSkin]]** — ==Conformable capacitive skin== with parallel-plate grid; **294° coverage** at 60 taxels; **1.7 kPa** sensitivity, **6.52%** hysteresis, **2.09%** drift / 500 cycles. The breakthrough is ==pneumatic pressure calibration==: without it, policy transfer across instances collapses to **5/20** SR; with it, recovers to **14/20**. Downstream: **19/20** perturbed pen reorient (baselines **0/20**), **90%** contact-pressure reduction on berries via residual RL.
+- **[[2604.28156|FlexiTac]]** — Fully open-source, ==$30/unit FPC piezoresistive sensor== with Arduino Nano + multiplexer at **100 Hz**; layouts 8×16 to 32×32. Key insight: ==direct electrode etching== on FPC substrate (vs hand-wiring) drops fabrication to ~5 min/pad; narrow inter-electrode slots act as ==compliance hinges==. ==Kelvin-Voigt calibration== between real/simulated tactile signals enables sim-to-real RL fine-tune — one of the few open-source sensors with a documented sim-to-real story.
+- **[[2604.20689|FingerEye]]** — ==Continuous vision-tactile fingertip== (28×25.4×26 mm) integrating ==binocular RGB cameras==, compliant soft ring, transparent AprilTag acrylic cover. PnP-tracked 6D pose of AprilTag layout proxies 6D contact wrench: force **[4.30, 4.22, 9.93] mN**, torque **[0.32, 0.13, 8.55] mN-m**. Crucial property is *continuity* — vision sees alignment *before* contact, transitions seamlessly to tactile deformation *after*; **+30%** SR over wrist-camera-only baselines.
 
-**[[2509.18830|DexSkin]]** demonstrates the high-coverage frontier: a soft, conformable capacitive electronic skin with a parallel-plate grid design wrapping a fingertip with **294° coverage** at 60 taxels. The hardware story is impressive — **1.7 kPa sensitivity**, **6.52% hysteresis**, **2.09% drift over 500 cycles**, **1.48% crosstalk** — but the more important contribution is the **pneumatic pressure calibration** that enables policy transfer across hardware instances. Without consistent calibration, a policy trained on one [[2509.18830|DexSkin]] instance fails on a replaced sensor (5/20 success); with calibration, it recovers to 14/20. This calibration step is what makes tactile policies *deployable* rather than per-sensor research artifacts. Applied downstream: 19/20 success in perturbed in-hand pen reorientation (baselines: 0/20) and **90% reduction** in contact pressure on artificial berries via residual RL.
+**[Tactile Sensors — Decision Matrix]**
 
-**[[2604.28156|FlexiTac]]** attacks affordability and manufacturability: a fully open-source, $30/unit FPC-based piezoresistive sensor with Arduino Nano + multiplexer readout streaming at **100 Hz**. Layouts span 8×16 to 32×32 taxels. The key engineering insight: directly etching electrodes onto Flexible Printed Circuit substrate (rather than hand-wiring) reduces fabrication time per pad to ~5 minutes and standardizes geometry. Narrow slots between FPC electrodes act as compliance hinges, improving sensitivity. The Kelvin-Voigt calibration model between real and simulated tactile signals enables sim-to-real RL fine-tuning — making [[2604.28156|FlexiTac]] one of the few open-source sensors with a documented sim-to-real story.
-
-**[[2604.20689|FingerEye]]** takes a third path: continuous vision-tactile sensing through a compact wedge-shaped fingertip (28.0×25.4×26.0 mm) integrating **binocular RGB cameras**, a compliant soft ring, and a transparent AprilTag-laden acrylic cover. The PnP-tracked 6D pose of the AprilTag layout serves as a proxy for 6D contact wrench, giving force sensitivity down to **[4.30, 4.22, 9.93] mN** and torque to **[0.32, 0.13, 8.55] mN-m**. The crucial property is *continuity*: vision-only fingertip cameras see object alignment *before* contact, then transition seamlessly to tactile deformation *after* contact — bridging the gap that pure F/T-at-wrist sensors leave. Policies built on [[2604.20689|FingerEye]] achieve **+30% higher success rates** over wrist-camera-only baselines.
+| Need | Recommendation |
+|---|---|
+| High-coverage skin for in-hand reorientation / fragile grasping | [[2509.18830\|DexSkin]] — capacitive grid, **294° coverage**, pneumatic calibration required for cross-instance transfer |
+| Open-source, budget-friendly piezoresistive pad with sim-to-real path | [[2604.28156\|FlexiTac]] — **$30/unit** FPC + Kelvin-Voigt calibration; lowest barrier for community adoption |
+| Continuous pre→post-contact sensing for alignment-then-contact tasks | [[2604.20689\|FingerEye]] — binocular vision-tactile fingertip; **+30%** SR over wrist-cam-only |
+| Frozen tactile encoder for label-scarce downstream tasks (unimodal) | [[2410.24090\|Sparsh]] — SSL on **460k** tactile images; latent-SSL beats pixel reconstruction; ships with TacBench |
+| Multisensory tactile fusion (image + audio + IMU + pressure) | [[2506.14754\|Sparsh-X]] — attention-bottleneck fusion at **~1M** contacts; **+500%** plug-insertion vs vision-only |
+| Coarse aggregated F/T only (wrist-mounted) — sensor secondary | Pair with [[2505.22159\|ForceVLA]]-style policy compensation; sensor sets the eventual ceiling |
 
 > [!star] Key Papers
 > - [[2509.18830|DexSkin]] — High-coverage conformable capacitive skin; the **pneumatic calibration → policy transfer** insight is the breakthrough, enabling deployment beyond single-instance research demos
@@ -171,20 +194,17 @@ Hardware is the upstream bottleneck for the entire field. Until 2025, dense tact
 
 #### 2.1 Touch Foundation Models — SSL Representations on Tactile Streams
 
-A parallel research thread to better sensors: learn **general-purpose tactile representations** from large unlabeled tactile data via self-supervision, then re-use the encoder across downstream tasks. This is the touch analog of [[2304.07193|DINOv2]] for images — and the same lesson holds: a pretrained, frozen tactile encoder beats end-to-end task-specific training by a wide margin once labels are scarce.
+A parallel thread to better sensors: learn ==general-purpose tactile representations== via SSL on large unlabeled tactile data, then reuse the frozen encoder downstream. The touch analog of [[2304.07193|DINOv2]] — and the same lesson holds: pretrained frozen encoder beats end-to-end task-specific training by a wide margin once labels are scarce.
 
-- [[2506.14754|Sparsh-X]], [[2410.24090|Sparsh]]
-
-[[2410.24090|Sparsh]] is the foundational paper. The team curated **~460,000 unlabeled tactile images** from heterogeneous vision-based tactile sensors and trained a family of Vision-Transformer encoders under three SSL objectives — ==[[2111.06377|MAE]]== (pixel reconstruction), ==[[2104.14294|DINO]]/[[2304.07193|DINOv2]]== (self-distillation in latent space), and ==JEPA== (joint-embedding predictive). They also introduced ==TacBench== — the first standardized benchmark over six diverse tactile tasks (force estimation, slip detection, pose estimation, grasp stability, textile recognition, manipulation planning). The headline result: [[2410.24090|Sparsh]] encoders outperform end-to-end trained baselines by **~95.1% on average**, with the gap widening sharply when labeled data is scarce. The structural finding mirrors V-JEPA: **latent-space SSL beats pixel reconstruction** — [[2410.24090|Sparsh]] ([[2104.14294|DINO]]) and [[2410.24090|Sparsh]] (JEPA) consistently outperform [[2410.24090|Sparsh]] ([[2111.06377|MAE]]), with policies trained on [[2410.24090|Sparsh]] representations achieving **20-53% greater traversal distances** on a real-robot bead-maze task than end-to-end policies.
-
-[[2506.14754|Sparsh-X]] generalizes the recipe to **multisensory touch**. Where [[2410.24090|Sparsh]] fused only vision-based tactile pixels, [[2506.14754|Sparsh-X]] jointly encodes **four tactile modalities** (image, audio, IMU/motion, pressure) from Digit 360 sensors using ==attention bottlenecks== — a transformer architecture explicitly designed for cross-modal tactile fusion. The dataset scales to **~1 million unlabeled contact interactions** collected from a robot hand plus a manual picker tool, and training uses teacher-student distillation in the SSL spirit. Downstream impact: **+17%** higher accuracy on physical-property estimation (normal force, material-quantity), **+500%** improvement in plug-insertion success over vision-only policies (reaching 90%) and **+63%** over tactile-image-only, plus **90%** reduction in vertical drift on in-hand rotation. This is the cleanest demonstration that *multimodal* touch — not just pixel-based vision-tactile — is what unlocks the contact-rich frontier.
+- **[[2410.24090|Sparsh]]** — Foundational SSL touch encoder family on **~460k** unlabeled tactile images across heterogeneous vision-based sensors; ViT trained under ==[[2111.06377|MAE]]== (pixel reconstruction), ==[[2104.14294|DINO]]/[[2304.07193|DINOv2]]== (self-distillation), and ==JEPA== (joint-embedding). Introduces ==TacBench== — first benchmark over 6 tactile tasks (force estimation, slip detection, pose, grasp stability, textile recognition, planning). Beats end-to-end baselines by **~95.1%** avg; latent-SSL ([[2104.14294|DINO]]/JEPA) consistently beats pixel reconstruction ([[2111.06377|MAE]]); bead-maze policies show **+20–53%** traversal vs end-to-end.
+- **[[2506.14754|Sparsh-X]]** — Multisensory generalization: jointly encodes **4 tactile modalities** (image + audio + IMU + pressure) from Digit 360 via ==attention bottlenecks==; scales to **~1M** unlabeled contacts; teacher-student SSL distillation. Downstream: **+17%** physical-property estimation, **+500%** plug-insertion (reaching **90%**) vs vision-only, **+63%** vs tactile-image-only, **90%** in-hand rotation drift reduction — the cleanest demonstration that *multimodal* touch unlocks the contact-rich frontier.
 
 > [!star] Key Papers
 > - [[2410.24090|Sparsh]] — Foundational SSL touch encoder family across [[2111.06377|MAE]]/[[2104.14294|DINO]]/JEPA on **460k** unlabeled tactile images; introduces ==TacBench==; outperforms end-to-end baselines by **~95.1%** on average; established that *latent-space SSL beats pixel reconstruction* for tactile representations
 > - [[2506.14754|Sparsh-X]] — Multisensory touch foundation model fusing image + audio + IMU + pressure via attention bottlenecks on **~1M** contact interactions; **+500%** plug insertion over vision-only; the multimodal extension of [[2410.24090|Sparsh]]
 
 > [!tip] Tactile Pretraining ≈ Visual Pretraining
-> The [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] result is the touch analog of the [[2304.07193|DINOv2]] lesson: a frozen, SSL-pretrained tactile encoder amortizes data-labeling cost across the entire downstream task family. The architectural pattern matches the broader latent-prediction wins documented in [[05_Latent-World-Models]] — JEPA-style objectives generalize from RGB to tactile streams, and from unimodal to multisensory. The implication for force-aware VLAs: tactile encoders below should be *pretrained Sparsh-X-style*, not trained from scratch per task. Most VLAs in §3 still do the latter — an obvious upgrade path.
+> The [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] result is the touch analog of the [[2304.07193|DINOv2]] lesson: a frozen, SSL-pretrained tactile encoder amortizes data-labeling cost across the entire downstream task family. The architectural pattern matches the broader latent-prediction wins documented in [[05_Latent-World-Models#3. Broader Latent Prediction Landscape]] — JEPA-style objectives generalize from RGB to tactile streams, and from unimodal to multisensory. The implication for force-aware VLAs: tactile encoders below should be *pretrained Sparsh-X-style*, not trained from scratch per task. Most VLAs in §3 still do the latter — an obvious upgrade path.
 
 ---
 
@@ -194,44 +214,63 @@ A parallel research thread to better sensors: learn **general-purpose tactile re
 
 ### 3. Force-Conditioned VLA Architectures
 
-The core of the cluster. Three landmark VLA architectures — **[[2507.09160|Tactile-VLA]]** (force as augmented action space), **[[2505.22159|ForceVLA]]** (force-aware MoE), **[[2603.15169|ForceVLA2]]** (cross-scale MoE + force prompts) — define the design space. Plus a fourth strand of refinement-level VLAs ([[2511.18960|AVA-VLA]], [[2508.10333|ReconVLA]], [[2502.14420|ChatVLA]]) that contribute attention, grounding, or training-curriculum innovations directly applicable to force-aware settings.
+The core of the cluster. Force-aware VLAs cluster along *where* force enters the network — the action head, an MoE gating module, a latent-aligned adapter, a refinement layer that handles the human/recovery loop, or upstream as video-generation conditioning. The sub-sections below treat each entry-point as a distinct architectural axis, with the bullet-per-paper detail showing how multiple groups have explored the same axis with different design choices.
 
-- [[2603.15257|HapticVLA]], [[2603.15169|ForceVLA2]], [[2603.12665|TacVLA]], [[2602.23648|FAVLA]], [[2601.20321|TaF-VLA]], [[2511.18960|AVA-VLA]], [[2510.13324|FARM]], [[2508.10333|ReconVLA]], [[2507.09160|Tactile-VLA]], [[2505.22159|ForceVLA]], [[2502.14420|ChatVLA]]
+#### 3.1 Force-Aware Action Heads
 
-#### 3.1 Force as Augmented Action Space — [[2507.09160|Tactile-VLA]]
+The most direct integration: force enters at the action expert (or its controller), giving the policy a hybrid position-force output space. These papers preserve the pretrained VLM backbone and add force capacity through dedicated parameters at the action stage.
 
-[[2507.09160|Tactile-VLA]] is the cleanest formulation: a multi-modal transformer fuses vision, language, and 6-axis tactile inputs through a pre-trained VLM backbone, then a **force-aware action expert** outputs augmented action vectors specifying both target position *and* target contact force. A **hybrid position-force controller** below then regulates both. Crucially, [[2507.09160|Tactile-VLA]] also adds a **Chain-of-Thought reasoning module** fine-tuned on failure events: when force feedback indicates a physical-interaction problem ("blackboard wiping with insufficient force"), the model diagnoses the issue and autonomously generates corrective instructions, adapting force from 3.5N to 6.7N. Real-world results: **90%** on Charger task vs 25-40% baselines; **90%** OOD fragile paper-box grasping; **80%** zero-shot blackboard wiping vs 0-15% baselines.
+- **[[2507.09160|Tactile-VLA]]** — ==Multi-modal transformer== fusing vision + language + ==tactile inputs== via ==pre-trained VLM backbone==; ==force-aware action expert== outputs augmented action vectors (position *and* contact force) regulated by a ==hybrid position-force controller==. CoT failure recovery autonomously adjusts force **3.5N → 6.7N**: **90%** Charger (vs 25–40% baselines), **90%** OOD fragile paper-box grasping, **80%** zero-shot blackboard wiping (vs 0–15%). The cleanest formulation of the axis — the field's reference implementation.
+- **[[2602.23648|FAVLA]]** — ==Fast-slow VLA==: slow VLM backbone for semantic reasoning + high-frequency ==Force-Injected Action Expert== with force adapters across multiple transformer layers. A VLM-predicted ==force variance head== dynamically raises the action-expert's execution frequency during contact. **80.8%** avg SR (**+38pp** over vision-only, **+13.8pp** over the strongest force-aware baseline); reduces peak contact force to **7.7N** on Gear Assembly.
+- **[[2510.13324|FARM]]** — ==Diffusion policy== with explicit force action: predicts robot pose, grip width, *and* target grip force, conditioned on high-dimensional tactile force distributions; dual-mode controller switches position-control in free space and closed-loop force-control during contact. **100%** success on dynamic screw-tightening and superior human-demonstration force matching.
+- **[[2603.15257|HapticVLA]]** — ==Sensor-free deployment== via ==Safety-Aware Reward-Weighted Flow Matching==: teacher (with tactile sensors during training) distills tactile awareness into a student that predicts a compact tactile token from vision+state at inference — **no physical tactile sensor needed**. **86.7%** mean SR on fragile-object pick-and-place; **+45pp** absolute gain on egg manipulation over [[2506.01844|SmolVLA]].
+- **[[2603.12665|TacVLA]]** — ==Contact-aware token gating==: tactile tokens activated *only* on contact onset, preventing free-space noise injection; lightweight MLP tactile encoder keeps the architecture compact. **83.75%** avg SR on disassembly; **>60%** SR under severe visual occlusion (vs ~30% for vision-only).
 
-#### 3.2 Force as First-Class Modality with MoE Routing — [[2505.22159|ForceVLA]]
+#### 3.2 Force-Aware Mixture-of-Experts
 
-[[2505.22159|ForceVLA]] generalizes [[2507.09160|Tactile-VLA]]'s insight into a **Force-aware Mixture-of-Experts (FVLMoE)** module: 6-axis F/T readings flow into separate expert modules, then a gating network learns *when* to rely on the force expert vs the visual expert. During free-space motion the visual expert dominates; during contact (insertion, polishing) the force expert takes over — **phase-aware action generation**. This is the clearest demonstration of the field's core architectural finding: **late-fusion of force after VLM encoding outperforms early concatenation**, because the pretrained VLM representations are preserved rather than diluted with raw F/T noise. Numbers: **60.5% avg SR** across 5 contact-rich tasks (vs 37.3% for [[2410.24164|π0]] + force concat); **90% success under partial visual occlusion**; **20% success on highly unstable socket insertion**. Ablations confirm: full FVLMoE 80% on a key task, simpler concatenation 60%, early fusion much worse. The accompanying **ForceVLA-Data** (244 trajectories with synchronized vision/proprioception/F/T) is one of the first publicly available force-aware datasets.
+Force-aware MoE goes beyond a single force-aware action head: a learned gating module routes between phase-specialized experts (free-space vs in-contact), so the network *switches* parameters as the task transitions. This is the field's core architectural recipe for multi-stage contact-rich tasks.
 
-#### 3.3 Hybrid Force-Position Control + Force Prompts — [[2603.15169|ForceVLA2]]
+- **[[2603.15169|ForceVLA2]]** — Current SOTA. Pushes force awareness up to the VLM via ==force-based prompts== ("apply firm contact while inserting") and below to a ==Cross-Scale MoE== that adaptively fuses VLM guidance with real-time F/T for ==closed-loop hybrid force-position regulation==. Probabilistic subtask-transition modeling + flow-matching policy: **66%** avg SR across 5 contact-rich tasks (**+48pp** over [[2410.24164|π0]], **+31pp** over [[2505.22159|ForceVLA]]); Cross-Scale MoE alone contributes **+26%** — confirming *where* force is integrated matters more than whether.
+- **[[2505.22159|ForceVLA]]** — The canonical late-fusion design: ==Force-aware Mixture-of-Experts (FVLMoE)== with 6-axis F/T flowing into separate expert modules; gating network learns when to rely on force vs visual expert (visual dominates free-space, force dominates contact) — ==phase-aware action generation==. **60.5%** avg SR (vs 37.3% for [[2410.24164|π0]] + force concat), **90%** under partial visual occlusion, **20%** on highly-unstable socket insertion. Full FVLMoE **80%** on key task vs **60%** for concatenation; **ForceVLA-Data** (244 trajectories with synchronized vision/proprioception/F/T) is one of the first publicly available force-aware datasets.
 
-[[2603.15169|ForceVLA2]] is the successor architecture and current SOTA. It pushes force awareness up to the VLM level via **force-based prompts**: the VLM expert reads explicit force prompts ("apply firm contact while inserting") and produces long-horizon, force-aware task plans. Below it, the action expert uses a **Cross-Scale MoE** that adaptively fuses high-level VLM guidance with real-time interaction forces, enabling **closed-loop hybrid force-position regulation**. The dual-level architecture explicitly separates "what should I do given the force prompt" (VLM scale) from "how should I modulate my action given the current F/T reading" (action-expert scale). Probabilistic modeling of subtask transitions + flow-matching policy for force-aware action generation gives **66% avg SR across 5 contact-rich tasks** — a striking **+48pp over [[2410.24164|π0]]** and **+31pp over [[2505.22159|ForceVLA]]**. Ablations: Cross-Scale MoE provides the largest single contribution (**+26%**), confirming that *where in the architecture* force is integrated matters more than whether it's integrated.
+#### 3.3 Force-Grounded Tactile Alignment
 
-#### 3.4 Force-Grounded Tactile Alignment — [[2601.20321|TaF-VLA]]
+A distinct architectural slot: rather than aligning tactile signals to *visual* embeddings (treating touch as visual texture), these papers ground tactile observations directly in *physical interaction forces* via a learned latent space. The result is a plug-and-play adapter that ports across tactile sensors and downstream policies.
 
-[[2601.20321|TaF-VLA]] occupies a distinct slot in the design space: most tactile VLAs align tactile signals to *visual* embeddings (treating touch as another visual texture), but [[2601.20321|TaF-VLA]] grounds tactile observations directly in *physical interaction forces*. The team built an automated TaF-Device to collect a **TaF-Dataset of >10M synchronized tactile-force pairs** across multiple Vision-Based Tactile Sensors — the largest synchronized tactile-force corpus to date. A ==TaF-Adapter== then aligns tactile sequences with force signals in a shared latent space via ==VQ-VAE== plus ==temporal encoding== (essential for distinguishing static deformation vs incipient slip). The adapter is frozen and plugged into a VLA backbone, where force-aligned tactile representations interleave with vision-language features and proprioception. Result: **64.8% avg SR** on contact-rich tasks vs **37.1%** for vision-only and **42.8%** for tactile-vision-aligned baselines — and the adapter generalizes zero-shot to unseen tactile sensors (**60.3%** SR) and improves ACT/Diffusion Policy baselines by **6.7–33.3%** as a drop-in module. This makes [[2601.20321|TaF-VLA]] the clearest demonstration that the *grounding signal* (forces, not visual textures) is what matters for tactile-VLA performance — and arguably the most-deployable tactile-VLA component currently available, since it's plug-and-play.
+- **[[2601.20321|TaF-VLA]]** — Automated TaF-Device collected a **>10M**-pair synchronized tactile-force corpus across multiple Vision-Based Tactile Sensors — the largest to date. ==TaF-Adapter== aligns tactile sequences with force signals in a shared latent via ==VQ-VAE== + ==temporal encoding== (essential for static deformation vs incipient slip); frozen adapter plugs into a VLA backbone. **64.8%** avg SR (vs **37.1%** vision-only, **42.8%** tactile-vision-aligned); **60.3%** zero-shot on unseen tactile sensors; **+6.7–33.3%** drop-in gain on ACT/Diffusion Policy baselines. The clearest evidence that *grounding tactile in physical force* (not visual texture) is what unlocks VLA contact-rich performance.
+- **[[2605.14571|MTNet]]** (+ ==AMTNet== companion) — Cross-domain ==visuo-tactile alignment== via dual-stream projection into a unified latent with multi-level constraints (probabilistic + feature + geometric); Centered Kernel Alignment **~0.74** between modalities. **AMTNet** then generalizes to *human* hands by aligning human visual representations to the robot's pre-established visuo-tactile manifold *without human tactile ground truth* — enabling robots to physically respond to observed human touches (e.g., a "flick response") from vision alone. Distinct from [[2605.13083|TouchAnything]] in that the supervision is structural alignment rather than dense pressure-map regression.
 
-#### 3.5 Additional Force-Aware VLA Variants
+#### 3.4 Force-Aware Human-Intervention & Refinement Layers
 
-A growing cluster of follow-on VLAs explores adjacent design choices to the three landmarks above. None redefine the design space, but each contributes a focused architectural variation worth knowing.
+A complementary architectural layer: rather than redesigning the action head, these papers wrap a VLA backbone with a refinement loop — human-in-the-loop intervention, recurrent belief state, reconstructive supervision, or phased curriculum — whose mechanism plugs cleanly into force-aware settings even when the original paper targets vision.
 
-- [[2605.15157|HandITL]] tackles the **dexterous human-intervention** problem orthogonally to force conditioning: seamless human takeover of a bimanual 56-DoF hand-arm VLA via VR controllers + data gloves. The key engineering insight is ==optimization-based relative hand retargeting== — tracking hand-configuration *changes* from the intervention timestamp rather than absolute pose — which reduces command discontinuities ("gesture jumps") by **99.8%** on the Bread Clip task. A ==velocity-based shared arm control== translates wrist motion into smoothed residual twists. Fine-tuning the VLA on the collected on-policy intervention data outperforms fine-tuning on equivalent volumes of pure teleop data — the clearest demonstration that *targeted corrective demos at policy-induced failure states* are more informative than off-policy demonstrations.
-- [[2602.23648|FAVLA]] adds a **fast-slow temporal axis**: a slow VLM backbone for semantic reasoning runs at low frequency, while a ==Force-Injected Action Expert== runs at high frequency with force adapters injected into multiple transformer layers. A VLM-predicted ==force variance head== dynamically adjusts the action-expert's execution frequency — running more often during contact. Achieves **80.8% avg SR** on contact-rich tasks (+38pp over vision-only, +13.8pp over the strongest force-aware baseline) and substantially reduces peak contact forces (e.g., 7.7N for Gear Assembly).
-- [[2603.12665|TacVLA]] introduces a ==contact-aware gating module== that only activates tactile tokens when physical contact is detected, preventing noise injection during free-space phases. The lightweight MLP-based tactile encoder keeps the architecture compact. Achieves **83.75% avg SR** on disassembly tasks and remains robust under severe visual occlusion (>60% SR vs ~30% for vision-only).
-- [[2603.15257|HapticVLA]] explores the sensor-free deployment direction: a ==Safety-Aware Reward-Weighted Flow Matching== teacher (which uses tactile sensors during training) distills tactile awareness into a student VLA that predicts a compact tactile token from vision and state at inference — **no physical tactile sensor needed at deployment**. Achieves **86.7% mean SR** on fragile-object pick-and-place, including a 45pp absolute gain on egg manipulation over [[2506.01844|SmolVLA]].
-- [[2510.13324|FARM]] takes a different route — a ==diffusion policy== that explicitly predicts robot pose, grip width, *and* target grip force as its action space, conditioned on high-dimensional tactile force distributions. A dual-mode controller switches between position control in free space and closed-loop force control during contact. Demonstrates **100%** success on dynamic screw-tightening (challenging for any baseline) and superior force matching to human demonstrations.
-- [[2605.14571|MTNet]] attacks the **cross-domain visuo-tactile alignment** problem by translating cortical-alignment principles from neuroscience. The dual-stream architecture projects vision and tactile inputs into a unified latent space with multi-level alignment constraints (probabilistic + feature + geometric), reaching a Centered Kernel Alignment of **~0.74** between modalities. The companion **AMTNet** then generalizes to *human* hands by aligning human visual representations to the robot's pre-established visuo-tactile manifold *without human tactile ground truth* — enabling robots to physically respond to observed human touches (e.g., a "flick response") from vision alone. Distinct from [[2605.13083|TouchAnything]] in that the supervision is structural alignment rather than dense pressure-map regression.
+- **[[2605.15157|HandITL]]** — Seamless human takeover of a bimanual 56-DoF hand-arm VLA via VR controllers + data gloves. ==Optimization-based relative hand retargeting== tracks configuration *changes* from intervention timestamp rather than absolute pose — reduces command discontinuities ("gesture jumps") by **99.8%** on Bread Clip; ==velocity-based shared arm control== smooths wrist-motion residuals. Fine-tuning the VLA on collected on-policy intervention data outperforms equivalent-volume pure teleop — *targeted corrective demos at policy-induced failure states* beat off-policy demonstrations.
+- **[[2511.18960|AVA-VLA]]** — Reformulates VLA as a ==POMDP== with recurrent state encoding belief over past observations + actions. The recurrent state directly accommodates *force history* — natural fit for tasks where current force is meaningless without context ("am I still pressing, or did I just transition into free space?"). The ==Active Visual Attention== module also generalizes to "active force attention" (no published paper does this yet).
+- **[[2508.10333|ReconVLA]]** — ==Reconstructive learning on visual gaze regions==; the same training signal generalizes to reconstructive learning on contact regions, forcing the model to encode precise tactile information. The diffusion-transformer denoiser trained on visual tokens is architecturally close to [[2603.05687|CGP]]'s tactile-trajectory denoiser.
+- **[[2502.14420|ChatVLA]]** — ==Phased Alignment Training== (two-stage curriculum: control first, then multimodal understanding) — directly applicable to force-aware VLAs that risk losing visual generalization when fine-tuned heavily on contact-rich demonstrations. The control-expert / understanding-expert MoE split is the conceptual parent of [[2505.22159|ForceVLA]]'s FVLMoE.
 
-#### 3.6 Refinement-Level Architectures Applicable to Force-Aware Settings
+#### 3.5 Force as Video-Generation Conditioning
 
-Three VLAs not built specifically for force-aware tasks contribute components directly usable here:
+A category-of-one frontier: rather than feeding force *into* a policy, force is used to *condition video generation*, then video predictions bootstrap downstream policies. This is force-aware *world modeling* rather than force-aware control — the entry-point lives upstream of the action stack entirely. Single-paper sub-section here because no other published work has attempted force-as-generation-conditioning; explicitly a frontier slot.
 
-- [[2511.18960|AVA-VLA]] reformulates VLA as a POMDP with a recurrent state encoding belief over past observations and actions. Applied to force-aware tasks, the recurrent state can encode *force history* — a natural fit for tasks where the current force is meaningless without recent context (e.g., "am I still pressing, or did I just transition into free space?"). The Active Visual Attention module also generalizes to "active force attention" — though no published paper does this yet.
-- [[2508.10333|ReconVLA]] uses reconstructive learning on visual gaze regions; the same training signal generalizes to reconstructive learning on contact regions, forcing the model to encode precise tactile information. The diffusion-transformer denoiser trained on visual tokens is architecturally close to [[2603.05687|CGP]]'s tactile-trajectory denoiser.
-- [[2502.14420|ChatVLA]] introduces **Phased Alignment Training** (two-stage curriculum: control first, then multimodal understanding) — directly applicable to force-aware VLAs that risk losing visual generalization when fine-tuned heavily on contact-rich demonstrations. The control-expert / understanding-expert MoE split is the conceptual parent of [[2505.22159|ForceVLA]]'s FVLMoE.
+- **[[2505.19386|Force Prompting]]** — Adapts ==CogVideoX== via [[2302.05543|ControlNet]] to accept ==physics-based force prompts== (global wind + localized point pokes); trained on **15–23k** synthetic Blender + [[2404.13026|PhysDreamer]] videos. Emergent ==intuitive mass understanding== — lighter objects move farther than heavier, displacement scales linearly with force; beats text-only and trajectory baselines in human eval. Proves pretrained video generators encode latent physical force understanding activatable with minimal synthetic data. *Open opportunity*: force-conditioned video pretrain → attach force-aware action head remains unexecuted.
+
+**[Force-Conditioned Architectures — Decision Matrix]**
+
+| Need | Recommendation |
+|---|---|
+| Hybrid position-force action expert, simplest integration | [[2507.09160\|Tactile-VLA]] — force in augmented action space + hybrid controller |
+| Adaptive execution frequency under contact | [[2602.23648\|FAVLA]] — fast-slow VLA with force-variance-triggered cadence |
+| Force-aware diffusion with explicit force output | [[2510.13324\|FARM]] — predicts pose+grip+force; **100%** dynamic screw-tightening |
+| Inference-time deployment *without* tactile sensor | [[2603.15257\|HapticVLA]] — flow-matching distillation; **86.7%** fragile-object SR |
+| Gate tactile tokens *only* on contact onset | [[2603.12665\|TacVLA]] — contact-aware token gating; **83.75%** disassembly SR |
+| Multi-stage task with free-space → contact transitions | [[2603.15169\|ForceVLA2]] (SOTA, **66%** SR) or [[2505.22159\|ForceVLA]] (canonical, **60.5%** SR) |
+| Cross-sensor portability via force-grounded latent | [[2601.20321\|TaF-VLA]] — VQ-VAE on **10M** tactile-force pairs; **60.3%** zero-shot |
+| Cross-domain (robot ↔ human) visuo-tactile alignment | [[2605.14571\|MTNet]] + AMTNet — CKA **~0.74**; vision-only human-touch response |
+| Human-in-the-loop intervention + on-policy refinement | [[2605.15157\|HandITL]] — relative retargeting, **99.8%** gesture-jump reduction |
+| Recurrent belief over force history | [[2511.18960\|AVA-VLA]] — POMDP recurrent state (force-specific variant pending) |
+| Phased curriculum to avoid VLM forgetting under force fine-tuning | [[2502.14420\|ChatVLA]] — control-first, then understanding |
+| Force-as-pretraining-signal for downstream policy | [[2505.19386\|Force Prompting]] — only force-conditioned video generator extant |
 
 > [!star] Key Papers
 > - [[2603.15169|ForceVLA2]] — Cross-Scale MoE + force prompts; current SOTA for force-aware VLA at **66%** avg SR, **+48pp** over [[2410.24164|π0]]
@@ -240,26 +279,8 @@ Three VLAs not built specifically for force-aware tasks contribute components di
 > - [[2601.20321|TaF-VLA]] — Force-grounded tactile alignment via VQ-VAE on **10M** tactile-force pairs; the cleanest demonstration that *grounding tactile in physical force* (not visual texture) is what unlocks VLA contact-rich performance; plug-and-play with **6.7-33.3%** gain on ACT/Diffusion Policy baselines
 > - [[2502.14420|ChatVLA]] — Phased Alignment Training + control/understanding MoE; the architectural parent of force-aware MoE designs
 
-> [!tip] Late Fusion Beats Early Concatenation
-> Across [[2507.09160|Tactile-VLA]], [[2505.22159|ForceVLA]], and [[2603.15169|ForceVLA2]], the consistent finding is that force/tactile features should be integrated **after** the VLM has produced its visual-language embedding — never as a raw concatenated stream at the input. Early concatenation dilutes the pretrained VLM representations and underperforms late fusion by 10-20pp on contact-rich benchmarks. The architectural pattern: visual+language → VLM → action expert with force-aware MoE gating that consumes a separately-encoded F/T stream.
-
----
-
-### 4. Force as Generation Conditioning
-
-A complementary track: rather than feeding force *into* a policy, use force to *condition video generation*, then use the video predictions to train downstream policies. This is force-aware *world modeling* rather than force-aware control.
-
-- [[2505.19386|Force Prompting]]
-
-[[2505.19386|Force Prompting]] adapts CogVideoX (a state-of-the-art video diffusion model) with a [[2302.05543|ControlNet]] architecture to accept **force prompts** as physics-based control signals — both global wind forces and localized point pokes. Trained on 15-23k synthetic videos from Blender + [[2404.13026|PhysDreamer]], the model generalizes to diverse real-world scenes. The striking emergent property: an **intuitive understanding of mass** — perceived lighter objects move farther than heavier ones under the same applied force, with displacement scaling linearly with force magnitude. Generation realism outperforms text-only and trajectory-based controls in human evaluations.
-
-Why this matters for force-aware policies: [[2505.19386|Force Prompting]] demonstrates that pretrained video generators already encode latent physical understanding of forces — and that understanding can be activated with minimal synthetic data. Combined with a downstream VLA action head, force-conditioned video pretraining offers a path to bootstrap physical intuition without expensive force-instrumented teleoperation data. See [[07_Physics-Aware-Embodied-AI]] §3 for the broader physics-conditioned video-generation track and [[04_WAM]] for WAM augmentation patterns.
-
-> [!star] Key Papers
-> - [[2505.19386|Force Prompting]] — First to use physics-based force signals (point pokes + global wind) as video-generation control; trained on **15-23k** synthetic videos, generalizes to real scenes with emergent mass-awareness
-
-> [!tip] Generation vs Control
-> [[2505.19386|Force Prompting]] answers a different question than [[2507.09160|Tactile-VLA]]/[[2505.22159|ForceVLA]]: "what would happen if I applied this force?" rather than "what force should I apply right now?". The natural pipeline is to combine them — pretrain on force-conditioned generation, then attach a force-aware action head. No published work has executed this combination yet (open opportunity).
+> [!tip] Generation vs Control — The Unbuilt Pipeline
+> [[2505.19386|Force Prompting]] answers *"what would happen if I applied this force?"*; [[2507.09160|Tactile-VLA]] and [[2505.22159|ForceVLA]] answer *"what force should I apply right now?"*. The two halves compose: pretrain on force-conditioned generation to absorb mass/dynamics priors, then attach a force-aware action head for control. No published work has executed this end-to-end yet. See [[07_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation]] for the broader physics-conditioned video-generation track and [[04_WAM#5. VLM-Integrated WAMs]] for the WAM augmentation patterns that would host the action head.
 
 ---
 
@@ -267,52 +288,97 @@ Why this matters for force-aware policies: [[2505.19386|Force Prompting]] demons
 
 *Contact-rich manipulation benchmarks and where force-aware policies still fail.*
 
-### 5. Contact-Rich Manipulation Benchmarks and Visuotactile Policies
+### 4. Contact-Rich Manipulation Benchmarks and Visuotactile Policies
 
-The downstream targets of all this work. Contact-rich tasks — wiping, polishing, insertion, in-hand reorientation, fragile grasping, multi-finger jar opening — define the benchmarks the field is racing against.
+The downstream targets of all this work. Contact-rich tasks — wiping, polishing, insertion, in-hand reorientation, fragile grasping, multi-finger jar opening — define the benchmarks the field is racing against. The papers below cluster along three contribution axes: ==vision-to-tactile prediction== from egocentric data (closes the tactile-supervision bottleneck), ==contact-grounded policies== built around generative tactile forecasts, and ==long-horizon memory== that turns single-contact policies into sustained-contact ones.
 
-- [[2605.13083|TouchAnything]], [[2603.05687|CGP]], [[2505.06451|Adaptive Wiping]], [[2508.19236|MemoryVLA]]
+#### 4.1 Vision-to-Tactile Prediction — Closing the Supervision Bottleneck
 
-**[[2605.13083|TouchAnything]] (EgoTouch)** opens a new dataset axis: **vision-to-tactile prediction from egocentric video alone**. The dataset (20 hr, multi-view egocentric + bimanual 3D hand pose + dense pressure maps) trains a multi-view fusion model that infers bimanual tactile pressure maps from RGB, eliminating the need for instrumented teleoperation rigs. ==View dropout training== reduces the ego-only inference penalty from **−27.20% → −5.78%** Volumetric IoU, making the model deployable when only the head-mounted camera is available. This is the first dataset to bridge egocentric VLA pretraining and *dense* tactile supervision — establishing that the vision-to-touch prediction objective benefits from scaling in the same way visual representations do.
+==The pretraining-axis breakthrough for the benchmark frontier.== Contact-rich tasks have been data-starved because instrumented teleoperation rigs are expensive; predicting tactile from RGB unlocks egocentric-scale supervision.
 
-[[2505.06451|Adaptive Wiping]] is the cleanest contact-rich benchmark: wiping a deformable sponge across surfaces of unknown height with unknown sponge stiffness. The recipe — pretrained VAE on exploratory F/T contact + few-shot imitation + closed-loop F/T feedback — achieves **100% contact** and applies **96% of the human-demonstrated reference force** across 40 scenarios with unseen heights and sponge properties. Baselines tell the story: open-loop IL gets 4% reference force; admittance control gets 42% (constant force, no adaptation). The takeaway: closed-loop force feedback + a learned object representation is data-efficient and generalizes — but only within tightly-scoped contact-rich tasks. It does not give you a generalist policy.
+- **[[2605.13083|TouchAnything]] (EgoTouch)** — ==Vision-to-tactile prediction== from egocentric video alone; **20 hr** multi-view egocentric + bimanual 3D hand pose + dense pressure maps; multi-view fusion infers bimanual tactile pressure maps from RGB. ==View dropout training== reduces ego-only inference penalty from **−27.20% → −5.78%** Volumetric IoU. First dataset bridging egocentric VLA pretraining and *dense* tactile supervision; **+6.1%** Volumetric IoU over ego-only baseline.
 
-[[2603.05687|CGP]] (Contact-Grounded Policy) takes a more ambitious route: predict coupled future trajectories of **both** robot state and **expected tactile feedback** via a conditional diffusion model, then translate these into controller-executable targets via a learned contact-consistency mapping. A KL-regularized VAE compresses tactile observations into a compact latent space for stable long-horizon forecasts. [[2603.05687|CGP]] outperforms visuomotor and visuotactile diffusion-policy baselines across 5 complex tasks including jar opening and in-hand box flipping, with tight alignment between predicted and observed tactile signals. The key architectural insight: **predicting tactile trajectories alongside state trajectories** forces the diffusion model to internalize contact dynamics, producing physically consistent rollouts.
+#### 4.2 Contact-Grounded Policies — Generative Tactile Forecasts as Policy Anchors
 
-[[2508.19236|MemoryVLA]] contributes the long-horizon piece: a **Perceptual-Cognitive Memory Bank** (PCMB) storing both low-level perceptual details (recent F/T readings, contact events) and high-level cognitive semantics (task progress) over extended horizons. On real-world long-horizon temporal tasks, [[2508.19236|MemoryVLA]] achieves **+26pp gain** over CogACT-Large with only **+3.6% latency** and **+0.8 GB GPU memory**. For force-aware tasks specifically, the PCMB is a natural home for force history — "did I already press this button, and how hard?" — though [[2508.19236|MemoryVLA]] is not yet specialized for force-aware settings.
+==The architectural answer to "how do you ground a contact-rich policy without an OXE-scale corpus".== Three complementary strategies: pretrained encoder + closed-loop F/T (sample-efficient), diffusion over coupled state+tactile (long-horizon), and MoE-with-curriculum (generalist coverage).
 
-[[2502.14420|ChatVLA]] though primarily a unified VLA, demonstrates strong contact-rich manipulation results across 25 real-world tasks via its MoE-with-Phased-Alignment recipe, suggesting that even general-purpose VLAs can handle a substantial fraction of contact-rich tasks with the right training curriculum.
+- **[[2505.06451|Adaptive Wiping]]** — ==VAE-pretrained-on-exploratory-F/T + few-shot IL + closed-loop F/T==: deformable-sponge wiping under unseen heights/stiffnesses; **100%** contact, **96%** reference force across 40 scenarios; vs **4%** open-loop IL and **42%** admittance baselines. The cleanest data-efficient contact-rich benchmark — bounded to tightly-scoped tasks.
+- **[[2603.05687|CGP]]** — ==Conditional diffusion over coupled state + tactile trajectories==; ==KL-regularized VAE== compresses tactile observations to a compact latent for stable long-horizon forecasts. Outperforms visuomotor and visuotactile diffusion baselines on **5** complex tasks (jar opening, in-hand box flipping); tight alignment between predicted and observed tactile signals.
+- **[[2502.14420|ChatVLA]]** — ==MoE + Phased Alignment Training== as a *generalist* contact-rich baseline: strong results across **25** real-world tasks, showing that even general-purpose VLAs can absorb a substantial fraction of contact-rich tasks with the right training curriculum.
+
+#### 4.3 Long-Horizon Memory — Sustained-Contact Reasoning
+
+==The temporal-axis missing piece for force-aware tasks.== Current force is meaningless without history ("am I still pressing, or did I just transition into free space?"). Memory architectures from broader VLA work plug in directly.
+
+- **[[2508.19236|MemoryVLA]]** — ==Perceptual-Cognitive Memory Bank (PCMB)== dual-memory architecture: low-level perceptual details (recent F/T readings, contact events) + high-level cognitive semantics (task progress). **+26pp** gain over [[2503.22020|CogACT]]-Large on real-world long-horizon temporal tasks with only **+3.6%** latency and **+0.8 GB** GPU memory. Not yet force-specialized but the architecture maps cleanly onto force history.
+
+**[Contact-Rich Benchmarks — Decision Matrix]**
+
+| Need | Recommendation |
+|---|---|
+| Pretraining tactile supervision *without* instrumented teleoperation | [[2605.13083\|TouchAnything]] — vision-to-tactile prediction from egocentric RGB |
+| Single contact-rich task with known reference force | [[2505.06451\|Adaptive Wiping]] — closed-loop F/T + VAE; **96%** reference force |
+| Long-horizon multi-contact task (jar opening, in-hand flip) | [[2603.05687\|CGP]] — diffusion over coupled state + tactile |
+| Generalist VLA covering many contact-rich tasks at once | [[2502.14420\|ChatVLA]] — MoE + Phased Alignment across **25** tasks |
+| Sustained contact requiring force-history reasoning | [[2508.19236\|MemoryVLA]] — PCMB dual-memory (force-history specialization pending) |
+| Bench against OXE-scale corpus for contact-rich tasks | **(no such benchmark exists yet)** — see [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] |
 
 > [!star] Key Papers
 > - [[2605.13083|TouchAnything]] — Multi-view egocentric + dense bimanual tactile dataset (**20 hr**) and vision-to-tactile prediction framework; **+6.1%** Volumetric IoU over ego-only; view dropout closes ego-only inference gap to **−5.78%**; first bridge between egocentric video pretraining and dense tactile supervision
-> - [[2603.05687|CGP]] — Generative contact grounding via diffusion over coupled state+tactile trajectories; outperforms visuomotor/visuotactile diffusion baselines on 5 complex contact-rich tasks (jar opening, in-hand box flipping)
+> - [[2603.05687|CGP]] — Generative contact grounding via diffusion over coupled state+tactile trajectories; outperforms visuomotor/visuotactile diffusion baselines on **5** complex contact-rich tasks (jar opening, in-hand box flipping)
 > - [[2505.06451|Adaptive Wiping]] — Few-shot IL + F/T feedback + VAE object representation; **100% contact**, **96% reference force** under unseen heights/sponges; the cleanest contact-rich benchmark to date
 
 > [!tip] Benchmark Frontier
-> Most contact-rich benchmarks today (ForceVLA-Data, ForceVLA2-Dataset, [[2505.06451|Adaptive Wiping]] scenarios) involve hundreds to ~1k trajectories on 5-25 task variants. None approach the scale of [[2310.08864|OXE]] (1M+ trajectories). Until we have an "[[2310.08864|OXE]] for contact-rich tasks," force-aware policy performance will be bounded by data scale, not architecture. See [[02_Dataset-Benchmark-Environment]] for the broader benchmark landscape.
+> Most contact-rich benchmarks today (ForceVLA-Data, ForceVLA2-Dataset, [[2505.06451|Adaptive Wiping]] scenarios) involve hundreds to ~1k trajectories on 5–25 task variants. None approach the scale of [[2310.08864|OXE]] (**1M+** trajectories). Until an "[[2310.08864|OXE]] for contact-rich tasks" exists, force-aware policy performance is bounded by *data scale*, not *architecture* — which is why [[2605.13083|TouchAnything]]'s vision-to-tactile prediction path matters disproportionately: it bypasses the instrumented-teleoperation cost ceiling. See [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the broader benchmark landscape and [[09_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the scaling-law evidence underwriting this argument.
 
 ---
 
-### 6. Open Problems & Failure Modes
+### 5. Open Problems & Failure Modes
 
-Despite the architectural convergence, the cluster has unresolved bottlenecks:
+Despite the architectural convergence in §3, the force-aware cluster has unresolved bottlenecks. The seven problems split cleanly into three categories: *data & calibration* (the corpora and sensor-calibration infrastructure that doesn't yet exist), *architecture & tokenization* (how to feed continuous F/T into VLM-scale backbones), and *deployment & failure recovery* (millisecond-fast contact transitions that current reasoning latencies can't match).
 
-- **Cross-sensor transfer remains brittle**: A policy trained with one [[2509.18830|DexSkin]] instance needs pneumatic calibration to transfer to another — and that's the *good* case. Cross-sensor-modality transfer ([[2509.18830|DexSkin]] → [[2604.28156|FlexiTac]]) is essentially untested. [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] address representation-level portability via SSL, and [[2601.20321|TaF-VLA]] reports **60.3%** zero-shot transfer across unseen tactile sensors via force-grounded alignment — but these are early signs, not solutions. Until calibration generalizes across sensor *types*, every new robot platform restarts data collection from scratch.
+#### 5.1 Data & Calibration
 
-- **No "[[2310.08864|OXE]] for force-aware tasks"**: [[2505.22159|ForceVLA]]'s ForceVLA-Data (244 trajectories) and [[2603.15169|ForceVLA2]]'s 1,000-trajectory dataset are the largest publicly available force-instrumented datasets. Orders of magnitude smaller than cross-embodiment visual datasets. The bottleneck is the cost of force-instrumented teleoperation rigs.
+The data scarcity is the dominant root cause: no force-aware OXE, no cross-sensor calibration protocol, and no vision-tactile-language pretraining corpus at web scale.
 
-- **Force prompts vs force signals as VLM input**: [[2603.15169|ForceVLA2]] uses force *prompts* (linguistic descriptions of force at the VLM); [[2507.09160|Tactile-VLA]] feeds raw tactile signals into the VLM through tokenization. Neither approach is clearly superior across all tasks. The right tokenization scheme for continuous F/T at VLM scale is unresolved.
+- **==Cross-sensor transfer remains brittle==** — A policy trained with one [[2509.18830|DexSkin]] instance needs ==pneumatic calibration== to transfer to another — and that's the *good* case. Cross-sensor-modality transfer ([[2509.18830|DexSkin]] → [[2604.28156|FlexiTac]]) is essentially untested. [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] address representation-level portability via SSL, and [[2601.20321|TaF-VLA]] reports **60.3%** zero-shot transfer across unseen tactile sensors via ==force-grounded alignment== — early signs, not solutions.
+- **==No "[[2310.08864|OXE]] for force-aware tasks"==** — [[2505.22159|ForceVLA]]'s ForceVLA-Data (**244 trajectories**) and [[2603.15169|ForceVLA2]]'s **1,000-trajectory** dataset are the largest publicly available force-instrumented datasets — orders of magnitude smaller than cross-embodiment visual datasets. The bottleneck is the cost of force-instrumented teleoperation rigs.
+- **==Vision-tactile temporal alignment==** — [[2604.20689|FingerEye]] highlights a subtle issue — vision and tactile streams have different latencies and sampling rates (vision: **30Hz**; tactile: **100Hz-1kHz**). Naive concatenation introduces phase errors at contact onset. Continuous sensors like [[2604.20689|FingerEye]] sidestep this by ==unifying modalities at the sensor level==, but discrete vision+tactile pairs need careful temporal calibration.
 
-- **Failure recovery from tactile signals**: [[2507.09160|Tactile-VLA]]'s CoT-from-tactile is impressive but covers only ~3-5 failure modes in the published work. Generalizing to open-set failure recovery requires either (a) larger failure datasets or (b) reasoning models that can synthesize recovery strategies without explicit failure-mode supervision — see [[06_Self-Evolving-VLA-WAM]] for the broader self-correction landscape.
+#### 5.2 Architecture & Tokenization
 
-- **Contact prediction stability**: [[2603.05687|CGP]] grounds policies on predicted tactile trajectories, but diffusion-predicted tactile signals can drift over long horizons. Closed-loop re-grounding (predict, execute, re-predict) is the natural fix but adds latency and hasn't been systematically studied.
+How should continuous force / tactile signal enter a VLM-scale backbone? The literature has bifurcated into prompts-vs-signals, with neither winning, and contact prediction itself drifts over long horizons.
 
-- **Vision-tactile temporal alignment**: [[2604.20689|FingerEye]] highlights a subtle issue — vision and tactile streams have different latencies and sampling rates (vision: 30Hz; tactile: 100Hz-1kHz). Naive concatenation introduces phase errors at contact onset. Continuous sensors like [[2604.20689|FingerEye]] sidestep this by unifying modalities at the sensor level, but discrete vision+tactile pairs need careful temporal calibration.
+- **==Force prompts vs force signals as VLM input==** — [[2603.15169|ForceVLA2]] uses force *prompts* (linguistic descriptions of force at the VLM); [[2507.09160|Tactile-VLA]] feeds raw tactile signals into the VLM through ==tokenization==. Neither approach is clearly superior across all tasks. The right tokenization scheme for continuous F/T at VLM scale is unresolved.
+- **==Contact prediction stability==** — [[2603.05687|CGP]] grounds policies on predicted tactile trajectories, but diffusion-predicted tactile signals can drift over long horizons. ==Closed-loop re-grounding== (predict, execute, re-predict) is the natural fix but adds latency and hasn't been systematically studied.
 
-- **Force-aware reasoning latency**: [[2507.09160|Tactile-VLA]]'s CoT failure recovery adds 1-3s of inference latency per recovery — fine for blackboard wiping (slow task), too slow for fast pick-and-place. The latency-quality trade-off seen in the broader VLA reasoning literature ([[08_VLA-Reasoning-and-CoT]]) is sharper in contact-rich settings because contact transitions are millisecond-fast.
+#### 5.3 Deployment & Failure Recovery
+
+Contact-rich deployment exposes a sharper latency-quality trade than vision-only VLAs face. Failure-recovery coverage is also narrow because failure datasets are small.
+
+- **==Failure recovery from tactile signals==** — [[2507.09160|Tactile-VLA]]'s ==CoT-from-tactile== is impressive but covers only **~3-5 failure modes** in the published work. Generalizing to open-set failure recovery requires either (a) larger failure datasets or (b) reasoning models that synthesize recovery strategies without explicit failure-mode supervision — see [[06_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for the broader self-correction landscape.
+- **==Force-aware reasoning latency==** — [[2507.09160|Tactile-VLA]]'s CoT failure recovery adds **1-3s** of inference latency per recovery — fine for blackboard wiping (slow task), too slow for fast pick-and-place. The latency-quality trade-off in [[08_VLA-Reasoning-and-CoT#6. Reasoning Quality vs Inference Latency]] is *sharper* in contact-rich settings because contact transitions are millisecond-fast.
+
+**[Force-Aware Failure Modes — Decision Matrix]**
+
+| Problem | Remediation Path |
+|---|---|
+| Need to transfer policy across tactile sensor instances | [[2509.18830\|DexSkin]] (pneumatic calibration) — instance-level only |
+| Need cross-sensor-type transfer | [[2410.24090\|Sparsh]] / [[2506.14754\|Sparsh-X]] (SSL portability) + [[2601.20321\|TaF-VLA]] (force-grounded alignment, **60.3%** zero-shot) |
+| Need larger force-instrumented dataset | [[2603.15169\|ForceVLA2]] (1K trajectories) — best public option; community-scale OXE-for-force still missing |
+| How to feed continuous F/T into VLM | [[2603.15169\|ForceVLA2]] (prompts) vs. [[2507.09160\|Tactile-VLA]] (raw tokenization) — task-dependent; no winner |
+| Predicted tactile trajectory drifts over horizon | [[2603.05687\|CGP]] (diffusion grounding) + closed-loop re-grounding (latency cost) |
+| Vision-tactile sampling-rate mismatch | [[2604.20689\|FingerEye]] (unified sensor) or careful temporal calibration for discrete pairs |
+| Need open-set failure recovery | [[2507.09160\|Tactile-VLA]] (CoT-from-tactile, narrow); [[06_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for broader self-correction |
+| Need fast reasoning under millisecond contact | Latency budget constraint — no current solution; use [[2602.23648\|FAVLA]] (fast-slow) as architectural workaround |
+
+> [!star] Key Papers — Force-Aware Failure Frontier
+> - [[2601.20321|TaF-VLA]] — **60.3%** zero-shot transfer across unseen tactile sensors via force-grounded alignment; the strongest current evidence that cross-sensor transfer is *possible* — but the residual gap remains large
+> - [[2603.15169|ForceVLA2]] — Largest public force-instrumented dataset (**1K trajectories**) + the canonical "force prompts at the VLM" architecture; exposes both the data-scale gap and the prompts-vs-signals open question
+> - [[2507.09160|Tactile-VLA]] — Raw tactile signal tokenization + CoT-from-tactile failure recovery; the load-bearing evidence for both the tokenization camp and the reasoning-latency-too-slow-for-contact problem
 
 > [!tip] Force-Aware Bottlenecks Are Data-Scale + Integration-Scale
-> Six of the seven problems above (cross-sensor transfer, no-OXE-for-force, prompts-vs-signals, failure recovery scarcity, contact prediction drift, vision-tactile alignment) trace to two roots: **(1) data scale** — the largest force-instrumented dataset ([[2603.15169|ForceVLA2]], ~1K trajectories) is **1000×** smaller than [[2310.08864|OXE]]; **(2) integration scale** — VLA backbones learned vision-language alignment at web scale, but have no equivalent pretraining corpus for vision-tactile-language. The seventh problem (reasoning latency) is sharper than in [[08_VLA-Reasoning-and-CoT]] because contact transitions are millisecond-fast. Cross-reference [[02_Dataset-Benchmark-Environment]] §5 (Tactile benchmarks) and [[09_Egocentric-Pretraining-and-Human-Video]] §3 (scaling laws) for the data-axis view.
+> Six of the seven problems above (cross-sensor transfer, no-OXE-for-force, prompts-vs-signals, failure recovery scarcity, contact prediction drift, vision-tactile alignment) trace to two roots: **(1) data scale** — the largest force-instrumented dataset ([[2603.15169|ForceVLA2]], ~1K trajectories) is **1000×** smaller than [[2310.08864|OXE]]; **(2) integration scale** — VLA backbones learned vision-language alignment at web scale, but have no equivalent pretraining corpus for vision-tactile-language. The seventh problem (reasoning latency) is sharper than in [[08_VLA-Reasoning-and-CoT#6. Reasoning Quality vs Inference Latency]] because contact transitions are millisecond-fast. Cross-reference [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] (Tactile & Contact-Rich Benchmarks — the evaluation-side echo of the data-scale gap) and [[08_VLA-Reasoning-and-CoT#7. Open Problems]] (the cross-modal reasoning gap — where reasoning over force/tactile is the underexplored frontier that meets §5.3 here from the other direction).
 
 ---
 
@@ -343,7 +409,7 @@ Despite the architectural convergence, the cluster has unresolved bottlenecks:
 
 ## Cross-References
 
-- [[03_VLA]] — §7 Multi-Sensor & Force-Aware is the parent section this deep-dive expands; see [[03_VLA]] §1 for the broader VLA design-space context and §10 for failure modes that overlap with §6 here
+- [[03_VLA]] — §7 Multi-Sensor & Force-Aware is the parent section this deep-dive expands; see [[03_VLA]] §1 for the broader VLA design-space context and §10 for failure modes that overlap with §5 here
 - [[06_Self-Evolving-VLA-WAM]] — Self-correcting VLAs and failure-recovery mechanisms ([[2601.02295|CycleVLA]], [[2512.24426|CF-VLA]], [[2511.14148|AsyncVLA]]) that complement [[2507.09160|Tactile-VLA]]'s CoT-from-tactile
 - [[07_Physics-Aware-Embodied-AI]] — Physics priors and physics-conditioned video generation ([[2509.20358|PhysCtrl]], [[2505.19386|Force Prompting]]); the natural pretraining backbone for force-aware VLAs
 - [[02_Dataset-Benchmark-Environment]] — Contact-rich benchmarks; §5 Tactile & Contact-Rich Benchmarks is the dedicated tactile-evaluation section (TacBench/[[2410.24090|Sparsh]], [[2506.14754|Sparsh-X]], [[2603.05687|CGP]], [[2510.13324|FARM]], [[2509.07962|TA-VLA]], [[2509.18830|DexSkin]])

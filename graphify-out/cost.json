@@ -13,6 +13,27 @@
       "output_tokens": 0,
       "files": 3000,
       "mode": "incremental_deterministic"
+    },
+    {
+      "date": "2026-05-19T18:10:49.388253+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 3159,
+      "note": "cache-only refresh (191 files deferred \u2014 no LLM available)"
+    },
+    {
+      "date": "2026-05-19T18:21:37.499037+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 3164,
+      "note": "in-session deterministic extraction of 196 deferred files (no LLM)"
+    },
+    {
+      "date": "2026-05-19T18:45:06.421390+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 3173,
+      "note": "in-session deterministic extraction of 14 humanoid-benchmark papers"
     }
   ],
   "total_input_tokens": 0,

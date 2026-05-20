@@ -111,7 +111,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2302.05209|Causal RL Methods Survey]] — First comprehensive taxonomy connecting causal inference with RL
 
 **Continual & Lifelong RL** — Agents that learn across sequential tasks without catastrophic forgetting.
-- [[2603.24350|Emergent Self]], [[2506.21872|Continual RL Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2410.19925|MLLM Continual Learning]], [[1612.00796|EWC]]
+- [[2605.12484|FST]], [[2603.24350|Emergent Self]], [[2506.21872|Continual RL Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2410.19925|MLLM Continual Learning]], [[1612.00796|EWC]]
 
 > [!star] Key Papers
 > - [[1612.00796|EWC]] — Foundational method for overcoming catastrophic forgetting; Elastic Weight Consolidation remains the baseline for all continual learning
@@ -140,7 +140,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2508.16546|SFT vs RL Spectral Analysis]] — Reveals that SFT causes OOD generalization issues that RL avoids, via spectral lens
 
 **SFT vs RL Generalization** — Why RL generalizes where supervised fine-tuning memorizes — a central question for post-training.
-- [[2512.17636|TRAPO]], [[2512.12690|SFT vs RL VLM Study]], [[2501.17161|SFT Memorizes RL Generalizes]]
+- [[2605.11739|EffOPD]], [[2512.17636|TRAPO]], [[2512.12690|SFT vs RL VLM Study]], [[2501.17161|SFT Memorizes RL Generalizes]]
 
 > [!star] Key Papers
 > - [[2501.17161|SFT Memorizes RL Generalizes]] — Landmark finding: SFT makes models memorize training distributions, while RL makes them generalize to unseen problems
@@ -205,7 +205,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[1911.10601|Scaling Active Inference]] — First to scale active inference to continuous control domains; bridges free energy theory with practical deep RL
 
 **World Model Theory & Formal Results** — Theoretical foundations proving when and why world models are necessary for generalization.
-- [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2510.21232|Confusing World Models]], [[2506.01622|General Agents World Models]], [[2501.10100|RWM]], [[2206.02072|VSRL]]
+- [[2605.06732|Training in Imagination]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2510.21232|Confusing World Models]], [[2506.01622|General Agents World Models]], [[2501.10100|RWM]], [[2206.02072|VSRL]]
 
 > [!star] Key Papers
 > - [[2506.01622|General Agents World Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
@@ -234,7 +234,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 Direct methods for optimizing policies — from classic PPO through modern GRPO variants, KL-regularized objectives, and tree-structured search. This is the algorithmic engine behind both LLM reasoning and robot control.
 
 **GRPO & Variants** — Group Relative Policy Optimization and its derivatives, the dominant paradigm for RL-based LLM reasoning post-DeepSeek-R1.
-- [[2605.06139|LPO]], [[2604.27998|Latent-GRPO]], [[2604.02288|SRPO]], [[2603.24984|MoE-GRPO]], [[2602.05547|MT-GRPO]], [[2511.06411|SofT-GRPO]], [[2509.25849|Knapsack-GRPO]], [[2509.06040|BranchGRPO]], [[2508.09726|GFPO]], [[2507.21848|EDGE-GRPO]], [[2506.16141|GRPO-CARE]], [[2506.13923|Guide-GRPO]], [[2505.22257|Off-Policy GRPO]], [[2505.05470|Flow-GRPO]], [[2504.00883|vsGRPO]], [[2503.20783|Dr. GRPO]], [[2503.14476|DAPO]]
+- [[2605.15726|NUDGERL]], [[2605.15458|VideoRLVR]], [[2605.15012|FEST]], [[2605.14539|CIPO]], [[2605.06139|LPO]], [[2604.27998|Latent-GRPO]], [[2604.02288|SRPO]], [[2603.24984|MoE-GRPO]], [[2602.05547|MT-GRPO]], [[2511.06411|SofT-GRPO]], [[2509.25849|Knapsack-GRPO]], [[2509.06040|BranchGRPO]], [[2508.09726|GFPO]], [[2507.21848|EDGE-GRPO]], [[2506.16141|GRPO-CARE]], [[2506.13923|Guide-GRPO]], [[2505.22257|Off-Policy GRPO]], [[2505.05470|Flow-GRPO]], [[2504.00883|vsGRPO]], [[2503.20783|Dr. GRPO]], [[2503.14476|DAPO]]
 
 > [!star] Key Papers
 > - [[2503.14476|DAPO]] — Open-source large-scale GRPO system; demonstrated that RL at scale produces reasoning capabilities that SFT cannot

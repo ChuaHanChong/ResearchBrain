@@ -21,6 +21,7 @@ ResearchBrain/
 ├── Embodied-AI/              # Deep-dive notes on VLA, WAM, JEPA, self-evolving
 ├── data/papers/              # Local PDFs (downloaded on demand)
 ├── data/repo/                # Local code repos (cloned on demand)
+├── graphify-out/             # Graphify pilot artifacts (gitignored except report)
 └── .claude/                  # Agent, skills, config
     ├── agents/
     │   └── research-assistant.md
@@ -28,7 +29,8 @@ ResearchBrain/
         ├── alphaxiv-search/
         ├── alphaxiv-summary-extract/
         ├── knowledgehub-query/
-        └── paper-curate/
+        ├── paper-curate/
+        └── paper-figure-extract/
 ```
 
 ## Agent & Skills
@@ -40,6 +42,7 @@ ResearchBrain/
 | **alphaxiv-summary-extract** skill | Batch-scrape papers into KnowledgeHub notes with enrichment |
 | **knowledgehub-query** skill | Read and synthesize from existing paper notes |
 | **paper-curate** skill | Assign papers to General/ topics, audit coverage |
+| **paper-figure-extract** skill | Download a paper's figure from ar5iv and embed it under the KH note's `## Method` section |
 
 ## Paper Note Format
 

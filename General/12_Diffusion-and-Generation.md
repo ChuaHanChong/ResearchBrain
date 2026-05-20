@@ -178,7 +178,7 @@ The hottest design question in generative AI: can one model both understand and 
 Reinforcement learning is transforming how diffusion and flow-matching models are trained. Instead of relying solely on maximum likelihood, these methods use reward signals (human preference, text-image alignment, task success) to directly optimize generation quality. The paradigm parallels RLHF for LLMs but requires novel algorithms for the continuous, multi-step denoising process.
 
 **Foundational Diffusion RL Fine-Tuning** — Seminal methods that established the paradigm of RL/gradient-based fine-tuning of diffusion models against arbitrary reward functions, predating the GRPO/flow-matching wave.
-- [[2605.06507|MARBLE-RL]], [[2605.03065|OGPO]], [[2309.17400|DRaFT]], [[2305.13301|DDPO]]
+- [[2605.15458|VideoRLVR]], [[2605.06507|MARBLE-RL]], [[2605.03065|OGPO]], [[2309.17400|DRaFT]], [[2305.13301|DDPO]]
 
 **Self-Distillation Alternatives to RL** — Continuous fine-tuning of diffusion models without reward signals or preference data; on-policy self-distillation matches teacher predictions along the student's own trajectories, preserving few-step inference quality.
 - [[2605.13724|AnyFlow]], [[2605.05204|D-OPSD]], [[2408.14368|GR-MG]]
@@ -230,7 +230,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 A new paradigm: generative models that "think before they draw." Instead of generating images in a single pass, these models decompose generation into reasoning steps — planning layouts, predicting semantic structure, or generating intermediate visual states. The insight is that CoT, which transformed language reasoning, can similarly improve visual generation quality and controllability.
 
 **CoT for Image Generation** — Autoregressive image generators that plan generation via chain-of-thought at the semantic or token level before producing final output.
-- [[2506.03596|ControlThinker]], [[2505.00703|T2I-R1]], [[2503.10639|GoT]], [[2501.13926|CoT Image Generation]]
+- [[2602.12279|UniT]], [[2506.03596|ControlThinker]], [[2505.00703|T2I-R1]], [[2503.10639|GoT]], [[2501.13926|CoT Image Generation]]
 
 > [!star] Key Papers
 > - [[2501.13926|CoT Image Generation]] — First comprehensive study of CoT for AR image generation; +24% over Show-o baseline, surpasses Stable Diffusion 3

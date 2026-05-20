@@ -117,7 +117,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2506.14641\|Zero-shot vs Few-shot CoT]] — Demonstrates that for recent powerful LLMs, zero-shot CoT often outperforms few-shot, challenging the canonical prompting wisdom
 
 **Self-Taught & Bootstrapped Reasoning** — LLMs that iteratively improve their own rationales through self-training loops, learning to reason without human-written chains.
-- [[2604.20209\|SGS]], [[2604.17654\|Poly-EPO]], [[2604.06628\|Reasoning SFT Analysis]], [[2604.03993\|Noisy Supervision Reasoning]], [[2604.03128\|Self-Distilled RLVR]], [[2604.03098\|Self-Guide]], [[2603.24422\|OneSearch-V2]], [[2602.03143\|SAGE]], [[2601.21725\|Procedural Pretraining]], [[2601.21343\|Self-Improving Pretraining]], [[2512.03442\|PretrainZero]], [[2508.03682\|SQLM]], [[2507.23751\|CoT-Self-Instruct]], [[2505.11614\|RL for Human Decision Explanation]], [[2504.14945\|LUFFY]], [[2504.11343\|RAFT++]], [[2503.03746\|Process-based Self-Rewarding]], [[2502.03387\|LIMO]], [[2405.14838\|Stepwise Internalization]], [[2403.09629\|Quiet-STaR]], [[2401.08190\|MARIO]], [[2312.04684\|LaRS]], [[2203.14465\|STaR]]
+- [[2605.14539|CIPO]], [[2604.20209\|SGS]], [[2604.17654\|Poly-EPO]], [[2604.06628\|Reasoning SFT Analysis]], [[2604.03993\|Noisy Supervision Reasoning]], [[2604.03128\|Self-Distilled RLVR]], [[2604.03098\|Self-Guide]], [[2603.24422\|OneSearch-V2]], [[2602.03143\|SAGE]], [[2601.21725\|Procedural Pretraining]], [[2601.21343\|Self-Improving Pretraining]], [[2512.03442\|PretrainZero]], [[2508.03682\|SQLM]], [[2507.23751\|CoT-Self-Instruct]], [[2505.11614\|RL for Human Decision Explanation]], [[2504.14945\|LUFFY]], [[2504.11343\|RAFT++]], [[2503.03746\|Process-based Self-Rewarding]], [[2502.03387\|LIMO]], [[2405.14838\|Stepwise Internalization]], [[2403.09629\|Quiet-STaR]], [[2401.08190\|MARIO]], [[2312.04684\|LaRS]], [[2203.14465\|STaR]]
 
 > [!star] Key Papers
 > - [[2203.14465\|STaR]] — Self-taught reasoner: LLM bootstraps its own rationales iteratively, creating a flywheel for reasoning improvement
@@ -139,7 +139,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2509.23250\|VL-PRM]] — Vision-language process reward models trained via hybrid data synthesis for step-level verification
 
 **Long CoT & Efficient Reasoning** — Addressing the length problem: surveys and methods for managing very long chains, reducing overthinking, and allocating reasoning compute adaptively.
-- [[2604.21764\|TRS]], [[2604.05355\|ETR]], [[2602.09276|Reasoning-ID]], [[2511.17487\|EXTRACT+THINK]], [[2511.08577\|TaH]], [[2508.02120\|Efficient Reasoning Survey]], [[2507.09662\|Concise Adaptive Thinking Survey]], [[2505.16579\|D2R]], [[2505.15612\|LASER]], [[2505.13975\|DRP]], [[2505.13438\|AnytimeReasoner]], [[2505.11896\|AdaCoT]], [[2505.10425\|L2T]], [[2505.00147\|AdaptMI]], [[2504.10903\|Efficient Reasoning Models Survey]], [[2503.23077\|LRM Efficient Inference Survey]], [[2503.21614\|Efficient Reasoning Survey]], [[2503.18866\|BoLT]], [[2503.16419\|Stop Overthinking Survey]], [[2503.09567\|Long CoT Survey]], [[2412.09413\|STILL-2]]
+- [[2605.11739|EffOPD]], [[2604.21764\|TRS]], [[2604.05355\|ETR]], [[2602.09276|Reasoning-ID]], [[2511.17487\|EXTRACT+THINK]], [[2511.08577\|TaH]], [[2508.02120\|Efficient Reasoning Survey]], [[2507.09662\|Concise Adaptive Thinking Survey]], [[2505.16579\|D2R]], [[2505.15612\|LASER]], [[2505.13975\|DRP]], [[2505.13438\|AnytimeReasoner]], [[2505.11896\|AdaCoT]], [[2505.10425\|L2T]], [[2505.00147\|AdaptMI]], [[2504.10903\|Efficient Reasoning Models Survey]], [[2503.23077\|LRM Efficient Inference Survey]], [[2503.21614\|Efficient Reasoning Survey]], [[2503.18866\|BoLT]], [[2503.16419\|Stop Overthinking Survey]], [[2503.09567\|Long CoT Survey]], [[2412.09413\|STILL-2]]
 
 > [!star] Key Papers
 > - [[2503.09567\|Long CoT Survey]] — First systematic survey of long chain-of-thought reasoning, covering generation, optimization, and evaluation
@@ -257,7 +257,7 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 > - [[2305.14992\|RAP]] — Reasoning as planning: treats the LLM itself as a world model for lookahead search
 
 **Tree Search & MCTS for Reasoning** — Structured search methods that explore reasoning paths as trees, combining breadth and depth.
-- [[2407.05530|This&That]]
+- [[2605.06840|Myopic Planning]], [[2407.05530|This&That]]
 
 > [!star] Key Papers
 > - [[2310.04406\|LATS]] — Language Agent Tree Search: unifies reasoning, acting, and planning via MCTS

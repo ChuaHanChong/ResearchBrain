@@ -357,7 +357,7 @@ A growing focus area bridging VLMs toward embodied tasks — understanding where
 Large multimodal models — the workhorses of modern vision-language understanding, spanning from sub-3B efficient designs to unified generation architectures.
 
 **Large-Scale MLLMs** — General-purpose instruction-tuned multimodal models at scale.
-- [[2604.07430|HY-Embodied-0.5]], [[2511.16518|MiMo-Embodied]], [[2508.11737|Ovis2.5]], [[2507.23278|UniLiP]], [[2507.01949|Kwai Keye-VL]], [[2507.01006|GLM-4.5V]], [[2505.18842|v1]], [[2505.14683|BAGEL]], [[2505.07062|Seed1.5-VL]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2504.10479|InternVL3]], [[2504.07491|Kimi-VL]], [[2504.00595|Open-Qwen2VL]], [[2410.13733|Arcana]], [[2410.10855|CoreCognition]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2407.07726|PaliGemma]], [[2306.13549|MLLM Survey]], [[2305.06500|InstructBLIP]], [[2304.07193|DINOv2]], [[2201.12086|BLIP]]
+- [[2604.07430|HY-Embodied-0.5]], [[2511.16518|MiMo-Embodied]], [[2508.11737|Ovis2.5]], [[2507.23278|UniLiP]], [[2507.01949|Kwai Keye-VL]], [[2507.01006|GLM-4.5V]], [[2505.18842|v1]], [[2505.14683|BAGEL]], [[2505.07062|Seed1.5-VL]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2504.10479|InternVL3]], [[2504.07491|Kimi-VL]], [[2504.00595|Open-Qwen2VL]], [[2410.13733|Arcana]], [[2410.10855|CoreCognition]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2408.03326|LLaVA-OneVision]], [[2407.07726|PaliGemma]], [[2306.13549|MLLM Survey]], [[2305.06500|InstructBLIP]], [[2304.07193|DINOv2]], [[2201.12086|BLIP]]
 
 > [!star] Key Papers
 > - [[2504.10479|InternVL3]] — Native multimodal pre-training paradigm achieving 72.2 on MMMU; top open-source MLLM competitive with proprietary models

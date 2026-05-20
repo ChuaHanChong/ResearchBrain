@@ -2254,4 +2254,44 @@ papers = [
     "https://arxiv.org/abs/2605.08078", # Normalizing Trajectory Models
     "https://arxiv.org/abs/2605.15157", # Hand-in-the-Loop: Improving Dexterous VLA via Seamless Interventional Correction
     "https://arxiv.org/abs/2605.07396", # Rubric-based On-policy Distillation
+    "https://arxiv.org/abs/2602.08683", # OneVision-Encoder: Codec-Aligned Sparsity as a Foundational Principle for Multimodal Intelligence
+    "https://arxiv.org/abs/2408.03326", # LLaVA-OneVision: Easy Visual Task Transfer
+    "https://arxiv.org/abs/2605.12484", # Learning, Fast and Slow: Towards LLMs That Adapt Continually
+    "https://arxiv.org/abs/2605.15298", # PhysBrain 1.0 Technical Report
+    "https://arxiv.org/abs/2605.15155", # Self-Distilled Agentic Reinforcement Learning
+    "https://arxiv.org/abs/2605.06732", # On Training in Imagination
+    "https://arxiv.org/abs/2605.11739", # Learning to Foresee: Unveiling the Unlocking Efficiency of On-Policy Distillation
+    "https://arxiv.org/abs/2605.16257", # DexJoCo: A Benchmark and Toolkit for Task-Oriented Dexterous Manipulation on MuJoCo
+    "https://arxiv.org/abs/2605.16056", # Health-Conditioned Vision-Language-Action Models for Malfunction-Aware Robot Control
+    "https://arxiv.org/abs/2605.15220", # Always Learning, Always Mixing: Efficient and Simple Data Mixing All The Time
+    "https://arxiv.org/abs/2605.11689", # Slicing and Dicing: Configuring Optimal Mixtures of Experts
+    "https://arxiv.org/abs/2605.06840", # Extracting Search Trees from LLM Reasoning Traces Reveals Myopic Planning
+    "https://arxiv.org/abs/2602.09013", # Dexterous Manipulation Policies from RGB Human Videos via 3D Hand-Object Trajectory Reconstruction
+    "https://arxiv.org/abs/2504.03515", # Dexterous Manipulation through Imitation Learning: A Survey
+    "https://arxiv.org/abs/2603.08572", # MetaWorld-X: Hierarchical World Modeling via VLM-Orchestrated Experts for Humanoid Loco-Manipulation
+    "https://arxiv.org/abs/2604.04539", # FlashSAC: Fast and Stable Off-Policy Reinforcement Learning for High-Dimensional Robot Control
+    "https://arxiv.org/abs/2506.13751", # LeVERB: Humanoid Whole-Body Control with Latent Vision-Language Instruction
+    "https://arxiv.org/abs/2601.02078", # Genie Sim 3.0 : A High-Fidelity Comprehensive Simulation Platform for Humanoid Robot
+    "https://arxiv.org/abs/2605.15458", # Video Models Can Reason with Verifiable Rewards
+    "https://arxiv.org/abs/2605.14733", # Video-Zero: Self-Evolution Video Understanding
+    "https://arxiv.org/abs/2605.15618", # Latent Video Prediction Learns Better World Models
+    "https://arxiv.org/abs/2605.14539", # Learning from Failures: Correction-Oriented Policy Optimization with Verifiable Rewards
+    "https://arxiv.org/abs/2605.13775", # RoboEvolve: Co-Evolving Planner-Simulator for Robotic Manipulation with Limited Data
+    "https://arxiv.org/abs/2605.15726", # Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR
+    "https://arxiv.org/abs/2605.14950", # Evo-Depth: A Lightweight Depth-Enhanced Vision-Language-Action Model
+    "https://arxiv.org/abs/2605.15012", # Boosting Reinforcement Learning with Verifiable Rewards via Randomly Selected Few-Shot Guidance
+    "https://arxiv.org/abs/2605.15153", # Pelican-Unified 1.0: A Unified Embodied Intelligence Model (UEI) for Understanding, Reasoning, Imagination and Action
+    "https://arxiv.org/abs/2605.13632", # Guide, Think, Act: Interactive Embodied Reasoning in Vision-Language-Action Models
+    "https://arxiv.org/abs/2605.14742", # EARL: Towards a Unified Analysis-Guided Reinforcement Learning Framework for Egocentric Interaction Reasoning and Pixel Grounding
+    "https://arxiv.org/abs/2605.14938", # Octopus: History-Free Gradient Orthogonalization for Continual Learning in Multimodal Large Language Models
+    "https://arxiv.org/abs/2603.03243", # HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations
+    #"https://arxiv.org/abs/2605.18746", # ESI-BENCH: Towards Embodied Spatial Intelligence that Closes the Perception-Action Loop
+    "https://arxiv.org/abs/2502.09560", # EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for Vision-Driven Embodied Agents
+    "https://arxiv.org/abs/2501.11858", # EmbodiedEval: Evaluate Multimodal LLMs as Embodied Agents
+    "https://arxiv.org/abs/2503.11117", # Beyond the Destination: A Novel Benchmark for Exploration-Aware Embodied Question Answering
+    "https://arxiv.org/abs/2603.13033", # ESPIRE: A Diagnostic Benchmark for Embodied Spatial Reasoning of Vision-Language Models
+    "https://arxiv.org/abs/2602.12279", # UniT: Unified Multimodal Chain-of-Thought Test-time Scaling
+    "https://arxiv.org/abs/2602.21015", # From Perception to Action: An Interactive Benchmark for Vision Reasoning
+    "https://arxiv.org/abs/2605.15735", # UAM: A Dual-Stream Perspective on Forgetting in VLA Training
+    "https://arxiv.org/abs/2605.18678", # Lance: Unified Multimodal Modeling by Multi-Task Synergy
 ]
