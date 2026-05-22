@@ -64,13 +64,13 @@ modified: 2026-05-18
 | [[2310.06253\|Objective-Mismatch Survey]] | C: Eval & Deploy | MBRL objective mismatch; decision-aware MBRL fix |
 | [[2512.24385\|Spatial Intelligence Pre-training Roadmap]] | C: Eval & Deploy | Generative WM × spatial reasoning |
 
-**Cross-survey patterns**: joint causal-consistency (5-way), physical grounding (5-way), efficiency-as-prerequisite (3-way), definition fragmentation (meta).
+**Cross-survey patterns** (N = number of independently converging surveys): joint causal-consistency (5), physical grounding (5), efficiency as deployment prerequisite (3), definition fragmentation (meta-pattern — the field is pre-paradigmatic).
 
 ---
 
 ## WAM Formal Framing
 
-**Probabilistic** — [[2605.12090|WAM Survey]] (alphaxiv-verified):
+**Probabilistic** — [[2605.12090|WAM Survey]]:
 
 > "WAMs are defined as embodied foundation models that integrate predictive state modeling with action generation, moving beyond merely predicting actions to predicting a joint distribution over future states and actions." — [[2605.12090|WAM Survey]]
 
@@ -84,13 +84,13 @@ $$\mathcal{L}_{\text{WAM}} = \mathbb{E}_{(o,l,o',a) \sim \mathcal{D}} \big[ -\lo
 
 WAMs split into **Cascaded** (predict state, derive action via inverse dynamics) vs **Joint** (unified end-to-end). Most "joint" methods are actually Cascaded — Joint is the architectural frontier.
 
-**Architectural** — [[2510.16732|World Models for Embodied AI Survey]] (alphaxiv-verified):
+**Architectural** — [[2510.16732|World Models for Embodied AI Survey]]:
 
 > "The world models are categorized along three axes: Functionality (Decision-Coupled vs General-Purpose), Temporal Modeling (Sequential Simulation vs Global Difference Prediction), and Spatial Representation (Global Latent Vector, Token Feature Sequence, Spatial Latent Grid, Decomposed Rendering Representation)." — [[2510.16732|World Models for Embodied AI Survey]]
 
 Spatial axis trajectory: latent vectors → token sequences → explicit 3D rendering (NeRF, 3DGS).
 
-**Capability hierarchy** — [[2604.22748|Agentic World Modeling Survey]] (alphaxiv-verified abstract):
+**Capability hierarchy** — [[2604.22748|Agentic World Modeling Survey]]:
 
 > "We introduce three capability levels: L1 Predictor, which learns one-step local transition operators; L2 Simulator, which composes them into multi-step, action-conditioned rollouts that respect domain laws; and L3 Evolver, which autonomously revises its own model when predictions fail against new evidence." — [[2604.22748|Agentic World Modeling Survey]]
 
@@ -114,7 +114,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Thesis.** Move beyond alternating WAM↔Policy co-improvement to a **unified single-step gradient** where action and imagination losses jointly update both networks in the same optimizer step, in latent space for real-time feasibility.
 
-> "The design space has progressively expanded toward single-backbone, unified VLA, and latent world-modeling approaches with tighter integration between prediction and action generation." — [[2605.00080|WM Robot Learning Survey]] (alphaxiv-verified)
+> "The design space has progressively expanded toward single-backbone, unified VLA, and latent world-modeling approaches with tighter integration between prediction and action generation." — [[2605.00080|WM Robot Learning Survey]]
 
 **State of evidence**
 
@@ -129,7 +129,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Related research papers**
 
-| Paper | Contribution | Limitation this direction addresses |
+| Paper | Contribution | Gap addressed |
 | --- | --- | --- |
 | [[2602.12063\|VLAW]] | Iterative WAM+VLA co-improvement | Cascaded; WM trains on stale policy data |
 | [[2603.19370\|VAMPO]] | GRPO over video-denoising-as-MDP | Pixel-space; not real-time |
@@ -140,6 +140,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 | [[2602.10098\|VLA-JEPA]] | JEPA WM + flow-matching head; 97.2% LIBERO | Action head and WM trained separately |
 | [[2605.00078\|Being-H0.7]] | Future-informed dual-branch; 3–4 ms/step | Privileged future supervision is offline |
 | [[2504.02792\|UWM]] | Unified action-conditioned + video diffusion | Latency cost still high |
+| [[2605.06732\|On Training in Imagination]] | Theoretical bounds + budget allocation for MBRL imagination | Theory only; not yet wired into latent joint loop |
 
 **Benchmarks & metrics**
 
@@ -160,11 +161,11 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Thesis.** Resolve the latent-vs-pixel trade-off (latent fast/opaque vs pixel slow/robust) via **hybrid architectures**: train-time pixel co-prediction + test-time latent rollout; semantic latents + decoder for inspection; dual experts with process-adaptive gating.
 
-> "World models in robotic manipulation can be categorized into three primary paradigms: Implicit World Modeling, Latent Dynamics Modeling, and Video Generation, detailing their respective strengths and limitations." — [[2511.02097|WM Manipulation Survey]] (alphaxiv-verified)
+> "World models in robotic manipulation can be categorized into three primary paradigms: Implicit World Modeling, Latent Dynamics Modeling, and Video Generation, detailing their respective strengths and limitations." — [[2511.02097|WM Manipulation Survey]]
 
 **State of evidence**
 
-- [[2510.16732|World Models for Embodied AI Survey]] (alphaxiv-verified): "An evolutionary trend from compact global latent vector representations (e.g., RSSMs) towards token feature sequences (e.g., Transformers with LLMs) and explicit 3D rendering representations (e.g., NeRF, 3D Gaussian Splatting) is observed." Hybrids occupy multiple axis points — currently unexplored.
+- [[2510.16732|World Models for Embodied AI Survey]]: "An evolutionary trend from compact global latent vector representations (e.g., RSSMs) towards token feature sequences (e.g., Transformers with LLMs) and explicit 3D rendering representations (e.g., NeRF, 3D Gaussian Splatting) is observed." Hybrids occupy multiple axis points — currently unexplored.
 - [[2605.06388|Semantic-LDM-WM]]: semantic-aligned latents beat reconstruction VAEs by **+9.8 pp** closed-loop and **+13.6 pp** OOD; encoding quality matters more than the latent-vs-pixel dichotomy. [[2604.02029|Latent Space Survey]] names evaluability / interpretability as the pure-latent gap — pixel branches resolve these without test-time cost.
 - [[04_WAM]] §6 diagnoses VideoGen 4.8× slower but most robust; latent fast but opaque. [[05_Latent-World-Models]] §6 names interpretability + latent-pixel alignment as 2 of 4 open problems.
 
@@ -177,7 +178,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Related research papers**
 
-| Paper | Contribution | Limitation this direction addresses |
+| Paper | Contribution | Gap addressed |
 | --- | --- | --- |
 | [[2603.16666\|Fast-WAM]] | Train video, test latent | Drops WM at test; no test-time imagination |
 | [[2605.06388\|Semantic-LDM-WM]] | Semantic vs reconstruction; +9.8 pp closed-loop | Single-branch only |
@@ -188,6 +189,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 | [[2511.08544\|LeJEPA]] | Provable Euclidean latent geometry | Pure latent — regularization anchor |
 | [[2411.04983\|DINO-WM]] | Frozen DINOv2 + lightweight dynamics | No pixel verification |
 | [[2605.00078\|Being-H0.7]] | Dual-branch deployable+privileged; 3–4 ms/step | Both branches latent |
+| [[2605.15618\|Latent Video Prediction WMs]] | Systematic latent-vs-pixel SSL eval under perturbations | Pretrain-only; no policy joint |
 
 **Benchmarks & metrics**
 
@@ -208,7 +210,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Thesis.** Current WAMs imagine visual + proprioceptive futures but rarely **tactile/force futures**, despite force being the dominant signal in contact-rich manipulation. Build force-conditioned WAMs that imagine wrench trajectories alongside visual ones.
 
-> "Multimodal Physical State Representation: The need to move beyond RGB to include tactile, force, and acoustic feedback for contact-rich manipulation." — [[2605.12090|WAM Survey]] (alphaxiv-verified — one of six core open challenges)
+> "Multimodal Physical State Representation: The need to move beyond RGB to include tactile, force, and acoustic feedback for contact-rich manipulation." — [[2605.12090|WAM Survey]] (one of six core open challenges)
 
 **State of evidence**
 
@@ -225,14 +227,14 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Related research papers**
 
-| Paper | Contribution | Limitation this direction addresses |
+| Paper | Contribution | Gap addressed |
 | --- | --- | --- |
-| [[2605.12090\|WAM Survey]] | Names modality gap | The frame |
-| [[2506.14754\|Sparsh-X]] | Multisensory touch foundation (1M contacts) | Encoder only |
-| [[2601.20321\|TaF-VLA]] | VQ-VAE force latent; 60.3% cross-sensor | Policy-consumed, not WM-predicted |
-| [[2603.15257\|HapticVLA]] | Teacher-student tactile distillation; 86.7% SR | Avoids the problem |
-| [[2603.15169\|ForceVLA2]] | Cross-scale MoE + force prompts; 66% avg SR | Force is input, not predicted |
-| [[2605.13083\|TouchAnything]] | Multi-view egocentric + dense tactile | Data only |
+| [[2605.12090\|WAM Survey]] | Names the modality gap | Survey only; no method proposed |
+| [[2506.14754\|Sparsh-X]] | Multisensory touch foundation (1M contacts) | Encoder only; no prediction head |
+| [[2601.20321\|TaF-VLA]] | VQ-VAE force latent; 60.3% cross-sensor | Latent is policy-consumed, not WM-predicted |
+| [[2603.15257\|HapticVLA]] | Teacher-student tactile distillation; 86.7% SR | Sensor-free deployment; force not modeled in WM |
+| [[2603.15169\|ForceVLA2]] | Cross-scale MoE + force prompts; 66% avg SR | Force is policy input, not predicted output |
+| [[2605.13083\|TouchAnything]] | Multi-view egocentric + dense tactile | Dataset only; no WAM consumer |
 | [[2505.19386\|Force Prompting]] | Force-conditioned video generation | Generation side |
 | [[2509.18830\|DexSkin]] | Capacitive tactile sensor (294° coverage) | Sensor hardware |
 | [[2509.07962\|TA-VLA]] | Torque-aware VLA design study | Policy-side only |
@@ -259,11 +261,11 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Thesis.** Bridge [[2604.04974|Video-to-Control Survey]]'s "robotics integration layer" gap by training WAMs with verifiable physics predicates (momentum, contact, friction) on *imagined* state trajectories — not only on *generated* pixels.
 
-> "Modern video generation models often produce visually impressive content that lacks physical plausibility, such as objects defying gravity or passing through each other. Even state-of-the-art video generation models still fall short of human-level physics understanding, particularly in complex scenarios involving multiple interacting objects or fluid dynamics." — [[2503.21765|Physics Cognition Survey]] (alphaxiv-verified)
+> "Modern video generation models often produce visually impressive content that lacks physical plausibility, such as objects defying gravity or passing through each other. Even state-of-the-art video generation models still fall short of human-level physics understanding, particularly in complex scenarios involving multiple interacting objects or fluid dynamics." — [[2503.21765|Physics Cognition Survey]]
 
 **State of evidence**
 
-- [[2604.04974|Video-to-Control Survey]] (alphaxiv-verified) names physical feasibility as one of three missing layers between video and dependable control. [[2510.04978|Physical AI Survey]] generalizes: "statistical correlations only, no causal understanding." [[2601.15533|Actionable Simulators]] coins *dynamical hallucinations*; [[2601.07823|Video Generation in Robotics Survey]] ranks them top-2 of 10 challenges.
+- [[2604.04974|Video-to-Control Survey]] names physical feasibility as one of three missing layers between video and dependable control. [[2510.04978|Physical AI Survey]] generalizes: "statistical correlations only, no causal understanding." [[2601.15533|Actionable Simulators]] coins *dynamical hallucinations*; [[2601.07823|Video Generation in Robotics Survey]] ranks them top-2 of 10 challenges.
 - Physics-aware video generators ([[2509.21309|NewtonGen]], [[2510.13809|PhysMaster]], [[2512.00425|NewtonRewards]], [[2603.13770|PhysAlign]]) haven't been tested on the WAM imagination → policy chain. Closest bridges: [[2604.17896|Physical-Feasibility VLA]] (geometric loss on actions; 22 → 43.50% SSR); [[2603.23376|ABot-PhysWorld]] (Diffusion-DPO on generation).
 
 **Concrete research questions**
@@ -276,9 +278,9 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Related research papers**
 
-| Paper | Contribution | Limitation this direction addresses |
+| Paper | Contribution | Gap addressed |
 | --- | --- | --- |
-| [[2604.04974\|Video-to-Control Survey]] | Names robotics integration gap | Canonical framing |
+| [[2604.04974\|Video-to-Control Survey]] | Names robotics integration gap | Survey only; no method proposed |
 | [[2604.17896\|Physical-Feasibility VLA]] | Geometric loss on actions; 22→43.50% SSR | Geometric only; on actions |
 | [[2603.23376\|ABot-PhysWorld]] | Diffusion-DPO with physics-rejected negatives | Generation side |
 | [[2509.21309\|NewtonGen]] | Neural Newtonian T2V | Video only |
@@ -289,6 +291,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 | [[2511.07416\|PhysWorld]] | Policy vs learned physical WM; 82% real SR | Positions/velocities only |
 | [[2503.15558\|Cosmos-Reason1]] | Physical commonsense + embodied reasoning | Reasoning, not predicates |
 | [[2605.06593\|ReActor]] | Bilevel RL + physics sim; +15.22 pp | Motion retargeting only |
+| [[2605.15458\|Video-RLVR]] | RL with verifiable rewards on video diffusion | Generation side; no WAM-imagined-state path |
 
 **Benchmarks & metrics**
 
@@ -328,7 +331,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Related research papers**
 
-| Paper | Contribution | Limitation this direction addresses |
+| Paper | Contribution | Gap addressed |
 | --- | --- | --- |
 | [[2503.17973\|PhysTwin]] | Physics-informed deformable twin from video | No discrete contact mode |
 | [[2511.07416\|PhysWorld]] | Policy vs learned physical WM; **82%** real SR | Continuous; no event discretization |
@@ -359,7 +362,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Thesis.** Use WAM imagination as **safe practice substrate** for closed-loop self-improvement: failure-finder → WAM dreams failures → GRPO over joint (action, imagination) log-prob → recovery via FPC-VLA-style corrective head. Target [[2604.22748|Agentic World Modeling Survey]]'s L3 Evolver — "emerging not mature" for physical-world WAMs.
 
-> "L3 Evolver, which autonomously revises its own model when predictions fail against new evidence." — [[2604.22748|Agentic World Modeling Survey]] (alphaxiv-verified abstract)
+> "L3 Evolver, which autonomously revises its own model when predictions fail against new evidence." — [[2604.22748|Agentic World Modeling Survey]]
 
 **State of evidence**
 
@@ -376,22 +379,24 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Related research papers**
 
-| Paper | Contribution | Limitation this direction addresses |
+| Paper | Contribution | Gap addressed |
 | --- | --- | --- |
-| [[2604.22748\|Agentic World Modeling Survey]] | L1/L2/L3; physical L3 emerging | The framing |
-| [[2502.05907\|EvoAgent]] | Continual WM; **+105%** Minecraft | Minecraft only |
-| [[2506.24119\|SPIRAL]] | CriticAgent filters dreams | Critic only |
-| [[2511.16166\|EvoVLA]] | First end-to-end self-evolving VLA | No WAM driven |
-| [[2510.16079\|EVOLVER]] | Trajectory → strategic principles | Behavior-only |
-| [[2603.19370\|VAMPO]] | GRPO over video denoising | Optimization template |
-| [[2412.02818\|RoboMD]] | RL adversary for failure discovery | Real-robot probes |
-| [[2510.09459\|FIPER]] | Predictive failure via OOD + uncertainty | Detection only |
-| [[2506.09937\|SAFE]] | Internal-feature + conformal prediction | Detection only |
-| [[2509.04018\|FPC-VLA]] | Failure prediction + corrective action | No WAM-imagined recovery |
-| [[2510.02298\|ARMADA]] | FLOAT detector + multi-robot; **95%** accuracy | Real-fleet, not WAM-driven |
-| [[2509.26354\|Misevolution]] | Identifies risk class | Risk to mitigate |
-| [[2506.07468\|SELF-REDTEAM]] | Adversarial self-play | Safety check |
-| [[2509.15194\|EVOL-RL]] | Novelty prevents entropy collapse | Diversity regularizer |
+| [[2604.22748\|Agentic World Modeling Survey]] | L1/L2/L3; physical L3 emerging | Survey only; no L3 method proposed |
+| [[2502.05907\|EvoAgent]] | Continual WM; **+105%** Minecraft | Minecraft domain only; no physical manipulation |
+| [[2506.24119\|SPIRAL]] | CriticAgent filters dreams | Critic filter only; no full self-evolving loop |
+| [[2511.16166\|EvoVLA]] | First end-to-end self-evolving VLA | VLA only; no WAM imagination driving evolution |
+| [[2510.16079\|EVOLVER]] | Trajectory → strategic principles | Behavior-level only; no WAM imagination |
+| [[2603.19370\|VAMPO]] | GRPO over video denoising | Pixel-space template; not the joint latent loop |
+| [[2412.02818\|RoboMD]] | RL adversary for failure discovery | Probes real robot; not driven by WAM imagination |
+| [[2510.09459\|FIPER]] | Predictive failure via OOD + uncertainty | Detection only; no recovery |
+| [[2506.09937\|SAFE]] | Internal-feature + conformal prediction | Detection only; no recovery |
+| [[2509.04018\|FPC-VLA]] | Failure prediction + corrective action | No WAM-imagined alternatives at recovery |
+| [[2510.02298\|ARMADA]] | FLOAT detector + multi-robot; **95%** accuracy | Real-fleet only; not WAM-driven |
+| [[2509.26354\|Misevolution]] | Identifies risk class | Diagnosis only; no in-loop mitigation |
+| [[2506.07468\|SELF-REDTEAM]] | Adversarial self-play | Pre-deployment safety check; not integrated in loop |
+| [[2509.15194\|EVOL-RL]] | Novelty prevents entropy collapse | Standalone regularizer; not in WAM-driven loop |
+| [[2605.14733\|Video-Zero]] | Self-evolution video understanding via self-play | Understanding only; no action grounding |
+| [[2605.14539\|Correction-Oriented PO]] | RL from failure traces with verifiable rewards | Language traces; needs VLA/WAM extension |
 
 **Benchmarks & metrics**
 
@@ -416,12 +421,12 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Thesis.** Build the first standardized benchmark that jointly measures whether a WAM's *imagined future* is causally bound to the *action it then takes* — closing the 5-survey-converged evaluation gap. Anchor on [[2604.22748|Agentic World Modeling Survey]]'s ASR + COD framework.
 
-> "Most approaches focus on injecting world knowledge into isolated, task-specific systems—such as visual prediction, 3D estimation, symbol grounding, image editing, or autonomous driving. While these integrations often yield performance gains on specific benchmarks, the paper argues that they fundamentally lack the systematic coherence required for a holistic understanding of the world." — [[2602.01630|WM Research Critical Assessment]] (alphaxiv-verified)
+> "Most approaches focus on injecting world knowledge into isolated, task-specific systems—such as visual prediction, 3D estimation, symbol grounding, image editing, or autonomous driving. While these integrations often yield performance gains on specific benchmarks, the paper argues that they fundamentally lack the systematic coherence required for a holistic understanding of the world." — [[2602.01630|WM Research Critical Assessment]]
 
 **State of evidence**
 
 - 5-way convergence: [[2605.12090|WAM Survey]] names *"absence of joint metrics that causally link predicted futures to executed actions"*; [[2605.00080|WM Robot Learning Survey]] demands eval *"beyond visual fidelity for action faithfulness, physical consistency, controllability"*; [[2510.16732|World Models for Embodied AI Survey]] cites physically-consistent metrics as fundamental; [[2601.15533|Actionable Simulators]] demands *"closed-loop, decision-oriented evaluation"*; [[2601.07823|Video Generation in Robotics Survey]] ranks robotics-centric eval as top challenge.
-- [[2604.22748|Agentic World Modeling Survey]] (alphaxiv-verified) proposes the framework: ASR + COD as decision-centric anchor metrics. [[2310.06253|Objective-Mismatch Survey]] generalizes: predictive WM loss fails to correlate with downstream return.
+- [[2604.22748|Agentic World Modeling Survey]] proposes the framework: ASR + COD as decision-centric anchor metrics. [[2310.06253|Objective-Mismatch Survey]] generalizes: predictive WM loss fails to correlate with downstream return.
 - Existing partials: [[2603.22212|Omni-WorldBench]] (WM-only), [[2506.00613|WorldGym]] (game-style), [[2510.10125|CTRL-WORLD]] (controllability), [[2603.23497|WildWorld]] (game domain), [[2510.16281|SEAL]] (verifier not benchmark), [[2604.21686|WorldMark]] ($\rho > 0.9$ with human; visual quality ⊥ consistency).
 
 **Concrete research questions**
@@ -434,7 +439,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Related research papers**
 
-| Paper | Contribution | Limitation this direction addresses |
+| Paper | Contribution | Gap addressed |
 | --- | --- | --- |
 | [[2603.22212\|Omni-WorldBench]] | First interaction-centric WM eval w/ counterfactual probes | WM-only |
 | [[2506.00613\|WorldGym]] | Policy inside WM; downstream transfer | Game-style only |
@@ -442,10 +447,12 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 | [[2603.23497\|WildWorld]] | Action Following + State Alignment on 108M frames | Game domain |
 | [[2510.16281\|SEAL]] | Runtime CoT-faithfulness verifier; +15 pp | Verifier, not benchmark |
 | [[2604.21686\|WorldMark]] | Unified I2V; $\rho > 0.9$ w/ human; visual ⊥ consistency | Interactive WMs only |
-| [[2603.13966\|vla-eval]] | Unified eval harness; 47× LIBERO speedup | Substrate |
-| [[2603.22078\|WAM vs VLA Robustness]] | Grid; 4.8× latency cost | Separate axes |
+| [[2603.13966\|vla-eval]] | Unified eval harness; 47× LIBERO speedup | Eval infrastructure only; no joint causal metric |
+| [[2603.22078\|WAM vs VLA Robustness]] | Grid; 4.8× latency cost | WM quality + action SR measured on separate axes |
 | [[2506.18123\|RoboArena]] | Real-fleet across 8 platforms | Real-world anchor |
 | [[2605.03941\|iWorld-Bench]] | Interactive WM benchmark | Needs WAM extension |
+| [[2601.04137\|WowWoVal]] | Comprehensive embodied WM eval Turing test | Coarse task success; no causal-binding probe |
+| [[2602.08971\|WorldArena]] | Unified perception + functional utility for embodied WMs | Perception-leaning; needs WAM-policy joint extension |
 
 **Benchmarks & metrics**
 
@@ -466,11 +473,11 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Thesis.** VideoGen WAMs are 4.8× slower than VLAs (~7 Hz), making them deployment-infeasible. Achieve ≥30 Hz via amortized planning ([[2605.08732|GC-IDM]] 100–130× faster), Fast-WAM, efficient architectures (Mamba/linear-attn), latent rollout, step distillation.
 
-> "Efficiency is a prerequisite, not an optimization, for video-based world models. The high-dimensional nature of video data and complex dynamics impose substantial computational and memory bottlenecks." — [[2603.28489|Video Gen as WM Survey]] (alphaxiv-verified)
+> "Efficiency is a prerequisite, not an optimization, for video-based world models. The high-dimensional nature of video data and complex dynamics impose substantial computational and memory bottlenecks." — [[2603.28489|Video Gen as WM Survey]]
 
 **State of evidence**
 
-- [[2603.28489|Video Gen as WM Survey]] (alphaxiv-verified) reframes efficiency as prerequisite — AR hits KV-cache explosion; diffusion hits iterative-denoising latency. [[2604.15911|Efficient Video Diffusion Survey]] inventories levers: 1–4 step distillation, sparse attention, QAT/PTQ. [[2510.24795|Efficient VLA Survey]] adds three-pillar framing.
+- [[2603.28489|Video Gen as WM Survey]] reframes efficiency as prerequisite — AR hits KV-cache explosion; diffusion hits iterative-denoising latency. [[2604.15911|Efficient Video Diffusion Survey]] inventories levers: 1–4 step distillation, sparse attention, QAT/PTQ. [[2510.24795|Efficient VLA Survey]] adds three-pillar framing.
 - Quantitative anchors: [[2505.04769|VLA Concepts Survey]] caps AR at 3–5 Hz (vs 20–50 Hz needed); [[2603.22078|WAM vs VLA Robustness]] documents 4.8× slowdown.
 - Single-lever results from deep-dives: [[2603.16666|Fast-WAM]], [[2603.17240|GigaWorld-Policy]], [[2512.19133|WorldRFT]], [[2605.08732|GC-IDM]] (**100–130×** faster planning, **15–36×** lower jerk). All single-lever; no co-design.
 
@@ -485,20 +492,20 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B3. ASR + CO
 
 **Related research papers**
 
-| Paper | Contribution | Limitation this direction addresses |
+| Paper | Contribution | Gap addressed |
 | --- | --- | --- |
-| [[2603.28489\|Video Gen as WM Survey]] | 3D efficiency taxonomy | The framing |
-| [[2604.15911\|Efficient Video Diffusion Survey]] | 4-category technique taxonomy | Technique inventory |
-| [[2510.24795\|Efficient VLA Survey]] | Three-pillar taxonomy | Complementary framing |
-| [[2603.16666\|Fast-WAM]] | Train video, test latent | Single-lever |
-| [[2603.17240\|GigaWorld-Policy]] | Action-centered architecture | Single-lever |
-| [[2605.08732\|GC-IDM]] | Amortized latent IDM; **100–130×** vs CEM | Proves search is amortizable |
-| [[2502.16707\|RoboMamba]] | Mamba-based efficient VLA | Needs WAM extension |
-| [[2511.15605\|SRPO]] | Frozen V-JEPA-2; ~10 ms inference | Latent substrate |
-| [[2605.00078\|Being-H0.7]] | Dual-branch latent; 3–4 ms/step | Latency anchor |
-| [[2605.15178\|SANA-WM]] | Hybrid Linear DiT; **22 videos/hour** H100, **39×** distilled | Linear-attention proof point |
-| [[2603.16861\|MolmoBot]] | 232K-env procedural MuJoCo; **79.2%** real Franka | Data lever |
-| [[2602.16710\|EgoScale]] | Log-linear scaling on internet video; **+54%** dexterous | Data lever |
+| [[2603.28489\|Video Gen as WM Survey]] | 3D efficiency taxonomy | Survey only; no co-design implementation |
+| [[2604.15911\|Efficient Video Diffusion Survey]] | 4-category technique taxonomy | Survey only; techniques not co-designed |
+| [[2510.24795\|Efficient VLA Survey]] | Three-pillar taxonomy (model / training / data) | Survey only; no end-to-end co-design |
+| [[2603.16666\|Fast-WAM]] | Train video, test latent | Single lever (architecture); no training/data co-design |
+| [[2603.17240\|GigaWorld-Policy]] | Action-centered architecture | Single lever (architecture); no training/data co-design |
+| [[2605.08732\|GC-IDM]] | Amortized latent IDM; **100–130×** vs CEM | IDM-only; not generalized to full WAM imagination |
+| [[2502.16707\|RoboMamba]] | Mamba-based efficient VLA | VLA backbone; not yet adapted to WAM |
+| [[2511.15605\|SRPO]] | Frozen V-JEPA-2; ~10 ms inference | Inference-only fast WM; no training-time co-design |
+| [[2605.00078\|Being-H0.7]] | Dual-branch latent; 3–4 ms/step | Architecture-only latency win; no data/training co-design |
+| [[2605.15178\|SANA-WM]] | Hybrid Linear DiT; **22 videos/hour** H100, **39×** distilled | Architecture lever only; proves linear-attention is viable |
+| [[2603.16861\|MolmoBot]] | 232K-env procedural MuJoCo; **79.2%** real Franka | Data-side lever only; no architecture/training co-design |
+| [[2602.16710\|EgoScale]] | Log-linear scaling on internet video; **+54%** dexterous | Data-side lever only; no architecture/training co-design |
 
 **Benchmarks & metrics**
 

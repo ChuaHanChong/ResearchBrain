@@ -78,6 +78,7 @@ aliases:
 | [[2505.05108\|Multi-agent Embodied AI Survey]] | First systematic multi-agent EAI | Async decisions; heterogeneous teams; self-evolution in open environments; nascent benchmarks |
 | [[2505.04769\|VLA Survey]] | 80+ models across 6 domains | Real-time inference (AR 3–5 Hz); safety (~82% collision); generalization gap (~40%); dual-system + LoRA |
 | [[2504.21853\|Interactive Generative Video Survey]] | 5-module IGV decomposition | Real-time vs quality; persistent memory; dynamics fidelity; cross-domain transferability |
+| [[2504.03515\|Dexterous Imitation Survey]] | Dexterous manipulation via imitation learning | Tactile integration; cross-embodiment transfer; demo scaling |
 | [[2504.01990\|Foundation Agents Survey]] | Brain-inspired agent framework | Autonomous + adaptive + safe agents; AI-cognition mapping; collaboration |
 | [[2503.21765\|Physics Cognition Survey]] | Basic / Passive / Active cognitive tiers | Sub-human physics (multi-object/fluid); limited physical coverage; computational inefficiency; sim2real; physics foundation + neuro-symbolic |
 | [[2503.04641\|Multimodal Generative World Simulators Survey]] | 2D → 4D unified framework | Cross-modal dependency; sparse 4D integration; comprehensive simulators |
@@ -154,7 +155,7 @@ Gap: no paper trains a force-aware VLA from egocentric video *alone* (zero force
 
 #### Why it matters
 
-[[2604.15395|Foundation Models in Robotics Survey]] flags tactile scarcity as top-3 bottleneck; [[2604.27621|Robot Learning from Human Videos Survey]] names tactile incorporation as one of 7 open problems; [[2604.16592|Cognition WM Survey]] (alphaxiv-verified) names tactile-perception as under-represented. Architecturally converged ([[2603.15169|ForceVLA2]] reaches 66% avg SR, +48 pp over π0) but every new platform restarts data collection. [[2410.24090|Sparsh]] / [[2506.14754|Sparsh-X]] train *per-sensor*; [[2601.20321|TaF-VLA]]'s 60.3% cross-sensor SR is not deployment-ready.
+[[2604.15395|Foundation Models in Robotics Survey]] flags tactile scarcity as top-3 bottleneck; [[2604.27621|Robot Learning from Human Videos Survey]] names tactile incorporation as one of 7 open problems; [[2604.16592|Cognition WM Survey]] names tactile-perception as under-represented. Architecturally converged ([[2603.15169|ForceVLA2]] reaches 66% avg SR, +48 pp over π0) but every new platform restarts data collection. [[2410.24090|Sparsh]] / [[2506.14754|Sparsh-X]] train *per-sensor*; [[2601.20321|TaF-VLA]]'s 60.3% cross-sensor SR is not deployment-ready.
 
 #### Current state of evidence
 
@@ -198,7 +199,7 @@ Gap: no SSL encoder achieves >80% cross-sensor zero-shot SR.
 
 #### Why it matters
 
-[[2605.12090|WAM Survey]] (alphaxiv-verified) formally defines WAMs via $\mathcal{L}_{\text{WAM}} = \mathbb{E}_{(o,l,o',a)\sim\mathcal{D}}[-\log p(o', a \mid o, l)]$ and identifies Joint over Cascaded as the frontier; [[2605.00080|WM Robot Learning Survey]] corroborates "single-backbone, unified VLA, latent world-modeling."
+[[2605.12090|WAM Survey]] formally defines WAMs via $\mathcal{L}_{\text{WAM}} = \mathbb{E}_{(o,l,o',a)\sim\mathcal{D}}[-\log p(o', a \mid o, l)]$ and identifies Joint over Cascaded as the frontier; [[2605.00080|WM Robot Learning Survey]] corroborates "single-backbone, unified VLA, latent world-modeling."
 
 Current "joint" implementations fall short: [[2602.12063|VLAW]] alternates; [[2603.16666|Fast-WAM]] drops the WM at deployment; [[2605.15153|Pelican-Unified]] unifies architecturally but trains multi-stage. Gap: a single GRPO loop on joint $(action, imagination)$ log-prob with cooperative gradient flow is undemonstrated.
 
@@ -217,7 +218,7 @@ Current "joint" implementations fall short: [[2602.12063|VLAW]] alternates; [[26
 
 #### Related papers
 
-- [[2602.12063|VLAW]], [[2603.19370|VAMPO]], [[2511.09515|WMPO]], [[2511.15605|SRPO]], [[2605.15153|Pelican-Unified]] (93.5% RoboTwin), [[2605.10942|HarmoWAM]] (89% in-domain, −7.9% OOD), [[2602.10098|VLA-JEPA]] / [[2602.11832|JEPA-VLA]] / [[2605.00078|Being-H0.7]], [[2504.02792|UWM]], [[2505.23705|Knowledge Insulation VLA]]
+- [[2602.12063|VLAW]], [[2603.19370|VAMPO]], [[2511.09515|WMPO]], [[2511.15605|SRPO]], [[2605.15153|Pelican-Unified]] (93.5% RoboTwin), [[2605.10942|HarmoWAM]] (89% in-domain, −7.9% OOD), [[2602.10098|VLA-JEPA]] / [[2602.11832|JEPA-VLA]] / [[2605.00078|Being-H0.7]], [[2504.02792|UWM]], [[2505.23705|Knowledge Insulation VLA]], [[2605.06732|On Training in Imagination]] (MBRL imagination theory)
 
 #### Benchmark coverage
 
@@ -303,7 +304,7 @@ Gap: no paper combines latent CoT + step-reward training for VLA reasoning.
 
 #### Related papers
 
-- [[2604.04974|Video-to-Control Survey]], [[2604.17896|Physical-Feasibility VLA]], [[2603.23376|ABot-PhysWorld]], [[2509.21309|NewtonGen]] / [[2512.00425|NewtonRewards]] / [[2509.20570|PIRF]] / [[2510.13809|PhysMaster]] / [[2603.13770|PhysAlign]], [[2503.15558|Cosmos-Reason1]], [[2511.07416|PhysWorld]], [[2605.06593|ReActor]], [[2511.04665|Real-to-Sim GS]]
+- [[2604.04974|Video-to-Control Survey]], [[2604.17896|Physical-Feasibility VLA]], [[2603.23376|ABot-PhysWorld]], [[2509.21309|NewtonGen]] / [[2512.00425|NewtonRewards]] / [[2509.20570|PIRF]] / [[2510.13809|PhysMaster]] / [[2603.13770|PhysAlign]], [[2503.15558|Cosmos-Reason1]], [[2511.07416|PhysWorld]], [[2605.06593|ReActor]], [[2511.04665|Real-to-Sim GS]], [[2605.15458|Video-RLVR]] (verifiable rewards on video diffusion), [[2605.15298|PhysBrain 1.0]] (physics-aware VLA from ego)
 
 #### Benchmark coverage
 
@@ -345,7 +346,7 @@ Gap: no paper combines latent CoT + step-reward training for VLA reasoning.
 
 #### Related papers
 
-- [[2603.22212|Omni-WorldBench]], [[2506.00613|WorldGym]], [[2510.10125|CTRL-WORLD]], [[2603.22078|WAM vs VLA Robustness]], [[2510.16281|SEAL]], [[2603.13966|vla-eval]]
+- [[2603.22212|Omni-WorldBench]], [[2506.00613|WorldGym]], [[2510.10125|CTRL-WORLD]], [[2603.22078|WAM vs VLA Robustness]], [[2510.16281|SEAL]], [[2603.13966|vla-eval]], [[2601.04137|WowWoVal]] (embodied WM Turing test), [[2602.08971|WorldArena]] (unified perception + utility), [[2510.17950|RoboChallenge]] (large-scale real-robot)
 
 #### Benchmark coverage
 
@@ -363,7 +364,7 @@ Gap: no paper combines latent CoT + step-reward training for VLA reasoning.
 
 #### Why it matters
 
-[[2605.10921|RoboMemArena]]: **68.9%** of subtasks need historical info. [[2604.16592|Cognition WM Survey]] (alphaxiv-verified) names *meta-cognition* as one of two drastically under-researched cognitive functions — failure detection + recovery is the embodied operationalization. [[2602.04411|Self-evolving Embodied AI]] (5-module framework) and [[2505.05108|Multi-agent Embodied AI Survey]] (open-environment self-evolution as top unresolved) decompose it further. Recovery requires memory — [[2605.10993|ECHO-VLA]] (**+12.8 pp** LIBERO-Long) is closest but no detection integration.
+[[2605.10921|RoboMemArena]]: **68.9%** of subtasks need historical info. [[2604.16592|Cognition WM Survey]] names *meta-cognition* as one of two drastically under-researched cognitive functions — failure detection + recovery is the embodied operationalization. [[2602.04411|Self-evolving Embodied AI]] (5-module framework) and [[2505.05108|Multi-agent Embodied AI Survey]] (open-environment self-evolution as top unresolved) decompose it further. Recovery requires memory — [[2605.10993|ECHO-VLA]] (**+12.8 pp** LIBERO-Long) is closest but no detection integration.
 
 #### Current state of evidence
 
@@ -387,11 +388,11 @@ Gap: no paper integrates memory + detection + correction + recovery into a singl
 
 #### Related papers
 
-- [[2605.10921|RoboMemArena]], [[2605.10993|ECHO-VLA]], [[2508.19236|MemoryVLA]], [[2510.09459|FIPER]] / [[2506.09937|SAFE]] / [[2410.04640|Sentinel]] / [[2603.11106|RC-NF]], [[2601.02295|CycleVLA]] / [[2512.24426|CF-VLA]] / [[2509.04018|FPC-VLA]], [[2505.12224|RoboFAC]] / [[2603.13528|Counterfactual Failure Synthesis]], [[2510.02298|ARMADA]]
+- [[2605.10921|RoboMemArena]], [[2605.10993|ECHO-VLA]], [[2508.19236|MemoryVLA]], [[2510.09459|FIPER]] / [[2506.09937|SAFE]] / [[2410.04640|Sentinel]] / [[2603.11106|RC-NF]], [[2601.02295|CycleVLA]] / [[2512.24426|CF-VLA]] / [[2509.04018|FPC-VLA]], [[2505.12224|RoboFAC]] / [[2603.13528|Counterfactual Failure Synthesis]], [[2510.02298|ARMADA]], [[2605.15735|UAM Dual-Stream]] (VLA forgetting under fine-tune), [[2605.14539|Correction-Oriented PO]] (failure-trace RL)
 
 #### Benchmark coverage
 
-**Existing**: [[2605.10921|RoboMemArena]], LIBERO-Plus / -PRO, [[2506.18123|RoboArena]], [[2502.09560|EmbodiedBench]]. **Gap**: no benchmark scores integrated detect-diagnose-recover loops on long-horizon tasks.
+**Existing**: [[2605.10921|RoboMemArena]], LIBERO-Plus / [[2510.03827|LIBERO-PRO]], [[2506.18123|RoboArena]], [[2502.09560|EmbodiedBench]]. **Gap**: no benchmark scores integrated detect-diagnose-recover loops on long-horizon tasks.
 
 #### Risk
 

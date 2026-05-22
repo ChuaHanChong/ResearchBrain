@@ -2293,5 +2293,25 @@ papers = [
     "https://arxiv.org/abs/2602.12279", # UniT: Unified Multimodal Chain-of-Thought Test-time Scaling
     "https://arxiv.org/abs/2602.21015", # From Perception to Action: An Interactive Benchmark for Vision Reasoning
     "https://arxiv.org/abs/2605.15735", # UAM: A Dual-Stream Perspective on Forgetting in VLA Training
-    "https://arxiv.org/abs/2605.18678", # Lance: Unified Multimodal Modeling by Multi-Task Synergy
+    #"https://arxiv.org/abs/2605.18678", # Lance: Unified Multimodal Modeling by Multi-Task Synergy
+    "https://arxiv.org/abs/2511.05936", # 10 Open Challenges Steering the Future of Vision-Language-Action Models
+    "https://arxiv.org/abs/2510.26433", # Co-Evolving Latent Action World Models
+    "https://arxiv.org/abs/2503.18938", # AdaWorld: Learning Adaptable World Models with Latent Actions
+    "https://arxiv.org/abs/2506.19850", # Unified Vision-Language-Action Model
+    "https://arxiv.org/abs/2505.17006", # CoMo: Learning Continuous Latent Motion from Internet Videos for Scalable Robot Learning.
+    "https://arxiv.org/abs/1806.09655", # Learning what you can do before doing anything
+    "https://arxiv.org/abs/2505.06111", # UniVLA: Learning to Act Anywhere with Task-centric Latent Actions
+    "https://arxiv.org/abs/2605.18740", # Vision-OPD: Learning to See Fine Details for Multimodal LLMs via On-Policy Self-Distillation
+    "https://arxiv.org/abs/2605.16787", # The Unlearnability Phenomenon in RLVR for Language Models
+    "https://arxiv.org/abs/2605.08083", # LLMs Improving LLMs: Agentic Discovery for Test-Time Scaling
+    "https://arxiv.org/abs/2605.11609", # Anti-Self-Distillation for Reasoning RL via Pointwise Mutual Information
+    "https://arxiv.org/abs/2605.20025", # AutoResearchClaw: Self-Reinforcing Autonomous Research with Human-AI Collaboration
+    "https://arxiv.org/abs/2605.19376", # Generative Recursive Reasoning
+    "https://arxiv.org/abs/2604.11138", # ViserDex: Visual Sim-to-Real for Robust Dexterous In-hand Reorientation
+    "https://arxiv.org/abs/2603.15759", # Simulation Distillation: Pretraining World Models in Simulation for Rapid Real-World
+    "https://arxiv.org/abs/2603.03243", # HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations
+    # https://github.com/anadim/anadim.github.io/blob/master/papers/echo.pdf
+    "https://arxiv.org/abs/2506.18448", # GraspMAS: Zero-Shot Language-driven Grasp Detection with Multi-Agent System
+    "https://arxiv.org/abs/2605.03269", # RLDX-1 Technical Report
+    "https://arxiv.org/abs/2605.18233", # Enhancing Train-Free Infinite-Frame Generation for Consistent Long Videos
 ]

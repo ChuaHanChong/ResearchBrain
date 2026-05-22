@@ -166,6 +166,7 @@ Specialist egocentric datasets that target fine motor / dexterous-hand action pr
 Robot-free egocentric corpora collected specifically to bridge the human-robot embodiment gap.
 
 - **[[2602.10106|EgoHumanoid]]** — *Robot-free* egocentric demonstrations aligned to humanoid loco-manipulation via ==depth-based view alignment== + ==unified 6-DoF delta end-effector poses==; **~2×** faster to collect than teleoperation and **+51pp** generalization to novel environments (**82% vs 31%**) for the co-trained VLA. Dedicated alignment pipeline bridges the human-robot embodiment gap at *data-collection time* rather than at training or policy time.
+- **[[2503.13441|PH2D]]** — Large-scale task-oriented egocentric demo dataset via *consumer-grade VR* (**~3.02M** frames / **~27k** demos); paired with ==Human Action Transformer (HAT)== — a unified behavior policy co-trained on mixed human/robot data over a **54-dim** state-action space common to humans and humanoids; co-training with PH2D delivers **~100%** relative OOD generalization on novel objects/backgrounds/placements vs robot-only; consumer-VR data collection **~5×** faster than teleop (**4.09s** vs **19.72s** grasping). The cleanest "treat humans as another embodiment" recipe at scale.
 
 #### 2.5 Domain-Specific Egocentric+Exocentric for VLA Post-Training
 

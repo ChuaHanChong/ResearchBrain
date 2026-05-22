@@ -245,3 +245,106 @@ graph TD
 
 *See [[OtherDeepDive]] for <related topic>, or [[01_Embodied-AI-101]] to start from the basics.*
 ```
+
+## Research-Direction Document Format (`_Projects_/Research-Directions-*.md`)
+
+### Frontmatter (3 fields, mandatory)
+
+```yaml
+---
+title: "<Title>"
+aliases:
+  - "<Alias 1>"
+  - "<Alias 2>"
+tags:
+  - research-directions
+  - <domain-tag-1>
+  - <domain-tag-2>
+---
+```
+
+`status` / `created` / `modified` intentionally omitted — Obsidian tracks mtime in file metadata, and "draft" status rarely transitions usefully.
+
+### H2 spine (in order)
+
+1. `# <Title>` — H1 matches frontmatter `title`
+2. `> [!info] Scope` callout — 1-paragraph framing: how many directions, how many clusters, what corpus, what filter; **must mention that each direction surfaces a first-principles framing + non-consensus bet**
+3. `## Methodology` — 4 bullets: Survey enumeration / Deep-dive mining / Filter / First-principles framing practice
+4. `## <Domain> Survey Landscape` — 3-col table: `Survey | Sub-theme | Key open problems`, followed by `> [!tip] Convergence patterns` callout (3–6 patterns, each enumerating ≥3 surveys)
+5. `## Formal Framing` — math + tables defining central objects; block-quotes allowed here for *definitional* survey quotes only
+6. `## Cluster Overview` — 4-col synergy table: `Cluster | Directions | Shared bottleneck | Cross-direction synergy`
+7. `## Cluster A — <Theme>` (then B, C) — each opens with italicized 1-line framing, contains the per-direction cards
+8. `## Cross-Cutting Themes` — 3–6 numbered paragraphs synthesizing across directions; reference directions by label (A1, B2, C1)
+9. `## Benchmark Gaps` — 3-col table: `Gap | Direction | Existing closest` (1 row per direction)
+10. `## Cross-References` — relative-path wikilinks to deep-dives, `General/`, KH
+
+### Per-direction card (the heart)
+
+Each direction is an H3 `### A1 — <Title>` followed by the structure below. **All 8 sub-sections in order; no skips.**
+
+```markdown
+### A1 — <Direction Title>
+
+| | |
+|---|---|
+| **Cluster** | A — <Theme> |
+| **Thesis** | <1 sentence — what to build/test and why it advances the domain> |
+| **Anchor surveys** | [[id\|alias]], [[id\|alias]], [[id\|alias]] (3–5 max) |
+| **Key targets** | <2–4 concrete metric anchors: SR / latency / OOD %, etc. — must include specific numbers> |
+
+**Why it matters.** 1–2 paragraphs framing the gap — what's broken in the current state, why this direction resolves it. Reference 2–4 anchor papers in prose with `[[id|alias]]` wikilinks.
+
+**First-principles framing.**
+- **First principle**: <the irreducible structure of the problem — what's necessarily true, independent of training distribution or convention>
+- **Assumption being challenged**: <the conventional wisdom this direction breaks from — name WHO believes WHAT and why it's wrong>
+- **The bet**: <the measurable, falsifiable prediction — must include specific numbers / thresholds (e.g., "ρ > 0.7", "≥30 Hz", "X pp gain over Y baseline")>
+
+**Evidence.**
+- [[id\|alias]] — 1-sentence framing of what this paper contributes to the direction's evidence base.
+- (4–7 evidence bullets; foundational papers, not long-tail)
+
+**Concrete research questions.**
+1. **Q1 — <Title>.** <specific, testable question; can include math>
+2. **Q2 — <Title>.** ...
+3. **Q3 — <Title>.** ... (3–5 questions; 6 OK for deployment-heavy directions)
+
+**Related research papers.**
+- [[id\|alias]] — <one-line contribution + gap this direction addresses>
+- (8–12 papers, inline-list format — NOT a 3-column table)
+
+**Benchmarks & metrics.**
+- [[id\|alias]] — <what it measures, why it matters here, with specific numbers>
+- (3–5 benchmarks)
+
+**Risks.**
+- <Risk 1: specific failure mode> — <1-line consequence + mitigation hook>
+- (3–5 risk bullets)
+```
+
+### First-principles framing rubric (litmus test)
+
+Each direction's `**First-principles framing.**` block has three bullets that must each carry **distinct intellectual load** — they cannot be merged or paraphrased into each other:
+
+| Bullet | What it captures | Failure mode if missing |
+|---|---|---|
+| **First principle** | The irreducible truth about the problem — what's necessarily true, independent of training distribution, current methods, or convention. Often a structural / mathematical / physical invariant. | Without it, the direction reads as "what others did" rather than "what must be true." |
+| **Assumption being challenged** | The conventional wisdom this direction deliberately breaks from. Names WHO believes WHAT and why it's wrong. | Without it, the direction isn't first-principles at all — it's incremental refinement of consensus. |
+| **The bet** | The measurable, falsifiable prediction. Must include specific numbers / thresholds (e.g., "ρ > 0.7", "≥30 Hz", "X pp gain over Y baseline"). | Without it, the direction is a research framing rather than a proposal — no way to know if it succeeds. |
+
+**A direction whose `First-principles framing` cannot be written is not yet a first-principles direction — it's a literature review.** Use this as a litmus test before committing to the direction.
+
+### Connective-tissue conventions
+
+| Element | Convention |
+|---|---|
+| **Direction heading** | H3 `### A1 — Title` (em-dash, TOC-visible in Obsidian's outline pane) |
+| **Direction labels** | Cluster-prefixed: `A1, A2, A3 / B1, B2, B3 / C1, C2, C3` (cluster sizes vary per doc; total = 8 directions) |
+| **Cluster letters** | `A / B / C` (Latin); never Roman numerals |
+| **Wikilink syntax in tables** | Pipe-escape: `[[id\|alias]]` |
+| **Wikilink syntax in prose** | Plain pipe: `[[id|alias]]` |
+| **Cross-doc refs** | Relative-path: `[[../Embodied-AI/NN_File]]`, `[[../General/NN_File]]` |
+| **Math in prose** | Inline `$...$` or block `$$...$$` |
+| **Block-quotes** | Reserved for *definitional* survey quotes in `## Formal Framing` only; no per-direction evidence quotes |
+| **Callouts allowed** | `[!info]` (Scope), `[!tip]` (Convergence patterns), `[!warning]` (only for known pitfalls) |
+| **Dates in prose** | Avoid explicit dates; the frontmatter has no `created` / `modified` fields either |
+| **No cross-refs to `_Projects_/01_FirstPublication/`** | These docs are independent-study artifacts |
