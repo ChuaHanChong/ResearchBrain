@@ -55,6 +55,7 @@ def render_note(
 
     return f"""\
 ---
+id: "{arxiv_id}"
 title: "{title}"
 link: "{link}"
 authors: []
@@ -160,9 +161,9 @@ def main():
         for url in tqdm(to_process, desc="Extracting"):
             arxiv_id = arxiv_id_from_url(url)
             try:
-                alphaxiv_url = f"https://alphaxiv.org/overview/{arxiv_id}"
                 title = extract_title(url)
-                summary = extract_summary(driver, alphaxiv_url)
+
+                summary = extract_summary(driver, arxiv_id)
                 quality_check(summary, url)
 
                 bibtex = fetch_bibtex(arxiv_id)

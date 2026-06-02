@@ -69,7 +69,7 @@ The field evolved through three phases: **architectural proof-of-concept** (2020
 | Year | Paper | Contribution |
 |------|-------|-------------|
 | 2020 | [[2010.11929\|ViT]] | Proved a pure Transformer on image patches matches CNNs at scale, eliminating convolutional inductive biases |
-| 2021 | [[2111.09883\|Swin V2]] | Scaled vision Transformers to 3B parameters with stable training via residual post-norm and cosine attention |
+| 2021 | [[2111.09883\|Swin Transformer V2]] | Scaled vision Transformers to 3B parameters with stable training via residual post-norm and cosine attention |
 | 2021 | [[2104.14294\|DINO]] | Self-distillation without labels produces ViT features with emergent object segmentation in attention maps |
 | 2021 | [[2111.06377\|MAE]] | Masked 75% of patches and reconstructed pixels; made self-supervised ViT pretraining 3-4x cheaper |
 | 2021 | [[2103.00020\|CLIP]] | Contrastive image-text pretraining on 400M web pairs; enabled zero-shot visual recognition via natural language |
@@ -91,15 +91,15 @@ The field evolved through three phases: **architectural proof-of-concept** (2020
 The architectural revolution that brought attention mechanisms to computer vision, replacing CNN inductive biases with scalable self-attention over image patches.
 
 **Foundational Architectures** — The core ViT lineage from patch tokenization to multi-scale hierarchies and extreme scale.
-- [[2604.02327|SteerViT]], [[2510.08568|NovaFlow]], [[2401.08541|AIM]], [[2310.00632|WIN-WIN]], [[2307.06304|NaViT]], [[2303.11331|EVA-02]], [[2302.05442|ViT-22B]], [[2212.08013|FlexiViT]], [[2205.14949|HiViT]], [[2111.09883|Swin V2]], [[2010.11929|ViT]]
+- [[2604.13596|VGGT-Segmentor]], [[2604.02327|SteerViT]], [[2603.29634|MacTok]], [[2602.20160|tttLRM]], [[2512.08924|D4RT]], [[2512.04012|RobustVGGT]], [[2511.13720|JiT (Denoise Transformer)]], [[2510.08568|NovaFlow]], [[2509.23745|LocoFormer]], [[2501.18564|SAM2Act]], [[2401.08541|AIM]], [[2310.00632|WIN-WIN]], [[2307.06304|NaViT]], [[2303.11331|EVA-02]], [[2302.05442|ViT-22B]], [[2212.08013|FlexiViT]], [[2205.14949|HiViT]], [[2111.09883|Swin Transformer V2]], [[2107.03996|LocoTransformer]], [[2010.11929|ViT]]
 
 > [!star] Key Papers
 > - [[2010.11929|ViT]] — Split images into 16x16 patches, applied standard Transformer encoder; proved Transformers match CNNs with enough data
-> - [[2111.09883|Swin V2]] — Shifted window attention for efficient high-resolution processing; scaled to 3B parameters
+> - [[2111.09883|Swin Transformer V2]] — Shifted window attention for efficient high-resolution processing; scaled to 3B parameters
 > - [[2302.05442|ViT-22B]] — Largest dense ViT at 22B parameters; demonstrated continued scaling benefits for vision
 
 **Hierarchical & Domain-Specific ViTs** — Specialized adaptations of ViT for high-resolution inputs and domain-specific tasks like medical imaging.
-- [[2505.22195|S2AFormer]], [[2504.17379|GABMIL]], [[2503.19108|EoMT]], [[2403.18361|ViTAR]], [[2310.00632|WIN-WIN]], [[2306.06189|FasterViT]], [[2305.00104|MMViT]], [[2304.06250|RSIR Transformer]], [[2206.02647|HIPT]], [[2205.14949|HiViT]], [[2205.14756|EfficientViT]], [[2204.01697|MaxViT]], [[2203.16527|ViTDet]], [[2203.11926|FocalNet]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[2107.06263|CMT]], [[2107.00641|Focal Transformer]], [[2105.13677|ResT]], [[2104.11227|MViT]]
+- [[2602.17807|VidEoMT]], [[2505.22195|S2AFormer]], [[2504.17379|GABMIL]], [[2503.19108|EoMT]], [[2403.18361|ViTAR]], [[2310.00632|WIN-WIN]], [[2306.06189|FasterViT]], [[2305.00104|MMViT]], [[2304.06250|RSIR Transformer]], [[2212.07740|TERT]], [[2206.02647|HIPT]], [[2205.14949|HiViT]], [[2205.14756|EfficientViT]], [[2204.01697|MaxViT]], [[2203.16527|ViTDet]], [[2203.11926|FocalNet]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[2107.06263|CMT]], [[2107.00641|Focal Transformer]], [[2105.13677|ResT]], [[2104.11227|MViT]]
 
 > [!star] Key Papers
 > - [[2206.02647|HIPT]] — Hierarchical self-supervised ViT for gigapixel pathology images; processes whole slide images across multiple magnifications
@@ -113,7 +113,7 @@ The architectural revolution that brought attention mechanisms to computer visio
 > - [[2309.02031|Efficient ViT Survey]] — Systematic taxonomy of efficiency methods for vision Transformers; essential reference for practical deployment
 
 **Efficient & Adaptive ViTs** — Adapting ViTs with lightweight modules, patch-level optimization, and resolution flexibility.
-- [[2603.25744|MuRF]], [[2603.22815|PinPoint]], [[2603.22570|CanViT]], [[2603.22387|EUPE]], [[2602.08683|OneVision-Encoder]], [[2601.08499|EfficientFSL]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2505.23769|TextRegion]], [[2505.21501|PH-Reg]], [[2505.19985|Structured ViT Initialization]], [[2505.17316|Patch-Aligned Training]], [[2504.13059|RoboTwin]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2307.09120|LW PLG-ViT]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2109.13396|Bridge]], [[2108.05988|TVT]], [[2107.02239|ViX]]
+- [[2603.25744|MuRF]], [[2603.22815|PinPoint]], [[2603.22570|CanViT]], [[2603.22387|EUPE]], [[2602.08683|OneVision-Encoder]], [[2601.08499|EfficientFSL]], [[2512.01738|MSPT]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2505.23769|TextRegion]], [[2505.21501|PH-Reg]], [[2505.19985|Structured ViT Initialization]], [[2505.17316|Patch-Aligned Training]], [[2504.13059|RoboTwin]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2307.09120|LW PLG-ViT]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2109.13396|Bridge]], [[2108.05988|TVT]], [[2107.02239|ViX]]
 
 > [!star] Key Papers
 > - [[2205.08534|ViT-Adapter]] — Foundational adapter method enabling plain ViTs to handle dense prediction tasks without architectural changes
@@ -174,7 +174,7 @@ New attention patterns, normalization strategies, and structural modifications t
 Learning visual representations without labels — the foundation for data-efficient downstream tasks.
 
 **Contrastive & Self-Distillation** — Methods that learn by comparing or distilling representations without labeled data.
-- [[2605.03517|LDM SSL]], [[2603.28480|INSID3]], [[2603.15553|Bootleg]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.14754|Sparsh-X]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2410.24090|Sparsh]], [[2406.09294|JEA Scaling Study]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
+- [[2605.29564|VE2VF]], [[2605.03517|LDM SSL]], [[2604.09445|AsymLoc]], [[2604.04310|frax]], [[2603.28480|INSID3]], [[2603.15553|Bootleg]], [[2603.12217|Verifier Point Tracking]], [[2602.00937|CLAMP]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.14754|Sparsh-X]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2410.24090|Sparsh]], [[2406.09294|JEA Scaling Study]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
 
 > [!star] Key Papers
 > - [[2104.14294|DINO]] — Self-distillation with no labels; emergent object segmentation in attention maps
@@ -201,7 +201,7 @@ Learning visual representations without labels — the foundation for data-effic
 > I-JEPA started a family: [[2511.08544|LeJEPA]] (provable foundations) and [[2512.19605|KerJEPA]] (kernel methods) extend the theory, while [[2602.11389|Causal-JEPA]] adds causal reasoning. For the full robotics-oriented lineage (V-JEPA 2 → VL-JEPA → VLA-JEPA), see the JEPA notes in the vault.
 
 **Continual & Semi-Supervised Learning** — Adapting self-supervised models for streaming data, long-tailed distributions, and test-time shifts.
-- [[2603.06693|SER]], [[2601.19897|SDFT]], [[2512.15934|IC-SSL]], [[2512.09441|MoP-CIL]], [[2512.00961|GenReward]], [[2511.20844|Pre-train to Gain]], [[2511.13787|TC2]], [[2507.10434|CLA]], [[2506.23529|SSTTA]], [[2506.00467|SST]], [[2505.05062|ULFine]], [[2504.18904|RoboVerse]], [[2411.13852|ESRM]], [[2410.21676|Critical Batch Size Scaling]], [[2409.14401|In-Class Data Imbalance]], [[2404.17202|Low-Data SSL Evaluation]], [[2305.13622|SER]]
+- [[2605.30350|DynaFLIP]], [[2605.29548|Capacity Interference Retention]], [[2605.27734|Latent Sample-Complexity]], [[2605.26379|LeJEPA World Model]], [[2605.25313|UWM-JEPA]], [[2605.24934|HumanEgo]], [[2605.22671|BehaviorVLA]], [[2605.22629|H-Flow]], [[2605.21258|Structural Latent Points]], [[2605.20811|Demo-JEPA]], [[2605.15725|DiLA]], [[2605.09963|Spatial Prediction SP]], [[2604.18267|MARCO]], [[2604.16391|DeFI]], [[2603.06693|SER]], [[2601.19897|SDFT]], [[2512.15934|IC-SSL]], [[2512.09441|MoP-CIL]], [[2512.01342|InternVideo-Next]], [[2512.00961|GenReward]], [[2511.20844|Pre-train to Gain]], [[2511.17309|MuM]], [[2511.13787|TC2]], [[2511.04131|BFM-Zero]], [[2509.21986|Ego VLA Pretrain]], [[2509.15965|RLinf]], [[2507.23523|H-RDT]], [[2507.10434|CLA]], [[2506.23529|SSTTA]], [[2506.00467|SST]], [[2505.17006|CoMo]], [[2505.05062|ULFine]], [[2504.18904|RoboVerse]], [[2412.04445|Moto]], [[2411.13852|ESRM]], [[2410.21676|Critical Batch Size Scaling]], [[2409.14401|In-Class Data Imbalance]], [[2407.20230|SAPG]], [[2406.17768|EXTRACT]], [[2404.17202|Low-Data SSL Evaluation]], [[2312.10812|LAPO]], [[2311.12244|muLV-Rep]], [[2305.13622|SER]], [[2111.09793|Robotic Interestingness]], [[2101.12195|CADDY]], [[2101.05181|MemAug Image-Goal Nav]], [[1806.09655|CLASP (Action Space)]], [[1805.07914|ILPO]]
 
 > [!star] Key Papers
 > - [[2507.10434|CLA]] — Continual Latent Alignment for online continual self-supervised learning; avoids catastrophic forgetting
@@ -228,7 +228,7 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2411.15869|SC-CLIP]] — Training-free self-calibrated CLIP for open-vocabulary segmentation; resolves anomalous attention biases
 
 **SSL Surveys** — Comprehensive reviews of self-supervised visual learning methods and evaluation.
-- [[2505.13584|SSL Segmentation Survey]], [[2505.01109|SSL-MIL Pathology Benchmark]], [[2504.07213|E-SSL Survey]], [[2408.17059|SSL for ViT Survey]], [[2305.13689|SSL Survey]]
+- [[2605.28442|COTRATE]], [[2505.13584|SSL Segmentation Survey]], [[2505.01109|SSL-MIL Pathology Benchmark]], [[2504.07213|E-SSL Survey]], [[2408.17059|SSL for ViT Survey]], [[2305.13689|SSL Survey]]
 
 > [!star] Key Papers
 > - [[2305.13689|SSL Survey]] — Comprehensive taxonomy of image-based generative and discriminative self-supervised methods; essential landscape overview
@@ -266,7 +266,7 @@ Connecting visual and textual representations in a shared embedding space, enabl
 > - [[2503.01776|CSR]] — Sparse coding-based adaptive representations that go beyond Matryoshka for flexible embedding dimensionality
 
 **Region-Level & Fine-Grained Alignment** — Learning region-text correspondences and fine-grained visual-language representations.
-- [[2507.09961|TDCRL]], [[2507.09615|FAIR]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.15757|WPCL]], [[2506.12698|KDUP]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Aug-Aware SSL Theory]], [[2505.21533|SOP]], [[2505.02278|GCLIP]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.02202|MLCL]], [[2401.09865|SPARC]], [[2206.05836|GLIPv2]], [[2203.12555|GriTS]], [[2112.09106|RegionCLIP]], [[2104.12763|MDETR]]
+- [[2605.18740|Vision-OPD]], [[2512.17012|4D-RGPT]], [[2507.09961|TDCRL]], [[2507.09615|FAIR]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.15757|WPCL]], [[2506.12698|KDUP]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Aug-Aware SSL Theory]], [[2505.21533|SOP]], [[2505.02278|GCLIP]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.02202|MLCL]], [[2401.09865|SPARC]], [[2206.05836|GLIPv2]], [[2203.12555|GriTS]], [[2112.09106|RegionCLIP]], [[2104.12763|MDETR]]
 
 > [!star] Key Papers
 > - [[2401.09865|SPARC]] — Sparse fine-grained contrastive alignment from Google DeepMind; learns region-text correspondences without dense annotations
@@ -282,7 +282,7 @@ Connecting visual and textual representations in a shared embedding space, enabl
 LLMs augmented with visual perception — the backbone for modern VLMs and VLAs. These models bridge language understanding with visual grounding, generation, and action.
 
 **Instruction-Tuned VLMs** — General-purpose multimodal models trained to follow instructions across vision-language tasks.
-- [[2603.25406|MMaDA-VLA]], [[2505.14683|BAGEL]], [[2505.09568|BLIP3-o]], [[2504.13161|Nemotron-CLIMB]], [[2504.10479|InternVL3]], [[2504.00595|Open-Qwen2VL]], [[2407.07726|PaliGemma]], [[2310.03744|LLaVA-1.5]], [[2305.06500|InstructBLIP]], [[2302.14045|KOSMOS-1]]
+- [[2605.30370|IBNN]], [[2603.25406|MMaDA-VLA]], [[2505.14683|BAGEL]], [[2505.09568|BLIP3-o]], [[2504.13161|Nemotron-CLIMB]], [[2504.10479|InternVL3]], [[2504.00595|Open-Qwen2VL]], [[2407.07726|PaliGemma]], [[2310.03744|LLaVA-1.5]], [[2305.06500|InstructBLIP]], [[2302.14045|KOSMOS-1]]
 
 > [!star] Key Papers
 > - [[2407.07726|PaliGemma]] — Sub-3B VLM achieving SOTA on 40 tasks; SigLIP + Gemma connected by linear projection
@@ -338,14 +338,14 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 Core training recipes, optimizers, scaling laws, and architectural insights for training large language models efficiently.
 
 **Optimizers** — Second-order and novel optimizers that improve over AdamW for large-scale training.
-- [[2506.07254|SPlus]], [[2505.23725|MuLoCo]], [[2505.02222|Muon (practical)]], [[2502.16982|Muon]], [[2411.08380|EgoVid-5M]], [[2409.16283|Gen2Act]]
+- [[2605.31159|TRB]], [[2605.21699|X-Token]], [[2604.17535|OPSDL]], [[2506.07254|SPlus]], [[2505.23725|MuLoCo]], [[2505.02222|Muon]], [[2502.16982|Muon]], [[2411.08380|EgoVid-5M]], [[2409.16283|Gen2Act]]
 
 > [!star] Key Papers
 > - [[2502.16982|Muon]] — Breakthrough: second-order optimizer demonstrating superior training efficiency over AdamW for LLMs
 > - [[2505.23725|MuLoCo]] — Muon as inner optimizer for DiLoCo distributed training; significant speedup over AdamW
 
 **Scaling Laws & Training Dynamics** — Understanding how loss curves, learning rates, batch sizes, and training duration interact at scale.
-- [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2603.21191|BST Scaling Rule]], [[2603.15958|Hyperparameter Scaling Laws]], [[2507.12507|Nemotron]], [[2507.07101|Small Batch LLM Training]], [[2505.10559|Neural Thermodynamic Laws]], [[2503.12811|MPL]], [[2405.18392|Compute-Optimal Scaling Laws]], [[2310.18969|ViT Class Embedding Analysis]], [[2309.14322|Transformer Training Instabilities]], [[2308.12952|BridgeData V2]], [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch Training]]
+- [[2605.22297|Layerwise LR]], [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2603.21191|BST Scaling Rule]], [[2603.15958|Hyperparameter Scaling Laws]], [[2602.10556|LAP]], [[2512.16913|DAP]], [[2507.12507|Nemotron]], [[2507.07101|Small Batch LLM Training]], [[2505.10559|Neural Thermodynamic Laws]], [[2503.12811|MPL]], [[2405.18392|Compute-Optimal Scaling Laws]], [[2310.18969|ViT Class Embedding Analysis]], [[2309.14322|Transformer Training Instabilities]], [[2308.12952|BridgeData V2]], [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch Training]]
 
 > [!star] Key Papers
 > - [[2503.12811|MPL]] — Multi-Power Law accurately predicts training loss across learning rate schedules
@@ -461,10 +461,10 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 > - [[2505.10320|J1]] — RL-trained LLM-as-a-Judge that incentivizes genuine thinking during evaluation
 
 **LLM-as-a-Judge & Evaluation** — Using LLMs to evaluate other LLMs, with RL to improve judging quality.
-- [[2508.19229|StepWiser]], [[2505.10320|J1]], [[2411.15594|LLM-as-a-Judge Survey]]
+- [[2605.12227|dGRPO]], [[2605.07396|ROPD]], [[2603.07079|EOPD]], [[2508.19229|StepWiser]], [[2505.10320|J1]], [[2411.15594|LLM-as-a-Judge]]
 
 > [!star] Key Papers
-> - [[2411.15594|LLM-as-a-Judge Survey]] — Comprehensive survey providing formal definitions and unified taxonomy for LLM-based evaluation
+> - [[2411.15594|LLM-as-a-Judge]] — Comprehensive survey providing formal definitions and unified taxonomy for LLM-based evaluation
 
 **Agentic RL & Search** — RL applied to LLM-based agents for tool use, search, and multi-step task completion.
 - [[2603.28963|AutoWorld]], [[2603.26499|AIRA2]], [[2603.12011|RFT LLM Agent Generalization]], [[2603.11327|MR-Search]], [[2602.05842|RWML]], [[2408.10899|ARIO]], [[2403.19417|OAKINK2]]
@@ -474,7 +474,7 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 > - [[2603.12011|RFT LLM Agent Generalization]] — Systematic investigation of whether reinforcement fine-tuning improves LLM agent generalization
 
 **Unsupervised & Self-Supervised LLM Alignment** — Aligning language models without explicit human feedback through self-supervised objectives.
-- [[2508.03682|SQLM]], [[2507.06187|Delta Learning Hypothesis]], [[2506.10139|ICM]]
+- [[2605.11609|AntiSD]], [[2602.20574|GATES]], [[2508.03682|SQLM]], [[2507.06187|Delta Learning Hypothesis]], [[2506.10139|ICM]]
 
 > [!star] Key Papers
 > - [[2508.03682|SQLM]] — Self-Questioning Language Models that generate their own training signal; eliminates dependence on human preference data
@@ -498,10 +498,10 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 Foundation models applied to robotics — VLAs, action pretraining, world models, and sim-to-real transfer.
 
 **Vision-Language-Action Models** — Models that bridge perception, language understanding, and physical action for robot control.
-- [[2604.19734|UniT]], [[2604.19730|FASTER]], [[2604.02408|F2F-AP]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.16195|S-VAM]], [[2603.11653|VLA RL Continual Learning]], [[2602.12062|HoloBrain-0]], [[2602.11832|JEPA-VLA]], [[2602.11236|ABot-M0]], [[2602.10098|VLA-JEPA]], [[2601.18692|LingBot-VLA]], [[2512.15840|LV-P]], [[2512.00975|MM-ACT]], [[2511.07820|SONIC]], [[2510.10274|X-VLA]], [[2509.22652|DAWN]], [[2509.04996|FLOWER]], [[2509.00576|G0]], [[2508.07917|MolmoAct]], [[2506.22242|4D-VLA]], [[2505.08971|PRIOR]], [[2505.03500|TLI]], [[2504.16054|pi0.5]], [[2502.14795|Humanoid-VLA]], [[2501.18867|UP-VLA]], [[2501.15830|SpatialVLA]], [[2501.09747|FAST]], [[2501.03575|Cosmos]], [[2412.14058|RoboVLMs]], [[2410.24164|π0]], [[2409.20537|HPT]]
+- [[2604.19734|UniT]], [[2604.19730|FASTER]], [[2604.02408|F2F-AP]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.16195|S-VAM]], [[2603.11653|VLA RL Continual Learning]], [[2602.12062|HoloBrain-0]], [[2602.11832|JEPA-VLA]], [[2602.11236|ABot-M0]], [[2602.10098|VLA-JEPA]], [[2601.18692|LingBot-VLA]], [[2512.15840|LV-P]], [[2512.00975|MM-ACT]], [[2511.07820|SONIC]], [[2510.10274|X-VLA]], [[2509.22652|DAWN]], [[2509.04996|FLOWER]], [[2509.00576|G0]], [[2508.07917|MolmoAct]], [[2506.22242|4D-VLA]], [[2505.08971|PRIOR]], [[2505.03500|TLI]], [[2504.16054|π0.5]], [[2502.14795|Humanoid-VLA]], [[2501.18867|UP-VLA]], [[2501.15830|SpatialVLA]], [[2501.09747|FAST]], [[2501.03575|Cosmos]], [[2412.14058|RoboVLMs]], [[2410.24164|π0]], [[2409.20537|HPT]]
 
 > [!star] Key Papers
-> - [[2504.16054|pi0.5]] — VLA model enabling mobile robots to perform complex household tasks in entirely new homes
+> - [[2504.16054|π0.5]] — VLA model enabling mobile robots to perform complex household tasks in entirely new homes
 > - [[2512.00975|MM-ACT]] — Unified VLA model integrating text, image, and robot actions into a single multimodal framework
 > - [[2508.07917|MolmoAct]] — Action Reasoning Models integrating depth-aware perception with visual reasoning for spatial tasks
 

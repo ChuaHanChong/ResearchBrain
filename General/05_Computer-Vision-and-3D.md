@@ -105,14 +105,14 @@ The field evolved through four phases: **backbone design** (2016-2022) where ViT
 The backbone revolution: Vision Transformers replaced CNNs as the default architecture for nearly all perception tasks. The design space spans pure transformers (ViT), hierarchical multi-scale architectures (Swin, MPViT), CNN-transformer hybrids (CMT, ViT-CoMer), and efficiency-focused designs for high-resolution or resource-constrained deployment.
 
 **Foundational Architectures** — The original ViT and its hierarchical extensions that introduced multi-scale feature processing to transformers.
-- [[2603.25744|MuRF]], [[2312.17686|BMViT]], [[2204.01697|MaxViT]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.09883|Swin Transformer V2]], [[2105.13677|ResT]], [[2010.11929|ViT]]
+- [[2605.30561|VLM3]], [[2605.29416|3DVLA]], [[2605.24642|GFM-VLA Study]], [[2605.21414|PointACT]], [[2605.06758|R3L]], [[2603.25744|MuRF]], [[2312.17686|BMViT]], [[2204.01697|MaxViT]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.09883|Swin Transformer V2]], [[2105.13677|ResT]], [[2010.11929|ViT]]
 
 > [!star] Key Papers
 > - [[2010.11929|ViT]] — Proved a pure Transformer can match CNNs on image classification; launched the ViT era
 > - [[2111.09883|Swin Transformer V2]] — Scaled to 3B parameters with shifted-window attention; established the hierarchical ViT blueprint
 
 **CNN-Transformer Hybrids** — Combine convolutional inductive biases (locality, translation equivariance) with transformer global attention for better speed-accuracy tradeoffs.
-- [[2403.11999|HIRI-ViT]], [[2403.07392|ViT-CoMer]], [[2203.01577|HOI4D]], [[2107.06263|CMT]]
+- [[2604.13596|VGGT-Segmentor]], [[2602.20160|tttLRM]], [[2602.17807|VidEoMT]], [[2512.08924|D4RT]], [[2512.04012|RobustVGGT]], [[2501.18564|SAM2Act]], [[2403.11999|HIRI-ViT]], [[2403.07392|ViT-CoMer]], [[2203.01577|HOI4D]], [[2107.06263|CMT]]
 
 > [!star] Key Papers
 > - [[2403.07392|ViT-CoMer]] — Convolutional multi-scale feature interaction inside ViT; strong on detection and segmentation without extra FPN
@@ -165,7 +165,7 @@ The backbone revolution: Vision Transformers replaced CNNs as the default archit
 Learning powerful visual features without labels. Self-supervised pre-training now produces features that surpass ImageNet-supervised representations across nearly all downstream tasks, and forms the backbone for open-vocabulary detection, segmentation, and 3D understanding.
 
 **Self-Distillation (DINO family)** — Learn representations by training a student network to match an exponential moving-average teacher, producing features with emergent segmentation properties.
-- [[2304.07193|DINOv2]], [[2106.09785|EsViT]], [[2104.14294|DINO]], [[2104.03602|SiT]]
+- [[2605.30350|DynaFLIP]], [[2605.22814|Remember to be Curious]], [[2605.22629|H-Flow]], [[2605.21258|Structural Latent Points]], [[2604.26488|LILA]], [[2511.17309|MuM]], [[2304.07193|DINOv2]], [[2106.09785|EsViT]], [[2104.14294|DINO]], [[2104.03602|SiT]]
 
 > [!star] Key Papers
 > - [[2104.14294|DINO]] — Self-distillation with no labels; attention maps spontaneously segment objects
@@ -204,7 +204,7 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 > - [[2510.20994|VESSA]] — Self-supervised adaptation to new visual domains without any labels; practical for medical/industrial deployment
 
 **Initialization & Training Recipes** — Methods to improve ViT training stability, speed, or final performance through structured initialization or learning rate schedules.
-- [[2507.17634|WSM]], [[2505.19985|Structured ViT Initialization]]
+- [[2602.00937|CLAMP]], [[2507.17634|WSM]], [[2505.19985|Structured ViT Initialization]]
 
 > [!star] Key Papers
 > - [[2505.19985|Structured ViT Initialization]] — Embeds convolutional inductive biases into ViT attention at init; bridges the CNN-ViT gap on small datasets
@@ -246,7 +246,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 > - [[2002.07421|EHSOD]] — End-to-end hybrid-supervised detection combining full and weak annotations
 
 **Small Object & Crowded Scene Detection** — Specialized methods for detecting tiny or heavily overlapping objects where standard detectors fail.
-- [[2507.12006|FDAM]], [[2504.13469|HMPE]], [[2504.09819|Density-Guided Object Detection]], [[2407.11464|Crowd-SAM]], [[2309.11069|Dynamic Tiling]], [[2308.10677|Visual Crowd Analysis Survey]]
+- [[2605.27365|LocateAnything]], [[2604.27106|RecGen]], [[2603.17684|AFSS]], [[2507.12006|FDAM]], [[2504.13469|HMPE]], [[2504.09819|Density-Guided Object Detection]], [[2407.11464|Crowd-SAM]], [[2309.11069|Dynamic Tiling]], [[2308.10677|Visual Crowd Analysis Survey]]
 
 > [!star] Key Papers
 > - [[2504.13469|HMPE]] — HeatMap Embedding for small object detection; dynamically allocates attention to tiny targets
@@ -282,7 +282,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 From class-specific masks to open-world, language-guided segmentation. Modern segmentation leverages VLM reasoning to handle arbitrary queries ("the object the person is pointing at") rather than fixed category lists.
 
 **Language-Guided Segmentation** — Segment objects described by natural language queries, combining VLM reasoning with pixel-level prediction.
-- [[2605.00891|X2SAM]], [[2601.05244|GREx]], [[2601.03054|IBISAgent]], [[2507.06261|Gemini 2.5]], [[2506.22880|DeSa2VA]], [[2506.22624|Seg-R1]], [[2506.04277|RSVP]], [[2505.12081|VisionReasoner]], [[2503.06520|Seg-Zero]], [[2310.11441|SoM]], [[2308.00692|LISA]], [[2203.16265|SeqTR]]
+- [[2605.00891|X2SAM]], [[2602.23339|Retrieve and Segment]], [[2602.17134|B3-Seg]], [[2601.05244|GREx]], [[2601.03054|IBISAgent]], [[2511.16624|SAM 3D]], [[2507.06261|Gemini 2.5]], [[2506.22880|DeSa2VA]], [[2506.22624|Seg-R1]], [[2506.04277|RSVP]], [[2505.12081|VisionReasoner]], [[2503.06520|Seg-Zero]], [[2310.11441|SoM]], [[2308.00692|LISA]], [[2203.16265|SeqTR]]
 
 > [!star] Key Papers
 > - [[2308.00692|LISA]] — Reasoning segmentation: handles complex referring expressions that require multi-step inference
@@ -296,7 +296,7 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 > - [[2311.13601|DINOv]] — Extends in-context prompting to generic segmentation using pure visual exemplars
 
 **High-Resolution & Efficient Segmentation** — Architectures designed for segmentation at high spatial resolution without excessive compute, maintaining fine boundary detail.
-- [[2505.16993|SeNaTra]], [[2504.18158|E-InMeMo]], [[2503.19108|EoMT]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]]
+- [[2605.25495|RepSAM]], [[2505.16993|SeNaTra]], [[2504.18158|E-InMeMo]], [[2503.19108|EoMT]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]]
 
 > [!star] Key Papers
 > - [[2505.16993|SeNaTra]] — NVIDIA's content-aware spatial grouping inside ViTs; groups semantically related tokens for efficient segmentation
@@ -314,7 +314,7 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 > - [[1810.09091|SG-One]] — Similarity guidance network for one-shot segmentation; halved parameters while exceeding prior methods by 5+ mIoU
 
 **Video & Temporal Segmentation** — Segmentation methods that extend to video sequences, combining spatial precision with temporal consistency.
-- [[2603.12382|SPARROW]], [[2511.16077|VideoSeg-R1]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2502.04144|HD-EPIC]]
+- [[2603.12382|SPARROW]], [[2512.11782|MatAnyone 2]], [[2511.20886|V2-SAM]], [[2511.16077|VideoSeg-R1]], [[2511.15622|SA-FARI]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2502.04144|HD-EPIC]]
 
 > [!star] Key Papers
 > - [[2511.16077|VideoSeg-R1]] — First RL-based framework for video object segmentation; explicit reasoning chains for temporal tracking
@@ -335,15 +335,21 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 
 The frontier of perception: giving AI models true 3D spatial awareness. This capability is critical for embodied AI, where robots must reason about object positions, spatial relationships, and scene geometry from limited viewpoints.
 
-**3D Spatial Reasoning** — Methods that enable VLMs and agents to reason about 3D spatial relationships, layouts, and multi-hop spatial queries.
-- [[2605.08064|Proxy3D]], [[2604.11302|3D-ALP]], [[2603.27967|XVR]], [[2603.27287|Uni-World VLA]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2603.00905|pySpatial]], [[2603.00515|MLLM-4D]], [[2602.19063|Direction-aware 3D LMM]], [[2602.11236|ABot-M0]], [[2602.06037|GeoThinker]], [[2601.22231|PE Spatial Reasoning Analysis]], [[2601.16538|OnlineSI]], [[2601.14339|CityCube]], [[2601.13304|CausalSpatial]], [[2601.11729|SpaRRTa]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2601.00092|Spatial4D-Bench]], [[2512.24331|LVLDrive]], [[2512.23365|SpatialMosaic]], [[2512.19683|OpenBench]], [[2512.12822|LEMON]], [[2511.01618|Actial]], [[2510.18873|DSI-Bench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.11549|ODI-Bench]], [[2510.08673|Puffin]], [[2507.20174|LRR-Bench]], [[2507.12508|MindJourney]], [[2507.07781|SURPRISE3D]], [[2507.07610|SpatialViz-Bench]], [[2507.05258|REA]], [[2507.02978|Inf-Bench]], [[2506.23120|R2S]], [[2506.18385|InternSpatial]], [[2506.14512|SIRI-Bench]], [[2506.07966|SpaCE-10]], [[2506.04633|STARE]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2506.03135|OmniSpatial]], [[2505.24257|DISJOINT-3DQA]], [[2505.23747|Spatial-MLLM]], [[2505.21500|MVSM]], [[2505.20279|VLM-3R]], [[2505.17015|Multi-SpatialMLLM]], [[2505.17012|SpatialScore]], [[2505.12448|SSR]], [[2505.12363|ViCA2]], [[2505.12312|ViCA-7B]], [[2505.11907|OSR-Bench]], [[2505.00788|SpatialLLM]], [[2504.20024|SpatialReasoner]], [[2504.05786|3D Spatial Reasoning in LLM Survey]], [[2504.01805|SpaceR]], [[2503.22976|SPAR-7M]], [[2503.13111|MM-Spatial]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2410.06468|SPACE]], [[2408.16662|Space3D-Bench]]
+**3D Scene & Geometry** — Spatial reasoning over 3D scenes and geometry.
+- [[2605.29563|ViewSuite]], [[2604.11302|3D-ALP]], [[2603.15386|RieMind]], [[2602.15989|SAM 3D Body]], [[2602.06037|GeoThinker]], [[2601.22231|PE Spatial Reasoning Analysis]], [[2510.16714|SceneCOT]], [[2507.07781|SURPRISE3D]], [[2505.20279|VLM-3R]], [[2505.12448|SSR]], [[2411.17735|3D-Mem]], [[2402.15487|RoboEXP]]
+
+**Spatial Benchmarks & Probing** — Benchmarks and analyses of 3D spatial ability.
+- [[2605.27367|SpatialBench (SFM)]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.00515|MLLM-4D]], [[2602.11236|ABot-M0]], [[2601.14339|CityCube]], [[2601.13304|CausalSpatial]], [[2601.11729|SpaRRTa]], [[2601.00092|Spatial4D-Bench]], [[2512.23365|SpatialMosaic]], [[2512.19683|OpenBench]], [[2510.18873|DSI-Bench]], [[2510.11549|ODI-Bench]], [[2507.20174|LRR-Bench]], [[2507.07610|SpatialViz-Bench]], [[2507.05258|REA]], [[2507.02978|Inf-Bench]], [[2506.23120|R2S]], [[2506.18385|InternSpatial]], [[2506.14512|SIRI-Bench]], [[2506.07966|SpaCE-10]], [[2506.04633|STARE]], [[2506.03135|OmniSpatial]], [[2505.24257|DISJOINT-3DQA]], [[2505.21500|MVSM]], [[2505.17015|Multi-SpatialMLLM]], [[2505.17012|SpatialScore]], [[2505.12363|ViCA2]], [[2505.12312|ViCA-7B]], [[2505.11907|OSR-Bench]], [[2505.00788|SpatialLLM]], [[2504.01805|SpaceR]], [[2503.22976|SPAR-7M]], [[2503.13111|MM-Spatial]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2410.06468|SPACE]], [[2408.16662|Space3D-Bench]]
+
+**VLM 3D Spatial Methods** — VLM-based 3D spatial reasoning methods.
+- [[2605.08064|Proxy3D]], [[2603.27967|XVR]], [[2603.27287|Uni-World VLA]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.00905|pySpatial]], [[2602.19063|Direction-aware 3D LMM]], [[2601.16538|OnlineSI]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2512.24331|LVLDrive]], [[2512.17012|4D-RGPT]], [[2512.12822|LEMON]], [[2511.01618|Actial]], [[2510.13800|GS-Reasoner]], [[2510.08673|Puffin]], [[2507.12508|MindJourney]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2505.23747|Spatial-MLLM]], [[2504.20024|SpatialReasoner]], [[2504.05786|3D Spatial Reasoning in LLM Survey]], [[2008.01655|Adaptive Memory VO]]
 
 > [!star] Key Papers
 > - [[2603.15386|RieMind]] — 3D Scene Graph + agentic framework; decouples perception from reasoning, achieving 89.5% on VSI-Bench
 > - [[2603.16506|VIEW2SPACE]] — Benchmark for sparse multi-view spatial reasoning; +77% accuracy with grounded chain-of-thought
 
 **Geometry Estimation & Reconstruction** — Estimate depth, surface normals, or full 3D reconstructions from single images or sparse views.
-- [[2605.14950|Evo-Depth]], [[2605.09538|PhysHanDI]], [[2604.26262|Semantic Foam]], [[2604.19747|AnyRecon]], [[2604.14141|LingBot-Map]], [[2604.12942|RMGS-SLAM]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.10836|HO-Flow]], [[2604.08532|SelfEvo]], [[2604.07105|Genie Sim PanoRecon]], [[2604.02696|VBGS-SLAM]], [[2604.02329|Generative World Renderer]], [[2604.01479|UniRecGen]], [[2603.30045|OmniRoam]], [[2603.29089|WorldFlow3D]], [[2603.27455|NAS3R]], [[2603.26599|VGGRPO]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.19231|MonoArt]], [[2603.18524|3DreamBooth]], [[2603.03026|URGT]], [[2602.21992|PanoEnv]], [[2602.21186|Spa3R]], [[2602.03361|Z3D]], [[2601.13132|GaussExplorer]], [[2512.15160|EagleVision]], [[2512.13683|I-Scene]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.10647|Depth Anything 3]], [[2511.06908|Mono3DVG-EnSD]], [[2511.01294|Kinematify]], [[2510.08575|ReSplat]], [[2510.01183|EvoWorld]], [[2507.13347|Pi3]]
+- [[2605.26115|TriSplat]], [[2605.14950|Evo-Depth]], [[2605.09538|PhysHanDI]], [[2604.26262|Semantic Foam]], [[2604.19747|AnyRecon]], [[2604.14141|LingBot-Map]], [[2604.12942|RMGS-SLAM]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.10836|HO-Flow]], [[2604.08532|SelfEvo]], [[2604.07105|Genie Sim PanoRecon]], [[2604.02696|VBGS-SLAM]], [[2604.02329|Generative World Renderer]], [[2604.01479|UniRecGen]], [[2603.30045|OmniRoam]], [[2603.29089|WorldFlow3D]], [[2603.27455|NAS3R]], [[2603.26599|VGGRPO]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.19231|MonoArt]], [[2603.18524|3DreamBooth]], [[2603.03026|URGT]], [[2602.21992|PanoEnv]], [[2602.21186|Spa3R]], [[2602.03361|Z3D]], [[2601.13132|GaussExplorer]], [[2512.16913|DAP]], [[2512.15160|EagleVision]], [[2512.13683|I-Scene]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.10647|Depth Anything 3]], [[2511.06908|Mono3DVG-EnSD]], [[2511.01294|Kinematify]], [[2510.08575|ReSplat]], [[2510.01183|EvoWorld]], [[2507.13347|Pi3]]
 
 > [!star] Key Papers
 > - [[2604.14141|LingBot-Map]] — Feed-forward streaming 3D foundation model with Geometric Context Transformer; 20 FPS for sequences up to 10K frames with nearly constant memory
@@ -351,22 +357,22 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2603.19231|MonoArt]] — End-to-end monocular articulated object reconstruction; handles non-rigid objects
 
 **Feature Matching & Correspondence** — Match local features across views for 3D reconstruction, visual localization, and structure-from-motion pipelines.
-- [[2604.04055|DINO-VO]], [[2506.09278|UFM]], [[2306.13643|LightGlue]]
+- [[2604.04055|DINO-VO]], [[2602.05755|FMPose3D]], [[2506.09278|UFM]], [[2306.13643|LightGlue]]
 
 > [!star] Key Papers
 > - [[2306.13643|LightGlue]] — Adaptive deep feature matching that prunes easy pairs early; fast and accurate for real-time SLAM
 
 **3D Diffusion Policies** — Use 3D point cloud representations with diffusion-based action generation for robotic manipulation.
-- [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit-WM Manipulation]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2504.13059|RoboTwin]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2412.07215|RoboData]], [[2410.01345|GemBench]], [[2409.01652|ReKep]], [[2403.19417|OAKINK2]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2402.08191|THE COLOSSEUM]], [[2304.04321|ARNOLD]], [[2209.05451|PerAct]], [[2204.13662|ARCTIC]], [[2107.14483|ManiSkill]]
+- [[2605.25685|HumanFlow]], [[2604.15281|R3D]], [[2604.14089|UMI-3D]], [[2604.10953|DRL-3DBP]], [[2604.03181|MV-VDP]], [[2603.24393|3D-MIX]], [[2603.13825|Explicit-WM Manipulation]], [[2601.16148|ActionMesh]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive Wiping]], [[2505.05800|3D-CAVLA]], [[2504.13059|RoboTwin]], [[2501.15830|SpatialVLA]], [[2412.07755|SAT]], [[2412.07215|RoboData]], [[2410.01345|GemBench]], [[2409.01652|ReKep]], [[2403.19417|OAKINK2]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2403.03954|DP3]], [[2402.08191|THE COLOSSEUM]], [[2304.04321|ARNOLD]], [[2209.05451|PerAct]], [[2204.13662|ARCTIC]], [[2107.14483|ManiSkill]]
 
 > [!star] Key Papers
 > - [[2403.03954|DP3]] — 3D Diffusion Policy: generalizable visuomotor policy from point clouds; enables sim-to-real without camera calibration
 
 **3D World Simulation** — Systems that generate, simulate, or reason about 3D environments as interactive world models for embodied agents and autonomous driving.
-- [[2605.05163|PhysForge]], [[2605.01799|Embody4D]], [[2605.00781|Map2World]], [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]], [[2602.10116|SAGE]], [[2504.20995|TesserAct]], [[2309.17024|HoloAssist]]
+- [[2605.30347|NeuROK]], [[2605.21572|PhysX-Omni]], [[2605.20752|GaussianDream]], [[2605.11367|3D-Belief]], [[2605.05163|PhysForge]], [[2605.01799|Embody4D]], [[2605.00781|Map2World]], [[2604.15805|WorldComposer]], [[2604.14268|HY-World 2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]], [[2603.17117|MosaicMem]], [[2602.10116|SAGE]], [[2504.20995|TesserAct]], [[2411.04999|DynaMem]], [[2309.17024|HoloAssist]], [[2203.01914|Playable Environments]]
 
 **Physics-Aware 3D / 4D Generation** — Coupling 3D Gaussian Splatting, NeRF, or point-cloud representations with physical simulators (MPM, FEM, PBD) so that scene reconstructions become physically interactive. The dominant pattern: reconstruct a 3D scene first, then evolve it with physics. Includes 4D dynamic scene generation that integrates time + geometry + physics.
-- [[2603.03485|Phys4D]], [[2511.00503|Diff4Splat]], [[2509.21541|ControlHair]], [[2508.13911|PhysGM]], [[2507.01099|Geometry-aware 4D Robot Video]], [[2506.19798|CoCo4D]], [[2506.03150|IllumiCraft]], [[2505.18151|WonderPlay]], [[2503.21442|RainyGS]], [[2503.20746|PhysGen3D]], [[2503.04720|FluidNexus]], [[2502.03639|3DPointReg I2V]], [[2501.18982|OmniPhysGS]], [[2412.17804|GausSim]], [[2412.11785|InterDyn]], [[2412.11258|GaussianProperty]], [[2411.16800|Phys4DGen]], [[2411.14423|PhysFlow]], [[2411.12789|Sim-GS]], [[2410.08257|NeuMA]], [[2410.07155|Trans4D]], [[2409.07179|Phy124]], [[2409.00558|Compositional 3D Video]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2404.13026|PhysDreamer]], [[2404.09833|Video2Game]], [[2404.01223|Feature Splatting]], [[2403.17920|TC4D]], [[2401.16663|VR-GS]], [[2401.15318|Gaussian Splashing]], [[2312.00583|DeformGS]], [[2311.13099|PIE-NeRF]], [[2311.12198|PhysGaussian]], [[2309.07906|Generative Image Dynamics]], [[2308.09713|Dynamic 3D Gaussians]], [[2304.14369|NCLaw]], [[2303.05512|PAC-NeRF]]
+- [[2603.03485|Phys4D]], [[2512.08269|EgoX]], [[2511.00503|Diff4Splat]], [[2509.21541|ControlHair]], [[2508.13911|PhysGM]], [[2507.01099|Geometry-aware 4D Robot Video]], [[2506.19798|CoCo4D]], [[2506.03150|IllumiCraft]], [[2505.18151|WonderPlay]], [[2503.21442|RainyGS]], [[2503.20746|PhysGen3D]], [[2503.04720|FluidNexus]], [[2502.03639|3DPointReg I2V]], [[2501.18982|OmniPhysGS]], [[2412.17804|GausSim]], [[2412.11785|InterDyn]], [[2412.11258|GaussianProperty]], [[2411.16800|Phys4DGen]], [[2411.14423|PhysFlow]], [[2411.12789|Sim-GS]], [[2410.08257|NeuMA]], [[2410.07155|Trans4D]], [[2409.07179|Phy124]], [[2409.00558|Compositional 3D Video]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2404.13026|PhysDreamer]], [[2404.09833|Video2Game]], [[2404.01223|Feature Splatting]], [[2403.17920|TC4D]], [[2401.16663|VR-GS]], [[2401.15318|Gaussian Splashing]], [[2312.00583|DeformGS]], [[2311.13099|PIE-NeRF]], [[2311.12198|PhysGaussian]], [[2309.07906|Generative Image Dynamics]], [[2308.09713|Dynamic 3D Gaussians]], [[2304.14369|NCLaw]], [[2303.05512|PAC-NeRF]]
 
 > [!star] Key Papers
 > - [[2311.12198|PhysGaussian]] — Couples 3D Gaussian Splatting with continuum mechanics MPM solver; the foundational result that made 3DGS scenes physically interactive
@@ -377,7 +383,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2412.11258|GaussianProperty]] — Distills VLM priors into 3D Gaussians to predict per-Gaussian material properties; bridges VLMs and physical simulation
 
 **Physics-Cognition Surveys** — Surveys covering physics-informed CV and generative physics in vision systems.
-- [[2503.04641|Multimodal Generative Survey]], [[2501.10928|Generative Physical AI Survey]], [[2305.18035|PICV Survey]]
+- [[2512.03422|3D Scene Rep Survey]], [[2503.04641|Multimodal Generative Models Survey]], [[2501.10928|Generative Physical AI Survey]], [[2305.18035|PICV Survey]]
 
 > [!star] Key Papers
 > - [[2305.18035|PICV Survey]] — Foundational taxonomy of physics-informed computer vision; covers observational/inductive/learning biases across 250+ papers
@@ -403,7 +409,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 Transferring visual models across domains, merging multiple fine-tuned models, and adapting to new distributions without full retraining. Critical for deploying perception in real-world environments that differ from training data.
 
 **Transformer-Based Domain Adaptation** — Methods that leverage ViT architectures for unsupervised domain adaptation, exploiting self-attention's ability to capture domain-invariant features.
-- [[2604.02911|DreamTIP]], [[2508.04987|UniMoS++]], [[2412.04073|TransAdapter]], [[2407.21311|EUDA]], [[2405.02797|VDPG]], [[2404.15817|VT-ADA]], [[2402.14976|Foundation Latent UDA]], [[2312.07871|MLNet]], [[2308.05659|AD-CLIP]], [[2303.13434|PMTrans]], [[2204.07683|SSRT]], [[2111.12941|WinTR]], [[2110.03374|HCL]], [[2109.06165|CDTrans]], [[2108.05988|TVT]], [[2002.07953|DANCE]]
+- [[2605.28812|CoP Tactile]], [[2605.26638|HyperSim]], [[2605.23733|Any2Any]], [[2605.21688|Microfiber Shape Control]], [[2604.02911|DreamTIP]], [[2603.15759|SimDist]], [[2508.04987|UniMoS++]], [[2502.10894|UAN]], [[2502.01143|ASAP]], [[2412.04073|TransAdapter]], [[2407.21311|EUDA]], [[2405.02797|VDPG]], [[2404.15817|VT-ADA]], [[2402.14976|Foundation Latent UDA]], [[2312.07871|MLNet]], [[2308.05659|AD-CLIP]], [[2303.13434|PMTrans]], [[2212.07740|TERT]], [[2204.07683|SSRT]], [[2111.12941|WinTR]], [[2110.03374|HCL]], [[2109.06165|CDTrans]], [[2108.05988|TVT]], [[2107.04034|RMA]], [[2002.07953|DANCE]]
 
 > [!star] Key Papers
 > - [[2108.05988|TVT]] — Transferable Vision Transformer: pioneered attention-based domain alignment for ViTs
@@ -430,7 +436,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 > - [[2504.13292|GrokTransfer]] — Accelerates grokking via embedding transfer from weaker models; eliminates delayed generalization
 
 **VLM-Based Adaptation** — Adapting vision-language models (CLIP and variants) to new domains via prompting, fine-tuning, or representation learning.
-- [[2512.09441|MoP-CIL]], [[2507.09615|FAIR]], [[2507.03657|ProtoMM]], [[2504.12104|Logits DeConfusion]], [[2504.10428|PIU Learning]], [[2504.06389|SemiDAViL]], [[2503.08497|MMRL]], [[2503.06626|DiffCLIP]], [[2411.04997|LLM2CLIP]], [[2407.15173|CLIP Domain Adaptation]], [[2407.07726|PaliGemma]], [[2407.01400|GalLoP]], [[2309.08912|MP-FGVC]]
+- [[2512.09441|MoP-CIL]], [[2509.02055|Align-Then-Steer]], [[2507.09615|FAIR]], [[2507.03657|ProtoMM]], [[2504.12104|Logits DeConfusion]], [[2504.10428|PIU Learning]], [[2504.06389|SemiDAViL]], [[2503.08497|MMRL]], [[2503.06626|DiffCLIP]], [[2411.04997|LLM2CLIP]], [[2407.15173|CLIP Domain Adaptation]], [[2407.07726|PaliGemma]], [[2407.01400|GalLoP]], [[2309.08912|MP-FGVC]]
 
 > [!star] Key Papers
 > - [[2411.04997|LLM2CLIP]] — Integrates LLM text understanding into CLIP; +15.8 points on long-text retrieval over EVA02

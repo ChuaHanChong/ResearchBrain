@@ -3,6 +3,7 @@
 __pycache__/
 .obsidian/
 .venv/
+.vscode/
 .playwright*/
 .claude/agent-memory-local/
 

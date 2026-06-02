@@ -106,11 +106,11 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992\|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Reasoning Surveys & Taxonomies** — Comprehensive reviews mapping the rapidly evolving landscape of LLM-based agents, establishing conceptual frameworks and evaluation methodologies.
-- [[2403.19622|RH20T-P]]
+- [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial Brain Cerebellum]], [[2605.20246|GROW]], [[2605.15128|MemEye]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]], [[2602.16313|MemoryArena]], [[2511.14004|STAR (Memory-Action)]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2504.15965|AI Memory Survey]], [[2403.19622|RH20T-P]]
 
 > [!star] Key Papers
 > - [[2505.10468\|AI Agents vs Agentic AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
-> - [[2509.02547\|Agentic RL Survey]] — Formal definition of agentic RL for LLMs using Partially Observable Markov Decision Processes
+> - [[2509.02547\|Agentic RL Landscape Survey]] — Formal definition of agentic RL for LLMs using Partially Observable Markov Decision Processes
 
 > [!tip] ReAct Set the Pattern
 > ReAct's think-act-observe loop remains the default skeleton for nearly all LLM agents. LATS and RAP refined the search strategy (tree search, world-model planning), but the core loop is unchanged. When designing a new agent, start with ReAct and add structure as needed.
@@ -129,7 +129,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2211.12588\|PoT]] — Program of Thoughts prompting: LLMs delegate numerical reasoning to code execution
 
 **Visual Programming & Compositional Code** — Composing vision-and-language modules into executable programs for visual reasoning, enabling training-free compositional problem-solving.
-- [[2605.02600|CoRAL]], [[2603.22435\|CaP-X]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]]
+- [[2605.02600|CoRAL]], [[2603.22435\|CaP-X]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]], [[2209.07753|Code as Policies]]
 
 > [!star] Key Papers
 > - [[2303.08128\|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without any training
@@ -153,7 +153,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 Training LLMs to learn when and how to invoke external tools through reinforcement learning, rather than relying on handcrafted prompting. This section covers the transition from prompted tool use to learned tool-use policies.
 
 **RL-Trained Tool Use** — Reinforcement learning frameworks that train LLMs to autonomously decide when to call tools, which tools to use, and how to integrate tool outputs into reasoning chains.
-- [[2509.02479\|SimpleTIR]], [[2509.01055\|VerlTool]], [[2505.04588\|ZeroSearch]], [[2505.00024\|Nemotron-Research-Tool-N1]], [[2504.20595\|ReasonIR]], [[2504.13958\|ToolRL]], [[2504.11536\|ReTool]], [[2504.04736\|SWiRL]], [[2503.23383\|ToRL]], [[2503.19470\|ReSearch]], [[2503.09516\|Search-R1]], [[2503.05592\|R1-Searcher]], [[2501.05366\|Search-o1]], [[2412.14835\|AR-MCTS]]
+- [[2605.26637|Embodied Tool Protocol]], [[2509.02479\|SimpleTIR]], [[2509.01055\|VerlTool]], [[2505.04588\|ZeroSearch]], [[2505.00024\|Nemotron-Research-Tool-N1]], [[2504.20595\|ReasonIR]], [[2504.13958\|ToolRL]], [[2504.11536\|ReTool]], [[2504.04736\|SWiRL]], [[2503.23383\|ToRL]], [[2503.19470\|ReSearch]], [[2503.09516\|Search-R1]], [[2503.05592\|R1-Searcher]], [[2501.05366\|Search-o1]], [[2412.14835\|AR-MCTS]]
 
 > [!star] Key Papers
 > - [[2504.11536\|ReTool]] — ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning
@@ -262,7 +262,7 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 > - [[2601.10825\|Societies of Thought]] — Reveals how advanced LLMs implicitly implement multi-agent "society of mind" reasoning internally
 
 **Co-Evolution & Group Dynamics** — Multiple agents that evolve together, with competitive or cooperative dynamics driving collective improvement beyond what individual agents achieve.
-- [[2604.22446|Skills to Talent]], [[2604.20987|Co-Evolve Agents]], [[2602.08234\|SkillRL]], [[2602.04837\|GEA]], [[2601.09667\|MATTRL]], [[2510.23595\|MAE]], [[2506.24119\|SPIRAL]], [[2007.07853\|gamma-Progress]]
+- [[2604.22446|Skills to Talent]], [[2604.20987|Co-Evolve Agents]], [[2602.08234\|SkillRL]], [[2602.04837\|GEA]], [[2601.09667\|MATTRL]], [[2510.23595\|MAE]], [[2506.24119\|SPIRAL]], [[2007.07853\|γ-Progress]]
 
 > [!star] Key Papers
 > - [[2602.04837\|GEA]] — Group-Evolving Agents: agents co-evolve in groups, with emergent specialization and collective capability growth
@@ -285,7 +285,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 > - [[2603.05218\|KARL]] — Knowledge agent via off-policy RL for grounded reasoning over enterprise knowledge bases
 
 **Self-Evolving Agent Frameworks** — Agents that autonomously improve their own strategies, prompts, or tool-use policies through self-reflection and iterative optimization.
-- [[2604.27488|Skills-Coach]], [[2604.18292\|Agent-World]], [[2604.18131\|Native Evolution]], [[2604.15034\|Autogenesis]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
+- [[2605.28814|BES]], [[2605.27276|SIA]], [[2605.25832|AUTO-ROBOTIST]], [[2605.20025|AutoResearchClaw]], [[2604.27488|Skills-Coach]], [[2604.18292\|Agent-World]], [[2604.18131\|Native Evolution]], [[2604.15034\|Autogenesis]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
 
 > [!star] Key Papers
 > - [[2508.02085\|SE-Agent]] — Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement
@@ -309,7 +309,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Multimodal Agent Architectures** — Integrated architectures combining vision-language understanding with agent capabilities for complex multimodal tasks.
-- [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
+- [[2510.21817|VITA-E]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
 
 > [!star] Key Papers
 > - [[2402.15116\|LMA Survey]] — Systematic review of Large Multimodal Agents deconstructing their core components and capabilities
@@ -317,7 +317,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2311.05437\|LLaVA-Plus]] — Training VLMs to learn when and how to use external visual tools for any task
 
 **VLM Fine-Tuning & Reinforcement for Agency** — Methods for fine-tuning vision-language models via RL to act as agents in visual environments.
-- [[2604.08545|Metis]], [[2512.00961|GenReward]]
+- [[2604.08545|Metis]], [[2512.00961|GenReward]], [[2409.18313|Embodied-RAG]]
 
 > [!star] Key Papers
 > - [[2405.10292\|VLM-RL Fine-Tuning]] — Directly fine-tuning VLMs with RL for agentic visual tasks; bridges perception and action

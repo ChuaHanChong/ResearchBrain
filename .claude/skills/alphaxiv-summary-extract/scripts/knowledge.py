@@ -2285,7 +2285,7 @@ papers = [
     "https://arxiv.org/abs/2605.14742", # EARL: Towards a Unified Analysis-Guided Reinforcement Learning Framework for Egocentric Interaction Reasoning and Pixel Grounding
     "https://arxiv.org/abs/2605.14938", # Octopus: History-Free Gradient Orthogonalization for Continual Learning in Multimodal Large Language Models
     "https://arxiv.org/abs/2603.03243", # HoMMI: Learning Whole-Body Mobile Manipulation from Human Demonstrations
-    #"https://arxiv.org/abs/2605.18746", # ESI-BENCH: Towards Embodied Spatial Intelligence that Closes the Perception-Action Loop
+    "https://arxiv.org/abs/2605.18746", # ESI-BENCH: Towards Embodied Spatial Intelligence that Closes the Perception-Action Loop
     "https://arxiv.org/abs/2502.09560", # EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for Vision-Driven Embodied Agents
     "https://arxiv.org/abs/2501.11858", # EmbodiedEval: Evaluate Multimodal LLMs as Embodied Agents
     "https://arxiv.org/abs/2503.11117", # Beyond the Destination: A Novel Benchmark for Exploration-Aware Embodied Question Answering
@@ -2293,7 +2293,7 @@ papers = [
     "https://arxiv.org/abs/2602.12279", # UniT: Unified Multimodal Chain-of-Thought Test-time Scaling
     "https://arxiv.org/abs/2602.21015", # From Perception to Action: An Interactive Benchmark for Vision Reasoning
     "https://arxiv.org/abs/2605.15735", # UAM: A Dual-Stream Perspective on Forgetting in VLA Training
-    #"https://arxiv.org/abs/2605.18678", # Lance: Unified Multimodal Modeling by Multi-Task Synergy
+    "https://arxiv.org/abs/2605.18678", # Lance: Unified Multimodal Modeling by Multi-Task Synergy
     "https://arxiv.org/abs/2511.05936", # 10 Open Challenges Steering the Future of Vision-Language-Action Models
     "https://arxiv.org/abs/2510.26433", # Co-Evolving Latent Action World Models
     "https://arxiv.org/abs/2503.18938", # AdaWorld: Learning Adaptable World Models with Latent Actions
@@ -2314,4 +2314,260 @@ papers = [
     "https://arxiv.org/abs/2506.18448", # GraspMAS: Zero-Shot Language-driven Grasp Detection with Multi-Agent System
     "https://arxiv.org/abs/2605.03269", # RLDX-1 Technical Report
     "https://arxiv.org/abs/2605.18233", # Enhancing Train-Free Infinite-Frame Generation for Consistent Long Videos
+    "https://arxiv.org/abs/2605.19924", # RoHIL: Robust Human-in-the-Loop Robotic Reinforcement Learning Against Illumination Variations
+    "https://arxiv.org/abs/2605.20774", # VLA-REPLICA: A Low-Cost, Reproducible Benchmark for Real-World Evaluation of Vision-Language-Action Models
+    "https://arxiv.org/abs/2605.21133", # Humanoid Whole-Body Manipulation via Active Spatial Brain and Generalizable Action Cerebellum
+    "https://arxiv.org/abs/2605.21258", # Learning Structural Latent Points for Efficient Visual Representations in Robotic Manipulation
+    "https://arxiv.org/abs/2605.21710", # Physically Grounded Data Generation for Robust Bimanual Policy Learning from a Single Demonstration
+    "https://arxiv.org/abs/2605.22138", # Efficient Agentic Reasoning Through Self-Regulated Simulative Planning
+    "https://arxiv.org/abs/2605.22283", # Spatial Memory for Out-of-Vision Manipulation in Vision-Language-Action
+    "https://arxiv.org/abs/2605.22123", # Beyond Pixels: Learning Invariant Rewards for Real-World Robotics From a Few Demonstrations
+    "https://arxiv.org/abs/2605.22812", # GesVLA: Gesture-Aware Vision-Language-Action Model with Embedded Representations
+    "https://arxiv.org/abs/2605.20758", # Conflict-Aware Additive Guidance for Flow Models under Compositional Rewards
+    "https://arxiv.org/abs/2605.21061", # Grounding Driving VLA via Inverse Kinematics
+    "https://arxiv.org/abs/2605.19919", # Beyond Action Residuals: Real-World Robot Policy Steering via Bottleneck Latent Reinforcement Learning
+    "https://arxiv.org/abs/2605.22183", # Action with Visual Primitives
+    "https://arxiv.org/abs/2605.22446", # Pre-VLA: Preemptive Runtime Verification for Reliable Vision-Language-Action and World-Model Rollouts
+    "https://arxiv.org/abs/2605.20752", # GaussianDream: A Feed-Forward 3D Gaussian World Model for Robotic Manipulation
+    "https://arxiv.org/abs/2605.21414", # PointACT: Vision-Language-Action Models with Multi-Scale Point-Action Interaction
+    "https://arxiv.org/abs/2605.20811", # Demo-JEPA: Joint-Embedding Predictive Architecture for One-shot Cross-Embodiment Imitation
+    "https://arxiv.org/abs/2605.19986", # Beyond Binary Success: A Diagnostic Meta-Evaluation Framework for Fine-Grained Manipulation
+    "https://arxiv.org/abs/2605.19957", # World-Ego Modeling for Long-Horizon Evolution in Hybrid Embodied Tasks
+    "https://arxiv.org/abs/2605.22272", # Imagine2Real: Towards Zero-shot Humanoid-Object Interaction via Video Generative Priors
+    "https://arxiv.org/abs/2605.21572", # PhysX-Omni: Unified Simulation-Ready Physical 3D Generation for Rigid, Deformable, and Articulated Objects
+    "https://arxiv.org/abs/2605.20373", # SUGAR: A Scalable Human-Video-Driven Generalizable Humanoid Loco-Manipulation Learning Framework
+    "https://arxiv.org/abs/2605.22217", # Survive or Collapse: The Asymmetric Roles of Data Gating and Reward Grounding in Self-Play RL
+    "https://arxiv.org/abs/2511.16624", # SAM 3D: 3Dfy Anything in Images
+    "https://arxiv.org/abs/2512.01738", # MSPT: Efficient Large-Scale Physical Modeling via Parallelized Multi-Scale Attention
+    "https://arxiv.org/abs/2605.22814", # Remember to be Curious: Episodic Context and Persistent Worlds for 3D Exploration
+    "https://arxiv.org/abs/2605.22816", # AwareVLN: Reasoning with Self-awareness for Vision-Language Navigation
+    "https://arxiv.org/abs/2602.20574", # GATES: Self-Distillation under Privileged Context with Consensus Gating
+    "https://arxiv.org/abs/2410.04891", # Low-Rank Continual Personalization of Diffusion Models
+    "https://arxiv.org/abs/2605.18162", # Self-Evolving Spatial Reasoning in Vision Language Models via Geometric Logic Consistency
+    "https://arxiv.org/abs/2605.20246", # GROW: Aligning GRPO with State-Action Modeling for Open-World VLM Agents
+    "https://arxiv.org/abs/2605.18740", # Vision-OPD: Learning to See Fine Details for Multimodal LLMs via On-Policy Self-Distillation
+    "https://arxiv.org/abs/2605.21931", # EvoVid: Temporal-Centric Self-Evolution for Video Large Language Models
+    "https://arxiv.org/abs/2605.20914", # RISE: Reliable Improvement in Self-Evolving Vision-Language Models
+    "https://arxiv.org/abs/2605.20774", # VLA-REPLICA: A Low-Cost, Reproducible Benchmark for Real-World Evaluation of Vision-Language-Action Models
+    "https://arxiv.org/abs/2605.18678",
+    "https://arxiv.org/abs/2605.21931",
+    "https://arxiv.org/abs/2605.22446",
+    "https://arxiv.org/abs/2605.21854",
+    "https://arxiv.org/abs/2605.22570",
+    "https://arxiv.org/abs/2605.22812",
+    "https://arxiv.org/abs/2605.21973",
+    "https://arxiv.org/abs/2605.22536",
+    "https://arxiv.org/abs/2605.21258",
+    "https://arxiv.org/abs/2605.22816",
+    "https://arxiv.org/abs/2605.21862",
+    "https://arxiv.org/abs/2605.21429",
+    "https://arxiv.org/abs/2605.21133",
+    "https://arxiv.org/abs/2605.22138",
+    "https://arxiv.org/abs/2605.21710",
+    "https://arxiv.org/abs/2605.22272",
+    "https://arxiv.org/abs/2605.21935",
+    "https://arxiv.org/abs/2605.21935",
+    "https://arxiv.org/abs/2605.21688",
+    "https://arxiv.org/abs/2605.22671",
+    "https://arxiv.org/abs/2605.22629",
+    "https://arxiv.org/abs/2509.25794",
+    "https://arxiv.org/abs/2605.24934",
+    "https://arxiv.org/abs/2605.27367",
+    "https://arxiv.org/abs/2605.25477",
+    "https://arxiv.org/abs/2605.25829",
+    "https://arxiv.org/abs/2605.25874",
+    "https://arxiv.org/abs/2604.01421",
+    "https://arxiv.org/abs/2605.26115",
+    "https://arxiv.org/abs/2605.22814",
+    "https://arxiv.org/abs/2511.04812",
+    "https://arxiv.org/abs/2605.21467",
+    "https://arxiv.org/abs/2604.04310",
+    "https://arxiv.org/abs/2605.20752",
+    "https://arxiv.org/abs/2603.07079",
+    "https://arxiv.org/abs/2412.09858",
+    "https://arxiv.org/abs/2605.24934",
+    "https://arxiv.org/abs/2605.24642",
+    "https://arxiv.org/abs/2605.25477",
+    "https://arxiv.org/abs/2605.27284",
+    "https://arxiv.org/abs/2605.25829",
+    "https://arxiv.org/abs/2605.25044",
+    "https://arxiv.org/abs/2605.26820",
+    "https://arxiv.org/abs/2605.27079",
+    "https://arxiv.org/abs/2605.26006",
+    "https://arxiv.org/abs/2605.27114",
+    "https://arxiv.org/abs/2605.25832",
+    "https://arxiv.org/abs/2605.26637",
+    "https://arxiv.org/abs/2605.25546",
+    "https://arxiv.org/abs/2605.25313",
+    "https://arxiv.org/abs/2605.25813",
+    "https://arxiv.org/abs/2605.26478",
+    "https://arxiv.org/abs/2605.25537",
+    "https://arxiv.org/abs/2605.25495",
+    "https://arxiv.org/abs/2605.26452",
+    "https://arxiv.org/abs/2605.26638",
+    "https://arxiv.org/abs/2605.27046",
+    "https://arxiv.org/abs/2605.23733",
+    "https://arxiv.org/abs/2510.21817",
+    "https://arxiv.org/abs/2601.18692",
+    "https://arxiv.org/abs/2510.06710",
+    "https://arxiv.org/abs/2605.27365",
+    "https://arxiv.org/abs/2605.26494",
+    "https://arxiv.org/abs/2605.26656",
+    "https://arxiv.org/abs/2605.28820",
+    "https://arxiv.org/abs/2605.25477",
+    "https://arxiv.org/abs/2605.28816",
+    "https://arxiv.org/abs/2605.28293",
+    "https://arxiv.org/abs/2512.01342",
+    "https://arxiv.org/abs/2503.10705",
+    "https://arxiv.org/abs/2604.17535",
+    "https://arxiv.org/abs/2605.12227",
+    "https://arxiv.org/abs/2605.30280",
+    "https://arxiv.org/abs/2605.28814",
+    "https://arxiv.org/abs/2604.27106",
+    "https://arxiv.org/abs/2605.28421",
+    "https://arxiv.org/abs/2605.21800",
+    "https://arxiv.org/abs/2605.28774",
+    "https://arxiv.org/abs/2605.22297",
+    "https://arxiv.org/abs/2605.30350",
+    "https://arxiv.org/abs/2605.27276",
+    "https://arxiv.org/abs/2605.30161",
+    "https://arxiv.org/abs/2605.30280",
+    "https://arxiv.org/abs/2605.21699",
+    "https://arxiv.org/abs/2605.21800",
+    "https://arxiv.org/abs/2605.26379",
+    "https://arxiv.org/abs/2605.29563",
+    "https://arxiv.org/abs/2605.30226",
+    "https://arxiv.org/abs/2605.29562",
+    "https://arxiv.org/abs/2605.28634",
+    "https://arxiv.org/abs/2605.29416",
+    "https://arxiv.org/abs/2605.29074",
+    "https://arxiv.org/abs/2605.30056",
+    "https://arxiv.org/abs/2605.29438",
+    "https://arxiv.org/abs/2605.28812",
+    "https://arxiv.org/abs/2605.28527",
+    "https://arxiv.org/abs/2605.29710",
+    "https://arxiv.org/abs/2605.28442",
+    "https://arxiv.org/abs/2605.29564",
+    "https://arxiv.org/abs/2603.13707",
+    "https://arxiv.org/abs/2605.27734",
+    "https://arxiv.org/abs/2603.16861",
+    "https://arxiv.org/abs/2605.30226",
+    "https://arxiv.org/abs/2605.30161",
+    "https://arxiv.org/abs/2605.30834",
+    "https://arxiv.org/abs/2605.26535",
+    "https://arxiv.org/abs/2511.04131",
+    "https://arxiv.org/abs/2507.21053",
+    "https://arxiv.org/abs/2602.02481",
+    "https://arxiv.org/abs/2512.01996",
+    "https://arxiv.org/abs/2505.22642",
+    "https://arxiv.org/abs/2407.20230",
+    "https://arxiv.org/abs/2511.09484",
+    "https://arxiv.org/abs/2602.15827",
+    "https://arxiv.org/abs/2509.26633",
+    "https://arxiv.org/abs/2502.10894",
+    "https://arxiv.org/abs/2502.01143",
+    "https://arxiv.org/abs/2505.06776",
+    "https://arxiv.org/abs/2509.21986",
+    "https://arxiv.org/abs/2605.31159",
+    "https://arxiv.org/abs/2605.30557",
+    "https://arxiv.org/abs/2605.30370",
+    "https://arxiv.org/abs/2605.29548",
+    "https://arxiv.org/abs/2605.29198",
+    "https://arxiv.org/abs/2605.11367",
+    "https://arxiv.org/abs/2603.02115",
+    "https://arxiv.org/abs/2605.22817",
+    "https://arxiv.org/abs/2605.30561",
+    "https://arxiv.org/abs/2605.21710",
+    "https://arxiv.org/abs/2605.30347",
+    "https://arxiv.org/abs/2605.31604",
+    "https://arxiv.org/abs/2605.19282",
+    "https://arxiv.org/abs/2602.10556",
+    "https://arxiv.org/abs/2509.15965",
+    "https://arxiv.org/abs/2604.16391",
+    "https://arxiv.org/abs/2605.15725",
+    "https://arxiv.org/abs/2605.02900",
+    # --- Awesome-Memory-for-Robotics + top-CVPR-2026 batch ---
+    "https://arxiv.org/abs/2602.16313",
+    "https://arxiv.org/abs/2504.15965",
+    "https://arxiv.org/abs/2507.10087",
+    "https://arxiv.org/abs/2508.01415",
+    "https://arxiv.org/abs/2603.09513",
+    "https://arxiv.org/abs/2510.20328",
+    "https://arxiv.org/abs/2512.19154",
+    "https://arxiv.org/abs/2505.09561",
+    "https://arxiv.org/abs/2501.18564",
+    "https://arxiv.org/abs/2603.24576",
+    "https://arxiv.org/abs/2104.10218",
+    "https://arxiv.org/abs/2511.18112",
+    "https://arxiv.org/abs/2511.04357",
+    "https://arxiv.org/abs/2507.12846",
+    "https://arxiv.org/abs/2505.13948",
+    "https://arxiv.org/abs/2510.00695",
+    "https://arxiv.org/abs/2512.09928",
+    "https://arxiv.org/abs/2511.14004",
+    "https://arxiv.org/abs/2411.04999",
+    "https://arxiv.org/abs/2603.01229",
+    "https://arxiv.org/abs/2511.11478",
+    "https://arxiv.org/abs/2604.18933",
+    "https://arxiv.org/abs/2309.15278",
+    "https://arxiv.org/abs/2402.15487",
+    "https://arxiv.org/abs/2506.05997",
+    "https://arxiv.org/abs/2402.19161",
+    "https://arxiv.org/abs/2405.07060",
+    "https://arxiv.org/abs/2210.05714",
+    "https://arxiv.org/abs/2301.13261",
+    "https://arxiv.org/abs/2101.05181",
+    "https://arxiv.org/abs/2008.01655",
+    "https://arxiv.org/abs/2012.03912",
+    "https://arxiv.org/abs/2509.23745",
+    "https://arxiv.org/abs/2212.07740",
+    "https://arxiv.org/abs/2107.03996",
+    "https://arxiv.org/abs/2107.04034",
+    "https://arxiv.org/abs/2003.01239",
+    "https://arxiv.org/abs/2411.17735",
+    "https://arxiv.org/abs/2512.03422",
+    "https://arxiv.org/abs/2409.18313",
+    "https://arxiv.org/abs/2111.09793",
+    "https://arxiv.org/abs/2603.17117",
+    "https://arxiv.org/abs/2403.04253",
+    "https://arxiv.org/abs/2501.10395",
+    "https://arxiv.org/abs/2406.17768",
+    "https://arxiv.org/abs/2502.10550",
+    "https://arxiv.org/abs/2602.17134",
+    "https://arxiv.org/abs/2512.08924",
+    "https://arxiv.org/abs/2512.17012",
+    "https://arxiv.org/abs/2604.26488",
+    "https://arxiv.org/abs/2511.17309",
+    "https://arxiv.org/abs/2512.04012",
+    "https://arxiv.org/abs/2604.09445",
+    "https://arxiv.org/abs/2602.20160",
+    "https://arxiv.org/abs/2601.16148",
+    "https://arxiv.org/abs/2512.16913",
+    "https://arxiv.org/abs/2512.08269",
+    "https://arxiv.org/abs/2511.13720",
+    "https://arxiv.org/abs/2603.29634",
+    "https://arxiv.org/abs/2603.17684",
+    "https://arxiv.org/abs/2511.20886",
+    "https://arxiv.org/abs/2603.12217",
+    "https://arxiv.org/abs/2602.15989",
+    "https://arxiv.org/abs/2602.05755",
+    "https://arxiv.org/abs/2602.17807",
+    "https://arxiv.org/abs/2512.11782",
+    "https://arxiv.org/abs/2511.15622",
+    "https://arxiv.org/abs/2604.18267",
+    "https://arxiv.org/abs/2604.13596",
+    "https://arxiv.org/abs/2602.23339",
+    "https://arxiv.org/abs/2606.01027",
+    "https://arxiv.org/abs/2602.00937",
+    "https://arxiv.org/abs/2605.10051",
+    "https://arxiv.org/abs/2605.25685",
+    "https://arxiv.org/abs/2409.00215",
+    "https://arxiv.org/abs/2311.11893",
+    "https://arxiv.org/abs/2604.25788",
+    "https://arxiv.org/abs/2604.25788",
+    "https://arxiv.org/abs/2605.12771",
+    "https://arxiv.org/abs/2506.14968",
+    "https://arxiv.org/abs/2501.09747",
+    "https://arxiv.org/abs/2408.14472",
+    "https://arxiv.org/abs/2305.06341",
 ]

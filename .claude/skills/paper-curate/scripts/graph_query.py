@@ -505,7 +505,7 @@ def cmd_split(cohesion_threshold=0.5, size_threshold=10, off_dom_threshold=0.4):
 
 SKILL_PATH = ".claude/skills/paper-curate/SKILL.md"
 ALPHAXIV_PATH = ".claude/skills/alphaxiv-summary-extract/SKILL.md"
-TAG_TOKEN = re.compile(r"`([A-Za-z][A-Za-z0-9_-]*?)`")
+TAG_TOKEN = re.compile(r"`([A-Za-z0-9][A-Za-z0-9_-]*?)`")
 
 
 def _extract_tags_in_table(path, header_marker):

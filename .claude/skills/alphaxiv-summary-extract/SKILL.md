@@ -75,29 +75,76 @@ Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each
 
 > Do NOT add highlights or bold to Summary, Problem, or Takeaways sections.
 
-##### Canonical Tag Taxonomy (61 tags)
+##### Canonical Tag Taxonomy (62 tags)
 
 > **Single source of truth for the tag vocabulary used across all skills.** `Skill(skill="paper-curate")` references this table for routing — keep tag names exact (renames must propagate). Run `validate-tags` (see `Skill(skill="paper-curate")`) after any change to detect drift.
 
 Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 
-| Category | Tags |
-|----------|------|
-| **Models/Architectures** | `LLM`, `VLM`, `VLA`, `world-model`, `diffusion`, `vision-transformer`, `mixture-of-experts`, `reward-model`, `generative-model` |
-| **Methods/Techniques** | `reinforcement-learning`, `self-supervised-learning`, `contrastive-learning`, `knowledge-distillation`, `domain-adaptation`, `continual-learning`, `imitation-learning`, `fine-tuning`, `chain-of-thought`, `RLHF`, `meta-learning`, `curriculum-learning`, `in-context-learning`, `self-play`, `flow-matching`, `model-merging`, `sim-to-real` |
-| **Training/Scaling** | `pre-training`, `scaling`, `synthetic-data`, `parameter-efficient`, `test-time-scaling` |
-| **Applications** | `robotics`, `autonomous-driving`, `embodied-AI`, `agentic-AI`, `code-generation`, `medical-imaging`, `humanoid`, `dexterous` |
-| **Tasks/Capabilities** | `reasoning`, `spatial-reasoning`, `visual-grounding`, `planning`, `object-detection`, `segmentation`, `3D-understanding`, `video-understanding`, `image-generation`, `navigation`, `manipulation`, `tool-use`, `tactile`, `egocentric` |
-| **Properties/Concerns** | `hallucination`, `efficiency`, `interpretability`, `robustness`, `safety`, `physics-aware` |
-| **Paper Type** | `survey`, `benchmark` |
-
-**Definitions for the 6 newly-added tags** (added 2026-05-18 after vault-wide audit):
-- `physics-aware` — paper grounds models in physical priors / Newtonian / commonsense physics (methods, datasets, or benchmarks that test physical fidelity)
-- `sim-to-real` — focuses on the simulation-to-real transfer problem (domain randomization, real-to-sim, etc.)
-- `humanoid` — humanoid / whole-body / bipedal robot platforms
-- `dexterous` — multi-finger / dexterous manipulation (vs. parallel-jaw)
-- `tactile` — touch / force / haptic sensing (GelSight, DIGIT, visuo-tactile)
-- `egocentric` — first-person / hand-cam / Ego4D-style data and pretraining
+| Category | Tag | Explanation |
+|----------|-----|-------------|
+| **Models/Architectures** | `LLM` | Large language model — text-centric foundation model |
+| | `VLM` | Vision-language model — image/video + text understanding |
+| | `VLA` | Vision-language-action model — a VLM that outputs robot actions |
+| | `world-model` | Learns environment dynamics to predict / imagine future states |
+| | `diffusion` | Denoising-diffusion generative model (images, video, or policies) |
+| | `vision-transformer` | ViT-style transformer backbone for visual inputs |
+| | `mixture-of-experts` | Sparsely-activated expert routing (MoE) architecture |
+| | `reward-model` | Learned model that scores outputs to guide RL / preference training |
+| | `generative-model` | Generative backbone (VAE / GAN / autoregressive) not covered by `diffusion` |
+| **Methods/Techniques** | `reinforcement-learning` | Policy learning from reward signals |
+| | `self-supervised-learning` | Learning from unlabeled data via pretext tasks |
+| | `contrastive-learning` | Representation learning by pulling / pushing sample pairs |
+| | `knowledge-distillation` | Transferring knowledge from a teacher to a student model |
+| | `domain-adaptation` | Transferring across distribution shift / domains |
+| | `continual-learning` | Learning new tasks without catastrophic forgetting |
+| | `imitation-learning` | Learning policies from demonstrations (behavior cloning) |
+| | `fine-tuning` | Adapting a pretrained model to a task / domain |
+| | `chain-of-thought` | Step-by-step intermediate reasoning traces |
+| | `RLHF` | Reinforcement learning from human (or AI) feedback |
+| | `meta-learning` | Learning to learn / fast adaptation across tasks |
+| | `curriculum-learning` | Ordering training data / tasks easy-to-hard |
+| | `in-context-learning` | Task adaptation from prompt examples, no weight update |
+| | `self-play` | Improving by competing / cooperating with copies of oneself |
+| | `flow-matching` | Continuous-time generative training via velocity fields |
+| | `model-merging` | Combining multiple models' weights into one |
+| | `sim-to-real` | Simulation-to-real transfer (domain randomization, real-to-sim, etc.) |
+| **Training/Scaling** | `pre-training` | Large-scale training of a foundation model from scratch |
+| | `scaling` | Scaling laws / behavior of compute, data, or model size |
+| | `synthetic-data` | Training on generated or simulated data |
+| | `parameter-efficient` | Low-cost adaptation (LoRA, adapters, prompt tuning) |
+| | `test-time-scaling` | Spending more compute at inference (search, sampling, longer reasoning) |
+| **Applications** | `robotics` | Physical robot control and manipulation systems |
+| | `autonomous-driving` | Self-driving perception, prediction, and planning |
+| | `embodied-AI` | Agents acting in simulated or real physical environments |
+| | `agentic-AI` | Autonomous LLM agents with tools, memory, and multi-step plans |
+| | `code-generation` | Generating or reasoning about source code |
+| | `medical-imaging` | Medical / clinical image analysis |
+| | `humanoid` | Humanoid / whole-body / bipedal robot platforms |
+| | `dexterous` | Multi-finger / dexterous manipulation (vs. parallel-jaw) |
+| **Tasks/Capabilities** | `reasoning` | Multi-step logical / mathematical / commonsense inference |
+| | `spatial-reasoning` | Reasoning about spatial relations and layout |
+| | `visual-grounding` | Linking language to image regions / objects |
+| | `planning` | Producing action sequences toward a goal |
+| | `object-detection` | Localizing and classifying objects |
+| | `segmentation` | Pixel-level region / instance labeling |
+| | `3D-understanding` | 3D geometry, scenes, reconstruction, and pose |
+| | `video-understanding` | Temporal understanding of video |
+| | `image-generation` | Synthesizing images |
+| | `navigation` | Moving an agent to goals through environments |
+| | `manipulation` | Grasping and manipulating objects |
+| | `tool-use` | Invoking external tools / APIs / functions |
+| | `tactile` | Touch / force / haptic sensing (GelSight, DIGIT, visuo-tactile) |
+| | `egocentric` | First-person / hand-cam / Ego4D-style data and pretraining |
+| **Properties/Concerns** | `hallucination` | Fabricated / ungrounded model outputs |
+| | `efficiency` | Compute / memory / latency efficiency |
+| | `interpretability` | Understanding model internals / behavior |
+| | `robustness` | Resistance to perturbations, OOD, and adversarial inputs |
+| | `safety` | Alignment, harm avoidance, and safe deployment |
+| | `physics-aware` | Grounds models in physical priors / Newtonian / commonsense physics |
+| **Paper Type** | `survey` | Literature review / taxonomy of a research area |
+| | `benchmark` | Primary contribution is an evaluation protocol / suite |
+| | `dataset` | Primary contribution is a data corpus / collection for training (vs. `benchmark` = eval protocol; a paper can carry both) |
 
 #### Report results
 

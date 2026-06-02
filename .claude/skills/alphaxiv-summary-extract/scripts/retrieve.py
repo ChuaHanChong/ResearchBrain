@@ -34,9 +34,21 @@ def _js_text(driver, element):
     return driver.execute_script("return arguments[0].textContent;", element).strip()
 
 
-def extract_summary(driver, url):
-    driver.get(url)
+def _click_through_to_overview(driver, arxiv_id):
+    """Reach the overview by clicking through from /abs/ rather than hitting
+    /overview/ directly — the direct SSR route is per-IP rate-limited (HTTP 500)."""
+    driver.get(f"https://www.alphaxiv.org/abs/{arxiv_id}")
     time.sleep(5)
+    # Click the in-app anchor (not driver.get) so the SPA router soft-navigates.
+    link = WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, f"a[href*='/overview/{arxiv_id}']"))
+    )
+    driver.execute_script("arguments[0].click();", link)
+
+
+def extract_summary(driver, arxiv_id):
+    _click_through_to_overview(driver, arxiv_id)
+    time.sleep(1)
 
     # Switch to Machine view (new UI toggle added since original scripts were written)
     _js_click(driver, "//button[normalize-space()='Machine']")
