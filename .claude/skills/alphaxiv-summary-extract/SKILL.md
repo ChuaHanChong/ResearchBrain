@@ -62,9 +62,9 @@ Add `--limit 3` for a small test run; `--force` to overwrite existing notes.
 
 Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each new `.md` file. For batch frontmatter property updates across many notes (e.g., adding a tag to N papers at once), prefer `Skill(skill="obsidian:obsidian-cli")` over per-file Edits.
 
-1. **Extract `authors`** from the BibTeX block. If the paper has 5 or fewer authors, list ALL of them. If the paper has MORE than 5 authors, keep exactly 5 entries: the first 3 authors AND the last 2 authors (i.e., `authors[:3] + authors[-2:]`). Never include `- ...` as a placeholder entry.
-   - **Worked example** — given 8 authors `[A, B, C, D, E, F, G, H]`, the result MUST be `[A, B, C, G, H]` (5 names). DO NOT output `[A, B, C, H]` (4 names — this drops the second-to-last author and is the historical bug).
-   - **Sanity check** — after trimming, if the original list had >5 authors, your result MUST have exactly 5 entries. If it has 4, you have made the historical mistake; redo it including BOTH last-two authors.
+1. **Extract `authors`** from the BibTeX block. If the paper has 5 or fewer authors, list all of them. If the paper has more than 5 authors, keep exactly 5 entries: the first 3 authors plus the last 2 authors (i.e., `authors[:3] + authors[-2:]`). Use real author names only — no `- ...` placeholder entry.
+   - **Worked example** — given 8 authors `[A, B, C, D, E, F, G, H]`, the result is `[A, B, C, G, H]` (5 names), not `[A, B, C, H]` (4 names — that form drops the second-to-last author, which is the historical bug).
+   - **Sanity check** — after trimming, an original list of >5 authors leaves exactly 5 entries. If you end up with 4, the second-to-last author was dropped; redo it, keeping both of the last two authors.
 2. **Infer `tags`** (3–6 tags from the canonical taxonomy in the next sub-section) and add them to the frontmatter.
 3. **Set `aliases`** (the model/system short name, e.g., `DreamZero`) and add them to the frontmatter. Always provide at least one alias. Use the model/system short name if the paper introduces one (e.g., `DreamZero`). For surveys or papers without a specifically named contribution, derive a descriptive alias from the title (e.g., `VLM Survey 2025`, `RLHF Benchmark`). Never leave `aliases: []` empty.
 4. **Apply formatting** to the **Method** section only:

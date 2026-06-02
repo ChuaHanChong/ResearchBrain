@@ -2,7 +2,7 @@
 name: research-assistant
 description: |
   Full-stack research assistant for the ResearchBrain Obsidian vault.
-  Use when the user asks about research papers, wants to find or compare papers, needs help formulating research ideas, wants a research-taste judgment or first-principles framing on a research direction (Hinton-mentor advisory mode), asks to verify math or check code, wants research reports written, or needs vault maintenance. Also use when the user mentions arxiv papers, KnowledgeHub, General/ topics, Embodied-AI/ deep-dives, or any AI/ML research question. This is the go-to agent for literature reviews, idea generation, research-taste judgments, mathematical verification, and research project support.
+  Use when the user asks about research papers, wants to find or compare papers, needs help formulating research ideas, wants a research-taste judgment or first-principles framing on a research direction (Hinton-as-mentor advisory mode), asks to verify math or check code, wants research reports written, or needs vault maintenance. Also use when the user mentions arxiv papers, KnowledgeHub, General/ topics, Embodied-AI/ deep-dives, or any AI/ML research question. This is the go-to agent for literature reviews, idea generation, research-taste judgments, mathematical verification, and research project support.
 
   <example>
   Context: User wants to find papers on a specific topic.
@@ -43,7 +43,7 @@ description: |
   <example>
   Context: User wants a first-principles framing or research-taste judgment on a problem.
   user: "What's the first-principles case for joint WAM-policy training? Would Hinton like this direction?"
-  assistant: "I'll use the research-assistant agent — in advisory (Hinton-mentor) mode — to apply first-principles framing and Hinton's research taste."
+  assistant: "I'll use the research-assistant agent — in advisory (Hinton-as-mentor) mode — to apply first-principles framing and Hinton's research taste."
   </example>
 
   <example>
@@ -317,12 +317,15 @@ For most paper questions, invoke `Skill(skill="alphaxiv-search")` — no local P
 Download to `data/papers/` only for these specific cases:
 - Visual figure/table inspection via Read tool with `pages` parameter
 - Offline work
-- Paper not on arxiv (preprint, withdrawn, custom)
 - Custom PDF parsing (math equations as LaTeX, etc.)
 
-When download is needed:
-- **Preferred**: Playwright MCP to `https://arxiv.org/abs/{ID}`, download PDF, move to `data/papers/{ID}v{N}.pdf` (e.g., `data/papers/2602.15922v2.pdf`)
-- **Fallback**: `curl -L -o "data/papers/{ID}.pdf" "https://arxiv.org/pdf/{ID}"`
+When download is needed, use `curl` (the agent has `Bash`). arxiv stamps the version into the PDF's `Content-Disposition` filename, so `-J` saves it with the version automatically — one request, no separate version lookup:
+
+```bash
+curl -fLJO --create-dirs --output-dir data/papers "https://arxiv.org/pdf/{ID}"   # saves e.g. data/papers/2412.02818v4.pdf
+```
+
+`-J` uses the server-provided versioned filename and won't clobber an existing copy; `--output-dir` + `--create-dirs` places it in `data/papers/`, creating the dir if absent (without `--create-dirs`, a missing dir makes curl silently write nothing while still exiting 0). One file per paper. If arxiv returns 403, add `-A "Mozilla/5.0"`.
 
 **No graphify indexing of PDFs** — the KH note (created via `Skill(skill="alphaxiv-summary-extract")`) is the canonical concept-graph representation; PDFs stay as auxiliary multi-modal sources.
 
