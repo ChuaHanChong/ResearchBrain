@@ -83,7 +83,7 @@ Smaller in trajectory count but engineered for *skill diversity* — many task f
 | Maximum *environment* diversity | [[2403.12945\|DROID]] (**16** institutions / in-the-wild) |
 | Single-lab depth without consortium overhead | [[2503.06669\|AgiBot World]] (**1M+** trajectories + [[2503.06669\|GO-1]] policy) |
 | Few-shot / one-shot skill transfer | [[2307.00595\|RH20T]] |
-| Compose multiple corpora for cross-embodiment + diversity | [[2310.08864\|OXE]] + [[2403.12945\|DROID]] mix (see §17 Recommended Stacks) |
+| Compose multiple corpora for cross-embodiment + diversity | [[2310.08864\|OXE]] + [[2403.12945\|DROID]] mix (see §16 Picking Your Stack) |
 
 > [!star] Key Papers
 > - [[2310.08864|OXE]] — **1M+** real-robot trajectories from **22** embodiments; the ImageNet moment for robotics
@@ -111,9 +111,6 @@ Coordinated two-arm control requires specialized data with synchronized dual-arm
 - **[[2512.24653|RoboMIND 2.0]]** — **310K** dual-arm trajectories from **6** heterogeneous platforms across **759** tasks / **129** skills / **1,139** objects with ==tactile feedback== + ==Isaac Sim digital twin==; paired ==MIND-2 hierarchical dual-system== (VLM planner + IQL-optimized VLA executor) reaches **1.0** SR on multi-robot collaborative tasks.
 - **[[2511.17441|RoboCOIN]]** — **180,000+** bimanual demos across **15** platforms / **421** tasks with ==hierarchical capability pyramid== (trajectory/segment/frame annotations) + ==CoRobot RTML quality control==; RTML filtering removes **35.3%** low-quality trajectories and raises [[2503.14734|GR00T N1]].5 SR by **+23%**.
 - **[[2412.13877|RoboMIND]]** — **107,000** trajectories / **305.5 hours** across Franka + UR5e + AgileX + Tien Kung humanoid, **479** tasks, **5,000** failure demos, **10,000** frame-level language-annotated trajectories + ==Isaac Sim digital twin== (Pearson **0.83–0.91** sim-real correlation); precursor to RoboMIND 2.0.
-
-> [!star] Bimanual Tactile Landmark
-> [[2604.20444|VTouch++]] — 120,000+ episodes / 1,000+ hours / 380+ systematically categorized bimanual tasks with synchronized fingertip tactile + multi-view RGB-D + proprioception. Contrastive learning lifts cross-modal retrieval **7×** over baselines; diffusion policy reaches **0.022 MAE** and **0.848 Expert Similarity** on real bimanual hardware. Establishes the matrix-style "skill-axis" task design that enables fine-grained generalization analysis.
 
 #### 2.2 Single-Embodiment High-Quality
 
@@ -143,13 +140,23 @@ The data collection systems themselves. [[2402.10329|UMI]] introduced the "in-th
 - **[[2304.13705|ALOHA]]** — **<$20K** open-source bimanual platform + ==ACT (Action Chunking with Transformers)== — a ==Transformer CVAE== predicting multi-step action sequences with ==temporal ensembling==; the original benchmark for fine-grained tasks (zip-tie threading, cup separation, ping-pong juggling).
 
 > [!star] Key Papers
+> - [[2604.20444|VTouch++]] — The bimanual-tactile landmark: 120,000+ episodes / 380+ skill-axis-categorized tasks with synchronized fingertip tactile; contrastive learning lifts cross-modal retrieval **7×**, diffusion policy reaches **0.022 MAE** on real hardware
 > - [[2605.03452|BifrostUMI]] — Robot-free demonstration paradigm extended to humanoids; the dominant scaling alternative for whole-body data
-> - [[2605.05945|MobileEgo Anywhere]] — Commodity-hardware long-horizon egocentric capture; **<1 cm** [ARKit](https://developer.apple.com/augmented-reality/arkit/) drift over hour-long sessions democratizes egocentric VLA data collection
 > - [[2512.24653|RoboMIND 2.0]] — 310K bimanual + mobile manipulation trajectories with tactile sensing and digital twin
 > - [[2602.16710|EgoScale]] — Scaling dexterous manipulation specifically via diverse egocentric *human* data — fingers, not arms, are the bottleneck
-> - [[2505.21864|DexUMI]] — Dexterous extension with robot-specific exoskeletons + visual hand-inpainting; **86%** SR on contact-rich tasks across underactuated (Inspire) and fully-actuated (XHand) hands
 > - [[2402.10329|UMI]] — Hand-held in-the-wild data collection; **>3x faster** than teleop, cross-robot zero-shot generalization, dynamic tasks impossible via teleop; the dominant alternative to teleoperation
-> - [[2304.13705|ALOHA]] — Low-cost bimanual teleoperation; enabled fine-grained data collection for dexterous tasks
+
+**Specialist Datasets — Decision Matrix**
+
+| Need | Dataset |
+|---|---|
+| Bimanual tactile with skill-axis task design | [[2604.20444\|VTouch++]] (**120K+** episodes / **380+** tasks) |
+| Large-scale bimanual + digital twin | [[2512.24653\|RoboMIND 2.0]] (**310K** trajectories / **6** platforms) |
+| Closed-loop bimanual collection + recovery | [[2604.07335\|TAMEn]] (**75%** avg SR) |
+| Single-embodiment fixed-deployment depth | [[2509.00576\|G0]] (**500-hour** / **50** scenes) |
+| Dexterous egocentric *human* pretrain (finger-level) | [[2602.16710\|EgoScale]] (**20,854 hr**), [[2605.06747\|HumanNet]] (**1M hr**) |
+| Robot-free collection without teleop | [[2402.10329\|UMI]], [[2505.21864\|DexUMI]], [[2605.03452\|BifrostUMI]] |
+| Low-cost bimanual teleop baseline | [[2304.13705\|ALOHA]] (**<$20K**) |
 
 > [!tip] When Scale Doesn't Help
 > [[2509.00576|G0]] showed single-embodiment in-domain data quality can outperform heterogeneous cross-embodiment scale. If your deployment robot is fixed, invest in diverse *scenes* not diverse *robots*. The corollary from [[2602.16710|EgoScale]]: if your deployment robot has *fingers*, invest in diverse *human hand* data — VLA-scale RGB does not cover the finger-control space.
@@ -413,12 +420,11 @@ The *policy* axis: full robot policies (not just representations) evaluated unde
 - **[[2505.18472|ManiFeel]]** — First comprehensive visuotactile sim benchmark in IsaacGym: **13** tasks (insertion, screwing, exploration) with simulated ==GelSight R1.5== (TacRGB + TacFF) sensors validated against real data; modular pipeline benchmarks pre-trained encoders (UniT, T3, AnyTouch) + policies (DP, Flow Matching); **+26pp** TacFF on peg-insertion, **+14pp** TacFF on real gear-assembly sim-to-real consistency check — the standardized "does touch help" probe.
 - **[[2408.06506|TacSL]]** — GPU-accelerated visuotactile sim integrated into Isaac with ==implicit Kelvin-Voigt soft contact== + ==Asymmetric Actor-Critic Distillation (AACD)== for high-dim tactile policy learning; **200×** speedup tactile-image gen (**1631 FPS**), **428×** force-field gen (**1.5M FPS**); zero-shot sim-to-real **91.4%** peg-place / **82.7%** peg-insert on real robot; image-augmented policy lifts real SR **27.2 → 87.7%** — the de-facto tactile-sim foundation.
 
-> [!star] Contact-Rich Data Engines
-> [[2603.17851|DexViTac]] solves the *human-demo* axis (248 demos/hr, kinematics-grounded tactile pretraining), and [[2604.07335|TAMEn]] solves the *closed-loop* axis (online feasibility + AR recovery). Together they form the new dual-pillar pipeline for tactile data collection: human bulk-pretrain ([[2603.17851|DexViTac]]) → robot online-recovery refinement ([[2604.07335|TAMEn]]). [[2603.17851|DexViTac]]'s **83.3% → 43.3%** Pipetting SR collapse without kinematics-grounded pretrain is the most damning ablation for naïve tactile fusion.
-
 > [!star] Key Papers
 > - [[2410.24090|Sparsh]] — Introduces [[2410.24090|TacBench]] (6 tasks, 4 sensors); first standardized tactile representation benchmark; self-supervised reps beat end-to-end on **6/6** tasks
 > - [[2506.14754|Sparsh-X]] — Extends [[2410.24090|Sparsh]] to multisensory touch (image + audio + vibration + force); **>3x improvement** on force-and-vibration tasks; defines the multisensory tactile evaluation axis
+> - [[2603.17851|DexViTac]] — The *human-demo* data engine (248 demos/hr, kinematics-grounded tactile pretrain); its **83.3% → 43.3%** Pipetting SR collapse without grounded pretrain is the most damning ablation for naïve tactile fusion
+> - [[2604.07335|TAMEn]] — The *closed-loop* data engine (online feasibility + AR recovery); pairs with [[2603.17851|DexViTac]] as the dual-pillar tactile collection pipeline (human bulk-pretrain → robot online-recovery refinement)
 > - [[2509.07962|TA-VLA]] — Torque-aware VLA design study; the de-facto reference for which torque-integration recipe matters most under contact-rich evaluation
 
 **Tactile Benchmarks — Decision Matrix**
@@ -589,9 +595,6 @@ Static VQA tells you what a VLM *recognizes*; **interactive embodied benchmarks*
 - **[[2503.11117|EXPRESS-Bench]]** — Embodied Question Answering benchmark in ==Habitat + HM3D== with **777** trajectories / **2,044** QA pairs and the novel ==Exploration-Answer Consistency (EAC)== metric. Companion model **Fine-EQA** combines ==frontier-based + goal-oriented exploration== (**40.55%** C, **16.22%** E_path; **+42%** path-length reduction on HM-EQA). Closes the gap between answer correctness and *grounded* exploration — punishes models that hallucinate answers without observing the relevant scene.
 - **[[2602.21015|CHAIN]]** — Interactive 3D physics-driven benchmark with **109 levels** across interlocking mechanical puzzles + 3D stacking/packing (==Unity== for puzzles, lightweight Python engine for stacking). Closed-loop evaluation with action-and-feedback. Best VLM (GPT-5.2) hits only **22.9%** Pass@1; puzzle tasks remain near-zero even at "easy" difficulty. Also catastrophically exposes video-WM physics violations (representational collapse, object permanence failures). Cross-listed in [[07_Physics-Aware-Embodied-AI#6. Physics Commonsense Benchmarks]] as a physics-reasoning probe.
 
-> [!tip] Static-VQA vs Interactive Gap
-> The headline finding across §9.4: VLMs that score **>70%** on §9.1–9.3 static-image VQA *collapse* to **10–30%** as soon as they must act and receive feedback. The bottleneck is not perception — it's the closed-loop action-observation alignment that ==generative evaluation== ([[2603.13033|ESPIRE]]'s decomposition into localization + execution) exposes. The same model that correctly *answers* "the cup is left of the bowl" cannot reliably *pick the cup up from the left*.
-
 **Spatial Reasoning — Decision Matrix**
 
 | Need | Benchmark |
@@ -617,8 +620,8 @@ Static VQA tells you what a VLM *recognizes*; **interactive embodied benchmarks*
 > - [[2601.09430|Video-MSR]] — Multi-step spatial reasoning benchmark for video understanding
 > - [[2511.04670|Cambrian-S]] — Spatial supersensing in video; extends spatial benchmarks from static frames to temporal sequences
 
-> [!tip] The Spatial Gap
-> Current VLMs and VLAs consistently underperform on spatial reasoning benchmarks compared to object recognition tasks. [[2410.06468|SPACE]] and [[2505.05456|SITE]] show this is a fundamental representation issue, not just a data issue. Papers like [[2501.15830|SpatialVLA]] and [[2506.22242|4D-VLA]] attempt to close this gap architecturally. Cross-reference [[08_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the reasoning-side responses to these failures and [[03_VLA#3. Spatial & 3D-Aware VLAs]] for 3D-aware architectures.
+> [!tip] The Spatial Gap — and the Static-vs-Interactive Cliff
+> Current VLMs and VLAs consistently underperform on spatial reasoning benchmarks compared to object recognition tasks. [[2410.06468|SPACE]] and [[2505.05456|SITE]] show this is a fundamental representation issue, not just a data issue. The gap *widens* under interaction: the headline finding across §9.4 is that VLMs scoring **>70%** on §9.1–9.3 static-image VQA *collapse* to **10–30%** as soon as they must act and receive feedback — the bottleneck is not perception but closed-loop action-observation alignment, which ==generative evaluation== ([[2603.13033|ESPIRE]]'s localization-vs-execution decomposition) exposes. The same model that correctly *answers* "the cup is left of the bowl" cannot reliably *pick the cup up from the left*. Papers like [[2501.15830|SpatialVLA]] and [[2506.22242|4D-VLA]] attempt to close the representation gap architecturally. Cross-reference [[08_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the reasoning-side responses to these failures and [[03_VLA#3. Spatial & 3D-Aware VLAs]] for 3D-aware architectures.
 
 ---
 
@@ -711,6 +714,19 @@ Evaluating whether learned world models generate physically plausible, action-co
 
 World model evaluation has shifted from passive video quality metrics (FVD, SSIM) to *interactive* benchmarks that test whether the model can predict consequences of actions. Two axes drive the new generation: **action-following fidelity** (given an action, does the predicted next frame match the actual outcome?) and **causal consistency** (do counterfactual actions produce counterfactual futures?). The most ambitious framing — **WM-as-environment** — replaces "is the video pretty?" with "does a policy trained inside the WM transfer to real?".
 
+**World Model Benchmarks — Decision Matrix**
+
+| Need | Benchmark |
+|---|---|
+| Interaction-centric WM eval (causal + chronology) | [[2603.22212\|Omni-WorldBench]] (**75.92%** AgenticScore) |
+| WM-as-environment (policy-transfer fidelity) | [[2506.00613\|WorldGym]] (**r=0.78** with real success), [[2603.09030\|PlayWorld]] (**0.8766**) |
+| Action-following + state-alignment on game-scale data | [[2603.23497\|WildWorld]] (**108M** frames, AF/SA metrics) |
+| In-imagination policy fine-tuning | [[2510.10125\|CTRL-WORLD]] (π0.5 **38.7% → 83.4%**) |
+| WAM-vs-VLA robustness trade-off | [[2603.22078\|WAM vs VLA Robustness]] (**4.8×** slower, more robust) |
+| Video-generator rule-induction / reasoning probe | [[2602.05986\|RISE-Video]] (best TI2V only **22.5%**) |
+| Latent-action representation quality | [[2604.11689\|LARY]] (**1.2M+** videos; general backbones beat embodied LAMs) |
+| Integrated WM-powered VLA stack | [[2510.19430\|GigaBrain-0]] (**+30%** laundry SR) |
+
 > [!star] Key Papers
 > - [[2603.22212|Omni-WorldBench]] — First interaction-centric evaluation for world models; tests causal consistency and action following
 > - [[2603.22078|WAM vs VLA Robustness]] — Systematic comparison: WAMs are more robust to visual perturbations but 4.8x slower
@@ -729,7 +745,7 @@ World model evaluation has shifted from passive video quality metrics (FVD, SSIM
 
 *Cross-cutting design studies, survey papers, evaluation hierarchies, and recommended stacks. Use these to assemble the right combination from Parts A–C.*
 
-### 11. Sim-to-Real Transfer Evaluation
+### 12. Sim-to-Real Transfer Evaluation
 
 Bridging the reality gap: does simulation performance predict real-world success?
 
@@ -745,15 +761,28 @@ Bridging the reality gap: does simulation performance predict real-world success
 
 The sim-to-real evaluation problem has two components: the *visual* gap (rendered vs real images) and the *dynamics* gap (simulated vs real physics). The field has converged on three attack strategies: (1) **better correlation benchmarks** that quantify how predictive sim-success is of real-success (Pearson r); (2) **better statistical estimators** that reduce variance in real-rollout count needed for a confident sim-real comparison; (3) **real-to-sim closures** that rebuild the deployment scene from video as a re-evaluable digital twin. Each new entry pushes Pearson r toward 1.0 (current best: **r = 0.92**) by closing a specific failure mode — specular highlights, contact shadows, observation-distribution shift, or asset diversity.
 
+**Sim-to-Real Evaluation — Decision Matrix**
+
+| Need | Benchmark |
+|---|---|
+| Canonical sim-real correlation baseline | [[2405.05941\|SimplerEnv]] (**r > 0.85**, MMRV metric) |
+| Highest-fidelity visual correlation | [[2605.06311\|VISER]] (**r = 0.92**, PBR + ray-tracing) |
+| Decompose OL-vs-CL gap | [[2604.10856\|BridgeSim]] (observational shift + objective mismatch) |
+| Variance-reduced sim-real estimation | [[2604.24018\|Sim2Real Betting]] (**70–100%** win vs Monte Carlo) |
+| Soft-body / deformable real-to-sim twin | [[2511.04665\|Real-to-Sim GS]] (**r > 0.9**), [[2506.06440\|Vid2Sim]] (**PSNR 30.17**) |
+
 > [!star] Key Papers
 > - [[2605.06311|VISER]] — Ray-tracing + PBR materials + MLLM-driven asset generation; **0.92** sim-to-real Pearson correlation; pinpoints specular highlights and contact shadows as the load-bearing visual cues for VLA policies
 > - [[2405.05941|SimplerEnv]] — First reliable sim-real correlation benchmark (**r > 0.85**); introduces MMRV ranking metric; enables cheap, reproducible policy evaluation without hardware
 > - [[2604.10856|BridgeSim]] — Decomposes OL-CL gap into observational shift + objective mismatch; **+19.1 DS** via training-free TTA; sim-to-real is a paradigm gap, not a data gap
 > - [[2511.04665|Real-to-Sim GS]] — Gaussian-splat soft-body twins close the loop for deformables
 
+> [!tip] Correlation Is the Currency
+> Sim-to-real *evaluation* converges on one number: how predictive is sim-success of real-success (Pearson r)? The frontier pushes r toward 1.0 by closing specific visual failure modes — [[2605.06311|VISER]] (r=0.92) isolates specular highlights and contact shadows as load-bearing, while [[2604.24018|Sim2Real Betting]] attacks the orthogonal problem of *how few* real rollouts you need for a confident comparison. The residual ~8% gap is where deployment surprises live (see §17 Open Problems). Cross-reference [[11_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for the full reality-gap measurement deep-dive.
+
 ---
 
-### 11. Real-World Evaluation Infrastructure
+### 13. Real-World Evaluation Infrastructure
 
 Sim benchmarks predict sim performance. The 2025-2026 wave introduced *standardized* real-world evaluation — distributed fleets, real-robot leaderboards, and on-real-hardware diagnostic suites.
 
@@ -762,6 +791,16 @@ Sim benchmarks predict sim performance. The 2025-2026 wave introduced *standardi
 - **[[2509.17057|RoboManipBaselines]]** — ==OpenAI-Gym-compatible== unified IL framework spanning MuJoCo / Isaac Gym / PyBullet + real UR5e / xArm 7; Diffusion Policy hits **52.0%** sim avg, **47.9%** real avg across **8** tasks; data-augmentation case study lifts SR **36% → 82%**.
 - **[[2511.16518|MiMo-Embodied]]** — Cross-embodied VLM unifying autonomous-driving + embodied-AI via ==4-stage training== (SFT → embodied SFT → CoT → RLHF); SOTA across **17** embodied + **12** driving benchmarks (**29** total), demonstrating positive cross-domain transfer.
 - **[[2603.13966|vla-eval]]** — Unified open-source evaluation harness for VLAs across [[2306.03310|LIBERO]]/[[2112.03227|CALVIN]]/[[2405.05941|SimplerEnv]]; client-server architecture decouples model inference from benchmark execution; **47x speedup on [[2306.03310|LIBERO]]** (14h → 18min for 2,000 episodes); reproduced 6 VLAs across 3 benchmarks and exposed undocumented evaluation pitfalls (incorrect proprioceptive sources cause **55pp drops**, quaternion errors **14–39pp** drops)
+
+**Real-World Evaluation — Decision Matrix**
+
+| Need | Benchmark |
+|---|---|
+| Distributed real-robot leaderboard (crowd-sourced) | [[2506.18123\|RoboArena]] (**0.98** Pearson with oracle ranking) |
+| Remote-robot online eval with standardized resets | [[2510.17950\|RoboChallenge]] (**Table30**, up to 1000 demos/task) |
+| Sim + real unified IL harness | [[2509.17057\|RoboManipBaselines]] (MuJoCo/Isaac/PyBullet + real UR5e) |
+| Eval-side audit / pitfall detection | [[2603.13966\|vla-eval]] (**47×** [[2306.03310\|LIBERO]] speedup; **14–55pp** pitfall drops) |
+| Cross-domain (driving + embodied) VLM eval | [[2511.16518\|MiMo-Embodied]] (**29** benchmarks total) |
 
 > [!star] Key Papers
 > - [[2510.17950|RoboChallenge]] — Large-scale real-robot leaderboard; the closest thing to a "robotics ImageNet competition"
@@ -774,7 +813,7 @@ Sim benchmarks predict sim performance. The 2025-2026 wave introduced *standardi
 
 ---
 
-### 11. Benchmark Surveys
+### 14. Benchmark Surveys
 
 The field has matured enough that several recent surveys structure the entire benchmark / dataset / sim landscape — useful when you're starting on a new sub-area.
 
@@ -782,6 +821,15 @@ The field has matured enough that several recent surveys structure the entire be
 - **[[2507.00917|Embodied Intelligence Survey]]** — Modern follow-up integrating world-model wave; proposes a ==5-level IR-L0→IR-L4 grading== for intelligent robots + identifies ==3 core WM functional roles== (neural simulators / dynamic models / reward models).
 - **[[2510.16732|World Models for Embodied AI Survey]]** — Canonical WM survey with ==3-axis taxonomy== (Functionality × Temporal Modeling × Spatial Representation) under a POMDP-ELBO formalism; tracks evolution from RSSM latent vectors → Transformer token sequences → 3DGS-based explicit rendering.
 - **[[2503.21765|Physics Cognition Survey]]** — Canonical video-generation physics survey: ==Piaget-inspired 3-tier taxonomy== (Basic Schema Perception / Passive / Active Cognition) + ==4-domain physical-phenomena map== (mechanics / optics / thermal / material); reviews PhyBench + VideoPhy failure modes.
+
+**Benchmark Surveys — Decision Matrix**
+
+| Need a structural map of... | Survey |
+|---|---|
+| World-model evaluation taxonomy | [[2510.16732\|World Models for Embodied AI Survey]] (3-axis: Functionality × Temporal × Spatial) |
+| Simulator + world-model integration | [[2507.00917\|Embodied Intelligence Survey]] (IR-L0→IR-L4 grading) |
+| Physics-aware video generation evaluation | [[2503.21765\|Physics Cognition Survey]] (Piaget 3-tier taxonomy) |
+| Classic simulator / task landscape | [[2103.04918\|Embodied AI Survey]] (9 simulators × 7 features) |
 
 > [!star] Key Papers
 > - [[2510.16732|World Models for Embodied AI Survey]] — Single best entry-point for world-model evaluation taxonomy
@@ -793,9 +841,11 @@ The field has matured enough that several recent surveys structure the entire be
 
 ---
 
-### 11. Benchmark Hierarchy
+### 15. Benchmark Hierarchy
 
-Use this progression to evaluate robot policies at increasing levels of rigor:
+Use this progression to evaluate robot policies at increasing levels of rigor.
+
+**Benchmark Hierarchy — Decision Matrix**
 
 | Level | Benchmark | What It Tests | When to Use |
 |-------|-----------|--------------|-------------|
@@ -821,9 +871,18 @@ Use this progression to evaluate robot policies at increasing levels of rigor:
 >
 > **Broader waypoints** (still valid for non-WAM or wider scope): [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[2510.13626|LIBERO-Plus]], [[2601.11421|GM-100]].
 
+> [!star] Key Papers
+> - [[2510.03827|LIBERO-PRO]] — The robustness gate (Level 3): its **>90% → ~0%** collapse under minor perturbation is the single most decisive promotion test in the hierarchy
+> - [[2405.05941|SimplerEnv]] — The scale gate (Level 2): cheapest reproducible way to estimate real-world transfer before touching hardware
+> - [[2506.00613|WorldGym]] — The world-model gate (Level 5): scores a WAM by the transfer of policies trained *inside* it, not by video quality
+> - [[2506.18123|RoboArena]] — The real-robot gate (Level 6): distributed leaderboard that turns deployment-scale evaluation into shared infrastructure
+
+> [!tip] Climb the Ladder, Don't Skip Rungs
+> The hierarchy is a *promotion gate*, not a menu: a policy must clear each level before its score at the next level is trustworthy. The common failure is reporting a Level-1 [[2306.03310|LIBERO]] number (~97%, saturated) as if it implied Level-3 robustness — [[2510.03827|LIBERO-PRO]] exists precisely to break that inference. For WAM work, the load-bearing rung is Level 5: a beautiful video that fails policy-transfer ([[2506.00613|WorldGym]]) is a Level-5 failure no amount of Level-1 success redeems. Cross-reference [[04_WAM#9. Open Problems & Failure Modes]] for the WAM-evaluation gaps this ladder still cannot close.
+
 ---
 
-### 11. Picking Your Stack
+### 16. Picking Your Stack
 
 > [!success] A Recommended Starting Stack
 > The three axes — **data**, **environment**, and **benchmark** — are not independent. Common, well-validated triples for new projects:
@@ -853,9 +912,28 @@ Use this progression to evaluate robot policies at increasing levels of rigor:
 > - Environment: [[2510.10125|CTRL-WORLD]] / [[2510.19430|GigaBrain-0]] as integrated WM-sim
 > - Benchmark: [[2603.22212|Omni-WorldBench]] + [[2506.00613|WorldGym]] + [[2603.22078|WAM vs VLA Robustness]]
 
+**Picking Your Stack — Decision Matrix**
+
+| If your project is... | Data | Environment | Benchmark |
+|---|---|---|---|
+| Cross-embodiment generalist | [[2310.08864\|OXE]] + [[2403.12945\|DROID]] → [[2503.06669\|AgiBot World]] | [[2003.08515\|SAPIEN]] + [[2406.02523\|RoboCasa]] | [[2306.03310\|LIBERO]] + [[2510.13626\|LIBERO-Plus]] + [[2405.05941\|SimplerEnv]] |
+| Bimanual specialist | [[2304.13705\|ALOHA]] + [[2512.24653\|RoboMIND 2.0]] | [[2506.18088\|RoboTwin 2.0]] | [[2506.18088\|RoboTwin 2.0]] suite + [[2603.05687\|CGP]] |
+| Humanoid whole-body | [[2605.03452\|BifrostUMI]] + [[2602.16710\|EgoScale]] | [[2511.04831\|Isaac Lab]] / [Genesis](https://genesis-world.readthedocs.io/) | [[2506.12851\|KungfuBot]] + [[2604.07993\|HEX]] + [[2512.01061\|Sim-to-Real Door]] |
+| Force-aware / contact-rich | [[2506.14754\|Sparsh-X]] + [[2509.18830\|DexSkin]] | [MuJoCo](https://mujoco.org) + [[2511.04665\|Real-to-Sim GS]] | [[2410.24090\|TacBench]] + [[2510.13324\|FARM]] + [[2603.05687\|CGP]] |
+| World-model-powered VLA | cross-embodiment + [[2503.06669\|AgiBot World]] | [[2510.10125\|CTRL-WORLD]] / [[2510.19430\|GigaBrain-0]] | [[2603.22212\|Omni-WorldBench]] + [[2506.00613\|WorldGym]] |
+
+> [!star] Key Papers
+> - [[2310.08864|OXE]] — The default pretraining substrate for any cross-embodiment generalist stack
+> - [[2506.18088|RoboTwin 2.0]] — The one paper that ships data-gen + sim + benchmark together, anchoring the bimanual stack
+> - [[2511.04831|Isaac Lab]] — The GPU-parallel substrate that makes the humanoid whole-body stack trainable at scale
+> - [[2410.24090|Sparsh]] — The tactile-representation foundation underwriting any force-aware stack
+
+> [!tip] The Three Axes Are Coupled, Not Independent
+> The recurring mistake is treating data, environment, and benchmark as separable purchases — picking a great dataset, then a great sim, then a great benchmark in isolation. The validated stacks above are *triples* because the axes constrain each other: a bimanual dataset needs a bimanual sim and a bimanual benchmark, and [[2506.18088|RoboTwin 2.0]] ships all three precisely so they cannot drift apart. Start from your project archetype, take the whole triple, and only swap a component when you can name what it breaks downstream. Cross-reference [[11_Sim-to-Real-Transfer#6. Integration Patterns]] for how these stacks compose with the sim-to-real loop.
+
 ---
 
-### 11. Open Problems
+### 17. Open Problems & Failure Modes
 
 The evaluation stack is mature enough to expose first-order failures, but six structural gaps remain — each is a frontier in its own right.
 
@@ -867,12 +945,29 @@ The evaluation stack is mature enough to expose first-order failures, but six st
 > - **Long-horizon language-conditioned eval** — [[2604.21924|LoHo-Manip]] and [[2605.01772|Anticipation-VLA]] surface skill-chaining and subgoal failures, but no standard exists for the >10-minute task horizons real deployment increasingly requires.
 > - **Failure-aware evaluation** — every benchmark above scores task *success*; none score *failure detection* or *recovery*, despite [[2510.09459|FIPER]] showing these are independently trainable capabilities. The eval stack measures what the policy gets right, not what it knows it's getting wrong.
 
+**Open Problems — Decision Matrix**
+
+| Problem | Remediation Path |
+|---|---|
+| Sim-real correlation ceiling (r=0.92, not 1.0) | Push asset diversity + visual-cue isolation ([[2605.06311\|VISER]]); close residual via real-to-sim twins ([[2511.04665\|Real-to-Sim GS]]) |
+| Cross-lab evaluation drift | Standardize reset protocols on distributed leaderboards ([[2506.18123\|RoboArena]], [[2510.17950\|RoboChallenge]]) |
+| No consensus deformable benchmark | Converge material + failure-mode definitions atop Gaussian-splat twins ([[2511.04665\|Real-to-Sim GS]], [[2510.21447\|PhysWorld-Deformable]]) |
+| Tactile data <1% of vision scale | Scale multisensory tactile corpora ([[2506.14754\|Sparsh-X]]) toward foundation-model regime |
+| No >10-min long-horizon eval standard | Extend subgoal/skill-chaining diagnostics ([[2604.21924\|LoHo-Manip]], [[2605.01772\|Anticipation-VLA]]) to deployment horizons |
+| No failure-detection / recovery scoring | Add failure-aware sub-metrics; treat detection as a trainable axis ([[2510.09459\|FIPER]]) |
+
+> [!star] Key Papers — Benchmark-Stack Failure Frontier
+> - [[2605.06311|VISER]] — Defines the sim-real correlation ceiling (r=0.92) and the load-bearing residual gap where deployment surprises live
+> - [[2506.18123|RoboArena]] — The distributed-leaderboard frontier; exposes that cross-lab eval data is itself a moving target, not a fixed benchmark
+> - [[2510.21447|PhysWorld-Deformable]] — Frontier of deformable evaluation; <12 months old, no consensus benchmark yet exists
+> - [[2510.09459|FIPER]] — Shows failure detection / recovery are independently trainable — the capability the entire success-scoring eval stack omits
+
 > [!tip] Reading Compass
 > Open problems on the sim-real axis → [[11_Sim-to-Real-Transfer#7. Open Problems]]; world-model evaluation gaps → [[04_WAM#9. Open Problems & Failure Modes]]; failure-aware evaluation → [[06_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] + [[10_Force-Aware-and-Tactile-Policies#5. Open Problems & Failure Modes]]; tactile scaling → [[10_Force-Aware-and-Tactile-Policies#2. Tactile Sensors as a Sensing Modality]].
 
 ---
 
-## Quick-Start Decision Matrix
+## Quick-Reference Matrix
 
 | If you need to... | Objective | Use |
 |---|---|---|

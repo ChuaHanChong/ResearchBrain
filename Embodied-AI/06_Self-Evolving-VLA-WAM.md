@@ -240,6 +240,17 @@ After SFT on demonstrations, RL optimizes for task success. ==GRPO== (no critic 
 - **[[2603.11653|VLA RL Continual Learning]]** — Sequential RL fine-tuning with ==LoRA==; minimal forgetting across a task stream.
 - **[[2505.05470|Flow-GRPO]]** — GRPO extension for ==flow-matching policies==; handles the continuous-time formulation.
 
+**Core Mechanisms — Decision Matrix**
+
+| If you want the agent to... | Lever (mechanism) | Exemplar |
+|---|---|---|
+| Imagine trajectories without physical execution | Internal simulator | [[2502.05907\|EvoAgent]] / [[2301.04104\|DreamerV3]] |
+| Compound policy + WM gains in alternating rounds | Co-evolutionary loop | [[2602.12063\|VLAW]] / [[2605.13775\|RoboEvolve]] |
+| Filter hallucinated dreams before they corrupt policy | Critic-gated co-evolution | [[2603.08403\|SPIRAL]] |
+| Retrain on self-verified successes | Self-training / self-critique | [[2203.14465\|STaR]] / [[2510.16079\|EVOLVER]] |
+| Target exploration at hardest states | Curiosity-driven exploration | [[2503.01584\|SENSEI]] / [[2005.05960\|Plan2Explore]] |
+| Optimize for success beyond imitation | RL post-training (GRPO) | [[2603.19370\|VAMPO]] / [[2505.05470\|Flow-GRPO]] |
+
 > [!star] Key Papers
 > - [[2602.12063|VLAW]] — Iterative co-improvement of VLA + world model; the canonical co-evolutionary loop
 > - [[2503.01584|SENSEI]] — Semantic uncertainty + Go-Explore for curiosity-driven exploration; targets the agent's hardest states
@@ -308,6 +319,18 @@ After detection, generate recovery plans and learn from failures so they don't r
 - **[[2505.12224|RoboFAC]]** — Full ==failure analysis + correction framework==: classifies failure type (perceptual / planning / execution), diagnoses root cause, generates targeted corrections per category.
 - **[[2409.03966|VLM Failure Recovery]]** — Black-box GPT-4o as VLM controller with ==prompt engineering== (visual markers + ==relative-position language prompts==) and decomposed reasoning (detection vs correction; 1D spatial sub-queries); Lego Assembly 3D error **0.005m** (vs **0.016m** OpenVLA), Target Reach coverage **0% → 65.78%**, **116/120** task-level detection / **110/120** analysis without fine-tuning.
 - **[[2603.13528|Counterfactual Failure Synthesis]]** — Generative approach: synthesizes ==new failure scenarios + actionable recovery plans== as synthetic training data; inoculates the policy without real-world experience.
+
+**Failure Detection & Recovery — Decision Matrix**
+
+| If you need to... | Approach | Exemplar |
+|---|---|---|
+| Detect failure *before* it happens | Predictive OOD + action uncertainty | [[2510.09459\|FIPER]] |
+| Detect with provable false-positive bounds | Internal features + conformal prediction | [[2506.09937\|SAFE]] / [[2503.08558\|FAIL-Detect]] |
+| Detect semantic-misalignment failures | VLM compares observed vs expected outcome | [[2509.16072\|I-FailSense]] / [[2410.00371\|AHA]] |
+| Correct mid-task without restarting | Subtask backtracking / counterfactual | [[2601.02295\|CycleVLA]] / [[2512.24426\|CF-VLA]] |
+| Detect OOD via world-model surprise | Prediction-residual monitoring | [[2603.04029\|Self-Adapting RL]] / [[2512.01119\|WM Surprise Robustness]] |
+| Discover where the policy is weak | Adversarial / info-bottleneck probing | [[2412.02818\|RoboMD]] / [[2509.19292\|SOE]] |
+| Generate recovery plans + learn from failures | Failure prediction + corrective generation | [[2509.04018\|FPC-VLA]] / [[2505.12224\|RoboFAC]] |
 
 > [!star] Key Papers
 > - [[2510.09459|FIPER]] — Predictive failure detection via OOD + action uncertainty; catches failures *before* they happen, giving the agent time to intervene

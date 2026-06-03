@@ -142,7 +142,7 @@ Every force-aware/tactile policy commits to three orthogonal choices — *what s
 - **[[2603.15257|HapticVLA]]** — ==sensor-free distillation==: teacher uses tactile sensors during training, student distills to inference without them.
 - **[[2505.19386|Force Prompting]]** — ==force-conditioned video pretraining==: latent physical understanding from video; transfers to control via downstream action head.
 
-**[Design-Space — Decision Matrix]**
+**Design-Space — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -173,7 +173,7 @@ Hardware is the upstream bottleneck. Until 2025, dense tactile sensing meant exp
 - **[[2604.28156|FlexiTac]]** — Fully open-source, ==$30/unit FPC piezoresistive sensor== with Arduino Nano + multiplexer at **100 Hz**; layouts 8×16 to 32×32. Key insight: ==direct electrode etching== on FPC substrate (vs hand-wiring) drops fabrication to ~5 min/pad; narrow inter-electrode slots act as ==compliance hinges==. ==Kelvin-Voigt calibration== between real/simulated tactile signals enables sim-to-real RL fine-tune — one of the few open-source sensors with a documented sim-to-real story.
 - **[[2604.20689|FingerEye]]** — ==Continuous vision-tactile fingertip== (28×25.4×26 mm) integrating ==binocular RGB cameras==, compliant soft ring, transparent AprilTag acrylic cover. PnP-tracked 6D pose of AprilTag layout proxies 6D contact wrench: force **[4.30, 4.22, 9.93] mN**, torque **[0.32, 0.13, 8.55] mN-m**. Crucial property is *continuity* — vision sees alignment *before* contact, transitions seamlessly to tactile deformation *after*; **+30%** SR over wrist-camera-only baselines.
 
-**[Tactile Sensors — Decision Matrix]**
+**Tactile Sensors — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -184,14 +184,6 @@ Hardware is the upstream bottleneck. Until 2025, dense tactile sensing meant exp
 | Multisensory tactile fusion (image + audio + IMU + pressure) | [[2506.14754\|Sparsh-X]] — attention-bottleneck fusion at **~1M** contacts; **+500%** plug-insertion vs vision-only |
 | Coarse aggregated F/T only (wrist-mounted) — sensor secondary | Pair with [[2505.22159\|ForceVLA]]-style policy compensation; sensor sets the eventual ceiling |
 
-> [!star] Key Papers
-> - [[2509.18830|DexSkin]] — High-coverage conformable capacitive skin; the **pneumatic calibration → policy transfer** insight is the breakthrough, enabling deployment beyond single-instance research demos
-> - [[2604.28156|FlexiTac]] — $30 open-source FPC piezoresistive skin with documented sim-to-real via Kelvin-Voigt calibration; the hardware bottleneck-breaker for the community
-> - [[2604.20689|FingerEye]] — Binocular vision-tactile fingertip with continuous pre→post-contact sensing; closes the contact-discontinuity gap
-
-> [!tip] Sensor Bottleneck vs Policy Bottleneck
-> For tasks failing at contact onset (alignment, insertion approach), the bottleneck is **continuous vision-tactile** ([[2604.20689|FingerEye]]). For tasks failing during sustained contact (perturbed reorientation, fragile grasping), the bottleneck is **high-coverage tactile skin** ([[2509.18830|DexSkin]]). For tasks failing due to coarse aggregated forces (wrist-mounted F/T), the policy can compensate ([[2505.22159|ForceVLA]]) — but the sensor will set the ultimate ceiling.
-
 #### 2.1 Touch Foundation Models — SSL Representations on Tactile Streams
 
 A parallel thread to better sensors: learn ==general-purpose tactile representations== via SSL on large unlabeled tactile data, then reuse the frozen encoder downstream. The touch analog of [[2304.07193|DINOv2]] — and the same lesson holds: pretrained frozen encoder beats end-to-end task-specific training by a wide margin once labels are scarce.
@@ -200,11 +192,14 @@ A parallel thread to better sensors: learn ==general-purpose tactile representat
 - **[[2506.14754|Sparsh-X]]** — Multisensory generalization: jointly encodes **4 tactile modalities** (image + audio + IMU + pressure) from Digit 360 via ==attention bottlenecks==; scales to **~1M** unlabeled contacts; teacher-student SSL distillation. Downstream: **+17%** physical-property estimation, **+500%** plug-insertion (reaching **90%**) vs vision-only, **+63%** vs tactile-image-only, **90%** in-hand rotation drift reduction — the cleanest demonstration that *multimodal* touch unlocks the contact-rich frontier.
 
 > [!star] Key Papers
-> - [[2410.24090|Sparsh]] — Foundational SSL touch encoder family across [[2111.06377|MAE]]/[[2104.14294|DINO]]/JEPA on **460k** unlabeled tactile images; introduces ==TacBench==; outperforms end-to-end baselines by **~95.1%** on average; established that *latent-space SSL beats pixel reconstruction* for tactile representations
-> - [[2506.14754|Sparsh-X]] — Multisensory touch foundation model fusing image + audio + IMU + pressure via attention bottlenecks on **~1M** contact interactions; **+500%** plug insertion over vision-only; the multimodal extension of [[2410.24090|Sparsh]]
+> - [[2509.18830|DexSkin]] — High-coverage conformable capacitive skin; the **pneumatic calibration → policy transfer** insight (5/20 → 14/20 cross-instance) is the deployment breakthrough beyond single-instance demos
+> - [[2604.28156|FlexiTac]] — $30 open-source FPC piezoresistive skin with a documented Kelvin-Voigt sim-to-real path; the hardware bottleneck-breaker for the community
+> - [[2604.20689|FingerEye]] — Binocular vision-tactile fingertip with continuous pre→post-contact sensing; closes the contact-discontinuity gap (**+30%** SR)
+> - [[2410.24090|Sparsh]] — Foundational SSL touch encoder across [[2111.06377|MAE]]/[[2104.14294|DINO]]/JEPA on **460k** tactile images; introduces ==TacBench==; established latent-space SSL beats pixel reconstruction for touch
+> - [[2506.14754|Sparsh-X]] — Multisensory touch foundation model (image + audio + IMU + pressure) at **~1M** contacts; **+500%** plug insertion over vision-only — the multimodal extension of [[2410.24090|Sparsh]]
 
-> [!tip] Tactile Pretraining ≈ Visual Pretraining
-> The [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] result is the touch analog of the [[2304.07193|DINOv2]] lesson: a frozen, SSL-pretrained tactile encoder amortizes data-labeling cost across the entire downstream task family. The architectural pattern matches the broader latent-prediction wins documented in [[05_Latent-World-Models#3. Broader Latent Prediction Landscape]] — JEPA-style objectives generalize from RGB to tactile streams, and from unimodal to multisensory. The implication for force-aware VLAs: tactile encoders below should be *pretrained Sparsh-X-style*, not trained from scratch per task. Most VLAs in §3 still do the latter — an obvious upgrade path.
+> [!tip] Sensor Bottleneck vs Policy Bottleneck — and Why You Should Pretrain the Encoder
+> The binding bottleneck dictates the fix: tasks failing at *contact onset* (alignment, insertion approach) need **continuous vision-tactile** ([[2604.20689|FingerEye]]); tasks failing during *sustained contact* (perturbed reorientation, fragile grasping) need **high-coverage skin** ([[2509.18830|DexSkin]]); tasks limited by *coarse aggregated F/T* can be compensated in policy ([[2505.22159|ForceVLA]]) but the sensor sets the ceiling. Whatever the sensor, the *encoder* should be pretrained: the [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] result is the touch analog of the [[2304.07193|DINOv2]] lesson — a frozen SSL tactile encoder amortizes labeling cost across the whole downstream task family, and JEPA-style objectives generalize from RGB to tactile and from unimodal to multisensory. Most VLAs in §3 still train tactile encoders from scratch per task — an obvious upgrade path. Cross-reference [[05_Latent-World-Models#3. Broader Latent Prediction Landscape]] for the latent-prediction lineage this reuses and [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the evaluation side.
 
 ---
 
@@ -256,7 +251,7 @@ A category-of-one frontier: rather than feeding force *into* a policy, force is 
 
 - **[[2505.19386|Force Prompting]]** — Adapts ==CogVideoX== via [[2302.05543|ControlNet]] to accept ==physics-based force prompts== (global wind + localized point pokes); trained on **15–23k** synthetic Blender + [[2404.13026|PhysDreamer]] videos. Emergent ==intuitive mass understanding== — lighter objects move farther than heavier, displacement scales linearly with force; beats text-only and trajectory baselines in human eval. Proves pretrained video generators encode latent physical force understanding activatable with minimal synthetic data. *Open opportunity*: force-conditioned video pretrain → attach force-aware action head remains unexecuted.
 
-**[Force-Conditioned Architectures — Decision Matrix]**
+**Force-Conditioned Architectures — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -314,7 +309,7 @@ The downstream targets of all this work. Contact-rich tasks — wiping, polishin
 
 - **[[2508.19236|MemoryVLA]]** — ==Perceptual-Cognitive Memory Bank (PCMB)== dual-memory architecture: low-level perceptual details (recent F/T readings, contact events) + high-level cognitive semantics (task progress). **+26pp** gain over [[2503.22020|CogACT]]-Large on real-world long-horizon temporal tasks with only **+3.6%** latency and **+0.8 GB** GPU memory. Not yet force-specialized but the architecture maps cleanly onto force history.
 
-**[Contact-Rich Benchmarks — Decision Matrix]**
+**Contact-Rich Benchmarks — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -361,7 +356,7 @@ Contact-rich deployment exposes a sharper latency-quality trade than vision-only
 - **==Failure recovery from tactile signals==** — [[2507.09160|Tactile-VLA]]'s ==CoT-from-tactile== is impressive but covers only **~3-5 failure modes** in the published work. Generalizing to open-set failure recovery requires either (a) larger failure datasets or (b) reasoning models that synthesize recovery strategies without explicit failure-mode supervision — see [[06_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for the broader self-correction landscape.
 - **==Force-aware reasoning latency==** — [[2507.09160|Tactile-VLA]]'s CoT failure recovery adds **1-3s** of inference latency per recovery — fine for blackboard wiping (slow task), too slow for fast pick-and-place. The latency-quality trade-off in [[08_VLA-Reasoning-and-CoT#6. Reasoning Quality vs Inference Latency]] is *sharper* in contact-rich settings because contact transitions are millisecond-fast.
 
-**[Force-Aware Failure Modes — Decision Matrix]**
+**Force-Aware Failure Modes — Decision Matrix**
 
 | Problem | Remediation Path |
 |---|---|

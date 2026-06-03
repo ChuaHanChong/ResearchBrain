@@ -138,7 +138,7 @@ Treat the VLA as a policy *prior* and search at test time using a world model. M
 - **[[2605.13119|VLAs-as-Tools]]** — Hierarchical orchestration via a ==bidirectional VLA tool-family interface== (discrete invocation messages + continuous progress feedback) plus ==Tool-Aligned Post-Training (TAPT)== with ==tool-family residual parameterization==; high-level VLM calls per task drop **109.5 → 1.988** while **+35.5pp** RoboTwin SR and **+34.6pp** invocation fidelity on OpenVLA-OFT.
 - **Cost trade-off** — Maximally robust; can recover from a poorly-trained policy. **3-5×** slower; requires a usable world model.
 
-**[Reasoning Slot] — Decision Matrix**
+**Reasoning Slot — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -156,6 +156,9 @@ Treat the VLA as a policy *prior* and search at test time using a world model. M
 > [!success] Where to Reason
 > Every VLA pipeline has four candidate slots for inserting reasoning. Picking the wrong slot makes reasoning a latency burden; picking the right one is a free accuracy win. The 2026 default — latent + auxiliary decoder supervision — extracts CoT-quality reasoning at answer-only latency, but legacy deployments may still favor output-head visual CoT when interpretability dominates.
 
+> [!tip] The Slot Determines the Cost Curve, Not Just the Capability
+> The four slots are not interchangeable accuracy boosts — they sit at different points on the latency-interpretability-trainability surface, and the *binding constraint* decides the slot. Input prompting costs zero parameters but cannot reason about what the VLM never verbalizes; latent reasoning is the only slot that buys CoT-quality inference at *answer-only* latency (§3); output-head visual CoT is the only slot a human can audit step-by-step (§2); external search is the only slot that can recover from a *novel* failure at test time but pays a per-rollout tax (§4). The recurring mistake is bolting reasoning onto the output head for real-time control — where its latency is fatal — when latent reasoning would have delivered the same accuracy invisibly. Cross-reference [[05_Latent-World-Models#4. Latent Reasoning for Embodied AI]] for the latent-substrate mechanics these slots are built on.
+
 ---
 
 ## Part B — Reasoning Methods
@@ -171,11 +174,12 @@ The first wave of VLA reasoning ported language CoT to *visual* subgoals — ins
 Predict discrete future-frame snapshots at goal states; condition actions on the predicted subgoal. The standard "subgoal-then-act" loop.
 
 - **[[2503.22020|CoT-VLA]]** — A **7B** [[2409.04429|VILA-U]] ==unified multimodal foundation model== jointly trained on robot demonstrations (visual + action tokens) and action-less video (EPIC-KITCHENS, predicting visual subgoals); at inference emits a future-frame token *first*, then conditions actions on the predicted subgoal through a ==hybrid attention mechanism== and ==action chunking==. **+17%** real-world and **+6%** simulation gains over baseline VLAs, with strong LIBERO instruction following and Franka-Tabletop OOD adaptation — the foundational stage-based recipe.
-- **[[2507.16815|ThinkAct]]** — Adds ==RL-driven visual latent planning==; a planning module between VLM and action head produces visual latent plans supervised by reinforced task-success reward; bridges visual CoT (interpretable) with latent reasoning (efficient).
-- **[[2508.07917|MolmoAct]]** — Emits ==depth-aware perception tokens== + visual reasoning traces alongside actions; the reasoning trace is a sequence of visual attention regions plus depth annotations, providing interpretable *what-and-why* explanations.
+- **[[2507.16815|ThinkAct]]** — Adds ==RL-driven visual latent planning==; a ==dual-system framework== where a slow-thinking MLLM, fine-tuned with ==action-aligned rewards== (visual goal completion + trajectory consistency), compresses reasoning into a ==compact visual plan latent== that conditions a fast action model — bridging visual CoT (interpretable) with latent reasoning (efficient). **84.4%** LIBERO and **+15.5pp** on SimplerEnv Google-VM over its base policy; **48.2%** EgoPlan-Bench2 and **59.8** RoboVQA BLEU, beating GPT-4V; exhibits emergent few-shot skill adaptation and self-correction from execution failures.
+- **[[2508.07917|MolmoAct]]** — Emits ==depth-aware perception tokens== + visual reasoning traces alongside actions; the trace is a sequence of visual attention regions plus depth annotations, giving interpretable *what-and-why* explanations. **86.6%** LIBERO average; **72.1%** SimplerEnv variant-aggregation OOD (**+7.8pp** over RT-2-X) and **+22.7pp** task progression over π0-FAST on bimanual real-world; ==visual-trace steering== reaches **75%** SR, a **+33pp** gain over steering with natural-language instructions.
 - **[[2509.25681|dVLA]]** — Unified discrete ==diffusion VLA== converting vision/language/continuous actions to discrete tokens under a single diffusion objective, with ==multimodal CoT== that jointly generates visual subgoals + textual reasoning + actions via cross-modal masking. **96.4%** LIBERO and **65%** real-world (Bin Picking), with multimodal CoT adding **+6.6pp** sim / **+12.5pp** real; ==prefix attention mask + dLLM-Cache== yield ~**2×** speedup at <**1%** SR drop.
 - **[[2503.11089|EmbodiedVSR]]** — ==Dynamic scene graphs== generating and updating explicit spatial-relationship structure feed a ==physics-constrained chain-of-thought== so each reasoning step is geometrically consistent; introduces the ==eSpatial-Benchmark== and beats GPT-4o by **+18.4%** Arm Feasibility / **+6.7%** Success Judgment on eSpatial-RoboMIND, **100%** block assembly description, **80%** real-world reassembly — earliest output-head CoT with explicit physical-feasibility filtering.
 - **[[2604.14125|HiVLA]]** — ==Hierarchical system== with a ==High-Level VLM Planner== emitting ==structured JSON plans== (semantic subtasks + high-resolution bounding boxes for ==object-centric image crops==) feeding a ==DiT Action Expert== via ==cascaded cross-attention== (global context → local crop → language skill); operates asynchronously and achieves **83.3%** avg SR on **9** RoboTwin tasks (**+17.7pp** vs H-RDT, **+42.7pp** vs π0) with emergent VLM-supervised error correction.
+- **[[2601.01618|Action-Sketcher]]** — renders spatial intent as an explicit *sparse* ==Visual Sketch== of geometric primitives (points, boxes, arrows) in a ==See-Think-Sketch-Act== pipeline, with an ==adaptive token-gated mechanism== that switches between high-level reasoning and low-latency action; multi-stage curriculum teaches spatiotemporal reasoning → sketch generation → sketch-to-action. **96.0%** LIBERO-Long and SOTA on long-horizon custom tasks; ablation shows **61%** of failures trace to sketch-generation errors, but human-in-the-loop sketch corrections recover **+23.0pp** ("Tidy Table") — the sketch is both the bottleneck and the most interpretable correction surface.
 
 #### 2.2 Interactive & Continuous Spatial Guidance
 
@@ -183,7 +187,7 @@ Subgoals threaded through continuous interaction — humans can inject points, b
 
 - **[[2605.13632|GTA-VLA]]** — Structured ==Guide-Think-Act== reasoning with optional human spatial guidance (points, boxes, traces); ==asynchronous "slow reasoning, fast action" design== separates VLM reasoning from continuous action generation so interactive control remains real-time. Interact-306K dataset auto-synthesized from existing robot data. **98.6%** LIBERO in-domain, **+22pp** on SimplerEnv-Plus unseen-object generalization, and human guidance recovers **+20%** of policy failures (raising SimplerEnv-Bridge from **81.2% → 86.1%**) — the cleanest demonstration that human spatial intent can be a first-class CoT modality.
 
-**[Visual CoT] — Decision Matrix**
+**Visual CoT — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -240,17 +244,6 @@ Reinforce the latent reasoning with a verifiable reward signal that ties latent 
 | Hybrid discrete-continuous reasoning (hyperspherical) | [[2604.20328\|HyLaR]] (vMF DePO + canvas-mode tokens) |
 | Physical-commonsense substrate at WAM scale | [[2503.15558\|Cosmos-Reason1]] |
 
-> [!star] Key Papers
-> - [[2604.18486|OneVL]] — First latent CoT to *beat* explicit CoT while preserving answer-only latency; **88.84 PDM-score** on NAVSIM
-> - [[2604.22709|Abstract-CoT]] — Token-free reasoning in abstract embedding space; eliminates the discrete-token bottleneck
-> - [[2604.28192|LaST-R1]] — Adaptive physical latent reasoning; RL-trained with task-success reward
-> - [[2604.27998|Latent-GRPO]] — GRPO for latent reasoning: three failure-mode fixes (invalid-sample masking, one-sided noise, first-token selection); **+14.77 pp** on hard tasks, 3-4× shorter chains than explicit GRPO
-> - [[2604.20328|HyLaR]] — Decoupled PPO with vMF latent distribution + tight hyperspherical clipping; **canvas mode** for interleaved discrete-continuous reasoning; **+14.50%** HRBench-8K
-> - [[2503.15558|Cosmos-Reason1]] — Physical commonsense + embodied reasoning at WAM scale; a complementary substrate for physics-grounded reasoning
-
-> [!tip] The Latent Reasoning Surprise
-> The conventional wisdom was that explicit text CoT works because it forces sequential, decompose-then-act reasoning. [[2604.18486|OneVL]] falsified this: with the right training (dual-modal latent supervision), latent reasoning *outperforms* explicit CoT while running at answer-only latency. This is the most important VLA-reasoning result of 2026.
-
 > [!warning] Stability Is Not Free in Latent RL
 > Both [[2604.27998|Latent-GRPO]] and [[2604.20328|HyLaR]] document the same root cause from different angles: naive policy-gradient methods in continuous latent space cause model collapse. The fixes converge on three principles — (1) bound exploration off-manifold (advantage masking / vMF distribution), (2) align gradient direction with advantage sign (one-sided noise / decoupled clipping), (3) avoid mode averaging across alternate correct paths (first-token selection). Any new RL-for-latent-reasoning method should be checked against these three failure modes.
 
@@ -261,10 +254,14 @@ A diagnostic result orthogonal to architecture: MLLM latent reasoning can be **s
 - **[[2605.02735|Silenced Visual Latents]]** — ==Frozen-backbone, two-stage inference-time optimization== that never touches MLLM parameters. Stage I (==Visual Latent Warm-Up==) uses ==chunk-wise contrastive alignment== with query-guided relevance scoring, assigning each latent token its own positive/negative visual evidence. Stage II (==Latent-to-Answer Reinforcement==) applies a ==confidence-progression reward== optimized via ==Native Evolutionary Strategy (NES)== gradient estimation, forcing the answer pathway to *use* the warmed-up latents. On Qwen2.5-VL-7B: **+8.66%** IQTest, **+5.00%** MM-Vista; utilization scales (MMVP **72.33% → 73.67%** as K=2 → K=10).
 
 > [!star] Key Papers
-> - [[2605.02735|Silenced Visual Latents]] — Identifies that joint optimization of latent quality + answer prediction creates a shortcut bypassing latents; fixes via two-stage inference-time optimization (chunk-wise contrastive warm-up + NES-driven utilization reward) without touching backbone parameters
+> - [[2604.18486|OneVL]] — First latent CoT to *beat* explicit CoT while preserving answer-only latency; **88.84 PDM-score** on NAVSIM — the 2026 latent-reasoning frontier
+> - [[2604.22709|Abstract-CoT]] — Token-free reasoning in abstract embedding space; eliminates the discrete-token bottleneck
+> - [[2604.27998|Latent-GRPO]] — GRPO for latent reasoning with three collapse fixes (invalid-sample masking, one-sided noise, first-token selection); **+14.77 pp** hard tasks, 3–4× shorter chains than explicit GRPO
+> - [[2604.20328|HyLaR]] — Decoupled PPO with vMF latent distribution + canvas-mode discrete-continuous interleaving; **+14.50%** HRBench-8K
+> - [[2605.02735|Silenced Visual Latents]] — Exposes the quality-vs-utilization gap: a latent system can be semantically rich yet functionally ignored; fixes via inference-time warm-up + NES utilization reward without touching the backbone
 
-> [!tip] Latent Quality vs Latent Utilization
-> [[2605.02735|Silenced Visual Latents]] exposes a hidden failure mode: a latent reasoning system can score well on intrinsic latent-quality probes while the downstream answer head learns to ignore those latents entirely. Any latent-reasoning ablation should measure *utilization* (does perturbing the latents change the answer?) alongside quality (do the latents encode the right information?). The two metrics can diverge.
+> [!tip] The Latent Reasoning Surprise — and Why Utilization ≠ Quality
+> The conventional wisdom was that explicit text CoT works because it forces sequential decompose-then-act reasoning. [[2604.18486|OneVL]] falsified this: with dual-modal latent supervision, latent reasoning *outperforms* explicit CoT at answer-only latency — the most important VLA-reasoning result of 2026. But [[2605.02735|Silenced Visual Latents]] adds the essential caveat: a latent system can score well on intrinsic latent-*quality* probes while the answer head learns a shortcut that *ignores* those latents entirely. Improving latent quality does not fix utilization. Any latent-reasoning ablation must measure both — does perturbing the latents change the answer (utilization), *and* do the latents encode the right information (quality)? The two diverge. Cross-reference [[05_Latent-World-Models#4. Latent Reasoning for Embodied AI]] for the latent-substrate mechanics and [[03_VLA#1. Design-Space Principles]] for where the latent slot sits in the VLA backbone.
 
 ---
 
@@ -296,7 +293,7 @@ Search over policy *hierarchy* — a high-level VLM agent delegates subtasks to 
 
 - **[[2605.13119|VLAs-as-Tools]]** — VLM emits discrete tool-invocation messages (each VLA tool corresponds to a bounded sub-skill), receives continuous progress feedback, triggers event-driven replanning only when needed. ==Tool-Aligned Post-Training (TAPT)== trains the base VLA on bounded invocations with ==tool-family residual parameterization== (distinct execution paths per tool, shared base representation). Latency-efficient — VLM calls drop from **109.5 → 1.988** per task — while delivering **+35.5pp** RoboTwin and **+34.6pp** invocation fidelity.
 
-**[Test-Time Search] — Decision Matrix**
+**Test-Time Search — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -331,6 +328,7 @@ Use a programmatic checker (or a strong VLM) to verify each reasoning step; trai
 Tie each reasoning step to *visual evidence*; reject ungrounded reasoning.
 
 - **[[2604.21396|VG-CoT]]** — Each reasoning step in the chain must point to a specific visual region; if it can't, the step is rejected during training. Trustworthy visual reasoning via grounded chain-of-thought. Eliminates the ==hallucinated reasoning== failure mode.
+- **[[2407.08693|ECoT]]** — The foundational grounded-CoT-training method: trains VLAs to emit a sequence of ==visually-grounded reasoning steps== (high-level plan → sub-tasks → object bounding boxes → gripper positions) *before* predicting actions, with a ==synthetic annotation pipeline== (Grounding DINO + OWLv2 + SAM + Gemini) auto-generating the traces on [[2403.12945|Bridge v2]]. Built on [[2406.09246|OpenVLA]]: **+28pp** absolute SR on generalization tasks; a single natural-language reasoning correction adds **+48pp**; async inference recovers up to **40%** of the reasoning-token latency — purely-linguistic CoT is insufficient, grounding the reasoning in visual features is what unlocks the gain.
 
 #### 5.3 Teacher-Guided Reasoning
 
@@ -344,7 +342,7 @@ A 2026 diagnostic with broad implications — what fails when none of the proces
 
 - **[[2604.22074|CIR/SR Reasoning]]** — Demonstrates that **outcome rewards alone do not guarantee verifiable or causally important reasoning**. Models can produce factually correct outcomes via reasoning traces that are *not* causally connected to the answer. The fix: explicit ==Causally Important Reasoning (CIR)== and ==Step-Reward (SR)== supervision that target the reasoning *process*, not just the outcome.
 
-**[Reasoning-Traced Training] — Decision Matrix**
+**Reasoning-Traced Training — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -393,7 +391,7 @@ Preserve human-readable reasoning traces alongside actions. The frontier when th
 - **[[2503.22020|CoT-VLA]]** — Output-head visual subgoals; **1.5-2.5×** base-VLA latency; the subgoal *is* the plan, fully inspectable.
 - **[[2508.07917|MolmoAct]]** — ==Depth-aware perception tokens + visual reasoning traces== at **1.5-2.5×** base-VLA latency; **86.6%** LIBERO and **+22.7%** real-world bimanual task progression over π0-FAST, with visual-trace user steering at **75%** SR — interpretable explanation of attention regions and depth annotations.
 
-**[Reasoning Latency] — Decision Matrix**
+**Reasoning Latency — Decision Matrix**
 
 | Approach | Reasoning Quality | Inference Latency | Best For | Source |
 |----------|-------------------|-------------------|----------|--------|
@@ -414,6 +412,9 @@ Preserve human-readable reasoning traces alongside actions. The frontier when th
 > [!success] The 2026 Recipe
 > If latency matters: ==Latent reasoning + dual-modal auxiliary supervision== ([[2604.18486|OneVL]] pattern). If interpretability matters: ==Output-head visual CoT== ([[2503.22020|CoT-VLA]] pattern). If recovery from miscalibration matters: ==Test-time MCTS== ([[2509.22643|VLA-Reasoner]] pattern). RL-train the reasoning trace with verifiable step rewards ([[2509.25852|REVER]] + CIR/SR). Cross-reference [[04_WAM#6.1 Training-Time Video, Test-Time Speed]] for the analogous training-time-video / test-time-speed efficiency recipe in WAMs ([[2603.16666|Fast-WAM]]) — the same train-rich-deploy-slim principle generalizes.
 
+> [!tip] There Is No Free Reasoning — Only a Latency You Chose to Pay Somewhere
+> The 2026 surprise is that the quality-latency frontier is *not* monotone: [[2604.18486|OneVL]] buys top-tier reasoning at 1.0× base latency, collapsing the old "more reasoning = more latency" intuition for the *latent* slot. But the trade-off doesn't vanish — it relocates. Latency-optimized recipes pay at training time (dual-decoder supervision is expensive to learn); quality-optimized recipes ([[2509.22643|VLA-Reasoner]], 3–5×) pay per rollout at test time; interpretability-optimized recipes ([[2503.22020|CoT-VLA]], [[2508.07917|MolmoAct]], 1.5–2.5×) pay a steady inspectability tax. The right question is not "how much reasoning?" but "*where can my deployment afford to pay?*" — throughput-bound robots pay at training, safety-critical robots pay per rollout, human-supervised robots pay for traces. Cross-reference [[05_Latent-World-Models#5. Latent vs Pixel Comparison]] for the structurally identical train-pixel / deploy-latent trade-off in world models.
+
 ---
 
 ### 7. Open Problems
@@ -426,7 +427,7 @@ VLA reasoning sits between "VLM that talks about plans" and "policy that execute
 - **==Cross-modal reasoning==** — Most VLA reasoning is vision-centric; reasoning over force, tactile, and audio modalities (relevant for contact-rich tasks) is underexplored. This is the orthogonal frontier to the faithfulness cluster — see [[10_Force-Aware-and-Tactile-Policies#3. Force-Conditioned VLA Architectures]].
 - **==Reasoning generalization==** — Does a model that reasons well on [[2510.13626|LIBERO-Plus]] also reason well on real-world novel tasks? Diagnostic benchmarks for reasoning robustness are missing; current benchmarks reward in-domain CoT, not OOD-transfer CoT.
 
-**[VLA Reasoning Failure Modes — Decision Matrix]**
+**VLA Reasoning Failure Modes — Decision Matrix**
 
 | Problem | Remediation Path |
 |---|---|

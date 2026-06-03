@@ -191,7 +191,7 @@ How do you *know* your sim-to-real strategy works before you ship? The metric yo
 | **MMRV / Kelly betting** (rank reliability) | Whether sim ranks policies correctly | Requires bank of diverse sims |
 | **Real-only ground truth** | Authoritative | Expensive, slow, unsafe |
 
-**[Design-Space — Decision Matrix]**
+**Design-Space — Decision Matrix**
 
 | Need | Recommendation |
 |------|---------------|
@@ -242,7 +242,7 @@ Hand-crafted physics + massive procedural scale; no learned visual model.
 - **[[2603.16861|MolmoBot]]** — ==MolmoBot-Engine== procedural data generation in ==[MuJoCo](https://mujoco.org)==; **232K** indoor environments, **48K** manipulable objects, **1.8M** expert trajectories; extensive ==domain randomization== over visual + physical params + diverse referring expressions enables zero-shot sim-to-real *without real-world fine-tuning or photoreal rendering*; **79.2%** real [Franka FR3](https://franka.de) tabletop pick-and-place — beats π0.5-DROID (**39.2%**) which was trained on real data; absolute joint-position actions transferred better than delta-action despite similar sim perf.
 - **[[2604.11674|AffordSim]]** — Integrates ==VoxAfford== per-point open-vocabulary 3D affordance detection into sim data generation; ==3DGS-rendered photorealistic backgrounds== as DR lift average real-world success **17% → 27%**; simple grasping reaches **60%** zero-shot but pouring/hanging stays at **10-20%** — canonical evidence that fine-grained semantic affordance is the DR ceiling.
 
-**[Sim-Side — Decision Matrix]**
+**Sim-Side — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -315,7 +315,7 @@ Decouple high-level goal selection from low-level control, then sim-to-real the 
 - **[[2603.03279|ULTRA]]** — ==Physics-driven neural retargeting== translates MoCap into contact-aware humanoid demos; single ==multimodal controller== with ==transformer encoder== + ==availability masking== handles dense motion references and sparse goal following; ==teacher-student distillation== + RL fine-tuning lifts OOD-goal success up to **200%** for position-only observations; **73%** dense-tracking, **50-90%** sparse-following success on real Unitree G1.
 - **[[2502.12152|HUMANUP]]** — ==Two-stage RL curriculum== for humanoid fall recovery: Stage I Discovery Policy on simplified sim, Stage II Deployable Policy on full ==URDF== with **20,000** initial postures + diverse-terrain DR + strong control regularization; Unitree G1 recovers from supine at **78.3%** SR / rolls over at **98.3%** across **6 terrains** (concrete, mud, snow) in **~6s** (vs **11s** manufacturer); demonstrates that *separating motion discovery from deployable refinement* is critical — single-stage training failed to converge.
 
-**[Policy-Side — Decision Matrix]**
+**Policy-Side — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -386,7 +386,7 @@ Use sim as a safety filter, not a training source.
 
 - **[[2604.05484|CoEnv]]** — Multi-agent collaboration via ==compositional environment== unifying real-world scene reconstruction with a physics simulator; ==VLM-based hierarchical planner== decomposes tasks; ==collision-aware sim-to-real transfer== verifies swept collision volumes for interpolated trajectories before real-world execution; **49%** overall success across **5** real multi-agent benchmarks with up to **3** heterogeneous robots; pattern — sim is the *safety filter* for real-world execution, not the source of training data.
 
-**[Real2Sim2Real — Decision Matrix]**
+**Real2Sim2Real — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -447,7 +447,7 @@ Make heterogeneous interactive simulators comparable on the same axis.
 
 - **[[2604.21686|WorldMark]]** — Unified benchmark suite for *interactive* I2V world models; ==unified action-mapping layer== translates common WASD-style vocabulary to each model's native control format; hierarchical test suite of **500** cases across **3** difficulty tiers with **8** metrics in **3** dimensions (Visual Quality, Control Alignment, World Consistency); Spearman **ρ > 0.9** with human perceptual judgments; finding — visual quality and world consistency are *uncorrelated*, models excelling in one often lack the other ([[2402.15391|Genie]] 3 leads on consistency, YUME 1.5 on quality); domain-specific models *fail badly* outside training domains — structural sim-to-real eval finding for learned simulators.
 
-**[Evaluation — Decision Matrix]**
+**Evaluation — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -518,7 +518,7 @@ Treat the sim-real gap as an OOD shift the world model detects and corrects for 
 > - **Narrow high-precision deployment?** Pattern C (Digital twin)
 > - **Long-deployment continual adaptation?** Pattern D (Online world-model)
 
-**[Integration Patterns — Decision Matrix]**
+**Integration Patterns — Decision Matrix**
 
 | Deployment regime | Pattern | Why |
 |---|---|---|
@@ -567,7 +567,7 @@ These three problems sit orthogonal to the mainstream "transfer actions across t
 - **==Statistical sim-to-real==** — [[2604.24018|Sim2Real Betting]] proposes treating sim-real as ==variance reduction with biased predictors== — but the practical impact of running banks of cheap biased sims vs. one expensive accurate sim is open.
 - **==Online controller-gain interaction==** — [[2604.02523|Tune to Learn]] shows controller gains are an unrecognized hyperparameter for sim-to-real, with ==stiff gains *worsening*== transfer despite lower sysid errors. Whether this generalizes beyond proportional-derivative position control is unknown.
 
-**[Sim-to-Real Failure Modes — Decision Matrix]**
+**Sim-to-Real Failure Modes — Decision Matrix**
 
 | Problem | Remediation Path |
 |---|---|

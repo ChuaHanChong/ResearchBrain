@@ -270,6 +270,20 @@ The 2026 frontier. Pretrain the entire VLA — vision, language, *and* action �
 - **[[2512.22414|π0.5 + ego]]** (Co-Training Recipe) — simplest possible recipe: integrate egocentric human video directly into a pre-trained VLA's training mixture with the same loss as robot data; **no explicit kinematic alignment**. Head-worn + optional wrist-mounted cameras with 6D pose + 3D hand-keypoint estimation. Scene gen **32 → 71%**, Dresser **25 → 50%**, egg-sorting **57 → 78%** — transfer **emerges** from diverse pretraining (LLM-style emergence).
 - **[[2602.10106|EgoHumanoid]]** (Cross-Embodiment Loco-Manipulation) — Robot-free egocentric demos via head-worn camera; ==depth-based view alignment== + ==unified 6-DoF delta EE poses== retarget human body motion to humanoid joint trajectories. **~2×** faster to collect than teleoperation with **+19pp** in-domain (**78%**) and **+51pp** novel-env (**82%**) SR over robot-only; human-only models reach **100%** on navigation-dominated subtasks.
 - **[[2604.15483|π0.7]]** — Current steerable-generalist SOTA: a **5B**-parameter VLA with ==multimodal context conditioning== (subtask instructions + multi-view subgoal images + episode metadata), ==Knowledge Insulation== training, and ==prompt dropout==; out-of-the-box matches task-specific fine-tunes on dexterous long-horizon tasks (espresso making, box building, laundry folding) and demonstrates cross-embodiment transfer to bimanual UR5e with no platform-specific data — flow-matching action expert atop the co-pretraining stack.
+- **[[2604.24681|MoT-HRA]]** (Human-Intention Priors) — pretrains on **HA-2.2M**, a ==2.2M-episode human-demonstration dataset== with hand-centric spatial supervision; hierarchical decomposition into ==embodiment-agnostic 3D trajectory prediction== → ==latent human-intention model== (MANO-style hand kinematics) → embodiment-specific robot action expert, with ==knowledge insulation== via a ==read-only key-value transfer== that prevents downstream robot losses from corrupting upstream intention representations. **66.1%** SimplerEnv average SR (**+22.3pp** over next-best **43.8%**); **0.136 m ADE** / **34.16°** finger-joint error on Ego4D hand-motion generation.
+- **[[2510.21571|VITRA]]** (Real-Life Human Activity Videos) — fully automated pipeline turning *unstructured* real-life human videos into VLA data: ==3D hand+camera pose tracking==, ==wrist-speed-minima atomic-action segmentation==, and ==VLM-generated natural-language instructions==; PaliGemma-2 backbone + ==Diffusion-Transformer action expert== for dexterous hand control. Yields a **1M-episode / 26M-frame** human VLA dataset with far higher visual+language diversity than prior corpora; after fine-tuning on only **1.2K** real robot trajectories it generalizes to unseen objects and environments — pretraining scale, not curated demos, drives the gain.
+
+**Pretraining Recipe — Decision Matrix**
+
+| If your constraint is... | Generation | Recipe |
+|---|---|---|
+| Low compute / modular baseline | Gen 1 (frozen-feature) | R3M / VIP / VC-1 |
+| Spatiotemporal priors + action head | Gen 2 (video pretrain + decoder) | [[2312.13139\|GR-1]] / [[2410.06158\|GR-2]] |
+| Finger-level supervision from human video | Gen 3 (full VLA on human video) | [[2507.15597\|Being-H0]] (GRQ-VAE part-level tokens) |
+| Real-time deployment after human pretrain | Gen 3 (latent dual-branch) | [[2605.00078\|Being-H0.7]] (**3–4 ms/step**) |
+| Simplest transfer (no kinematic alignment) | Gen 3 (co-training) | [[2512.22414\|π0.5 + ego]] (humans-as-embodiment) |
+| Humanoid loco-manipulation from human demos | Gen 3 (cross-embodiment) | [[2602.10106\|EgoHumanoid]] (**~2×** faster than teleop) |
+| Steerable generalist SOTA | Gen 3 (co-pretraining stack) | [[2604.15483\|π0.7]] |
 
 > [!star] Key Recipes
 > - [[2507.15597|Being-H0]] — Physical Instruction Tuning + GRQ-VAE part-level motion tokens; **99.8-100%** valid generation
@@ -307,6 +321,7 @@ No explicit projection layer; let the VLA absorb the kinematic difference throug
 
 Insert a dedicated training stage *between* broad human pretraining and final robot fine-tuning. Amortizes the embodiment hop across a smaller human-robot bridge dataset specifically designed for the kinematic alignment.
 
+- **[[2604.20012|EmbodiedMidtrain]]** — quantifies the VLM↔VLA *data*-distribution gap with ==Maximum Mean Discrepancy== + t-SNE, then a ==data engine== uses a lightweight ==binary classifier== to score VLM samples by proximity to the VLA distribution and mid-trains the backbone on the top-K closest. A **1.1B** InternVL3.5 mid-trained this way surpasses expert VLA baselines **3–8×** larger; consistent gains across Calvin ABC-D, SimplerEnv Bridge, and LIBERO-10, with proximity-based selection beating random sampling and hand-crafted metrics in ablation — the *embodiment* gap is really a *distribution* gap solvable by selection, not just more data.
 - **[[2602.16710|EgoScale]]** — mid-training is the mechanism that keeps the log-linear scaling curve flat at scale: Stage 1 broad human pretraining (**20,854 hours**), Stage 2 mid-training on a smaller embodiment-aligned human-robot dataset bridges the kinematic gap *before* final fine-tuning. Without mid-training the slope collapses earlier. **+54%** task SR on 22-DoF hand; **88%** shirt-folding from a single robot demo; **+30%** cross-embodiment improvement. See §3 for the scaling-law framing of the same paper.
 
 **Transfer Mechanism — Decision Matrix**
@@ -389,7 +404,7 @@ Egocentric pretraining has crossed the "it works" threshold ([[2602.16710|EgoSca
 - **==Privacy and bias==** — Egocentric video contains personally identifying information (faces in mirrors, screen contents, surroundings) and reflects collector demographics. Trustworthy, privacy-respecting egocentric pretraining is unsolved; no current dataset has rigorous PII removal at scale.
 - **==Reasoning vs reflex from human video==** — Most egocentric pretraining teaches motor patterns (reach, grasp, place). Learning *reasoning* from human video (planning sequences, error recovery, tool selection) is a separate, less-studied problem; the action labels rarely include the *intent* annotations needed for reasoning supervision.
 
-**[Egocentric Pretraining Failure Modes — Decision Matrix]**
+**Egocentric Pretraining Failure Modes — Decision Matrix**
 
 | Problem | Remediation Path |
 |---|---|

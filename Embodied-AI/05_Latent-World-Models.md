@@ -197,13 +197,6 @@ Papers that build on or extend the JEPA framework for new capabilities — each 
 - **[[2504.16591|JEPA for RL]]** — Adapts JEPA for image-based RL: ==separate context/target ViT encoders== combined with ==actor-critic gradient back-propagation through the encoder== plus regularization to prevent collapse; ==learnable classification tokens== compress to low-dim representations; demonstrates joint JEPA+RL beats either alone on Cart Pole from pixels.
 - **[[2512.19605|KerJEPA]]** — ==Kernel-based JEPA== with structured similarity in latent space; tighter convergence bounds than vanilla JEPA.
 
-> [!star] Key Papers
-> - [[2602.11832|JEPA-VLA]] — Demonstrates that video predictive embedding is *needed* for VLA models; closes the JEPA → VLA loop with action-conditioned latent prediction
-> - [[2602.11389|Causal-JEPA]] — Object-centric world model with causal reasoning via latent interventions; disentangles objects for counterfactual planning
-> - [[2511.19221|Percept-WAM]] — Perception-enhanced world-awareness-action model for end-to-end autonomous driving
-> - [[2511.08544|LeJEPA]] — Provable and scalable SSL framework based on Euclidean latent geometry
-> - [[2510.00739|TD-JEPA]] — Latent-predictive representations for zero-shot RL; bridges JEPA to value learning
-
 #### 3.2 Non-JEPA Latent Models
 
 Alternative architectures achieving latent prediction without the JEPA framework — divided across algebraic-structured LAMs, dual-branch training, frozen-feature dynamics, and unified diffusion.
@@ -221,11 +214,6 @@ Alternative architectures achieving latent prediction without the JEPA framework
 - **[[2503.18938|AdaWorld]]** — ==Latent Action Autoencoder== extracts context-invariant latent actions from action-free videos via ==beta-VAE information bottleneck==; autoregressive WM (initialized from ==Stable Video Diffusion==) is pretrained on these latent actions; **FVD 767.0** vs **1545.2** action-agnostic baseline and **70.5%** vs **20%** human SR on LIBERO; transfers efficiently to Habitat / Minecraft / DMLab / nuScenes / Procgen / VP2.
 - **[[2411.04983|DINO-WM]]** — Task-agnostic world model on ==frozen [[2304.07193|DINOv2]] features==; lightweight dynamics module learns how frozen features change given an action, enabling ==zero-shot planning== via goal-feature search without per-environment retraining.
 
-> [!star] Key Papers
-> - [[2605.00078|Being-H0.7]] — Latent World-Action Model with dual-branch future-informed training: deployable "prior" branch's hidden states aligned to a "posterior" branch receiving privileged future embeddings (Mixture-of-Transformers); replaces costly pixel-space WAM prediction with implicit latent reasoning. **99.2%** [[2306.03310|LIBERO]], **62.1%** [[2406.02523|RoboCasa]], 3-4 ms/step latency
-> - [[2411.04983|DINO-WM]] — Task-agnostic world model on frozen [[2304.07193|DINOv2]] features; zero-shot planning without task-specific training
-> - [[2504.02792|UWM]] — Unified World Models: single architecture handling action-conditioned, action-free, and video prediction tasks
-
 #### 3.3 Latent-WM Surveys
 
 Field-defining surveys that taxonomize the latent-prediction landscape — one architectural (decoupled vs unified), one cognitive (perception vs meta-cognition).
@@ -233,13 +221,11 @@ Field-defining surveys that taxonomize the latent-prediction landscape — one a
 - **[[2605.00080|WM Robot Learning Survey]]** — ==Multi-dimensional taxonomy== of world models for robot learning; documents the architectural evolution from decoupled "predict-then-act" to ==unified VLA/MoE/MoT backbones==, with **latent-space world modeling** as the dominant integration pattern.
 - **[[2604.16592|Cognition WM Survey]]** — ==Cognitive-Architecture-Theory taxonomy== spanning Video, Embodied, and Epistemic WMs; identifies ==motivation== and ==meta-cognition== as the most under-developed cognitive functions in current latent WMs.
 
-> [!star] Key Papers
-> - [[2605.00080|WM Robot Learning Survey]] — Multi-dimensional taxonomy of world models for robot learning; documents the architectural evolution from decoupled "predict-then-act" to unified VLA/MoE/MoT backbones and **latent-space world modeling** as the dominant integration pattern
-> - [[2604.16592|Cognition WM Survey]] — Cognitive-Architecture-Theory taxonomy spanning Video, Embodied, and Epistemic WMs; identifies motivation and meta-cognition as the most under-developed cognitive functions in current latent WMs
-
 #### 3.4 JEPA Variant Design-Space Matrix
 
 JEPA-family models trade off three axes: encoder freezing, modality count, and action conditioning. Choose by deployment constraints.
+
+**Latent Landscape — Decision Matrix**
 
 | Variant | Encoder | Modalities | Action-Conditioned | Best For |
 |---------|---------|-----------|-------------------|----------|
@@ -253,9 +239,6 @@ JEPA-family models trade off three axes: encoder freezing, modality count, and a
 | [[2511.19221\|Percept-WAM]] | Trainable | Vision (multi-cam) + Action | Yes | End-to-end autonomous driving |
 | [[2411.04983\|DINO-WM]] | Frozen ([[2304.07193\|DINOv2]]) | Vision + Action | Yes | Zero-shot planning, transfer |
 | [[2602.11389\|Causal-JEPA]] | Trainable | Object-centric | Yes | Counterfactual reasoning |
-
-> [!tip] Picking a JEPA Variant
-> If you need **action conditioning**, use [[2602.10098|VLA-JEPA]], [[2602.11832|JEPA-VLA]], or [[2411.04983|DINO-WM]]. If you need **zero-shot transfer**, freeze the encoder ([[2411.04983|DINO-WM]]). If you need **dense local features**, use [[2603.14482|V-JEPA 2.1]]. If you need **multi-camera autonomous driving**, use [[2511.19221|Percept-WAM]]. If you need **value learning**, use [[2510.00739|TD-JEPA]].
 
 #### 3.5 Alternative-Latent-Models Thread
 
@@ -284,8 +267,15 @@ The thread walks four convergent steps — each substituting a different missing
 - **[[2512.13030|Motus]]** — Pushes ==unified latent diffusion== further with motion priors; latent action modeling from action-free video at scale.
 - **[[2505.11528|LaDi-WM]]** — Combines [[2304.07193|DINOv2]]+SigLIP features with ==imagination-guided iterative action refinement==; **68.7%** on LIBERO-LONG with only **10 demos**.
 
-> [!tip] Frozen Features Are Surprisingly Powerful
-> [[2411.04983|DINO-WM]] showed you don't even need to train a new encoder — frozen [[2304.07193|DINOv2]] features are rich enough for world modeling. The dynamics model operates entirely in the frozen feature space, enabling zero-shot planning in new environments.
+> [!star] Key Papers
+> - [[2602.11832|JEPA-VLA]] — Closes the JEPA → VLA loop; demonstrates action-conditioned video predictive embedding is *necessary* for VLA models
+> - [[2411.04983|DINO-WM]] — The frozen-[[2304.07193|DINOv2]] baseline; proves a lightweight dynamics module on frozen features enables zero-shot planning without retraining
+> - [[2605.00078|Being-H0.7]] — Dual-branch latent world-action model; deployable prior aligned to a future-informed posterior; **99.2%** [[2306.03310|LIBERO]] at 3–4 ms/step
+> - [[2504.02792|UWM]] — Unified diffusion transformer spanning action-conditioned / action-free / video prediction in one backbone
+> - [[2605.00080|WM Robot Learning Survey]] — The field map: documents the shift from decoupled "predict-then-act" to unified latent-space backbones
+
+> [!tip] Frozen Features Are Powerful — and the Variant Choice Follows Your Constraint
+> [[2411.04983|DINO-WM]] showed you don't even need to train a new encoder — frozen [[2304.07193|DINOv2]] features are rich enough for world modeling, with the dynamics model operating entirely in frozen feature space for zero-shot planning. From there the variant choice is constraint-driven: need **action conditioning** → [[2602.10098|VLA-JEPA]] / [[2602.11832|JEPA-VLA]] / [[2411.04983|DINO-WM]]; need **zero-shot transfer** → freeze the encoder ([[2411.04983|DINO-WM]]); need **dense local features** → [[2603.14482|V-JEPA 2.1]]; need **multi-camera driving** → [[2511.19221|Percept-WAM]]; need **value learning** → [[2510.00739|TD-JEPA]]. The non-JEPA thread ([[2504.02792|UWM]] → [[2512.13030|Motus]] → [[2505.11528|LaDi-WM]]) reaches the same latent-prediction insight by a different route.
 
 ---
 
@@ -340,22 +330,15 @@ The space splits along *where the reasoning happens*: in the planning loop (subs
 | Physics-grounded embodied reasoning | SFT + RL with verifiable rewards | [[2503.15558\|Cosmos-Reason1]] (**81.5%** intuitive physics, 7B) |
 
 > [!star] Key Papers
-> - [[2605.08732|GC-IDM]] — Amortized goal-conditioned inverse dynamics in a frozen pretrained latent world model; **100–130×** faster planning than CEM at matched/superior SR with **15–36×** lower action jerk — proves search is amortizable in well-organized latent spaces
-> - [[2605.00078|Being-H0.7]] — Future-informed dual-branch latent reasoning: privileged-future supervision at training time, implicit prediction at deployment; eliminates the pixel-space WAM tax. SOTA on [[2306.03310|LIBERO]]/[[2406.02523|RoboCasa]] with **3-4 ms/step**
-> - [[2603.22281|ThinkJEPA]] — Integrates a VLM to semantically guide a JEPA-style latent world model for trajectory prediction; the VLM provides high-level reasoning, JEPA provides low-level dynamics
-> - [[2601.21598|ATP-Latent]] — Two-stage method: VAE creates smooth latent space, then RL plans in that space; enables active latent planning beyond imitation
-
-> [!star] Key Papers — Spatial & Continuous Thought
-> - [[2601.11442|Map2Thought]] — Unifies discrete symbolic grids with continuous metric-scale data for explicit 3D latent reasoning; metric cognitive maps enable spatial planning with verifiable inference traces
-> - [[2504.12680|Embodied-R]] — RL activates embodied spatial reasoning in foundation models; bridges perception and physical action through latent representations
-> - [[2604.22709|Abstract-CoT]] — Token-free latent CoT: reasoning happens in abstract embedding space, eliminating the discrete-token bottleneck while preserving reasoning quality
-> - [[2503.15558|Cosmos-Reason1]] — Bridges physical commonsense and embodied reasoning; physics-aware reasoning at WAM scale
-> - [[2509.25681|dVLA]] — Diffusion VLA with multimodal CoT; reasoning interleaved with diffusion-based action generation
-> - [[2601.05877|iReasoner]] — Trajectory-aware intrinsic reasoning supervision for self-evolving LMMs; uses cross-rollout step agreement as intrinsic reward signal
-> - [[2511.19418|COVT]] — Chain-of-Visual-Thought: VLMs generate and reason with continuous visual tokens in latent space, enabling visual reasoning without text bottleneck
+> - [[2605.08732|GC-IDM]] — Amortized goal-conditioned inverse dynamics in a frozen latent world model; **100–130×** faster planning than CEM at matched/superior SR — proves search is amortizable in well-organized latent spaces
+> - [[2605.00078|Being-H0.7]] — Future-informed dual-branch latent reasoning: privileged-future supervision at training, implicit prediction at deployment; SOTA on [[2306.03310|LIBERO]]/[[2406.02523|RoboCasa]] at **3–4 ms/step**
+> - [[2601.11442|Map2Thought]] — Unifies discrete symbolic grids with continuous metric-scale data for explicit 3D latent reasoning; metric cognitive maps yield verifiable inference traces (**61.0%** VSI-Bench)
+> - [[2604.22709|Abstract-CoT]] — Token-free latent CoT in abstract embedding space; eliminates the discrete-token bottleneck (**12×** token reduction) while preserving reasoning quality
+> - [[2511.19418|COVT]] — Chain-of-Visual-Thought: continuous visual tokens let VLMs reason about vision without the text bottleneck (**+5.5%** CV-Bench)
 
 > [!tip] Why Latent Reasoning Matters for Robots
 > Pixel-level reasoning is expensive: [[2602.15922|DreamZero]]'s 14B Video DiT takes ~150 ms per forward pass. Latent reasoning removes the generation bottleneck — plan in embedding space, act in real-time. [[2602.10098|VLA-JEPA]]'s MPC uses [[2506.09985|V-JEPA 2]]'s latent predictor in a single forward pass; [[2605.08732|GC-IDM]] amortizes the search loop itself (**100–130×** faster than CEM); [[2605.00078|Being-H0.7]] eliminates the pixel-WAM tax entirely with **3–4 ms/step**. Each row above swaps one form of expensive computation for a learned latent shortcut — the constraint determines which shortcut to use. Cross-reference [[08_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the full reasoning-insertion taxonomy these papers exemplify, [[03_VLA#5. World-Model-Augmented VLAs]] for how latent reasoning composes with WAM-augmented VLAs, and [[06_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how amortized planning enables self-evolution loops in latent space.
+
 ---
 
 ## Part C — Analysis & Open Problems
@@ -441,7 +424,7 @@ Latent world models are powerful but face fundamental limitations that remain un
 - **==Interpretability gap==** — Latent predictions are opaque — a human cannot inspect whether the model's "imagined future" makes physical sense, limiting debugging and safety verification. [[2603.22281|ThinkJEPA]]'s ==VLM-guided latent grounding== partially bridges this by grounding latent predictions in natural language descriptions.
 - **==Latent-pixel alignment / trust==** — When is a latent prediction "wrong enough" to warrant concern? Unlike pixel-space models where humans can visually inspect dreams, latent-space errors require learned evaluators — creating a recursive trust problem (the evaluator itself may be miscalibrated).
 
-**[Latent World Model Failure Modes — Decision Matrix]**
+**Latent World Model Failure Modes — Decision Matrix**
 
 | Problem | Remediation Path |
 |---|---|

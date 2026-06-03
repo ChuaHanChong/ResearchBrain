@@ -121,6 +121,17 @@ Three axes define where a WAM sits in the design landscape:
 
 **What to predict** trades off between interpretability and efficiency. Full video (Cosmos) is human-readable but expensive. Optical flow ([[2508.18269|FlowVLA]]) captures motion efficiently. Future embeddings (JEPA) are opaque but compact. The choice depends on whether a human needs to inspect the predictions (development/debugging) or only the policy needs them (deployment).
 
+**Design Space — Decision Matrix**
+
+| If you need... | Reach for... |
+|---|---|
+| Maximum physics priors + interpretable rollouts | Pixel-space VideoGen (§2) — [[2602.15922\|DreamZero]] (slow but robust) |
+| Real-time latent prediction (~10ms/step) | Latent prediction (§3) — JEPA / [[2504.02792\|UWM]] |
+| WAM robustness *without* test-time latency | Training-time-only video co-training — [[2603.16666\|Fast-WAM]] |
+| Efficient motion signal, no full frames | Compact prediction — optical flow ([[2508.18269\|FlowVLA]]), latent ([[2602.22010\|WoG]]) |
+| Pure planning with no visual feedback | Action-space prediction — [[2205.09991\|Diffuser]] |
+| Formal cascaded-vs-joint placement | [[2605.12090\|WAM Survey]] taxonomy |
+
 > [!tip] The Core Trade-off
 > VideoGen WAMs are the most robust (spatiotemporal priors from internet video) but the slowest. Latent prediction WAMs are fast and sample-efficient. [[2603.16666|Fast-WAM]] shows you can bridge this gap: train with video generation objectives but deploy without test-time imagination.
 
@@ -160,11 +171,6 @@ Train a video-prediction backbone on internet-scale video, then fine-tune with a
 - **[[2410.06158|GR-2]]** — ==GPT-style transformer== with ==video-language pretrain on 38M clips== + fine-tune with ==cVAE== for diverse action trajectories; **97.7%** multi-task tabletop, **75%** at **50 demos**, **79.0%** industrial bin-picking (vs **35.9%** GR-1), **98.6%** + length **4.64** on CALVIN.
 - **[[2312.13139|GR-1]]** — ==Decoder-only GPT-style transformer== with ==CLIP+MAE encoders== + ==[ACT]/[OBS] tokens== pretrained on **800K** Ego4D clips; **94.9%** CALVIN multi-task (vs **88.9%** HULC), **85.4%** unseen-scene zero-shot (vs **53.3%**), **77.8%** with only **10%** data — pioneered the video-prediction backbone + action-decoder pattern.
 
-> [!star] Key Papers
-> - [[2605.15178|SANA-WM]] — First viable open-source minute-scale 720p WAM; **22 videos/hour** on H100, **39x** distilled speedup
-> - [[2602.15922|DreamZero]] — **14B** joint video+action; **39.5%** on unseen tasks, **42%** cross-embodiment improvement, **7Hz** real-time
-> - [[2601.16163|Cosmos Policy]] — Fine-tuned Cosmos video model achieves **98.5%** on [[2306.03310|LIBERO]]; proves pretrained video diffusion transfers to robot control
-
 #### 2.3 Video Models as Data Engines
 
 Use generated video as synthetic training data offline, rather than running the world model at test time. Decouples WAM benefits from inference latency.
@@ -182,19 +188,14 @@ Explicitly enforce physical plausibility during video generation. See [[07_Physi
 - **[[2604.07348|MoRight]]** — ==Dual-stream DiT== with canonical (object) + target (final) streams + ==active/passive motion decomposition== + ==motion dropout==; **53.5%** controllability + **54.6%** motion realism + **55.9%** photorealism human-preference; best FID/FVD on WISA + Cooking; supports forward+inverse causal reasoning from sparse inputs.
 - **[[2604.07209|INSPATIO-WORLD]]** — ==Spatiotemporal Autoregressive (STAR)== with implicit spatiotemporal cache + ==position-index fixing + chunk-wise BP== + ==Joint Distribution Matching Distillation== + multi-condition causal init; **24 FPS** real-time on H-series, **42.68 FID / 100.55 FVD** long-term I2V with Rotation Error **2.8762** — only open-source real-time solution.
 - **[[2603.26285|PhysVid]]** — ==Chunk-aware cross-attention== with Rotary Position Embeddings + VLM-generated physics-grounded local prompts + ==counterfactual classifier-free guidance==; **PC 0.32** on VideoPhy (+33% rel. over Wan-14B at **1.7B** vs **14B** params), **PC 0.64** on VideoPhy2 (vs **0.59** Wan-14B).
-- **[[2603.23376|ABot-PhysWorld]]** — ==Diffusion-DPO== for physics alignment; suppresses implausible predictions (object penetration, anti-gravity). The DPO-on-physics-preference-pairs recipe.
+- **[[2603.23376|ABot-PhysWorld]]** — ==Diffusion-DPO== for physics alignment; suppresses implausible predictions (object penetration, anti-gravity). The DPO-on-physics-preference-pairs recipe. **0.8491** PBench average (SOTA Domain Score **0.9306**); SOTA zero-shot generalization on EZSbench (**0.8030**); action-conditioned PSNR **21.09** / nDTW **0.8522** for gripper-trajectory adherence.
 - **[[2603.13770|PhysAlign]]** — ==LoRA adapter== on DiT I2V models + ==dual latent alignment== (Gram-based spatio-temporal alignment with V-JEPA2 teacher + 3D-convolution depth head) + Blender synthetic 3K-video dataset; **PIS a_x 0.632** vs **0.520** Wan2.2, VBench i2v subject **0.911** + motion smoothness **0.996**.
 - **[[2602.05986|RISE-Video]]** — ==RISE-Video== with **467 human-annotated samples** across 8 reasoning categories + ==4-dim eval== (Reasoning Alignment / Temporal Consistency / Physical Rationality / Visual Quality); best TI2V Hailuo 2.3 only **22.5%** across 11 models — explicit potential-energy terms only marginally help on logical reasoning.
 - **[[2511.07416|PhysWorld]]** — ==Task-conditioned video gen== → ==4D digital twin== reconstruction (geometry-aligned 4D + textured-mesh generative priors + physical-property estimation) + ==object-centric residual RL==; **82%** real-world avg across **10** tasks (+15pp over RIGVid), grasping failures **18% → 3%**.
-- **[[2509.21309|NewtonGen]]** — physics-consistent T2V via ==neural Newtonian dynamics==; explicit physics constraints during generation.
+- **[[2509.21309|NewtonGen]]** — physics-consistent T2V via ==neural Newtonian dynamics==; explicit physics constraints during generation. Physical Invariance Score **0.9830** (Uniform Motion) vs Sora's **0.6548** across **12** motion types; faithful trajectory/velocity controllability, and the ==residual-MLP NND== learns from as few as **100** physics-clean videos.
 - **[[2509.20358|PhysCtrl]]** — Two-stage ==image → 3D point cloud → physics-grounded 3D point trajectories via diffusion-based generative physics network== with ==spatio-temporal attention + diffusion/velocity/physics/boundary losses==; trained on **550K** object animations; GPT-4o eval **4.5** semantic/physical commonsense + **4.3** video quality; vIoU **77.59%**, Chamfer **0.0028**.
 - **[[2503.15558|Cosmos-Reason1]]** — ==Hybrid Mamba-MLP-Transformer== (56B) MLLMs with ==two-stage SFT → RL with verifiable rule-based rewards==; **60.2%** physical-commonsense + **63.7%** embodied-reasoning (56B); 7B variant **81.5%** intuitive physics after RL (+32.4pp over backbone).
 - **[[2409.18964|PhysGen]]** — ==Perception (GPT-4V + Grounded-SAM)== → ==rigid-body physics simulation== → ==generative refinement via video diffusion==; training-free perception-simulation-rendering pipeline; outperforms data-driven I2V baselines on physical realism + photorealism in human studies.
-
-> [!star] Key Papers
-> - [[2603.23376|ABot-PhysWorld]] — Diffusion-DPO for physics alignment; suppresses implausible predictions (object penetration, anti-gravity)
-> - [[2509.21309|NewtonGen]] — Physics-consistent T2V via neural Newtonian dynamics; explicit physics constraints during generation
-> - [[2509.20358|PhysCtrl]] — Generative physics for controllable video generation; control signals tied to physical priors
 
 **VideoGen — Decision Matrix**
 
@@ -207,6 +208,13 @@ Explicitly enforce physical plausibility during video generation. See [[07_Physi
 | Minute-scale 720p video on single GPU | [[2605.15178\|SANA-WM]] (**22 videos/hour**, **39×** distilled speedup) |
 | Pretrained-Cosmos fine-tune (clean LIBERO baseline) | [[2601.16163\|Cosmos Policy]] (**98.5%** LIBERO) |
 | Foundational learned-sim baseline | [[2310.06114\|UniSim]] |
+
+> [!star] Key Papers
+> - [[2602.15922|DreamZero]] — **14B** joint video+action; **39.5%** unseen tasks, **42%** cross-embodiment, **7Hz** real-time; the robustness ceiling for VideoGen WAMs
+> - [[2605.15178|SANA-WM]] — First viable open-source minute-scale 720p WAM; **22 videos/hour** on H100, **39×** distilled speedup
+> - [[2601.16163|Cosmos Policy]] — Fine-tuned Cosmos video model hits **98.5%** [[2306.03310|LIBERO]]; the cleanest proof pretrained video diffusion transfers to control
+> - [[2603.23376|ABot-PhysWorld]] — Diffusion-DPO for physics alignment; the reference recipe for suppressing object-penetration / anti-gravity hallucinations
+> - [[2509.21309|NewtonGen]] — Physics-consistent T2V via neural Newtonian dynamics; explicit physics constraints during generation (Physical Invariance **0.9830** vs Sora's **0.6548**)
 
 > [!tip] Video Generation = Physics Engine
 > Video diffusion models trained on internet data implicitly learn physics. [[2602.15922|DreamZero]] proved joint video+action generation provides spatiotemporal priors that pure VLAs lack. But test-time video generation is expensive — consider [[2603.16666|Fast-WAM]]'s training-only approach. For an explicit physics-priors view, see [[07_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation]]; for the egocentric pretraining substrate these models reuse, see [[09_Egocentric-Pretraining-and-Human-Video#6. Egocentric Pretraining Meets WAMs]].
@@ -233,11 +241,6 @@ Joint Embedding Predictive Architecture: predict future embeddings from current 
 - **[[2506.09985|V-JEPA 2]]** — **1M+ hours** of video pretraining; **80%** pick-and-place with **62 hours** of unlabeled robot video; the canonical scale anchor for the JEPA family.
 - **[[2605.15618|V-JEPA Robustness Study]]** — Matched-capacity ==ViT-Large== head-to-head of **V-JEPA 2.1 / V-JEPA 2 / VideoPrism / VideoMAEv2** across **5 robustness axes** (discriminability, corruption, fine-grained action, occlusion, temporal); latent-prediction JEPAs dominate pixel-reconstruction + contrastive baselines, and **frozen V-JEPA 2 outperforms task-adapted fine-tuned** VideoMAE/TimeSformer on corruption + occlusion — the first capacity-matched empirical justification for latent-space prediction.
 
-> [!star] Key Papers
-> - [[2602.10098|VLA-JEPA]] — Full VLA+JEPA pipeline: **97.2%** [[2306.03310|LIBERO]] in-distribution, **79.5%** [[2510.13626|LIBERO-Plus]] OOD, **65.2%** SimplerEnv real robot
-> - [[2506.09985|V-JEPA 2]] — **1M+ hours** video pretraining; **80%** pick-and-place with **62 hours** unlabeled robot video
-> - [[2602.11389|Causal-JEPA]] — Object-centric world model with causal reasoning via latent interventions
-
 #### 3.2 Unified Latent Diffusion
 
 Shared diffusion transformer for both video and action in a *common* latent space. Couples generation and control under one objective.
@@ -247,11 +250,6 @@ Shared diffusion transformer for both video and action in a *common* latent spac
 - **[[2505.11528|LaDi-WM]]** — ==Latent diffusion WM== on concatenated DINOv2 (geometry) + Siglip (semantic) latents + ==interactive diffusion with cross-attention== + ==Imagination-Guided iterative action refinement==; **68.7%** LIBERO-LONG with 10 demos (+15.1pp over SOTA), **90.7%** full data; +20pp real-world over BC.
 - **[[2504.02792|UWM]]** — ==Unified video + action diffusion== in single Diffusion Transformer with ==independent diffusion timesteps== enabling flexible inference modes (policy / forward dyn / inverse dyn / video pred); **+20pp** SR on real DROID, action-free video co-training lifts Stack-Bowls **0.86→0.92** in-dist, **0.76→0.84** OOD.
 - **[[2503.18938|AdaWorld]]** — ==Latent Action Autoencoder== extracts context-invariant latent actions from unlabeled video + ==Stable-Video-Diffusion-initialized autoregressive WM== + ==β-VAE info bottleneck==; **FVD 767.0** on LIBERO (vs **1545.2** baseline), **70.5%** human SR vs **20%** baseline; efficient adaptation across Habitat/Minecraft/DMLab/nuScenes.
-
-> [!star] Key Papers
-> - [[2605.06388|Semantic-LDM-WM]] — First systematic head-to-head of reconstruction- vs semantic-aligned latents in action-conditioned LDMs; semantic latents yield **+9.8 pp** closed-loop success and **+13.6 pp** OOD robustness over reconstruction VAEs
-> - [[2504.02792|UWM]] — Unified World Models: coupled video and action diffusion pretraining; clean modern approach
-> - [[2505.11528|LaDi-WM]] — Latent diffusion WM on [[2304.07193|DINOv2]]+SigLIP with imagination-guided iterative action refinement; **+15.1%** over SOTA on LIBERO-LONG with 10 demos
 
 #### 3.3 Self-Supervised Latent Models
 
@@ -268,10 +266,6 @@ Learn world representations from unlabeled data using self-supervised objectives
 - **[[2512.19605|KerJEPA]]** — Generalizes JEPA regularization via ==kernel discrepancies (MMD + Kernel Stein Discrepancy)== with ==closed-form analytical sliced expressions== eliminating Monte Carlo variance + ==non-Gaussian priors== (Laplace + IMQ kernel); **91.90%** ImageNette (vs **91.13%** LeJEPA) with IMQ kernel.
 - **[[2411.04983|DINO-WM]]** — Frozen DINOv2 + ==ViT transition model== with ==latent consistency loss==; **+45pp** avg over prior on manipulation (**0.90** PushT vs **0.32** IRIS), **0.82** SR WallRandom + **0.63** Chamfer GranularRandom on novel configurations — the canonical frozen-encoder WAM baseline.
 
-> [!star] Key Papers
-> - [[2511.08544|LeJEPA]] — Provable and scalable SSL framework based on Euclidean latent geometry
-> - [[2411.04983|DINO-WM]] — Task-agnostic world model on frozen [[2304.07193|DINOv2]] features enables zero-shot planning
-
 **Latent WAM — Decision Matrix**
 
 | Need | Approach |
@@ -283,6 +277,13 @@ Learn world representations from unlabeled data using self-supervised objectives
 | Self-supervised from frozen vision encoder | [[2411.04983\|DINO-WM]] / [[2511.08544\|LeJEPA]] |
 | Object-centric latent reasoning | [[2602.11389\|Causal-JEPA]] |
 | Massive-video pretraining for manipulation | [[2506.09985\|V-JEPA 2]] (**1M+ hours** video; **80%** pick-and-place from 62 hr unlabeled robot data) |
+
+> [!star] Key Papers
+> - [[2602.10098|VLA-JEPA]] — Full VLA+JEPA pipeline: **97.2%** [[2306.03310|LIBERO]] in-distribution, **79.5%** [[2510.13626|LIBERO-Plus]] OOD; defines the latent speed-quality Pareto frontier
+> - [[2506.09985|V-JEPA 2]] — **1M+ hours** video pretraining; **80%** pick-and-place from **62 hours** unlabeled robot video; the JEPA-family scale anchor
+> - [[2605.06388|Semantic-LDM-WM]] — First controlled head-to-head proving semantic latents beat reconstruction VAEs (**+9.8 pp** closed-loop, **+13.6 pp** OOD) inside one LDM framework
+> - [[2504.02792|UWM]] — Unified video+action diffusion in one Diffusion Transformer; the clean modern latent-diffusion WAM
+> - [[2411.04983|DINO-WM]] — Frozen-DINOv2 transition model; the canonical self-supervised zero-shot-planning baseline
 
 > [!tip] Latent > Pixel for Efficiency
 > Latent prediction avoids the expensive pixel-level reconstruction of VideoGen WAMs. [[2506.09985|V-JEPA 2]] achieves competitive manipulation performance using self-supervised video pre-training alone. The JEPA family shows that predicting in embedding space produces more semantically meaningful features — you don't waste capacity modeling textures and shadows. [[2605.06388|Semantic-LDM-WM]] formalizes this: in a controlled study within a single LDM framework, semantic-aligned latents ([[2603.14482|V-JEPA 2.1]], [[2502.14786|SigLIP 2]]) beat reconstruction VAEs by **+9.8 pp** closed-loop and **+13.6 pp** OOD — visual fidelity is *not* the right objective for control. Cross-reference [[05_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA lineage in full and [[08_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the latent-reasoning frontier built on top.
@@ -391,12 +392,6 @@ Single framework that *jointly* trains policy and world model under a shared obj
 - **[[2506.21539|WorldVLA]]** — ==autoregressive action + world-state forecasting== on a ==Chameleon-initialized VLM== with discrete tokenizers for image/text/action + novel ==action-attention masking== that prevents error propagation in chunk decoding; **81.8%** LIBERO grasp success at 512×512 (vs **76.5%** discrete OpenVLA); WM data lifts SR **62.8%→67.2%**, action masking lifts naive chunking **54.0%→76.6%**.
 - **[[2506.19850|UniVLA]]** — ==discrete-token unification== of vision/language/action in a shared 8.5B-param ==autoregressive Transformer== with two-stage training (==action-free video WM pretraining== then policy fine-tune); SOTA on CALVIN, **95.5%** avg on LIBERO (LIBERO-Long **94.0%**); WM pretraining matches full-data CALVIN with only **10%** fine-tuning data.
 
-> [!star] Key Papers
-> - [[2605.15153|Pelican-Unified]] — First single-model unification of understanding + reasoning + imagination + action via shared latent z + Unified Future Generator; **64.7** multimodal-VLM avg, **93.5%** RoboTwin dual-arm, **1st** on WorldArena (EWM **66.03**); real-robot zero-shot compositional generalization — the cleanest demonstration of structurally shared representations beating modular assembly
-> - [[2605.10942|HarmoWAM]] — Resolves generalization-precision trade-off via dual experts + process-adaptive gating; **89%** in-domain, **−7.9%** OOD drop
-> - [[2603.14497|WorldVLM]] — Hybrid: VLM for high-level reasoning + world model for low-level dynamics
-> - [[2602.12063|VLAW]] — Iterative co-improvement loop: VLA and world model reinforce each other; **+39%** improvement
-
 #### 5.3 Imagination & Test-Time Reasoning
 
 World model used for *test-time* simulation: the agent runs imagined rollouts during deployment to evaluate candidate plans. Expensive but maximally flexible — the imagination budget adapts to task difficulty.
@@ -408,9 +403,6 @@ World model used for *test-time* simulation: the agent runs imagined rollouts du
 - **[[2507.12508|MindJourney]]** — couples VLMs with ==controllable video-diffusion world models== via a ==Spatial Beam Search== that plans exploratory trajectories then accumulates multi-view evidence — training-free; **+7.7%** avg top-1 across diverse VLMs on SAT, OpenAI o1 on SAT-Real **74.6%→84.7%** — VLM imagination via a physically-consistent simulator is orthogonal to text-CoT scaling.
 - **[[2602.01960|GVP-WM]]** — converts physically-inconsistent video plans into feasible actions via ==video-guided latent collocation== on an ==action-conditioned WM== using the ==Augmented Lagrangian Method== + a ==scale-invariant alignment loss==; **0.80** Push-T SR with domain-adapted videos where UniPi fails, holds **0.82** under MB-10 motion blur vs UniPi collapse **0.52→0.03** — robust grounding of video generators in dynamics-feasible action.
 - **[[2601.14514|JIT]]** — ==Just-in-Time== cognitive model interleaving ==simulation + visual search + dynamic representation modification== on a ==representational sketchpad==; explains human memory (**r=0.95**) and attention (**r=0.88**) during grid-world planning + physical reasoning (**r=0.87** recall / **r=0.96** confidence), beats Value-Guided Construal in dissociation tests — algorithmic account of how minds avoid the pre-computation paradox by encoding objects *only when relevant*.
-
-> [!star] Key Papers
-> - [[2602.08236|AVIC]] — Adaptive: decides *when and how much* to imagine based on task difficulty
 
 #### 5.4 Compact Motion Representations
 
@@ -430,6 +422,13 @@ Predict condensed motion signals (optical flow, motion tokens) instead of full v
 | Adaptive test-time imagination budget | [[2602.08236\|AVIC]] (decides when/how much to imagine) |
 | Compact motion representation (no full video) | [[2602.22010\|WoG]] |
 | Unified VLA + WM under one loss | [[2506.21539\|WorldVLA]] / [[2506.19850\|UniVLA]] |
+
+> [!star] Key Papers
+> - [[2605.15153|Pelican-Unified]] — First single-model unification of understanding + reasoning + imagination + action via shared latent z; **64.7** VLM avg, **93.5%** RoboTwin dual-arm, **1st** on WorldArena — structurally shared representations beat modular assembly
+> - [[2605.10942|HarmoWAM]] — Resolves the generalization-precision trade-off via dual experts + process-adaptive gating; **89%** in-domain, smallest reported OOD drop (**−7.9%**)
+> - [[2602.12063|VLAW]] — The canonical iterative co-improvement loop: VLA and WM reinforce each other; **+39.2pp** on contact-rich tasks
+> - [[2602.08236|AVIC]] — Adaptive test-time imagination: decides *when and how much* to imagine, **17×** fewer WM calls than always-on
+> - [[2506.19850|UniVLA]] — Discrete-token VLA+WM unification; WM pretraining matches full-data CALVIN with only **10%** fine-tuning data
 
 > [!tip] The Co-Improvement Insight
 > [[2602.12063|VLAW]] showed that VLA and world model don't just coexist — they actively improve each other through iterative training. The world model generates better synthetic data for the VLA, and the VLA's improving actions give the world model harder scenarios to learn from. Cross-reference [[03_VLA#5. World-Model-Augmented VLAs]] for the VLA-side framing of the same architectures and [[08_VLA-Reasoning-and-CoT#2. Visual Chain-of-Thought]] for how visual chain-of-thought composes with WAM-integrated VLAs.
@@ -463,6 +462,7 @@ Introspection layers so the agent knows when to *distrust* its own predictions �
 - **[[2504.16680|RWM-U]]** — Robotic World Model with ==epistemic uncertainty==; enables offline model-based RL on real robots by detecting OOD states.
 - **[[2604.01985|WAV]]** — World-model Asymmetry Verification: compares ==forward model== (predict next state from action) with ==inverse model== (infer action from transition); disagreement = unreliable dynamics. Self-correcting WAM.
 - **[[2604.11351|WM-DAgger]]** — world-model-based ==DAgger==; uses imagined rollouts as the expert query, eliminating online expert queries during data aggregation.
+- **[[2511.11520|Video WM Policy Eval]]** — uses an ==action-conditional video diffusion model== as an interactive world model to *evaluate* policies without real-robot rollouts: roll the policy out ==autoregressively== inside the video WM, then have an ==off-the-shelf VLM== judge task success from the generated video. ==Fourier-feature action conditioning== injected into pre-trained video diffusion; rollout-augmented training lifts prediction quality (**PSNR 18.7 → 20.6**). Achieves **Pearson r = 0.833–0.879** policy-ranking correlation in RoboMimic sim and **r = 0.687** against *real-world* Bridge policy performance — a video WM as a scalable, self-contained policy evaluator.
 
 **Efficient WAM — Decision Matrix**
 
@@ -618,7 +618,7 @@ When should a WAM distrust its own predictions? Three complementary signals are 
 - **==Surprise filtering==** — [[2512.01119|WM Surprise Robustness]] distinguishes genuine OOD events (new physics) from sensor noise (camera glitch) by filtering prediction errors through a learned noise model.
 - **==Forward-inverse asymmetry==** — [[2604.01985|WAV]] compares the forward model (predict next state from action) with the inverse model (infer action from state transition); disagreement reveals states where dynamics are poorly modeled.
 
-**[WAM Failure Modes — Decision Matrix]**
+**WAM Failure Modes — Decision Matrix**
 
 | Problem | Remediation Path |
 |---|---|

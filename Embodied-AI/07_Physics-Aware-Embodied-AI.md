@@ -151,7 +151,7 @@ The timing of the intervention — at sampling, training, or inference rejection
 - **[[2512.00425|NewtonRewards]]** — Training: ==Newton-kinematic + mass-conservation== verifiable rewards (using optical-flow + frozen-feature proxies) as RL signal during post-training; **+9.75%** in-distribution / **+8.60%** OOD across 5 motion primitives on NewtonBench-60K.
 - **[[2603.23376|ABot-PhysWorld]]** — Inference: ==Diffusion-DPO== with physics-rejected negatives; trains the model to suppress object-penetration and anti-gravity outputs at sample time.
 
-**[Design-Space] — Decision Matrix**
+**Design-Space — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -193,7 +193,7 @@ Generating *simulator-ready* 3D assets with physics metadata, rather than render
 
 - **[[2605.05163|PhysForge]]** — Decoupled two-stage framework: Stage 1 a VLM performs ==abstract physical planning== (decomposes an object into parts, predicts joint types + physical properties); Stage 2 a diffusion model with ==Kinematic Voxel Injection (KVI)== realizes geometry + continuous kinematic parameters from the VLM's plan. Trained on PhysDB (150,000 3D objects, four-tier hierarchical physical annotation: holistic / static / functional / interactive). Assets are **simulation-ready** — directly usable in robotic simulators; **0.101** Joint-Axis-Err-5 (SOTA).
 
-**[Implicit Physics] — Decision Matrix**
+**Implicit Physics — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -243,7 +243,7 @@ Constrain *during* sampling rather than during training. Useful when you can't r
 - **[[2603.26285|PhysVid]]** — Physics-aware ==local conditioning== — local regions of a generative video carry per-region physical priors; trades global enforcement for spatial precision.
 - **[[2603.23376|ABot-PhysWorld]]** — ==Diffusion-DPO== with physics-rejected negatives; trains the diffusion model to suppress object-penetration and anti-gravity outputs at inference time.
 
-**[Explicit Physics] — Decision Matrix**
+**Explicit Physics — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -284,7 +284,7 @@ Use the simulator as the *inner loop* of a bilevel optimization, with retargetin
 
 - **[[2605.06593|ReActor]]** — ==Bilevel optimization== where the upper level learns retargeting parameters and the lower level trains a motion-tracking policy via RL inside a physics simulator. ==Simplified gradient estimator== avoids the implicit-function-theorem cost typical of bilevel-RL. Because retargeting happens *inside* the simulator, produced motions inherit physics consistency for free — zero ground/self-penetration, near-zero foot sliding — and the cleaned data lifts downstream RL success by up to **+15.22 pp**.
 
-**[External Simulator] — Decision Matrix**
+**External Simulator — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -311,6 +311,15 @@ Use the simulator as the *inner loop* of a bilevel optimization, with retargetin
 Physical reasoning sits one level above physical generation: the model must *talk about* physics consistently, not just produce physics-compliant pixels. This section is single-paper because [[2503.15558|Cosmos-Reason1]] is currently the only published WAM-scale physics-reasoning foundation model — the sub-section will split as the field grows.
 
 - **[[2503.15558|Cosmos-Reason1]]** — Trains a multi-modal foundation model jointly on ==physical commonsense== (object permanence, material properties, forces) and ==embodied reasoning== (planning under physical constraints). Bridges the gap between video-WAMs (which produce physics-consistent video) and reasoning VLAs (which need physics priors to plan multi-step manipulation). Lifts physics from pixel-level losses to language-level reasoning at WAM scale.
+
+**Physics-Aware Reasoning — Decision Matrix**
+
+| If you need physics enforced at the level of... | Reach for... |
+|---|---|
+| Language reasoning ("the ice melts before I carry it") | [[2503.15558\|Cosmos-Reason1]] (physical commonsense + embodied reasoning) |
+| Pixel / video output looking physical | Explicit physics losses (§3) |
+| Plan execution against true dynamics | Physics-reasoning-augmented planning (§7.3) |
+| Verified consequences before committing | External simulator coupling (§4) |
 
 > [!star] Key Papers
 > - [[2503.15558|Cosmos-Reason1]] — Lifts physics from pixel-level losses to language-level reasoning; physical commonsense + embodied reasoning at WAM scale
@@ -345,7 +354,7 @@ Benchmarks that compare generated video against *recorded* real physical experim
 
 - **[[2504.02918|Morpheus]]** — ==Real physical experiments as benchmarks==; generative models fail real-experiment match. Tightest deployment-side evaluation in the field but covers narrow scenarios.
 
-**[Physics Benchmarks] — Decision Matrix**
+**Physics Benchmarks — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
@@ -390,7 +399,7 @@ Use a physics-reasoning foundation model as the high-level planner; a low-level 
 
 - **Pattern C — Physics-Reasoning-Augmented Planning**: Use [[2503.15558|Cosmos-Reason1]] (or a successor) as the high-level planner. The planner decomposes tasks using physics commonsense ("the ice cube will melt before I can carry it across the room"), then a low-level VLA executes. See [[08_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the broader reasoning insertion taxonomy.
 
-**[Pipeline] — Decision Matrix**
+**Pipeline — Decision Matrix**
 
 | Need | Pattern | Recommendation |
 |---|---|---|
@@ -412,6 +421,9 @@ Use a physics-reasoning foundation model as the high-level planner; a low-level 
 > - **Need sim-to-real for a specific deployment?** Pattern B (Digital-Twin-in-the-Loop)
 > - **Need long-horizon physics reasoning?** Pattern C (Physics-Reasoning-Augmented Planning)
 
+> [!tip] The Three Patterns Compose — Pick by Where the Prior Enters
+> The three patterns are not competing recipes; they're three *insertion points* for the physics prior, and production systems stack them. Pattern A puts physics in the **representation** (the backbone never forgets gravity), Pattern B puts it in the **environment** (the simulator enforces it the policy never sees it), and Pattern C puts it in the **plan** (the reasoner talks about it before the executor acts). The common composition is A+C — a physics-grounded backbone whose long-horizon decisions are vetted by a physics-reasoning planner — with B layered on for a specific deployment target. The choice is governed by *which* physics failures bite: representational drift → A, sim-real dynamics gap → B, multi-step planning under physical constraints → C. Cross-reference [[04_WAM#5. VLM-Integrated WAMs]] for how Pattern A backbones become unified WAM stacks and [[06_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for closing these pipelines into a self-improvement loop.
+
 ---
 
 ## Part C — Open Problems
@@ -427,7 +439,7 @@ Physics-aware embodied AI delivers *plausible* outputs more often than its physi
 - **==Reward hacking in physics RL==** — [[2510.13809|PhysMaster]] and [[2512.00425|NewtonRewards]] can be gamed by models that produce static (no motion = trivially physical) or trivially-physical outputs (slow drift that satisfies conservation but performs no task). ==Layer-wise truncation== ([[2509.20570|PIRF]]) helps but isn't a full solution.
 - **==Benchmark-vs-deployment gap==** — Models scoring well on [[2410.05363|PhyGenBench]] / [[2501.09038|Physics-IQ]] may still fail on real robot deployment because the benchmarks evaluate *generated video* on isolated dynamics, not *closed-loop policy* under sensor noise. [[2504.02918|Morpheus]] closes part of this gap with embodied evaluation but covers narrow scenarios.
 
-**[Physics-Aware Failure Modes — Decision Matrix]**
+**Physics-Aware Failure Modes — Decision Matrix**
 
 | Problem | Remediation Path |
 |---|---|
