@@ -139,6 +139,9 @@ grep -c '^> \[!warning\] Risks' "$DOC"
 # Card rows — should equal 4 × direction count
 grep -cE '^\| \*\*(Cluster|Thesis|Anchor surveys|Key targets)\*\*' "$DOC"
 
+# Thesis rows lacking a number — should be 0 (Anti-pattern C; digit-presence is a proxy for the measurable bet)
+grep -E '^\| \*\*Thesis\*\* \|' "$DOC" | grep -vcE '[0-9]'
+
 # Spine section checks (each should be 1)
 grep -c '^> \[!abstract\] Overview' "$DOC"        # top-of-doc Overview callout
 grep -c '^> \[!info\] Scope' "$DOC"               # Scope callout
@@ -231,6 +234,7 @@ ROWS=$(grep -cE '^\| \*\*(Cluster|Thesis|Anchor surveys|Key targets)\*\*' "$DOC"
 THEMES=$(awk '/^## Cross-Cutting Themes/,/^## Benchmark Gaps/' "$DOC" | grep -cE '^> \[!tip\] ')
 GAPS=$(awk '/^## Benchmark Gaps/,/^## Cross-References/' "$DOC" | grep -cE '^\| .*\| [A-Z][0-9]+')
 MISSING_LINKS=$(grep -oE '\[\[[0-9]{4}\.[0-9]+' "$DOC" | sort -u | sed 's/\[\[//' | while read id; do [ -f "_KnowledgeHub_/${id}.md" ] || echo X; done | wc -l | tr -d ' ')
+THESIS_NONUM=$(grep -E '^\| \*\*Thesis\*\* \|' "$DOC" | grep -vcE '[0-9]')
 
 [ "$DIR" -eq "$FP" ]              && echo "✓ FP framing count matches direction count ($DIR)"             || echo "✗ FP framing $FP ≠ directions $DIR"
 [ "$DIR" -eq "$RISKS" ]           && echo "✓ Risks callouts match direction count ($DIR)"                 || echo "✗ Risks $RISKS ≠ directions $DIR"
@@ -238,6 +242,7 @@ MISSING_LINKS=$(grep -oE '\[\[[0-9]{4}\.[0-9]+' "$DOC" | sort -u | sed 's/\[\[//
 [ "$THEMES" -ge 3 ]               && echo "✓ Cross-cutting themes ≥3 ($THEMES)"                           || echo "✗ Cross-cutting themes $THEMES < 3"
 [ "$GAPS" -eq "$DIR" ]            && echo "✓ Benchmark Gaps rows = direction count ($DIR)"                || echo "✗ Benchmark Gaps $GAPS ≠ directions $DIR"
 [ "$MISSING_LINKS" -eq 0 ]        && echo "✓ All KH wikilinks resolve"                                    || echo "✗ $MISSING_LINKS missing KH wikilinks"
+[ "$THESIS_NONUM" -eq 0 ]         && echo "✓ All Thesis bets carry a number"                              || echo "✗ $THESIS_NONUM Thesis row(s) lack a number (Anti-pattern C — bet must be measurable)"
 
 # Spine compliance — each required spine item must appear exactly once
 SPINE_DRIFT=""
@@ -368,7 +373,7 @@ Each pattern below is either caught by Phase 7's audit (structural) or enforced 
 |---|---|---|---|
 | **A** | Direction labels use flat numeric (`D1, D2, D3`) instead of cluster-prefixed (`A1, A2, B1`) | ✓ (regex matches only cluster-prefixed) | Renumber per Connective-tissue conventions |
 | **B** | Cluster letters use Roman numerals (`I, II, III`) | ✓ (regex matches only Latin) | Switch to Latin `A / B / C` per conventions |
-| **C** | Thesis row lacks the measurable bet (no specific number / threshold like `ρ > 0.7`, `≥30 Hz`, `+X pp`) | ✗ semantic | Iterate per First-principles framing rubric — the bet must include numbers |
+| **C** | Thesis row lacks the measurable bet (no specific number / threshold like `ρ > 0.7`, `≥30 Hz`, `+X pp`) | ✓ digit-presence proxy (a Thesis row with no digit fails); semantic quality stays a narrative gate | Iterate per First-principles framing rubric — the bet must include numbers |
 | **D** | `**First-principles framing.**` block absent or filled with consensus restatement (three bullets don't carry distinct intellectual load) | ✓ presence only; semantic quality is a narrative gate | Apply the rubric's litmus test; if you can't fill all three bullets distinctly, drop the direction |
 | **E** | Paper aliases fabricated or anchor surveys cited without arxiv IDs | ✗ semantic (audit catches missing-file wikilinks only) | Use exact alias from `_KnowledgeHub_/{ID}.md`; cross-check before adding |
 | **F** | Related research papers presented as a 3-column table instead of inline bulleted list | ✗ semantic | Convert to `- [[id\|alias]] — contribution + gap addressed` bullets |
