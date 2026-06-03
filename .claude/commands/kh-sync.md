@@ -34,14 +34,17 @@ Invoke `Skill(skill="paper-curate")` (Mode A). For each newly-enriched note, the
 
 Refresh the paper count in `General/00_Index.md`.
 
-## 5. Report
+## 5. Refresh the concept graph
+
+If step 1 ingested ≥1 new paper, invoke `Skill(skill="kh-graph-sync")`. Its graph-source diff finds exactly the notes just added, extracts them, and additively merges them into `graphify-out/graph.json` (Steps 1–3 of that skill). Skip if 0 new papers. Run its `enrich` pass only periodically, not every sync.
+
+## 6. Report
 
 Print:
 
 ```
 KH:       <before> → <after> (+N)
 Curated:  P placements across Q General/ files
+Graph:    <nodes before> → <nodes after> (+ΔN nodes, +ΔE edges)
 Failed:   F papers (still pending, listed by ID)
 ```
-
-Suggest `/kh-graph-sync` as the natural follow-up.

@@ -19,6 +19,17 @@ PROMPT.md
 graphify-out/.graphify_python
 graphify-out/.graphify_root
 graphify-out/.graphify_chunk_*.json
+# Build artifacts: semantic/AST/stat caches (content-addressed, regenerated)
+graphify-out/cache/
+# kh-graph-sync transient working files (delta/finalize scratch)
+graphify-out/.chunklist_*.txt
+graphify-out/.kh_missing.txt
+graphify-out/.graphify_semantic_new.json
+graphify-out/.graphify_extract.json
+graphify-out/.graphify_old.json
+graphify-out/.graphify_detect.json
+graphify-out/.graphify_incremental.json
+graphify-out/.graphify_analysis.json
 
 # Paper-curate Mode F/G report output (regenerated each run)
 graphs/vault-pilot/proposals/

@@ -34,8 +34,15 @@
       "output_tokens": 0,
       "files": 3173,
       "note": "in-session deterministic extraction of 14 humanoid-benchmark papers"
+    },
+    {
+      "date": "2026-06-03T02:47:51.480651+00:00",
+      "input_tokens": 0,
+      "output_tokens": 728653,
+      "files": 263,
+      "note": "targeted incremental: 263 KH notes via 12 sonnet subagents + tag-backbone wiring"
     }
   ],
   "total_input_tokens": 0,
-  "total_output_tokens": 0
+  "total_output_tokens": 728653
 }
