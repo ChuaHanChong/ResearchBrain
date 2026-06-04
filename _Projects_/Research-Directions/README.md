@@ -9,7 +9,7 @@ The docs are organized on **two orthogonal axes** — the *how* and the *what*:
 | Location | Axis | Holds |
 |---|---|---|
 | **`Embodied-AI.md`** | **Umbrella** — cross-cutting, embodiment-agnostic *mechanism* directions (data / training / evaluation / mobility) that apply to **any** robot body | the entry point |
-| **`Mechanism/`** | **The HOW** — embodiment-agnostic mechanisms | `WAM` (world-action-model architecture) · `Sim2Real` (the reality gap) |
+| **`Mechanism/`** | **The HOW** — embodiment-agnostic mechanisms | `WAM` (world-action-model machinery) · `Spatial-4D` (model-agnostic 3D/4D representation) · `Sim2Real` (the reality gap) |
 | **`Capability/`** | **The WHAT** — physical capabilities a body provides, independent of which robot has them | `Manipulation` (arms + hands) · `Locomotion` (legs + wheels) · `Whole-Body` (the coupling) |
 
 ## Why by capability, not by robot
@@ -40,7 +40,8 @@ Each `Capability/` doc carries this callout in its own Cross-References section.
 | Doc | Axis | Directions | Clusters |
 |---|---|---|---|
 | [[Embodied-AI]] | umbrella | 11 | 4 |
-| [[WAM]] | Mechanism | 7 | 3 |
+| [[WAM]] | Mechanism | 5 | 2 |
+| [[Spatial-4D]] | Mechanism | 10 | 4 |
 | [[Sim2Real]] | Mechanism | 16 | 5 |
 | [[Manipulation]] | Capability | 13 | 4 |
 | [[Locomotion]] | Capability | 8 | 2 |

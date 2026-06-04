@@ -13,7 +13,7 @@ tags:
 # Promising Research Directions: World Action Models
 
 > [!abstract] Overview
-> Seven World Action Model (WAM) research directions across three clusters — *Theory & Architecture* (A), *Training & Grounding* (B), and *Spatial & Memory Structure* (C) — synthesized from 35 WAM/embodied surveys, ten Embodied-AI deep-dive readings, and the frontier methods that set each bet's bar ([[2605.20752|GaussianDream]], [[2604.16484|DexWorldModel]], [[2604.01985|WAV]], [[2504.16680|RWM-U]], [[2604.26694|X-WAM]], [[2603.17117|MosaicMem]], [[2603.24576|Chameleon (Episodic Memory)]]). This doc is deliberately scoped to WAM-*internal* directions — representation substrate (A), training-time grounding and calibration (B), and how the imagined world is geometrically structured and persists over time (C). Cross-cutting embodied-AI directions that overlap multiple model families (joint WAM–policy co-evolution, physics-consistency verification, joint causal-consistency evaluation, real-time deployment, cross-embodiment transfer) live in the umbrella [[Embodied-AI|Embodied-AI]] to avoid duplication. Each direction carries an explicit **first-principles framing** (the irreducible structure of the problem, the conventional assumption it breaks, and the measurable bet) and a **non-consensus thesis** chosen for where impactful work deviates from incremental refinement. Every metric anchor is sourced from a cited `_KnowledgeHub_/{ID}.md` note, never invented.
+> Five World Action Model (WAM) research directions across two clusters — *Theory & Architecture* (A) and *Training & Grounding* (B) — synthesized from 35 WAM/embodied surveys, ten Embodied-AI deep-dive readings, and the frontier methods that set each bet's bar ([[2605.20752|GaussianDream]], [[2604.16484|DexWorldModel]], [[2604.01985|WAV]], [[2504.16680|RWM-U]]). This doc is deliberately scoped to *WAM-specific machinery* — the representation/latent substrate and architecture choices (A), and training-time grounding and calibration (B). The model-agnostic *geometric representations* this doc once hosted — natively-4D imagination and persistent geometric memory — now live in [[Spatial-4D|Spatial-4D]] (Cluster C), where they are framed as representations a VLA / WAM / any policy can stand on, not as WAM-only directions. Cross-cutting embodied-AI directions that overlap multiple model families (joint WAM–policy co-evolution, physics-consistency verification, joint causal-consistency evaluation, real-time deployment, cross-embodiment transfer) live in the umbrella [[Embodied-AI|Embodied-AI]] to avoid duplication. Each direction carries an explicit **first-principles framing** (the irreducible structure of the problem, the conventional assumption it breaks, and the measurable bet) and a **non-consensus thesis** chosen for where impactful work deviates from incremental refinement. Every metric anchor is sourced from a cited `_KnowledgeHub_/{ID}.md` note, never invented.
 
 ---
 
@@ -23,8 +23,8 @@ tags:
 
 - **Survey enumeration**: tag-scan over `survey` × {`world-model`, `VLA`, `embodied-AI`, `robotics`, `physics-aware`, `sim-to-real`} to surface each survey's named open problems.
 - **Deep-dive mining**: full reads of [[04_WAM|04_WAM]], [[05_Latent-World-Models|05_Latent-World-Models]], [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]], [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]], [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]]; 3+-way open-problem convergence seeded A1 (hybrid substrate), A2 (tactile), B1 (contact).
-- **Closest-baseline anchoring**: each direction's bet is pinned to the strongest existing instance it must beat — causal-latent, calibrated-imagination, 4D-geometric, and persistent-memory papers ([[2604.16484|DexWorldModel]], [[2605.20752|GaussianDream]], [[2604.01985|WAV]], [[2504.16680|RWM-U]], [[2604.26694|X-WAM]], [[2603.17117|MosaicMem]], [[2603.24576|Chameleon (Episodic Memory)]]) set the bar for A1, B3, C1, C2.
-- **Filter**: kept directions with 3–10 attacking papers but no consensus solution; excluded saturated (more-compute) and premature (hypothetical-AGI) framings; prioritized intersections (tactile×WAM, contact×WAM, physics×WAM, geometry×WAM, memory×WAM).
+- **Closest-baseline anchoring**: each direction's bet is pinned to the strongest existing instance it must beat — causal-latent and calibrated-imagination papers ([[2604.16484|DexWorldModel]], [[2605.20752|GaussianDream]], [[2604.01985|WAV]], [[2504.16680|RWM-U]]) set the bar for A1, B3. The 4D-geometric and persistent-memory substrate directions relocated to [[Spatial-4D|Spatial-4D]] (C3, C4), where they are framed model-agnostically.
+- **Filter**: kept directions with 3–10 attacking papers but no consensus solution; excluded saturated (more-compute) and premature (hypothetical-AGI) framings; prioritized intersections (tactile×WAM, contact×WAM, physics×WAM). The geometry×WAM and memory×WAM intersections — natively-4D imagination and persistent geometric memory — relocated to [[Spatial-4D|Spatial-4D]] (C3, C4) as model-agnostic representation substrates.
 - **First-principles framing**: each direction states the irreducible structure of the problem, the conventional assumption being challenged, and the non-consensus bet — to surface where impactful work deviates from incremental refinement, not where it follows the herd.
 
 ---
@@ -92,13 +92,13 @@ $$\mathcal{L}_{\text{WAM}} = \mathbb{E}_{(o,l,o',a) \sim \mathcal{D}} \big[ -\lo
 | **WM** | $p(o' \mid o, a)$ | Dynamics only; no action |
 | **WAM** | $p(o', a \mid o, l)$ | Both; the unifying frontier |
 
-WAMs split into **Cascaded** (predict state, derive action via inverse dynamics) vs **Joint** (unified end-to-end). Most "joint" methods are actually Cascaded — Joint is the architectural frontier (the joint-optimization question itself is developed in the umbrella [[Embodied-AI|Embodied-AI]]). What this doc keeps is the *substrate* question: whatever the optimizer, the imagined state must be represented somewhere — and the representation choice (latent / pixel-3DGS / 4D-geometry) is what A1 and C1 attack.
+WAMs split into **Cascaded** (predict state, derive action via inverse dynamics) vs **Joint** (unified end-to-end). Most "joint" methods are actually Cascaded — Joint is the architectural frontier (the joint-optimization question itself is developed in the umbrella [[Embodied-AI|Embodied-AI]]). What this doc keeps is the WAM-internal *substrate* question: whatever the optimizer, the imagined state must be represented somewhere — and the latent/architecture choice is what A1 attacks. The explicit-4D-geometry end of that representation axis is relocated to [[Spatial-4D|Spatial-4D]]-C3, where it is framed as a model-agnostic substrate.
 
 **Architectural** — [[2510.16732|World Models for Embodied AI Survey]]:
 
 > "The world models are categorized along three axes: Functionality (Decision-Coupled vs General-Purpose), Temporal Modeling (Sequential Simulation vs Global Difference Prediction), and Spatial Representation (Global Latent Vector, Token Feature Sequence, Spatial Latent Grid, Decomposed Rendering Representation)." — [[2510.16732|World Models for Embodied AI Survey]]
 
-Spatial axis trajectory: latent vectors → token sequences → explicit 3D rendering (NeRF, 3DGS). [[2605.20752|GaussianDream]] now occupies the rendering end as a *train-time-dense, inference-light* hybrid (A1's substrate), [[2604.16484|DexWorldModel]] anchors the token-feature end on semantic [DINOv3](https://arxiv.org/abs/2508.10104) latents, and [[2604.26694|X-WAM]] now occupies the explicit-4D end as a *deploy-time* substrate (C1's claim).
+Spatial axis trajectory: latent vectors → token sequences → explicit 3D rendering (NeRF, 3DGS). [[2605.20752|GaussianDream]] now occupies the rendering end as a *train-time-dense, inference-light* hybrid (A1's substrate), and [[2604.16484|DexWorldModel]] anchors the token-feature end on semantic [DINOv3](https://arxiv.org/abs/2508.10104) latents. The explicit-4D end of this axis ([[2604.26694|X-WAM]], a *deploy-time* 4D substrate) is owned model-agnostically by [[Spatial-4D|Spatial-4D]]-C3.
 
 **Capability hierarchy** — [[2604.22748|Agentic World Modeling Survey]]:
 
@@ -110,7 +110,7 @@ Physical-law L3 Evolver is "emerging not mature" — the target for B2's WAM-dri
 
 > "[[2511.08544|LeJEPA]] achieves linear identifiability — recovering true latent variables up to an orthogonal transformation — if and only if the underlying latent variables follow an isotropic Gaussian distribution." — [[2605.26379|LeJEPA World Model]]
 
-This gives the latent substrate of A1 (and the deploy-time latents of C2's memory rollouts) a formal "when is a learned latent a world model?" criterion: identifiable iff isotropic-Gaussian, at which point latent-space planning matches an oracle controller (R² > 0.999 to 1024 dims).
+This gives the latent substrate of A1 a formal "when is a learned latent a world model?" criterion: identifiable iff isotropic-Gaussian, at which point latent-space planning matches an oracle controller (R² > 0.999 to 1024 dims).
 
 ---
 
@@ -120,7 +120,8 @@ This gives the latent substrate of A1 (and the deploy-time latents of C2's memor
 |---|---|---|---|
 | **A — Theory & Architecture** | A1, A2 | Right substrate for joint imagination + action | A1's hybrid latent+pixel/3DGS backbone is the deploy substrate; A2 extends it into tactile/force imagination; [[2605.26379\|LeJEPA World Model]]'s identifiability criterion governs A1's latent half, and A2's wrench head is the modality A1's backbone does not yet imagine |
 | **B — Training & Grounding** | B1, B2, B3 | Imagination diverges from physical reality | B1's discrete contact-mode latent stabilizes B2's self-evolution in contact-rich regimes; B3's forward-inverse calibration is the train-time signal that keeps B2's imagined-vs-real ρ high; [[2604.01985\|WAV]]'s asymmetry signal and [[2605.22446\|Pre-VLA]]'s runtime verifier are the trust valves all three share |
-| **C — Spatial & Memory Structure** | C1, C2 | How the imagined world is geometrically organized and persists | C1's explicit 4D geometry is the substrate C2's persistent memory must keep coherent over minutes; C2's world-frame memory is what stops C1's geometry from drifting on long horizons; [[2604.16484\|DexWorldModel]]'s O(1) memory contrasts C2's geometric-permanence memory, and [[2604.26694\|X-WAM]]'s 4D substrate links C to A1's hybrid-substrate claim |
+
+WAM's former spatial-and-memory structure — natively-4D imagination and persistent geometric memory — now lives in [[Spatial-4D|Spatial-4D]] (Cluster C), where it is framed model-agnostically; WAM retains the latent/architecture (A) and training/grounding (B) concerns.
 
 ---
 
@@ -401,122 +402,10 @@ This gives the latent substrate of A1 (and the deploy-time latents of C2's memor
 
 ---
 
-## Cluster C — Spatial & Memory Structure
-
-*The structure of the imagined world — how it is geometrically organized and how it persists coherently over long horizons.*
-
-### C1 — 4D-Structured WAM: Geometry as the Native Substrate
-
-| | |
-|---|---|
-| **Cluster** | C — Spatial & Memory Structure |
-| **Thesis** | A WAM whose imagination is *natively 4D* (RGB + depth + 3D geometry over time) rather than 2D pixels lifted post-hoc — which the field treats as too expensive to be the deployment substrate — has the irreducible truth that for contact and spatial tasks the action is determined by geometry the policy can only infer indirectly from pixels, which breaks the assumption that pixel-space WAMs suffice once they look right, and I bet a 4D-native WAM beats latent/pixel baselines on geometry-bound tasks, hitting 79.2% [[2406.02523\|RoboCasa]] (+12.1 pp over [[2601.16163\|Cosmos Policy]]) with Chamfer 0.0049 vs 0.0680 and a 4.5× action-latency speedup to 15 Hz. |
-| **Anchor surveys** | [[2506.20134\|3D World Models Survey]], [[2510.16732\|World Models for Embodied AI Survey]], [[2604.26509\|3D Generation for Embodied AI Survey]] |
-| **Key targets** | [[2406.02523\|RoboCasa]] 79.2% avg over 24 tasks (+12.1 pp vs [[2601.16163\|Cosmos Policy]]); Chamfer 0.0049 vs 0.0680 two-stage; +2.34 dB PSNR; 4.5× action-latency speedup (4665→1033 ms) at 5 denoising steps → 15 Hz real-time |
-
-**Why it matters.** [[2510.16732|World Models for Embodied AI Survey]] documents the spatial-representation axis evolving latent vector → token sequence → explicit 3D rendering, and [[2506.20134|3D World Models Survey]] frames the whole field's transition "from 2D visual perception to comprehensive 3D spatial cognition." Yet almost every deployed WAM still imagines in 2D pixel space and recovers geometry only implicitly — which [[2604.26694|X-WAM]] argues "leads to physically implausible predictions and hinders geometrically faithful reconstruction." The conventional defense is that 4D is a luxury: high-fidelity video needs many denoising steps, robot actions need few, and reconstructing 3D online is assumed too slow to deploy. [[2604.26694|X-WAM]] is the existence proof that this trade-off is breakable — a lightweight interleaved depth branch injects 3D awareness into a pretrained Diffusion Transformer, and Asynchronous Noise Sampling decouples the video and action denoising schedules so actions decode in 5 steps while video stays high-fidelity. The result is geometry as the *native substrate* of imagination, at real-time rates — which is exactly what a policy needs when the action is determined by where things are in 3D, not how they look in 2D.
-
-**First-principles framing.**
-- **First principle**: For contact-rich and spatially-bound tasks, the correct action is a function of *geometry* — relative pose, depth, surface normals, free space. A pixel-space WAM that does not represent geometry explicitly forces the policy to re-infer it from appearance every step, discarding structure the WM could carry directly. The geometry is in the task, not the rendering choice.
-- **Assumption being challenged**: That a pixel-space WAM is sufficient once its imagined frames look correct, and that explicit 4D is too expensive to be the deployment substrate (so geometry, if needed, is recovered by a separate two-stage pipeline). [[2604.26694|X-WAM]] shows the two-stage approach is both worse geometrically (Chamfer 0.0680 vs 0.0049) and slower than a unified 4D model with asynchronous denoising.
-- **The bet**: A 4D-native WAM beats latent/pixel baselines on geometry-bound manipulation — 79.2% average across 24 [[2406.02523|RoboCasa]] tasks, +12.1 pp over [[2601.16163|Cosmos Policy]] — while producing higher-fidelity geometry (Chamfer 0.0049 vs 0.0680, +2.34 dB PSNR) at *no* deployment penalty: a 4.5× action-latency speedup (4665→1033 ms) at 5 denoising steps, running at 15 Hz on a physical robot.
-
-**Evidence.**
-- [[2604.26694|X-WAM]] — Unified 4D WAM: interleaved depth-adaptation branch + unilateral attention inject 3D into a pretrained DiT; Asynchronous Noise Sampling aligns train/inference noise across modalities; 79.2% [[2406.02523|RoboCasa]], Chamfer 0.0049 vs 0.0680, 15 Hz — the canonical 4D-native-substrate result.
-- [[2510.16732|World Models for Embodied AI Survey]]: spatial axis trajectory latent → token → explicit 3D rendering (NeRF, 3DGS) — 4D is the named end-state of the representation evolution.
-- [[2506.20134|3D World Models Survey]]: the field is transitioning from 2D perception to 3D spatial cognition; 3D physical scene generation + spatial reasoning are the open capabilities.
-- [[2605.20752|GaussianDream]] — Feed-forward 3D-Gaussian WM supervises a renderable future at train time (98.4% [[2306.03310|LIBERO]], 34.4→50% real); the rendering-end neighbor of [[2604.26694|X-WAM]], but discards 3D heads at deploy rather than running 4D natively.
-- [[2603.17240|GigaWorld-Policy]] — Uses future visual dynamics as dense training supervision *without* video generation at inference (9× speedup); the inverse design choice — drop the geometry at deploy — making it the contrast baseline for C1's "keep 4D at deployment" claim.
-
-**Concrete research questions.**
-1. **Q1 — Native-4D vs lift-after ablation.** Hold the backbone fixed; compare [[2604.26694|X-WAM]]'s interleaved depth branch against a pixel-WAM + post-hoc depth estimator on geometry-bound [[2406.02523|RoboCasa]] tasks. Isolate how much *native* 4D buys over *recovered* 4D.
-2. **Q2 — Asynchronous denoising for the action-quality / video-fidelity trade.** Generalize Asynchronous Noise Sampling: can the action schedule shrink to 1–4 steps (step-distillation, per the efficiency direction in the umbrella [[Embodied-AI|Embodied-AI]]) without degrading the 4D geometry the policy reads?
-3. **Q3 — 4D substrate for contact (C1 × B1).** Does an explicit 3D geometry channel make discrete contact-mode prediction easier than a continuous latent — geometry exposes penetration / proximity directly?
-4. **Q4 — Camera-pose-from-end-effector consistency.** [[2604.26694|X-WAM]] derives camera poses from end-effector poses; test whether this self-consistency constraint improves OOD geometry vs free camera conditioning.
-5. **Q5 — 4D imagination as a planning oracle.** Roll the 4D WAM forward under candidate actions; does planning in explicit geometry beat planning in latent on spatially-bound tasks (insertion, stacking, pouring)?
-
-**Related research papers.**
-- [[2604.26694|X-WAM]] — Unified 4D WAM with asynchronous denoising; 79.2% [[2406.02523|RoboCasa]], 15 Hz; native-4D substrate, the direction's anchor.
-- [[2605.20752|GaussianDream]] — Feed-forward 3DGS WM; dense 3D train, light deploy; 98.4% [[2306.03310|LIBERO]], 34.4→50% real; renderable geometry but dropped at inference.
-- [[2603.17240|GigaWorld-Policy]] — Action-centered WAM; future-dynamics supervision, no video at inference; 9× speedup; the drop-the-geometry contrast design.
-- [[2604.16484|DexWorldModel]] — Causal latent WM on [DINOv3](https://arxiv.org/abs/2508.10104) semantic targets; 94% [[2504.13059|RoboTwin]]; semantic-latent (not geometric) substrate — the alternative to explicit 4D.
-- [[2605.15153|Pelican-Unified]] — Shared latent z with a pixel-side generator; 93.5% [[2504.13059|RoboTwin]]; multi-modal but not natively 4D-geometric.
-- [[2411.04983|DINO-WM]] — Frozen [[2304.07193|DINOv2]] + lightweight dynamics; appearance latent, no explicit geometry channel.
-- [[2602.10098|VLA-JEPA]] — Pure latent JEPA WM; 97.2% [[2306.03310|LIBERO]]; no geometric decoder.
-- [[2603.16666|Fast-WAM]] — Train video, test latent; drops the WM at deploy entirely — opposite of keeping 4D online.
-- [[2504.02792|UWM]] — Unified action-conditioned + video diffusion; pixel-space, latency-heavy, no explicit 4D.
-- [[2605.21862|EvoScene-VLA]] — Co-denoises action + scene prior; scene prior is 2D, not 4D geometry.
-
-**Benchmarks & metrics.**
-- [[2406.02523|RoboCasa]] (24 tasks) — [[2604.26694|X-WAM]] 79.2% avg, +12.1 pp over [[2601.16163|Cosmos Policy]]; the geometry-bound manipulation suite.
-- Chamfer Distance / PSNR — [[2604.26694|X-WAM]] Chamfer 0.0049 vs 0.0680 two-stage, +2.34 dB PSNR; geometric-fidelity ground truth, not visual FID.
-- [[2306.03310|LIBERO]] — Action SR; [[2605.20752|GaussianDream]] 98.4% reference for the rendering-end neighbor.
-- Inference latency (Hz) — [[2604.26694|X-WAM]] 4.5× speedup → 15 Hz at 5 steps; whether 4D survives the real-time budget.
-
-> [!warning] Risks
-> - **4D supervision needs depth/3D ground truth** not present in most robot datasets. → Mitigate via [[2604.26694|X-WAM]]'s end-effector-derived camera poses + off-the-shelf depth estimators; bound the claim to tasks where geometry is recoverable.
-> - **4D is only worth it on geometry-bound tasks** — on appearance-bound tasks latent already wins. → Score on contact / spatial tasks ([[2406.02523|RoboCasa]] insertion, stacking), not headline [[2306.03310|LIBERO]] SR; report the task-type split explicitly.
-> - **Real-time 4D rests on one result** ([[2604.26694|X-WAM]]). → Treat Q1's native-vs-recovered ablation as the go/no-go before claiming 4D belongs at deployment rather than as a train-time auxiliary.
-
-### C2 — Persistent-Memory WAM for Long-Horizon Imagination
-
-| | |
-|---|---|
-| **Cluster** | C — Spatial & Memory Structure |
-| **Thesis** | A WAM with explicit persistent memory — which the field skips by assuming a long-enough context window or a Markovian latent suffices — has the irreducible truth that long-horizon imagination requires geometric object permanence that drifts away in attention-only models, which breaks the assumption that more context length closes the coherence gap, and I bet a memory-augmented WAM holds minute-scale geometric coherence where Markovian/long-context WAMs drift — [[2603.17117\|MosaicMem]] RotErr 0.51° vs 1.42°/4.65° at 16 FPS, [[2603.24576\|Chameleon (Episodic Memory)]] 100%/73.5% long-horizon DSR, with [[2605.10921\|RoboMemArena]] showing 68.9% of subtasks genuinely need history. |
-| **Anchor surveys** | [[2604.22748\|Agentic World Modeling Survey]], [[2504.21853\|Interactive Generative Video Survey]], [[2602.04411\|Self-evolving Embodied AI]] |
-| **Key targets** | [[2603.17117\|MosaicMem]] RotErr 0.51° vs [SEVA](https://arxiv.org/abs/2503.14489) 1.42° / [CaM](https://arxiv.org/abs/2506.03141) 4.65°, 16 FPS autoregressive, minute-level coherence; [[2603.24576\|Chameleon (Episodic Memory)]] 100.0% episodic-recall / 73.5% spatial-tracking / 72.2% sequential DSR; [[2605.10921\|RoboMemArena]] 68.9% of subtasks need history |
-
-**Why it matters.** [[2504.21853|Interactive Generative Video Survey]] names persistent memory and dynamics fidelity as the two open problems blocking explorable world simulators, and [[2604.22748|Agentic World Modeling Survey]]'s L2 Simulator must "compose multi-step rollouts that respect domain laws" — which fails over long horizons when the model forgets where things were. The conventional fix is to make the context window longer or trust a Markovian latent to carry state. Both drift: [[2603.17117|MosaicMem]] documents that implicit attention-based memory "suffers from inaccurate egomotion (drift), redundancy, and difficulty manipulating latent scene representations," while static explicit-3D caches "struggle with dynamic scenes." A hybrid answer now exists. [[2603.17117|MosaicMem]] lifts 2D patches into 3D and uses them as geometry-consistent conditioning (Warped RoPE / Warped Latent), achieving RotErr 0.51° vs [SEVA](https://arxiv.org/abs/2503.14489)'s 1.42° and [CaM](https://arxiv.org/abs/2506.03141)'s 4.65°, minute-level coherent generation at 16 FPS. [[2603.24576|Chameleon (Episodic Memory)]] attacks the manipulation side — perceptual aliasing makes long-horizon tasks non-Markovian, so it builds disambiguated, indexable episodic events with a latent imagination objective (100% episodic-recall DSR). And [[2605.10921|RoboMemArena]] proves the need is real, not synthetic: 68.9% of its subtasks genuinely require historical information, and reactive policies fail them.
-
-**First-principles framing.**
-- **First principle**: Long-horizon imagination requires *object permanence* — the imagined world must remember where things are when they leave view and return. This is a geometric memory problem, not a sequence-length problem: an attention-only model with unbounded context still accumulates egomotion drift because nothing pins imagined geometry to a persistent frame.
-- **Assumption being challenged**: That a long-enough context window or a Markovian latent suffices for long-horizon coherence. [[2603.17117|MosaicMem]] shows implicit attention drifts and static 3D caches break on dynamics; [[2605.10921|RoboMemArena]] shows 68.9% of subtasks are non-Markovian, so the Markovian-latent assumption fails on most of the benchmark; [[2603.24576|Chameleon (Episodic Memory)]] shows perceptual aliasing makes the observation-level decision genuinely history-dependent.
-- **The bet**: A memory-augmented WAM holds minute-scale geometric coherence where Markovian / long-context WAMs drift — [[2603.17117|MosaicMem]]'s RotErr 0.51° vs 1.42° (explicit) / 4.65° (implicit) at 16 FPS, and [[2603.24576|Chameleon (Episodic Memory)]]'s 100.0% episodic-recall / 73.5% spatial-tracking / 72.2% sequential DSR — on the [[2605.10921|RoboMemArena]] subtasks (68.9%) that demonstrably require history.
-
-**Evidence.**
-- [[2603.17117|MosaicMem]] — Hybrid spatial memory: lift 2D patches to 3D, condition a DiT via Warped RoPE / Warped Latent + PRoPE camera interface; RotErr 0.51° vs 1.42°/4.65°, 16 FPS autoregressive ("Mosaic Forcing"), minute-level coherence — the geometric-memory anchor.
-- [[2603.24576|Chameleon (Episodic Memory)]] — Bio-inspired episodic memory (spatiotemporal anchors, multi-timescale states, HoloHead imagination objective); 100% episodic-recall / 73.5% spatial-tracking / 72.2% sequential DSR; memory makes manipulation non-Markovian-aware.
-- [[2605.10921|RoboMemArena]] — 26 sim + 5 real memory-dependent tasks; PrediMem (hierarchical keyframe bank + sliding window + predictive-coding head) 38.5% TSR / 55.2% CSR; 68.9% of subtasks genuinely need history — the demand-side proof.
-- [[2504.21853|Interactive Generative Video Survey]] — Names persistent memory + dynamics fidelity as the open problems for explorable world simulators.
-- [[2604.22748|Agentic World Modeling Survey]] — L2 Simulator composes multi-step rollouts; long-horizon composition is where memory becomes load-bearing.
-
-**Concrete research questions.**
-1. **Q1 — Geometric memory for action-conditioned WAMs.** Port [[2603.17117|MosaicMem]]'s lifted-3D-patch memory from camera-controlled video to *action*-conditioned manipulation imagination; does RotErr-style geometric coherence translate to higher long-horizon SR?
-2. **Q2 — Episodic memory × geometric memory (C2 internal).** Combine [[2603.24576|Chameleon (Episodic Memory)]]'s indexable events with [[2603.17117|MosaicMem]]'s geometry-consistent patches — do disambiguated *events* + persistent *geometry* compound on [[2605.10921|RoboMemArena]]?
-3. **Q3 — Predictive-coding memory as a calibration signal (C2 × B3).** [[2605.10921|RoboMemArena]]'s predictive-coding head makes hidden states sensitive to state transitions; does this double as B3's forward-inverse calibration target?
-4. **Q4 — Memory pinned to world-frame vs robot-frame.** Does a geometric memory pinned to a persistent *world*-frame ([[2603.17117|MosaicMem]]'s lifted-3D patches) hold long-horizon coherence better than a robot-frame memory — i.e., does decoupling memory from the body's pose reduce drift? (Cross-embodiment transfer of this world-frame memory is developed in the umbrella [[Embodied-AI|Embodied-AI]].)
-5. **Q5 — Memory vs compute trade.** [[2603.17117|MosaicMem]]'s patch-level retrieval reduces context redundancy vs full-frame memory; quantify the memory-footprint / coherence Pareto against [[2604.16484|DexWorldModel]]'s O(1) TTT memory.
-
-**Related research papers.**
-- [[2603.17117|MosaicMem]] — Hybrid explicit-3D + implicit-attention spatial memory; RotErr 0.51°, 16 FPS, minute-level coherence; the geometric-memory anchor.
-- [[2603.24576|Chameleon (Episodic Memory)]] — Episodic memory for long-horizon manipulation; 100% episodic-recall DSR; disambiguated indexable events + latent imagination.
-- [[2605.10921|RoboMemArena]] — Memory benchmark + PrediMem VLA; 68.9% subtasks need history; the demand-side proof and benchmark substrate.
-- [[2604.16484|DexWorldModel]] — Dual-State TTT memory, O(1) over 2,000 steps; memory as efficiency (constant footprint), not as geometric permanence — the contrast.
-- [[2605.00078|Being-H0.7]] — Dual-branch deployable+privileged latent; 3–4 ms/step; fast but no explicit persistent memory.
-- [[2603.23497|WildWorld]] — 108M-frame state-action dataset; Action Following + State Alignment metrics; long-horizon state-consistency evaluation substrate.
-- [[2510.10125|CTRL-WORLD]] — Controllable video WM; 38.7→83.4% on unseen objects via imagined trajectories; controllability, no persistent memory mechanism.
-- [[2506.00613|WorldGym]] — Action-conditioned video WM as eval env; r=0.78 with real SR; long-rollout fidelity but no memory module.
-- [[2504.21853|Interactive Generative Video Survey]] — Names persistent memory as an open problem; survey, no mechanism proposed.
-- [[2604.22748|Agentic World Modeling Survey]] — L1/L2/L3; L2 long-horizon composition is where memory is required.
-
-**Benchmarks & metrics.**
-- [[2605.10921|RoboMemArena]] — 26 sim + 5 real memory tasks; 68.9% need history; PrediMem 38.5% TSR / 55.2% CSR / 52% real; the memory-dependence benchmark.
-- RotErr (camera-motion accuracy) — [[2603.17117|MosaicMem]] 0.51° vs [SEVA](https://arxiv.org/abs/2503.14489) 1.42° / [CaM](https://arxiv.org/abs/2506.03141) 4.65°; geometric-drift metric for long-horizon imagination.
-- Decision Success Rate (DSR) — [[2603.24576|Chameleon (Episodic Memory)]] 100% episodic-recall / 73.5% spatial-tracking / 72.2% sequential; episodic-memory ground truth.
-- Generation rate + coherence horizon — [[2603.17117|MosaicMem]] 16 FPS autoregressive, minute-level coherent; the speed-at-which-memory-holds metric.
-
-> [!warning] Risks
-> - **Explicit geometric memory needs reliable 3D lifting** off-the-shelf estimators can fail on texture-poor scenes ([[2603.17117|MosaicMem]]). → Hybridize with implicit attention ([[2603.17117|MosaicMem]]'s own design) so the model degrades gracefully when lifting is noisy.
-> - **Episodic memory retrieval can interfere** on visually-aliased-but-irrelevant events ([[2603.24576|Chameleon (Episodic Memory)]]). → Use disambiguated indexable encoding + goal-directed retrieval, not similarity-only retrieval; validate on [[2605.10921|RoboMemArena]]'s occlusion/counting splits.
-> - **Memory adds footprint** against the real-time deployment budget. → Q5's patch-level vs [[2604.16484|DexWorldModel]] O(1) TTT Pareto is the go/no-go; persistent memory only earns its place if coherence gain beats the memory cost.
-
----
-
 ## Cross-Cutting Themes
 
 > [!tip] Latent Prediction Is the Dominant Substrate — and Now Has a Formal Membership Test
-> A1, A2, B2, and C2 all assume "video at training, latent at deployment" with JEPA / DiT-on-latent backbones — but the field has lacked a criterion for *when* a learned latent is actually a world model. [[2605.26379|LeJEPA World Model]] supplies it (identifiable iff isotropic-Gaussian, then latent planning matches an oracle), and [[2605.25313|UWM-JEPA]] extends the substrate to belief space. This makes A1's hybrid latents, A2's tactile-imagination latent, B2's self-evolution rollouts, and C2's deploy-time memory latents all answerable to the same membership test rather than chosen by convention.
+> A1, A2, and B2 all assume "video at training, latent at deployment" with JEPA / DiT-on-latent backbones — but the field has lacked a criterion for *when* a learned latent is actually a world model. [[2605.26379|LeJEPA World Model]] supplies it (identifiable iff isotropic-Gaussian, then latent planning matches an oracle), and [[2605.25313|UWM-JEPA]] extends the substrate to belief space. This makes A1's hybrid latents, A2's tactile-imagination latent, and B2's self-evolution rollouts all answerable to the same membership test rather than chosen by convention — and the same criterion governs the deploy-time memory latents of [[Spatial-4D|Spatial-4D]]-C4, now relocated.
 
 > [!tip] Verifiable Predicates over Imagined State Turn Diagnosis into Action
 > B1, B2, and B3 all convert the recurring "statistical correlations ≠ causal understanding" diagnosis into something enforceable on the *imagination* itself: B1 makes contact a discrete verifiable transition ($c_t \in$ {no-contact, making, in-contact, breaking, slipping}), B2 makes recovery contingent on a verified imagined rollout, and B3 makes forward-inverse asymmetry a train-time calibration signal. [[2604.01985|WAV]]'s asymmetry result and [[2605.22446|Pre-VLA]]'s rollout truncation supply the shared mechanism — score the *imagination*, not just the pixels.
@@ -525,13 +414,12 @@ This gives the latent substrate of A1 (and the deploy-time latents of C2's memor
 > B3, B2, and A2 form a trust stack at three different times: B3 calibrates the WM's imagination at *training* time (forward-inverse asymmetry, [[2604.01985|WAV]] 2× sample-eff; epistemic gating, [[2504.16680|RWM-U]] 0.91 real-robot reward), B2 verifies and recovers at *runtime* ([[2605.22446|Pre-VLA]] truncates unreliable dreams), and A2's imagined-vs-measured wrench loss is a train-time forecast the same calibration machinery can score. The non-obvious coupling: B3's train-time calibration directly raises the imagined-vs-real ρ that B2 uses as its stop condition — so investing in B3 shrinks the work B2's recovery loop must do, and A2's force imagination is one more channel that calibration must keep honest.
 
 > [!tip] The Substrate Is Task-Conditional — Latent for Transit, 4D Geometry for Contact
-> C1 makes a claim that looks like it contradicts Cluster A: A1 and C2 both lean on "latent at deployment" as the efficiency-optimal substrate, yet C1 keeps explicit 4D geometry *at deployment* ([[2604.26694|X-WAM]], 15 Hz). The reconciliation is that neither is a global winner — the substrate is **task-conditional**. For appearance- and trajectory-bound segments (transit, reaching, free-space motion), latent is correct: A1's deploy-light latent ~10 ms and C2's memory rollouts dominate, and [[2602.10098|VLA-JEPA]] already hits 97.2% [[2306.03310|LIBERO]]. For contact- and spatial-bound segments (insertion, stacking, pouring), the action is a function of geometry the policy cannot reliably re-infer from pixels, so C1's explicit 4D earns its cost — and [[2604.26694|X-WAM]]'s asynchronous denoising shows 4D need not break the real-time budget. The open design is a **process-adaptive substrate** (A1's Q3 contact-gated switching, generalized): run A1's latent in transit, switch to C1's 4D geometry on predicted contact. The latent-vs-4D debate is the wrong frame; *when* to use each is the right one.
+> [[Spatial-4D|Spatial-4D]]-C3 makes a claim that looks like it contradicts Cluster A: A1 leans on "latent at deployment" as the efficiency-optimal WAM substrate, yet C3 keeps explicit 4D geometry *at deployment* ([[2604.26694|X-WAM]], 15 Hz). The reconciliation is that neither is a global winner — the substrate is **task-conditional**, and this is now a *cross-doc* reconciliation between WAM's latent backbone (A) and Spatial-4D's geometry substrate (C3). For appearance- and trajectory-bound segments (transit, reaching, free-space motion), latent is correct: A1's deploy-light latent ~10 ms dominates, and [[2602.10098|VLA-JEPA]] already hits 97.2% [[2306.03310|LIBERO]]. For contact- and spatial-bound segments (insertion, stacking, pouring), the action is a function of geometry the policy cannot reliably re-infer from pixels, so C3's explicit 4D earns its cost — and [[2604.26694|X-WAM]]'s asynchronous denoising shows 4D need not break the real-time budget. The open design is a **process-adaptive substrate** (A1's Q3 contact-gated switching, generalized, and the wrench channel A2 imagines on top): run A1's latent in transit, switch to Spatial-4D-C3's 4D geometry on predicted contact. The latent-vs-4D debate is the wrong frame; *when* to use each is the right one.
 
-> [!tip] Geometry Is the Representation the Task Makes Invariant — and Memory Should Live in That Frame
-> C1 and C2 share a representational commitment that pixel-space WAMs do not: the imagined world should be parameterized by *geometry* (explicit 4D structure, world-frame patches), not by appearance. C1 shows that for contact and spatial tasks the correct action is a function of geometry the policy cannot reliably re-infer from pixels ([[2604.26694|X-WAM]] 79.2% [[2406.02523|RoboCasa]], Chamfer 0.0049 vs 0.0680); C2 shows that persistent memory pinned to a world-frame ([[2603.17117|MosaicMem]] RotErr 0.51° vs 4.65°) is what stops long-horizon drift. The synthesis (C1 × C2, Q4 in C2): a geometric memory in world-frame is the natural store for C1's 4D substrate — the same cup-on-the-table geometry serves every step of a minute-long episode. This is the Hinton-tenet move: favor the representation the *task* makes invariant (object geometry) over the one the *rendering* imposes (pixels), because the brain plans in world coordinates, not image coordinates.
+*Geometry-as-memory cross-ref:* the synthesis that the imagined world should be parameterized by *geometry* (explicit 4D structure + world-frame patches) and that persistent memory should live in that geometric frame — the natural store for a 4D substrate — now spans [[Spatial-4D|Spatial-4D]]-C3 (natively-4D substrate) and [[Spatial-4D|Spatial-4D]]-C4 (persistent geometric memory), where both subjects were relocated.
 
 > [!tip] Efficiency Is a Deployment Prerequisite That Couples to Every Direction in This Doc
-> No direction here owns efficiency, yet A1, B2, and C2 all require real-time budgets to be feasible at all — the 3–5 Hz AR ceiling and 4.8× WAM latency cost are the quantitative anchors ([[2604.16484|DexWorldModel]]'s O(1) memory + async inference shows the levers are co-designable; full real-time co-design is developed in the umbrella [[Embodied-AI|Embodied-AI]]). A1's train-dense/deploy-light hybrid is itself an efficiency move, B2's evolution cycle is infeasible if each imagined rollout is too slow to iterate, and C2's persistent memory only earns its place if its coherence gain beats its footprint cost. Any method in this doc that ignores the latency budget produces a result that cannot be deployed, regardless of its SR.
+> No direction here owns efficiency, yet A1 and B2 both require real-time budgets to be feasible at all — the 3–5 Hz AR ceiling and 4.8× WAM latency cost are the quantitative anchors ([[2604.16484|DexWorldModel]]'s O(1) memory + async inference shows the levers are co-designable; full real-time co-design is developed in the umbrella [[Embodied-AI|Embodied-AI]]). A1's train-dense/deploy-light hybrid is itself an efficiency move, and B2's evolution cycle is infeasible if each imagined rollout is too slow to iterate. (The same latency budget bounds the relocated [[Spatial-4D|Spatial-4D]]-C4 persistent memory, which only earns its place if coherence gain beats footprint cost.) Any method in this doc that ignores the latency budget produces a result that cannot be deployed, regardless of its SR.
 
 ---
 
@@ -544,8 +432,6 @@ This gives the latent substrate of A1 (and the deploy-time latents of C2's memor
 | Discrete contact-mode latent; sub-millimeter assembly SR with contact-aware imagination | B1 | [[2604.16484\|DexWorldModel]] (causal latent but continuous contact) + [[2604.27367\|DOT-Sim]] (contact ground truth, no WAM consumer) |
 | Integrated detection→diagnosis→recovery loop with WAM-driven imagination + rollout verification | B2 | [[2605.22446\|Pre-VLA]] (verifier only, no full loop) + [[2605.10921\|RoboMemArena]] (memory-dependent recovery, no imagination loop) |
 | Forward-inverse calibration as a *training* signal (not a runtime filter) tied to imagined-vs-real ρ | B3 | [[2604.01985\|WAV]] (asymmetry cycle, not ρ-objective) + [[2504.16680\|RWM-U]] (uncertainty gating, locomotion only) |
-| Native-4D-at-deployment vs lift-after-pixel on geometry-bound tasks (Chamfer + SR + latency jointly) | C1 | [[2604.26694\|X-WAM]] (native 4D, single system, no native-vs-recovered ablation) + [[2605.20752\|GaussianDream]] (4D at train, dropped at deploy) |
-| Persistent geometric + episodic memory on memory-dependent manipulation over minute-scale horizons | C2 | [[2605.10921\|RoboMemArena]] (demand-side benchmark, reactive baselines) + [[2603.17117\|MosaicMem]] (geometric memory on camera-video, not action-conditioned) |
 
 ---
 
@@ -557,5 +443,6 @@ This gives the latent substrate of A1 (and the deploy-time latents of C2's memor
 - [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — Physics-aware design space; physics commonsense benchmarks
 - [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] — Sim-to-real strategies; learned simulators; reality-gap diagnostics
 - [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey index
-- [[Embodied-AI|Embodied-AI]] — Umbrella embodied-AI directions. Joint WAM–policy co-evolution, physics-consistency verification, joint causal-consistency evaluation, real-time deployment, and cross-embodiment transfer are developed there (B1, B3, C1, C3, D2) — omitted from this WAM doc to avoid duplication. (Note: this doc's **C2 — Persistent-Memory WAM** is about *imagination* coherence; the umbrella's separate **C2 — Memory + Failure-Recovery** is about runtime recovery — distinct directions that happen to share the C2 address.)
+- [[Embodied-AI|Embodied-AI]] — Umbrella embodied-AI directions. Joint WAM–policy co-evolution, physics-consistency verification, joint causal-consistency evaluation, real-time deployment, and cross-embodiment transfer are developed there (B1, B3, C1, C3, D2) — omitted from this WAM doc to avoid duplication.
+- [[Spatial-4D|Spatial-4D]] — Sibling doc on the model-agnostic 3D/4D representation substrate. **WAM's former spatial-and-memory structure — natively-4D imagination ([[2604.26694|X-WAM]]) and persistent geometric memory ([[2603.17117|MosaicMem]], [[2603.24576|Chameleon (Episodic Memory)]]) — now lives there as C3 and C4**, framed model-agnostically (a 4D substrate / geometric memory usable by a VLA, a WAM, or any policy); WAM retains the latent/architecture (A) and training/grounding (B) concerns.
 - [[Sim2Real|Sim2Real]] — Sibling doc on sim-to-real / real-to-sim transfer; borders this doc's physics-grounding (B-cluster) and world-model-as-simulator themes.

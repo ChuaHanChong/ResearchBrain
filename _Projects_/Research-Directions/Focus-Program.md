@@ -11,7 +11,7 @@ tags:
 # Focus Program: The Explicit-Coupling Whole-Body Model
 
 > [!abstract] The reduced program
-> Of the ~67 directions across the [[Embodied-AI|umbrella]], the [[WAM]] / [[Sim2Real]] mechanism docs, and the [[Manipulation]] / [[Locomotion]] / [[Whole-Body]] capability docs, **four** compose into one focused, non-redundant research program — all orbiting a single quantity: **the explicit arm→leg coupling term** $\delta_{\text{base}} = M_{\text{base,arm}}\,\ddot q_{\text{arm}}$ (the base/leg reaction an arm reach induces).
+> Of the ~75 directions across the [[Embodied-AI|umbrella]], the [[WAM]] / [[Spatial-4D]] / [[Sim2Real]] mechanism docs, and the [[Manipulation]] / [[Locomotion]] / [[Whole-Body]] capability docs, **four** compose into one focused, non-redundant research program — all orbiting a single quantity: **the explicit arm→leg coupling term** $\delta_{\text{base}} = M_{\text{base,arm}}\,\ddot q_{\text{arm}}$ (the base/leg reaction an arm reach induces).
 >
 > | Role | Direction | The bet (KH-verified) |
 > |---|---|---|
@@ -43,7 +43,7 @@ tags:
 
 **The thesis (model-agnostic):** when two physically coupled subsystems are controlled together, their joint value does *not* factor — $V(a_L, a_R) \neq V(a_L) + V(a_R)$ — and the cross-term is a low-dimensional, *structured* quantity to **predict**, not data to **collect**. A part-wise policy discards a term the physics actually has.
 
-**Why it outranks all ~67 — one mechanism, three independent corroborations.** The same bet, proven on a *fixed* data budget in three different capabilities:
+**Why it outranks all ~75 — one mechanism, three independent corroborations.** The same bet, proven on a *fixed* data budget in three different capabilities:
 
 - [[2511.05275|TwinVLA]] (two arms) — a cheap cross-arm coordination term over frozen single-arm priors hits **76%** on ~50 episodes / ~25 GPU-days, beating [[2511.05275|RDT-1B]]'s **45%** trained on *thousands* of GPU-days of proprietary bimanual data, with **zero** bimanual pretraining.
 - [[2604.07993|HEX]] (arm↔leg) — coupling-aware control reaches **61.8% OOD** vs part-wise **41.0%**, the gap *widening* under distribution shift.
@@ -102,4 +102,5 @@ A closed, non-redundant loop — drop any one and the program has a hole:
 
 - [[README]] — folder guide + the full direction index this program reduces from.
 - **Source directions:** [[Whole-Body]] · A1 · [[WAM]] · A2 · [[Sim2Real]] · B2 · [[Embodied-AI]] · C1.
+- **Geometric substrate:** [[Spatial-4D]] — the coupling term $M_{\text{base,arm}}$ is itself geometric, so Spatial-4D's geometry-native directions (point-cloud action heads, 4D-native substrate) are a representation layer WB-A1's explicit-coupling head can stand on.
 - **Considered and set aside** (per-doc best bets that lost to A1 *for this question*): [[Manipulation]]'s bimanual TwinVLA-class coordination — the *same* thesis at two-arm scale, but less humanoid-distinguishing; [[Locomotion]]'s feasibility-corrected motion imitation — excellent but a narrower capability.

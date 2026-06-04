@@ -841,7 +841,7 @@ L3 Evolver is "emerging not mature" for physical-world VLAs — the target for C
 - [[02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]] — Data + sim + benchmark stacks ([[2505.14986|AnyBody]], [[2403.10506|HumanoidBench]], VLN-CE)
 - [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] — Navigation, humanoid, and cross-embodiment paper index (Cluster D)
 - [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey index
-- [[WAM|WAM]] — Focused WAM deep-dive sibling. Hosts the WAM-internal directions (representation substrate, contact-mode latent, calibrated imagination, 4D geometry, persistent-memory imagination); this umbrella doc develops the cross-family directions WAM hands off (B1, B3, C1, C3, D2). Note: WAM's **C2 — Persistent-Memory imagination** is distinct from this doc's **C2 — Memory + Failure-Recovery loop**.
+- [[WAM|WAM]] — Focused WAM deep-dive sibling. Hosts the WAM-specific directions (representation substrate, contact-mode latent, calibrated imagination); this umbrella doc develops the cross-family directions WAM hands off (B1, B3, C1, C3, D2). (4D geometry + persistent memory now in [[Spatial-4D|Spatial-4D]].)
 - [[Sim2Real|Sim2Real]] — Sibling doc on sim-to-real / real-to-sim transfer; borders this doc's physics-consistency (B3) and world-model-as-simulator directions.
 - [[Manipulation|Manipulation]] — Subsystem sibling (arms + hands): grasping, contact-rich assembly, bimanual, dexterous/in-hand. Consumes this doc's A1/A2 tactile-substrate directions.
 - [[Locomotion|Locomotion]] — Subsystem sibling (legs + wheels): bipedal + quadruped locomotion. Consumes this doc's D1 (VLN) and D2 (morphology-invariance) directions.
