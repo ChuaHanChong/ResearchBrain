@@ -20,10 +20,10 @@ tags:
 
 ## Methodology
 
-**Scope.** Corpus: ~56 VLA/WAM/embodied/physics/safety surveys and ~120 method + benchmark papers from `_KnowledgeHub_/`, cross-checked against [[../General/08_Benchmarks-and-Surveys#4. Robotics & Embodied AI Surveys|08_Benchmarks-and-Surveys §4]]/[[../General/08_Benchmarks-and-Surveys#5. Self-Evolving AI Surveys|§5]]/[[../General/08_Benchmarks-and-Surveys#7. Specialized Domain Surveys|§7]] and ten `Embodied-AI/` deep-dives. **Filter**: kept directions with 3–10 attacking papers but no consensus solution; excluded saturated (more-compute-only) and premature (hypothetical-AGI) framings; prioritized intersections (VLA×WAM, VLA×RL, WAM×egocentric, tactile×VLA, physics×RL, safety×deployment). The method is survey-grounded ideation — surveys enumerate open problems, benchmarks fix what is measurable, the closest existing methods fix what is currently achievable, and each direction states where it bets against the consensus — operationalized in the steps below.
+**Scope.** Corpus: ~56 VLA/WAM/embodied/physics/safety surveys and ~120 method + benchmark papers from `_KnowledgeHub_/`, cross-checked against [[08_Benchmarks-and-Surveys#4. Robotics & Embodied AI Surveys|08_Benchmarks-and-Surveys §4]]/[[08_Benchmarks-and-Surveys#5. Self-Evolving AI Surveys|§5]]/[[08_Benchmarks-and-Surveys#7. Specialized Domain Surveys|§7]] and ten `Embodied-AI/` deep-dives. **Filter**: kept directions with 3–10 attacking papers but no consensus solution; excluded saturated (more-compute-only) and premature (hypothetical-AGI) framings; prioritized intersections (VLA×WAM, VLA×RL, WAM×egocentric, tactile×VLA, physics×RL, safety×deployment). The method is survey-grounded ideation — surveys enumerate open problems, benchmarks fix what is measurable, the closest existing methods fix what is currently achievable, and each direction states where it bets against the consensus — operationalized in the steps below.
 
-- **Survey enumeration**: tag-scans (`survey` × {`VLA`, `world-model`, `embodied-AI`, `robotics`, `physics-aware`, `sim-to-real`, `safety`, `self-evolving`}) over `_KnowledgeHub_/` + reference sweeps of [[../Embodied-AI/03_VLA|03_VLA]], [[../Embodied-AI/04_WAM|04_WAM]], [[../Embodied-AI/07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]].
-- **Deep-dive mining**: full reads of the six deep-dives directly aligned with the directions ([[../Embodied-AI/04_WAM|04_WAM]], [[../Embodied-AI/06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]], [[../Embodied-AI/07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]], [[../Embodied-AI/08_VLA-Reasoning-and-CoT|08_VLA-Reasoning-and-CoT]], [[../Embodied-AI/10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]], [[../Embodied-AI/11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]]); others consulted for taxonomy framing.
+- **Survey enumeration**: tag-scans (`survey` × {`VLA`, `world-model`, `embodied-AI`, `robotics`, `physics-aware`, `sim-to-real`, `safety`, `self-evolving`}) over `_KnowledgeHub_/` + reference sweeps of [[03_VLA|03_VLA]], [[04_WAM|04_WAM]], [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]].
+- **Deep-dive mining**: full reads of the six deep-dives directly aligned with the directions ([[04_WAM|04_WAM]], [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]], [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]], [[08_VLA-Reasoning-and-CoT|08_VLA-Reasoning-and-CoT]], [[10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]], [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]]); others consulted for taxonomy framing.
 - **Closest-baseline anchoring**: physics-generalization, reproducible-eval, and sim-realism benchmarks ([[2605.08567|ACWM-Phys]], [[2605.21800|stable-worldmodel]], [[2605.06311|VISER]], [[2605.20774|VLA-REPLICA]], [[2605.21429|roto 2.0]]) and the named-bottleneck roadmaps ([[2511.05936|10 VLA Challenges]], [[2605.02900|Safety in Embodied AI Survey]]) set the bar each of B3, C1, C2, C3 must beat or measure against.
 - **First-principles framing**: each direction states the irreducible structure of the problem, the conventional assumption being challenged, and the non-consensus bet being made — to surface where impactful work deviates from incremental refinement, not where it follows the herd.
 
@@ -296,7 +296,7 @@ L3 Evolver is "emerging not mature" for physical-world VLAs — the target for C
 
 **Evidence.**
 - **Closest single-loop attempts**: [[2603.19370|VAMPO]] (GRPO over video-denoising-as-MDP; pixel-space, expensive), [[2602.13977|WoVR]] (masked GRPO + KIR + PACE; PACE not in code), [[2511.09515|WMPO]] (on-policy GRPO; WM frozen in inner loop), [[2511.15605|SRPO]] (frozen [[2506.09985|V-JEPA 2]]; WM doesn't update).
-- **Latent feasibility** ([[../Embodied-AI/03_VLA#5. World-Model-Augmented VLAs|03_VLA §5]] + [[../Embodied-AI/04_WAM#5. VLM-Integrated WAMs|04_WAM §5]]): [[2602.10098|VLA-JEPA]], [[2602.11832|JEPA-VLA]], [[2605.00078|Being-H0.7]] predict in 256-dim latent (~10 ms) vs pixel ~150 ms.
+- **Latent feasibility** ([[03_VLA#5. World-Model-Augmented VLAs|03_VLA §5]] + [[04_WAM#5. VLM-Integrated WAMs|04_WAM §5]]): [[2602.10098|VLA-JEPA]], [[2602.11832|JEPA-VLA]], [[2605.00078|Being-H0.7]] predict in 256-dim latent (~10 ms) vs pixel ~150 ms.
 - **Stability substrate**: [[2511.08544|LeJEPA]]'s provable Euclidean geometry (anti-collapse regularization) is the candidate that lets single-step joint updates avoid the latent-collapse failure mode.
 
 **Concrete research questions.**
@@ -528,7 +528,7 @@ L3 Evolver is "emerging not mature" for physical-world VLAs — the target for C
 
 **Evidence.**
 - **Memory**: [[2605.10993|ECHO-VLA]] (+12.8 pp), [[2508.19236|MemoryVLA]] (+26 pp temporal, +3.6% latency), [[2603.03596|MEM]] (15-min memory), [[2603.12942|ReMem-VLA]] (**94.5%** on memory-dependent sim).
-- **Detection** (8 methods per [[../Embodied-AI/06_Self-Evolving-VLA-WAM#4.1 Runtime Failure Detection|06_Self-Evolving-VLA-WAM §4.1]]): [[2506.09937|SAFE]], [[2509.16072|I-FailSense]], [[2510.09459|FIPER]], [[2603.11106|RC-NF]] (<100 ms), [[2503.08558|FAIL-Detect]] (**78%** w/o failure data), [[2410.04640|Sentinel]] (**+18%** over single), [[2407.08735|AESOP]] (**100%** sim recovery), [[2510.02298|ARMADA]] (**95%** accuracy, **23.3%** intervention reduction).
+- **Detection** (8 methods per [[06_Self-Evolving-VLA-WAM#4.1 Runtime Failure Detection|06_Self-Evolving-VLA-WAM §4.1]]): [[2506.09937|SAFE]], [[2509.16072|I-FailSense]], [[2510.09459|FIPER]], [[2603.11106|RC-NF]] (<100 ms), [[2503.08558|FAIL-Detect]] (**78%** w/o failure data), [[2410.04640|Sentinel]] (**+18%** over single), [[2407.08735|AESOP]] (**100%** sim recovery), [[2510.02298|ARMADA]] (**95%** accuracy, **23.3%** intervention reduction).
 - **Proactive correction**: [[2601.02295|CycleVLA]], [[2512.24426|CF-VLA]], [[2604.02965|SV-VLA]], [[2511.14148|AsyncVLA]], [[2509.04018|FPC-VLA]].
 - **Recovery**: [[2505.12224|RoboFAC]], [[2603.13528|Counterfactual Failure Synthesis]].
 
@@ -829,18 +829,18 @@ L3 Evolver is "emerging not mature" for physical-world VLAs — the target for C
 
 ## Cross-References
 
-- [[../Embodied-AI/03_VLA|03_VLA]] — VLA design space
-- [[../Embodied-AI/04_WAM|04_WAM]] — WAM taxonomy (VideoGen / latent / Dreamer / VLM-integrated / efficient / self-evolving)
-- [[../Embodied-AI/05_Latent-World-Models|05_Latent-World-Models]] — JEPA evolution + alternative latents
-- [[../Embodied-AI/06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]] — Failure detection, diagnosis, recovery
-- [[../Embodied-AI/07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — Physics-aware design space
-- [[../Embodied-AI/08_VLA-Reasoning-and-CoT|08_VLA-Reasoning-and-CoT]] — Reasoning insertion slots
-- [[../Embodied-AI/09_Egocentric-Pretraining-and-Human-Video|09_Egocentric-Pretraining-and-Human-Video]] — Egocentric scaling + transfer
-- [[../Embodied-AI/10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] — Force-aware architectures + tactile sensors
-- [[../Embodied-AI/11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] — Zero-shot sim-to-real for humanoid loco-manipulation (see [[Whole-Body|Whole-Body]]) + cross-embodiment transfer (D2)
-- [[../Embodied-AI/02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]] — Data + sim + benchmark stacks ([[2505.14986|AnyBody]], [[2403.10506|HumanoidBench]], VLN-CE)
-- [[../General/07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] — Navigation, humanoid, and cross-embodiment paper index (Cluster D)
-- [[../General/08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey index
+- [[03_VLA|03_VLA]] — VLA design space
+- [[04_WAM|04_WAM]] — WAM taxonomy (VideoGen / latent / Dreamer / VLM-integrated / efficient / self-evolving)
+- [[05_Latent-World-Models|05_Latent-World-Models]] — JEPA evolution + alternative latents
+- [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]] — Failure detection, diagnosis, recovery
+- [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — Physics-aware design space
+- [[08_VLA-Reasoning-and-CoT|08_VLA-Reasoning-and-CoT]] — Reasoning insertion slots
+- [[09_Egocentric-Pretraining-and-Human-Video|09_Egocentric-Pretraining-and-Human-Video]] — Egocentric scaling + transfer
+- [[10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] — Force-aware architectures + tactile sensors
+- [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] — Zero-shot sim-to-real for humanoid loco-manipulation (see [[Whole-Body|Whole-Body]]) + cross-embodiment transfer (D2)
+- [[02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]] — Data + sim + benchmark stacks ([[2505.14986|AnyBody]], [[2403.10506|HumanoidBench]], VLN-CE)
+- [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] — Navigation, humanoid, and cross-embodiment paper index (Cluster D)
+- [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey index
 - [[WAM|WAM]] — Focused WAM deep-dive sibling. Hosts the WAM-internal directions (representation substrate, contact-mode latent, calibrated imagination, 4D geometry, persistent-memory imagination); this umbrella doc develops the cross-family directions WAM hands off (B1, B3, C1, C3, D2). Note: WAM's **C2 — Persistent-Memory imagination** is distinct from this doc's **C2 — Memory + Failure-Recovery loop**.
 - [[Sim2Real|Sim2Real]] — Sibling doc on sim-to-real / real-to-sim transfer; borders this doc's physics-consistency (B3) and world-model-as-simulator directions.
 - [[Manipulation|Manipulation]] — Subsystem sibling (arms + hands): grasping, contact-rich assembly, bimanual, dexterous/in-hand. Consumes this doc's A1/A2 tactile-substrate directions.

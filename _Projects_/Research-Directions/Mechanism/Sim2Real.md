@@ -18,10 +18,10 @@ tags:
 
 ## Methodology
 
-**Scope.** Corpus: 6 sim-real surveys + 17 sim-real correlation/evaluation benchmarks + ~25 anchor real2sim2real, DR-beyond, online-adaptation, and runtime-safety methods from `_KnowledgeHub_/`, cross-checked against [[../Embodied-AI/11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]], [[../General/07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]], and [[../General/08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]]; the filter is detailed in the bullets below. The synthesis is survey-grounded ideation along a temporal axis of when each work acts on the gap — **train → reconstruct → measure → deploy → bound** — and each direction states where it bets against the consensus.
+**Scope.** Corpus: 6 sim-real surveys + 17 sim-real correlation/evaluation benchmarks + ~25 anchor real2sim2real, DR-beyond, online-adaptation, and runtime-safety methods from `_KnowledgeHub_/`, cross-checked against [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]], [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]], and [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]]; the filter is detailed in the bullets below. The synthesis is survey-grounded ideation along a temporal axis of when each work acts on the gap — **train → reconstruct → measure → deploy → bound** — and each direction states where it bets against the consensus.
 
-- **Survey enumeration**: tag-scan over `survey` × {`sim-to-real`, `robotics`, `world-model`, `domain-adaptation`, `manipulation`} across `_KnowledgeHub_/`; cross-checked against [[../General/08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]].
-- **Deep-dive mining**: full read of [[../Embodied-AI/11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] (reality-gap diagnostics, learned simulators, real2sim2real strategies); cross-referenced with [[../Embodied-AI/07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] and [[../Embodied-AI/10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] for the physics/tactile sub-themes. 3+-way open-problem convergence seeded B1, B2, C1.
+- **Survey enumeration**: tag-scan over `survey` × {`sim-to-real`, `robotics`, `world-model`, `domain-adaptation`, `manipulation`} across `_KnowledgeHub_/`; cross-checked against [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]].
+- **Deep-dive mining**: full read of [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] (reality-gap diagnostics, learned simulators, real2sim2real strategies); cross-referenced with [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] and [[10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] for the physics/tactile sub-themes. 3+-way open-problem convergence seeded B1, B2, C1.
 - **Closest-baseline anchoring**: real2sim2real and DR-beyond papers ([[2511.04665|Real-to-Sim GS]], [[2605.26638|HyperSim]], [[2604.27367|DOT-Sim]], [[2510.11689|Phys2Real]], [[2511.07416|PhysWorld]], [[2512.19562|REALM]]) set the bar each of A1, A2, B1, B2, B3, B4 must beat.
 - **Deploy-time and safety anchoring**: online-adaptation papers ([[2107.04034|RMA]], [[2409.16578|FLaRe]], [[2508.21065|Learning on the Fly]], [[2602.20057|AdaWorldPolicy]], [[2603.04029|Self-Adapting RL]]) anchored Cluster D, and the runtime-safety papers ([[2503.10949|SCDA]], [[2409.19190|RAIL]], [[2506.09937|SAFE]], [[2503.08558|FAIL-Detect]]) anchored Cluster E — so the residual gap that survives offline work becomes a deploy-time, then a safety, problem.
 - **Filter**: kept directions with 3–10 attacking papers but no consensus solution; excluded saturated (more-DR-only) and premature (sim-from-scratch-with-full-causality) framings; prioritized intersections (rendering×physics, real2sim×differentiable-ID, twin×co-training, eval×provable-inference).
@@ -918,13 +918,13 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 
 ## Cross-References
 
-- [[../Embodied-AI/11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] — Reality-gap diagnostics, learned simulators, real2sim2real strategies, domain randomization
-- [[../Embodied-AI/07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — Physics priors, PINN-grounded learning, physical-consistency design space (anchors A2, B1, B2)
-- [[../Embodied-AI/10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] — Tactile/force sensing + differentiable tactile sim (anchors A2's GRF reward, B2's [[2604.27367|DOT-Sim]])
-- [[../Embodied-AI/04_WAM|04_WAM]] — World models as learned simulators and evaluators (anchors B3, C2, D2, D3)
-- [[../Embodied-AI/06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]] — Online/continual adaptation and self-improving policies (anchors D1, D3, E1)
-- [[../General/04_Reinforcement-Learning|04_Reinforcement-Learning]] — Online RL fine-tuning, safe RL, continual adaptation (anchors D1, D2, E1)
-- [[../General/07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] — Canonical robotics + embodied-AI paper index
-- [[../General/08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey + benchmark index
+- [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] — Reality-gap diagnostics, learned simulators, real2sim2real strategies, domain randomization
+- [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — Physics priors, PINN-grounded learning, physical-consistency design space (anchors A2, B1, B2)
+- [[10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] — Tactile/force sensing + differentiable tactile sim (anchors A2's GRF reward, B2's [[2604.27367|DOT-Sim]])
+- [[04_WAM|04_WAM]] — World models as learned simulators and evaluators (anchors B3, C2, D2, D3)
+- [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]] — Online/continual adaptation and self-improving policies (anchors D1, D3, E1)
+- [[04_Reinforcement-Learning|04_Reinforcement-Learning]] — Online RL fine-tuning, safe RL, continual adaptation (anchors D1, D2, E1)
+- [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] — Canonical robotics + embodied-AI paper index
+- [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey + benchmark index
 - [[Embodied-AI|Embodied-AI]] — Umbrella embodied-AI sibling; its physics-consistency (B3) and world-model-as-simulator directions border this doc's Cluster B (real-to-sim grounding) and D (deploy-time adaptation).
 - [[WAM|WAM]] — Focused WAM sibling; world-models-as-learned-simulators connect to this doc's B3 (twin co-training) and D2/D3 (world-model-supervised adaptation).
