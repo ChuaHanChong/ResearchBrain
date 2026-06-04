@@ -50,9 +50,11 @@ def extract_summary(driver, arxiv_id):
     _click_through_to_overview(driver, arxiv_id)
     time.sleep(1)
 
-    # Switch to Machine view (new UI toggle added since original scripts were written)
-    _js_click(driver, "//button[normalize-space()='Machine']")
-    time.sleep(1)
+    # Click the Human/Machine toggle only if present (2026-06 UI dropped it).
+    machine = driver.find_elements(By.XPATH, "//button[normalize-space()='Machine']")
+    if machine:
+        driver.execute_script("arguments[0].click();", machine[0])
+        time.sleep(1)
 
     info = {}
 

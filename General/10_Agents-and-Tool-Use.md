@@ -106,7 +106,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992\|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Reasoning Surveys & Taxonomies** — Comprehensive reviews mapping the rapidly evolving landscape of LLM-based agents, establishing conceptual frameworks and evaluation methodologies.
-- [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial Brain Cerebellum]], [[2605.20246|GROW]], [[2605.15128|MemEye]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]], [[2602.16313|MemoryArena]], [[2511.14004|STAR (Memory-Action)]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2504.15965|AI Memory Survey]], [[2403.19622|RH20T-P]]
+- [[2606.03963|AgenticRL]], [[2606.03374|eMEM]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial Brain Cerebellum]], [[2605.20246|GROW]], [[2605.15128|MemEye]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]], [[2602.16313|MemoryArena]], [[2511.14004|STAR (Memory-Action)]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2504.15965|AI Memory Survey]], [[2403.19622|RH20T-P]]
 
 > [!star] Key Papers
 > - [[2505.10468\|AI Agents vs Agentic AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
@@ -129,7 +129,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2211.12588\|PoT]] — Program of Thoughts prompting: LLMs delegate numerical reasoning to code execution
 
 **Visual Programming & Compositional Code** — Composing vision-and-language modules into executable programs for visual reasoning, enabling training-free compositional problem-solving.
-- [[2605.02600|CoRAL]], [[2603.22435\|CaP-X]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]], [[2209.07753|Code as Policies]]
+- [[2606.03047|ModuLoop]], [[2605.02600|CoRAL]], [[2603.22435\|CaP-X]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]], [[2209.07753|Code as Policies]]
 
 > [!star] Key Papers
 > - [[2303.08128\|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without any training

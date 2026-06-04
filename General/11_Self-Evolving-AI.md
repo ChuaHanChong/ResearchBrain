@@ -297,7 +297,7 @@ Learning to learn: models that adapt their own learning process, discover optimi
 Extending self-evolution beyond text-only LLMs to multimodal models that process both images and text. VLMs face unique challenges: hallucination, visual grounding errors, and cross-modal consistency — requiring self-improvement methods tailored to multimodal reasoning.
 
 **Hallucination Reduction via Self-Consistency** — VLMs detect and correct their own hallucinations by checking internal consistency across different modalities or question framings.
-- [[2605.29562|VLA-Pro]], [[2605.26820|VLA Continual Forgetting]], [[2605.20914|RISE (Self-Evolving VLM)]], [[2603.02556|VC-STaR]], [[2510.24285|ViPER]], [[2510.10487|Triangular Consistency]], [[2509.23236|Self-Reflection VLM]], [[2503.10705|ConDU]]
+- [[2606.03598|PHASER]], [[2605.29562|VLA-Pro]], [[2605.26820|VLA Continual Forgetting]], [[2605.20914|RISE (Self-Evolving VLM)]], [[2603.02556|VC-STaR]], [[2510.24285|ViPER]], [[2510.10487|Triangular Consistency]], [[2509.23236|Self-Reflection VLM]], [[2503.10705|ConDU]]
 
 > [!star] Key Papers
 > - [[2509.23236|Self-Reflection VLM]] — Uses binary self-consistency signals to reduce hallucinations without external supervision

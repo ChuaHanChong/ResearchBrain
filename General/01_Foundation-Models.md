@@ -174,7 +174,7 @@ New attention patterns, normalization strategies, and structural modifications t
 Learning visual representations without labels — the foundation for data-efficient downstream tasks.
 
 **Contrastive & Self-Distillation** — Methods that learn by comparing or distilling representations without labeled data.
-- [[2605.29564|VE2VF]], [[2605.03517|LDM SSL]], [[2604.09445|AsymLoc]], [[2604.04310|frax]], [[2603.28480|INSID3]], [[2603.15553|Bootleg]], [[2603.12217|Verifier Point Tracking]], [[2602.00937|CLAMP]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.14754|Sparsh-X]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2410.24090|Sparsh]], [[2406.09294|JEA Scaling Study]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
+- [[2606.04718|CoRe-MoE]], [[2605.29564|VE2VF]], [[2605.03517|LDM SSL]], [[2604.09445|AsymLoc]], [[2604.04310|frax]], [[2603.28480|INSID3]], [[2603.15553|Bootleg]], [[2603.12217|Verifier Point Tracking]], [[2602.00937|CLAMP]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.14754|Sparsh-X]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2410.24090|Sparsh]], [[2406.09294|JEA Scaling Study]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
 
 > [!star] Key Papers
 > - [[2104.14294|DINO]] — Self-distillation with no labels; emergent object segmentation in attention maps
@@ -201,7 +201,7 @@ Learning visual representations without labels — the foundation for data-effic
 > I-JEPA started a family: [[2511.08544|LeJEPA]] (provable foundations) and [[2512.19605|KerJEPA]] (kernel methods) extend the theory, while [[2602.11389|Causal-JEPA]] adds causal reasoning. For the full robotics-oriented lineage (V-JEPA 2 → VL-JEPA → VLA-JEPA), see the JEPA notes in the vault.
 
 **Continual & Semi-Supervised Learning** — Adapting self-supervised models for streaming data, long-tailed distributions, and test-time shifts.
-- [[2605.30350|DynaFLIP]], [[2605.29548|Capacity Interference Retention]], [[2605.27734|Latent Sample-Complexity]], [[2605.26379|LeJEPA World Model]], [[2605.25313|UWM-JEPA]], [[2605.24934|HumanEgo]], [[2605.22671|BehaviorVLA]], [[2605.22629|H-Flow]], [[2605.21258|Structural Latent Points]], [[2605.20811|Demo-JEPA]], [[2605.15725|DiLA]], [[2605.09963|Spatial Prediction SP]], [[2604.18267|MARCO]], [[2604.16391|DeFI]], [[2603.06693|SER]], [[2601.19897|SDFT]], [[2512.15934|IC-SSL]], [[2512.09441|MoP-CIL]], [[2512.01342|InternVideo-Next]], [[2512.00961|GenReward]], [[2511.20844|Pre-train to Gain]], [[2511.17309|MuM]], [[2511.13787|TC2]], [[2511.04131|BFM-Zero]], [[2509.21986|Ego VLA Pretrain]], [[2509.15965|RLinf]], [[2507.23523|H-RDT]], [[2507.10434|CLA]], [[2506.23529|SSTTA]], [[2506.00467|SST]], [[2505.17006|CoMo]], [[2505.05062|ULFine]], [[2504.18904|RoboVerse]], [[2412.04445|Moto]], [[2411.13852|ESRM]], [[2410.21676|Critical Batch Size Scaling]], [[2409.14401|In-Class Data Imbalance]], [[2407.20230|SAPG]], [[2406.17768|EXTRACT]], [[2404.17202|Low-Data SSL Evaluation]], [[2312.10812|LAPO]], [[2311.12244|muLV-Rep]], [[2305.13622|SER]], [[2111.09793|Robotic Interestingness]], [[2101.12195|CADDY]], [[2101.05181|MemAug Image-Goal Nav]], [[1806.09655|CLASP (Action Space)]], [[1805.07914|ILPO]]
+- [[2606.04130|CLAW (Latent Action WM)]], [[2606.03985|Humanoid-GPT]], [[2606.03940|SEAOTTER]], [[2606.03476|Human2Humanoid]], [[2606.02767|HAKF]], [[2605.30350|DynaFLIP]], [[2605.29548|Capacity Interference Retention]], [[2605.27734|Latent Sample-Complexity]], [[2605.26379|LeJEPA World Model]], [[2605.25313|UWM-JEPA]], [[2605.24934|HumanEgo]], [[2605.22671|BehaviorVLA]], [[2605.22629|H-Flow]], [[2605.21258|Structural Latent Points]], [[2605.20811|Demo-JEPA]], [[2605.15725|DiLA]], [[2605.09963|Spatial Prediction SP]], [[2604.18267|MARCO]], [[2604.16391|DeFI]], [[2603.06693|SER]], [[2601.19897|SDFT]], [[2512.15934|IC-SSL]], [[2512.09441|MoP-CIL]], [[2512.01342|InternVideo-Next]], [[2512.00961|GenReward]], [[2511.20844|Pre-train to Gain]], [[2511.17309|MuM]], [[2511.13787|TC2]], [[2511.04131|BFM-Zero]], [[2509.21986|Ego VLA Pretrain]], [[2509.15965|RLinf]], [[2507.23523|H-RDT]], [[2507.10434|CLA]], [[2506.23529|SSTTA]], [[2506.00467|SST]], [[2505.17006|CoMo]], [[2505.05062|ULFine]], [[2504.18904|RoboVerse]], [[2412.04445|Moto]], [[2411.13852|ESRM]], [[2410.21676|Critical Batch Size Scaling]], [[2409.14401|In-Class Data Imbalance]], [[2407.20230|SAPG]], [[2406.17768|EXTRACT]], [[2404.17202|Low-Data SSL Evaluation]], [[2312.10812|LAPO]], [[2311.12244|muLV-Rep]], [[2305.13622|SER]], [[2111.09793|Robotic Interestingness]], [[2101.12195|CADDY]], [[2101.05181|MemAug Image-Goal Nav]], [[1806.09655|CLASP (Action Space)]], [[1805.07914|ILPO]]
 
 > [!star] Key Papers
 > - [[2507.10434|CLA]] — Continual Latent Alignment for online continual self-supervised learning; avoids catastrophic forgetting
@@ -215,7 +215,7 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2601.03220|Epiplexity]] — New information measure beyond entropy for computationally bounded intelligence
 
 **Test-Time Training & Adaptation** — Methods that adapt visual models at inference time to handle distribution shifts.
-- [[2603.00518|Vision-TTT]], [[2506.23529|SSTTA]], [[2410.02735|OOD-Chameleon]]
+- [[2606.03127|TTT-VLA]], [[2603.00518|Vision-TTT]], [[2506.23529|SSTTA]], [[2410.02735|OOD-Chameleon]]
 
 > [!star] Key Papers
 > - [[2603.00518|Vision-TTT]] — Adapts Test-Time Training for efficient visual representation learning; bridges pre-training and inference
@@ -417,7 +417,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2402.15109|MU-Mis]] — Remaining-data-free unlearning via sample contribution suppression; enables privacy compliance without retaining original data
 
 **Continual Pretraining & Domain Adaptation** — Extending foundation models to new domains or tasks through continued training.
-- [[2603.17655|CC-CDFSL]], [[2602.02381|AdaSSL]], [[2601.21725|Procedural Pretraining]], [[2511.13945|Procedural Warm-Up]], [[2509.06806|MachineLearningLM]], [[2507.06187|Delta Learning Hypothesis]], [[2507.00994|MLM vs CLM Pretraining]], [[2504.07745|SF2T]], [[2504.06608|Cross-Domain FSL with DKM]]
+- [[2606.02280|LDG]], [[2603.17655|CC-CDFSL]], [[2602.02381|AdaSSL]], [[2601.21725|Procedural Pretraining]], [[2511.13945|Procedural Warm-Up]], [[2509.06806|MachineLearningLM]], [[2507.06187|Delta Learning Hypothesis]], [[2507.00994|MLM vs CLM Pretraining]], [[2504.07745|SF2T]], [[2504.06608|Cross-Domain FSL with DKM]]
 
 > [!star] Key Papers
 > - [[2509.06806|MachineLearningLM]] — Continued pretraining framework that enhances LLMs with robust many-shot in-context learning for ML tasks

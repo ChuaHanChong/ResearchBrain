@@ -110,7 +110,7 @@ The field evolved through six phases: **explicit CoT prompting** (2022) where ch
 The foundational paradigm: prompting LLMs to produce step-by-step reasoning before answering, then evolving from few-shot to zero-shot and self-bootstrapped variants.
 
 **Few-Shot & Zero-Shot CoT** — The original prompting techniques that unlocked multi-step reasoning in LLMs by providing exemplar chains or simple instructions like "let's think step by step."
-- [[2605.29198|GCPO]], [[2605.28421|DenoiseRL]], [[2605.21467|DelTA]], [[2605.16787|RLVR Unlearnability]], [[2605.07396|ROPD]], [[2605.06234|RobotEQ]], [[2603.07079|EOPD]], [[2506.14641\|Zero-shot vs Few-shot CoT]], [[2505.24189\|SLM vs LLM Low-Code Workflows]], [[2505.16854\|TON]], [[2505.01812\|New News]], [[2503.16188\|Think or Not Think]], [[2501.19393\|s1]], [[2411.14405\|Marco-o1]]
+- [[2606.03784|ERVLA]], [[2605.29198|GCPO]], [[2605.28421|DenoiseRL]], [[2605.21467|DelTA]], [[2605.16787|RLVR Unlearnability]], [[2605.07396|ROPD]], [[2605.06234|RobotEQ]], [[2603.07079|EOPD]], [[2506.14641\|Zero-shot vs Few-shot CoT]], [[2505.24189\|SLM vs LLM Low-Code Workflows]], [[2505.16854\|TON]], [[2505.01812\|New News]], [[2503.16188\|Think or Not Think]], [[2501.19393\|s1]], [[2411.14405\|Marco-o1]]
 
 > [!star] Key Papers
 > - [[2501.19393\|s1]] — Stanford/UW open-source 32B model achieves SOTA reasoning by training on just 1,000 curated examples with budget forcing
@@ -277,13 +277,13 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 > - [[2603.00142\|ToM Multi-Agent Eval]] — Evaluation of multi-agent systems augmented with Theory of Mind, verified by symbolic logic
 
 **Symbolic & PDDL-Based Planning** — Formal planning approaches using symbolic representations and planning domain definition languages.
-- [[2605.29563|ViewSuite]], [[2605.21061|Driving VLA IK]], [[2605.09387\|NEXUS]], [[2601.11322\|VLM Logic Situational Awareness]], [[2511.10279\|PROPA]], [[2511.04357|GraSP-VLA]], [[2509.14760\|ALIGN3]], [[2509.13351\|PDDL-INSTRUCT]], [[2508.01415|RoboMemory]], [[2409.00215|Intent-Aware Co-Manipulation]], [[2402.15487|RoboEXP]], [[2311.12244|muLV-Rep]], [[2311.11893|CBP]], [[2305.06341|GGCS]], [[2209.07753|Code as Policies]]
+- [[2606.03385|GTP-FA]], [[2606.03296|SC-Diff Planning]], [[2606.02745|SeeTraceAct]], [[2605.29563|ViewSuite]], [[2605.21061|Driving VLA IK]], [[2605.09387\|NEXUS]], [[2601.11322\|VLM Logic Situational Awareness]], [[2511.10279\|PROPA]], [[2511.04357|GraSP-VLA]], [[2509.14760\|ALIGN3]], [[2509.13351\|PDDL-INSTRUCT]], [[2508.01415|RoboMemory]], [[2409.00215|Intent-Aware Co-Manipulation]], [[2402.15487|RoboEXP]], [[2311.12244|muLV-Rep]], [[2311.11893|CBP]], [[2305.06341|GGCS]], [[2209.07753|Code as Policies]]
 
 > [!star] Key Papers
 > - [[2509.13351\|PDDL-INSTRUCT]] — Instruction tuning framework that enhances LLMs' symbolic planning with PDDL
 
 **Navigation & Embodied Spatial Agents** — Spatial reasoning for navigation and embodiment.
-- [[2605.12689\|3D RL-DWA]], [[2604.11135|AIM]], [[2601.21998\|LingBot-VA]], [[2509.25852\|REVER]], [[2506.17629\|CLiViS]], [[2412.10439\|CogNav]], [[2410.02742\|GLIMO]], [[2409.01652\|ReKep]], [[2407.08693|ECoT]], [[2403.09631\|3D-VLA]], [[2403.08321\|ManiGaussian]], [[2401.05946\|TDB]], [[2311.00530\|LLM Embodied Navigation Survey]], [[2309.15129\|CogEval]]
+- [[2606.03374|eMEM]], [[2605.12689\|3D RL-DWA]], [[2604.11135|AIM]], [[2601.21998\|LingBot-VA]], [[2509.25852\|REVER]], [[2506.17629\|CLiViS]], [[2412.10439\|CogNav]], [[2410.02742\|GLIMO]], [[2409.01652\|ReKep]], [[2407.08693|ECoT]], [[2403.09631\|3D-VLA]], [[2403.08321\|ManiGaussian]], [[2401.05946\|TDB]], [[2311.00530\|LLM Embodied Navigation Survey]], [[2309.15129\|CogEval]]
 
 **3D & Geometric Agent Reasoning** — Agent spatial reasoning grounded in 3D/geometry.
 - [[2603.00905\|pySpatial]], [[2506.03642\|SpatialMind]]
@@ -386,7 +386,7 @@ Understanding and reasoning about spatial relationships, 3D geometry, and physic
 - [[2605.18746|ESI-Bench]], [[2603.18892\|MultihopSpatial]], [[2506.05997|SRU]], [[2504.09848\|LLM Spatial Intelligence Survey]], [[2012.03912|MultiON]]
 
 **VLM Spatial Reasoning Benchmarks** — General VLM spatial-reasoning benchmarks.
-- [[2605.30557|SpatialUncertain]], [[2605.22570|VGenST-Bench]], [[2605.22536|SpaceDG]], [[2605.22283|SOMA]], [[2605.09963|Spatial Prediction SP]], [[2603.03944\|SCP-Bench]], [[2602.20901\|SpatiaLQA]], [[2602.15950\|VLM Spatial Reasoning OCR]], [[2602.15918\|EarthSpatialBench]], [[2602.03916\|SpatiaLab]], [[2601.20354\|SpatialGenEval]], [[2601.19099\|m2sv]], [[2601.16520\|TangramPuzzle]], [[2601.06521\|BabyVision]], [[2512.20617\|SpatialTree]], [[2512.19526|QuantiPhy]], [[2512.10863\|MMSI-Video-Bench]], [[2511.21471\|SpatialBench]], [[2510.27606\|Spatial-SSRL]], [[2510.09606\|SpaceVista]], [[2508.13142\|EASI]], [[2508.02095\|VLM4D]], [[2505.23764\|MMSI-Bench]], [[2505.05456\|SITE]], [[2503.23765\|STI-Bench]], [[2503.19707\|VLM Spatial Reasoning Benchmark]], [[2410.17385\|COMFORT]], [[2406.14852\|SpatialEval]], [[2406.02537\|TopViewRS]], [[2205.00363\|VSR]]
+- [[2606.04436|3DThinkVLA]], [[2606.03240|GeoAlign]], [[2605.30557|SpatialUncertain]], [[2605.22570|VGenST-Bench]], [[2605.22536|SpaceDG]], [[2605.22283|SOMA]], [[2605.09963|Spatial Prediction SP]], [[2603.03944\|SCP-Bench]], [[2602.20901\|SpatiaLQA]], [[2602.15950\|VLM Spatial Reasoning OCR]], [[2602.15918\|EarthSpatialBench]], [[2602.03916\|SpatiaLab]], [[2601.20354\|SpatialGenEval]], [[2601.19099\|m2sv]], [[2601.16520\|TangramPuzzle]], [[2601.06521\|BabyVision]], [[2512.20617\|SpatialTree]], [[2512.19526|QuantiPhy]], [[2512.10863\|MMSI-Video-Bench]], [[2511.21471\|SpatialBench]], [[2510.27606\|Spatial-SSRL]], [[2510.09606\|SpaceVista]], [[2508.13142\|EASI]], [[2508.02095\|VLM4D]], [[2505.23764\|MMSI-Bench]], [[2505.05456\|SITE]], [[2503.23765\|STI-Bench]], [[2503.19707\|VLM Spatial Reasoning Benchmark]], [[2410.17385\|COMFORT]], [[2406.14852\|SpatialEval]], [[2406.02537\|TopViewRS]], [[2205.00363\|VSR]]
 
 > [!star] Key Papers
 > - [[2505.17012\|SpatialScore]] — Comprehensive benchmark for spatial reasoning covering distances, directions, and layouts
