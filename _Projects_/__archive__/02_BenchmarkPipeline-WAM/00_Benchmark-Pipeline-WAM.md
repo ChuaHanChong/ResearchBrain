@@ -175,5 +175,5 @@ RoboArena is the peer-reviewed primary; RoboChallenge supplements with platform 
 - [[02_Dataset-Benchmark-Environment]] — master benchmark deep-dive
 - [[11_Sim-to-Real-Transfer]] — sim-real protocol deep-dive
 - [[04_WAM]] — WAM paradigms being benchmarked
-- [[Research-Directions-WAM]] — WAM research direction overview
-- [[Research-Directions-Embodied-AI]] — broader VLA / WAM research direction overview
+- [[WAM]] — WAM research direction overview
+- [[Embodied-AI]] — broader VLA / WAM research direction overview

@@ -32,7 +32,7 @@ General/ (topic overview, landscape, key papers)
 |---------|---------|
 | `/kh-sync` | Sync `_KnowledgeHub_/` + `General/` with `knowledge.py` — scrape, enrich, rescue chromedriver failures via cmux, curate, then refresh the concept graph via the **kh-graph-sync skill** |
 | `/deepdive-sync` | Sync `Embodied-AI/NN_*.md` deep dives with current KH state (embeds Deep-Dive Format spec) |
-| `/research-directions` | Generate or refresh a `Research-Directions-<Topic>.md` doc (embeds Format spec) |
+| `/research-directions` | Generate or refresh a research-direction doc under `_Projects_/Research-Directions/` (embeds Format spec) |
 
 ### Vault Structure
 
@@ -41,7 +41,7 @@ General/ (topic overview, landscape, key papers)
 | `_KnowledgeHub_/` | Individual paper notes (`{arxiv_ID}.md`) with structured summaries |
 | `General/` | Topic overview files grouping papers by theme with sub-topics, callouts, mermaid graphs |
 | `Embodied-AI/` | 11 deep dives covering VLAs, WAMs, JEPA/latent world models, self-evolving, physics-aware, VLA reasoning/CoT, egocentric pretraining, force-aware/tactile, sim-to-real, datasets/benchmarks |
-| `_Projects_/` | Research projects (`00_ResearchProposal/`, `01_FirstPublication/`, `02_BenchmarkPipeline-WAM/`) + top-level `Research-Directions-<Topic>.md` synthesis docs |
+| `_Projects_/` | Research projects (`00_ResearchProposal/`, `01_FirstPublication/`, `02_BenchmarkPipeline-WAM/`) + `Research-Directions/` synthesis docs (`Embodied-AI.md` umbrella + `Mechanism/` & `Capability/` axes) |
 | `data/papers/` | Local PDF files for papers (downloaded on demand with version suffix, e.g., `2602.15922v2.pdf`) |
 | `data/repo/` | Local code repositories for referenced papers (cloned on demand) |
 | `graphify-out/` | Graphify pilot artifacts: `graph.json`, `GRAPH_REPORT.md`, viz cache (gitignored except the report) |
@@ -75,8 +75,8 @@ The canonical format spec lives in `.claude/commands/deepdive-sync.md` (the sync
 
 Covered there: frontmatter (3 fields: title, tags, aliases), H2 spine (`[!abstract]` Overview → `## Evolution Graph` → `## Part A/B/C` → `## Quick-Reference Matrix` → `## Cross-References`), 6-layer per-section pattern (L1 framing prose → L2 `#### N.N` sub-sections → L3 bullet-per-paper → L4 Decision Matrix → L5 `[!star]` Key Papers → L6 `[!tip]` Strategic), per-section template (the heart) with Open Problems variant, anti-pattern table (A bold mini-headers / B paper-listings / C prose paragraphs / D unbolded wikilinks / E residual placeholders / F whole-file cross-links / G bracket-wrapped L4 / Seq sequence drift), connective-tissue conventions (filename, wikilink syntax, callouts, dates).
 
-## Research-Direction Document Format (`_Projects_/Research-Directions-*.md`)
+## Research-Direction Document Format (`_Projects_/Research-Directions/`)
 
 The canonical format spec lives in `.claude/commands/research-directions.md` (the doc-generation slash command), under its `## Format reference (canonical)` section. That file is the single source of truth — it embeds the format so the `/research-directions` workflow is self-contained.
 
-Covered there: frontmatter (3 fields: title, aliases, tags), H2 spine (`[!abstract]` Overview + `[!info]` Scope callouts → Methodology → Survey Landscape → Formal Framing → Cluster Overview → Cluster A/B/C → Cross-Cutting Themes (each as `[!tip]` callout) → Benchmark Gaps → Cross-References), per-direction card (4-row card → Why it matters → First-principles framing → Evidence → Concrete research questions → Related research papers → Benchmarks & metrics → `[!warning]` Risks), thesis sentence template (integrated taste + first-principles + novelty in one sentence), first-principles framing rubric (3-bullet litmus test: First principle / Assumption challenged / The bet), connective-tissue conventions (cluster letters, wikilink syntax, callouts).
+Covered there: frontmatter (3 fields: title, aliases, tags), H2 spine (`[!abstract]` Overview callout → Methodology → Survey Landscape → Formal Framing → Cluster Overview → Cluster A/B/C → Cross-Cutting Themes (each as `[!tip]` callout) → Benchmark Gaps → Cross-References), per-direction card (4-row card → Why it matters → First-principles framing → Evidence → Concrete research questions → Related research papers → Benchmarks & metrics → `[!warning]` Risks), thesis sentence template (integrated taste + first-principles + novelty in one sentence), first-principles framing rubric (3-bullet litmus test: First principle / Assumption challenged / The bet), connective-tissue conventions.

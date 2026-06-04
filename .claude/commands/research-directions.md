@@ -1,5 +1,5 @@
 ---
-description: Generate or refresh a Research-Directions-<Topic>.md doc. Self-contained — embeds the canonical format spec; engages the research-assistant agent's Hinton-as-mentor advisory mode for direction theses.
+description: Generate or refresh a research-direction doc under _Projects_/Research-Directions/. Self-contained — embeds the canonical format spec; engages the research-assistant agent's Hinton-as-mentor advisory mode for direction theses.
 ---
 
 # /research-directions
@@ -10,7 +10,7 @@ Topic / scope from the user: **$ARGUMENTS**
 
 Pass the agent these instructions:
 
-- **Task**: generate (or refresh) `_Projects_/Research-Directions-<Topic>.md` for the topic above.
+- **Task**: generate (or refresh) the research-direction doc for the topic above, under `_Projects_/Research-Directions/` (see Output filename below for axis routing).
 - **Format**: strictly follow the **Research-Direction Document Format** in the `## Format reference (canonical)` section at the end of this command. That's the single source of truth — do not improvise. (CLAUDE.md only points here; it carries no spec content of its own.)
 - **Source-of-truth rule**: paper aliases, contributions, anchor surveys, and benchmark numbers come from `_KnowledgeHub_/{ID}.md`. **Never invent.** If a benchmark number isn't in the cited paper's KH note, skip the metric — do not fabricate placeholder numbers in Thesis bets or Key targets rows.
 - **Persona**: engage **Hinton-as-mentor advisory mode** (per the agent's `## Persona — Hinton-as-mentor`) for direction theses. Apply integrated thinking — first-principles + research taste + novelty fire together. Direction ideas must be **novel**; if framing matches consensus, iterate.
@@ -37,12 +37,12 @@ The agent owns *deriving* clusters and directions from convergence patterns. The
 
 Derive scope:
 - **New** / **Plan**: from `$ARGUMENTS`.
-- **Update**: from the existing doc's frontmatter and Scope callout; apply any explicit overrides from `$ARGUMENTS`.
+- **Update**: from the existing doc's frontmatter and the scope content in `## Methodology`; apply any explicit overrides from `$ARGUMENTS`.
 - **Audit**: skips Phase 0 — runs Phase 7 only.
 
 Scope fields:
 - Topic + working title (`Promising Research Directions: <Title>`)
-- Output filename: `_Projects_/Research-Directions-<Topic>.md`
+- Output filename: `_Projects_/Research-Directions/<axis>/<Topic>.md` — `<axis>` is `Mechanism/` (embodiment-agnostic: data/training/eval substrates, world-action-model architecture, sim-to-real) or `Capability/` (a physical capability/embodiment: manipulation, locomotion, whole-body coordination). The cross-cutting umbrella lives at the folder root as `Embodied-AI.md`
 - Corpus filter: parse from `$ARGUMENTS` if explicit (e.g., "last 2 years", "post-2024"); otherwise no filter
 
 Direction count, cluster count, and cluster themes are **not pre-set** — they emerge from the topic's research landscape in Phases 1–3.
@@ -71,7 +71,7 @@ Use `Skill(skill="alphaxiv-search")` to read full content for all selected paper
 
 Output: paper list (minimum 15 papers; more if the topic is broad) with type tag (survey/benchmark) + sub-theme + 1-sentence note (verbatim open-problem statement for surveys; key metric + reported number for benchmarks).
 
-If fewer than 15 papers are available after 1a + 1b, proceed with what's available and note the limitation in the doc's Scope callout (e.g., "corpus limited to N papers due to topic specificity").
+If fewer than 15 papers are available after 1a + 1b, proceed with what's available and note the limitation in the doc's `## Methodology` scope content (e.g., "corpus limited to N papers due to topic specificity").
 
 ## Phase 2 — Convergence patterns
 
@@ -144,8 +144,7 @@ grep -E '^\| \*\*Thesis\*\* \|' "$DOC" | grep -vcE '[0-9]'
 
 # Spine section checks (each should be 1)
 grep -c '^> \[!abstract\] Overview' "$DOC"        # top-of-doc Overview callout
-grep -c '^> \[!info\] Scope' "$DOC"               # Scope callout
-grep -c '^## Methodology' "$DOC"                  # Methodology
+grep -c '^## Methodology' "$DOC"                  # Methodology (absorbs the scope: corpus / filter / exclusions)
 grep -cE '^## .*Survey Landscape' "$DOC"          # Survey Landscape (with or without domain prefix)
 grep -c '^## Formal Framing' "$DOC"               # Formal Framing
 grep -c '^## Cluster Overview' "$DOC"             # Cluster Overview
@@ -246,12 +245,12 @@ THESIS_NONUM=$(grep -E '^\| \*\*Thesis\*\* \|' "$DOC" | grep -vcE '[0-9]')
 
 # Spine compliance — each required spine item must appear exactly once
 SPINE_DRIFT=""
-for h in "^> \[!abstract\] Overview" "^> \[!info\] Scope" "^## Methodology" "^## .*Survey Landscape" "^## Formal Framing" "^## Cluster Overview" "^## Cross-References" "^> \[!tip\] Convergence patterns"; do
+for h in "^> \[!abstract\] Overview" "^## Methodology" "^## .*Survey Landscape" "^## Formal Framing" "^## Cluster Overview" "^## Cross-References" "^> \[!tip\] Convergence patterns"; do
   n=$(grep -cE "$h" "$DOC")
   [ "$n" -eq 1 ] || SPINE_DRIFT="$SPINE_DRIFT|  ✗ spine '$h' count=$n (expected 1)"
 done
 if [ -z "$SPINE_DRIFT" ]; then
-  echo "✓ Spine compliance: all 8 required items present (7 H2 sections + Convergence callout)"
+  echo "✓ Spine compliance: all 7 required items present (5 H2 sections + Overview + Convergence callouts)"
 else
   echo "✗ Spine drift:"
   echo "$SPINE_DRIFT" | tr '|' '\n'
@@ -265,13 +264,13 @@ Invoke `Skill(skill="superpowers:verification-before-completion")` for the evide
 
 ## Exemplars
 
-Defer to these for style after the Format reference: `_Projects_/Research-Directions-WAM.md` (3+3+2 cluster split, dedicated `## Formal Framing` section, definitional block-quotes in Formal Framing), `_Projects_/Research-Directions-Embodied-AI.md` (2+3+3 cluster split, concrete cross-direction synergy in Cluster Overview table). Use them for direction-card prose style and synergy-table density; defer to the Format reference (canonical) below for callout structure and the current spec.
+Defer to these for style after the Format reference: `_Projects_/Research-Directions/Mechanism/WAM.md` (3+3+2 cluster split, dedicated `## Formal Framing` section, definitional block-quotes in Formal Framing), `_Projects_/Research-Directions/Embodied-AI.md` (mechanism-umbrella split, concrete cross-direction synergy in Cluster Overview table). Use them for direction-card prose style and synergy-table density; defer to the Format reference (canonical) below for callout structure and the current spec.
 
 ---
 
 ## Format reference (canonical)
 
-The canonical **Research-Direction Document Format** for `_Projects_/Research-Directions-*.md` docs. Strictly follow this spec.
+The canonical **Research-Direction Document Format** for `_Projects_/Research-Directions/**/*.md` docs. Strictly follow this spec.
 
 ### Frontmatter (3 fields, mandatory)
 
@@ -294,15 +293,14 @@ tags:
 
 1. `# <Title>` — H1 matches frontmatter `title`
 2. `> [!abstract] Overview` callout — 2–4 sentence executive summary: how many directions, how many clusters, what corpus, what each direction surfaces (first-principles framing + non-consensus bet)
-3. `> [!info] Scope` callout — detailed scope: corpus filter, exclusion criteria, methodology one-liner
-4. `## Methodology` — bullets covering: Survey enumeration / Deep-dive mining / Filter / First-principles framing practice (add more bullets if the methodology warrants — these four are the minimum content)
-5. `## <Domain> Survey Landscape` — 3-col table: `Survey | Sub-theme | Key open problems`, followed by `> [!tip] Convergence patterns` callout (at least 3 patterns, each enumerating ≥3 surveys; more if the corpus is broad)
-6. `## Formal Framing` — math + tables defining central objects; block-quotes allowed here for *definitional* survey quotes only
-7. `## Cluster Overview` — 4-col synergy table: `Cluster | Directions | Shared bottleneck | Cross-direction synergy`
-8. `## Cluster A — <Theme>` (then B, C, …) — each opens with italicized 1-line framing, contains the per-direction cards
-9. `## Cross-Cutting Themes` — at least 3 `> [!tip] <Insight Title>` callouts synthesizing across directions; each callout body references **≥2 directions** by label (otherwise it isn't cross-cutting), e.g., "A1, B2, C1 all rely on…". The callout title names the insight (e.g., "The Sim-to-Real Bottleneck Is Now Differentiable")
-10. `## Benchmark Gaps` — 3-col table: `Gap | Direction | Existing closest` (1 row per direction)
-11. `## Cross-References` — relative-path wikilinks to deep-dives, `General/`, KH
+3. `## Methodology` — opens with the **scope** (corpus, filter, exclusion criteria, methodology one-liner — the content the former `[!info] Scope` callout held), then bullets covering: Survey enumeration / Deep-dive mining / Filter / First-principles framing practice (add more bullets if the methodology warrants — these four are the minimum content). There is **no separate Scope callout** — scope lives here.
+4. `## <Domain> Survey Landscape` — 3-col table: `Survey | Sub-theme | Key open problems`, **rows grouped/sorted by sub-theme** (cluster-A sub-themes first, then B, then C, …), followed by `> [!tip] Convergence patterns` callout (at least 3 patterns, each enumerating ≥3 surveys; more if the corpus is broad)
+5. `## Formal Framing` — math + tables defining central objects; block-quotes allowed here for *definitional* survey quotes only
+6. `## Cluster Overview` — 4-col synergy table: `Cluster | Directions | Shared bottleneck | Cross-direction synergy`
+7. `## Cluster A — <Theme>` (then B, C, …) — each opens with italicized 1-line framing, contains the per-direction cards
+8. `## Cross-Cutting Themes` — at least 3 `> [!tip] <Insight Title>` callouts synthesizing across directions; each callout body references **≥2 directions** by label (otherwise it isn't cross-cutting), e.g., "A1, B2, C1 all rely on…". The callout title names the insight (e.g., "The Sim-to-Real Bottleneck Is Now Differentiable")
+9. `## Benchmark Gaps` — 3-col table: `Gap | Direction | Existing closest` (1 row per direction)
+10. `## Cross-References` — relative-path wikilinks to deep-dives, `General/`, KH, and sibling `Research-Directions/` docs (linked by basename, e.g. `[[WAM]]`, `[[Embodied-AI]]`)
 
 ### Per-direction card (the heart)
 
@@ -393,9 +391,11 @@ Patterns A–J should reach their canonical form before the Phase 7 verdict.
 | **Cluster letters** | `A / B / C / …` (Latin); never Roman numerals |
 | **Wikilink syntax in tables** | Pipe-escape: `[[id\|alias]]` |
 | **Wikilink syntax in prose** | Plain pipe: `[[id|alias]]` |
-| **Cross-doc refs** | Relative-path: `[[../Embodied-AI/NN_File]]`, `[[../General/NN_File]]` |
+| **Paper display text** | The `alias` in `[[id\|alias]]` must be the **exact KH-canonical alias** from `_KnowledgeHub_/{id}.md` — never a paraphrase, variant, or task-name that differs from the note's alias |
+| **Cross-doc refs (deep-dive / General / sibling docs)** | Relative-path with the **exact note name as display text**: `[[../Embodied-AI/NN_File\|NN_File]]`, `[[../General/NN_File\|NN_File]]`. Sibling research-direction docs link by **basename** (they live in `_Projects_/Research-Directions/`): `[[WAM\|WAM]]`, `[[Manipulation\|Manipulation]]`, `[[Embodied-AI\|Embodied-AI]]`. Never an abbreviation (`General/08`) and never a bare path link that renders the `../` prefix |
+| **Section-anchored cross-refs** | When the reference is to a *specific section* of a deep-dive / General file, anchor the link to that section instead of writing `§N` as plain text outside it: `[[../Embodied-AI/NN_File#N. Section Title\|NN_File §N]]` (use the target's exact `### N. Section Title` heading). For a multi-section reference, anchor each: `[[../File#4. A\|§4]]/[[../File#5. B\|§5]]` |
 | **Math in prose** | Inline `$...$` or block `$$...$$` |
 | **Block-quotes** | Reserved for *definitional* survey quotes in `## Formal Framing` only; no per-direction evidence quotes |
-| **Callouts used** | `[!abstract]` (top-of-doc Overview), `[!info]` (Scope), `[!tip]` (Convergence patterns + each Cross-Cutting Theme with a titled insight), `[!warning]` (per-direction Risks). First-principles framing uses a bolded `**First-principles framing.**` label. |
+| **Callouts used** | `[!abstract]` (top-of-doc Overview), `[!tip]` (Convergence patterns + each Cross-Cutting Theme with a titled insight), `[!warning]` (per-direction Risks). Scope lives inside `## Methodology` (no separate `[!info]` Scope callout). First-principles framing uses a bolded `**First-principles framing.**` label. |
 | **Dates in prose** | Avoid explicit dates; the frontmatter has no `created` / `modified` fields either |
 | **No cross-refs to `_Projects_/01_FirstPublication/`** | These docs are independent-study artifacts |
