@@ -39,10 +39,10 @@ Each `Capability/` doc carries this callout in its own Cross-References section.
 
 | Doc | Axis | Directions | Clusters |
 |---|---|---|---|
-| [[Embodied-AI]] | umbrella | 11 | 4 |
+| [[Embodied-AI]] | umbrella | 9 | 3 |
 | [[WAM]] | Mechanism | 5 | 2 |
 | [[Spatial-4D]] | Mechanism | 10 | 4 |
-| [[Sim2Real]] | Mechanism | 16 | 5 |
-| [[Manipulation]] | Capability | 13 | 4 |
+| [[Sim2Real]] | Mechanism | 15 | 5 |
+| [[Manipulation]] | Capability | 14 | 5 |
 | [[Locomotion]] | Capability | 8 | 2 |
 | [[Whole-Body]] | Capability | 12 | 4 |

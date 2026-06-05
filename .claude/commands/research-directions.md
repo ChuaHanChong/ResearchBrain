@@ -297,7 +297,7 @@ tags:
 4. `## <Domain> Survey Landscape` — 3-col table: `Survey | Sub-theme | Key open problems`, **rows grouped/sorted by sub-theme** (cluster-A sub-themes first, then B, then C, …), followed by `> [!tip] Convergence patterns` callout (at least 3 patterns, each enumerating ≥3 surveys; more if the corpus is broad)
 5. `## Formal Framing` — math + tables defining central objects; block-quotes allowed here for *definitional* survey quotes only
 6. `## Cluster Overview` — 4-col synergy table: `Cluster | Directions | Shared bottleneck | Cross-direction synergy`
-7. `## Cluster A — <Theme>` (then B, C, …) — each opens with italicized 1-line framing, contains the per-direction cards
+7. `## Cluster A — <Theme>` (then B, C, …) — each opens with an italicized **1–2 sentence theme framing only** (what the cluster is about); no per-direction enumeration (that's the cards' job), no leadership/synergy prose (that's the `## Cluster Overview` table's job), no cross-doc deltas. Then the per-direction cards.
 8. `## Cross-Cutting Themes` — at least 3 `> [!tip] <Insight Title>` callouts synthesizing across directions; each callout body references **≥2 directions** by label (otherwise it isn't cross-cutting), e.g., "A1, B2, C1 all rely on…". The callout title names the insight (e.g., "The Sim-to-Real Bottleneck Is Now Differentiable")
 9. `## Benchmark Gaps` — 3-col table: `Gap | Direction | Existing closest` (1 row per direction)
 10. `## Cross-References` — relative-path wikilinks to deep-dives, `General/`, KH, and sibling `Research-Directions/` docs (linked by basename, e.g. `[[WAM]]`, `[[Embodied-AI]]`)
@@ -345,11 +345,11 @@ Each direction is an H3 `### A1 — <Title>` followed by the structure below. **
 > - (at least 3 risk bullets)
 ```
 
-**Thesis sentence template.** The Thesis row's "1 sentence" must follow the integrated form below — one sentence packing taste + first-principles + novelty into a single thought:
+**Thesis sentence template.** The Thesis row states four things — the taste-attracting problem, the first principle, the assumption it challenges, and the measurable bet — written as **2–3 short, plain sentences** (not one dense run-on). Plain form:
 
-> *"[Taste-attracting problem] has the irreducible truth that [first principle], which breaks the field's assumption that [conventional wisdom], and I bet that [measurable falsifiable prediction]."*
+> *"[Problem, in plain terms — the first principle can lead here]. The field assumes [conventional wisdom]. The bet: [measurable falsifiable prediction with a specific number]."*
 
-Filling all four blanks with substance *is* the integrated thinking. Iterate until each blank — particularly the bet with measurable numbers — fills substantively.
+Keep all four components, but **write for clarity**: short sentences, plain words, no nested *"has the irreducible truth that … which breaks the assumption that … and I bet that …"* run-on. Iterate until the bet carries a specific number.
 
 ### First-principles framing rubric (litmus test)
 
@@ -398,4 +398,7 @@ Patterns A–J should reach their canonical form before the Phase 7 verdict.
 | **Block-quotes** | Reserved for *definitional* survey quotes in `## Formal Framing` only; no per-direction evidence quotes |
 | **Callouts used** | `[!abstract]` (top-of-doc Overview), `[!tip]` (Convergence patterns + each Cross-Cutting Theme with a titled insight), `[!warning]` (per-direction Risks). Scope lives inside `## Methodology` (no separate `[!info]` Scope callout). First-principles framing uses a bolded `**First-principles framing.**` label. |
 | **Dates in prose** | Avoid explicit dates; the frontmatter has no `created` / `modified` fields either |
+| **Plain wording** | Write for clarity — short sentences, plain words, minimal nested clauses and jargon; prefer 2–3 short sentences over one dense run-on. Applies to the Thesis, Why-it-matters, First-principles framing, and all prose |
+| **Cluster intros = theme only** | The italic line under each `## Cluster X —` states the cluster's theme in 1–2 sentences; it does NOT enumerate the directions, assign leadership, or restate a card's cross-doc delta — those live in the `## Cluster Overview` table and the per-direction cards |
+| **Current-state only** | Docs describe the current state, not their edit history — no "X used to live here / moved to Y / former / relocated" stubs after content moves; keep forward cross-references (sibling-doc pointers describing the present relationship) |
 | **No cross-refs to `_Projects_/01_FirstPublication/`** | These docs are independent-study artifacts |
