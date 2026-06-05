@@ -134,7 +134,7 @@ Pick the slot in the stack that carries the physics signal — features, loss, o
 The layer that gets constrained — appearance pixels, dynamics rollouts, or reward signal.
 
 - **[[2311.12198|PhysGaussian]]** — Appearance: pixels respect ==material properties== (elasticity, plasticity); high render cost, pixel-level fidelity.
-- **[[2501.18982|OmniPhysGS]]** — Appearance: each Gaussian carries a ==learnable neural constitutive model== drawn from a 12-expert physics ensemble (hyperelastic / plastic / viscoelastic / fluid); ==custom PyTorch differentiable MPM + Score Distillation Sampling== from T2V; **+3–16%** CLIPSIM over baselines and **−75%** training memory vs Warp-based MPM.
+- **[[2501.18982|OmniPhysGS]]** — Appearance: each Gaussian carries a ==learnable neural constitutive model==; ==custom PyTorch differentiable MPM + Score Distillation Sampling== from T2V; **+3–16%** CLIPSIM over baselines and **−75%** training memory vs Warp-based MPM.
 - **[[2509.21309|NewtonGen]]** — Dynamics: next-frame prediction obeys ==conservation laws==; mid cost, better visual physics than implicit-loss baselines.
 - **[[2503.09595|PISA]]** — Dynamics: ==Physics Supervised Fine-Tuning (PSFT) + Object Reward Optimization (ORO)== over the PISA benchmark of real + simulated freefall videos; ORO uses ==segmentation + optical flow + depth== reward signals; reduces Open-Sora trajectory errors substantially on a small simulated dataset.
 - **[[2509.20570|PIRF]]** — Reward: ==RL reward = physics consistency score==; low cost, trains generation through RL rather than direct pixel/state loss.
@@ -147,7 +147,7 @@ The timing of the intervention — at sampling, training, or inference rejection
 - **[[2406.04338|Physics3D]]** — Generation: each ==denoising step is constrained== by physics; learns physical properties of Gaussians from video diffusion supervision.
 - **[[2603.26285|PhysVid]]** — Generation: physics-aware ==local conditioning== — per-region physical priors carried as conditioning signal during sampling.
 - **[[2509.20570|PIRF]]** — Training: ==PDE-residual reward== back-propagated through the full denoising trajectory with ==layer-wise truncation== on high-resolution U-Net layers; the canonical training-time intervention with **zero** test-time reward queries on **4/5** PDE benchmarks.
-- **[[2510.13809|PhysMaster]]** — Training: ==PhysEncoder== (DINOv2 + trainable physical head) extracts implicit physics representation, refined via ==three-stage DPO== over I2V diffusion; **70×** faster than prior physics-aware methods at competitive L2 / Chamfer / IoU on free-fall and significantly preferred by human raters on open-world scenarios.
+- **[[2510.13809|PhysMaster]]** — Training: ==PhysEncoder== refined via ==three-stage DPO== over I2V diffusion; **70×** faster than prior physics-aware methods at competitive L2 / Chamfer / IoU on free-fall, and preferred by human raters on open-world scenarios.
 - **[[2512.00425|NewtonRewards]]** — Training: ==Newton-kinematic + mass-conservation== verifiable rewards (using optical-flow + frozen-feature proxies) as RL signal during post-training; **+9.75%** in-distribution / **+8.60%** OOD across 5 motion primitives on NewtonBench-60K.
 - **[[2603.23376|ABot-PhysWorld]]** — Inference: ==Diffusion-DPO== with physics-rejected negatives; trains the model to suppress object-penetration and anti-gravity outputs at sample time.
 
@@ -191,7 +191,7 @@ Gaussians are differentiable, particle-like, and already compatible with renderi
 
 Generating *simulator-ready* 3D assets with physics metadata, rather than rendering physics-consistent scenes. The output isn't a video — it's a kinematic + material-tagged 3D mesh you drop into MuJoCo or a game engine.
 
-- **[[2605.05163|PhysForge]]** — Decoupled two-stage framework: Stage 1 a VLM performs ==abstract physical planning== (decomposes an object into parts, predicts joint types + physical properties); Stage 2 a diffusion model with ==Kinematic Voxel Injection (KVI)== realizes geometry + continuous kinematic parameters from the VLM's plan. Trained on PhysDB (150,000 3D objects, four-tier hierarchical physical annotation: holistic / static / functional / interactive). Assets are **simulation-ready** — directly usable in robotic simulators; **0.101** Joint-Axis-Err-5 (SOTA).
+- **[[2605.05163|PhysForge]]** — Decoupled two-stage: Stage 1 a VLM performs ==abstract physical planning==; Stage 2 a diffusion model with ==Kinematic Voxel Injection (KVI)== realizes geometry + continuous kinematic parameters. Assets are **simulation-ready** — directly usable in robotic simulators; **0.101** Joint-Axis-Err-5 (SOTA).
 
 **Implicit Physics — Decision Matrix**
 
@@ -239,6 +239,7 @@ Use a physics simulator as the reward signal, then train the generator with RL. 
 
 Constrain *during* sampling rather than during training. Useful when you can't retrain the base model and need to inject physics at deployment.
 
+- **[[2606.02432|NDPP-Grasp]]** — Injects ==non-differentiable physical-plausibility guidance== into ==diffusion== denoising at inference via a ==gradient-free optimal control law== + amortized lookahead; consistently raises success rate + cuts penetration depth while dropping per-grasp inference from **395.8 ms → 17.7 ms** on DexTOG-80K.
 - **[[2603.13770|PhysAlign]]** — Aligns the diffusion model's intermediate ==features and 3D representation== with physics targets, ensuring physics-coherent image-to-video generation. Geometric constraint at the latent level.
 - **[[2603.26285|PhysVid]]** — Physics-aware ==local conditioning== — local regions of a generative video carry per-region physical priors; trades global enforcement for spatial precision.
 - **[[2603.23376|ABot-PhysWorld]]** — ==Diffusion-DPO== with physics-rejected negatives; trains the diffusion model to suppress object-penetration and anti-gravity outputs at inference time.
@@ -282,7 +283,7 @@ Reconstruct or learn the physics substrate; train policies against it. The simul
 
 Use the simulator as the *inner loop* of a bilevel optimization, with retargeting / policy parameters learned in the outer loop. Physics consistency comes for free because retargeting happens inside the simulator.
 
-- **[[2605.06593|ReActor]]** — ==Bilevel optimization== where the upper level learns retargeting parameters and the lower level trains a motion-tracking policy via RL inside a physics simulator. ==Simplified gradient estimator== avoids the implicit-function-theorem cost typical of bilevel-RL. Because retargeting happens *inside* the simulator, produced motions inherit physics consistency for free — zero ground/self-penetration, near-zero foot sliding — and the cleaned data lifts downstream RL success by up to **+15.22 pp**.
+- **[[2605.06593|ReActor]]** — ==Bilevel optimization==: the upper level learns retargeting parameters, the lower level trains a motion-tracking policy via RL inside a physics simulator. ==Simplified gradient estimator== avoids the implicit-function-theorem cost typical of bilevel-RL. Retargeting *inside* the simulator inherits physics consistency for free — **zero** ground/self-penetration, near-zero foot sliding — and the cleaned data lifts downstream RL success by **+15.22 pp**.
 
 **External Simulator — Decision Matrix**
 
@@ -340,7 +341,7 @@ Benchmarks that test whether generated video obeys physics across a diverse set 
 - **[[2410.05363|PhyGenBench]]** — Physical commonsense across diverse scenes; best frontier T2V scores **0.51/3.0** PCA — far below human. First benchmark to systematically expose the visual-quality vs physics-correctness gap.
 - **[[2503.06800|VideoPhy-2]]** — ==Action-centric physical reasoning==; best closed models reach only **32.6%** joint score (**22%** on the hard subset). Bridges video generation and embodied AI evaluation.
 - **[[2501.09038|Physics-IQ]]** — DeepMind real-world 396-video / 66-scenario benchmark across solid mechanics / fluids / optics / thermodynamics / magnetism with 4 specialized physics metrics; best model VideoPoet hits only **29.5%**, Sora-i2v **10.0%**; ==no significant correlation== between visual realism (MLLM 55.6%) and physics understanding (Pearson r = **−0.46**, p = **0.249**) — visual fluency does not imply physics knowledge.
-- **[[2602.21015|CHAIN]]** — ==Interactive 3D physics-driven benchmark== (**109 levels**: interlocking mechanical puzzles + 3D stacking/packing in ==Unity== / Python); evaluates the *agent in closed loop* rather than generated video alone. Best VLM (GPT-5.2) hits only **22.9%** Pass@1; puzzles near-zero at "easy". Also probes ==video-WM models as agents== — finds catastrophic physics failures (representational collapse, object-permanence loss). Cross-listed in [[02_Dataset-Benchmark-Environment#9.4 Interactive Embodied Spatial Reasoning Benchmarks]].
+- **[[2602.21015|CHAIN]]** — ==Interactive 3D physics-driven benchmark== (**109 levels**: interlocking mechanical puzzles + 3D stacking/packing in ==Unity== / Python); evaluates the *agent in closed loop* rather than generated video alone. Best VLM (GPT-5.2) hits only **22.9%** Pass@1; puzzles near-zero at "easy". Also probes ==video-WM models as agents==. Cross-listed in [[02_Dataset-Benchmark-Environment#9.4 Interactive Embodied Spatial Reasoning Benchmarks]].
 - **[[2406.03520|VideoPhy]]** — Original predecessor to VideoPhy-2 with **688** ==human-verified captions== covering ==solid-solid==, ==solid-fluid==, and ==fluid-fluid== interactions, each annotated for simulation difficulty by physics experts; established the benchmark axis on which all subsequent T2V-physics work positions itself.
 - **[[2506.09849|IntPhys 2]]** — Successor to IntPhys via ==Unreal Engine== photorealistic environments and the ==violation-of-expectation paradigm== across **4** core principles (==Object Permanence==, ==Immutability==, ==Spatio-Temporal Continuity==, ==Solidity==); diagnostic for whether video models internalize core physical knowledge under diverse camera perspectives.
 - **[[2501.16411|PhysBench]]** — ==Interleaved video-image-text== benchmark with **10,002** entries across **4 dimensions** / **19 sub-tasks** evaluating **75** VLMs; best model (GPT-4o) reaches only **49.49%** vs human, **~40%** avg across all VLMs. The ==PhysAgent== enhancement protocol lifts GPT-4o **+18.4%** overall (**+49.5%** on Scene category) — the de-facto VLM-physics probe.
