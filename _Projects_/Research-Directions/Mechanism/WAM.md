@@ -22,7 +22,7 @@ tags:
 **Scope.** Corpus: 35 pure-WAM + adjacent surveys and ~70 WAM-method/benchmark papers from `_KnowledgeHub_/`, cross-checked against [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] and ten `Embodied-AI/` deep-dives. The method is survey-grounded ideation: surveys name open problems, benchmarks fix what is measurable, frontier methods fix what is achievable now. **De-duplication**: five directions the umbrella [[Embodied-AI|Embodied-AI]] already covers (B1, B3, C1, C3, D2 there) were removed — see Cross-References.
 
 - **Survey enumeration**: tag-scan over `survey` × {`world-model`, `VLA`, `embodied-AI`, `robotics`, `physics-aware`, `sim-to-real`} for each survey's named open problems.
-- **Deep-dive mining**: full reads of [[04_WAM|04_WAM]], [[05_Latent-World-Models|05_Latent-World-Models]], [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]], [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]], [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]]; 3+-way convergence seeded A1 (hybrid substrate), A2 (tactile), B1 (contact).
+- **Deep-dive mining**: full reads of [[07_WAM|07_WAM]], [[08_Latent-World-Models|08_Latent-World-Models]], [[13_Self-Evolving-VLA-WAM|13_Self-Evolving-VLA-WAM]], [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]], [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]]; 3+-way convergence seeded A1 (hybrid substrate), A2 (tactile), B1 (contact).
 - **Closest-baseline anchoring**: each bet is pinned to the strongest paper it must beat — [[2604.16484|DexWorldModel]], [[2605.20752|GaussianDream]], [[2604.01985|WAV]], [[2504.16680|RWM-U]] set the bar for A1, B3.
 - **Filter**: kept directions with 3–10 attacking papers but no consensus solution; dropped saturated (more-compute) and premature (hypothetical-AGI) framings; prioritized intersections (tactile×WAM, contact×WAM, physics×WAM).
 - **First-principles framing**: each direction states the problem's irreducible structure, the assumption it challenges, and the non-consensus bet.
@@ -136,7 +136,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 | **Anchor surveys** | [[2510.16732\|World Models for Embodied AI Survey]], [[2511.02097\|WM Manipulation Survey]], [[2604.02029\|Latent Space Survey]] |
 | **Key targets** | Latent ~10 ms vs pixel ~150 ms inference; match [[2605.20752\|GaussianDream]]'s 98.4% [[2306.03310\|LIBERO]] / 34.4→50% real at lower deploy cost; [[2510.13626\|LIBERO-Plus]] OOD retention from dense co-training |
 
-**Why it matters.** [[2510.16732|World Models for Embodied AI Survey]] tracks a trend from latent vectors → token sequences → explicit 3D rendering. Hybrids span multiple axis points and stay under-explored; single-paradigm WAMs hit the latency-vs-robustness or speed-vs-interpretability trade-off. [[04_WAM#6. Efficient & Action-Centered WAMs|04_WAM §6]] finds VideoGen 4.8× slower but most robust, latent fast but opaque. Two existence proofs show the hybrid recipe works. [[2605.20752|GaussianDream]] supervises a renderable 3D-Gaussian future at train time, then *drops the auxiliary heads at inference* (34.4→50% real, 531 ms/chunk). [[2604.16484|DexWorldModel]] uses semantic [DINOv3](https://arxiv.org/abs/2508.10104) latents as targets to separate interaction from visual noise (94% [[2504.13059|RoboTwin]], zero-shot sim-to-real). Both confirm: train on dense signal, deploy on a cheap representation.
+**Why it matters.** [[2510.16732|World Models for Embodied AI Survey]] tracks a trend from latent vectors → token sequences → explicit 3D rendering. Hybrids span multiple axis points and stay under-explored; single-paradigm WAMs hit the latency-vs-robustness or speed-vs-interpretability trade-off. [[07_WAM#6. Efficient & Action-Centered WAMs|07_WAM §6]] finds VideoGen 4.8× slower but most robust, latent fast but opaque. Two existence proofs show the hybrid recipe works. [[2605.20752|GaussianDream]] supervises a renderable 3D-Gaussian future at train time, then *drops the auxiliary heads at inference* (34.4→50% real, 531 ms/chunk). [[2604.16484|DexWorldModel]] uses semantic [DINOv3](https://arxiv.org/abs/2508.10104) latents as targets to separate interaction from visual noise (94% [[2504.13059|RoboTwin]], zero-shot sim-to-real). Both confirm: train on dense signal, deploy on a cheap representation.
 
 **First-principles framing.**
 - **First principle**: Training density and inference density are independent — nothing requires them to match. A model can absorb pixel-/3DGS-density signal at training and emit latent-density signal at deployment, the way humans rehearse with full sensory detail but act on compressed predictions.
@@ -148,7 +148,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 - [[2605.20752|GaussianDream]]: dense 3D-Gaussian supervision at train, heads discarded at inference; 98.4% [[2306.03310|LIBERO]], 34.4→50% real, 531 ms/chunk — the canonical train-dense/deploy-light hybrid.
 - [[2604.16484|DexWorldModel]]: [DINOv3](https://arxiv.org/abs/2508.10104) semantic latents as targets separate interaction from visual noise; 94% [[2504.13059|RoboTwin]]; semantic-latent half of the axis.
 - [[2605.06388|Semantic-LDM-WM]]: semantic-aligned latents beat reconstruction VAEs by +9.8 pp closed-loop and +13.6 pp OOD — encoding quality matters more than the latent-vs-pixel split.
-- [[05_Latent-World-Models#6. Open Problems|05_Latent-World-Models §6]] names interpretability + latent-pixel alignment as 2 of 4 open problems.
+- [[08_Latent-World-Models#6. Open Problems|08_Latent-World-Models §6]] names interpretability + latent-pixel alignment as 2 of 4 open problems.
 
 **Concrete research questions.**
 1. **Q1 — Hybrid training, single-branch deployment.** Extend [[2603.16666|Fast-WAM]] / [[2605.20752|GaussianDream]]: joint pixel/3DGS + latent objectives at train, latent-only at deploy (~10 ms vs ~150 ms). Measure OOD retention from dense co-training.
@@ -246,7 +246,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 | **Anchor surveys** | [[2604.04974\|Video-to-Control Survey]], [[2510.04978\|Physical AI Survey]], [[2511.02097\|WM Manipulation Survey]] |
 | **Key targets** | [AutoMate](https://arxiv.org/abs/2407.08028) beyond 90.5% with contact-aware imagination; sub-millimeter assembly; beat [[2602.23253\|SPARR]]'s +74.5% relative SR improvement on unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) transfer |
 
-**Why it matters.** Latent WAMs handle trajectories well but fail at insertion/assembly, because contact physics is locally non-smooth (make/break, slip, normal-force singularities). Three deep-dives converge ([[05_Latent-World-Models#6. Open Problems|05_Latent-World-Models §6]], [[07_Physics-Aware-Embodied-AI#8. Open Problems|07_Physics-Aware-Embodied-AI §8]], [[11_Sim-to-Real-Transfer#7. Open Problems|11_Sim-to-Real-Transfer §7]]): latent WAMs miss sub-millimeter contact, verifiable physics scales poorly to clutter, learned sims blur on contact. [[2604.16484|DexWorldModel]]'s causal latent ([DINOv3](https://arxiv.org/abs/2508.10104) semantic targets that separate interaction from appearance) is the closest substrate, but its contact transitions stay continuous.
+**Why it matters.** Latent WAMs handle trajectories well but fail at insertion/assembly, because contact physics is locally non-smooth (make/break, slip, normal-force singularities). Three deep-dives converge ([[08_Latent-World-Models#6. Open Problems|08_Latent-World-Models §6]], [[11_Physics-Aware-Embodied-AI#8. Open Problems|11_Physics-Aware-Embodied-AI §8]], [[14_Sim-to-Real-Transfer#7. Open Problems|14_Sim-to-Real-Transfer §7]]): latent WAMs miss sub-millimeter contact, verifiable physics scales poorly to clutter, learned sims blur on contact. [[2604.16484|DexWorldModel]]'s causal latent ([DINOv3](https://arxiv.org/abs/2508.10104) semantic targets that separate interaction from appearance) is the closest substrate, but its contact transitions stay continuous.
 
 **First-principles framing.**
 - **First principle**: Contact physics is locally *discontinuous* — friction-cone boundaries, normal-force singularities, slip-stick transitions are all discrete state changes. A smooth continuous latent cannot represent these without internal discretization; the discreteness is in the physics, not a modeling choice.
@@ -254,7 +254,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 - **The bet**: A *discrete* contact-mode latent $c_t \in \{\text{no-contact, making, in-contact, breaking, slipping}\}$ with mode-conditional continuous dynamics achieves >90.5% [AutoMate](https://arxiv.org/abs/2407.08028) (the policy-side WAM-naive ceiling) and sub-millimeter assembly that pure-continuous WAMs cannot reach at any scale.
 
 **Evidence.**
-- "Learned sims blur on contact: [[2310.06114|UniSim]] and [[2501.03575|Cosmos]] produce stunning visuals but physical contact regions (collisions, friction transients) look implausible to robots." — [[11_Sim-to-Real-Transfer#7. Open Problems|11_Sim-to-Real-Transfer §7]]
+- "Learned sims blur on contact: [[2310.06114|UniSim]] and [[2501.03575|Cosmos]] produce stunning visuals but physical contact regions (collisions, friction transients) look implausible to robots." — [[14_Sim-to-Real-Transfer#7. Open Problems|14_Sim-to-Real-Transfer §7]]
 - Closest substrates: [[2604.16484|DexWorldModel]] (causal latent, [DINOv3](https://arxiv.org/abs/2508.10104) targets, 94% [[2504.13059|RoboTwin]]; continuous contact); [[2503.17973|PhysTwin]] (deformable digital twin; no discrete events); [[2511.07416|PhysWorld]] (continuous physical WM; 82% real SR); [[2604.27367|DOT-Sim]] (differentiable optical tactile; contact ground truth but no WAM consumer).
 - Pattern: [[2602.23253|SPARR]] 95–100% [AutoMate](https://arxiv.org/abs/2407.08028); [[2603.15956|ExpertGen]] 90.5% [AutoMate](https://arxiv.org/abs/2407.08028). All policy-side improvements; contact events as first-class WAM latent has not been explored.
 
@@ -431,11 +431,11 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 
 ## Cross-References
 
-- [[04_WAM|04_WAM]] — WAM taxonomy (VideoGen / latent / Dreamer / VLM-integrated / efficient / self-evolving)
-- [[05_Latent-World-Models|05_Latent-World-Models]] — JEPA + alternative latent models; latent reasoning
-- [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]] — Failure detection, diagnosis, recovery; self-evolution mechanisms
-- [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — Physics-aware design space; physics commonsense benchmarks
-- [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] — Sim-to-real strategies; learned simulators; reality-gap diagnostics
+- [[07_WAM|07_WAM]] — WAM taxonomy (VideoGen / latent / Dreamer / VLM-integrated / efficient / self-evolving)
+- [[08_Latent-World-Models|08_Latent-World-Models]] — JEPA + alternative latent models; latent reasoning
+- [[13_Self-Evolving-VLA-WAM|13_Self-Evolving-VLA-WAM]] — Failure detection, diagnosis, recovery; self-evolution mechanisms
+- [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]] — Physics-aware design space; physics commonsense benchmarks
+- [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]] — Sim-to-real strategies; learned simulators; reality-gap diagnostics
 - [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey index
 - [[Embodied-AI|Embodied-AI]] — Umbrella directions. Joint WAM–policy co-evolution, physics-consistency verification, joint causal-consistency evaluation, real-time deployment, and cross-embodiment transfer live there (B1, B3, C1, C3, D2) — omitted here to avoid duplication.
 - [[Spatial-4D|Spatial-4D]] — Sibling doc on the model-agnostic 3D/4D representation — occupancy & 4D world models, geometric memory ([[2604.26694|X-WAM]], [[2603.17117|MosaicMem]]).

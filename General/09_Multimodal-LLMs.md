@@ -156,7 +156,7 @@ The first generation of models that connected visual encoders to large language 
 The maturation of MLLMs through systematic instruction tuning, scaling to production quality, and comparative studies of different LLM backbones and training recipes.
 
 **Flagship Instruction-Tuned Models** — Full-scale MLLMs trained with instruction-following data across diverse vision-language tasks.
-- [[2603.25040|Intern-S1-Pro]], [[2511.00108|Pelican-VL 1.0]], [[2508.11737|Ovis2.5]], [[2508.01558|EvoVLMA]], [[2507.22448|Falcon-H1]], [[2507.12507|Nemotron]], [[2507.02029|RoboBrain 2.0]], [[2507.01006|GLM-4.5V]], [[2506.03569|MiMo-VL]], [[2505.18842|v1]], [[2505.07062|Seed1.5-VL]], [[2505.00949|Llama-Nemotron]], [[2504.13180|PerceptionLM]], [[2504.07491|Kimi-VL]], [[2503.15621|LLaVA-MORE]], [[2502.13130|Magma]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2408.03326|LLaVA-OneVision]], [[2407.07726|PaliGemma]]
+- [[2603.25040|Intern-S1-Pro]], [[2511.00108|Pelican-VL 1.0]], [[2508.11737|Ovis2.5]], [[2508.01558|EvoVLMA]], [[2507.22448|Falcon-H1]], [[2507.12507|Nemotron]], [[2507.06261|Gemini 2.5]], [[2507.02029|RoboBrain 2.0]], [[2507.01006|GLM-4.5V]], [[2506.03569|MiMo-VL]], [[2505.18842|v1]], [[2505.07062|Seed1.5-VL]], [[2505.00949|Llama-Nemotron]], [[2504.13180|PerceptionLM]], [[2504.07491|Kimi-VL]], [[2503.15621|LLaVA-MORE]], [[2502.13130|Magma]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2408.03326|LLaVA-OneVision]], [[2407.07726|PaliGemma]]
 
 > [!star] Key Papers
 > - [[2407.07726|PaliGemma]] — Sub-3B parameter VLM achieving SOTA across 40+ tasks; demonstrated small models can match larger counterparts

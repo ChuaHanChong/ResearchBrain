@@ -17,7 +17,7 @@ aliases:
 Embodied AI gives intelligent systems physical presence — robots that manipulate objects, navigate environments, drive vehicles, and interact with the real world. The two core model families are **Vision-Language-Action (VLA)** models that learn from demonstrations, and **World Action Models (WAM)** that learn to predict the future. This note covers both paradigms and how they fit together.
 
 > [!abstract] One-Line Summary
-> **VLAs** copy what they've seen. **WAMs** imagine what will happen next. **Self-evolving systems** improve from experience. See [[03_VLA]], [[04_WAM]], and [[06_Self-Evolving-VLA-WAM]] for deep dives.
+> **VLAs** copy what they've seen. **WAMs** imagine what will happen next. **Self-evolving systems** improve from experience. See [[05_VLA]], [[07_WAM]], and [[13_Self-Evolving-VLA-WAM]] for deep dives.
 
 ## Evolution Graph
 
@@ -254,7 +254,7 @@ Researcher → Data → Training → Simulation → Deployment
 4. **Post-train on in-domain data** — fine-tune on your specific robot + tasks
 5. **Deploy** — use ==[[2501.09747|FAST]]== tokenization for real-time inference
 
-> See [[03_VLA#2. Design-Space Principles]] for the full design-space analysis.
+> See [[05_VLA#1. Design-Space Principles]] for the full design-space analysis.
 
 #### Building a WAM (Quick Recipe)
 
@@ -264,7 +264,7 @@ Researcher → Data → Training → Simulation → Deployment
 4. **Decide test-time strategy** — Full imagination (robust but 4.8x slower) or training-only video ([[2603.16666|Fast-WAM]] approach)
 5. **Add action decoding** — Flow matching or inverse dynamics from predicted states
 
-> See [[04_WAM#1. The Design Space]] for the three-axis trade-off analysis.
+> See [[07_WAM#1. The Design Space]] for the three-axis trade-off analysis.
 
 > [!tip] Start Simple, Add Complexity
 > Begin with a VLA (simpler, faster to iterate). Add world model augmentation only if you need robustness to visual perturbations or physics-aware planning. The [[2603.16666|Fast-WAM]] finding: you can get WAM-level robustness with VLA-level speed by using video objectives at training time only.
@@ -277,7 +277,7 @@ Both VLAs and WAMs can be made self-evolving — autonomously discovering failur
 2. **Imagination Loops** (WAM path): The world model generates synthetic "dream" rollouts. The policy trains on dreams, improving without real-world interaction. [[2506.24119|SPIRAL]] and [[2502.05907|EvoAgent]] show this creates positive feedback loops. Best for: safe exploration, data-scarce settings.
 3. **Curiosity-Driven Exploration**: The agent actively seeks states where its world model is uncertain ([[2503.01584|SENSEI]]) or where an adversary finds failures ([[2412.02818|RoboMD]]). This creates a self-directed curriculum that focuses practice on the agent's weaknesses.
 
-The critical prerequisite for all three paths: **the agent must first detect that it IS failing**. See [[06_Self-Evolving-VLA-WAM]] for how failure detection, self-correction, and active probing enable the self-evolution loop.
+The critical prerequisite for all three paths: **the agent must first detect that it IS failing**. See [[13_Self-Evolving-VLA-WAM]] for how failure detection, self-correction, and active probing enable the self-evolution loop.
 
 ---
 
@@ -299,27 +299,27 @@ The critical prerequisite for all three paths: **the agent must first detect tha
 
 > [!tip] Use This as a Reading Compass
 > Each challenge points to the deep-dive note that treats it:
-> sim-to-real → [[11_Sim-to-Real-Transfer]];
-> data scarcity → [[02_Dataset-Benchmark-Environment]] + [[09_Egocentric-Pretraining-and-Human-Video]];
-> real-time control → [[03_VLA]] §2 (efficient VLAs) + [[04_WAM]] §6 (efficient WAMs);
-> safety → [[06_Self-Evolving-VLA-WAM]] §4 (failure detection);
-> generalization → [[06_Self-Evolving-VLA-WAM]] §5–7 (self-evolving systems).
+> sim-to-real → [[14_Sim-to-Real-Transfer]];
+> data scarcity → [[02_Dataset-Benchmark-Environment]] + [[12_Egocentric-Pretraining-and-Human-Video]];
+> real-time control → [[05_VLA]] §2 (efficient VLAs) + [[07_WAM]] §6 (efficient WAMs);
+> safety → [[13_Self-Evolving-VLA-WAM]] §4 (failure detection);
+> generalization → [[13_Self-Evolving-VLA-WAM]] §5–7 (self-evolving systems).
 
 ## Cross-References
 
 The Embodied-AI deep-dive collection maps the field along ten complementary axes — read each note when its question is yours.
 
 - [[02_Dataset-Benchmark-Environment]] — Datasets, benchmarks, and simulation platforms; the data foundation for everything that follows
-- [[03_VLA]] — Vision-Language-Action models deep-dive; design-space principles, efficiency frontier, 3D-awareness, RL post-training, failure modes
-- [[04_WAM]] — World Action Models deep-dive; VideoGen, VLM-based, and from-scratch WAM architectures
-- [[05_Latent-World-Models]] — JEPA evolution lineage; latent prediction as the bridge between video-WAMs and VLAs
-- [[06_Self-Evolving-VLA-WAM]] — Self-evolving systems; failure detection, RL post-training, imagination loops, persistent memory
-- [[07_Physics-Aware-Embodied-AI]] — Physics priors for embodied AI; PINN integration, contact dynamics, physics-coupled VLA pipelines
-- [[08_VLA-Reasoning-and-CoT]] — Reasoning insertion points in VLA pipelines; latent CoT, MCTS, draft-and-verify
-- [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric data → robot policy; scaling laws, hand→gripper transfer
-- [[10_Force-Aware-and-Tactile-Policies]] — Multi-sensor and force-aware VLAs; tactile hardware, force-conditioned architectures
-- [[11_Sim-to-Real-Transfer]] — The reality gap; learned simulators, robust policies, digital twins, evaluation benchmarks
+- [[05_VLA]] — Vision-Language-Action models deep-dive; design-space principles, efficiency frontier, 3D-awareness, RL post-training, failure modes
+- [[07_WAM]] — World Action Models deep-dive; VideoGen, VLM-based, and from-scratch WAM architectures
+- [[08_Latent-World-Models]] — JEPA evolution lineage; latent prediction as the bridge between video-WAMs and VLAs
+- [[13_Self-Evolving-VLA-WAM]] — Self-evolving systems; failure detection, RL post-training, imagination loops, persistent memory
+- [[11_Physics-Aware-Embodied-AI]] — Physics priors for embodied AI; PINN integration, contact dynamics, physics-coupled VLA pipelines
+- [[06_VLA-Reasoning-and-CoT]] — Reasoning insertion points in VLA pipelines; latent CoT, MCTS, draft-and-verify
+- [[12_Egocentric-Pretraining-and-Human-Video]] — Egocentric data → robot policy; scaling laws, hand→gripper transfer
+- [[09_Contact-Rich-and-Whole-Body-Control]] — Multi-sensor and force-aware VLAs; tactile hardware, force-conditioned architectures
+- [[14_Sim-to-Real-Transfer]] — The reality gap; learned simulators, robust policies, digital twins, evaluation benchmarks
 
 ---
 
-*For a deep dive into VLA design, see [[03_VLA]]. For WAM papers by category, see [[04_WAM]]. For latent world models, see [[05_Latent-World-Models]]. For datasets and benchmarks, see [[02_Dataset-Benchmark-Environment]]. For self-evolving systems, see [[06_Self-Evolving-VLA-WAM]]. For physics-aware embodied AI, see [[07_Physics-Aware-Embodied-AI]]. For VLA reasoning and CoT, see [[08_VLA-Reasoning-and-CoT]]. For egocentric pretraining, see [[09_Egocentric-Pretraining-and-Human-Video]].*
+*For a deep dive into VLA design, see [[05_VLA]]. For WAM papers by category, see [[07_WAM]]. For latent world models, see [[08_Latent-World-Models]]. For datasets and benchmarks, see [[02_Dataset-Benchmark-Environment]]. For self-evolving systems, see [[13_Self-Evolving-VLA-WAM]]. For physics-aware embodied AI, see [[11_Physics-Aware-Embodied-AI]]. For VLA reasoning and CoT, see [[06_VLA-Reasoning-and-CoT]]. For egocentric pretraining, see [[12_Egocentric-Pretraining-and-Human-Video]].*

@@ -169,7 +169,7 @@ The timing of the intervention — at sampling, training, or inference rejection
 > - [[2511.07416|PhysWorld]] — Canonical external-solver axis for robot policy training; explicit physical state as learning substrate
 
 > [!tip] Pick by Constraint
-> If you need **photorealistic deformation rendering**, pick implicit (3D Gaussians + MPM). If you need **internet-scale video that respects gravity**, pick explicit-loss ([[2509.20570|PIRF]], [[2509.21309|NewtonGen]]). If you need a **deployable robot policy that won't violate physics**, pick external-simulator ([[2511.07416|PhysWorld]]) or physics-grounded RL ([[2512.00425|NewtonRewards]], [[2510.13809|PhysMaster]]). The three axes are orthogonal — most production systems combine them; see [[04_WAM#2. VideoGen WAMs]] (physics-aligned video generation) and [[03_VLA#5. World-Model-Augmented VLAs]] (WAM-augmented VLA) for end-to-end stacks.
+> If you need **photorealistic deformation rendering**, pick implicit (3D Gaussians + MPM). If you need **internet-scale video that respects gravity**, pick explicit-loss ([[2509.20570|PIRF]], [[2509.21309|NewtonGen]]). If you need a **deployable robot policy that won't violate physics**, pick external-simulator ([[2511.07416|PhysWorld]]) or physics-grounded RL ([[2512.00425|NewtonRewards]], [[2510.13809|PhysMaster]]). The three axes are orthogonal — most production systems combine them; see [[07_WAM#2. VideoGen WAMs]] (physics-aligned video generation) and [[05_VLA#5. World-Model-Augmented VLAs]] (WAM-augmented VLA) for end-to-end stacks.
 
 ---
 
@@ -186,6 +186,8 @@ Gaussians are differentiable, particle-like, and already compatible with renderi
 - **[[2406.04338|Physics3D]]** — Learns physical properties of 3D Gaussians directly from ==video diffusion supervision==; bypasses manual material annotation.
 - **[[2412.17804|GausSim]]** — Treats each Gaussian kernel as a ==Center of Mass System== with deformation-gradient + Polar SVD continuum mechanics; ==hierarchical clustering== cuts kernel-wise compute by **95%**; mass / momentum conservation losses; L2 error **1.85** vs **11.32** DreamGaussian4D on Mothorchids unseen-frames, **0.13s/frame** at **2.1GB** GPU memory.
 - **[[2401.16663|VR-GS]]** — ==3DGS + XPBD== solver with a ==two-level deformation embedding== (local tetrahedra into global simulation mesh) eliminates spiky artifacts under stretching; **0.017–0.022s** frame times (vs **0.112–0.39s** PhysGaussian, **0.625–0.813s** PAC-NeRF); SUS **83.5** ("excellent") on user study with significantly higher immersion vs transform-based interactions.
+- **[[2412.11258|GaussianProperty]]** — training-free ==SAM== part-segmentation + ==LMM== material-property reasoning under a global-to-local prompt scheme, projected to ==3D Gaussians== via frequency voting; **55.83%** mIoU material seg on ABO (vs Nerf2Physics **25.59%**) and **100%** robotic-grasping success on 16 real objects — physical-property tagging for adaptive grasping.
+- **[[2411.12789|Sim-GS]]** — ==open-vocab 3DGS segmentation== (RAM + Grounding-DINO + SAM) + an ==MLLM== module (GPT-4V/BLIP/CLIP) predicting per-object density / Young's modulus / Poisson's ratio for ==MPM== physical simulation; physics-based 4D generation in **~2 min** on a 3090 (vs 0.1–1.5 hr baselines) — zero-shot material inference for scene-level dynamics.
 
 #### 2.2 Physics-Grounded Asset Generation
 
@@ -211,7 +213,7 @@ Generating *simulator-ready* 3D assets with physics metadata, rather than render
 > - [[2605.05163|PhysForge]] — Two-stage VLM-planner + diffusion-realizer for simulation-ready 3D assets; **0.101** Joint-Axis-Err-5 (SOTA) with VLM-grounded part decomposition and KVI-realized kinematics
 
 > [!tip] When Implicit Physics Helps
-> Implicit physics shines when the *appearance* matters as much as the dynamics — VR, content creation, digital twins. For pure robot control, the rendering pipeline is overhead; explicit-loss approaches are cheaper. The asset-generation track ([[2605.05163|PhysForge]]) is the bridge: it produces 3D assets that downstream robot pipelines can consume in MuJoCo / Isaac without a render loop. Cross-reference [[04_WAM#2.4 Physics-Aligned Video Generation]] for the video-side analogue.
+> Implicit physics shines when the *appearance* matters as much as the dynamics — VR, content creation, digital twins. For pure robot control, the rendering pipeline is overhead; explicit-loss approaches are cheaper. The asset-generation track ([[2605.05163|PhysForge]]) is the bridge: it produces 3D assets that downstream robot pipelines can consume in MuJoCo / Isaac without a render loop. Cross-reference [[07_WAM#2.4 Physics-Aligned Video Generation]] for the video-side analogue.
 
 ---
 
@@ -243,6 +245,7 @@ Constrain *during* sampling rather than during training. Useful when you can't r
 - **[[2603.13770|PhysAlign]]** — Aligns the diffusion model's intermediate ==features and 3D representation== with physics targets, ensuring physics-coherent image-to-video generation. Geometric constraint at the latent level.
 - **[[2603.26285|PhysVid]]** — Physics-aware ==local conditioning== — local regions of a generative video carry per-region physical priors; trades global enforcement for spatial precision.
 - **[[2603.23376|ABot-PhysWorld]]** — ==Diffusion-DPO== with physics-rejected negatives; trains the diffusion model to suppress object-penetration and anti-gravity outputs at inference time.
+- **[[2505.09723|EnerVerse-AC]]** — ==chunk-wise autoregressive diffusion== with sparse memory + ==multi-level action injection== (spatial-aware pose + Delta Action Attention) + multi-view ==spatial cross-attention==; action-faithful long-horizon embodied video whose assessments correlate with real-world policy success, and whose augmented trajectories lift downstream policy SR — an action-conditioned embodied envisioner.
 
 **Explicit Physics — Decision Matrix**
 
@@ -264,7 +267,7 @@ Constrain *during* sampling rather than during training. Useful when you can't r
 > - [[2603.13770|PhysAlign]] — Feature + 3D-representation alignment for physics-coherent image-to-video generation
 
 > [!tip] Explicit Loss vs Implicit Physics
-> Explicit losses scale to internet-video data without requiring 3D supervision — you only need a verifiable physics check, not a full simulator state. This is why explicit-loss papers dominated 2025-2026 progress. Cross-reference [[04_WAM#2.4 Physics-Aligned Video Generation]] for how these losses get composed into video-WAMs and [[04_WAM#9. Open Problems & Failure Modes]] for the open problem of reward hacking under RL.
+> Explicit losses scale to internet-video data without requiring 3D supervision — you only need a verifiable physics check, not a full simulator state. This is why explicit-loss papers dominated 2025-2026 progress. Cross-reference [[07_WAM#2.4 Physics-Aligned Video Generation]] for how these losses get composed into video-WAMs and [[07_WAM#9. Open Problems & Failure Modes]] for the open problem of reward hacking under RL.
 
 ---
 
@@ -278,12 +281,18 @@ Reconstruct or learn the physics substrate; train policies against it. The simul
 
 - **[[2503.17973|PhysTwin]]** — Multi-stage optimization that jointly reconstructs geometry, infers physical properties, and models appearance. ==Spring-mass models + generative shape priors + Gaussian splats== produce an interactive digital twin from videos — usable for robot motion planning. The simulator runs in real-time, allowing the robot to plan against the digital twin before acting.
 - **[[2511.07416|PhysWorld]]** — Trains the robot policy against a learned physical world model. Unlike pure video-WAMs, embeds ==explicit physical state== (positions, velocities, forces) so policy gradient signals reflect physics-consistent interactions rather than visual consistency only.
+- **[[2605.09538|PhysHanDI]]** — Reconstructs dense hand–*deformable*-object digital twins from sparse-view RGB-D via a ==physics-based interaction model== (==MANO== hands + ==spring-mass== objects coupled by ==virtual springs==); a three-stage pipeline lets the dense-mesh object model ==reciprocally refine== the hand fit (Hand Chamfer **7.57 → 7.17 mm**), beating [[2503.17973|PhysTwin]] on dense-contact reconstruction with **~2×** / **>7×** lower spring RRD.
+- **[[2604.16484|DexWorldModel]]** — ==Causal Latent World Model== over ==DINOv3== latent targets + a ==Dual-State Test-Time-Training memory== (O(1) footprint over 2,000 steps) + ==Speculative Asynchronous Inference== masking ODE pre-denoising behind robot execution; **94.00%** RoboTwin dual-arm SOTA with **~50%** lower blocking latency — a deployable embodied physics WM.
+- **[[2512.03556|RoboScape-R]]** — dual-WM pipeline (==Action World Model== for observation/done + ==Text World Model== for goal observations) with an ==endogenous reward== (LPIPS-to-goal + predicted done) so policies train inside the WM with no hand reward; matches in-domain physical-sim SR with fewer resources and **+37.5%** average OOD generalization.
+- **[[2602.09878|MVISTA-4D]]** — ==view-consistent 4D WM== (latent video diffusion with ==spherical camera embedding== + ==geometry-aware deformable cross-view attention==) emitting RGB-D futures with ==test-time action inference== over a low-dim latent trajectory; **72.6%** RLBench manipulation with lower depth error / Chamfer than baselines on real + synthetic scenes.
+- **[[2506.23135|RoboScape]]** — physics-informed embodied WM: a ==Dual-branch Co-autoregressive Transformer== jointly generating RGB + temporal depth + ==adaptive keypoint dynamics== for material/deformation priors; **0.1259** LPIPS, policies trained on **200** synthetic trajectories hit **91%** Robomimic, and it predicts real success at **0.953** Pearson — a policy-training-and-evaluation substrate.
 
 #### 4.2 Bilevel RL Inside a Physics Simulator
 
 Use the simulator as the *inner loop* of a bilevel optimization, with retargeting / policy parameters learned in the outer loop. Physics consistency comes for free because retargeting happens inside the simulator.
 
 - **[[2605.06593|ReActor]]** — ==Bilevel optimization==: the upper level learns retargeting parameters, the lower level trains a motion-tracking policy via RL inside a physics simulator. ==Simplified gradient estimator== avoids the implicit-function-theorem cost typical of bilevel-RL. Retargeting *inside* the simulator inherits physics consistency for free — **zero** ground/self-penetration, near-zero foot sliding — and the cleaned data lifts downstream RL success by **+15.22 pp**.
+- **[[2602.02454|World-Gymnast]]** — fine-tunes VLA policies via ==RL inside an action-conditioned video WM== (WorldGym), with a ==VLM (GPT-4o)== assigning binary task-completion rewards (no reward engineering) under ==GRPO== with KV-caching; up to **18×** real-robot SR over SFT (**72%** vs **4%**) and **81%** held-out SR with synthesized distractors — imagined-rollout RL beats software simulators on 3/4 tasks.
 
 **External Simulator — Decision Matrix**
 
@@ -299,7 +308,7 @@ Use the simulator as the *inner loop* of a bilevel optimization, with retargetin
 > - [[2511.07416|PhysWorld]] — Robot learning from a physical world model; explicit physical state as the learning substrate
 
 > [!tip] When to Couple to a Real Simulator
-> If your domain has well-understood physics (rigid-body manipulation, deformable rope, fluid pouring), a physics simulator is the cheapest way to enforce correctness. If physics is uncertain (cluttered open-world scenes), learned physics priors generalize better than analytical ones. Cross-reference [[11_Sim-to-Real-Transfer#6. Integration Patterns]] for the deployment-pattern selection and [[02_Dataset-Benchmark-Environment#4. Physics Engines as Research Substrate]] for the simulator landscape (MuJoCo, Isaac, Genesis).
+> If your domain has well-understood physics (rigid-body manipulation, deformable rope, fluid pouring), a physics simulator is the cheapest way to enforce correctness. If physics is uncertain (cluttered open-world scenes), learned physics priors generalize better than analytical ones. Cross-reference [[14_Sim-to-Real-Transfer#6. Integration Patterns]] for the deployment-pattern selection and [[02_Dataset-Benchmark-Environment#4. Physics Engines as Research Substrate]] for the simulator landscape (MuJoCo, Isaac, Genesis).
 
 ---
 
@@ -326,7 +335,7 @@ Physical reasoning sits one level above physical generation: the model must *tal
 > - [[2503.15558|Cosmos-Reason1]] — Lifts physics from pixel-level losses to language-level reasoning; physical commonsense + embodied reasoning at WAM scale
 
 > [!tip] Reasoning Is the Missing Layer
-> Pixel-/state-level physics losses ensure outputs *look* physical. Reasoning-level physics ([[2503.15558|Cosmos-Reason1]]) ensures the model can *plan* under physics — "the ice cube melts before I carry it across the room" is reasoning, not pixel prediction. Pattern C in §7 below depends on a physics-reasoning planner. Cross-reference [[08_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the broader reasoning-insertion taxonomy that consumes physics priors.
+> Pixel-/state-level physics losses ensure outputs *look* physical. Reasoning-level physics ([[2503.15558|Cosmos-Reason1]]) ensures the model can *plan* under physics — "the ice cube melts before I carry it across the room" is reasoning, not pixel prediction. Pattern C in §7 below depends on a physics-reasoning planner. Cross-reference [[06_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the broader reasoning-insertion taxonomy that consumes physics priors.
 
 ---
 
@@ -372,7 +381,7 @@ Benchmarks that compare generated video against *recorded* real physical experim
 > - [[2504.02918|Morpheus]] — Real physical experiments as benchmark; closes the loop with measurable real-world physics
 
 > [!tip] The Visual-Quality Trap
-> Models that score top-tier on FVD/SSIM frequently score below random on physics-IQ probes. Always pair appearance metrics (FVD, FID, SSIM) with physics-commonsense metrics ([[2410.05363|PhyGenBench]], [[2501.09038|Physics-IQ]], [[2504.02918|Morpheus]]) — they measure orthogonal axes. Cross-reference [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the contact-physics evaluation tier and [[04_WAM#9. Open Problems & Failure Modes]] for the broader WAM failure-mode catalogue.
+> Models that score top-tier on FVD/SSIM frequently score below random on physics-IQ probes. Always pair appearance metrics (FVD, FID, SSIM) with physics-commonsense metrics ([[2410.05363|PhyGenBench]], [[2501.09038|Physics-IQ]], [[2504.02918|Morpheus]]) — they measure orthogonal axes. Cross-reference [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the contact-physics evaluation tier and [[07_WAM#9. Open Problems & Failure Modes]] for the broader WAM failure-mode catalogue.
 
 ---
 
@@ -384,8 +393,8 @@ How do these pieces connect when you build an end-to-end physics-aware robot sys
 
 Pretrain a video / VLM / egocentric backbone with explicit physics losses *before* attaching the downstream action head. The action head inherits physics-grounded representations without requiring physics supervision in the action loss.
 
-- **Pattern A — Physics-Coupled VLA Training**: Pretrain a video diffusion backbone with explicit physics losses ([[2512.00425|NewtonRewards]] / [[2510.13809|PhysMaster]] / [[2509.20570|PIRF]]), then attach a downstream action head. See [[03_VLA#5. World-Model-Augmented VLAs]] for the WAM-augmented VLA recipe.
-- **Pattern A.2 — Egocentric-Physics-Pretrained Backbone**: Couple physics into a *VLM* backbone using egocentric human-interaction video. [[2605.15298|PhysBrain]] builds a data engine that turns human egocentric videos into structured scene meta-information + physically grounded QA pairs (==physical explicitness + depth-aware spatial augmentation==), then pretrains a Qwen3-VL VLM on it. VLA-adaptation uses a ==dual-pathway architecture== — frozen general pathway + trainable embodied pathway — plus an action-conditioned language alignment objective to prevent catastrophic forgetting. Result: **45.5** ERQA / **50.2** PhysBench on the VLM tier and a **+16.2pp** real-world single-object grasping gain at the VLA tier. Pattern A makes the *visual* representation physics-aware; Pattern A.2 makes the *semantic* representation physics-aware — they compose. See [[09_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]].
+- **Pattern A — Physics-Coupled VLA Training**: Pretrain a video diffusion backbone with explicit physics losses ([[2512.00425|NewtonRewards]] / [[2510.13809|PhysMaster]] / [[2509.20570|PIRF]]), then attach a downstream action head. See [[05_VLA#5. World-Model-Augmented VLAs]] for the WAM-augmented VLA recipe.
+- **Pattern A.2 — Egocentric-Physics-Pretrained Backbone**: Couple physics into a *VLM* backbone using egocentric human-interaction video. [[2605.15298|PhysBrain]] builds a data engine that turns human egocentric videos into structured scene meta-information + physically grounded QA pairs (==physical explicitness + depth-aware spatial augmentation==), then pretrains a Qwen3-VL VLM on it. VLA-adaptation uses a ==dual-pathway architecture== — frozen general pathway + trainable embodied pathway — plus an action-conditioned language alignment objective to prevent catastrophic forgetting. Result: **45.5** ERQA / **50.2** PhysBench on the VLM tier and a **+16.2pp** real-world single-object grasping gain at the VLA tier. Pattern A makes the *visual* representation physics-aware; Pattern A.2 makes the *semantic* representation physics-aware — they compose. See [[12_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]].
 - **Pattern A.1 — Geometric Feasibility Loss on Actions**: Add a differentiable geometric feasibility term [[2604.17896|Physical-Feasibility VLA]] directly to the VLA's action loss. The auxiliary ==L_geo== is a ==squared-hinge== penalty on the signed distance between robot links and obstacle geometry, activating only when clearance drops below a safety margin. No physics-aware backbone needed; geometric inductive bias supplied entirely at training time, disappears at deployment. Particularly effective in **low-data regimes** — 40-episode policies match 120-episode baselines (SSR **22.00% → 43.50%** under small perturbations).
 
 #### 7.2 Digital-Twin-in-the-Loop
@@ -393,12 +402,14 @@ Pretrain a video / VLM / egocentric backbone with explicit physics losses *befor
 Reconstruct a physical digital twin of the workspace; train the policy against the twin; transfer to the real world. Physics consistency is enforced by the simulator, not the policy.
 
 - **Pattern B — Digital-Twin-in-the-Loop**: Use [[2503.17973|PhysTwin]] to reconstruct a physical digital twin of the robot's workspace from video. Train the policy against the digital twin, then transfer to the real world. Physics consistency is enforced by the simulator, not the policy. See [[02_Dataset-Benchmark-Environment#12. Sim-to-Real Transfer Evaluation]] for sim-to-real evaluation.
+- **[[2512.10675|Veo Robotics]]** — a ==generative digital twin== fine-tuning ==Veo2== for action-conditioning + multi-view consistency, synthesizing OOD/safety-critical scene variations to evaluate VLA policies; predicts relative policy ranking at **MMRV 0.03** / **Pearson 0.88** with real success and **0.91** on background-change OOD — a learned twin that substitutes for physical eval rollouts.
 
 #### 7.3 Physics-Reasoning-Augmented Planning
 
 Use a physics-reasoning foundation model as the high-level planner; a low-level VLA executes. The planner decomposes tasks using physics commonsense; the executor handles the motor side.
 
-- **Pattern C — Physics-Reasoning-Augmented Planning**: Use [[2503.15558|Cosmos-Reason1]] (or a successor) as the high-level planner. The planner decomposes tasks using physics commonsense ("the ice cube will melt before I can carry it across the room"), then a low-level VLA executes. See [[08_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the broader reasoning insertion taxonomy.
+- **Pattern C — Physics-Reasoning-Augmented Planning**: Use [[2503.15558|Cosmos-Reason1]] (or a successor) as the high-level planner. The planner decomposes tasks using physics commonsense ("the ice cube will melt before I can carry it across the room"), then a low-level VLA executes. See [[06_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the broader reasoning insertion taxonomy.
+- **[[2604.04664|ROSClaw]]** — Inserts an ==e-URDF physical-feasibility gate== between the planner and the robots: a "physical firewall" runs ==digital-twin simulation== + collision detection to validate every generated command for physical feasibility and safety *before* execution, blocking infeasible or unsafe plans; validated multi-gimbal choreographies in **~3 min** across heterogeneous mobile-arm / humanoid / fixed-arm agents.
 
 **Pipeline — Decision Matrix**
 
@@ -423,7 +434,7 @@ Use a physics-reasoning foundation model as the high-level planner; a low-level 
 > - **Need long-horizon physics reasoning?** Pattern C (Physics-Reasoning-Augmented Planning)
 
 > [!tip] The Three Patterns Compose — Pick by Where the Prior Enters
-> The three patterns are not competing recipes; they're three *insertion points* for the physics prior, and production systems stack them. Pattern A puts physics in the **representation** (the backbone never forgets gravity), Pattern B puts it in the **environment** (the simulator enforces it the policy never sees it), and Pattern C puts it in the **plan** (the reasoner talks about it before the executor acts). The common composition is A+C — a physics-grounded backbone whose long-horizon decisions are vetted by a physics-reasoning planner — with B layered on for a specific deployment target. The choice is governed by *which* physics failures bite: representational drift → A, sim-real dynamics gap → B, multi-step planning under physical constraints → C. Cross-reference [[04_WAM#5. VLM-Integrated WAMs]] for how Pattern A backbones become unified WAM stacks and [[06_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for closing these pipelines into a self-improvement loop.
+> The three patterns are not competing recipes; they're three *insertion points* for the physics prior, and production systems stack them. Pattern A puts physics in the **representation** (the backbone never forgets gravity), Pattern B puts it in the **environment** (the simulator enforces it the policy never sees it), and Pattern C puts it in the **plan** (the reasoner talks about it before the executor acts). The common composition is A+C — a physics-grounded backbone whose long-horizon decisions are vetted by a physics-reasoning planner — with B layered on for a specific deployment target. The choice is governed by *which* physics failures bite: representational drift → A, sim-real dynamics gap → B, multi-step planning under physical constraints → C. Cross-reference [[07_WAM#5. VLM-Integrated WAMs]] for how Pattern A backbones become unified WAM stacks and [[13_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for closing these pipelines into a self-improvement loop.
 
 ---
 
@@ -456,7 +467,7 @@ Physics-aware embodied AI delivers *plausible* outputs more often than its physi
 > - [[2504.02918|Morpheus]] — First *embodied* physics evaluation (deploys generated physics into a simulated robot); the load-bearing benchmark for closing the benchmark-vs-deployment gap
 
 > [!tip] The Common Root Is Verifiability
-> The four problems above share one bottleneck: physics-aware models produce *plausible* outputs but cannot *prove* their physics is correct under real-world clutter. Until learned physics-verifiers generalize beyond narrow PDEs ([[2509.20570|PIRF]], [[2512.00425|NewtonRewards]]) and resist reward hacking, both training signals and benchmarks ([[2410.05363|PhyGenBench]], [[2501.09038|Physics-IQ]]) will under-specify what deployment actually requires. Cross-reference [[11_Sim-to-Real-Transfer#7. Open Problems]] (sim-real correlation collapses under perturbation — the deployment-side echo of this verifiability gap) and [[04_WAM#9. Open Problems & Failure Modes]] (hallucinated dynamics — the upstream WAM failure mode that physics-verifiers are meant to catch but currently cannot at scale).
+> The four problems above share one bottleneck: physics-aware models produce *plausible* outputs but cannot *prove* their physics is correct under real-world clutter. Until learned physics-verifiers generalize beyond narrow PDEs ([[2509.20570|PIRF]], [[2512.00425|NewtonRewards]]) and resist reward hacking, both training signals and benchmarks ([[2410.05363|PhyGenBench]], [[2501.09038|Physics-IQ]]) will under-specify what deployment actually requires. Cross-reference [[14_Sim-to-Real-Transfer#7. Open Problems]] (sim-real correlation collapses under perturbation — the deployment-side echo of this verifiability gap) and [[07_WAM#9. Open Problems & Failure Modes]] (hallucinated dynamics — the upstream WAM failure mode that physics-verifiers are meant to catch but currently cannot at scale).
 
 ---
 
@@ -478,16 +489,16 @@ Physics-aware embodied AI delivers *plausible* outputs more often than its physi
 ## Cross-References
 
 - [[01_Embodied-AI-101]] — Embodied AI basics; physics is one of the four learning-strategy bottlenecks
-- [[03_VLA]] — VLA deep-dive; physics-coupled VLA training in §5 (WAM-augmented)
-- [[04_WAM]] — WAM deep-dive; physics-aligned video generation in §2
-- [[05_Latent-World-Models]] — Latent dynamics; some physics-aware models live in latent space
-- [[06_Self-Evolving-VLA-WAM]] — Self-evolution; physics priors stabilize WAM dreams
-- [[08_VLA-Reasoning-and-CoT]] — Reasoning; [[2503.15558|Cosmos-Reason1]] lives at the physics/reasoning intersection
-- [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining deep-dive
-- [[10_Force-Aware-and-Tactile-Policies]] — Force/tactile policies deep-dive; physics constraints complement force feedback
-- [[11_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; physics engines as the sim substrate
+- [[05_VLA]] — VLA deep-dive; physics-coupled VLA training in §5 (WAM-augmented)
+- [[07_WAM]] — WAM deep-dive; physics-aligned video generation in §2
+- [[08_Latent-World-Models]] — Latent dynamics; some physics-aware models live in latent space
+- [[13_Self-Evolving-VLA-WAM]] — Self-evolution; physics priors stabilize WAM dreams
+- [[06_VLA-Reasoning-and-CoT]] — Reasoning; [[2503.15558|Cosmos-Reason1]] lives at the physics/reasoning intersection
+- [[12_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining deep-dive
+- [[09_Contact-Rich-and-Whole-Body-Control]] — Force/tactile policies deep-dive; physics constraints complement force feedback
+- [[14_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; physics engines as the sim substrate
 - [[02_Dataset-Benchmark-Environment]] — Benchmarks; physics-commonsense evaluation suite
 
 ---
 
-*See [[04_WAM]] for video-WAM physics, [[03_VLA]] for VLA integration, or [[08_VLA-Reasoning-and-CoT]] for reasoning patterns that consume physics priors.*
+*See [[07_WAM]] for video-WAM physics, [[05_VLA]] for VLA integration, or [[06_VLA-Reasoning-and-CoT]] for reasoning patterns that consume physics priors.*

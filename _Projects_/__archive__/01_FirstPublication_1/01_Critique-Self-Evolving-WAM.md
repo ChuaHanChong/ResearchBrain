@@ -233,4 +233,4 @@ The plan is completely hardware-agnostic, but self-evolution is fundamentally co
 
 ---
 
-*Critique of [[00_How-to-Build-Self-Evolving-WAM]]. See also: [[06_Self-Evolving-VLA-WAM]] | [[04_WAM]] | [[03_VLA]]*
+*Critique of [[00_How-to-Build-Self-Evolving-WAM]]. See also: [[13_Self-Evolving-VLA-WAM]] | [[07_WAM]] | [[05_VLA]]*

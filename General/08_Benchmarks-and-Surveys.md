@@ -333,7 +333,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2503.06669|AgiBot World]] — Large-scale manipulation platform with diverse environments and embodiments
 
 **Egocentric Human-Video Datasets** — Large-scale first-person video corpora used to pretrain VLAs and learn dexterous priors from human demonstrations.
-- [[2605.06747|HumanNet]], [[2605.05945|MobileEgo Anywhere]], [[2505.11709|EgoDex]], [[2311.18259|Ego-Exo4D]], [[2110.07058|Ego4D]]
+- [[2605.06747|HumanNet]], [[2605.05945|MobileEgo Anywhere]], [[2505.11709|EgoDex]], [[2311.18259|Ego-Exo4D]], [[2110.07058|Ego4D]], [[2006.00626|EGTEA Gaze+]]
 
 > [!star] Key Papers
 > - [[2605.06747|HumanNet]] — 1M-hour human-centric video; egocentric + exocentric viewpoints with interaction-centric annotations; 1,000 hr pretrain matches/surpasses 100 hr robot-data pretrain

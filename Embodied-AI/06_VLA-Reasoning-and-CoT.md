@@ -157,7 +157,7 @@ Treat the VLA as a policy *prior* and search at test time using a world model. M
 > Every VLA pipeline has four candidate slots for inserting reasoning. Picking the wrong slot makes reasoning a latency burden; picking the right one is a free accuracy win. The 2026 default — latent + auxiliary decoder supervision — extracts CoT-quality reasoning at answer-only latency, but legacy deployments may still favor output-head visual CoT when interpretability dominates.
 
 > [!tip] The Slot Determines the Cost Curve, Not Just the Capability
-> The four slots are not interchangeable accuracy boosts — they sit at different points on the latency-interpretability-trainability surface, and the *binding constraint* decides the slot. Input prompting costs zero parameters but cannot reason about what the VLM never verbalizes; latent reasoning is the only slot that buys CoT-quality inference at *answer-only* latency (§3); output-head visual CoT is the only slot a human can audit step-by-step (§2); external search is the only slot that can recover from a *novel* failure at test time but pays a per-rollout tax (§4). The recurring mistake is bolting reasoning onto the output head for real-time control — where its latency is fatal — when latent reasoning would have delivered the same accuracy invisibly. Cross-reference [[05_Latent-World-Models#4. Latent Reasoning for Embodied AI]] for the latent-substrate mechanics these slots are built on.
+> The four slots are not interchangeable accuracy boosts — they sit at different points on the latency-interpretability-trainability surface, and the *binding constraint* decides the slot. Input prompting costs zero parameters but cannot reason about what the VLM never verbalizes; latent reasoning is the only slot that buys CoT-quality inference at *answer-only* latency (§3); output-head visual CoT is the only slot a human can audit step-by-step (§2); external search is the only slot that can recover from a *novel* failure at test time but pays a per-rollout tax (§4). The recurring mistake is bolting reasoning onto the output head for real-time control — where its latency is fatal — when latent reasoning would have delivered the same accuracy invisibly. Cross-reference [[08_Latent-World-Models#4. Latent Reasoning for Embodied AI]] for the latent-substrate mechanics these slots are built on.
 
 ---
 
@@ -205,7 +205,7 @@ Subgoals threaded through continuous interaction — humans can inject points, b
 > - [[2508.07917|MolmoAct]] — Depth-aware perception tokens + visual reasoning traces; interpretable manipulation reasoning
 
 > [!tip] When Visual CoT Helps
-> Visual CoT shines for **multi-stage manipulation** where each stage has a visually distinct goal state ("first the cup is grasped, then it's at the lip of the kettle, then it's pouring"). For continuous skills (polishing a surface), visual subgoals are too abrupt — use latent reasoning instead (§3). Cross-reference [[03_VLA#4. Reasoning & Planning-Augmented VLAs]] for the broader reasoning-and-planning landscape that feeds into visual CoT, and [[04_WAM#5.1 Visual Chain-of-Thought]] for how WAM-integrated visual subgoal generation composes with world-model-augmented VLAs.
+> Visual CoT shines for **multi-stage manipulation** where each stage has a visually distinct goal state ("first the cup is grasped, then it's at the lip of the kettle, then it's pouring"). For continuous skills (polishing a surface), visual subgoals are too abrupt — use latent reasoning instead (§3). Cross-reference [[05_VLA#4. Reasoning & Planning-Augmented VLAs]] for the broader reasoning-and-planning landscape that feeds into visual CoT, and [[07_WAM#5.1 Visual Chain-of-Thought]] for how WAM-integrated visual subgoal generation composes with world-model-augmented VLAs.
 
 ---
 
@@ -262,7 +262,7 @@ A diagnostic result orthogonal to architecture: MLLM latent reasoning can be **s
 > - [[2605.02735|Silenced Visual Latents]] — Exposes the quality-vs-utilization gap: a latent system can be semantically rich yet functionally ignored; fixes via inference-time warm-up + NES utilization reward without touching the backbone
 
 > [!tip] The Latent Reasoning Surprise — and Why Utilization ≠ Quality
-> The conventional wisdom was that explicit text CoT works because it forces sequential decompose-then-act reasoning. [[2604.18486|OneVL]] falsified this: with dual-modal latent supervision, latent reasoning *outperforms* explicit CoT at answer-only latency — the most important VLA-reasoning result of 2026. But [[2605.02735|Silenced Visual Latents]] adds the essential caveat: a latent system can score well on intrinsic latent-*quality* probes while the answer head learns a shortcut that *ignores* those latents entirely. Improving latent quality does not fix utilization. Any latent-reasoning ablation must measure both — does perturbing the latents change the answer (utilization), *and* do the latents encode the right information (quality)? The two diverge. Cross-reference [[05_Latent-World-Models#4. Latent Reasoning for Embodied AI]] for the latent-substrate mechanics and [[03_VLA#1. Design-Space Principles]] for where the latent slot sits in the VLA backbone.
+> The conventional wisdom was that explicit text CoT works because it forces sequential decompose-then-act reasoning. [[2604.18486|OneVL]] falsified this: with dual-modal latent supervision, latent reasoning *outperforms* explicit CoT at answer-only latency — the most important VLA-reasoning result of 2026. But [[2605.02735|Silenced Visual Latents]] adds the essential caveat: a latent system can score well on intrinsic latent-*quality* probes while the answer head learns a shortcut that *ignores* those latents entirely. Improving latent quality does not fix utilization. Any latent-reasoning ablation must measure both — does perturbing the latents change the answer (utilization), *and* do the latents encode the right information (quality)? The two diverge. Cross-reference [[08_Latent-World-Models#4. Latent Reasoning for Embodied AI]] for the latent-substrate mechanics and [[05_VLA#1. Design-Space Principles]] for where the latent slot sits in the VLA backbone.
 
 ---
 
@@ -310,7 +310,7 @@ Search over policy *hierarchy* — a high-level VLM agent delegates subtasks to 
 > - [[2510.16281|SEAL]] — Runtime reasoning-action alignment verification; targets the **CoT faithfulness gap** by checking that predicted action outcomes match the VLA's own text plan; training-free, **+15pp** on novel compositional tasks
 
 > [!tip] When Test-Time Search Pays
-> Use search when (1) the task is **safety-critical** (medical, autonomous driving), (2) the **policy is known to be miscalibrated** under distribution shift, or (3) **inference latency is acceptable** (planning, not real-time control). Skip it for fast pick-and-place where imitation suffices. [[2510.16281|SEAL]] specifically helps when **CoT and actions disagree** — the failure mode for reasoning VLAs in novel scenarios. Cross-reference [[04_WAM#5.3 Imagination & Test-Time Reasoning]] for adaptive test-time imagination budget patterns ([[2602.08236|AVIC]]).
+> Use search when (1) the task is **safety-critical** (medical, autonomous driving), (2) the **policy is known to be miscalibrated** under distribution shift, or (3) **inference latency is acceptable** (planning, not real-time control). Skip it for fast pick-and-place where imitation suffices. [[2510.16281|SEAL]] specifically helps when **CoT and actions disagree** — the failure mode for reasoning VLAs in novel scenarios. Cross-reference [[07_WAM#5.3 Imagination & Test-Time Reasoning]] for adaptive test-time imagination budget patterns ([[2602.08236|AVIC]]).
 
 ---
 
@@ -361,7 +361,7 @@ A 2026 diagnostic with broad implications — what fails when none of the proces
 > - [[2604.22074|CIR/SR Reasoning]] — Outcome rewards alone insufficient; need causally-important step rewards
 
 > [!tip] Outcome Rewards Are Not Enough
-> CIR/SR's finding is sobering: a VLA trained to maximize task success can develop reasoning traces that *look* correct but are causally disconnected from the final action. Step-level rewards on the *reasoning process* are required for trustworthy reasoning. Cross-reference [[04_WAM#7.3 RL-Driven & Co-Evolving]] for RL-driven WAM co-evolution patterns ([[2603.19370|VAMPO]]) and [[06_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how reasoning-traced training composes with self-evolution loops.
+> CIR/SR's finding is sobering: a VLA trained to maximize task success can develop reasoning traces that *look* correct but are causally disconnected from the final action. Step-level rewards on the *reasoning process* are required for trustworthy reasoning. Cross-reference [[07_WAM#7.3 RL-Driven & Co-Evolving]] for RL-driven WAM co-evolution patterns ([[2603.19370|VAMPO]]) and [[13_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how reasoning-traced training composes with self-evolution loops.
 
 ---
 
@@ -413,10 +413,10 @@ Preserve human-readable reasoning traces alongside actions. The frontier when th
 > - [[2510.16281|SEAL]] — Hybrid quality + interpretability; runtime CoT-action alignment verification at moderate latency
 
 > [!success] The 2026 Recipe
-> If latency matters: ==Latent reasoning + dual-modal auxiliary supervision== ([[2604.18486|OneVL]] pattern). If interpretability matters: ==Output-head visual CoT== ([[2503.22020|CoT-VLA]] pattern). If recovery from miscalibration matters: ==Test-time MCTS== ([[2509.22643|VLA-Reasoner]] pattern). RL-train the reasoning trace with verifiable step rewards ([[2509.25852|REVER]] + CIR/SR). Cross-reference [[04_WAM#6.1 Training-Time Video, Test-Time Speed]] for the analogous training-time-video / test-time-speed efficiency recipe in WAMs ([[2603.16666|Fast-WAM]]) — the same train-rich-deploy-slim principle generalizes.
+> If latency matters: ==Latent reasoning + dual-modal auxiliary supervision== ([[2604.18486|OneVL]] pattern). If interpretability matters: ==Output-head visual CoT== ([[2503.22020|CoT-VLA]] pattern). If recovery from miscalibration matters: ==Test-time MCTS== ([[2509.22643|VLA-Reasoner]] pattern). RL-train the reasoning trace with verifiable step rewards ([[2509.25852|REVER]] + CIR/SR). Cross-reference [[07_WAM#6.1 Training-Time Video, Test-Time Speed]] for the analogous training-time-video / test-time-speed efficiency recipe in WAMs ([[2603.16666|Fast-WAM]]) — the same train-rich-deploy-slim principle generalizes.
 
 > [!tip] There Is No Free Reasoning — Only a Latency You Chose to Pay Somewhere
-> The 2026 surprise is that the quality-latency frontier is *not* monotone: [[2604.18486|OneVL]] buys top-tier reasoning at 1.0× base latency, collapsing the old "more reasoning = more latency" intuition for the *latent* slot. But the trade-off doesn't vanish — it relocates. Latency-optimized recipes pay at training time (dual-decoder supervision is expensive to learn); quality-optimized recipes ([[2509.22643|VLA-Reasoner]], 3–5×) pay per rollout at test time; interpretability-optimized recipes ([[2503.22020|CoT-VLA]], [[2508.07917|MolmoAct]], 1.5–2.5×) pay a steady inspectability tax. The right question is not "how much reasoning?" but "*where can my deployment afford to pay?*" — throughput-bound robots pay at training, safety-critical robots pay per rollout, human-supervised robots pay for traces. Cross-reference [[05_Latent-World-Models#5. Latent vs Pixel Comparison]] for the structurally identical train-pixel / deploy-latent trade-off in world models.
+> The 2026 surprise is that the quality-latency frontier is *not* monotone: [[2604.18486|OneVL]] buys top-tier reasoning at 1.0× base latency, collapsing the old "more reasoning = more latency" intuition for the *latent* slot. But the trade-off doesn't vanish — it relocates. Latency-optimized recipes pay at training time (dual-decoder supervision is expensive to learn); quality-optimized recipes ([[2509.22643|VLA-Reasoner]], 3–5×) pay per rollout at test time; interpretability-optimized recipes ([[2503.22020|CoT-VLA]], [[2508.07917|MolmoAct]], 1.5–2.5×) pay a steady inspectability tax. The right question is not "how much reasoning?" but "*where can my deployment afford to pay?*" — throughput-bound robots pay at training, safety-critical robots pay per rollout, human-supervised robots pay for traces. Cross-reference [[08_Latent-World-Models#5. Latent vs Pixel Comparison]] for the structurally identical train-pixel / deploy-latent trade-off in world models.
 
 ---
 
@@ -427,7 +427,7 @@ VLA reasoning sits between "VLM that talks about plans" and "policy that execute
 - **==Reasoning vs reflex==** — When should the VLA reason, and when should it act reflexively? Static "always reason" is slow; static "never reason" is brittle. ==Adaptive reasoning depth== ([[2604.28192|LaST-R1]]) is promising but not solved — no current method has a principled gate.
 - **==Causality verification at scale==** — ==CIR/SR== ([[2604.22074|CIR/SR Reasoning]], [[2509.25852|REVER]]) works for narrow predicates (graspability, contact). Scaling causally-important step rewards to general manipulation is an open problem; ground-truth causal structure is rarely annotated.
 - **==The CoT faithfulness gap==** — [[2510.16281|SEAL]] documents that reasoning VLAs often generate sensible text plans but produce actions *inconsistent* with those plans, especially under OOD shifts. [[2510.16281|SEAL]] verifies alignment at runtime, but the deeper question is *why* training fails to enforce alignment in the first place. RL with action-alignment rewards is a natural fix but unproven at VLA scale.
-- **==Cross-modal reasoning==** — Most VLA reasoning is vision-centric; reasoning over force, tactile, and audio modalities (relevant for contact-rich tasks) is underexplored. This is the orthogonal frontier to the faithfulness cluster — see [[10_Force-Aware-and-Tactile-Policies#3. Force-Conditioned VLA Architectures]].
+- **==Cross-modal reasoning==** — Most VLA reasoning is vision-centric; reasoning over force, tactile, and audio modalities (relevant for contact-rich tasks) is underexplored. This is the orthogonal frontier to the faithfulness cluster — see [[09_Contact-Rich-and-Whole-Body-Control#3. Force-Conditioned VLA Architectures]].
 - **==Reasoning generalization==** — Does a model that reasons well on [[2510.13626|LIBERO-Plus]] also reason well on real-world novel tasks? Diagnostic benchmarks for reasoning robustness are missing; current benchmarks reward in-domain CoT, not OOD-transfer CoT.
 
 **VLA Reasoning Failure Modes — Decision Matrix**
@@ -438,7 +438,7 @@ VLA reasoning sits between "VLM that talks about plans" and "policy that execute
 | Need step-wise causal reward beyond narrow predicates | [[2509.25852\|REVER]] / [[2604.22074\|CIR/SR Reasoning]] (process-level rewards) — works for in-regime only |
 | Runtime check that action matches stated plan | [[2510.16281\|SEAL]] (K-candidate VLM critic, training-free) |
 | Training-time enforcement of plan-action alignment | Action-aligned RL — unproven at VLA scale; research gap |
-| Reasoning over force / tactile / audio | Cross-modal reasoning — research gap; see [[10_Force-Aware-and-Tactile-Policies#3. Force-Conditioned VLA Architectures]] for the contact-modality bridge |
+| Reasoning over force / tactile / audio | Cross-modal reasoning — research gap; see [[09_Contact-Rich-and-Whole-Body-Control#3. Force-Conditioned VLA Architectures]] for the contact-modality bridge |
 | Diagnose OOD reasoning robustness | No diagnostic benchmark exists; partial coverage via [[2510.13626\|LIBERO-Plus]] geometric perturbations |
 
 > [!star] Key Papers — Reasoning Failure Frontier
@@ -447,7 +447,7 @@ VLA reasoning sits between "VLM that talks about plans" and "policy that execute
 > - [[2604.28192|LaST-R1]] — Adaptive reasoning depth via latent state classifiers; the most credible step toward the reflex-vs-reason gate
 
 > [!tip] The Faithfulness Gap Is the Common Root
-> Four of the five problems above (reasoning vs reflex, causality verification, the [[2510.16281|SEAL]] alignment gap, reasoning generalization) trace to the same root: VLAs can *describe* a plan and *execute* an action, but no current method *enforces* that the action follows from the plan under OOD shift. Process-level rewards ([[2509.25852|REVER]] CIR/SR) and runtime alignment verification ([[2510.16281|SEAL]]) attack the symptom; the deeper fix likely requires action-aligned RL objectives that haven't been demonstrated at VLA scale. Cross-modal reasoning (force, tactile) is the orthogonal frontier. Cross-reference [[05_Latent-World-Models#6. Open Problems]] (the same opacity / latent-pixel alignment problem appearing in pure world-model form) and [[03_VLA#10. Open Problems & Failure Modes]] (VLA-side failure modes where reasoning faithfulness shows up as policy-execution drift).
+> Four of the five problems above (reasoning vs reflex, causality verification, the [[2510.16281|SEAL]] alignment gap, reasoning generalization) trace to the same root: VLAs can *describe* a plan and *execute* an action, but no current method *enforces* that the action follows from the plan under OOD shift. Process-level rewards ([[2509.25852|REVER]] CIR/SR) and runtime alignment verification ([[2510.16281|SEAL]]) attack the symptom; the deeper fix likely requires action-aligned RL objectives that haven't been demonstrated at VLA scale. Cross-modal reasoning (force, tactile) is the orthogonal frontier. Cross-reference [[08_Latent-World-Models#6. Open Problems]] (the same opacity / latent-pixel alignment problem appearing in pure world-model form) and [[05_VLA#18. Open Problems & Failure Modes]] (VLA-side failure modes where reasoning faithfulness shows up as policy-execution drift).
 
 ---
 
@@ -460,7 +460,7 @@ VLA reasoning sits between "VLM that talks about plans" and "policy that execute
 | Need most robust reasoning? | [[2509.22643\|VLA-Reasoner]] (MCTS) or [[2508.12211\|VLAPS]] (model-based search) |
 | Need runtime alignment verification (CoT-faithful actions)? | [[2510.16281\|SEAL]] (training-free, K-candidate verification via VLM critic) |
 | Need RL-trained reasoning? | [[2509.25852\|REVER]], [[2604.17800\|ReFineVLA]], or [[2604.28192\|LaST-R1]] |
-| Need physics reasoning? | [[2503.15558\|Cosmos-Reason1]] — see [[07_Physics-Aware-Embodied-AI#5. Physics-Aware Reasoning]] |
+| Need physics reasoning? | [[2503.15558\|Cosmos-Reason1]] — see [[11_Physics-Aware-Embodied-AI#5. Physics-Aware Reasoning]] |
 | Need driving reasoning? | [[2604.18486\|OneVL]] (88.84 PDM-score on NAVSIM) |
 | Beware: outcome rewards alone? | [[2604.22074\|CIR/SR Reasoning]] — use step rewards, not just outcome rewards |
 | Need latent + diffusion? | [[2509.25681\|dVLA]] |
@@ -470,15 +470,15 @@ VLA reasoning sits between "VLM that talks about plans" and "policy that execute
 ## Cross-References
 
 - [[01_Embodied-AI-101]] — Embodied AI basics; reasoning is one of the four learning-strategy axes
-- [[03_VLA]] — VLA deep-dive; §4 covers the broader Reasoning & Planning landscape and feeds into this note
-- [[04_WAM]] — WAM deep-dive; §5 VLM-Integrated WAMs cover the world-model side of reasoning-augmented planning
-- [[05_Latent-World-Models]] — §4 latent reasoning for embodied AI; complements this note's latent slot
-- [[06_Self-Evolving-VLA-WAM]] — Self-evolution; reasoning enables self-critique and proactive correction
-- [[07_Physics-Aware-Embodied-AI]] — Physics priors as the substrate for [[2503.15558|Cosmos-Reason1]] and physical latent reasoning ([[2604.28192|LaST-R1]])
-- [[09_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining deep-dive
-- [[10_Force-Aware-and-Tactile-Policies]] — Force/tactile policies deep-dive; reasoning over multi-sensor context
+- [[05_VLA]] — VLA deep-dive; §4 covers the broader Reasoning & Planning landscape and feeds into this note
+- [[07_WAM]] — WAM deep-dive; §5 VLM-Integrated WAMs cover the world-model side of reasoning-augmented planning
+- [[08_Latent-World-Models]] — §4 latent reasoning for embodied AI; complements this note's latent slot
+- [[13_Self-Evolving-VLA-WAM]] — Self-evolution; reasoning enables self-critique and proactive correction
+- [[11_Physics-Aware-Embodied-AI]] — Physics priors as the substrate for [[2503.15558|Cosmos-Reason1]] and physical latent reasoning ([[2604.28192|LaST-R1]])
+- [[12_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining deep-dive
+- [[09_Contact-Rich-and-Whole-Body-Control]] — Force/tactile policies deep-dive; reasoning over multi-sensor context
 - [[02_Dataset-Benchmark-Environment]] — Reasoning benchmarks ([[2507.10548|EmbRACE-3K]], [[2505.05456|SITE]])
 
 ---
 
-*See [[03_VLA]] for the full VLA design space, [[05_Latent-World-Models]] for the broader latent-prediction landscape, or [[07_Physics-Aware-Embodied-AI]] for physics-aware reasoning.*
+*See [[05_VLA]] for the full VLA design space, [[08_Latent-World-Models]] for the broader latent-prediction landscape, or [[11_Physics-Aware-Embodied-AI]] for physics-aware reasoning.*

@@ -18,10 +18,10 @@ tags:
 
 ## Methodology
 
-**Corpus.** 6 sim-real surveys + 17 sim-real correlation/evaluation benchmarks + ~25 anchor methods (real2sim2real, DR-beyond, online adaptation, runtime safety) from `_KnowledgeHub_/`, cross-checked against [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]], [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]], and [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]]. Directions are ordered by when each acts on the gap: **train → reconstruct → measure → deploy → bound**.
+**Corpus.** 6 sim-real surveys + 17 sim-real correlation/evaluation benchmarks + ~25 anchor methods (real2sim2real, DR-beyond, online adaptation, runtime safety) from `_KnowledgeHub_/`, cross-checked against [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]], [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]], and [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]]. Directions are ordered by when each acts on the gap: **train → reconstruct → measure → deploy → bound**.
 
 - **Survey scan**: `survey` × {`sim-to-real`, `robotics`, `world-model`, `domain-adaptation`, `manipulation`} across `_KnowledgeHub_/`.
-- **Deep-dive mining**: full read of [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]], plus [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] and [[10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] for the physics/tactile threads.
+- **Deep-dive mining**: full read of [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]], plus [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]] and [[09_Contact-Rich-and-Whole-Body-Control|09_Contact-Rich-and-Whole-Body-Control]] for the physics/tactile threads.
 - **Baseline anchoring**: each direction's bet must beat a named frontier method ([[2511.04665|Real-to-Sim GS]], [[2605.26638|HyperSim]], [[2604.27367|DOT-Sim]], [[2510.11689|Phys2Real]], [[2511.07416|PhysWorld]], [[2512.19562|REALM]]) or an online-adaptation/safety anchor ([[2107.04034|RMA]], [[2409.16578|FLaRe]], [[2508.21065|Learning on the Fly]], [[2602.20057|AdaWorldPolicy]], [[2503.10949|SCDA]], [[2409.19190|RAIL]], [[2506.09937|SAFE]], [[2503.08558|FAIL-Detect]]).
 - **Filter**: kept directions with 3–10 attacking papers but no consensus solution; dropped saturated (more-DR-only) and premature (sim-from-scratch-with-full-causality) framings; favored intersections (rendering×physics, real2sim×differentiable-ID, twin×co-training, eval×provable-inference).
 
@@ -867,11 +867,11 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 
 ## Cross-References
 
-- [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] — Reality-gap diagnostics, learned simulators, real2sim2real strategies, domain randomization
-- [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — Physics priors, PINN-grounded learning, physical-consistency design space (anchors A2, B1, B2)
-- [[10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] — Tactile/force sensing + differentiable tactile sim (anchors A2's GRF reward, B2's [[2604.27367|DOT-Sim]])
-- [[04_WAM|04_WAM]] — World models as learned simulators and evaluators (anchors B3, C2, D2, D3)
-- [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]] — Online/continual adaptation and self-improving policies (anchors D1, D3, E1)
+- [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]] — Reality-gap diagnostics, learned simulators, real2sim2real strategies, domain randomization
+- [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]] — Physics priors, PINN-grounded learning, physical-consistency design space (anchors A2, B1, B2)
+- [[09_Contact-Rich-and-Whole-Body-Control|09_Contact-Rich-and-Whole-Body-Control]] — Tactile/force sensing + differentiable tactile sim (anchors A2's GRF reward, B2's [[2604.27367|DOT-Sim]])
+- [[07_WAM|07_WAM]] — World models as learned simulators and evaluators (anchors B3, C2, D2, D3)
+- [[13_Self-Evolving-VLA-WAM|13_Self-Evolving-VLA-WAM]] — Online/continual adaptation and self-improving policies (anchors D1, D3, E1)
 - [[04_Reinforcement-Learning|04_Reinforcement-Learning]] — Online RL fine-tuning, safe RL, continual adaptation (anchors D1, D2, E1)
 - [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] — Canonical robotics + embodied-AI paper index
 - [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey + benchmark index

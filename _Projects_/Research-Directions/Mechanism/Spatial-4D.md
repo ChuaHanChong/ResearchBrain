@@ -20,7 +20,7 @@ tags:
 **Scope.** Corpus = the vault's 3D/4D-spatial and geometric-representation papers in `_KnowledgeHub_/`, read in full. No date filter — 2024 (Video2Game) through 2026-Q2 (PointAction, OccSim, CausalSpatial). **What this doc owns.** Spatial-4D owns the *model-agnostic 3D/4D representation* — a geometric state any policy or model can stand on. Sibling [[WAM|WAM]] owns *WAM machinery only* (latent backbone, training, grounding); [[Sim2Real|Sim2Real]] owns the *reality gap*. So the latent-4D substrate ([[2604.26694|X-WAM]]) and persistent geometric memory ([[2603.17117|MosaicMem]], [[2603.24576|Chameleon (Episodic Memory)]]) live **here as C3 and C4** — treated as *representations*, not "world models," even though their source papers are world-model papers. **Out of scope:** the sim-to-real *transfer-gap* side of 3DGS reconstruction (that's [[Sim2Real|Sim2Real]]-A1/B1: [[2604.25459|GS-Playground]], [[2511.04665|Real-to-Sim GS]]); where a card borders it, one clause states the delta. The `_Projects_/01_FirstPublication/` subtree is not cross-linked.
 
 - **Surveys** — anchored on three structural surveys: [[2604.26509|3D Generation for Embodied AI Survey]] (simulation-readiness), [[2506.20134|3D World Models Survey]] (2D → 3D transition), [[2504.05786|3D Spatial Reasoning in LLM Survey]] (the cognition-layer gap).
-- **Deep-dives** — cross-read against [[../Embodied-AI/05_Latent-World-Models|05_Latent-World-Models]], [[../Embodied-AI/07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]], [[../Embodied-AI/08_VLA-Reasoning-and-CoT|08_VLA-Reasoning-and-CoT]], [[../Embodied-AI/02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]].
+- **Deep-dives** — cross-read against [[../Embodied-AI/08_Latent-World-Models|08_Latent-World-Models]], [[../Embodied-AI/11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]], [[../Embodied-AI/06_VLA-Reasoning-and-CoT|06_VLA-Reasoning-and-CoT]], [[../Embodied-AI/02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]].
 - **Filter** — every cited paper has a KH note; every number in a Thesis bet or Key-targets row traces to that note. No fabricated aliases or placeholder numbers.
 - **Framing** — each direction names its first principle, the assumption it breaks (who believes what), and a falsifiable bet with a number. Directions are picked for where geometry departs from the RGB-token consensus, not for incremental tweaks to it.
 
@@ -618,10 +618,10 @@ Cluster C spans the full **decodability axis** of $G_t$ as an internal organizin
 - [[Focus-Program|Focus-Program]] — the four-corner focused program A1 plugs into under WB-A1's representation layer.
 
 **Deep-dives:**
-- [[../Embodied-AI/05_Latent-World-Models|05_Latent-World-Models]] — the latent-vs-explicit substrate debate Cluster C extends to the explicit-geometry side.
-- [[../Embodied-AI/07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — physical parameterization (D1) and physics-grounded geometry.
-- [[../Embodied-AI/08_VLA-Reasoning-and-CoT|08_VLA-Reasoning-and-CoT]] — the spatial-CoT cognition layer (Cluster B).
-- [[../Embodied-AI/03_VLA|03_VLA]] — the RGB-token policy baselines Cluster A inverts.
+- [[../Embodied-AI/08_Latent-World-Models|08_Latent-World-Models]] — the latent-vs-explicit substrate debate Cluster C extends to the explicit-geometry side.
+- [[../Embodied-AI/11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]] — physical parameterization (D1) and physics-grounded geometry.
+- [[../Embodied-AI/06_VLA-Reasoning-and-CoT|06_VLA-Reasoning-and-CoT]] — the spatial-CoT cognition layer (Cluster B).
+- [[../Embodied-AI/05_VLA|05_VLA]] — the RGB-token policy baselines Cluster A inverts.
 - [[../Embodied-AI/02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]] — the benchmark suites and simulation environments cited throughout.
 
 **General topics:**

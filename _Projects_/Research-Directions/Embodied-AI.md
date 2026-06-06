@@ -24,8 +24,8 @@ tags:
 
 **Scope.** Corpus: ~56 VLA/WAM/embodied/physics/safety surveys and ~120 method + benchmark papers from `_KnowledgeHub_/`, cross-checked against [[08_Benchmarks-and-Surveys#4. Robotics & Embodied AI Surveys|08_Benchmarks-and-Surveys §4]]/[[08_Benchmarks-and-Surveys#5. Self-Evolving AI Surveys|§5]]/[[08_Benchmarks-and-Surveys#7. Specialized Domain Surveys|§7]] and ten `Embodied-AI/` deep-dives. **Filter**: kept directions with 3–10 attacking papers but no consensus solution; dropped saturated (more-compute-only) and premature (hypothetical-AGI) framings; favored intersections (VLA×WAM, VLA×RL, WAM×egocentric, tactile×VLA, physics×RL, safety×deployment). The method is survey-grounded ideation: surveys name the open problems, benchmarks fix what is measurable, the closest methods fix what is achievable today, and each direction states where it bets against the consensus.
 
-- **Survey enumeration**: tag-scans (`survey` × {`VLA`, `world-model`, `embodied-AI`, `robotics`, `physics-aware`, `sim-to-real`, `safety`, `self-evolving`}) over `_KnowledgeHub_/` + reference sweeps of [[03_VLA|03_VLA]], [[04_WAM|04_WAM]], [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]].
-- **Deep-dive mining**: full reads of the six deep-dives directly aligned with the directions ([[04_WAM|04_WAM]], [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]], [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]], [[08_VLA-Reasoning-and-CoT|08_VLA-Reasoning-and-CoT]], [[10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]], [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]]); others consulted for taxonomy framing.
+- **Survey enumeration**: tag-scans (`survey` × {`VLA`, `world-model`, `embodied-AI`, `robotics`, `physics-aware`, `sim-to-real`, `safety`, `self-evolving`}) over `_KnowledgeHub_/` + reference sweeps of [[05_VLA|05_VLA]], [[07_WAM|07_WAM]], [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]].
+- **Deep-dive mining**: full reads of the six deep-dives directly aligned with the directions ([[07_WAM|07_WAM]], [[13_Self-Evolving-VLA-WAM|13_Self-Evolving-VLA-WAM]], [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]], [[06_VLA-Reasoning-and-CoT|06_VLA-Reasoning-and-CoT]], [[09_Contact-Rich-and-Whole-Body-Control|09_Contact-Rich-and-Whole-Body-Control]], [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]]); others consulted for taxonomy framing.
 - **Closest-baseline anchoring**: physics-generalization, reproducible-eval, and sim-realism benchmarks ([[2605.08567|ACWM-Phys]], [[2605.21800|stable-worldmodel]], [[2605.06311|VISER]], [[2605.20774|VLA-REPLICA]], [[2605.21429|roto 2.0]]) and the named-bottleneck roadmaps ([[2511.05936|10 VLA Challenges]], [[2605.02900|Safety in Embodied AI Survey]]) set the bar A3, B1, B2, B3 must beat or measure against.
 - **First-principles framing**: each direction names the irreducible structure, the assumption it breaks, and a falsifiable bet — to surface where impactful work deviates from the herd.
 
@@ -188,7 +188,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 
 **Evidence.**
 - **Closest single-loop attempts**: [[2603.19370|VAMPO]] (GRPO over video-denoising-as-MDP; pixel-space, expensive), [[2602.13977|WoVR]] (masked GRPO + KIR + PACE; PACE not in code), [[2511.09515|WMPO]] (on-policy GRPO; WM frozen in inner loop), [[2511.15605|SRPO]] (frozen [[2506.09985|V-JEPA 2]]; WM doesn't update).
-- **Latent feasibility** ([[03_VLA#5. World-Model-Augmented VLAs|03_VLA §5]] + [[04_WAM#5. VLM-Integrated WAMs|04_WAM §5]]): [[2602.10098|VLA-JEPA]], [[2602.11832|JEPA-VLA]], [[2605.00078|Being-H0.7]] predict in 256-dim latent (~10 ms) vs pixel ~150 ms.
+- **Latent feasibility** ([[05_VLA#5. World-Model-Augmented VLAs|05_VLA §5]] + [[07_WAM#5. VLM-Integrated WAMs|07_WAM §5]]): [[2602.10098|VLA-JEPA]], [[2602.11832|JEPA-VLA]], [[2605.00078|Being-H0.7]] predict in 256-dim latent (~10 ms) vs pixel ~150 ms.
 - **Stability substrate**: [[2511.08544|LeJEPA]]'s provable Euclidean geometry (anti-collapse regularization) is the candidate that lets single-step joint updates avoid the latent-collapse failure mode.
 
 **Concrete research questions.**
@@ -408,7 +408,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 
 **Evidence.**
 - **Memory**: [[2605.10993|ECHO-VLA]] (+12.8 pp), [[2508.19236|MemoryVLA]] (+26 pp temporal, +3.6% latency), [[2603.03596|MEM]] (15-min memory), [[2603.12942|ReMem-VLA]] (**94.5%** on memory-dependent sim).
-- **Detection** (8 methods per [[06_Self-Evolving-VLA-WAM#4.1 Runtime Failure Detection|06_Self-Evolving-VLA-WAM §4.1]]): [[2506.09937|SAFE]], [[2509.16072|I-FailSense]], [[2510.09459|FIPER]], [[2603.11106|RC-NF]] (<100 ms), [[2503.08558|FAIL-Detect]] (**78%** w/o failure data), [[2410.04640|Sentinel]] (**+18%** over single), [[2407.08735|AESOP]] (**100%** sim recovery), [[2510.02298|ARMADA]] (**95%** accuracy, **23.3%** intervention reduction).
+- **Detection** (8 methods per [[13_Self-Evolving-VLA-WAM#4.1 Runtime Failure Detection|13_Self-Evolving-VLA-WAM §4.1]]): [[2506.09937|SAFE]], [[2509.16072|I-FailSense]], [[2510.09459|FIPER]], [[2603.11106|RC-NF]] (<100 ms), [[2503.08558|FAIL-Detect]] (**78%** w/o failure data), [[2410.04640|Sentinel]] (**+18%** over single), [[2407.08735|AESOP]] (**100%** sim recovery), [[2510.02298|ARMADA]] (**95%** accuracy, **23.3%** intervention reduction).
 - **Proactive correction**: [[2601.02295|CycleVLA]], [[2512.24426|CF-VLA]], [[2604.02965|SV-VLA]], [[2511.14148|AsyncVLA]], [[2509.04018|FPC-VLA]].
 - **Recovery**: [[2505.12224|RoboFAC]], [[2603.13528|Counterfactual Failure Synthesis]].
 
@@ -699,15 +699,15 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 
 ## Cross-References
 
-- [[03_VLA|03_VLA]] — VLA design space
-- [[04_WAM|04_WAM]] — WAM taxonomy (VideoGen / latent / Dreamer / VLM-integrated / efficient / self-evolving)
-- [[05_Latent-World-Models|05_Latent-World-Models]] — JEPA evolution + alternative latents
-- [[06_Self-Evolving-VLA-WAM|06_Self-Evolving-VLA-WAM]] — Failure detection, diagnosis, recovery
-- [[07_Physics-Aware-Embodied-AI|07_Physics-Aware-Embodied-AI]] — Physics-aware design space
-- [[08_VLA-Reasoning-and-CoT|08_VLA-Reasoning-and-CoT]] — Reasoning insertion slots
-- [[09_Egocentric-Pretraining-and-Human-Video|09_Egocentric-Pretraining-and-Human-Video]] — Egocentric scaling + transfer
-- [[10_Force-Aware-and-Tactile-Policies|10_Force-Aware-and-Tactile-Policies]] — Force-aware architectures + tactile sensors
-- [[11_Sim-to-Real-Transfer|11_Sim-to-Real-Transfer]] — Zero-shot sim-to-real for humanoid loco-manipulation (see [[Whole-Body|Whole-Body]]) + cross-embodiment transfer (C2)
+- [[05_VLA|05_VLA]] — VLA design space
+- [[07_WAM|07_WAM]] — WAM taxonomy (VideoGen / latent / Dreamer / VLM-integrated / efficient / self-evolving)
+- [[08_Latent-World-Models|08_Latent-World-Models]] — JEPA evolution + alternative latents
+- [[13_Self-Evolving-VLA-WAM|13_Self-Evolving-VLA-WAM]] — Failure detection, diagnosis, recovery
+- [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]] — Physics-aware design space
+- [[06_VLA-Reasoning-and-CoT|06_VLA-Reasoning-and-CoT]] — Reasoning insertion slots
+- [[12_Egocentric-Pretraining-and-Human-Video|12_Egocentric-Pretraining-and-Human-Video]] — Egocentric scaling + transfer
+- [[09_Contact-Rich-and-Whole-Body-Control|09_Contact-Rich-and-Whole-Body-Control]] — Force-aware architectures + tactile sensors
+- [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]] — Zero-shot sim-to-real for humanoid loco-manipulation (see [[Whole-Body|Whole-Body]]) + cross-embodiment transfer (C2)
 - [[02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]] — Data + sim + benchmark stacks ([[2505.14986|AnyBody]], [[2403.10506|HumanoidBench]], VLN-CE)
 - [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] — Navigation, humanoid, and cross-embodiment paper index (Cluster C)
 - [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey index

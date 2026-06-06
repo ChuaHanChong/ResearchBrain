@@ -62,4 +62,4 @@ aliases:
 > - **Step 2** (evolve the Actor) = RL-like population-based optimization
 > - **Step 4** (stabilize with replay + EWC) = CL
 
-See also: [[06_Self-Evolving-VLA-WAM]]
+See also: [[13_Self-Evolving-VLA-WAM]]

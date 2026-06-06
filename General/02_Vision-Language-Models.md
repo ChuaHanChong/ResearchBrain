@@ -386,7 +386,7 @@ Large multimodal models — the workhorses of modern vision-language understandi
 > - [[2501.17811|Janus-Pro]] — Decoupled visual encoding resolving the understanding-generation conflict; 80% on GenEval surpassing DALL-E 3
 
 **Multimodal Surveys & Taxonomies** — Comprehensive surveys covering the MLLM landscape.
-- [[2605.28774|AXPO]], [[2605.18740|Vision-OPD]], [[2605.15128|MemEye]], [[2510.09586|VLM Survey 26K]], [[2508.04227|VLM Continual Learning Survey]], [[2501.02189|VLM SOTA Survey]], [[2412.18619|Multimodal NTP Survey]], [[2406.09905|Nymeria]], [[2405.10739|Efficient MLLM Survey]]
+- [[2605.28774|AXPO]], [[2605.18740|Vision-OPD]], [[2605.15128|MemEye]], [[2510.09586|VLM Survey 26K]], [[2508.08189|RL for Large Models Survey]], [[2508.04227|VLM Continual Learning Survey]], [[2501.02189|VLM SOTA Survey]], [[2412.18619|Multimodal NTP Survey]], [[2406.09905|Nymeria]], [[2405.10739|Efficient MLLM Survey]]
 
 > [!star] Key Papers
 > - [[2306.13549|MLLM Survey]] — Foundational survey synthesizing MLLM architectures, training paradigms, evaluation methods, and the hallucination challenge

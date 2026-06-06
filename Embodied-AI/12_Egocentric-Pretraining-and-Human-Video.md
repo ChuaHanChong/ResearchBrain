@@ -134,7 +134,7 @@ Egocentric pretraining obeys a *log-linear* scaling curve, making it the first r
 > - [[2602.10106|EgoHumanoid]] — first robot-free egocentric corpus targeting humanoid embodiment alignment; **~2×** collection-speed advantage over teleoperation
 
 > [!tip] Egocentric Is the New Pretraining Substrate
-> The economic shift is the load-bearing claim: teleoperation produces minutes-per-dollar, egocentric video produces hours-per-dollar, and [[2602.16710|EgoScale]]'s log-linear curve guarantees that the additional hours actually compound into capability. This is why every 2026 generalist VLA includes egocentric pretraining as a default stage — not as a niche augmentation. Cross-reference [[03_VLA#6. RL Post-Training for VLAs]] for how egocentric pretraining + RL post-training compose, [[04_WAM#2. VideoGen WAMs]] for the WAM-side reuse of the same corpora as video-prediction substrate, and [[10_Force-Aware-and-Tactile-Policies#4.1 Vision-to-Tactile Prediction — Closing the Supervision Bottleneck]] for the tactile axis being added on top via [[2605.13083|TouchAnything]].
+> The economic shift is the load-bearing claim: teleoperation produces minutes-per-dollar, egocentric video produces hours-per-dollar, and [[2602.16710|EgoScale]]'s log-linear curve guarantees that the additional hours actually compound into capability. This is why every 2026 generalist VLA includes egocentric pretraining as a default stage — not as a niche augmentation. Cross-reference [[05_VLA#6. RL Post-Training for VLAs]] for how egocentric pretraining + RL post-training compose, [[07_WAM#2. VideoGen WAMs]] for the WAM-side reuse of the same corpora as video-prediction substrate, and [[09_Contact-Rich-and-Whole-Body-Control#4.1 Vision-to-Tactile Prediction — Closing the Supervision Bottleneck]] for the tactile axis being added on top via [[2605.13083|TouchAnything]].
 
 ---
 
@@ -172,6 +172,7 @@ Robot-free egocentric corpora collected specifically to bridge the human-robot e
 
 Domain-vertical egocentric (+ exocentric) corpora used as a post-training layer to specialize generalist VLAs.
 
+- **[[2606.04708|VISTA]]** — adapts human-collected ==UMI fisheye== data for VLA training via ==UMI-VQA== (**8M** pairs realigning the VLM to distorted wrist views) + a ==physics-validated trajectory scoring== pipeline + ==flow-matching action-expert== co-training; **0.598** avg SR over 20 real tasks (**+7.0** over π0.5, **+28.5** over LingBot-VLA), and validated subsets hit **0.65** vs **0.00** for low-score data.
 - **[[2605.13083|TouchAnything]]** (EgoTouch) — **first multi-view egocentric + bimanual dense tactile** dataset: **20 hours** of synchronized head + wrist egocentric video with bimanual 3D hand pose *and* dense tactile pressure maps. The framework fuses head + wrist via shared encoder + cross-view fusion with ==view dropout training==; pushes Volumetric IoU **+6.1%** over egocentric-only baselines and reduces the all-view → ego-only drop from **−27.20% → −5.78%**.
 - **[[2605.09613|SABER]]** — **100+ hours** of real grocery-store human activity with synchronized ==egocentric== + ==exocentric== cameras; three action streams (==[[2410.11758|LAPA]] latent actions==, Dex-Retargeting, Body Pose Retargets). As a post-training layer (SABER-MM, ==conditional flow-matching loss==), lifts NVIDIA [[2503.14734|GR00T N1.6]] on [[2511.10276|RoboBenchMart]] from **13.4% → 29.3%** mean SR (**2.19×** gain); `close_fridge` **100%**, `open_fridge` **12% → 82%**.
 
@@ -194,7 +195,7 @@ Domain-vertical egocentric (+ exocentric) corpora used as a post-training layer 
 > - [[2110.07058|Ego4D]] — 3,670-hour internet-scale egocentric video; the modern foundation
 
 > [!tip] Dataset Choice Drives Recipe Choice
-> Choosing between [[2110.07058|Ego4D]]'s scale and [[2505.11709|EgoDex]]'s dexterity isn't just a data decision — it constrains the *downstream recipe*. Internet-scale corpora support frozen-feature pretraining and broad VLA generalization; dexterity-focused corpora (UniHand, EgoDex) support action-decoder training; tactile-augmented corpora ([[2605.13083|TouchAnything]]) open a separate force-aware track. Cross-reference [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]] for the broader cross-embodiment landscape (Ego4D alongside [[2310.08864|OXE]], DROID, AgiBot), and [[03_VLA#1. Design-Space Principles]] for how dataset choice constrains backbone selection per the [[2412.14058|RoboVLMs]] 600-experiment study.
+> Choosing between [[2110.07058|Ego4D]]'s scale and [[2505.11709|EgoDex]]'s dexterity isn't just a data decision — it constrains the *downstream recipe*. Internet-scale corpora support frozen-feature pretraining and broad VLA generalization; dexterity-focused corpora (UniHand, EgoDex) support action-decoder training; tactile-augmented corpora ([[2605.13083|TouchAnything]]) open a separate force-aware track. Cross-reference [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]] for the broader cross-embodiment landscape (Ego4D alongside [[2310.08864|OXE]], DROID, AgiBot), and [[05_VLA#1. Design-Space Principles]] for how dataset choice constrains backbone selection per the [[2412.14058|RoboVLMs]] 600-experiment study.
 
 ---
 
@@ -235,7 +236,7 @@ Questions the [[2602.16710|EgoScale]] curve doesn't yet answer — the next rese
 > - [[2110.07058|Ego4D]] — anchors the lower end of the EgoScale curve with **3,670 hours**; without it the scaling axis would have no foundation tier to start from
 
 > [!tip] The Compute-Data Axis Is Now Measurable
-> Before [[2602.16710|EgoScale]], robot pretraining had no scaling law — practitioners gathered "as much data as they could" without a principled stop point. [[2602.16710|EgoScale]]'s log-linear curve enables *compute-optimal* training: pick the data-compute trade-off that maximizes downstream performance per dollar. The open frontier — embodiment-specific curves, modality-mixed scaling, long-tail domain coverage — is now framed as a tractable research agenda. Cross-reference [[03_VLA#1. Design-Space Principles]] for how the [[2412.14058|RoboVLMs]] 600-experiment study mapped the design-space empirically, and [[06_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how self-evolution might *extend* the scaling curve via synthetic-data generation.
+> Before [[2602.16710|EgoScale]], robot pretraining had no scaling law — practitioners gathered "as much data as they could" without a principled stop point. [[2602.16710|EgoScale]]'s log-linear curve enables *compute-optimal* training: pick the data-compute trade-off that maximizes downstream performance per dollar. The open frontier — embodiment-specific curves, modality-mixed scaling, long-tail domain coverage — is now framed as a tractable research agenda. Cross-reference [[05_VLA#1. Design-Space Principles]] for how the [[2412.14058|RoboVLMs]] 600-experiment study mapped the design-space empirically, and [[13_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how self-evolution might *extend* the scaling curve via synthetic-data generation.
 
 ---
 
@@ -259,11 +260,13 @@ Pretrain a video-prediction backbone on internet video (including egocentric), t
 
 - **[[2312.13139|GR-1]]** — Pioneer ==GPT-style decoder-only transformer== with two-phase training: ==language-conditioned video generative pre-training== on **800k** Ego4D clips, then finetune on CALVIN + real-robot data using frozen ==CLIP text== + ==MAE ViT== encoders and jointly-predicted actions/future frames via ==[ACT]/[OBS] tokens==. **94.9%** CALVIN multi-task (vs HULC **88.9%**), **+32.1pp** zero-shot unseen-scene, **0.79** real-world transport SR (vs RT-1 **0.27**).
 - **[[2410.06158|GR-2]]** — Generation-2 ==GPT-style transformer== over tokenized text/video/actions with two-stage training: ==video-language pre-training on 38M== diverse clips, then fine-tune with a ==conditional VAE== for diverse action trajectories. **97.7%** multi-task tabletop SR, **79.0%** industrial bin-picking (vs GR-1 **35.9%**), **98.6%** CALVIN single-task with **4.64** task-sequence length — the foundational architecture the modern co-pretraining recipe extends.
+- **[[2409.20537|HPT]]** — Modular ==stem-trunk-head== transformer pretrained on a mixture of real-robot, simulation, human-video, and multi-embodiment data: embodiment-specific stems tokenize proprioception + vision into a shared trunk via ==cross-attention==, decoupling the backbone from the action head. Validates robot scaling laws (loss drops with data / model / compute up to **>1B** params); **+10–30%** sim and **+20%** real SR over training from scratch.
 
 #### 4.3 Generation 3: Full VLA Pretraining on Human Videos (2025–2026)
 
 The 2026 frontier. Pretrain the entire VLA — vision, language, *and* action — on human videos by treating human hand motions as an action modality.
 
+- **[[2606.06194|ActiveMimic]]** (Active Perception) — recovers *synchronized* egocentric camera + bimanual wrist trajectories from in-the-wild human video with off-the-shelf vision models, as a unified ==27-D action vector== trained via ==mix-of-transformers== (human pretrain → robot fine-tune); **90.1%** Restocking / **91.7%** Finding beating robot-pretrained baselines, **79.0%** under flashing light — models camera motion as action, not noise.
 - **[[2507.15597|Being-H0]]** (Physical Instruction Tuning) — three-stage paradigm: Stage 1 VLA pretraining on UniHand via ==Grouped Residual Quantization (GRQ-VAE)== for part-level (wrist + finger separate) motion tokenization; Stage 2 physical-space alignment; Stage 3 post-training on robot data. **99.8–100%** valid generation rate, beating [[2503.14734|GR00T N1.5]] on MPJPE; **25%** of teleop data matches **50–100%** baselines.
 - **[[2605.00078|Being-H0.7]]** (Latent Dual-Branch) — replaces pixel WAM with a **latent world-action model**: dual-branch transformer aligning a deployable "prior" branch to a "posterior" branch receiving privileged future embeddings from egocentric video. ==Mixture-of-Transformers== with per-branch attention masks; deploy-time posterior dropped. **3–4 ms/step**; **99.2%** [[2306.03310|LIBERO]], **62.1%** [[2406.02523|RoboCasa]], **67.5%** real-world Dynamic Scene.
 - **[[2602.16710|EgoScale]]** (Two-Stage Mid-Training) — Stage 1 extensive human pretraining on **20,854 hours**; Stage 2 mid-training on smaller embodiment-aligned human-robot dataset bridges the embodiment gap before final fine-tuning. Mid-training is the mechanism keeping the log-linear scaling curve flat at large data volumes.
@@ -345,7 +348,7 @@ Insert a dedicated training stage *between* broad human pretraining and final ro
 > - [[2602.09013|VIDEOMANIP]] — 3D hand-object trajectory reconstruction + contact optimization on dexterous LEAP Hand; **63.75%** grasping (20 objects in IsaacGym) and **62.86%** real-world (7 tasks) without any teleoperation hardware — RGB human video as the *only* data source
 
 > [!tip] Three Strategies, One Insight
-> All transfer mechanisms ultimately do the same thing: project the high-DoF human hand into a representation the robot policy can consume. Whether the projection is explicit (MANO, keypoints, 3D reconstruction) or learned (treat-as-embodiment), the *amount* of data matters more than the *form* of the projection. [[2602.16710|EgoScale]]'s log-linear law holds across multiple projection schemes — the data axis dominates the architectural one. Cross-reference [[03_VLA#1. Design-Space Principles]] for the data-recipe design space ([[2412.14058|RoboVLMs]] 600-experiment findings) and [[06_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how transfer mechanisms compose with self-evolution loops.
+> All transfer mechanisms ultimately do the same thing: project the high-DoF human hand into a representation the robot policy can consume. Whether the projection is explicit (MANO, keypoints, 3D reconstruction) or learned (treat-as-embodiment), the *amount* of data matters more than the *form* of the projection. [[2602.16710|EgoScale]]'s log-linear law holds across multiple projection schemes — the data axis dominates the architectural one. Cross-reference [[05_VLA#1. Design-Space Principles]] for the data-recipe design space ([[2412.14058|RoboVLMs]] 600-experiment findings) and [[13_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how transfer mechanisms compose with self-evolution loops.
 
 ---
 
@@ -388,7 +391,7 @@ Modern generalist VLAs run *both* pretraining objectives — egocentric action p
 > - [[2604.20100|JoyAI-RA]] — Independent replication of the egocentric + video-WAM recipe; confirms the convergence pattern is not a single-lab artifact
 
 > [!tip] The 2026 Stack
-> Diverse cross-embodiment pretraining ([[2310.08864|OXE]]) + egocentric human pretraining ([[2110.07058|Ego4D]], [[2505.11709|EgoDex]], UniHand) + video-WAM pretraining (Cosmos, [[2602.15922|DreamZero]]) → flow-matching action head → in-domain post-training. This is the recipe behind [[2604.15483|π0.7]], [[2604.20100|JoyAI-RA]], and the next generation of generalist VLAs. Cross-reference [[04_WAM#2. VideoGen WAMs]] for the video-WAM side of the pipeline (where the same egocentric corpora are reused as pixel-prediction substrate) and [[03_VLA#5. World-Model-Augmented VLAs]] for how world-model-augmented VLAs compose this stack with planning and reasoning layers.
+> Diverse cross-embodiment pretraining ([[2310.08864|OXE]]) + egocentric human pretraining ([[2110.07058|Ego4D]], [[2505.11709|EgoDex]], UniHand) + video-WAM pretraining (Cosmos, [[2602.15922|DreamZero]]) → flow-matching action head → in-domain post-training. This is the recipe behind [[2604.15483|π0.7]], [[2604.20100|JoyAI-RA]], and the next generation of generalist VLAs. Cross-reference [[07_WAM#2. VideoGen WAMs]] for the video-WAM side of the pipeline (where the same egocentric corpora are reused as pixel-prediction substrate) and [[05_VLA#5. World-Model-Augmented VLAs]] for how world-model-augmented VLAs compose this stack with planning and reasoning layers.
 
 ---
 
@@ -423,7 +426,7 @@ Egocentric pretraining has crossed the "it works" threshold ([[2602.16710|EgoSca
 > - [[2605.00078|Being-H0.7]] — Latent dual-branch reasoning over human video; the first credible attempt to extract *reasoning* (not just motor patterns) from egocentric pretraining
 
 > [!tip] Distribution Coverage Is the Bottleneck
-> [[2602.16710|EgoScale]] proved log-linear scaling holds *within* the 22-DoF dexterous regime on kitchen/tabletop data. The five open problems above cluster around extending that result to *new embodiments* (humanoid, mobile, quadruped), *new domains* (industrial assembly, surgical, outdoor), *new supervision modes* (reasoning, not just motor patterns), and *new collector populations* (demographic diversity + privacy-respecting collection). Each extension likely requires its own diagnostic dataset — and none of those exist yet. Cross-reference [[02_Dataset-Benchmark-Environment#2. Multi-Modal & Specialist Datasets]] (the broader specialist-dataset landscape, where the long-tail gap is also the dominant theme) and [[03_VLA#1. Design-Space Principles]] (where the generalist-VLA recipe consumes egocentric pretraining; the embodiment-specific scaling gap is the bottleneck for the next generation of generalist policies).
+> [[2602.16710|EgoScale]] proved log-linear scaling holds *within* the 22-DoF dexterous regime on kitchen/tabletop data. The five open problems above cluster around extending that result to *new embodiments* (humanoid, mobile, quadruped), *new domains* (industrial assembly, surgical, outdoor), *new supervision modes* (reasoning, not just motor patterns), and *new collector populations* (demographic diversity + privacy-respecting collection). Each extension likely requires its own diagnostic dataset — and none of those exist yet. Cross-reference [[02_Dataset-Benchmark-Environment#2. Multi-Modal & Specialist Datasets]] (the broader specialist-dataset landscape, where the long-tail gap is also the dominant theme) and [[05_VLA#1. Design-Space Principles]] (where the generalist-VLA recipe consumes egocentric pretraining; the embodiment-specific scaling gap is the bottleneck for the next generation of generalist policies).
 
 ---
 
@@ -447,13 +450,13 @@ Egocentric pretraining has crossed the "it works" threshold ([[2602.16710|EgoSca
 
 - [[01_Embodied-AI-101]] — Embodied AI basics; egocentric pretraining is a fourth branch alongside VLA / WAM / self-evolving
 - [[02_Dataset-Benchmark-Environment]] — Dataset deep-dive ([[2110.07058|Ego4D]], [[2505.11709|EgoDex]], [[1706.04261|Something-Something]] all live here)
-- [[03_VLA]] — VLA deep-dive; §1 generalist VLAs ([[2604.15483|π0.7]], [[2512.22414|π0.5+ego]]) build on egocentric pretraining
-- [[04_WAM]] — WAM deep-dive; §2 video pretraining for robot policies overlaps egocentric pretraining
-- [[05_Latent-World-Models]] — Latent world models; some egocentric-pretrained VLAs use latent prediction
-- [[06_Self-Evolving-VLA-WAM]] — Self-evolution; egocentric pretraining provides robust priors that resist forgetting
-- [[07_Physics-Aware-Embodied-AI]] — Physics priors complement egocentric pretraining for the 2026 generalist stack
-- [[08_VLA-Reasoning-and-CoT]] — Reasoning-augmented VLAs that consume egocentric pretraining
+- [[05_VLA]] — VLA deep-dive; §1 generalist VLAs ([[2604.15483|π0.7]], [[2512.22414|π0.5+ego]]) build on egocentric pretraining
+- [[07_WAM]] — WAM deep-dive; §2 video pretraining for robot policies overlaps egocentric pretraining
+- [[08_Latent-World-Models]] — Latent world models; some egocentric-pretrained VLAs use latent prediction
+- [[13_Self-Evolving-VLA-WAM]] — Self-evolution; egocentric pretraining provides robust priors that resist forgetting
+- [[11_Physics-Aware-Embodied-AI]] — Physics priors complement egocentric pretraining for the 2026 generalist stack
+- [[06_VLA-Reasoning-and-CoT]] — Reasoning-augmented VLAs that consume egocentric pretraining
 
 ---
 
-*See [[03_VLA]] for the broader VLA design space, [[02_Dataset-Benchmark-Environment]] for dataset details, or [[01_Embodied-AI-101]] to start from the basics.*
+*See [[05_VLA]] for the broader VLA design space, [[02_Dataset-Benchmark-Environment]] for dataset details, or [[01_Embodied-AI-101]] to start from the basics.*

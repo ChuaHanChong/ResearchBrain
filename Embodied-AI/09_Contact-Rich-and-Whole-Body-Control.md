@@ -1,25 +1,31 @@
 ---
-title: "Force-Aware and Tactile Policies — Deep Dive"
+title: "Contact-Rich & Whole-Body Control — Deep Dive"
 tags:
   - tactile
   - force-aware
+  - whole-body
+  - locomotion
+  - humanoid
   - VLA
   - robotics
   - embodied-AI
   - manipulation
 aliases:
+  - "Contact-Rich & Whole-Body Control"
+  - "Whole-Body Control"
+  - "Contact-Rich Control"
   - "Force-Aware and Tactile Policies"
   - "Tactile Manipulation Deep Dive"
 ---
 
-# Force-Aware and Tactile Policies — Deep Dive
+# Contact-Rich & Whole-Body Control — Deep Dive
 
 > [!abstract] Overview
-> Vision-only policies fail at contact-rich tasks because cameras cannot see force. Contact transitions are millisecond-fast and visually ambiguous: insertion alignment, surface polishing, fragile grasping, and delicate insertion all require fine-grained physical interaction signals that no visual feature can recover. This note tracks the force-aware/tactile cluster: from raw sensor hardware (capacitive skins, FPC piezoresistive pads, binocular vision-tactile fingertips), through force-conditioned VLA architectures (force prompts, force-aware MoE, hybrid force-position control), to force-as-generation-conditioning ([[2505.19386|Force Prompting]]), to contact-rich benchmarks. The field's central architectural insight is that **force should be treated as a first-class modality routed through dedicated experts** — not concatenated naively with visual tokens.
+> Physical interaction — governed by forces, contact, balance, and compliance — is the axis this note unifies. A fingertip pressing a fragile object and a humanoid shifting its base under a 6 kg load are the *same problem at different scales*: both regulate contact wrenches the camera cannot see, and both fail when the policy treats force as an afterthought rather than a first-class signal. The note spans two halves of that axis. **Contact sensing & force-conditioned manipulation** (Parts A–C): tactile sensor hardware (capacitive skins, FPC pads, binocular vision-tactile fingertips), force-conditioned VLA architectures (force prompts, force-aware MoE, hybrid force-position control), force-as-generation-conditioning ([[2505.19386|Force Prompting]]), and contact-rich benchmarks. **Whole-body & locomotion control** (Part D): unified whole-body controllers, balance and load-aware adaptation, behavioral/motion-tracking foundation models, terrain-aware agile locomotion, motion retargeting, and generative skill data for humanoids. The recurring architectural insight holds at both scales — **force/contact must be a first-class modality with its own parameters** (dedicated experts for fingertip force, factorized load-context for whole-body balance), never naively concatenated. For the RL-*methods* underpinning the control side, see [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]]; this note covers the contact-dynamics *substrate*.
 
 ## Evolution Graph
 
-From bolt-on force sensors and admittance controllers to fully-integrated force-aware MoE VLAs in under three years.
+Two threads on one contact-dynamics axis: the *fingertip* thread (bolt-on force sensors → force-aware MoE VLAs) and the *whole-body* thread (task-specific gait controllers → motion-tracking foundation models for humanoid loco-manipulation), both converging on force/contact as a first-class signal.
 
 ```mermaid
 graph TD
@@ -47,6 +53,21 @@ graph TD
         G1["Force Prompting<br/><i>2025</i>"]
     end
 
+    subgraph "Whole-Body Control (2024-2026)"
+        W1["Meta Motivo<br/><i>2025</i>"]
+        W2["SkillBlender<br/><i>2025</i>"]
+        W3["ULC<br/><i>2026</i>"]
+        W4["SONIC<br/><i>2025</i>"]
+        W5["HiWET<br/><i>2026</i>"]
+    end
+
+    subgraph "Loco-Skills & Skill Data (2026)"
+        L1["TAGA<br/><i>2026</i>"]
+        L2["MotionDisco<br/><i>2026</i>"]
+        L3["NMR<br/><i>2026</i>"]
+        L4["GRAIL<br/><i>2026</i>"]
+    end
+
     P1 --> P2 --> P3 --> P4
     P3 --> R1
     P3 --> R2
@@ -57,6 +78,13 @@ graph TD
     P4 --> R3
     G1 --> P3
 
+    W1 --> W2 --> W3
+    W4 --> W5
+    W2 --> L2
+    W4 --> L1
+    L3 --> W5
+    L4 --> W3
+
     style P3 fill:#fde8f4,stroke:#d94a90
     style P4 fill:#fde8f4,stroke:#d94a90
     style R4 fill:#e8fde8,stroke:#27ae60
@@ -65,9 +93,15 @@ graph TD
     style S2 fill:#e8f4fd,stroke:#4a90d9
     style S3 fill:#e8f4fd,stroke:#4a90d9
     style G1 fill:#f0e8fd,stroke:#9b59b6
+    style W3 fill:#fdf3e8,stroke:#e67e22
+    style W4 fill:#fdf3e8,stroke:#e67e22
+    style L1 fill:#fdf3e8,stroke:#e67e22
+    style L2 fill:#fdf3e8,stroke:#e67e22
 ```
 
-The field evolved through three overlapping phases. **Phase 1 — Force as auxiliary signal** (early 2025): [[2505.06451|Adaptive Wiping]] and [[2502.14420|ChatVLA]] used force feedback as a closed-loop sensor reading, treated as one input among many. **Phase 2 — Force as first-class modality** (mid 2025): [[2507.09160|Tactile-VLA]] and [[2505.22159|ForceVLA]] elevated force/torque to a primary modality with dedicated experts and force-aware MoE routing — these are the cluster's two landmark papers. **Phase 3 — Hybrid force-position control and contact grounding** (2026): [[2603.15169|ForceVLA2]] introduces cross-scale MoE with force prompts at the VLM level; [[2603.05687|CGP]] grounds policies in predicted multi-point contact trajectories; [[2604.28156|FlexiTac]] and [[2604.20689|FingerEye]] attack the hardware bottleneck with sub-$30 conformable skins and binocular vision-tactile fingertips.
+**The fingertip thread** evolved through three overlapping phases. **Phase 1 — Force as auxiliary signal** (early 2025): [[2505.06451|Adaptive Wiping]] and [[2502.14420|ChatVLA]] used force feedback as a closed-loop sensor reading, treated as one input among many. **Phase 2 — Force as first-class modality** (mid 2025): [[2507.09160|Tactile-VLA]] and [[2505.22159|ForceVLA]] elevated force/torque to a primary modality with dedicated experts and force-aware MoE routing — these are the cluster's two landmark papers. **Phase 3 — Hybrid force-position control and contact grounding** (2026): [[2603.15169|ForceVLA2]] introduces cross-scale MoE with force prompts at the VLM level; [[2603.05687|CGP]] grounds policies in predicted multi-point contact trajectories; [[2604.28156|FlexiTac]] and [[2604.20689|FingerEye]] attack the hardware bottleneck with sub-$30 conformable skins and binocular vision-tactile fingertips.
+
+**The whole-body thread** runs in parallel (Part D). Unsupervised behavioral foundation models ([[2504.11054|Meta Motivo]]) and skill-blending hierarchies ([[2506.09366|SkillBlender]]) established that a *single* policy could absorb many whole-body tasks; unified fine-grained controllers ([[2507.06905|ULC]]) and world-frame end-effector tracking ([[2602.06341|HiWET]]) then sharpened precision under the locomotion–manipulation coupling. By 2026 the thread mirrors the fingertip lesson exactly: massive motion-tracking pretraining ([[2511.07820|SONIC]], **100M** frames) plays the role tactile-SSL played for touch, factorized load-context ([[2606.03297|SplitAdapter]]) plays the role of phase-aware force experts, and generative skill data ([[2606.05160|GRAIL]], [[2605.27724|HumanoidMimicGen]]) attacks the same data-scarcity bottleneck that throttles force-instrumented manipulation.
 
 | Year | Paper | Track | Contribution |
 |------|-------|-------|--------------|
@@ -91,9 +125,19 @@ The field evolved through three overlapping phases. **Phase 1 — Force as auxil
 | 2026 | [[2601.20321\|TaF-VLA]] | Tactile-force alignment | **10M** synchronized tactile-force pairs + VQ-VAE force latent; **64.8%** avg SR |
 | 2026 | [[2604.20689\|FingerEye]] | Tactile sensor | Continuous vision→tactile binocular fingertip; +30% over wrist-only baselines |
 | 2026 | [[2604.28156\|FlexiTac]] | Tactile sensor | $30 FPC piezoresistive plug-in skin; 8×16 to 32×32 layouts at 100Hz |
+| 2024 | [[2408.00342\|MuJoCo MPC HumanoidBench]] | Whole-body control | Dense-cost MPC beats SOTA RL on HumanoidBench; surfaces long-horizon balance instabilities |
+| 2025 | [[2504.11054\|Meta Motivo]] | Whole-body control | Behavioral foundation model; ==FB-CPR== unsupervised RL → zero-shot human-like whole-body control |
+| 2025 | [[2506.09366\|SkillBlender]] | Whole-body control | Hierarchical RL blends frozen primitives via per-joint softmax weights; **8** loco-manip tasks |
+| 2025 | [[2511.07820\|SONIC]] | Whole-body control | Supersized motion tracking (**100M** frames, **32k** GPU-hr); **99.6%** OOD-motion tracking |
+| 2026 | [[2507.06905\|ULC]] | Whole-body control | Single unified policy: locomotion + 3-DoF torso + dual-arm; widest operational workspace |
+| 2026 | [[2602.06341\|HiWET]] | Whole-body control | Hierarchical world-frame EE tracking; **12.4 mm** sim error compensating base disturbance |
+| 2026 | [[2606.03297\|SplitAdapter]] | Balance / load-aware | Factorized load + dynamics contexts; **26/27** real tasks under OOD loads vs **16/27** base |
+| 2026 | [[2606.05880\|TAGA]] | Agile locomotion | Emergent active gaze; **120 cm** gap (**+50%** over prior perceptive humanoids) |
+| 2026 | [[2603.22201\|NMR]] | Motion retargeting | Transformer neural retargeting; zero joint jumps, **54%** fewer self-collisions |
+| 2026 | [[2606.05160\|GRAIL]] | Skill data | 4D HOI from 3D assets + video priors; **20K+** sequences → **90%** real stair-climbing |
 
 > [!tip] Three Phases, One Architectural Convergence
-> Across all three phases, the field converged on the same architectural pattern: **force gets its own encoder, its own attention path, and its own gated expert** — never naive concatenation with visual tokens. From [[2507.09160|Tactile-VLA]]'s force-aware action expert to [[2505.22159|ForceVLA]]'s FVLMoE to [[2603.15169|ForceVLA2]]'s Cross-Scale MoE, the consistent finding is that contact dynamics require dedicated parameters that activate phase-aware (free-space vs in-contact). See [[03_VLA#7. Multi-Sensor & Force-Aware VLAs]] for how this fits the broader VLA design space.
+> Across all three phases, the field converged on the same architectural pattern: **force gets its own encoder, its own attention path, and its own gated expert** — never naive concatenation with visual tokens. From [[2507.09160|Tactile-VLA]]'s force-aware action expert to [[2505.22159|ForceVLA]]'s FVLMoE to [[2603.15169|ForceVLA2]]'s Cross-Scale MoE, the consistent finding is that contact dynamics require dedicated parameters that activate phase-aware (free-space vs in-contact). See [[05_VLA#7. Multi-Sensor & Force-Aware VLAs]] for how this fits the broader VLA design space.
 
 ---
 
@@ -161,7 +205,7 @@ Every force-aware/tactile policy commits to three orthogonal choices — *what s
 > - [[2410.24090|Sparsh]] — The cluster's pretraining-axis founder; **460k** unlabeled tactile images + ==TacBench== established that the touch analog of [[2304.07193|DINOv2]] beats end-to-end training by **~95.1%** average
 
 > [!tip] Picking by Constraint
-> If your task has a known reference force (wiping, polishing, insertion with known tolerance), use **closed-loop admittance over the action head** ([[2505.06451|Adaptive Wiping]]) — simplest and most data-efficient. If the task is multi-stage with free-space → contact transitions, use a **force-aware MoE** ([[2505.22159|ForceVLA]], [[2603.15169|ForceVLA2]]) so the gating switches experts at contact onset. If the task requires dense per-taxel contact info (in-hand reorientation, fragile grasping), the bottleneck is **sensor hardware** ([[2509.18830|DexSkin]], [[2604.28156|FlexiTac]]) before the policy architecture matters. See [[03_VLA#7. Multi-Sensor & Force-Aware VLAs]] for how the multi-modal entry-point taxonomy fits the broader VLA design space, and [[11_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for sensor-side calibration needed before any of these axes generalize.
+> If your task has a known reference force (wiping, polishing, insertion with known tolerance), use **closed-loop admittance over the action head** ([[2505.06451|Adaptive Wiping]]) — simplest and most data-efficient. If the task is multi-stage with free-space → contact transitions, use a **force-aware MoE** ([[2505.22159|ForceVLA]], [[2603.15169|ForceVLA2]]) so the gating switches experts at contact onset. If the task requires dense per-taxel contact info (in-hand reorientation, fragile grasping), the bottleneck is **sensor hardware** ([[2509.18830|DexSkin]], [[2604.28156|FlexiTac]]) before the policy architecture matters. See [[05_VLA#7. Multi-Sensor & Force-Aware VLAs]] for how the multi-modal entry-point taxonomy fits the broader VLA design space, and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for sensor-side calibration needed before any of these axes generalize.
 
 ---
 
@@ -199,7 +243,7 @@ A parallel thread to better sensors: learn ==general-purpose tactile representat
 > - [[2506.14754|Sparsh-X]] — Multisensory touch foundation model (image + audio + IMU + pressure) at **~1M** contacts; **+500%** plug insertion over vision-only — the multimodal extension of [[2410.24090|Sparsh]]
 
 > [!tip] Sensor Bottleneck vs Policy Bottleneck — and Why You Should Pretrain the Encoder
-> The binding bottleneck dictates the fix: tasks failing at *contact onset* (alignment, insertion approach) need **continuous vision-tactile** ([[2604.20689|FingerEye]]); tasks failing during *sustained contact* (perturbed reorientation, fragile grasping) need **high-coverage skin** ([[2509.18830|DexSkin]]); tasks limited by *coarse aggregated F/T* can be compensated in policy ([[2505.22159|ForceVLA]]) but the sensor sets the ceiling. Whatever the sensor, the *encoder* should be pretrained: the [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] result is the touch analog of the [[2304.07193|DINOv2]] lesson — a frozen SSL tactile encoder amortizes labeling cost across the whole downstream task family, and JEPA-style objectives generalize from RGB to tactile and from unimodal to multisensory. Most VLAs in §3 still train tactile encoders from scratch per task — an obvious upgrade path. Cross-reference [[05_Latent-World-Models#3. Broader Latent Prediction Landscape]] for the latent-prediction lineage this reuses and [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the evaluation side.
+> The binding bottleneck dictates the fix: tasks failing at *contact onset* (alignment, insertion approach) need **continuous vision-tactile** ([[2604.20689|FingerEye]]); tasks failing during *sustained contact* (perturbed reorientation, fragile grasping) need **high-coverage skin** ([[2509.18830|DexSkin]]); tasks limited by *coarse aggregated F/T* can be compensated in policy ([[2505.22159|ForceVLA]]) but the sensor sets the ceiling. Whatever the sensor, the *encoder* should be pretrained: the [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] result is the touch analog of the [[2304.07193|DINOv2]] lesson — a frozen SSL tactile encoder amortizes labeling cost across the whole downstream task family, and JEPA-style objectives generalize from RGB to tactile and from unimodal to multisensory. Most VLAs in §3 still train tactile encoders from scratch per task — an obvious upgrade path. Cross-reference [[08_Latent-World-Models#3. Broader Latent Prediction Landscape]] for the latent-prediction lineage this reuses and [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the evaluation side.
 
 ---
 
@@ -277,13 +321,13 @@ A category-of-one frontier: rather than feeding force *into* a policy, force is 
 > - [[2502.14420|ChatVLA]] — Phased Alignment Training + control/understanding MoE; the architectural parent of force-aware MoE designs
 
 > [!tip] Generation vs Control — The Unbuilt Pipeline
-> [[2505.19386|Force Prompting]] answers *"what would happen if I applied this force?"*; [[2507.09160|Tactile-VLA]] and [[2505.22159|ForceVLA]] answer *"what force should I apply right now?"*. The two halves compose: pretrain on force-conditioned generation to absorb mass/dynamics priors, then attach a force-aware action head for control. No published work has executed this end-to-end yet. See [[07_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation]] for the broader physics-conditioned video-generation track and [[04_WAM#5. VLM-Integrated WAMs]] for the WAM augmentation patterns that would host the action head.
+> [[2505.19386|Force Prompting]] answers *"what would happen if I applied this force?"*; [[2507.09160|Tactile-VLA]] and [[2505.22159|ForceVLA]] answer *"what force should I apply right now?"*. The two halves compose: pretrain on force-conditioned generation to absorb mass/dynamics priors, then attach a force-aware action head for control. No published work has executed this end-to-end yet. See [[11_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation]] for the broader physics-conditioned video-generation track and [[07_WAM#5. VLM-Integrated WAMs]] for the WAM augmentation patterns that would host the action head.
 
 ---
 
-## Part C — Evaluation & Open Problems
+## Part C — Evaluation
 
-*Contact-rich manipulation benchmarks and where force-aware policies still fail.*
+*Contact-rich manipulation benchmarks — the downstream targets the force-conditioned policies of Part B race against.*
 
 ### 4. Contact-Rich Manipulation Benchmarks and Visuotactile Policies
 
@@ -327,15 +371,172 @@ The downstream targets of all this work. Contact-rich tasks — wiping, polishin
 > - [[2505.06451|Adaptive Wiping]] — Few-shot IL + F/T feedback + VAE object representation; **100% contact**, **96% reference force** under unseen heights/sponges; the cleanest contact-rich benchmark to date
 
 > [!tip] Benchmark Frontier
-> Most contact-rich benchmarks today (ForceVLA-Data, ForceVLA2-Dataset, [[2505.06451|Adaptive Wiping]] scenarios) involve hundreds to ~1k trajectories on 5–25 task variants. None approach the scale of [[2310.08864|OXE]] (**1M+** trajectories). Until an "[[2310.08864|OXE]] for contact-rich tasks" exists, force-aware policy performance is bounded by *data scale*, not *architecture* — which is why [[2605.13083|TouchAnything]]'s vision-to-tactile prediction path matters disproportionately: it bypasses the instrumented-teleoperation cost ceiling. See [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the broader benchmark landscape and [[09_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the scaling-law evidence underwriting this argument.
+> Most contact-rich benchmarks today (ForceVLA-Data, ForceVLA2-Dataset, [[2505.06451|Adaptive Wiping]] scenarios) involve hundreds to ~1k trajectories on 5–25 task variants. None approach the scale of [[2310.08864|OXE]] (**1M+** trajectories). Until an "[[2310.08864|OXE]] for contact-rich tasks" exists, force-aware policy performance is bounded by *data scale*, not *architecture* — which is why [[2605.13083|TouchAnything]]'s vision-to-tactile prediction path matters disproportionately: it bypasses the instrumented-teleoperation cost ceiling. See [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the broader benchmark landscape and [[12_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the scaling-law evidence underwriting this argument.
 
 ---
 
-### 5. Open Problems & Failure Modes
+## Part D — Whole-Body & Locomotion Control
+
+*The whole-body half of the contact-dynamics axis: regulating balance, base–arm coupling, terrain contact, and human-to-humanoid motion transfer. Where Parts A–C treat contact at the fingertip, Part D treats it at the body scale — but the architectural lesson is the same (force/contact as a first-class, dedicated signal). For the RL-methods underpinning these controllers, see [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]].*
+
+### 5. Whole-Body Control & Coordination
+
+The defining tension of humanoid loco-manipulation is *coupling*: an aggressive arm reach destabilizes the gait, and a moving base drags the end-effector off target. A decoupled "walk, then manipulate" controller cannot resolve this — the two subsystems share a contact budget (ground-reaction forces, center-of-mass, angular momentum) that only a whole-body policy can allocate. This section tracks how the field stopped treating locomotion and manipulation as separate controllers and started learning a single policy that regulates the coupled contact dynamics.
+
+Three axes of division emerge. **Unified and hierarchical controllers** decide whether to fuse everything into one policy or decompose into a high-level commander + low-level tracker. **Balance and load-aware adaptation** confronts the disturbances — external payloads, base oscillation — that the coupling injects. **Behavioral and motion-tracking foundation models** ask whether whole-body control, like vision-language before it, has a scalable pretraining objective that replaces per-task reward engineering.
+
+#### 5.1 Unified & Hierarchical Whole-Body Controllers
+
+The core architectural fork: a single end-to-end policy that jointly outputs locomotion + torso + arm commands, versus a two-level commander/tracker split that decouples global spatial reasoning from dynamic execution.
+
+- **[[2507.06905|ULC]]** — ==Single unified policy== trained with massively parallel ==PPO==, integrating locomotion, full 3-DoF torso, and dual-arm control via a sequential ==adaptive curriculum==; quintic interpolation + stochastic delay + CoM tracking for deployment realism. Widest operational workspace (root height **0.30–0.75 m**, full 3-DoF torso), low arm error (**0.06±0.01 rad** under command mutation) even under **2 kg** wrist loads.
+- **[[2602.06341|HiWET]]** — ==Hierarchical world-frame end-effector tracking==: a high-level Commander reasons in the world frame, a low-level Tracker executes whole-body motion, decoupling drift-prone body-centric control. A ==Kinematic Manifold Prior== halves hand error. **12.4 mm** EE error in sim, **12–15 mm** RMSE real on Unitree G1, actively compensating locomotion-induced base oscillation.
+- **[[2506.09366|SkillBlender]]** — Two-stage ==hierarchical RL==: pre-train ==goal-conditioned primitive skills== (walk, reach, squat, step), then a high-level controller blends ==frozen primitives== via per-joint ==softmax weight vectors==. Beats vanilla RL on **8** loco-manip tasks across H1/G1/H1-2; the softmax non-linearity is ablated as critical for preventing reward hacking.
+- **[[2504.09532|Humanoid-COA]]** — ==Embodied Chain-of-Action reasoning== over multimodal foundation models (GPT-4V perception, GPT-4 reasoning): decomposes language into action sequences via object affordance + spatial + whole-body movement inference for *zero-shot* loco-manipulation. **96.6%** SR on simple tasks, **>60%** on long-horizon occlusion-aware scenarios on real H1-2/G1.
+
+#### 5.2 Balance & Load-Aware Adaptation
+
+Coupling means external disturbance is the norm, not the exception. These papers confront the payloads and dynamic mismatch that destabilize whole-body control, and the classical baseline that exposes how brittle naive policies remain.
+
+- **[[2606.03297|SplitAdapter]]** — ==Factorized adaptation==: augments a frozen pretrained policy with *separate* object/load and dynamics-mismatch contexts (unified latents conflate the two), injected via hierarchical ==FiLM== with ==GRL cross-adversarial regularization== enforcing specialization. **86/90** sim, **26/27** real full-task SR under OOD loads (vs **16/27** base), with clean mass-dependent latent organization.
+- **[[2408.00342|MuJoCo MPC HumanoidBench]]** — ==Dense-cost Model Predictive Control== (==iLQG== for Stand/Walk, ==Sampling Planner== for Push) beats SOTA RL (DreamerV3, TD-MPC2, SAC, PPO) on HumanoidBench with smoother, lower-energy trajectories. Critically exposes that short-episode sparse-reward benchmarks *mask* long-horizon balance instabilities — visible only over **8 s** episodes.
+
+#### 5.3 Behavioral & Motion-Tracking Foundation Models
+
+The whole-body analog of the touch-SSL story in §2.1: a scalable, reward-free pretraining objective (motion tracking, unsupervised behavior) that yields a generalist controller, replacing per-task reward engineering.
+
+- **[[2511.07820|SONIC]]** — Supersizes ==motion tracking== as a foundational task: dense supervision from **100M** frames, **700 hours**, **32k GPU-hours**, **42M** params, via an ==encoder-quantizer-decoder== + generative kinematic planner. **99.6%** OOD-motion tracking; zero-shot to physical G1 on all **50** trajectories; **95%** mobile manipulation when fronted by a GR00T N1.5 VLA — the touch-SSL scaling lesson, transposed to whole-body control.
+- **[[2504.11054|Meta Motivo]]** — ==Behavioral foundation model== via ==FB-CPR== (Forward-Backward representations + Conditional Policy Regularization), an online ==unsupervised RL== method learning from *unlabeled* motion capture. Zero-shot whole-body control matching task-specific TD3; human evaluators prefer its naturalness even over higher-reward agents — the reward-free pretraining proof for whole-body behavior.
+
+**Whole-Body Control — Decision Matrix**
+
+| Need | Recommendation |
+|---|---|
+| Single policy for locomotion + torso + dual-arm in one command space | [[2507.06905\|ULC]] (widest workspace, robust to loads/delay) |
+| World-frame EE precision under locomotion disturbance | [[2602.06341\|HiWET]] (**12.4 mm** sim, hierarchical commander/tracker) |
+| Compose complex loco-manip from reusable primitives | [[2506.09366\|SkillBlender]] (per-joint softmax blending of frozen skills) |
+| Zero-shot language → loco-manipulation without training | [[2504.09532\|Humanoid-COA]] (Chain-of-Action over foundation models) |
+| Robustness to OOD payloads / dynamic mismatch | [[2606.03297\|SplitAdapter]] (factorized load + dynamics contexts) |
+| Stable classical baseline + long-horizon stability audit | [[2408.00342\|MuJoCo MPC HumanoidBench]] (dense-cost MPC) |
+| Reward-free generalist whole-body controller | [[2511.07820\|SONIC]] (motion-tracking FM) or [[2504.11054\|Meta Motivo]] (behavioral FM) |
+
+> [!star] Key Papers
+> - [[2504.11054|Meta Motivo]] — The behavioral-foundation-model landmark: first to show unsupervised RL on unlabeled MoCap yields a zero-shot, human-natural whole-body controller — the whole-body analog of self-supervised pretraining
+> - [[2511.07820|SONIC]] — Established that motion tracking is the scalable, reward-free pretraining task for humanoid control; the 100M-frame scaling result is the field's clearest "foundation-model recipe works for whole-body" proof
+> - [[2507.06905|ULC]] — The reference unified controller: a single policy covering the full locomotion + torso + dual-arm command space, ending the decoupled-controller era for fine-grained loco-manipulation
+> - [[2606.03297|SplitAdapter]] — The cleanest demonstration that *factorizing* contact-relevant context (load vs dynamics) beats a unified latent — the whole-body echo of "force needs its own expert"
+
+> [!tip] The Coupling Is the Substrate — Factorize It, Don't Average It
+> The whole-body thread re-derives the fingertip thread's central lesson at body scale: contact-relevant signals demand *dedicated* parameters, not a shared average. [[2606.03297|SplitAdapter]] splits load-context from dynamics-context exactly as [[2505.22159|ForceVLA]]'s FVLMoE splits force-expert from visual-expert; [[2602.06341|HiWET]]'s commander/tracker split mirrors the controller-vs-action-head fork of §3.1. And the scaling escape hatch is identical — [[2511.07820|SONIC]]'s motion-tracking pretraining plays the role [[2410.24090|Sparsh]]'s touch-SSL plays for tactile. The surprise is *how exactly* the two scales rhyme: whenever you are tempted to fuse a contact signal into a shared representation, the body-scale evidence says factorize. Cross-reference [[05_VLA#8. Humanoid & Bimanual VLAs]] for the VLA-side of whole-body action generation and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for the domain-randomization these controllers depend on to survive deployment.
+
+---
+
+### 6. Legged Locomotion & Agile Skills
+
+If §5 is about *coordinating* the body, §6 is about *pushing it to the dynamic edge* — gaps wider than a stride, table-tennis smashes, under-table contact plans. Agile skills expose a tension the static loco-manipulation controllers can defer: when the maneuver is at the limit of feasibility, the policy must *anticipate* the contact (where to look, where to plant, how to pre-load momentum) rather than react to it. This section tracks how perception, generative motion priors, and autonomous search push humanoid skills past the demonstration-limited frontier.
+
+The papers divide by *how the agile skill is acquired*. **Terrain-aware perception** learns where to attend before committing a foothold. **Dynamic whole-body skills** scale sparse demonstrations into a generative motion library and add anticipatory intent. **Autonomous skill discovery** removes the human demonstrator entirely, searching the contact-mode space for feasible long-horizon plans.
+
+#### 6.1 Terrain-Aware Agile Locomotion
+
+The perception bottleneck for agile locomotion: broad coverage for anticipatory planning versus precise local geometry for foot placement. The breakthrough is letting attention *emerge* rather than processing the full scan.
+
+- **[[2606.05880|TAGA]]** — Fuses egocentric depth (long-range preview), height scans (local geometry), and proprioception; an emergent ==active gaze== module predicts a task-relevant ==Region of Interest== in the height scan, trained with ==PPO== + Adversarial Motion Priors + a ==MoE== action decoder. **120 cm** gap traversal on G1 (**+50%** over prior perceptive humanoids), **70 cm** stepping-stone spacing, at **65.2%** lower training cost than full-scan processing.
+
+#### 6.2 Dynamic Whole-Body Skills
+
+Agile, dynamic tasks need a richer motion repertoire than sparse MoCap provides, and they need the policy to prepare for transitions *before* they happen. These papers attack both — generative augmentation of strike motions and anticipatory joint-intent latents.
+
+- **[[2604.01158|SMASH]]** — Humanoid table tennis from *onboard egocentric vision only*: ==dual-modality stereo perception== + ==AprilTag== self-localization, a conditional autoregressive ==Motion-VAE== that augments sparse MoCap into a scalable strike library, and ==task-oriented motion-matching== RL. First outdoor consecutive striking; **93.7%** contact rate, **59.7%** returns over 642 randomized launches.
+- **[[2605.14417|DAJI]]** — Learns a compact **64D** ==anticipatory joint-intent latent== encoding future physical transitions, executable by a closed-loop controller. ==DAJI-Act== distills from a future-aware privileged teacher; ==DAJI-Flow== is a language-conditioned ==flow-matching DiT== with scheduled self-conditioning. **94.42%** rollout SR on HumanML3D-style benchmarks, **4.71 ms** CPU latency, lower transition jerk on streaming instruction-switches.
+
+#### 6.3 Autonomous Contact-Rich Skill Discovery
+
+Removing the human demonstrator: search the discrete contact-mode space (or a generative motion prior) for novel, physically feasible long-horizon skills, then execute them zero-shot.
+
+- **[[2606.06139|MotionDisco]]** — Couples an ==LLM-guided evolutionary search== over discrete contact-mode sequences with ==contact-explicit kinodynamic motion planning==: the LLM mutates Python contact-plan programs, the planner returns numeric scores + structured failure feedback to guide the next mutation. Solves all **8** extreme long-horizon scenarios (Under-Table Pick & Place, Climb Table w/ Box) within minutes; deploys zero-shot on real hardware.
+- **[[2604.00202|DreamControl-v2]]** — Trains a ==guided diffusion model directly in the G1 motion space== (not human space), aggregating pre-retargeted human (AMASS/HumanML3D/GRAB) + robot (OmniRetarget) data, eliminating manual prompt calibration. **68%** valid-trajectory rate (vs **8%** for inference-time prompting), FID **0.265**, **0.925** SR on complex tasks; **8** loco-manip skills deployed on real G1.
+
+**Legged Locomotion & Agile Skills — Decision Matrix**
+
+| Need | Recommendation |
+|---|---|
+| Agile terrain traversal (gaps, stepping stones) with efficient perception | [[2606.05880\|TAGA]] (emergent active gaze; **120 cm** gap) |
+| Dynamic striking / sports skill from onboard vision | [[2604.01158\|SMASH]] (Motion-VAE augmentation + egocentric perception) |
+| Anticipatory, streaming language-conditioned motion | [[2605.14417\|DAJI]] (64D joint-intent latent + flow-matching) |
+| Discover novel long-horizon contact plans without demos | [[2606.06139\|MotionDisco]] (LLM-guided evolutionary contact search) |
+| Scalable skill acquisition via generative motion priors | [[2604.00202\|DreamControl-v2]] (guided diffusion in robot motion space) |
+
+> [!star] Key Papers
+> - [[2606.06139|MotionDisco]] — First to discover extreme loco-manipulation skills autonomously by coupling LLM-guided evolutionary search with kinodynamic planning — removing the human demonstrator from contact-rich skill acquisition
+> - [[2606.05880|TAGA]] — Showed an anticipatory active-gaze policy can *emerge* from RL without supervision, setting the perceptive-humanoid agility frontier
+> - [[2604.01158|SMASH]] — The egocentric-vision agility landmark: first consecutive humanoid table tennis from onboard sensing alone, proving generative motion augmentation scales dynamic skills
+
+> [!tip] Anticipation Beats Reaction at the Dynamic Edge
+> Across this section the winning move is the same: *anticipate the contact before it happens.* [[2606.05880|TAGA]]'s gaze predicts where to look for the next foothold; [[2605.14417|DAJI]]'s 64D latent encodes the future physical transition before the body moves; [[2606.06139|MotionDisco]]'s search reasons over the whole contact-mode sequence rather than the next step. Reactive control suffices for quasi-static loco-manipulation (§5), but at the dynamic limit the latency of "sense → decide → act" is fatal — the maneuver is over before reaction completes. This is the locomotion echo of [[09_Contact-Rich-and-Whole-Body-Control#8.3 Deployment & Failure Recovery|§8.3]]'s millisecond-contact problem: when contact transitions outrun the reasoning loop, you must predict, not react. Cross-reference [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]] for the RL-method machinery and [[07_WAM#2. VideoGen WAMs]] for the imagination substrate that anticipatory control increasingly relies on.
+
+---
+
+### 7. Humanoid Manipulation, Retargeting & Skill Data
+
+The binding constraint on whole-body control is not architecture — it is *data*. Humanoid loco-manipulation demonstrations are extraordinarily expensive: teleoperating a high-DoF balancing robot is slow, dangerous, and embodiment-specific. This section tracks the three ways the field manufactures whole-body skill data without scaling teleoperation: retarget human motion into the robot's feasible manifold, generate physically-grounded trajectories synthetically, and standardize the learning workflow so policies actually transfer.
+
+The axes are *where the data comes from*. **Motion retargeting** translates human (or human-demonstration) motion to the humanoid while respecting kinematics and dynamics. **Generative skill data** synthesizes whole-body trajectories from priors — diffusion, video-foundation-models, or composable primitives. **Learning workflows** wrap the whole loop so the manufactured data yields deployable controllers.
+
+#### 7.1 Motion Retargeting & Human-to-Humanoid Transfer
+
+The upstream data axis: cleanly map human motion onto the humanoid's feasible manifold. Naive optimization propagates jitter and self-collisions; these papers learn or constrain the mapping to produce policy-ready references.
+
+- **[[2603.22201|NMR]]** — Reframes retargeting as learning a ==dynamic mapping between motion distributions==: a ==Transformer== with full self-attention maps human motion to the robot's feasible manifold, trained on a ==Clustered-Expert Physics Refinement== pipeline that generates physically consistent human-robot pairs via clustering + parallel RL. **Zero** joint jumps, **54%** fewer self-collisions (**0.87%** of frames); downstream WBC policies train faster with lower pose error.
+- **[[2603.03243|HoMMI]]** — Whole-body mobile manipulation from *robot-free* human demos: extends bimanual ==UMI== with an egocentric iPhone (==ARKit== shared coordinate frame), a ==cross-embodiment hand-eye Diffusion Policy== with an embodiment-agnostic 3D representation + a relaxed "look-at point" head action, and ==constraint-aware whole-body IK==. **90%** laundry, **85%** delivery, **80%** tablescaping on a real mobile manipulator.
+
+#### 7.2 Generative Skill Data for Whole-Body Control
+
+The synthetic-data axis: manufacture large, physically-plausible whole-body trajectory corpora from generative priors — diffusion, video-foundation-models, or composable primitives — directly in the robot's embodiment.
+
+- **[[2606.05160|GRAIL]]** — Fully digital pipeline generating robot-compatible ==4D human-object-interaction== data: assemble a 3D scene with known scale/geometry, generate interaction video via a ==Video Foundation Model==, then ==interaction-aware 4D HOI reconstruction== with contact/depth/keypoint losses. **20K+** sequences, **88.9%** sim tracking; egocentric policies trained *only* on synthetic data hit **90%** real stair-climbing, **84%** seen / **80%** unseen object pick-up.
+- **[[2605.27724|HumanoidMimicGen]]** — Adapts a small set of human-collected whole-body skills into thousands of demos via structured ==skill planning== over a ==hierarchical hybrid action space== (RL locomotion controller + joint-space upper-body), with motion-noise + init randomization. **0.89** PSR across **9** tasks (vs **0.33** DexMimicGen+); sim-and-real co-training lifts real performance **0.51 → 0.71**.
+- **[[2604.27711|ExoActor]]** — ==Exocentric video generation as control==: robot-to-human embodiment transfer → step-wise prompt decomposition → ==task-consistent video generation== (Kling 3) → ==3D whole-body + hand motion estimation== fed directly to a motion-tracking controller (no explicit retargeting). Reliable on basic and coordinated-interaction tasks; fine-grained manipulation with minor scene adjustment.
+- **[[2604.11251|CLAW]]** — Generates ==language-annotated whole-body motion== by composing ==parameterized motion primitives== from a kinematic planner inside ==MuJoCo physics==, with a deterministic template engine producing descriptions in **8** styles from the same motion-intent parameters. Smoothly stitches walk→squat→crawl into long-horizon sequences directly compatible with G1 control, no error-prone retargeting.
+
+#### 7.3 End-to-End Loco-Manipulation Learning Workflows
+
+The integration axis: the manufactured data and learned controllers only matter if the full pipeline — verify, train, evaluate, deploy — transfers. A workflow paper standardizes the loop that the rest of this note's methods plug into.
+
+- **[[2603.20147|AGILE]]** — Four-stage configuration-driven workflow (==Prepare/Train/Evaluate/Deploy==) over Isaac Lab + RSL-RL, with interactive verification GUIs, ==L2C2 regularization==, value-bootstrapped terminations, a virtual harness, cross-simulator evaluation, and ==TorchScript== descriptor-driven deployment. Sim-to-real for **5** humanoid skills on G1/Booster T1 (**6–25 hr**/task on one L40); freezing locomotion + fine-tuning a GR00T N1.5 VLA hits **90%** pick-and-place.
+
+**Manipulation, Retargeting & Skill Data — Decision Matrix**
+
+| Need | Recommendation |
+|---|---|
+| Jitter-free, collision-free human→humanoid retargeting | [[2603.22201\|NMR]] (Transformer + physics-refined data) |
+| Whole-body mobile manipulation from robot-free human demos | [[2603.03243\|HoMMI]] (UMI + cross-embodiment hand-eye policy) |
+| Synthetic 4D HOI skill data from 3D assets + video | [[2606.05160\|GRAIL]] (**90%** real stair-climbing from synthetic-only) |
+| Scale sparse demos into thousands of loco-manip trajectories | [[2605.27724\|HumanoidMimicGen]] (whole-body planning + randomization) |
+| Video-generation-as-control without retargeting | [[2604.27711\|ExoActor]] (exocentric video → motion estimation) |
+| Language-annotated whole-body motion data | [[2604.11251\|CLAW]] (composable primitives + template annotation) |
+| Standardized verify→train→eval→deploy loco-manip workflow | [[2603.20147\|AGILE]] (config-driven Isaac Lab pipeline) |
+
+> [!star] Key Papers
+> - [[2606.05160|GRAIL]] — The strongest proof that fully-synthetic 4D HOI data transfers: egocentric policies trained *only* on generated trajectories reach 90% real-world success, attacking the whole-body data bottleneck head-on
+> - [[2603.22201|NMR]] — Reframed retargeting from brittle optimization to a learned distribution-mapping, producing policy-ready references that downstream whole-body controllers can actually track
+> - [[2605.27724|HumanoidMimicGen]] — The MimicGen analog for humanoids: whole-body planning over a hybrid action space turns a handful of demos into a robust loco-manipulation corpus
+> - [[2603.20147|AGILE]] — The reference workflow that makes the rest of the cluster deployable — standardizing the verify→train→eval→deploy loop that ad-hoc pipelines kept re-inventing
+
+> [!tip] Data Scarcity Is the Real Whole-Body Bottleneck — and It Is Manufacturable
+> The whole-body cluster's binding constraint mirrors the fingertip cluster's exactly (§8.1): there is no OXE-scale corpus for humanoid loco-manipulation, and teleoperating a balancing high-DoF robot is the most expensive data-collection regime in robotics. The 2026 answer is *manufacture the data* — retarget it ([[2603.22201|NMR]]), generate it from video priors ([[2606.05160|GRAIL]], [[2604.27711|ExoActor]]), or plan it from a seed set ([[2605.27724|HumanoidMimicGen]]) — exactly as [[2605.13083|TouchAnything]] manufactures tactile supervision from egocentric RGB. The lesson is that the bottleneck is *manufacturable*: synthetic 4D HOI now transfers at 90% real-world SR, which would have been implausible a year earlier. Cross-reference [[12_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the scaling-law evidence underwriting the manufacture-the-data strategy and [[02_Dataset-Benchmark-Environment#8. Bimanual & Humanoid Evaluation]] for the humanoid-evaluation side. EgoVLA-style human-video VLAs ([[2507.12440|EgoVLA]]) sit at the boundary — see [[05_VLA#8. Humanoid & Bimanual VLAs]] and [[12_Egocentric-Pretraining-and-Human-Video]].
+
+---
+
+## Part E — Open Problems
+
+*Where both halves of the contact-dynamics axis still fail.*
+
+### 8. Open Problems & Failure Modes
 
 Despite the architectural convergence in §3, the force-aware cluster has unresolved bottlenecks. The seven problems split cleanly into three categories: *data & calibration* (the corpora and sensor-calibration infrastructure that doesn't yet exist), *architecture & tokenization* (how to feed continuous F/T into VLM-scale backbones), and *deployment & failure recovery* (millisecond-fast contact transitions that current reasoning latencies can't match).
 
-#### 5.1 Data & Calibration
+#### 8.1 Data & Calibration
 
 The data scarcity is the dominant root cause: no force-aware OXE, no cross-sensor calibration protocol, and no vision-tactile-language pretraining corpus at web scale.
 
@@ -343,19 +544,19 @@ The data scarcity is the dominant root cause: no force-aware OXE, no cross-senso
 - **==No "[[2310.08864|OXE]] for force-aware tasks"==** — [[2505.22159|ForceVLA]]'s ForceVLA-Data (**244 trajectories**) and [[2603.15169|ForceVLA2]]'s **1,000-trajectory** dataset are the largest publicly available force-instrumented datasets — orders of magnitude smaller than cross-embodiment visual datasets. The bottleneck is the cost of force-instrumented teleoperation rigs.
 - **==Vision-tactile temporal alignment==** — [[2604.20689|FingerEye]] highlights a subtle issue — vision and tactile streams have different latencies and sampling rates (vision: **30Hz**; tactile: **100Hz-1kHz**). Naive concatenation introduces phase errors at contact onset. Continuous sensors like [[2604.20689|FingerEye]] sidestep this by ==unifying modalities at the sensor level==, but discrete vision+tactile pairs need careful temporal calibration.
 
-#### 5.2 Architecture & Tokenization
+#### 8.2 Architecture & Tokenization
 
 How should continuous force / tactile signal enter a VLM-scale backbone? The literature has bifurcated into prompts-vs-signals, with neither winning, and contact prediction itself drifts over long horizons.
 
 - **==Force prompts vs force signals as VLM input==** — [[2603.15169|ForceVLA2]] uses force *prompts* (linguistic descriptions of force at the VLM); [[2507.09160|Tactile-VLA]] feeds raw tactile signals into the VLM through ==tokenization==. Neither approach is clearly superior across all tasks. The right tokenization scheme for continuous F/T at VLM scale is unresolved.
 - **==Contact prediction stability==** — [[2603.05687|CGP]] grounds policies on predicted tactile trajectories, but diffusion-predicted tactile signals can drift over long horizons. ==Closed-loop re-grounding== (predict, execute, re-predict) is the natural fix but adds latency and hasn't been systematically studied.
 
-#### 5.3 Deployment & Failure Recovery
+#### 8.3 Deployment & Failure Recovery
 
 Contact-rich deployment exposes a sharper latency-quality trade than vision-only VLAs face. Failure-recovery coverage is also narrow because failure datasets are small.
 
-- **==Failure recovery from tactile signals==** — [[2507.09160|Tactile-VLA]]'s ==CoT-from-tactile== is impressive but covers only **~3-5 failure modes** in the published work. Generalizing to open-set failure recovery requires either (a) larger failure datasets or (b) reasoning models that synthesize recovery strategies without explicit failure-mode supervision — see [[06_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for the broader self-correction landscape.
-- **==Force-aware reasoning latency==** — [[2507.09160|Tactile-VLA]]'s CoT failure recovery adds **1-3s** of inference latency per recovery — fine for blackboard wiping (slow task), too slow for fast pick-and-place. The latency-quality trade-off in [[08_VLA-Reasoning-and-CoT#6. Reasoning Quality vs Inference Latency]] is *sharper* in contact-rich settings because contact transitions are millisecond-fast.
+- **==Failure recovery from tactile signals==** — [[2507.09160|Tactile-VLA]]'s ==CoT-from-tactile== is impressive but covers only **~3-5 failure modes** in the published work. Generalizing to open-set failure recovery requires either (a) larger failure datasets or (b) reasoning models that synthesize recovery strategies without explicit failure-mode supervision — see [[13_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for the broader self-correction landscape.
+- **==Force-aware reasoning latency==** — [[2507.09160|Tactile-VLA]]'s CoT failure recovery adds **1-3s** of inference latency per recovery — fine for blackboard wiping (slow task), too slow for fast pick-and-place. The latency-quality trade-off in [[06_VLA-Reasoning-and-CoT#6. Reasoning Quality vs Inference Latency]] is *sharper* in contact-rich settings because contact transitions are millisecond-fast.
 
 **Force-Aware Failure Modes — Decision Matrix**
 
@@ -367,7 +568,7 @@ Contact-rich deployment exposes a sharper latency-quality trade than vision-only
 | How to feed continuous F/T into VLM | [[2603.15169\|ForceVLA2]] (prompts) vs. [[2507.09160\|Tactile-VLA]] (raw tokenization) — task-dependent; no winner |
 | Predicted tactile trajectory drifts over horizon | [[2603.05687\|CGP]] (diffusion grounding) + closed-loop re-grounding (latency cost) |
 | Vision-tactile sampling-rate mismatch | [[2604.20689\|FingerEye]] (unified sensor) or careful temporal calibration for discrete pairs |
-| Need open-set failure recovery | [[2507.09160\|Tactile-VLA]] (CoT-from-tactile, narrow); [[06_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for broader self-correction |
+| Need open-set failure recovery | [[2507.09160\|Tactile-VLA]] (CoT-from-tactile, narrow); [[13_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for broader self-correction |
 | Need fast reasoning under millisecond contact | Latency budget constraint — no current solution; use [[2602.23648\|FAVLA]] (fast-slow) as architectural workaround |
 
 > [!star] Key Papers — Force-Aware Failure Frontier
@@ -376,7 +577,7 @@ Contact-rich deployment exposes a sharper latency-quality trade than vision-only
 > - [[2507.09160|Tactile-VLA]] — Raw tactile signal tokenization + CoT-from-tactile failure recovery; the load-bearing evidence for both the tokenization camp and the reasoning-latency-too-slow-for-contact problem
 
 > [!tip] Force-Aware Bottlenecks Are Data-Scale + Integration-Scale
-> Six of the seven problems above (cross-sensor transfer, no-OXE-for-force, prompts-vs-signals, failure recovery scarcity, contact prediction drift, vision-tactile alignment) trace to two roots: **(1) data scale** — the largest force-instrumented dataset ([[2603.15169|ForceVLA2]], ~1K trajectories) is **1000×** smaller than [[2310.08864|OXE]]; **(2) integration scale** — VLA backbones learned vision-language alignment at web scale, but have no equivalent pretraining corpus for vision-tactile-language. The seventh problem (reasoning latency) is sharper than in [[08_VLA-Reasoning-and-CoT#6. Reasoning Quality vs Inference Latency]] because contact transitions are millisecond-fast. Cross-reference [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] (Tactile & Contact-Rich Benchmarks — the evaluation-side echo of the data-scale gap) and [[08_VLA-Reasoning-and-CoT#7. Open Problems]] (the cross-modal reasoning gap — where reasoning over force/tactile is the underexplored frontier that meets §5.3 here from the other direction).
+> Six of the seven problems above (cross-sensor transfer, no-OXE-for-force, prompts-vs-signals, failure recovery scarcity, contact prediction drift, vision-tactile alignment) trace to two roots: **(1) data scale** — the largest force-instrumented dataset ([[2603.15169|ForceVLA2]], ~1K trajectories) is **1000×** smaller than [[2310.08864|OXE]]; **(2) integration scale** — VLA backbones learned vision-language alignment at web scale, but have no equivalent pretraining corpus for vision-tactile-language. The seventh problem (reasoning latency) is sharper than in [[06_VLA-Reasoning-and-CoT#6. Reasoning Quality vs Inference Latency]] because contact transitions are millisecond-fast. Cross-reference [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] (Tactile & Contact-Rich Benchmarks — the evaluation-side echo of the data-scale gap) and [[06_VLA-Reasoning-and-CoT#7. Open Problems]] (the cross-modal reasoning gap — where reasoning over force/tactile is the underexplored frontier that meets §8.3 here from the other direction).
 
 ---
 
@@ -402,21 +603,38 @@ Contact-rich deployment exposes a sharper latency-quality trade than vision-only
 | Long-horizon memory for force history | [[2508.19236\|MemoryVLA]] (PCMB dual-memory; +26pp on long-horizon) |
 | Failure recovery from tactile signals | [[2507.09160\|Tactile-VLA]] (CoT-from-tactile, 3.5N→6.7N adaptive adjustment) |
 | Phased curriculum to avoid VLM forgetting | [[2502.14420\|ChatVLA]] (control-first, then understanding) |
+| Unified whole-body controller (locomotion + torso + dual-arm) | [[2507.06905\|ULC]] (widest workspace, single policy) |
+| World-frame EE precision under base disturbance | [[2602.06341\|HiWET]] (**12.4 mm** sim, commander/tracker) |
+| Compose loco-manip from frozen primitives | [[2506.09366\|SkillBlender]] (per-joint softmax blending) |
+| Zero-shot language → loco-manipulation | [[2504.09532\|Humanoid-COA]] (Chain-of-Action reasoning) |
+| Robust whole-body control under OOD payloads | [[2606.03297\|SplitAdapter]] (factorized load/dynamics contexts) |
+| Reward-free generalist whole-body foundation model | [[2511.07820\|SONIC]] (motion-tracking, 100M frames) or [[2504.11054\|Meta Motivo]] (behavioral FM) |
+| Agile terrain locomotion (gaps, stepping stones) | [[2606.05880\|TAGA]] (emergent active gaze, **120 cm** gap) |
+| Dynamic sports/striking skill from onboard vision | [[2604.01158\|SMASH]] (Motion-VAE + egocentric perception) |
+| Anticipatory streaming language-conditioned control | [[2605.14417\|DAJI]] (64D joint-intent latent) |
+| Discover novel long-horizon skills without demos | [[2606.06139\|MotionDisco]] (LLM-guided contact search) |
+| Generative skill priors in robot motion space | [[2604.00202\|DreamControl-v2]] (guided diffusion) |
+| Jitter-free human→humanoid retargeting | [[2603.22201\|NMR]] (Transformer + physics-refined data) |
+| Whole-body mobile manip from robot-free human demos | [[2603.03243\|HoMMI]] (UMI + cross-embodiment hand-eye) |
+| Synthetic 4D HOI whole-body skill data | [[2606.05160\|GRAIL]] (90% real from synthetic-only) or [[2605.27724\|HumanoidMimicGen]] |
+| Standardized loco-manip learning workflow | [[2603.20147\|AGILE]] (config-driven Isaac Lab pipeline) |
 
 ---
 
 ## Cross-References
 
-- [[03_VLA]] — §7 Multi-Sensor & Force-Aware is the parent section this deep-dive expands; see [[03_VLA]] §1 for the broader VLA design-space context and §10 for failure modes that overlap with §5 here
-- [[06_Self-Evolving-VLA-WAM]] — Self-correcting VLAs and failure-recovery mechanisms ([[2601.02295|CycleVLA]], [[2512.24426|CF-VLA]], [[2511.14148|AsyncVLA]]) that complement [[2507.09160|Tactile-VLA]]'s CoT-from-tactile
-- [[07_Physics-Aware-Embodied-AI]] — Physics priors and physics-conditioned video generation ([[2509.20358|PhysCtrl]], [[2505.19386|Force Prompting]]); the natural pretraining backbone for force-aware VLAs
-- [[02_Dataset-Benchmark-Environment]] — Contact-rich benchmarks; §5 Tactile & Contact-Rich Benchmarks is the dedicated tactile-evaluation section (TacBench/[[2410.24090|Sparsh]], [[2506.14754|Sparsh-X]], [[2603.05687|CGP]], [[2510.13324|FARM]], [[2509.07962|TA-VLA]], [[2509.18830|DexSkin]])
-- [[01_Embodied-AI-101]] — Primer on embodied AI and the four learning strategies; force-aware policies sit at the intersection of imitation learning and physical interaction
-- [[04_WAM]] — World-model augmentation patterns; [[2505.19386|Force Prompting]] fits the video-WAM track but with explicit force conditioning
-- [[05_Latent-World-Models]] — Latent representation for multi-sensor inputs including tactile streams
-- [[08_VLA-Reasoning-and-CoT]] — Reasoning architectures; tactile-driven CoT is one slot
-- [[11_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; tactile sim-to-real challenges
+- [[05_VLA]] — §7 Multi-Sensor & Force-Aware is the parent section the Parts A–C force-conditioned cluster expands; [[05_VLA#8. Humanoid & Bimanual VLAs]] is the VLA-side companion to Part D's whole-body control (and where [[2507.12440|EgoVLA]]-style human-video VLAs belong)
+- [[03_Imitation-Learning-and-RL]] — The RL-*methods* side of whole-body control; [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]] holds the policy-optimization machinery (legged RL, whole-body/bimanual control) that Part D's controllers instantiate as contact-dynamics substrate
+- [[13_Self-Evolving-VLA-WAM]] — Self-correcting VLAs and failure-recovery mechanisms ([[2601.02295|CycleVLA]], [[2512.24426|CF-VLA]], [[2511.14148|AsyncVLA]]) that complement [[2507.09160|Tactile-VLA]]'s CoT-from-tactile
+- [[11_Physics-Aware-Embodied-AI]] — Physics priors and physics-conditioned video generation ([[2509.20358|PhysCtrl]], [[2505.19386|Force Prompting]]); the natural pretraining backbone for force-aware VLAs
+- [[02_Dataset-Benchmark-Environment]] — Contact-rich benchmarks (§6 Tactile & Contact-Rich) plus the humanoid-evaluation home for the simulators and datasets adjacent to Part D ([[2506.16012|DualTHOR]], [[2505.12748|TeleOpBench]], [[2510.08807|Humanoid Everyday]], [[2412.17730|Mimicking-Bench]]); see [[02_Dataset-Benchmark-Environment#8. Bimanual & Humanoid Evaluation]]
+- [[12_Egocentric-Pretraining-and-Human-Video]] — Egocentric/human-video pretraining underwriting the manufacture-the-data strategy of §7 ([[2606.05160|GRAIL]], [[2604.27711|ExoActor]], [[2507.12440|EgoVLA]]); see [[12_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]]
+- [[14_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; tactile sim-to-real plus the whole-body OOD-detection/failure-diagnosis side ([[2602.01515|RAPT]]) and domain randomization Part D controllers depend on
+- [[01_Embodied-AI-101]] — Primer on embodied AI and the four learning strategies; both contact sensing and whole-body control sit at the intersection of imitation learning and physical interaction
+- [[07_WAM]] — World-model augmentation patterns; [[2505.19386|Force Prompting]] fits the video-WAM track with explicit force conditioning, and §6 anticipatory control increasingly relies on the imagination substrate
+- [[08_Latent-World-Models]] — Latent representation for multi-sensor inputs including tactile streams
+- [[06_VLA-Reasoning-and-CoT]] — Reasoning architectures; tactile-driven CoT and Chain-of-Action loco-manipulation ([[2504.09532|Humanoid-COA]]) are slots here
 
 ---
 
-*See [[03_VLA]] §7 for the VLA-design-space context this deep-dive expands, [[07_Physics-Aware-Embodied-AI]] for force-conditioned generation pretraining, or [[06_Self-Evolving-VLA-WAM]] for failure-recovery patterns that complement [[2507.09160|Tactile-VLA]]'s CoT.*
+*See [[05_VLA]] §7 for the VLA-design-space context this deep-dive expands, [[11_Physics-Aware-Embodied-AI]] for force-conditioned generation pretraining, or [[13_Self-Evolving-VLA-WAM]] for failure-recovery patterns that complement [[2507.09160|Tactile-VLA]]'s CoT.*

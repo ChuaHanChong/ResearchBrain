@@ -40,7 +40,7 @@ General/ (topic overview, landscape, key papers)
 |--------|---------|
 | `_KnowledgeHub_/` | Individual paper notes (`{arxiv_ID}.md`) with structured summaries |
 | `General/` | Topic overview files grouping papers by theme with sub-topics, callouts, mermaid graphs |
-| `Embodied-AI/` | 11 deep dives covering VLAs, WAMs, JEPA/latent world models, self-evolving, physics-aware, VLA reasoning/CoT, egocentric pretraining, force-aware/tactile, sim-to-real, datasets/benchmarks |
+| `Embodied-AI/` | 13 deep dives (`02`–`14`, mechanism-organized) covering datasets/benchmarks, VLAs, VLA reasoning/CoT, WAMs, JEPA/latent world models, self-evolving, physics-aware, contact-rich & whole-body control, egocentric pretraining, sim-to-real, manipulation skill-learning, imitation-learning & RL, navigation & mobile-manipulation. (`01` is the 101 intro.) |
 | `_Projects_/` | Research projects (`00_ResearchProposal/`, `01_FirstPublication/`, `02_BenchmarkPipeline-WAM/`) + `Research-Directions/` synthesis docs (`Embodied-AI.md` umbrella + `Mechanism/` & `Capability/` axes) |
 | `data/papers/` | Local PDF files for papers (downloaded on demand with version suffix, e.g., `2602.15922v2.pdf`) |
 | `data/repo/` | Local code repositories for referenced papers (cloned on demand) |

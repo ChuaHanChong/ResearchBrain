@@ -211,7 +211,7 @@ How do you *know* your sim-to-real strategy works before you ship? The metric yo
 > - [[2604.24018|Sim2Real Betting]] — Reframes Axis 3 as variance reduction; **70-100%** win rate vs Monte Carlo using a ==Kelly portfolio== of biased simulators
 
 > [!tip] Pick by Constraint
-> If you need to **scale to internet video data**, pick learned sim ([[2310.06114|UniSim]]/[[2501.03575|Cosmos]]). If you need **physical accuracy on contact**, pick hand-crafted physics ([MuJoCo](https://mujoco.org) + DR). If you need **fast deployment-specific transfer**, pick a digital twin ([[2503.17973|PhysTwin]]/[[2511.07416|PhysWorld]]). If you need **publishable rigor**, pair any of these with a correlation benchmark ([[2405.05941|SimplerEnv]]/[[2605.06311|VISER]]). The three axes are *not* independent in practice — better sim quality (Axis 1) reduces the burden on policy-side robustness (Axis 2), and tighter correlation benchmarks (Axis 3) force investment in both. See [[04_WAM#2. VideoGen WAMs]] for the WAM-as-simulator perspective on Axis 1, and [[07_Physics-Aware-Embodied-AI#4. External Simulator Coupling]] for the digital-twin coupling that bridges Axes 1 and 2.
+> If you need to **scale to internet video data**, pick learned sim ([[2310.06114|UniSim]]/[[2501.03575|Cosmos]]). If you need **physical accuracy on contact**, pick hand-crafted physics ([MuJoCo](https://mujoco.org) + DR). If you need **fast deployment-specific transfer**, pick a digital twin ([[2503.17973|PhysTwin]]/[[2511.07416|PhysWorld]]). If you need **publishable rigor**, pair any of these with a correlation benchmark ([[2405.05941|SimplerEnv]]/[[2605.06311|VISER]]). The three axes are *not* independent in practice — better sim quality (Axis 1) reduces the burden on policy-side robustness (Axis 2), and tighter correlation benchmarks (Axis 3) force investment in both. See [[07_WAM#2. VideoGen WAMs]] for the WAM-as-simulator perspective on Axis 1, and [[11_Physics-Aware-Embodied-AI#4. External Simulator Coupling]] for the digital-twin coupling that bridges Axes 1 and 2.
 
 ---
 
@@ -276,6 +276,7 @@ Instead of making the simulator perfect, make the *policy* invariant to sim impe
 
 The canonical industrial recipe: train in sim with extensive randomization, then either distill to vision or layer a real-world residual on top.
 
+- **[[2605.09789|DRIS]]** — a ==structured, VRAM-efficient randomization== recipe for zero-shot dexterous *reactive catching* that yields robustness to observation noise, execution error, and OOD physical parameters at far lower VRAM than brute-force massively-parallel single-instance randomization; **68%** real flat-plate catching vs hand-crafted **5%** / end-to-end sim-trained **13%**, with emergent generalization to human-thrown and irregular objects.
 - **[[2210.13702|DeXtreme]]** — ==[[1707.06347|PPO]]== in ==[Isaac Gym](https://developer.nvidia.com/isaac-gym)== on Allegro Hand; the foundational ==Vectorized Automatic Domain Randomization== (VADR) dynamically adjusts sim params based on policy capability; **27.8** mean real reorientations vs **14.8** hand-tuned DR — auto-DR nearly doubles transfer; Mask-RCNN vision-based pose estimator on synthetic [Isaac Sim](https://developer.nvidia.com/isaac-sim) images at **15 Hz** under occlusion.
 - **[[2603.15956|ExpertGen]]** — Three-phase scalable sim-to-real from *imperfect* behavior priors: (1) generative ==diffusion policy== prior on rough demos; (2) ==Diffusion Steering RL (DSRL)== optimizes only the diffusion's initial noise (preserves motion manifold, max sparse rewards via FastTD3); (3) ==DAgger== visuomotor distillation with visual DR; **90.5%** avg on 8 AutoMate assembly tasks, **80%** real [Franka](https://franka.de) Lift Banana from RGB.
 - **[[2502.20396|Humanoid Sim2Real Dex]]** — Full vision-based dexterous recipe on Fourier GR-1; ==autotuned robot modeling== bridges dynamics gap from minimal real calibration; ==contact stickers== + ==stage-based rewards== structure bimanual rewards; ==task-aware hand pose init== + ==divide-and-conquer distillation== scale to generalist policies; **80%** box-lift, **62.3%** grasp-and-reach, **52.5%** bimanual handover with **60-80%** zero-shot unseen-object generalization.
@@ -298,6 +299,7 @@ Bake physics priors *into* the policy via curriculum, reward shaping, or motion 
 - **[[2604.24916|asRoBallet]]** — Reconfigurable humanoid ballbot via ==subtractive reconfiguration== of an open-source quadruped; critical ingredient is ==friction-aware [MuJoCo](https://mujoco.org)== modeling ==tribological phenomena== (rolling, lateral, torsional friction, omni-roller mechanics) + actuator friction; with DR, achieves **zero-shot sim-to-real**, **100%** velocity-tracking in sim, **0.05 m/s** real-world MAE; recovers from pushes up to **0.3 m**.
 - **[[2604.23702|QuietWalk]]** — Physics-informed RL for low-noise humanoid locomotion under diverse footwear; ==inverse-dynamics-constrained PINN== estimates per-foot vertical GRFs from proprioception alone; frozen GRF predictor integrated *into the RL reward* to penalize impact forces; **7.17 dBA** mean-noise reduction across 4 surfaces, generalizes across **4** footwear types; PINN cuts GRF errors **82-86%** vs supervised — enabling sim-to-real of the *reward signal*.
 - **[[2506.12851|KungfuBot]]** — Closes the reality gap for *highly-dynamic* humanoid skills (martial arts, dancing); ==physics-based motion processing pipeline== filters untrackable mocap and corrects contact; ==adaptive motion tracking== adjusts the reward's tracking factor during RL; with ==asymmetric actor-critic== + ==reference state initialization== + DR, zero-shot sim-to-real on Unitree G1 — per-body-position error **53.25 mm** on easy motions vs **>233 mm** for OmniH2O/ExBody2.
+- **[[2508.21065|Learning on the Fly]]** — Online real-time adaptation via ==differentiable simulation==: a ==hybrid dynamics model== couples a low-fidelity analytical physics model with a learned residual net for unmodeled forces, and ==BPTT== through it gives first-order policy updates on the fly. Cuts hovering error **81%** vs L1-MPC / **55%** vs DATT under large OOD disturbances; real quadrotors adapt to added mass + wind in **3 steps** (**4.5 s**).
 
 #### 3.4 Vision-Aware Sim-to-Real
 
@@ -308,13 +310,20 @@ Close the *visual* gap explicitly via neural rendering, teacher-student distilla
 - **[[2604.02523|Tune to Learn]]** — Systematic study of how *controller gains* shape sim-to-real; counterintuitive finding — ==stiff gains== yield *lowest* system-id errors but *worst* transfer (amplifying modeling errors into oscillations); for BC, ==compliant overdamped gains== give higher closed-loop success despite higher training loss; for RL, any gain works given task-specific tuning; sim-fidelity metrics (low sysid error) do *not* correlate with policy transfer.
 - **[[2601.02778|Force-Based Sim2Real]]** — Zero-shot force-aware dexterous manipulation on a real 5-finger hand; ==asymmetric actor-critic PPO== in ==IsaacLab==; (1) ==distance-field tactile simulation== abstracts raw tactile into compact force + contact features; (2) ==current-to-torque calibration== + ==randomized actuator model== for backlash/saturation; in-hand rotation reaches **25.1** avg consecutive rotations *with* tactile vs **1.1** *without* — contact sensing is dispositive.
 
-#### 3.5 Hierarchical & Generalist Sim-to-Real
+#### 3.5 Humanoid & Legged Sim-to-Real
 
-Decouple high-level goal selection from low-level control, then sim-to-real the depth-conditioned student.
+Whole-body and legged robots cross the gap via teacher-student distillation, staged RL curricula, and physics-driven retargeting — the depth-conditioned student observes the same modality it deploys with.
 
 - **[[2604.26504|HiPAN]]** — Hierarchical RL for quadruped navigation in unstructured 3D environments via teacher-student + extensive DR; ==Path-Guided Curriculum Learning== overcomes myopia in long-horizon goal-directed motion; **94.7%** success on Complex-2 sim, validates on Unitree Go1 in cluttered indoor / dead-end / outdoor scenarios using only onboard depth — sim-to-real from a depth-only teacher is feasible *because* the student observes the same modality as the deployment robot.
 - **[[2603.03279|ULTRA]]** — ==Physics-driven neural retargeting== translates MoCap into contact-aware humanoid demos; single ==multimodal controller== with ==transformer encoder== + ==availability masking== handles dense motion references and sparse goal following; ==teacher-student distillation== + RL fine-tuning lifts OOD-goal success up to **200%** for position-only observations; **73%** dense-tracking, **50-90%** sparse-following success on real Unitree G1.
 - **[[2502.12152|HUMANUP]]** — ==Two-stage RL curriculum== for humanoid fall recovery: Stage I Discovery Policy on simplified sim, Stage II Deployable Policy on full ==URDF== with **20,000** initial postures + diverse-terrain DR + control regularization; Unitree G1 recovers from supine at **78.3%** / rolls over at **98.3%** across **6 terrains** in **~6s** (vs **11s** manufacturer); *separating motion discovery from deployable refinement* is critical — single-stage failed to converge.
+#### 3.6 Domain Adaptation & Continual Transfer
+
+Align the source/target distributions or keep adapting after deployment — without joint data access or catastrophic forgetting.
+
+- **[[2509.18631|Sim-Real OT Co-Training]]** — Generalist co-training from abundant sim + sparse real demos: ==Unbalanced Optimal Transport== aligns the *joint* observation-action distribution (not just marginals) across domains, with ==Dynamic-Time-Warping== temporal sampling for behaviorally-matched mini-batches. **0.73** image / **0.77** point-cloud real SR, generalizing to novel textures (BoxInBin **0.7**, Stack **0.4**) unseen in the real demos.
+- **[[2503.10949|SCDA]]** — Safe *continual* domain adaptation after transfer: DR pretraining + ==PCRPO== safe RL + ==Elastic Weight Consolidation== (Fisher-weighted) lets a deployed policy keep adapting to real drift without catastrophic forgetting. On real grasping, lifts SR **20% → 60%** while holding **zero** safety violations — a generalist-across-targets recipe where reward-only adaptation turns unsafe.
+- **[[2407.13771|Training-Free Model Merging MTDA]]** — Builds one generalist from many single-target adapters with *no* joint data access: per-target models trained via STDA are merged via ==linear mode connectivity== (parameter averaging + ==Gaussian BatchNorm-statistic merging==). Matches combined-data training on multi-target driving segmentation and scales with target count — privacy-preserving multi-domain generalization.
 
 **Policy-Side — Decision Matrix**
 
@@ -373,6 +382,7 @@ Reconstruct the *deployment* scene as a simulatable twin from one or a few real 
 Replace manual system-id with gradient descent on simulator parameters.
 
 - **[[2604.27367|DOT-Sim]]** — Differentiable optical tactile sim calibrated to real soft sensors; ==Material Point Method== models soft-gel deformation; ==differentiable physics== calibrates material params from few real demos + FEA pseudo-GT; neural ==residual image== (contact − idle) for optical fidelity; **PSNR 30.48** (**+17.34%** over baselines); zero-shot — **90.5%** indenter, **96.6%** tumor detection, **0.896 mm** trajectory error; calibration becomes gradient descent.
+- **[[2508.12252|Robot Trains Robot]]** — Replaces explicit param calibration with *latent* dynamics calibration: a compliant 6-DoF arm teacher supplies ==F/T reward signals== + autonomous resets, then a three-stage pipeline (==dynamics-conditioned training== → universal latent optimization in sim → real PPO refinement of a ==FiLM-conditioned dynamics latent==) fits real dynamics. A humanoid doubles walking speed in **20 min** and learns swing-up from scratch in **15 min**.
 
 #### 4.3 World-Model-Driven Online Adaptation
 
@@ -485,7 +495,7 @@ Combine procedural environment generation ([[2603.16861|MolmoBot]]) with extensi
 - **[[2210.13702|DeXtreme]]** — Foundational ==Vectorized Automatic Domain Randomization== on Allegro Hand; **27.8** real reorientations vs **14.8** hand-tuned — auto-DR roughly doubles transfer.
 - **[[2511.15200|VIRAL]]** (Unitree) — Visual sim-to-real at scale; ==tiled-renderer DAgger== student up to **64 GPUs**; **54/59** real G1 loco-manipulation cycles, matching expert teleop.
 
-See [[03_VLA#1. Design-Space Principles]] for the upstream data strategy.
+See [[05_VLA#1. Design-Space Principles]] for the upstream data strategy.
 
 #### 6.2 Pattern B — Learned-Sim Foundation + Policy Fine-Tune
 
@@ -495,7 +505,7 @@ Pre-train against a learned world simulator ([[2310.06114|UniSim]] / [[2501.0357
 - **[[2310.06114|UniSim]]** — ==Conditional video generation== via ==5.6B-parameter diffusion==; **3-4×** zero-shot policy gain vs baselines on vision-language tasks.
 - **[[2511.23369|SimScale]]** (driving) — ==3DGS reconstruction== + sim-real co-training for autonomous driving; **>20%** relative gain for weak baselines, **EPDMS 48.0** on navhard.
 
-See [[04_WAM#2. VideoGen WAMs]] for the upstream WAM architectures used as simulators.
+See [[07_WAM#2. VideoGen WAMs]] for the upstream WAM architectures used as simulators.
 
 #### 6.3 Pattern C — Digital-Twin-in-the-Loop
 
@@ -505,7 +515,7 @@ Reconstruct deployment scene as a digital twin ([[2503.17973|PhysTwin]] / [[2511
 - **[[2503.17973|PhysTwin]]** — ==Spring-mass models== + ==Gaussian splats== for *deformable* digital twins from video; real-time interactive sim drives motion planning.
 - **[[2504.03597|Real-is-Sim]]** — ==Embodied Gaussians== twin as policy's ==sole interface==; real robot mirrors sim via **60Hz** visual sync; **+23pp** PushT with 30+30 demos.
 
-See [[07_Physics-Aware-Embodied-AI#4. External Simulator Coupling]] for the external-simulator coupling perspective.
+See [[11_Physics-Aware-Embodied-AI#4. External Simulator Coupling]] for the external-simulator coupling perspective.
 
 #### 6.4 Pattern D — Online Adaptation with World-Model Feedback
 
@@ -538,7 +548,7 @@ Treat the sim-real gap as an OOD shift the world model detects and corrects for 
 > - [[2602.23253|SPARR]] — Pattern A+C hybrid exemplar: sim-trained base + ==vision-conditioned real residual==; **95-100%** AutoMate assembly without human supervision
 
 > [!tip] Patterns Compose — Pure Recipes Are Rare
-> The 2026 frontier is *hybrid* patterns, not pure ones. [[2602.23253|SPARR]] layers a real-world residual (Pattern C-ish) on top of a procedurally-trained sim base (Pattern A). [[2603.15956|ExpertGen]] combines generative priors (Pattern B-ish) with DR (Pattern A) and visuomotor distillation. The discipline that wins is *picking the right primary pattern* for your deployment regime, then layering the secondary elements based on which sim-real gap (dynamics, visual, semantic) is dominant. For a learned-WAM-as-simulator deep dive, see [[04_WAM#2. VideoGen WAMs]]; for physics-grounded digital-twin coupling, see [[07_Physics-Aware-Embodied-AI#4. External Simulator Coupling]]; for force-aware tactile integration, see [[10_Force-Aware-and-Tactile-Policies#3. Force-Conditioned VLA Architectures]].
+> The 2026 frontier is *hybrid* patterns, not pure ones. [[2602.23253|SPARR]] layers a real-world residual (Pattern C-ish) on top of a procedurally-trained sim base (Pattern A). [[2603.15956|ExpertGen]] combines generative priors (Pattern B-ish) with DR (Pattern A) and visuomotor distillation. The discipline that wins is *picking the right primary pattern* for your deployment regime, then layering the secondary elements based on which sim-real gap (dynamics, visual, semantic) is dominant. For a learned-WAM-as-simulator deep dive, see [[07_WAM#2. VideoGen WAMs]]; for physics-grounded digital-twin coupling, see [[11_Physics-Aware-Embodied-AI#4. External Simulator Coupling]]; for force-aware tactile integration, see [[09_Contact-Rich-and-Whole-Body-Control#3. Force-Conditioned VLA Architectures]].
 
 ---
 
@@ -586,7 +596,7 @@ These three problems sit orthogonal to the mainstream "transfer actions across t
 > - [[2604.24018|Sim2Real Betting]] — Reframes sim-to-real as a statistical variance-reduction problem; opens the frontier of combining multiple biased simulators rather than chasing a single accurate one
 
 > [!tip] The Common Root Is Mis-Specified Targets
-> Six of the seven problems above (correlation collapse, fragmented eval, DR ceiling, learned-sim contact blur, controller-gain interaction, and the implicit assumption that *actions* are what should transfer) trace to the same root: **sim-to-real research has been targeting the wrong proxies**. Sysid error ≠ transfer quality ([[2604.02523|Tune to Learn]]); DR coverage ≠ semantic generalization ([[2604.11674|AffordSim]]); visual realism ≠ contact fidelity (UniSim/Cosmos); in-distribution correlation ≠ OOD correlation (SimplerEnv/VISER under perturbation). The methodological reframings ([[2604.23702|QuietWalk]] reward-side, [[2604.24018|Sim2Real Betting]] statistical) suggest the next decade's progress will come from changing what we measure, not pushing harder on current metrics. Cross-reference [[04_WAM#9. Open Problems & Failure Modes]] (WAMs deployed as simulators inherit the same correlation-under-perturbation failures) and [[07_Physics-Aware-Embodied-AI#8. Open Problems]] (the benchmark-vs-deployment gap is the same problem from the physics-fidelity angle — verifiability gap upstream of the sim-real gap).
+> Six of the seven problems above (correlation collapse, fragmented eval, DR ceiling, learned-sim contact blur, controller-gain interaction, and the implicit assumption that *actions* are what should transfer) trace to the same root: **sim-to-real research has been targeting the wrong proxies**. Sysid error ≠ transfer quality ([[2604.02523|Tune to Learn]]); DR coverage ≠ semantic generalization ([[2604.11674|AffordSim]]); visual realism ≠ contact fidelity (UniSim/Cosmos); in-distribution correlation ≠ OOD correlation (SimplerEnv/VISER under perturbation). The methodological reframings ([[2604.23702|QuietWalk]] reward-side, [[2604.24018|Sim2Real Betting]] statistical) suggest the next decade's progress will come from changing what we measure, not pushing harder on current metrics. Cross-reference [[07_WAM#9. Open Problems & Failure Modes]] (WAMs deployed as simulators inherit the same correlation-under-perturbation failures) and [[11_Physics-Aware-Embodied-AI#8. Open Problems]] (the benchmark-vs-deployment gap is the same problem from the physics-fidelity angle — verifiability gap upstream of the sim-real gap).
 
 ---
 
@@ -601,8 +611,8 @@ These three problems sit orthogonal to the mainstream "transfer actions across t
 | Need domain randomization? | [[2210.13702\|DeXtreme]] (VADR) — auto-DR doubles transfer over hand-tuned |
 | Need robust RL? | [[2510.14246\|DR-RPO]] (linear FA), [[2204.12581\|RAMBO-RL]] (adversarial offline), or [[2602.13040\|TCRL]] (temporal-coupled constrained) |
 | Need humanoid sim-to-real? | [[2511.15200\|VIRAL]] (loco-manipulation), [[2506.12851\|KungfuBot]] (highly-dynamic), or [[2502.20396\|Humanoid Sim2Real Dex]] (dexterous) |
-| Need force-aware sim-to-real? | [[2601.02778\|Force-Based Sim2Real]] or [[2604.27367\|DOT-Sim]] — see [[10_Force-Aware-and-Tactile-Policies#2. Tactile Sensors as a Sensing Modality]] for tactile depth |
-| Need a digital twin? | [[2503.17973\|PhysTwin]] (deformable) or [[2511.07416\|PhysWorld]] (robot policy) — see [[07_Physics-Aware-Embodied-AI#4. External Simulator Coupling]] |
+| Need force-aware sim-to-real? | [[2601.02778\|Force-Based Sim2Real]] or [[2604.27367\|DOT-Sim]] — see [[09_Contact-Rich-and-Whole-Body-Control#2. Tactile Sensors as a Sensing Modality]] for tactile depth |
+| Need a digital twin? | [[2503.17973\|PhysTwin]] (deformable) or [[2511.07416\|PhysWorld]] (robot policy) — see [[11_Physics-Aware-Embodied-AI#4. External Simulator Coupling]] |
 | Need policy that runs *only* in the twin (real robot mirrors sim)? | [[2504.03597\|Real-is-Sim]] (Embodied-Gaussians + 60Hz visual sync; +23pp PushT) |
 | Need real2sim from video? | [[2404.09833\|Video2Game]] (rigid-body, browser-compatible) |
 | Need vision-residual on top of sim-trained base for industrial assembly? | [[2602.23253\|SPARR]] (95-100% AutoMate without human supervision) |
@@ -620,12 +630,12 @@ These three problems sit orthogonal to the mainstream "transfer actions across t
 
 - [[01_Embodied-AI-101]] — Embodied AI primer; sim-to-real is the bridge between training and deployment
 - [[02_Dataset-Benchmark-Environment]] — Datasets and benchmarks; §12 Sim-to-Real Transfer Evaluation + §4 Physics Engines + §7 Soft-Body Benchmarks expand here
-- [[03_VLA]] — VLA deep-dive; sim-to-real is the bottleneck for the in-domain post-training recipe (§1)
-- [[04_WAM]] — WAM deep-dive; learned world simulators ([[2310.06114|UniSim]], [[2501.03575|Cosmos]]) are WAMs deployed as simulators
-- [[06_Self-Evolving-VLA-WAM]] — Self-evolving; world-model feedback for online sim-to-real adaptation
-- [[07_Physics-Aware-Embodied-AI]] — Physics priors; §4 External Simulator Coupling overlaps real2sim2real
-- [[10_Force-Aware-and-Tactile-Policies]] — Force-aware policies; tactile sim-to-real ([[2604.27367|DOT-Sim]], Force-Based)
+- [[05_VLA]] — VLA deep-dive; sim-to-real is the bottleneck for the in-domain post-training recipe (§1)
+- [[07_WAM]] — WAM deep-dive; learned world simulators ([[2310.06114|UniSim]], [[2501.03575|Cosmos]]) are WAMs deployed as simulators
+- [[13_Self-Evolving-VLA-WAM]] — Self-evolving; world-model feedback for online sim-to-real adaptation
+- [[11_Physics-Aware-Embodied-AI]] — Physics priors; §4 External Simulator Coupling overlaps real2sim2real
+- [[09_Contact-Rich-and-Whole-Body-Control]] — Force-aware policies; tactile sim-to-real ([[2604.27367|DOT-Sim]], Force-Based)
 
 ---
 
-*See [[04_WAM]] for world-model architectures used as simulators, [[07_Physics-Aware-Embodied-AI]] for physics-coupled sim-real loops, or [[02_Dataset-Benchmark-Environment]] for the broader benchmark ecosystem.*
+*See [[07_WAM]] for world-model architectures used as simulators, [[11_Physics-Aware-Embodied-AI]] for physics-coupled sim-real loops, or [[02_Dataset-Benchmark-Environment]] for the broader benchmark ecosystem.*

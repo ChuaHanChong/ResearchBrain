@@ -529,7 +529,6 @@ The data and evaluation infrastructure that makes all the above research possibl
 - [[2505.07634|Neural Brain Framework]] — neuroscience-inspired framework for embodied agents; defines 4 core components for human-like adaptability
 - [[2505.05108|Multi-agent Embodied AI Survey]] — first systematic survey of multi-agent embodied AI
 - [[2509.20021|Embodied AI LLM-WM Survey]] — joint MLLM-WM architecture roadmap
-- [[2508.08189|RL for Large Models Survey]] — RL methods for large models including VLAs
 - [[2506.21872|Continual RL Survey]] — lifelong learning in RL for sequential tasks
 - [[2505.04769|VLA Concepts Survey]] — updated VLA landscape review
 - [[2504.15037|MLLM Spatial Reasoning Position Paper]] — spatial reasoning in MLLMs requires new recipes
