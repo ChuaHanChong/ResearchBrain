@@ -203,7 +203,7 @@ A new generation of models trained end-to-end on interleaved multimodal data rat
 > - [[2509.26625|LLM Visual Priors]] — Demonstrates that LLM weights carry useful visual priors before any visual training
 
 **Unified Understanding & Generation** — Models bridging the comprehension-generation gap to handle both tasks in a single framework.
-- [[2603.03241|UniG2U-Bench]], [[2602.22766|CapImagine]], [[2602.12279|UniT]], [[2602.12205|DeepGen 1.0]], [[2601.03193|UniCorn]], [[2506.22880|DeSa2VA]], [[2506.13759|Discrete Diffusion LLM Survey]], [[2503.10631|HybridVLA]], [[2403.10191|GenerateU]], [[2305.17216|GILL]]
+- [[2606.05979|WLA]], [[2603.03241|UniG2U-Bench]], [[2602.22766|CapImagine]], [[2602.12279|UniT]], [[2602.12205|DeepGen 1.0]], [[2601.03193|UniCorn]], [[2506.22880|DeSa2VA]], [[2506.13759|Discrete Diffusion LLM Survey]], [[2503.10631|HybridVLA]], [[2403.10191|GenerateU]], [[2305.17216|GILL]]
 
 > [!star] Key Papers
 > - [[2601.03193|UniCorn]] — Autonomously bridges comprehension and generation capabilities within a single model

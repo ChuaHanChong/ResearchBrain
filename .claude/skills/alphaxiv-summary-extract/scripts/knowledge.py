@@ -1,21 +1,3 @@
-# https://openreview.net/pdf/58ae64a1243fe5eb4669747ba8a3d9db6b127a57.pdf
-# https://openreview.net/pdf/63372d8188e117ec55aacd7962f4ec34ef94f2d0.pdf
-# https://openreview.net/pdf/18a6f96fdfd2566b5c60672e65c9ba24218298ef.pdf
-# https://openreview.net/pdf/5be312192ce6bcfe22acd8b83f8deedc148f53a5.pdf
-# https://openaccess.thecvf.com//content/CVPR2025/papers/Xu_VLMs-Guided_Representation_Distillation_for_Efficient_Vision-Based_Reinforcement_Learning_CVPR_2025_paper.pdf
-# https://openaccess.thecvf.com//content/CVPR2025/papers/Yang_ImagineFSL_Self-Supervised_Pretraining_Matters_on_Imagined_Base_Set_for_VLM-based_CVPR_2025_paper.pdf
-# https://openaccess.thecvf.com//content/CVPR2025/papers/Zhang_Adaptive_Parameter_Selection_for_Tuning_Vision-Language_Models_CVPR_2025_paper.pdf
-
-# https://openaccess.thecvf.com/content/ICCV2023/html/Ngo_Improved_Knowledge_Transfer_for_Semi-Supervised_Domain_Adaptation_via_Trico_Training_ICCV_2023_paper.html
-# https://openaccess.thecvf.com/content/ICCV2023/html/Lai_PADCLIP_Pseudo-labeling_with_Adaptive_Debiasing_in_CLIP_for_Unsupervised_Domain_ICCV_2023_paper.html
-# https://medium.com/@hbgallella/how-to-modify-openais-clip-model-for-fine-grained-classification-d912f0364370
-# https://hexiangteng.github.io/papers/ACM%20MM%202023%20FGVPL.pdf
-
-# https://www.semanticscholar.org/paper/The-Image-Data-and-Backbone-in-Weakly-Supervised-A-Ye-Wang/c38ad5b118a7506c45c4f7a45e03434ea6801f89
-
-# https://github.com/MoonshotAI/Kimi-K2/blob/main/tech_report.pdf
-# https://iliao2345.github.io/blog_posts/arc_agi_without_pretraining/arc_agi_without_pretraining.html
-
 # https://eugeneyan.com/writing/eval-process/  # An LLM-as-Judge Won't Save The Product—Fixing Your Process Will
 # https://eugeneyan.com/writing/llm-evaluators/  # Evaluating the Effectiveness of LLM-Evaluators (aka LLM-as-Judge)
 
@@ -24,43 +6,24 @@
 # https://thinkingmachines.ai/blog/lora/  # LoRA Without Regret
 # https://goyalpramod.github.io/blogs/Transformers_laid_out/  # Transformers Laid Out 
 # https://accessible-dragon-75f.notion.site/RL-Grokking-Recipe-How-Can-We-Enable-LLMs-to-Solve-Previously-Unsolvable-Tasks-with-RL-100a1714e6778062bae5eafad8e7677d  # RL Grokking Recipe: How Can We Enable LLMs to Solve Previously Unsolvable Tasks with RL?
-# https://huggingface.co/posts/Kseniase/610901061800000  # 8 Emerging trends in Reinforcement Learning
 # https://alexzhang13.github.io/blog/2025/rlm/  # Recursive Language Models
 
-# https://openreview.net/pdf/77e449189a700d3dab4933758d1a373e27313aae.pdf  # Enhancing Contrastive Learning with Variable Similarity
-# https://openreview.net/pdf/46f20263cc2abbd139b0f9be3ada52e0fd7427d5.pdf  # UniViT: Unifying Image and Video Understanding in One Vision Encoder
 # https://github.com/alexstoken/image-matching-models
+# https://relieved-cafe-fe1.notion.site/JustRL-Scaling-a-1-5B-LLM-with-a-Simple-RL-Recipe-24f6198b0b6b80e48e74f519bfdaf0a8  # JustRL: Scaling a 1.5B LLM with a Simple RL Recipe
+
 # https://tencentcloudadp.github.io/youtu-agent/
 # https://cameronrwolfe.substack.com/p/online-rl  # Online versus Offline RL for LLMs
 # https://github.com/EvolvingLMMs-Lab/lmms-engine  # A simple, unified multimodal models training engine. Lean, flexible, and built for hacking at scale.
-# https://huggingface.co/spaces/HuggingFaceH4/on-policy-distillation
-# https://openreview.net/pdf/3ec902e63d7caa0a34c58304a519e30a791073d1.pdf  # VaMP: Variational Multi-Modal Prompt Learning for Vision-Language Models
-# https://aclanthology.org/2025.findings-emnlp.643.pdf  # Curr-ReFT: Overcoming Training Bottlenecks in Small-scale Vision-Language Models via Curriculum Reinforcement Finetuning
-# https://relieved-cafe-fe1.notion.site/JustRL-Scaling-a-1-5B-LLM-with-a-Simple-RL-Recipe-24f6198b0b6b80e48e74f519bfdaf0a8  # JustRL: Scaling a 1.5B LLM with a Simple RL Recipe
-# https://abehrouz.github.io/files/NL.pdf?fbclid=IwdGRleAODBAZleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAo2NjI4NTY4Mzc5AAEeIXNznU6Zn8tAEZ_OSIlzjpYN7fbeF-m2pxWrJV2twXR4AsXv82F2KjNWq1s_aem_k7Xw_NCghslXQqWXtjKkZQ  # Nested Learning: The Illusion of Deep Learning Architectures
-# https://www.nature.com/articles/s41586-025-09761-x # Discovering state-of-the-art reinforcement learning algorithms
 
-# https://openaccess.thecvf.com/content/WACV2023/papers/Mo_Multi-Level_Contrastive_Learning_for_Self-Supervised_Vision_Transformers_WACV_2023_paper.pdf
-# https://ojs.aaai.org/index.php/AAAI/article/view/28561
-
-# https://openreview.net/pdf?id=M0MF4t3hE9
-# https://dl.acm.org/doi/10.1145/3595916.3626396
-# https://pdfs.semanticscholar.org/7bcd/f8a7c78e98e734e0ae074ee7cbc8c3fc5db3.pdf?_gl=1*1f7xyt9*_gcl_au*MTQ1NzQ2OTEzMS4xNzM5OTAwNzY4*_ga*MTA3ODQzNDczMS4xNzM5OTAwNzY4*_ga_H7P4ZT52H5*MTc0NTk0MTk4MC41Mi4xLjE3NDU5NDM4MTUuNTAuMC4w
-# https://proceedings.neurips.cc/paper_files/paper/2021/file/fc1a36821b02abbd2503fd949bfc9131-Paper.pdf
-# https://openaccess.thecvf.com/content/CVPR2021/papers/Chen_Adaptive_Image_Transformer_for_One-Shot_Object_Detection_CVPR_2021_paper.pdf
-
+# https://github.com/google-deepmind/disco_rl
 # https://cameronrwolfe.substack.com/p/grpo-tricks  # GRPO++: Tricks for Making RL Actually Work
 # https://cameronrwolfe.substack.com/p/online-rl  # Online versus Offline RL for LLMs
 # https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence  # From Words to Worlds: Spatial Intelligence is AI’s Next Frontier
 
-# https://www-cs-faculty.stanford.edu/~knuth/papers/claude-cycles.pdf
-
-# https://yifanzhang-pro.github.io/FALCON/FALCON.pdf
-
 # https://github.com/Memento-Teams/Memento-Skills
 # https://github.com/nousresearch/hermes-agent
 
-# https://github.com/simchowitzlabpublic/nano-world-model
+# https://huggingface.co/spaces/HuggingFaceH4/on-policy-distillation
 # https://yumoxu.notion.site/multi-teacher-on-policy-distillation
 
 
@@ -2627,4 +2590,55 @@ papers = [
     "https://arxiv.org/abs/2606.01955",
     "https://arxiv.org/abs/2606.04436",
     "https://arxiv.org/abs/2606.03784",
+    "https://arxiv.org/abs/2606.05160",
+    "https://arxiv.org/abs/2606.05159",
+    "https://arxiv.org/abs/2606.03920",
+    "https://arxiv.org/abs/2508.11143",
+    "https://arxiv.org/abs/2508.08328",
+    "https://arxiv.org/abs/2407.07788",
+    "https://arxiv.org/abs/2307.10224",
+    "https://arxiv.org/abs/2403.10506",
+    "https://arxiv.org/abs/2507.06905",
+    "https://arxiv.org/abs/2606.03937",
+    "https://arxiv.org/abs/2606.04433",
+    "https://arxiv.org/abs/2606.03988",
+    "https://arxiv.org/abs/2606.06076",
+    "https://arxiv.org/abs/2508.10538",
+    "https://arxiv.org/abs/2505.06776",
+    "https://arxiv.org/abs/2504.06662",
+    "https://arxiv.org/abs/2403.16967",
+    "https://arxiv.org/abs/2411.06782",
+    "https://arxiv.org/abs/2403.17367",
+    "https://arxiv.org/abs/2505.20829",
+    "https://arxiv.org/abs/2503.05652",
+    "https://arxiv.org/abs/2504.09532",
+    "https://arxiv.org/abs/2605.16257",
+    "https://arxiv.org/abs/2505.06776",
+    "https://arxiv.org/abs/2603.12263",
+    "https://arxiv.org/abs/2512.11047",
+    "https://arxiv.org/abs/2605.27724",
+    "https://arxiv.org/abs/2606.04436",
+    "https://arxiv.org/abs/2606.05015",
+    "https://arxiv.org/abs/2606.06041",
+    "https://arxiv.org/abs/2606.06049",
+    "https://arxiv.org/abs/2606.05395",
+    "https://arxiv.org/abs/2606.04718",
+    "https://arxiv.org/abs/2606.05773",
+    "https://arxiv.org/abs/2606.06194",
+    "https://arxiv.org/abs/2606.05880",
+    "https://arxiv.org/abs/2606.04708",
+    "https://arxiv.org/abs/2606.04907",
+    "https://arxiv.org/abs/2606.04463",
+    "https://arxiv.org/abs/2606.05468",
+    "https://arxiv.org/abs/2606.05645",
+    "https://arxiv.org/abs/2606.05737",
+    "https://arxiv.org/abs/2606.05979",
+    "https://arxiv.org/abs/2606.05254",
+    "https://arxiv.org/abs/2606.05160",
+    "https://arxiv.org/abs/2606.06139",
+    "https://arxiv.org/abs/2606.05699",
+    "https://arxiv.org/abs/2602.10094",
+    "https://arxiv.org/abs/2605.23993",
+    "https://arxiv.org/abs/2512.24695"
 ]
+

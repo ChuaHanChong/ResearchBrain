@@ -112,7 +112,7 @@ The backbone revolution: Vision Transformers replaced CNNs as the default archit
 > - [[2111.09883|Swin Transformer V2]] — Scaled to 3B parameters with shifted-window attention; established the hierarchical ViT blueprint
 
 **CNN-Transformer Hybrids** — Combine convolutional inductive biases (locality, translation equivariance) with transformer global attention for better speed-accuracy tradeoffs.
-- [[2604.13596|VGGT-Segmentor]], [[2602.20160|tttLRM]], [[2602.17807|VidEoMT]], [[2512.08924|D4RT]], [[2512.04012|RobustVGGT]], [[2501.18564|SAM2Act]], [[2403.11999|HIRI-ViT]], [[2403.07392|ViT-CoMer]], [[2203.01577|HOI4D]], [[2107.06263|CMT]]
+- [[2604.13596|VGGT-Segmentor]], [[2602.20160|tttLRM]], [[2602.17807|VidEoMT]], [[2602.10094|4RC]], [[2512.08924|D4RT]], [[2512.04012|RobustVGGT]], [[2501.18564|SAM2Act]], [[2403.11999|HIRI-ViT]], [[2403.07392|ViT-CoMer]], [[2203.01577|HOI4D]], [[2107.06263|CMT]]
 
 > [!star] Key Papers
 > - [[2403.07392|ViT-CoMer]] — Convolutional multi-scale feature interaction inside ViT; strong on detection and segmentation without extra FPN
@@ -409,7 +409,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 Transferring visual models across domains, merging multiple fine-tuned models, and adapting to new distributions without full retraining. Critical for deploying perception in real-world environments that differ from training data.
 
 **Transformer-Based Domain Adaptation** — Methods that leverage ViT architectures for unsupervised domain adaptation, exploiting self-attention's ability to capture domain-invariant features.
-- [[2606.03297|SplitAdapter]], [[2606.02280|LDG]], [[2606.02027|World-Task Factorization]], [[2606.01851|PHASOR]], [[2605.28812|CoP Tactile]], [[2605.26638|HyperSim]], [[2605.23733|Any2Any]], [[2605.21688|Microfiber Shape Control]], [[2604.02911|DreamTIP]], [[2603.15759|SimDist]], [[2508.04987|UniMoS++]], [[2502.10894|UAN]], [[2502.01143|ASAP]], [[2412.04073|TransAdapter]], [[2407.21311|EUDA]], [[2405.02797|VDPG]], [[2404.15817|VT-ADA]], [[2402.14976|Foundation Latent UDA]], [[2312.07871|MLNet]], [[2308.05659|AD-CLIP]], [[2303.13434|PMTrans]], [[2212.07740|TERT]], [[2204.07683|SSRT]], [[2111.12941|WinTR]], [[2110.03374|HCL]], [[2109.06165|CDTrans]], [[2108.05988|TVT]], [[2107.04034|RMA]], [[2002.07953|DANCE]]
+- [[2606.06041|iCEM+TL]], [[2606.03297|SplitAdapter]], [[2606.02280|LDG]], [[2606.02027|World-Task Factorization]], [[2606.01851|PHASOR]], [[2605.28812|CoP Tactile]], [[2605.26638|HyperSim]], [[2605.23733|Any2Any]], [[2605.21688|Microfiber Shape Control]], [[2604.02911|DreamTIP]], [[2603.15759|SimDist]], [[2508.04987|UniMoS++]], [[2502.10894|UAN]], [[2502.01143|ASAP]], [[2412.04073|TransAdapter]], [[2407.21311|EUDA]], [[2405.02797|VDPG]], [[2404.15817|VT-ADA]], [[2402.14976|Foundation Latent UDA]], [[2312.07871|MLNet]], [[2308.05659|AD-CLIP]], [[2303.13434|PMTrans]], [[2212.07740|TERT]], [[2204.07683|SSRT]], [[2111.12941|WinTR]], [[2110.03374|HCL]], [[2109.06165|CDTrans]], [[2108.05988|TVT]], [[2107.04034|RMA]], [[2002.07953|DANCE]]
 
 > [!star] Key Papers
 > - [[2108.05988|TVT]] — Transferable Vision Transformer: pioneered attention-based domain alignment for ViTs

@@ -309,7 +309,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Multimodal Agent Architectures** — Integrated architectures combining vision-language understanding with agent capabilities for complex multimodal tasks.
-- [[2510.21817|VITA-E]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
+- [[2606.05395|VASO]], [[2510.21817|VITA-E]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
 
 > [!star] Key Papers
 > - [[2402.15116\|LMA Survey]] — Systematic review of Large Multimodal Agents deconstructing their core components and capabilities

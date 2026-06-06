@@ -157,7 +157,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > The key insight from 2025: SFT teaches models to *reproduce* patterns, RL teaches them to *solve* problems. For reasoning tasks, RL generalizes where SFT memorizes. But SFT remains essential for format/instruction following — the best pipelines use SFT then RL.
 
 **Robust & Adversarial RL** — RL methods designed for worst-case performance under perturbed observations, actions, dynamics, or adversarial co-players. Foundational for safety-critical RL deployment.
-- [[2605.14174|VIA]], [[2605.09772|GP-Safe-Exploration]], [[2602.13040|TCRL]], [[2510.14246|DR-RPO]], [[2412.18781|Offline RL Action Perturbation Eval]], [[2412.10713|RAT]], [[2406.09976|RMBPO]], [[2204.12581|RAMBO-RL]]
+- [[2605.14174|VIA]], [[2605.09772|GP-Safe-Exploration]], [[2602.13040|TCRL]], [[2510.14246|DR-RPO]], [[2412.18781|Offline RL Action Perturbation Eval]], [[2412.10713|RAT]], [[2406.09976|RMBPO]], [[2307.10224|RL-ViGen]], [[2204.12581|RAMBO-RL]]
 
 > [!star] Key Papers
 > - [[2602.13040|TCRL]] — Temporal-coupled adversarial training for constrained RL; reduces safety costs by orders of magnitude under worst-case attacks
@@ -185,7 +185,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2503.01584|SENSEI]] — Semantic exploration with epistemic uncertainty + Go-Explore for versatile world models
 
 **Diffusion & Flow-Based Planning** — Reframing RL as iterative denoising or flow matching over trajectories, enabling flexible conditioning on rewards and constraints.
-- [[2605.28293|ProRL (Recommendation)]], [[2605.20758|g-car]], [[2605.04568|Dream-MPC]], [[2604.23380|V-GRPO]], [[2604.19730|FASTER]], [[2604.00202|DreamControl-v2]], [[2603.04333|floq]], [[2509.04063|ARFM]], [[2205.09991|Diffuser]]
+- [[2606.06049|L-SDPPO]], [[2605.28293|ProRL (Recommendation)]], [[2605.20758|g-car]], [[2605.04568|Dream-MPC]], [[2604.23380|V-GRPO]], [[2604.19730|FASTER]], [[2604.00202|DreamControl-v2]], [[2603.04333|floq]], [[2509.04063|ARFM]], [[2205.09991|Diffuser]]
 
 > [!star] Key Papers
 > - [[2205.09991|Diffuser]] — Planning as diffusion over trajectories; reframed RL as iterative denoising, enabling flexible conditioning on rewards, constraints, and skills
@@ -271,7 +271,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2406.03816|ReST-MCTS*]] — Automated process reward model generation via MCTS for LLM self-training
 
 **Off-Policy & Sample Efficiency** — Methods that reuse past experience or manage data more efficiently for RL fine-tuning.
-- [[2606.04968|ForesightFlow]], [[2606.02313|VLA Aerial Nav GRPO]], [[2605.30226|BORA]], [[2605.30056|CGPO]], [[2605.28527|VLA Value Probing]], [[2605.19282|Pion]], [[2605.11151|RankQ]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2512.19154|Adaptive Stacking]], [[2510.18927|BAPO]], [[2510.06710|RLinf-VLA]], [[2510.02245|ExGRPO]], [[2509.15965|RLinf]], [[2509.04501|RL for Model Training Survey]], [[2509.01321|DEPO]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2407.20230|SAPG]], [[2311.03351|Uni-O4]], [[1806.10293|QT-Opt]], [[1805.07914|ILPO]], [[1801.01290|SAC]]
+- [[2606.04968|ForesightFlow]], [[2606.02313|VLA Aerial Nav GRPO]], [[2605.30226|BORA]], [[2605.30056|CGPO]], [[2605.28527|VLA Value Probing]], [[2605.19282|Pion]], [[2605.11151|RankQ]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2604.26504|HiPAN]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2603.16860|DreamPlan]], [[2601.18795|Reuse FLOPs]], [[2601.07821|FARL]], [[2512.19154|Adaptive Stacking]], [[2510.18927|BAPO]], [[2510.06710|RLinf-VLA]], [[2510.02245|ExGRPO]], [[2509.15965|RLinf]], [[2509.04501|RL for Model Training Survey]], [[2509.01321|DEPO]], [[2508.11143|AC3]], [[2505.11081|ShiQ]], [[2503.19612|AGRO]], [[2503.02269|Experience Replay Random Reshuffling]], [[2412.09858|RLDG]], [[2407.20230|SAPG]], [[2311.03351|Uni-O4]], [[1806.10293|QT-Opt]], [[1805.07914|ILPO]], [[1801.01290|SAC]]
 
 > [!star] Key Papers
 > - [[2505.11081|ShiQ]] — Off-policy Q-learning for LLM fine-tuning; enables reuse of generated data across iterations
@@ -291,7 +291,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2506.09477|KL Divergence Gradient Pitfalls]] — Meta FAIR identifies widespread implementation errors in KL divergence gradient estimation; critical for correct RLHF
 
 **Multi-Turn & Agentic Policy Optimization** — Extending RLVR beyond single-turn QA to multi-step, multi-turn, and agentic settings.
-- [[2605.06595|CRONA]], [[2605.02730|PFlowNet]], [[2604.28182|Exploration Hacking]], [[2509.22638|FCP]], [[2509.07980|Parallel-R1]], [[2509.02333|DCPO]], [[2504.20571|1-shot RLVR]], [[2504.20073|RAGEN]]
+- [[2606.05468|FlowPRO]], [[2605.06595|CRONA]], [[2605.02730|PFlowNet]], [[2604.28182|Exploration Hacking]], [[2509.22638|FCP]], [[2509.07980|Parallel-R1]], [[2509.02333|DCPO]], [[2504.20571|1-shot RLVR]], [[2504.20073|RAGEN]]
 
 > [!star] Key Papers
 > - [[2504.20073|RAGEN]] — Showed that single-turn RLVR doesn't transfer to multi-step tasks; introduced StarPO for multi-turn RL
@@ -352,7 +352,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2508.05004|R-Zero]] — LLMs self-evolve reasoning via self-generated problems and rewards; fully autonomous
 
 **Chain-of-Thought Reasoning** — Training LLMs to produce explicit step-by-step reasoning, with RL as the training signal.
-- [[2605.28774|AXPO]], [[2506.07751|AbstRaL]], [[2505.20561|BARL]], [[2505.14631|LHRM]], [[2505.13308|LATENTSEEK]], [[2505.11896|AdaCoT]], [[2505.10425|L2T]], [[2503.24290|Open-Reasoner-Zero]], [[2503.10460|Light-R1]]
+- [[2606.03937|VEPO]], [[2605.28774|AXPO]], [[2506.07751|AbstRaL]], [[2505.20561|BARL]], [[2505.14631|LHRM]], [[2505.13308|LATENTSEEK]], [[2505.11896|AdaCoT]], [[2505.10425|L2T]], [[2503.24290|Open-Reasoner-Zero]], [[2503.10460|Light-R1]]
 
 > [!star] Key Papers
 > - [[2503.24290|Open-Reasoner-Zero]] — First comprehensive open-source reproduction of R1-Zero; reference implementation for the field
@@ -664,7 +664,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2603.18336|ManiDreams]] — World model generates diverse manipulation scenarios; dream-based RL for dexterous tasks
 
 **MPC + RL for Control** — Combining Model Predictive Control with learned RL policies for structured, physically-grounded control.
-- [[2502.02133|MPC-RL Survey]]
+- [[2505.20829|Unified Force-Position Control]], [[2504.06662|RAMBO]], [[2502.02133|MPC-RL Survey]]
 
 **RL for LLM-Guided Robotics** — RL methods where LLMs guide robot behavior through reasoning, planning, or reward specification.
 - [[2606.03441|PerchRL]], [[2606.03335|DGPO]], [[2605.27046|Thermal-Aware Residual]], [[2605.26478|SDPG]], [[2605.26452|Koopman-CBF SAC]], [[2605.21688|Microfiber Shape Control]], [[2605.19924|RoHIL]], [[2605.19919|ZPRL]], [[2604.03023|Behavior-Constrained RL]], [[2604.02021|Discrete-Continuous Planning Bridge]], [[2603.13707|REFINE-DP]], [[2603.02203|T3RL]], [[2602.15827|PHP]], [[2602.06556|LIBERO-X]], [[2602.02605|ESMA]], [[2602.02481|FPO++]], [[2602.01166|LaRA-VLA]], [[2512.01996|Humanoid Loco 15min]], [[2512.00961|GenReward]], [[2505.22642|FastTD3]], [[2505.06776|FALCON (Loco-Manipulation)]], [[2504.13818|PODS]], [[2502.13130|Magma]], [[2502.10894|UAN]], [[2502.01143|ASAP]], [[2407.07788|BiGym]], [[2403.13358|QUARD-Auto]], [[2302.04659|ManiSkill2]], [[2107.04034|RMA]], [[2003.01239|Evolutionary Meta-Learning Legged]]
@@ -674,7 +674,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2603.02203|T3RL]] — Test-Time Training for RL: adapts robot policies online using world model gradients
 
 **Sim-to-Real & Transfer** — Bridging the gap between simulation and physical deployment for robot RL.
-- [[2605.09789|DRIS]], [[2604.24916|asRoBallet]], [[2604.24018|Sim2Real Betting]], [[2604.23702|QuietWalk]], [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2508.21065|Learning on the Fly]], [[2508.12252|Robot Trains Robot]], [[2504.18904|RoboVerse]], [[2503.10949|SCDA]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2201.02373|Mirror Learning]]
+- [[2606.05880|TAGA]], [[2605.09789|DRIS]], [[2604.24916|asRoBallet]], [[2604.24018|Sim2Real Betting]], [[2604.23702|QuietWalk]], [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2508.21065|Learning on the Fly]], [[2508.12252|Robot Trains Robot]], [[2508.10538|MLM]], [[2507.06905|ULC]], [[2504.18904|RoboVerse]], [[2503.10949|SCDA]], [[2502.20396|Humanoid Sim2Real Dex]], [[2502.17666|IC-QL]], [[2411.14251|NLRL]], [[2411.06782|QuadWBG]], [[2403.17367|RoboDuet]], [[2403.16967|VBC]], [[2201.02373|Mirror Learning]]
 
 > [!star] Key Papers
 > - [[2201.02373|Mirror Learning]] — Unifying theoretical framework for diverse policy optimization methods; connects RL algorithms under one roof

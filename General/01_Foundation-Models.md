@@ -91,7 +91,7 @@ The field evolved through three phases: **architectural proof-of-concept** (2020
 The architectural revolution that brought attention mechanisms to computer vision, replacing CNN inductive biases with scalable self-attention over image patches.
 
 **Foundational Architectures** — The core ViT lineage from patch tokenization to multi-scale hierarchies and extreme scale.
-- [[2604.13596|VGGT-Segmentor]], [[2604.02327|SteerViT]], [[2603.29634|MacTok]], [[2602.20160|tttLRM]], [[2512.08924|D4RT]], [[2512.04012|RobustVGGT]], [[2511.13720|JiT (Denoise Transformer)]], [[2510.08568|NovaFlow]], [[2509.23745|LocoFormer]], [[2501.18564|SAM2Act]], [[2401.08541|AIM]], [[2310.00632|WIN-WIN]], [[2307.06304|NaViT]], [[2303.11331|EVA-02]], [[2302.05442|ViT-22B]], [[2212.08013|FlexiViT]], [[2205.14949|HiViT]], [[2111.09883|Swin Transformer V2]], [[2107.03996|LocoTransformer]], [[2010.11929|ViT]]
+- [[2604.13596|VGGT-Segmentor]], [[2604.02327|SteerViT]], [[2603.29634|MacTok]], [[2602.20160|tttLRM]], [[2602.10094|4RC]], [[2512.08924|D4RT]], [[2512.04012|RobustVGGT]], [[2511.13720|JiT (Denoise Transformer)]], [[2510.08568|NovaFlow]], [[2509.23745|LocoFormer]], [[2501.18564|SAM2Act]], [[2401.08541|AIM]], [[2310.00632|WIN-WIN]], [[2307.06304|NaViT]], [[2303.11331|EVA-02]], [[2302.05442|ViT-22B]], [[2212.08013|FlexiViT]], [[2205.14949|HiViT]], [[2111.09883|Swin Transformer V2]], [[2107.03996|LocoTransformer]], [[2010.11929|ViT]]
 
 > [!star] Key Papers
 > - [[2010.11929|ViT]] — Split images into 16x16 patches, applied standard Transformer encoder; proved Transformers match CNNs with enough data
@@ -266,7 +266,7 @@ Connecting visual and textual representations in a shared embedding space, enabl
 > - [[2503.01776|CSR]] — Sparse coding-based adaptive representations that go beyond Matryoshka for flexible embedding dimensionality
 
 **Region-Level & Fine-Grained Alignment** — Learning region-text correspondences and fine-grained visual-language representations.
-- [[2605.18740|Vision-OPD]], [[2512.17012|4D-RGPT]], [[2507.09961|TDCRL]], [[2507.09615|FAIR]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.15757|WPCL]], [[2506.12698|KDUP]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Aug-Aware SSL Theory]], [[2505.21533|SOP]], [[2505.02278|GCLIP]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.02202|MLCL]], [[2401.09865|SPARC]], [[2206.05836|GLIPv2]], [[2203.12555|GriTS]], [[2112.09106|RegionCLIP]], [[2104.12763|MDETR]]
+- [[2606.04433|Stateful Visual Encoders]], [[2605.18740|Vision-OPD]], [[2512.17012|4D-RGPT]], [[2507.09961|TDCRL]], [[2507.09615|FAIR]], [[2506.23156|Multi-Label Contrastive SSL]], [[2506.15757|WPCL]], [[2506.12698|KDUP]], [[2506.07413|VarCon]], [[2506.04411|DCL Neural Collapse Theory]], [[2505.22196|Aug-Aware SSL Theory]], [[2505.21533|SOP]], [[2505.02278|GCLIP]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.02202|MLCL]], [[2401.09865|SPARC]], [[2206.05836|GLIPv2]], [[2203.12555|GriTS]], [[2112.09106|RegionCLIP]], [[2104.12763|MDETR]]
 
 > [!star] Key Papers
 > - [[2401.09865|SPARC]] — Sparse fine-grained contrastive alignment from Google DeepMind; learns region-text correspondences without dense annotations
