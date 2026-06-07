@@ -14,7 +14,11 @@ tags:
 # Promising Research Directions: Manipulation — Grasping, Contact, Coordination, Dexterity
 
 > [!abstract] Overview
-> Fourteen manipulation research directions across five clusters — *Grasping & Grasp Synthesis* (A), *Contact-Rich Assembly & Precision* (B), *Bimanual & Dual-Arm Coordination* (C), *Dexterous & In-Hand Control* (D), and *Tactile Foundations & Data Substrates* (E). Synthesized from ~20 manipulation/dexterous/tactile surveys and benchmarks plus the frontier methods that set each bet's bar ([[2506.17198|Dex1B]], [[2604.11674|AffordSim]], [[2602.23253|SPARR]], [[2512.23864|DreamTacVLA]], [[2511.05275|TwinVLA]], [[2603.04531|PTLD]], [[2603.15789|OmniReset]], [[2602.16710|EgoScale]]). Clusters A–D treat touch as an in-task signal (predicted, coupled, bounded); Cluster E is the foundation layer beneath them — where sensor-free force-awareness (E1) and the cross-sensor representation (E2) come from before any task. This is the **Manipulation subsystem** (arms + hands on objects) of a 2-axis doc family. It excludes locomotion and whole-body loco-manipulation (sibling Locomotion and Whole-Body docs own those) and cross-references the mechanism docs ([[Embodied-AI|Embodied-AI]], [[WAM|WAM]], [[Sim2Real|Sim2Real]]) for tool-use, policy learning, imagination, and physics-grounding. Each direction states the irreducible truth, the assumption it breaks, and a measurable bet — chosen where impactful work deviates from "more data / more scale." Every number is sourced from a cited `_KnowledgeHub_/{ID}.md` note, never invented.
+> Fourteen manipulation research directions in five clusters: *Grasping & Grasp Synthesis* (A), *Contact-Rich Assembly & Precision* (B), *Bimanual & Dual-Arm Coordination* (C), *Dexterous & In-Hand Control* (D), and *Tactile Foundations & Data Substrates* (E). They draw on ~20 manipulation, dexterous, and tactile surveys and benchmarks, plus the frontier methods that set each bet's bar ([[2506.17198|Dex1B]], [[2604.11674|AffordSim]], [[2602.23253|SPARR]], [[2512.23864|DreamTacVLA]], [[2511.05275|TwinVLA]], [[2603.04531|PTLD]], [[2603.15789|OmniReset]], [[2602.16710|EgoScale]]).
+>
+> Clusters A–D treat touch as a signal used *inside* a task — predicted, coupled across arms, or held within a safe bound. Cluster E is the layer beneath them: where sensor-free force-awareness (E1) and the cross-sensor representation (E2) come from, before any task starts.
+>
+> This is the **Manipulation subsystem** (arms and hands on objects), one of a 2-axis family of docs. It leaves out locomotion and whole-body loco-manipulation — the sibling Locomotion and Whole-Body docs own those — and points to the mechanism docs ([[Embodied-AI|Embodied-AI]], [[WAM|WAM]], [[Sim2Real|Sim2Real]]) for tool-use, policy learning, imagination, and physics-grounding. Each direction gives three things: the truth that can't be argued away, the assumption it breaks, and a bet you can measure — picked where strong work departs from "more data / more scale." Every number traces to a cited `_KnowledgeHub_/{ID}.md` note, never invented.
 
 ---
 
@@ -22,10 +26,10 @@ tags:
 
 **Scope.** Corpus: ~20 manipulation/dexterous/tactile/bimanual surveys and benchmarks plus ~70 method papers from `_KnowledgeHub_/`, cross-checked against [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] and the `Embodied-AI/` deep-dives ([[02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]], [[09_Contact-Rich-and-Whole-Body-Control|09_Contact-Rich-and-Whole-Body-Control]], [[05_VLA|05_VLA]]). Surveys name the open problems, benchmarks fix what is measurable, frontier methods fix what is currently achievable. **Subsystem boundary**: locomotion and loco-manipulation coupling belong to sibling docs; tool-use and policy learning (BC/diffusion/VLA) are cross-referenced to the umbrella, not re-clustered; deformables are a single direction inside Grasping (A3), not their own cluster.
 
-- **Survey enumeration**: tag-scan over `survey` × {`manipulation`, `dexterous`, `tactile`, `VLA`, `world-model`} surfaced [[2504.03515|Dexterous IL Survey]], [[2511.02097|WM Manipulation Survey]], [[2604.04974|Video-to-Control Survey]], [[2507.10672|VLA Manipulation Survey]], [[2508.13073|Large VLM-based VLA Survey]].
+- **Survey enumeration**: scanning for the `survey` tag paired with each of `manipulation`, `dexterous`, `tactile`, `VLA`, and `world-model` surfaced [[2504.03515|Dexterous IL Survey]], [[2511.02097|WM Manipulation Survey]], [[2604.04974|Video-to-Control Survey]], [[2507.10672|VLA Manipulation Survey]], [[2508.13073|Large VLM-based VLA Survey]].
 - **Deep-dive mining**: full reads of [[09_Contact-Rich-and-Whole-Body-Control#3. Force-Conditioned VLA Architectures|09_Contact-Rich-and-Whole-Body-Control §3]], [[09_Contact-Rich-and-Whole-Body-Control#8. Open Problems & Failure Modes|10 §8]], [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks|02_Dataset-Benchmark-Environment §6]], [[02_Dataset-Benchmark-Environment#8. Bimanual & Humanoid Evaluation|02 §8]], [[05_VLA#8. Humanoid & Bimanual VLAs|05_VLA §8]]; 3+-way convergence seeded B1, C3, D2.
 - **Closest-baseline anchoring**: each bet is pinned to the strongest existing method it must beat ([[2506.17198|Dex1B]], [[2604.11674|AffordSim]], [[2512.23864|DreamTacVLA]], [[2602.23253|SPARR]], [[2511.05275|TwinVLA]], [[2603.04531|PTLD]], [[2603.15789|OmniReset]]).
-- **Filter (quality-gated)**: a direction is admitted only if it is a distinct sub-problem, has a KH-sourced measurable bet, a non-consensus framing, and ≥1 vault anchor. **A non-prehensile cluster was assessed and dropped**: only [[2503.16806|DyWA]] has a note, failing the ≥2-anchored gate — DyWA is folded into B as a dynamics-adaptive anchor instead.
+- **Filter (quality-gated)**: a direction is admitted only if it is a distinct sub-problem with a KH-sourced measurable bet, a non-consensus framing, and ≥1 vault anchor. **A non-prehensile cluster was assessed and dropped** — only [[2503.16806|DyWA]] has a note (fails the ≥2-anchor gate), so DyWA folds into B as a dynamics-adaptive anchor.
 
 ---
 
@@ -52,7 +56,7 @@ tags:
 | [[2604.16592\|Cognition WM Survey]] | E: Tactile foundations & data | Tactile-perception under-represented; epistemic WMs over structured knowledge; meta-cognition under-developed |
 
 > [!tip] Convergence patterns
-> - **The integration layer, not the policy, is the bottleneck** (5-way): [[2604.04974|Video-to-Control Survey]] (integration is the critical gap), [[2603.15469|RoCo Challenge]] (Sim-to-Real Cliff), [[2502.05086|REASSEMBLE]] (insert dominates failures), [[2604.05831|BiCoord]] (late-stage degradation), [[2407.07788|BiGym]] (near-0% on long-horizon). Same diagnosis, different words: the hard part is connecting a prediction to dependable contact, not making the prediction. Confirmed by [[2602.23253|SPARR]] (sim + real residual → 95–100% [AutoMate](https://arxiv.org/abs/2407.08028)) and [[2407.16677|ResiP]] (residual RL, peg-in-hole 5%→99%).
+> - **The integration layer, not the policy, is the bottleneck** (5-way): [[2604.04974|Video-to-Control Survey]] (integration is the critical gap), [[2603.15469|RoCo Challenge]] (Sim-to-Real Cliff), [[2502.05086|REASSEMBLE]] (insert dominates failures), [[2604.05831|BiCoord]] (late-stage degradation), [[2407.07788|BiGym]] (near-0% on long-horizon). Same diagnosis, different words: the hard part is connecting a prediction to dependable contact, not making the prediction. Confirmed by [[2602.23253|SPARR]] (sim + real residual → 95–100% [[2407.08028|AutoMate]]) and [[2407.16677|ResiP]] (residual RL, peg-in-hole 5%→99%).
 > - **Force is consumed as input, never modeled as output** (4-way): [[2604.04974|Video-to-Control Survey]], [[2511.02097|WM Manipulation Survey]] (physics 3rd of 13 capabilities), [[2504.03515|Dexterous IL Survey]] (tactile under-leveraged), [[2510.25725|HumanoidVTA]] (dense tactile discriminative but unused). Now being inverted: [[2512.23864|DreamTacVLA]] (95.0% Peg-in-Hole) and [[2603.19201|OmniVTA]] imagine the contact future.
 > - **Bimanual data scarcity forces a choice: generate it or avoid needing it** (4-way): [[2506.18088|RoboTwin 2.0]], [[2410.24185|DexMimicGen]], [[2604.05831|BiCoord]], [[2407.07788|BiGym]] all hit the dual-arm data wall. Two answers: scale generation ([[2506.18088|RoboTwin 2.0]] +24.4% few-shot) vs compose single-arm priors ([[2511.05275|TwinVLA]] 76% on ~50 episodes).
 > - **Dexterity comes from exploration breadth + distillation, not bigger nets** (3-way): [[2603.15789|OmniReset]] (diverse resets, 25% real vs 4% DP), [[2603.04531|PTLD]] (privileged distillation, +182% rotation), [[2210.13702|DeXtreme]] (auto domain randomization, 27.8 vs 14.8). The lever is reset/randomization diversity and the privileged→deployable interface, not parameter count.
@@ -121,15 +125,16 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 **Why it matters.** The dominant recipe scales stable-grasp data: [[2506.17198|Dex1B]] generates a billion physically-plausible grasps, [[2505.03233|SynGrasp-1B]] pre-trains on a billion synthetic frames for ~90% real zero-shot. But [[2604.11674|AffordSim]] shows the limit — generic estimators "select stable but functionally irrelevant grasps," and AnyGrasp collapses to 15% / 3% (medium/hard) where affordance-guided collection reaches 79% / 64%. The grasp that *holds* a hammer is not the grasp that *uses* it. [[2601.07060|PALM]] and [[2506.18448|GraspMAS]] reason about affordance to pick a grasp, but as a separate stage, not as the generative conditioning. The move: make the task-affordance score $Q(g)$ the conditioning variable of $p(g \mid v, l)$, so the generator never proposes functionally-wrong grasps.
 
 **First-principles framing.**
-- **First principle**: A grasp's correctness is set by the task, not force-closure alone — the same mug affords a rim-grasp for drinking and a handle-grasp for carrying. Quality is a *conditional* $Q(g \mid \text{task})$; a generator that ignores the task optimizes the wrong objective.
-- **Assumption being challenged**: That scaling stable-grasp data closes the task-competence gap. [[2506.17198|Dex1B]] and [[2505.03233|SynGrasp-1B]] bet on scale; [[2604.11674|AffordSim]]'s 15%→79% gap shows more *stable* grasps don't make *functional* grasps — the data axis is orthogonal to the difficulty.
+- **First principle**: A grasp's correctness is set by the task, not by a firm hold alone — the same mug affords a rim-grasp for drinking and a handle-grasp for carrying. Grasp quality depends on the task; a generator that ignores the task optimizes the wrong thing.
+- **Assumption being challenged**: That scaling stable-grasp data closes the task-competence gap. [[2506.17198|Dex1B]] and [[2505.03233|SynGrasp-1B]] bet on scale; [[2604.11674|AffordSim]]'s 15%→79% gap shows more *stable* grasps don't make *functional* grasps — adding data moves the wrong axis.
 - **The bet**: An affordance-scored generator beats generic estimators by [[2604.11674|AffordSim]]'s margin (79% vs 15% medium, 64% vs 3% hard) and recovers ≥93% of manual-annotation success without annotation, at [[2506.17198|Dex1B]]-class stability (86.0% DexGraspNet) — task-relevance for free, no stability loss.
 
 **Evidence.**
-- [[2604.11674|AffordSim]] — Open-vocab 3D affordance (VoxAfford) guides two-stage grasp selection; 79%/64% medium/hard vs AnyGrasp 15%/3%, recovers 93% of manual-annotation success; the affordance-vs-stable existence proof.
+- [[2604.11674|AffordSim]] — Open-vocab 3D affordance (VoxAfford) guides grasp selection; 79%/64% vs AnyGrasp 15%/3%, recovers 93% of manual annotation; the affordance-vs-stable existence proof.
 - [[2506.17198|Dex1B]] — Feasibility-constrained generative grasp synthesis (CVAE + SDF loss + post-optimization); 86.0% DexGraspNet, 96% sim-to-real; the scalable stable-grasp substrate to condition.
 - [[2505.03233|SynGrasp-1B]] — Billion-frame synthetic grasp pre-training with Progressive Action Generation (2D box → 3D grasp CoT); ~90% real zero-shot, 93.3% language-conditioned; open-vocab reference.
 - [[2601.07060|PALM]] — Affordance predictor (object relevance + contact geometry + motion) + progress signal; +17.7 pp CALVIN ABC→D; affordance as reasoning, not generative conditioning.
+- [[2606.02432|NDPP-Grasp]] — Non-differentiable plausibility guidance inside task-aligned grasp diffusion; 395.8 ms→17.7 ms per grasp; feasibility enforced *during* generation, not post-optimization.
 - [[2506.18448|GraspMAS]] — Multi-agent zero-shot language-driven grasp detection; reasoning-heavy, no contact-quality grounding.
 
 **Concrete research questions.**
@@ -147,6 +152,9 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2604.11320|CLASP]] — Dual-pathway open-vocab grasping; 87.0% pick SR; stability-centric.
 - [[2511.04357|GraSP-VLA]] — Graph-based symbolic long-horizon grasp planning; symbolic, no generative synthesis.
 - [[2605.05925|DexSynRefine]] — HOI prior + task-space residual RL; 68.1% sim, +50–70 pp real over retargeting; complementary synthesis-then-ground.
+- [[2606.02551|AFUN]] — Affordance foundation model predicting functional masks + post-contact motion; 90% real SR no fine-tuning; the affordance-map source A1's generator could condition on.
+- [[2606.02432|NDPP-Grasp]] — Task-oriented dexterous grasp diffusion with non-differentiable plausibility guidance; 395.8 ms→17.7 ms; feasibility-during-generation.
+- [[2606.03385|GTP-FA]] — Grasp-then-plan with failure attribution for stable-but-unusable grasps; +65.6 pp real Franka (π0.5 11.2%→76.8%); the stable-vs-functional gap as attribution, not conditioning.
 
 **Benchmarks & metrics.**
 - [[2604.11674|AffordSim]] — 50-task benchmark; 79%/64% vs 15%/3%, real zero-shot 24% avg; the affordance-difficulty gradient (placing 40% → hanging 10%).
@@ -170,8 +178,8 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 **Why it matters.** [[2504.03515|Dexterous IL Survey]] names the embodiment gap — "wide variation in DoFs, morphology, and kinematics prevents data and policy transfer" — and [[2603.22264|UniDex]] confirms foundation policies "predominantly cater to parallel-jaw grippers, leaving dexterous manipulation underserved." Every new hand restarts data collection. But the gap is bridgeable: [[2603.22264|UniDex]]'s Function-Actuator-Aligned Space (FAAS) reaches 60%/40% zero-shot at 5.2× lower cost, and [[2505.21864|DexUMI]]'s exoskeleton interface hits 86% across underactuated and fully-actuated hands. The claim: a grasp's *function* (opposition, enclosure, precision-pinch) is a low-dimensional invariant, and a policy parameterized in function-space transfers where a joint-space policy cannot. This direction owns the **grasp-establishment** phase — forming a stable, task-appropriate contact set — scored on grasp-transfer SR.
 
 **First-principles framing.**
-- **First principle**: A grasp is defined by its functional configuration (which surfaces oppose the object, at what force), not the joint angles that realize it. Grasp taxonomy (power / precision / lateral) is a low-dimensional invariant across hands; joint-space realization is the high-dimensional hand-specific projection.
-- **Assumption being challenged**: That each dexterous hand needs its own dataset and policy. The field collects per-hand because it parameterizes in joint-space; [[2603.22264|UniDex]]'s FAAS and [[2505.21864|DexUMI]]'s relative-finger actions show function-space representations transfer — the per-hand-data assumption is a parameterization artifact.
+- **First principle**: A grasp is defined by what it does (which surfaces press the object, at what force), not by the joint angles that produce it. The grasp *type* (power / precision / lateral) is a simple description that stays the same across hands; the joint angles that realize it are the many hand-specific details.
+- **Assumption being challenged**: That each dexterous hand needs its own dataset and policy. The field collects per-hand because it parameterizes in joint-space; [[2603.22264|UniDex]]'s FAAS and [[2505.21864|DexUMI]]'s relative-finger actions show function-space representations transfer — so the per-hand-data assumption is a parameterization artifact.
 - **The bet**: A function-aligned action space transfers zero-shot to unseen hands at [[2603.22264|UniDex]]'s 60% / 40% and cuts per-hand data cost ≥5× ([[2603.22264|UniDex]] 5.2×, [[2505.21864|DexUMI]] 3.2×), at [[2505.21864|DexUMI]]-class in-domain SR (86%) — transfer for free, no in-domain regression.
 
 **Evidence.**
@@ -196,6 +204,11 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2604.20689|FingerEye]] — Per-finger eye-in-hand perception; morphology-specific sensing.
 - [[2603.04531|PTLD]] — Privileged tactile latent distillation; +182% rotation; the deployable interface a transferred policy needs (feeds D2).
 - [[2512.24653|RoboMIND 2.0]] — 310K trajectories, six embodiments; cross-embodiment data substrate.
+- [[2606.03268|EaDex]] — Cross-embodiment dexterous from single-RGB-D human demos (MANO retargeting + contact-reward annealing); 36.5% across 9 tasks, +55.3% over fixed-weight; low-cost cross-hand data.
+- [[2511.09484|SPIDER]] — Physics-informed dexterous retargeting; 2.4M feasible frames across 5 hands + 4 humanoids, +18% from virtual-contact guidance; the cross-hand retargeting-data engine.
+- [[2602.09013|VIDEOMANIP]] — Dexterous policies from RGB human videos via 3D hand-object trajectory reconstruction; 62.86% real (LEAP Hand), contact-opt 30.7%→63.75%; human-video cross-hand source.
+- [[2505.11709|EgoDex]] — Large-scale egocentric-video dexterous learning; goal-conditioning −22% distance, scales with data; the ego-video cross-hand data substrate.
+- [[2403.07788|DexCap]] — Portable mocap for dexterous manipulation; 0.8 cm drift (vs 11.3 cm IMU), 72% from 30 min human data; the human-mocap cross-hand collection system.
 
 **Benchmarks & metrics.**
 - [[2603.22264|UniDex]] — 81% task progress on 5 tool-use tasks, zero-shot 60% / 40%; the cross-morphology transfer metric.
@@ -224,10 +237,10 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - **The bet**: A force-regulation policy with dense tactile + differentiable soft-body physics holds where rigid-grasp estimators fail, matching [[2509.18830|DexSkin]]'s 90% pressure reduction and 20%→60% fruit integrity, and beating sparse-tactile baselines on [[2510.25725|HumanoidVTA]]'s soft-object discrimination.
 
 **Evidence.**
-- [[2509.18830|DexSkin]] — Conformable capacitive skin (60 taxels, 294°) + residual RL; berry pressure 90% cut (14.5→1.53 kPa), blueberry integrity 20%→60%, 19/20 perturbed reorientation; the force-regulation anchor.
+- [[2509.18830|DexSkin]] — Conformable capacitive skin + residual RL; berry pressure 90% cut (14.5→1.53 kPa), blueberry integrity 20%→60%, 19/20 perturbed; the force-regulation anchor.
 - [[2510.25725|HumanoidVTA]] — 2,124-sensor humanoid soft-object dataset; dense tactile separates pressure conditions where sparse fails; the dense-tactile substrate.
 - [[2604.07335|TAMEn]] — Closed-loop tactile + AR recovery for contact-rich bimanual; 75% SR; soft-object recovery data (feeds C3).
-- [[2511.04665|Real-to-Sim GS]] (cross-ref Sim2Real) — 3DGS + soft-body twin; ρ > 0.9 sim-real; the differentiable-soft-body eval substrate.
+- [[2511.04665|Real-to-Sim GS]] (cross-ref Sim2Real) — 3DGS + soft-body twin; r=0.915 (push-T) / 0.901 (rope) sim-real; the differentiable-soft-body eval substrate.
 - [[2511.02097|WM Manipulation Survey]] — Names object-centric representations and physics-awareness as open; deformables stress both.
 
 **Concrete research questions.**
@@ -241,10 +254,19 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2510.25725|HumanoidVTA]] — Dense humanoid tactile; dense > sparse discrimination; the substrate.
 - [[2604.07335|TAMEn]] — Closed-loop tactile recovery data; 75% SR; soft-object recovery.
 - [[2604.20444|VTouch++]] — 120K-episode synchronized vision+tactile+proprioception; soft-contact data.
-- [[2511.04665|Real-to-Sim GS]] — 3DGS + soft-body twin; ρ > 0.9; differentiable-soft-body eval (cross-ref Sim2Real).
+- [[2511.04665|Real-to-Sim GS]] — 3DGS + soft-body twin; r=0.915 (push-T) / 0.901 (rope); differentiable-soft-body eval (cross-ref Sim2Real).
 - [[2603.05687|CGP]] — Contact-grounded coupled state+tactile prediction; real-time; contact as trajectory (feeds B1).
 - [[2302.04659|ManiSkill2]] — Real-time rigid-MPM soft-body sim (80–84 FPS); the soft-body throughput baseline.
 - [[2605.13083|TouchAnything]] — Multi-view ego + dense tactile; soft-contact data, no deformable policy.
+- [[2606.04269|Instant-Fold]] — In-context IL for garment folding from one human demo; 60.9% real zero-shot on 8 unseen garments; folding as task-completion, not grasp-pose.
+- [[2605.09538|PhysHanDI]] — Physics-based reconstruction of hand-deformable-object interaction from sparse-view RGB-D; the deformable-HOI dynamics substrate (cross-ref Sim2Real).
+- [[2604.08544|SIM1]] — Physics-aligned simulator as zero-shot data scaler in deformable worlds; 76% zero-shot (vs 0% real-data), 27× cost cut, 70% on unseen polo shirt; the deformable synthetic-data engine.
+- [[2510.21447|PhysWorld-Deformable]] — Deformable-object world model from real videos; 799 FPS (47× PhysTwin), Chamfer 0.010, MPPI planning; the deformable dynamics-model route.
+- [[2312.00583|DeformGS]] — Scene-flow tracking in highly deformable scenes (cloth, duvet); 27.75 mm MTE (76% below DynaGS); the deformable-state perception substrate.
+- [[2604.20841|DeVI]] — Physics-based dexterous human-object interaction via synthetic video imitation; 25–41 mm MPJPE (vs 91–142 mm), 50.0% GRAB success ratio; physics-grounded soft-contact HOI.
+- [[2210.13066|DaXBench]] — Deformable-object benchmark with differentiable physics (rope, cloth, fluid); differentiable RL/IL/planning baselines; the differentiable-physics deformable benchmark.
+- [[2011.07215|SoftGym]] — Deep-RL benchmark for deformable manipulation (cloth, rope, fluid); image-RL struggles vs state oracle; the cloth-RL difficulty floor.
+- [[2104.03311|PlasticineLab]] — Soft-body manipulation benchmark with differentiable physics; gradient methods beat RL via softened contact; the soft-body differentiable-gradient benchmark.
 
 **Benchmarks & metrics.**
 - [[2509.18830|DexSkin]] — 90% pressure reduction (14.5→1.53 kPa), blueberry integrity 20%→60%, 19/20 perturbed; the deformable-grasping metric.
@@ -254,7 +276,7 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 > [!warning] Risks
 > - **No canonical success metric** — "did it grasp" is ill-defined for cloth. → Adopt task-completion (fold, pack) + force-bound (integrity) jointly, per [[2509.18830|DexSkin]]; don't report grasp-SR.
 > - **Dense tactile optimization is unsolved** — [[2510.25725|HumanoidVTA]] shows dense barely beats sparse. → Q2's dense-vs-sparse *control* test is the go/no-go; if it doesn't translate, the bet narrows to force-regulation without dense tactile.
-> - **Soft-body sim is slow / inaccurate** — [[2302.04659|ManiSkill2]] runs soft-body at 80 FPS vs 2000 FPS rigid. → Bound physics claims to validated twins (ρ > 0.9, [[2511.04665|Real-to-Sim GS]]); cross-ref Sim2Real.
+> - **Soft-body sim is slow / inaccurate** — [[2302.04659|ManiSkill2]] runs soft-body at 80 FPS vs 2000 FPS rigid. → Bound physics claims to validated twins (r > 0.9, [[2511.04665|Real-to-Sim GS]]); cross-ref Sim2Real.
 
 ---
 
@@ -276,10 +298,10 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 **First-principles framing.**
 - **First principle**: The next-step tactile signal is a deterministic consequence of the action given the contact state — it is forecastable. A policy that only reads current force is reactive by construction; one that *predicts* force can pick actions with a good imagined outcome before committing.
 - **Assumption being challenged**: That reactive tactile feedback suffices. [[2505.22159|ForceVLA]], [[2601.20321|TaF-VLA]], [[2509.07962|TA-VLA]] consume force as input; their limit is latency — by the time bad force is felt, the misalignment has happened. [[2512.23864|DreamTacVLA]]'s +22.3% Dream-ablation shows prediction adds what reaction cannot.
-- **The bet**: An action-conditioned tactile world model beats reactive-tactile policies on the axis where in-distribution SR is saturated — the headline is the *prediction delta* ([[2512.23864|DreamTacVLA]]'s +22.3% over its no-Dream ablation, concentrated at contact onset) and robustness under perturbation ([[2603.19201|OmniVTA]]-class 60 Hz, 60–63% SR) — not the saturated 95.0% absolute, which sits at [[2505.22159|ForceVLA]]-class consumed-force SR as the floor.
+- **The bet**: An action-conditioned tactile world model beats reactive-tactile policies where in-distribution SR is saturated. The headline is the *prediction delta* — [[2512.23864|DreamTacVLA]]'s +22.3% over its no-Dream ablation — plus robustness under perturbation ([[2603.19201|OmniVTA]]-class 60 Hz, 60–63% SR), not the saturated 95.0% absolute (a [[2505.22159|ForceVLA]]-class floor).
 
 **Evidence.**
-- [[2512.23864|DreamTacVLA]] — Think–Dream–Act: tactile world model predicts future tactile, policy refines draft action; 95.0% Peg-in-Hole, 85.7% USB, 81.1% Gear, +22.3% over ablations; the contact-imagination anchor.
+- [[2512.23864|DreamTacVLA]] — Think–Dream–Act tactile world model; policy refines its draft from predicted future tactile; 95.0% Peg-in-Hole, 85.7% USB, 81.1% Gear, +22.3% over ablations; the contact-imagination anchor.
 - [[2603.19201|OmniVTA]] — Visuo-Tactile World Model + 60 Hz Reflexive Latent Tactile Controller; 21K-trajectory OmniViTac dataset; 60–63% under perturbation; predictive + reflexive contact control.
 - [[2603.05687|CGP]] — Predicts coupled robot-state + tactile trajectories, maps to controller targets; real-time; contact as a jointly-predicted quantity.
 - [[2505.22159|ForceVLA]] — Force-aware MoE, force as first-class modality; 60.5% (+23.2 pp over π0-with-force), 90% under occlusion; the consumed-force ceiling to beat.
@@ -300,6 +322,11 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2506.14754|Sparsh-X]] — Multisensory tactile backbone, 1M contacts; 90% plug-insertion; the sensor-agnostic prediction target.
 - [[2509.19696|Diffusion Impedance Learning]] — Diffusion-based impedance for contact-rich; impedance, not tactile prediction.
 - [[2503.16806|DyWA]] — Dynamics-adaptive world action model predicting future object state; 82.2%/75.0% seen/unseen; the state-prediction analog (non-prehensile).
+- [[2603.12665|TacVLA]] — Contact-aware tactile fusion VLA; 83.75% avg disassembly (vs π0.5 63.75%), 70% in-box vs 10%, >60% under occlusion; consumed-tactile fusion, not predicted.
+- [[2507.09160|Tactile-VLA]] — Unlocks VLA physical knowledge for tactile generalization; 90% Charger, force-adverb generalization (2.94 N vs 2.57 N), 80% zero-shot wiping CoT; consumed-force reasoning.
+- [[2503.08548|TLA]] — Tactile-Language-Action for contact-rich assembly; >85% on unseen clearances/peg shapes (+50%), 0.3–1.2 mm generalization; tactile-conditioned, reactive.
+- [[2503.02881|RDP]] — Reactive Diffusion Policy (slow-fast visual-tactile); +35% over DP, 0.8 vs 0.15 under perturbation, sub-mm trajectory adjustment; reactive, not predictive.
+- [[2510.13324|FARM]] — Tactile-conditioned diffusion for force-aware manipulation; 100% screw-tightening, 95% static-force tasks, W1 0.75 N force match; consumed-tactile diffusion.
 
 **Benchmarks & metrics.**
 - [[2512.23864|DreamTacVLA]] — 95.0% Peg-in-Hole / 85.7% USB / 81.1% Gear / 74.6% Tool-Stab; +22.3% over ablations; the contact-imagination benchmark.
@@ -316,19 +343,19 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 | | |
 |---|---|
 | **Cluster** | B — Contact-Rich Assembly & Precision |
-| **Thesis** | Contact physics is locally discontinuous (make/break, slip-stick, friction-cone), so the dynamics are piecewise — but the field smooths over them by scaling continuous policies. Since in-distribution [AutoMate](https://arxiv.org/abs/2407.08028) is already saturated ([[2602.23253\|SPARR]] 95–100%), the bet is on the OOD axis: a discrete contact-mode policy wins on *unseen* [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) transfer at [[2602.23253\|SPARR]]'s +74.5% relative SR / 36.5% cycle-time cut, below [[2602.23648\|FAVLA]]'s 7.7 N peak force, with mode-derived reversibility a smooth policy lacks. |
+| **Thesis** | Contact physics is locally discontinuous (make/break, slip-stick, friction-cone), so the dynamics are piecewise — but the field smooths over them by scaling continuous policies. Since in-distribution [[2407.08028\|AutoMate]] is already saturated ([[2602.23253\|SPARR]] 95–100%), the bet is on the OOD axis: a discrete contact-mode policy wins on *unseen* [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) transfer at [[2602.23253\|SPARR]]'s +74.5% relative SR / 36.5% cycle-time cut, below [[2602.23648\|FAVLA]]'s 7.7 N peak force, with mode-derived reversibility a smooth policy lacks. |
 | **Anchor surveys** | [[2511.02097\|WM Manipulation Survey]], [[2604.04974\|Video-to-Control Survey]], [[2502.05086\|REASSEMBLE]] |
-| **Key targets** | **Headline (unseen-task, where in-distribution is saturated):** [[2602.23253\|SPARR]] +74.5% relative SR / 36.5% cycle-time cut on *unseen* [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic); [[2407.16677\|ResiP]] perturbation drop only 12% (vs 19–26%). **Saturated in-distribution reference:** [[2602.23253\|SPARR]] 95–100% [AutoMate](https://arxiv.org/abs/2407.08028). **Force bound:** [[2602.23648\|FAVLA]] 80.8% at 7.7 N peak (Gear) |
+| **Key targets** | **Headline (unseen-task, where in-distribution is saturated):** [[2602.23253\|SPARR]] +74.5% relative SR / 36.5% cycle-time cut on *unseen* [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic); [[2407.16677\|ResiP]] perturbation drop only 12% (vs 19–26%). **Saturated in-distribution reference:** [[2602.23253\|SPARR]] 95–100% [[2407.08028\|AutoMate]]. **Force bound:** [[2602.23648\|FAVLA]] 80.8% at 7.7 N peak (Gear) |
 
-**Why it matters.** [[2502.05086|REASSEMBLE]] shows "Insert is the hardest action … due to its multi-step nature and demand for precise alignment and force application," and force-torque "reveals distinct patterns corresponding to action phases (free-space, contact, pushing, twisting)" — the task *is* a sequence through discrete contact modes. Yet the dominant fixes scale continuous policies or add residuals: [[2602.23253|SPARR]] (95–100% [AutoMate](https://arxiv.org/abs/2407.08028), +74.5% unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic)), [[2407.16677|ResiP]] (5%→99%), [[2602.23648|FAVLA]] (80.8%) — none model the contact *mode* as a discrete latent. The claim: contact physics is piecewise (Coulomb friction only in-contact, ballistic only in free-space), so a mode-conditional policy gets structural granularity a smooth approximator pays exponentially for at the friction-cone boundary. It also unlocks *reversibility*: `making` vs `in-contact` tells you whether a corrective retreat is safe.
+**Why it matters.** [[2502.05086|REASSEMBLE]] shows "Insert is the hardest action … due to its multi-step nature and demand for precise alignment and force application," and force-torque "reveals distinct patterns corresponding to action phases (free-space, contact, pushing, twisting)" — the task *is* a sequence through discrete contact modes. Yet the dominant fixes scale continuous policies or add residuals: [[2602.23253|SPARR]] (95–100% [[2407.08028|AutoMate]], +74.5% unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic)), [[2407.16677|ResiP]] (5%→99%), [[2602.23648|FAVLA]] (80.8%) — none model the contact *mode* as a discrete latent. The claim: contact physics is piecewise (Coulomb friction only in-contact, ballistic only in free-space), so a mode-conditional policy gets structural granularity a smooth approximator pays exponentially for at the friction-cone boundary. It also unlocks *reversibility*: `making` vs `in-contact` tells you whether a corrective retreat is safe.
 
 **First-principles framing.**
-- **First principle**: Contact dynamics are locally discontinuous — friction-cone boundaries, normal-force singularities, slip-stick are discrete state changes. The true dynamics are piecewise, so a smooth continuous policy approximating them is structurally mismatched, and gets expensive exactly at the precision-critical boundary.
-- **Assumption being challenged**: That more capacity or more residual closes the sub-millimeter gap. [[2602.23253|SPARR]] and [[2407.16677|ResiP]] add residuals; [[2602.23648|FAVLA]] adds force-adaptive frequency — none address the *structural* discontinuity. [[2502.05086|REASSEMBLE]]'s phase-distinct force patterns show the modes are real and observable; the field smooths over them.
-- **The bet**: A contact-mode-conditional policy ($c_t \in \{\text{free, making, in-contact, sliding, breaking}\}$) beats monolithic continuous policies *where in-distribution SR is saturated* — the contribution is on the OOD axis, not the in-distribution [AutoMate](https://arxiv.org/abs/2407.08028) number ([[2602.23253|SPARR]] already 95–100%). The target is unseen-task transfer: [[2602.23253|SPARR]]'s +74.5% relative SR / 36.5% cycle-time on unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic), below [[2602.23648|FAVLA]]'s 7.7 N — precision *and* reversibility from the mode structure.
+- **First principle**: Contact dynamics jump at the boundaries — the friction-cone edge, the moment force spikes, the switch from stick to slip are all sudden changes, not smooth ones. The real dynamics come in distinct pieces, so a single smooth policy is the wrong shape exactly where precision matters most.
+- **Assumption being challenged**: That more capacity or more residual closes the sub-millimeter gap. [[2602.23253|SPARR]] and [[2407.16677|ResiP]] add residuals; [[2602.23648|FAVLA]] adds force-adaptive frequency — none address the *structural* discontinuity that [[2502.05086|REASSEMBLE]]'s phase-distinct force patterns show is real and observable.
+- **The bet**: A policy that reads a discrete contact mode (free, making, in-contact, sliding, breaking) and switches dynamics per mode beats one smooth continuous policy on unseen tasks — where in-distribution [[2407.08028|AutoMate]] is already maxed out ([[2602.23253|SPARR]] 95–100%). The target is transfer to held-out tasks: [[2602.23253|SPARR]]'s +74.5% relative SR / 36.5% cycle-time cut on unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic), staying below [[2602.23648|FAVLA]]'s 7.7 N — with precision *and* the ability to back out safely, both coming from knowing the mode.
 
 **Evidence.**
-- [[2602.23253|SPARR]] — Sim base policy + vision-conditioned real residual; 95–100% [AutoMate](https://arxiv.org/abs/2407.08028), +74.5% relative / 36.5% cycle-time on unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic), no human supervision; the assembly-SR ceiling.
+- [[2602.23253|SPARR]] — Sim base + real residual; 95–100% [[2407.08028|AutoMate]], +74.5% relative / 36.5% cycle-time on unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic); the assembly-SR ceiling.
 - [[2407.16677|ResiP]] — Frozen BC + residual PPO for closed-loop correction; peg-in-hole 5%→99%, 12% perturbation drop (vs 19–26%); residual reactivity, continuous.
 - [[2602.23648|FAVLA]] — Force-adaptive fast-slow VLA, force-variance head gates AE frequency; 80.8%, peak force 7.7 N (Gear) / 9.9 N (Box); adaptive frequency ≈ implicit mode-awareness, not explicit modes.
 - [[2502.05086|REASSEMBLE]] — NIST board; insert hardest, force-torque phase-distinct patterns; the contact-mode ground truth.
@@ -341,7 +368,7 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 4. **Q4 — Per-mode residual.** Combine with [[2602.23253|SPARR]]/[[2407.16677|ResiP]] — does a residual policy per contact mode beat a single residual?
 
 **Related research papers.**
-- [[2602.23253|SPARR]] — Sim base + real residual; 95–100% [AutoMate](https://arxiv.org/abs/2407.08028), +74.5% NIST; the ceiling.
+- [[2602.23253|SPARR]] — Sim base + real residual; 95–100% [[2407.08028|AutoMate]], +74.5% NIST; the ceiling.
 - [[2407.16677|ResiP]] — Residual RL for precise assembly; 5%→99%; continuous residual.
 - [[2602.23648|FAVLA]] — Force-adaptive fast-slow VLA; 80.8%; implicit mode-awareness.
 - [[2603.15169|ForceVLA2]] — Hybrid force-position control; 66% avg; position/force switching, no discrete mode.
@@ -349,16 +376,20 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2509.19696|Diffusion Impedance Learning]] — Diffusion-based impedance; continuous regulation.
 - [[2605.05172|Q2RL]] — Q from BC for on-robot RL; 3.75× on peg/pipe in 1–2 hrs; the fine-tuning loop for mode-policies.
 - [[2503.16806|DyWA]] — Dynamics-adaptive world action model (FiLM on inferred physics); 82.2%/75.0%; mode-adjacent adaptation.
+- [[2605.02600|CoRAL]] — Contact-rich adaptive LLM control + online refinement; +50% avg in unseen contact-rich (vs OpenVLA/π0.5); LLM-mediated adaptation, no discrete mode.
+- [[2505.18472|ManiFeel]] — Visuotactile manipulation benchmark; tactile adds +26 pp peg insertion / +17 pp object search, sim-to-real trends reproduce (+14 pp gear); the contact-rich tactile-value benchmark.
+- [[2505.06451|Adaptive Wiping]] — Few-shot IL with force-torque feedback; 100% contact / 96% reference force across 40 unseen scenarios (vs 4% open-loop); contact-force adaptation, continuous.
+- [[2603.12185|ComFree-Sim]] — GPU-parallel analytical contact-physics engine; ~3× faster, near-linear contact scaling, torsional/rolling friction; the contact-rich simulation substrate.
 
 **Benchmarks & metrics.**
-- [AutoMate](https://arxiv.org/abs/2407.08028) (8–10 tasks) — Insertion/assembly SR; [[2602.23253|SPARR]] 95–100%, the saturated ceiling.
+- [[2407.08028|AutoMate]] (8–10 tasks) — Insertion/assembly SR; [[2602.23253|SPARR]] 95–100%, the saturated ceiling.
 - [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) industrial assembly — Cross-task transfer; [[2602.23253|SPARR]] +74.5% relative SR / 36.5% cycle-time on unseen tasks.
 - [[2502.05086|REASSEMBLE]] — NIST board, 4,551 demos, 70% DMP insertion; the contact-phase + anomaly benchmark.
 
 > [!warning] Risks
 > - **Discrete-latent optimization variance** — Gumbel-softmax / REINFORCE for $c_t$. → Anneal soft→hard; start continuous, harden over training.
 > - **Mode supervision needs ground truth** — real mode labels are scarce. → Distill from [[2502.05086|REASSEMBLE]]'s phase annotations + sim contact; report mode-classification accuracy first.
-> - **Saturated headline** — [[2602.23253|SPARR]] already 95–100% [AutoMate](https://arxiv.org/abs/2407.08028). → Show on *unseen* [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) transfer + peak-force + reversibility, not in-distribution SR.
+> - **Saturated headline** — [[2602.23253|SPARR]] already 95–100% [[2407.08028|AutoMate]]. → Show on *unseen* [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) transfer + peak-force + reversibility, not in-distribution SR.
 
 ---
 
@@ -378,12 +409,12 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 **Why it matters.** [[2604.05831|BiCoord]] quantifies the problem — a 4× spatial-temporal-integral increase, "policy performance consistently degraded in later stages of long-horizon tasks" — and [[2407.07788|BiGym]] shows IL/RL near-0% on stacking and long sequences. The dominant response trains monolithic models needing thousands of hours of proprietary two-arm data. [[2511.05275|TwinVLA]] inverts it: compose *two pre-trained single-arm policies* with a Joint-Attention coupling, matching monolithic systems on ~50 episodes / ~25 H100-days (76% vs RDT-1B 45%, ≈π0 80% at far more compute), and [[2507.23523|H-RDT]] transfers single-hand human-video priors into bimanual. The claim: each arm's *skill* is an abundant single-arm prior, and only the *coupling* — handover timing, force balance — is the scarce bimanual-specific term, so compose the priors and learn only the cheap coupling.
 
 **First-principles framing.**
-- **First principle**: The bimanual value is non-additive — $V(a_L, a_R) \neq V(a_L) + V(a_R)$ — because cross-arm coupling is the load-bearing term. But each arm's skill is a marginal single-arm policy, so the joint factors as (transferable skill) × (bimanual coupling), and only the latter needs two-arm data.
+- **First principle**: Two arms working together are worth more than the two arms scored separately — the coordination between them carries the extra value. But each arm's *skill* is just a single-arm policy, so the whole splits into two parts: a transferable single-arm skill and the two-arm coupling. Only that coupling needs two-arm data.
 - **Assumption being challenged**: That bimanual competence requires bimanual-scale pretraining. Monolithic policies learn the whole joint from two-arm data; [[2511.05275|TwinVLA]] and [[2507.23523|H-RDT]] show the skill is reusable and only the coupling is bimanual-specific — the data wall is partly self-imposed by monolithic design.
 - **The bet**: A coordination-native composition matches monolithic SR on ~50 episodes — [[2511.05275|TwinVLA]] 76% (vs RDT-1B 45%, ≈π0 80%) at ~25 H100-days — and holds [[2604.05831|BiCoord]]'s later-stage coordination where monolithic policies degrade.
 
 **Evidence.**
-- [[2511.05275|TwinVLA]] — Composes two single-arm policies via Joint Attention (causal-masked cross-arm self-attention); 76% on ~50 episodes / ~25 H100-days, vs RDT-1B 45%, ≈π0 80%; the composition anchor.
+- [[2511.05275|TwinVLA]] — Composes two single-arm policies via Joint Attention; 76% on ~50 episodes / ~25 H100-days, vs RDT-1B 45%, ≈π0 80%; the composition anchor.
 - [[2507.23523|H-RDT]] — Single-hand human-video (EgoDex 338K) → bimanual DiT via flow matching; 41.6% few-shot (vs RDT 16.0%), 87.2% RoboTwin 2.0; human-prior-to-bimanual transfer.
 - [[2604.05831|BiCoord]] — Long-horizon bimanual benchmark; 4× spatial-temporal integral, MRD/ARD/SMT/SMP/STI metrics, later-stage degradation; the coordination-quantification anchor.
 - [[2603.15469|RoCo Challenge]] — Collaborative assembly; end-to-end beats modular for recovery; coordination + Sim-to-Real Cliff.
@@ -403,6 +434,9 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2410.24185|DexMimicGen]] — Bimanual subtask taxonomy (async/sync/ordered); 90% real; coordination structure.
 - [[2511.21264|MPPI-Bimanual]] — Sampling-based MPC for bimanual coordination; model-based baseline.
 - [[2512.24653|RoboMIND 2.0]] — 310K bimanual/mobile trajectories, MIND-2 + IQL; up to 1.0 multi-robot SR; data + framework.
+- [[2410.07864|RDT-1B]] — Diffusion foundation model for bimanual manipulation; +56% over SOTA on real ALOHA, zero-shot to unseen objects; the monolithic-bimanual baseline TwinVLA composes against.
+- [[2606.02274|Dexterity-BEV]] — 3D-aligned policy; 89.9% LIBERO (vs <10% 2D), Handover-Book 93.3% (vs X-VLA 70.0%), Fold-Mailer 76.7%; 3D-grounded coordination across four setups.
+- [[2304.13705|ALOHA]] — Fine-grained bimanual via low-cost hardware + ACT; threading/Ziploc/insertion; the foundational bimanual imitation substrate.
 - [[2407.07788|BiGym]] — 40 mobile bimanual tasks; near-0% on long-horizon; the difficulty-establishing benchmark.
 
 **Benchmarks & metrics.**
@@ -427,12 +461,12 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 **Why it matters.** [[2506.18088|RoboTwin 2.0]] names the dual-arm data wall — "prohibitive cost of real bimanual data," "synthetic datasets lack automated quality control," "superficial domain randomization" — the bottleneck [[2407.07788|BiGym]] and [[2604.05831|BiCoord]] both hit. Two structure-aware generators show the way out: [[2410.24185|DexMimicGen]] replays a *few* human demos in sim via a subtask taxonomy (async per-arm, sync, ordering) — 90% real humanoid SR from 40 generated demos vs 0% from the 4 source — and [[2506.18088|RoboTwin 2.0]] adds MLLM expert-code + 5-axis randomization + embodiment-aware grasp. The claim: coordination structure (which subtasks are independent, which synchronize, what order) is the generalization-carrying prior — encode it and a handful of demos covers the configuration space; ignore it and you teleoperate every variation.
 
 **First-principles framing.**
-- **First principle**: Bimanual generalization comes from coordination structure, not volume — a task decomposed into per-arm subtasks with sync/ordering constraints can be SE(3)-replayed across configurations, so a few demos span many scenes. The structure turns $N$ demos into $N \times K$ feasible trajectories.
-- **Assumption being challenged**: That bimanual data must be teleoperated at scale. The field collects two-arm demos directly for lack of coordination-aware replay; [[2410.24185|DexMimicGen]] (90% from 40 vs 0% from 4) and [[2506.18088|RoboTwin 2.0]] show structure-aware generation replaces most teleoperation — the data wall is a missing-structure problem.
+- **First principle**: Bimanual generalization comes from coordination structure, not sheer volume — break a task into per-arm subtasks with sync and ordering rules, and each demo can be re-placed at new object positions and orientations across many scenes. The structure turns a handful of demos into many times that number of usable trajectories.
+- **Assumption being challenged**: That bimanual data must be teleoperated at scale. The field collects two-arm demos directly for lack of coordination-aware replay; [[2410.24185|DexMimicGen]] (90% from 40 vs 0% from 4) and [[2506.18088|RoboTwin 2.0]] show structure-aware generation replaces most of it — the data wall is a missing-structure problem.
 - **The bet**: Structure-aware generation lifts real bimanual SR by [[2506.18088|RoboTwin 2.0]]'s 24.4% / 21.0% and reaches [[2410.24185|DexMimicGen]]'s 90% from 40 sim demos (vs 0% from 4), matching [[2504.13059|RoboTwin]]'s "300 sim + 20 real ≈ 300 real."
 
 **Evidence.**
-- [[2410.24185|DexMimicGen]] — Subtask taxonomy (async/sync/ordered) replays few human demos in sim; 90% real humanoid from 40 demos (vs 0% from 4), 76.0% vs 0.7% Drawer-Cleanup; the structured-generation anchor.
+- [[2410.24185|DexMimicGen]] — Subtask taxonomy (async/sync/ordered) replays demos in sim; 90% real humanoid from 40 demos (vs 0% from 4), 76.0% vs 0.7% Drawer-Cleanup; the structured-generation anchor.
 - [[2506.18088|RoboTwin 2.0]] — MLLM expert-code + sim-in-the-loop + 5-axis randomization + embodiment-aware grasp; +24.4% few-shot / +21.0% zero-shot, 71.3% auto-code; the quality-controlled generator.
 - [[2504.13059|RoboTwin]] — Generative digital twin + LLM decomposition; 300 sim + 20 real ≈ 300 real, +40% dual-arm SR; the data-efficiency anchor.
 - [[2604.07335|TAMEn]] — Feasibility-aware acquisition + recovery data; 100% replay (vs 12–39%); the executability filter for generated data.
@@ -453,6 +487,12 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2507.00833|HumanoidGen]] — Auto data generation for humanoid manipulation; the bimanual-humanoid generation engine.
 - [[2603.15469|RoCo Challenge]] — 300+ demos collaborative assembly; failure-recovery curriculum > param count.
 - [[2604.20444|VTouch++]] — 120K-episode bimanual vision+tactile+proprioception; the multimodal generation target (feeds C3).
+- [[2605.21710|PGDG]] — Physics-grounded recovery-behavior generation from one bimanual demo; sim 38%→93%, real zero-shot 35%→82%, lifts GR00T N1.6; physics-validity where kinematic replay fails.
+- [[2511.17441|RoboCOIN]] — Open-source bimanual collection with hierarchical annotation + RTML quality filter; +23% GR00T-N1.5, complex-task 20%→70%; the quality-filtered bimanual data pipeline.
+- [[2505.12748|TeleOpBench]] — Simulator-centric dual-arm dexterous teleoperation benchmark; four teleop modalities, sim-real completion-time correlation; the bimanual data-collection eval.
+- [[2403.19417|OAKINK2]] — Bimanual hands-object dataset (627 seqs / 4.01M frames / 100 objects) + complex-task decomposition; the human bimanual-HOI data substrate.
+- [[2204.13662|ARCTIC]] — Dexterous bimanual articulated-object dataset (multi-view RGB + 3D GT + dynamic contact); pretraining +9.2% on rigid manipulation; the articulated bimanual-HOI substrate.
+- [[2401.08399|TACO]] — Bimanual tool-action-object benchmark (2.5K seqs / 131 triplets); compound generalization 86.15%→44.00%; the bimanual tool-use generalization data.
 
 **Benchmarks & metrics.**
 - [[2410.24185|DexMimicGen]] — 90% real humanoid (40 demos vs 0% from 4), 76.0% vs 0.7% generated-vs-source; the generation-efficacy metric.
@@ -476,7 +516,7 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 **Why it matters.** Bimanual benchmarks ([[2604.05831|BiCoord]], [[2407.07788|BiGym]]) are vision-and-proprioception only, yet the hardest tasks — one arm holds while the other manipulates, force-balanced handovers, bimanual assembly — depend on *inter-arm force* vision can't see. The bimanual-tactile data bottleneck has just lifted: [[2604.20444|VTouch++]] provides 120K synchronized episodes (36M frames, 380 tasks), [[2604.07335|TAMEn]] adds closed-loop tactile + recovery data (75% SR), and [[2512.24653|RoboMIND 2.0]] confirms tactile lifts contact-task SR. The claim: force-balanced cooperation is an *inter-arm force observability* problem — a shared tactile channel is not an add-on but the missing observation that makes cooperative force-control possible.
 
 **First-principles framing.**
-- **First principle**: Force-balanced cooperation requires inter-arm force observability — when one arm holds and the other manipulates, the coordination is governed by the force each transmits through the object, invisible to vision. The shared force state is the coordination variable; without it the policy coordinates blind.
+- **First principle**: Force-balanced cooperation requires inter-arm force observability — when one arm holds and the other manipulates, the coordination is governed by the force each transmits through the object, invisible to vision. Without that shared force state the policy coordinates blind.
 - **Assumption being challenged**: That bimanual coordination is a vision-and-proprioception problem. [[2604.05831|BiCoord]] and [[2407.07788|BiGym]] are vision-only; their later-stage degradation on contact-coupled tasks is partly *force-blindness*. [[2604.07335|TAMEn]]'s 75% with tactile shows the missing modality is force.
 - **The bet**: Tactile-coupled bimanual reaches [[2604.07335|TAMEn]]'s 75% contact-rich SR where vision-only fails, using [[2604.20444|VTouch++]]'s 120K synchronized episodes, with tactile lifting contact-task SR per [[2512.24653|RoboMIND 2.0]].
 
@@ -502,6 +542,8 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2603.05687|CGP]] — Multi-point contact-grounded policy (coupled state+tactile); per-hand, extensible to inter-arm.
 - [[2602.19764|Multi-Sensory Sparse Experts]] — RGB+depth+6-axis-force fusion (DeMUSE); 83.2% MT50, 80 ms compliance; the fusion substrate for two-arm force.
 - [[2605.13083|TouchAnything]] — Multi-view egocentric + dense tactile; bimanual tactile data.
+- [[2603.17851|DexViTac]] — Human visuo-tactile-kinematic demonstrations for contact-rich dexterous; 85.8% avg, 248 demos/hr, pre-training ablation 83.3%→43.3%; the synchronized visuo-tactile bimanual data.
+- [[2603.06987|Foundational WM]] — World model detects bimanual manipulator failures; +3.8% detection at ~20× fewer params; force-blind-failure detection via WM uncertainty.
 
 **Benchmarks & metrics.**
 - [[2604.07335|TAMEn]] — 75% contact-rich bimanual, 100% replay (vs 12–39%), 100% object-tracking (vs 32–78%); the contact-rich bimanual metric.
@@ -531,12 +573,12 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 **Why it matters.** This is the *control* counterpart to A2: A2 transfers the *grasp*, D1 transfers the full *in-hand control* policy after the grasp is established. [[2504.03515|Dexterous IL Survey]] and [[2508.13073|Large VLM-based VLA Survey]] note dexterous manipulation is underserved by parallel-jaw-centric foundations, and [[2605.16257|DexJoCo]] shows multi-task dexterous training *degrades*. [[2603.22264|UniDex]]'s Function-Actuator-Aligned Space controls diverse hands (81% progress, 60%/40% transfer), [[2512.13644|DexWM]] reaches 83% zero-shot grasp via hand-keypoint dynamics from human video, and [[2602.19764|Multi-Sensory Sparse Experts]] scales via sparse MoE (83.2% MT50, 42.6% compute cut) without latency growth. The claim: control intent — the contacts to form and the in-hand motion to produce — is hand-agnostic, while only the actuation is hand-specific; a policy parameterized by intent transfers, one parameterized by joint commands does not.
 
 **First-principles framing.**
-- **First principle**: Control intent (which fingers contact where, what in-hand motion) is a hand-agnostic plan; the joint torques are the hand-specific projection. A hammer is held and swung the same way regardless of finger count — intent is the invariant, actuation the variance.
-- **Assumption being challenged**: That each dexterous hand needs a bespoke policy on a parallel-jaw-centric foundation. The field trains per-hand because it parameterizes by joint commands; [[2603.22264|UniDex]] (FAAS, 60%/40%) and [[2512.13644|DexWM]] (hand-keypoint dynamics, 83% zero-shot) show intent-level control transfers — the per-hand assumption is a parameterization artifact, and [[2605.16257|DexJoCo]]'s negative transfer is what joint-space yields.
-- **The bet**: A unified-action-space policy drives the full in-hand control cycle on unseen hands at [[2512.13644|DexWM]]'s 72% / 58% / 28% zero-shot (vs DP 16% / 0% / 8%) and 83% real-world grasp — a *control*-phase margin A2's grasp-transfer cannot make — learnt 5.2× cheaper than per-hand collection, recovering A2's shared cross-morphology transfer ([[2603.22264|UniDex]] 60%/40%) at 81% in-domain progress, while sparse-MoE scaling ([[2602.19764|Multi-Sensory Sparse Experts]] 83.2% MT50, 42.6% compute cut) keeps inference real-time.
+- **First principle**: Control intent (which fingers touch where, what in-hand motion to make) is a plan that doesn't depend on the hand; the joint torques that carry it out do. A hammer is held and swung the same way regardless of finger count — the intent stays fixed, only the way each hand executes it changes.
+- **Assumption being challenged**: That each dexterous hand needs a bespoke policy on a parallel-jaw-centric foundation. The field trains per-hand because it parameterizes by joint commands; [[2603.22264|UniDex]] (FAAS, 60%/40%) and [[2512.13644|DexWM]] (hand-keypoint dynamics, 83% zero-shot) show intent-level control transfers — and [[2605.16257|DexJoCo]]'s negative transfer is what joint-space yields.
+- **The bet**: A unified-action-space policy drives the full in-hand control cycle on unseen hands at [[2512.13644|DexWM]]'s 72% / 58% / 28% zero-shot (vs DP 16% / 0% / 8%) and 83% real grasp — a *control*-phase margin A2 cannot claim — learnt 5.2× cheaper than per-hand collection, at [[2603.22264|UniDex]]'s 60%/40% transfer and 81% in-domain progress. Sparse-MoE scaling ([[2602.19764|Multi-Sensory Sparse Experts]] 83.2% MT50, 42.6% compute cut) keeps inference real-time.
 
 **Evidence.**
-- [[2512.13644|DexWM]] — Latent world model on hand-keypoint dynamics from human video + MPC; zero-shot 72%/58%/28% reach/grasp/place, 83% real grasp (Allegro), +34% PCK from Hand Consistency Loss; the control-cycle anchor.
+- [[2512.13644|DexWM]] — Hand-keypoint latent world model from human video + MPC; zero-shot 72%/58%/28% reach/grasp/place, 83% real grasp (Allegro), +34% PCK; the control-cycle anchor.
 - [[2603.22264|UniDex]] — Function-Actuator-Aligned Space + 3D policy from ego video; 81% progress, zero-shot 60%/40%, 5.2× cost cut; the shared cross-morphology evidence (A2's headline).
 - [[2602.19764|Multi-Sensory Sparse Experts]] — DeMUSE sparse-MoE multi-sensory DiT; 83.2% MT50 (vs RDT-1B 77.9%), 42.6% compute cut, 80 ms compliance; scalable capacity without latency.
 - [[2505.21864|DexUMI]] — Human-hand interface across underactuated + fully-actuated; 86%, 3.2× efficiency; cross-hand control via relative finger actions.
@@ -557,6 +599,10 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2604.20689|FingerEye]] — Per-finger eye-in-hand perception; morphology-specific sensing.
 - [[2603.04531|PTLD]] — Privileged tactile latent distillation; +182% rotation; the deployable estimator (feeds D2).
 - [[2512.24653|RoboMIND 2.0]] — 310K trajectories, six embodiments; cross-embodiment data.
+- [[2606.05699|DexFuture]] — Hierarchical future-*state* targeting for bimanual dexterous tools; 59.69% (≈90% of privileged 66.52%), 60 Hz, ~250× faster than action-conditioned WM; the future-state sibling of DexWM.
+- [[2602.16863|SimToolReal]] — Object-centric zero-shot dexterous tool manipulation; 98.0% Task Progress (vs 0–10.8% retargeting) across 24 tasks / 6 tool categories; object-centric cross-task transfer.
+- [[2507.05331|LBM TRI]] — Large behavior models for multitask dexterous manipulation; OOD benefit grows (10/16 sim vs 3/16 nominal), <30% sim / 15% real data; the multitask-dexterous scaling examination.
+- [[2604.24681|MoT-HRA]] — Human-intention priors from large-scale human demos; 66.1% SimplerEnv (+22.3 pp), 0.136 m ADE on Ego4D; the human-prior intent source for cross-hand control.
 
 **Benchmarks & metrics.**
 - [[2512.13644|DexWM]] — zero-shot 72%/58%/28% reach/grasp/place (vs DP 16%/0%/8%), 83% real grasp, +34% PCK; the full-control-cycle metric A2 cannot claim (the D1 headline).
@@ -590,6 +636,7 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2210.13702|DeXtreme]] — Vectorized Automatic Domain Randomization + Isaac Gym; 27.8 (VADR) vs 14.8 (manual DR), 15 Hz vision pose estimator; the sim-to-real reorientation anchor.
 - [[2604.11138|ViserDex]] — 3DGS-in-the-loop + pre-rasterization augmentation for monocular RGB; 37.6 consecutive / ~25 (adversarial lighting), single-GPU; visual sim-to-real.
 - [[2601.02778|Force-Based Sim2Real]] — Distance-field tactile sim + current-to-torque calibration; 25.1 vs 1.1 rotations (contact vs no-contact); the contact-value proof.
+- [[2605.28812|CoP Tactile]] — Physics-grounded Center-of-Pressure contact representation; 0.78 peg-in-hole, emergent reorientation, OOD-pose robust; an *intermediate* representation bridging tactile sim-to-real.
 - [[2509.18830|DexSkin]] — Conformable skin + pneumatic calibration; 19/20 perturbed, 5/20→14/20 cross-sensor transfer; the real-tactile-hardware reference.
 
 **Concrete research questions.**
@@ -607,11 +654,14 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2605.09789|DRIS]] — Domain-Randomized Instance Set (belief propagation); 68% reactive catching zero-shot; uncertainty-aware sim-to-real (couples to D3).
 - [[2603.15257|HapticVLA]] — Sensor-free tactile via distillation; 86.7%; the deployment twin (feeds [[#E1 — Sensor-Free Force-Aware Policies|E1]] Route 2).
 - [[2602.19764|Multi-Sensory Sparse Experts]] — Multi-sensory fusion incl. force; 83.2% MT50; the multi-sensory in-hand substrate.
+- [[2605.28812|CoP Tactile]] — Center-of-Pressure physics-grounded contact representation; 0.78 peg-in-hole, emergent reorientation; the intermediate-representation route to tactile sim-to-real.
+- [[2502.20396|Humanoid Sim2Real Dex]] — Vision-based dexterous sim-to-real RL on humanoids; 80% box-lift / 62.3% grasp-reach, 60–80% zero-shot unseen across two hands; cross-embodiment vision sim-to-real anchor.
 
 **Benchmarks & metrics.**
 - [[2603.04531|PTLD]] — +182% rotation, +57% reorientation goals, slip/mass/wrist robust; the tactile-in-hand metric.
 - [[2210.13702|DeXtreme]] — 27.8 (VADR) vs 14.8 (manual) reorientations, 15 Hz pose; the sim-to-real reorientation metric.
 - [[2604.11138|ViserDex]] — 37.6 consecutive / ~25 adversarial, 65.4%/56.3% pose accuracy, single-GPU; the visual-robustness metric.
+- [[2605.28812|CoP Tactile]] — 0.78 peg-in-hole (6 shapes) / 4.60 s ball-balancing time-to-fall, least OOD-pose degradation among tactile baselines; the physics-grounded-representation sim-to-real metric.
 
 > [!warning] Risks
 > - **Instrumented real cell needed** — [[2603.04531|PTLD]] requires a privileged-sensor real setup. → This is a one-time data-collection cost, not a deployment dependency; report the instrumentation requirement explicitly.
@@ -656,6 +706,10 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 - [[2605.05172|Q2RL]] — BC-to-RL on-robot self-improvement; 3.75× in 1–2 hrs; real-world RL refinement of emergent policies.
 - [[2410.21845|HIL-SERL]] — Human-in-the-loop sample-efficient real RL; the real-RL baseline emergent policies compete with.
 - [[2605.16257|DexJoCo]] — 11-task dexterous benchmark; the evaluation suite for emergent multi-task dexterity.
+- [[2602.01789|RFS]] — Residual flow steering for dexterous RL; 0.861 sim avg (vs DPPO 0.178), 74% real grasp with 50 corrections (vs 30% zero-shot); joint local+global modulation for real-world refinement.
+- [[2605.30226|BORA]] — Offline RL + online residual adaptation for dexterous VLA; 86% overall / 70% unseen, 1–2 interventions per task; the offline-to-online dexterous refinement loop.
+- [[2605.27114|VR-DAgger]] — Immersive-VR dexterous data + uncertainty-guided on-policy correction; 97% Drawer / 89% Valve-Hard, −40% supervision time; the uncertainty-guided dexterous data engine.
+- [[2605.15157|HandITL]] — Interventional correction for dexterous VLA; 99.8% fewer gesture jumps, 87.5% fewer grasp failures, on-policy intervention beats pure teleop; the seamless-correction dexterous loop.
 
 **Benchmarks & metrics.**
 - [[2603.15789|OmniReset]] — 25% real peg insertion (vs 4% demo-DP), emergent multi-phase across 6 tasks; the reset-diversity metric.
@@ -680,11 +734,11 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 
 **First-principles framing.**
 - **First principle**: Safety is a hard constraint on the contact-force and kinematic state (force ≤ tolerance, joints within limits, no collision) that must hold *every* step, not in expectation. A policy optimizing expected reward can't guarantee a per-step constraint; a physics-based projection (QP / force-bound) can.
-- **Assumption being challenged**: That safety emerges from reward penalties. The field penalizes excess force and hopes; [[2605.03363|Hierarchical RL-QP Grasp]]'s QP-enforced limits show a policy operating *inside* a hard-constraint filter is both safer and trains better (81.4% vs 13.2%) — reward-penalty safety is neither guaranteed nor optimal.
+- **Assumption being challenged**: That safety emerges from reward penalties. The field penalizes excess force and hopes; [[2605.03363|Hierarchical RL-QP Grasp]]'s QP-enforced limits show a policy operating *inside* a hard-constraint filter is both safer and trains better (81.4% vs 13.2%) — penalty-based safety is neither.
 - **The bet**: A QP/force-bounded controller delivers guaranteed-safe dexterity at [[2605.03363|Hierarchical RL-QP Grasp]]'s 81.4% (vs 13.2% unconstrained RL), bounds force below [[2602.19764|Multi-Sensory Sparse Experts]]' ~10 N and [[2509.18830|DexSkin]]'s 1.53 kPa, and adds zero-shot steerability (post-hoc speed-safety tuning without retraining).
 
 **Evidence.**
-- [[2605.03363|Hierarchical RL-QP Grasp]] — Task-space RL + GPU-parallel QP enforcing collision/joint/velocity limits; 81.4% sim (vs 13.2% end-to-end RL), 22/26 unseen real, zero-shot steerability; the hard-constraint-controller anchor.
+- [[2605.03363|Hierarchical RL-QP Grasp]] — Task-space RL + GPU-parallel QP for collision/joint/velocity limits; 81.4% sim (vs 13.2% end-to-end RL), 22/26 unseen real, zero-shot steerability; the hard-constraint-controller anchor.
 - [[2602.19764|Multi-Sensory Sparse Experts]] — Multi-sensory DiT with 6-axis force; stable ~10 N, 80 ms compliance (vs baseline force surges); the force-stability anchor.
 - [[2509.18830|DexSkin]] — Interpretable contact force for pressure-bounded reward; 90% reduction to 1.53 kPa, 20%→60% fragile-fruit integrity; the fragile-object force-bound anchor.
 - [[2603.15257|HapticVLA]] — Safety-Aware Reward-Weighted Flow Matching penalizing excess force/slip; 86.7%, +45 pp egg; safety-aware training (soft, complementary to hard QP).
@@ -740,24 +794,25 @@ Two-arm coordination carries a joint action $a = (a_L, a_R)$ whose value is *not
 The unification: force is causally upstream of contact behavior, so tactile competence is a behavior internalized during training — the sensor is the *teacher signal*, not a runtime dependency. Route 1 supplies it implicitly from ego video's force-consequences; Route 2 supplies it explicitly from an instrumented teacher whose sensor is then dropped. Both land on sensor-free, contact-competent deployment, and both are the deployment twin of B1/B2's training-time contact modeling. E2 (see [[#E2 — Cross-Sensor Tactile Foundation Models for Plug-And-Play Force-Aware Policies|E2]]) makes either route portable across platforms; D2 (see [[#D2 — Tactile In-Hand Reorientation with Sim-to-Real|D2]]) is the in-hand sibling on the reorientation task.
 
 **First-principles framing.**
-- **First principle** *(both routes)*: Tactile-awareness is a learned behavior grounded in force — force is *upstream* of vision in contact (the object moves *because* of force), and the awareness maps (vision, state, action) to contact-appropriate force-modulation. That behavior is *separable* from the sensor that supervised it: the sensor is a training signal, not a runtime input. Vision-to-tactile is a well-posed inverse problem because force leaves visible consequences.
-- **Assumption being challenged**: That contact-competent policies need tactile data at training *and* tactile hardware at deployment. Route 1 refutes the training half — [[2602.16710|EgoScale]]'s log-linear curve shows vision-only training transfers to tactile-rich tasks at scale. Route 2 refutes the deployment half — [[2603.15257|HapticVLA]] and [[2603.04531|PTLD]] both deploy contact-competent behavior with the sensor removed.
-- **The bet** *(both routes, one bar)*: Both clear ≥80% of a tactile-instrumented policy at zero runtime tactile cost. Route 1 — a policy pretrained on ~20k hr of ego *video alone* reaches ≥80% of tactile-instrumented SR on [[2505.22159|ForceVLA]]'s 5 tasks, riding [[2602.16710|EgoScale]]'s curve to **+54%** on 22-DoF dexterous. Route 2 — teacher-distillation matches [[2603.15257|HapticVLA]]'s **86.7%** sensor-free mean (**+45 pp** egg vs SmolVLA) and [[2603.04531|PTLD]]'s **+182%** rotation / **+57%** goals — the sensor never rides along at inference either way.
+- **First principle** *(both routes)*: Tactile-awareness is a learned behavior grounded in force — force is *upstream* of vision in contact (the object moves *because* of force), so vision-to-tactile is a well-posed inverse problem. That behavior is *separable* from the sensor that supervised it: the sensor is a training signal, not a runtime input.
+- **Assumption being challenged**: That contact-competent policies need tactile data at training *and* tactile hardware at deployment. Route 1 refutes the training half — [[2602.16710|EgoScale]]'s log-linear curve shows vision-only training transfers to tactile-rich tasks. Route 2 refutes the deployment half — [[2603.15257|HapticVLA]] and [[2603.04531|PTLD]] deploy with the sensor removed.
+- **The bet** *(both routes, one bar)*: Both clear ≥80% of a tactile-instrumented policy at zero runtime tactile cost. Route 1 — a policy pretrained on ~20k hr of ego *video alone* reaches ≥80% of tactile-instrumented SR on [[2505.22159|ForceVLA]]'s 5 tasks, riding [[2602.16710|EgoScale]]'s curve to **+54%** on 22-DoF dexterous. Route 2 — teacher-distillation matches [[2603.15257|HapticVLA]]'s **86.7%** sensor-free mean (**+45 pp** egg vs SmolVLA) and [[2603.04531|PTLD]]'s **+182%** rotation / **+57%** goals.
 
 **Evidence.**
-- [[2603.15257|HapticVLA]] *(Route 2 anchor)* — Safety-Aware Reward-Weighted Flow Matching teacher + tactile distillation into a sensor-free student predicting a tactile token from vision; **86.7%** mean, **+45 pp** on the egg vs SmolVLA, 75% with sensor; the distillation anchor.
-- [[2603.04531|PTLD]] *(Route 2 anchor)* — Privileged-sensor oracle in sim → deployable estimator from real pairs, *no tactile simulation*; **+182%** rotation, **+57%** goals; the privileged-to-real anchor (also D2's).
+- [[2603.15257|HapticVLA]] *(Route 2 anchor)* — Tactile teacher distilled into a sensor-free student predicting a tactile token from vision; **86.7%** mean, **+45 pp** on the egg vs SmolVLA, 75% with sensor; the distillation anchor.
+- [[2603.04531|PTLD]] *(Route 2 anchor)* — Sim privileged-sensor oracle → real-pair estimator, *no tactile simulation*; **+182%** rotation, **+57%** goals; the privileged-to-real anchor (also D2's).
 - [[2602.16710|EgoScale]] *(Route 1 anchor)* — 20,854-hr log-linear curve; **+54%** on 22-DoF dexterous; the ego-video scaling law (no force head — the gap Route 1 attacks).
-- [[2605.13083|TouchAnything]] *(Route 1 substrate)* — First multi-view ego + bimanual dense tactile dataset (20 hr); view dropout cuts ego-only drop **−27.20% → −5.78%**; the vision-to-tactile substrate.
+- [[2605.13083|TouchAnything]] *(Route 1 substrate)* — Multi-view ego + bimanual dense tactile dataset (20 hr); view dropout cuts ego-only drop **−27.20% → −5.78%**; the vision-to-tactile substrate.
 - [[2601.02778|Force-Based Sim2Real]] *(Route 2 teacher)* — Distance-field tactile sim + calibration; 25.1 vs 1.1 in-hand rotations; the efficient tactile-sim teacher.
 - [[2410.24090|Sparsh]] / [[2506.14754|Sparsh-X]] — SSL touch foundation (460k–1M unlabeled), **500%** plug-insertion gain (to 90% SR); the representation both routes distill toward.
 - [[2507.15597|Being-H0]] / [[2605.00078|Being-H0.7]] — Full policy pretraining on UniHand (150M instruction-motion pairs); Route 1's ego backbone.
+- [[2605.29564|VE2VF]] *(Route 2, inverse-modality)* — HIL-RL distills a vision teacher into a vision-free student on proprioception+wrench; **95.0%** overall, **100%** OOD where the teacher scores **0%**; drops vision, keeps force.
 
 **Concrete research questions.**
 1. **Q1 — Route comparison at matched SR.** Run both routes against the *same* sensor-free target — which recovers more tactile-instrumented SR on [[2505.22159|ForceVLA]]'s 5 tasks, and where do failure modes differ (Route 1 weak on vision-uncorrelated slip, Route 2 weak on novel objects)?
 2. **Q2 — Vision-to-tactile at scale (Route 1).** Extend [[2605.13083|TouchAnything]]'s view-dropout to [[2602.16710|EgoScale]] volume; generate synthetic tactile via a [[2506.14754|Sparsh-X]] teacher on a small instrumented fraction, feed into a [[2505.22159|ForceVLA]]-style FVLMoE — does predicted-tactile recover real-tactile SR?
 3. **Q3 — Tactile-token prediction vs world model (Route 2).** Compare [[2603.15257|HapticVLA]]'s vision→tactile-token prediction against B1's world-model forecast (see [[#B1 — Predictive-Tactile Contact Imagination|B1]]) — which transfers more teacher competence?
-4. **Q4 — Privileged-to-real on assembly (Route 2).** Replicate [[2603.04531|PTLD]]'s no-tactile-sim distillation on assembly (vs in-hand) — does it avoid the tactile sim-to-real gap on [AutoMate](https://arxiv.org/abs/2407.08028)?
+4. **Q4 — Privileged-to-real on assembly (Route 2).** Replicate [[2603.04531|PTLD]]'s no-tactile-sim distillation on assembly (vs in-hand) — does it avoid the tactile sim-to-real gap on [[2407.08028|AutoMate]]?
 5. **Q5 — Cross-embodiment force transfer (Route 1).** Human hand → gripper: compare explicit ([[2507.15597|Being-H0]] MANO + GRQ-VAE), keypoint ([[2512.22414|π0.5 + ego]]), and learned projections for carrying ego-video force-awareness onto a robot.
 6. **Q6 — Shared sensor-free benchmark.** Re-run [[2505.22159|ForceVLA]] + [[2603.15169|ForceVLA2]] with *both* routes head-to-head against a tactile-instrumented baseline — the comparison no benchmark isolates.
 
@@ -772,6 +827,9 @@ The unification: force is causally upstream of contact behavior, so tactile comp
 - [[2603.15169|ForceVLA2]] — Hybrid force-position; **66%** avg; deploys without inference-time tactile (Route-2-adjacent).
 - [[2509.07962|TA-VLA]] — Sensorless torque from motor current; charger 0/20→17/20; the no-sensor proxy (a cheap Route-2 floor).
 - [[2507.15597|Being-H0]] / [[2605.00078|Being-H0.7]] — Full policy pretraining on UniHand (150M pairs); the Route-1 ego backbone.
+- [[2605.29564|VE2VF]] — Vision-teacher → vision-free (proprioception+wrench) distillation; **95.0%** overall, **100%** OOD vs teacher's **0%**; the inverse-modality Route-2 instance.
+- [[2606.06194|ActiveMimic]] — Ego-video pretraining of *active perception* (27D action) then robot fine-tune; **90.1%** Restocking, **79.0%** under flashing light; a Route-1 substrate (no force head — the gap Route 1 attacks).
+- [[2505.22566|Universal Visuo-Tactile]] — VTV-LLM for visuo-tactile video understanding; 60.4% tactile reasoning (vs GPT-4o 28.0%), VTV150K dataset; the vision-to-tactile semantic substrate Route 1 leans on.
 
 **Benchmarks & metrics.**
 - ForceVLA-Data (244 traj) — Contact-rich 5-task; the shared head-to-head (both routes vs tactile-instrumented), the comparison no benchmark currently isolates.
@@ -805,6 +863,7 @@ The unification: force is causally upstream of contact behavior, so tactile comp
 **Evidence.**
 - **Sensors**: [[2509.18830|DexSkin]] (capacitive, 294° coverage), [[2604.28156|FlexiTac]] ($30 piezoresistive), [[2604.20689|FingerEye]] (vision-tactile fingertip), GelSight/DIGIT.
 - **SSL foundations**: [[2410.24090|Sparsh]] (460k images, MAE/DINO/JEPA), [[2506.14754|Sparsh-X]] (1M contacts, multisensory).
+- **Datasets**: [[2606.04825|HapTile]] (vision-tactile-language-action; 1,726 demos / 38 contact-rich tasks; peg-insert **0%→90%** with vision+tactile), [[2605.13083|TouchAnything]] (multi-view ego + bimanual dense tactile).
 - **Cross-sensor work**: [[2601.20321|TaF-VLA]] (VQ-VAE; **60.3%** zero-shot), [[2509.18830|DexSkin]] (pneumatic calibration).
 - **Alignment**: [[2605.14571|MTNet]] (visuo-tactile, CKA ~0.74).
 - **Sensor-free deploy**: [[2603.15257|HapticVLA]] (distillation; **86.7%** SR).
@@ -827,6 +886,10 @@ The unification: force is causally upstream of contact behavior, so tactile comp
 - [[2603.15257|HapticVLA]] — Teacher-student distillation; **86.7%** sensor-free; distills, doesn't represent invariantly.
 - [[2605.14571|MTNet]] — Visuo-tactile alignment; CKA ~0.74; alignment metric, not a transferable encoder.
 - [[2605.24642|GFM-VLA Study]] — Geometric foundation models × policy; Early Fusion **+5.56 pp** on G1; the foundation-model-integration playbook E2 borrows for the tactile case.
+- [[2606.04825|HapTile]] — Vision-tactile-language-action dataset (1,726 demos / 38 tasks); peg-insert **0%→90%** V+T; the contact-grounded dataset a cross-sensor encoder trains on.
+- [[2408.06506|TacSL]] — Visuotactile sensor simulation + learning library; 200× tactile-image / 428× force-field speedup, 91.4% sim-to-real peg-place; the visuotactile-sim substrate for cross-sensor data.
+- [[2604.27367|DOT-Sim]] — Differentiable optical tactile simulation with real-to-sim calibration; 90.48% zero-shot indenter / 96.55% tumor detection, PSNR 30.48; the calibrated optical-tactile sim source.
+- [[2512.04884|Hoi!]] — Force-grounded cross-view articulated-manipulation dataset; Sparsh force RMSE 3.86–4.11 N, exposes the cross-domain force-estimation gap; the force-grounded held-out benchmark.
 
 **Benchmarks & metrics.**
 - [[2605.21429|roto 2.0]] — Tactile RL olympiad; cross-morphology blind-agent benchmark; substrate for held-out-sensor evaluation.
@@ -857,7 +920,7 @@ The unification: force is causally upstream of contact behavior, so tactile comp
 > D3, D4, and B2 converge that the lever for hard contact-rich behavior is *coverage and constraint structure*, not scale: D3's diverse resets break exploration saturation ([[2603.15789|OmniReset]] 25% real vs 4% demo-DP) where compute alone saturates, D4's hard QP/force constraint both guarantees safety and improves training ([[2605.03363|Hierarchical RL-QP Grasp]] 81.4% vs 13.2%), and B2's discrete contact-mode structure beats a bigger smooth policy at the friction-cone boundary. [[2210.13702|DeXtreme]]'s automatic-domain-randomization (27.8 vs 14.8) is the shared mechanism — engineer the *exploration distribution and constraint set*, not the reward or the parameter count.
 
 > [!tip] The Integration Layer Is the Bottleneck — Generated Data and Real Residuals Are the Fix
-> C2, B2, and C1 confront the Sim-to-Real Cliff and bimanual data wall the surveys ([[2604.04974|Video-to-Control Survey]], [[2603.15469|RoCo Challenge]], [[2604.05831|BiCoord]]) name as central — and answer with structure, not raw data: C2 generates bimanual data with coordination structure ([[2410.24185|DexMimicGen]] 90% from 40 demos), B2 closes the assembly cliff with a real residual ([[2602.23253|SPARR]] 95–100% [AutoMate](https://arxiv.org/abs/2407.08028)), C1 sidesteps the data wall by composing single-arm priors ([[2511.05275|TwinVLA]] 76% on ~50 episodes). The shared insight: the hard part is connecting a prediction to dependable contact, and the fixes are structured generation + real residuals + composition — not more teleoperation. Cross-ref [[Sim2Real|Sim2Real]] for residual/real-to-sim and [[WAM|WAM]] for imagination-as-data.
+> C2, B2, and C1 confront the Sim-to-Real Cliff and bimanual data wall the surveys ([[2604.04974|Video-to-Control Survey]], [[2603.15469|RoCo Challenge]], [[2604.05831|BiCoord]]) name as central — and answer with structure, not raw data: C2 generates bimanual data with coordination structure ([[2410.24185|DexMimicGen]] 90% from 40 demos), B2 closes the assembly cliff with a real residual ([[2602.23253|SPARR]] 95–100% [[2407.08028|AutoMate]]), C1 sidesteps the data wall by composing single-arm priors ([[2511.05275|TwinVLA]] 76% on ~50 episodes). The shared insight: the hard part is connecting a prediction to dependable contact, and the fixes are structured generation + real residuals + composition — not more teleoperation. Cross-ref [[Sim2Real|Sim2Real]] for residual/real-to-sim and [[WAM|WAM]] for imagination-as-data.
 
 > [!tip] Force Is a Foundation Modality With Its Own Scarcity, Not Just an In-Task Signal
 > Clusters A–D consume tactile *inside* a phase — B1 predicts the contact future, C3 shares it across two arms, D2 reorients in-hand. Cluster E asks the upstream question: where does the competence come from before any task, and does it ride along to deployment? E1 and E2 are the two unsolved halves — E1 gets force-awareness to deployment with *no runtime tactile sensor* (pretraining from ego video where robot tactile is 4 orders short of [[2310.08864|OXE]], *or* distilling a tactile teacher into a sensor-free student), and E2 builds the sensor-invariant encoder ([[2304.07193|DINOv2]]-for-touch) that makes any force-aware policy portable. The coupling that makes E cross-cutting: E1's distillation route is the sensor-free deployment of B1/B2's training-time contact modeling, and E2's encoder is what E1's student and D2's estimator both inherit. [[2505.22159|ForceVLA]] / [[2603.15169|ForceVLA2]] / [[2603.15257|HapticVLA]] established the in-task architecture; E1 and E2 deploy it without per-platform tactile hardware, with [[2605.21429|roto 2.0]] the shared benchmark.
@@ -872,7 +935,7 @@ The unification: force is causally upstream of contact behavior, so tactile comp
 | Function-space cross-morphology *grasp* transfer at in-domain parity | A2 | [[2603.22264\|UniDex]] (FAAS control transfer, 60%/40%, but not grasp-synthesis) + [[2505.21864\|DexUMI]] (cross-hand 86%, exoskeleton-mediated, not zero-shot) |
 | Deformable grasping as force-regulation (no defined grasp-pose) with differentiable soft-body | A3 | [[2509.18830\|DexSkin]] (force-regulation, 90% pressure reduction, but rigid skin not soft-body physics) + [[2510.25725\|HumanoidVTA]] (dense soft tactile, no control policy) |
 | Tactile-*future* prediction (world model) vs reactive tactile on contact-rich SR | B1 | [[2512.23864\|DreamTacVLA]] (Think–Dream–Act, 95.0% Peg-in-Hole, single system) + [[2603.19201\|OmniVTA]] (visuo-tactile WM + 60 Hz reflexive) |
-| Discrete contact-mode latent + reversibility on sub-millimeter insertion | B2 | [[2602.23253\|SPARR]] (95–100% [AutoMate](https://arxiv.org/abs/2407.08028) via real residual, continuous) + [[2502.05086\|REASSEMBLE]] (phase-distinct force patterns, no mode-latent policy) |
+| Discrete contact-mode latent + reversibility on sub-millimeter insertion | B2 | [[2602.23253\|SPARR]] (95–100% [[2407.08028\|AutoMate]] via real residual, continuous) + [[2502.05086\|REASSEMBLE]] (phase-distinct force patterns, no mode-latent policy) |
 | Coordination-native bimanual at single-arm data cost on tightly-coupled tasks | C1 | [[2511.05275\|TwinVLA]] (composed single-arm, 76% on ~50 episodes, moderate coupling) + [[2604.05831\|BiCoord]] (coordination metrics, vision-only, later-stage degradation) |
 | Coordination-*structured* bimanual generation closing later-stage degradation | C2 | [[2410.24185\|DexMimicGen]] (90% from 40 demos via subtask taxonomy) + [[2506.18088\|RoboTwin 2.0]] (MLLM-gen + randomization, +24.4% few-shot) |
 | Shared inter-arm tactile channel for force-balanced bimanual cooperation | C3 | [[2604.07335\|TAMEn]] (closed-loop tactile bimanual, 75% SR, per-arm) + [[2604.20444\|VTouch++]] (synchronized bimanual tactile data, no shared-channel policy) |

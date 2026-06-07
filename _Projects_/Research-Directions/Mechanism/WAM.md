@@ -13,19 +13,23 @@ tags:
 # Promising Research Directions: World Action Models
 
 > [!abstract] Overview
-> Five World Action Model (WAM) research directions across two clusters — *Theory & Architecture* (A) and *Training & Grounding* (B) — synthesized from 35 WAM/embodied surveys, ten Embodied-AI deep-dive readings, and the frontier methods that set each bet's bar ([[2605.20752|GaussianDream]], [[2604.16484|DexWorldModel]], [[2604.01985|WAV]], [[2504.16680|RWM-U]]). The scope is *WAM-specific machinery*: the latent/representation substrate and architecture choices (A), plus training-time grounding and calibration (B). The model-agnostic geometric representations — natively-4D imagination and persistent geometric memory, framed as substrates any VLA / WAM / policy can stand on — live in [[Spatial-4D|Spatial-4D]] (Cluster C). Cross-cutting directions that span model families — joint WAM–policy co-evolution, physics-consistency verification, joint causal-consistency evaluation, real-time deployment, cross-embodiment transfer — live in the umbrella [[Embodied-AI|Embodied-AI]]. Each direction carries a **first-principles framing** (problem / assumption broken / measurable bet) and a non-consensus thesis. Every metric anchor comes from a cited `_KnowledgeHub_/{ID}.md` note.
+> Six World Action Model (WAM) research directions across two clusters — *Theory & Architecture* (A) and *Training & Grounding* (B). They are synthesized from 35 WAM/embodied surveys, ten Embodied-AI deep-dive readings, and the frontier methods that set each bet's bar ([[2605.20752|GaussianDream]], [[2604.16484|DexWorldModel]], [[2604.01985|WAV]], [[2504.16680|RWM-U]], [[2606.02577|RoboDream]]).
+>
+> This doc covers WAM machinery only: the latent/representation and architecture choices (A), plus training-time grounding and calibration (B). Two related topics live elsewhere. The model-agnostic geometric representations — natively-4D imagination and persistent geometric memory, framed as representations any policy can reuse — live in [[Spatial-4D|Spatial-4D]] (Cluster C). Directions that span model families — joint WAM–policy co-evolution, physics checks, joint causal-consistency evaluation, real-time deployment, cross-embodiment transfer — live in the umbrella [[Embodied-AI|Embodied-AI]].
+>
+> Each direction carries a **first-principles framing** (problem / assumption broken / measurable bet) and a non-consensus thesis. Every metric anchor comes from a cited `_KnowledgeHub_/{ID}.md` note.
 
 ---
 
 ## Methodology
 
-**Scope.** Corpus: 35 pure-WAM + adjacent surveys and ~70 WAM-method/benchmark papers from `_KnowledgeHub_/`, cross-checked against [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] and ten `Embodied-AI/` deep-dives. The method is survey-grounded ideation: surveys name open problems, benchmarks fix what is measurable, frontier methods fix what is achievable now. **De-duplication**: five directions the umbrella [[Embodied-AI|Embodied-AI]] already covers (B1, B3, C1, C3, D2 there) were removed — see Cross-References.
+**Scope.** Corpus: 35 pure-WAM + adjacent surveys and ~70 WAM-method/benchmark papers from `_KnowledgeHub_/`, cross-checked against [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] and ten `Embodied-AI/` deep-dives. Method: survey-grounded ideation — surveys name open problems, benchmarks fix what's measurable, frontier methods fix what's achievable now. **De-duplication**: five directions the umbrella [[Embodied-AI|Embodied-AI]] already covers (B1, B3, C1, C3, D2 there) were removed — see Cross-References.
 
-- **Survey enumeration**: tag-scan over `survey` × {`world-model`, `VLA`, `embodied-AI`, `robotics`, `physics-aware`, `sim-to-real`} for each survey's named open problems.
+- **Survey enumeration**: scanned papers tagged `survey` together with each of `world-model`, `VLA`, `embodied-AI`, `robotics`, `physics-aware`, and `sim-to-real`, then pulled the open problems each survey names.
 - **Deep-dive mining**: full reads of [[07_WAM|07_WAM]], [[08_Latent-World-Models|08_Latent-World-Models]], [[13_Self-Evolving-VLA-WAM|13_Self-Evolving-VLA-WAM]], [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]], [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]]; 3+-way convergence seeded A1 (hybrid substrate), A2 (tactile), B1 (contact).
 - **Closest-baseline anchoring**: each bet is pinned to the strongest paper it must beat — [[2604.16484|DexWorldModel]], [[2605.20752|GaussianDream]], [[2604.01985|WAV]], [[2504.16680|RWM-U]] set the bar for A1, B3.
-- **Filter**: kept directions with 3–10 attacking papers but no consensus solution; dropped saturated (more-compute) and premature (hypothetical-AGI) framings; prioritized intersections (tactile×WAM, contact×WAM, physics×WAM).
-- **First-principles framing**: each direction states the problem's irreducible structure, the assumption it challenges, and the non-consensus bet.
+- **Filter**: kept directions with 3–10 papers attacking them but no agreed-on fix; dropped the saturated ones (just add more compute) and the premature ones (hypothetical AGI); favored where two areas meet — tactile and WAM, contact and WAM, physics and WAM.
+- **First-principles framing**: each direction states the problem's irreducible structure, the assumption it breaks, and the non-consensus bet.
 
 ---
 
@@ -98,7 +102,7 @@ WAMs split into **Cascaded** (predict state, derive action via inverse dynamics)
 
 > "The world models are categorized along three axes: Functionality (Decision-Coupled vs General-Purpose), Temporal Modeling (Sequential Simulation vs Global Difference Prediction), and Spatial Representation (Global Latent Vector, Token Feature Sequence, Spatial Latent Grid, Decomposed Rendering Representation)." — [[2510.16732|World Models for Embodied AI Survey]]
 
-Spatial axis trajectory: latent vectors → token sequences → explicit 3D rendering (NeRF, 3DGS). [[2605.20752|GaussianDream]] sits at the rendering end as a train-dense, inference-light hybrid (A1's substrate); [[2604.16484|DexWorldModel]] anchors the token-feature end on semantic [DINOv3](https://arxiv.org/abs/2508.10104) latents. The explicit-4D end ([[2604.26694|X-WAM]], a deploy-time 4D substrate) is owned by [[Spatial-4D|Spatial-4D]]-C3.
+Spatial axis trajectory: latent vectors → token sequences → explicit 3D rendering (NeRF, 3DGS). [[2605.20752|GaussianDream]] sits at the rendering end as a train-dense, inference-light hybrid (A1's substrate); [[2604.16484|DexWorldModel]] anchors the token-feature end on semantic [[2508.10104|DINOv3]] latents. The explicit-4D end ([[2604.26694|X-WAM]], a deploy-time 4D substrate) is owned by [[Spatial-4D|Spatial-4D]]-C3.
 
 **Capability hierarchy** — [[2604.22748|Agentic World Modeling Survey]]:
 
@@ -119,7 +123,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 | Cluster | Directions | Shared bottleneck | Cross-direction synergy |
 |---|---|---|---|
 | **A — Theory & Architecture** | A1, A2 | Right substrate for joint imagination + action | A1's hybrid latent+pixel/3DGS backbone is the deploy substrate; A2 extends it into tactile/force imagination; [[2605.26379\|LeJEPA World Model]]'s identifiability criterion governs A1's latent half, and A2's wrench head is the modality A1's backbone does not yet imagine |
-| **B — Training & Grounding** | B1, B2, B3 | Imagination diverges from physical reality | B1's discrete contact-mode latent stabilizes B2's self-evolution in contact-rich regimes; B3's forward-inverse calibration is the train-time signal that keeps B2's imagined-vs-real ρ high; [[2604.01985\|WAV]]'s asymmetry signal and [[2605.22446\|Pre-VLA]]'s runtime verifier are the trust valves all three share |
+| **B — Training & Grounding** | B1, B2, B3, B4 | Imagination diverges from physical reality | B1's discrete contact-mode latent stabilizes B2's self-evolution in contact-rich regimes; B3's forward-inverse calibration is the train-time signal that keeps B2's imagined-vs-real ρ high; B4 turns the same imagination into a training corpus, and B3's physics calibration is what makes B4's synthesized demos executable rather than plausible-looking; [[2604.01985\|WAV]]'s asymmetry signal and [[2605.22446\|Pre-VLA]]'s runtime verifier are the trust valves all four share |
 
 ---
 
@@ -132,22 +136,25 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 | | |
 |---|---|
 | **Cluster** | A — Theory & Architecture |
-| **Thesis** | The field treats latent-vs-pixel as a one-time binary that locks both training and inference. But training density and inference density are independent — nothing forces a model to predict at the same density it trains at. The bet: a hybrid backbone (dense pixel/3DGS supervision at train, latent rollout at deploy) Pareto-dominates pure-latent and pure-pixel WAMs on the OOD × latency × interpretability cube. |
+| **Thesis** | The field treats latent-vs-pixel as a one-time binary that locks both training and inference. But training density and inference density are independent — nothing forces a model to predict at the same density it trains at. The bet: a hybrid backbone (dense pixel/3DGS supervision at train, latent rollout at deploy) beats both pure-latent and pure-pixel WAMs at the same time — on OOD generalization, latency, and interpretability together. |
 | **Anchor surveys** | [[2510.16732\|World Models for Embodied AI Survey]], [[2511.02097\|WM Manipulation Survey]], [[2604.02029\|Latent Space Survey]] |
 | **Key targets** | Latent ~10 ms vs pixel ~150 ms inference; match [[2605.20752\|GaussianDream]]'s 98.4% [[2306.03310\|LIBERO]] / 34.4→50% real at lower deploy cost; [[2510.13626\|LIBERO-Plus]] OOD retention from dense co-training |
 
-**Why it matters.** [[2510.16732|World Models for Embodied AI Survey]] tracks a trend from latent vectors → token sequences → explicit 3D rendering. Hybrids span multiple axis points and stay under-explored; single-paradigm WAMs hit the latency-vs-robustness or speed-vs-interpretability trade-off. [[07_WAM#6. Efficient & Action-Centered WAMs|07_WAM §6]] finds VideoGen 4.8× slower but most robust, latent fast but opaque. Two existence proofs show the hybrid recipe works. [[2605.20752|GaussianDream]] supervises a renderable 3D-Gaussian future at train time, then *drops the auxiliary heads at inference* (34.4→50% real, 531 ms/chunk). [[2604.16484|DexWorldModel]] uses semantic [DINOv3](https://arxiv.org/abs/2508.10104) latents as targets to separate interaction from visual noise (94% [[2504.13059|RoboTwin]], zero-shot sim-to-real). Both confirm: train on dense signal, deploy on a cheap representation.
+**Why it matters.** [[2510.16732|World Models for Embodied AI Survey]] tracks a trend from latent vectors → token sequences → explicit 3D rendering. Hybrids span multiple axis points and stay under-explored; single-paradigm WAMs hit the latency-vs-robustness or speed-vs-interpretability trade-off. [[07_WAM#6. Efficient & Action-Centered WAMs|07_WAM §6]] finds VideoGen 4.8× slower but most robust, latent fast but opaque. Two existence proofs show the hybrid recipe works. [[2605.20752|GaussianDream]] supervises a renderable 3D-Gaussian future at train time, then *drops the auxiliary heads at inference* (34.4→50% real, 531 ms/chunk). [[2604.16484|DexWorldModel]] uses semantic [[2508.10104|DINOv3]] latents as targets to separate interaction from visual noise (94% [[2504.13059|RoboTwin]], zero-shot sim-to-real). Both confirm: train on dense signal, deploy on a cheap representation.
 
 **First-principles framing.**
-- **First principle**: Training density and inference density are independent — nothing requires them to match. A model can absorb pixel-/3DGS-density signal at training and emit latent-density signal at deployment, the way humans rehearse with full sensory detail but act on compressed predictions.
-- **Assumption being challenged**: That latent-vs-pixel is binary, picked once, and locks both train and inference. The field thinks hybrids are architecturally complex. [[2605.20752|GaussianDream]] and [[2604.16484|DexWorldModel]] show they are really one shared backbone with dense train-time heads that get dropped at deploy.
-- **The bet**: A hybrid backbone Pareto-dominates pure-latent and pure-pixel WAMs on the OOD × latency × interpretability cube — not on any single axis (latent wins latency, pixel wins interpretability) but on their joint frontier, at [[2605.20752|GaussianDream]]-class real SR with lower deploy cost.
+- **First principle**: Train density and deploy density are independent. A model can learn from pixel/3DGS-dense signal yet act on latent-dense signal — like humans rehearsing in full detail but acting on compressed predictions.
+- **Assumption being challenged**: That latent-vs-pixel is a one-time binary that locks both train and deploy, and hybrids are too complex. [[2605.20752|GaussianDream]] and [[2604.16484|DexWorldModel]] show a hybrid is one backbone with dense train-time heads dropped at deploy.
+- **The bet**: A hybrid backbone beats both pure-latent and pure-pixel WAMs at the same time — on OOD generalization, latency, and interpretability together (latent wins latency, pixel wins interpretability) — at [[2605.20752|GaussianDream]]-class real SR with lower deploy cost.
 
 **Evidence.**
 - [[2510.16732|World Models for Embodied AI Survey]]: "An evolutionary trend from compact global latent vector representations (e.g., RSSMs) towards token feature sequences (e.g., Transformers with LLMs) and explicit 3D rendering representations (e.g., NeRF, 3D Gaussian Splatting) is observed."
 - [[2605.20752|GaussianDream]]: dense 3D-Gaussian supervision at train, heads discarded at inference; 98.4% [[2306.03310|LIBERO]], 34.4→50% real, 531 ms/chunk — the canonical train-dense/deploy-light hybrid.
-- [[2604.16484|DexWorldModel]]: [DINOv3](https://arxiv.org/abs/2508.10104) semantic latents as targets separate interaction from visual noise; 94% [[2504.13059|RoboTwin]]; semantic-latent half of the axis.
-- [[2605.06388|Semantic-LDM-WM]]: semantic-aligned latents beat reconstruction VAEs by +9.8 pp closed-loop and +13.6 pp OOD — encoding quality matters more than the latent-vs-pixel split.
+- [[2604.16484|DexWorldModel]]: [[2508.10104|DINOv3]] semantic latents as targets separate interaction from visual noise; 94% [[2504.13059|RoboTwin]]; semantic-latent half of the axis.
+- [[2605.06388|Semantic-LDM-WM]]: semantic latents beat reconstruction VAEs by +9.8 pp closed-loop, +13.6 pp OOD — encoding quality beats the latent-vs-pixel split.
+- [[2606.03188|GeoSem-WAM]]: geometry + semantic supervision on train-time latent tokens, branches dropped at test; 98.55% [[2306.03310|LIBERO]], +6.6 pp real — train-dense/deploy-light on a second signal.
+- [[2606.05979|WLA]]: AR backbone predicts next state as text intentions + latent actions, no test-time image gen; 56.5% RMBench SOTA, ~40 ms — one unified model.
+- [[2606.05254|Flash-WAM]]: modality-aware distillation cuts a two-stage WAM 8.1 s → 348 ms (23×), keeping 81.41% [[2504.13059|RoboTwin]] of the 91.25% teacher — deploy-light without dropping the WM.
 - [[08_Latent-World-Models#6. Open Problems|08_Latent-World-Models §6]] names interpretability + latent-pixel alignment as 2 of 4 open problems.
 
 **Concrete research questions.**
@@ -158,7 +165,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 
 **Related research papers.**
 - [[2605.20752|GaussianDream]] — Feed-forward 3DGS WM; dense train, light deploy; 98.4% [[2306.03310|LIBERO]], 34.4→50% real; the train-dense/deploy-light exemplar.
-- [[2604.16484|DexWorldModel]] — Causal latent WM on [DINOv3](https://arxiv.org/abs/2508.10104) targets; O(1) TTT memory; 94% [[2504.13059|RoboTwin]]; semantic-latent axis.
+- [[2604.16484|DexWorldModel]] — Causal latent WM on [[2508.10104|DINOv3]] targets; O(1) TTT memory; 94% [[2504.13059|RoboTwin]]; semantic-latent axis.
 - [[2603.16666|Fast-WAM]] — Train video, test latent; drops WM at test, no test-time imagination.
 - [[2605.06388|Semantic-LDM-WM]] — Semantic vs reconstruction; +9.8 pp closed-loop; single-branch only.
 - [[2605.10942|HarmoWAM]] — Dual experts + adaptive gating; 89% in-domain; both experts in latent.
@@ -167,17 +174,26 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 - [[2511.08544|LeJEPA]] — Provable Euclidean latent geometry; pure latent, regularization anchor.
 - [[2411.04983|DINO-WM]] — Frozen [[2304.07193|DINOv2]] + lightweight dynamics; no pixel verification.
 - [[2605.00078|Being-H0.7]] — Dual-branch deployable+privileged; 3–4 ms/step; both branches latent.
-- [[2605.15618|Latent Video Prediction Study]] — Systematic latent-vs-pixel SSL eval under perturbations; pretrain-only, no policy joint.
+- [[2606.05979|WLA]] — Unified world+language+action AR model; world prediction steers action with no test-time image gen; 56.5% RMBench SOTA, ~40 ms; train-dense/deploy-light exemplar.
+- [[2606.03188|GeoSem-WAM]] — Geometry + semantic supervision on latent tokens, branches dropped at test; 98.55% [[2306.03310|LIBERO]], +6.6 pp real; second-signal train-dense/deploy-light proof.
+- [[2606.05645|Discrete-WAM]] — World + policy in one shared *discrete* token space via discrete diffusion; 90.4 EPDMS NAVSIM-v2; the discrete-token substrate counterpoint.
+- [[2606.01955|WALL-WM]] — Learning unit is action *events*, not fixed chunks; layer-coupled video-action denoiser; Task Progress 32.6→71.6; the representation-granularity axis.
+- [[2606.02800|Cosmos 3]] — Omnimodal MoT WM (lang/img/video/audio/action) generating video + policy; 39.7% RoboLab, #1 RoboArena; the unified-generative-substrate end.
+- [[2606.04130|CLAW (Latent Action WM)]] — Continuous latent-action WM from action-free video; adversarial regularization stops leakage/collapse; 7/10 visual-planning tasks; latent-action from unlabeled video.
+- [[2605.28816|Gamma-World]] — Latent video-diffusion WM; Sparse Hub Attention (linear scaling) + KV-cached streaming; FVD 184.1 vs 333.8; the efficient real-time substrate.
+- [[2605.21862|EvoScene-VLA]] — Latent scene interface co-denoised with the action chunk; geometric anchor + scene predictor *dropped at inference*; 88.5% RoboTwin (+2.4 pp), 42.0% real (+4.7 pp); train-dense/deploy-light.
+- [[2605.15725|DiLA]] — Disentangled latent-action WM; *continuous* bottleneck beats VQ / VAE on quality + stability; SSIM/LPIPS gains on SSv2 / RT-1; the latent-encoding-quality lever.
+- [[2602.11832|JEPA-VLA]] — Video-predictive embedding (V-JEPA 2) *is needed* for VLA; +7.4% [[2306.03310|LIBERO]] + better real robustness; dense predictive supervision transfers to a cheap policy.
 
 **Benchmarks & metrics.**
 - [[2510.13626|LIBERO-Plus]] — 10,030 OOD perturbations; match pure-latent in-dist; gain OOD over latent-only.
 - Inference latency (Hz) — A100 forward latency; latent ~10 ms vs pixel ~150 ms; [[2605.20752|GaussianDream]] 531 ms/chunk real-robot reference.
-- [[2605.21800|stable-worldmodel]] — Reproducible OOD-robustness harness; [[2411.04983|DINO-WM]] 92% / [[2603.19312|LeWM]] 94% [Push-T](https://arxiv.org/abs/2109.00137) baselines, sharp planning decay under perturbation — substrate for the hybrid OOD claim.
+- [[2605.21800|stable-worldmodel]] — Reproducible OOD harness; [[2411.04983|DINO-WM]] 92% / [[2603.19312|LeWM]] 94% [[2109.00137|Push-T]], sharp planning decay under perturbation; substrate for the hybrid OOD claim.
 - [[2603.22078|WAM vs VLA Robustness]] — 4.8× latency cost; hybrid must show <2× cost vs pure latent at pixel-WAM OOD.
 
 > [!warning] Risks
 > - **Two-branch training cost** dominates compute. → Mitigate by distilling a pre-trained pixel/3DGS WM into the latent encoder (the [[2605.20752|GaussianDream]] discard-at-inference pattern).
-> - **Latent-pixel divergence** without shared parameters. → Need explicit alignment loss; [[2604.16484|DexWorldModel]]'s [DINOv3](https://arxiv.org/abs/2508.10104)-target anchoring is one recipe.
+> - **Latent-pixel divergence** without shared parameters. → Need explicit alignment loss; [[2604.16484|DexWorldModel]]'s [[2508.10104|DINOv3]]-target anchoring is one recipe.
 > - **Saturated regime**: pure latent already at 97% [[2306.03310|LIBERO]] and [[2605.20752|GaussianDream]] at 98.4%. → Contribution must show on OOD + interpretability + deploy-cost, not headline [[2306.03310|LIBERO]] SR.
 
 ### A2 — Tactile/Force-Integrated WAM Imagination
@@ -187,14 +203,14 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 | **Cluster** | A — Theory & Architecture |
 | **Thesis** | The field treats force as a policy *input* but never models it as an *output*, so WAMs imagine visual futures but not wrench futures. Yet in contact, force is the generative cause and vision the consequence — a WM that predicts only consequences is incomplete. The bet: a WAM that imagines wrench futures recovers ≥50% of the measured-tactile→no-tactile contact-task drop ([[2603.17851\|DexViTac]]'s 83.3%→43.3% pipetting ablation) even with no force sensors at deployment, approaching the with-real-tactile [[2603.17851\|DexViTac]] ceiling of 85.8%. |
 | **Anchor surveys** | [[2605.12090\|WAM Survey]], [[2511.02097\|WM Manipulation Survey]], [[2604.16592\|Cognition WM Survey]] |
-| **Key targets** | Cross-sensor transfer >60.3% ([[2601.20321\|TaF-VLA]] baseline); recover ≥50% of [[2603.17851\|DexViTac]]'s measured-tactile→no-tactile drop (83.3%→43.3% pipetting ablation) using imagined rather than measured tactile; approach the [AutoMate](https://arxiv.org/abs/2407.08028) no-WAM ceiling ([[2603.15956\|ExpertGen]] 90.5%) |
+| **Key targets** | Cross-sensor transfer >60.3% ([[2601.20321\|TaF-VLA]] baseline); recover ≥50% of [[2603.17851\|DexViTac]]'s measured-tactile→no-tactile drop (83.3%→43.3% pipetting ablation) using imagined rather than measured tactile; approach the [[2407.08028\|AutoMate]] no-WAM ceiling ([[2603.15956\|ExpertGen]] 90.5%) |
 
 **Why it matters.** Current WAMs imagine visual + proprioceptive futures but rarely tactile/force futures, even though force is the dominant signal in contact-rich manipulation. [[2605.12090|WAM Survey]] names the modality gap; [[2511.02097|WM Manipulation Survey]]'s 13 capabilities rank Multimodal Perception first and Physics Awareness third. All existing tactile work consumes force as policy input, never imagines it as WAM output. The data bottleneck is now gone ([[2604.20444|VTouch++]], [[2603.17851|DexViTac]], [[2604.07335|TAMEn]]), so the modeling gap is exposed. The manipulation-task application of imagined tactile is [[Manipulation|Manipulation]]-B1.
 
 **First-principles framing.**
-- **First principle**: In contact-rich manipulation, force is the *generative* signal and vision the consequence — the object moves *because* of force, not the reverse. A WM that predicts consequences but not generators is under-determined in contact regimes.
-- **Assumption being challenged**: That force can be consumed (as policy input) without being predicted (as WM output). This treats force as a measurement, not a modeled quantity, throwing away half the inferential machinery and making the policy learn dynamics implicitly. [[2603.17851|DexViTac]]'s kinematics-grounded tactile pretraining shows tactile *can* be modeled, but stops at perception.
-- **The bet**: A WAM that imagines wrench trajectories at training time beats a visual-only WAM on contact-task error — *even with no force sensors at deployment* (the imagined wrench acts as a proprioceptive forecast), at [[2603.17851|DexViTac]]-class contact-rich SR.
+- **First principle**: In contact, force is the *cause* and what you see is the effect — the object moves *because* of force. A WM that predicts only the effect, never the cause, can't fully pin down what happens.
+- **Assumption being challenged**: That force can be fed in (as policy input) without being predicted (as WM output). That treats force as something you measure, not something the model forecasts, so the policy has to pick up the dynamics by itself. [[2603.17851|DexViTac]] shows tactile *can* be modeled, but stops at sensing it.
+- **The bet**: A WAM that imagines wrench (force + torque) at train time beats a vision-only WAM on contact-task error — *even with no force sensors at deploy*, where the imagined wrench stands in for a force reading — at [[2603.17851|DexViTac]]-class contact-rich SR.
 
 **Evidence.**
 - [[2604.27621|Robot Learning from Human Videos Survey]] and [[2604.16592|Cognition WM Survey]] independently name tactile as the contact-grounding modality.
@@ -224,7 +240,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 **Benchmarks & metrics.**
 - [[2510.25725|HumanoidVTA]] — 2,124-sensor humanoid tactile; substrate for imagined-vs-measured force.
 - ForceVLA-Data (244 traj) — Contact-rich 5-task; test WAM imagination on existing force-aware benchmark.
-- [AutoMate](https://arxiv.org/abs/2407.08028) assembly — 8 industrial tasks; [[2603.15956|ExpertGen]] 90.5%; contact-rich tasks where imagined force matters.
+- [[2407.08028|AutoMate]] assembly — 8 industrial tasks; [[2603.15956|ExpertGen]] 90.5%; contact-rich tasks where imagined force matters.
 
 > [!warning] Risks
 > - **Noise floor**: subtle slip / microvibration not in vision — imagined force may plateau below measured. → Bound the claim to regimes where force is vision-correlated; report the floor explicitly.
@@ -242,44 +258,44 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 | | |
 |---|---|
 | **Cluster** | B — Training & Grounding |
-| **Thesis** | The field tries to close the contact gap by scaling smooth continuous latents. But contact physics is locally discontinuous (slip-stick, friction-cone, normal-force singularities), so no amount of latent capacity reaches it. The bet: a *discrete* contact-mode latent achieves >90.5% [AutoMate](https://arxiv.org/abs/2407.08028) and sub-millimeter assembly that pure-continuous WAMs cannot reach at any scale. |
+| **Thesis** | The field tries to close the contact gap by scaling up smooth, continuous latents. But contact physics jumps sharply (slip-stick, friction-cone, normal-force singularities), so no amount of latent capacity reaches it. The bet: a *discrete* contact mode achieves >90.5% [[2407.08028\|AutoMate]] and sub-millimeter assembly that purely smooth WAMs cannot reach at any scale. |
 | **Anchor surveys** | [[2604.04974\|Video-to-Control Survey]], [[2510.04978\|Physical AI Survey]], [[2511.02097\|WM Manipulation Survey]] |
-| **Key targets** | [AutoMate](https://arxiv.org/abs/2407.08028) beyond 90.5% with contact-aware imagination; sub-millimeter assembly; beat [[2602.23253\|SPARR]]'s +74.5% relative SR improvement on unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) transfer |
+| **Key targets** | [[2407.08028\|AutoMate]] beyond 90.5% with contact-aware imagination; sub-millimeter assembly; beat [[2602.23253\|SPARR]]'s +74.5% relative SR improvement on unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) transfer |
 
-**Why it matters.** Latent WAMs handle trajectories well but fail at insertion/assembly, because contact physics is locally non-smooth (make/break, slip, normal-force singularities). Three deep-dives converge ([[08_Latent-World-Models#6. Open Problems|08_Latent-World-Models §6]], [[11_Physics-Aware-Embodied-AI#8. Open Problems|11_Physics-Aware-Embodied-AI §8]], [[14_Sim-to-Real-Transfer#7. Open Problems|14_Sim-to-Real-Transfer §7]]): latent WAMs miss sub-millimeter contact, verifiable physics scales poorly to clutter, learned sims blur on contact. [[2604.16484|DexWorldModel]]'s causal latent ([DINOv3](https://arxiv.org/abs/2508.10104) semantic targets that separate interaction from appearance) is the closest substrate, but its contact transitions stay continuous.
+**Why it matters.** Latent WAMs handle trajectories well but fail at insertion/assembly, because contact physics is locally non-smooth (make/break, slip, normal-force singularities). Three deep-dives converge ([[08_Latent-World-Models#6. Open Problems|08_Latent-World-Models §6]], [[11_Physics-Aware-Embodied-AI#8. Open Problems|11_Physics-Aware-Embodied-AI §8]], [[14_Sim-to-Real-Transfer#7. Open Problems|14_Sim-to-Real-Transfer §7]]): latent WAMs miss sub-millimeter contact, verifiable physics scales poorly to clutter, learned sims blur on contact. [[2604.16484|DexWorldModel]]'s causal latent ([[2508.10104|DINOv3]] semantic targets that separate interaction from appearance) is the closest substrate, but its contact transitions stay continuous.
 
 **First-principles framing.**
-- **First principle**: Contact physics is locally *discontinuous* — friction-cone boundaries, normal-force singularities, slip-stick transitions are all discrete state changes. A smooth continuous latent cannot represent these without internal discretization; the discreteness is in the physics, not a modeling choice.
-- **Assumption being challenged**: That more latent capacity (more dimensions, layers, parameters) eventually closes the contact gap. It never touches the *structural* discontinuity — a smooth model approximating a discontinuous function gets exponentially expensive at the boundary. Even [[2604.16484|DexWorldModel]]'s causal-latent gains keep contact continuous.
-- **The bet**: A *discrete* contact-mode latent $c_t \in \{\text{no-contact, making, in-contact, breaking, slipping}\}$ with mode-conditional continuous dynamics achieves >90.5% [AutoMate](https://arxiv.org/abs/2407.08028) (the policy-side WAM-naive ceiling) and sub-millimeter assembly that pure-continuous WAMs cannot reach at any scale.
+- **First principle**: Contact physics jumps sharply — friction-cone boundaries, normal-force singularities, and slip-stick are abrupt, discrete state changes. The jumps are in the physics itself; a smooth latent can only represent them by splitting into discrete pieces internally.
+- **Assumption being challenged**: That adding latent capacity (more dimensions, layers, or parameters) closes the contact gap. It never touches the *structural* jump — a smooth model trying to approximate a hard step gets exponentially more expensive right at the boundary. Even [[2604.16484|DexWorldModel]] keeps contact smooth.
+- **The bet**: A discrete contact mode (no-contact, making, in-contact, breaking, slipping) and switch dynamics per mode hits >90.5% [[2407.08028|AutoMate]] (the best a contact-naive WAM reaches) and sub-millimeter assembly that purely smooth WAMs can't reach at any scale.
 
 **Evidence.**
 - "Learned sims blur on contact: [[2310.06114|UniSim]] and [[2501.03575|Cosmos]] produce stunning visuals but physical contact regions (collisions, friction transients) look implausible to robots." — [[14_Sim-to-Real-Transfer#7. Open Problems|14_Sim-to-Real-Transfer §7]]
-- Closest substrates: [[2604.16484|DexWorldModel]] (causal latent, [DINOv3](https://arxiv.org/abs/2508.10104) targets, 94% [[2504.13059|RoboTwin]]; continuous contact); [[2503.17973|PhysTwin]] (deformable digital twin; no discrete events); [[2511.07416|PhysWorld]] (continuous physical WM; 82% real SR); [[2604.27367|DOT-Sim]] (differentiable optical tactile; contact ground truth but no WAM consumer).
-- Pattern: [[2602.23253|SPARR]] 95–100% [AutoMate](https://arxiv.org/abs/2407.08028); [[2603.15956|ExpertGen]] 90.5% [AutoMate](https://arxiv.org/abs/2407.08028). All policy-side improvements; contact events as first-class WAM latent has not been explored.
+- Closest substrates: [[2604.16484|DexWorldModel]] (causal latent, [[2508.10104|DINOv3]] targets, 94% [[2504.13059|RoboTwin]]; continuous contact); [[2503.17973|PhysTwin]] (deformable digital twin; no discrete events); [[2511.07416|PhysWorld]] (continuous physical WM; 82% real SR); [[2604.27367|DOT-Sim]] (differentiable optical tactile; contact ground truth but no WAM consumer).
+- Pattern: [[2602.23253|SPARR]] 95–100% [[2407.08028|AutoMate]]; [[2603.15956|ExpertGen]] 90.5% [[2407.08028|AutoMate]]. All policy-side improvements; contact events as first-class WAM latent has not been explored.
 
 **Concrete research questions.**
 1. **Q1 — Discrete contact-mode latent** $c_t \in \{\text{no-contact, making, in-contact, breaking, slipping}\}$; predict $c_t$; condition continuous latent dynamics on $c_t$ atop a [[2604.16484|DexWorldModel]]-style causal latent.
 2. **Q2 — Contact-mode-conditional physics losses**: Coulomb only in `in-contact`; ballistic only in `no-contact`.
 3. **Q3 — Contact-event time prediction** as auxiliary regression head $\hat{t}_{\text{contact}}$ with simulator supervision.
 4. **Q4 — Distillation from [[2604.27367|DOT-Sim]]** as teacher; distill contact dynamics into WAM latent.
-5. **Q5 — Sim-to-real on [AutoMate](https://arxiv.org/abs/2407.08028) / [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic)**: train on [[2511.04665|Real-to-Sim GS]] twins; eval on real [AutoMate](https://arxiv.org/abs/2407.08028).
+5. **Q5 — Sim-to-real on [[2407.08028|AutoMate]] / [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic)**: train on [[2511.04665|Real-to-Sim GS]] twins; eval on real [[2407.08028|AutoMate]].
 
 **Related research papers.**
-- [[2604.16484|DexWorldModel]] — Causal latent WM ([DINOv3](https://arxiv.org/abs/2508.10104) targets); 94% [[2504.13059|RoboTwin]], zero-shot sim2real; continuous contact, no discrete mode.
+- [[2604.16484|DexWorldModel]] — Causal latent WM ([[2508.10104|DINOv3]] targets); 94% [[2504.13059|RoboTwin]], zero-shot sim2real; continuous contact, no discrete mode.
 - [[2503.17973|PhysTwin]] — Physics-informed deformable twin from video; no discrete contact mode.
 - [[2511.07416|PhysWorld]] — Policy vs learned physical WM; 82% real SR; continuous, no event discretization.
-- [[2604.27367|DOT-Sim]] — Differentiable MPM + tactile; 96.6% tumor detection zero-shot; no WAM consumer.
-- [[2603.15956|ExpertGen]] — Generative prior + [DSRL](https://arxiv.org/abs/2506.15799) + distillation; 90.5% [AutoMate](https://arxiv.org/abs/2407.08028); policy-side.
-- [[2602.23253|SPARR]] — Sim + vision-conditioned real residual; 95–100% [AutoMate](https://arxiv.org/abs/2407.08028); policy-side, no WAM.
+- [[2604.27367|DOT-Sim]] — Differentiable MPM + tactile; 96.55% tumor detection zero-shot; no WAM consumer.
+- [[2603.15956|ExpertGen]] — Generative prior + [[2506.15799|DSRL]] + distillation; 90.5% [[2407.08028|AutoMate]]; policy-side.
+- [[2602.23253|SPARR]] — Sim + vision-conditioned real residual; 95–100% [[2407.08028|AutoMate]]; policy-side, no WAM.
 - [[2603.16861|MolmoBot]] — 232K-env procedural [MuJoCo](https://github.com/google-deepmind/mujoco); 79.2% real [Franka FR3](https://franka.de/franka-research-3); domain randomization only.
-- [[2511.04665|Real-to-Sim GS]] — 3DGS + soft-body [[2503.17973|PhysTwin]]; ρ > 0.9 sim-real; evaluation substrate.
+- [[2511.04665|Real-to-Sim GS]] — 3DGS + soft-body [[2503.17973|PhysTwin]]; r=0.915 (push-T) / 0.901 (rope) sim-real; evaluation substrate.
 - [[2604.24916|asRoBallet]] — Friction-aware [MuJoCo](https://github.com/google-deepmind/mujoco) + RL; prior for contact-mode losses.
 - [[2604.23702|QuietWalk]] — PINN GRF predictor + curriculum; analog of contact-force prediction.
 
 **Benchmarks & metrics.**
-- [AutoMate](https://arxiv.org/abs/2407.08028) (8 tasks) — Insertion / assembly SR; 90.5% is the WAM-naive baseline.
-- [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) industrial assembly — Cross-task assembly; [[2602.23253|SPARR]] reports +74.5% relative SR improvement (and 36.5% cycle-time reduction) on unseen [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) tasks.
+- [[2407.08028|AutoMate]] (8 tasks) — Insertion / assembly SR; 90.5% is the WAM-naive baseline.
+- [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) industrial assembly — Cross-task assembly; [[2602.23253|SPARR]] reports +74.5% relative SR and 36.5% cycle-time cut on unseen tasks.
 - [[2511.04665|Real-to-Sim GS]] deformable — Plush packing, rope routing, T-block pushing; soft-body contact where latent WAMs fail hardest.
 - Contact-mode classification accuracy — $c_t$ vs simulator; internal diagnostic before downstream gains.
 
@@ -300,13 +316,13 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 **Why it matters.** [[2604.22748|Agentic World Modeling Survey]] defines L1 Predictor / L2 Simulator / L3 Evolver and calls physical L3 Evolver the gap ("emerging not mature"). The pieces exist — failure detection, GRPO, recovery, memory, and now runtime rollout verification ([[2605.22446|Pre-VLA]], which filters unsafe actions and *truncates unreliable WM imaginations*) — but no system integrates them under a WAM-driven imagination loop. The newly exposed piece: imagination is also a *safety surface* ([[2604.05498|JailWAM]]: 84% attack success on WAMs), so the loop must verify its own dreams, not just learn from them.
 
 **First-principles framing.**
-- **First principle**: Preparation is bounded by imagination. An agent can only learn to recover from failure modes it can generate internally, because the recovery policy trains against the failures it sees. So a self-improvement loop's reachable competence is capped by the WM's *generative* coverage of failure, not by logged real interaction. The WM's job is to be the failure-generator.
-- **Assumption being challenged**: That self-evolution requires real-world exploration because real experience beats imagined rehearsal. Real failure-finding is expensive and irreversible (robot time, safety). For a WAM accurate enough, imagined failures can drive real improvement with only *periodic* real-world calibration — provided a verifier ([[2605.22446|Pre-VLA]]) gates the unreliable dreams.
-- **The bet**: A closed loop — failure-finder → WAM imagines failure → GRPO over (action, imagination) → recovery — achieves continual per-cycle SR improvement at imagined-vs-real Pearson $\rho > 0.7$, *without* catastrophic forgetting ([[2401.16650|WMAR]]-style FIFO + reservoir, +0.071 vs 0.665 baseline).
+- **First principle**: How well an agent prepares is limited by what it can imagine. An agent only learns to recover from failures it can generate for itself, because the recovery policy trains on the failures it sees. So a self-improvement loop is capped by how widely the WM can *imagine* failure, not by how much real interaction it logs.
+- **Assumption being challenged**: That self-evolution needs real exploration because real experience beats imagined. Real failure-finding is costly and can't be undone (robot time, safety). A good-enough WAM can drive real improvement from imagined failures with only *occasional* real-world checking — as long as a verifier ([[2605.22446|Pre-VLA]]) screens out bad dreams.
+- **The bet**: A closed loop — failure-finder → WAM imagines failure → GRPO over (action, imagination) → recovery — gives steady per-cycle SR gains, with imagined and real success rates correlating above 0.7 (Pearson ρ), *without* forgetting ([[2401.16650|WMAR]]-style FIFO + reservoir, +0.071 vs 0.665).
 
 **Evidence.**
 - [[2602.04411|Self-evolving Embodied AI]]'s 5-module framework (memory / task / environment / embodiment / model) is canonical; [[2508.07407|Self-Evolving AI Agents Survey]], [[2507.21046|Self-Evolving Agents Survey]], [[2505.05108|Multi-agent Embodied AI Survey]] all name open-environment self-evolution as the top unresolved capability.
-- 2026 components: [[2506.24119|SPIRAL]] (CriticAgent filters dreams), [[2502.05907|EvoAgent]] (+105% [Minecraft](https://www.minecraft.net/en-us)), [[2511.16166|EvoVLA]] (first end-to-end self-evolving VLA), [[2510.16079|EVOLVER]] (trajectory → principles), [[2604.18131|Native Evolution]] (reward-free self-evolution), [[2605.22446|Pre-VLA]] (preemptive verifier that truncates unreliable WM imaginations; +6.83 pp [[2306.03310|LIBERO]]).
+- 2026 components: [[2603.08403|SPIRAL]] (closed-loop think-act-reflect over an Action-Conditioned WM; CriticAgent filters dreams, GRPO internalizes the reflection), [[2502.05907|EvoAgent]] (+105% [Minecraft](https://www.minecraft.net/en-us)), [[2511.16166|EvoVLA]] (first end-to-end self-evolving VLA), [[2510.16079|EVOLVER]] (trajectory → principles), [[2604.18131|Native Evolution]] (reward-free self-evolution), [[2605.22446|Pre-VLA]] (preemptive verifier that truncates unreliable WM imaginations; +6.83 pp [[2306.03310|LIBERO]]).
 - The gap: **none integrates detection + diagnosis + recovery + memory + WAM-driven imagination + rollout verification end-to-end** under the L3 Evolver framing.
 
 **Concrete research questions.**
@@ -320,7 +336,9 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 - [[2604.22748|Agentic World Modeling Survey]] — L1/L2/L3 framework; physical L3 emerging not mature; survey only.
 - [[2605.22446|Pre-VLA]] — Preemptive runtime verifier; filters bad actions + truncates unreliable WM imaginations; +6.83 pp [[2306.03310|LIBERO]]; verification only.
 - [[2502.05907|EvoAgent]] — Continual WM; +105% [Minecraft](https://www.minecraft.net/en-us); [Minecraft](https://www.minecraft.net/en-us)-only, no physical manipulation.
-- [[2506.24119|SPIRAL]] — CriticAgent filters dreams; critic filter only, no full loop.
+- [[2603.08403|SPIRAL]] — Closed-loop think-act-reflect (PlanAgent + Action-Conditioned WM + CriticAgent) self-improves the WM via GRPO; 58.72% EgoPlan-Bench; closest precedent, but improves *generation* fidelity, not detect→recover.
+- [[2603.13528|Counterfactual Failure Synthesis]] — Dream2Fix perturbs actions in a generative WM for *counterfactual failures* + recovery labels (58.1% kept, 120K pairs); 46% real / 40% OpenVLA recovery; imagine-then-recover, but offline.
+- [[2606.05395|VASO]] — Formal-verification counterexamples as "textual gradients" refine self-evolving skills; 89→97% feasibility, ~95% safety; formal-verifier-in-the-loop variant (skill-level LTL, no WM imagination).
 - [[2511.16166|EvoVLA]] — First end-to-end self-evolving VLA; no WAM imagination driving evolution.
 - [[2510.16079|EVOLVER]] — Trajectory → strategic principles; behavior-level, no WAM imagination.
 - [[2412.02818|RoboMD]] — RL adversary for failure discovery; probes real robot, not WAM-driven.
@@ -329,6 +347,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 - [[2509.26354|Misevolution]] — Identifies the risk class; diagnosis only, no in-loop mitigation.
 - [[2506.07468|SELF-REDTEAM]] — Adversarial self-play; pre-deployment check, not in-loop.
 - [[2509.15194|EVOL-RL]] — Novelty prevents entropy collapse; standalone regularizer, not in-loop.
+- [[2606.05773|PiL-World]] — Chunk-wise closed-loop policy-in-the-loop WM; imagined-vs-real gap 63.2→12.0%, Pearson r 0.94; supplies the ρ stop-condition, but evaluates rather than recovers.
 
 **Benchmarks & metrics.**
 - [[2605.10921|RoboMemArena]] — Memory-dependent SR; 68.9% subtasks need history; recovery must consult memory.
@@ -353,27 +372,29 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 **Why it matters.** B2 detects and recovers from failure at *runtime*; B3 asks whether the WM can be made trustworthy at *training time* so the runtime loop has less to clean up. [[2604.22748|Agentic World Modeling Survey]]'s L3 Evolver "revises its own model when predictions fail" — but the usual tool for knowing *when* a prediction failed is uncertainty estimation, which [[2604.01985|WAV]] shows "often fails in under-explored data regions where new information is most needed," exactly where calibration matters. [[2310.06253|Objective Mismatch MBRL Survey]] generalizes it: low predictive WM loss does not imply high downstream return, so the WM's own training signal is miscalibrated against policy need. Two results reframe the problem. [[2604.01985|WAV]] exploits a structural *asymmetry* — verifying a transition (inverse) is cheaper and more robust than generating it (forward) — to turn verification into a self-improving training cycle. [[2504.16680|RWM-U]] shows an ensemble's epistemic uncertainty, used to *penalize* imagined rollouts, makes offline MBRL work on real quadrupeds and humanoids. Calibration of imagination is a train-time lever, not a runtime patch.
 
 **First-principles framing.**
-- **First principle**: Forward generation and inverse verification are not symmetric. Action-free video is abundant, so state-plausibility is cheap to learn; action-relevant features are low-dimensional, so action-reachability can be verified robustly from little labeled data. A verifier built on this asymmetry is *structurally* cheaper and more sample-efficient than the generator it checks — independent of model scale.
-- **Assumption being challenged**: That the WM-reliability gap closes by estimating uncertainty better. [[2604.01985|WAV]] shows naive uncertainty fails exactly in the under-explored regions where it is needed; [[2504.16680|RWM-U]] shows uncertainty is useful only when it *gates* the objective (penalizing reward), not when it merely reports confidence. The field treats verification as a runtime filter on a finished dream; B3 treats it as the training signal that shapes the dream.
-- **The bet**: A forward-inverse asymmetry signal (subgoal-plausibility checked by an action-free generator + action-reachability checked by a sparse inverse model) yields ≥2× WM sample-efficiency and +22% downstream reward with *no extra action labels* ([[2604.01985|WAV]]'s result, here as a verifier-in-the-training-loop bet), with epistemic-uncertainty gating reaching 0.91 normalized reward on real [ANYmal D](https://www.anybotics.com/robotics/anymal/) / [Unitree G1](https://www.unitree.com/g1/) ([[2504.16680|RWM-U]]). Distinct from B2: B2 is the runtime detect→recover loop; B3 is the train-time calibration that makes imagination trustworthy in the first place.
+- **First principle**: Making a prediction and checking one are not equally hard. Video without action labels is plentiful, so judging whether an imagined future *looks* plausible is cheap; and the action-relevant part of a state is small, so judging whether a future is *reachable* by some action needs little labeled data. A checker that exploits this gap is fundamentally cheaper than the generator it checks — at any scale.
+- **Assumption being challenged**: That the reliability gap closes by estimating uncertainty better. [[2604.01985|WAV]] shows plain uncertainty estimates fail right where they're needed; [[2504.16680|RWM-U]] shows uncertainty helps only when it *steers* the training objective, not when it merely reports a confidence number. The field filters a finished dream at runtime; B3 shapes the dream while training.
+- **The bet**: Using this make-vs-check gap as a training signal — judge whether a subgoal looks plausible (from an action-free generator) and whether it is reachable (from a small inverse model) — yields at least 2× better WM sample-efficiency and +22% downstream reward with *no extra action labels* ([[2604.01985|WAV]]); and uncertainty-based gating reaches 0.91 reward on real [ANYmal D](https://www.anybotics.com/robotics/anymal/) / [Unitree G1](https://www.unitree.com/g1/) ([[2504.16680|RWM-U]]). Unlike B2's runtime detect→recover, B3 calibrates while training, so imagination is trustworthy first.
 
 **Evidence.**
-- [[2604.01985|WAV]] — Splits verification into state-plausibility (action-free subgoal generator) + action-reachability (sparse inverse dynamics); the cycle prioritizes data where plausible-future and predicted-future disagree most; 2× WM sample-efficiency, +22% reward across six manipulation tasks.
-- [[2504.16680|RWM-U]] — Ensemble epistemic uncertainty penalizes imagined rollouts ([MOPO-PPO](https://arxiv.org/abs/2005.13239)); uncertainty tracks true long-horizon error; 0.91 normalized reward on real [ANYmal D](https://www.anybotics.com/robotics/anymal/), deployed on [Unitree G1](https://www.unitree.com/g1/).
+- [[2604.01985|WAV]] — Splits verification into state-plausibility (action-free generator) + action-reachability (sparse inverse); prioritizes where plausible and predicted futures disagree; 2× sample-efficiency, +22% reward over six tasks.
+- [[2504.16680|RWM-U]] — Ensemble epistemic uncertainty penalizes imagined rollouts ([[2005.13239|MOPO-PPO]]); uncertainty tracks long-horizon error; 0.91 reward on real [ANYmal D](https://www.anybotics.com/robotics/anymal/), deployed on [Unitree G1](https://www.unitree.com/g1/).
 - [[2310.06253|Objective Mismatch MBRL Survey]] — Predictive WM loss does not correlate with downstream return; the training signal is miscalibrated against policy need — the gap B3 closes.
 - [[2604.22748|Agentic World Modeling Survey]] — L3 Evolver revises its model when predictions fail; B3 supplies the *when-it-failed* signal as a train-time objective, not a runtime probe.
 - [[2605.22446|Pre-VLA]] — Runtime verifier that truncates unreliable imaginations (+6.83 pp [[2306.03310|LIBERO]]); B3 is its train-time complement — calibrate so there is less to truncate.
+- [[2606.02486|AHEAD]] — Latent WM for *dynamic* scenes; adaptive horizon-halting stops predicting when uncertainty rises; 93.7% vs 48% under acceleration — calibration in action where uncalibrated imagination fails.
 
 **Concrete research questions.**
 1. **Q1 — Forward-inverse verifier on a latent WAM.** Wrap [[2604.01985|WAV]]'s subgoal-generator + sparse-inverse decomposition around a JEPA WAM ([[2602.10098|VLA-JEPA]] / [[2605.25313|UWM-JEPA]]); measure sample-efficiency vs uncertainty-only baseline.
-2. **Q2 — Epistemic-uncertainty gating as a dense reward.** Adapt [[2504.16680|RWM-U]]'s [MOPO](https://arxiv.org/abs/2005.13239) penalty to a latent-consistency reward on A1's hybrid backbone; does penalizing high-uncertainty imagined states stabilize the latent-rollout objective?
+2. **Q2 — Epistemic-uncertainty gating as a dense reward.** Adapt [[2504.16680|RWM-U]]'s [[2005.13239|MOPO]] penalty to a latent-consistency reward on A1's hybrid backbone; does penalizing high-uncertainty imagined states stabilize the latent-rollout objective?
 3. **Q3 — Calibration metric = imagined-vs-real ρ.** Treat the B2 ρ > 0.7 gate as B3's *objective*, not just a stop condition: train the WM to maximize imagined-vs-real SR correlation directly.
 4. **Q4 — Active data collection from verifier disagreement.** Use [[2604.01985|WAV]]'s discrepancy signal to drive which real-robot interactions to collect next; close the loop with B2's failure-finder.
 5. **Q5 — Sparse-vs-dense inverse ablation.** Does the sparse inverse model's OOD robustness ([[2604.01985|WAV]]) hold on contact-rich tasks (shared substrate with B1's discrete contact modes)?
 
 **Related research papers.**
 - [[2604.01985|WAV]] — Forward-inverse asymmetry self-improving cycle; 2× sample-eff, +22% reward; no extra labels; the calibration-as-training exemplar.
-- [[2504.16680|RWM-U]] — Uncertainty-aware WM + [MOPO-PPO](https://arxiv.org/abs/2005.13239); 0.91 reward real [ANYmal D](https://www.anybotics.com/robotics/anymal/) / [Unitree G1](https://www.unitree.com/g1/); uncertainty must gate the objective, not just report.
+- [[2504.16680|RWM-U]] — Uncertainty-aware WM + [[2005.13239|MOPO-PPO]]; 0.91 reward real [ANYmal D](https://www.anybotics.com/robotics/anymal/) / [Unitree G1](https://www.unitree.com/g1/); uncertainty must gate, not just report.
+- [[2605.04709|ELVIS]] — Ensemble-calibrated latent imagination; UCB-gated λ-return truncates uncertain futures in learning *and* planning; SOTA vs TD-MPC2 / DreamerV3 on 14 DMC, sim-to-real Rrms 2.2±0.4 mm; the latent sibling of RWM-U's gating.
 - [[2310.06253|Objective Mismatch MBRL Survey]] — Decision-aware MBRL; predictive loss ⊥ return; names the miscalibration B3 targets.
 - [[2605.22446|Pre-VLA]] — Preemptive runtime verifier; +6.83 pp [[2306.03310|LIBERO]]; runtime filter, not train-time calibration.
 - [[2510.09459|FIPER]] — Predictive failure via OOD + uncertainty; detection only, no calibration training signal.
@@ -381,6 +402,9 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 - [[2510.16281|SEAL]] — Runtime CoT-faithfulness verifier; +15 pp; verifies plan↔outcome, not WM imagination.
 - [[2604.22748|Agentic World Modeling Survey]] — L3 Evolver framework; survey, no calibration method proposed.
 - [[2603.04029|Self-Adapting RL]] — Outer-loop WM adaptation; complements B3's inner calibration signal.
+- [[2606.02486|AHEAD]] — Uncertainty-gated adaptive horizon over a 4.9M-param latent WM; 93.7% vs 48% under acceleration; calibrated imagination at speed.
+- [[2606.05773|PiL-World]] — Chunk-wise closed-loop policy-in-the-loop WM; imagined-vs-real Pearson r 0.94, gap 63.2→12.0%, Hallucination-Free 41.5→70.1%; the ρ-calibration target B3 maximizes.
+- [[2606.04463|OSCAR]] — Skeleton-conditioned (URDF/MANO) video WAM; precise action-following drives Pearson r +0.852 with RoboArena rankings (MAE 1.73 pp); conditioning keeps imagined-vs-real correlation high.
 - [[2604.19092|RoboWM-Bench]] — Visual plausibility ≠ executability; the gap a calibrated WM must close, measured.
 
 **Benchmarks & metrics.**
@@ -393,6 +417,60 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 > - **Sparse inverse model misses subtle dynamics**: low-dimensional action features may drop contact transients. → Bound the claim to where action-relevant features are recoverable; pair with B2's discrete contact modes for contact-rich regimes.
 > - **Uncertainty gating too conservative**: penalizing all high-uncertainty states kills exploration ([[2504.16680|RWM-U]]'s penalty coefficient is a critical hyperparameter). → Tune the penalty on a held-out real-robot calibration set, not in simulation alone.
 > - **Calibration ≠ correctness**: a WM can be well-calibrated about being wrong. → Validate against B2's imagined-vs-real ρ AND the joint causal-binding metric developed in the umbrella [[Embodied-AI|Embodied-AI]], not calibration alone.
+
+### B4 — WAM-as-Data-Engine
+
+| | |
+|---|---|
+| **Cluster** | B — Training & Grounding |
+| **Thesis** | A policy can only get as good as the data it trains on, and real robot data is scarce, expensive, and narrow. A generative WAM can manufacture demonstrations far cheaper and far wider than teleoperation — so its highest-value output is a *training corpus*, not a rollout or a safety check. The field treats WAM output as something you plan or verify in-episode; here the durable product is data. The bet: a physics-validated WAM data engine trains a downstream policy to beat real-data-only collection by ≥25 pp SR ([[2606.02577\|RoboDream]] Gen-Mix 62.5% vs real-only 36.3%) at ≥2× lower collection cost, and the physics-validation filter is load-bearing not optional ([[2606.04708\|VISTA]] validated subset 0.65 vs unfiltered-low 0.00). |
+| **Anchor surveys** | [[2605.12090\|WAM Survey]], [[2601.15533\|Actionable Simulators]], [[2604.15395\|Foundation Models in Robotics Survey]] |
+| **Key targets** | Downstream SR over real-only by ≥25 pp ([[2606.02577\|RoboDream]] 62.5% vs 36.3%); collection cost ≥2× lower ([[2606.02577\|RoboDream]] 2.2×); zero-shot lift from imagined-corpus pretraining ([[2606.01027\|τ0-WM]] 0.55 vs 0.14); test-time rectification on the same backbone ([[2606.01027\|τ0-WM]] 0.43→0.60) |
+
+**Why it matters.** B1–B3 treat the WAM's imagination as something consumed *inside* an episode — contact dynamics to roll out (B1), failures to recover from (B2), dreams to calibrate and verify (B3). But [[2605.12090|WAM Survey]] names "data-ecosystem mixing" as an open problem, and [[2604.15395|Foundation Models in Robotics Survey]] names dataset/challenge mapping — both point at the WAM's most underexploited output: *training data*. Real robot data is the binding constraint on policy competence, and teleoperation does not scale. Three 2026 results show the WAM as a data engine already beats real collection. [[2606.02577|RoboDream]] decouples robot motion from scene/object context and synthesizes demonstrations compositionally — its Gen-Mix data trains policies to 62.5% vs 36.3% real-only, at 2.2× faster collection. [[2606.01027|τ0-WM]] pretrains on ~27,300 hours of heterogeneous imagined-plus-real data and triples zero-shot SR on unseen tasks (0.55 vs 0.14). [[2606.04708|VISTA]] adds the missing discipline: physics-validate every synthesized trajectory, because raw human-collected (UMI) data is often kinematically infeasible — its validated subset trains to 0.65 OSR while the unfiltered-low subset trains to 0.00. The manipulation-task application of synthesized demos is [[Manipulation|Manipulation]]-B1; here the contribution is the *engine* and its validation discipline.
+
+**First-principles framing.**
+- **First principle**: How good a policy can get is set by how much variety its training data covers and how physically correct that data is — not by where the data came from. A generative WAM can manufacture variety — new objects, scenes, camera views, robot bodies — that real collection can't afford to reach. The WAM is a variety-widening machine for whatever policy consumes its data.
+- **Assumption being challenged**: That a WAM's outputs are rollouts or dreams — short-lived, used up within one episode. The field treats the WAM as a runtime tool. [[2606.02577|RoboDream]], [[2505.12705|DreamGen]], and [[2606.01027|τ0-WM]] flip this: the lasting product is a *dataset*, and the WAM is a data engine that feeds a separate policy.
+- **The bet**: A physics-validated WAM data engine beats real-data-only collection by ≥25 pp SR ([[2606.02577|RoboDream]] 62.5% vs 36.3% = +26.2 pp) at ≥2× lower cost (2.2×) — *and* the physics filter does real work, not decoration ([[2606.04708|VISTA]]: validated 0.65 vs unfiltered 0.00). Unlike B2 (imagines *failures* to improve a policy that already exists), B4 imagines *demonstrations* to bootstrap a policy that doesn't exist yet.
+
+**Evidence.**
+- [[2606.02577|RoboDream]] — Compositional video-diffusion WM decouples robot motion from scene/object; Gen-Mix 62.5% vs 36.3% real-only, 0% raw-retrieved; 2.2× faster collection; the data-engine existence proof.
+- [[2606.01027|τ0-WM]] — Unified video-action WM on ~27,300 hrs; imagined-corpus pretraining lifts zero-shot 0.55 vs 0.14, fine-tuned 0.83 vs 0.70; same backbone rectifies actions at test (0.43→0.60).
+- [[2606.04708|VISTA]] — Physics-validated UMI-data adaptation; scores continuity / self-collision / execution fidelity; validated subset 0.65 OSR vs 0.00 low-score; the validation-discipline anchor.
+- [[2505.12705|DreamGen]] — Video WMs as scalable synthetic data generators; 22 novel behaviors, 10 unseen environments from a minimal real seed; the video-WM-as-data-engine precedent.
+- [[2412.14957|DREMA]] — Compositional WM (3DGS + physics) generates training data via imagination; better low-data imitation + novel-configuration generalization.
+
+**Concrete research questions.**
+1. **Q1 — Physics-validation as a first-class filter on synthesized demos.** Put [[2606.04708|VISTA]]'s continuity / self-collision / execution-fidelity scoring downstream of [[2606.02577|RoboDream]]'s compositional generator; ablate validated-vs-unfiltered downstream SR (VISTA's 0.65 vs 0.00 is the headline to reproduce on a second generator).
+2. **Q2 — Mixing ratio of imagined-to-real.** [[2606.02577|RoboDream]]'s Gen-Mix beats both extremes; sweep the synthesized:real ratio and find where downstream SR peaks per task family.
+3. **Q3 — Cross-embodiment data synthesis.** Use [[2606.05979|WLA]]'s action-free cross-embodiment video learning as a source: can the engine synthesize demos for an embodiment with *zero* real demos of the target task?
+4. **Q4 — One backbone, two jobs.** [[2606.01027|τ0-WM]] uses the same WM for data generation and test-time rectification — measure whether co-training the engine on its own rectification signal improves synthesized-data quality (closes B3's calibration into B4's generation).
+5. **Q5 — Prop-free teleoperation at scale.** Extend [[2606.02577|RoboDream]]'s kinematic-only collection (imaginary objects, visual synthesis later) — what fraction of a manipulation curriculum can be collected prop-free without downstream SR loss?
+
+**Related research papers.**
+- [[2606.02577|RoboDream]] — Compositional world model for robot data synthesis; Gen-Mix 62.5% vs 36.3% real-only, 2.2× faster; the data-engine exemplar.
+- [[2606.01027|τ0-WM]] — Unified video-action WM; heterogeneous-corpus pretraining triples zero-shot SR (0.55 vs 0.14); engine + test-time rectifier in one backbone.
+- [[2606.04708|VISTA]] — Vision-grounded, physics-validated UMI-data adaptation; validated subset 0.65 vs 0.00; the validation discipline B4 makes mandatory.
+- [[2505.12705|DreamGen]] — Video WMs as synthetic data generators; 22 novel behaviors / 10 unseen environments; precedent for the engine but no physics-validation filter.
+- [[2511.19861|GigaWorld-0]] — Production-scale data engine: 2B-MoE video + 3DGS 3D + inferred physics + executable trajectories; a VLA trained *exclusively* on its data works real; 82.07 PBench; the large-scale B4 existence proof.
+- [[2412.14957|DREMA]] — Compositional WM (3DGS + physics) generating training data via imagination; low-data-regime imitation; digital-twin generator, not a video diffusion engine.
+- [[2603.16861|MolmoBot]] — Policies trained exclusively on procedurally generated sim data; 79.2% real Franka FR3; procedural generation, not a learned WM engine.
+- [[2511.04665|Real-to-Sim GS]] — 3DGS + soft-body twins; r=0.915 (push-T) / 0.901 (rope) sim-real; supplies the validation substrate B4 needs but does not synthesize demos.
+- [[2606.05979|WLA]] — Learns novel tasks from action-free same- and cross-embodiment videos, nearly tripling unseen-task SR; the cross-embodiment data source for Q3.
+- [[2602.23253|SPARR]] — Sim + vision-conditioned real residual; 95–100% [[2407.08028|AutoMate]]; a data-augmentation point, not a generative engine.
+- [[2604.16484|DexWorldModel]] — Causal latent WM with zero-shot sim-to-real; the kind of downstream consumer a B4 engine would feed.
+
+**Benchmarks & metrics.**
+- [[2406.02523|RoboCasa]] — Large-scale kitchen manipulation suite; the downstream-policy eval where [[2606.02577|RoboDream]]'s Gen-Mix reports 62.5% vs 36.3% real-only.
+- [[2306.03310|LIBERO]] / [[2504.13059|RoboTwin]] — Standard downstream manipulation suites; train a fixed policy on synthesized-vs-real data and compare SR at matched policy and budget.
+- [[2510.13626|LIBERO-Plus]] — 10,030 OOD perturbations; the generalization claim — synthesized data should widen OOD coverage beyond what real-only collection reaches.
+- Collection cost (episodes/hr) — [[2606.02577|RoboDream]] 50 episodes in 55 min vs 2 hrs teleoperation (2.2×); the cost half of the bet.
+
+> [!warning] Risks
+> - **Synthesized data looks plausible but is not executable**: physically infeasible demos teach the wrong dynamics. → Make [[2606.04708|VISTA]]'s physics-validation filter mandatory, not optional; report validated-vs-unfiltered downstream SR as the first ablation.
+> - **Distribution narrows to the engine's biases**: the WM only synthesizes what it has seen, so apparent diversity may be shallow. → Sweep the imagined:real mixing ratio ([[2606.02577|RoboDream]] Gen-Mix beats both extremes) and keep a real-data anchor; never train on synthesized data alone.
+> - **Compounding error**: a policy trained on a WM's data inherits the WM's failure modes silently. → Validate downstream on a real-robot held-out set and on [[2510.13626|LIBERO-Plus]] OOD, not only on in-distribution synthesized evals.
 
 ---
 
@@ -426,6 +504,7 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 | Discrete contact-mode latent; sub-millimeter assembly SR with contact-aware imagination | B1 | [[2604.16484\|DexWorldModel]] (causal latent but continuous contact) + [[2604.27367\|DOT-Sim]] (contact ground truth, no WAM consumer) |
 | Integrated detection→diagnosis→recovery loop with WAM-driven imagination + rollout verification | B2 | [[2605.22446\|Pre-VLA]] (verifier only, no full loop) + [[2605.10921\|RoboMemArena]] (memory-dependent recovery, no imagination loop) |
 | Forward-inverse calibration as a *training* signal (not a runtime filter) tied to imagined-vs-real ρ | B3 | [[2604.01985\|WAV]] (asymmetry cycle, not ρ-objective) + [[2504.16680\|RWM-U]] (uncertainty gating, locomotion only) |
+| Physics-validated WAM data engine with the validation filter ablated against downstream SR | B4 | [[2606.02577\|RoboDream]] (compositional synthesis, no physics-validation filter) + [[2606.04708\|VISTA]] (physics-validated UMI adaptation, not a generative engine) |
 
 ---
 
@@ -437,6 +516,6 @@ This gives A1's latent substrate a formal "when is a learned latent a world mode
 - [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]] — Physics-aware design space; physics commonsense benchmarks
 - [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]] — Sim-to-real strategies; learned simulators; reality-gap diagnostics
 - [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — Canonical survey index
-- [[Embodied-AI|Embodied-AI]] — Umbrella directions. Joint WAM–policy co-evolution, physics-consistency verification, joint causal-consistency evaluation, real-time deployment, and cross-embodiment transfer live there (B1, B3, C1, C3, D2) — omitted here to avoid duplication.
+- [[Embodied-AI|Embodied-AI]] — Umbrella directions. Joint WAM–policy co-evolution, physics-consistency verification, joint causal-consistency eval, real-time deployment, and cross-embodiment transfer live there (B1, B3, C1, C3, D2) — omitted here to avoid dup.
 - [[Spatial-4D|Spatial-4D]] — Sibling doc on the model-agnostic 3D/4D representation — occupancy & 4D world models, geometric memory ([[2604.26694|X-WAM]], [[2603.17117|MosaicMem]]).
 - [[Sim2Real|Sim2Real]] — Sibling doc on sim-to-real / real-to-sim transfer; borders this doc's physics-grounding (B-cluster) and world-model-as-simulator themes.

@@ -14,7 +14,11 @@ tags:
 # Promising Research Directions: Locomotion — Bipedal & Quadruped
 
 > [!abstract] Overview
-> Eight locomotion research directions across two clusters: *Bipedal Locomotion & Dynamic Skills* (A, the humanoid's legs) and *Quadruped Locomotion & Real-World Adaptation* (B). Drawn from ~12 humanoid/quadruped/legged surveys, benchmarks, and simulators, plus the frontier methods that set each bet's bar ([[2602.15827|PHP]], [[2604.17335|G1 WBC-Gen+Track]], [[2506.12851|KungfuBot]], [[2502.12152|HUMANUP]], [[2604.23702|QuietWalk]], [[2604.02911|DreamTIP]], [[2212.07740|TERT]], [[2506.05997|SRU]]). This is the **Locomotion subsystem** (legs + wheels — moving the body) of a 2-axis doc family. It excludes arm/hand manipulation, mobile manipulation, and loco-manipulation coupling — those live in the sibling [[Manipulation|Manipulation]] and [[Whole-Body|Whole-Body]] docs — and cross-references the mechanism docs ([[Embodied-AI|Embodied-AI]], [[WAM|WAM]], [[Sim2Real|Sim2Real]]) for VLN goal-reasoning, world-model imagination, and sim-to-real machinery rather than re-clustering them. Each direction carries a **first-principles framing** (the problem's irreducible structure, the assumption it breaks, the measurable bet) and a non-consensus thesis aimed where impactful work departs from "more data / more scale." Every number comes from a cited `_KnowledgeHub_/{ID}.md` note, never invented.
+> Eight locomotion research directions in two clusters: *Bipedal Locomotion & Dynamic Skills* (A, the humanoid's legs) and *Quadruped Locomotion & Real-World Adaptation* (B). They come from ~12 humanoid/quadruped/legged surveys, benchmarks, and simulators, plus the frontier methods that set each bet's bar ([[2602.15827|PHP]], [[2604.17335|G1 WBC-Gen+Track]], [[2506.12851|KungfuBot]], [[2502.12152|HUMANUP]], [[2604.23702|QuietWalk]], [[2604.02911|DreamTIP]], [[2212.07740|TERT]], [[2506.05997|SRU]]).
+> 
+> This is the **Locomotion subsystem** — legs and wheels, moving the body — one axis of a 2-axis doc family. It leaves out arm and hand manipulation, mobile manipulation, and loco-manipulation coupling; those live in the sibling [[Manipulation|Manipulation]] and [[Whole-Body|Whole-Body]] docs. For VLN goal-reasoning, world-model imagination, and sim-to-real machinery it points to the mechanism docs ([[Embodied-AI|Embodied-AI]], [[WAM|WAM]], [[Sim2Real|Sim2Real]]) rather than re-clustering them.
+> 
+> Each direction carries a **first-principles framing** — the problem's irreducible structure, the assumption it breaks, the measurable bet — and a non-consensus thesis aimed where impactful work departs from "more data / more scale." Every number comes from a cited `_KnowledgeHub_/{ID}.md` note, never invented.
 
 ---
 
@@ -22,10 +26,10 @@ tags:
 
 **Scope.** Corpus: ~12 humanoid/quadruped/legged-locomotion surveys, benchmarks, and simulators plus ~25 locomotion-method papers from `_KnowledgeHub_/`, cross-checked against [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] and the `Embodied-AI/` deep-dives ([[02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]], [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]]). The method is survey-grounded ideation: surveys name the open problems, benchmarks fix what is measurable, frontier methods fix what is currently achievable. **Subsystem boundary**: locomotion only — commands that move the body via legs/wheels (gait & velocity tracking, terrain traversal, balance & push-recovery, agile skills via motion imitation, fall-recovery, proprioceptive-vs-perceptive locomotion, mapless mobility-to-goal). Loco-manipulation coupling, mobile manipulation (arm + base), and arm/hand manipulation belong to the sibling docs; if a paper manipulates an *object*, it is not this doc. VLN goal-*reasoning* and the world-model substrate are cross-referenced to the umbrella and WAM docs, not re-clustered.
 
-- **Survey enumeration**: a tag-scan over {`humanoid`, `robotics`, `world-model`, `sim-to-real`} × {`benchmark`, `survey`} surfaced [[2403.10506|HumanoidBench]] (27-task whole-body suite), [[2502.08844|MuJoCo Playground]] (efficient sim substrate), and [[2603.20147|AGILE]] (five humanoid skills) — each read for its named open problems and what its evaluation measures.
+- **Survey enumeration**: a tag-scan over {`humanoid`, `robotics`, `world-model`, `sim-to-real`} × {`benchmark`, `survey`} surfaced [[2403.10506|HumanoidBench]] (27-task whole-body suite), [[2502.08844|MuJoCo Playground]] (efficient sim substrate), and [[2603.20147|AGILE]] (five humanoid skills) — each read for its open problems and what it measures.
 - **Deep-dive mining**: reads of [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets|02_Dataset-Benchmark-Environment §1]], [[02_Dataset-Benchmark-Environment#8. Bimanual & Humanoid Evaluation|02 §8]], and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization|14_Sim-to-Real-Transfer §3]] seeded A1 (perceptive terrain), B1 (proprioceptive robustness), and B2 (dreaming for adaptation).
 - **Closest-baseline anchoring**: each bet is pinned to the strongest instance it must beat — [[2602.15827|PHP]], [[2604.17335|G1 WBC-Gen+Track]], [[2506.12851|KungfuBot]], [[2502.12152|HUMANUP]], [[2604.23702|QuietWalk]], [[2107.04034|RMA]], [[2212.07740|TERT]], [[2604.02911|DreamTIP]] set the bar.
-- **Filter (maximal, quality-gated)**: a direction is admitted only if it passes all four gates — distinct sub-problem, KH-sourced measurable bet, non-consensus framing, ≥1 vault anchor with a note. **A Wheeled Mobility & Navigation cluster was assessed and dropped**: the vault's wheeled/mapless papers ([[2506.05997|SRU]] on a Unitree B2W legged-wheel, [[2604.26504|HiPAN]] quadruped, [[2605.28442|COTRATE]] on Husky) are platform-agnostic locomotion-to-goal control, not a distinct wheeled frontier, and [[2104.11213|ManipulaTHOR]] manipulates objects (navigate-then-pick), so it is out of scope. With fewer than two distinct non-VLN wheeled directions the ≥2-anchored gate fails, so the strongest paper ([[2506.05997|SRU]]) folds into B3 instead.
+- **Filter (keep as many as pass, but gate hard)**: a direction is kept only if it clears all four gates — a distinct sub-problem, a KH-sourced measurable bet, a non-consensus framing, and at least one vault anchor that has a note. **A Wheeled Mobility & Navigation cluster was considered and dropped.** The vault's wheeled/mapless papers ([[2506.05997|SRU]] on a Unitree B2W legged-wheel, [[2604.26504|HiPAN]] quadruped, [[2605.28442|COTRATE]] on Husky) are platform-agnostic control that drives the body to a goal, not a distinct wheeled frontier; [[2104.11213|ManipulaTHOR]] manipulates objects, so it is out of scope. That left fewer than two distinct non-VLN wheeled directions — short of the gate — so the strongest paper ([[2506.05997|SRU]]) folds into B3 instead.
 - **First-principles framing**: each direction states the problem's irreducible structure, the assumption it challenges, and the non-consensus bet — to find where impactful work departs from incremental refinement.
 
 ---
@@ -103,17 +107,18 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 | **Cluster** | A — Bipedal Locomotion & Dynamic Skills |
 | **Thesis** | Generate the gait reference *online* against the terrain seen at runtime — a fresh reference each control window from the live height-scan, not a fixed gait library, and distinct from A2's offline fix of a pre-recorded clip. The foot-placement for a 75 cm box or a stair depends on the *perceived* local geometry, which no pre-computed reference can encode in advance. The field assumes a robust blind/flat-terrain tracker plus reactive recovery is enough for obstacle terrain. The bet: a perceptive gen+track policy lifts 80 cm box success from [[2604.17335\|G1 WBC-Gen+Track]]'s Tracker-Only 0.230 to ≥0.95 and chains into [[2602.15827\|PHP]]-class parkour (1.25 m wall, peak 3.41 m/s) under live perturbation. |
 | **Anchor surveys** | [[2403.10506\|HumanoidBench]], [[2408.14472\|DWL]], [[2603.20147\|AGILE]] |
-| **Key targets** | [[2604.17335\|G1 WBC-Gen+Track]] 80 cm box-climb SR 0.962 (Tracker+Gen) vs 0.230 (Tracker-Only), 75 cm box + stairs + hurdles real; [[2602.15827\|PHP]] 1.25 m wall (96% height) in 3.63 s + cat-vault 3.41 m/s + 0.5 m perturbation recovery; [[2408.14472\|DWL]] zero-shot snowy-incline/stairs from proprioception alone |
+| **Key targets** | [[2604.17335\|G1 WBC-Gen+Track]] 80 cm box-climb SR 0.962 (Tracker+Gen) vs 0.230 (Tracker-Only), 75 cm box + stairs + hurdles real; [[2606.05880\|TAGA]] 120 cm gap on a real G1 (+50% over prior perceptive max) at 65.2% lower training cost via emergent active gaze; [[2602.15827\|PHP]] 1.25 m wall (96% height) in 3.63 s + cat-vault 3.41 m/s + 0.5 m perturbation recovery; [[2408.14472\|DWL]] zero-shot snowy-incline/stairs from proprioception alone |
 
-**Why it matters.** [[2403.10506|HumanoidBench]] sets the wall: flat RL "generally fails" on whole-body locomotion, and the high-dimensional action space is the exploration bottleneck. The field's robust answer is a blind flat-terrain velocity tracker hardened by domain randomization — [[2408.14472|DWL]] is the apex, with zero-shot snowy-incline and stair traversal from *proprioception alone* via a denoising world model. But proprioception cannot anticipate a 75 cm box: by the time the foot touches it, the swing is committed. [[2604.17335|G1 WBC-Gen+Track]] proves the gap — a perceptive diffusion generator producing terrain-aware references over a 0.5 s horizon lifts 80 cm box-climbing from 0.230 (tracker-only) to 0.962, clearing 75 cm boxes, stairs, and hurdles on a real G1. [[2602.15827|PHP]] shows the ceiling: motion-matching chains feasible skills into real parkour — a 1.25 m wall in 3.63 s, a cat-vault at 3.41 m/s, adapting to ~0.5 m obstacle displacement from onboard depth. The first-principles move: stop treating terrain as a disturbance to *reject* and treat it as geometry to *generate a reference against* — perception conditions the reference, not just the recovery.
+**Why it matters.** [[2403.10506|HumanoidBench]] sets the wall: flat RL "generally fails" on whole-body locomotion, and the high-dimensional action space is the exploration bottleneck. The field's robust answer is a blind flat-terrain velocity tracker hardened by domain randomization — [[2408.14472|DWL]] is the apex, with zero-shot snowy-incline and stair traversal from *proprioception alone* via a denoising world model. But proprioception cannot anticipate a 75 cm box: by the time the foot touches it, the swing is committed. [[2604.17335|G1 WBC-Gen+Track]] proves the gap — a perceptive diffusion generator producing terrain-aware references over a 0.5 s horizon lifts 80 cm box-climbing from 0.230 (tracker-only) to 0.962, clearing 75 cm boxes, stairs, and hurdles on a real G1. [[2606.05880|TAGA]] pushes the perceptive ceiling further: fusing egocentric depth, local height scans, and proprioception with an *emergent active-gaze* module — RL learns where to look, predicting a task-relevant region of interest — it traverses a 120 cm gap on a real G1, a 50% jump over the prior perceptive-humanoid max, and matches full-height-scan performance at 65.2% lower training cost. [[2602.15827|PHP]] shows the ceiling: motion-matching chains feasible skills into real parkour — a 1.25 m wall in 3.63 s, a cat-vault at 3.41 m/s, adapting to ~0.5 m obstacle displacement from onboard depth. The first-principles move: stop treating terrain as a disturbance to *reject* and treat it as geometry to *generate a reference against* — perception conditions the reference, not just the recovery.
 
 **First-principles framing.**
 - **First principle**: On obstacle terrain, feasible foot-placement and CoM trajectory depend on the *local geometry ahead of the swing foot* — information that lives in exteroception (depth/height-scan), not in proprioceptive history. A blind policy can only react after contact, and a 75 cm box punishes reaction.
-- **Assumption being challenged**: That a robust blind tracker plus reactive recovery suffices for obstacle terrain. [[2408.14472|DWL]] (proprioception-only) is the strongest instance; its boundary is exactly the anticipatory tasks — [[2604.17335|G1 WBC-Gen+Track]]'s 0.230→0.962 box-climb gap is the cost of blindness, and scaling proprioceptive robustness cannot close it because the information is not in $q$.
+- **Assumption being challenged**: That a robust blind tracker plus reactive recovery suffices for obstacle terrain. [[2408.14472|DWL]] (proprioception-only) is the strongest instance, and its boundary is the anticipatory tasks — [[2604.17335|G1 WBC-Gen+Track]]'s 0.230→0.962 box-climb gap is the cost of blindness, which scaling proprioceptive robustness cannot close because the information simply is not in the proprioception.
 - **The bet**: A perceptive gen+track policy lifts 80 cm SR from [[2604.17335|G1 WBC-Gen+Track]]'s Tracker-Only 0.230 to ≥0.95, chains into [[2602.15827|PHP]]-class parkour (1.25 m wall, 3.41 m/s) under ~0.5 m live perturbation, and keeps [[2408.14472|DWL]]-class blind robustness on flat/rough terrain as the floor — anticipation added, robustness not lost.
 
 **Evidence.**
-- [[2604.17335|G1 WBC-Gen+Track]] — Diffusion terrain-aware generator + PPO tracker, 0.5 s receding-horizon references; 0.962 vs 0.230 on 80 cm box, real 75 cm box + stairs + hurdles; the perceptive-generation anchor.
+- [[2604.17335|G1 WBC-Gen+Track]] — Diffusion terrain-aware reference generator + PPO tracker; 0.962 vs 0.230 on 80 cm box, real box/stairs/hurdles; the perceptive-generation anchor.
+- [[2606.05880|TAGA]] — Depth + height-scan + proprioception fusion with an emergent active-gaze module; 120 cm gap on a real G1 (+50%), 65.2% cheaper than full height-scan; the active-perception anchor.
 - [[2602.15827|PHP]] — Motion-matching chains skills into parkour; 1.25 m wall (96% height) in 3.63 s, cat-vault 3.41 m/s, 0.5 m perturbation from depth; the dynamic-terrain ceiling.
 - [[2408.14472|DWL]] — Denoising world model estimates state + terrain from noisy proprioception; zero-shot snow/stairs, robust to pushes + motor failure; the robustness floor to retain.
 - [[2403.10506|HumanoidBench]] — 27-task H1 suite (12 locomotion); flat RL fails, hierarchical helps; frames the exploration wall.
@@ -126,8 +131,10 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 4. **Q4 — Blind robustness as fallback.** When exteroception degrades (occlusion, dark), does the perceptive policy fall back to [[2408.14472|DWL]]-class proprioceptive robustness, or catastrophically depend on depth?
 
 **Related research papers.**
+- [[2606.05880|TAGA]] — Active-gaze perceptive terrain policy; 120 cm gap (+50%), 65.2% cheaper than full height-scan; the active-perception anchor.
 - [[2604.17335|G1 WBC-Gen+Track]] — Perceptive diffusion gen + RL track; 0.962 vs 0.230 box-climb; the anchor.
 - [[2602.15827|PHP]] — Perceptive parkour via motion-matching; 1.25 m wall, 3.41 m/s; dynamic-terrain ceiling.
+- [[2606.04718|CoRe-MoE]] — Contrastive-reweighted MoE for multi-terrain gait transition; 99.13% flat SR, walk↔run zero-shot to 2.5 m/s on a real G1; the gait-transition entry.
 - [[2408.14472|DWL]] — Denoising-WM proprioceptive locomotion; zero-shot rough terrain; robustness floor.
 - [[2107.03996|LocoTransformer]] — Cross-modal depth + proprioception fusion; 92% farther real, 290.5–663% fewer collisions sim; the perception-fusion precedent (quadruped → bipedal).
 - [[2403.10506|HumanoidBench]] — 27-task whole-body benchmark; flat RL fails; the exploration-wall framing.
@@ -137,6 +144,7 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 
 **Benchmarks & metrics.**
 - [[2604.17335|G1 WBC-Gen+Track]] — 80 cm box-climb SR 0.962 vs 0.230, generalizes across obstacle heights/orientations; the perceptive-vertical-mobility metric.
+- [[2606.05880|TAGA]] — 120 cm gap (+50% over prior perceptive max) + 70 cm stepping stones on a real G1, at 65.2% lower training cost; the perceptive gap/foothold metric.
 - [[2602.15827|PHP]] — 0.95 on 76 cm wall at 1.0 m/s, 0.90 on 94 cm wall at 2.0 m/s, real 1.25 m wall; the dynamic-parkour metric.
 - [[2403.10506|HumanoidBench]] — 12 locomotion tasks on H1, 151D proprioception; flat-RL failure rate; the difficulty gradient.
 
@@ -157,7 +165,7 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 **Why it matters.** The reflexive recipe for agile humanoid skills is "imitate more human motion." But raw mocap is *physically infeasible* for the robot — a human's backflip breaks its torque limits, contact timing, and balance margins, so the reward optimizes toward a target the robot can never reach. [[2506.12851|KungfuBot]] diagnoses this: a physics-based pipeline *filters untrackable sequences and corrects contact issues* before RL, hitting 53.25 mm global mean body-position error on easy motions where deployable baselines (OmniH2O, ExBody2) exceed 233 mm — a 4× cut from fixing the *target*, not the policy. [[2605.06593|ReActor]] makes the same move via RL physics-aware retargeting: zero ground/self-penetration, 0.17 cm/s foot-slide, 97.45% downstream RL on G1 (vs 79.85–95.51% baselines, +15.22 pp). [[2605.10063|EFGCL]] shows the extreme payoff — a force-guided curriculum learns backflips and lateral-flips a PPO baseline cannot, and speeds jump-learning 2×. The non-consensus claim: agile-skill quality is bottlenecked by *reference feasibility*, not *demonstration quantity* — fix the target manifold and small data suffices.
 
 **First-principles framing.**
-- **First principle**: A tracking objective $\min \|\,x_{\text{robot}} - \xi_{\text{ref}}\,\|$ is well-posed only if $\xi_{\text{ref}}$ lies on the robot's dynamically-feasible manifold. Raw human mocap does not — it breaks torque, contact-timing, and balance limits — so the first step is *projection onto feasibility*, after which imitation is tractable. This is upstream of any data-quantity question.
+- **First principle**: Asking the policy to track a reference — to keep its body close to the target motion — only makes sense if that reference is something the robot can physically do. Raw human mocap is not: it breaks the robot's torque, contact-timing, and balance limits. So the first step is to project the reference onto what is dynamically feasible (the dynamically-feasible manifold); only then is imitation tractable. This comes before any question of how much data you have.
 - **Assumption being challenged**: That agile-skill competence scales with demonstration quantity. The field collects ever-larger mocap corpora; [[2506.12851|KungfuBot]]'s rejection of untrackable motions (max 54% episode-length ratio) and 4× error cut from *filtering* show the binding constraint is reference feasibility, not data volume.
 - **The bet**: A physics-corrected pipeline cuts tracking error to [[2506.12851|KungfuBot]]'s 53.25 mm (vs >233 mm OmniH2O/ExBody2) and lifts downstream RL to [[2605.06593|ReActor]]'s 97.45% (G1) at zero ground/self-penetration, enabling [[2605.10063|EFGCL]]-class extreme skills (backflips) on small data — feasibility-first, not data-scale.
 
@@ -177,6 +185,14 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 **Related research papers.**
 - [[2506.12851|KungfuBot]] — Physics-based motion processing + adaptive tracking; 53.25 mm; the anchor.
 - [[2605.06593|ReActor]] — RL physics-aware retargeting; 97.45% downstream, zero penetration; the retargeting anchor.
+- [[2606.03476|Human2Humanoid]] — Unsupervised physics-aware cross-morphology retargeting; 88.5% SR, 0.05 cm penetration, 4.7% foot-slide; the cross-morphology retargeting entry.
+- [[2606.03536|Bionic Whole-Body Control]] — Physics-aware latent-diffusion style transfer into executable references; 96.0% real-G1 SR, 0.0047 m/frame foot-slide; the gen-side feasible-reference entry.
+- [[2603.22201|NMR]] — Transformer neural motion retargeting + physics data pipeline; zero joint jumps, 54% fewer self-collisions; the retargeting-quality entry.
+- [[2606.01851|PHASOR]] — Phase-anchored universal action representation; 1.62 mm MPJPE, 90.3% R@1 cross-embodiment retrieval; the phase-structured imitation entry.
+- [[2606.03985|Humanoid-GPT]] — GPT-style zero-shot motion tracking on a 2B-frame corpus; 92.58% SR, <1.5 ms inference; the data-scaling counterpoint to feasibility-first.
+- [[2511.07820|SONIC]] — Motion tracking scaled to 100M frames / 42M params; 99.6% OOD-tracking SR in sim, real-G1 zero-shot on all 50 trajectories; the scaled-tracking counterpoint.
+- [[2504.11054|Meta Motivo]] — FB-CPR behavioral foundation model; zero-shot whole-body control matching task-specific RL with more human-preferred motion; the behavioral-foundation-model entry.
+- [[2405.18418|Puppeteer]] — Hierarchical TD-MPC2 tracking abstract mocap on a 56-DoF humanoid; 97.8% naturalness preference, zero-shot to 3× larger gaps; the hierarchical reference-tracking entry.
 - [[2605.10063|EFGCL]] — Force-guided curriculum; backflips unlearnable by PPO; extreme-skill enabler.
 - [[2604.17335|G1 WBC-Gen+Track]] — Generated + RL-filtered references; gen-side feasibility (feeds A1).
 - [[2403.10506|HumanoidBench]] — Whole-body benchmark with dynamic tasks; the difficulty framing.
@@ -187,6 +203,7 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 **Benchmarks & metrics.**
 - [[2506.12851|KungfuBot]] — 53.25 mm global mean body-position error (easy) vs >233 mm OmniH2O/ExBody2, episode-length-ratio rejection (max 54% untrackable); the imitation-fidelity metric.
 - [[2605.06593|ReActor]] — 0.00% penetration time/depth, 0.17 cm/s foot-slide, 97.45% (G1) downstream RL (vs 79.85–95.51%); the retargeting-quality metric.
+- [[2511.07820|SONIC]] — 99.6% OOD-tracking SR in sim at 100M-frame scale, real-G1 zero-shot on all 50 trajectories; the scaled-tracking-fidelity metric.
 - [[2605.10063|EFGCL]] — Backflip/lateral-flip learnability vs PPO (unlearnable), 2× jump speedup; the extreme-skill metric.
 
 > [!warning] Risks
@@ -257,10 +274,10 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 **First-principles framing.**
 - **First principle**: A real robot's gait is bounded by hard embodiment limits — motor-temperature ceilings, actuator force limits, and (around people) noise budgets — that exist *off* the sim reward surface. A policy optimizing only task success saturates these limits because nothing penalizes them; the cost is invisible until the hardware fails or the gait is unacceptable.
 - **Assumption being challenged**: That task-success rewards alone yield deployable gaits. The field tunes velocity-tracking and terrain rewards; [[2605.27046|Thermal-Aware Residual]]'s 70% overheating under standard policies shows the embodiment cost is *load-bearing for deployment* — a thermally-blind policy is undeployable on hot terrain regardless of its tracking reward.
-- **The bet**: Not one paper's number — [[2604.23702|QuietWalk]] already cuts noise (7.17 dBA) and [[2605.27046|Thermal-Aware Residual]] already drops overheating (70%→<10%), but each as a *separate* single-cost policy. The bet is *joint* regulation: a single residual cost-head, driven by a GRF predictor at [[2604.23702|QuietWalk]]'s R²≈0.99, holds overheating <10% **and** noise ≤+1 dBA over [[2604.23702|QuietWalk]]'s quiet-policy mean, at ≤5% task-SR loss versus the cost-blind base — one head trading the costs off, not two policies in isolation.
+- **The bet**: [[2604.23702|QuietWalk]] already cuts noise (7.17 dBA) and [[2605.27046|Thermal-Aware Residual]] already drops overheating (70%→<10%), but each as a *separate* single-cost policy. The bet is *joint* regulation: one residual cost-head, driven by a GRF predictor at R²≈0.99, holds overheating <10% **and** noise within +1 dBA of QuietWalk's quiet-policy mean, at ≤5% task-SR loss versus the cost-blind base — one head trading the costs off, not two policies in isolation.
 
 **Evidence.**
-- [[2604.23702|QuietWalk]] — Physics-informed GRF predictor (R²=0.989) + quiet RL policy; 7.17 dBA mean / 4.98 dBA peak noise cut across 4 footwear + outdoor terrains; the acoustic/contact-cost anchor.
+- [[2604.23702|QuietWalk]] — Physics-informed GRF predictor (R²≈0.99) + quiet RL policy; 7.17 dBA mean noise cut across 4 footwear types; the acoustic/contact-cost anchor.
 - [[2605.27046|Thermal-Aware Residual]] — Residual thermal policy; overheating 70%→<10%, 650 m + 3 kg, <50 °C; the thermal-cost anchor.
 - [[2502.12152|HUMANUP]] — Strong regularization yields lower (safer) arm-motor temperatures during recovery; the temperature-as-objective precedent (feeds A3).
 - [[2603.20147|AGILE]] — Motion-quality diagnostics (acceleration, jerk, joint-limit) as deployment metrics; the cost-diagnostics substrate.
@@ -273,13 +290,13 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 4. **Q4 — Joint cost objective.** Combine thermal + acoustic + force into one cost-aware reward; does a unified objective dominate single-cost policies, and where do the costs trade off (a quiet gait may be hotter)?
 
 **Related research papers.**
-- [[2604.23702|QuietWalk]] — Physics-informed GRF-aware quiet locomotion; R²=0.989, 7.17 dBA; the acoustic/force anchor.
+- [[2604.23702|QuietWalk]] — Physics-informed GRF-aware quiet locomotion; R²=0.9887/0.9899, 7.17 dBA; the acoustic/force anchor.
 - [[2605.27046|Thermal-Aware Residual]] — Residual thermal-safety policy; 70%→<10% overheating; the thermal anchor.
 - [[2502.12152|HUMANUP]] — Temperature-lowering regularization; the motor-temperature precedent.
-- [[2603.20147|AGILE]] — Motion-quality (jerk/limit) diagnostics; cost-diagnostics substrate.
+- [[2603.20147|AGILE]] — Motion-quality jerk/limit diagnostics + L2C2 regularization lowering RMS joint acceleration/jerk; the cost-diagnostics-and-smoothness substrate.
 - [[2403.10506|HumanoidBench]] — Whole-body actuator-stress benchmark; the embodiment-cost framing.
 - [[2512.01996|Humanoid Loco 15min]] — Long-duration deployment where thermal/wear costs compound; the long-deployment substrate.
-- [[2603.20147|AGILE]] — L2C2 regularization reducing RMS joint acceleration/jerk; the smoothness-as-cost mechanism.
+- [[2605.25546|ISSf-CBF WBC]] — Input-to-state-safe control-barrier whole-body filter for hard joint limits; collision-free vs ~50% for standard CBF at 20% mass mismatch; the hard-constraint complement.
 - [[2502.08844|MuJoCo Playground]] — Efficient sim for training cost-aware policies with physics-informed predictors.
 
 **Benchmarks & metrics.**
@@ -309,7 +326,8 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 - **The bet**: An off-policy/flow learner solves [[2403.10506|HumanoidBench]] tasks in [[2505.22642|FastTD3]]'s <3 hours (beating DreamerV3/TDMPC2/PPO on wall-clock) and trains a deployable humanoid gait in [[2512.01996|Humanoid Loco 15min]]'s 15 minutes on a single consumer GPU — off-policy/flow dominance on wall-clock-to-deployment, PPO left behind.
 
 **Evidence.**
-- [[2505.22642|FastTD3]] — Off-policy TD3 with batch 32,768 + distributional critic; HumanoidBench tasks <3 hrs, beats PPO/SAC/SimbaV2/TDMPC2/DreamerV3 wall-clock, real Booster T1; the off-policy anchor.
+- [[2505.22642|FastTD3]] — Off-policy TD3 with batch 32,768 + distributional critic; HumanoidBench <3 hrs, beats PPO/SAC/TDMPC2/DreamerV3 wall-clock, real Booster T1; the off-policy anchor.
+- [[2604.04539|FlashSAC]] — Off-policy SAC with parallel sim + 10M-transition replay; ~1 order-of-magnitude wall-clock cut vs PPO on sim-to-real humanoid locomotion; corroborates FastTD3's recipe.
 - [[2512.01996|Humanoid Loco 15min]] — Massively-parallel sim-to-real humanoid locomotion in 15 min on RTX 4090, push-robust + dance; the fast-training anchor.
 - [[2602.02481|FPO++]] — Flow policy gradients; first sim-to-real flow-policy RL for humanoid locomotion + motion tracking; the flow-policy anchor.
 - [[2502.08844|MuJoCo Playground]] — GPU-parallel sim, minutes/hours training, zero-shot to Go1 + Berkeley Humanoid; the parallel-sim substrate the off-policy advantage exploits.
@@ -323,8 +341,10 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 
 **Related research papers.**
 - [[2505.22642|FastTD3]] — Fast off-policy humanoid RL; <3 hrs, beats DreamerV3; the anchor.
+- [[2604.04539|FlashSAC]] — Off-policy SAC for sim-to-real humanoid locomotion; ~1 order-of-magnitude wall-clock cut vs PPO across 60+ tasks; the off-policy-beats-PPO peer to FastTD3.
 - [[2512.01996|Humanoid Loco 15min]] — 15-min sim-to-real humanoid locomotion; fast-training anchor.
 - [[2602.02481|FPO++]] — Flow policy gradients; first flow-policy sim-to-real locomotion; flow anchor.
+- [[2408.00342|MuJoCo MPC HumanoidBench]] — MPC beats DreamerV3/TD-MPC2/SAC/PPO on HumanoidBench Stand/Walk/Push; the MPC counterpoint to model-free off-policy.
 - [[2502.08844|MuJoCo Playground]] — GPU-parallel sim; the substrate exploiting off-policy reuse.
 - [[2403.10506|HumanoidBench]] — Wall-clock-to-solve benchmark; the difficulty reference.
 - [[2603.20147|AGILE]] — Scalable RL infra + L2C2 regularization, 6–25 hrs/task; the workflow baseline off-policy methods undercut.
@@ -333,7 +353,9 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 
 **Benchmarks & metrics.**
 - [[2505.22642|FastTD3]] — HumanoidBench/IsaacLab/MuJoCo-Playground wall-clock to solve (<3 hrs), beats PPO/SAC/TDMPC2/DreamerV3; the wall-clock-efficiency metric.
+- [[2604.04539|FlashSAC]] — ~1 order-of-magnitude wall-clock cut vs PPO on sim-to-real humanoid locomotion across 60+ tasks; the off-policy wall-clock metric.
 - [[2512.01996|Humanoid Loco 15min]] — 15-min sim-to-real on RTX 4090; the training-time metric.
+- [[2408.00342|MuJoCo MPC HumanoidBench]] — HumanoidBench Stand/Walk/Push beating DreamerV3/TD-MPC2/SAC/PPO, stable 8 s episodes; the MPC-vs-RL metric.
 - [[2403.10506|HumanoidBench]] — 27-task suite where flat-RL training cost is the baseline; the algorithmic-efficiency diagnostic.
 
 > [!warning] Risks
@@ -359,7 +381,7 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 **Why it matters.** A quadruped's deployable policy must act on proprioception alone — joint angles, IMU, contact — because the privileged context sim provides (friction $\mu$, payload $m$, ground compliance) is unavailable on hardware. The field's two escape routes are exteroception (a camera) or online adaptation (fine-tune on the robot). [[2107.04034|RMA]] shows neither is needed: a base policy trained with a privileged "extrinsics vector," paired with an adaptation module that *infers that vector from recent proprioceptive history* at 10 Hz, lets a Unitree A1 cross sand, mud, rocky, and slippery terrain carrying 12 kg (80% of body weight) with *zero* fine-tuning. The privileged state leaves a signature in proprioception, and a supervised module recovers it. [[2212.07740|TERT]] sharpens the terrain axis: a Terrain Transformer traverses 9 terrains at 100% on sand and 60% on stairs *where RMA's TCN gets 0%* — the *architecture* of context-inference matters. [[2403.13358|QUARD-Auto]] scales skill breadth: an MoE generalist hits 71–90.5% across 99 sub-tasks at only 39.31M active parameters. The claim: the unobserved context is *recoverable from proprioceptive history*, so robust deployment needs neither vision nor real-world trials — just the right inference architecture.
 
 **First-principles framing.**
-- **First principle**: The privileged context $z$ (friction, payload, terrain) is not directly observable on hardware, but it deterministically shapes the robot's proprioceptive response — so $z$ leaves a recoverable signature in the recent history $q_{t-H:t}$. A supervised module $\hat z(q_{t-H:t})$ inverts this, making the privileged state inferable without sensing it.
+- **First principle**: The privileged context — friction, payload, terrain — cannot be read directly off the hardware, but it does shape how the robot's joints and IMU respond. So it leaves a recoverable fingerprint in the recent proprioceptive history. A supervised module can read that history back out into an estimate of the context, making the privileged state inferable without ever sensing it directly.
 - **Assumption being challenged**: That robust deployment requires exteroception or online real-world fine-tuning. The field reaches for cameras or on-robot adaptation; [[2107.04034|RMA]]'s 12 kg-payload, zero-fine-tuning result on 4 terrain types shows proprioceptive inference *alone* covers a wide context range — the vision/fine-tuning requirement comes from not exploiting the proprioceptive signature.
 - **The bet**: A proprioceptive context-inference module sustains locomotion under [[2107.04034|RMA]]'s 12 kg payload (80% body weight) and lifts stair traversal to [[2212.07740|TERT]]'s 60% where TCN-style RMA scores 0%, at 100 Hz control / 10 Hz adaptation with zero real-world fine-tuning — robustness from inference architecture, not added sensors or real trials.
 
@@ -379,6 +401,7 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 **Related research papers.**
 - [[2107.04034|RMA]] — Proprioceptive rapid motor adaptation; 12 kg, zero fine-tuning; the anchor.
 - [[2212.07740|TERT]] — Terrain Transformer; 100% sand / 60% stairs vs RMA 0%; the architecture anchor.
+- [[2509.23745|LocoFormer]] — Transformer-XL long-context generalist locomotion; zero-shot to locked limbs / wheel failure / payload, 0.96 displacement on 10 morphologies; the in-context-adaptation route.
 - [[2403.13358|QUARD-Auto]] — MoE quadruped generalist; 99 sub-tasks; the skill-breadth anchor.
 - [[2107.03996|LocoTransformer]] — Cross-modal depth+proprioception fusion; the exteroceptive counterpoint.
 - [[2003.01239|Evolutionary Meta-Learning Legged]] — Fast real-world adaptation (Minitaur +100% velocity in 50 rollouts / 150 s); the meta-learning route.
@@ -409,7 +432,7 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 
 **First-principles framing.**
 - **First principle**: A learned dynamics model is a *multiplier* on real data — each real transition updates the model and, through imagination, generates many synthetic transitions for policy optimization. Sample efficiency is governed by model accuracy per real interaction, not raw interaction count; a good model makes 5 trajectories worth thousands.
-- **Assumption being challenged**: That closing the sim-to-real dynamics gap requires exhaustive randomization or extensive real rollouts. Domain randomization (the [[2107.04034|RMA]]/[[2408.14472|DWL]] line) and on-robot RL are the defaults; [[2604.02911|DreamTIP]]'s 5-trajectory / 100%-vs-10% result and [[2206.14176|DayDreamer]]'s 1-hour walking show a pretrained-then-dreamed model needs *neither* — the gap is a model-adaptation problem, not a data-volume one.
+- **Assumption being challenged**: That closing the sim-to-real dynamics gap requires exhaustive randomization or extensive real rollouts. Domain randomization (the [[2107.04034|RMA]]/[[2408.14472|DWL]] line) and on-robot RL are the defaults; [[2604.02911|DreamTIP]]'s 5-trajectory 100%-vs-10% result and [[2206.14176|DayDreamer]]'s 1-hour walking show a dreamed model needs *neither* — the gap is a model-adaptation problem, not a data-volume one.
 - **The bet**: A sim-pretrained world model adapts to real quadruped locomotion in [[2604.02911|DreamTIP]]'s ~5 trajectories (100% on a 52 cm climb vs 10% baseline) and [[2603.15759|SimDist]]'s 15–30 minutes, with an epistemic-uncertainty penalty ([[2504.16680|RWM-U]], 0.91 on ANYmal D) bounding model-blind exploitation — dreaming-driven few-shot adaptation, not randomization or extensive real RL.
 
 **Evidence.**
@@ -433,6 +456,8 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 - [[2501.10100|RWM]] — Neural-simulator world model; ANYmal D + G1; cross-embodiment substrate.
 - [[2003.01239|Evolutionary Meta-Learning Legged]] — Meta-learned fast adaptation (50 rollouts / 150 s); the model-free fast-adaptation counterpoint.
 - [[2502.08844|MuJoCo Playground]] — GPU sim for world-model pretraining data; the pretraining substrate.
+- [[1912.01603|Dreamer]] — The latent-imagination MBRL foundation DayDreamer and DreamTIP extend to real robots; 20× the data-efficiency of model-free; the dreaming progenitor.
+- [[2603.04029|Self-Adapting RL]] — Online continual adaptation via world-model feedback; ANYmal recovers from actuator failure in 4 min, real F1Tenth in 8 min; the fault-recovery face of few-shot adaptation.
 
 **Benchmarks & metrics.**
 - [[2604.02911|DreamTIP]] — Go2 100% on 52 cm Climb (vs WMP 10%) and 16 cm Stair (WMP ties 100%), 28.1% avg transfer gain, 5-trajectory adaptation; the dreaming-transfer metric.
@@ -476,6 +501,7 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 **Related research papers.**
 - [[2506.05997|SRU]] — Spatially-enhanced recurrent mapless navigation; 23.5% over LSTM/GRU, 100+ m real; the anchor.
 - [[2604.26504|HiPAN]] — Hierarchical posture-adaptive navigation; 94.7% SR / 83.6 SPL; the traversal anchor.
+- [[2605.21935|MIF]] — Multi-modal interactive fields for humanoid nav in dynamic scenes; 94% interaction-pose safety / 0% collision; the humanoid perceptive-nav entry.
 - [[2605.28442|COTRATE]] — Self-supervised cross-platform traversability; the perception substrate.
 - [[2107.03996|LocoTransformer]] — Vision-guided locomotion to goal; the perception-to-goal precedent.
 - [[2403.13358|QUARD-Auto]] — Emergent adaptive path planning; emergent-planning evidence.
@@ -510,7 +536,7 @@ When the command $c$ is a reference clip $\xi_{1:T}$, the policy can only track 
 > A3, A4, and B1 all hit real limits the standard task reward omits. A4 makes GRF, acoustic, and thermal cost first-class predicted-and-regulated quantities ([[2604.23702|QuietWalk]] R²≈0.99, 7.17 dBA; [[2605.27046|Thermal-Aware Residual]] 70%→<10% overheating); A3 treats fall-recovery as the non-periodic embodiment-stress boundary case ([[2502.12152|HUMANUP]] lower motor temperature, ~6 s recovery); B1 sustains locomotion under real payload ([[2107.04034|RMA]] 12 kg). The insight: task success is necessary but not sufficient — a gait that overheats, deafens, or cannot recover from a fall is undeployable regardless of its tracking reward.
 
 > [!tip] The Locomotion Control Object Is More Morphology-Portable Than the Manipulation Grasp Object
-> B2, A5, and A1 share one representational bet: the locomotion control object (phase-clocked gait + velocity-tracking) transfers across embodiments more readily than the manipulation grasp object does. B2's [[2501.10100|RWM]]/[[2504.16680|RWM-U]] run the *same* world-model + MBRL pipeline across ANYmal D (quadruped) and Unitree G1 (humanoid); A5's off-policy/flow methods ([[2505.22642|FastTD3]], [[2602.02481|FPO++]]) span both unchanged; A1's perception-fusion precedent ([[2107.03996|LocoTransformer]], quadruped) transfers to bipedal terrain. This is the locomotion counterpart to the morphology-invariance direction in [[Embodied-AI|Embodied-AI]] — but where manipulation needs a function-aligned action space to bridge hands, locomotion's gait structure is *already* a low-dimensional cross-morphology invariant.
+> B2, A5, A1, and A2 share one representational bet: the locomotion control object (phase-clocked gait + velocity-tracking) transfers across embodiments more readily than the manipulation grasp object does. B2's [[2501.10100|RWM]]/[[2504.16680|RWM-U]] run the *same* world-model + MBRL pipeline across ANYmal D (quadruped) and Unitree G1 (humanoid); A5's off-policy/flow methods ([[2505.22642|FastTD3]], [[2602.02481|FPO++]]) span both unchanged; A1's perception-fusion precedent ([[2107.03996|LocoTransformer]], quadruped) transfers to bipedal terrain. A2 supplies the direct evidence that the gait's *phase* is the invariant: [[2606.01851|PHASOR]] anchors a universal action representation on motion phase for cross-embodiment transfer (90.3% R@1 Human→Robot retrieval), and [[2606.03476|Human2Humanoid]] bridges morphology gaps with a morphology-invariant end-effector loss. This is the locomotion counterpart to the morphology-invariance direction in [[Embodied-AI|Embodied-AI]] — but where manipulation needs a function-aligned action space to bridge hands, locomotion's gait structure is *already* a low-dimensional cross-morphology invariant.
 
 ---
 

@@ -14,16 +14,20 @@ tags:
 # Promising Research Directions: Sim-to-Real & Real-to-Sim Transfer
 
 > [!abstract] Overview
-> Fifteen research directions across five clusters, ordered by *when* each acts on the reality gap: **train** (A — robustness beyond domain randomization), **reconstruct** (B — invert reality into the simulator), **measure** (C — treat the gap as statistical inference), **deploy** (D — close the residual online), and **bound** (E — act safely under what is left). The framing makes two moves the field usually skips. First, real→sim is a *first-class* gap, not a sub-topic — how well you run reality backward into the simulator now caps how well it predicts forward. Second, the residual gap that survives the first four stages is a *safety* problem at deploy-time, not just a performance one. Each direction states a measurable bet against the consensus, and every number is sourced from a cited `_KnowledgeHub_/{ID}.md` note — never invented. Anchors: the real2sim2real frontier ([[2503.17973|PhysTwin]], [[2511.07416|PhysWorld]], [[2510.11689|Phys2Real]], [[2604.27367|DOT-Sim]], [[2511.04665|Real-to-Sim GS]], [[2605.26638|HyperSim]]) and the online-adaptation + runtime-safety literature ([[2107.04034|RMA]], [[2409.16578|FLaRe]], [[2508.21065|Learning on the Fly]], [[2602.20057|AdaWorldPolicy]], [[2503.10949|SCDA]], [[2409.19190|RAIL]], [[2506.09937|SAFE]]).
+> Fifteen research directions across five clusters. The clusters are ordered by *when* each one acts on the reality gap: **train** (A — robustness beyond domain randomization), **reconstruct** (B — run reality backward into the simulator), **measure** (C — treat the gap as statistical inference), **deploy** (D — close the leftover gap online), and **bound** (E — act safely under what remains).
+>
+> The framing makes two moves the field usually skips. First, real→sim is treated as a gap in its own right, not a side-topic: how well you run reality backward into the simulator sets a ceiling on how well it predicts forward. Second, the gap that survives the first four stages is a *safety* problem at deploy-time, not just a performance one.
+>
+> Each direction states one measurable bet against the consensus, and every number is taken from a cited `_KnowledgeHub_/{ID}.md` note — never invented. Anchors: the real2sim2real frontier ([[2503.17973|PhysTwin]], [[2511.07416|PhysWorld]], [[2510.11689|Phys2Real]], [[2604.27367|DOT-Sim]], [[2511.04665|Real-to-Sim GS]], [[2605.26638|HyperSim]]) and the online-adaptation + runtime-safety work ([[2107.04034|RMA]], [[2409.16578|FLaRe]], [[2508.21065|Learning on the Fly]], [[2602.20057|AdaWorldPolicy]], [[2503.10949|SCDA]], [[2409.19190|RAIL]], [[2506.09937|SAFE]]).
 
 ## Methodology
 
-**Corpus.** 6 sim-real surveys + 17 sim-real correlation/evaluation benchmarks + ~25 anchor methods (real2sim2real, DR-beyond, online adaptation, runtime safety) from `_KnowledgeHub_/`, cross-checked against [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]], [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]], and [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]]. Directions are ordered by when each acts on the gap: **train → reconstruct → measure → deploy → bound**.
+**Corpus.** 6 sim-real surveys + 17 correlation/evaluation benchmarks + ~25 anchor methods (real2sim2real, DR-beyond, online adaptation, runtime safety) from `_KnowledgeHub_/`, cross-checked against [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]], [[07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]], and [[08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]]. Directions are ordered by when they act on the gap: **train → reconstruct → measure → deploy → bound**.
 
 - **Survey scan**: `survey` × {`sim-to-real`, `robotics`, `world-model`, `domain-adaptation`, `manipulation`} across `_KnowledgeHub_/`.
 - **Deep-dive mining**: full read of [[14_Sim-to-Real-Transfer|14_Sim-to-Real-Transfer]], plus [[11_Physics-Aware-Embodied-AI|11_Physics-Aware-Embodied-AI]] and [[09_Contact-Rich-and-Whole-Body-Control|09_Contact-Rich-and-Whole-Body-Control]] for the physics/tactile threads.
 - **Baseline anchoring**: each direction's bet must beat a named frontier method ([[2511.04665|Real-to-Sim GS]], [[2605.26638|HyperSim]], [[2604.27367|DOT-Sim]], [[2510.11689|Phys2Real]], [[2511.07416|PhysWorld]], [[2512.19562|REALM]]) or an online-adaptation/safety anchor ([[2107.04034|RMA]], [[2409.16578|FLaRe]], [[2508.21065|Learning on the Fly]], [[2602.20057|AdaWorldPolicy]], [[2503.10949|SCDA]], [[2409.19190|RAIL]], [[2506.09937|SAFE]], [[2503.08558|FAIL-Detect]]).
-- **Filter**: kept directions with 3–10 attacking papers but no consensus solution; dropped saturated (more-DR-only) and premature (sim-from-scratch-with-full-causality) framings; favored intersections (rendering×physics, real2sim×differentiable-ID, twin×co-training, eval×provable-inference).
+- **Filter**: kept directions backed by 3–10 papers but with no agreed-on solution yet; dropped two kinds — the saturated ones (just add more domain randomization) and the premature ones (build a sim from scratch with full causal physics). Favored directions that sit where two threads cross: rendering with physics, real-to-sim with differentiable system-ID, the digital twin with co-training, and evaluation with provable statistical inference.
 
 ---
 
@@ -115,14 +119,17 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 3. **Q3 — Affordance labels from generation.** Can [[2604.11674|AffordSim]]'s VoxAfford scorer auto-label [[2604.26509|3D Generation for Embodied AI Survey]]-style assets, closing the annotation bottleneck?
 
 **Related research papers.**
-- [[2604.11674|AffordSim]] — Affordance-aware data generator; collection SR 98/79/64% (Easy/Medium/Hard) vs [AnyGrasp](https://arxiv.org/abs/2212.08333) 67/15/3%; ~24% zero-shot real ceiling.
+- [[2604.11674|AffordSim]] — Affordance-aware data generator; collection SR 98/79/64% (Easy/Medium/Hard) vs [[2212.08333|AnyGrasp]] 67/15/3%; ~24% zero-shot real ceiling.
 - [[2604.25459|GS-Playground]] — Batch-3DGS simulator + Image-to-Physics real2sim; 90% real SR; renders semantics-agnostic.
 - [[2605.06311|VISER]] — Ray-traced PBR benchmark, r=0.92, 1,000+ assets; realism without semantic randomization.
 - [[2605.26638|HyperSim]] — 3DGS background + constraint-aware foreground + adversarial trajectories; 75%→95% with 35 demos.
 - [[2511.04831|Isaac Lab]] — GPU sim at 900K–1.6M FPS with RTX rendering; the physics backbone an in-the-loop renderer attaches to.
 - [[2506.18088|RoboTwin 2.0]] — MLLM-generated tasks + 5-axis DR; +24.4% real few-shot; the strong DR baseline to beat on semantic tasks.
 - [[2604.26509|3D Generation for Embodied AI Survey]] — Simulation-readiness taxonomy; survey, no method.
-- [[2603.13825|Explicit-WM Manipulation]] — Digital-twin construction ([Hunyuan3D](https://arxiv.org/abs/2501.12202) + [[2304.07193|DINOv2]] alignment); 75%+ on 6/9 tasks; semantics via VLM, not randomized in sim.
+- [[2603.13825|Explicit-WM Manipulation]] — Digital-twin construction ([[2501.12202|Hunyuan3D]] + [[2304.07193|DINOv2]] alignment); 75%+ on 6/9 tasks; semantics via VLM, not randomized in sim.
+- [[2604.11138|ViserDex]] — In-loop 3DGS + SH-coefficient augmentation (structured DR inside the Gaussians); 37.6 reorientations nominal / ~25 under adversarial lighting, 1.6× faster than tiled; randomizes appearance, not affordance.
+- [[2502.20396|Humanoid Sim2Real Dex]] — Vision-based dexterous recipe (autotuned modeling + DR + distillation); 80% box-lift, 60–80% zero-shot on unseen objects, two-hand cross-embodiment; strong appearance+dynamics-DR baseline.
+- [[2603.16861|MolmoBot]] — Procedural MuJoCo data (1.8M traj) + DR *without* photoreal rendering; 79.2% real pick-place vs π0.5-DROID 39.2%; contrarian proof that task diversity, not realism, drives the gain.
 
 **Benchmarks & metrics.**
 - [[2604.11674|AffordSim]] — 50-task affordance benchmark; ~24%-average zero-shot real (best 25%, mug-hang ~10%); the ceiling to break.
@@ -148,12 +155,12 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **First-principles framing.**
 - **First principle**: A reward grounded in a physical law (momentum, Newton's third law, contact mechanics) is a function of physical state, not of training distribution — it scores *any* trajectory correctly, on hardware the policy never saw. Actions are distribution-bound; physics-grounded rewards are distribution-free.
 - **Assumption being challenged**: That the policy is the transferable object. The teacher-student / DR-distillation orthodoxy ([[2511.15200|VIRAL]], [[2603.15956|ExpertGen]], [[2210.13702|DeXtreme]]) hardens the action mapping against the gap — but a policy hardened on *simulated* dynamics still inherits the dynamics gap, whereas a PINN-estimated force reward re-grounds in real physics at deployment.
-- **The bet**: A PINN-estimated physics reward (GRF, contact wrench) transfers and generalizes across *conditions* where action policies don't — matching [[2604.23702|QuietWalk]]'s R²>0.98 sensor-free accuracy as a reward holding the −7.17 dBA objective across 4 footwear types and outdoor terrains. (Cross-*embodiment* portability — robot A's PINN as robot B's reward — is the speculative extension Q2 probes; [[2604.23702|QuietWalk]] shows only single-robot cross-condition transfer.)
+- **The bet**: A PINN-estimated physics reward (GRF, contact wrench) transfers across *conditions* where action policies don't — matching [[2604.23702|QuietWalk]]'s R²>0.98 sensor-free accuracy as a reward that holds the −7.17 dBA objective across 4 footwear types and outdoor terrains. (Cross-*embodiment* portability — robot A's PINN as robot B's reward — is the speculative extension Q2 probes; [[2604.23702|QuietWalk]] shows only single-robot cross-condition transfer.)
 
 **Evidence.**
 - [[2604.23702|QuietWalk]] — Inverse-dynamics PINN estimates GRF from proprioception (R²=0.9887/0.9899, RMSE 14.49/14.00 N); frozen predictor → reward; generalizes across 4 footwear + outdoor terrains — the transferable-reward existence proof.
 - [[2511.15200|VIRAL]] — Teacher-student visual sim-to-real (54/59 cycles); RSI ablation 95% vs <10% — the canonical *action*-transfer pipeline this contrasts with.
-- [[2603.15956|ExpertGen]] — Behavior prior + DSRL + distillation; 90.5% [AutoMate](https://arxiv.org/abs/2407.08028) — action transfer, reward stays sparse.
+- [[2603.15956|ExpertGen]] — Behavior prior + DSRL + distillation; 90.5% [[2407.08028|AutoMate]] — action transfer, reward stays sparse.
 - [[2605.00080|WM Robot Learning Survey]] — Model value is "utility for action and physical consistency, not visual realism" — the rationale for physics-grounded transfer.
 
 **Concrete research questions.**
@@ -164,11 +171,13 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **Related research papers.**
 - [[2604.23702|QuietWalk]] — PINN GRF predictor (R²>0.98) frozen into RL reward; −7.17 dBA, 4-footwear robust; the transferable-reward anchor.
 - [[2511.15200|VIRAL]] — Visual sim-to-real, teacher→student; 54/59 cycles; action transfer.
-- [[2603.15956|ExpertGen]] — Behavior prior + DSRL + distillation; 90.5% [AutoMate](https://arxiv.org/abs/2407.08028); action transfer.
+- [[2603.15956|ExpertGen]] — Behavior prior + DSRL + distillation; 90.5% [[2407.08028|AutoMate]]; action transfer.
 - [[2210.13702|DeXtreme]] — VADR + PPO in-hand reorientation; 27.8 vs 14.8 (VADR vs manual DR); action transfer, hand-designed reward.
 - [[2511.07416|PhysWorld]] — Object-centric residual RL on a reconstructed world model; 82% real; reward grounded in twin physics, not transferred.
 - [[2510.11689|Phys2Real]] — Conditions policy on physical params (CoM, friction); 57% vs 23% (weight-top T-block); physics as input, not transferable reward.
 - [[2603.04029|Self-Adapting RL]] — [[2301.04104|DreamerV3]] residual OOD detection → online fine-tune; adaptation trigger adjacent to a transferable physics signal.
+- [[2601.02778|Force-Based Sim2Real]] — Zero-shot force-based dexterous grasp + in-hand reorientation with tactile feedback; 25.1 vs 1.1 rotations with/without contact sensing; force as the transferable quantity, via the policy not the reward.
+- [[2605.28812|CoP Tactile]] — Physics-grounded Center-of-Pressure contact rep (3D force + 3D location) that transfers zero-shot where raw taxels fail; 0.78 peg-in-hole, latents cluster by mass; a transferable contact *representation*.
 - [[2601.07823|Video Generation in Robotics Survey]] — Lists "integrating physics priors" as a top direction; survey, no reward-transfer method.
 
 **Benchmarks & metrics.**
@@ -188,7 +197,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 | **Cluster** | A — Forward Sim-to-Real |
 | **Thesis** | The field tunes controller gains to minimize system-identification error. But the gains that best-fit sim dynamics are *not* the gains that best-transfer — stiff, low-sysID-error gains produce high-frequency oscillation on real hardware and the worst transfer. The bet: co-optimizing gains *jointly with* domain randomization — instead of fixing gains then randomizing around them — beats best-fixed-gain DR on contact-rich tasks, reaching RL's 99%+ regime without per-gain hand-tuning by recovering the SR that stiff gains silently destroy. |
 | **Anchor surveys** | [[2605.00080\|WM Robot Learning Survey]], [[2604.04974\|Video-to-Control Survey]], [[2507.10087\|Foundation Robotics Review]] |
-| **Key targets** | Recover the SR that stiff gains destroy despite lowest sysID error ([[2604.02523\|Tune to Learn]]); RL 99%+ achievable across gain regimes only with per-gain hyperparameter tuning; beat best-fixed-gain DR on [AutoMate](https://arxiv.org/abs/2407.08028)-class contact tasks |
+| **Key targets** | Recover the SR that stiff gains destroy despite lowest sysID error ([[2604.02523\|Tune to Learn]]); RL 99%+ achievable across gain regimes only with per-gain hyperparameter tuning; beat best-fixed-gain DR on [[2407.08028\|AutoMate]]-class contact tasks |
 
 **Why it matters.** [[2604.02523|Tune to Learn]] is the result almost nobody has internalized: the gains with the *lowest* sysID error — stiff, overdamped — give the *worst* sim-to-real transfer, amplifying high-frequency oscillation on hardware. RL can reach 99%+ across *all* gain regimes, but only with per-gain tuning. The field treats gains as a fixed robot property, or tunes them for low tracking error during sysID — the wrong objective. The gain is really an unrecognized sim-to-real hyperparameter: it sets the dynamics distribution the policy trains against, the action-space smoothness, and the deployment oscillation spectrum all at once. [[2604.04974|Video-to-Control Survey]] names "control-loop closure" and "physical inconsistencies" as gaps without spotting gains as the lever. Co-optimizing gains jointly with the DR distribution treats control and dynamics as one coupled transfer problem.
 
@@ -200,7 +209,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **Evidence.**
 - [[2604.02523|Tune to Learn]] — Stiff/overdamped gains: lowest sysID error, worst transfer, high-frequency oscillation; RL hits 99%+ only with per-gain tuning; compliant/overdamped best for BC — the gain-is-a-transfer-hyperparameter result.
 - [[2210.13702|DeXtreme]] — Reward adds action-delta + joint-velocity penalties — implicit acknowledgment that action smoothness governs transfer, never made a first-class gain co-optimization.
-- [[2602.23253|SPARR]] — Asymmetric real residual corrects base actions; 95–100% [AutoMate](https://arxiv.org/abs/2407.08028); the residual absorbs gain/dynamics mismatch the base policy can't.
+- [[2602.23253|SPARR]] — Asymmetric real residual corrects base actions; 95–100% [[2407.08028|AutoMate]]; the residual absorbs gain/dynamics mismatch the base policy can't.
 - [[2604.04974|Video-to-Control Survey]] — Names control-loop closure + physical inconsistency; doesn't spot gains as the lever — the gap this fills.
 
 **Concrete research questions.**
@@ -211,7 +220,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **Related research papers.**
 - [[2604.02523|Tune to Learn]] — Systematic $K_p/K_d$ study across BC/RL/sim2real; stiff gains lowest sysID error, worst transfer; the anchor.
 - [[2210.13702|DeXtreme]] — VADR + action-smoothness reward; 27.8 vs 14.8 reorientations; smoothness as implicit gain proxy.
-- [[2602.23253|SPARR]] — Sim base + real residual; 95–100% [AutoMate](https://arxiv.org/abs/2407.08028), 74.5% [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/robotic-grasping-and-manipulation-assembly/assembly); residual absorbs gain mismatch.
+- [[2602.23253|SPARR]] — Sim base + real residual; 95–100% [[2407.08028|AutoMate]], 74.5% [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/robotic-grasping-and-manipulation-assembly/assembly); residual absorbs gain mismatch.
 - [[2511.15200|VIRAL]] — Delta action space flagged critical in ablation; action structure governs transfer, gains not co-optimized.
 - [[2603.15956|ExpertGen]] — DSRL preserves the motion manifold while optimizing reward; manifold-preservation is gain-adjacent.
 - [[2510.11689|Phys2Real]] — Conditions on friction/CoM; the dynamics side of the gain×dynamics coupling.
@@ -219,14 +228,14 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 - [[2605.00080|WM Robot Learning Survey]] — Open-loop vs closed-loop divergence; the closed-loop is where gains bite; survey.
 
 **Benchmarks & metrics.**
-- [AutoMate](https://arxiv.org/abs/2407.08028) (8–10 tasks via [[2602.23253|SPARR]] / [[2603.15956|ExpertGen]]) — Contact-rich insertion/assembly; 90.5–100% SR; where gains most affect transfer.
+- [[2407.08028|AutoMate]] (8–10 tasks via [[2602.23253|SPARR]] / [[2603.15956|ExpertGen]]) — Contact-rich insertion/assembly; 90.5–100% SR; where gains most affect transfer.
 - [[2604.02523|Tune to Learn]] — Per-gain sysID error vs sim2real SR + oscillation; the metric pairing defining the co-optimization objective.
 - [[2510.17950|RoboChallenge]] — Table30 contact/precision splits (precise 3D localization 18% SR); real-robot stress test for oscillation-prone gains.
 
 > [!warning] Risks
 > - **Gain co-optimization explodes the search space** — adding $(K_p, K_d)$ to DR multiplies training cost. → Use [[2604.02523|Tune to Learn]]'s finding to seed a narrow compliant/overdamped prior rather than searching the full grid.
 > - **Hardware gain limits** — real controllers cap achievable gains; co-optimized values may be infeasible. → Constrain the co-optimization to the hardware's admissible gain box and validate on the real controller.
-> - **Effect may be task-specific** — gains matter most for contact; free-space tasks may show little gain. → Scope the claim to contact-rich tasks ([AutoMate](https://arxiv.org/abs/2407.08028)/[NIST](https://www.nist.gov/el/intelligent-systems-division-73500/robotic-grasping-and-manipulation-assembly/assembly)) and report the free-space null result honestly.
+> - **Effect may be task-specific** — gains matter most for contact; free-space tasks may show little gain. → Scope the claim to contact-rich tasks ([[2407.08028|AutoMate]]/[NIST](https://www.nist.gov/el/intelligent-systems-division-73500/robotic-grasping-and-manipulation-assembly/assembly)) and report the free-space null result honestly.
 
 ---
 
@@ -263,12 +272,15 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 
 **Related research papers.**
 - [[2511.04665|Real-to-Sim GS]] — Joint 3DGS + soft-body sysID; r=0.915 vs 0.649; the reconstruction-fidelity anchor.
-- [[2512.19562|REALM]] — Names the real-to-sim gap; r=0.92 overall / r=0.88 default; [[2410.24164|π0]]/[π0-FAST](https://arxiv.org/abs/2501.09747)/[GR00T-N1.5](https://huggingface.co/nvidia/GR00T-N1.5-3B) degrade most on unseen objects.
+- [[2512.19562|REALM]] — Names the real-to-sim gap; r=0.92 overall / r=0.88 default; [[2410.24164|π0]]/[[2501.09747|π0-FAST]]/[GR00T-N1.5](https://huggingface.co/nvidia/GR00T-N1.5-3B) degrade most on unseen objects.
 - [[2605.26638|HyperSim]] — Reconstruction + co-training; 75%→95%; fidelity-driven SR.
 - [[2503.17973|PhysTwin]] — Physics-informed deformable reconstruction from video; the inversion engine.
-- [[2504.03597|Real-is-Sim]] — Dynamic twin ([Embodied Gaussians](https://arxiv.org/abs/2406.10788)) corrected at 60 Hz by real RGB; 57%→80%, 82% best PushT; continuous real→sim correction.
-- [[2603.13825|Explicit-WM Manipulation]] — Twin via [Hunyuan3D](https://arxiv.org/abs/2501.12202) + [[2304.07193|DINOv2]]/ICP alignment; 90.91% mug-free vs 27.27% direct — alignment fidelity gates SR.
+- [[2504.03597|Real-is-Sim]] — Dynamic twin ([[2406.10788|Embodied Gaussians]]) corrected at 60 Hz by real RGB; 57%→80%, 82% best PushT; continuous real→sim correction.
+- [[2603.13825|Explicit-WM Manipulation]] — Twin via [[2501.12202|Hunyuan3D]] + [[2304.07193|DINOv2]]/ICP alignment; 90.91% mug-free vs 27.27% direct — alignment fidelity gates SR.
 - [[2404.09833|Video2Game]] — Single-video → interactive NeRF+mesh+physics twin; 100+ FPS browser; appearance-heavy, lighter physics.
+- [[2512.16881|PolaRiS]] — Interactive sim from real-video scans (wrist-camera); r=0.9 avg / 0.98 best vs RoboArena, <20 min/scene; reconstruction fidelity → forward correlation at scale.
+- [[2604.15805|WorldComposer]] — Generative real-to-sim from one panorama → photoreal 3DGS twin + collision mesh; r=0.91 sim-real SR; the generative-inversion route to B1's r>0.9 target.
+- [[2604.08544|SIM1]] — Deformable data engine, sub-mm geometric + AVBD-stable dynamic alignment; 76% zero-shot from de-novo init where real-data baselines hit 0%; joint inversion where B1's gap is widest.
 - [[2604.26509|3D Generation for Embodied AI Survey]] — Generative digital twins as the real2sim bridge; survey, names the bottleneck.
 
 **Benchmarks & metrics.**
@@ -315,12 +327,16 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 - [[2511.04665|Real-to-Sim GS]] — Physical-param optimization from interaction video; physics-ablation load-bearing.
 - [[2604.10856|BridgeSim]] — Flow-matching observational calibrator + truncated Q-estimator for OL→CL; +19.1 DS; test-time calibration adjacent to differentiable sysID.
 - [[2603.04029|Self-Adapting RL]] — Prediction-residual OOD detection → online fine-tune; residual-driven recalibration.
+- [[2603.04531|PTLD]] — Privileged tactile distillation that *bypasses* tactile-sensor sim by distilling real privileged tactile; +182% rotation, 50% lower 6D pose error; the distill-around-the-gap alternative to differentiable tactile sim.
+- [[2605.28812|CoP Tactile]] — Differentiable calibration recovers taxel orientations by minimizing inferred-vs-observed wrench, *without* ground-truth force; 0.78 peg-in-hole zero-shot; calibration-as-gradient-descent for tactile.
+- [[2408.06506|TacSL]] — GPU visuotactile sim (200× faster image gen) + sim2real via physics-param randomization + tactile-image augmentation; 91.4% peg placement, augmentation lifts real SR 27.2%→87.7%; the high-throughput tactile substrate.
+- [[2505.18472|ManiFeel]] — Visuotactile sim benchmark (13 tasks, GelSight R1.5 validated against real); sim-to-real consistency confirmed (gear-assembly +14 pp); establishes that tactile-sim trends transfer.
 - [[2604.04974|Video-to-Control Survey]] — Latent-action identifiability gap; survey, names the recovery problem.
 - [[2605.00080|WM Robot Learning Survey]] — World models as learned simulators whose parameters must be identified; survey.
 
 **Benchmarks & metrics.**
 - [[2510.11689|Phys2Real]] — OOD T-block SR: 57% vs 23% (weight-top), 100% vs 79% (weight-bottom); the estimation-vs-DR headline.
-- [[2604.27367|DOT-Sim]] — 1.71 mm Chamfer (vs 1.74 [Taxim](https://arxiv.org/abs/2109.04027)), PSNR 30.48, 96.55% tumor zero-shot, 0.896 mm trajectory error; differentiable-calibration fidelity.
+- [[2604.27367|DOT-Sim]] — 1.71 mm Chamfer (vs 1.74 [[2109.04027|Taxim]]), PSNR 30.48, 96.55% tumor zero-shot, 0.896 mm trajectory error; differentiable-calibration fidelity.
 - [[2511.04665|Real-to-Sim GS]] — Physics-ablation correlation collapse; the value of identified (vs randomized) parameters.
 
 > [!warning] Risks
@@ -363,6 +379,10 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 - [[2511.07416|PhysWorld]] — Generated video → reconstructed twin → residual RL; 82% real; twin built from generated, not real, video.
 - [[2603.13825|Explicit-WM Manipulation]] — Per-object twin + sim sampling + VLM checker; 6/9 zero-shot tasks ≥75%; twin as planning sandbox, not data engine.
 - [[2511.04665|Real-to-Sim GS]] — Grounded twin used as evaluator; the substrate this repurposes for data.
+- [[2509.24948|RehearseVLA]] — Sim post-training in a physically-consistent world model + VLM reflector; 79.6% LIBERO from 5 demos (vs 74.85% OpenVLA-OFT), real 20%→30%; world-model-as-data-engine for VLA.
+- [[2604.08544|SIM1]] — Grounded deformable data engine; synthetic-only beats real-data baselines +50%/+13%/+47% on spatial/texture/lighting shifts at 27× lower cost, 6.8× throughput; the data-engine angle for deformables.
+- [[2604.11386|ComSim]] — DiT neural simulator turns RoboTwin classical-sim videos into "pseudo-real" data; 10 real + 200 pseudo-real → 28/30 (vs 17/30 from 20 real), 12/30 OOD vs 0/30; classical precision + neural realism as one engine.
+- [[2604.15805|WorldComposer]] — "Digital Cousins" from one panorama for augmentation; 50 real + 1,000 sim → 85% real SR (r=0.91 grounding); the generative-cousins engine vs single-twin.
 - [[2605.00080|WM Robot Learning Survey]] — World models as data amplification + learned RL environments; survey rationale.
 
 **Benchmarks & metrics.**
@@ -440,12 +460,12 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **Why it matters.** Two questions, one mechanism. *First*, when a benchmark reports a high sim-real correlation, is that number a real property of the sim or an artifact of the nominal conditions it was measured on? [[2405.05941|SIMPLER]] reports r≥0.85 / 0.890, [[2605.06311|VISER]] r=0.92, [[2604.21686|WorldMark]] ρ>0.9 — every one is an *in-distribution* correlation, measured on the conditions the sim was tuned for. [[2502.10694|UDA Simulation Study]] warns that method effectiveness is "highly context-dependent" and some methods show "negative adaptation" — doing *worse* than nothing under shift. [[2402.08191|THE COLOSSEUM]] already shows single perturbations cause 30–50% SR drops with only R²=0.614 sim↔real degradation. So re-measure: shift each factor (lighting, dynamics, object, viewpoint) on both sim and real, re-measure r, report which high-r sims fall below a usable threshold. *Second*, once you have that per-factor table, you can *act* on it. The field picks which sim to deploy with one global scalar — as if the deploy-or-not call were wholesale. It is not: [[2402.08191|THE COLOSSEUM]]'s 14 factors each drop SR 30–50% *differently*, so a sim worth trusting under appearance shift may be the wrong sim under dynamics shift. The deliverable is a routing gate — a per-(sim, factor) trust map (rows from the stress-test, plus [[2512.19562|REALM]]'s per-perturbation validation) wired into [[2604.24018|Sim2Real Betting]]'s portfolio so the estimator gets per-factor weights instead of one aggregate edge. Stress-test produces the diagnosis; the gate routes on it.
 
 **First-principles framing.**
-- **First principle**: A correlation coefficient certifies the evaluator only for the conditions it was computed on — OOD validity is a *separate* quantity that must be measured, never inherited. And because a sim's reliability is a *function over perturbation factors* (different physics approximations break under different shifts), the optimal sim-to-trust changes with the factor; a per-factor gate exploits structure a single scalar throws away.
-- **Assumption being challenged**: That one in-distribution r ([[2405.05941|SIMPLER]], [[2605.06311|VISER]], [[2604.21686|WorldMark]]) certifies a usable evaluator *and* can gate a sim wholesale. The benchmark community reads r>0.85 as "this sim predicts real performance," and the portfolio literature ([[2604.24018|Sim2Real Betting]]) weights sims by aggregate edge — but no one has shown r survives intentional shift, and [[2402.08191|THE COLOSSEUM]]'s factor-wise 30–50% spread (R²=0.614) shows a global score averages over exactly the per-factor structure that should *decide* which sim to deploy when.
-- **The bet**: (i) A perturbation-stress-test diagnoses every current high-r sim as in-distribution-only — dropping measured r below a usable r<0.7 under deliberate OOD shift, proving the published r>0.85–0.92 are validity artifacts. (ii) The resulting per-factor trust map, used as a routing gate, lifts [[2604.24018|Sim2Real Betting]]'s 70–100% win rate over the single-global-edge baseline on shift-mixed deployment, with the gain largest on the factors where (i) found the sharpest r-collapse. (Whether dynamics or appearance factors dominate the routing gain is an empirical output of the gate, not assumed.)
+- **First principle**: A sim-real correlation number only vouches for the sim under the exact conditions it was measured on. Whether it still holds out-of-distribution (OOD) is a *different* number — you have to measure it, not assume it carries over. And a sim's trustworthiness is really one number *per perturbation factor*: different physics shortcuts break under different shifts, so the best sim to trust changes with the factor. Checking each factor separately catches structure that one overall score hides.
+- **Assumption being challenged**: That a single in-distribution correlation r ([[2405.05941|SIMPLER]], [[2605.06311|VISER]], [[2604.21686|WorldMark]]) both proves the sim is a usable yardstick *and* lets you trust or reject it as a whole. The benchmark community reads r>0.85 as "this sim predicts real performance," and the portfolio work ([[2604.24018|Sim2Real Betting]]) weights sims by their overall edge — but no one has shown that r holds up once you deliberately shift conditions, and [[2402.08191|THE COLOSSEUM]]'s 30–50% spread across factors (R²=0.614) shows a single overall score averages away the per-factor detail that should decide which sim to deploy.
+- **The bet**: (i) A perturbation stress-test exposes every current high-r sim as in-distribution-only — its measured r drops below a usable r<0.7 once you deliberately shift conditions (OOD) — so the published r>0.85–0.92 only held because nothing was perturbed. (ii) The resulting per-factor trust map, used as a gate that routes each query to the right sim, lifts [[2604.24018|Sim2Real Betting]]'s 70–100% win rate over the single-overall-edge baseline on deployments that mix several shifts, with the gain largest where (i) found r collapsing hardest. (Whether dynamics or appearance factors dominate is something the experiment reveals, not an assumption.)
 
 **Evidence.**
-- [[2405.05941|SIMPLER]] — r=0.855 / 0.890 + low MMRV, but an in-distribution correlation tuned via sysID + visual matching — the high-r number whose validity is stress-tested.
+- [[2405.05941|SIMPLER]] — r>0.85 (Google Robot) / 0.890 (BridgeData) + low MMRV, but an in-distribution correlation tuned via sysID + visual matching — the high-r number whose validity is stress-tested.
 - [[2605.06311|VISER]] — r=0.92 in-distribution, yet *itself* reports performance "suboptimal on most OOD tasks" and "drops drastically" under distractors — the in/OOD validity split visible inside the benchmark.
 - [[2402.08191|THE COLOSSEUM]] — 14 perturbation factors; 30–50% single-perturbation SR drop, R²=0.614 sim↔real (distractor/color/lighting worst) — the shift generator and the per-factor SR structure the gate indexes.
 - [[2502.10694|UDA Simulation Study]] — Context-dependent effectiveness + "negative adaptation" — shift can *invert*, not just weaken, a relationship, and the deploy decision is per-axis, not wholesale.
@@ -456,13 +476,15 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 3. **Q3 — Per-factor vs global routing at deploy-time.** Feed the gate to [[2604.24018|Sim2Real Betting]] as per-factor weights vs a single aggregate edge; does per-factor routing raise the win rate on shift-mixed deployment, and on which factors does the gain concentrate? Following [[2502.10694|UDA Simulation Study]], is there a perturbation under which sim r goes *negative* (ranks policies backward)?
 
 **Related research papers.**
-- [[2405.05941|SIMPLER]] — r=0.855/0.890 in-distribution; visual matching + sysID; the headline evaluator under test.
+- [[2405.05941|SIMPLER]] — r>0.85 (Google Robot) / 0.890 (BridgeData) in-distribution; visual matching + sysID; the headline evaluator under test.
 - [[2605.06311|VISER]] — r=0.92; flags own OOD weakness; in/OOD validity split visible; the in-distribution scalar a per-factor gate replaces.
 - [[2402.08191|THE COLOSSEUM]] — 14 perturbation factors, R²=0.614; the OOD shift harness and factor decomposition the gate is built on.
 - [[2604.24018|Sim2Real Betting]] — Biased-bank betting; 70–100% win with a single aggregate edge; the portfolio router the gate weights per factor.
 - [[2502.10694|UDA Simulation Study]] — Context-dependent effectiveness + negative adaptation; the validity-under-shift and per-axis-deploy warning.
 - [[2512.19562|REALM]] — 15 perturbation factors with real-to-sim validation; r=0.92 overall vs r=0.88 default — pre-validated rows for the gate's trust map.
 - [[2604.21686|WorldMark]] — ρ>0.9 vs human judgment, but control-alignment leaders ≠ visual-quality leaders — proxy disagreement showing the deploy decision is multi-dimensional.
+- [[2512.16881|PolaRiS]] — Real-to-sim eval from real-video scans; r=0.9 avg (up to 0.98 vs RoboArena), <20 min/scene; a high-r evaluator the gate must still stress-test per factor.
+- [[2603.22126|ROBOGATE]] — Boundary-focused failure discovery across simulators; VLAs at LIBERO 97.65% drop to 0/68 Isaac Sim industrial (GR00T N1.6, 97.65 pp gap), AUC 0.780; sharpest evidence one benchmark's r doesn't transfer across sims.
 - [[2509.15273|Embodied Arena]] — Unified evolving eval across 22+ benchmarks; the platform the stress-test and gate can be hosted and refreshed on.
 
 **Benchmarks & metrics.**
@@ -487,9 +509,9 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **Why it matters.** Build one accurate sim and trust it — that is the instinct, and it optimizes the wrong thing. Real-performance estimation is variance reduction, and a bank of cheap biased sims can beat a single accurate one. [[2604.24018|Sim2Real Betting]] proves it: sequential betting over a *bank of diverse sims* (Cover's universal portfolio, Kelly bets) wins 70–100% over Monte Carlo, *tolerating bias when an informative predictive edge is present*. [[2510.04354|SureSim]] formalizes the same idea as Prediction-Powered Inference — pair a few real outcomes with abundant sim predictions to get finite-sample-valid confidence intervals, cutting real trials 20–25% and tightening CIs 14.4% with 700 extra sims. A single sim's bias is not a bug to eliminate; it is a signal to weight. [[2502.10694|UDA Simulation Study]] adds that no single method is universally best, so a portfolio of biased estimators dominates committing to one. The open work: make "portfolio of biased sims" a first-class estimator with *provable* real-performance bounds, and characterize when it beats the single-accurate-sim baseline at equal compute.
 
 **First-principles framing.**
-- **First principle**: Estimating real performance is finite-sample inference — what matters is the estimator's variance and the validity of its confidence interval, not the point-fidelity of any one sim. Bias is admissible if it is informative and corrected for.
-- **Assumption being challenged**: That a single high-fidelity sim is the goal. The accuracy-maximizing orthodoxy spends compute making one sim better — but [[2604.24018|Sim2Real Betting]]'s 70–100% win from a biased bank shows portfolio variance reduction beats marginal fidelity, and [[2510.04354|SureSim]]'s PPI gets provable bounds from imperfect sims directly.
-- **The bet**: A portfolio of cheap biased sims yields tighter *provable* (finite-sample-valid) CIs on real performance than one expensive accurate sim at equal compute — reproducing [[2604.24018|Sim2Real Betting]]'s 70–100% win and [[2510.04354|SureSim]]'s 20–25% real-trial reduction, and mapping the compute-allocation frontier where the portfolio wins.
+- **First principle**: Estimating real performance is a statistics problem on a small number of real trials. What matters is how much the estimate jitters and whether its confidence interval is trustworthy — not how accurate any single sim is on its own. A biased sim is fine to use, as long as the bias carries useful signal and you correct for it.
+- **Assumption being challenged**: That the goal is one high-fidelity sim. The accuracy-first habit spends compute making a single sim better — but [[2604.24018|Sim2Real Betting]]'s 70–100% win from a bank of biased sims shows that averaging many sims to cut the jitter beats squeezing more accuracy out of one, and [[2510.04354|SureSim]]'s Prediction-Powered Inference (PPI) gets provable error bounds straight from imperfect sims.
+- **The bet**: A portfolio of cheap biased sims gives tighter *provable* confidence intervals (CIs) on real performance — confidence intervals whose coverage is guaranteed even from a small sample (finite-sample-valid) — than one expensive accurate sim at the same compute, reproducing [[2604.24018|Sim2Real Betting]]'s 70–100% win and [[2510.04354|SureSim]]'s 20–25% fewer real trials, and mapping where on the compute-budget curve the portfolio wins.
 
 **Evidence.**
 - [[2604.24018|Sim2Real Betting]] — Sequential betting over a biased-sim bank (Cover's portfolio, Kelly bets); 70–100% win over Monte Carlo; tolerates bias with predictive edge — the portfolio-beats-single proof.
@@ -559,6 +581,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 - [[2107.04034|RMA]] — Proprioception-only latent-extrinsics online adaptation; zero real fine-tune, 12 kg payload; the anchor.
 - [[2409.16578|FLaRe]] — RL fine-tuning to masterful policies; +30.7% real, 72% [LoCoBot](http://www.locobot.org/) transfer (6 h); deploy-time adaptation in manipulation.
 - [[2602.20057|AdaWorldPolicy]] — World-model-supervised online adaptation at 4 Hz; OOD recovery; LoRA test-time updates.
+- [[2606.02280|LDG]] — Outcome-centric zero-shot adaptation: infers a latent dynamics context from interaction history (contrastive VI), no explicit physical parameters; robust to unmodeled / time-varying / disabled-actuator shifts that break parameter-centric methods; RMA's latent context, from parameters to *outcomes*.
 - [[2603.04029|Self-Adapting RL]] — Prediction-residual OOD detection → online fine-tune; the adaptation trigger.
 - [[2511.15200|VIRAL]] — Teacher-student visual sim-to-real; the fixed-policy baseline an online estimator augments.
 - [[2510.11689|Phys2Real]] — Online inverse-variance-weighted parameter adaptation; parameter-level cousin of latent-extrinsics inference.
@@ -582,17 +605,17 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 | **Cluster** | D — Deployment-Time Adaptation |
 | **Thesis** | The field does test-time adaptation by online RL fine-tuning of a world model — which is sample-hungry and slow. But a differentiable simulator turns adaptation into a first-order gradient step, so online adaptation need not be slow. The bet: differentiable-sim TTA corrects OOD disturbance in ≤3 steps / 4.5 s with 81% hover-error reduction, beating [[2603.04029\|Self-Adapting RL]]'s ~8-min [[2301.04104\|DreamerV3]] online fine-tune at equal risk via BPTT through a hybrid analytical+residual model. |
 | **Anchor surveys** | [[2604.04974\|Video-to-Control Survey]], [[2605.00080\|WM Robot Learning Survey]], [[2507.10087\|Foundation Robotics Review]] |
-| **Key targets** | [[2508.21065\|Learning on the Fly]] 81% hover-error reduction vs L1-MPC (55% vs [DATT](https://arxiv.org/abs/2310.09053)) under large OOD disturbance, adaptation in 3 steps / 4.5 s wall-clock; beat [[2603.04029\|Self-Adapting RL]]'s ~8-min [[2301.04104\|DreamerV3]] fine-tune latency at equal safety risk |
+| **Key targets** | [[2508.21065\|Learning on the Fly]] 81% hover-error reduction vs L1-MPC (55% vs [[2310.09053\|DATT]]) under large OOD disturbance, adaptation in 3 steps / 4.5 s wall-clock; beat [[2603.04029\|Self-Adapting RL]]'s ~8-min [[2301.04104\|DreamerV3]] fine-tune latency at equal safety risk |
 
-**Why it matters.** When a quadrotor hits unmodeled wind or added mass, the residual must be corrected *now* — seconds, not minutes. The standard recipe is RL fine-tuning of a learned world model: [[2603.04029|Self-Adapting RL]] detects OOD via [[2301.04104|DreamerV3]] prediction residuals and fine-tunes online, but a model-based RL fine-tune is slow. [[2508.21065|Learning on the Fly]] shows the alternative — a *differentiable* hybrid dynamics model (low-fidelity analytical core + learned residual) lets policy gradients flow by Back-Propagation-Through-Time, so adaptation is a first-order step, not an RL loop. The result: 81% hover-error reduction vs L1-MPC, 55% vs [DATT](https://arxiv.org/abs/2310.09053) under large OOD disturbance, with meaningful improvement after only 3 steps — 4.5 s of wall-clock training. The internal model overfits to the current environment fast because the gradient is exact through the analytical dynamics. [[2604.04974|Video-to-Control Survey]] names "control-loop closure" and "pre-execution verification" as the gaps; differentiable TTA closes the loop at the speed the disturbance demands.
+**Why it matters.** When a quadrotor hits unmodeled wind or added mass, the residual must be corrected *now* — seconds, not minutes. The standard recipe is RL fine-tuning of a learned world model: [[2603.04029|Self-Adapting RL]] detects OOD via [[2301.04104|DreamerV3]] prediction residuals and fine-tunes online, but a model-based RL fine-tune is slow. [[2508.21065|Learning on the Fly]] shows the alternative — a *differentiable* hybrid dynamics model (low-fidelity analytical core + learned residual) lets policy gradients flow by Back-Propagation-Through-Time, so adaptation is a first-order step, not an RL loop. The result: 81% hover-error reduction vs L1-MPC, 55% vs [[2310.09053|DATT]] under large OOD disturbance, with meaningful improvement after only 3 steps — 4.5 s of wall-clock training. The internal model overfits to the current environment fast because the gradient is exact through the analytical dynamics. [[2604.04974|Video-to-Control Survey]] names "control-loop closure" and "pre-execution verification" as the gaps; differentiable TTA closes the loop at the speed the disturbance demands.
 
 **First-principles framing.**
-- **First principle**: If the dynamics model is differentiable, adapting the policy to a new disturbance is gradient descent on a known loss — the disturbance enters as a residual the gradient corrects directly, so adaptation cost is *first-order*, not the sample complexity of model-free or model-based RL.
-- **Assumption being challenged**: That online test-time adaptation is inherently slow. The online-RL-fine-tune orthodoxy ([[2603.04029|Self-Adapting RL]]'s [[2301.04104|DreamerV3]] loop) treats adaptation as re-learning — but [[2508.21065|Learning on the Fly]]'s 3-step / 4.5-s correction shows BPTT through a hybrid model collapses adaptation into a handful of gradient steps.
-- **The bet**: Differentiable-sim TTA corrects OOD disturbance in ≤3 steps / 4.5 s with 81% hover-error reduction (vs L1-MPC) — beating [[2603.04029|Self-Adapting RL]]'s ~minutes-scale [[2301.04104|DreamerV3]] online fine-tune at equal deployment risk, with the speedup from first-order BPTT rather than sampled rollouts.
+- **First principle**: If the dynamics model is differentiable, adapting the policy to a new disturbance is just gradient descent on a known loss — the disturbance shows up as an error term the gradient fixes directly. So a few gradient steps are enough; you don't need the many trial-and-error rollouts that model-free or model-based RL require.
+- **Assumption being challenged**: That online test-time adaptation is unavoidably slow. The standard recipe — online RL fine-tuning ([[2603.04029|Self-Adapting RL]]'s [[2301.04104|DreamerV3]] loop) — treats adaptation as re-learning from scratch. But [[2508.21065|Learning on the Fly]]'s 3-step / 4.5-s correction shows that back-propagating gradients through a hybrid dynamics model (back-propagation-through-time, BPTT) shrinks adaptation to a handful of steps.
+- **The bet**: Differentiable-sim test-time adaptation (TTA) corrects an out-of-distribution (OOD) disturbance in ≤3 steps / 4.5 s with 81% hover-error reduction (vs L1-MPC) — beating [[2603.04029|Self-Adapting RL]]'s minutes-long [[2301.04104|DreamerV3]] online fine-tune at the same deployment risk, the speedup coming from exact gradients rather than sampled rollouts.
 
 **Evidence.**
-- [[2508.21065|Learning on the Fly]] — Hybrid analytical+residual differentiable dynamics; BPTT policy gradients; 81% vs L1-MPC, 55% vs [DATT](https://arxiv.org/abs/2310.09053), improvement in 3 steps / 4.5 s; real quadrotor mass+wind — the differentiable-TTA proof.
+- [[2508.21065|Learning on the Fly]] — Hybrid analytical+residual differentiable dynamics; BPTT policy gradients; 81% vs L1-MPC, 55% vs [[2310.09053|DATT]], improvement in 3 steps / 4.5 s; real quadrotor mass+wind — the differentiable-TTA proof.
 - [[2603.04029|Self-Adapting RL]] — [[2301.04104|DreamerV3]] residual OOD detection → online fine-tune; the model-based-RL baseline to beat on latency.
 - [[2602.20057|AdaWorldPolicy]] — World-model prediction-error self-supervision for 4 Hz online LoRA updates; OOD recovery — adjacent fast engine without differentiable dynamics.
 - [[2510.11689|Phys2Real]] — Online inverse-variance-weighted parameter adaptation; gradient-adjacent online estimation.
@@ -613,7 +636,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 - [[2605.00080|WM Robot Learning Survey]] — World models as online-adaptable models; survey rationale for fast deploy-time correction.
 
 **Benchmarks & metrics.**
-- [[2508.21065|Learning on the Fly]] — 81% hover-error reduction vs L1-MPC, 55% vs [DATT](https://arxiv.org/abs/2310.09053); 3 steps / 4.5 s — the speed+accuracy target.
+- [[2508.21065|Learning on the Fly]] — 81% hover-error reduction vs L1-MPC, 55% vs [[2310.09053|DATT]]; 3 steps / 4.5 s — the speed+accuracy target.
 - [[2510.17950|RoboChallenge]] — Table30 real suite, 30 tasks; ground-manipulation stress test for Q3.
 - [[2602.20057|AdaWorldPolicy]] — 4 Hz real-robot online adaptation, OOD recovery vs offline-only; the online-adaptation rate reference.
 
@@ -634,8 +657,8 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **Why it matters.** The blocker on deploy-time correction: *real reward is not available* — you cannot run RL on hardware against a reward you can't compute. [[2602.20057|AdaWorldPolicy]] resolves it by making the world model an *active supervisor* — it unifies a world model, an action expert, and a force predictor under a flow-matching DiT, and uses the world model's *prediction error* as a self-supervised signal to drive test-time LoRA updates, at 4 Hz on real robots, with no environment reward. The result holds 0.96 on [[2306.03310|LIBERO]]-10 and recovers under visual and physical OOD where an offline-only policy degrades. This is the deploy-time face of B3's twin-as-data-engine and D2's differentiable TTA: instead of a differentiable analytical model (D2) or a privileged-extrinsics estimator (D1), the *learned* world model supplies the gradient, because the mismatch between predicted and observed next-state is itself the correction target. [[2605.00080|WM Robot Learning Survey]] frames it: world models as evaluators whose value is "utility for action and physical consistency." A prediction-error-supervised loop turns physical consistency into a deploy-time reward.
 
 **First-principles framing.**
-- **First principle**: Physical-consistency supervision and task-reward supervision are *different objective surfaces*. A world model's prediction error against observed transitions measures the policy's deviation from the dynamics the model encodes — and that surface is observable on hardware exactly where the task-reward surface is not. When the dynamics shift, the deviation is what moves, so descending the consistency surface corrects the right thing without touching reward.
-- **Assumption being challenged**: That online policy correction needs a reward signal. The online-RL orthodoxy requires real reward (or a hand-crafted dense proxy) — but [[2602.20057|AdaWorldPolicy]]'s prediction-error self-supervision drives 4 Hz real adaptation with *no* reward, showing the consistency surface substitutes for the unobservable reward surface.
+- **First principle**: Training a policy toward physical consistency and training it toward task reward optimize *two different things*. A world model's prediction error measures how far the policy has drifted from the dynamics the model knows — and you can see that error on hardware, whereas you cannot see the task reward there. When the dynamics shift, the prediction error grows, so following it down corrects the right thing without needing any reward.
+- **Assumption being challenged**: That online policy correction needs a reward signal. The online-RL habit requires real reward (or a hand-built dense stand-in) — but [[2602.20057|AdaWorldPolicy]]'s prediction-error self-supervision drives 4 Hz real adaptation with *no* reward, showing prediction error can stand in for the reward you can't observe.
 - **The bet**: A world-model-supervised loop drives 4 Hz real-robot online adaptation to unseen dynamics with no real reward — holding [[2602.20057|AdaWorldPolicy]]'s 0.96 [[2306.03310|LIBERO]]-10 under OOD where a static policy degrades, the recovery driven by prediction-error supervision rather than environment reward.
 
 **Evidence.**
@@ -656,6 +679,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 - [[2510.11689|Phys2Real]] — Online parameter estimation; parameter-level online correction.
 - [[2604.10856|BridgeSim]] — Truncated Q-estimator + observational calibrator for OL→CL; +19.1 DS; closed-loop correction adjacent.
 - [[2511.07416|PhysWorld]] — Residual RL on a reconstructed world model; 82% real; world-model-grounded correction, offline.
+- [[2604.18107|PDF]] — Verifier-free test-time perturbation learning with delayed feedback; +8 pp LIBERO over OpenVLA, no reward and no world model; a reward-free TTA engine without prediction-error supervision.
 - [[2601.07823|Video Generation in Robotics Survey]] — Video world models + physics priors; names hallucination/physics-violation as the supervision risk; survey.
 - [[2605.00080|WM Robot Learning Survey]] — World models as active supervisors/evaluators; survey rationale.
 
@@ -688,7 +712,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 
 **First-principles framing.**
 - **First principle**: On hardware, an action's safety cost is a hard constraint with no recovery — an unsafe exploratory update has a consequence the reward cannot undo. Adaptation must optimize reward *subject to* a safety-cost bound; safety is a constraint set, not a reward term.
-- **Assumption being challenged**: That continual adaptation can optimize reward alone. The reward-only orthodoxy treats safety as emergent from good reward design — but [[2503.10949|SCDA]]'s direct comparison (reward-only goes unsafe; cost-constrained hits zero violations at the same 60% SR) shows safety must be an explicit constraint, and EWC is needed so adaptation doesn't forget the safe general policy.
+- **Assumption being challenged**: That continual adaptation can optimize reward alone. The reward-only orthodoxy treats safety as emergent from good reward design — but [[2503.10949|SCDA]]'s direct comparison (reward-only goes unsafe; cost-constrained hits zero violations at the same 60% SR) shows safety must be an explicit constraint, with EWC so adaptation doesn't forget the safe policy.
 - **The bet**: A safety-cost-constrained continual-adaptation scheme raises real grasp SR 20%→60% at *zero* safety violations where reward-only goes unsafe — reproducing [[2503.10949|SCDA]]'s zero-cost result and its no-catastrophic-forgetting improvement across the full target domain.
 
 **Evidence.**
@@ -739,7 +763,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 - **The bet**: A reachability shield drives collision rate to 0% (vs 5–35% unshielded; [[2409.19190|RAIL]]+DP 0% vs [[2303.04137|Diffusion Policy]] 27.2% on Pick-Place) at a ~10-pp SR cost (68% vs 78%) — a hard guarantee no soft penalty matches, and on weaker policies the filter can *raise* SR (up to +16 pp SSucc) by pruning doomed trajectories.
 
 **Evidence.**
-- [[2409.19190|RAIL]] — Continuous-time reachability filter + model-based backup planner over an IL policy; 0% collisions (vs 5–35% IL; [[2409.19190|RAIL]]+DP 0% vs [[2303.04137|Diffusion Policy]] 27.2% on Pick-Place at 68% vs 78% SR — Table III, Can Pick-Place), 0.42 s/plan on a real [Franka](https://franka.de/) — the reachability-shield proof.
+- [[2409.19190|RAIL]] — Continuous-time reachability filter + backup planner over an IL policy; 0% collisions (vs 5–35% IL; +DP 0% vs [[2303.04137|Diffusion Policy]] 27.2% on Pick-Place), 0.42 s/plan on a real [Franka](https://franka.de/); the reachability-shield proof.
 - [[2503.10949|SCDA]] — Safety-cost-constrained adaptation; the adaptation-time safety E2's execution-time shield complements.
 - [[2603.04029|Self-Adapting RL]] — Residual-triggered adaptation; the residual a reachability shield must bound during the adaptation window.
 - [[2604.04974|Video-to-Control Survey]] — Names physical-feasibility + loop-closure gaps; the gap E2 fills with a hard guarantee.
@@ -781,13 +805,14 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **Why it matters.** The failures the sim-to-real gap produces are, by definition, the ones you didn't anticipate — so a detector trained on labeled failures is trained on the wrong distribution. [[2503.08558|FAIL-Detect]] makes the key move: detect failures *without failure data* by framing detection as OOD against successful rollouts only — its flow-based `logpZO` density score, calibrated by functional Conformal Prediction on successes, hits ~78% balanced accuracy in sim and ~72% on hardware, topping baselines in 10/16 sim and 8/12 hardware scenarios. [[2506.09937|SAFE]] sharpens this for policies: it reads the model's *internal hidden-state features* (which hold a task-generic "failure zone"), maps them to a scalar with a tiny MLP/LSTM, and applies functional Conformal Prediction for a time-varying threshold with a false-positive-rate guarantee — at *under 1 ms* of added inference, generalizing zero-shot to unseen tasks. This is the detect face of Cluster E: E2 *prevents* collisions by construction, E1 *bounds* adaptation, E3 *flags* the residual-induced failures neither can rule out — with a statistical guarantee and no failure labels. [[2502.10694|UDA Simulation Study]]'s negative-adaptation warning is exactly the silent failure E3 surfaces at runtime.
 
 **First-principles framing.**
-- **First principle**: A failure is an out-of-distribution event relative to successful execution — so it is detectable from successful rollouts alone, with a conformal threshold supplying a finite-sample false-positive-rate guarantee. Detection needs a model of success and a valid threshold, not failure examples.
-- **Assumption being challenged**: That runtime failure detection needs failure-labeled data. The supervised-detection orthodoxy collects failure datasets — but [[2503.08558|FAIL-Detect]]'s ~78%/72% from successes-only and [[2506.09937|SAFE]]'s internal-feature conformal detector show the failures you can label are not the sim2real failures you'll hit, so success-only detection generalizes where labeled detection cannot.
-- **The bet**: A conformal runtime detector flags sim2real-induced failures at <1 ms overhead with *no* failure-labeled data — recovering [[2503.08558|FAIL-Detect]]'s ~78% sim / ~72% real detection from successful rollouts via [[2506.09937|SAFE]]'s conformal threshold on internal policy features, the FPR guarantee holding zero-shot on unseen tasks.
+- **First principle**: A failure is just anything that looks unlike a successful run — an out-of-distribution (OOD) event — so you can spot it from successful runs alone. Pairing that with a conformal threshold (a calibration trick that caps how often you cry wolf, with a guarantee that holds even on a small calibration set) gives you a bound on the false-alarm rate. Detection needs a model of what success looks like plus a sound cutoff, not examples of failures.
+- **Assumption being challenged**: That runtime failure detection needs data labeled as failures. The supervised habit collects datasets of failures — but [[2503.08558|FAIL-Detect]]'s ~78%/72% from successes only and [[2506.09937|SAFE]]'s internal-feature detector show the failures you can label are not the sim2real failures you actually hit; learning only from successes generalizes where learning from labeled failures cannot.
+- **The bet**: A conformal runtime detector flags sim2real-induced failures at <1 ms overhead with *no* data labeled as failures — recovering [[2503.08558|FAIL-Detect]]'s ~78% sim / ~72% real detection from successful runs via [[2506.09937|SAFE]]'s conformal threshold on the policy's internal features, with the false-alarm-rate guarantee still holding zero-shot on unseen tasks.
 
 **Evidence.**
 - [[2506.09937|SAFE]] — Failure detection from policy internal hidden-state features (task-generic failure zone) + functional Conformal Prediction; <1 ms overhead, zero-shot to unseen tasks, top/matched ROC-AUC — the low-overhead conformal anchor.
 - [[2503.08558|FAIL-Detect]] — Two-stage failure detection with no failure data; flow-based logpZO density + conformal threshold; ~78% sim / ~72% real, top in 10/16 sim & 8/12 hardware — the no-failure-data proof.
+- [[2605.30834|Hide-and-Seek]] — Step-level failure localization from internal action embeddings (LSTM + contrastive losses) with trajectory-only labels + conformal alarms; 0.852 bACC, +15.0% TWA on unseen real, 2,000× faster than VLM monitors; the coarse-supervised conformal monitor that sharpens SAFE's label noise.
 - [[2602.20057|AdaWorldPolicy]] — World-model prediction error as an OOD/failure signal; the detector D3 uses, complementary to internal-feature detection.
 - [[2502.10694|UDA Simulation Study]] — Negative adaptation as a silent failure mode; the kind of runtime failure E3 must surface.
 
@@ -799,6 +824,11 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 **Related research papers.**
 - [[2506.09937|SAFE]] — Internal-feature conformal policy failure detection; <1 ms, zero-shot; the anchor.
 - [[2503.08558|FAIL-Detect]] — No-failure-data runtime detection; logpZO + conformal; ~78%/72%.
+- [[2605.30834|Hide-and-Seek]] — Coarse-supervised step-level failure localization (action embeddings + LSTM) with conformal alarms; 0.852 bACC, 2,000× faster than VLM monitors; fixes SAFE's label noise.
+- [[2604.16677|ReconVLA]] — Conformal action-level reliability + Mahalanobis state-level anomaly detection over a frozen VLA; AUC 0.922 (π₀), halts in 16/20 trials before hardware limits; detection without touching the policy.
+- [[2603.11106|RC-NF]] — Robot-conditioned normalizing-flow anomaly detector, successes only; <100 ms, +8% AUC / +10% AP on LIBERO-Anomaly-10; the success-only density detector, RC-NF's flow to FAIL-Detect's logpZO.
+- [[2602.01515|RAPT]] — Model-predictive OOD detection + root-cause diagnosis for sim-to-real humanoids; AUROC 0.92 sim / 75% real recall at zero nominal false positives, 1.63 ms; low-FPR detection plus diagnosis.
+- [[2605.22446|Pre-VLA]] — Preemptive runtime verification of candidate action chunks; F1 0.8303, +6.83 pp LIBERO closed-loop; pre-action verification complementing post-hoc detection (links to E2).
 - [[2602.20057|AdaWorldPolicy]] — Prediction-error OOD signal; complementary detector.
 - [[2603.04029|Self-Adapting RL]] — Prediction-residual OOD detection; the trigger E3 generalizes with a conformal guarantee.
 - [[2409.19190|RAIL]] — Reachability shield; the act half of a detect-then-act loop.
@@ -827,7 +857,7 @@ The transfer operator that closes $\text{Gap}_{\text{R2S}}$ then re-opens $\text
 > This is the sharpest contrarian result in the doc, and three papers converge on it independently: **optimizing fidelity actively destroys transfer.** A3's [[2604.02523|Tune to Learn]] is the cleanest case — the controller gains with the *lowest* system-identification error produce the *worst* sim-to-real transfer; minimizing the standard sysID objective moves you away from the goal, not toward it. B2's [[2510.11689|Phys2Real]] shows the same inversion for randomization — DR's distribution-*marginalizing* fidelity reaches only 23% on OOD mass while *estimating* the single true parameter hits 57%, so averaging over the physics you could have identified is strictly worse. C1's [[2502.10694|UDA Simulation Study]] names the failure outright as "negative adaptation" — under shift, the adaptation that should help can do *worse than no adaptation*, flipping the sign of the relationship. [[2604.21686|WorldMark]] caps the warning: control-alignment leaders are not visual-quality or world-consistency leaders, so no single fidelity proxy even *ranks* policies correctly. The cross-cutting lesson is not the mild "fidelity is a confounded surrogate" — it is the strong claim that **the realism you are optimizing is, on these axes, negatively coupled to the transfer you actually want; measure transfer directly, because the proxy points the wrong way.**
 
 > [!tip] Sim-to-Real Evaluation Is Becoming Statistical Inference, Not Accuracy Engineering
-> C1 and C2 form one diagnose-and-route → infer pipeline, and B3 inherits the reframing for data. C1 *diagnoses and routes* — it shows in-distribution r ([[2405.05941|SIMPLER]] 0.855, [[2605.06311|VISER]] 0.92) is a validity artifact that must be re-measured per factor under shift, then turns the per-factor result into a deployment gate that routes which biased sim to trust per perturbation. C2 *infers* — [[2604.24018|Sim2Real Betting]] (70–100% win rate) and [[2510.04354|SureSim]] (provable CIs, 20–25% fewer real trials) extract provable real bounds from *imperfect* sims by treating estimation as variance reduction, consuming C1's per-factor weights. The question shifts from "how accurate is my sim?" to "is this correlation valid and which sim do I deploy per factor (C1), and what can I provably infer from it (C2)?" — and B3's twin becomes a data engine under the same inference logic.
+> C1 and C2 form one diagnose-and-route → infer pipeline, and B3 inherits the reframing for data. C1 *diagnoses and routes* — it shows in-distribution r ([[2405.05941|SIMPLER]] >0.85, [[2605.06311|VISER]] 0.92) is a validity artifact that must be re-measured per factor under shift, then turns the per-factor result into a deployment gate that routes which biased sim to trust per perturbation. C2 *infers* — [[2604.24018|Sim2Real Betting]] (70–100% win rate) and [[2510.04354|SureSim]] (provable CIs, 20–25% fewer real trials) extract provable real bounds from *imperfect* sims by treating estimation as variance reduction, consuming C1's per-factor weights. The question shifts from "how accurate is my sim?" to "is this correlation valid and which sim do I deploy per factor (C1), and what can I provably infer from it (C2)?" — and B3's twin becomes a data engine under the same inference logic.
 
 > [!tip] Differentiable Rendering + Physics Collapse System-ID Into Gradient Descent
 > A1, B1, B2, and B4 all ride the same capability: appearance and dynamics are now recovered end-to-end by gradient, not hand-tuning. [[2503.17973|PhysTwin]] and [[2511.04665|Real-to-Sim GS]] jointly optimize geometry + physical parameters + appearance from video; [[2604.27367|DOT-Sim]] makes the optical-tactile simulator differentiable and calibrates constitutive parameters from few demos; [[2510.11689|Phys2Real]] fuses VLM priors with online estimation; B4's [[2304.14369|NCLaw]] pushes the same differentiable-MPM machinery one level deeper, learning the constitutive *law* rather than its parameters. A1's neural-rendering-in-the-loop, B1's joint reconstruction, B2's differentiable sysID, and B4's learned-law inversion are four faces of the same collapse — manual sysID is being replaced by differentiable recovery of $\phi$, $\psi$, and now the functional form of the dynamics itself.
