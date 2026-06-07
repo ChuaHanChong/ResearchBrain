@@ -129,7 +129,7 @@ The architectural revolution that brought attention mechanisms to computer visio
 New attention patterns, normalization strategies, and structural modifications that improve Transformer efficiency, stability, and expressiveness.
 
 **Sparse & Efficient Attention** — Reducing the quadratic cost of self-attention through sparsity, routing, and learned masking.
-- [[2603.15619|MoDA]], [[2508.02124|DMA]], [[2505.17083|Scale-invariant Attention]], [[2505.01996|Token Graying]], [[2505.00315|MoSA]], [[2009.06732|Efficient Transformers Survey]]
+- [[2603.15619|MoDA]], [[2603.08055|Speed3R]], [[2508.02124|DMA]], [[2505.17083|Scale-invariant Attention]], [[2505.01996|Token Graying]], [[2505.00315|MoSA]], [[2009.06732|Efficient Transformers Survey]]
 
 > [!star] Key Papers
 > - [[2505.00315|MoSA]] — Mixture of Sparse Attention with expert-choice routing; content-based learned sparsity
