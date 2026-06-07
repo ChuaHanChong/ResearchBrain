@@ -291,7 +291,7 @@ Predict an intermediate, embodiment-agnostic motion representation — 2D/3D flo
 
 - **[[2412.04445|Moto]]** — a ==VQ-VAE latent motion tokenizer== + autoregressive ==Moto-GPT== pretrained on video, co-fine-tuned with action queries; **61.4%** SIMPLER vs 48.0% without tokens, **52.5%** CALVIN at **1%** action-labeled data (baseline 0%), real **23.3%→60%**.
 - **[[2506.06199|3DFlowAction]]** — a ==3D-flow world model== trained on the ManiFlow-110k dataset (110K human+robot videos) bypassing latent compression; **70%** vs 2D-flow's 25%, cross-embodiment Franka↔XTrainer, **+20%** from GPT-4o closed-loop verification; no action labels.
-- **[[2510.08568|NovaFlow]]** — extracts ==actionable 3D object flow== from internet-video-generated task videos as an embodiment-agnostic intermediate; beats imitation policies trained on 10–30 demos zero-shot, generalizes to rigid/articulated/deformable on Franka and Spot.
+- **[[2510.08568|NovaFlow]]** — synthesizes task-solving videos from ==internet-scale video generation==, extracts ==actionable 3D object flow== (embodiment-agnostic) + ==VLM rejection sampling==; beats zero-shot methods *and* 10–30-demo imitation policies on rigid/articulated/deformable objects (Franka, Spot); goal image lifts block-insertion SR **40%→80%**.
 
 **World-Model & Video-as-Policy — Decision Matrix**
 
@@ -511,7 +511,7 @@ Three strategies have emerged. Demonstration collection and skill extraction (7.
 
 Make human-to-robot data capture cheaper and richer — portable mocap, active-vision wearables, hindsight relabeling — and amortize collected data into reusable skill libraries.
 
-- **[[1810.07121|MIME]]** — the ==MIME dataset==: 8,260 paired human-video + kinesthetic-robot demonstrations over 20 tasks; BC maps third-person human video to robot trajectories, scaling with data; an origin point for paired human-robot demonstration corpora.
+- **[[1810.07121|MIME]]** — ==MIME dataset==: 8,260 paired ==kinesthetic Baxter trajectories== + synchronized human videos + multi-camera RGBD over 20 tasks; joint-angle task recognition hits **79.7%** (DTW) / **61.2%** (LSTM), and ==behavioral cloning== mapping human video → robot trajectories beats average-trajectory + k-NN on MSE — an origin point for paired human-robot demo corpora.
 - **[[2306.10007|RPT]]** — ==self-supervised sensorimotor pretraining== via masked prediction over vision/proprioception/action tokens; **2×** SR on block stacking, **68.8%** cross-lab and **50.0%** cross-robot transfer at 10 Hz; high masking ratio (0.7–0.9) critical.
 - **[[2403.07788|DexCap]]** — portable ==EMF-glove + SLAM + LiDAR== mocap (**0.8 cm** drift, 3× teleop throughput) feeding a ==point-cloud diffusion policy==; **72%** from 30 min of human-only mocap, no on-robot data; HIL correction adds +10%.
 - **[[2604.08534|ActiveGlasses]]** — ==smart-glasses stereo + 6-DoF head capture== of bare-hand manipulation into ==object-centric 3D== policies predicting object + head trajectories; beats π0.5 on occluded pouring, zero-shot Flexiv→UR5 deployment via active vision.
@@ -537,7 +537,7 @@ Learn once, deploy anywhere — retarget human hands to robot grippers, align he
 - **[[2501.04693|FuSe]]** — finetunes generalist policies (Octo, PaliGemma-VLA) with ==tactile + audio encoders== aligned by ==multimodal contrastive + generative language losses==; **>60%** real SR, strongest in visual occlusion, enabling cross-modal compositional prompting.
 - **[[2604.15215|HiST-AT]]** — a ==hierarchical spatiotemporal action tokenizer== with two VQ codebooks and ==Lipschitz-regularized== latents for in-context IL; **59%** RoboCasa (+6% over prior tokenizer), **62.5%** cross-dataset transfer and **11.4%** zero-shot vs LipVQ-VAE's 5.2%.
 - **[[2605.05756|MaMi-HOI]]** — a ==dual-adapter diffusion== (geometry-aware proximity + kinematic-harmony) reconciling global motion fluidity with contact precision for human-object-interaction generation; **−50%** trajectory endpoint error and **+6.02pp** downstream task SR.
-- **[[2604.10836|HO-Flow]]** — generalizable ==hand-object interaction generation== via an ==Interaction-aware VAE== over hand-centric object point clouds + a ==masked autoregressive transformer== with ==flow-matching==; **98.25%** physical plausibility + **~3×** semantic diversity on GRAB and **89.76%** plausibility OOD on OakInk — kinematic-aware HOI motion priors for human-to-robot transfer.
+- **[[2604.10836|HO-Flow]]** — generalizable ==hand-object interaction generation== via an ==Interaction-aware VAE== over hand-centric object point clouds + a ==masked autoregressive transformer== with ==flow-matching==; **98.25%** physical plausibility + **~3×** semantic diversity on GRAB, **89.76%** plausibility OOD on OakInk — kinematic-aware HOI priors for human-to-robot transfer.
 - **[[2604.06778|RichMap]]** — a GPU-accelerated ==grid-based reachability map== over SO(3) with geodesic capacity bounds; **−25–35%** false-positive rate, microsecond queries, and **+10.97%** absolute cross-embodiment diffusion-policy transfer via similarity-guided energy landscapes.
 
 **Demonstration & Transfer — Decision Matrix**

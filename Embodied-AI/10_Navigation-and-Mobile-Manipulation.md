@@ -93,8 +93,8 @@ The deepest result in this section is that the dichotomy is partly false: a pure
 
 The core question of whether navigation *needs* a map, or whether one emerges from the task.
 
-- **[[2301.13261|Blind Nav Agents]]** — A point-goal RL agent given *only* ==egomotion sensing== and a generic LSTM reached **95.1%** success and **62.9%** SPL in novel scenes; an external decoder recovered allocentric occupancy maps from its memory at **32.5%** IoU (vs **12.5%** untrained), with memory useful out to **1,000** steps — proof that metric maps emerge unsupervised in recurrent state.
-- **[[2401.05946|TDB]]** — A ==Transformer with Discrete Bottleneck== quantizes intermediate representations into discrete codes from which an explicit ==cognitive map (latent graph)== is built; hit **99%** planning success with near-isomorphic maps (NormGED ~**0.005–0.12**) under perceptual aliasing, generalizing to unseen partially-observed environments — the interpretable middle ground between map and policy.
+- **[[2301.13261|Blind Nav Agents]]** — A point-goal RL agent given *only* ==egomotion sensing== and a generic LSTM reached **95.1%** success and **62.9%** SPL in novel scenes; an external decoder recovered allocentric occupancy maps at **32.5%** IoU (vs **12.5%** untrained), memory useful out to **1,000** steps — metric maps emerge unsupervised in recurrent state.
+- **[[2401.05946|TDB]]** — A ==Transformer with Discrete Bottleneck== quantizes representations into discrete codes from which an explicit ==cognitive map (latent graph)== is built; hit **99%** planning success with near-isomorphic maps (NormGED ~**0.005–0.12**) under perceptual aliasing, generalizing to unseen environments — the interpretable middle ground between map and policy.
 - **[[2101.05181|MemAug Image-Goal Nav]]** — Added an attention-based ==episodic memory== over a ==self-supervised== state-embedding network to an RGB-only RL policy; reached **0.56** SPL / **0.69** SR on Gibson (**+13%** SPL over NTS-D), with augmentation cutting the train-test gap from ~**65%** to **40%** — episodic memory as a bolt-on to model-free policies.
 
 #### 1.2 Mapless Long-Range & Efficient Navigation
@@ -139,7 +139,7 @@ Two architectural moves define the 2025–2026 VLN frontier. First, **open-vocab
 
 Fusing language into a spatial representation so open-vocabulary goals become navigable.
 
-- **[[2210.05714|VLMaps]]** — Fuses pixel-level ==visual-language embeddings== (LSeg) into a dense top-down grid from ==point cloud== data, then uses an LLM to emit navigation primitives over the language-indexed map; reached **62%** SR for 1-subgoal zero-shot spatial-goal nav (baselines near **0%** for complex spatial queries) and 10/20 real-world spatial goals — the canonical open-vocabulary semantic-map navigator.
+- **[[2210.05714|VLMaps]]** — Fuses pixel-level ==visual-language embeddings== (LSeg) into a dense top-down grid from ==point cloud== data, then uses an LLM to emit navigation primitives over the language-indexed map; reached **62%** SR for 1-subgoal zero-shot spatial-goal nav (baselines near **0%**) and 10/20 real-world goals — the canonical open-vocabulary semantic-map navigator.
 - **[[2506.15757|WPCL]]** — ==Weakly-supervised Partial Contrastive Learning== uses a frozen VLM to extract object lists as weak supervision, applying contrastive loss only to an object-centric feature segment for viewpoint invariance; hit **78%** SR / **70%** SPL on R2R val-unseen (SOTA on R2R/REVERIE/SOON) on a single **24GB** GPU — grounding without VLM fine-tuning.
 
 #### 2.2 Anticipatory & Self-Evolving VLN
@@ -148,7 +148,7 @@ Internalizing future imagination or runtime self-improvement into the instructio
 
 - **[[2606.03682|GN0]]** — Unifies ==3DGS== data generation, interactive simulation, and a multi-stage policy (SFT → ==DAgger== closed-loop → ==DAPO== → NavDP action expert); reached **67.7%** SR / **63.4%** SPL on R2R Val-Unseen (VLN-CE) and transferred sim-to-real to wheeled-arm and Unitree G1 robots with *no* real-world training — the 3DGS-grounded VLN foundation model.
 - **[[2603.29165|LatentPilot]]** — Internalizes ==anticipatory reasoning== as a continuous ==Pilot Token== propagated across steps, trained via a ==PilotLoop== with future observations as privileged supervision; hit **62.0%** SR / **58.0%** SPL on R2R-CE Val-Unseen at **130ms**/action and **22.8 GB** peak GPU — beating external world models on both accuracy and efficiency.
-- **[[2507.13152|SE-VLN]]** — A training-free ==self-evolving== MLLM framework with hierarchical memory (verbal topological map + experience repository) and ==retrieval-augmented== Chain-of-Thought reasoning; **+23.9%** SR / **+15.0%** SPL over prior training-free LLM-VLN on R2R val-unseen, with OSR rising **64.1% → 68.0%** as experience accumulates — VLN that improves without weight updates.
+- **[[2507.13152|SE-VLN]]** — A training-free ==self-evolving== MLLM framework with hierarchical memory (topological map + experience repository) and ==retrieval-augmented== Chain-of-Thought reasoning; **+23.9%** SR / **+15.0%** SPL over prior training-free LLM-VLN on R2R val-unseen, OSR rising **64.1% → 68.0%** — VLN that improves without weight updates.
 
 #### 2.3 VLN Benchmarks & Embodied Agents
 
@@ -193,7 +193,7 @@ The defining problem this section solves is *what to remember and what to forget
 Explicit, language-grounded spatial structures that an LLM or planner reasons over.
 
 - **[[2012.03912|MultiON]]** — Benchmarked map-memory for sequential multi-object navigation; explicit semantic maps held **48%** SR on 3-ON tasks vs **10%** for an RNN-only agent, and learned-map agents gained up to **+25%** SR when a goal had been seen before — the foundational evidence that *explicit* semantic memory beats implicit memory as task complexity grows.
-- **[[2412.10439|CogNav]]** — Builds a ==heterogeneous cognitive map== (scene graph + occupancy + landmark graph) and runs an LLM scheduler over ==five cognitive states== (Broad Search → Target Confirmation) inspired by human search; SOTA ObjectNav with **+10.5%** on HM3D (**72.5%** SR), **+6.4%** MP3D, **+7.1%** RoboTHOR, validated on a quadruped — cognitive-science-structured search over a map.
+- **[[2412.10439|CogNav]]** — Builds a ==heterogeneous cognitive map== (scene graph + occupancy + landmark graph) and runs an LLM scheduler over ==five cognitive states== inspired by human search; SOTA ObjectNav with **+10.5%** on HM3D (**72.5%** SR), **+6.4%** MP3D, **+7.1%** RoboTHOR, validated on a quadruped — cognitive-science-structured search over a map.
 - **[[2411.17735|3D-Mem]]** — Represents space as multi-view ==Memory Snapshots== (explored) + ==Frontier Snapshots== (unexplored) built via co-visibility clustering for VLM-guided exploration; **69.1%** SR on GOAT-Bench lifelong nav using only **10.94** snapshots from **39.76** observations (**3.26** after prefiltering) — compact, queryable 3D scene memory.
 
 #### 3.2 Working & Episodic Memory
@@ -201,8 +201,8 @@ Explicit, language-grounded spatial structures that an LLM or planner reasons ov
 Memory that selectively retains across the horizon of a task — or across many tasks.
 
 - **[[2402.19161|MemoNav]]** — A biologically-inspired ==working memory== (STM + LTM + dynamically-built WM) with a ==selective forgetting== module that prunes low-attention nodes; **+7.9–8.5%** SR/PR over VGM on multi-goal Gibson/MP3D tasks, with aggressive forgetting helping most on long-horizon goals — forgetting as an active navigation skill.
-- **[[2507.12846|Mind Palace]]** — A ==hierarchical scene-graph== "Robotic Mind Palace" over multi-episode history, with an LLM interleaving memory recall and active exploration via Value-of-Information early stopping; **+12–28%** answer correctness and **77%** fewer retrieved images on long-term EQA, deployed on a legged robot over a **1,000 m²** office across 6 months — multi-episodic memory for embodied Q&A.
-- **[[2605.22814|Remember to be Curious]]** — Pairs a persistent online ==3D Gaussian Splatting== forward model (supplying a curiosity reward from prediction error) with a long-context transformer agent holding episodic memory; achieved higher 3D scene completeness on HM3D/Gibson using RGB-only at test time, fine-tuning efficiently to downstream sparse-reward tasks — persistent neural-field memory driving curiosity-based exploration.
+- **[[2507.12846|Mind Palace]]** — A ==hierarchical scene-graph== "Robotic Mind Palace" over multi-episode history, with an LLM interleaving memory recall and active exploration via Value-of-Information early stopping; **+12–28%** answer correctness and **77%** fewer retrieved images on long-term EQA, on a legged robot over a **1,000 m²** office — multi-episodic memory for embodied Q&A.
+- **[[2605.22814|Remember to be Curious]]** — pairs a persistent online ==3D Gaussian Splatting== forward model (curiosity reward from prediction error) with a ==long-context transformer== whose ==global linear-attention memory== holds episodic context, trained map-free via ==PPO== on RGB alone; beat active-mapping baselines on 3D scene completeness, zero-shot to AI-generated worlds.
 
 #### 3.3 Retrieval-Augmented & Dynamic Memory
 
@@ -210,7 +210,7 @@ Memory built for language-queryable retrieval or for survival in changing worlds
 
 - **[[2409.18313|Embodied-RAG]]** — Builds a ==semantic forest== (hierarchical clusters of robot snapshots with hybrid spatial+semantic distance, LLM-summarized at each level) for navigation and Q&A; outperformed Naive/Graph/Light-RAG on Find and Explain queries and built memory for a 1-km environment (3,353 nodes) **7.38× faster** than GraphRAG — RAG as embodied spatial memory.
 - **[[2511.14004|STAR (Memory-Action)]]** — An LLM policy unifying ==memory retrieval (search in time)== over a non-parametric timestamped/posed/embedded store with ==embodied actions (search in space)== in one decision loop; higher success on attribute-based and spatio-temporal object search, transferred to a physical Tiago robot — searching memory and the world in a single loop.
-- **[[2411.04999|DynaMem]]** — A dynamic ==3D voxel memory== that ray-casts to detect and purge moved/removed objects, with two-stage VLM-feature + mLLM-QA querying that reports "not found"; **70%** pick-and-drop SR on non-stationary objects (**2×** over static baselines), cutting localization failures from **53.3% → 6.7%** — dynamic spatio-semantic memory for open-world mobile manipulation.
+- **[[2411.04999|DynaMem]]** — A dynamic ==3D voxel memory== that ray-casts to detect and purge moved/removed objects, with two-stage VLM-feature + mLLM-QA querying that reports "not found"; **70%** pick-and-drop SR on non-stationary objects (**2×** over static baselines), cutting localization failures **53.3% → 6.7%** — dynamic memory for open-world mobile manipulation.
 
 **Memory Representation — Decision Matrix**
 
@@ -243,15 +243,15 @@ The 2025–2026 inflection is **safety as a constraint, not an afterthought**. A
 
 Policies that plan by imagining and scoring futures in a learned world model.
 
-- **[[2603.07799|MWM]]** — Mobile World Models train a ==diffusion== world model with ==Structure-First, Consistency-Refine== and ==Inference-Consistent State Distillation== for few-step action-conditioned rollouts, planned via ==MPC/CEM==; **4× speedup** (rollout **9.6s → 2.3s**) with lower LPIPS (**0.495** vs NWM's **0.569**) and **0.30** real-world goal-nav SR (vs NWM **0.20**) — imagination made fast and consistent enough to plan over.
+- **[[2603.07799|MWM]]** — Mobile World Models train a ==diffusion== world model with ==Structure-First, Consistency-Refine== + ==Inference-Consistent State Distillation== for few-step rollouts, planned via ==MPC/CEM==; **4× speedup** (**9.6s → 2.3s**), lower LPIPS (**0.495** vs NWM **0.569**), **0.30** real goal-nav SR (vs NWM **0.20**) — fast, consistent imagination to plan over.
 - **[[2603.25981|PiJEPA]]** — Integrates a finetuned ==Octo== policy (supplying an informed action prior) with ==MPPI== planning over a ==JEPA== latent world model; with a ==V-JEPA-2== encoder hit **1.65 m** RMSE / **2.88 m** Final ATE on language-conditioned nav, beating reactive policies and uninformed WM planning, at **~2.48 s** total inference — the policy-as-prior-for-world-model recipe.
-- **[[2605.10118|SAGE]]** — A three-phase ==Genesis–Evolution–Navigation== framework that synthesizes ==physics-grounded sandbox== experience rules via VLMs, then optimizes with ==Asymmetric Adaptive Clipping== GRPO; **60.2%** SR† on A-EQA and **64.8%** SR on GOAT-Bench (Qwen3-4B, beating GPT-4o), deployed on a physical robot — learning robust navigation from abstracted sandbox imagination.
+- **[[2605.10118|SAGE]]** — A three-phase ==Genesis–Evolution–Navigation== framework that synthesizes ==physics-grounded sandbox== experience rules via VLMs, then optimizes with ==Asymmetric Adaptive Clipping== GRPO; **60.2%** SR† on A-EQA and **64.8%** SR on GOAT-Bench (Qwen3-4B, beating GPT-4o), deployed on a physical robot — navigation from sandbox imagination.
 
 #### 4.2 Self-Evolving & Continual Navigation
 
 Policies that adapt at runtime or accumulate skills without forgetting.
 
-- **[[2603.02772|ASER]]** — ==Agentic Self-Evolutionary Replanning== adapts the action model via ==In-context Learning with Auto-Differentiation== (local) and ==Global Graph Chain-of-Thought== that distills scene graphs for token-efficient replanning; **+10%** SR on complex planning and **+20–40%** token efficiency over SayPlan, validated in the real world — runtime self-evolution of the navigation policy.
+- **[[2603.02772|ASER]]** — ==Agentic Self-Evolutionary Replanning== adapts the action model via ==In-context Learning with Auto-Differentiation== (local) and ==Global Graph Chain-of-Thought== distilling scene graphs for token-efficient replanning; **+10%** SR on complex planning and **+20–40%** token efficiency over SayPlan — runtime self-evolution of the nav policy.
 - **[[2510.20685|C-Nav]]** — Continual ObjectNav with a ==Dual-Path Anti-Forgetting== mechanism and ==Adaptive Experience Selection== (Local Outlier Factor keyframes); **+3.35%** SR on MP3D over Data Replay and a **9.7 pp** higher old-task SR on HM3D (**42.61%** vs **32.9%**) at half the stored data — learning new object categories without catastrophic forgetting.
 - **[[2605.06595|CRONA]]** — Multi-agent ==cross-modal== RL with modality-specialized agents under CTDE and a centralized multi-modal critic; **95.72%** SR in the 'Studio' scene (vs single-agent **32.66%**) and robust **42.76%** SR even at 4×4-pixel vision — decentralized, modality-specialized cooperative navigation.
 
@@ -260,7 +260,7 @@ Policies that adapt at runtime or accumulate skills without forgetting.
 RL policies trained and certified to maintain safety margins under uncertainty.
 
 - **[[2605.14174|VIA]]** — ==CVaR-constrained== off-policy RL (TD3 + ==distributional cost critic==) with ==POLAR reachability== post-training verification; **98.3%** SR / **1.7%** collision, a **99.6%** verified safety rate, and consistent sim-to-real safety (**99.1%** sim vs **99.2%** real) on a Jackal robot — formally verifiable risk-sensitive navigation.
-- **[[2508.05634|Conformal Crowd Navigation]]** — A ==CMDP== with ==adaptive conformal inference== feeding human-trajectory uncertainty into a constrained RL policy (==PPO-Lagrangian==, intrusion cost); **96.93%** in-distribution SR, **3.72×** fewer collisions / **2.43×** fewer intrusions, holding **>94%** SR out-of-distribution and deployed without fine-tuning — uncertainty-aware safe crowd navigation.
+- **[[2508.05634|Conformal Crowd Navigation]]** — A ==CMDP== with ==adaptive conformal inference== feeding human-trajectory uncertainty into a constrained RL policy (==PPO-Lagrangian==); **96.93%** in-distribution SR, **3.72×** fewer collisions / **2.43×** fewer intrusions, holding **>94%** SR out-of-distribution — uncertainty-aware safe crowd navigation.
 - **[[2605.12689|3D RL-DWA]]** — A hybrid that uses ==Soft Actor-Critic== to dynamically tune a ==3D Dynamic Window Approach== cost function for a **9-DoF** deformable robot; **near-100%** path completion in simulated vascular networks at **<2 ms** inference, robust to sensor noise — RL-tuned classical local planning for high-DoF navigation.
 
 **Policy Learning — Decision Matrix**
@@ -294,22 +294,22 @@ The coupling shows up technically as three recurring challenges. First, **the fl
 
 Wheeled or arm-equipped mobile platforms that navigate to and act on objects.
 
-- **[[2409.16578|FLaRe]]** — Large-scale ==RL fine-tuning== of a pre-trained ==SPOC== transformer (frozen ==DINOv2==, heavy ==domain randomization==, stabilized ==PPO==) for mobile manipulation; **79.5%** SR in unseen sim (**+23.6%**) and **80.7%** on real Stretch robots (**+30.7%**) with sparse rewards, adapting to LoCoBot in 6 hours — RL fine-tuning that makes behavior-cloned mobile-manip policies masterful.
-- **[[2411.04999|DynaMem]]** — Couples a dynamic ==3D voxel memory== (ray-cast purging of moved objects) with VLM+mLLM querying for open-world mobile manipulation; **70%** pick-and-drop SR on non-stationary objects (**2×** over static baselines), cutting localization failures **53.3% → 6.7%** — the dynamic-memory backbone for mobile manipulation in changing scenes. *(Cross-listed from [[10_Navigation-and-Mobile-Manipulation#3. Mapping, Memory & Spatial Representation]].)*
+- **[[2409.16578|FLaRe]]** — Large-scale ==RL fine-tuning== of a pre-trained ==SPOC== transformer (frozen ==DINOv2==, heavy ==domain randomization==, stabilized ==PPO==) for mobile manipulation; **79.5%** SR in unseen sim (**+23.6%**) and **80.7%** on real Stretch robots (**+30.7%**), adapting to LoCoBot in 6 hours — RL fine-tuning that masters behavior-cloned mobile-manip policies.
+- **[[2411.04999|DynaMem]]** — Couples a dynamic ==3D voxel memory== (ray-cast purging of moved objects) with VLM+mLLM querying; **70%** pick-and-drop SR on non-stationary objects (**2×** over static), cutting localization failures **53.3% → 6.7%**. *(Cross-listed from [[10_Navigation-and-Mobile-Manipulation#3. Mapping, Memory & Spatial Representation|§3]].)*
 
 #### 5.2 Legged & Quadruped Loco-Manipulation
 
 Floating-base manipulation where locomotion and reaching are one control problem.
 
-- **[[2605.03846|SigLoMa]]** — Onboard ego-centric ==loco-manipulation== using sparse ==Sigma Points== from open-vocab tracking, an ==ego-centric Kalman filter== bridging low-rate vision to high-rate control, and ==PPO== with an ==Active Sampling Curriculum==; hint poses + curriculum lifted long-axis grasping from 12–16% to **83–87%**, with real Unitree Go2 success matching human teleoperation — quadrupedal loco-manipulation from ego vision alone.
+- **[[2605.03846|SigLoMa]]** — Onboard ego-centric ==loco-manipulation== using sparse ==Sigma Points== from open-vocab tracking, an ==ego-centric Kalman filter== for vision-to-control, and ==PPO== with an ==Active Sampling Curriculum==; hint poses + curriculum lifted long-axis grasping from **12–16%** to **83–87%**, real Unitree Go2 matching teleoperation.
 
 #### 5.3 Humanoid Whole-Body Navigation
 
 Coordinating gaze, gait, and perception for humanoid locomotion in dynamic scenes.
 
-- **[[2606.05880|TAGA]]** — Fuses egocentric depth, height scans, and proprioception with an emergent ==active gaze== module predicting a task-relevant Region of Interest, decoded by a ==Mixture-of-Experts== policy trained via ==PPO== + Adversarial Motion Priors; a Unitree G1 traversed a **120 cm** gap (**+50%** over prior perceptive humanoids) at **65.2%** lower training cost than full-scan processing — active perception for agile humanoid locomotion.
-- **[[2605.21935|MIF]]** — A ==Multi-modal Interactive Field== (confidence-aware semantic ==3DGS== + discrepancy-triggered scene-graph updates + ==flow-matching== mesh recovery) for humanoid navigation under gait-induced perceptual distortion; **94%** interaction-pose-safety with **0%** collisions and up to **98%** task success under object relocation — whole-body navigation that verifies interaction safety, not just path safety.
-- **[[2605.25685|HumanFlow]]** — A latent ==diffusion== model for joint 3D human motion tracking + forecasting on a scene-context occupancy grid, tightly coupled to a ==flow-matching== MAV control policy; **~47%** lower GMPJPE than RoHM in occlusion and **100%** collision avoidance across all tested scenarios including unseen dance motions — social navigation among humans via tightly-coupled perception-control.
+- **[[2606.05880|TAGA]]** — Fuses egocentric depth, height scans, and proprioception with an emergent ==active gaze== module predicting a task-relevant Region of Interest, decoded by a ==Mixture-of-Experts== policy (==PPO== + Adversarial Motion Priors); a Unitree G1 traversed a **120 cm** gap (**+50%**) at **65.2%** lower training cost — active perception for agile locomotion.
+- **[[2605.21935|MIF]]** — A ==Multi-modal Interactive Field== (confidence-aware semantic ==3DGS== + discrepancy-triggered scene-graph updates + ==flow-matching== mesh recovery) for humanoid navigation under gait-induced distortion; **94%** interaction-pose-safety with **0%** collisions and up to **98%** task success under object relocation — verifies interaction safety, not just path safety.
+- **[[2605.25685|HumanFlow]]** — A latent ==diffusion== model for joint 3D human motion tracking + forecasting on a scene-context occupancy grid, coupled to a ==flow-matching== MAV control policy; **~47%** lower GMPJPE than RoHM in occlusion and **100%** collision avoidance across all scenarios including unseen dance motions — social navigation via coupled perception-control.
 
 **Mobile Manipulation — Decision Matrix**
 
