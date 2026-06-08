@@ -106,14 +106,14 @@ Diffusion is no longer just for images. Masked diffusion models (MDMs) generate 
 > - [[2505.19223|LLaDA 1.5]] — Variance-Reduced Preference Optimization for aligning masked diffusion models with human preferences
 
 **Reasoning in dLLMs** — Applying RL post-training and chain-of-thought to boost diffusion LLM reasoning on math, code, and planning tasks.
-- [[2606.03988|Imaginative Perception Tokens]], [[2507.08838|wd1]], [[2505.13138|NESYDMS]], [[2504.12216|d1]], [[2403.09227|BEHAVIOR-1K]]
+- [[2606.03988|Imaginative Perception Tokens]], [[2509.23653|RemeDi]], [[2507.08838|wd1]], [[2505.13138|NESYDMS]], [[2504.12216|d1]], [[2403.09227|BEHAVIOR-1K]]
 
 > [!star] Key Papers
 > - [[2504.12216|d1]] — First RL post-training framework for dLLMs; introduced diffu-GRPO with +26.2% on Countdown
 > - [[2507.08838|wd1]] — Weighted policy optimization achieving up to 100% improvement on reasoning benchmarks while eliminating SFT
 
 **Efficient dLLM Inference** — Accelerating diffusion LLM decoding through KV caching, parallel decoding, and training-free optimizations.
-- [[2605.21854|CrossVLA]], [[2505.22618|Fast-dLLM]]
+- [[2605.21854|CrossVLA]], [[2602.18993|SeaCache]], [[2512.13592|Diffusion Preview]], [[2505.22618|Fast-dLLM]]
 
 > [!star] Key Papers
 > - [[2505.22618|Fast-dLLM]] — Training-free 27.6x throughput improvement via KV cache and confidence-aware parallel decoding
@@ -142,7 +142,7 @@ The hottest design question in generative AI: can one model both understand and 
 > - [[2412.08635|LatentLM]] — Unified framework for discrete and continuous data via next-token diffusion in latent space
 
 **Token-Based Unified Models** — Discretize images into tokens and treat all modalities uniformly with a single autoregressive or diffusion objective, enabling interleaved multimodal generation.
-- [[2507.23278|UniLiP]], [[2506.23044|Ovis-U1]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.05472|Mogao]], [[2504.21356|Nexus-Gen]], [[2501.17811|Janus-Pro]], [[2410.13848|Janus]], [[2409.18869|Emu3]], [[2408.12528|Show-o]], [[2405.09818|Chameleon]], [[2107.14483|ManiSkill]], [[2104.03311|PlasticineLab]]
+- [[2507.23278|UniLiP]], [[2506.23044|Ovis-U1]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.20147|FUDOKI]], [[2505.05472|Mogao]], [[2504.21356|Nexus-Gen]], [[2501.17811|Janus-Pro]], [[2410.13848|Janus]], [[2409.18869|Emu3]], [[2408.12528|Show-o]], [[2405.09818|Chameleon]], [[2107.14483|ManiSkill]], [[2104.03311|PlasticineLab]]
 
 > [!star] Key Papers
 > - [[2405.09818|Chameleon]] — Meta's early-fusion token-based model; proved full unification is architecturally viable at scale
@@ -150,7 +150,7 @@ The hottest design question in generative AI: can one model both understand and 
 > - [[2409.18869|Emu3]] — Showed next-token prediction alone can handle text, image, and video generation without diffusion
 
 **Multimodal Diffusion Architectures** — Extend diffusion beyond images to jointly handle text reasoning, image generation, and multimodal understanding in a single diffusion-native model.
-- [[2605.02641|Mamoda2.5]], [[2604.02097|LatentUM]], [[2506.23115|MoCa]], [[2505.15809|MMaDA]], [[2505.13031|MindOmni]]
+- [[2605.02641|Mamoda2.5]], [[2604.02097|LatentUM]], [[2511.09611|MMaDA-Parallel]], [[2506.23115|MoCa]], [[2506.05340|DiT Grafting]], [[2505.15809|MMaDA]], [[2505.13031|MindOmni]]
 
 > [!star] Key Papers
 > - [[2505.15809|MMaDA]] — Unified diffusion model handling text reasoning, image generation, and multimodal understanding simultaneously
@@ -195,7 +195,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2509.06040|BranchGRPO]] — Tree-structured branching yields 4.7x training speedup and 16% better alignment over vanilla GRPO
 
 **Inference-Time Alignment & Steering** — Training-free methods that align pre-trained diffusion models with arbitrary rewards at sampling time using particle systems, SMC, beam search, or interacting particle resampling — preserving diversity and avoiding fine-tuning costs.
-- [[2508.03645|DiWA]], [[2503.18942|Video-T1]], [[2503.02039|DSearch]], [[2501.06848|FK Steering]], [[2501.05803|DAS]], [[2408.08252|SVDD]]
+- [[2508.03645|DiWA]], [[2505.23614|Diffusion Search Scaling]], [[2503.18942|Video-T1]], [[2503.02039|DSearch]], [[2501.06848|FK Steering]], [[2501.05803|DAS]], [[2408.08252|SVDD]]
 
 > [!star] Key Papers
 > - [[2503.02039|DSearch]] — Gradient-free dynamic beam search with Monte Carlo look-ahead for inference-time alignment; achieves 35% faster reward-per-second scaling and superior naturalness over SVDD across image, DNA, and molecule domains
@@ -230,7 +230,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 A new paradigm: generative models that "think before they draw." Instead of generating images in a single pass, these models decompose generation into reasoning steps — planning layouts, predicting semantic structure, or generating intermediate visual states. The insight is that CoT, which transformed language reasoning, can similarly improve visual generation quality and controllability.
 
 **CoT for Image Generation** — Autoregressive image generators that plan generation via chain-of-thought at the semantic or token level before producing final output.
-- [[2602.12279|UniT]], [[2506.03596|ControlThinker]], [[2505.00703|T2I-R1]], [[2503.10639|GoT]], [[2501.13926|CoT Image Generation]]
+- [[2602.12279|UniT]], [[2512.23568|ThinkGen]], [[2511.16671|TWIG]], [[2506.03596|ControlThinker]], [[2505.00703|T2I-R1]], [[2503.10639|GoT]], [[2501.13926|CoT Image Generation]]
 
 > [!star] Key Papers
 > - [[2501.13926|CoT Image Generation]] — First comprehensive study of CoT for AR image generation; +24% over Show-o baseline, surpasses Stable Diffusion 3
@@ -254,17 +254,17 @@ A new paradigm: generative models that "think before they draw." Instead of gene
 Dedicated architectures for high-quality image synthesis, editing, and multimodal generation that bridge pre-trained language models with visual output. These systems focus on the engineering challenge of getting LLMs to produce, modify, and control visual content.
 
 **LLM-Integrated Image Generation** — Connect pre-trained LLMs to image decoders, enabling models to generate images as part of natural language interaction.
-- [[2605.18233|MIGA]], [[2603.29634|MacTok]], [[2603.29620|Unify-Agent]], [[2603.28713|DreamLite]], [[2510.27492|ThinkMorph]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2310.02239|MiniGPT-5]], [[2305.17216|GILL]]
+- [[2605.18233|MIGA]], [[2603.29634|MacTok]], [[2603.29620|Unify-Agent]], [[2603.28713|DreamLite]], [[2511.19965|HiCoGen]], [[2510.27492|ThinkMorph]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2411.08127|TIPO]], [[2310.02239|MiniGPT-5]], [[2305.17216|GILL]]
 
 > [!star] Key Papers
 > - [[2305.17216|GILL]] — First to enable LLMs to generate novel images via learned mapping to frozen Stable Diffusion
 > - [[2504.06256|MetaQueries]] — Bridges frozen MLLMs with diffusion generators via learned meta-query tokens
 
 **End-to-End Multimodal Generators** — Models that natively produce interleaved text and images, trained end-to-end for seamless multimodal output.
-- [[2605.04128|JoyAI-Image]], [[2602.12205|DeepGen 1.0]], [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
+- [[2605.04128|JoyAI-Image]], [[2602.21435|AD-Loop]], [[2602.12205|DeepGen 1.0]], [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 **Text-to-Motion Generation** — Diffusion and contrastive methods for synthesizing and retrieving 3D human motions from natural language, including LLM-planned + physics-aware refinement pipelines.
-- [[2604.24833|MotionBricks]], [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.15546|Kimodo]], [[2305.00976|TMR]]
+- [[2604.24833|MotionBricks]], [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.15546|Kimodo]], [[2510.14427|Compositional Phase Diffusion]], [[2305.00976|TMR]]
 
 > [!star] Key Papers
 > - [[2604.17807|Re2MoGen]] — MCTS-enhanced LLM keyframe planning + diffusion completion + PPO physics refinement; SOTA open-vocabulary T2M with 2.46 mm float error
@@ -274,7 +274,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 > - [[2503.13436|UniFluid]] — Google DeepMind's unified AR framework using continuous and discrete tokens for seamless visual generation and understanding
 
 **Image Editing & Controllable Generation** — Methods for precise, instruction-guided image manipulation and controllable synthesis.
-- [[2605.02757|VideoTransfer-VLA]], [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2505.18600|CoZ]], [[2408.06506|TacSL]], [[2403.19103|PRISM]]
+- [[2606.00351|UniVerse]], [[2605.07429|MagicBokeh]], [[2605.02757|VideoTransfer-VLA]], [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2604.00849|DisCo (Image)]], [[2604.00530|AceTone]], [[2602.19083|ChordEdit]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2512.01236|PSR (Image Gen)]], [[2509.21953|MultiCrafter]], [[2506.12323|MAGIC (Skin)]], [[2505.18600|CoZ]], [[2408.06506|TacSL]], [[2403.19103|PRISM]]
 
 > [!star] Key Papers
 > - [[2601.02356|Talk2Move]] — RL-based text-instructed geometric transformations with spatially grounded rewards
@@ -440,21 +440,21 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 Foundational work on how diffusion models learn representations, the theoretical underpinnings that unify different formulations, and methods for leveraging diffusion dynamics for pre-training and downstream tasks beyond generation.
 
 **Diffusion as Pre-Training** — Use the diffusion denoising objective as a self-supervised pre-training method for representation learning, improving downstream classification and understanding tasks.
-- [[2605.27079|TRQAM]], [[2604.11386|ComSim]], [[2512.19693|Prism Hypothesis]], [[2505.06890|RCLDT]], [[2505.02831|SRA]], [[2503.06132|USP]]
+- [[2605.27079|TRQAM]], [[2604.11386|ComSim]], [[2512.19693|Prism Hypothesis]], [[2507.01467|REG]], [[2505.06890|RCLDT]], [[2505.02831|SRA]], [[2503.06132|USP]]
 
 > [!star] Key Papers
 > - [[2503.06132|USP]] — Unified pretraining in VAE latent space that 11.7x accelerates DiT convergence and improves both generation and understanding
 > - [[2505.02831|SRA]] — Diffusion transformers provide their own representation guidance; eliminates external encoders
 
 **Latent Space Design** — Principled methods for learning optimal latent representations that diffusion models operate in, controlling information content and generation quality.
-- [[2604.16044|DCW]], [[2602.17270|UL]], [[2312.08762|DPMM-CoT]]
+- [[2604.16044|DCW]], [[2602.17270|UL]], [[2602.07588|PVB]], [[2505.13447|MeanFlow]], [[2312.08762|DPMM-CoT]]
 
 > [!star] Key Papers
 > - [[2602.17270|UL]] — Google DeepMind's Unified Latents framework; principled regularization achieves SOTA on ImageNet-512 and Kinetics-600
 > - [[2604.16044|DCW]] — Characterizes SNR-t bias in DPMs and applies training-free wavelet-domain differential correction; 42.6% FID reduction on CIFAR-10 with 20 steps
 
 **Theoretical Foundations & Surveys** — Monographs and comprehensive surveys that unify variational, score-based, and flow-based perspectives on diffusion.
-- [[2604.15911|Efficient Video Diffusion Survey]], [[2510.21890|Diffusion Models Principles]], [[2510.09586|VLM Survey 26K]], [[2506.19360|Synthetic Image Privacy SoK]], [[2410.19878|PEFT Methodologies Survey]], [[2403.14608|PEFT Comprehensive Survey]]
+- [[2605.27020|SD-MIA]], [[2604.15911|Efficient Video Diffusion Survey]], [[2511.03032|DADO]], [[2510.21890|Diffusion Models Principles]], [[2510.09586|VLM Survey 26K]], [[2509.26364|Data-to-Energy Dynamics]], [[2506.19360|Synthetic Image Privacy SoK]], [[2506.10047|GenBreak]], [[2506.03719|Flow Matching Closed-Form]], [[2410.19878|PEFT Methodologies Survey]], [[2403.14608|PEFT Comprehensive Survey]]
 
 > [!star] Key Papers
 > - [[2510.21890|Diffusion Models Principles]] — Definitive monograph from Sony AI, OpenAI, and Stanford unifying all diffusion formulations into a continuous-time framework
@@ -467,7 +467,7 @@ Foundational work on how diffusion models learn representations, the theoretical
 > - [[2506.03147|UniWorld-V1]] — Integrates VL understanding, image generation, perception, and grounding in one model
 
 **Generative-Model Signals for OOD & Anomaly Detection** — Use the internals of diffusion or flow-matching models (posterior covariance, reversed-flow vector fields) as distribution-shift signals for unsupervised OOD and anomaly detection.
-- [[2510.07206|EigenScore]], [[2508.05461|WT-Flow]], [[2504.07793|RDM]]
+- [[2510.07206|EigenScore]], [[2510.01456|SCOPED]], [[2508.05461|WT-Flow]], [[2504.07793|RDM]]
 
 > [!star] Key Papers
 > - [[2510.07206|EigenScore]] — Jacobian-free posterior-covariance spectrum as an OOD signal; +5% AUROC over best baseline, especially strong in near-OOD

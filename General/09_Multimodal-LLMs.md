@@ -164,7 +164,7 @@ The maturation of MLLMs through systematic instruction tuning, scaling to produc
 > - [[2503.15621|LLaVA-MORE]] — Systematic comparative study of MLLM design choices across LLM backbones and training strategies
 
 **Instruction Data & Training Pipelines** — Methods for creating high-quality multimodal instruction data and optimizing training procedures.
-- [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2506.08429|SCALE]], [[2505.17316|Patch-Aligned Training]], [[2505.08971|PRIOR]], [[2504.21850|COMPACT]], [[2504.15619|AdaViP]], [[2412.07012|ProVision]], [[2410.02742|GLIMO]], [[2403.13187|EvoLLM-JP]], [[2306.08543|MiniLLM]], [[2302.00674|FLAD]]
+- [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2506.08429|SCALE]], [[2505.19030|RECAST]], [[2505.17316|Patch-Aligned Training]], [[2505.08971|PRIOR]], [[2504.21850|COMPACT]], [[2504.15619|AdaViP]], [[2412.07012|ProVision]], [[2410.02742|GLIMO]], [[2403.13187|EvoLLM-JP]], [[2306.08543|MiniLLM]], [[2302.00674|FLAD]]
 
 > [!star] Key Papers
 > - [[2412.07012|ProVision]] — Programmatic system for generating diverse vision-language instruction data at scale
@@ -172,7 +172,7 @@ The maturation of MLLMs through systematic instruction tuning, scaling to produc
 > - [[2506.08429|SCALE]] — Automated pipeline curating high-quality multimodal instruction datasets with LLM-based filtering
 
 **Model Merging & Adaptation** — Combining multiple fine-tuned models or adapting MLLMs to new domains without full retraining.
-- [[2604.07725|Squeeze Evolve]], [[2603.12248|EBFT]], [[2603.01097|LoRA Knowledge Memory]], [[2602.04118|TinyLoRA]], [[2601.07645|PlaM]], [[2507.11851|Gated LoRA]], [[2505.10088|MMRL++]], [[2505.00315|MoSA]], [[2503.08497|MMRL]], [[2502.17159|RobustMerge]], [[2501.13787|PEFT for Foundation Models]], [[2412.01282|Align-KD]], [[2408.07666|Model Merging in LLMs/MLLMs]], [[2403.14608|PEFT Comprehensive Survey]], [[2312.12148|PEFT Critical Review]], [[2311.03099|DARE]], [[2306.01708|TIES-Merging]]
+- [[2604.07725|Squeeze Evolve]], [[2603.12248|EBFT]], [[2603.01097|LoRA Knowledge Memory]], [[2602.04118|TinyLoRA]], [[2601.07645|PlaM]], [[2507.11851|Gated LoRA]], [[2506.05191|MokA]], [[2505.10088|MMRL++]], [[2505.00315|MoSA]], [[2503.08497|MMRL]], [[2502.17159|RobustMerge]], [[2501.13787|PEFT for Foundation Models]], [[2412.01282|Align-KD]], [[2408.07666|Model Merging in LLMs/MLLMs]], [[2403.14608|PEFT Comprehensive Survey]], [[2312.12148|PEFT Critical Review]], [[2311.03099|DARE]], [[2306.01708|TIES-Merging]]
 
 > [!star] Key Papers
 > - [[2502.17159|RobustMerge]] — Training-free, data-free, storage-free model merging specifically designed for VLMs
@@ -274,7 +274,7 @@ Reducing MLLM inference cost through token compression, model compression, and c
 > - [[2412.04468|NVILA]] — NVIDIA's efficient MLLM family achieving competitive quality at reduced compute
 
 **Efficient Inference & Acceleration** — Methods for speeding up MLLM inference at deployment time.
-- [[2512.13607|Nemotron-Cascade]], [[2508.09834|Efficient LLM Architectures Survey]], [[2508.03682|SQLM]], [[2505.22618|Fast-dLLM]], [[2505.10526|MASSV]], [[2410.19878|PEFT Methodologies Survey]], [[2404.16710|LayerSkip]], [[2009.06732|Efficient Transformers Survey]]
+- [[2602.11812|EGTP]], [[2512.13607|Nemotron-Cascade]], [[2508.09834|Efficient LLM Architectures Survey]], [[2508.03682|SQLM]], [[2507.06607|Gated Memory Unit]], [[2505.22618|Fast-dLLM]], [[2505.10526|MASSV]], [[2410.19878|PEFT Methodologies Survey]], [[2404.16710|LayerSkip]], [[2009.06732|Efficient Transformers Survey]]
 
 > [!star] Key Papers
 > - [[2505.10526|MASSV]] — Speculative decoding framework accelerating VLM inference through multi-head parallel generation
@@ -289,7 +289,7 @@ Reducing MLLM inference cost through token compression, model compression, and c
 Addressing the fundamental challenge of MLLMs generating text that contradicts visual evidence — through decoding strategies, contrastive methods, preference optimization, and evaluation frameworks.
 
 **Decoding-Based Methods** — Modifying the generation process to suppress hallucinated content without retraining.
-- [[2602.16702|SAP]], [[2602.11737|OA-VCD]], [[2512.23453|CoFi-Dec]], [[2509.23236|Self-Reflection VLM]], [[2509.03113|GACD]], [[2508.11616|MRGD]], [[2507.00898|ONLY]], [[2506.09522|ReVisiT]], [[2506.08391|SECOND]], [[2406.01920|CODE]]
+- [[2602.16702|SAP]], [[2602.11737|OA-VCD]], [[2512.23453|CoFi-Dec]], [[2509.23236|Self-Reflection VLM]], [[2509.03113|GACD]], [[2508.11616|MRGD]], [[2507.00898|ONLY]], [[2506.23601|SemDiD]], [[2506.09522|ReVisiT]], [[2506.08391|SECOND]], [[2406.01920|CODE]]
 
 > [!star] Key Papers
 > - [[2406.01920|CODE]] — Training-free decoding method reducing hallucination through contrastive output distributions
@@ -318,7 +318,7 @@ Addressing the fundamental challenge of MLLMs generating text that contradicts v
 > - [[2506.17901|PostAlign]] — Post-training alignment framework improving visual fidelity without catastrophic forgetting
 
 **Hallucination Analysis & Benchmarks** — Understanding when, why, and how MLLMs hallucinate.
-- [[2605.03808|Agentic-imodels]], [[2605.02087|MSM]], [[2604.28182|Exploration Hacking]], [[2604.15574|FT Hallucinations]], [[2602.09276|Reasoning-ID]], [[2601.13304|CausalSpatial]], [[2509.25373|VLM Perception-Cognition Survey]], [[2508.01781|LLM Hallucination Taxonomy]], [[2507.10442|VLM Three-Space Analysis]], [[2505.23224|MMBoundary]], [[2502.17422|MLLM Small Visual Details]], [[2402.00253|LVLM Hallucination Survey]], [[2310.00754|LURE]]
+- [[2605.03808|Agentic-imodels]], [[2605.02087|MSM]], [[2604.28182|Exploration Hacking]], [[2604.15574|FT Hallucinations]], [[2602.09276|Reasoning-ID]], [[2601.21969|Token-Guard]], [[2601.13304|CausalSpatial]], [[2509.25373|VLM Perception-Cognition Survey]], [[2508.01781|LLM Hallucination Taxonomy]], [[2507.10442|VLM Three-Space Analysis]], [[2505.23224|MMBoundary]], [[2505.12886|LRM Hallucination]], [[2502.17422|MLLM Small Visual Details]], [[2402.00253|LVLM Hallucination Survey]], [[2310.00754|LURE]]
 
 > [!star] Key Papers
 > - [[2402.00253|LVLM Hallucination Survey]] — Comprehensive taxonomy of hallucination types in large vision-language models
@@ -401,7 +401,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 > - [[2603.02556|VC-STaR]] — Visual Contrastive Self-Taught Reasoner improving VLM reasoning through contrastive self-training
 
 **Trustworthiness, Safety & Robustness** — Evaluating and improving the reliability of MLLM outputs.
-- [[2603.30036|CoT Monitorability]], [[2603.03944|SCP-Bench]], [[2602.21054|VAUQ]], [[2602.08145|Reliable Foundation Models Survey]], [[2602.01816|VIA-Bench]], [[2601.14127|MIR-SafetyBench]], [[2509.03518|LLM Lying]], [[2506.22982|CroPA]], [[2506.19807|KnowRL]], [[2505.23745|TrustVLM]], [[2504.18053|DREAM]], [[2502.05206|Safety at Scale Survey]], [[2406.18925|VisArgs]]
+- [[2603.30036|CoT Monitorability]], [[2603.13292|Pragma-VL]], [[2603.03944|SCP-Bench]], [[2602.21054|VAUQ]], [[2602.08145|Reliable Foundation Models Survey]], [[2602.01816|VIA-Bench]], [[2601.14127|MIR-SafetyBench]], [[2512.15926|DSO]], [[2510.06738|AWM]], [[2510.06096|Alignment Auditor]], [[2510.01088|Safety Instincts]], [[2509.22989|Strategic Persuasion]], [[2509.03518|LLM Lying]], [[2506.22982|CroPA]], [[2506.19823|Persona Misalignment]], [[2506.19807|KnowRL]], [[2505.23745|TrustVLM]], [[2504.18053|DREAM]], [[2502.05206|Safety at Scale Survey]], [[2406.18925|VisArgs]]
 
 > [!star] Key Papers
 > - [[2505.23745|TrustVLM]] — Framework estimating prediction trustworthiness by combining internal and external confidence signals
@@ -412,22 +412,23 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2602.21628|RuCL]], [[2512.24695|Hope]], [[2512.09441|MoP-CIL]], [[2510.10487|Triangular Consistency]], [[2508.04227|VLM Continual Learning Survey]], [[2410.19925|MLLM Continual Learning]]
 
 **Multimodal Reasoning** — LLM reasoning extended to vision/video/spatial inputs.
-- [[2604.03128|Self-Distilled RLVR]], [[2602.04884|RAL]], [[2602.02951|NUWA]], [[2601.18631|AdaReasoner]], [[2512.12822|LEMON]], [[2512.12633|DiG]], [[2512.04563|COOPER]], [[2511.17487|EXTRACT+THINK]], [[2510.08673|Puffin]], [[2509.24251|LVR]], [[2508.15568|ADAPT]], [[2507.10302|DisCo]], [[2506.22819|TCA]], [[2506.05302|PAM]], [[2506.04209|LIFT]], [[2506.02138|PA-LRP]], [[2505.21457|ACTIVE-O3]], [[2505.19702|Point-RFT]], [[2505.19094|SATORI]], [[2505.16151|FRANK]], [[2505.07956|LLM-LEx]], [[2504.13055|NoisyRollout]], [[2503.20752|Reason-RFT]], [[2503.16188|Think or Not Think]]
+- [[2604.03128|Self-Distilled RLVR]], [[2602.04884|RAL]], [[2602.02951|NUWA]], [[2601.18631|AdaReasoner]], [[2512.12822|LEMON]], [[2512.12633|DiG]], [[2512.04563|COOPER]], [[2511.22715|ReAG]], [[2511.19972|Activation Replay MM]], [[2511.17487|EXTRACT+THINK]], [[2510.14605|Wiki-PRF]], [[2510.08673|Puffin]], [[2509.24251|LVR]], [[2508.15568|ADAPT]], [[2507.10302|DisCo]], [[2506.22819|TCA]], [[2506.05302|PAM]], [[2506.04559|RAPID]], [[2506.04209|LIFT]], [[2506.02138|PA-LRP]], [[2505.21457|ACTIVE-O3]], [[2505.19702|Point-RFT]], [[2505.19094|SATORI]], [[2505.16151|FRANK]], [[2505.07956|LLM-LEx]], [[2504.13055|NoisyRollout]], [[2503.20752|Reason-RFT]], [[2503.16188|Think or Not Think]], [[2502.20120|Modality Boosting]]
 
 **Surveys & Interpretability** — Surveys and analyses of LLM reasoning and RL.
-- [[2605.10889|OPD-Diagnostic]], [[2603.25681|LLM Self-Improvement Survey]], [[2510.26493|Context Engineering 2.0]], [[2510.00034|MOWI]], [[2509.21128|RL Squeezes SFT Expands]], [[2509.08827|RL for LRM Survey]], [[2509.04501|RL for Model Training Survey]], [[2509.03646|HICRA]], [[2509.02350|Implicit Reasoning Survey]], [[2509.00421|Prompt Tuning Memory Limits]], [[2508.16546|SFT vs RL Spectral Analysis]], [[2507.16003|ICL Implicit Dynamics]], [[2507.13334|Context Engineering Survey]], [[2507.09662|Concise Adaptive Thinking Survey]], [[2507.06203|Latent Reasoning Survey]], [[2507.02199|Huginn Latent CoT]], [[2506.13018|NN Parameter Space Symmetry Survey]], [[2506.04374|SLDS LLM Reasoning]], [[2506.02126|Knowledge vs Reasoning LLM Eval]], [[2505.10559|Neural Thermodynamic Laws]], [[2505.02665|Slow Thinking LLM Survey]], [[2505.00551|DeepSeek-R1 Replication Survey]], [[2504.20966|Softpick]], [[2503.16419|Stop Overthinking Survey]], [[2503.09567|Long CoT Survey]], [[2502.21321|LLM Post-Training Survey]], [[2502.14010|ICL Attention Heads]], [[2501.11223|RLM Blueprint]], [[2501.09686|Large Reasoning Models Survey]], [[2412.05265|RL Overview]], [[2404.14387|LLM Self-Evolution Survey]], [[2201.02373|Mirror Learning]]
+- [[2605.10889|OPD-Diagnostic]], [[2603.25681|LLM Self-Improvement Survey]], [[2510.26493|Context Engineering 2.0]], [[2510.08985|Document Ranking CoT Study]], [[2510.00034|MOWI]], [[2509.24156|Reasoning vs Retrieval]], [[2509.21128|RL Squeezes SFT Expands]], [[2509.18376|GnnXemplar]], [[2509.08827|RL for LRM Survey]], [[2509.04501|RL for Model Training Survey]], [[2509.03646|HICRA]], [[2509.02350|Implicit Reasoning Survey]], [[2509.00421|Prompt Tuning Memory Limits]], [[2508.16546|SFT vs RL Spectral Analysis]], [[2507.16003|ICL Implicit Dynamics]], [[2507.13334|Context Engineering Survey]], [[2507.09662|Concise Adaptive Thinking Survey]], [[2507.06203|Latent Reasoning Survey]], [[2507.02199|Huginn Latent CoT]], [[2506.13018|NN Parameter Space Symmetry Survey]], [[2506.09501|LLM Inference Nondeterminism]], [[2506.04374|SLDS LLM Reasoning]], [[2506.02126|Knowledge vs Reasoning LLM Eval]], [[2505.10559|Neural Thermodynamic Laws]], [[2505.02665|Slow Thinking LLM Survey]], [[2505.00551|DeepSeek-R1 Replication Survey]], [[2504.20966|Softpick]], [[2503.16419|Stop Overthinking Survey]], [[2503.09567|Long CoT Survey]], [[2502.21321|LLM Post-Training Survey]]
+- [[2502.14010|ICL Attention Heads]], [[2501.11223|RLM Blueprint]], [[2501.09686|Large Reasoning Models Survey]], [[2412.05265|RL Overview]], [[2404.14387|LLM Self-Evolution Survey]], [[2201.02373|Mirror Learning]]
 
 **Long & Efficient CoT** — Long-chain and token-efficient reasoning.
 - [[2604.08706|RL Experience Replay for LLMs]], [[2603.28204|ERPO]], [[2510.02752|Self-Aware RL for LLMs]], [[2510.01135|PCL]], [[2509.25849|Knapsack-GRPO]], [[2509.01321|DEPO]], [[2508.17445|TreePO]], [[2508.09726|GFPO]], [[2507.10524|MoR]], [[2506.08552|Latent Reasoning Refinement]], [[2506.05316|DOTS]], [[2506.01939|High-Entropy Token RLVR]], [[2505.24034|LlamaRL]], [[2505.02222|Muon]], [[2503.10460|Light-R1]], [[2502.21074|CODI]]
 
 **Test-Time Scaling & Search** — Test-time compute, search, and sampling.
-- [[2603.24422|OneSearch-V2]], [[2601.22628|TTCS]], [[2601.18067|EvolVE]], [[2511.17473|MR-RLVR]], [[2510.14901|Power Sampling]], [[2508.14313|AIRL-S]], [[2506.09026|e3]], [[2506.08388|RLTs]], [[2503.07572|MRT]], [[2503.04412|AB-MCTS]], [[2502.05171|Huginn]], [[2501.19393|s1]], [[2501.05366|Search-o1]], [[2501.01478|MCTS Process Supervision]], [[2501.00663|Titans]]
+- [[2603.24422|OneSearch-V2]], [[2601.22628|TTCS]], [[2601.18067|EvolVE]], [[2511.17473|MR-RLVR]], [[2510.14901|Power Sampling]], [[2510.08964|DisTANCE]], [[2508.14313|AIRL-S]], [[2506.09026|e3]], [[2506.08388|RLTs]], [[2505.24872|ProxyThinker]], [[2503.07572|MRT]], [[2503.04412|AB-MCTS]], [[2502.05171|Huginn]], [[2501.19393|s1]], [[2501.05366|Search-o1]], [[2501.01478|MCTS Process Supervision]], [[2501.00663|Titans]]
 
 **Chain-of-Thought Methods** — Core chain-of-thought prompting and methods.
 - [[2603.19835|FIPO]], [[2601.21725|Procedural Pretraining]], [[2512.10938|Derf]], [[2512.03442|PretrainZero]], [[2512.01374|MiniRL]], [[2511.16652|EGGROLL]], [[2510.26788|FP16 RL Training]], [[2510.25741|Ouro]], [[2510.23925|LaCoT]], [[2510.23596|BR-RM]], [[2510.15242|DWRL]], [[2510.10603|EA4LLM]], [[2510.08191|Training-Free GRPO]], [[2510.05069|SwiReasoning]], [[2510.02245|ExGRPO]], [[2508.15260|DeepConf]], [[2508.02124|DMA]], [[2507.18074|ASI-ARCH]], [[2507.07101|Small Batch LLM Training]], [[2507.00417|ASTRO]], [[2506.23061|DyME]], [[2506.15050|T-PPO]], [[2506.08007|RPT]], [[2506.07751|AbstRaL]], [[2506.06105|T2L]], [[2505.24726|Reflect Retry Reward]], [[2505.23725|MuLoCo]], [[2505.12514|COCONUT]], [[2505.00147|AdaptMI]], [[2504.21801|DeepSeek-Prover-V2]], [[2504.21318|Phi-4-reasoning]], [[2504.21233|Phi-4-Mini-Reasoning]], [[2503.20783|Dr. GRPO]], [[2503.18866|BoLT]], [[2503.14476|DAPO]], [[2503.03746|Process-based Self-Rewarding]], [[2502.06772|ReasonFlux]], [[2502.05234|TURN]], [[2502.03387|LIMO]], [[2412.09413|STILL-2]], [[2412.06769|Coconut]], [[2412.00420|TAROT]], [[2411.14405|Marco-o1]], [[2405.14838|Stepwise Internalization]], [[2403.09629|Quiet-STaR]], [[2311.12424|Looped Transformers]]
 
 **Distillation & Continual Reasoning** — Distillation, model-merging, and continual reasoning.
-- [[2605.12483|Teacher-First-OPD]], [[2605.11609|AntiSD]], [[2605.07465|SEIF]], [[2604.13016|OPD Distillation Study]], [[2604.13010|Lightning OPD]], [[2604.02288|SRPO]], [[2604.01193|SSD Code Generation]], [[2602.23413|EvoX]], [[2511.01191|Self-Harmony]], [[2510.21223|FDA]], [[2510.02263|RLAD]], [[2509.26626|RSA]], [[2509.15194|EVOL-RL]], [[2509.14234|CaT]], [[2508.16204|M2N2]], [[2507.17634|WSM]], [[2506.10943|SEAL]], [[2506.08989|SwS]], [[2502.08922|SCIR]], [[2412.01951|Sharpening Mechanism]], [[2203.14465|STaR]]
+- [[2605.12483|Teacher-First-OPD]], [[2605.11609|AntiSD]], [[2605.07465|SEIF]], [[2604.13016|OPD Distillation Study]], [[2604.13010|Lightning OPD]], [[2604.02288|SRPO]], [[2604.01193|SSD Code Generation]], [[2602.23413|EvoX]], [[2511.01191|Self-Harmony]], [[2510.21223|FDA]], [[2510.02263|RLAD]], [[2509.26626|RSA]], [[2509.15194|EVOL-RL]], [[2509.14234|CaT]], [[2508.16204|M2N2]], [[2507.17634|WSM]], [[2506.15710|RAST]], [[2506.10943|SEAL]], [[2506.08989|SwS]], [[2502.08922|SCIR]], [[2412.01951|Sharpening Mechanism]], [[2203.14465|STaR]]
 
 **GRPO & Group-Relative Methods** — GRPO and group-relative policy optimization variants.
 - [[2602.05547|MT-GRPO]], [[2507.21848|EDGE-GRPO]], [[2506.08440|TGRPO]], [[2505.22257|Off-Policy GRPO]]
@@ -497,7 +498,7 @@ Applying MLLMs and VLMs to downstream tasks including fine-grained recognition, 
 > - [[2506.23115|MoCa]] — Transforms causal VLMs into bidirectional encoders for robust retrieval
 
 **Specialized Applications** — MLLMs applied to specific domains and unconventional tasks.
-- [[2604.13074|PersonaVLM]], [[2601.12585|MLLM Visualization Literacy]], [[2601.00561|AEGIS]], [[2512.24880|mHC]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2511.11007|VisMem]], [[2509.24207|Humanline]], [[2508.13142|EASI]], [[2507.01955|GPT-4o Vision Evaluation]], [[2506.22395|Test-Time VLM Consistency]], [[2505.24189|SLM vs LLM Low-Code Workflows]], [[2505.21497|PosterAgent]], [[2505.11820|CoLM]], [[2505.01812|New News]], [[2403.19103|PRISM]], [[2312.04684|LaRS]], [[2310.10625|VLP]], [[2305.00104|MMViT]], [[2301.05226|IPVR]]
+- [[2604.13074|PersonaVLM]], [[2602.06270|VowelPrompt]], [[2601.12585|MLLM Visualization Literacy]], [[2601.00561|AEGIS]], [[2512.24880|mHC]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2511.11007|VisMem]], [[2509.24207|Humanline]], [[2508.13142|EASI]], [[2507.01955|GPT-4o Vision Evaluation]], [[2506.22395|Test-Time VLM Consistency]], [[2505.24189|SLM vs LLM Low-Code Workflows]], [[2505.21497|PosterAgent]], [[2505.11820|CoLM]], [[2505.01812|New News]], [[2403.19103|PRISM]], [[2312.04684|LaRS]], [[2310.10625|VLP]], [[2305.00104|MMViT]], [[2301.05226|IPVR]]
 
 > [!star] Key Papers
 > - [[2505.21497|PosterAgent]] — Automated academic poster generation from papers; demonstrates creative MLLM applications

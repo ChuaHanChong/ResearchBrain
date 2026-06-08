@@ -110,7 +110,7 @@ The field evolved through six phases: **explicit CoT prompting** (2022) where ch
 The foundational paradigm: prompting LLMs to produce step-by-step reasoning before answering, then evolving from few-shot to zero-shot and self-bootstrapped variants.
 
 **Few-Shot & Zero-Shot CoT** — The original prompting techniques that unlocked multi-step reasoning in LLMs by providing exemplar chains or simple instructions like "let's think step by step."
-- [[2606.03784|ERVLA]], [[2605.29198|GCPO]], [[2605.28421|DenoiseRL]], [[2605.21467|DelTA]], [[2605.16787|RLVR Unlearnability]], [[2605.07396|ROPD]], [[2605.06234|RobotEQ]], [[2603.07079|EOPD]], [[2506.14641\|Zero-shot vs Few-shot CoT]], [[2505.24189\|SLM vs LLM Low-Code Workflows]], [[2505.16854\|TON]], [[2505.01812\|New News]], [[2504.09532|Humanoid-COA]], [[2503.16188\|Think or Not Think]], [[2501.19393\|s1]], [[2411.14405\|Marco-o1]]
+- [[2606.03784|ERVLA]], [[2605.29198|GCPO]], [[2605.28421|DenoiseRL]], [[2605.21467|DelTA]], [[2605.16787|RLVR Unlearnability]], [[2605.07396|ROPD]], [[2605.06234|RobotEQ]], [[2603.07079|EOPD]], [[2506.14641\|Zero-shot vs Few-shot CoT]], [[2505.24189\|SLM vs LLM Low-Code Workflows]], [[2505.16854\|TON]], [[2505.14684|Thought Leap Bridge]], [[2505.01812\|New News]], [[2504.09532|Humanoid-COA]], [[2503.16188\|Think or Not Think]], [[2501.19393\|s1]], [[2411.14405\|Marco-o1]]
 
 > [!star] Key Papers
 > - [[2501.19393\|s1]] — Stanford/UW open-source 32B model achieves SOTA reasoning by training on just 1,000 curated examples with budget forcing
@@ -125,21 +125,21 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2405.14838\|Stepwise Internalization]] — Progressively internalizes explicit CoT into implicit reasoning, step by step
 
 **Math & Logical Reasoning** — Specialized reasoning chains for mathematical problem-solving, symbolic logic, and structured deduction.
-- [[2605.02073\|Search-Driven Reward RL]], [[2603.18886\|PrincipiaBench]], [[2512.24119\|GeoBench]], [[2507.00432\|Math Reasoning Transferability]], [[2506.21215\|G2-Reasoner]], [[2506.07751\|AbstRaL]], [[2506.02126\|Knowledge vs Reasoning LLM Eval]], [[2505.15134\|Entropy Minimization LLM Reasoning]], [[2505.10557\|MathCoder-VL]], [[2505.07956\|LLM-LEx]], [[2504.21801\|DeepSeek-Prover-V2]], [[2406.09308\|TransNAR]]
+- [[2605.02073\|Search-Driven Reward RL]], [[2603.18886\|PrincipiaBench]], [[2512.24119\|GeoBench]], [[2511.05849|EGG-SR]], [[2507.00432\|Math Reasoning Transferability]], [[2506.21215\|G2-Reasoner]], [[2506.07751\|AbstRaL]], [[2506.02126\|Knowledge vs Reasoning LLM Eval]], [[2505.15134\|Entropy Minimization LLM Reasoning]], [[2505.10557\|MathCoder-VL]], [[2505.07956\|LLM-LEx]], [[2504.21801\|DeepSeek-Prover-V2]], [[2406.09308\|TransNAR]]
 
 > [!star] Key Papers
 > - [[2406.09308\|TransNAR]] — Google DeepMind integrates Transformers with GNN-based neural algorithmic reasoners for compositional generalization
 > - [[2512.24119\|GeoBench]] — Hierarchical benchmark with formally verified synthetic data for diagnosing geometry reasoning
 
 **Self-Consistency & Verification** — Methods that improve reasoning reliability through multiple sampling, reward-guided search, and process verification.
-- [[2604.22074\|CIR/SR Reasoning]], [[2604.20733\|NPO]], [[2604.02288\|SRPO]], [[2603.30036\|CoT Monitorability]], [[2603.23355\|ReVal]], [[2511.10648\|SCS]], [[2511.09158\|CRM]], [[2510.23596\|BR-RM]], [[2510.17472\|Certified Self-Consistency]], [[2510.14901\|Power Sampling]], [[2509.23250\|VL-PRM]], [[2508.15260\|DeepConf]], [[2506.14245\|CoT-Pass@K]], [[2506.09026\|e3]], [[2506.03295\|CFT]], [[2505.23585\|OPO]], [[2505.21493\|VeriFree]], [[2505.14674\|RRM]], [[2505.03318\|UNIFIEDREWARD-THINK]], [[2505.02387\|RM-R1]], [[2504.20595\|ReasonIR]], [[2504.16828\|THINKPRM]], [[2503.04412\|AB-MCTS]], [[2502.06233\|CISC]], [[2501.05366\|Search-o1]], [[2501.01478\|MCTS Process Supervision]], [[2412.18319\|Mulberry]], [[2412.14835\|AR-MCTS]]
+- [[2604.22074\|CIR/SR Reasoning]], [[2604.20733\|NPO]], [[2604.02288\|SRPO]], [[2603.30036\|CoT Monitorability]], [[2603.23355\|ReVal]], [[2511.10648\|SCS]], [[2511.09158\|CRM]], [[2510.23596\|BR-RM]], [[2510.17472\|Certified Self-Consistency]], [[2510.14901\|Power Sampling]], [[2510.12157|Self-Verifying Reflection]], [[2509.23250\|VL-PRM]], [[2508.15260\|DeepConf]], [[2506.14245\|CoT-Pass@K]], [[2506.09026\|e3]], [[2506.03295\|CFT]], [[2505.23585\|OPO]], [[2505.21493\|VeriFree]], [[2505.14674\|RRM]], [[2505.03318\|UNIFIEDREWARD-THINK]], [[2505.02387\|RM-R1]], [[2504.20595\|ReasonIR]], [[2504.16828\|THINKPRM]], [[2503.04412\|AB-MCTS]], [[2502.06233\|CISC]], [[2501.05366\|Search-o1]], [[2501.01478\|MCTS Process Supervision]], [[2412.18319\|Mulberry]], [[2412.14835\|AR-MCTS]]
 
 > [!star] Key Papers
 > - [[2412.14835\|AR-MCTS]] — Active reward-guided MCTS enhances multi-step multimodal reasoning without additional training
 > - [[2509.23250\|VL-PRM]] — Vision-language process reward models trained via hybrid data synthesis for step-level verification
 
 **Long CoT & Efficient Reasoning** — Addressing the length problem: surveys and methods for managing very long chains, reducing overthinking, and allocating reasoning compute adaptively.
-- [[2606.03937|VEPO]], [[2605.29438|ElegantVLA]], [[2605.12227|dGRPO]], [[2605.11739|EffOPD]], [[2604.21764\|TRS]], [[2604.05355\|ETR]], [[2602.09276|Reasoning-ID]], [[2511.17487\|EXTRACT+THINK]], [[2511.08577\|TaH]], [[2508.02120\|Efficient R1-style Reasoning Survey]], [[2507.09662\|Concise Adaptive Thinking Survey]], [[2505.16579\|D2R]], [[2505.15612\|LASER]], [[2505.13975\|DRP]], [[2505.13438\|AnytimeReasoner]], [[2505.11896\|AdaCoT]], [[2505.10425\|L2T]], [[2505.00147\|AdaptMI]], [[2504.10903\|Efficient Reasoning Models Survey]], [[2503.23077\|LRM Efficient Inference Survey]], [[2503.21614\|Efficient Reasoning Survey]], [[2503.18866\|BoLT]], [[2503.16419\|Stop Overthinking Survey]], [[2503.09567\|Long CoT Survey]], [[2412.09413\|STILL-2]]
+- [[2606.03937|VEPO]], [[2605.29438|ElegantVLA]], [[2605.12227|dGRPO]], [[2605.11739|EffOPD]], [[2604.21764\|TRS]], [[2604.05355\|ETR]], [[2602.16839|Progressive Thought Encoding]], [[2602.09276|Reasoning-ID]], [[2511.17487\|EXTRACT+THINK]], [[2511.08577\|TaH]], [[2508.03346|Step Entropy CoT]], [[2508.02120\|Efficient R1-style Reasoning Survey]], [[2507.09662\|Concise Adaptive Thinking Survey]], [[2505.16579\|D2R]], [[2505.15612\|LASER]], [[2505.13975\|DRP]], [[2505.13438\|AnytimeReasoner]], [[2505.11896\|AdaCoT]], [[2505.10425\|L2T]], [[2505.00147\|AdaptMI]], [[2504.10903\|Efficient Reasoning Models Survey]], [[2503.23077\|LRM Efficient Inference Survey]], [[2503.21614\|Efficient Reasoning Survey]], [[2503.18866\|BoLT]], [[2503.16419\|Stop Overthinking Survey]], [[2503.09567\|Long CoT Survey]], [[2502.07266|CoT Length Study]], [[2412.09413\|STILL-2]]
 
 > [!star] Key Papers
 > - [[2503.09567\|Long CoT Survey]] — First systematic survey of long chain-of-thought reasoning, covering generation, optimization, and evaluation
@@ -210,7 +210,7 @@ Extending CoT to jointly reason over vision and language, producing interleaved 
 Moving reasoning from explicit token chains into continuous latent spaces, enabling models to "think" without generating human-readable text.
 
 **Continuous Latent Reasoning** — Models that perform reasoning in a continuous embedding space rather than discrete token sequences.
-- [[2605.12466|Attractor Models]], [[2605.02735|Silenced Visual Latents]], [[2604.22709|Abstract-CoT]], [[2604.18486\|OneVL]], [[2602.05359\|HIVE]], [[2601.10129\|LaViT]], [[2601.09708|Fast-ThinkAct]], [[2601.06803\|Laser]], [[2601.05877\|iReasoner]], [[2512.21218\|LIVR]], [[2512.16584\|SkiLa]], [[2510.23925\|LaCoT]], [[2510.12603\|IVT-LR]], [[2509.24251\|LVR]], [[2505.13308\|LATENTSEEK]], [[2505.12514\|COCONUT]], [[2505.11484\|SoftCoT++]], [[2502.21074\|CODI]], [[2502.03275\|Token Assorted]], [[2412.13171\|CCoT]], [[2412.06769\|Coconut]]
+- [[2605.12466|Attractor Models]], [[2605.02735|Silenced Visual Latents]], [[2604.22709|Abstract-CoT]], [[2604.18486\|OneVL]], [[2603.04948|Nabla-Reasoner]], [[2602.05359\|HIVE]], [[2601.10129\|LaViT]], [[2601.09708|Fast-ThinkAct]], [[2601.06803\|Laser]], [[2601.05877\|iReasoner]], [[2512.21218\|LIVR]], [[2512.16584\|SkiLa]], [[2510.23925\|LaCoT]], [[2510.12603\|IVT-LR]], [[2509.24251\|LVR]], [[2505.13308\|LATENTSEEK]], [[2505.12514\|COCONUT]], [[2505.11484\|SoftCoT++]], [[2502.21074\|CODI]], [[2502.03275\|Token Assorted]], [[2412.13171\|CCoT]], [[2412.06769\|Coconut]]
 
 > [!star] Key Papers
 > - [[2412.06769\|Coconut]] — Meta FAIR's Chain of Continuous Thought: LLM reasons in continuous latent space, outperforming token-based CoT on multi-step problems
@@ -227,7 +227,7 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 > - [[2604.11791\|Looped Reasoning Mechanistic Analysis]] — Reveals that looped models spontaneously organize into cyclic fixed points + feedforward-style "stages of inference"; grounds looped design choices empirically
 
 **Implicit Reasoning Mechanics** — Understanding how Transformers internalize and execute reasoning without explicit chains.
-- [[2601.10679\|Augmented HRM]], [[2510.09312\|CRV]], [[2510.05069\|SwiReasoning]], [[2509.14252\|LLM-JEPA]], [[2506.08552\|Latent Reasoning Refinement]], [[2505.23653\|Transformer Implicit Reasoning Mechanics]]
+- [[2601.10679\|Augmented HRM]], [[2510.09312\|CRV]], [[2510.05069\|SwiReasoning]], [[2509.14252\|LLM-JEPA]], [[2506.08552\|Latent Reasoning Refinement]], [[2505.23653\|Transformer Implicit Reasoning Mechanics]], [[2505.17697|Activation Control CoT]], [[2505.15257|Language-Reasoning Disentanglement]]
 
 > [!star] Key Papers
 > - [[2505.23653\|Transformer Implicit Reasoning Mechanics]] — Reveals how Transformers acquire implicit multi-step reasoning through compression of explicit chains
@@ -361,7 +361,7 @@ RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal m
 > - [[2603.14117\|SIEVE]] — Self-revisiting visual evidence via RL, +7.85% on V*Bench
 
 **Synthetic Data & Training Pipelines for Visual CoT** — Methods for generating high-quality visual reasoning training data at scale.
-- [[2507.00833|HumanoidGen]]
+- [[2510.15040|COGS]], [[2507.00833|HumanoidGen]]
 
 > [!star] Key Papers
 > - [[2510.12225\|HoneyBee]] — Meta FAIR's systematic investigation into constructing high-quality visual CoT training data

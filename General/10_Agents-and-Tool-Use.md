@@ -106,7 +106,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992\|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Reasoning Surveys & Taxonomies** — Comprehensive reviews mapping the rapidly evolving landscape of LLM-based agents, establishing conceptual frameworks and evaluation methodologies.
-- [[2606.03963|AgenticRL]], [[2606.03374|eMEM]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial Brain Cerebellum]], [[2605.20246|GROW]], [[2605.15128|MemEye]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]], [[2602.16313|MemoryArena]], [[2511.14004|STAR (Memory-Action)]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2504.15965|AI Memory Survey]], [[2403.19622|RH20T-P]]
+- [[2606.03963|AgenticRL]], [[2606.03374|eMEM]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial Brain Cerebellum]], [[2605.20246|GROW]], [[2605.15128|MemEye]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]], [[2602.16313|MemoryArena]], [[2602.11964|Gaia2]], [[2511.14004|STAR (Memory-Action)]], [[2509.22391|SeekBench]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2505.15146|lmgame-Bench]], [[2504.15965|AI Memory Survey]], [[2403.19622|RH20T-P]]
 
 > [!star] Key Papers
 > - [[2505.10468\|AI Agents vs Agentic AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
@@ -122,14 +122,14 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 Agents that generate and execute code as their primary action modality. Instead of reasoning in natural language alone, these systems write programs to offload computation, compose vision modules, or perform scientific discovery.
 
 **Program-Aided Reasoning** — LLMs generate executable code to handle computation, separating logical reasoning from arithmetic and procedural execution.
-- [[2604.10929\|Ro-SLM]], [[2509.25810\|RA3]], [[2503.01619\|Flame]], [[2401.08190\|MARIO]], [[2211.12588\|PoT]], [[2211.10435\|PAL]]
+- [[2604.10929\|Ro-SLM]], [[2510.15700|ProofOptimizer]], [[2510.01539|Executable Counterfactuals]], [[2509.25810\|RA3]], [[2509.25411|KeyTrace]], [[2509.22114|SK2Decompile]], [[2508.04865|Agnostics]], [[2507.19060|PurpCode]], [[2506.20639|DiffuCoder]], [[2506.11487|DSP+]], [[2506.09820|CoRT]], [[2506.07047|Mathesis]], [[2505.22704|REAL (Code)]], [[2505.21668|R1-Code-Interpreter]], [[2505.12723|OORL]], [[2504.08600|SQL-R1]], [[2504.02327|LearNAT]], [[2503.01619\|Flame]], [[2401.08190\|MARIO]], [[2211.12588\|PoT]], [[2211.10435\|PAL]]
 
 > [!star] Key Papers
 > - [[2211.10435\|PAL]] — Program-aided Language Models: offload computation to a Python interpreter, separating reasoning from calculation
 > - [[2211.12588\|PoT]] — Program of Thoughts prompting: LLMs delegate numerical reasoning to code execution
 
 **Visual Programming & Compositional Code** — Composing vision-and-language modules into executable programs for visual reasoning, enabling training-free compositional problem-solving.
-- [[2606.03047|ModuLoop]], [[2605.02600|CoRAL]], [[2603.22435\|CaP-X]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]], [[2209.07753|Code as Policies]]
+- [[2606.03047|ModuLoop]], [[2605.02600|CoRAL]], [[2604.01600|MM-ReCoder]], [[2603.25118|AnyDoc]], [[2603.22435\|CaP-X]], [[2603.03072|TikZilla]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.13587|Chart-to-Code RL]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]], [[2209.07753|Code as Policies]]
 
 > [!star] Key Papers
 > - [[2303.08128\|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without any training
@@ -137,7 +137,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2512.03746\|CodeVision]] — Code-as-tool framework equipping MLLMs with dynamically generated visual processing code
 
 **Autonomous Code Discovery & Evolution** — Agents that autonomously discover algorithms, evolve code solutions, or benchmark AI coding capabilities at scale.
-- [[2604.25850|Agentic Harness Engineering]], [[2604.25067|Frontier Coding Agents AlphaZero]], [[2604.01193\|SSD Code Generation]], [[2603.16790\|InCoder-32B]], [[2601.18067\|EvolVE]], [[2511.18538\|Code Intelligence Survey]], [[2509.19349\|ShinkaEvolve]], [[2506.22419\|LLM Speedrunning Benchmark]], [[2506.13131\|AlphaEvolve]]
+- [[2604.25850|Agentic Harness Engineering]], [[2604.25067|Frontier Coding Agents AlphaZero]], [[2604.01193\|SSD Code Generation]], [[2603.16790\|InCoder-32B]], [[2601.18067\|EvolVE]], [[2512.21919|SWE-RM]], [[2511.18538\|Code Intelligence Survey]], [[2510.23272|AesCoder]], [[2510.14635|ATGen]], [[2510.11121|RFTHGS]], [[2510.10644|LLM Meta-Optimizer MoD]], [[2510.01832|SCRIBES]], [[2509.22824|Critique-Coder]], [[2509.21016|RL Grokking (DELTA)]], [[2509.19349\|ShinkaEvolve]], [[2509.16865|LLM CombOpt Solvers]], [[2508.21107|UTRL]], [[2508.05433|MLES]], [[2507.14111|CUDA-L1]], [[2507.11948|Kevin]], [[2506.22419\|LLM Speedrunning Benchmark]], [[2506.15701|Compiler-R1]], [[2506.13131\|AlphaEvolve]], [[2505.23387|Afterburner]], [[2505.17866|DesignX]], [[2505.16053|RLAF]], [[2505.12285|CALM (Heuristic Design)]]
 
 > [!star] Key Papers
 > - [[2506.13131\|AlphaEvolve]] — Google DeepMind combines LLMs with evolutionary search to autonomously discover algorithms, finding new mathematical results
@@ -153,7 +153,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 Training LLMs to learn when and how to invoke external tools through reinforcement learning, rather than relying on handcrafted prompting. This section covers the transition from prompted tool use to learned tool-use policies.
 
 **RL-Trained Tool Use** — Reinforcement learning frameworks that train LLMs to autonomously decide when to call tools, which tools to use, and how to integrate tool outputs into reasoning chains.
-- [[2605.26637|Embodied Tool Protocol]], [[2509.02479\|SimpleTIR]], [[2509.01055\|VerlTool]], [[2505.04588\|ZeroSearch]], [[2505.00024\|Nemotron-Research-Tool-N1]], [[2504.20595\|ReasonIR]], [[2504.13958\|ToolRL]], [[2504.11536\|ReTool]], [[2504.04736\|SWiRL]], [[2503.23383\|ToRL]], [[2503.19470\|ReSearch]], [[2503.09516\|Search-R1]], [[2503.05592\|R1-Searcher]], [[2501.05366\|Search-o1]], [[2412.14835\|AR-MCTS]]
+- [[2605.26637|Embodied Tool Protocol]], [[2603.22293|TIPS (RL)]], [[2603.13348|AutoTool]], [[2510.07794|HiPRAG]], [[2509.21826|ResT (RL)]], [[2509.17325|CodeGym]], [[2509.02479\|SimpleTIR]], [[2509.01055\|VerlTool]], [[2505.14069|ReasonRAG]], [[2505.09316|InForage]], [[2505.07773|ZeroTIR]], [[2505.04588\|ZeroSearch]], [[2505.00024\|Nemotron-Research-Tool-N1]], [[2504.20595\|ReasonIR]], [[2504.13958\|ToolRL]], [[2504.11536\|ReTool]], [[2504.04736\|SWiRL]], [[2503.23383\|ToRL]], [[2503.19470\|ReSearch]], [[2503.09516\|Search-R1]], [[2503.05592\|R1-Searcher]], [[2501.05366\|Search-o1]], [[2412.14835\|AR-MCTS]]
 
 > [!star] Key Papers
 > - [[2504.11536\|ReTool]] — ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning
@@ -161,14 +161,14 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 > - [[2503.23383\|ToRL]] — Scaling tool-integrated RL: trains LLMs to autonomously learn when and how to use tools
 
 **Agentic Tool Integration Frameworks** — Unified frameworks that combine reasoning, tool invocation, and multi-step planning into coherent agent architectures.
-- [[2603.23483\|SpecEyes]], [[2512.17312\|CodeDance]], [[2509.07969\|Mini-o3]], [[2508.12109\|Simple o3]], [[2507.05707\|Agentic-R1]], [[2505.05177\|MARK]], [[2505.01441\|ARTIST]], [[2504.21776\|WebThinker]]
+- [[2605.28828|Micro-Macro Retrieval]], [[2603.23483\|SpecEyes]], [[2602.22225|SmartChunk]], [[2512.20745|AgentMath]], [[2512.17312\|CodeDance]], [[2511.07328|Q-RAG]], [[2510.27566|Interact-RAG]], [[2510.06217|TaTToo]], [[2510.05592|AgentFlow]], [[2509.07969\|Mini-o3]], [[2508.12109\|Simple o3]], [[2507.05707\|Agentic-R1]], [[2506.12115|Cognitive Tools]], [[2505.07233|DynamicRAG]], [[2505.05177\|MARK]], [[2505.01441\|ARTIST]], [[2504.21776\|WebThinker]]
 
 > [!star] Key Papers
 > - [[2505.01441\|ARTIST]] — Microsoft Research unifies agentic reasoning, dynamic tool integration, and RL training in a single framework
 > - [[2507.05707\|Agentic-R1]] — DualDistill framework training language models as tool-using agents via distillation and RL
 
 **Visual Tool Use & Adaptive Tool Selection** — Methods enabling vision-language models to select and invoke visual tools (detectors, segmenters, editors) on demand during reasoning.
-- [[2605.15198|ATLAS]], [[2605.09218|Flame3D]], [[2605.07177|HyperEyes]], [[2604.21409\|S1-VL]], [[2603.17729\|SARE]], [[2601.13942\|GoG]], [[2512.16918\|AdaTooler-V]], [[2512.10359\|STAR]], [[2511.20085\|VICoT-Agent]], [[2510.27363\|ToolScope]], [[2510.09733\|EVisRAG]], [[2509.01656\|ReV PT]], [[2508.04416\|VITAL]], [[2505.08617\|OpenThinkIMG]], [[2503.19263\|DWIM]], [[2412.18072\|MMFactory]], [[2412.13810\|CAD-Assistant]], [[2412.05479\|LATTE]]
+- [[2605.15198|ATLAS]], [[2605.09218|Flame3D]], [[2605.07177|HyperEyes]], [[2604.21409\|S1-VL]], [[2603.17729\|SARE]], [[2603.06366|OralGPT-Plus]], [[2601.13942\|GoG]], [[2512.16918\|AdaTooler-V]], [[2512.10359\|STAR]], [[2511.20785|LongVT]], [[2511.20085\|VICoT-Agent]], [[2511.19773|VISTA-Gym]], [[2511.13026|REVISOR]], [[2510.27363\|ToolScope]], [[2510.09733\|EVisRAG]], [[2510.08480|Video-STAR]], [[2509.01656\|ReV PT]], [[2508.04416\|VITAL]], [[2505.08617\|OpenThinkIMG]], [[2504.21561|SPORT]], [[2503.19263\|DWIM]], [[2412.18072\|MMFactory]], [[2412.13810\|CAD-Assistant]], [[2412.05479\|LATTE]]
 
 > [!star] Key Papers
 > - [[2412.05479\|LATTE]] — Trains open-source VLMs to integrate external tools for complex multimodal reasoning
@@ -192,7 +192,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 Agents trained via reinforcement learning for multi-turn interactions with environments, moving beyond single-call tool use to sustained, stateful task execution across many steps.
 
 **Multi-Turn RL Training** — Frameworks and systematic guides for training LLM agents that maintain state and adapt strategy across extended multi-turn interactions.
-- [[2602.02196|TIDE]], [[2408.10899|ARIO]]
+- [[2603.02216|ATPO]], [[2602.22817|HGPO]], [[2602.02196|TIDE]], [[2512.16848|LAMER]], [[2511.07327|IterResearch]], [[2510.20150|Rank-GRPO]], [[2510.14967|IGPO (Info Gain)]], [[2510.10197|Environment Tuning]], [[2510.04284|Doctor-R1]], [[2509.21240|Tree-GRPO]], [[2509.19199|iStar]], [[2509.08755|AgentGym-RL]], [[2507.17842|Shop-R1]], [[2506.00539|ARIA]], [[2505.10978|GiGPO]], [[2504.20997|LLM-PSRL]], [[2504.16078|LLM Greedy Agents]], [[2504.03206|CURIO]], [[2408.10899|ARIO]]
 
 > [!star] Key Papers
 > - [[2504.20073\|RAGEN]] — Multi-turn RL training for LLM agents; establishes the training paradigm for sustained agent-environment interaction
@@ -207,7 +207,7 @@ Agents trained via reinforcement learning for multi-turn interactions with envir
 > - [[2510.23038\|TIR-Judge]] — LLM judge framework integrating tool-invoked reasoning for reliable multi-step evaluation
 
 **Dynamic Planning & Adaptive Agents** — Agents that dynamically revise plans during execution, adapting to unexpected observations rather than following fixed scripts.
-- [[2512.24601\|RLMs]], [[2508.20722\|rStar2-Agent]], [[2507.19457\|GEPA]], [[2507.11988\|Aime]], [[2507.08664\|INoT]], [[2203.03485\|Self-directed Exploratory Planning]]
+- [[2602.21728|Explore-on-Graph]], [[2512.24601\|RLMs]], [[2512.09706|CrossHA]], [[2510.09577|Dyna-Mind]], [[2509.01920|DSP (Speculative)]], [[2508.20722\|rStar2-Agent]], [[2507.19457\|GEPA]], [[2507.11988\|Aime]], [[2507.11060|ExRec]], [[2507.08664\|INoT]], [[2505.16994|R2ec]], [[2203.03485\|Self-directed Exploratory Planning]]
 
 > [!star] Key Papers
 > - [[2507.11988\|Aime]] — ByteDance multi-agent framework overcoming static planning limitations with dynamic plan revision
@@ -224,14 +224,14 @@ Agents trained via reinforcement learning for multi-turn interactions with envir
 Agents that operate in real digital environments -- browsing the web, interacting with GUIs, and completing tasks in applications. These bridge language understanding with pixel-level perception and action.
 
 **Web Navigation & Browsing Agents** — Agents that navigate websites, fill forms, and complete multi-step web tasks by combining visual perception with action planning.
-- [[2512.23676\|WWM]], [[2510.19245\|See Think Act Shopper]], [[2508.07976\|ASearcher]], [[2504.21024\|WebEvolver]]
+- [[2603.05044|WebFactory]], [[2601.21872|WebArbiter]], [[2512.23676\|WWM]], [[2510.19245\|See Think Act Shopper]], [[2510.18798|WebSeer]], [[2509.24107|Fathom-DeepResearch]], [[2509.22644|WebGen-Agent]], [[2509.13305|WebSailor-V2]], [[2508.07976\|ASearcher]], [[2508.05748|WebWatcher]], [[2507.04103|LLM Web Agent Diagnosis]], [[2505.24332|DeepDiver]], [[2505.22648|WebDancer]], [[2504.21024\|WebEvolver]]
 
 > [!star] Key Papers
 > - [[2512.23676\|WWM]] — Princeton's Web World Models: a new architectural paradigm where agents build predictive models of web environments for planning
 > - [[2510.19245\|See Think Act Shopper]] — VLM-driven framework simulating online shopping tasks end-to-end
 
 **GUI & Multi-Application Agents** — Agents that interact with graphical user interfaces across multiple applications, combining screen understanding with structured actions.
-- [[2604.11201\|CocoaBench]], [[2604.06126\|Gym-Anything]], [[2603.24533\|UI-Voyager]], [[2508.09736\|M3-Agent]], [[2508.03923\|CoAct-1]]
+- [[2604.11201\|CocoaBench]], [[2604.06126\|Gym-Anything]], [[2603.24533\|UI-Voyager]], [[2603.02951|CGL]], [[2511.07332|GroundCUA]], [[2510.20286|UI-Ins]], [[2510.09872|WARC-Bench]], [[2509.18119|MobileRL]], [[2508.14040|ComputerRL]], [[2508.09736\|M3-Agent]], [[2508.04389|GuirlVG]], [[2508.03923\|CoAct-1]], [[2507.05791|GTA1]], [[2505.15810|GUI-G1]], [[2505.12493|GUI-Shift]], [[2505.12370|SE-GUI]]
 
 > [!star] Key Papers
 > - [[2508.03923\|CoAct-1]] — Multi-agent framework integrating both GUI interactions and direct programmatic API access
@@ -247,7 +247,7 @@ Agents that operate in real digital environments -- browsing the web, interactin
 Systems where multiple LLM agents collaborate, specialize, or compete. Multi-agent architectures enable division of labor, debate-based reasoning, and scalable task decomposition that single agents cannot achieve.
 
 **Multi-Agent Frameworks & Orchestration** — Architectures for coordinating multiple specialized agents, managing communication, and distributing tasks across agent teams.
-- [[2604.25135\|FAMA]], [[2604.01658\|CORAL]], [[2601.23265\|PaperBanana]], [[2601.19204\|MATA]], [[2601.09295\|MACRO-LLM]], [[2508.13167\|CoA]], [[2507.01701\|LbMAS]], [[2506.12508\|AgentOrchestra]], [[2504.16129\|MARFT]], [[2504.01990\|Foundation Agents Survey]]
+- [[2604.25135\|FAMA]], [[2604.01658\|CORAL]], [[2602.14926|MAC-AMP]], [[2601.23265\|PaperBanana]], [[2601.19204\|MATA]], [[2601.09295\|MACRO-LLM]], [[2512.04388|Conductor]], [[2511.22235|CES Scheduler]], [[2510.11062|AT-GRPO]], [[2509.14295|Aegis (Agent)]], [[2509.03312|AgenTracer]], [[2508.13167\|CoA]], [[2507.01701\|LbMAS]], [[2506.13474|LA-CDM]], [[2506.12508\|AgentOrchestra]], [[2506.00555|MMedAgent-RL]], [[2505.23885|OWL (Workforce)]], [[2505.19591|Puppeteer (Agent)]], [[2504.16129\|MARFT]], [[2504.01990\|Foundation Agents Survey]], [[2503.11739|CoLLMLight]], [[2501.15228|MMOA-RAG]]
 
 > [!star] Key Papers
 > - [[2504.01990\|Foundation Agents Survey]] — Brain-inspired comprehensive framework integrating diverse LLM agent research areas
@@ -262,7 +262,7 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 > - [[2601.10825\|Societies of Thought]] — Reveals how advanced LLMs implicitly implement multi-agent "society of mind" reasoning internally
 
 **Co-Evolution & Group Dynamics** — Multiple agents that evolve together, with competitive or cooperative dynamics driving collective improvement beyond what individual agents achieve.
-- [[2604.22446|Skills to Talent]], [[2604.20987|Co-Evolve Agents]], [[2602.08234\|SkillRL]], [[2602.04837\|GEA]], [[2601.09667\|MATTRL]], [[2510.23595\|MAE]], [[2506.24119\|SPIRAL]], [[2007.07853\|γ-Progress]]
+- [[2604.22446|Skills to Talent]], [[2604.20987|Co-Evolve Agents]], [[2602.08234\|SkillRL]], [[2602.04837\|GEA]], [[2601.09667\|MATTRL]], [[2510.23595\|MAE]], [[2510.18821|Search Self-play]], [[2510.08529|CoMAS]], [[2506.24119\|SPIRAL]], [[2007.07853\|γ-Progress]]
 
 > [!star] Key Papers
 > - [[2602.04837\|GEA]] — Group-Evolving Agents: agents co-evolve in groups, with emergent specialization and collective capability growth
@@ -278,14 +278,15 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 Agents that accumulate experience over time, build persistent memory, and autonomously improve their own capabilities. This represents the frontier where agents become self-evolving systems.
 
 **Skill Libraries & External Memory** — Agents that maintain persistent skill repositories or memory banks, enabling them to reuse learned capabilities across tasks without retraining.
-- [[2604.04503\|MIA]], [[2604.02268\|SKILL0]], [[2604.01007\|Omni-SimpleMem]], [[2603.29493\|MemFactory]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24639\|ERL]], [[2603.24517|AVO]], [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2601.03192|MemRL]], [[2512.23167\|SPIRAL]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2509.23285|Tool-Light]]
+- [[2604.04503\|MIA]], [[2604.02268\|SKILL0]], [[2604.01007\|Omni-SimpleMem]], [[2603.29493\|MemFactory]], [[2603.25723|Natural-Language Agent Harnesses]], [[2603.24639\|ERL]], [[2603.24517|AVO]], [[2603.18743\|Memento-Skills]], [[2603.12056\|XSkill]], [[2603.05218\|KARL]], [[2602.23008|EMPO-squared]], [[2602.17930|MIRA (RL)]], [[2601.03192|MemRL]], [[2512.23167\|SPIRAL]], [[2512.20092|Memory-T1]], [[2512.13564\|AI Agent Memory Survey]], [[2509.25140\|ReasoningBank]], [[2509.23285|Tool-Light]], [[2509.23040|ReMemR1]], [[2506.15841|MEM1]]
 
 > [!star] Key Papers
 > - [[2603.18743\|Memento-Skills]] — Skill library as external memory for continual learning; agents store and retrieve reusable skills without weight updates
 > - [[2603.05218\|KARL]] — Knowledge agent via off-policy RL for grounded reasoning over enterprise knowledge bases
 
 **Self-Evolving Agent Frameworks** — Agents that autonomously improve their own strategies, prompts, or tool-use policies through self-reflection and iterative optimization.
-- [[2605.28814|BES]], [[2605.27276|SIA]], [[2605.25832|AUTO-ROBOTIST]], [[2605.20025|AutoResearchClaw]], [[2604.27488|Skills-Coach]], [[2604.18292\|Agent-World]], [[2604.18131\|Native Evolution]], [[2604.15034\|Autogenesis]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early Experience]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
+- [[2605.28814|BES]], [[2605.27276|SIA]], [[2605.25832|AUTO-ROBOTIST]], [[2605.20025|AutoResearchClaw]], [[2604.27488|Skills-Coach]], [[2604.18292\|Agent-World]], [[2604.18131\|Native Evolution]], [[2604.15034\|Autogenesis]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.19461\|HyperAgents]], [[2603.17621\|Complementary RL]], [[2603.15255\|SAGE]], [[2602.06130\|SWIRL]], [[2602.00359\|A-EVOLVE]], [[2601.07055\|Dr. Zero]], [[2601.06794\|ECHO]], [[2601.03872\|ATLAS]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2511.03773|Experience Synthesis (Mexp)]], [[2511.00758\|ATM]], [[2510.16079\|EVOLVER]], [[2510.13220|EvoTest]], [[2510.08558\|Early Experience]]
+- [[2510.05571|EvoPresent]], [[2510.04618\|ACE]], [[2509.26354\|Misevolution]], [[2509.25047|AutoPlay]], [[2509.24726\|Socratic-Zero]], [[2508.19005\|ELL Framework]], [[2508.04700\|SEAgent]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]], [[2506.11442|ReVeal (Agent)]], [[2506.01716\|SCA]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
 
 > [!star] Key Papers
 > - [[2508.02085\|SE-Agent]] — Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement
@@ -293,7 +294,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 > - [[2601.07055\|Dr. Zero]] — Meta's framework enabling search agents to self-evolve without human-provided training data
 
 **Routing, Composition & Model Selection** — Meta-agents that dynamically select, compose, or route between multiple models and tools to match task requirements.
-- [[2603.20278\|OpenResearcher]], [[2601.03872\|ATLAS]], [[2512.24330\|SenseNova-MARS]], [[2507.20534\|Kimi K2]], [[2506.09033\|Router-R1]], [[2403.13257\|MergeKit]]
+- [[2604.23626|GraphPlanner]], [[2603.20278\|OpenResearcher]], [[2601.03872\|ATLAS]], [[2512.24330\|SenseNova-MARS]], [[2507.20534\|Kimi K2]], [[2506.09033\|Router-R1]], [[2506.04632|Risk-Sensitive Agents]], [[2403.13257\|MergeKit]]
 
 > [!star] Key Papers
 > - [[2506.09033\|Router-R1]] — RL-trained router that learns to dispatch queries to the optimal model or tool combination
@@ -309,7 +310,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Multimodal Agent Architectures** — Integrated architectures combining vision-language understanding with agent capabilities for complex multimodal tasks.
-- [[2606.05395|VASO]], [[2510.21817|VITA-E]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
+- [[2606.05395|VASO]], [[2603.01607|CARE (Clinical)]], [[2602.17558|RetouchIQ]], [[2512.18745|InSight-o3]], [[2512.05111|ARM-Thinker]], [[2511.19524|VideoChat-M1]], [[2511.05271|DeepEyesV2]], [[2510.21817|VITA-E]], [[2505.19486|VLMLight]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
 
 > [!star] Key Papers
 > - [[2402.15116\|LMA Survey]] — Systematic review of Large Multimodal Agents deconstructing their core components and capabilities
@@ -317,21 +318,21 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2311.05437\|LLaVA-Plus]] — Training VLMs to learn when and how to use external visual tools for any task
 
 **VLM Fine-Tuning & Reinforcement for Agency** — Methods for fine-tuning vision-language models via RL to act as agents in visual environments.
-- [[2604.08545|Metis]], [[2512.00961|GenReward]], [[2409.18313|Embodied-RAG]]
+- [[2604.08545|Metis]], [[2604.08203|MedVR]], [[2603.22918|EVA (Video Agent)]], [[2602.20913|LongVideo-R1]], [[2512.22315|VideoZoomer]], [[2512.00961|GenReward]], [[2409.18313|Embodied-RAG]]
 
 > [!star] Key Papers
 > - [[2405.10292\|VLM-RL Fine-Tuning]] — Directly fine-tuning VLMs with RL for agentic visual tasks; bridges perception and action
 > - [[2505.14246\|Visual-ARFT]] — Reinforcement fine-tuning framework for visual agents from Shanghai AI Lab
 
 **Spatial Intelligence & Geometry Grounding** — Agents that reason about 3D space, geometric relationships, and physical structure for grounded problem-solving.
-- [[2603.15386\|RieMind]], [[2602.10116|SAGE]], [[2504.09848\|LLM Spatial Intelligence Survey]], [[2408.16662\|Space3D-Bench]]
+- [[2603.15386\|RieMind]], [[2602.10116|SAGE]], [[2512.10534|InternGeometry]], [[2512.04069|SpaceTools]], [[2504.09848\|LLM Spatial Intelligence Survey]], [[2408.16662\|Space3D-Bench]]
 
 > [!star] Key Papers
 > - [[2504.09848\|LLM Spatial Intelligence Survey]] — Comprehensive survey examining how LLMs enable spatial intelligence across domains
 > - [[2603.15386\|RieMind]] — Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations
 
 **Scientific & Research Agents** — Agents designed for autonomous scientific research, from literature review to experiment design and execution.
-- [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
+- [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2603.07642|Helix (Scientific)]], [[2602.24288|DARE-bench]], [[2601.19439|OSIRIS]], [[2601.15715|RebuttalAgent]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2510.11661|SR-Scientist]], [[2509.01684|ML Engineering RL Agents]], [[2506.04405|MedAgentGym]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
 
 > [!star] Key Papers
 > - [[2505.16938\|InternAgent]] — Unified closed-loop multi-agent system for fully autonomous scientific research
