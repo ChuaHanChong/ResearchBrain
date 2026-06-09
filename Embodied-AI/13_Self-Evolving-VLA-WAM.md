@@ -67,7 +67,7 @@ graph TD
 > - **Green (VLA + Agent threads)** — VLA RL post-training and agent-level behavior evolution
 > - Arrows indicate intellectual lineage, not architectural inheritance
 
-Three threads converge: **WAM self-evolution** (Dreamer → [[2502.05907|EvoAgent]] → [[2506.24119|SPIRAL]] → [[2603.19370|VAMPO]]) leverages world model imagination; **VLA self-evolution** ([[2511.16166|EvoVLA]] → [[2512.14666|EVOLVE-VLA]] → [[2603.03818|VLA CL]]) uses RL fine-tuning without explicit world models; **agent self-evolution** ([[2203.14465|STaR]] → [[2510.16079|EVOLVER]] → [[2601.06794|ECHO]] → [[2508.02085|SE-Agent]]) operates at the behavior level with persistent experience.
+Three threads converge: **WAM self-evolution** (Dreamer → [[2502.05907|EvoAgent]] → [[2603.08403|SPIRAL]] → [[2603.19370|VAMPO]]) leverages world model imagination; **VLA self-evolution** ([[2511.16166|EvoVLA]] → [[2512.14666|EVOLVE-VLA]] → [[2603.03818|VLA CL]]) uses RL fine-tuning without explicit world models; **agent self-evolution** ([[2203.14465|STaR]] → [[2510.16079|EVOLVER]] → [[2601.06794|ECHO]] → [[2508.02085|SE-Agent]]) operates at the behavior level with persistent experience.
 
 ---
 
@@ -89,25 +89,25 @@ The "starting point" decision splits the research landscape into three paths —
 
 Start from a pretrained agent with persistent experience memory; evolve *behavior* (strategies, skill libraries, prompts) rather than weights. Cheapest to bootstrap, but the agent never internalizes the improvement — it relies on external memory at deployment.
 
-- **[[2510.16079|EVOLVER]]** — distills raw interaction trajectories into ==strategic principles== stored in a persistent experience bank; behavior evolves without weight updates.
-- **[[2601.06794|ECHO]]** — policy and environment co-evolve via ==saturation-aware reward==; the canonical agent-side closed loop.
-- **[[2203.14465|STaR]]** — the foundational self-training pattern: ==generate → filter → retrain== on successes.
+- **[[2510.16079|EVOLVER]]** — A method that distills raw interaction trajectories into ==strategic principles== stored in a persistent experience bank; behavior evolves without weight updates.
+- **[[2601.06794|ECHO]]** — A co-evolutionary framework in which the agent's policy and its critic are jointly optimized via a ==saturation-aware reward==, the canonical agent-side closed loop.
+- **[[2203.14465|STaR]]** — The foundational self-training pattern: ==generate → filter → retrain== on successes.
 
 #### 1.2 Self-Evolving VLA (Policy-Level)
 
 Start from a pretrained VLA backbone; evolve weights via RL post-training, continual learning, or self-correction. The pretrained VLM priors confer ==natural resistance to catastrophic forgetting==, making the VLA path more practical than NLP literature suggested.
 
-- **[[2511.16166|EvoVLA]]** — first end-to-end self-evolving VLA; overcomes ==stage hallucination==; **+10.2pp** sim, **+11.0pp** Sim2Real, **1.5×** sample efficiency.
-- **[[2603.03818|VLA Continual Learning]]** — proves pretrained VLAs are *naturally* resistant to forgetting; **2–4×** lower NBT with only **2%** replay data.
-- **[[2605.08879|ConSFT]]** — ==exponential conservative importance weight== down-weights low-confidence transitions; bounds parameter disruption; **34%** LIBERO / **28%** RoboTwin retention vs vanilla-SFT collapse.
+- **[[2511.16166|EvoVLA]]** — The first end-to-end self-evolving VLA, overcoming ==stage hallucination== to gain **+10.2pp** sim, **+11.0pp** Sim2Real, and **1.5×** sample efficiency.
+- **[[2603.03818|VLA Continual Learning]]** — A study proving pretrained VLAs are *naturally* resistant to forgetting; **2–4×** lower NBT with only **2%** replay data.
+- **[[2605.08879|ConSFT]]** — A conservative-SFT objective that down-weights low-confidence transitions via an ==exponential conservative importance weight==, bounding parameter disruption; **34%** LIBERO / **28%** RoboTwin retention vs vanilla-SFT collapse.
 
 #### 1.3 Self-Evolving WAM (Dynamics-Level)
 
 Start from a pretrained world action model; evolve via imagination loops (synthetic rollouts) + RL on the dynamics. The model can *rehearse failure modes in imagination* before they cost real-world interactions — the dream-fidelity bottleneck replaces the data-collection bottleneck.
 
-- **[[2502.05907|EvoAgent]]** — built on [[2301.04104|DreamerV3]]; ==self-planning + self-control + self-reflection== loop; **+105%** on long-horizon tasks.
-- **[[2603.08403|SPIRAL]]** — ==CriticAgent== verifies dream quality before training; **58.72%** EgoPlan, **+3.94%** over GPT-5.1.
-- **[[2603.19370|VAMPO]]** — re-frames ==video denoising as an MDP==; ==GRPO== with verifiable ==latent-consistency reward== ties visual quality to action quality; tops **CALVIN ABC→D** task completion over prior VLM/VPM methods.
+- **[[2502.05907|EvoAgent]]** — A method that builds a ==self-planning + self-control + self-reflection== loop on [[2301.04104|DreamerV3]], gaining **+105%** on long-horizon tasks.
+- **[[2603.08403|SPIRAL]]** — A closed-loop self-improving action-world-model framework whose ==CriticAgent== verifies dream quality before training; **58.72%** EgoPlan, **+3.94%** over GPT-5.1.
+- **[[2603.19370|VAMPO]]** — A method that re-frames ==video denoising as an MDP==; ==GRPO== with verifiable ==latent-consistency reward== ties visual quality to action quality; tops **CALVIN ABC→D** task completion over prior VLM/VPM methods.
 
 **Key Question — Decision Matrix**
 
@@ -142,28 +142,28 @@ This section forces the comparison along three concrete substrates so the rest o
 
 The broadest substrate. Maps state → action via trial and error with no explicit dynamics model. Evolution operates at the *behavior* level: experience banks, skill libraries, prompts, reasoning traces — not raw weights. Domain-agnostic but lacks imagination.
 
-- **[[2510.16079|EVOLVER]]** — ==offline experience self-distillation== + online interaction + ==GRPO== policy evolution with ==composite reward==; closes the loop without weight updates; **0.382** avg EM across 7 QA benchmarks (Qwen2.5-3B).
-- **[[2601.06794|ECHO]]** — ==Cascaded Evolutionary Rollout== + ==saturation-aware reward== with policy and critic co-optimized; **+7.28 pts** avg over GRPO across 4 open-world benchmarks and **+42%** relative on DeepSearch.
-- **[[2506.21669|SEEA-R1]]** — tree-structured RL with ==self-trained MGRM== reward model; **+24%** via MCTS; **46.27%** ALFWorld vs GPT-4o's **24%**.
-- **[[2601.07055|Dr. Zero]]** — Meta's search agent self-evolves without human training data; ==HRPO== cuts rollout cost **~4×**.
+- **[[2510.16079|EVOLVER]]** — A lifecycle pairing ==offline experience self-distillation== + online interaction + ==GRPO== policy evolution with ==composite reward==; closes the loop without weight updates; **0.382** avg EM across 7 QA benchmarks (Qwen2.5-3B).
+- **[[2601.06794|ECHO]]** — A ==Cascaded Evolutionary Rollout== + ==saturation-aware reward== loop with policy and critic co-optimized; **+7.28 pts** avg over GRPO across 4 open-world benchmarks and **+42%** relative on DeepSearch.
+- **[[2506.21669|SEEA-R1]]** — A tree-structured RL method with a ==self-trained MGRM== reward model; **+24%** via MCTS; **46.27%** ALFWorld vs GPT-4o's **24%**.
+- **[[2601.07055|Dr. Zero]]** — A self-evolving ==proposer-solver framework== whose search agents learn without human training data; ==HRPO== cuts rollout cost **~4×** vs GRPO.
 
 #### 2.2 VLA-Side (Policy-Level, VLM-Pretrained)
 
 A VLM-pretrained policy fine-tuned for embodied action. Self-evolution applies RL post-training + continual learning to *weights*. The pretrained backbone confers a ==broad parameter basin== that LoRA stays within — the surprising-but-replicated result that VLAs resist forgetting.
 
-- **[[2511.16166|EvoVLA]]** — first end-to-end self-evolving VLA; ==Stage-Aligned Reward (SAR)== module using ==LLM-generated hard negatives== + ==image-text contrastive scoring== combats stage hallucination; **+10.2pp** sim SR (**69.2%** avg), **+11.0pp** Sim2Real, hallucination **38.5% → 14.8%**.
-- **[[2603.03818|VLA Continual Learning]]** — pretrained VLAs *naturally* resist forgetting; near-zero NBT, **2–4×** lower than non-pretrained, **2%** replay buffer enough.
-- **[[2605.08879|ConSFT]]** — bounds parameter disruption via exponential conservative weight; **34%** LIBERO / **28%** RoboTwin retention vs vanilla-SFT collapse.
-- **[[2603.11653|VLA RL CL]]** — ==Sequential Fine-Tuning + LoRA + GRPO== on-policy across 5 lifelong RL benchmarks; **<2%** NBT and oracle-beating zero-shot generalization across OpenVLA / π-0.
+- **[[2511.16166|EvoVLA]]** — The first end-to-end self-evolving VLA; a ==Stage-Aligned Reward (SAR)== module using ==LLM-generated hard negatives== + ==image-text contrastive scoring== combats stage hallucination; **+10.2pp** sim SR (**69.2%** avg), **+11.0pp** Sim2Real, hallucination **38.5% → 14.8%**.
+- **[[2603.03818|VLA Continual Learning]]** — A study showing pretrained VLAs *naturally* resist forgetting; near-zero NBT, **2–4×** lower than non-pretrained, **2%** replay buffer enough.
+- **[[2605.08879|ConSFT]]** — A conservative-SFT method that bounds parameter disruption via an exponential conservative weight; **34%** LIBERO / **28%** RoboTwin retention vs vanilla-SFT collapse.
+- **[[2603.11653|VLA RL CL]]** — A ==Sequential Fine-Tuning + LoRA + GRPO== recipe run on-policy across 5 lifelong RL benchmarks; **<2%** NBT and oracle-beating zero-shot generalization across OpenVLA / π-0.
 
 #### 2.3 WAM-Side (Model-Based, Dynamics-Level)
 
 A world model that maps $(S_t, A_t) \to (S_{t+1}, R_{t+1})$ — explicit dynamics enable *imagination*: simulate futures in latent or pixel space, rehearse risky actions safely, generate thousands of synthetic rollouts per real interaction. The richest path but bottlenecked on dream fidelity.
 
-- **[[2502.05907|EvoAgent]]** — [[2301.04104|DreamerV3]] + ==continual world model==; **+105%** SR on Minecraft (**21.69%** Gold vs Optimus-1 **10.62%**), **6×** fewer ineffective actions, WM contributes **72%** of gain.
-- **[[2603.08403|SPIRAL]]** — ==think-act-reflect== loop: ==PlanAgent (CoT + DPO) + Action-Conditioned WM + VLM CriticAgent==; CriticAgent rejects bad dreams before ==GRPO== training; **58.72%** EgoPlan, **+3.94%** over GPT-5.1.
-- **[[2603.19370|VAMPO]]** — ==video denoising as an MDP==; ==GRPO== over generation steps via an ==Euler Hybrid sampler== with ==latent-consistency reward==; best avg trajectory length on **CALVIN ABC→D**.
-- **[[2506.23468|NavMorph]]** — ==RSSM-based world model== with gradient-free ==Contextual Evolution Memory==; **+4.1% SR** / **+2.73% SPL** on RxR-CE unseen, CEM **2.1×** faster than gradient-based alternatives.
+- **[[2502.05907|EvoAgent]]** — A self-evolving agent centered on a ==continual world model== over [[2301.04104|DreamerV3]]; **+105%** SR on Minecraft (**21.69%** Gold vs Optimus-1 **10.62%**), **6×** fewer ineffective actions, WM contributes **72%** of gain.
+- **[[2603.08403|SPIRAL]]** — A ==think-act-reflect== loop: ==PlanAgent (CoT + DPO) + Action-Conditioned WM + VLM CriticAgent==; CriticAgent rejects bad dreams before ==GRPO== training; **58.72%** EgoPlan, **+3.94%** over GPT-5.1.
+- **[[2603.19370|VAMPO]]** — A method framing ==video denoising as an MDP==; ==GRPO== over generation steps via an ==Euler Hybrid sampler== with ==latent-consistency reward==; best avg trajectory length on **CALVIN ABC→D**.
+- **[[2506.23468|NavMorph]]** — An ==RSSM-based world model== with gradient-free ==Contextual Evolution Memory==; **+4.1% SR** / **+2.73% SPL** on RxR-CE unseen, CEM **2.1×** faster than gradient-based alternatives.
 
 **Substrate — Decision Matrix**
 
@@ -199,46 +199,46 @@ A ==self-evolving world action model== simultaneously learns to predict environm
 
 The agent maintains a learned dynamics model that simulates trajectories without physical execution — enabling safe exploration, sample-efficient learning via synthetic rollouts, and planning by evaluating many action sequences. The bottleneck is ==dream fidelity==: if the model hallucinates physically impossible transitions, the policy exploits artifacts that don't exist.
 
-- **[[2502.05907|EvoAgent]]** — ==DreamerV3 backbone== + continual WM with self-planning/self-control/self-reflection loop; **+105%** on long-horizon tasks.
-- **[[2301.04104|DreamerV3]]** — Universal ==RSSM== + latent imagination; **150+** tasks with *fixed hyperparameters*; the canonical dynamics-model substrate.
-- **[[2005.05960|Plan2Explore]]** — Self-supervised exploration via ==latent disagreement== across an ==ensemble of predictors==, planned in imagination over a ==PlaNet/Dreamer world model==; zero-shot adaptation matching supervised Dreamer, few-shot in **100–150 episodes**.
+- **[[2502.05907|EvoAgent]]** — A self-evolving agent on a ==DreamerV3 backbone== with a continual WM and a self-planning/self-control/self-reflection loop; **+105%** on long-horizon tasks.
+- **[[2301.04104|DreamerV3]]** — A model-based RL algorithm that concurrently trains a world model, critic, and actor by ==imagining future trajectories== in latent space, stabilized by ==symlog transforms== + ==KL balance with free bits==; **150+** tasks with *fixed hyperparameters*; the canonical dynamics-model substrate.
+- **[[2005.05960|Plan2Explore]]** — A two-phase exploration framework that pursues an ==intrinsic motivation== of ==latent disagreement== (variance across an ==ensemble of predictors==) planned in imagination over a ==PlaNet/Dreamer world model==; zero-shot adaptation matching supervised Dreamer, few-shot in **100–150 episodes**.
 
 #### 3.2 Co-Evolutionary Loops
 
 Policy and world model improve each other in alternating rounds — better WMs produce more realistic synthetic data; better policies explore more diverse states; the cycle compounds. The risk is ==chasing==: the WM models the *previous* policy's distribution, destabilizing training if updates outpace WM retraining.
 
-- **[[2602.12063|VLAW]]** — Canonical alternating loop: ==policy acts → WM trains on real trajectories → WM generates dreams → policy trains on dreams==; the field's most-copied co-evolution recipe.
-- **[[2605.13775|RoboEvolve]]** — Planner + simulator co-evolution via ==CLS-inspired "daytime exploration / nighttime consolidation"==; learns from near-miss failures; **+36.4 abs pts** on EB-ALFRED with only **300** unlabeled seeds vs SFT on **25K** annotated trajectories.
-- **[[2603.08403|SPIRAL]]** — Adds a ==CriticAgent== that filters hallucinated dynamics before they corrupt the policy; the dream-quality gate inside the co-evolution loop.
-- **[[2601.06794|ECHO]]** — Environment ↔ policy co-evolution via ==saturation-aware reward==; tasks retire and harden as success rate crosses threshold.
+- **[[2602.12063|VLAW]]** — An ==iterative co-improvement== framework that alternately fine-tunes an ==action-conditioned world model== on real rollouts (failures included) then post-trains the VLA on its ==reward-model-filtered synthetic trajectories==; the field's most-copied co-evolution recipe.
+- **[[2605.13775|RoboEvolve]]** — A planner-simulator co-evolutionary loop with a ==CLS-inspired "daytime exploration / nighttime consolidation"== cycle that learns from near-miss failures; **+36.4 abs pts** on EB-ALFRED with only **300** unlabeled seeds vs SFT on **25K** annotated trajectories.
+- **[[2603.08403|SPIRAL]]** — A method that adds a ==CriticAgent== filtering hallucinated dynamics before they corrupt the policy; the dream-quality gate inside the co-evolution loop.
+- **[[2601.06794|ECHO]]** — A synchronized co-evolutionary loop that jointly optimizes the agent's policy and its critic via a ==saturation-aware reward== rewarding "last-mile" gains; tasks retire and harden as success rate crosses threshold.
 - **[[2504.21024|WebEvolver]]** — A co-trained world-model LLM as a ==virtual web server==; ==Multi-Step Look-Ahead (WMLA)== at depth 2 lifts WebVoyager to **51.37%** SR (**+10%** over OpenWebVoyager) and Mind2Web-Live **18.86% → 24.53%**.
 
 #### 3.3 Self-Training and Self-Critique
 
 ==Generate candidate solutions → filter for correctness → retrain on successes.== Unlike code generation, embodied "correctness" requires either ground-truth reward or a ==learned verifier== (VLM-as-judge) — the bottleneck that makes self-critique harder than in language tasks.
 
-- **[[2203.14465|STaR]]** — Foundational loop: ==generate → filter → retrain on successes==; the pattern underlying all later self-critique methods.
-- **[[2603.16856|OEL]]** — Reward-free online loop: ==knowledge extraction== then ==on-policy context distillation== via ==token-level reverse KL==; Frozen Lake response length **−30%** while accuracy improves.
-- **[[2403.09629|Quiet-STaR]]** — Internalizes critique by generating ==reasoning traces within the forward pass==, eliminating the separate evaluation stage.
-- **[[2510.16079|EVOLVER]]** — Distills raw trajectories into ==strategic principles== persisting across episodes; weights stay frozen, behavior evolves via memory.
+- **[[2203.14465|STaR]]** — The foundational ==iterative bootstrapping== algorithm that fine-tunes only on ==self-generated rationales leading to correct answers==, plus ==rationalization== from hinted failures; the ==generate → filter → retrain== pattern underlying all later self-critique methods.
+- **[[2603.16856|OEL]]** — A reward-free online learning loop that performs ==knowledge extraction== from interaction trajectories then ==on-policy context distillation== into weights via ==token-level reverse KL==; Frozen Lake response length **−30%** while accuracy improves.
+- **[[2403.09629|Quiet-STaR]]** — A method that internalizes critique by generating ==reasoning traces within the forward pass==, eliminating the separate evaluation stage.
+- **[[2510.16079|EVOLVER]]** — A method that distills raw trajectories into ==strategic principles== persisting across episodes; weights stay frozen, behavior evolves via memory.
 
 #### 3.4 Curiosity-Driven Exploration
 
 The agent self-estimates uncertainty and targets exploration where the model is worst — a self-directed curriculum. The critical pitfall: confusing ==aleatoric uncertainty== (irreducible randomness) with ==epistemic uncertainty== (reducible ignorance) wastes exploration budget on inherently stochastic states.
 
-- **[[2503.01584|SENSEI]]** — ==Semantic uncertainty + Go-Explore==; targets the agent's hardest states via VLM-derived novelty signals.
-- **[[2005.05960|Plan2Explore]]** — ==Ensemble disagreement== as curiosity signal; the prototype zero-shot exploration recipe.
-- **[[2602.20057|AdaWorldPolicy]]** — Uses ==WM prediction error== directly as a self-improvement signal; policy updates focus on states with highest WM uncertainty.
-- **[[2007.07853|gamma-Progress]]** — Weights curiosity by ==temporal discount==; focuses on uncertainties that matter for long-horizon tasks.
+- **[[2503.01584|SENSEI]]** — A ==Semantic uncertainty + Go-Explore== method targeting the agent's hardest states via VLM-derived novelty signals.
+- **[[2005.05960|Plan2Explore]]** — An ==Ensemble disagreement== curiosity signal; the prototype zero-shot exploration recipe.
+- **[[2602.20057|AdaWorldPolicy]]** — A method that uses ==WM prediction error== directly as a self-improvement signal; policy updates focus on states with highest WM uncertainty.
+- **[[2007.07853|gamma-Progress]]** — A method that weights curiosity by ==temporal discount==; focuses on uncertainties that matter for long-horizon tasks.
 
 #### 3.5 RL Post-Training
 
 After SFT on demonstrations, RL optimizes for task success. ==GRPO== (no critic network, compares trajectory groups) is the canonical recipe for flow-matching VLAs with continuous action spaces. The signal can come from sparse ground-truth, VLM-as-judge, or WM prediction error.
 
-- **[[2603.19370|VAMPO]]** — Re-frames ==denoising as an MDP==; policy gradient over video generation steps with a ==latent-consistency reward== tying visual quality to action quality.
-- **[[2509.19292|SOE]]** — ==Variational information bottleneck== identifies which action dimensions most need improvement; focuses RL compute where it matters; **50.8%** relative SR gain.
-- **[[2603.11653|VLA RL Continual Learning]]** — ==Sequential FT + LoRA + on-policy GRPO==; minimal forgetting (**<2%** NBT) with oracle-beating zero-shot generalization across a task stream.
-- **[[2505.05470|Flow-GRPO]]** — ==GRPO== for ==flow-matching policies==: ==Flow-ODE→SDE conversion== for stochastic exploration + ==Denoising Reduction== for **4×** faster sample collection.
+- **[[2603.19370|VAMPO]]** — A method that re-frames ==denoising as an MDP==; policy gradient over video generation steps with a ==latent-consistency reward== tying visual quality to action quality.
+- **[[2509.19292|SOE]]** — A ==Variational information bottleneck== that identifies which action dimensions most need improvement; focuses RL compute where it matters; **50.8%** relative SR gain.
+- **[[2603.11653|VLA RL Continual Learning]]** — A ==Sequential FT + LoRA + on-policy GRPO== recipe; minimal forgetting (**<2%** NBT) with oracle-beating zero-shot generalization across a task stream.
+- **[[2505.05470|Flow-GRPO]]** — A ==GRPO== variant for ==flow-matching policies==: ==Flow-ODE→SDE conversion== for stochastic exploration + ==Denoising Reduction== for **4×** faster sample collection.
 
 **Core Mechanisms — Decision Matrix**
 
@@ -269,57 +269,57 @@ Self-evolution requires self-awareness. Before an agent can improve, it must fir
 
 VLMs and learned classifiers detect task failure in real-time so the agent can abort early. The cluster splits along the *signal type* — internal features, semantic misalignment, OOD score, density-based, multi-detector, calibration, LLM-driven, or human-shared.
 
-- **[[2510.09459|FIPER]]** — ==Predictive failure detection== combining ==RND-OE== OOD score + ==Action-Chunk Entropy==, calibrated by ==conformal prediction==; catches failures *before* they happen; **0.78** overall accuracy across 5 sim/real envs.
-- **[[2506.09937|SAFE]]** — VLA's own ==hidden-state features== through a lightweight ==MLP/LSTM== scorer + ==functional conformal prediction==; provable false-positive guarantees, no external sensor, **<1ms** added inference.
-- **[[2410.00371|AHA]]** — ==Instruction-tuned VLM== + ==FailGen== labeling; AHA-13B beats GPT-4o on AHA-Test (**0.446**) / RoboFail (**0.280**); feedback adds **+22.34%** RL reward synthesis, **+36.7%** TAMP, **+5%** zero-shot data-gen SR.
-- **[[2509.16072|I-FailSense]]** — ==LoRA-adapted VLM== + ==Grounded Arbitration== (per-layer FailSense classifier blocks, ensembled) compares observed vs ==language-described expected outcomes==; **90.64%** semantic-misalignment detection, **74.28%** sim-to-real.
-- **[[2510.01642|FailSafe]]** — ==Automatic failure-action data pipeline==; FailSafe-VLM **0.9094** detect SR / **0.6522** action cosine; lifts OpenVLA **+22.6%**, OpenVLA-OFT **+8.0%**, π-FAST **+4.0%**, Stack-Cube xArm6 **56% → 76%**.
-- **[[2603.11106|RC-NF]]** — ==Robot-conditioned normalizing flows== learn joint distribution of successful execution; flags deviations in **<100ms**.
-- **[[2503.08558|FAIL-Detect]]** — ==logpZO== flow-based density + Conformal Prediction; **78%** balanced accuracy *without any failure data*.
-- **[[2410.14868|Diff-DAgger]]** — Repurposes ==diffusion-policy training loss== as uncertainty signal; **+39%** F1 over ensemble baselines.
-- **[[2410.04640|Sentinel]]** — Multi-detector ensemble: ==STAC== (temporal action consistency) for erratic failures + VLM for task-progression failures; catches **+18%** more failures than either alone.
-- **[[2507.17383|VLA Confidence Calibration]]** — ==Action-Wise Platt Scaling==; reduces Expected Calibration Error by **>20%**.
-- **[[2407.08735|AESOP]]** — Fast embedding anomaly detector + slow LLM for deliberative intervention; ==latency-aware MPC==; **100%** recovery on simulated anomalies.
-- **[[2510.02298|ARMADA]]** — ==FLOAT detector== (**95%** accuracy) pooled across multiple robots; cuts human intervention by **23.3%**.
+- **[[2510.09459|FIPER]]** — A ==Predictive failure detection== method combining ==RND-OE== OOD score + ==Action-Chunk Entropy==, calibrated by ==conformal prediction==; catches failures *before* they happen; **0.78** overall accuracy across 5 sim/real envs.
+- **[[2506.09937|SAFE]]** — A multitask failure detector that maps a VLA's own ==internal hidden-state features== through a lightweight ==MLP/LSTM== scorer + ==functional conformal prediction==; provable false-positive guarantees, no external sensor, **<1ms** added inference.
+- **[[2410.00371|AHA]]** — An ==Instruction-tuned VLM== + ==FailGen== labeling; AHA-13B beats GPT-4o on AHA-Test (**0.446**) / RoboFail (**0.280**); feedback adds **+22.34%** RL reward synthesis, **+36.7%** TAMP, **+5%** zero-shot data-gen SR.
+- **[[2509.16072|I-FailSense]]** — A ==LoRA-adapted VLM== + ==Grounded Arbitration== (per-layer FailSense classifier blocks, ensembled) comparing observed vs ==language-described expected outcomes==; **90.64%** semantic-misalignment detection, **74.28%** sim-to-real.
+- **[[2510.01642|FailSafe]]** — An ==Automatic failure-action data pipeline==; FailSafe-VLM **0.9094** detect SR / **0.6522** action cosine; lifts OpenVLA **+22.6%**, OpenVLA-OFT **+8.0%**, π-FAST **+4.0%**, Stack-Cube xArm6 **56% → 76%**.
+- **[[2603.11106|RC-NF]]** — A set of ==Robot-conditioned normalizing flows== that learn the joint distribution of successful execution; flags deviations in **<100ms**.
+- **[[2503.08558|FAIL-Detect]]** — A ==logpZO== flow-based density + Conformal Prediction detector; **78%** balanced accuracy *without any failure data*.
+- **[[2410.14868|Diff-DAgger]]** — A method that repurposes ==diffusion-policy training loss== as an uncertainty signal; **+39%** F1 over ensemble baselines.
+- **[[2410.04640|Sentinel]]** — A runtime monitoring framework running two complementary detectors in parallel — ==STAC== (statistical temporal action consistency) for erratic failures + a ==CoT-VQA VLM== for task-progression failures; catches **+18%** more failures than either alone.
+- **[[2507.17383|VLA Confidence Calibration]]** — An ==Action-Wise Platt Scaling== method; reduces Expected Calibration Error by **>20%**.
+- **[[2407.08735|AESOP]]** — A dual-stage runtime monitor pairing a ==fast embedding anomaly detector== with a slow deliberative LLM, bridged by ==multi-contingency MPC== that keeps recovery options feasible during LLM latency; **100%** recovery on simulated quadrotor anomalies (vs **15%** naive MPC).
+- **[[2510.02298|ARMADA]]** — A ==FLOAT detector== (**95%** accuracy) pooled across multiple robots; cuts human intervention by **23.3%**.
 
 #### 4.2 Proactive Self-Correction
 
 Detect and correct errors mid-task — three strategies: subtask backtracking, counterfactual reasoning, speculative verification.
 
-- **[[2601.02295|CycleVLA]]** — Decomposes tasks into ==subtask cycles==; detects subtask failure and ==backtracks to last known good state== rather than restarting from scratch.
-- **[[2512.24426|CF-VLA]]** — ==Counterfactual reasoning==: generates "what if I had done differently?" action sequences and compares predicted outcomes against the current trajectory.
-- **[[2511.14148|AsyncVLA]]** — ==Asynchronous Flow Matching (AFM)== with a ==confidence rater== masking low-confidence tokens for regeneration; **97.4%** LIBERO avg, **70.8%** WidowX, **74.9%** Google Robot visual-matching.
-- **[[2604.02965|SV-VLA]]** — ==Speculative verification==: open-loop action plans verified step-by-step against reality before committing.
-- **[[2602.21633|SC-VLA]]** — Self-correction head continuously monitors execution and ==suggests corrective micro-actions==.
+- **[[2601.02295|CycleVLA]]** — A method that decomposes tasks into ==subtask cycles==; detects subtask failure and ==backtracks to last known good state== rather than restarting from scratch.
+- **[[2512.24426|CF-VLA]]** — A ==Counterfactual reasoning== method: generates "what if I had done differently?" action sequences and compares predicted outcomes against the current trajectory.
+- **[[2511.14148|AsyncVLA]]** — An ==Asynchronous Flow Matching (AFM)== method with a ==confidence rater== masking low-confidence tokens for regeneration; **97.4%** LIBERO avg, **70.8%** WidowX, **74.9%** Google Robot visual-matching.
+- **[[2604.02965|SV-VLA]]** — A ==Speculative verification== method: open-loop action plans verified step-by-step against reality before committing.
+- **[[2602.21633|SC-VLA]]** — A self-correcting VLA that refines actions mid-task via ==Online Action Refinement== — a ==residual RL== policy guided by ==intrinsic dense rewards== from ==Sparse World Imagination== of short-horizon physical state; **86%** ManiSkill3 avg, **71%** real ARX5 SR.
 
 #### 4.3 OOD & Surprise Detection
 
 WM prediction error as a failure signal — when the world model's prediction diverges from reality, the agent is in uncharted territory. The practical challenge: distinguishing genuine surprises from noise and stochastic dynamics.
 
-- **[[2603.04029|Self-Adapting RL]]** — Monitors ==residuals== between predicted and observed next-states; triggers ==targeted self-adaptation== for novel regions instead of global retraining; adapts F1Tenth to friction shift in **8 min**.
-- **[[2512.01119|WM Surprise Robustness]]** — Filters noisy prediction errors to distinguish ==genuine novelty== from sensor noise + stochastic dynamics; avoids false-alarm adaptation triggers.
-- **[[2602.20057|AdaWorldPolicy]]** — Uses ==WM prediction error== directly as a gradient signal; focuses policy updates on states where the WM is least confident.
+- **[[2603.04029|Self-Adapting RL]]** — A method that monitors ==residuals== between predicted and observed next-states; triggers ==targeted self-adaptation== for novel regions instead of global retraining; adapts F1Tenth to friction shift in **8 min**.
+- **[[2512.01119|WM Surprise Robustness]]** — A method that filters noisy prediction errors to distinguish ==genuine novelty== from sensor noise + stochastic dynamics; avoids false-alarm adaptation triggers.
+- **[[2602.20057|AdaWorldPolicy]]** — A method that uses ==WM prediction error== directly as a gradient signal; focuses policy updates on states where the WM is least confident.
 
 #### 4.4 Active Probing for Weaknesses
 
 Deliberately search for policy failure modes during training rather than waiting for production failures — adversarial probing, information-bottleneck action analysis, or curiosity-driven coverage.
 
-- **[[2412.02818|RoboMD]]** — Trains an ==RL adversary== to find the conditions under which the target policy fails; systematically maps the failure landscape.
-- **[[2509.19292|SOE]]** — ==Variational information bottleneck== identifies action dimensions lacking confidence; surfaces skills needing improvement.
-- **[[2503.01584|SENSEI]]** — Epistemic uncertainty + ==Go-Explore==; systematically visits states where WM predictions are worst.
-- **[[2005.05960|Plan2Explore]]** — Extends curiosity to ==zero-shot task adaptation== via WM pretrained purely through exploration.
-- **[[1705.05363|ICM]]** — Intrinsic curiosity module; uses ==forward-model prediction error as exploration reward==; the foundational curiosity recipe.
+- **[[2412.02818|RoboMD]]** — A method that trains an ==RL adversary== to find the conditions under which the target policy fails; systematically maps the failure landscape.
+- **[[2509.19292|SOE]]** — A ==Variational information bottleneck== that identifies action dimensions lacking confidence; surfaces skills needing improvement.
+- **[[2503.01584|SENSEI]]** — A method combining ==epistemic uncertainty== with ==Go-Explore== weighting over a ==DreamerV3 world model==; an adaptive policy systematically visits states where the model's predictions and semantic novelty are highest.
+- **[[2005.05960|Plan2Explore]]** — A method that extends curiosity to ==zero-shot task adaptation== via a WM pretrained purely through exploration.
+- **[[1705.05363|ICM]]** — The Intrinsic Curiosity Module: an ==inverse + forward dynamics== architecture whose ==forward-model prediction error== serves as the intrinsic exploration reward; the foundational curiosity recipe, learning Super Mario with zero extrinsic reward.
 
 #### 4.5 Failure Recovery
 
 After detection, generate recovery plans and learn from failures so they don't recur — combining failure prediction with corrective generation, root-cause analysis, or synthetic failure injection.
 
-- **[[2606.03385|GTP-FA]]** — Closed-loop ==execute-diagnose-update== with a ==Failure Attribution Discriminator==; up to **+54.0pp** terminal SR in ManiSkill3 and real Franka π0.5 jumping **11.2% → 76.8%** on long-horizon tasks.
-- **[[2509.04018|FPC-VLA]]** — ==dual-model== VLA + ==VLM supervisor== combines ==failure prediction + corrective action generation==; a ==dual-stream action fusion== module (cosine-similarity pose + temporal-decay gripper) smooths recovery; **86.0%** real-world SR, disturbance drop cut **31.3% → 16%**.
-- **[[2404.00756|Recover]]** — ==Neuro-symbolic== ==OntoThor ontology== + LLM planning; **100%** rule-based failure-detection, **~70%** recovery rate, **100%** safety-issue detection / **93%** recovery, **59% / 33%** task SR on simple/complex tasks.
-- **[[2505.12224|RoboFAC]]** — Full ==failure analysis + correction framework== over a ==9,440-trajectory failure dataset== with a ==three-level taxonomy==; the model acts as an ==external critic== in the VLA loop; **79.10%** analysis score (vs GPT-4o **57.42%**), lifts real-world SR **47.5% → 61.25%**.
-- **[[2409.03966|VLM Failure Recovery]]** — GPT-4o controller via ==prompt engineering==; Lego Assembly 3D error **0.005m** (vs **0.016m** OpenVLA), Target Reach **0% → 65.78%**, **116/120** detection / **110/120** analysis.
-- **[[2603.13528|Counterfactual Failure Synthesis]]** — synthesizes ==counterfactual failure rollouts== via ==action perturbations== into a generative WM (Ctrl-World), filtered by a ==multi-verifier mechanism== (VLM/IDM/pose/point-track); **120K+** failure-recovery pairs; **46%** real-world closed-loop recovery rate.
+- **[[2606.03385|GTP-FA]]** — A closed-loop ==execute-diagnose-update== framework linking grasp choice to task outcome via a ==Failure Attribution Discriminator== + ==diagnosis-driven bidirectional optimization==; up to **+54.0pp** terminal SR in ManiSkill3 and real Franka π0.5 jumping **11.2% → 76.8%** on long-horizon tasks.
+- **[[2509.04018|FPC-VLA]]** — A ==dual-model== VLA + ==VLM supervisor== combining ==failure prediction + corrective action generation==; a ==dual-stream action fusion== module (cosine-similarity pose + temporal-decay gripper) smooths recovery; **86.0%** real-world SR, disturbance drop cut **31.3% → 16%**.
+- **[[2404.00756|Recover]]** — A ==Neuro-symbolic== framework with an ==OntoThor ontology== + LLM planning; **100%** rule-based failure-detection, **~70%** recovery rate, **100%** safety-issue detection / **93%** recovery, **59% / 33%** task SR on simple/complex tasks.
+- **[[2505.12224|RoboFAC]]** — A ==failure analysis + correction== framework — a ==9,440-trajectory failure dataset== with a ==three-level taxonomy== plus a model that acts as an ==external critic== in the VLA loop; **79.10%** analysis score (vs GPT-4o **57.42%**), lifts real-world SR **47.5% → 61.25%**.
+- **[[2409.03966|VLM Failure Recovery]]** — An approach using GPT-4o as a ==black-box controller== via ==prompt engineering== (visual markers + relative-position prompts) with detection/correction decoupled; Lego Assembly 3D error **0.005m** (vs **0.016m** OpenVLA), Target Reach **0% → 65.78%**, **116/120** detection / **110/120** analysis.
+- **[[2603.13528|Counterfactual Failure Synthesis]]** — A pipeline that synthesizes ==counterfactual failure rollouts== via ==action perturbations== into a generative WM (Ctrl-World), filtered by a ==multi-verifier mechanism== (VLM/IDM/pose/point-track); **120K+** failure-recovery pairs; **46%** real-world closed-loop recovery rate.
 
 **Failure Detection & Recovery — Decision Matrix**
 
@@ -368,26 +368,26 @@ WAMs have a unique advantage for self-evolution: they already have a learned dyn
 
 The world model generates a plan or rollout; a separate critic (or the agent itself) evaluates the plan against dynamics fidelity or task completeness; failed plans are rejected and regenerated. The critic stage is the load-bearing innovation — without it, hallucinated dynamics propagate into the policy.
 
-- **[[2603.08403|SPIRAL]]** — ==PlanAgent + Action-Conditioned WM + CriticAgent==; CriticAgent rejects bad dreams pre-training; **58.72%** EgoPlan-Bench, **+3.94%** over GPT-5.1, **+6.89%** over fine-tuned Video-LLaMA.
-- **[[2502.05907|EvoAgent]]** — DreamerV3 backbone + continual WM; three-part loop — ==self-planning== (propose plan via WM), ==self-control== (monitor prediction error during execution), ==self-reflection== (compare predicted vs actual after execution, update WM + policy); **+105%** on long-horizon tasks.
-- **[[2506.23468|NavMorph]]** — ==RSSM-based== self-evolving WM for VLN-CE; World-aware Navigator + Foresight Action Planner; **+4.1% SR** / **+2.73% SPL** on RxR-CE unseen.
+- **[[2603.08403|SPIRAL]]** — A ==PlanAgent + Action-Conditioned WM + CriticAgent== loop; CriticAgent rejects bad dreams pre-training; **58.72%** EgoPlan-Bench, **+3.94%** over GPT-5.1, **+6.89%** over fine-tuned Video-LLaMA.
+- **[[2502.05907|EvoAgent]]** — A self-evolving architecture centered on a ==continual world model== via a three-part loop — ==self-planning== (LoRA task planner), ==self-control== (monitor prediction error mid-execution), ==self-reflection== (CL-based reflector updates WM + policy post-hoc); **+105%** on long-horizon tasks.
+- **[[2506.23468|NavMorph]]** — An ==RSSM-based== self-evolving WM for VLN-CE; World-aware Navigator + Foresight Action Planner; **+4.1% SR** / **+2.73% SPL** on RxR-CE unseen.
 
 #### 5.2 RL on Dynamics & Co-Evolving Loops
 
 Apply policy-gradient RL directly to the world model's generation steps, or co-train policy and world model in alternating rounds so each improves the other. The risk is ==chasing== — the WM models a policy that no longer exists between updates.
 
-- **[[2603.19370|VAMPO]]** — re-frames ==video denoising as an MDP==; ==GRPO== over generation steps via an ==Euler Hybrid sampler== with verifiable ==latent-consistency reward==; best avg trajectory length on **CALVIN ABC→D**.
-- **[[2504.21024|WebEvolver]]** — Co-evolving web agent + ==world-model LLM as virtual web server== with ==Multi-Step Look-Ahead (WMLA)== at inference; **+10%** over OpenWebVoyager and **51.37%** WebVoyager SR (depth-2 WMLA); canonical alternating co-evolution recipe in the web-agent setting.
-- **[[2602.20057|AdaWorldPolicy]]** — ==Flow-Matching DiT== world model + action expert via ==Online Adaptive Learning (AdaOL)==, using ==WM prediction error== as a self-supervised LoRA signal; **0.96** LIBERO-10, recovers under OOD shift at **4Hz** on real robots.
-- **[[2511.18810|MergeVLA]]** — cross-skill model merging toward a generalist VLA; **90.2%** LIBERO cross-skill, **62.5%** LIBERO-Plus; direct merging baselines score **0%**.
+- **[[2603.19370|VAMPO]]** — A method that re-frames ==video denoising as an MDP==; ==GRPO== over generation steps via an ==Euler Hybrid sampler== with verifiable ==latent-consistency reward==; best avg trajectory length on **CALVIN ABC→D**.
+- **[[2504.21024|WebEvolver]]** — A co-learning framework that trains a web agent alongside a ==world-model LLM as virtual web server==, enabling ==Multi-Step Look-Ahead (WMLA)== at inference; **+10%** over OpenWebVoyager and **51.37%** WebVoyager SR (depth-2 WMLA); canonical alternating co-evolution recipe in the web-agent setting.
+- **[[2602.20057|AdaWorldPolicy]]** — A ==Flow-Matching DiT== world model + action expert trained via ==Online Adaptive Learning (AdaOL)==, using ==WM prediction error== as a self-supervised LoRA signal; **0.96** LIBERO-10, recovers under OOD shift at **4Hz** on real robots.
+- **[[2511.18810|MergeVLA]]** — A cross-skill model-merging method toward a generalist VLA; **90.2%** LIBERO cross-skill, **62.5%** LIBERO-Plus; direct merging baselines score **0%**.
 
 #### 5.3 Self-Play & Continual Replay
 
 Autonomous data engines that generate their own training data via self-play, plus replay strategies that prevent catastrophic forgetting in long-running continual RL. The substrate for *long-lived* WAM training without curated data.
 
-- **[[2603.09030|PlayWorld]]** — autonomous self-play data collection → world model training; Pearson **0.8766** sim-real correlation, **+65%** real-world SR via in-model fine-tuning.
-- **[[2503.01584|SENSEI]]** — distills a ==VLM-derived semantic intrinsic reward== into a ==DreamerV3 world model==, combined with ==epistemic uncertainty== and ==Go-Explore== weighting; downstream tasks learned **orders of magnitude faster** than Plan2Explore.
-- **[[2401.16650|WMAR]]** — ==memory-efficient augmented replay== (FIFO + reservoir) on top of [[2301.04104|DreamerV3]]; forgetting **0.071 vs 0.665** baseline.
+- **[[2603.09030|PlayWorld]]** — A data engine that feeds autonomous self-play data collection into world-model training, reaching Pearson **0.8766** sim-real correlation and **+65%** real-world SR via in-model fine-tuning.
+- **[[2503.01584|SENSEI]]** — A method that distills a ==VLM-derived semantic intrinsic reward== into a ==DreamerV3 world model==, combined with ==epistemic uncertainty== and ==Go-Explore== weighting; downstream tasks learned **orders of magnitude faster** than Plan2Explore.
+- **[[2401.16650|WMAR]]** — A ==memory-efficient augmented replay== (FIFO + reservoir) on top of [[2301.04104|DreamerV3]]; forgetting **0.071 vs 0.665** baseline.
 
 **Self-Evolving WAM — Decision Matrix**
 
@@ -425,33 +425,35 @@ The cluster splits along *which side of the SFT-RL recipe* it stabilizes — the
 
 Stabilize the SFT side of the recipe to bound parameter disruption — the policy can't self-evolve if downstream fine-tuning collapses the pretrained backbone. The axis: *constrain weight updates without sacrificing target-task performance*.
 
-- **[[2605.08879|ConSFT]]** — ==exponential conservative importance weight== ω(θ) = exp(−L_SFT(θ) / τ) with ==stop-gradient operator== + ==annealing schedule== on τ; analytically bounds parameter-disruption risk for high-loss transitions; **34%** LIBERO / **28%** RoboTwin retention vs vanilla SFT's collapse. *No prior data, no architectural mods.*
-- **[[2501.16664|iRe-VLA]]** — ==two-stage alternation== between online RL and supervised learning with ==parameter-efficient LoRA + frozen VLM==; canonical stable RL recipe, validated on **Metaworld**, **Franka Kitchen**, and a real **Panda** arm.
-- **[[2602.21633|Self-Correcting VLA]]** — Two-stage ==Sparse World Imagination + Online Action Refinement==: SPI augments policy input with short-horizon physical-state predictions; OAR runs ==residual RL== with ==intrinsic dense rewards==; **86%** ManiSkill3 avg (vs **72%** GR00T N1.5 / **55%** π-0), **−43%** completion steps vs π-0, **71%** real-world ARX5 SR (vs **57%** GR00T N1.5).
-- **[[2511.00091|PLD]]** — ==Probe-Learn-Distill== pipeline: ==off-policy residual actors== refine a frozen VLA, then policy-aligned rollouts are ==distilled back via SFT==; **99%** LIBERO SR, **+50%** SimplerEnv, and **24.4%** vs **5.6%** on unseen tasks where policy-aligned data beats human demos.
+- **[[2605.08879|ConSFT]]** — An ==exponential conservative importance weight== ω(θ) = exp(−L_SFT(θ) / τ) with ==stop-gradient operator== + ==annealing schedule== on τ; analytically bounds parameter-disruption risk for high-loss transitions; **34%** LIBERO / **28%** RoboTwin retention vs vanilla SFT's collapse. *No prior data, no architectural mods.*
+- **[[2501.16664|iRe-VLA]]** — A ==two-stage alternation== between online RL and supervised learning with ==parameter-efficient LoRA + frozen VLM==; canonical stable RL recipe, validated on **Metaworld**, **Franka Kitchen**, and a real **Panda** arm.
+- **[[2602.21633|Self-Correcting VLA]]** — A two-stage VLA: ==Sparse World Imagination== augments policy input with short-horizon physical-state predictions, then ==Online Action Refinement== runs ==residual RL== with ==intrinsic dense rewards==; **86%** ManiSkill3 (vs **72%** GR00T N1.5 / **55%** π-0), **−43%** steps vs π-0, **71%** real ARX5 SR.
+- **[[2511.00091|PLD]]** — A ==Probe-Learn-Distill== pipeline: ==off-policy residual actors== refine a frozen VLA, then policy-aligned rollouts are ==distilled back via SFT==; **99%** LIBERO SR, **+50%** SimplerEnv, and **24.4%** vs **5.6%** on unseen tasks where policy-aligned data beats human demos.
+- **[[2509.22195|Actions as Language]]** — A method that recasts low-level robot actions as ==natural-language descriptions== so VLM→VLA fine-tuning preserves the base model's knowledge: retains **>85%** VQA, *no catastrophic forgetting*, and zero-shot generalizes to multilingual / open-world tasks where tokenization VLAs (OpenVLA, ECoT) fail — stability via the language interface, no co-training.
 
 #### 6.2 Continual RL Across Task Streams
 
 Sequential RL fine-tuning across a stream of tasks without forgetting prior skills — the operational form of self-evolution for a long-lived robot.
 
-- **[[2603.03818|VLA Continual Learning]]** — pretrained VLAs are *naturally* resistant to forgetting; near-zero NBT, **2–4×** lower than non-pretrained, **2%** replay buffer enough. Forgotten skills recovered in **<10%** of original training steps.
-- **[[2603.11653|VLA RL Continual Learning]]** — systematic study of ==Sequential FT== + ==LoRA== + ==on-policy GRPO== across **5** lifelong RL benchmarks; **<2%** NBT, *preserves and often enhances* ==zero-shot generalization== (final policy beats the multi-task oracle on unseen tasks) across ==OpenVLA== / ==π-0==; proves pretrained VLAs are naturally forgetting-resistant.
-- **[[2603.07648|AtomicVLA]]** — ==think/act mode-switching== with a ==Skill-Guided MoE (SG-MoE)== routing over ==atomic skill abstractions==; modular experts enable continual learning by *adding* modules without retraining; **96.6%** avg LIBERO, **95.2%** LIBERO-LONG (**+10%** over π-0), only **1.3%** forgetting across the task stream.
-- **[[2602.03445|CRL-VLA]]** — ==Dual-critic architecture==: frozen ==Goal-Conditioned Value (GCV) critic== for stability + trainable ==Monte Carlo critic== for plasticity, regulated by ==PPO + KL== and GCV-consistency; **+0.17** positive Backward Transfer (new tasks improve old) and **0.74** Final Average Return.
-- **[[2602.10503|Long-Lived Robots]]** — ==LifeLong-RFT==: ==interaction-free chunking-level GRPO== with ==Multi-Dimensional Process Reward== (Quantized Action Consistency + Continuous Trajectory Alignment + Format Compliance); **+8.7%** real Franka SR, **+4.4%** Google Robot, **+19.6%** forward transfer with NBT cut to **1.5** (vs SFT's **6.8**), and adapts with only **20%** of the SFT data.
-- **[[2511.16166|EvoVLA]]** — first end-to-end self-evolving VLA; ==explicit stage tracker== verifies subtask completion before advancing (preventing *stage hallucination*); evolutionary strategy generates multiple candidate plans and selects most reliable; **+10.2pp** sim, **+11.0pp** Sim2Real, hallucination **38.5% → 14.8%**, **1.5×** sample efficiency.
-- **[[2512.14666|EVOLVE-VLA]]** — ==Test-time training== via online ==GRPO== with a ==learned task-progress estimator== replacing oracle rewards; **+6.5%** abs LIBERO avg (**89.2% → 95.8%**), **+8.6%** long-horizon, **+17.7%** in 1-shot (**43.6% → 61.3%**), and breaks the 0% barrier for cross-task (**20.8%** unseen-task SR with zero demos).
-- **[[2510.12693|ERA]]** — Two-stage ==Embodied Prior Learning (EPL) + online RL==: SFT on a curated reasoning-trace taxonomy, then RL with ==self-summarization== context management + ==dense multi-component reward== + ==turn-level policy optimization==; ERA-3B hits **65.2%** EB-ALFRED / **48.3%** EB-Manipulation, beating GPT-4o by **8.4–19.4pp** and unseen tasks by up to **+38pp**.
-- **[[2503.18684|OMLA]]** — ==Online meta-learned LoRA adapters==: a meta-learning phase learns a task-agnostic adapter prior from past tasks via ==similarity-based sampling==, then fine-tunes on the new task; **0.86** FWT on LIBERO-OBJECT (vs LoRA **0.71**) with **0** BWT (no forgetting), and **84.0%** real pick-and-place SR vs LoRA's **60.0%** at 20 demos.
+- **[[2603.03818|VLA Continual Learning]]** — A study showing pretrained VLAs are *naturally* resistant to forgetting; near-zero NBT, **2–4×** lower than non-pretrained, **2%** replay buffer enough. Forgotten skills recovered in **<10%** of original training steps.
+- **[[2603.11653|VLA RL Continual Learning]]** — A systematic study of ==Sequential FT== + ==LoRA== + ==on-policy GRPO== across **5** lifelong RL benchmarks; **<2%** NBT, *preserves and often enhances* ==zero-shot generalization== (final policy beats the multi-task oracle on unseen tasks) across ==OpenVLA== / ==π-0==; proves pretrained VLAs are naturally forgetting-resistant.
+- **[[2603.07648|AtomicVLA]]** — A ==think/act mode-switching== method with a ==Skill-Guided MoE (SG-MoE)== routing over ==atomic skill abstractions==; modular experts enable continual learning by *adding* modules without retraining; **96.6%** avg LIBERO, **95.2%** LIBERO-LONG (**+10%** over π-0), only **1.3%** forgetting across the task stream.
+- **[[2602.03445|CRL-VLA]]** — A ==Dual-critic architecture==: frozen ==Goal-Conditioned Value (GCV) critic== for stability + trainable ==Monte Carlo critic== for plasticity, regulated by ==PPO + KL== and GCV-consistency; **+0.17** positive Backward Transfer (new tasks improve old) and **0.74** Final Average Return.
+- **[[2602.10503|Long-Lived Robots]]** — A ==LifeLong-RFT== recipe: ==interaction-free chunking-level GRPO== with ==Multi-Dimensional Process Reward==; **+8.7%** real Franka SR, **+4.4%** Google Robot, **+19.6%** forward transfer with NBT cut to **1.5** (vs SFT's **6.8**), and adapts with only **20%** of the SFT data.
+- **[[2511.16166|EvoVLA]]** — The first end-to-end self-evolving VLA on ==OpenVLA-OFT==; a ==Stage-Aligned Reward== (LLM hard negatives + ==image-text contrastive scoring==) combats *stage hallucination*, plus ==Long-Horizon Memory== + ==Pose-Based Object Exploration== for intrinsic rewards; **+10.2pp** sim, **+11.0pp** Sim2Real, hallucination **38.5% → 14.8%**, **1.5×** sample efficiency.
+- **[[2512.14666|EVOLVE-VLA]]** — A ==Test-time training== method via online ==GRPO== with a ==learned task-progress estimator== replacing oracle rewards; **+6.5%** abs LIBERO avg (**89.2% → 95.8%**), **+8.6%** long-horizon, **+17.7%** in 1-shot (**43.6% → 61.3%**), and breaks the 0% barrier for cross-task (**20.8%** unseen-task SR with zero demos).
+- **[[2510.12693|ERA]]** — A two-stage framework — ==Embodied Prior Learning== (SFT on a curated reasoning-trace taxonomy) then ==online RL== with ==self-summarization== + ==dense multi-component reward== + ==turn-level optimization==; ERA-3B hits **65.2%** EB-ALFRED / **48.3%** EB-Manipulation, beating GPT-4o by **8.4–19.4pp** and unseen tasks up to **+38pp**.
+- **[[2509.15155|Self-Improving EFM]]** — A two-stage post-training framework that pairs online RL with an ==embodied foundation model== using its *self-predicted* ==steps-to-go== as a data-driven reward (no oracle); real LanguageTable SR climbs **~62% → ~88%**, **10%** imitation + **1%** interaction beats BC on **80%**, even acquiring novel skills (BananaTable **~63% → ~85%**).
+- **[[2503.18684|OMLA]]** — An ==Online meta-learned LoRA adapters== method: a meta-learning phase learns a task-agnostic adapter prior from past tasks via ==similarity-based sampling==, then fine-tunes on the new task; **0.86** FWT on LIBERO-OBJECT (vs LoRA **0.71**) with **0** BWT (no forgetting), and **84.0%** real pick-and-place SR vs LoRA's **60.0%** at 20 demos.
 
 #### 6.3 Memory-Augmented & Failure-Driven Evolution
 
 Add persistent memory and failure-driven data collection on top of the VLA backbone — evolution operates over external memory + replay rather than weight updates alone. The axis: *trade architectural complexity for sample efficiency*.
 
-- **[[2606.03598|PHASER]]** — ==Phase-aware semantic experience replay== for continual VLA via ==phase-centric capacity allocation== + ==multi-modal interference-aware routing== + an ==Auto-PC pipeline== that auto-discovers phase boundaries; up to **+31%** ASR over standard Experience Replay, hitting **87.8%** LIBERO-Goal / **85.8%** LIBERO-Long for OpenVLA-OFT-7B.
-- **[[2605.10993|ECHO-VLA]]** — ==hierarchical hyperbolic memory (HAE)== + autonomous memory consolidation; cone-tree retrieval + virtual-memory interpolation; **+12.8pp** LIBERO-Long.
-- **[[2510.02298|ARMADA]]** — ==FLOAT== (optimal-transport failure detector, **~95%** accuracy) + ==multi-robot shared control== routes interventions to free operators; ==adaptive rewinding== collects high-quality corrective demos; **+25.9%** SR from rewind-collected data, human intervention cut **23.3%**.
-- **[[2603.09030|PlayWorld]]** — autonomous ==VLM Task Proposer + VLA Executer== self-play loop + ==Stable-Video-Diffusion== backbone finetuned via ==curriculum learning== on diverse contact-rich play; captures failure modes (slips, missed grasps) absent in human data, **Pearson 0.8766** predicted-vs-real SR correlation, **+65%** real-world SR via in-model fine-tune.
+- **[[2606.03598|PHASER]]** — A ==Phase-aware semantic experience replay== method for continual VLA via ==phase-centric capacity allocation== + ==multi-modal interference-aware routing== + an ==Auto-PC pipeline== that auto-discovers phase boundaries; up to **+31%** ASR over standard Experience Replay, hitting **87.8%** LIBERO-Goal / **85.8%** LIBERO-Long for OpenVLA-OFT-7B.
+- **[[2605.10993|ECHO-VLA]]** — A ==hierarchical hyperbolic memory (HAE)== + autonomous memory consolidation; cone-tree retrieval + virtual-memory interpolation; **+12.8pp** LIBERO-Long.
+- **[[2510.02298|ARMADA]]** — A ==FLOAT== (optimal-transport failure detector, **~95%** accuracy) plus ==multi-robot shared control== that routes interventions to free operators, while ==adaptive rewinding== collects high-quality corrective demos; the rewind-collected data lifts SR **+25.9%** and cuts human intervention **23.3%**.
+- **[[2603.09030|PlayWorld]]** — An autonomous ==VLM Task Proposer + VLA Executer== self-play loop + ==Stable-Video-Diffusion== backbone finetuned via ==curriculum learning== on diverse contact-rich play; captures failure modes (slips, missed grasps) absent in human data, **Pearson 0.8766** predicted-vs-real SR correlation, **+65%** real-world SR via in-model fine-tune.
 
 **Self-Evolving VLA — Decision Matrix**
 
@@ -487,38 +489,39 @@ Agents that go beyond weight updates to evolve their *behavior* — distilling i
 
 Distill raw interaction history into reusable structures — strategic principles, experience cards, skill libraries — and condition future behavior on retrieved memory. Weights stay frozen; the agent evolves through accumulated knowledge.
 
-- **[[2606.03374|eMEM]]** — In-process ==hybrid spatio-temporal memory system== for embodied agents over a ==biologically-inspired tiered architecture== with a two-phase consolidation pipeline; **80.8** weighted-mean on eMEM-Bench v1, a flat retention curve at **100%** hit rate from 1 hour to 1 year, and a 30-pp drop when ablated to plain RAG.
-- **[[2510.16079|EVOLVER]]** — extracts structured ==experience cards== per episode via ==offline self-distillation==, then evolves the policy with ==GRPO + composite reward==; cards accumulate in a persistent bank conditioning future behavior; **0.382** avg EM scaling monotonically from **0.150** (0.5B) to **0.382** (3B), self-distillation beating external-teacher distillation (**0.370**).
-- **[[2508.02085|SE-Agent]]** — Treats reasoning trajectories as ==genotypes== via ==Revision==, ==Recombination==, and ==Refinement==; SOTA on SWE-bench Verified across 5 LLMs with **+112% Pass@1** for Llama-3.1-70b (**15.4% → 32.6%**) and **+80%** for GPT-4o (**22.4% → 40.4%**).
-- **[[2508.04700|SEAgent]]** — Self-evolving computer-use agent: a fine-tuned-LVLM ==World State Model== supplies ==step-level rewards==, driving a ==self-evolving curriculum== + ==specialist-to-generalist distillation==; lifts OS-World **11.3% → 34.5%** (**+23.2pp** over DPO), beating a specialist ensemble (**32.2%**) and direct generalist training (**30.6%**).
-- **[[2604.11306|Hierarchical Episodic Memory]]** — ==H²-Emv== builds a ==hierarchical episodic memory== of recursively summarized nodes online, with ==LLM-estimated decay-based forgetting== and ==feedback-based relevance learning==; **45%** smaller memory, **35%** lower query compute, **+70%** second-round QA accuracy after feedback; deployed on the Armar-7 humanoid.
-- **[[2409.00872|SAGE]]** — ==Three-agent architecture (User / Assistant / Checker)== + ==dual-memory== with ==MemorySyntax== (==Ebbinghaus forgetting curve==); iterative feedback converges to ==Nash equilibrium==; GPT-3.5 Database **2.26×** gain, Qwen-1.8B **+57.7%–100%**, HotpotQA **+20.8%**, ALFWorld Mistral-7b **+17.3%**, RAG memory **−50%**.
-- **[[2603.18743|Memento-Skills]]** — Externalizes learning into a ==structured-markdown skill library== with ==closed-loop Read–Write Reflective Learning (SRDP)==; ==behavior-aligned skill router (Memento-Qwen)== trained via ==one-step offline RL + multi-positive InfoNCE==; GAIA **+13.7pp** (**52.3% → 66.0%**), HLE **17.9% → 38.7%**; router **Recall@1 0.60** (vs **0.32** BM25).
-- **[[2603.05218|KARL]]** — Databricks knowledge agent + ==KARLBench== (6 enterprise search regimes); trained via ==OAPL== (large-batch off-policy RL) on an ==agentic synthesis pipeline==; Pareto-optimal vs Claude 4.6 / GPT 5.2 at lower cost/latency, **−37%** search trajectory length, **+37%** unique-document retrieval on BrowseComp-Plus.
+- **[[2606.03374|eMEM]]** — A ==hybrid spatio-temporal memory system== for embodied agents built on a ==biologically-inspired tiered architecture== with a two-phase consolidation pipeline; **80.8** weighted-mean on eMEM-Bench v1, a flat retention curve at **100%** hit rate from 1 hour to 1 year, and a 30-pp drop when ablated to plain RAG.
+- **[[2510.16079|EVOLVER]]** — A method that extracts structured ==experience cards== per episode via ==offline self-distillation==, then evolves the policy with ==GRPO + composite reward==; cards accumulate in a persistent bank; **0.382** avg EM scaling monotonically from **0.150** (0.5B) to **0.382** (3B), self-distillation beating external-teacher distillation (**0.370**).
+- **[[2508.02085|SE-Agent]]** — A framework that treats reasoning trajectories as ==genotypes== via ==Revision==, ==Recombination==, and ==Refinement==; SOTA on SWE-bench Verified across 5 LLMs with **+112% Pass@1** for Llama-3.1-70b (**15.4% → 32.6%**) and **+80%** for GPT-4o (**22.4% → 40.4%**).
+- **[[2508.04700|SEAgent]]** — A self-evolving computer-use agent whose fine-tuned-LVLM ==World State Model== supplies ==step-level rewards==, driving a ==self-evolving curriculum== + ==specialist-to-generalist distillation==; lifts OS-World **11.3% → 34.5%** (**+23.2pp** absolute), beating a specialist ensemble (**32.2%**) and direct generalist training (**30.6%**).
+- **[[2604.11306|Hierarchical Episodic Memory]]** — An ==H²-Emv== system that builds a ==hierarchical episodic memory== of recursively summarized nodes online, with ==LLM-estimated decay-based forgetting== and ==feedback-based relevance learning==; **45%** smaller memory, **35%** lower query compute, **+70%** second-round QA accuracy after feedback; deployed on the Armar-7 humanoid.
+- **[[2409.00872|SAGE]]** — A ==Three-agent architecture (User / Assistant / Checker)== + ==dual-memory== with ==MemorySyntax== (==Ebbinghaus forgetting curve==); iterative feedback converges to ==Nash equilibrium==; GPT-3.5 Database **2.26×** gain, Qwen-1.8B **+57.7%–100%**, HotpotQA **+20.8%**, ALFWorld Mistral-7b **+17.3%**, RAG memory **−50%**.
+- **[[2603.18743|Memento-Skills]]** — A method that externalizes learning into a ==structured-markdown skill library== with ==closed-loop Read–Write Reflective Learning (SRDP)==; ==behavior-aligned skill router (Memento-Qwen)== trained via ==one-step offline RL + multi-positive InfoNCE==; GAIA **+13.7pp** (**52.3% → 66.0%**), HLE **17.9% → 38.7%**; router **Recall@1 0.60** (vs **0.32** BM25).
+- **[[2603.05218|KARL]]** — A knowledge agent paired with ==KARLBench== (6 enterprise search regimes), trained via ==OAPL== (large-batch off-policy RL) on an ==agentic synthesis pipeline==; Pareto-optimal vs Claude 4.6 / GPT 5.2 at lower cost/latency, **−37%** search trajectory length, **+37%** unique-document retrieval on BrowseComp-Plus.
 
 #### 7.2 Policy ↔ Environment Co-Evolution
 
 Policy and environment evolve together — environment generates tasks calibrated to the agent's capability frontier; as the agent improves, the environment ramps difficulty. Creates an ==open-ended curriculum== without manual task design.
 
-- **[[2601.06794|ECHO]]** — policy and critic co-evolve via ==Cascaded Evolutionary Rollout== and a ==saturation-aware reward== rewarding "last-mile" gains; tasks calibrated to the agent's *current capability frontier* retire and harden once SR crosses threshold; **+7.28 pts** avg over GRPO across 4 open-world benchmarks, **+42%** relative on DeepSearch.
-- **[[2604.18292|Agent-World]]** — ==Agentic Environment-Task Discovery==; mines themes, generates verifiable tools, synthesizes tasks. **65.4%** τ²-Bench, **55.8%** BFCL V4, **38.1%** MCP-Mark; scaling 0 → 1,978 envs lifts score **18.4% → 38.5%**.
-- **[[2604.18131|Native Evolution]]** — spontaneous ==reward-free self-evolution== via world-knowledge exploration; **+19% abs** SR (40.91% vs 22.04% on WebWalker), **17%** efficiency gain.
-- **[[2604.10096|ABot-Claw]]** — Alibaba's OpenClaw extension: ==decoupled 3-layer architecture== with ==unified ROS-based interface== for heterogeneous embodiments, ==visual-centric cross-embodiment multimodal memory==, and ==generalist-reward critic== closed-loop feedback; demonstrates cross-embodiment task reassignment when one robot fails (humanoid → quadruped).
-- **[[2604.10892|HECTOR]]** — Three-layer human-fleet framework with ==receding-horizon, automaton-guided search tree== for joint task decomposition / team formation + ==MILP== for robot instantiation + ==bidirectional multimodal GUI==; **34.6s** avg mission response with **100%** SR over 8 baselines, **<2.0s** planning time scaling to **170 robots / 100 missions / 1509 subtasks**.
-- **[[2503.22122|REMAC]]** — Self-reflective multi-robot collaboration over a ==three-stage scene-exploration → check-mechanism planning → iterative self-evolution== loop; a ==self-reflection module== runs pre/post-condition checks, shrinking initial plans **35–62%**; **+40%** SR and **+52.7%** execution efficiency over single-robot baselines.
+- **[[2601.06794|ECHO]]** — A loop where policy and critic co-evolve via ==Cascaded Evolutionary Rollout== and a ==saturation-aware reward== rewarding "last-mile" gains; tasks calibrated to the agent's *current capability frontier* retire and harden once SR crosses threshold; **+7.28 pts** avg over GRPO across 4 open-world benchmarks, **+42%** relative on DeepSearch.
+- **[[2604.18292|Agent-World]]** — An ==Agentic Environment-Task Discovery== pipeline that mines themes, generates verifiable tools, and synthesizes tasks, reaching **65.4%** τ²-Bench, **55.8%** BFCL V4, and **38.1%** MCP-Mark; scaling 0 → 1,978 envs lifts score **18.4% → 38.5%**.
+- **[[2604.18131|Native Evolution]]** — A method for spontaneous ==reward-free self-evolution== via world-knowledge exploration; **+19% abs** SR (40.91% vs 22.04% on WebWalker), **17%** efficiency gain.
+- **[[2604.10096|ABot-Claw]]** — A ==decoupled 3-layer== robotic-agent foundation with a ==unified ROS-based interface== for heterogeneous embodiments, ==visual-centric cross-embodiment multimodal memory==, and ==generalist-reward critic== closed-loop feedback; demonstrates cross-embodiment task reassignment when one robot fails (humanoid → quadruped).
+- **[[2604.10892|HECTOR]]** — A human-centric hierarchical fleet framework using a ==receding-horizon, automaton-guided search tree== for joint task decomposition / team formation + ==MILP== robot instantiation + ==bidirectional multimodal GUI==; **34.6s** avg mission response at **100%** SR over 8 baselines, **<2.0s** planning scaling to **170 robots / 100 missions / 1509 subtasks**.
+- **[[2503.22122|REMAC]]** — A self-reflective multi-robot collaboration framework over a ==three-stage scene-exploration → check-mechanism planning → iterative self-evolution== loop whose ==self-reflection module== runs pre/post-condition checks, shrinking initial plans **35–62%**; **+40%** SR and **+52.7%** execution efficiency over single-robot baselines.
 
 #### 7.3 Curriculum & Structural Self-Evolution
 
 Evolve the *training process itself* — tree-search RL, curriculum-guided exploration, governed module versioning. The structural axis: agents modify what they learn next, not just how they act now.
 
-- **[[2606.05395|VASO]]** — refines LLM-generated robot skills by feeding ==formal-verification counterexamples== back as ==textual gradients==: a skill couples ==temporal-logic (LTL)== with planner-facing interfaces, rewritten from violations; feasibility **89% → 97%** in one iteration, **>90%** safety in 7 steps (vs LAD-VF **~85%**), **92–100%** on unseen prompts.
-- **[[2506.21669|SEEA-R1]]** — tree-structured RL with self-trained ==MGRM== reward model; **+24%** via MCTS; **46.27%** ALFWorld MLLM (vs GPT-4o's **24%**), **85.07%** text-only.
-- **[[2604.26707|CurEvo]]** — Iterative loop with ==Curriculum-Guided Self-Evolution + Multi-Dimensional Question Generation + Type-Adaptive Evaluation== over 3 cognitive dimensions; ==adaptive sampling ratios + sample weighting== shift retention from perception → reasoning; **+4.05%** acc on LLaVA-OneVision/NExT-QA across 7 Video-LLM backbones / 4 VideoQA benchmarks.
-- **[[2601.07055|Dr. Zero]]** — Meta's data-free search agent; ==HRPO== cuts rollout cost **~4×** vs GRPO; **+22.9%** EM on Natural Questions.
-- **[[2604.07799|ECM]]** — modular, versioned ==capability modules== with runtime governance; **32.4% → 91.3%** SR over 20 evolution iterations, blocks **100%** unsafe actions at **2.3 ms** overhead.
-- **[[2603.24350|Emergent Self]]** — Columbia quadruped trained with ==Soft Actor-Critic== sequentially on (walk / wiggle / bob); ==neuron co-activation analysis== reveals a dominant first-hidden-layer subnetwork with **+16.9 pp** higher mean persistence across behaviors (p < **0.001**) vs constant-task baselines — the "self" emerges as the invariant substrate surviving behavior switches.
-- **[[2603.04029|Self-Adapting RL]]** — WM ==residuals== trigger targeted self-adaptation; real F1Tenth adapts to friction shift in **10K** real-world steps (**8 min**).
-- **[[2509.19292|SOE]]** — action-level probing via a ==Variational Information Bottleneck== that explores a ==manifold of valid actions==, decoded into temporally consistent ==action chunks==; a ==dual-path plug-in== drops into existing policies (e.g. Diffusion Policy); **50.8%** relative SR gain with fewer rollouts, stable across multiple self-improvement iterations.
+- **[[2606.05395|VASO]]** — A method that refines LLM-generated robot skills by feeding ==formal-verification counterexamples== back as ==textual gradients==: a skill couples ==temporal-logic (LTL)== with planner-facing interfaces, rewritten from violations; feasibility **89% → 97%** in one iteration, **>90%** safety in 7 steps (vs LAD-VF **~85%**), **92–100%** on unseen prompts.
+- **[[2605.09387|NEXUS]]** — A framework that continually learns and refines ==symbolic constraints== for safe embodied planning; the evolved agent hits **75.25%** safe-task SR + **89.30%** unsafe-task refusal on AI2-THOR, lowest jailbreak violation rate (**0.67%**) — continual learning lifts safe SR **+20.07pp** and cuts execution time **44%**.
+- **[[2506.21669|SEEA-R1]]** — A tree-structured RL method with a self-trained ==MGRM== reward model; **+24%** via MCTS; **46.27%** ALFWorld MLLM (vs GPT-4o's **24%**), **85.07%** text-only.
+- **[[2604.26707|CurEvo]]** — An iterative feedback loop combining ==Curriculum-Guided Self-Evolution + Multi-Dimensional Question Generation + Type-Adaptive Evaluation== over 3 cognitive dimensions; ==adaptive sampling ratios + sample weighting== shift retention from perception → reasoning; **+4.05%** acc on LLaVA-OneVision/NExT-QA across 7 Video-LLM backbones / 4 VideoQA benchmarks.
+- **[[2601.07055|Dr. Zero]]** — A self-evolving ==proposer-solver framework== that learns without human data via a ==difficulty-guided curriculum==; ==HRPO== clusters questions by hop-complexity to cut rollout cost **~4×** vs GRPO; **+22.9%** EM on Natural Questions.
+- **[[2604.07799|ECM]]** — A system of modular, versioned ==capability modules== whose runtime governance lifts SR **32.4% → 91.3%** over 20 evolution iterations while blocking **100%** of unsafe actions at **2.3 ms** overhead.
+- **[[2603.24350|Emergent Self]]** — An analysis of a quadruped trained with ==Soft Actor-Critic== sequentially on (walk / wiggle / bob); ==neuron co-activation== reveals a dominant first-hidden-layer subnetwork with **+16.9 pp** higher mean persistence across behaviors (p < **0.001**) vs constant-task baselines — the "self" as the invariant substrate surviving behavior switches.
+- **[[2603.04029|Self-Adapting RL]]** — A method whose ==DreamerV3 prediction residuals== flag OOD dynamics and trigger targeted online WM+policy fine-tuning; real F1Tenth adapts to friction shift in **10K** real-world steps (**8 min**).
+- **[[2509.19292|SOE]]** — An action-level probing method using a ==Variational Information Bottleneck== that explores a ==manifold of valid actions==, decoded into temporally consistent ==action chunks==; a ==dual-path plug-in== drops into existing policies (e.g. Diffusion Policy); **50.8%** relative SR gain with fewer rollouts, stable across multiple self-improvement iterations.
 
 **Self-Evolving Agent — Decision Matrix**
 
@@ -563,21 +566,21 @@ Self-evolution is not guaranteed to converge or remain aligned. The failure mode
 
 The agent's reward signal silently diverges from designer intent during autonomous improvement — invisible until deployment failure. The axis: *the reward, not the policy, is what fails*.
 
-- **[[2509.26354|Misevolution]]** — identifies ==value drift during autonomous self-improvement== as a novel safety-risk class; systematic biases in the self-reward model (e.g., rewarding confident-looking actions over cautious ones) amplify over improvement rounds until the agent optimizes a proxy that diverges from the true goal — *invisible until deployment failure*.
-- **[[2506.07468|SELF-REDTEAM]]** — ==adversarial self-play== as a pre-deployment safety check; the model red-teams itself after each improvement cycle to catch safety regressions before deployment.
+- **[[2509.26354|Misevolution]]** — A study that identifies ==value drift during autonomous self-improvement== as a novel safety-risk class; systematic biases in the self-reward model (e.g., rewarding confident-looking actions over cautious ones) amplify over improvement rounds until the agent optimizes a proxy that diverges from the true goal — *invisible until deployment failure*.
+- **[[2506.07468|SELF-REDTEAM]]** — An ==adversarial self-play== approach as a pre-deployment safety check; the model red-teams itself after each improvement cycle to catch safety regressions before deployment.
 
 #### 8.2 Policy Pathologies (Collapse & Forgetting)
 
 The policy itself degenerates — either narrowing to a brittle deterministic mode (entropy collapse) or losing prior skills as new ones are learned (catastrophic forgetting). The axis: *RL pressure without counter-pressure*.
 
-- **[[2509.15194|EVOL-RL]]** — ==novelty-driven diversity== alongside performance-based selection prevents *entropy collapse* (RL convergence on a narrow high-reward mode; policy becomes deterministic and brittle to variation) during RL-based self-improvement.
+- **[[2509.15194|EVOL-RL]]** — A method whose ==novelty-driven diversity== alongside performance-based selection prevents *entropy collapse* (RL convergence on a narrow high-reward mode; policy becomes deterministic and brittle to variation) during RL-based self-improvement.
 - **Catastrophic forgetting** — gains from one round of self-improvement are lost in the next domain; mitigated by LoRA ([[2603.11653|VLA RL CL]]) and experience replay ([[2401.16650|WMAR]]: forgetting **0.071 vs 0.665** baseline). See §6 for the surprising-but-replicated VLA-side result that pretraining alone provides ==natural== forgetting resistance.
 
 #### 8.3 Imagination Pathologies (Hallucinated Dynamics)
 
 The world model the agent trains on predicts physically impossible futures; the policy exploits artifacts that don't exist in the real world. The axis: *dream fidelity gates self-evolution gains*.
 
-- **[[2603.23376|ABot-PhysWorld]]** — ==Diffusion-DPO== on physics-preference pairs suppresses implausible predictions (object penetration, anti-gravity); the canonical dream-quality filter for VideoGen WAMs. See [[11_Physics-Aware-Embodied-AI#1. Design-Space Principles]] for the full physics-aware design space.
+- **[[2603.23376|ABot-PhysWorld]]** — A ==Diffusion-DPO== method on physics-preference pairs that suppresses implausible predictions (object penetration, anti-gravity); the canonical dream-quality filter for VideoGen WAMs. See [[11_Physics-Aware-Embodied-AI#1. Design-Space Principles]] for the full physics-aware design space.
 - **Artifact exploitation** — without a critic, agents find unrealistic shortcuts in generated rollouts; [[2603.08403|SPIRAL]]'s ==CriticAgent== (§5.1) and [[2502.05907|EvoAgent]]'s self-reflection (§5.1) are the two operational fixes.
 
 **Failure Mode — Decision Matrix**
@@ -608,7 +611,7 @@ The world model the agent trains on predicts physically impossible futures; the 
 
 | Question | Answer |
 |----------|--------|
-| Self-evolving via imagination (WAM path)? | [[2506.24119\|SPIRAL]] + [[2502.05907\|EvoAgent]] |
+| Self-evolving via imagination (WAM path)? | [[2603.08403\|SPIRAL]] + [[2502.05907\|EvoAgent]] |
 | Self-evolving via RL post-training (VLA path)? | [[2511.16166\|EvoVLA]] + [[2512.14666\|EVOLVE-VLA]] |
 | Self-evolving with persistent memory (Agent path)? | [[2510.16079\|EVOLVER]] + [[2601.06794\|ECHO]] |
 | Need curiosity-driven exploration? | [[2503.01584\|SENSEI]] or [[2602.20057\|AdaWorldPolicy]] |

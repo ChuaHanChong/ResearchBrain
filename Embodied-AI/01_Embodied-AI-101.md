@@ -305,6 +305,36 @@ The critical prerequisite for all three paths: **the agent must first detect tha
 > safety → [[13_Self-Evolving-VLA-WAM]] §4 (failure detection);
 > generalization → [[13_Self-Evolving-VLA-WAM]] §5–7 (self-evolving systems).
 
+## Surveys & Further Reading
+
+Landscape reviews for going deeper, grouped by theme. These broad surveys span the whole field rather than any single mechanism deep-dive — start here when you want a wide map before drilling into a specific note.
+
+**The embodied field**
+- [[2507.10087|Foundation Robotics Review]] — comprehensive review of foundation models (LLMs/VLMs/VLAs) across the robotics stack, from perception to control.
+- [[2605.02900|Safety in Embodied AI Survey]] — multi-level taxonomy of risks, attacks, and defenses unique to AI that acts in the physical world.
+- [[2510.04978|Physical AI Survey]] — surveys physical understanding across perception, reasoning, modeling, and interaction, asking why models learn correlation rather than causal physics.
+- [[2407.06886|Aligning Cyber Space with Physical World]] — broad post-2023 embodied-AI survey covering MLMs, world models, datasets, simulators, and embodied agents.
+- [[2602.04411|Self-evolving Embodied AI]] — reviews agents that adapt autonomously in open, in-the-wild settings beyond fixed human-crafted configurations.
+- [[2505.07634|Neural Brain Framework]] — neuroscience-inspired blueprint for a central intelligence system unifying perception, memory, and control in embodied agents.
+- [[2212.14020|System-Level OOD Robotics]] — frames out-of-distribution data as a whole-stack robotics problem of safety in feedback loops, not just per-model robustness.
+- [[2301.11972|Social Cues HRI Survey]] — how robots can recognize their own task failures from human social cues during interaction — the prerequisite for self-correction.
+
+**World models & video-as-policy**
+- [[2511.02097|WM Manipulation Survey]] — pins down what "world model" means for robotic manipulation, covering definitions, architectures, and a capability taxonomy.
+- [[2604.04974|Video-to-Control Survey]] — surveys interfaces that translate action-free temporal video into robot control, sidestepping costly action-labeled demos.
+- [[2603.28489|Video Gen as WM Survey]] — efficiency-focused review of video generation models as world simulators, spanning paradigms, architectures, and algorithms for scalable video WMs.
+- [[2604.22748|Agentic World Modeling Survey]] — unifies "world model" across fields into foundations, capabilities, and scaling laws, with emphasis on agentic applications.
+- [[2411.14499|World Models Survey]] — broad survey framed around the central debate: does a world model understand the present state or predict the future?
+- [[2506.20134|3D World Models Survey]] — traces the shift from 2D-visual world models to 3D-cognitive ones that simulate motion, contact, and causal reasoning.
+- [[2602.01630|Unified World Model Framework]] — argues world-model research is more than injecting knowledge into task-specific systems; proposes a unified, exploration-driven framing.
+
+**3D & simulation for robotics**
+- [[2512.03422|3D Scene Rep Survey]] — compares geometric, neural (NeRF/3DGS), and foundation-model 3D scene representations across robotic perception, mapping, and manipulation.
+- [[2604.26509|3D Generation for Embodied AI Survey]] — surveys 3D content generation for simulation-ready, physically accurate assets, not just visual realism or static geometry.
+
+**Multi-robot**
+- [[2604.00061|R2X Multi-Robot MLLM Survey]] — surveys multi-robot networks driven by MLLMs, joining sensing, communication, and computation for language-grounded coordination.
+
 ## Cross-References
 
 The Embodied-AI deep-dive collection maps the field along ten complementary axes — read each note when its question is yours.
