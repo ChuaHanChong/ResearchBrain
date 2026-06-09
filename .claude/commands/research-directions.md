@@ -12,7 +12,7 @@ Pass the agent these instructions:
 
 - **Task**: generate (or refresh) the research-direction doc for the topic above, under `_Projects_/Research-Directions/` (see Output filename below for axis routing).
 - **Format**: strictly follow the **Research-Direction Document Format** in the `## Format reference (canonical)` section at the end of this command. That's the single source of truth — do not improvise. (CLAUDE.md only points here; it carries no spec content of its own.)
-- **Source-of-truth rule**: paper aliases, contributions, anchor surveys, and benchmark numbers come from `_KnowledgeHub_/{ID}.md`. **Never invent.** If a benchmark number isn't in the cited paper's KH note, skip the metric — do not fabricate placeholder numbers in Thesis bets or Key targets rows.
+- **Source-of-truth rule**: paper aliases, contributions, anchor papers, and benchmark numbers come from `_KnowledgeHub_/{ID}.md`. **Never invent.** If a benchmark number isn't in the cited paper's KH note, skip the metric — do not fabricate placeholder numbers in Thesis bets or Key targets rows.
 - **Persona**: engage **Hinton-as-mentor advisory mode** (per the agent's `## Persona — Hinton-as-mentor`) for direction theses. Apply integrated thinking — first-principles + research taste + novelty fire together. Direction ideas must be **novel**; if framing matches consensus, iterate.
 - **Workflow**: run the phases specified by the active mode (New = 0–7, Update = affected only, Audit = 7 only, Plan = 0–3), in order, end-to-end. No user-confirmation pauses — drive the work autonomously, except where Phase 3's Plan-mode brainstorming explicitly punts to user review.
 - **Skip topic `_Projects_/01_FirstPublication/`**: that subtree is an independent-study project artifact (blueprint + roadmap + repo). Out of scope — do not cross-link from research-direction docs.
@@ -137,7 +137,7 @@ grep -c '^\*\*First-principles framing\.\*\*$' "$DOC"
 grep -c '^> \[!warning\] Risks' "$DOC"
 
 # Card rows — should equal 4 × direction count
-grep -cE '^\| \*\*(Cluster|Thesis|Anchor surveys|Key targets)\*\*' "$DOC"
+grep -cE '^\| \*\*(Cluster|Thesis|Anchor papers|Key targets)\*\*' "$DOC"
 
 # Thesis rows lacking a number — should be 0 (Anti-pattern C; digit-presence is a proxy for the measurable bet)
 grep -E '^\| \*\*Thesis\*\* \|' "$DOC" | grep -vcE '[0-9]'
@@ -229,7 +229,7 @@ echo "===== AUDIT VERDICT ====="
 DIR=$(grep -cE '^### [A-Z][0-9]+ —' "$DOC")
 FP=$(grep -c '^\*\*First-principles framing\.\*\*$' "$DOC")
 RISKS=$(grep -c '^> \[!warning\] Risks' "$DOC")
-ROWS=$(grep -cE '^\| \*\*(Cluster|Thesis|Anchor surveys|Key targets)\*\*' "$DOC")
+ROWS=$(grep -cE '^\| \*\*(Cluster|Thesis|Anchor papers|Key targets)\*\*' "$DOC")
 THEMES=$(awk '/^## Cross-Cutting Themes/,/^## Benchmark Gaps/' "$DOC" | grep -cE '^> \[!tip\] ')
 GAPS=$(awk '/^## Benchmark Gaps/,/^## Cross-References/' "$DOC" | grep -cE '^\| .*\| [A-Z][0-9]+')
 MISSING_LINKS=$(grep -oE '\[\[[0-9]{4}\.[0-9]+' "$DOC" | sort -u | sed 's/\[\[//' | while read id; do [ -f "_KnowledgeHub_/${id}.md" ] || echo X; done | wc -l | tr -d ' ')
@@ -313,7 +313,7 @@ Each direction is an H3 `### A1 — <Title>` followed by the structure below. **
 |---|---|
 | **Cluster** | A — <Theme> |
 | **Thesis** | <1 sentence — what to build/test and why it advances the domain> |
-| **Anchor surveys** | [[id\|alias]], [[id\|alias]], [[id\|alias]] (at least 3 — the foundational surveys this direction anchors on) |
+| **Anchor papers** | [[id\|alias]], [[id\|alias]], … (the foundational papers this direction anchors on — surveys *and/or* landmark methods; **no fixed count**, list as many as the direction genuinely rests on) |
 | **Key targets** | <concrete metric anchors with specific numbers: SR / latency / OOD %, etc.> |
 
 **Why it matters.** At least 1 paragraph framing the gap — what's broken in the current state, why this direction resolves it. Reference anchor papers in prose with `[[id|alias]]` wikilinks.
@@ -373,7 +373,7 @@ Each pattern below is either caught by Phase 7's audit (structural) or enforced 
 | **B** | Cluster letters use Roman numerals (`I, II, III`) | ✓ (regex matches only Latin) | Switch to Latin `A / B / C` per conventions |
 | **C** | Thesis row lacks the measurable bet (no specific number / threshold like `ρ > 0.7`, `≥30 Hz`, `+X pp`) | ✓ digit-presence proxy (a Thesis row with no digit fails); semantic quality stays a narrative gate | Iterate per First-principles framing rubric — the bet must include numbers |
 | **D** | `**First-principles framing.**` block absent or filled with consensus restatement (three bullets don't carry distinct intellectual load) | ✓ presence only; semantic quality is a narrative gate | Apply the rubric's litmus test; if you can't fill all three bullets distinctly, drop the direction |
-| **E** | Paper aliases fabricated or anchor surveys cited without arxiv IDs | ✗ semantic (audit catches missing-file wikilinks only) | Use exact alias from `_KnowledgeHub_/{ID}.md`; cross-check before adding |
+| **E** | Paper aliases fabricated or anchor papers cited without arxiv IDs | ✗ semantic (audit catches missing-file wikilinks only) | Use exact alias from `_KnowledgeHub_/{ID}.md`; cross-check before adding |
 | **F** | Related research papers presented as a 3-column table instead of inline bulleted list | ✗ semantic | Convert to `- [[id\|alias]] — contribution + gap addressed` bullets |
 | **G** | Cross-Cutting Themes callouts reference only one direction label (not actually cross-cutting) | ✓ (per-callout direction-ref count <2) | Iterate to reference ≥2 directions per theme; if no ≥2-direction synthesis is possible, drop the theme |
 | **H** | Benchmark Gaps without `Existing closest` column populated (just naming the gap with no current-state reference) | ✗ semantic | Add closest existing benchmark + brief delta from required scope |

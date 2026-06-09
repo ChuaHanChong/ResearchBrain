@@ -176,7 +176,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 |---|---|
 | **Cluster** | A — Architecture & Training |
 | **Thesis** | Train the policy and world model in one loop, not cascaded or alternating. The data carries $p(o',a\mid o,l)$ as one joint distribution, so a joint objective is the natural loss. The field assumes WM↔policy alternation is needed for stability. The bet: a single-step joint gradient on a unified latent backbone beats alternating training on *both* in-dist SR (≥97.2% [[2306.03310\|LIBERO]]) and OOD SR (≥79.5% [[2510.13626\|LIBERO-Plus]]), at no latency cost (latent ~10 ms vs pixel ~150 ms). |
-| **Anchor surveys** | [[2605.12090\|WAM Survey]], [[2605.00080\|WM Robot Learning Survey]], [[2604.22748\|Agentic World Modeling Survey]] |
+| **Anchor papers** | [[2605.12090\|WAM Survey]], [[2605.00080\|WM Robot Learning Survey]], [[2604.22748\|Agentic World Modeling Survey]], [[2306.03310\|LIBERO]], [[2510.13626\|LIBERO-Plus]], [[2511.08544\|LeJEPA]] |
 | **Key targets** | [[2306.03310\|LIBERO]] 97.2% in-dist; [[2510.13626\|LIBERO-Plus]] 79.5% OOD; latent ~10 ms inference (vs pixel ~150 ms) |
 
 **Why it matters.** [[2605.12090|WAM Survey]] defines WAMs via $\mathcal{L}_{\text{WAM}} = \mathbb{E}_{(o,l,o',a)\sim\mathcal{D}}[-\log p(o', a \mid o, l)]$ and names Joint over Cascaded as the frontier; [[2605.00080|WM Robot Learning Survey]] agrees on "single-backbone, unified VLA, latent world-modeling." Current "joint" methods fall short: [[2602.12063|VLAW]] alternates, [[2603.16666|Fast-WAM]] drops the WM at deployment, [[2605.15153|Pelican-Unified]] unifies the architecture but trains multi-stage, and [[2511.09515|WMPO]] / [[2511.15605|SRPO]] freeze the WM during inner RL. The gap: a single GRPO loop on joint $(action, imagination)$ log-prob with cooperative gradient flow has not been shown.
@@ -190,6 +190,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - **Closest single-loop attempts**: [[2603.19370|VAMPO]] (GRPO over video-denoising-as-MDP; pixel-space, expensive), [[2602.13977|WoVR]] (masked GRPO + KIR + PACE; PACE not in code), [[2511.09515|WMPO]] (on-policy GRPO; WM frozen in inner loop), [[2511.15605|SRPO]] (frozen [[2506.09985|V-JEPA 2]]; WM doesn't update). The inverse case — [[2606.02486|AHEAD]] freezes the *policy* and trains only a 4.9M-param latent WM around it (>**95%** sim conveyor SR) — shows even the opposite freeze isn't co-evolution: one side is always held fixed.
 - **Latent feasibility** ([[05_VLA#5. World-Model-Augmented VLAs|05_VLA §5]] + [[07_WAM#5. VLM-Integrated WAMs|07_WAM §5]]): [[2602.10098|VLA-JEPA]], [[2602.11832|JEPA-VLA]], [[2605.00078|Being-H0.7]] predict in 256-dim latent (~10 ms) vs pixel ~150 ms.
 - **Stability substrate**: [[2511.08544|LeJEPA]]'s provable Euclidean geometry (anti-collapse regularization) is the candidate that lets single-step joint updates avoid the latent-collapse failure mode.
+- **Single-objective existence proof**: [[2603.25406|MMaDA-VLA]] jointly denoises the goal observation and the action chunk in one shared discrete-token space under a single masked-denoising objective — no auxiliary world model, no alternation — and clears the bet's in-dist bar at 98.0% [[2306.03310|LIBERO]] (4.78 CALVIN ABC→D), evidence that one joint loss is not only natural but already competitive.
 
 **Concrete research questions.**
 1. **Q1 — Unified GRPO in latent space.** Given a pretrained latent WAM ([[2504.02792|UWM]] or [[2602.10098|VLA-JEPA]]), $\mathcal{L} = \mathbb{E}[A \cdot \log \pi(a, \hat{z}_{t+1} \mid s_t)]$; one backward pass updates both heads.
@@ -213,8 +214,11 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2605.13775|RoboEvolve]] — Co-evolves a planner + a video simulator, beating a 25K-demo SFT baseline from 300 seed images; co-evolution but *alternating* — the schedule A1 replaces.
 - [[2606.04130|CLAW]] — Joint latent-action + diffusion-WM training with reciprocal supervision; adversarial regularization blocks collapse — the anti-collapse substrate (with [[2511.08544|LeJEPA]]).
 - [[2606.05979|WLA]] — Joint action + world-model + language objective (World/Action Experts); world prediction acts *implicitly*; **56.5%** RMBench, ~40 ms latent — joint-loss and latent-cheap, but one-pass.
-- [[2505.23705|Knowledge Insulation VLA]] — Stop-gradient PEFT preserves pretrained priors during RL.
-- [[2605.06732|Training in Imagination]] — MBRL imagination theory + budget allocation; not in a latent joint loop.
+- [[2603.25406|MMaDA-VLA]] — Native discrete-diffusion policy jointly denoising goal observation + action in one token space, no auxiliary world model; **98.0%** [[2306.03310|LIBERO]] — the single-objective joint variant.
+- [[2604.11135|AIM]] — Jointly predicts action-spatial value maps + future RGB via intent-causal attention + self-distillation RL on map-derived rewards; **+15.3 pp** RoboTwin Hard over π0.5; joint but two-stage.
+- [[2603.10422|World2Act]] — Latent-action post-training aligns policy actions to world-model dynamics latents by contrastive matching (no pixel supervision); **66.3%** RoboCasa fewer demos — latent-joint, but post-hoc alignment.
+- [[2603.10448|DiT4DiT]] — A video DiT conditions an action DiT via denoising features for one joint video-action model; **98.6%** [[2306.03310|LIBERO]], **10×** sample efficiency; pixel-space, not a single latent gradient.
+- [[2603.08403|SPIRAL]] — Adds a critic that filters hallucinated dynamics before they corrupt the policy in the co-evolution loop; the dream-quality gate for A1's chasing-problem risk.
 
 **Benchmarks & metrics.**
 - [[2306.03310|LIBERO]] + [[2510.13626|LIBERO-Plus]] + [[2602.06556|LIBERO-X]] + [[2603.28301|LIBERO-Para]] — Joint test suite for in-dist + OOD + compositional.
@@ -232,7 +236,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 |---|---|
 | **Cluster** | A — Architecture & Training |
 | **Thesis** | Put step rewards on *latent* reasoning tokens. Outcome rewards only care about the result, not the path — they can't tell a causally-correct reasoning path from a lucky one that lands the same outcome. The field assumes you must pick between latency-free latent CoT and step-level supervision. The bet: latent CoT + step rewards lifts LIBERO-Long SR by ≥+5 pp at matched latency and ≥+10 pp on compositional, closing the CoT-faithfulness gap [[2510.16281\|SEAL]] documented. |
-| **Anchor surveys** | [[2509.19012\|Pure VLA Survey]], [[2510.04978\|Physical AI Survey]], [[2509.25373\|VLM Perception-Cognition Survey]] |
+| **Anchor papers** | [[2509.19012\|Pure VLA Survey]], [[2510.04978\|Physical AI Survey]], [[2509.25373\|VLM Perception-Cognition Survey]], [[2604.18486\|OneVL]], [[2604.22074\|CIR/SR Reasoning]], [[2510.16281\|SEAL]] |
 | **Key targets** | ≥+5 pp SR on LIBERO-Long at matched latency; ≥+10 pp on compositional (vs [[2510.16281\|SEAL]]'s **+15 pp** novel-behavior-composition gain to 53%) |
 
 **Why it matters.** [[2604.22074|CIR/SR Reasoning]] finds outcome rewards insufficient — RL-trained traces become "factually correct via causally disconnected paths." [[2604.18486|OneVL]] shows latent reasoning beats explicit CoT at answer-only latency (**88.84** PDM-score, **+2.64 pts** over prior 8B). [[2510.16281|SEAL]] documents the CoT-faithfulness gap. [[2509.19012|Pure VLA Survey]] names causal reasoning alongside world modeling; [[2510.04978|Physical AI Survey]] extends it to all of Physical AI. No paper yet pairs latent CoT with step-reward training for policy reasoning.
@@ -276,6 +280,11 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2601.01618|Action-Sketcher]] — Visual-sketch intermediate (See-Think-Sketch-Act) with token-gating between reasoning and fast action; **96.0%** LIBERO-Long; visual-intermediate variant.
 - [[2604.17800|ReFineVLA]] — Teacher-distilled language rationales via selective fine-tuning; **+9.6%** SimplerEnv; the explicit-CoT-distillation baseline A2's latent approach must beat.
 - [[2606.04436|3DThinkVLA]] — Distills 3D spatial *thinking* into the action prompt via a latent reasoning-anchor token (no CoT text); **98.7%** LIBERO; the anchor mechanism A2 is built on.
+- [[2512.22939|ColaVLA]] — Relocates explicit text CoT into decision-oriented meta-action embeddings; **>5×** faster than text CoT (727 ms vs >3700 ms); latent-reasoning substrate at driving scale.
+- [[2606.03127|TTT-VLA]] — Test-time latent-prompt optimization via a self-supervised state-grounding proxy, backbone frozen; SimplerEnv **51.1% → 67.4%**; latent reasoning shaped by a non-outcome signal.
+- [[2412.11974|EMMA-X]] — Auto-annotates grounded look-ahead CoT (future gripper position + 3D plan) before action; **+24.17%** SR, ablating it drops SR **43–55%** — per-step grounding as the dense signal outcome reward lacks.
+- [[2407.08693|ECoT]] — Foundational grounded-CoT training: plan → bounding boxes → gripper positions before actions; **+28 pp** SR, one reasoning correction **+48 pp**; the explicit-step baseline A2's latent variant must beat.
+- [[2603.28730|SOLE-R1]] — Per-timestep spatiotemporal-CoT reward via RLVR as the *sole* signal; from-random-init on-robot RL reaches **≥50%** on 24 unseen tasks, failures signal-limited not hacked — dense, hack-resistant.
 
 **Benchmarks & metrics.**
 - [[2406.15349|NAVSIM]] — Driving CoT benchmark; cross-domain reasoning-faithfulness anchor.
@@ -295,7 +304,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 |---|---|
 | **Cluster** | A — Architecture & Training |
 | **Thesis** | Enforce verifiable physics predicates at the *action* level. Physical laws hold the same for held-out and OOD data, so a loss enforcing them extrapolates without distribution shift. The field assumes physics-aware video generation transfers for free into physics-aware policy. The bet: action-level predicates lift obstacle-perturbation Safe-SR from **43.50% → >55%** (extending [[2604.17896\|Physical-Feasibility VLA]]'s geometric-only ceiling) and reach ≥0.70 sim-to-real SR retention, with a non-trivial Pearson ρ between predicate satisfaction and downstream SR. |
-| **Anchor surveys** | [[2604.04974\|Video-to-Control Survey]], [[2503.21765\|Physics Cognition Survey]], [[2510.04978\|Physical AI Survey]] |
+| **Anchor papers** | [[2604.04974\|Video-to-Control Survey]], [[2503.21765\|Physics Cognition Survey]], [[2510.04978\|Physical AI Survey]], [[2604.17896\|Physical-Feasibility VLA]], [[2605.08567\|ACWM-Phys]], [[2603.23376\|ABot-PhysWorld]] |
 | **Key targets** | obstacle-perturbation Safe-SR **43.50% → >55%** ([[2604.17896\|Physical-Feasibility VLA]] baseline; the action-level physics ceiling A3 extends); sim-to-real SR retention **≥0.70**; DPO pass-target **≥90%** on held-out via [[2603.23376\|ABot-PhysWorld]] physics-rejected negatives; [[2605.08567\|ACWM-Phys]] OOD ΔM-MSE reduced vs naive |
 
 **Why it matters.** Five surveys converge on the same gap: [[2604.04974|Video-to-Control Survey]] (physical feasibility as missing layer), [[2503.21765|Physics Cognition Survey]] (sub-human physics), [[2510.04978|Physical AI Survey]] ("causal understanding missing"), [[2601.15533|Actionable Simulators]] (*dynamical hallucinations*), [[2601.07823|Video Generation in Robotics Survey]] (hallucinations + physics violations as top-2). [[2605.08567|ACWM-Phys]] now *quantifies* the cliff: action-conditioned video WMs are crisp in-distribution (SSIM **0.988**) but degrade sharply OOD (ΔM-MSE up to **+40** on robot-arm, **+30** on cloth). Physics-aware video generators ([[2509.21309|NewtonGen]], [[2510.13809|PhysMaster]], [[2512.00425|NewtonRewards]], [[2603.13770|PhysAlign]]) progress on the *generation* side, but the imagination → policy chain is untested. Closest: [[2604.17896|Physical-Feasibility VLA]] — a differentiable geometric loss on actions lifts obstacle-perturbation Safe-SR — Pr(d_min > α ∧ d_tgt < β) — from 22% → **43.50%**; geometric only, no verifiable physics predicates and no [[2510.13626|LIBERO-Plus]] eval.
@@ -334,6 +343,9 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2605.06593|ReActor]] — Bilevel RL + physics sim; **+15.22 pp**; motion retargeting only.
 - [[2511.04665|Real-to-Sim GS]] — 3DGS + soft-body PhysTwin; **r=0.915** (push-T) / **0.901** (rope) sim-real.
 - [[2605.15298|PhysBrain]] — Physics-aware policy from egocentric; closest physics-grounded policy, no verifiable predicate set.
+- [[2604.18161|DDCG]] — Detects contact/friction discontinuities and switches 0th/1st-order gradient estimators per-step (unified `c=0.3`); the differentiable-physics gradient substrate for training action through contact.
+- [[2602.02481|FPO++]] — Stabilizes flow-matching policy gradients via CFM-loss differences + asymmetric trust region; first sim-to-real of RL-trained flow policies — the optimizer the physics-predicate loss plugs into.
+- [[2604.03037|ARM]] — Tri-state advantage labeling (progressive/regressive/stagnant) feeds a dense per-step progress reward; **99.4%** towel-folding vs BC's 62.1% — dense step-reward whose predicates A3 makes physics-verifiable.
 
 **Benchmarks & metrics.**
 - [[2605.08567|ACWM-Phys]] — Action-conditioned video-WM physics generalization; InD SSIM **0.988**, OOD ΔM-MSE up to **+40**; first benchmark scoring physics on action-conditioned WM rollouts.
@@ -352,7 +364,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 
 ## Cluster B — Evaluation, Robustness & Deployment
 
-*Measurement instruments, recovery loops, and efficiency co-design that turn lab gains into real-world capability.*
+*Everything that stands between a trained policy and reliable deployment: measuring whether it works, recovering when it fails, running it in real time, and not forgetting what it knew.*
 
 ### B1 — Joint Policy/World-Model Evaluation: Causal Consistency Between Imagination and Action
 
@@ -360,7 +372,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 |---|---|
 | **Cluster** | B — Evaluation, Robustness & Deployment |
 | **Thesis** | Measure WM and policy on one joint causal-consistency axis, not two separate ones (WM quality via FVD/PSNR, action quality via [[2306.03310\|LIBERO]] SR). A WM and policy are causally bound only when actions in imagined futures match executed ones. The field assumes visual fidelity of WM-generated futures predicts policy success. The bet: ASR + COD *jointly* predict real-fleet SR at Pearson **ρ > 0.7** (vs ρ < 0.4 for separate axes), replacing FID-style WM eval. |
-| **Anchor surveys** | [[2605.12090\|WAM Survey]], [[2604.22748\|Agentic World Modeling Survey]], [[2310.06253\|Objective Mismatch MBRL Survey]] |
+| **Anchor papers** | [[2605.12090\|WAM Survey]], [[2604.22748\|Agentic World Modeling Survey]], [[2310.06253\|Objective Mismatch MBRL Survey]], [[2606.05773\|PiL-World]], [[2606.04463\|OSCAR]], [[2605.06311\|VISER]] |
 | **Key targets** | ASR + COD AUROC **≥ 0.7**; joint metric → real SR Pearson **ρ > 0.7** (current separate axes: ρ < 0.4) |
 
 **Why it matters.** [[2605.12090|WAM Survey]], [[2605.00080|WM Robot Learning Survey]], [[2510.16732|World Models for Embodied AI Survey]], [[2601.15533|Actionable Simulators]], and [[2601.07823|Video Generation in Robotics Survey]] all flag that current protocols measure WM quality (FVD/PSNR) and action quality ([[2306.03310|LIBERO]] SR) **separately** — a joint model can score high on each while imagination and actions are causally disconnected. [[2310.06253|Objective Mismatch MBRL Survey]] gives the MBRL substrate: predictive WM loss doesn't correlate with downstream return. [[2603.22078|WAM vs VLA Robustness]] showed world-action models win on visual perturbations *but run 4.8× slower* — a cost worth paying only if imagination helps action quality, which current metrics can't certify. [[2605.06311|VISER]] shows the sim-real correlation *can* hit Pearson **r = 0.92** when visual fidelity is controlled — proof the joint-axis signal is there once you measure it right.
@@ -405,6 +417,10 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2606.04233|Manipulation Benchmark Audit]] — A 0.09B [[2304.07193|DINOv2]]+MLP probe hits **99.0%** on LIBERO-Spatial (shortcut-solvable); only **19.8%** of LIBERO / **19.7%** of SimplerEnv SOTA claims are significant; current SR certifies the wrong thing.
 - [[2605.29710|PhAIL]] — Real-robot benchmark with a time-to-success CDF + KS test (**80%** detection at N=25-30 vs binary failure at N=30); the statistical-rigor layer (with [[2606.05159|X4Val]]).
 - [[2601.04137|WoW-World-Eval]] / [[2602.08971|WorldArena]] — Comprehensive embodied-WM eval (Turing test; perception + functional utility).
+- [[2605.19986|MetaFine]] — Compositional task-graph diagnostic showing binary success inflates capability up to **70%** under fine-grained constraints; the diagnostic the joint metric replaces SR with.
+- [[2510.04354|SureSim]] — Policy eval as prediction-powered inference over paired real/sim outcomes; **−20–25%** real-hardware effort for the same confidence — the statistical layer for the joint metric.
+- [[2507.00435|RoboEval]] — Structured bimanual eval where same-success policies differ **4×** in jerk, **2.7×** in path length; behavior-quality axes the binary metric hides, complementary to causal consistency.
+- [[2506.17561|VLA-OS]] — Composable policy series with interchangeable backbone + plug-and-play planning heads for controlled comparison; isolates which component drives a gain — the ablation substrate the joint metric needs.
 
 **Benchmarks & metrics.**
 - [[2306.03310|LIBERO]] + [[2510.13626|LIBERO-Plus]] — Action SR baseline; ~40k pairs.
@@ -423,7 +439,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 |---|---|
 | **Cluster** | B — Evaluation, Robustness & Deployment |
 | **Thesis** | Build one integrated detect-diagnose-recover loop with memory, not four separate modules. An agent that can't remember can't notice repeated failure; one that notices it must change behavior or it isn't learning. The field assumes these four parts compose trivially. The bet: a unified loop lifts long-horizon SR on [[2306.03310\|LIBERO]]-Long memory-dependent tasks by ≥+15 pp over [[2605.10993\|ECHO-VLA]]'s memory-only +12.8 pp (end-to-end on [[2605.10921\|RoboMemArena]], 68.9% memory-dependent subtasks), and cuts oscillation incidents ≥50% via state-machine integration. |
-| **Anchor surveys** | [[2604.16592\|Cognition WM Survey]], [[2602.04411\|Self-evolving Embodied AI]], [[2505.05108\|Multi-agent Embodied AI Survey]] |
+| **Anchor papers** | [[2604.16592\|Cognition WM Survey]], [[2602.04411\|Self-evolving Embodied AI]], [[2505.05108\|Multi-agent Embodied AI Survey]], [[2605.10921\|RoboMemArena]], [[2605.10993\|ECHO-VLA]], [[2508.19236\|MemoryVLA]] |
 | **Key targets** | ≥+15 pp SR on [[2306.03310\|LIBERO]]-Long memory-dependent tasks (baseline: [[2605.10993\|ECHO-VLA]] **+12.8 pp** on LIBERO-Long); end-to-end eval on the [[2605.10921\|RoboMemArena]] suite (**68.9%** memory-dependent subtasks); oscillation incidents **−50%**; [[2510.02298\|ARMADA]] **23.3%** intervention reduction |
 
 **Why it matters.** [[2605.10921|RoboMemArena]]: **68.9%** of subtasks need historical info. [[2604.16592|Cognition WM Survey]] names *meta-cognition* as one of two drastically under-researched cognitive functions — failure detection + recovery is its embodied form. [[2602.04411|Self-evolving Embodied AI]] (5-module framework) and [[2505.05108|Multi-agent Embodied AI Survey]] (open-environment self-evolution) decompose it further. Recovery needs memory — [[2605.10993|ECHO-VLA]] (**+12.8 pp** LIBERO-Long) is closest but has no detection integration. [[2605.02900|Safety in Embodied AI Survey]] adds a warning: memory itself is an attack surface (poisoning), so the loop must be defended, not just built.
@@ -468,6 +484,11 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2506.21669|SEEA-R1]] — Self-evolving agent; MCTS-derived dense rewards train a generative reward model for replay-free improvement (**+34.72 pp** real); the "recovery → training example" engine.
 - [[2606.05395|VASO]] — Formally-verifiable self-evolving skills: LTL counterexamples become textual gradients refining the skill contract (**89% → 97%** feasibility, ~**95%** safety); verification-gated correction.
 - [[2605.15735|UAM]] — Policy forgetting under fine-tune; the catastrophic-forgetting risk the continual loop must avoid (now B4).
+- [[2510.01642|FailSafe]] — Automatic failure-action data pipeline; **0.9094** detect SR / **0.6522** action-cosine, lifts base policy **+22.6%**; the detect-plus-corrective-action front-end with auto-labeled recovery data.
+- [[2410.14868|Diff-DAgger]] — Repurposes diffusion-policy training loss as an uncertainty signal for failure detection; **+39%** F1 over ensemble baselines — the cheapest detector when the policy is already diffusion-based.
+- [[2404.00756|Recover]] — Neuro-symbolic recovery with an ontology + LLM planning; **100%** rule-based failure detection, **~70%** recovery rate; the symbolic diagnose-recover variant of B2's loop.
+- [[2603.09030|PlayWorld]] — Self-play proposer + executor captures failure modes absent in human data; Pearson **0.8766** predicted-vs-real SR, **+65%** real SR; the failure-data engine feeding the recovery loop.
+- [[2410.00371|AHA]] — Failure-reasoning VLM (instruction-tuned + FailGen labeling); beats GPT-4o on failure detection (**0.446** AHA-Test) and adds **+22.34%** RL reward synthesis — the diagnosis model between detect and recover.
 
 **Benchmarks & metrics.**
 - [[2605.10921|RoboMemArena]] — Memory-dependent SR; **68.9%** subtasks need history.
@@ -486,7 +507,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 |---|---|
 | **Cluster** | B — Evaluation, Robustness & Deployment |
 | **Thesis** | Treat efficiency as a primary research target, not "engineering to sort out after publication." Inference cost has three independent levers — what / how often / how precisely you predict — and their Pareto frontier needs co-design. The field assumes single-lever tuning or faster silicon will suffice. The bet: a co-designed (architecture + training + data + quantization) policy hits ≥30 Hz on edge ([Jetson Orin](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/) / Apple M, vs the AR 3–5 Hz ceiling) while keeping ≥95% of base-policy SR — showing the latency-quality curve moves with method, not just hardware. |
-| **Anchor surveys** | [[2510.24795\|Efficient VLA Survey]], [[2510.07077\|VLA Robotics Real-World Review]], [[2603.28489\|Video Gen as WM Survey]] |
+| **Anchor papers** | [[2510.24795\|Efficient VLA Survey]], [[2510.07077\|VLA Robotics Real-World Review]], [[2603.28489\|Video Gen as WM Survey]], [[2505.04769\|VLA Concepts Survey]], [[2605.14598\|DSSP]] |
 | **Key targets** | ≥30 Hz on [Jetson Orin](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/) / Apple M (vs AR 3–5 Hz ceiling); ≥95% of base-policy [[2306.03310\|LIBERO]] SR retained; matched-FLOPs Pareto sweep |
 
 **Why it matters.** [[2510.24795|Efficient VLA Survey]] and [[2603.28489|Video Gen as WM Survey]] reframe efficiency from "optimization" to "prerequisite." [[2505.04769|VLA Concepts Survey]] quantifies it: AR decoding caps speed at 3–5 Hz vs the 20–50 Hz needed. [[2510.07077|VLA Robotics Real-World Review]] names latency a top-3 deployment concern; [[2511.05936|10 VLA Challenges]] names resource efficiency one of ten core bottlenecks. No other direction here treats efficiency as a primary thesis — they all assume real-time is feasible.
@@ -524,6 +545,12 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2505.23705|Knowledge Insulation VLA]] — Stop-gradient PEFT pattern.
 - [[2602.16710|EgoScale]] — Log-linear ego scaling; **+54%** dexterous.
 - [[2511.15605|SRPO]] / [[2603.16666|Fast-WAM]] — Frozen [[2506.09985|V-JEPA 2]] ~10 ms inference; train-video / test-latent.
+- [[2509.09372|VLA-Adapter]] — Bridge-attention 0.5B policy reaching **219.2 Hz** (3× over OpenVLA-OFT) at **97.3%** [[2306.03310|LIBERO]] without robotic pre-training; the architecture-lever exemplar clearing the 30 Hz floor.
+- [[2605.08799|ElasticFlow]] — One-step average-velocity-field policy at **14 ms / 71 Hz**, **98.5%** [[2306.03310|LIBERO]], 5× faster than diffusion policy; the decoding-lever proof real-time is a method choice.
+- [[2503.02310|PD-VLA]] — Training-free parallel decoding (causal→bidirectional + Jacobi) lifts control freq **1.81 → 4.56 Hz** (**2.52×**) at **94.7%** [[2306.03310|LIBERO]]; the decoding lever with no retraining.
+- [[2602.20309|QuantVLA]] — Training-free selective W4A8 quantization cuts memory **70%** (4.27 → 1.28 GB) at **97.6%** [[2306.03310|LIBERO]]; the quantization lever the co-design composes.
+- [[2511.04555|Evo-1]] — 0.77B policy at **16.4 Hz** on **2.3 GB** edge memory, **94.8%** [[2306.03310|LIBERO]]; the small-backbone + edge-deploy point in the co-design space.
+- [[2605.13778|Realtime-VLA FLASH]] — Dual-path speculative inference (110M draft proposes, full path verifies); **3.04×** task-latency cut (58.0 → 19.1 ms) at **93.8%** [[2306.03310|LIBERO]]; the latency lever via draft-verify.
 
 **Benchmarks & metrics.**
 - [[2306.03310|LIBERO]] — SR with no latency penalty; the quality anchor.
@@ -542,8 +569,8 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 |---|---|
 | **Cluster** | B — Evaluation, Robustness & Deployment |
 | **Thesis** | Protect selective subspaces during continual policy fine-tuning instead of defaulting to data-replay. In an over-parameterized policy, the parameter directions a new skill needs and those an old skill occupies are *mostly disjoint* — so forgetting-vs-plasticity is a subspace-overlap problem, not a storage one. The field assumes replaying old trajectories is the price of retention. The bet: a replay-free dual-path / subspace method beats data-replay by ≥+9.7 pp old-task SR ([[2510.20685\|C-Nav]] **42.61% vs 32.9%** on [[2109.08238\|HM3D]]) at lower storage, holding the embodiment tax <5% ([[2605.15735\|UAM]]). |
-| **Anchor surveys** | [[2508.07407\|Self-Evolving AI Agents Survey]], [[2404.14387\|LLM Self-Evolution Survey]], [[2602.04411\|Self-evolving Embodied AI]] |
-| **Key targets** | ≥+9.7 pp old-task SR over Data Replay ([[2510.20685\|C-Nav]] **42.61% vs 32.9%** [[2109.08238\|HM3D]]); embodiment tax **<5%** ([[2605.15735\|UAM]]); ≤−3 pp new-task SR vs full fine-tune |
+| **Anchor papers** | [[2508.07407\|Self-Evolving AI Agents Survey]], [[2404.14387\|LLM Self-Evolution Survey]], [[2602.04411\|Self-evolving Embodied AI]], [[2510.20685\|C-Nav]], [[2605.15735\|UAM]], [[1612.00796\|EWC]] |
+| **Key targets** | ≥+9.7 pp old-task SR over Data Replay ([[2510.20685\|C-Nav]] **42.61% vs 32.9%** [[2109.08238\|HM3D]]); replay-free manipulation transfer ([[2605.29562\|VLA-Pro]] real **5.8% → 65.0%** on six held-out tasks, unseen **+207%** [[2504.13059\|RoboTwin]]); embodiment tax **<5%** ([[2605.15735\|UAM]]); ≤−3 pp new-task SR vs full fine-tune |
 
 **Why it matters.** Forgetting shows up elsewhere in this doc only as a *risk* — B2 names catastrophic forgetting as the hazard its recovery-update loop must avoid, citing [[2605.15735|UAM]] in passing. The deployment reality is sharper: a fielded policy is fine-tuned again and again (new objects, new tasks, new corrections from B2's loop), and every fine-tune erodes prior skill. [[2605.15735|UAM]] quantifies the "embodiment tax" — unfreezing a VLM for action fine-tuning degrades >5% of multimodal competence, but freezing it cripples action learning, a lose-lose. [[2510.20685|C-Nav]] shows the nav analog: learning new object categories forgets old ones, and naive [[1612.00796|EWC]]-style or replay mitigation carries heavy storage + privacy cost. Fresh manipulation evidence is sharper still: [[2605.26820|VLA Continual Forgetting]] shows naive sequential real-world fine-tuning collapses earlier-task score from 99.2 to 17.8, [[2606.03598|PHASER]] shows even *replay* is brittle unless budget is allocated per sub-skill phase (**+31%** when it is), and [[2605.29562|VLA-Pro]] shows weight-space adapter transfer can lift real unseen-task SR from 5.8% to 65.0% without replay. The field's reflex is replay; what's missing is a direction that treats forgetting as a *first-class* objective with a replay-free mechanism — and [[2605.29548|Capacity Interference Retention]] supplies the why: forgetting is inter-task *interference*, which scale and selective protection both reduce.
 
@@ -583,6 +610,11 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2602.10503|Long-Lived Robots]] — Interaction-free RFT (GRPO + process reward) for continual VLA: negative backward transfer **1.5 vs SFT's 6.8**, **+19.6%** forward transfer at **20%** data; the RFT continual baseline to beat.
 - [[2603.24350|Emergent Self]] — In continual quadruped RL, a behavior-invariant subnetwork forms and persists (**+16.9 pp**, p<0.001) while task-specific parts reorganize; evidence for B4's "stable shared subspace" principle.
 - [[2505.06111|UniVLA]] — Unified cross-task policy; the multi-skill backbone B4's protection bolts onto.
+- [[2605.08879|ConSFT]] — Conservative importance weight + stop-gradient bounds parameter disruption; **34%** [[2306.03310|LIBERO]] retention vs vanilla-SFT collapse, no prior data — the replay-free SFT-side mechanism.
+- [[2603.07648|AtomicVLA]] — Skill-guided MoE adds expert modules without retraining; **96.6%** avg [[2306.03310|LIBERO]], only **1.3%** forgetting across the task stream — modular protection vs subspace penalties.
+- [[2602.03445|CRL-VLA]] — Dual-critic (frozen goal-value for stability + trainable MC critic for plasticity); **+0.17** positive backward transfer (new tasks improve old) — the plasticity-retention frontier as architecture.
+- [[2503.18684|OMLA]] — Online meta-learned LoRA adapters from a task-agnostic prior; **0.86** FWT (vs LoRA 0.71) with **0** backward transfer; replay-free fast adaptation holding old skills.
+- [[2509.22195|Actions as Language]] — Recasts actions as natural-language descriptions so fine-tuning preserves the base; retains **>85%** VQA, no catastrophic forgetting — stability via the interface.
 
 **Benchmarks & metrics.**
 - [[2510.20685|C-Nav]] continual object-nav benchmark — first continual-nav suite; old-task SR **42.61%** vs **32.9%** (Data Replay) on [[2109.08238|HM3D]] final stage; the head-to-head B4 extends to manipulation.
@@ -599,7 +631,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 
 ## Cluster C — Mobility & Embodiment Generalization
 
-*Moving the robot through the world (navigation) and across bodies (cross-embodiment, morphology-invariance) — where the fixed-base and fixed-body assumptions break.*
+*Both directions fail the same way: by factoring away load-bearing structure — the world's layout (C1) and the body's morphology (C2) — that the policy needed to keep. Keep the right invariant and the fixed-base and fixed-body assumptions stop breaking.*
 
 ### C1 — Latent In-Policy Dreaming for Vision-and-Language Navigation
 
@@ -607,7 +639,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 |---|---|
 | **Cluster** | C — Mobility & Embodiment Generalization |
 | **Thesis** | Put a latent dream-ahead head *inside* the navigation policy instead of bolting on an external world model. Foresight needs only the *control-relevant* slice of the future, which a latent token carries far more cheaply than a rendered frame. The field assumes anticipatory VLN needs an external pixel-space world model. The bet: an in-policy latent dream head matches or beats external-WM VLN SOTA at a fraction of the cost — [[2603.29165\|LatentPilot]] **62.0% SR / 58.0% SPL** on [[2004.02857\|R2R-CE]] Val-Unseen at **130 ms / 22.8 GB**, with [[2506.23468\|NavMorph]] adding **+4.1% SR** at **2.1× faster** than gradient adaptation. |
-| **Anchor surveys** | [[2311.00530\|LLM Embodied Navigation Survey]], [[2605.00080\|WM Robot Learning Survey]], [[2504.21853\|Interactive Generative Video Survey]] |
+| **Anchor papers** | [[2311.00530\|LLM Embodied Navigation Survey]], [[2605.00080\|WM Robot Learning Survey]], [[2504.21853\|Interactive Generative Video Survey]], [[2603.29165\|LatentPilot]], [[2506.23468\|NavMorph]] |
 | **Key targets** | ≥62.0% SR / 58.0% SPL [[2004.02857\|R2R-CE]] Val-Unseen at ≤130 ms / 22.8 GB ([[2603.29165\|LatentPilot]]); **+4.1% SR** online adaptation at **2.1×** speed ([[2506.23468\|NavMorph]]) |
 
 **Why it matters.** VLN agents decide myopically from current observations alone; the obvious fix — an external world model rendering candidate futures — adds compounding prediction error, memory, and latency ([[2603.29165|LatentPilot]]'s critique). This is the same latent-beats-external bet A1 makes for manipulation, but navigation has its own evidence: [[2603.29165|LatentPilot]] internalizes anticipatory reasoning as a single "Pilot Token" and reaches **62.0% SR** on [[2004.02857|R2R-CE]] Val-Unseen at **130 ms / 22.8 GB**, beating external world models on *both* accuracy and efficiency. [[2506.23468|NavMorph]] adds the other half — a compact RSSM that self-evolves online via a Contextual Evolution Memory, **2.1× faster** than gradient adaptation and **+4.1% SR** on unseen [[2010.07954|RxR-CE]]. The gap: no work fuses in-policy latent dreaming ([[2603.29165|LatentPilot]]) with online self-evolution ([[2506.23468|NavMorph]]) and measures the joint efficiency-accuracy frontier against reasoning-heavy VLN ([[2605.22816|AwareVLN]] hits **73.5% SR** with an explicit reasoning data engine).
@@ -649,6 +681,11 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2604.24391|FreqCache]] — Frequency-guided token caching cuts VLN per-step latency **637 → 401 ms** (**1.59×**) at **76.0%** Oracle SR; the inference-acceleration lever on C1's frontier.
 - [[2309.17080|GAIA-1]] — Generative driving world model; the external-pixel-WM paradigm C1 bets against.
 - [[2403.09631|3D-VLA]] — 3D world model for embodied planning; the heavier generative alternative.
+- [[2512.01550|NavForesee]] — Dual-horizon predictive modeling inside one navigation backbone; **66.2% SR / +10.9% OSR** [[2004.02857|R2R-CE]] Val-Unseen — in-backbone foresight, but pixel-level prediction.
+- [[2511.17097|Progress-Think]] — Annotation-free semantic-progress reasoning via a monotonic-ordering loss; **60.1% SR** [[2004.02857|R2R-CE]], no progress labels — anticipation without privileged supervision.
+- [[2605.10118|SAGE]] — Synthesizes physics-grounded sandbox experience via VLMs, then GRPO; **64.8% SR** GOAT-Bench (4B beating GPT-4o), real-robot deployed — navigation from imagined-sandbox, not in-policy dreaming.
+- [[2507.22028|S2E (Navigation)]] — Pairs offline video pre-training with RL ("seeing → experiencing"); **+21% SR** over BC-only, zero-shot to wheeled + quadruped; the video-prior + RL alternative to dreaming.
+- [[2509.23203|CE-Nav]] — Offline geometric-expert action prior refined online by RL; mSR **0.745–0.860** across 5 robots at **8×** less training; cross-embodiment local nav, the C2-style transfer C1's Q5 needs.
 
 **Benchmarks & metrics.**
 - [[2004.02857|R2R-CE]] Val-Unseen — Continuous-environment VLN; [[2603.29165|LatentPilot]] **62.0% SR / 58.0% SPL**, [[2605.22816|AwareVLN]] **73.5% SR**; the headline efficiency-vs-accuracy battleground.
@@ -665,11 +702,11 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 | | |
 |---|---|
 | **Cluster** | C — Mobility & Embodiment Generalization |
-| **Thesis** | Use a morphology-invariant action representation instead of tokenizing actions in each robot's native joint space. "Pick up the cup" names the same *task intent* regardless of the arm executing it, so an embodiment-agnostic action space is the natural representation and per-morphology tokenization is the accidental one. The field assumes cross-embodiment transfer needs per-robot fine-tuning. The bet: a morphology-invariant representation breaks [[2505.14986\|AnyBody]]'s extrapolation wall — it reports **0%** zero-shot SR on novel link structures, while [[2602.10556\|LAP]]'s language-action space hits **>50%** zero-shot (**2×** prior policies) and [[2605.20811\|Demo-JEPA]] reaches **0.36 vs 0.04** one-shot — target **>30%** on [[2505.14986\|AnyBody]]'s extrapolation split. |
-| **Anchor surveys** | [[2510.07077\|VLA Robotics Real-World Review]], [[2504.03515\|Dexterous IL Survey]], [[2604.04707\|OpenWorldLib]] |
+| **Thesis** | The open question is *which invariant intermediate* — language, latent goal, pointmap, or phase — carries control across robot *families*, not how to retarget within one. Some abstraction of "pick up the cup" is morphology-invariant by construction; native-per-body tokenization is the accidental one that couples policy to a single body plan. The field assumes cross-family transfer needs per-robot fine-tuning. The bet: the right invariant breaks [[2505.14986\|AnyBody]]'s extrapolation wall — it reports **0%** zero-shot SR across novel link structures, while [[2602.10556\|LAP]]'s language-action space hits **>50%** zero-shot (**2×** prior policies) and [[2605.20811\|Demo-JEPA]] reaches **0.36 vs 0.04** one-shot — target **>30%** on [[2505.14986\|AnyBody]]'s extrapolation split. The per-capability *instantiations* defer to the siblings: cross-morphology *hands* to [[Manipulation\|Manipulation]] A2/D1, cross-embodiment *whole-body* to [[Whole-Body\|Whole-Body]] D3. |
+| **Anchor papers** | [[2510.07077\|VLA Robotics Real-World Review]], [[2504.03515\|Dexterous IL Survey]], [[2604.04707\|OpenWorldLib]], [[2505.14986\|AnyBody]], [[2602.10556\|LAP]], [[2605.20811\|Demo-JEPA]] |
 | **Key targets** | >30% extrapolation SR on [[2505.14986\|AnyBody]] novel-morphology split (current **0%**); >50% zero-shot cross-embodiment ([[2602.10556\|LAP]], **2×** prior policies); **0.36** one-shot ([[2605.20811\|Demo-JEPA]], vs **0.04** [[2412.14803\|VPP]]) |
 
-**Why it matters.** [[2505.14986|AnyBody]] is the brutal diagnostic: multi-embodiment policies match single-embodiment baselines on *seen* robots and *interpolation*, but collapse to **0%** SR on *extrapolation* to very different link structures. [[2510.07077|VLA Robotics Real-World Review]] names embodiment transfer a top open problem; [[2504.03515|Dexterous IL Survey]] names it a core barrier. The counter-evidence is about *representation choice*: [[2602.10556|LAP]] parses continuous actions into *natural language* ("language-actions"), aligning the action space with the VLM's pretraining, and hits **>50%** zero-shot across unseen embodiments (**2×** prior policies, 2.5× fewer demos); [[2605.20811|Demo-JEPA]] abstracts demonstrations into *target-compatible latent goals*, reaching **0.36** one-shot SR vs [[2412.14803|VPP]]'s **0.04**. Both replace native-joint tokenization with an invariant intermediate — but neither has faced [[2505.14986|AnyBody]]'s extrapolation wall, still the unbeaten 0% benchmark.
+**Why it matters.** This is the umbrella's *which-invariant* question — the per-capability instantiations live in the siblings (cross-morphology hands in [[Manipulation|Manipulation]] A2/D1, cross-embodiment whole-body in [[Whole-Body|Whole-Body]] D3); here the abstraction is the contribution, not the platform. [[2505.14986|AnyBody]] is the brutal diagnostic: multi-embodiment policies match single-embodiment baselines on *seen* robots and *interpolation*, but collapse to **0%** SR on *extrapolation* across very different link structures. [[2510.07077|VLA Robotics Real-World Review]] names embodiment transfer a top open problem; [[2504.03515|Dexterous IL Survey]] names it a core barrier. The candidates differ only in *which intermediate they make invariant*: [[2602.10556|LAP]] parses continuous actions into *natural language* ("language-actions"), aligning the action space with the VLM's pretraining, and hits **>50%** zero-shot across unseen embodiments (**2×** prior policies, 2.5× fewer demos); [[2605.20811|Demo-JEPA]] abstracts demonstrations into *target-compatible latent goals*, reaching **0.36** one-shot SR vs [[2412.14803|VPP]]'s **0.04**; [[2606.03943|PointAction]] uses 3D pointmaps and [[2606.01851|PHASOR]] uses motion phase. All replace native-per-body tokenization with an invariant intermediate — but none has yet faced [[2505.14986|AnyBody]]'s extrapolation wall, still the unbeaten 0% benchmark.
 
 **First-principles framing.**
 - **First principle**: "Pick up the cup" denotes the same *task intent* for a 7-DoF arm, a parallel gripper, or a humanoid hand. The intent is morphology-invariant; the joint-space trajectory is morphology-specific. A representation grounded in intent (language, latent goal, or task-space) is invariant *by construction*; native-joint tokenization is the accidental one that couples policy to body.
@@ -689,7 +726,7 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 2. **Q2 — Why does joint-space tokenization fail at 0%?** Probe whether [[2409.20537|HPT]]-style per-embodiment stems memorize morphology rather than learn invariant control. Measure representation overlap across morphologies (low overlap → memorization).
 3. **Q3 — Composing language-action + latent-goal.** Do [[2602.10556|LAP]]'s language intermediate and [[2605.20811|Demo-JEPA]]'s latent goal compose (language for *what*, latent for *how-on-this-body*)? Target: beat either alone on [[2505.14986|AnyBody]] composition.
 4. **Q4 — Invariance vs precision trade-off.** Invariant spaces may lose fine control. Measure precision (EE error) of invariant-space vs native-joint policies on seen robots; bound the invariance tax.
-5. **Q5 — Transfer to mobile / whole-body bodies.** Does the invariant representation extend from fixed arms to the humanoid whole-body ([[Whole-Body|Whole-Body]]), or does whole-body coupling break intent-invariance?
+5. **Q5 — Handoff: where intent-invariance meets coupling.** The boundary question, not one this doc answers: an invariant *task intent* assumes the body is a passive executor, but whole-body loco-manipulation couples that intent to balance and contact. Does the invariant survive the jump from fixed arms to the humanoid, or does coupling break it? The instantiation belongs to [[Whole-Body|Whole-Body]] D3 — C2 only certifies the cross-family representation it hands off.
 
 **Related research papers.**
 - [[2505.14986|AnyBody]] — 18-robot benchmark; **0%** extrapolation; the unbeaten morphology wall.
@@ -705,6 +742,11 @@ L3 Evolver is "emerging not mature" for physical-world policies — the target f
 - [[2605.30280|Qwen-VLA]] — Unifies manipulation + navigation + embodiments via embodiment-aware prompts; **97.9%** [[2306.03310|LIBERO]], **76.9%** ALOHA OOD, R2R **57.5%**; the cross-embodiment generalist baseline.
 - [[2606.02745|SeeTraceAct]] — One-shot cross-embodiment skill learning via a visibility-aware visual latent plan (EE-trace supervised); **+12.5 pp** real over baselines; the demo-as-latent-intermediate route.
 - [[2509.00576|G0]] / [[2512.13030|Motus]] — Latent-action staged / multi-stage pretraining; >50% planner gain; **+10%** SR from latent actions.
+- [[2603.10158|XL-VLA]] — Per-hand encoders/decoders form a shared embodiment-invariant VAE action space; **0.72** mean SR over 4 hands (**+40%** over π0), beating kinematic-retargeting zero-shot — a fourth invariant intermediate.
+- [[2603.00732|UniHM]] — Morphology-agnostic VQ-VAE tokenizer gives diverse hands a shared latent + physics-guided optimization; lower MPJPE, higher real grab SR across hand setups — the shared-tokenizer route to invariance.
+- [[2512.00975|MM-ACT]] — Unifies text+image+action as discrete tokens with one-step parallel decoding; **52.38%** RoboTwin2.0 bimanual *unseen*, up to **40 Hz**; a discrete-token cross-embodiment space.
+- [[2606.01851|PHASOR]] — Phase-anchored universal action representation via differentiable FFT + human-anchored InfoNCE; **90.3%** human→robot retrieval, only method to beat raw-kinematics teleport — invariance via phase.
+- [[2602.12062|HoloBrain-0]] — Embodiment-prior-aware policy + async inference; 0.2B variant hits **74.0%** zero-shot [[2510.13626|LIBERO-Plus]], **+5.65–8.02 pp** over π0.5 real; the generalist baseline C2 measures against.
 
 **Benchmarks & metrics.**
 - [[2505.14986|AnyBody]] extrapolation/composition splits — novel link structures; **0%** current SR; the primary go/no-go (target >30%).
