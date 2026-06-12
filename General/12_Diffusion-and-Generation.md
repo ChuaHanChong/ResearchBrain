@@ -274,7 +274,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 > - [[2503.13436|UniFluid]] — Google DeepMind's unified AR framework using continuous and discrete tokens for seamless visual generation and understanding
 
 **Image Editing & Controllable Generation** — Methods for precise, instruction-guided image manipulation and controllable synthesis.
-- [[2606.00351|UniVerse]], [[2605.07429|MagicBokeh]], [[2605.02757|VideoTransfer-VLA]], [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2604.00849|DisCo (Image)]], [[2604.00530|AceTone]], [[2602.19083|ChordEdit]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2512.01236|PSR (Image Gen)]], [[2509.21953|MultiCrafter]], [[2506.12323|MAGIC (Skin)]], [[2505.18600|CoZ]], [[2408.06506|TacSL]], [[2403.19103|PRISM]]
+- [[2606.00351|UniVerse]], [[2605.07429|MagicBokeh]], [[2605.02757|VideoTransfer-VLA]], [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04911|SpatialEdit]], [[2604.04746|Think in Strokes]], [[2604.02296|VOID]], [[2604.00849|DisCo (Image)]], [[2604.00530|AceTone]], [[2602.19083|ChordEdit]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2512.01236|PSR (Image Gen)]], [[2509.21953|MultiCrafter]], [[2505.18600|CoZ]], [[2408.06506|TacSL]], [[2403.19103|PRISM]]
 
 > [!star] Key Papers
 > - [[2601.02356|Talk2Move]] — RL-based text-instructed geometric transformations with spatially grounded rewards
@@ -312,7 +312,8 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2302.00111|UniPi]] — Universal policy as text-conditioned video generation; crosses the boundary between video models and robot control
 
 **Video Diffusion as World Models** — Adapt pre-trained video diffusion models to robotic tasks, using generated future video as a physics simulator for planning.
-- [[2605.22123|FLORA]], [[2605.15178|SANA-WM]], [[2605.08567|ACWM-Phys]], [[2605.06388|Semantic-LDM-WM]], [[2605.06192|EA-WM]], [[2604.18564|MultiWorld]], [[2604.14732|WVA]], [[2604.09330|VAG]], [[2604.08995|Matrix-Game 3.0]], [[2603.30045|OmniRoam]], [[2603.28963|AutoWorld]], [[2603.28887|OccSim]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.12639|RoboStereo]], [[2603.10448|DiT4DiT]], [[2603.07799|MWM]], [[2602.20057|AdaWorldPolicy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2602.06949|DreamDojo]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2512.11061|VDAWorld]], [[2512.10675|Veo Robotics]], [[2510.19430|GigaBrain-0]], [[2510.10125|CTRL-WORLD]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.17744|Yume]], [[2507.13340|LPS]], [[2507.12898|Vidar]], [[2506.18701|Matrix-Game]], [[2506.09995|PlayerOne]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.12369|WorldMem]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2502.20694|WorldModelBench]], [[2502.01784|VILP]], [[2502.00622|GPC]], [[2501.08325|GameFactory]], [[2501.03575|Cosmos]], [[2412.14803|VPP]], [[2412.03568|The Matrix]], [[2409.18964|PhysGen]], [[2406.13301|ARDuP]], [[2403.06845|DriveDreamer-2]], [[2402.15391|Genie]], [[2310.06114|UniSim]], [[1507.08750|Action-Conditional Video Prediction]]
+- [[2605.22123|FLORA]], [[2605.15178|SANA-WM]], [[2605.08567|ACWM-Phys]], [[2605.06388|Semantic-LDM-WM]], [[2605.06192|EA-WM]], [[2604.18564|MultiWorld]], [[2604.14732|WVA]], [[2604.09330|VAG]], [[2604.08995|Matrix-Game 3.0]], [[2603.30045|OmniRoam]], [[2603.28963|AutoWorld]], [[2603.28887|OccSim]], [[2603.25716|HyDRA]], [[2603.25685|Persistent Robot World Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.12639|RoboStereo]], [[2603.10448|DiT4DiT]], [[2603.07799|MWM]], [[2602.20057|AdaWorldPolicy]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2602.06949|DreamDojo]], [[2601.21998|LingBot-VA]], [[2601.20540|LingBot-World]], [[2601.16163|Cosmos Policy]], [[2512.15692|mimic-video]], [[2512.13644|DexWM]], [[2512.11061|VDAWorld]], [[2512.10675|Veo Robotics]]
+- [[2510.19430|GigaBrain-0]], [[2510.10125|CTRL-WORLD]], [[2510.00855|DyVA]], [[2508.00795|Video Policy]], [[2507.17744|Yume]], [[2507.13340|LPS]], [[2507.12898|Vidar]], [[2506.18701|Matrix-Game]], [[2506.09995|PlayerOne]], [[2504.15369|Inverse Probabilistic Adaptation]], [[2504.12369|WorldMem]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2502.20694|WorldModelBench]], [[2502.01784|VILP]], [[2502.00622|GPC]], [[2501.08325|GameFactory]], [[2501.03575|Cosmos]], [[2412.14803|VPP]], [[2412.03568|The Matrix]], [[2411.00769|GameGen-X]], [[2409.18964|PhysGen]], [[2406.13301|ARDuP]], [[2403.06845|DriveDreamer-2]], [[2402.15391|Genie]], [[2310.06114|UniSim]], [[1507.08750|Action-Conditional Video Prediction]]
 
 > [!star] Key Papers
 > - [[2512.13644|DexWM]] — Leverages human video data for dexterous manipulation; 83% zero-shot success without real-world training
@@ -334,7 +335,7 @@ Diffusion models applied to physical action generation rather than image synthes
 A focused thread on injecting physical laws into generative pipelines. Standard diffusion and flow models learn from pixels alone, so they reliably violate gravity, conservation, and rigid-body constraints — limiting their use as world simulators for robotics, scientific computing, and embodied AI. Methods in this section span four mechanisms: (1) **physics-grounded training data** with synthetic simulators, (2) **physics-conditioned architectures** that consume material/force inputs, (3) **physics losses** (PDE residuals, kinematic residuals, mass conservation) backpropagated during fine-tuning, and (4) **inference-time physics rewards** from latent world models or rule-based proxies.
 
 **Physics-Conditioned Generation** — Generative models that consume explicit physical inputs (material properties, forces, rigid-body parameters) or reconstruct physical scenes as part of the generation pipeline.
-- [[2604.28169|PhyCo]], [[2603.26285|PhysVid]], [[2603.13770|PhysAlign]], [[2511.20280|VLM-Refine Physics Video]], [[2509.21541|ControlHair]], [[2509.21309|NewtonGen]], [[2509.20358|PhysCtrl]], [[2504.00342|Constraint-Aligned Diffusion]], [[2503.23368|VLIPP]], [[2503.21442|RainyGS]], [[2502.02492|VideoJAM]], [[2409.18964|PhysGen]], [[2211.14680|PIDM Flow Reconstruction]]
+- [[2605.20290|TelePhysics]], [[2604.28169|PhyCo]], [[2603.26285|PhysVid]], [[2603.13770|PhysAlign]], [[2511.20280|VLM-Refine Physics Video]], [[2509.21541|ControlHair]], [[2509.21309|NewtonGen]], [[2509.20358|PhysCtrl]], [[2504.00342|Constraint-Aligned Diffusion]], [[2503.23368|VLIPP]], [[2503.21442|RainyGS]], [[2502.02492|VideoJAM]], [[2409.18964|PhysGen]], [[2211.14680|PIDM Flow Reconstruction]]
 
 > [!star] Key Papers
 > - [[2509.20358|PhysCtrl]] — Diffusion-based generative physics network conditioned on material properties and external forces; produces 3D point trajectories with spatio-temporal attention regularized by physics, velocity, and boundary losses
@@ -350,7 +351,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2503.09595|PISA]] — Physics Supervised Fine-Tuning + Object Reward Optimization on small simulated datasets; first systematic post-training recipe for object freefall
 
 **Inference-Time Physics Alignment** — Steer pre-trained generators at sampling time using physics reward models, world-model surprise signals, or counterfactual guidance — without retraining the base model.
-- [[2601.10553|WMReward]], [[2506.04171|PCFM]]
+- [[2606.05328|Invisible Hand of Physics]], [[2601.10553|WMReward]], [[2506.04171|PCFM]]
 
 > [!star] Key Papers
 > - [[2601.10553|WMReward]] — Differentiable physics reward derived from V-JEPA2 prediction surprise; first place at ICCV 2025 PhysicsIQ Challenge with 62.64%, +11.4% human-preference win rate via Best-of-N + gradient guidance
@@ -412,7 +413,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2406.01476|DreamPhysics]] — Physics-based 3D dynamics learned from video diffusion priors via score distillation; among the first to make image/video diffusion supervise material parameter inference
 
 **Simulator-in-the-Loop Generation** — Use a physics renderer/engine (Blender, MPM, MuJoCo) inside the generation loop, either to provide ground-truth scaffolding or to fix violations after diffusion sampling.
-- [[2411.12789|Sim-GS]], [[2411.02394|AutoVFX]], [[2408.10453|Kubrick]], [[2404.09833|Video2Game]], [[2311.12631|GPT4Motion]]
+- [[2606.08688|PhysAgent]], [[2411.12789|Sim-GS]], [[2411.02394|AutoVFX]], [[2408.10453|Kubrick]], [[2404.09833|Video2Game]], [[2311.12631|GPT4Motion]]
 
 > [!star] Key Papers
 > - [[2411.02394|AutoVFX]] — End-to-end automatic VFX pipeline using LLMs to script Blender simulations driven by visual context; bridges generative AI and traditional rendering

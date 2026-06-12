@@ -342,7 +342,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 - [[2605.27367|SpatialBench (SFM)]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.00515|MLLM-4D]], [[2602.11236|ABot-M0]], [[2601.14339|CityCube]], [[2601.13304|CausalSpatial]], [[2601.11729|SpaRRTa]], [[2601.00092|Spatial4D-Bench]], [[2512.23365|SpatialMosaic]], [[2512.19683|OpenBench]], [[2510.18873|DSI-Bench]], [[2510.11549|ODI-Bench]], [[2507.20174|LRR-Bench]], [[2507.07610|SpatialViz-Bench]], [[2507.05258|REA]], [[2507.02978|Inf-Bench]], [[2506.23120|R2S]], [[2506.18385|InternSpatial]], [[2506.14512|SIRI-Bench]], [[2506.07966|SpaCE-10]], [[2506.04633|STARE]], [[2506.03135|OmniSpatial]], [[2505.24257|DISJOINT-3DQA]], [[2505.21500|MVSM]], [[2505.17015|Multi-SpatialMLLM]], [[2505.17012|SpatialScore]], [[2505.12363|ViCA2]], [[2505.12312|ViCA-7B]], [[2505.11907|OSR-Bench]], [[2505.00788|SpatialLLM]], [[2504.01805|SpaceR]], [[2503.22976|SPAR-7M]], [[2503.13111|MM-Spatial]], [[2412.10908|Do VLMs Understand 3D Shapes]], [[2412.07825|3DSRBench]], [[2410.06468|SPACE]], [[2408.16662|Space3D-Bench]]
 
 **VLM 3D Spatial Methods** — VLM-based 3D spatial reasoning methods.
-- [[2606.03682|GN0]], [[2605.08064|Proxy3D]], [[2603.27967|XVR]], [[2603.27287|Uni-World VLA]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.00905|pySpatial]], [[2602.19063|Direction-aware 3D LMM]], [[2601.16538|OnlineSI]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2512.24331|LVLDrive]], [[2512.17012|4D-RGPT]], [[2512.12822|LEMON]], [[2511.01618|Actial]], [[2510.17439|FALCON (Spatial VLA)]], [[2510.13800|GS-Reasoner]], [[2510.08673|Puffin]], [[2510.08531|SpatialLadder]], [[2508.07804|Pose-RFT]], [[2507.12508|MindJourney]], [[2506.07961|BridgeVLA]], [[2506.05414|SAVVY]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2505.23747|Spatial-MLLM]], [[2505.18947|OpenHOI]], [[2505.11383|Dynam3D]], [[2504.20024|SpatialReasoner]], [[2504.05786|3D Spatial Reasoning in LLM Survey]]
+- [[2606.03682|GN0]], [[2605.08064|Proxy3D]], [[2603.27967|XVR]], [[2603.27287|Uni-World VLA]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.00905|pySpatial]], [[2602.19063|Direction-aware 3D LMM]], [[2601.16538|OnlineSI]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2512.24331|LVLDrive]], [[2512.17012|4D-RGPT]], [[2512.12822|LEMON]], [[2511.01618|Actial]], [[2510.17439|FALCON (Spatial VLA)]], [[2510.13800|GS-Reasoner]], [[2510.08673|Puffin]], [[2510.08531|SpatialLadder]], [[2508.07804|Pose-RFT]], [[2507.12508|MindJourney]], [[2506.07961|BridgeVLA]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2505.23747|Spatial-MLLM]], [[2505.18947|OpenHOI]], [[2505.11383|Dynam3D]], [[2504.20024|SpatialReasoner]], [[2504.05786|3D Spatial Reasoning in LLM Survey]]
 - [[2503.18470|MetaSpatial]], [[2008.01655|Adaptive Memory VO]]
 
 > [!star] Key Papers
@@ -351,7 +351,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 
 **Geometry Estimation & Reconstruction** — Estimate depth, surface normals, or full 3D reconstructions from single images or sparse views.
 - [[2606.02058|TIDES]], [[2605.31124|QVGGT]], [[2605.26115|TriSplat]], [[2605.14950|Evo-Depth]], [[2605.10204|3DReflecNet]], [[2605.09538|PhysHanDI]], [[2604.26262|Semantic Foam]], [[2604.19747|AnyRecon]], [[2604.14141|LingBot-Map]], [[2604.12942|RMGS-SLAM]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.10836|HO-Flow]], [[2604.08532|SelfEvo]], [[2604.07105|Genie Sim PanoRecon]], [[2604.02696|VBGS-SLAM]], [[2604.02329|Generative World Renderer]], [[2604.01479|UniRecGen]], [[2603.30045|OmniRoam]], [[2603.29089|WorldFlow3D]], [[2603.27455|NAS3R]], [[2603.26599|VGGRPO]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.19231|MonoArt]], [[2603.18524|3DreamBooth]], [[2603.08055|Speed3R]], [[2603.03026|URGT]], [[2602.21992|PanoEnv]]
-- [[2602.21186|Spa3R]], [[2602.03361|Z3D]], [[2601.13132|GaussExplorer]], [[2512.16913|DAP]], [[2512.15160|EagleVision]], [[2512.14696|CRISP]], [[2512.13683|I-Scene]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.17392|MorphSeek]], [[2511.10647|Depth Anything 3]], [[2511.06908|Mono3DVG-EnSD]], [[2511.01294|Kinematify]], [[2510.08575|ReSplat]], [[2510.01183|EvoWorld]], [[2507.13347|Pi3]], [[2506.13040|MAMMA]], [[2505.23663|AMBER (Mesh)]], [[2505.18190|PhySense]]
+- [[2602.21186|Spa3R]], [[2602.03361|Z3D]], [[2601.13132|GaussExplorer]], [[2512.16913|DAP]], [[2512.15160|EagleVision]], [[2512.14696|CRISP]], [[2512.13683|I-Scene]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.10647|Depth Anything 3]], [[2511.06908|Mono3DVG-EnSD]], [[2511.01294|Kinematify]], [[2510.08575|ReSplat]], [[2510.01183|EvoWorld]], [[2507.13347|Pi3]], [[2506.13040|MAMMA]], [[2505.23663|AMBER (Mesh)]], [[2505.18190|PhySense]]
 
 > [!star] Key Papers
 > - [[2604.14141|LingBot-Map]] — Feed-forward streaming 3D foundation model with Geometric Context Transformer; 20 FPS for sequences up to 10K frames with nearly constant memory
@@ -554,10 +554,10 @@ Practical methods for training vision models efficiently: dataset pruning, conti
 > - [[2402.02242|V-PEFT Bench]] — Comprehensive benchmark of visual PEFT methods; reveals which adapter designs actually matter
 
 **Weakly-Supervised Pre-Training** — Pre-train on weakly-labeled data (e.g., image-level tags for pixel-level tasks) to scale annotation-efficient learning.
-- [[2604.11674|AffordSim]], [[2604.08626|WildDet3D]], [[2505.06710|SimMIL]]
+- [[2604.11674|AffordSim]], [[2604.08626|WildDet3D]]
 
 > [!star] Key Papers
-> - [[2505.06710|SimMIL]] — Propagates bag-level labels to instances for MIL pre-training; improves pathology classification without pixel annotations
+> -  — Propagates bag-level labels to instances for MIL pre-training; improves pathology classification without pixel annotations
 
 **Adversarial Robustness** — Understanding and improving model resilience to adversarial perturbations.
 - [[2604.11138|ViserDex]], [[2509.18891|Point Prompt Defender]], [[2506.21046|dSVA]]

@@ -112,12 +112,12 @@ The core pretraining paradigms that established how to connect visual encoders w
 > - [[2305.05665|ImageBind]] — Extended alignment to six modalities (image, text, audio, depth, thermal, IMU) via a single embedding space
 
 **CLIP Variants & Compositional Enhancement** — Improving CLIP's compositional understanding, fine-grained alignment, and domain-specific capabilities.
-- [[2512.11141|ItemizedCLIP]], [[2511.13876|QwenCLIP]], [[2508.03102|CCA]], [[2505.20229|CLIP Attribution SAE]], [[2505.02278|GCLIP]], [[2504.16801|DeGLA]], [[2406.14830|CLIP-Decoder]]
+- [[2512.11141|ItemizedCLIP]], [[2508.03102|CCA]], [[2505.20229|CLIP Attribution SAE]], [[2505.02278|GCLIP]], [[2504.16801|DeGLA]], [[2406.14830|CLIP-Decoder]]
 
 > [!star] Key Papers
 > - [[2505.02278|GCLIP]] — Training-free method enhancing CLIP's compositional understanding through grounding
 > - [[2504.16801|DeGLA]] — Decoupled Global-Local Alignment for compositional VLM understanding
-> - [[2511.13876|QwenCLIP]] — Medical vision-language pretraining framework adapting CLIP to clinical domains
+> -  — Medical vision-language pretraining framework adapting CLIP to clinical domains
 
 > [!success] Three-Layer Alignment Stack
 > ==Layer 1: Contrastive pretraining== (CLIP/SigLIP 2) for broad zero-shot transfer → ==Layer 2: Generative alignment== (BLIP/CoCa) for understanding + generation → ==Layer 3: Compositional refinement== (grounding-based and decoupled alignment methods) for fine-grained reasoning. Modern MLLMs inherit all three layers.
@@ -498,7 +498,7 @@ Applying MLLMs and VLMs to downstream tasks including fine-grained recognition, 
 > - [[2506.23115|MoCa]] — Transforms causal VLMs into bidirectional encoders for robust retrieval
 
 **Specialized Applications** — MLLMs applied to specific domains and unconventional tasks.
-- [[2604.13074|PersonaVLM]], [[2602.06270|VowelPrompt]], [[2601.12585|MLLM Visualization Literacy]], [[2601.00561|AEGIS]], [[2512.24880|mHC]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2511.11007|VisMem]], [[2509.24207|Humanline]], [[2508.13142|EASI]], [[2507.01955|GPT-4o Vision Evaluation]], [[2506.22395|Test-Time VLM Consistency]], [[2505.24189|SLM vs LLM Low-Code Workflows]], [[2505.21497|PosterAgent]], [[2505.11820|CoLM]], [[2505.01812|New News]], [[2403.19103|PRISM]], [[2312.04684|LaRS]], [[2310.10625|VLP]], [[2305.00104|MMViT]], [[2301.05226|IPVR]]
+- [[2604.13074|PersonaVLM]], [[2601.12585|MLLM Visualization Literacy]], [[2601.00561|AEGIS]], [[2512.24880|mHC]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2511.11007|VisMem]], [[2509.24207|Humanline]], [[2508.13142|EASI]], [[2507.01955|GPT-4o Vision Evaluation]], [[2506.22395|Test-Time VLM Consistency]], [[2505.24189|SLM vs LLM Low-Code Workflows]], [[2505.21497|PosterAgent]], [[2505.11820|CoLM]], [[2505.01812|New News]], [[2403.19103|PRISM]], [[2312.04684|LaRS]], [[2310.10625|VLP]], [[2305.00104|MMViT]], [[2301.05226|IPVR]]
 
 > [!star] Key Papers
 > - [[2505.21497|PosterAgent]] — Automated academic poster generation from papers; demonstrates creative MLLM applications

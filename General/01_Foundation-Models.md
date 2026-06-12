@@ -99,11 +99,11 @@ The architectural revolution that brought attention mechanisms to computer visio
 > - [[2302.05442|ViT-22B]] — Largest dense ViT at 22B parameters; demonstrated continued scaling benefits for vision
 
 **Hierarchical & Domain-Specific ViTs** — Specialized adaptations of ViT for high-resolution inputs and domain-specific tasks like medical imaging.
-- [[2602.17807|VidEoMT]], [[2505.22195|S2AFormer]], [[2504.17379|GABMIL]], [[2503.19108|EoMT]], [[2403.18361|ViTAR]], [[2310.00632|WIN-WIN]], [[2306.06189|FasterViT]], [[2305.00104|MMViT]], [[2304.06250|RSIR Transformer]], [[2212.07740|TERT]], [[2206.02647|HIPT]], [[2205.14949|HiViT]], [[2205.14756|EfficientViT]], [[2204.01697|MaxViT]], [[2203.16527|ViTDet]], [[2203.11926|FocalNet]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[2107.06263|CMT]], [[2107.00641|Focal Transformer]], [[2105.13677|ResT]], [[2104.11227|MViT]]
+- [[2602.17807|VidEoMT]], [[2505.22195|S2AFormer]], [[2503.19108|EoMT]], [[2403.18361|ViTAR]], [[2310.00632|WIN-WIN]], [[2306.06189|FasterViT]], [[2305.00104|MMViT]], [[2304.06250|RSIR Transformer]], [[2212.07740|TERT]], [[2206.02647|HIPT]], [[2205.14949|HiViT]], [[2205.14756|EfficientViT]], [[2204.01697|MaxViT]], [[2203.16527|ViTDet]], [[2203.11926|FocalNet]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[2107.06263|CMT]], [[2107.00641|Focal Transformer]], [[2105.13677|ResT]], [[2104.11227|MViT]]
 
 > [!star] Key Papers
 > - [[2206.02647|HIPT]] — Hierarchical self-supervised ViT for gigapixel pathology images; processes whole slide images across multiple magnifications
-> - [[2504.17379|GABMIL]] — Extends attention-based multiple instance learning with global spatial context for digital pathology
+> -  — Extends attention-based multiple instance learning with global spatial context for digital pathology
 
 **Key Surveys** — Comprehensive overviews of the vision transformer landscape.
 - [[2604.00965|Transformers for Applied Mathematicians]], [[2309.02031|Efficient ViT Survey]], [[2305.09880|ViT CNN-Transformer Survey]], [[2111.06091|Visual Transformers Survey]], [[2101.01169|Transformers in Vision Survey]], [[2012.12556|Visual Transformer Survey]]
@@ -174,7 +174,7 @@ New attention patterns, normalization strategies, and structural modifications t
 Learning visual representations without labels — the foundation for data-efficient downstream tasks.
 
 **Contrastive & Self-Distillation** — Methods that learn by comparing or distilling representations without labeled data.
-- [[2606.04718|CoRe-MoE]], [[2605.29564|VE2VF]], [[2605.03517|LDM SSL]], [[2604.09445|AsymLoc]], [[2604.04310|frax]], [[2603.28480|INSID3]], [[2603.15553|Bootleg]], [[2603.12217|Verifier Point Tracking]], [[2602.00937|CLAMP]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.14754|Sparsh-X]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2410.24090|Sparsh]], [[2406.09294|JEA Scaling Study]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]]
+- [[2606.04718|CoRe-MoE]], [[2605.29564|VE2VF]], [[2605.03517|LDM SSL]], [[2604.09445|AsymLoc]], [[2604.04310|frax]], [[2603.28480|INSID3]], [[2603.26799|GJE]], [[2603.15553|Bootleg]], [[2603.12217|Verifier Point Tracking]], [[2602.00937|CLAMP]], [[2510.08638|Minkowski Representation Hypothesis]], [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2506.14754|Sparsh-X]], [[2506.10159|VCL]], [[2505.15970|DINOv2 Hierarchy SAE]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]], [[2410.24090|Sparsh]], [[2406.09294|JEA Scaling Study]], [[2304.07193|DINOv2]], [[2304.03977|EMP-SSL]], [[2110.03374|HCL]], [[2106.09785|EsViT]], [[2105.04906|VICReg]], [[2105.04553|MoBY]], [[2104.14294|DINO]], [[2104.03602|SiT]], [[2104.02057|MoCo v3]], [[2102.06810|SSL Dynamics]]
 
 > [!star] Key Papers
 > - [[2104.14294|DINO]] — Self-distillation with no labels; emergent object segmentation in attention maps
@@ -182,14 +182,15 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2502.10385|SimDINO]] — Dramatically simplified DINO via coding rate regularization; shows what DINO really needs
 
 **Masked Image Modeling** — Self-supervised methods that mask patches of an image and train the model to reconstruct or predict the missing content, learning rich visual representations without labels.
-- [[2603.25597|P-STMAE]], [[2603.22953|ClusterSTM]], [[2505.11129|PhiNet v2]], [[2402.10093|MIM-Refiner]], [[2205.14949|HiViT]], [[2111.09886|SimMIM]], [[2111.06377|MAE]], [[2106.08254|BEiT]]
+- [[2603.22953|ClusterSTM]], [[2505.11129|PhiNet v2]], [[2402.10093|MIM-Refiner]], [[2205.14949|HiViT]], [[2111.09886|SimMIM]], [[2111.06377|MAE]], [[2106.08254|BEiT]]
 
 > [!star] Key Papers
 > - [[2111.06377|MAE]] — Masked 75% of patches; proved simple reconstruction objective learns powerful features
 > - [[2106.08254|BEiT]] — BERT-style pre-training for vision: predict discrete visual tokens from masked patches
 
 **JEPA & Latent Prediction** — Joint-Embedding Predictive Architectures that predict in representation space rather than pixel space, avoiding reconstruction artifacts.
-- [[2605.03413|NEO Theorizer]], [[2605.02134|PV-VAE]], [[2605.00078|Being-H0.7]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.23058|GeoWorld]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2601.14354|VJEPA-Probabilistic]], [[2512.24497|JEPA-WM]], [[2512.19605|KerJEPA]], [[2512.10942|VL-JEPA]], [[2511.08544|LeJEPA]], [[2510.00739|TD-JEPA]], [[2509.14252|LLM-JEPA]], [[2506.09985|V-JEPA 2]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2301.08243|I-JEPA]]
+- [[2605.03413|NEO Theorizer]], [[2605.02134|PV-VAE]], [[2605.00078|Being-H0.7]], [[2603.20111|Var-JEPA]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.23058|GeoWorld]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2601.14354|VJEPA-Probabilistic]], [[2512.24497|JEPA-WM]], [[2512.19605|KerJEPA]], [[2512.10942|VL-JEPA]], [[2511.18424|CrossJEPA]], [[2511.08544|LeJEPA]], [[2510.00974|JEPA-T]], [[2510.00739|TD-JEPA]], [[2509.25449|TS-JEPA]], [[2509.14252|LLM-JEPA]], [[2509.12249|P-JEPA]], [[2507.15216|N-JEPA]], [[2506.09985|V-JEPA 2]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2504.10512|JEPA4Rec]], [[2504.03169|REJEPA]], [[2503.06380|TI-JEPA]], [[2412.14123|AnySat]], [[2410.19560|C-JEPA]], [[2410.03755|D-JEPA]]
+- [[2409.15803|3D-JEPA]], [[2407.03475|JEPA Noisy Features]], [[2406.12913|T-JEPA (Trajectory)]], [[2404.16432|Point-JEPA]], [[2404.08471|V-JEPA]], [[2403.00504|IWM]], [[2312.04000|LiDAR (Metric)]], [[2311.15153|SAR-JEPA]], [[2309.16014|Graph-JEPA]], [[2307.12698|MC-JEPA]], [[2301.08243|I-JEPA]], [[2211.10831|JEPA Slow Features]]
 
 > [!star] Key Papers
 > - [[2301.08243|I-JEPA]] — Predicts in latent space instead of pixel space; avoids reconstruction artifacts
@@ -228,7 +229,7 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2411.15869|SC-CLIP]] — Training-free self-calibrated CLIP for open-vocabulary segmentation; resolves anomalous attention biases
 
 **SSL Surveys** — Comprehensive reviews of self-supervised visual learning methods and evaluation.
-- [[2605.28442|COTRATE]], [[2505.13584|SSL Segmentation Survey]], [[2505.01109|SSL-MIL Pathology Benchmark]], [[2504.07213|E-SSL Survey]], [[2408.17059|SSL for ViT Survey]], [[2305.13689|SSL Survey]]
+- [[2605.28442|COTRATE]], [[2505.13584|SSL Segmentation Survey]], [[2504.07213|E-SSL Survey]], [[2408.17059|SSL for ViT Survey]], [[2306.02572|LV-EBM Intro]], [[2305.13689|SSL Survey]]
 
 > [!star] Key Papers
 > - [[2305.13689|SSL Survey]] — Comprehensive taxonomy of image-based generative and discriminative self-supervised methods; essential landscape overview
@@ -244,7 +245,7 @@ Learning visual representations without labels — the foundation for data-effic
 Connecting visual and textual representations in a shared embedding space, enabling zero-shot transfer and multimodal reasoning.
 
 **Contrastive Alignment** — Learning joint image-text embeddings via contrastive objectives on large-scale paired data.
-- [[2602.12215|LDA-1B]], [[2512.11141|ItemizedCLIP]], [[2511.13876|QwenCLIP]], [[2509.01644|OpenVision 2]], [[2507.22062|Meta CLIP 2]], [[2507.18009|GRR-CoCa]], [[2506.06970|MAPLE]], [[2506.03096|FuseLIP]], [[2505.21549|DCLIP]], [[2505.18983|AmorLIP]], [[2505.14204|Perceptual Initialization]], [[2505.11192|FALCON]], [[2505.04601|OpenVision]], [[2505.04410|DeCLIP]], [[2505.03703|Modality Gap Reduction]], [[2504.13181|Perception Encoder]], [[2503.15485|TULIP]], [[2503.06626|DiffCLIP]], [[2502.14786|SigLIP 2]], [[2410.24221|EgoMimic]], [[2406.17639|AlignCLIP]], [[2212.07143|OpenCLIP]], [[2205.01917|CoCa]], [[2111.10050|BASIC]], [[2111.07991|LiT]], [[2103.00020|CLIP]]
+- [[2602.12215|LDA-1B]], [[2512.11141|ItemizedCLIP]], [[2509.01644|OpenVision 2]], [[2507.22062|Meta CLIP 2]], [[2507.18009|GRR-CoCa]], [[2506.06970|MAPLE]], [[2506.03096|FuseLIP]], [[2505.21549|DCLIP]], [[2505.18983|AmorLIP]], [[2505.14204|Perceptual Initialization]], [[2505.11192|FALCON]], [[2505.04601|OpenVision]], [[2505.04410|DeCLIP]], [[2505.03703|Modality Gap Reduction]], [[2504.13181|Perception Encoder]], [[2503.15485|TULIP]], [[2503.06626|DiffCLIP]], [[2502.14786|SigLIP 2]], [[2410.24221|EgoMimic]], [[2406.17639|AlignCLIP]], [[2212.07143|OpenCLIP]], [[2205.01917|CoCa]], [[2111.10050|BASIC]], [[2111.07991|LiT]], [[2103.00020|CLIP]]
 
 > [!star] Key Papers
 > - [[2103.00020|CLIP]] — Contrastive pre-training on 400M image-text pairs; enabled zero-shot transfer to any visual task via text prompts
@@ -297,7 +298,7 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 > - [[2601.13633|EGM]] — Enables smaller VLMs to scale test-time inference for visual grounding
 
 **Any-to-Any & Agent-Oriented MLLMs** — Models designed for arbitrary modality conversion or as foundations for autonomous agents.
-- [[2511.20085|VICoT-Agent]], [[2511.10289|Music Flamingo]], [[2509.09666|Unified MM Auto-Encoders]], [[2502.13130|Magma]], [[2309.05519|NExT-GPT]], [[2303.11381|MM-REACT]]
+- [[2511.20085|VICoT-Agent]], [[2509.09666|Unified MM Auto-Encoders]], [[2502.13130|Magma]], [[2309.05519|NExT-GPT]], [[2303.11381|MM-REACT]]
 
 > [!star] Key Papers
 > - [[2309.05519|NExT-GPT]] — Any-to-any multimodal LLM handling text, image, audio, and video
@@ -345,7 +346,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2505.23725|MuLoCo]] — Muon as inner optimizer for DiLoCo distributed training; significant speedup over AdamW
 
 **Scaling Laws & Training Dynamics** — Understanding how loss curves, learning rates, batch sizes, and training duration interact at scale.
-- [[2605.22297|Layerwise LR]], [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2603.21191|BST Scaling Rule]], [[2603.15958|Hyperparameter Scaling Laws]], [[2602.10556|LAP]], [[2512.16913|DAP]], [[2510.06954|Condensation Rank Collapse]], [[2508.18672|MoE Sparsity Reasoning]], [[2507.12507|Nemotron]], [[2507.07101|Small Batch LLM Training]], [[2506.16029|EvoLM]], [[2506.12932|Complexity Scaling Laws]], [[2505.22323|MoE Expert Specialization]], [[2505.10559|Neural Thermodynamic Laws]], [[2505.10465|Superposition Scaling]], [[2503.12811|MPL]], [[2502.21269|Generalization-Overfitting Decoupling]], [[2405.18392|Compute-Optimal Scaling Laws]], [[2310.18969|ViT Class Embedding Analysis]], [[2309.14322|Transformer Training Instabilities]], [[2308.12952|BridgeData V2]], [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch Training]]
+- [[2605.22297|Layerwise LR]], [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2603.21191|BST Scaling Rule]], [[2603.15958|Hyperparameter Scaling Laws]], [[2602.10556|LAP]], [[2512.16913|DAP]], [[2510.06954|Condensation Rank Collapse]], [[2508.18672|MoE Sparsity Reasoning]], [[2507.12507|Nemotron]], [[2507.07101|Small Batch LLM Training]], [[2506.16029|EvoLM]], [[2506.12932|Complexity Scaling Laws]], [[2505.22323|MoE Expert Specialization]], [[2505.10559|Neural Thermodynamic Laws]], [[2505.10465|Superposition Scaling]], [[2503.12811|MPL]], [[2502.21269|Generalization-Overfitting Decoupling]], [[2405.18392|Compute-Optimal Scaling Laws]], [[2310.18969|ViT Class Embedding Analysis]], [[2309.14322|Transformer Training Instabilities]], [[2308.12952|BridgeData V2]], [[2109.08203|Seed 3407]], [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch Training]]
 
 > [!star] Key Papers
 > - [[2503.12811|MPL]] — Multi-Power Law accurately predicts training loss across learning rate schedules
@@ -366,7 +367,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2505.09343|DeepSeek-V3]] — Hardware-software co-design strategy achieving SOTA LLM performance
 
 **Interpretability & Internal Representations** — Understanding what models learn internally and how to analyze their representations.
-- [[2604.28119|SAE Concept Manifolds]], [[2603.12228|Neural Thickets]], [[2603.02908|SAE Crystal Ball]], [[2602.06218|SAE-A]], [[2602.03783|KernelSM]], [[2602.00462|LatentLens]], [[2510.25943|InputDSA]], [[2509.20234|Texture Bias Revisited]], [[2506.15679|Dense SAE Latents]], [[2502.03714|USAE]], [[2502.02013|Layer-by-Layer Representations]], [[2410.20722|ProtoViT]], [[2409.14507|Feature Absorption SAE]], [[2205.10268|B-cos Networks]]
+- [[2605.12733|Generalist-to-Specialist Rep]], [[2604.28119|SAE Concept Manifolds]], [[2603.12228|Neural Thickets]], [[2603.02908|SAE Crystal Ball]], [[2602.06218|SAE-A]], [[2602.03783|KernelSM]], [[2602.00462|LatentLens]], [[2510.25943|InputDSA]], [[2509.20234|Texture Bias Revisited]], [[2506.15679|Dense SAE Latents]], [[2502.03714|USAE]], [[2502.02013|Layer-by-Layer Representations]], [[2410.20722|ProtoViT]], [[2409.14507|Feature Absorption SAE]], [[2205.10268|B-cos Networks]]
 
 > [!star] Key Papers
 > - [[2502.02013|Layer-by-Layer Representations]] — Intermediate layers often provide superior downstream representations compared to final layers
@@ -403,7 +404,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2505.12082|PMA]] — Pre-trained Model Average for effective merging of LLM checkpoints
 
 **Knowledge Distillation** — Compressing large models into smaller ones via teacher-student training or multi-teacher distillation.
-- [[2605.03821|RoboAlign-R1]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.01193|SSD Code Generation]], [[2604.00626|On-Policy Distillation Survey]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2602.05449|DisCa]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2512.22238|Mask Teacher Distill]], [[2510.23497|VOLD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2503.11339|CSD]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
+- [[2606.08432|Trajectory-Refined Distillation]], [[2606.07082|On-Policy Distillation Geometry]], [[2605.03821|RoboAlign-R1]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.01193|SSD Code Generation]], [[2604.00626|On-Policy Distillation Survey]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2602.05449|DisCa]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2512.22238|Mask Teacher Distill]], [[2510.23497|VOLD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2503.11339|CSD]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] — Foundational KD method for LLMs using reverse KL divergence; set the standard for language model compression
@@ -554,7 +555,7 @@ Unconventional approaches that do not fit neatly into the above categories but r
 > - [[2508.18966|USO]] — Unified style and subject-driven generation via disentangled reward learning; achieves controllable personalization
 
 **Detection & Segmentation Foundations** — Self-supervised and weakly-supervised methods for object detection and segmentation.
-- [[2602.23759|Selfment]], [[2507.03302|SemiOVS]], [[2505.06710|SimMIL]], [[2505.01109|SSL-MIL Pathology Benchmark]], [[2412.18273|SBV]], [[2407.11464|Crowd-SAM]], [[2203.16513|PromptDet]], [[2201.02609|GCD]], [[2201.02605|Detic]], [[2104.03344|OVANet]], [[2007.07986|Progressive Knowledge Transfer WSOD]], [[2004.02684|Attribute Mix]], [[2002.07421|EHSOD]], [[2002.04741|POTD]]
+- [[2602.23759|Selfment]], [[2507.03302|SemiOVS]], [[2412.18273|SBV]], [[2407.11464|Crowd-SAM]], [[2203.16513|PromptDet]], [[2201.02609|GCD]], [[2201.02605|Detic]], [[2104.03344|OVANet]], [[2007.07986|Progressive Knowledge Transfer WSOD]], [[2004.02684|Attribute Mix]], [[2002.07421|EHSOD]], [[2002.04741|POTD]]
 
 > [!star] Key Papers
 > - [[2201.02605|Detic]] — Detects 20,000+ classes using only image-level supervision; pioneered scaling open-vocabulary detection with weak labels

@@ -168,7 +168,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 > - [[2507.05707\|Agentic-R1]] — DualDistill framework training language models as tool-using agents via distillation and RL
 
 **Visual Tool Use & Adaptive Tool Selection** — Methods enabling vision-language models to select and invoke visual tools (detectors, segmenters, editors) on demand during reasoning.
-- [[2605.15198|ATLAS]], [[2605.09218|Flame3D]], [[2605.07177|HyperEyes]], [[2604.21409\|S1-VL]], [[2603.17729\|SARE]], [[2603.06366|OralGPT-Plus]], [[2601.13942\|GoG]], [[2512.16918\|AdaTooler-V]], [[2512.10359\|STAR]], [[2511.20785|LongVT]], [[2511.20085\|VICoT-Agent]], [[2511.19773|VISTA-Gym]], [[2511.13026|REVISOR]], [[2510.27363\|ToolScope]], [[2510.09733\|EVisRAG]], [[2510.08480|Video-STAR]], [[2509.01656\|ReV PT]], [[2508.04416\|VITAL]], [[2505.08617\|OpenThinkIMG]], [[2504.21561|SPORT]], [[2503.19263\|DWIM]], [[2412.18072\|MMFactory]], [[2412.13810\|CAD-Assistant]], [[2412.05479\|LATTE]]
+- [[2605.15198|ATLAS]], [[2605.09218|Flame3D]], [[2605.07177|HyperEyes]], [[2604.21409\|S1-VL]], [[2603.17729\|SARE]], [[2601.13942\|GoG]], [[2512.16918\|AdaTooler-V]], [[2512.10359\|STAR]], [[2511.20785|LongVT]], [[2511.20085\|VICoT-Agent]], [[2511.19773|VISTA-Gym]], [[2511.13026|REVISOR]], [[2510.27363\|ToolScope]], [[2510.09733\|EVisRAG]], [[2510.08480|Video-STAR]], [[2509.01656\|ReV PT]], [[2508.04416\|VITAL]], [[2505.08617\|OpenThinkIMG]], [[2504.21561|SPORT]], [[2503.19263\|DWIM]], [[2412.18072\|MMFactory]], [[2412.13810\|CAD-Assistant]], [[2412.05479\|LATTE]]
 
 > [!star] Key Papers
 > - [[2412.05479\|LATTE]] — Trains open-source VLMs to integrate external tools for complex multimodal reasoning
@@ -192,7 +192,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 Agents trained via reinforcement learning for multi-turn interactions with environments, moving beyond single-call tool use to sustained, stateful task execution across many steps.
 
 **Multi-Turn RL Training** — Frameworks and systematic guides for training LLM agents that maintain state and adapt strategy across extended multi-turn interactions.
-- [[2603.02216|ATPO]], [[2602.22817|HGPO]], [[2602.02196|TIDE]], [[2512.16848|LAMER]], [[2511.07327|IterResearch]], [[2510.20150|Rank-GRPO]], [[2510.14967|IGPO (Info Gain)]], [[2510.10197|Environment Tuning]], [[2510.04284|Doctor-R1]], [[2509.21240|Tree-GRPO]], [[2509.19199|iStar]], [[2509.08755|AgentGym-RL]], [[2507.17842|Shop-R1]], [[2506.00539|ARIA]], [[2505.10978|GiGPO]], [[2504.20997|LLM-PSRL]], [[2504.16078|LLM Greedy Agents]], [[2504.03206|CURIO]], [[2408.10899|ARIO]]
+- [[2602.22817|HGPO]], [[2602.02196|TIDE]], [[2512.16848|LAMER]], [[2511.07327|IterResearch]], [[2510.20150|Rank-GRPO]], [[2510.14967|IGPO (Info Gain)]], [[2510.10197|Environment Tuning]], [[2509.21240|Tree-GRPO]], [[2509.19199|iStar]], [[2509.08755|AgentGym-RL]], [[2507.17842|Shop-R1]], [[2506.00539|ARIA]], [[2505.10978|GiGPO]], [[2504.20997|LLM-PSRL]], [[2504.16078|LLM Greedy Agents]], [[2504.03206|CURIO]], [[2408.10899|ARIO]]
 
 > [!star] Key Papers
 > - [[2504.20073\|RAGEN]] — Multi-turn RL training for LLM agents; establishes the training paradigm for sustained agent-environment interaction
@@ -247,7 +247,7 @@ Agents that operate in real digital environments -- browsing the web, interactin
 Systems where multiple LLM agents collaborate, specialize, or compete. Multi-agent architectures enable division of labor, debate-based reasoning, and scalable task decomposition that single agents cannot achieve.
 
 **Multi-Agent Frameworks & Orchestration** — Architectures for coordinating multiple specialized agents, managing communication, and distributing tasks across agent teams.
-- [[2604.25135\|FAMA]], [[2604.01658\|CORAL]], [[2602.14926|MAC-AMP]], [[2601.23265\|PaperBanana]], [[2601.19204\|MATA]], [[2601.09295\|MACRO-LLM]], [[2512.04388|Conductor]], [[2511.22235|CES Scheduler]], [[2510.11062|AT-GRPO]], [[2509.14295|Aegis (Agent)]], [[2509.03312|AgenTracer]], [[2508.13167\|CoA]], [[2507.01701\|LbMAS]], [[2506.13474|LA-CDM]], [[2506.12508\|AgentOrchestra]], [[2506.00555|MMedAgent-RL]], [[2505.23885|OWL (Workforce)]], [[2505.19591|Puppeteer (Agent)]], [[2504.16129\|MARFT]], [[2504.01990\|Foundation Agents Survey]], [[2503.11739|CoLLMLight]], [[2501.15228|MMOA-RAG]]
+- [[2604.25135\|FAMA]], [[2604.01658\|CORAL]], [[2602.14926|MAC-AMP]], [[2601.23265\|PaperBanana]], [[2601.19204\|MATA]], [[2601.09295\|MACRO-LLM]], [[2512.04388|Conductor]], [[2511.22235|CES Scheduler]], [[2510.11062|AT-GRPO]], [[2509.14295|Aegis (Agent)]], [[2509.03312|AgenTracer]], [[2508.13167\|CoA]], [[2507.01701\|LbMAS]], [[2506.12508\|AgentOrchestra]], [[2505.23885|OWL (Workforce)]], [[2505.19591|Puppeteer (Agent)]], [[2504.16129\|MARFT]], [[2504.01990\|Foundation Agents Survey]], [[2503.11739|CoLLMLight]], [[2501.15228|MMOA-RAG]]
 
 > [!star] Key Papers
 > - [[2504.01990\|Foundation Agents Survey]] — Brain-inspired comprehensive framework integrating diverse LLM agent research areas
@@ -310,7 +310,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Multimodal Agent Architectures** — Integrated architectures combining vision-language understanding with agent capabilities for complex multimodal tasks.
-- [[2606.05395|VASO]], [[2603.01607|CARE (Clinical)]], [[2602.17558|RetouchIQ]], [[2512.18745|InSight-o3]], [[2512.05111|ARM-Thinker]], [[2511.19524|VideoChat-M1]], [[2511.05271|DeepEyesV2]], [[2510.21817|VITA-E]], [[2505.19486|VLMLight]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
+- [[2606.05395|VASO]], [[2602.17558|RetouchIQ]], [[2512.18745|InSight-o3]], [[2512.05111|ARM-Thinker]], [[2511.19524|VideoChat-M1]], [[2511.05271|DeepEyesV2]], [[2510.21817|VITA-E]], [[2505.19486|VLMLight]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
 
 > [!star] Key Papers
 > - [[2402.15116\|LMA Survey]] — Systematic review of Large Multimodal Agents deconstructing their core components and capabilities
@@ -318,7 +318,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2311.05437\|LLaVA-Plus]] — Training VLMs to learn when and how to use external visual tools for any task
 
 **VLM Fine-Tuning & Reinforcement for Agency** — Methods for fine-tuning vision-language models via RL to act as agents in visual environments.
-- [[2604.08545|Metis]], [[2604.08203|MedVR]], [[2603.22918|EVA (Video Agent)]], [[2602.20913|LongVideo-R1]], [[2512.22315|VideoZoomer]], [[2512.00961|GenReward]], [[2409.18313|Embodied-RAG]]
+- [[2604.08545|Metis]], [[2603.22918|EVA (Video Agent)]], [[2602.20913|LongVideo-R1]], [[2512.22315|VideoZoomer]], [[2512.00961|GenReward]], [[2409.18313|Embodied-RAG]]
 
 > [!star] Key Papers
 > - [[2405.10292\|VLM-RL Fine-Tuning]] — Directly fine-tuning VLMs with RL for agentic visual tasks; bridges perception and action
@@ -332,7 +332,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2603.15386\|RieMind]] — Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations
 
 **Scientific & Research Agents** — Agents designed for autonomous scientific research, from literature review to experiment design and execution.
-- [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2603.07642|Helix (Scientific)]], [[2602.24288|DARE-bench]], [[2601.19439|OSIRIS]], [[2601.15715|RebuttalAgent]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2510.11661|SR-Scientist]], [[2509.01684|ML Engineering RL Agents]], [[2506.04405|MedAgentGym]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
+- [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2603.07642|Helix (Scientific)]], [[2602.24288|DARE-bench]], [[2601.19439|OSIRIS]], [[2601.15715|RebuttalAgent]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2510.11661|SR-Scientist]], [[2509.01684|ML Engineering RL Agents]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
 
 > [!star] Key Papers
 > - [[2505.16938\|InternAgent]] — Unified closed-loop multi-agent system for fully autonomous scientific research

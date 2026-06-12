@@ -104,7 +104,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2603.14482|V-JEPA 2.1]] — Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation
 
 **Video-Language Foundation Models** — Large-scale models that jointly process video and language for fine-grained understanding, captioning, and long-context comprehension.
-- [[2606.03920|VSTAT]], [[2604.02317|SIMPLESTREAM]], [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2602.08683|OneVision-Encoder]], [[2601.17868|VidLaDA]], [[2512.17012|4D-RGPT]], [[2511.10289|Music Flamingo]], [[2510.08580|LadderSym]], [[2507.04590|VLM2Vec-V2]], [[2507.01949|Kwai Keye-VL]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]], [[2408.03326|LLaVA-OneVision]]
+- [[2606.03920|VSTAT]], [[2604.02317|SIMPLESTREAM]], [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2602.08683|OneVision-Encoder]], [[2601.17868|VidLaDA]], [[2512.17012|4D-RGPT]], [[2507.04590|VLM2Vec-V2]], [[2507.01949|Kwai Keye-VL]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2504.15271|Eagle 2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]], [[2408.03326|LLaVA-OneVision]]
 
 > [!star] Key Papers
 > - [[2504.15271|Eagle 2.5]] — Efficient 8B model processing 512 video frames; achieves 72.4% on Video-MME, rivaling 72B+ models
@@ -127,7 +127,7 @@ From video classification to self-supervised video representation learning. The 
 Understanding *why* things happen in video, not just *what* happens. This section covers RL-based post-training, chain-of-thought reasoning, and spatiotemporal grounding methods that push Video-LLMs beyond perception toward genuine temporal reasoning.
 
 **RL Post-Training for Video Reasoning** — Reinforcement learning frameworks that teach Video-LLMs temporal reasoning capabilities through rule-based rewards, self-supervised signals, or synthetic data.
-- [[2605.22570|VGenST-Bench]], [[2605.21973|Foresee-to-Ground]], [[2605.21931|EvoVid]], [[2605.15458|VideoRLVR]], [[2605.14733|Video-Zero]], [[2605.06094|VISD]], [[2605.01324|VideoThinker]], [[2604.26707|CurEvo]], [[2604.20473|Video-ToC]], [[2604.16893|EasyVideoR1]], [[2604.04379|RLER]], [[2603.28730|SOLE-R1]], [[2603.27866|Wan-R1]], [[2603.22918|EVA (Video Agent)]], [[2603.17693|SynRL]], [[2603.01694|MVR]], [[2602.22932|MSJoE]], [[2602.20913|LongVideo-R1]], [[2602.20159|VBVR]], [[2602.05986|RISE-Video]], [[2601.19686|Video-KTR]], [[2601.04153|Diffusion-DRF]], [[2512.22315|VideoZoomer]], [[2512.06810|MMDuet2]], [[2512.06581|MedGRPO]], [[2512.03963|TempR1]], [[2512.03043|OneThinker]], [[2511.20785|LongVT]], [[2511.19524|VideoChat-M1]], [[2511.13054|ViSS-R1]]
+- [[2605.22570|VGenST-Bench]], [[2605.21973|Foresee-to-Ground]], [[2605.21931|EvoVid]], [[2605.15458|VideoRLVR]], [[2605.14733|Video-Zero]], [[2605.06094|VISD]], [[2605.01324|VideoThinker]], [[2604.26707|CurEvo]], [[2604.20473|Video-ToC]], [[2604.16893|EasyVideoR1]], [[2604.04379|RLER]], [[2603.28730|SOLE-R1]], [[2603.27866|Wan-R1]], [[2603.22918|EVA (Video Agent)]], [[2603.17693|SynRL]], [[2603.01694|MVR]], [[2602.22932|MSJoE]], [[2602.20913|LongVideo-R1]], [[2602.20159|VBVR]], [[2602.05986|RISE-Video]], [[2601.19686|Video-KTR]], [[2601.04153|Diffusion-DRF]], [[2512.22315|VideoZoomer]], [[2512.06810|MMDuet2]], [[2512.03963|TempR1]], [[2512.03043|OneThinker]], [[2511.20785|LongVT]], [[2511.19524|VideoChat-M1]], [[2511.13054|ViSS-R1]]
 - [[2511.11113|VIDEOP2R]], [[2511.06281|VideoSSR]], [[2511.05489|TimeSearch-R]], [[2510.23473|Video-Thinker]], [[2510.20470|Conan]], [[2510.15440|Evidence Purity Video]], [[2510.08480|Video-STAR]], [[2510.07915|MARC]], [[2510.06077|VER (Video Evidence)]], [[2509.24304|FrameThinker]], [[2509.23958|RLIR]], [[2509.23652|ReWatch-R1]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2506.09079|VidBridge-R1]], [[2506.03340|ArrowRL]], [[2505.13934|RLVR-World]], [[2505.12434|VIDEORFT]], [[2503.21776|Video-R1]], [[2502.01784|VILP]], [[2309.15278|Out of Sight Still in Mind]]
 
 > [!star] Key Papers
@@ -136,7 +136,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.17693|SynRL]] — Synthetic video post-training achieves 21x data efficiency over model-generated data
 
 **Chain-of-Thought for Video** — Methods that extend textual CoT reasoning to the video domain, explicitly grounding reasoning steps in specific frames or temporal segments.
-- [[2603.25942|SDRL]], [[2603.24558|LensWalk]], [[2603.17312|Recurrent VLM Reasoning]], [[2603.16870|Video Reasoning Chain-of-Steps]], [[2601.21037|Thinking in Frames]], [[2512.00805|SpecTemp]], [[2511.18833|PrismAudio]], [[2507.09876|ViTCoT]], [[2506.03525|VIDEO-SKOT]], [[2506.00318|CoF]]
+- [[2603.25942|SDRL]], [[2603.24558|LensWalk]], [[2603.17312|Recurrent VLM Reasoning]], [[2603.16870|Video Reasoning Chain-of-Steps]], [[2601.21037|Thinking in Frames]], [[2512.00805|SpecTemp]], [[2507.09876|ViTCoT]], [[2506.03525|VIDEO-SKOT]], [[2506.00318|CoF]]
 
 > [!star] Key Papers
 > - [[2506.00318|CoF]] — Frame-aware reasoning traces with explicit temporal grounding; SOTA on VSI-Bench and Video-MME
@@ -151,7 +151,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.12382|SPARROW]] — Temporal referential consistency via target-specific tracked features; +8.9 J&F on MeViS RVOS
 
 **Temporal Traps & Failure Analysis** — Studies revealing fundamental limitations and failure modes of current Video-LLMs, especially around the tension between image and video capabilities.
-- [[2603.17541|Temporal Trap Analysis]], [[2603.14145|MMOU]], [[2511.16901|AVST-Zero]], [[2511.13787|TC2]], [[2006.00626|EGTEA Gaze+]]
+- [[2603.17541|Temporal Trap Analysis]], [[2603.14145|MMOU]], [[2511.13787|TC2]], [[2006.00626|EGTEA Gaze+]]
 
 > [!star] Key Papers
 > - [[2603.17541|Temporal Trap Analysis]] — Revealed that Video-SFT degrades image understanding despite improving video metrics; proposed Hybrid-Frame Strategy
