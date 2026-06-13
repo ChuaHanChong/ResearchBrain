@@ -41,7 +41,7 @@ General/ (topic overview, landscape, key papers)
 | `_KnowledgeHub_/` | Individual paper notes (`{arxiv_ID}.md`) with structured summaries |
 | `General/` | Topic overview files grouping papers by theme with sub-topics, callouts, mermaid graphs |
 | `Embodied-AI/` | 13 deep dives (`02`–`14`, mechanism-organized) covering datasets/benchmarks, VLAs, VLA reasoning/CoT, WAMs, JEPA/latent world models, self-evolving, physics-aware, contact-rich & whole-body control, egocentric pretraining, sim-to-real, manipulation skill-learning, imitation-learning & RL, navigation & mobile-manipulation. (`01` is the 101 intro.) |
-| `_Projects_/` | Research projects (`00_ResearchProposal/`, `01_FirstPublication/`, `02_BenchmarkPipeline-WAM/`) + `Research-Directions/` synthesis docs (`Embodied-AI.md` umbrella + `Mechanism/` & `Capability/` axes) |
+| `_Projects_/` | Active project `00_ResearchProposal/`; retired projects (`01_FirstPublication*`, `02_BenchmarkPipeline-WAM`) live in `__archive__/`. `Research-Directions/` holds the synthesis docs: `Embodied-AI.md` umbrella + `Focus-Direction.md`, plus `Mechanism/` & `Capability/` axes (3 docs each) with `__ELI5__/` + `__TLDR__/` Chinese derived versions |
 | `data/papers/` | Local PDF files for papers (downloaded on demand with version suffix, e.g., `2602.15922v2.pdf`) |
 | `data/repo/` | Local code repositories for referenced papers (cloned on demand) |
 | `graphify-out/` | Graphify pilot artifacts: `graph.json`, `GRAPH_REPORT.md`, viz cache (gitignored except the report) |

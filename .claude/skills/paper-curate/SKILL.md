@@ -90,6 +90,8 @@ For each unassigned paper:
 4. Append the wikilink `[[ID|Alias]]` to the matching sub-topic group's bullet list.
 5. If no existing group fits, create a new **bold sub-topic group** with a 1-sentence description in the most relevant section.
 
+> **Bulk influx — organize by topic, not provenance.** Merge each paper into the file's *existing* `## N. Theme` sections by what it is; never create a provenance section (`Recent Additions`, `Conference Batch`, dates). Cap a bullet at ~**30** wikilinks — when it overflows, split hierarchically (sub-theme → tag → year → `· part N`). Fold buckets <5 papers into one `**Additional methods**` bullet. Verify by grep ground-truth (every source placed ≥1×), not a section regex.
+
 #### Step 4: Sort papers within each sub-topic
 
 Within each sub-topic's bullet list, sort wikilinks by arxiv ID in **descending order** (newest first). This makes it easy to see the latest work at a glance.

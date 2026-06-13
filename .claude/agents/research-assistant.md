@@ -245,7 +245,7 @@ When the user asks to "lint", "health check", or "audit" the vault, invoke `Skil
 
 If Mode E surfaces papers needing re-extraction (weak Method/Results sections), delegate the actual re-extract to `Skill(skill="alphaxiv-summary-extract")`.
 
-**Broken wikilink check** — invoke `Skill(skill="obsidian:obsidian-cli")` to enumerate notes whose `[[...]]` targets don't resolve.
+**Broken wikilink check** — invoke `Skill(skill="obsidian:obsidian-cli")` to enumerate notes whose `[[...]]` targets don't resolve. If you hand-roll a parser instead, unescape table-cell pipes (`\|`→`|`) before splitting on `|`, or `[[id\|alias]]` yields `id\` and false-flags as broken.
 
 ## References
 
@@ -353,8 +353,8 @@ You have persistent local memory that survives across conversations. Use it to b
 - Research directions the user is pursuing
 - Papers and methods frequently referenced
 - Patterns in the user's research workflow
-- Key findings from previous research sessions
+- Durable operational gotchas and vault-wide conventions
 
-At the start of each session, read your memory to recall context. After completing significant research tasks, save key insights and findings to memory for future sessions.
+At the start of each session, read your memory to recall context. Save **sparingly** — only durable facts not already in CLAUDE.md, the command files, the skills, or the code; never per-session work logs ("what I did on date X"), which bloat memory fast and are already covered by git history and the vault files.
 
 For search across prior conversations, invoke `Skill(skill="claude-mem:mem-search")`.

@@ -10,23 +10,21 @@ Use the **research-assistant agent** to sync the vault with `.claude/skills/alph
 
 Invoke `Skill(skill="alphaxiv-summary-extract")` in batch mode. The skill skips papers whose `{ID}.md` already exists and reports Processed / Skipped / Failed counts.
 
+`knowledge.py` is a living mirror — the user appends IDs continuously, sometimes mid-run. Compute pending fresh as `{knowledge.py IDs} − {existing KH stems}` (not the truncatable run.py "Failed" line), and recompute after every scrape/retry.
+
 ## 2. Enrich
 
 For each newly-written note, apply the post-processing defined in the alphaxiv-summary-extract skill (frontmatter + Method/Results formatting), then run the skill's **alias dedup check** to surface any vault-wide collisions before moving on.
 
 ## 3. Rescue failed papers (only if step 1 had failures)
 
-> **Checkpoint** — needs human-in-the-loop.
-
-Open each failed URL in cmux:
+Persistent failures (chromedriver stack traces surviving auto-retry) are papers with **no pre-generated overview**; opening the URL in a real browser warms alphaxiv's backend so a later retry succeeds. **Don't block** — open *all* failed URLs at once, then keep enriching/curating the successful notes while the user generates overviews on their own schedule.
 
 ```bash
 cmux new-surface --type browser --url "https://www.alphaxiv.org/abs/<ID>" --focus false
 ```
 
-Tell the user: "Click 'Generate Overview' on each surface, then reply 'retry' (or 'skip <ID>' to abandon a paper)."
-
-On `retry`: re-run the scrape with `--ids <still-failed-list>`, then loop back to step 2 for the rescues.
+Tell them how many surfaces opened and list the pending IDs in the report's Failed line. On `retry`, recompute pending (step 1) and re-run from step 2. A 404 on `/abs/{ID}.md` means withdrawn — skip it.
 
 ## 4. Curate
 
