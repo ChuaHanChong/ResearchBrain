@@ -183,6 +183,7 @@ The dominant implicit-physics paradigm fuses 3D Gaussian Splatting with continuu
 
 Gaussians are differentiable, particle-like, and already compatible with rendering. ==MPM== handles arbitrary materials (elastic, plastic, granular, viscoplastic) on the same particle representation. Result: "what you see is what you simulate" — no separate mesh extraction step.
 
+- **[[2505.16971|UniPhy]]** — A unified neural ==constitutive model== for inverse physics simulation that swaps two material-dependent ==MPM== functions for ==latent-conditioned networks==, then freezes them and optimizes a per-scene latent to infer material from observed trajectories; elastic reconstruction error **5.2e-6** vs **2.4e-4** (NCLaw) — material-agnostic, no preset material type.
 - **[[2311.12198|PhysGaussian]]** — The first method coupling 3D Gaussian Splatting with a ==custom MPM== treating Gaussians as Lagrangian particles, with ==deformation-gradient rotation== evolving the spherical harmonics + an optional ==internal-filling step==; elastic / plastic / fracture / granular / viscoplastic at higher PSNR than NeRF baselines — the substrate every paper extends.
 - **[[2501.18982|OmniPhysGS]]** — A ==Constitutive Gaussians== framework where each particle carries a ==learnable neural constitutive model== from a **12**-combination ensemble; a memory-optimized ==differentiable MPM== + ==Score Distillation Sampling== covers elastic / plastic / granular / viscoplastic at once, **+3–16%** CLIPSIM, **−75%** memory vs Warp-MPM — material-coverage frontier.
 - **[[2406.04338|Physics3D]]** — A method learning physical properties of 3D Gaussians from ==video diffusion supervision== via an ==MLS-MPM viscoelastic== solver (deformation gradient split into elastoplastic + viscoelastic) distilled by ==Score Distillation Sampling==; PSNR **14.72** / SSIM **0.59** with strong user-study preference for motion realism, bypassing manual material annotation.
@@ -282,6 +283,7 @@ Generative models are great at hypothesizing futures; physical simulators are gr
 
 Reconstruct or learn the physics substrate; train policies against it. The simulator is the *destination* of learned dynamics rather than an external verifier.
 
+- **[[2606.09640|Physics-Aware Sparse EL]]** — A physics-aware learner for Euler-Lagrange robot dynamics using a structure-preserving ==residual decomposition== (inertia kept symmetric positive-definite), a ==sparse history-dependent latent==, and ==selective Bayesian online adaptation== of the force residual; **lowest** prediction error and **best** figure-eight tracking RMSE across **5** robots.
 - **[[2503.17973|PhysTwin]]** — Multi-stage optimization that jointly reconstructs geometry, infers physical properties, and models appearance. ==Spring-mass models + generative shape priors + Gaussian splats== produce an interactive digital twin from videos — usable for robot motion planning. The simulator runs in real-time, allowing the robot to plan against the digital twin before acting.
 - **[[2511.07416|PhysWorld]]** — A digital-twin pipeline generating ==task-conditioned video==, reconstructing a twin via ==geometry-aligned 4D reconstruction==, then training policies by ==object-centric residual RL== inside it; **82%** avg SR over 10 real tasks (**+15pp** over RIGVid), grasp fails **18% → 3%**, object-centric up to **90%**.
 - **[[2605.09538|PhysHanDI]]** — A reconstructor building dense hand–*deformable*-object twins from sparse-view RGB-D via a ==physics-based interaction model== (==MANO== hands + ==spring-mass== objects via ==virtual springs==); the dense-mesh object ==reciprocally refines== the hand fit (Hand Chamfer **7.57 → 7.17 mm**), with **~2×** / **>7×** lower spring RRD than [[2503.17973|PhysTwin]].
@@ -369,6 +371,14 @@ Benchmarks that test whether generated video obeys physics across a diverse set 
 Benchmarks that compare generated video against *recorded* real physical experiments. Higher signal for deployment readiness — closes the loop between video generation and the real world.
 
 - **[[2504.02918|Morpheus]]** — A ==physics-informed benchmark== of **130** real videos of **9** Newtonian experiments, scored by a ==hierarchical PINN-based== Dynamical + Physical-Invariance metric; real videos set a **0.98–0.99** upper bound while best generators (WAN-2.1 **0.55**, COSMOS-predict2 **0.52**) violate conservation laws — closes the real-experiment loop on narrow scenarios.
+
+#### 6.3 Embodied Physical-Interaction Benchmarks
+
+Benchmarks that evaluate the *agent's* physical reasoning and manipulation under physics, not generated-video commonsense. The object of evaluation is closed-loop interaction (kinematic/dynamic reasoning, soft-body and deformable manipulation), so physics is the measured capability rather than a rendering target.
+
+- **[[2604.25788|KinDER]]** — A physical-reasoning benchmark for robot learning and planning isolating ==five core kinematic/dynamic challenges== over **25** procedural environments (==KinDERGarden==) with a Gymnasium-API library and **13** baselines; Bilevel Planning tops at **0.57** SR, in-context foundation models reach **0.43** (vs **0.34** zero-shot), RL/MBRL collapse to **0.02–0.13**.
+- **[[2104.03311|PlasticineLab]]** — A soft-body manipulation benchmark of **50** scenarios on a ==differentiable elastoplastic MLS-MPM== engine (von Mises yield, ==softened contact model== for smooth gradients); gradient-based optimization solves many tasks within **tens of iterations** at higher precision than RL, while SAC/TD3/PPO struggle — differentiable physics as the contribution.
+- **[[2011.07215|SoftGym]]** — A deformable-object manipulation benchmark on the ==Nvidia FleX== engine with a unified ==OpenAI Gym API== over cloth/rope/fluid tasks, evaluating RL under full-state, reduced-state, and image observations; the ==Dynamics Oracle (CEM)== sets the upper bound while image-based RL lags badly on cloth/rope — exposing the visual-dynamics gap.
 
 **Physics Benchmarks — Decision Matrix**
 

@@ -376,6 +376,7 @@ Diagnostic benchmarks differ from training benchmarks in a crucial way: they are
 
 Diagnostics that target the *low-level skill* and *high-level reasoning* axes — what VLAs get wrong even when language and grasping work.
 
+- **[[2606.13040|RoboProcessBench]]** — A benchmark for VLM-side ==process judging== in robotic manipulation across **12** diagnostic task families (static monitoring / dynamic reasoning), with **~58,000** physically-grounded QA from **260** tasks via ==local process units==; zero-shot VLMs near chance on temporal ordering, ProcessData-SFT lifts static monitoring **+42.7–44.4 pp**.
 - **[[2606.02307|FATE-VLA]]** — A ==failure-aware adaptive test generation== framework combining ==Adaptive Random Testing== with ==surrogate ML models== predicting failure likelihood to generate failure-prone yet diverse scenarios; raises discovered failure rate by up to **+29.7 pp** over random sampling on models like GR00T-N1.6.
 - **[[2606.02277|RoboSemanticBench]]** — A controlled benchmark recasting semantic grounding as an ==answer-selection task==, with a ==Normalized Semantic Grounding (nSG)== metric; most VLAs score **2.0–12.7%** TSR with nSG ≤ 0 (π0.5 the lone outlier at **21.8%** TSR / **5.2%** nSG), and even ReasoningVLA leaves **89.93%** correct-reasoning/wrong-action cases.
 - **[[2601.11421|GM-100]]** — A benchmark of **100** detail-oriented tasks (precise insertion, fine alignment, tool manipulation); current VLAs achieve very low SR, exposing real ==precision gaps== between "grasp the cup" and "insert the peg".
@@ -438,6 +439,13 @@ Distinct from the LIBERO-family's *passive* perturbation children, this tier *ac
 
 > [!tip] Use the Diagnostic Stack
 > Each benchmark stresses one failure axis. A model can score >90% on [[2306.03310|LIBERO]] yet collapse on [[2510.13626|LIBERO-Plus]] (visual), [[2603.28301|LIBERO-Para]] (language), [[2510.03827|LIBERO-PRO]] (minor perturbations), or [[2601.11421|GM-100]] (precision). Always evaluate across the full diagnostic stack before claiming generalization. The [[2510.03827|LIBERO-PRO]] collapse from >90% to near 0% under *small* changes is the most damning data point in recent VLA evaluation literature. Cross-reference [[05_VLA#1. Design-Space Principles]] for architectural responses to these failure modes, [[08_Latent-World-Models#5. Latent vs Pixel Comparison]] for the WAM-vs-VLA robustness gap, and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for policy-side robustness recipes.
+
+#### 5.5 Open-Ended Game-Agent Evaluation
+
+Open-ended game worlds (Minecraft) are an embodied substrate with no single success signal — these evaluate *generalist* agents over thousands of configurable tasks, pairing large vision-speech-action data collection with scalable VLM-based scoring.
+
+- **[[2505.12707|PLAICraft]]** — A large-scale time-aligned ==vision-speech-action== dataset + AWS collection platform recording **>10,000** players in a persistent multiplayer Minecraft world, capturing **5** modalities (video, two audio, mouse, keyboard) at millisecond precision over **>10,000 hours**; ships a ==Cattell-Horn-Carroll== suite probing reasoning, memory, and communication.
+- **[[2310.08367|MCU]]** — A Minecraft evaluation framework of **3,452** atomic tasks across **11** categories ==LLM-configured== for intra/inter-task diversity, with ==AutoEval== a ==VLM-based multi-dimensional== judge over video trajectories; AutoEval hits **84.0%** F1 / **91.5%** human agreement at **8.1×** lower cost, exposing foundation-agent collapse on compositional tasks.
 
 ---
 
@@ -617,6 +625,7 @@ Spatial reasoning evaluation tests whether models understand *where things are r
 
 Probes the *atomic* spatial relations — distance, size, containment, left-of, counting — that compositional reasoning is built on. Failures here propagate up to the multi-step tier.
 
+- **[[2606.13497|SPARC (Robot)]]** — A ==risk-aware== framework auto-generating spatial annotations from robot demonstrations via ==subtask decomposition== + multi-cue ==continuous reliability scoring==; **80.2%** interacted-object localization on the new IA-Bench (vs **58.1%** detection-only), and SPARC-trained policies double cluttered-manipulation SR to **31%** (vs **12%**).
 - **[[2410.06468|SPACE]]** — A ==cognitive-science-grounded== benchmark split into ==large-scale== (direction/distance, map sketching, route retracing) and ==small-scale== (==mental rotation==, ==perspective taking==, maze); frontier models score near chance (vs **80–100%** human) on large-scale and **<30%** SPL navigation — a fundamental VLM-vs-human gap.
 - **[[2505.05456|SITE]]** — A ==cognitive-science-derived== VLM spatial benchmark with ==Ego-exo View Association + Shuffled Frames Reordering== + ==Chance-Adjusted Accuracy (CAA)==; GPT-4o **37.8%** CAA (vs **67.5%** human), only **28.20%** on Ego-exo (vs **100%** human); SITE-CAA Pearson **0.902** with LIBERO-Spatial manipulation SR.
 - **[[2510.19400|MV-RoboBench]]** — A *multi-view* spatial-reasoning benchmark of **1,708** human-curated QA across **8** subtasks (3D Spatial Consistency, Cross-View Matching, Action Planning, Affordance); GPT-5 reaches **56.41%** vs **91.04%** human, dropping **−18.73%** under vertical flips; reasoning correlates with execution, yet synthetic novel views often *hurt*.
@@ -624,6 +633,7 @@ Probes the *atomic* spatial relations — distance, size, containment, left-of, 
 - **[[2603.19231|MonoArt]]** — An end-to-end ==progressive structural reasoning== pipeline (geometry-aware → part-aware → motion-aware) with ==TRELLIS 3D Generator== + ==Dual-Query Motion Decoder==; **Chamfer 0.77** (vs 1.26) + **Type Accuracy 88.26%** (vs 77.12%) on PartNet-Mobility; **4.63/5** geometric, **4.37/5** kinematic on in-the-wild study at **20.5 s** per instance.
 - **[[2602.21992|PanoEnv]]** — A ==geometry-grounded panoramic (ERP) spatial benchmark== (**14.8K** QA from TartanAir 3D ground truth) + ==PanoEnv-RL== (GRPO geometry-aware rewards + two-stage curriculum); lifts Qwen2.5-VL-7B open-ended accuracy **6.39% → 14.83%** (**+132%**), transfers zero-shot to real OSR-Bench beating the 72B baseline — 360° distortion as an unsolved spatial axis.
 - **[[2412.07755|SAT]]** — A ==Spatial Aptitude Training== data engine using ==3D simulators== to procedurally generate static + **5-category dynamic** spatial QA (egocentric/object movement, allocentric, goal-aiming, action-consequence); SAT-tuning LLaVA-1.5-13B improves CVBench/BLINK **+23.9%** to **75.6%**, transfers to real images **+13.3%** — sim-generated dynamic supervision.
+- **[[2401.12168|SpatialVLM]]** — A spatial-reasoning ==data-synthesis pipeline== generating **2 billion** QA pairs over **10M** images via ==metric depth estimation== + 2D→3D context lifting + ==human-aligned QA synthesis==; estimates metric distances/sizes beyond GPT-4V/PaLM-E and feeds robotics as ==reward annotation== + ==gripper-to-object distance== for grasping and navigation.
 
 #### 9.2 Compositional Multi-Step Spatial Reasoning
 
@@ -883,6 +893,7 @@ Sim benchmarks predict sim performance. The 2025-2026 wave introduced *standardi
 
 The field has matured enough that several recent surveys structure the entire benchmark / dataset / sim landscape — useful when you're starting on a new sub-area.
 
+- **[[2606.12207|Embodied Benchmark Pipeline]]** — A ==five-stage pipeline== + ==Construction Automation and Auditability Rubric (CAAR)== classifying automation levels (A0–A3) across embodied-benchmark construction; finds automation ==transfers cost== to validation/governance/debugging rather than reducing it, and argues for structured failure diagnosis over aggregate scores.
 - **[[2606.04233|Manipulation Benchmark Audit]]** — A ==validity audit== probing shortcut solvability, significance, creeping overfitting, and data-source dependence; a DINO+MLP probe hits **99–100%** on LIBERO without pretraining/language, only **19.8%** of LIBERO SOTA claims are significant, CALVIN ATC drops **1.03**, and a **22M** policy on 120 SimplerEnv demos reaches **94.8%**.
 - **[[2103.04918|Embodied AI Survey]]** — A foundational embodied-AI survey evaluating **9** simulators across **7 technical features** + categorizing **3** core tasks (visual exploration, visual navigation, embodied QA); identifies Habitat-Sim / iGibson as graphics leaders and AI2-THOR as interaction leader.
 - **[[2507.00917|Embodied Intelligence Survey]]** — A modern follow-up survey integrating the world-model wave; proposes a ==5-level IR-L0→IR-L4 grading== for intelligent robots + identifies ==3 core WM functional roles== (neural simulators / dynamic models / reward models).

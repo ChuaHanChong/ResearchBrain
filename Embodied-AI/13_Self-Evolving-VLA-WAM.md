@@ -371,6 +371,7 @@ The world model generates a plan or rollout; a separate critic (or the agent its
 - **[[2603.08403|SPIRAL]]** — A ==PlanAgent + Action-Conditioned WM + CriticAgent== loop; CriticAgent rejects bad dreams pre-training; **58.72%** EgoPlan-Bench, **+3.94%** over GPT-5.1, **+6.89%** over fine-tuned Video-LLaMA.
 - **[[2502.05907|EvoAgent]]** — A self-evolving architecture centered on a ==continual world model== via a three-part loop — ==self-planning== (LoRA task planner), ==self-control== (monitor prediction error mid-execution), ==self-reflection== (CL-based reflector updates WM + policy post-hoc); **+105%** on long-horizon tasks.
 - **[[2506.23468|NavMorph]]** — An ==RSSM-based== self-evolving WM for VLN-CE; World-aware Navigator + Foresight Action Planner; **+4.1% SR** / **+2.73% SPL** on RxR-CE unseen.
+- **[[2410.10076|VideoAgent]]** — A self-improving video planner that refines plans via ==self-conditioning consistency==, picks the best candidate with a ==VLM critic==, then runs an ==online loop== fine-tuning the generator on successful rollouts; **53.7%** Meta-World SR (vs **19.6%** baseline), **34.2%** iTHOR object-nav — the critic + online retrain stage is the load-bearing self-evolution.
 
 #### 5.2 RL on Dynamics & Co-Evolving Loops
 
