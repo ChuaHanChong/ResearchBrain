@@ -111,14 +111,14 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2302.05209|Causal RL Methods Survey]] — First comprehensive taxonomy connecting causal inference with RL
 
 **Continual & Lifelong RL** — Agents that learn across sequential tasks without catastrophic forgetting.
-- [[2605.12484|FST]], [[2603.24350|Emergent Self]], [[2603.00903|Continual RL Theory]], [[2506.21872|Continual RL Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2410.19925|MLLM Continual Learning]], [[2410.07812|TD-VCL]], [[1612.00796|EWC]]
+- [[2605.12484|FST]], [[2603.24350|Emergent Self]], [[2603.00903|Continual RL Theory]], [[2506.21872|Continual RL Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2502.15922|Safe EWC]], [[2410.19925|MLLM Continual Learning]], [[2410.07812|TD-VCL]], [[1612.00796|EWC]]
 
 > [!star] Key Papers
 > - [[1612.00796|EWC]] — Foundational method for overcoming catastrophic forgetting; Elastic Weight Consolidation remains the baseline for all continual learning
 > - [[2506.21872|Continual RL Survey]] — First comprehensive survey dedicated to continual RL; defines the taxonomy and open problems
 
 **Meta-RL** — Learning-to-learn for RL: agents that can quickly adapt to new tasks by leveraging prior experience.
-- [[2604.24532|MORL-FB]], [[2604.05112|Vintix II]], [[2512.16848|LAMER]], [[2510.20264|OpTI-BFM]], [[2509.24923|Meta-Bandit Exploitation Bias]], [[2509.18389|ICRL Emergence]], [[2508.16027|Transformer Non-Stationary RL]], [[2506.13690|MASP]], [[2506.10085|VITA (Value)]], [[2506.06303|LLM In-Context RL]], [[2506.05426|T2MIR]], [[2506.01299|In-Context Q-Learning]], [[2505.00787|Option Keyboard Basis]], [[2502.04979|Bandit Prompt-Tuning DT]], [[2502.03752|SISL]], [[2502.02869|OmniRL]], [[2305.17250|RaMP]], [[2301.08028|Meta-RL Tutorial]], [[1910.10897|Meta-World]]
+- [[2604.24532|MORL-FB]], [[2604.05112|Vintix II]], [[2601.21845|Constrained Meta-RL]], [[2512.16848|LAMER]], [[2510.20264|OpTI-BFM]], [[2509.24923|Meta-Bandit Exploitation Bias]], [[2509.18389|ICRL Emergence]], [[2508.16027|Transformer Non-Stationary RL]], [[2506.13690|MASP]], [[2506.10085|VITA (Value)]], [[2506.06303|LLM In-Context RL]], [[2506.05426|T2MIR]], [[2506.01299|In-Context Q-Learning]], [[2505.00787|Option Keyboard Basis]], [[2502.04979|Bandit Prompt-Tuning DT]], [[2502.03752|SISL]], [[2502.02869|OmniRL]], [[2305.17250|RaMP]], [[2301.08028|Meta-RL Tutorial]], [[1910.10897|Meta-World]]
 
 > [!star] Key Papers
 > - [[2301.08028|Meta-RL Tutorial]] — Definitive tutorial unifying meta-RL definitions and algorithms; essential reference for the sub-field
@@ -157,7 +157,8 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > The key insight from 2025: SFT teaches models to *reproduce* patterns, RL teaches them to *solve* problems. For reasoning tasks, RL generalizes where SFT memorizes. But SFT remains essential for format/instruction following — the best pipelines use SFT then RL.
 
 **Robust & Adversarial RL** — RL methods designed for worst-case performance under perturbed observations, actions, dynamics, or adversarial co-players. Foundational for safety-critical RL deployment.
-- [[2605.14174|VIA]], [[2605.09772|GP-Safe-Exploration]], [[2602.13040|TCRL]], [[2602.11437|DrIGM]], [[2602.05089|Daze]], [[2512.01228|BARPO]], [[2511.09681|SEBA]], [[2510.15382|Robust Zero-Shot RL]], [[2510.14246|DR-RPO]], [[2510.11824|MARL Robustness Study]], [[2509.24130|Sharpness-Aware Prompt]], [[2509.23846|AD-RRL]], [[2509.16950|Multi-Vehicle Backdoor]], [[2508.02948|f-MORNAVI]], [[2507.07348|Context Generalization RL]], [[2506.21683|Risk-Averse Total-Reward RL]], [[2506.12815|TrojanTO]], [[2506.12622|DR-SAC]], [[2502.16816|Robust Avg-Reward RL]], [[2412.18781|Offline RL Action Perturbation Eval]], [[2412.10713|RAT]], [[2406.09976|RMBPO]], [[2406.03862|Behavior Imitation Attack]], [[2307.10224|RL-ViGen]], [[2204.12581|RAMBO-RL]]
+- [[2605.14174|VIA]], [[2605.09772|GP-Safe-Exploration]], [[2602.13040|TCRL]], [[2602.11437|DrIGM]], [[2602.05089|Daze]], [[2512.01228|BARPO]], [[2511.09681|SEBA]], [[2510.15382|Robust Zero-Shot RL]], [[2510.14246|DR-RPO]], [[2510.11824|MARL Robustness Study]], [[2509.24130|Sharpness-Aware Prompt]], [[2509.23846|AD-RRL]], [[2509.16950|Multi-Vehicle Backdoor]], [[2508.02948|f-MORNAVI]], [[2507.20068|PERRY]], [[2507.07348|Context Generalization RL]], [[2506.21683|Risk-Averse Total-Reward RL]], [[2506.16590|EBTL]], [[2506.12815|TrojanTO]], [[2506.12622|DR-SAC]], [[2506.11033|Adaptive Shielding]], [[2502.16816|Robust Avg-Reward RL]], [[2412.18781|Offline RL Action Perturbation Eval]], [[2412.10713|RAT]], [[2409.18330|DMC-VB]], [[2406.09976|RMBPO]], [[2406.03862|Behavior Imitation Attack]], [[2404.13009|M-GAPS (Online Policy Opt)]], [[2307.10224|RL-ViGen]], [[2206.00238|DARL]]
+- [[2204.12581|RAMBO-RL]]
 
 > [!star] Key Papers
 > - [[2602.13040|TCRL]] — Temporal-coupled adversarial training for constrained RL; reduces safety costs by orders of magnitude under worst-case attacks
@@ -325,8 +326,8 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.22637|Variational Reasoning]] — Treats thinking traces as latent variables; principled framework for reasoning optimization
 
 **Miscellaneous Policy Methods** — Other notable approaches to policy optimization that cross boundaries.
-- [[2603.11346|Human-Human Assist RL]], [[2602.03086|Neural Predictor-Corrector]], [[2602.02722|Entity-Centric HRL]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.03759|ESPO]], [[2512.01374|MiniRL]], [[2512.01047|AutoSpec]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric Action Control]], [[2511.05005|MAC-Flow]], [[2510.09541|SPG]], [[2510.02180|GRACE]], [[2510.00911|RiskPO]], [[2509.25055|AlphaSAGE]], [[2509.24981|ROVER]], [[2509.24207|Humanline]], [[2509.21880|RL-ZVP]], [[2509.16606|BayesG]], [[2509.15999|IO-LVM]], [[2509.15207|FlowRL (Reward Matching)]], [[2509.09135|VIP (CT-MARL)]], [[2509.03646|HICRA]], [[2508.17696|FCGrad]], [[2507.18059|Multi-Agent GPO]], [[2506.19997|TRACED]], [[2506.16608|DA-MDP]], [[2506.16016|Dual-Objective HJB RL]]
-- [[2506.10138|Planning Mechanistic Description]], [[2506.09434|MARL Diversity Theory]], [[2506.02385|Markov Entanglement]], [[2506.01597|Policy Newton RKHS]], [[2505.22760|Best Response Flow]], [[2505.18763|GenPO]], [[2505.03586|Rainbow Delay Compensation]], [[2502.00560|CAMS]], [[2412.04233|HyperMARL]], [[2412.00661|SUBSAMPLE-MFQ]], [[2411.15046|Multi-Agent IRL Rewards]], [[2410.03119|Ring Attractor RL]], [[2409.17411|Semantic Clustering DRL]], [[2405.08036|POW-QMIX]], [[2404.15617|dfPO]], [[2306.05353|Negotiated Reasoning]], [[1312.5602|DQN]]
+- [[2606.04923|CHERRL]], [[2603.11346|Human-Human Assist RL]], [[2602.03086|Neural Predictor-Corrector]], [[2602.02722|Entity-Centric HRL]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.03759|ESPO]], [[2512.01374|MiniRL]], [[2512.01047|AutoSpec]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric Action Control]], [[2511.05005|MAC-Flow]], [[2510.09541|SPG]], [[2510.02180|GRACE]], [[2510.00911|RiskPO]], [[2509.25055|AlphaSAGE]], [[2509.24981|ROVER]], [[2509.24207|Humanline]], [[2509.21880|RL-ZVP]], [[2509.16606|BayesG]], [[2509.15999|IO-LVM]], [[2509.15207|FlowRL (Reward Matching)]], [[2509.09135|VIP (CT-MARL)]], [[2509.03646|HICRA]], [[2508.17696|FCGrad]], [[2507.18059|Multi-Agent GPO]], [[2506.19997|TRACED]], [[2506.16608|DA-MDP]]
+- [[2506.16016|Dual-Objective HJB RL]], [[2506.10138|Planning Mechanistic Description]], [[2506.09434|MARL Diversity Theory]], [[2506.02385|Markov Entanglement]], [[2506.01597|Policy Newton RKHS]], [[2505.22760|Best Response Flow]], [[2505.18763|GenPO]], [[2505.03586|Rainbow Delay Compensation]], [[2502.00560|CAMS]], [[2412.04426|Marvel]], [[2412.04233|HyperMARL]], [[2412.00661|SUBSAMPLE-MFQ]], [[2411.15046|Multi-Agent IRL Rewards]], [[2410.03119|Ring Attractor RL]], [[2409.17411|Semantic Clustering DRL]], [[2405.08036|POW-QMIX]], [[2404.15617|dfPO]], [[2306.05353|Negotiated Reasoning]], [[1312.5602|DQN]]
 
 > [!star] Key Papers
 > - [[2509.24207|Humanline]] — Explains why online RL outperforms offline methods from a human cognitive science perspective
@@ -393,7 +394,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2501.11223|RLM Blueprint]] — ETH Zurich's comprehensive modular blueprint for Reasoning Language Models
 
 **Search-Augmented Reasoning** — Teaching LLMs to interleave reasoning with external search and retrieval, learned end-to-end via RL.
-- [[2603.22293|TIPS (RL)]], [[2602.21728|Explore-on-Graph]], [[2510.07958|A2Search]], [[2510.00861|Erasable RL]], [[2509.24869|Retro-Star]], [[2505.04588|ZeroSearch]], [[2504.21776|WebThinker]], [[2503.19470|ReSearch]], [[2503.09516|Search-R1]], [[2503.05592|R1-Searcher]]
+- [[2603.22293|TIPS (RL)]], [[2602.21728|Explore-on-Graph]], [[2510.07958|A2Search]], [[2510.00861|Erasable RL]], [[2509.24869|Retro-Star]], [[2505.04588|ZeroSearch]], [[2504.21776|WebThinker]], [[2503.19470|ReSearch]], [[2503.09516|Search-R1]], [[2503.05592|R1-Searcher]], [[2109.13202|MiniHack]]
 
 > [!star] Key Papers
 > - [[2503.09516|Search-R1]] — RL trains LLMs to autonomously interleave reasoning with search; outperforms pipeline RAG approaches

@@ -390,7 +390,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2309.16797|PromptBreeder]] — Self-referential self-improvement via prompt evolution; automates prompt engineering
 
 **LoRA & Parameter-Efficient Fine-Tuning** — Methods that adapt large models by training only a small fraction of parameters.
-- [[2604.19254|ShadowPEFT]], [[2507.11851|Gated LoRA]], [[2506.20629|PLoP]], [[2506.06105|T2L]], [[2504.13292|GrokTransfer]], [[2502.16025|FeatSharp]], [[2410.19878|PEFT Methodologies Survey]], [[2406.10973|ExPLoRA]], [[2312.12148|PEFT Critical Review]]
+- [[2604.19254|ShadowPEFT]], [[2507.11851|Gated LoRA]], [[2506.20629|PLoP]], [[2506.06105|T2L]], [[2504.13292|GrokTransfer]], [[2502.16025|FeatSharp]], [[2410.19878|PEFT Methodologies Survey]], [[2406.10973|ExPLoRA]], [[2405.09673|LoRA-Learns-Less]], [[2312.12148|PEFT Critical Review]]
 
 > [!star] Key Papers
 > - [[2506.06105|T2L]] — Text-to-LoRA: hypernetwork that dynamically generates task-specific LoRA adapters from text descriptions

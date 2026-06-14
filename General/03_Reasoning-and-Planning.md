@@ -110,7 +110,7 @@ The field evolved through six phases: **explicit CoT prompting** (2022) where ch
 The foundational paradigm: prompting LLMs to produce step-by-step reasoning before answering, then evolving from few-shot to zero-shot and self-bootstrapped variants.
 
 **Few-Shot & Zero-Shot CoT** — The original prompting techniques that unlocked multi-step reasoning in LLMs by providing exemplar chains or simple instructions like "let's think step by step."
-- [[2606.03784|ERVLA]], [[2605.29198|GCPO]], [[2605.28421|DenoiseRL]], [[2605.21467|DelTA]], [[2605.16787|RLVR Unlearnability]], [[2605.07396|ROPD]], [[2605.06234|RobotEQ]], [[2603.07079|EOPD]], [[2506.14641\|Zero-shot vs Few-shot CoT]], [[2505.24189\|SLM vs LLM Low-Code Workflows]], [[2505.16854\|TON]], [[2505.14684|Thought Leap Bridge]], [[2505.01812\|New News]], [[2504.09532|Humanoid-COA]], [[2503.16188\|Think or Not Think]], [[2501.19393\|s1]], [[2411.14405\|Marco-o1]]
+- [[2606.03784|ERVLA]], [[2605.29198|GCPO]], [[2605.28421|DenoiseRL]], [[2605.21467|DelTA]], [[2605.16787|RLVR Unlearnability]], [[2605.07396|ROPD]], [[2605.06234|RobotEQ]], [[2603.07079|EOPD]], [[2506.14641|Zero-shot vs Few-shot CoT]], [[2506.10979|LLM Unhelpful Thought Recovery]], [[2505.24189|SLM vs LLM Low-Code Workflows]], [[2505.16854|TON]], [[2505.14684|Thought Leap Bridge]], [[2505.01812|New News]], [[2504.09532|Humanoid-COA]], [[2503.16188|Think or Not Think]], [[2501.19393|s1]], [[2411.14405|Marco-o1]], [[2210.12320|GAPS]]
 
 > [!star] Key Papers
 > - [[2501.19393\|s1]] — Stanford/UW open-source 32B model achieves SOTA reasoning by training on just 1,000 curated examples with budget forcing
@@ -139,7 +139,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2509.23250\|VL-PRM]] — Vision-language process reward models trained via hybrid data synthesis for step-level verification
 
 **Long CoT & Efficient Reasoning** — Addressing the length problem: surveys and methods for managing very long chains, reducing overthinking, and allocating reasoning compute adaptively.
-- [[2606.03937|VEPO]], [[2605.29438|ElegantVLA]], [[2605.12227|dGRPO]], [[2605.11739|EffOPD]], [[2604.21764\|TRS]], [[2604.05355\|ETR]], [[2602.16839|Progressive Thought Encoding]], [[2602.09276|Reasoning-ID]], [[2511.17487\|EXTRACT+THINK]], [[2511.08577\|TaH]], [[2508.03346|Step Entropy CoT]], [[2508.02120\|Efficient R1-style Reasoning Survey]], [[2507.09662\|Concise Adaptive Thinking Survey]], [[2505.16579\|D2R]], [[2505.15612\|LASER]], [[2505.13975\|DRP]], [[2505.13438\|AnytimeReasoner]], [[2505.11896\|AdaCoT]], [[2505.10425\|L2T]], [[2505.00147\|AdaptMI]], [[2504.10903\|Efficient Reasoning Models Survey]], [[2503.23077\|LRM Efficient Inference Survey]], [[2503.21614\|Efficient Reasoning Survey]], [[2503.18866\|BoLT]], [[2503.16419\|Stop Overthinking Survey]], [[2503.09567\|Long CoT Survey]], [[2502.07266|CoT Length Study]], [[2412.09413\|STILL-2]]
+- [[2606.03937|VEPO]], [[2605.29438|ElegantVLA]], [[2605.12227|dGRPO]], [[2605.11739|EffOPD]], [[2604.21764|TRS]], [[2604.05355|ETR]], [[2602.16839|Progressive Thought Encoding]], [[2602.09276|Reasoning-ID]], [[2601.06002|Mole-Syn]], [[2511.17487|EXTRACT+THINK]], [[2511.08577|TaH]], [[2508.03346|Step Entropy CoT]], [[2508.02120|Efficient R1-style Reasoning Survey]], [[2507.09662|Concise Adaptive Thinking Survey]], [[2505.16579|D2R]], [[2505.15612|LASER]], [[2505.13975|DRP]], [[2505.13438|AnytimeReasoner]], [[2505.11896|AdaCoT]], [[2505.10425|L2T]], [[2505.00147|AdaptMI]], [[2504.10903|Efficient Reasoning Models Survey]], [[2503.23077|LRM Efficient Inference Survey]], [[2503.21614|Efficient Reasoning Survey]], [[2503.18866|BoLT]], [[2503.16419|Stop Overthinking Survey]], [[2503.09567|Long CoT Survey]], [[2502.07266|CoT Length Study]], [[2501.19201|Heima]], [[2412.09413|STILL-2]]
 
 > [!star] Key Papers
 > - [[2503.09567\|Long CoT Survey]] — First systematic survey of long chain-of-thought reasoning, covering generation, optimization, and evaluation
@@ -163,7 +163,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 Extending CoT to jointly reason over vision and language, producing interleaved textual and visual reasoning traces.
 
 **Multimodal CoT Frameworks** — Core methods that enable vision-language models to generate step-by-step reasoning combining text and image understanding.
-- [[2410.01345|GemBench]], [[1812.01717|FVD]]
+- [[2502.02339|AStar]], [[2410.01345|GemBench]], [[1812.01717|FVD]]
 
 > [!star] Key Papers
 > - [[2302.00923\|Multimodal-CoT]] — Extended CoT to vision + language jointly; foundational work for multimodal reasoning chains
@@ -210,7 +210,7 @@ Extending CoT to jointly reason over vision and language, producing interleaved 
 Moving reasoning from explicit token chains into continuous latent spaces, enabling models to "think" without generating human-readable text.
 
 **Continuous Latent Reasoning** — Models that perform reasoning in a continuous embedding space rather than discrete token sequences.
-- [[2605.12466|Attractor Models]], [[2605.02735|Silenced Visual Latents]], [[2604.22709|Abstract-CoT]], [[2604.18486\|OneVL]], [[2603.04948|Nabla-Reasoner]], [[2602.05359\|HIVE]], [[2601.10129\|LaViT]], [[2601.09708|Fast-ThinkAct]], [[2601.06803\|Laser]], [[2601.05877\|iReasoner]], [[2512.21218\|LIVR]], [[2512.16584\|SkiLa]], [[2510.23925\|LaCoT]], [[2510.12603\|IVT-LR]], [[2509.24251\|LVR]], [[2505.13308\|LATENTSEEK]], [[2505.12514\|COCONUT]], [[2505.11484\|SoftCoT++]], [[2502.21074\|CODI]], [[2502.03275\|Token Assorted]], [[2412.13171\|CCoT]], [[2412.06769\|Coconut]]
+- [[2605.12466|Attractor Models]], [[2605.02735|Silenced Visual Latents]], [[2604.22709|Abstract-CoT]], [[2604.18486|OneVL]], [[2603.04948|Nabla-Reasoner]], [[2602.10520|RLTT]], [[2602.05359|HIVE]], [[2601.10129|LaViT]], [[2601.09708|Fast-ThinkAct]], [[2601.06803|Laser]], [[2601.05877|iReasoner]], [[2512.21218|LIVR]], [[2512.16584|SkiLa]], [[2510.23925|LaCoT]], [[2510.12603|IVT-LR]], [[2509.24251|LVR]], [[2505.13308|LATENTSEEK]], [[2505.12514|COCONUT]], [[2505.11484|SoftCoT++]], [[2502.21074|CODI]], [[2502.03275|Token Assorted]], [[2412.13171|CCoT]], [[2412.06769|Coconut]]
 
 > [!star] Key Papers
 > - [[2412.06769\|Coconut]] — Meta FAIR's Chain of Continuous Thought: LLM reasons in continuous latent space, outperforming token-based CoT on multi-step problems
