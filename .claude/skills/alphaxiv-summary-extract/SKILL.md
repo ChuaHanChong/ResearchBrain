@@ -181,6 +181,20 @@ python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
   --ids 2602.15922 2601.16163
 ```
 
+## Papers with no pre-generated alphaxiv overview (rescue)
+
+Persistent failures (chromedriver stack traces surviving `run.py`'s auto-retry) are papers with **no pre-generated overview** — `alphaxiv.org/overview/{ID}` shows a *"Generate Overview"* button behind a login the headless scraper can't click. This is **not** transient or rate-limiting; re-running alone won't fix it.
+
+**Rescue: warm the backend / generate the overview, then retry — don't block.** Opening the paper's page in a real (logged-in) browser warms alphaxiv's backend so a later retry succeeds (and lets the user generate the overview on their own schedule). Open *all* failed URLs at once and keep enriching/curating the successful notes meanwhile:
+
+```bash
+cmux new-surface --type browser --url "https://www.alphaxiv.org/abs/<ID>" --focus false
+```
+
+Tell them how many surfaces opened and list the pending IDs in the run's **Failed** line. On retry, recompute pending (the still-missing `{ID}.md`) and re-scrape with `--force`.
+
+Every note must be sourced from the alphaxiv overview: do **not** fabricate one from the arxiv abstract/HTML/PDF as a substitute. If an overview still cannot be generated, leave the paper **un-ingested** (a missing note beats a fabricated one). A `404` on `/abs/{ID}.md` means the paper is withdrawn — skip it.
+
 ## Notes
 
 - The script skips papers whose `{ID}.md` already exists — safe to interrupt and resume

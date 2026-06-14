@@ -190,9 +190,9 @@
     "semantic_hash": "d7b509270f35ea6cf0d3eec64fa94701"
   },
   "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.18252.md": {
-    "mtime": 1778952026.4049807,
-    "ast_hash": "486e1ba55b1bf897272f822b23a4481a",
-    "semantic_hash": "486e1ba55b1bf897272f822b23a4481a"
+    "mtime": 1781352681.6019864,
+    "ast_hash": "bc6c249d96f3d9404ab1dee56d0e202b",
+    "semantic_hash": "bc6c249d96f3d9404ab1dee56d0e202b"
   },
   "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.25399.md": {
     "mtime": 1778952027.2282102,
@@ -24038,5 +24038,2435 @@
     "mtime": 1781351826.055525,
     "ast_hash": "6d499e5c14d381170d5bd835f9d5918f",
     "semantic_hash": "6d499e5c14d381170d5bd835f9d5918f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2409.18330.md": {
+    "mtime": 1781373423.0922039,
+    "ast_hash": "1bb89c237caf5b9fc43f047f9a0fb442",
+    "semantic_hash": "1bb89c237caf5b9fc43f047f9a0fb442"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.01842.md": {
+    "mtime": 1781373685.4066353,
+    "ast_hash": "847ff01cffb9ea69930c2f22a7be9588",
+    "semantic_hash": "847ff01cffb9ea69930c2f22a7be9588"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.17600.md": {
+    "mtime": 1781373524.5288248,
+    "ast_hash": "4fd1b5c04f9408e21b1ec532a7266157",
+    "semantic_hash": "4fd1b5c04f9408e21b1ec532a7266157"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.21797.md": {
+    "mtime": 1781373505.8737984,
+    "ast_hash": "c37b9596fe76ee5ef20c78f8d90d332c",
+    "semantic_hash": "c37b9596fe76ee5ef20c78f8d90d332c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.10903.md": {
+    "mtime": 1781373640.3378994,
+    "ast_hash": "6f99de0183a685b8352ec3e3066e4851",
+    "semantic_hash": "6f99de0183a685b8352ec3e3066e4851"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.08411.md": {
+    "mtime": 1781373444.4820564,
+    "ast_hash": "ed2dabcb642aaf650c8c3c45868603a4",
+    "semantic_hash": "ed2dabcb642aaf650c8c3c45868603a4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.09297.md": {
+    "mtime": 1781373830.2304924,
+    "ast_hash": "f41cfee845267693dadbf88edd05a14a",
+    "semantic_hash": "f41cfee845267693dadbf88edd05a14a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.11797.md": {
+    "mtime": 1781373791.4967647,
+    "ast_hash": "fdaa26ddae1e6655cdf1171035281330",
+    "semantic_hash": "fdaa26ddae1e6655cdf1171035281330"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.12796.md": {
+    "mtime": 1781373728.588703,
+    "ast_hash": "2bbb93b5d2e1eab923d0782266308174",
+    "semantic_hash": "2bbb93b5d2e1eab923d0782266308174"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.01153.md": {
+    "mtime": 1781373586.183006,
+    "ast_hash": "43ce5aad58e8572e3a2dd7969769f483",
+    "semantic_hash": "43ce5aad58e8572e3a2dd7969769f483"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.02142.md": {
+    "mtime": 1781373544.0519698,
+    "ast_hash": "ff93a103f71398dd51b95b0da81af4ed",
+    "semantic_hash": "ff93a103f71398dd51b95b0da81af4ed"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.02762.md": {
+    "mtime": 1781373772.1949065,
+    "ast_hash": "4b2a8222fb4583f33a6cbd139c840d3c",
+    "semantic_hash": "4b2a8222fb4583f33a6cbd139c840d3c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.06001.md": {
+    "mtime": 1781373606.3395956,
+    "ast_hash": "0f4374e2ef4812534e1a2df11f2992ea",
+    "semantic_hash": "0f4374e2ef4812534e1a2df11f2992ea"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.16086.md": {
+    "mtime": 1781373662.6235201,
+    "ast_hash": "92e7f9ff0e5c1b503f5e2d02ba5666ee",
+    "semantic_hash": "92e7f9ff0e5c1b503f5e2d02ba5666ee"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.05438.md": {
+    "mtime": 1781373625.808466,
+    "ast_hash": "ad5898eaac4fdc171a2897c4115fb385",
+    "semantic_hash": "ad5898eaac4fdc171a2897c4115fb385"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.03552.md": {
+    "mtime": 1781373812.8044684,
+    "ast_hash": "1dca6a559332b5c81ab6756b9fc417c4",
+    "semantic_hash": "1dca6a559332b5c81ab6756b9fc417c4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.13015.md": {
+    "mtime": 1781373564.6093879,
+    "ast_hash": "013727e2db6c0fb00842b6457d4d44bf",
+    "semantic_hash": "013727e2db6c0fb00842b6457d4d44bf"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.19677.md": {
+    "mtime": 1781373704.9719508,
+    "ast_hash": "7813257ffcccbeaa6b218820a6517e70",
+    "semantic_hash": "7813257ffcccbeaa6b218820a6517e70"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.08434.md": {
+    "mtime": 1781373749.4788167,
+    "ast_hash": "6adc315732062f4e90e7bb134bbc9709",
+    "semantic_hash": "6adc315732062f4e90e7bb134bbc9709"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/1707.05300.md": {
+    "mtime": 1781388633.0810764,
+    "ast_hash": "fb1c415751cdb8afb6261efac58abf0e",
+    "semantic_hash": "fb1c415751cdb8afb6261efac58abf0e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/1906.08880.md": {
+    "mtime": 1781394154.0415692,
+    "ast_hash": "960c53ccd9852e99348ddc03374f6831",
+    "semantic_hash": "960c53ccd9852e99348ddc03374f6831"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/1912.06321.md": {
+    "mtime": 1781392920.6177473,
+    "ast_hash": "5b60294c266b9f0abd2ee352ad1d002d",
+    "semantic_hash": "5b60294c266b9f0abd2ee352ad1d002d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2007.04309.md": {
+    "mtime": 1781394114.0071929,
+    "ast_hash": "3b3a383629cf63ad564a339ba6b76a99",
+    "semantic_hash": "3b3a383629cf63ad564a339ba6b76a99"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2010.13303.md": {
+    "mtime": 1781394114.0070617,
+    "ast_hash": "f1497c8f86dc90c628838587f3511ed8",
+    "semantic_hash": "f1497c8f86dc90c628838587f3511ed8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2104.02646.md": {
+    "mtime": 1781392740.3894923,
+    "ast_hash": "313501c384f348f393010c19fea28040",
+    "semantic_hash": "313501c384f348f393010c19fea28040"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2104.11203.md": {
+    "mtime": 1781388633.0813897,
+    "ast_hash": "2d50f3eed97de49a70d12dc701cbc8e2",
+    "semantic_hash": "2d50f3eed97de49a70d12dc701cbc8e2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2106.03911.md": {
+    "mtime": 1781392560.119169,
+    "ast_hash": "f1883714f042ddc056d1b7a3bd0b154c",
+    "semantic_hash": "f1883714f042ddc056d1b7a3bd0b154c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2201.08355.md": {
+    "mtime": 1781393824.3199332,
+    "ast_hash": "d323cbe37170f70524d09f0bbea0ac6e",
+    "semantic_hash": "d323cbe37170f70524d09f0bbea0ac6e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2203.06856.md": {
+    "mtime": 1781388633.0853252,
+    "ast_hash": "aa5b7857eca651d0313bc9965cc1b7b4",
+    "semantic_hash": "aa5b7857eca651d0313bc9965cc1b7b4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2203.11931.md": {
+    "mtime": 1781393824.3026834,
+    "ast_hash": "9d2e2a3dfe7e2990e508d25cdbe82849",
+    "semantic_hash": "9d2e2a3dfe7e2990e508d25cdbe82849"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2209.13052.md": {
+    "mtime": 1781393010.7481854,
+    "ast_hash": "60515279f094d865c2b23ba1870bcaf4",
+    "semantic_hash": "60515279f094d865c2b23ba1870bcaf4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2210.04887.md": {
+    "mtime": 1781393824.3052287,
+    "ast_hash": "1030e87bb05fc232af5862b2273d9b51",
+    "semantic_hash": "1030e87bb05fc232af5862b2273d9b51"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2301.10602.md": {
+    "mtime": 1781388633.0709605,
+    "ast_hash": "20f1d1c5f1181e3ab0ea782a1bbd46a2",
+    "semantic_hash": "20f1d1c5f1181e3ab0ea782a1bbd46a2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2304.03223.md": {
+    "mtime": 1781388633.0754175,
+    "ast_hash": "7c1b7890f5768ebfe47f9eed2690d4b5",
+    "semantic_hash": "7c1b7890f5768ebfe47f9eed2690d4b5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2305.04866.md": {
+    "mtime": 1781388633.0620904,
+    "ast_hash": "724f9bad2a02ada9dc56abd4fd6c19e6",
+    "semantic_hash": "724f9bad2a02ada9dc56abd4fd6c19e6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2307.05933.md": {
+    "mtime": 1781388633.0789602,
+    "ast_hash": "249d395a4d191bed111c4b64444afe6c",
+    "semantic_hash": "249d395a4d191bed111c4b64444afe6c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2307.06423.md": {
+    "mtime": 1781393824.3086143,
+    "ast_hash": "1fcf638e8dbc35ba53fc685bb43aa38d",
+    "semantic_hash": "1fcf638e8dbc35ba53fc685bb43aa38d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2307.12983.md": {
+    "mtime": 1781388633.0707014,
+    "ast_hash": "e257b410095fe9cda5b19c757ba15de3",
+    "semantic_hash": "e257b410095fe9cda5b19c757ba15de3"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2308.05602.md": {
+    "mtime": 1781388633.0718884,
+    "ast_hash": "1527c801137541bb134c141eb8323dae",
+    "semantic_hash": "1527c801137541bb134c141eb8323dae"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2308.07498.md": {
+    "mtime": 1781393551.5671234,
+    "ast_hash": "6ee806481d7866855ddcb4c5e3313b6e",
+    "semantic_hash": "6ee806481d7866855ddcb4c5e3313b6e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2309.08603.md": {
+    "mtime": 1781393100.8916466,
+    "ast_hash": "0dfc0c6b79e5239b1ba01211f20cde6e",
+    "semantic_hash": "0dfc0c6b79e5239b1ba01211f20cde6e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2309.09979.md": {
+    "mtime": 1781392920.62018,
+    "ast_hash": "6688199a7471c2c9ef311ee628064aca",
+    "semantic_hash": "6688199a7471c2c9ef311ee628064aca"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2310.00433.md": {
+    "mtime": 1781394017.2220507,
+    "ast_hash": "3d2a79aee4c401dd58f33bd5ab0e4955",
+    "semantic_hash": "3d2a79aee4c401dd58f33bd5ab0e4955"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2312.03673.md": {
+    "mtime": 1781392650.2481048,
+    "ast_hash": "d8c46c9b0e1244aa6428e42fa0fce19f",
+    "semantic_hash": "d8c46c9b0e1244aa6428e42fa0fce19f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2312.11460.md": {
+    "mtime": 1781388633.0710585,
+    "ast_hash": "411c28b6858e9f42c9531b4ccc533a75",
+    "semantic_hash": "411c28b6858e9f42c9531b4ccc533a75"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2402.02500.md": {
+    "mtime": 1781388633.084791,
+    "ast_hash": "991f3ca177581261011032a2f3639b4e",
+    "semantic_hash": "991f3ca177581261011032a2f3639b4e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2402.19249.md": {
+    "mtime": 1781393824.3137236,
+    "ast_hash": "f105c0fe6c09f3a81f1631797f164a66",
+    "semantic_hash": "f105c0fe6c09f3a81f1631797f164a66"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2403.08716.md": {
+    "mtime": 1781388633.0758271,
+    "ast_hash": "aef65eca5df8f8e0fbb1888bdd4ea571",
+    "semantic_hash": "aef65eca5df8f8e0fbb1888bdd4ea571"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2404.09080.md": {
+    "mtime": 1781393100.8897667,
+    "ast_hash": "a0993e65a28b0ec51c7e11acf863079b",
+    "semantic_hash": "a0993e65a28b0ec51c7e11acf863079b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2404.10399.md": {
+    "mtime": 1781388633.0741763,
+    "ast_hash": "aeb34ad527f2940a47c0ee2c7d07c270",
+    "semantic_hash": "aeb34ad527f2940a47c0ee2c7d07c270"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2404.12308.md": {
+    "mtime": 1781392740.3900032,
+    "ast_hash": "9c0c4ba273e2c8fbda2848cc15b3321c",
+    "semantic_hash": "9c0c4ba273e2c8fbda2848cc15b3321c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2404.18926.md": {
+    "mtime": 1781388633.0848782,
+    "ast_hash": "21f26dd5ef2bd1e088d4df88fae35630",
+    "semantic_hash": "21f26dd5ef2bd1e088d4df88fae35630"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2405.01792.md": {
+    "mtime": 1781388633.0717733,
+    "ast_hash": "19978eef035caa9eaa54ded00359e0cf",
+    "semantic_hash": "19978eef035caa9eaa54ded00359e0cf"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2405.03379.md": {
+    "mtime": 1781388633.0811598,
+    "ast_hash": "c677b853d1a45b64216f5e24b3583b76",
+    "semantic_hash": "c677b853d1a45b64216f5e24b3583b76"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2405.04378.md": {
+    "mtime": 1781394114.0063243,
+    "ast_hash": "3dfbb9e42b22cebc4271545073b2f7af",
+    "semantic_hash": "3dfbb9e42b22cebc4271545073b2f7af"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2405.05439.md": {
+    "mtime": 1781392920.6182556,
+    "ast_hash": "8318bb77288b14bf189862f7a86473ff",
+    "semantic_hash": "8318bb77288b14bf189862f7a86473ff"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2405.07391.md": {
+    "mtime": 1781388633.0806534,
+    "ast_hash": "a085bb364851f309f8d28a85886869ab",
+    "semantic_hash": "a085bb364851f309f8d28a85886869ab"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2405.08576.md": {
+    "mtime": 1781388633.0835176,
+    "ast_hash": "310c5d77a5c7d0e08af022cd939e808d",
+    "semantic_hash": "310c5d77a5c7d0e08af022cd939e808d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2405.19291.md": {
+    "mtime": 1781388633.0726635,
+    "ast_hash": "9c0beab5a429c3f4f5ddb0de4acc0f00",
+    "semantic_hash": "9c0beab5a429c3f4f5ddb0de4acc0f00"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2405.19988.md": {
+    "mtime": 1781392560.119709,
+    "ast_hash": "3ff59b28f6ffb5147e5e0c52d8d1bcba",
+    "semantic_hash": "3ff59b28f6ffb5147e5e0c52d8d1bcba"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2406.01967.md": {
+    "mtime": 1781392560.1201954,
+    "ast_hash": "f68f013fc62e477b55fe7ac1571f35a1",
+    "semantic_hash": "f68f013fc62e477b55fe7ac1571f35a1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2406.03813.md": {
+    "mtime": 1781388633.0847063,
+    "ast_hash": "b7c041e4c51de22a62a15d5f898bf1e9",
+    "semantic_hash": "b7c041e4c51de22a62a15d5f898bf1e9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2406.04835.md": {
+    "mtime": 1781388633.0711496,
+    "ast_hash": "cd81ff58a4f5ff7fd7586c8065befb09",
+    "semantic_hash": "cd81ff58a4f5ff7fd7586c8065befb09"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2406.10759.md": {
+    "mtime": 1781388633.0678523,
+    "ast_hash": "8a14ac2712817ab85cc095bc5fd46497",
+    "semantic_hash": "8a14ac2712817ab85cc095bc5fd46497"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2406.13640.md": {
+    "mtime": 1781388633.0839071,
+    "ast_hash": "a19251d2d3aca1136d82945193e20b89",
+    "semantic_hash": "a19251d2d3aca1136d82945193e20b89"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2407.07889.md": {
+    "mtime": 1781392830.5279756,
+    "ast_hash": "fefeb1e23b1383835d3699e95d767130",
+    "semantic_hash": "fefeb1e23b1383835d3699e95d767130"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2407.10353.md": {
+    "mtime": 1781388633.0610533,
+    "ast_hash": "a0285bac9e0e649601313d672d6fd0eb",
+    "semantic_hash": "a0285bac9e0e649601313d672d6fd0eb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2407.15002.md": {
+    "mtime": 1781388633.0800471,
+    "ast_hash": "16274bd4cf07ce5789a0a80d7a315288",
+    "semantic_hash": "16274bd4cf07ce5789a0a80d7a315288"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2407.17348.md": {
+    "mtime": 1781388633.07313,
+    "ast_hash": "da4f9288ab2802153256aed75c54814c",
+    "semantic_hash": "da4f9288ab2802153256aed75c54814c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2408.05107.md": {
+    "mtime": 1781388633.0858896,
+    "ast_hash": "0a0c107949a47aa2ab945f72143a67cc",
+    "semantic_hash": "0a0c107949a47aa2ab945f72143a67cc"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2409.07914.md": {
+    "mtime": 1781388633.0624967,
+    "ast_hash": "bc514b4cbdd53f213b59697dc24106bc",
+    "semantic_hash": "bc514b4cbdd53f213b59697dc24106bc"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2409.10161.md": {
+    "mtime": 1781392650.2500303,
+    "ast_hash": "4cf96119328853b87cd2da6094039fff",
+    "semantic_hash": "4cf96119328853b87cd2da6094039fff"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2409.16048.md": {
+    "mtime": 1781394114.0011523,
+    "ast_hash": "7c912f0326a44f253e7e7cc506791c2f",
+    "semantic_hash": "7c912f0326a44f253e7e7cc506791c2f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2409.16784.md": {
+    "mtime": 1781388633.071531,
+    "ast_hash": "f3a738af53912d067bec4e836996b5a0",
+    "semantic_hash": "f3a738af53912d067bec4e836996b5a0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2409.20291.md": {
+    "mtime": 1781394114.0061908,
+    "ast_hash": "1dd3a600ba4849fdbc1233fe6fdde7c0",
+    "semantic_hash": "1dd3a600ba4849fdbc1233fe6fdde7c0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2409.20514.md": {
+    "mtime": 1781388633.0687685,
+    "ast_hash": "4e3f0f69ca542b2d259b0e56855af4e1",
+    "semantic_hash": "4e3f0f69ca542b2d259b0e56855af4e1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.00841.md": {
+    "mtime": 1781394114.0033472,
+    "ast_hash": "9538bf728053b3d28bde0a3d601836dc",
+    "semantic_hash": "9538bf728053b3d28bde0a3d601836dc"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.01702.md": {
+    "mtime": 1781388633.0744328,
+    "ast_hash": "2bcfddc14dddc1003e13894799f2d462",
+    "semantic_hash": "2bcfddc14dddc1003e13894799f2d462"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.01968.md": {
+    "mtime": 1781393824.3076377,
+    "ast_hash": "78a60ce16c7a802f950c47dbb6abdb99",
+    "semantic_hash": "78a60ce16c7a802f950c47dbb6abdb99"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.02479.md": {
+    "mtime": 1781393824.31288,
+    "ast_hash": "2db8769d7f7a258b936e7c6d296526e2",
+    "semantic_hash": "2db8769d7f7a258b936e7c6d296526e2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.07408.md": {
+    "mtime": 1781394169.9487429,
+    "ast_hash": "b1b527420b2c420474ec3b60d134195a",
+    "semantic_hash": "b1b527420b2c420474ec3b60d134195a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.08655.md": {
+    "mtime": 1781388633.070015,
+    "ast_hash": "00e9c7a2b54aa83caaa802abea87c861",
+    "semantic_hash": "00e9c7a2b54aa83caaa802abea87c861"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.11989.md": {
+    "mtime": 1781388633.0641396,
+    "ast_hash": "5ed7f947dad89dff1240f50974f8ff14",
+    "semantic_hash": "5ed7f947dad89dff1240f50974f8ff14"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.18907.md": {
+    "mtime": 1781388633.0670292,
+    "ast_hash": "6aec8b427aabe0065d2823cc062e3737",
+    "semantic_hash": "6aec8b427aabe0065d2823cc062e3737"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2411.11839.md": {
+    "mtime": 1781392470.003031,
+    "ast_hash": "8ae11fa7cda3b7dfa19babf1d9a62308",
+    "semantic_hash": "8ae11fa7cda3b7dfa19babf1d9a62308"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2411.14386.md": {
+    "mtime": 1781388633.0681195,
+    "ast_hash": "b820b8306404b21f6cef4f6ae30ba4be",
+    "semantic_hash": "b820b8306404b21f6cef4f6ae30ba4be"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2411.16755.md": {
+    "mtime": 1781388633.0738342,
+    "ast_hash": "0f8a223806c9856ce738d4c06924fd31",
+    "semantic_hash": "0f8a223806c9856ce738d4c06924fd31"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2412.01791.md": {
+    "mtime": 1781388633.0814836,
+    "ast_hash": "a94dde4d7986cf3dd32503c783e043d2",
+    "semantic_hash": "a94dde4d7986cf3dd32503c783e043d2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2412.03012.md": {
+    "mtime": 1781388633.061238,
+    "ast_hash": "32ef4a0526c101edbcd20a2c3a0b6d81",
+    "semantic_hash": "32ef4a0526c101edbcd20a2c3a0b6d81"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2501.14208.md": {
+    "mtime": 1781388633.0787535,
+    "ast_hash": "03b4ebd7f6c658415693c7e595a41c6b",
+    "semantic_hash": "03b4ebd7f6c658415693c7e595a41c6b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.00935.md": {
+    "mtime": 1781393100.8902838,
+    "ast_hash": "eaa3f2cb8322b46d0195f481b4b7fa19",
+    "semantic_hash": "eaa3f2cb8322b46d0195f481b4b7fa19"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.08378.md": {
+    "mtime": 1781388633.0695837,
+    "ast_hash": "347f489119c9273babb726030f058e31",
+    "semantic_hash": "347f489119c9273babb726030f058e31"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.08643.md": {
+    "mtime": 1781392830.526325,
+    "ast_hash": "7e8a64b6ff1115f7b47ef390626626cf",
+    "semantic_hash": "7e8a64b6ff1115f7b47ef390626626cf"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.08645.md": {
+    "mtime": 1781392650.2495918,
+    "ast_hash": "517f515b89756f3dc4ba8532c69ab9cd",
+    "semantic_hash": "517f515b89756f3dc4ba8532c69ab9cd"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.10983.md": {
+    "mtime": 1781388633.07042,
+    "ast_hash": "259c1d40f4d3430d9f96fe1e37c8bdf3",
+    "semantic_hash": "259c1d40f4d3430d9f96fe1e37c8bdf3"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.12191.md": {
+    "mtime": 1781388633.0840642,
+    "ast_hash": "3d99ff19a028005e18f4c566cfe7df48",
+    "semantic_hash": "3d99ff19a028005e18f4c566cfe7df48"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.14457.md": {
+    "mtime": 1781389976.2452087,
+    "ast_hash": "f624d96e3fbddd1d48b237ad2b5fa938",
+    "semantic_hash": "f624d96e3fbddd1d48b237ad2b5fa938"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.15280.md": {
+    "mtime": 1781388633.0708685,
+    "ast_hash": "6427a0b74017ff256d8c4498bb06835b",
+    "semantic_hash": "6427a0b74017ff256d8c4498bb06835b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.16420.md": {
+    "mtime": 1781388633.0743577,
+    "ast_hash": "019b4512008e35d264d0186226757c56",
+    "semantic_hash": "019b4512008e35d264d0186226757c56"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.19638.md": {
+    "mtime": 1781394114.0043292,
+    "ast_hash": "adf2b83700359420b7a135b7f6ede0c5",
+    "semantic_hash": "adf2b83700359420b7a135b7f6ede0c5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.20061.md": {
+    "mtime": 1781388633.0699248,
+    "ast_hash": "e10dadd14e00648c6410ed574ffbf8ce",
+    "semantic_hash": "e10dadd14e00648c6410ed574ffbf8ce"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.00692.md": {
+    "mtime": 1781388633.0676756,
+    "ast_hash": "77990bc34029c17f5340f04208cdd0e9",
+    "semantic_hash": "77990bc34029c17f5340f04208cdd0e9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.00923.md": {
+    "mtime": 1781388633.0648482,
+    "ast_hash": "d44b92fee9eefadda4a67a0e096a2863",
+    "semantic_hash": "d44b92fee9eefadda4a67a0e096a2863"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.01058.md": {
+    "mtime": 1781388633.0843353,
+    "ast_hash": "a7d4abd16bdaf6503cf0058163d6aaef",
+    "semantic_hash": "a7d4abd16bdaf6503cf0058163d6aaef"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.05035.md": {
+    "mtime": 1781388633.0702035,
+    "ast_hash": "3ce1f4b10749c379c6596c26132cadf2",
+    "semantic_hash": "3ce1f4b10749c379c6596c26132cadf2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.06736.md": {
+    "mtime": 1781388633.0825408,
+    "ast_hash": "303665163e218588cf7410a3cc8a5fc8",
+    "semantic_hash": "303665163e218588cf7410a3cc8a5fc8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.07360.md": {
+    "mtime": 1781388633.072085,
+    "ast_hash": "afb4f988e4e8ae81b992aeea5e33045a",
+    "semantic_hash": "afb4f988e4e8ae81b992aeea5e33045a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.07511.md": {
+    "mtime": 1781388633.0857131,
+    "ast_hash": "febbccbbd094be690b260306173d3cbf",
+    "semantic_hash": "febbccbbd094be690b260306173d3cbf"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.07926.md": {
+    "mtime": 1781388633.075331,
+    "ast_hash": "445079ebb430e9e37de8e300acce6f4c",
+    "semantic_hash": "445079ebb430e9e37de8e300acce6f4c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.09186.md": {
+    "mtime": 1781388633.0775158,
+    "ast_hash": "52f3a96e1f01b40ccbc4086a9c693776",
+    "semantic_hash": "52f3a96e1f01b40ccbc4086a9c693776"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.13446.md": {
+    "mtime": 1781388633.0621777,
+    "ast_hash": "5515fe9fe13aec1a19d751597704eba6",
+    "semantic_hash": "5515fe9fe13aec1a19d751597704eba6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.13916.md": {
+    "mtime": 1781388633.0777435,
+    "ast_hash": "25c3ebb6ae171de0bb80e69b665b8846",
+    "semantic_hash": "25c3ebb6ae171de0bb80e69b665b8846"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.16394.md": {
+    "mtime": 1781393551.569216,
+    "ast_hash": "cee950a79295395bf6db561e7cae2b48",
+    "semantic_hash": "cee950a79295395bf6db561e7cae2b48"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.19457.md": {
+    "mtime": 1781388633.0740328,
+    "ast_hash": "88bece52be2c2beca911d96f86a37c98",
+    "semantic_hash": "88bece52be2c2beca911d96f86a37c98"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.23271.md": {
+    "mtime": 1781388633.0797443,
+    "ast_hash": "33cd2235c2a2346a300619d63786e116",
+    "semantic_hash": "33cd2235c2a2346a300619d63786e116"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.24278.md": {
+    "mtime": 1781392920.6187334,
+    "ast_hash": "0b7511816b0354c2a8d3a221135603a4",
+    "semantic_hash": "0b7511816b0354c2a8d3a221135603a4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2504.12684.md": {
+    "mtime": 1781392379.869761,
+    "ast_hash": "ecabff4470c2a075ac8a29e52c27cd5a",
+    "semantic_hash": "ecabff4470c2a075ac8a29e52c27cd5a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2504.13159.md": {
+    "mtime": 1781394114.0060577,
+    "ast_hash": "c638f0897c90e5db7b1f23d769ba08fa",
+    "semantic_hash": "c638f0897c90e5db7b1f23d769ba08fa"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2504.16649.md": {
+    "mtime": 1781394114.002878,
+    "ast_hash": "bb508e8e45a06c5f29b1610354b2f1fe",
+    "semantic_hash": "bb508e8e45a06c5f29b1610354b2f1fe"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2504.16693.md": {
+    "mtime": 1781393190.987677,
+    "ast_hash": "d4cb36cfcdefe7c7b3a361b132645537",
+    "semantic_hash": "d4cb36cfcdefe7c7b3a361b132645537"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2504.16843.md": {
+    "mtime": 1781388633.0669215,
+    "ast_hash": "a78791f6275c000e762bc14c081d08eb",
+    "semantic_hash": "a78791f6275c000e762bc14c081d08eb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.00779.md": {
+    "mtime": 1781394114.0074317,
+    "ast_hash": "31c8d4dfc13a24749cd0c1a43e11dc6d",
+    "semantic_hash": "31c8d4dfc13a24749cd0c1a43e11dc6d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.00991.md": {
+    "mtime": 1781392560.1215832,
+    "ast_hash": "56c4de22fa3ce4a4912656d2a353695e",
+    "semantic_hash": "56c4de22fa3ce4a4912656d2a353695e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.05495.md": {
+    "mtime": 1781394114.005425,
+    "ast_hash": "6159105534d3ff18a523a9cab3df87b9",
+    "semantic_hash": "6159105534d3ff18a523a9cab3df87b9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.05512.md": {
+    "mtime": 1781388633.0855048,
+    "ast_hash": "9b5457288488dcfea2163ca41233644a",
+    "semantic_hash": "9b5457288488dcfea2163ca41233644a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.05753.md": {
+    "mtime": 1781388633.0664124,
+    "ast_hash": "0ec76d8e171e9eab8408bd5c9d04968a",
+    "semantic_hash": "0ec76d8e171e9eab8408bd5c9d04968a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.09577.md": {
+    "mtime": 1781388633.0766292,
+    "ast_hash": "220385be00abd63fc412004c346d0043",
+    "semantic_hash": "220385be00abd63fc412004c346d0043"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.10075.md": {
+    "mtime": 1781392109.5354633,
+    "ast_hash": "d355aa220526ca0f47f719de682ad18b",
+    "semantic_hash": "d355aa220526ca0f47f719de682ad18b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.11494.md": {
+    "mtime": 1781393824.3191612,
+    "ast_hash": "40be15e9ee110e38d93b4afd39c502db",
+    "semantic_hash": "40be15e9ee110e38d93b4afd39c502db"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.11816.md": {
+    "mtime": 1781393371.2821465,
+    "ast_hash": "d7142b7614b39a0313bae9447522e5d6",
+    "semantic_hash": "d7142b7614b39a0313bae9447522e5d6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.11858.md": {
+    "mtime": 1781388633.0771644,
+    "ast_hash": "330e950b56cc71987bf1b57782637e32",
+    "semantic_hash": "330e950b56cc71987bf1b57782637e32"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.13441.md": {
+    "mtime": 1781388633.0728552,
+    "ast_hash": "ad5acb6f3f39d53bbb7de2ae6d876f95",
+    "semantic_hash": "ad5acb6f3f39d53bbb7de2ae6d876f95"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.14266.md": {
+    "mtime": 1781394114.0069168,
+    "ast_hash": "f9573a7237245abf6b4acc12e5519e48",
+    "semantic_hash": "f9573a7237245abf6b4acc12e5519e48"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.18474.md": {
+    "mtime": 1781388633.0851583,
+    "ast_hash": "f6e5ae802754792ebe8d20eb88af1776",
+    "semantic_hash": "f6e5ae802754792ebe8d20eb88af1776"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.20897.md": {
+    "mtime": 1781393461.417109,
+    "ast_hash": "c1601b464729e810981cd82f0827628f",
+    "semantic_hash": "c1601b464729e810981cd82f0827628f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.23692.md": {
+    "mtime": 1781394114.0021322,
+    "ast_hash": "5683cb87ca44a2f5f791eb62b8b54fc2",
+    "semantic_hash": "5683cb87ca44a2f5f791eb62b8b54fc2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.24156.md": {
+    "mtime": 1781388633.079219,
+    "ast_hash": "d142045433aded7e2f225f0b61d8c76f",
+    "semantic_hash": "d142045433aded7e2f225f0b61d8c76f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.01185.md": {
+    "mtime": 1781388633.0622616,
+    "ast_hash": "67ae5269a991f54e9167b94c984e9405",
+    "semantic_hash": "67ae5269a991f54e9167b94c984e9405"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.03079.md": {
+    "mtime": 1781392109.532365,
+    "ast_hash": "8236442849b7d78ba1a6ad62dbfede74",
+    "semantic_hash": "8236442849b7d78ba1a6ad62dbfede74"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.05284.md": {
+    "mtime": 1781394114.0055826,
+    "ast_hash": "3c9bf6fac8ebfb9ba181e810c40d4d1f",
+    "semantic_hash": "3c9bf6fac8ebfb9ba181e810c40d4d1f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.08334.md": {
+    "mtime": 1781392379.8674715,
+    "ast_hash": "476185bd253e4c80ba0499db186d78cb",
+    "semantic_hash": "476185bd253e4c80ba0499db186d78cb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.12779.md": {
+    "mtime": 1781388633.0609617,
+    "ast_hash": "23581bf52cea2e377a55b9c93c4222a0",
+    "semantic_hash": "23581bf52cea2e377a55b9c93c4222a0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.14608.md": {
+    "mtime": 1781388633.0801282,
+    "ast_hash": "369327404c412ea50fa873e4945b155d",
+    "semantic_hash": "369327404c412ea50fa873e4945b155d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.15666.md": {
+    "mtime": 1781388633.0632951,
+    "ast_hash": "08c1e918742e22523e32104a5b300c41",
+    "semantic_hash": "08c1e918742e22523e32104a5b300c41"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.15680.md": {
+    "mtime": 1781394114.0067592,
+    "ast_hash": "7876d6d3aad00f0cc869d1cd2f7ed39e",
+    "semantic_hash": "7876d6d3aad00f0cc869d1cd2f7ed39e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.17639.md": {
+    "mtime": 1781393281.127044,
+    "ast_hash": "3b48e40d2b66820fe20f4e1b1c23f40a",
+    "semantic_hash": "3b48e40d2b66820fe20f4e1b1c23f40a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.20553.md": {
+    "mtime": 1781392920.619288,
+    "ast_hash": "b527c2306b29d637f1cf89b8bbb8e0de",
+    "semantic_hash": "b527c2306b29d637f1cf89b8bbb8e0de"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.23114.md": {
+    "mtime": 1781388633.070515,
+    "ast_hash": "705e076d6603dfba9a0e3a3f7e9f2b67",
+    "semantic_hash": "705e076d6603dfba9a0e3a3f7e9f2b67"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.23126.md": {
+    "mtime": 1781388633.0855846,
+    "ast_hash": "0350a713231a6d1702cb6661a5f3061c",
+    "semantic_hash": "0350a713231a6d1702cb6661a5f3061c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.00416.md": {
+    "mtime": 1781388633.0860078,
+    "ast_hash": "d16b5fd9899fd2d1fe10df49ad142da7",
+    "semantic_hash": "d16b5fd9899fd2d1fe10df49ad142da7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.01961.md": {
+    "mtime": 1781394114.001672,
+    "ast_hash": "55fc34e775124f4705b7420b5af4af95",
+    "semantic_hash": "55fc34e775124f4705b7420b5af4af95"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.02861.md": {
+    "mtime": 1781392289.7366064,
+    "ast_hash": "fb4b56d241554a1a761dc7ca079d55f6",
+    "semantic_hash": "fb4b56d241554a1a761dc7ca079d55f6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.04140.md": {
+    "mtime": 1781388633.0606873,
+    "ast_hash": "4c3edd9bb67dff3514b976840de7fe71",
+    "semantic_hash": "4c3edd9bb67dff3514b976840de7fe71"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.05116.md": {
+    "mtime": 1781389976.2458222,
+    "ast_hash": "8ebe7b208e4859a3a778b8cd403db4bc",
+    "semantic_hash": "8ebe7b208e4859a3a778b8cd403db4bc"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.05386.md": {
+    "mtime": 1781389976.2462974,
+    "ast_hash": "adbc64ee6a9e5b4d64ec5b4ae3403056",
+    "semantic_hash": "adbc64ee6a9e5b4d64ec5b4ae3403056"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.06710.md": {
+    "mtime": 1781388633.0870724,
+    "ast_hash": "7598ae9c51b61b7d64bb6ab133fb72b2",
+    "semantic_hash": "7598ae9c51b61b7d64bb6ab133fb72b2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.08656.md": {
+    "mtime": 1781393824.3180344,
+    "ast_hash": "f1c18c373a9ae95b99c3d2131c833c81",
+    "semantic_hash": "f1c18c373a9ae95b99c3d2131c833c81"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.12465.md": {
+    "mtime": 1781393824.3206375,
+    "ast_hash": "3322204ffeb2292435ecddb09baf73ec",
+    "semantic_hash": "3322204ffeb2292435ecddb09baf73ec"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.14049.md": {
+    "mtime": 1781393281.1294997,
+    "ast_hash": "ab02cada0bdae8e6b07e16c61de08282",
+    "semantic_hash": "ab02cada0bdae8e6b07e16c61de08282"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.01112.md": {
+    "mtime": 1781392830.5269532,
+    "ast_hash": "1cb11df56fcddff6e1e2447e1a42fbbc",
+    "semantic_hash": "1cb11df56fcddff6e1e2447e1a42fbbc"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.01695.md": {
+    "mtime": 1781388633.0803633,
+    "ast_hash": "4d852eac1b047cf9f05ff8aed15d4df7",
+    "semantic_hash": "4d852eac1b047cf9f05ff8aed15d4df7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.03339.md": {
+    "mtime": 1781388633.0736537,
+    "ast_hash": "f4a41d0ba664f45a279483ffe7c5a7bb",
+    "semantic_hash": "f4a41d0ba664f45a279483ffe7c5a7bb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.03944.md": {
+    "mtime": 1781394114.0037928,
+    "ast_hash": "7bd3bda0ba8c0b25880b4e90ec439e6f",
+    "semantic_hash": "7bd3bda0ba8c0b25880b4e90ec439e6f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.11117.md": {
+    "mtime": 1781392740.3889372,
+    "ast_hash": "0f4f0654226a0232e763125c5270f7bc",
+    "semantic_hash": "0f4f0654226a0232e763125c5270f7bc"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.17437.md": {
+    "mtime": 1781392470.0001433,
+    "ast_hash": "8cf361606e8e10d7448e00e38b38adc7",
+    "semantic_hash": "8cf361606e8e10d7448e00e38b38adc7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.20840.md": {
+    "mtime": 1781394114.005269,
+    "ast_hash": "10bf308853f893bc99cc456e68713fc1",
+    "semantic_hash": "10bf308853f893bc99cc456e68713fc1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.00361.md": {
+    "mtime": 1781394114.0050066,
+    "ast_hash": "732cf0d313d0804bbb9274b523a4cb3b",
+    "semantic_hash": "732cf0d313d0804bbb9274b523a4cb3b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.01044.md": {
+    "mtime": 1781388633.0812974,
+    "ast_hash": "6968211817049d2e536b806bcdf8873b",
+    "semantic_hash": "6968211817049d2e536b806bcdf8873b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.01819.md": {
+    "mtime": 1781388633.0852373,
+    "ast_hash": "e7c0619e41e1c01feda132360e3df322",
+    "semantic_hash": "e7c0619e41e1c01feda132360e3df322"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.02815.md": {
+    "mtime": 1781393824.317245,
+    "ast_hash": "22b8840c84dabfda332e88cdd2a7d8b6",
+    "semantic_hash": "22b8840c84dabfda332e88cdd2a7d8b6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.05314.md": {
+    "mtime": 1781394114.0048628,
+    "ast_hash": "b3d5610cea0adc8869d98ea47c04c494",
+    "semantic_hash": "b3d5610cea0adc8869d98ea47c04c494"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.06342.md": {
+    "mtime": 1781392560.1211336,
+    "ast_hash": "96f0129d7ea2b3f787da8f917fff2019",
+    "semantic_hash": "96f0129d7ea2b3f787da8f917fff2019"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.07445.md": {
+    "mtime": 1781388633.0808454,
+    "ast_hash": "23dad449227135cda1cd1de141e479d9",
+    "semantic_hash": "23dad449227135cda1cd1de141e479d9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.11197.md": {
+    "mtime": 1781393551.5655384,
+    "ast_hash": "b54cdb10bf39bbb94f6d184821a36e9e",
+    "semantic_hash": "b54cdb10bf39bbb94f6d184821a36e9e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.14117.md": {
+    "mtime": 1781388633.086112,
+    "ast_hash": "5c942e91a5357d546e2631c0617d6828",
+    "semantic_hash": "5c942e91a5357d546e2631c0617d6828"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.15443.md": {
+    "mtime": 1781388633.0690248,
+    "ast_hash": "629a73f8e75b3bb84abfe53b48a09576",
+    "semantic_hash": "629a73f8e75b3bb84abfe53b48a09576"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.15733.md": {
+    "mtime": 1781388633.0850112,
+    "ast_hash": "ed60092b2ba7849efe9e02de5213a362",
+    "semantic_hash": "ed60092b2ba7849efe9e02de5213a362"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.17647.md": {
+    "mtime": 1781392379.8681355,
+    "ast_hash": "df5812ed898ce6483ee7954e4baad0ea",
+    "semantic_hash": "df5812ed898ce6483ee7954e4baad0ea"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.19555.md": {
+    "mtime": 1781393100.8912146,
+    "ast_hash": "facafc410e3e1788ab3f6ad2fe242d2d",
+    "semantic_hash": "facafc410e3e1788ab3f6ad2fe242d2d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.20297.md": {
+    "mtime": 1781388633.063919,
+    "ast_hash": "9440c579cfe5466b1610d40d64f52bf1",
+    "semantic_hash": "9440c579cfe5466b1610d40d64f52bf1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.20322.md": {
+    "mtime": 1781388633.0667868,
+    "ast_hash": "c2ae71ec3ba42226f22a40f14a2b79f4",
+    "semantic_hash": "c2ae71ec3ba42226f22a40f14a2b79f4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.21231.md": {
+    "mtime": 1781388633.060318,
+    "ast_hash": "cbd7a4fada66779ab4c224a249443e06",
+    "semantic_hash": "cbd7a4fada66779ab4c224a249443e06"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.23075.md": {
+    "mtime": 1781393824.306401,
+    "ast_hash": "e8efe01300c90fd01169bf07d8e3dc53",
+    "semantic_hash": "e8efe01300c90fd01169bf07d8e3dc53"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.24661.md": {
+    "mtime": 1781388633.0750449,
+    "ast_hash": "60e4e08dcccd3b27beebeba482ecb452",
+    "semantic_hash": "60e4e08dcccd3b27beebeba482ecb452"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.01607.md": {
+    "mtime": 1781388633.0631592,
+    "ast_hash": "ae390539741a2dfc800a56953a211988",
+    "semantic_hash": "ae390539741a2dfc800a56953a211988"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.03022.md": {
+    "mtime": 1781388633.0654902,
+    "ast_hash": "66b0b4ad72581dcc88dacb84eb1cb0ed",
+    "semantic_hash": "66b0b4ad72581dcc88dacb84eb1cb0ed"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.03885.md": {
+    "mtime": 1781388633.0636752,
+    "ast_hash": "501b65923558796404e67e66fe687996",
+    "semantic_hash": "501b65923558796404e67e66fe687996"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.05560.md": {
+    "mtime": 1781392289.735209,
+    "ast_hash": "f0506ea54b666975a73d63bfa7780c2d",
+    "semantic_hash": "f0506ea54b666975a73d63bfa7780c2d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.06068.md": {
+    "mtime": 1781388633.0745325,
+    "ast_hash": "8cbae16647c01e965493d0a5304f5535",
+    "semantic_hash": "8cbae16647c01e965493d0a5304f5535"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.07152.md": {
+    "mtime": 1781388633.0682502,
+    "ast_hash": "f0e783edef5481c0c5ab2175aca053d2",
+    "semantic_hash": "f0e783edef5481c0c5ab2175aca053d2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.08553.md": {
+    "mtime": 1781393461.417586,
+    "ast_hash": "1f1c475aad4e9f9cc6c401d00e4720ce",
+    "semantic_hash": "1f1c475aad4e9f9cc6c401d00e4720ce"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.09036.md": {
+    "mtime": 1781388633.0869997,
+    "ast_hash": "a64a5184f11ae48b306b6d28ca4f7ff8",
+    "semantic_hash": "a64a5184f11ae48b306b6d28ca4f7ff8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.09817.md": {
+    "mtime": 1781393824.311675,
+    "ast_hash": "a7af85e07fc95d444ccd078bd322ebf2",
+    "semantic_hash": "a7af85e07fc95d444ccd078bd322ebf2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.10637.md": {
+    "mtime": 1781389643.2237754,
+    "ast_hash": "e9613bd32866814ec4493c842bbaff60",
+    "semantic_hash": "e9613bd32866814ec4493c842bbaff60"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.11258.md": {
+    "mtime": 1781388633.0665863,
+    "ast_hash": "229489d9828945caf0804047843042dd",
+    "semantic_hash": "229489d9828945caf0804047843042dd"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.13375.md": {
+    "mtime": 1781388633.0858037,
+    "ast_hash": "6f822c55290c0613125441feda6399ec",
+    "semantic_hash": "6f822c55290c0613125441feda6399ec"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.14117.md": {
+    "mtime": 1781388633.083249,
+    "ast_hash": "552af3e2a8e98dbff7f50b91992b5f95",
+    "semantic_hash": "552af3e2a8e98dbff7f50b91992b5f95"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.14454.md": {
+    "mtime": 1781388633.0693634,
+    "ast_hash": "cf3ed9a6d3d473508da4745767fd4d65",
+    "semantic_hash": "cf3ed9a6d3d473508da4745767fd4d65"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.14930.md": {
+    "mtime": 1781394154.0411973,
+    "ast_hash": "f21530545b4d3daba57307da930145a1",
+    "semantic_hash": "f21530545b4d3daba57307da930145a1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.15352.md": {
+    "mtime": 1781392470.0025487,
+    "ast_hash": "60b3218ca9331e95afbc4c46b1c22cf4",
+    "semantic_hash": "60b3218ca9331e95afbc4c46b1c22cf4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.17111.md": {
+    "mtime": 1781393371.279421,
+    "ast_hash": "950edfcbcccc5a5ada85bf04c7a02033",
+    "semantic_hash": "950edfcbcccc5a5ada85bf04c7a02033"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.18316.md": {
+    "mtime": 1781388633.0666776,
+    "ast_hash": "dca22dbf14465deebdbed5ed72b2dd1c",
+    "semantic_hash": "dca22dbf14465deebdbed5ed72b2dd1c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.19818.md": {
+    "mtime": 1781392109.5332596,
+    "ast_hash": "f81b594ee531ed8c0d5a20015ca38e55",
+    "semantic_hash": "f81b594ee531ed8c0d5a20015ca38e55"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.20774.md": {
+    "mtime": 1781388633.0780623,
+    "ast_hash": "4a2cf5d5f23ac32033787af575fa16e4",
+    "semantic_hash": "4a2cf5d5f23ac32033787af575fa16e4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.20813.md": {
+    "mtime": 1781392740.391525,
+    "ast_hash": "56c65a4870f57f008881dcef5d7cfdd2",
+    "semantic_hash": "56c65a4870f57f008881dcef5d7cfdd2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.21307.md": {
+    "mtime": 1781394114.0059214,
+    "ast_hash": "5a933d22aac1ab3bf4ccff633e8f827e",
+    "semantic_hash": "5a933d22aac1ab3bf4ccff633e8f827e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.26280.md": {
+    "mtime": 1781388633.0643792,
+    "ast_hash": "ab959bece2a4addb1dbf6f7e307f1b85",
+    "semantic_hash": "ab959bece2a4addb1dbf6f7e307f1b85"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.26742.md": {
+    "mtime": 1781393371.280813,
+    "ast_hash": "37d4df4e2144f9e3b9aee91d2d9d848d",
+    "semantic_hash": "37d4df4e2144f9e3b9aee91d2d9d848d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.00153.md": {
+    "mtime": 1781388633.0630288,
+    "ast_hash": "4b043d1d12ffa9f8470dbadbadbf2b0f",
+    "semantic_hash": "4b043d1d12ffa9f8470dbadbadbf2b0f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.01177.md": {
+    "mtime": 1781393551.5725727,
+    "ast_hash": "285e31bd394dfb33826be361cb5bf2d6",
+    "semantic_hash": "285e31bd394dfb33826be361cb5bf2d6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.02832.md": {
+    "mtime": 1781388633.0656083,
+    "ast_hash": "eea68a0fd842366d381b21da925f3567",
+    "semantic_hash": "eea68a0fd842366d381b21da925f3567"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.06299.md": {
+    "mtime": 1781394114.0064766,
+    "ast_hash": "43e3b6285a09c0365facaf99a6228669",
+    "semantic_hash": "43e3b6285a09c0365facaf99a6228669"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.06385.md": {
+    "mtime": 1781388633.0827277,
+    "ast_hash": "3631befec970d4b733350d569c02620d",
+    "semantic_hash": "3631befec970d4b733350d569c02620d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.07407.md": {
+    "mtime": 1781388633.0698414,
+    "ast_hash": "d6c513361e55b6ebd568483c6c25dae0",
+    "semantic_hash": "d6c513361e55b6ebd568483c6c25dae0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.09558.md": {
+    "mtime": 1781388633.0732744,
+    "ast_hash": "e8f6cd826382f640b8487e141891f227",
+    "semantic_hash": "e8f6cd826382f640b8487e141891f227"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.09602.md": {
+    "mtime": 1781388633.0722897,
+    "ast_hash": "c49f0c76731b6a5d27e184313dda87e7",
+    "semantic_hash": "c49f0c76731b6a5d27e184313dda87e7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.11011.md": {
+    "mtime": 1781393461.41902,
+    "ast_hash": "428e80ad5c3fd6ef11568131c63ccb00",
+    "semantic_hash": "428e80ad5c3fd6ef11568131c63ccb00"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.13648.md": {
+    "mtime": 1781393824.3207831,
+    "ast_hash": "f3bec9d7445964a559c989dcf51432d2",
+    "semantic_hash": "f3bec9d7445964a559c989dcf51432d2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.17199.md": {
+    "mtime": 1781394114.0047154,
+    "ast_hash": "deb67c71c832ad0737fe38dd6990a29e",
+    "semantic_hash": "deb67c71c832ad0737fe38dd6990a29e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.18509.md": {
+    "mtime": 1781388633.0647376,
+    "ast_hash": "e57b4ac2dec64af4a7855b6616231b2f",
+    "semantic_hash": "e57b4ac2dec64af4a7855b6616231b2f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.18845.md": {
+    "mtime": 1781393461.4181118,
+    "ast_hash": "c9df2f8d1010552a2434ab5e43826bec",
+    "semantic_hash": "c9df2f8d1010552a2434ab5e43826bec"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.21169.md": {
+    "mtime": 1781394017.221619,
+    "ast_hash": "14e0b68bdb39d4cee78d481f77b5933e",
+    "semantic_hash": "14e0b68bdb39d4cee78d481f77b5933e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.00076.md": {
+    "mtime": 1781392740.3910143,
+    "ast_hash": "2242b5c1838acf69b2fa2a1d0269ad28",
+    "semantic_hash": "2242b5c1838acf69b2fa2a1d0269ad28"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.00971.md": {
+    "mtime": 1781388633.0659804,
+    "ast_hash": "1d7994cc1dd9baceb03045e534578c4a",
+    "semantic_hash": "1d7994cc1dd9baceb03045e534578c4a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.02851.md": {
+    "mtime": 1781388633.0716987,
+    "ast_hash": "b687180c3f9401d83f2d1714d53f695e",
+    "semantic_hash": "b687180c3f9401d83f2d1714d53f695e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.03707.md": {
+    "mtime": 1781388633.082224,
+    "ast_hash": "36875f0214ef9e0e3adfdcf9f084d852",
+    "semantic_hash": "36875f0214ef9e0e3adfdcf9f084d852"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.03874.md": {
+    "mtime": 1781388633.0724678,
+    "ast_hash": "fc4cb5313d68453afcab2f7fe2b6eaad",
+    "semantic_hash": "fc4cb5313d68453afcab2f7fe2b6eaad"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.04040.md": {
+    "mtime": 1781392199.6295774,
+    "ast_hash": "b00c6e5f088584eb47f4cbed9f1bc60d",
+    "semantic_hash": "b00c6e5f088584eb47f4cbed9f1bc60d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.04381.md": {
+    "mtime": 1781393824.315068,
+    "ast_hash": "18d957c8ed1c0c6483563a7bb247d040",
+    "semantic_hash": "18d957c8ed1c0c6483563a7bb247d040"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.07464.md": {
+    "mtime": 1781388633.0680027,
+    "ast_hash": "3cd0d252cd9b3f1a67af15c2045362bb",
+    "semantic_hash": "3cd0d252cd9b3f1a67af15c2045362bb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.11908.md": {
+    "mtime": 1781388633.0829306,
+    "ast_hash": "afa2b5e494a8340f8844d478fa81d6a8",
+    "semantic_hash": "afa2b5e494a8340f8844d478fa81d6a8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.12230.md": {
+    "mtime": 1781388633.0701036,
+    "ast_hash": "89e4874930b441f3198e566029cbe379",
+    "semantic_hash": "89e4874930b441f3198e566029cbe379"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.16861.md": {
+    "mtime": 1781388633.0816762,
+    "ast_hash": "7d18a4554b51ca20d8c1d046668a0ff0",
+    "semantic_hash": "7d18a4554b51ca20d8c1d046668a0ff0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.19390.md": {
+    "mtime": 1781392650.2486472,
+    "ast_hash": "bce7c7345b1879371d73facb35aaf044",
+    "semantic_hash": "bce7c7345b1879371d73facb35aaf044"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.20188.md": {
+    "mtime": 1781388633.0616295,
+    "ast_hash": "e94f2b18d97f7358a8a006f55f2401c8",
+    "semantic_hash": "e94f2b18d97f7358a8a006f55f2401c8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.20276.md": {
+    "mtime": 1781393371.2804103,
+    "ast_hash": "bbfd71d201a6675f79fb2ddd9545e566",
+    "semantic_hash": "bbfd71d201a6675f79fb2ddd9545e566"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.21714.md": {
+    "mtime": 1781393551.5649178,
+    "ast_hash": "7594dd0508f3e1043dd5dfa838d8fb49",
+    "semantic_hash": "7594dd0508f3e1043dd5dfa838d8fb49"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.23017.md": {
+    "mtime": 1781393461.4160335,
+    "ast_hash": "4b9cddb540240514696547bb0652442a",
+    "semantic_hash": "4b9cddb540240514696547bb0652442a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.01984.md": {
+    "mtime": 1781388633.0867045,
+    "ast_hash": "ff84efba08b256e9eae970c97c9cb6d9",
+    "semantic_hash": "ff84efba08b256e9eae970c97c9cb6d9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.03200.md": {
+    "mtime": 1781392740.3883295,
+    "ast_hash": "49b0351caf63d40f53274db4634e732f",
+    "semantic_hash": "49b0351caf63d40f53274db4634e732f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.05237.md": {
+    "mtime": 1781389643.220333,
+    "ast_hash": "77e108b64204ddf57e69942b2945c019",
+    "semantic_hash": "77e108b64204ddf57e69942b2945c019"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.05499.md": {
+    "mtime": 1781388633.0734603,
+    "ast_hash": "594bde0063666655f7b724224fe55cb7",
+    "semantic_hash": "594bde0063666655f7b724224fe55cb7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.07701.md": {
+    "mtime": 1781388633.0673914,
+    "ast_hash": "4c7b0242f3c61b627df56f6f6ef63392",
+    "semantic_hash": "4c7b0242f3c61b627df56f6f6ef63392"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.07718.md": {
+    "mtime": 1781388633.0675347,
+    "ast_hash": "fef31e48188d45a3406a7369ca7239b3",
+    "semantic_hash": "fef31e48188d45a3406a7369ca7239b3"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.09518.md": {
+    "mtime": 1781388633.065228,
+    "ast_hash": "e0a9cd454c7771e818fedf861de97e9c",
+    "semantic_hash": "e0a9cd454c7771e818fedf861de97e9c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.15164.md": {
+    "mtime": 1781388633.0783432,
+    "ast_hash": "57cc1649851046fb59f7993b28f65274",
+    "semantic_hash": "57cc1649851046fb59f7993b28f65274"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.15419.md": {
+    "mtime": 1781388633.066234,
+    "ast_hash": "408c1f9e190889f4f169cd6feab91b61",
+    "semantic_hash": "408c1f9e190889f4f169cd6feab91b61"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.17067.md": {
+    "mtime": 1781393190.9894538,
+    "ast_hash": "2881728422adc9ff0e0e258bb6e641ef",
+    "semantic_hash": "2881728422adc9ff0e0e258bb6e641ef"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.17251.md": {
+    "mtime": 1781392830.5290046,
+    "ast_hash": "0f070672528128ab7fb3732a1455caf4",
+    "semantic_hash": "0f070672528128ab7fb3732a1455caf4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.17440.md": {
+    "mtime": 1781388633.0618424,
+    "ast_hash": "ab4ecf0ef55669aaf58756c63d3d6b2d",
+    "semantic_hash": "ab4ecf0ef55669aaf58756c63d3d6b2d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.17616.md": {
+    "mtime": 1781394114.0075772,
+    "ast_hash": "3b61746989f9279bfcfc90b6b826d422",
+    "semantic_hash": "3b61746989f9279bfcfc90b6b826d422"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.18323.md": {
+    "mtime": 1781394154.041343,
+    "ast_hash": "6a63ed091a46dc61630ead0e5fdb2cf6",
+    "semantic_hash": "6a63ed091a46dc61630ead0e5fdb2cf6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.00915.md": {
+    "mtime": 1781388633.0748906,
+    "ast_hash": "f6e63c147f0c5a832d2e073e1f587c12",
+    "semantic_hash": "f6e63c147f0c5a832d2e073e1f587c12"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.02402.md": {
+    "mtime": 1781393824.3159294,
+    "ast_hash": "bc5564cde0fad1e1a03209b6af57a493",
+    "semantic_hash": "bc5564cde0fad1e1a03209b6af57a493"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.02473.md": {
+    "mtime": 1781388633.0657365,
+    "ast_hash": "9724889458be87f4a610a76c34f75012",
+    "semantic_hash": "9724889458be87f4a610a76c34f75012"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.02960.md": {
+    "mtime": 1781394114.0025563,
+    "ast_hash": "36b444d0912934a71c2e470543392f2a",
+    "semantic_hash": "36b444d0912934a71c2e470543392f2a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.03002.md": {
+    "mtime": 1781388633.0683687,
+    "ast_hash": "7436867c06a923436f9066c9ec96bfb5",
+    "semantic_hash": "7436867c06a923436f9066c9ec96bfb5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.04600.md": {
+    "mtime": 1781388633.0628972,
+    "ast_hash": "67beab02febe0baa290b42bea2f7d3bc",
+    "semantic_hash": "67beab02febe0baa290b42bea2f7d3bc"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.05468.md": {
+    "mtime": 1781388633.076398,
+    "ast_hash": "06eb8589f8553b78ae6d4db9651005e4",
+    "semantic_hash": "06eb8589f8553b78ae6d4db9651005e4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.06043.md": {
+    "mtime": 1781393371.2812693,
+    "ast_hash": "f03b179880303823dd8b7841a0caeb53",
+    "semantic_hash": "f03b179880303823dd8b7841a0caeb53"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.06445.md": {
+    "mtime": 1781388633.070607,
+    "ast_hash": "e88a15eda640c5584e0ba680da66dfe6",
+    "semantic_hash": "e88a15eda640c5584e0ba680da66dfe6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.06643.md": {
+    "mtime": 1781388633.0653448,
+    "ast_hash": "98281cd4ed7adbea8e6b650a04b873cd",
+    "semantic_hash": "98281cd4ed7adbea8e6b650a04b873cd"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.07227.md": {
+    "mtime": 1781393010.7489996,
+    "ast_hash": "084d5f254b75a4d909b5e857835ba486",
+    "semantic_hash": "084d5f254b75a4d909b5e857835ba486"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.07854.md": {
+    "mtime": 1781393824.3036058,
+    "ast_hash": "a6614202a90918ef45c0646196970a3a",
+    "semantic_hash": "a6614202a90918ef45c0646196970a3a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.08025.md": {
+    "mtime": 1781393824.3103135,
+    "ast_hash": "fc2f2b9d32799f1113a02933339cac7c",
+    "semantic_hash": "fc2f2b9d32799f1113a02933339cac7c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.08278.md": {
+    "mtime": 1781388633.0746908,
+    "ast_hash": "27a91c01e1f1e897db30d7643a4ae563",
+    "semantic_hash": "27a91c01e1f1e897db30d7643a4ae563"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.09617.md": {
+    "mtime": 1781388633.0842495,
+    "ast_hash": "cfafe2ba9d9bd2d4d538fe37fee76800",
+    "semantic_hash": "cfafe2ba9d9bd2d4d538fe37fee76800"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.10013.md": {
+    "mtime": 1781388633.0751307,
+    "ast_hash": "3c0cfe2d9cdb7f3395561902224a305e",
+    "semantic_hash": "3c0cfe2d9cdb7f3395561902224a305e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.10698.md": {
+    "mtime": 1781388633.0864434,
+    "ast_hash": "180b631ee6ccdd2ee4ce190dde57abfd",
+    "semantic_hash": "180b631ee6ccdd2ee4ce190dde57abfd"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.11337.md": {
+    "mtime": 1781392830.5295243,
+    "ast_hash": "3787a20385f6719d4154db0029d01f20",
+    "semantic_hash": "3787a20385f6719d4154db0029d01f20"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.12159.md": {
+    "mtime": 1781392289.7347379,
+    "ast_hash": "d630c01304a03e1a0a49c16081742cf9",
+    "semantic_hash": "d630c01304a03e1a0a49c16081742cf9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.13086.md": {
+    "mtime": 1781393190.9898617,
+    "ast_hash": "fe857014792c785a52939539471fe6b3",
+    "semantic_hash": "fe857014792c785a52939539471fe6b3"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.13579.md": {
+    "mtime": 1781388633.0844462,
+    "ast_hash": "56166ee805fd2be32ab55f9593102eb7",
+    "semantic_hash": "56166ee805fd2be32ab55f9593102eb7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.13764.md": {
+    "mtime": 1781388633.066332,
+    "ast_hash": "0c1644500c15c3f49d91588cde1747e7",
+    "semantic_hash": "0c1644500c15c3f49d91588cde1747e7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.14174.md": {
+    "mtime": 1781392650.2476094,
+    "ast_hash": "4e4788add890b1b4c8f80b031c0efa3c",
+    "semantic_hash": "4e4788add890b1b4c8f80b031c0efa3c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.15733.md": {
+    "mtime": 1781388633.0649834,
+    "ast_hash": "e3c91097ace7203b00a324fc3396b48e",
+    "semantic_hash": "e3c91097ace7203b00a324fc3396b48e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.17921.md": {
+    "mtime": 1781388633.0756354,
+    "ast_hash": "80e572b73100bebeb894a319e4c30983",
+    "semantic_hash": "80e572b73100bebeb894a319e4c30983"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.17951.md": {
+    "mtime": 1781392019.421935,
+    "ast_hash": "e85a4dc61b17a1d80ea88debee61e827",
+    "semantic_hash": "e85a4dc61b17a1d80ea88debee61e827"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.19313.md": {
+    "mtime": 1781393100.8926036,
+    "ast_hash": "64680968de0cd399f07add8a72ea0de2",
+    "semantic_hash": "64680968de0cd399f07add8a72ea0de2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.20220.md": {
+    "mtime": 1781388633.0716214,
+    "ast_hash": "1d4e012b349fe95ca949b648907cd09b",
+    "semantic_hash": "1d4e012b349fe95ca949b648907cd09b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.21157.md": {
+    "mtime": 1781393100.8921275,
+    "ast_hash": "df1cd7480bfafe9a44e34ff1e69e4365",
+    "semantic_hash": "df1cd7480bfafe9a44e34ff1e69e4365"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.21531.md": {
+    "mtime": 1781393190.990238,
+    "ast_hash": "37d35ab31b0152e99da48bc6d6f166ac",
+    "semantic_hash": "37d35ab31b0152e99da48bc6d6f166ac"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.21919.md": {
+    "mtime": 1781393371.2817283,
+    "ast_hash": "90a2559cef7f83406e3ba5d2abc0b47a",
+    "semantic_hash": "90a2559cef7f83406e3ba5d2abc0b47a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.22461.md": {
+    "mtime": 1781388633.0634208,
+    "ast_hash": "cbb946e4f529afed28c7ee71c0b483f1",
+    "semantic_hash": "cbb946e4f529afed28c7ee71c0b483f1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.22896.md": {
+    "mtime": 1781393281.12858,
+    "ast_hash": "468077a24acad96944a6cf296a1c7110",
+    "semantic_hash": "468077a24acad96944a6cf296a1c7110"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.23152.md": {
+    "mtime": 1781394154.0416903,
+    "ast_hash": "84933567234251a72e5313ebb24d1585",
+    "semantic_hash": "84933567234251a72e5313ebb24d1585"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.01142.md": {
+    "mtime": 1781392470.0007622,
+    "ast_hash": "e6d4ab5d3940ae0ad306c60e9acc784c",
+    "semantic_hash": "e6d4ab5d3940ae0ad306c60e9acc784c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.01151.md": {
+    "mtime": 1781392650.2491357,
+    "ast_hash": "90e3e64c187118530eefaa31213285f2",
+    "semantic_hash": "90e3e64c187118530eefaa31213285f2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.01631.md": {
+    "mtime": 1781388633.070313,
+    "ast_hash": "7b6e894165e63195999499e6a4938ca7",
+    "semantic_hash": "7b6e894165e63195999499e6a4938ca7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.02443.md": {
+    "mtime": 1781388633.0608764,
+    "ast_hash": "859f45c48d772511e210fb637142fbe7",
+    "semantic_hash": "859f45c48d772511e210fb637142fbe7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.03067.md": {
+    "mtime": 1781388633.068622,
+    "ast_hash": "b309bda32ff8f305efd43025a4650574",
+    "semantic_hash": "b309bda32ff8f305efd43025a4650574"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.03380.md": {
+    "mtime": 1781393281.129043,
+    "ast_hash": "005269b20528f41ba5cbfa85ac42eff8",
+    "semantic_hash": "005269b20528f41ba5cbfa85ac42eff8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.03836.md": {
+    "mtime": 1781388633.0773454,
+    "ast_hash": "5d5d4287d1bd651f8ee615f79c0eab34",
+    "semantic_hash": "5d5d4287d1bd651f8ee615f79c0eab34"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.05410.md": {
+    "mtime": 1781388633.0617263,
+    "ast_hash": "cadf9aae06bb1f3b3f8faa2d6764cf72",
+    "semantic_hash": "cadf9aae06bb1f3b3f8faa2d6764cf72"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.07904.md": {
+    "mtime": 1781393281.1281106,
+    "ast_hash": "064349f82fa49fd34b20f56ec345493d",
+    "semantic_hash": "064349f82fa49fd34b20f56ec345493d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.08541.md": {
+    "mtime": 1781388633.0795472,
+    "ast_hash": "959eaf9ecadf717f31773e1b6d7aaa03",
+    "semantic_hash": "959eaf9ecadf717f31773e1b6d7aaa03"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.08619.md": {
+    "mtime": 1781388633.069743,
+    "ast_hash": "b0793258f1ad4cba14813bc1ed843ab4",
+    "semantic_hash": "b0793258f1ad4cba14813bc1ed843ab4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.08961.md": {
+    "mtime": 1781388633.060585,
+    "ast_hash": "898bbd7dc044ce5820317746933c165f",
+    "semantic_hash": "898bbd7dc044ce5820317746933c165f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.09079.md": {
+    "mtime": 1781388633.0863547,
+    "ast_hash": "a3937ad8d8fdbd4c94372ba12e6116dd",
+    "semantic_hash": "a3937ad8d8fdbd4c94372ba12e6116dd"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.09956.md": {
+    "mtime": 1781388633.0691442,
+    "ast_hash": "fe830fcd2f0a182f3dccd8c9021d6a0b",
+    "semantic_hash": "fe830fcd2f0a182f3dccd8c9021d6a0b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.10675.md": {
+    "mtime": 1781394114.0015597,
+    "ast_hash": "89bbd8fef12ce2ba27863678a444c4ff",
+    "semantic_hash": "89bbd8fef12ce2ba27863678a444c4ff"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.12730.md": {
+    "mtime": 1781388633.086919,
+    "ast_hash": "499d3da89222852f285a2015b1a99fe1",
+    "semantic_hash": "499d3da89222852f285a2015b1a99fe1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.12939.md": {
+    "mtime": 1781392289.7342956,
+    "ast_hash": "fe67858c57828f8b82a9917264831c0d",
+    "semantic_hash": "fe67858c57828f8b82a9917264831c0d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.14327.md": {
+    "mtime": 1781388633.0658514,
+    "ast_hash": "8da6ba9cbb0256fbaf9c9923a44f51d4",
+    "semantic_hash": "8da6ba9cbb0256fbaf9c9923a44f51d4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.14498.md": {
+    "mtime": 1781388633.0862215,
+    "ast_hash": "bb777ac1a77f38148aa12169cceb3b89",
+    "semantic_hash": "bb777ac1a77f38148aa12169cceb3b89"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.14522.md": {
+    "mtime": 1781394114.0040152,
+    "ast_hash": "e18091f68428b110c384382cef512177",
+    "semantic_hash": "e18091f68428b110c384382cef512177"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.15359.md": {
+    "mtime": 1781393461.4185812,
+    "ast_hash": "d82819cdbc16e1b41eb7ac1a17376b03",
+    "semantic_hash": "d82819cdbc16e1b41eb7ac1a17376b03"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.16871.md": {
+    "mtime": 1781392199.6300404,
+    "ast_hash": "deb7a7e70b89b5e5dc727e630c7afd6a",
+    "semantic_hash": "deb7a7e70b89b5e5dc727e630c7afd6a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.18494.md": {
+    "mtime": 1781388633.064266,
+    "ast_hash": "2648a723883b9b69d492f48bca014575",
+    "semantic_hash": "2648a723883b9b69d492f48bca014575"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.18979.md": {
+    "mtime": 1781393824.3095577,
+    "ast_hash": "2b1671309baf1c694cb1af782ae07a69",
+    "semantic_hash": "2b1671309baf1c694cb1af782ae07a69"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.19131.md": {
+    "mtime": 1781393281.1276045,
+    "ast_hash": "ca1f11dcc761e41f92c9c0cae12d53a5",
+    "semantic_hash": "ca1f11dcc761e41f92c9c0cae12d53a5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.19137.md": {
+    "mtime": 1781392289.7337687,
+    "ast_hash": "4ae9c12fca1637e6d77a914fdb9a903e",
+    "semantic_hash": "4ae9c12fca1637e6d77a914fdb9a903e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.22279.md": {
+    "mtime": 1781388633.086775,
+    "ast_hash": "d4c9b5b56cecf22a4f3442ffc34bf7c6",
+    "semantic_hash": "d4c9b5b56cecf22a4f3442ffc34bf7c6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.22574.md": {
+    "mtime": 1781392560.1206546,
+    "ast_hash": "b00e5f3653aebaf012e3c821fa2bba0f",
+    "semantic_hash": "b00e5f3653aebaf012e3c821fa2bba0f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.22703.md": {
+    "mtime": 1781388633.0646122,
+    "ast_hash": "515effaceea0c7ed39d4e1235d00217a",
+    "semantic_hash": "515effaceea0c7ed39d4e1235d00217a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.22760.md": {
+    "mtime": 1781394114.0017781,
+    "ast_hash": "a7846481810b61b177575e747d971903",
+    "semantic_hash": "a7846481810b61b177575e747d971903"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.22876.md": {
+    "mtime": 1781392470.001827,
+    "ast_hash": "1fc5e5230819d48dd4363db4c2295719",
+    "semantic_hash": "1fc5e5230819d48dd4363db4c2295719"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.23481.md": {
+    "mtime": 1781388633.0762649,
+    "ast_hash": "187902b003bb1286b7a9291611a7416d",
+    "semantic_hash": "187902b003bb1286b7a9291611a7416d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.25725.md": {
+    "mtime": 1781388633.0782273,
+    "ast_hash": "9dbc7176acf68c5aa177bf7c67b896a9",
+    "semantic_hash": "9dbc7176acf68c5aa177bf7c67b896a9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.25902.md": {
+    "mtime": 1781388633.0692708,
+    "ast_hash": "1986e37e875623279003a31b76b7d41a",
+    "semantic_hash": "1986e37e875623279003a31b76b7d41a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.01414.md": {
+    "mtime": 1781388633.0769963,
+    "ast_hash": "17357aa0e5a542107455aa478123a037",
+    "semantic_hash": "17357aa0e5a542107455aa478123a037"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.04138.md": {
+    "mtime": 1781388633.0746143,
+    "ast_hash": "d1fb774e9dc1068029c98159abf7106b",
+    "semantic_hash": "d1fb774e9dc1068029c98159abf7106b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.05621.md": {
+    "mtime": 1781392289.7361982,
+    "ast_hash": "3ff5f379f2977b95e3a97277e7d1629f",
+    "semantic_hash": "3ff5f379f2977b95e3a97277e7d1629f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.07882.md": {
+    "mtime": 1781389643.2228022,
+    "ast_hash": "ea0778f6fc34fa55a762ed6db12258d7",
+    "semantic_hash": "ea0778f6fc34fa55a762ed6db12258d7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.08780.md": {
+    "mtime": 1781388633.071325,
+    "ast_hash": "766da850c1ca870914aa5fbe1729af28",
+    "semantic_hash": "766da850c1ca870914aa5fbe1729af28"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.09452.md": {
+    "mtime": 1781393010.7502317,
+    "ast_hash": "5cbf029d4123cb668efc4ff095474eae",
+    "semantic_hash": "5cbf029d4123cb668efc4ff095474eae"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.11090.md": {
+    "mtime": 1781388633.0712278,
+    "ast_hash": "b7216b82228f156227f394779a8fe96a",
+    "semantic_hash": "b7216b82228f156227f394779a8fe96a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.18557.md": {
+    "mtime": 1781388633.0650942,
+    "ast_hash": "48d663425ebdc963e5e4ed1e1c4d9e31",
+    "semantic_hash": "48d663425ebdc963e5e4ed1e1c4d9e31"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.09954.md": {
+    "mtime": 1781392379.8686938,
+    "ast_hash": "cab8559fd5cefe8d7355fbd7f4d000d5",
+    "semantic_hash": "cab8559fd5cefe8d7355fbd7f4d000d5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.13452.md": {
+    "mtime": 1781388633.0779116,
+    "ast_hash": "d540da384085e2712e5e7210d2b73dd0",
+    "semantic_hash": "d540da384085e2712e5e7210d2b73dd0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.21330.md": {
+    "mtime": 1781388633.0809877,
+    "ast_hash": "2c70d53a41ab31071e3e9a586dfe0f35",
+    "semantic_hash": "2c70d53a41ab31071e3e9a586dfe0f35"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.21811.md": {
+    "mtime": 1781388633.0820239,
+    "ast_hash": "f88fb170f13c468ffb40a701024977e6",
+    "semantic_hash": "f88fb170f13c468ffb40a701024977e6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.22896.md": {
+    "mtime": 1781393010.749403,
+    "ast_hash": "6669999786ba2a8c39091a170d982ae0",
+    "semantic_hash": "6669999786ba2a8c39091a170d982ae0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.24975.md": {
+    "mtime": 1781388633.070789,
+    "ast_hash": "152147a7b4aeaa29e1279f5711a79ee0",
+    "semantic_hash": "152147a7b4aeaa29e1279f5711a79ee0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2606.02436.md": {
+    "mtime": 1781393824.304442,
+    "ast_hash": "5ea711b261b4d266d9900974ce430fa6",
+    "semantic_hash": "5ea711b261b4d266d9900974ce430fa6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2606.07383.md": {
+    "mtime": 1781393371.2799406,
+    "ast_hash": "a0b5c11b17c4cfc021d5d8b72121cefb",
+    "semantic_hash": "a0b5c11b17c4cfc021d5d8b72121cefb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2606.11277.md": {
+    "mtime": 1781393190.98814,
+    "ast_hash": "94d2836c576b74b96593b241cda9d3d5",
+    "semantic_hash": "94d2836c576b74b96593b241cda9d3d5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/1812.03399.md": {
+    "mtime": 1781417206.4498749,
+    "ast_hash": "1cf5a769f46827f5b0e4bb0218652f21",
+    "semantic_hash": "1cf5a769f46827f5b0e4bb0218652f21"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/1903.04128.md": {
+    "mtime": 1781417356.045068,
+    "ast_hash": "c1f22975c228aace1303e97417a3751b",
+    "semantic_hash": "c1f22975c228aace1303e97417a3751b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/1909.04915.md": {
+    "mtime": 1781417257.1206002,
+    "ast_hash": "2a026ec2ae37d085f797d0d9b6d35a6e",
+    "semantic_hash": "2a026ec2ae37d085f797d0d9b6d35a6e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2011.01968.md": {
+    "mtime": 1781417230.7939124,
+    "ast_hash": "6c5d264463e97488dfbf23d7669ba495",
+    "semantic_hash": "6c5d264463e97488dfbf23d7669ba495"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2011.11270.md": {
+    "mtime": 1781417377.0712729,
+    "ast_hash": "506a52865b951c285e162ba416c21065",
+    "semantic_hash": "506a52865b951c285e162ba416c21065"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2103.14256.md": {
+    "mtime": 1781417287.749973,
+    "ast_hash": "70027eaaf02269e18ad140cf2716017c",
+    "semantic_hash": "70027eaaf02269e18ad140cf2716017c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2106.08796.md": {
+    "mtime": 1781417265.59681,
+    "ast_hash": "c354bcf31fe56551d57879dde60bedf0",
+    "semantic_hash": "c354bcf31fe56551d57879dde60bedf0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2111.00765.md": {
+    "mtime": 1781417403.8693578,
+    "ast_hash": "a9ba6a8ac29f9dc03c5432dadeb9e3c4",
+    "semantic_hash": "a9ba6a8ac29f9dc03c5432dadeb9e3c4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2112.06442.md": {
+    "mtime": 1781417315.6265528,
+    "ast_hash": "35c1939b29535426bd2904890b8aa348",
+    "semantic_hash": "35c1939b29535426bd2904890b8aa348"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2201.03871.md": {
+    "mtime": 1781417088.1154006,
+    "ast_hash": "9139043a84514d59ae45d592ff59576b",
+    "semantic_hash": "9139043a84514d59ae45d592ff59576b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2201.13248.md": {
+    "mtime": 1781417292.2648654,
+    "ast_hash": "3dfb1367a7d63866e51671d2ab763c70",
+    "semantic_hash": "3dfb1367a7d63866e51671d2ab763c70"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2202.09834.md": {
+    "mtime": 1781417423.2368798,
+    "ast_hash": "e54d540e6b18d1a06e6ce4d14504f995",
+    "semantic_hash": "e54d540e6b18d1a06e6ce4d14504f995"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2204.02041.md": {
+    "mtime": 1781417353.162571,
+    "ast_hash": "73a8dfe4cac25c8f68ab719edb37f3a8",
+    "semantic_hash": "73a8dfe4cac25c8f68ab719edb37f3a8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2204.03139.md": {
+    "mtime": 1781417321.2194502,
+    "ast_hash": "fc5843671cf9846c9e345f57e219f543",
+    "semantic_hash": "fc5843671cf9846c9e345f57e219f543"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2205.06311.md": {
+    "mtime": 1781417457.3078866,
+    "ast_hash": "e475fb9bffe2361f2e78655f9f2a63a9",
+    "semantic_hash": "e475fb9bffe2361f2e78655f9f2a63a9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2206.00238.md": {
+    "mtime": 1781417382.238495,
+    "ast_hash": "34601abb05d08bf119eda80de741ebeb",
+    "semantic_hash": "34601abb05d08bf119eda80de741ebeb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2206.05165.md": {
+    "mtime": 1781417347.1256194,
+    "ast_hash": "fbd021c465ab510c1d67b4d5ef049f48",
+    "semantic_hash": "fbd021c465ab510c1d67b4d5ef049f48"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2207.10821.md": {
+    "mtime": 1781417474.868351,
+    "ast_hash": "b15d3f590cae4ffe346cabe201a93312",
+    "semantic_hash": "b15d3f590cae4ffe346cabe201a93312"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2207.12380.md": {
+    "mtime": 1781417414.3295329,
+    "ast_hash": "df768374d7accd107dd4dfacd87057f9",
+    "semantic_hash": "df768374d7accd107dd4dfacd87057f9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2207.13438.md": {
+    "mtime": 1781417370.5332215,
+    "ast_hash": "21d0d8bf1eed45fd7a240703e566368e",
+    "semantic_hash": "21d0d8bf1eed45fd7a240703e566368e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2209.10021.md": {
+    "mtime": 1781417489.454362,
+    "ast_hash": "1d69889ea9b368ee7acfdba41b281747",
+    "semantic_hash": "1d69889ea9b368ee7acfdba41b281747"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2210.12320.md": {
+    "mtime": 1781417446.7133334,
+    "ast_hash": "f9fcee22d90f595a791a640c2beb1abd",
+    "semantic_hash": "f9fcee22d90f595a791a640c2beb1abd"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2212.03194.md": {
+    "mtime": 1781417396.3506856,
+    "ast_hash": "05f7c86ea2c2dbb28d8f811bbdb4d380",
+    "semantic_hash": "05f7c86ea2c2dbb28d8f811bbdb4d380"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2306.06799.md": {
+    "mtime": 1781417511.1783853,
+    "ast_hash": "997862677695fe1a60bf56cb475a3ac3",
+    "semantic_hash": "997862677695fe1a60bf56cb475a3ac3"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2309.01909.md": {
+    "mtime": 1781417475.1502337,
+    "ast_hash": "996711372dacc3b3a1d18007a19cac21",
+    "semantic_hash": "996711372dacc3b3a1d18007a19cac21"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2309.13475.md": {
+    "mtime": 1781417441.1692357,
+    "ast_hash": "7bc1362b058e10128b1cea9d0abce8a2",
+    "semantic_hash": "7bc1362b058e10128b1cea9d0abce8a2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2311.07499.md": {
+    "mtime": 1781417528.3989382,
+    "ast_hash": "326d115d006d87f308eec0cf68dde108",
+    "semantic_hash": "326d115d006d87f308eec0cf68dde108"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2401.17500.md": {
+    "mtime": 1781417509.0709548,
+    "ast_hash": "3356b85954648627f0ab0ee0fb013ced",
+    "semantic_hash": "3356b85954648627f0ab0ee0fb013ced"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2403.02334.md": {
+    "mtime": 1781417463.678458,
+    "ast_hash": "b31a41f40ad89118ce22fbed0d2ed358",
+    "semantic_hash": "b31a41f40ad89118ce22fbed0d2ed358"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2404.13009.md": {
+    "mtime": 1781417550.3027766,
+    "ast_hash": "041b3a33573a2293e825a72346edf128",
+    "semantic_hash": "041b3a33573a2293e825a72346edf128"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2404.15189.md": {
+    "mtime": 1781417547.440437,
+    "ast_hash": "1793f1c13243c56441b7587206d54c61",
+    "semantic_hash": "1793f1c13243c56441b7587206d54c61"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2406.04155.md": {
+    "mtime": 1781418663.7736683,
+    "ast_hash": "c9fc7cb5695f89bd16310d6a512fcfbf",
+    "semantic_hash": "c9fc7cb5695f89bd16310d6a512fcfbf"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2406.12769.md": {
+    "mtime": 1781417591.2660964,
+    "ast_hash": "ba41b4afe08bc31cc0555f6111e28fe8",
+    "semantic_hash": "ba41b4afe08bc31cc0555f6111e28fe8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2407.04224.md": {
+    "mtime": 1781417573.6810591,
+    "ast_hash": "e5703a3b17be9044cb648ac297f4c21e",
+    "semantic_hash": "e5703a3b17be9044cb648ac297f4c21e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2407.04942.md": {
+    "mtime": 1781417504.6466203,
+    "ast_hash": "8ad4e3d33f4bd9012d318123d9e4d403",
+    "semantic_hash": "8ad4e3d33f4bd9012d318123d9e4d403"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2407.18834.md": {
+    "mtime": 1781417607.541269,
+    "ast_hash": "95785aab1de6fac652f921bead80daf0",
+    "semantic_hash": "95785aab1de6fac652f921bead80daf0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2409.17992.md": {
+    "mtime": 1781417075.0395105,
+    "ast_hash": "03035f638eece91e17a296270ebcede1",
+    "semantic_hash": "03035f638eece91e17a296270ebcede1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.11834.md": {
+    "mtime": 1781417656.3333955,
+    "ast_hash": "2b2808276560bc61cb5a19a59ef29717",
+    "semantic_hash": "2b2808276560bc61cb5a19a59ef29717"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.18964.md": {
+    "mtime": 1781417541.63491,
+    "ast_hash": "0c9585a3dbc67082b0d1886fc61b1aa5",
+    "semantic_hash": "0c9585a3dbc67082b0d1886fc61b1aa5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2410.20357.md": {
+    "mtime": 1781417621.8797958,
+    "ast_hash": "88b8730984dad60445544ed1fd369852",
+    "semantic_hash": "88b8730984dad60445544ed1fd369852"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2411.00554.md": {
+    "mtime": 1781417702.801625,
+    "ast_hash": "0d26aac111e99c8be9f87de3797b9636",
+    "semantic_hash": "0d26aac111e99c8be9f87de3797b9636"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2411.07833.md": {
+    "mtime": 1781417564.7615905,
+    "ast_hash": "4fb4ccd93a733f8aa663084d9be50317",
+    "semantic_hash": "4fb4ccd93a733f8aa663084d9be50317"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2411.08832.md": {
+    "mtime": 1781417656.187183,
+    "ast_hash": "04f179ea0f868777cc9ddef52187a0bf",
+    "semantic_hash": "04f179ea0f868777cc9ddef52187a0bf"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2412.00259.md": {
+    "mtime": 1781417731.3985026,
+    "ast_hash": "b45c8003a364d6aac970f4164a8807a4",
+    "semantic_hash": "b45c8003a364d6aac970f4164a8807a4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2412.01770.md": {
+    "mtime": 1781417598.5185084,
+    "ast_hash": "4873d43c17867359afee5324b0ff5c09",
+    "semantic_hash": "4873d43c17867359afee5324b0ff5c09"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2412.01857.md": {
+    "mtime": 1781417673.4457457,
+    "ast_hash": "65879c43a431bf56c6eaffa7534aae9e",
+    "semantic_hash": "65879c43a431bf56c6eaffa7534aae9e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2412.04323.md": {
+    "mtime": 1781417236.869852,
+    "ast_hash": "1b19869ce91cb6072928b9f886a1619b",
+    "semantic_hash": "1b19869ce91cb6072928b9f886a1619b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2412.04426.md": {
+    "mtime": 1781417766.4354348,
+    "ast_hash": "616fbcd25d9fbe9b17301eecb41258c2",
+    "semantic_hash": "616fbcd25d9fbe9b17301eecb41258c2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2501.04823.md": {
+    "mtime": 1781417620.338549,
+    "ast_hash": "107a6b189c8a87d7dcca14aab61a567d",
+    "semantic_hash": "107a6b189c8a87d7dcca14aab61a567d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.03550.md": {
+    "mtime": 1781417690.1870632,
+    "ast_hash": "fad76a3127842f70bfbc897ae1c65fc1",
+    "semantic_hash": "fad76a3127842f70bfbc897ae1c65fc1"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.04873.md": {
+    "mtime": 1781417794.6299696,
+    "ast_hash": "d6407a98a7e5ba2cc3e4cc8962d5b5ca",
+    "semantic_hash": "d6407a98a7e5ba2cc3e4cc8962d5b5ca"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.06575.md": {
+    "mtime": 1781417647.2833476,
+    "ast_hash": "516d5cf358167da5d21339b488331365",
+    "semantic_hash": "516d5cf358167da5d21339b488331365"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.10028.md": {
+    "mtime": 1781417762.7388768,
+    "ast_hash": "a9122441ca7d2a6724a0c2c56bdea249",
+    "semantic_hash": "a9122441ca7d2a6724a0c2c56bdea249"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.11377.md": {
+    "mtime": 1781417822.331917,
+    "ast_hash": "5237cca039b30a580f9dc88c7f8cc35f",
+    "semantic_hash": "5237cca039b30a580f9dc88c7f8cc35f"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.15922.md": {
+    "mtime": 1781417672.1613085,
+    "ast_hash": "9b690bafa96b3c4408f4998a80627cf4",
+    "semantic_hash": "9b690bafa96b3c4408f4998a80627cf4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2502.17322.md": {
+    "mtime": 1781417781.326302,
+    "ast_hash": "bc8857212ad7b8f6803190f429135f9d",
+    "semantic_hash": "bc8857212ad7b8f6803190f429135f9d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.05696.md": {
+    "mtime": 1781417850.5342188,
+    "ast_hash": "2f0965d405951de8d5994066ee7a1216",
+    "semantic_hash": "2f0965d405951de8d5994066ee7a1216"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2503.10118.md": {
+    "mtime": 1781417698.8183415,
+    "ast_hash": "da2a35a2bff2c3df3945b5b8f685b454",
+    "semantic_hash": "da2a35a2bff2c3df3945b5b8f685b454"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2504.15595.md": {
+    "mtime": 1781417790.2239494,
+    "ast_hash": "b655b5d6b924c05fa6fda0b054b9507e",
+    "semantic_hash": "b655b5d6b924c05fa6fda0b054b9507e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.04860.md": {
+    "mtime": 1781417888.0409641,
+    "ast_hash": "d6b13837715cd267cc550e267f940803",
+    "semantic_hash": "d6b13837715cd267cc550e267f940803"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.10755.md": {
+    "mtime": 1781417723.8752503,
+    "ast_hash": "5d9e2a6fcf74e4a3b97f1adaa13be61a",
+    "semantic_hash": "5d9e2a6fcf74e4a3b97f1adaa13be61a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.12294.md": {
+    "mtime": 1781417841.47196,
+    "ast_hash": "30a311a74cc539406c5ab0321262af78",
+    "semantic_hash": "30a311a74cc539406c5ab0321262af78"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.15211.md": {
+    "mtime": 1781417914.1317456,
+    "ast_hash": "e59e5f8a3219de584e4d88846a30af75",
+    "semantic_hash": "e59e5f8a3219de584e4d88846a30af75"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.16249.md": {
+    "mtime": 1781417133.1428366,
+    "ast_hash": "5b47d7bb5f49c97bd0af77f5e70b1c85",
+    "semantic_hash": "5b47d7bb5f49c97bd0af77f5e70b1c85"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.17966.md": {
+    "mtime": 1781417766.394009,
+    "ast_hash": "a7a642207f66c7b7ac368a5df338891c",
+    "semantic_hash": "a7a642207f66c7b7ac368a5df338891c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.18000.md": {
+    "mtime": 1781417850.1423724,
+    "ast_hash": "01912faa7149aaf61c7f96b5e005aba0",
+    "semantic_hash": "01912faa7149aaf61c7f96b5e005aba0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2505.24068.md": {
+    "mtime": 1781417943.6248777,
+    "ast_hash": "053ba480f3b635ade26e632d9b2d5b77",
+    "semantic_hash": "053ba480f3b635ade26e632d9b2d5b77"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.02489.md": {
+    "mtime": 1781417790.3833394,
+    "ast_hash": "e13a42356a0cf76befa9ec75896cce72",
+    "semantic_hash": "e13a42356a0cf76befa9ec75896cce72"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.04120.md": {
+    "mtime": 1781417870.4461184,
+    "ast_hash": "4f5cfd147e3b623bf3544b6f5719f808",
+    "semantic_hash": "4f5cfd147e3b623bf3544b6f5719f808"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.07006.md": {
+    "mtime": 1781417977.9452443,
+    "ast_hash": "0c675a019b64acc9a5e15844e402c844",
+    "semantic_hash": "0c675a019b64acc9a5e15844e402c844"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.11033.md": {
+    "mtime": 1781417817.7329383,
+    "ast_hash": "a1e18f7b8134a07c9dafe4041073856a",
+    "semantic_hash": "a1e18f7b8134a07c9dafe4041073856a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.14135.md": {
+    "mtime": 1781417909.9082425,
+    "ast_hash": "3d14ea834c2664fd856b25de3e8ed17a",
+    "semantic_hash": "3d14ea834c2664fd856b25de3e8ed17a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.15953.md": {
+    "mtime": 1781418006.7443862,
+    "ast_hash": "c3b0a42dae40108822c6cca11a8d5a33",
+    "semantic_hash": "c3b0a42dae40108822c6cca11a8d5a33"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.16590.md": {
+    "mtime": 1781417846.8224123,
+    "ast_hash": "a101ce4313fc11c4dc2b45c699fd44c6",
+    "semantic_hash": "a101ce4313fc11c4dc2b45c699fd44c6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2506.19699.md": {
+    "mtime": 1781417928.5663884,
+    "ast_hash": "2fc841743d03ecb816dec601b8b2f4c5",
+    "semantic_hash": "2fc841743d03ecb816dec601b8b2f4c5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.04039.md": {
+    "mtime": 1781418038.100797,
+    "ast_hash": "eade1c9b5a47b85ee2c4b2706525a2a8",
+    "semantic_hash": "eade1c9b5a47b85ee2c4b2706525a2a8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.04192.md": {
+    "mtime": 1781417871.5175653,
+    "ast_hash": "a6b9feeac0e57acb9ddd5b7e61332d91",
+    "semantic_hash": "a6b9feeac0e57acb9ddd5b7e61332d91"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.07825.md": {
+    "mtime": 1781417945.0548036,
+    "ast_hash": "6416d0555949ca2bfb7a7430a2e03eec",
+    "semantic_hash": "6416d0555949ca2bfb7a7430a2e03eec"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.10914.md": {
+    "mtime": 1781417113.374468,
+    "ast_hash": "88a57f2d2c6a927c90223b320037a8c5",
+    "semantic_hash": "88a57f2d2c6a927c90223b320037a8c5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.11296.md": {
+    "mtime": 1781418072.2328255,
+    "ast_hash": "8e62be9caf947a005c246118cee8c262",
+    "semantic_hash": "8e62be9caf947a005c246118cee8c262"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2507.20068.md": {
+    "mtime": 1781417896.2765481,
+    "ast_hash": "e7639a48bf9e967ae97a0dc5946a8821",
+    "semantic_hash": "e7639a48bf9e967ae97a0dc5946a8821"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2508.02549.md": {
+    "mtime": 1781417970.998749,
+    "ast_hash": "504043cda40c0d84522882ff2754ab63",
+    "semantic_hash": "504043cda40c0d84522882ff2754ab63"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.09090.md": {
+    "mtime": 1781418110.0176847,
+    "ast_hash": "68ff909d2249200f50e5b2a2ba3066c0",
+    "semantic_hash": "68ff909d2249200f50e5b2a2ba3066c0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.19454.md": {
+    "mtime": 1781417929.312064,
+    "ast_hash": "96b1946b60a917ab84a9440db4da009c",
+    "semantic_hash": "96b1946b60a917ab84a9440db4da009c"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.20739.md": {
+    "mtime": 1781417988.3766618,
+    "ast_hash": "f73dbaf800cdb97248d71c8fe88f1fd9",
+    "semantic_hash": "f73dbaf800cdb97248d71c8fe88f1fd9"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2509.21723.md": {
+    "mtime": 1781418152.0890675,
+    "ast_hash": "369f9ed2c4a9b262268352622c554ae0",
+    "semantic_hash": "369f9ed2c4a9b262268352622c554ae0"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.07094.md": {
+    "mtime": 1781417953.4283576,
+    "ast_hash": "bf1da9bfadeee0d233c331a140ec5304",
+    "semantic_hash": "bf1da9bfadeee0d233c331a140ec5304"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.09543.md": {
+    "mtime": 1781418004.9561384,
+    "ast_hash": "524076b2fe833003670555ef74a3262e",
+    "semantic_hash": "524076b2fe833003670555ef74a3262e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.10851.md": {
+    "mtime": 1781418181.9286947,
+    "ast_hash": "a32fd13ecc24af838c973ef38192aec2",
+    "semantic_hash": "a32fd13ecc24af838c973ef38192aec2"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.14768.md": {
+    "mtime": 1781417980.9146004,
+    "ast_hash": "8d2429c9faae33b2df8d477d912f5f80",
+    "semantic_hash": "8d2429c9faae33b2df8d477d912f5f80"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.14959.md": {
+    "mtime": 1781418043.1650517,
+    "ast_hash": "d261f53918ab6a4579518b937eccbc7d",
+    "semantic_hash": "d261f53918ab6a4579518b937eccbc7d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.16166.md": {
+    "mtime": 1781418217.0088818,
+    "ast_hash": "21ee0a95b30080b8e95366b18e2fcd60",
+    "semantic_hash": "21ee0a95b30080b8e95366b18e2fcd60"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.16729.md": {
+    "mtime": 1781418006.2252169,
+    "ast_hash": "2f6692702a3b4ad8a0b4f255151c0694",
+    "semantic_hash": "2f6692702a3b4ad8a0b4f255151c0694"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.22975.md": {
+    "mtime": 1781418061.1716683,
+    "ast_hash": "f1d4a15ff20be7fa44f35d42e9632034",
+    "semantic_hash": "f1d4a15ff20be7fa44f35d42e9632034"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.24673.md": {
+    "mtime": 1781418256.5971394,
+    "ast_hash": "d7f576e93fd83fed8d4423c39108dcd4",
+    "semantic_hash": "d7f576e93fd83fed8d4423c39108dcd4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2510.25405.md": {
+    "mtime": 1781417272.2456558,
+    "ast_hash": "91ef279c2379c4f573077e411e0ac35d",
+    "semantic_hash": "91ef279c2379c4f573077e411e0ac35d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.07899.md": {
+    "mtime": 1781418034.0015087,
+    "ast_hash": "1e5478af6eed99a3ce54bd5c63083b00",
+    "semantic_hash": "1e5478af6eed99a3ce54bd5c63083b00"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.12882.md": {
+    "mtime": 1781418078.624178,
+    "ast_hash": "cf29aa1c34a37f5fed0ec4b1f07b1060",
+    "semantic_hash": "cf29aa1c34a37f5fed0ec4b1f07b1060"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.16223.md": {
+    "mtime": 1781418291.2118065,
+    "ast_hash": "6788f371815d5983613cef387a930b5a",
+    "semantic_hash": "6788f371815d5983613cef387a930b5a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.20275.md": {
+    "mtime": 1781418065.9133618,
+    "ast_hash": "a0ead3835114830a846a588ffd6c1072",
+    "semantic_hash": "a0ead3835114830a846a588ffd6c1072"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.20348.md": {
+    "mtime": 1781418104.5026476,
+    "ast_hash": "fc54ea83239565cadc21a926017a1328",
+    "semantic_hash": "fc54ea83239565cadc21a926017a1328"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.21887.md": {
+    "mtime": 1781418319.3227675,
+    "ast_hash": "55b538c5bdbbfcaaf307f46caf830a35",
+    "semantic_hash": "55b538c5bdbbfcaaf307f46caf830a35"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2511.22780.md": {
+    "mtime": 1781418125.4461586,
+    "ast_hash": "25226fdd06a167ba076bb71cd65bf365",
+    "semantic_hash": "25226fdd06a167ba076bb71cd65bf365"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.00836.md": {
+    "mtime": 1781418112.8442624,
+    "ast_hash": "0391d4f3c2832db55a3e1ad433311e55",
+    "semantic_hash": "0391d4f3c2832db55a3e1ad433311e55"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.03743.md": {
+    "mtime": 1781418356.389947,
+    "ast_hash": "abe06a2a660f7a526b69ce28a7527bc3",
+    "semantic_hash": "abe06a2a660f7a526b69ce28a7527bc3"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.04731.md": {
+    "mtime": 1781418162.0861666,
+    "ast_hash": "317908b98208074a24d8de8c2c82e027",
+    "semantic_hash": "317908b98208074a24d8de8c2c82e027"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.05024.md": {
+    "mtime": 1781418121.7713022,
+    "ast_hash": "b63f4d5c355855480350fb1d3f7a3093",
+    "semantic_hash": "b63f4d5c355855480350fb1d3f7a3093"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2512.13214.md": {
+    "mtime": 1781418386.2388282,
+    "ast_hash": "1e8df3ad1a3cbd761e824c1ddeb345d8",
+    "semantic_hash": "1e8df3ad1a3cbd761e824c1ddeb345d8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.10930.md": {
+    "mtime": 1781418188.88166,
+    "ast_hash": "47debb338af88ae2277a794e84f2fccb",
+    "semantic_hash": "47debb338af88ae2277a794e84f2fccb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.16212.md": {
+    "mtime": 1781418161.3276355,
+    "ast_hash": "770205ee905e17f8bc2bf26775cc7580",
+    "semantic_hash": "770205ee905e17f8bc2bf26775cc7580"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.17486.md": {
+    "mtime": 1781418417.680465,
+    "ast_hash": "973bd2bc2ab8fbd095c12d372143b81a",
+    "semantic_hash": "973bd2bc2ab8fbd095c12d372143b81a"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2601.21845.md": {
+    "mtime": 1781418217.0356884,
+    "ast_hash": "8a5ef22fce39cea779473b41d929ff84",
+    "semantic_hash": "8a5ef22fce39cea779473b41d929ff84"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.05791.md": {
+    "mtime": 1781418177.7536883,
+    "ast_hash": "2372786ebb3c5b3f349e95dd63b803af",
+    "semantic_hash": "2372786ebb3c5b3f349e95dd63b803af"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.06572.md": {
+    "mtime": 1781418448.4726582,
+    "ast_hash": "6ad3737bfecd4a9a30da6d55d5cfffc4",
+    "semantic_hash": "6ad3737bfecd4a9a30da6d55d5cfffc4"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.06827.md": {
+    "mtime": 1781418245.0422633,
+    "ast_hash": "a47d44aaeb0c533b64323ecb3a6492fa",
+    "semantic_hash": "a47d44aaeb0c533b64323ecb3a6492fa"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.07326.md": {
+    "mtime": 1781418194.9705086,
+    "ast_hash": "ecf83a064bc52ba366f8755abf909c92",
+    "semantic_hash": "ecf83a064bc52ba366f8755abf909c92"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.10520.md": {
+    "mtime": 1781417164.5209818,
+    "ast_hash": "dae2903d0f0957d212fe255ad2dc05d3",
+    "semantic_hash": "dae2903d0f0957d212fe255ad2dc05d3"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.12385.md": {
+    "mtime": 1781418534.5692396,
+    "ast_hash": "d72302d95de1326aee84ac1ce3b798eb",
+    "semantic_hash": "d72302d95de1326aee84ac1ce3b798eb"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.12628.md": {
+    "mtime": 1781418267.9947844,
+    "ast_hash": "eb5b2c50a05107cca0e9567cb0f86880",
+    "semantic_hash": "eb5b2c50a05107cca0e9567cb0f86880"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.13052.md": {
+    "mtime": 1781418212.0115054,
+    "ast_hash": "c45a151cbd1f415acbd542e8cfab0c7d",
+    "semantic_hash": "c45a151cbd1f415acbd542e8cfab0c7d"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.13689.md": {
+    "mtime": 1781418583.108015,
+    "ast_hash": "3dc7b846ae5d1976351dd301ba6fdcfc",
+    "semantic_hash": "3dc7b846ae5d1976351dd301ba6fdcfc"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.13850.md": {
+    "mtime": 1781418295.0678418,
+    "ast_hash": "37585546e41dfad1b55ec5370c38e123",
+    "semantic_hash": "37585546e41dfad1b55ec5370c38e123"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.16511.md": {
+    "mtime": 1781418233.0560384,
+    "ast_hash": "299309cdfc8116df3b707389c0c6daa8",
+    "semantic_hash": "299309cdfc8116df3b707389c0c6daa8"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.16705.md": {
+    "mtime": 1781418618.7013242,
+    "ast_hash": "85aec43250e3d492519fdfa037dc495b",
+    "semantic_hash": "85aec43250e3d492519fdfa037dc495b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.16712.md": {
+    "mtime": 1781418333.967844,
+    "ast_hash": "99a28650d2a8ee7eb173b6556027c291",
+    "semantic_hash": "99a28650d2a8ee7eb173b6556027c291"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2602.23024.md": {
+    "mtime": 1781417143.3813157,
+    "ast_hash": "ea128b148e57f4968740129610b6d7f7",
+    "semantic_hash": "ea128b148e57f4968740129610b6d7f7"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.00182.md": {
+    "mtime": 1781418251.7107747,
+    "ast_hash": "3fec64b172c884e06168b148ae26a94b",
+    "semantic_hash": "3fec64b172c884e06168b148ae26a94b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.02224.md": {
+    "mtime": 1781418657.099655,
+    "ast_hash": "9c7ce660e10b22b8361ce6fcced50203",
+    "semantic_hash": "9c7ce660e10b22b8361ce6fcced50203"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.03482.md": {
+    "mtime": 1781418359.3520176,
+    "ast_hash": "b61d37099448d7bf878cdaea1194bbf6",
+    "semantic_hash": "b61d37099448d7bf878cdaea1194bbf6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.08021.md": {
+    "mtime": 1781418288.1962078,
+    "ast_hash": "6848a7ca136e7906e21c8f556993bb15",
+    "semantic_hash": "6848a7ca136e7906e21c8f556993bb15"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.08342.md": {
+    "mtime": 1781418700.0135202,
+    "ast_hash": "c3c48951e2581a431c2f2f8ff4ad24c3",
+    "semantic_hash": "c3c48951e2581a431c2f2f8ff4ad24c3"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.09298.md": {
+    "mtime": 1781418670.4792552,
+    "ast_hash": "e1db7f13cc6fc89f9ebf7fcee630b214",
+    "semantic_hash": "e1db7f13cc6fc89f9ebf7fcee630b214"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.11600.md": {
+    "mtime": 1781418314.8303742,
+    "ast_hash": "766357721895929da4980c913ff0b9ab",
+    "semantic_hash": "766357721895929da4980c913ff0b9ab"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.13616.md": {
+    "mtime": 1781418734.5819194,
+    "ast_hash": "404957773b2aa383598f16e1cbe3151b",
+    "semantic_hash": "404957773b2aa383598f16e1cbe3151b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.13888.md": {
+    "mtime": 1781418409.768447,
+    "ast_hash": "e6fce8db39321ebc8fed54de9ac69807",
+    "semantic_hash": "e6fce8db39321ebc8fed54de9ac69807"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.14010.md": {
+    "mtime": 1781418332.756241,
+    "ast_hash": "0ba8bd472f19a6d0ef1731bae08a29a5",
+    "semantic_hash": "0ba8bd472f19a6d0ef1731bae08a29a5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.14308.md": {
+    "mtime": 1781418771.025513,
+    "ast_hash": "5e13ff034b57837aeabaab7d7513504b",
+    "semantic_hash": "5e13ff034b57837aeabaab7d7513504b"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.16151.md": {
+    "mtime": 1781418444.9645672,
+    "ast_hash": "13fc652a7a4dcef8fceb1bcdd19853b6",
+    "semantic_hash": "13fc652a7a4dcef8fceb1bcdd19853b6"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.16806.md": {
+    "mtime": 1781418359.6095579,
+    "ast_hash": "06cb71b6adf8d146b008c6584d779a90",
+    "semantic_hash": "06cb71b6adf8d146b008c6584d779a90"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.20236.md": {
+    "mtime": 1781417309.7603467,
+    "ast_hash": "0a628c3eefcbfa46c178dfd8ace47843",
+    "semantic_hash": "0a628c3eefcbfa46c178dfd8ace47843"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2603.27313.md": {
+    "mtime": 1781418802.668242,
+    "ast_hash": "d8b376ad3216a560835f9117512314ba",
+    "semantic_hash": "d8b376ad3216a560835f9117512314ba"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.10579.md": {
+    "mtime": 1781418480.6595917,
+    "ast_hash": "456de0f88cd40307debbedb63464269e",
+    "semantic_hash": "456de0f88cd40307debbedb63464269e"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2604.19737.md": {
+    "mtime": 1781417193.3275492,
+    "ast_hash": "b1dfe0570ca7d571a8dc9791e42a7779",
+    "semantic_hash": "b1dfe0570ca7d571a8dc9791e42a7779"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.02487.md": {
+    "mtime": 1781417178.7392375,
+    "ast_hash": "18a51923454830506a42b15c02422690",
+    "semantic_hash": "18a51923454830506a42b15c02422690"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.08215.md": {
+    "mtime": 1781417330.290355,
+    "ast_hash": "af939d6e9614cdb9060e297060553a06",
+    "semantic_hash": "af939d6e9614cdb9060e297060553a06"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2605.27589.md": {
+    "mtime": 1781417224.160682,
+    "ast_hash": "f0f533ddd9324491215cc509b1355882",
+    "semantic_hash": "f0f533ddd9324491215cc509b1355882"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2606.06493.md": {
+    "mtime": 1781418376.5912533,
+    "ast_hash": "237a74ab4c87e40377cfa946cdd2dfd5",
+    "semantic_hash": "237a74ab4c87e40377cfa946cdd2dfd5"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2606.07017.md": {
+    "mtime": 1781418831.6466422,
+    "ast_hash": "1eeb6440fed9e943a2c7557b3c418629",
+    "semantic_hash": "1eeb6440fed9e943a2c7557b3c418629"
+  },
+  "/Users/chuahanchong/Documents/Projects/ResearchBrain/_KnowledgeHub_/2606.07500.md": {
+    "mtime": 1781418510.9495409,
+    "ast_hash": "021f1692e580112f7a3adc49a448369c",
+    "semantic_hash": "021f1692e580112f7a3adc49a448369c"
   }
 }
