@@ -131,7 +131,7 @@ and the central observation is that the data $\mathcal{D}$ pairs each $o'$ with 
 | **Cluster** | A — Architecture & Training |
 | **Thesis** | Train the policy and world model in one loop, not cascaded or alternating. One stream of data pairs each future observation with the action that caused it, so $p(o',a\mid o,l)$ is a single joint distribution and a single joint loss is the natural objective — separate losses throw away the conditional link. The field assumes WM↔policy alternation is needed for training stability. The bet is in First-principles below. |
 | **Anchor papers** | [[2605.12090\|WAM Survey]] (survey), [[2605.00080\|WM Robot Learning Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2306.03310\|LIBERO]] (benchmark), [[2510.13626\|LIBERO-Plus]] (benchmark), [[2511.08544\|LeJEPA]] (method) |
-| **Key targets** | [[2306.03310\|LIBERO]] ≥97.2% in-dist; [[2510.13626\|LIBERO-Plus]] ≥79.5% OOD; latent ~10 ms inference vs pixel ~150 ms |
+| **Key targets** | [[2306.03310\|LIBERO]] ≥97.2% in-dist; [[2510.13626\|LIBERO-Plus]] ≥79.5% OOD; [[2603.22078\|WAM vs VLA Robustness]] 7-category OOD-SR grid (LIBERO-Plus single-arm + RoboTwin 2.0-Plus bimanual, WAMs 4.8× slower than VLA's **63 ms/chunk**); latent ~10 ms inference vs pixel ~150 ms |
 
 **Why it matters.**
 - **The gap**: the world model and the policy learn two halves of the *same* distribution $p(o',a\mid o,l)$, yet the standard recipe trains them in stages — cascade a state predictor into an inverse-dynamics policy, or alternate WM and policy updates — discarding the conditional link the joint loss could exploit.
@@ -174,11 +174,12 @@ Twenty-three systems that put the WM↔policy relationship together in different
 | [[2501.14622\|ACT-JEPA]] | jointly optimizes action + future-latent prediction, end-to-end | latent | **+53.7%** over AR; **36% vs 0%** ManiSkill joint-beats-2-stage | the shared-latent joint-loss precedent — proves joint > staged offline, but IL not an online co-evolving loop |
 | [[2601.21998\|LingBot-VA]] | unifies video + action tokens in one continuous-latent MoT, closed-loop rollout | latent | **98.5%** [[2306.03310\|LIBERO]], **92.9%** RoboTwin Easy | the shared-latent unification A1 wants — but visual+inverse dynamics decomposed, not one cooperative gradient |
 | [[2603.08403\|SPIRAL]] | critic filters hallucinated dynamics before they corrupt the policy | latent | the dream-quality gate for the co-evolution loop | a gate, not the loop itself — pairs with A1 rather than realizing it |
+| [[2510.18135\|World-in-World]] | closed-loop WM-utility eval (counterfactual rollouts → re-plan → task SR) | benchmark | Wan2.1† nav SR **38.19→45.14%**, controllability beats fidelity | the closed-loop WM-evaluation harness (vs open-loop FVD) — scores whether an updating WM helps the policy act, not a coupling method |
 
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (a single cooperative gradient beats alternating on a shared latent backbone), with the experiment and the Related-table row it lands on.
 1. **H1 — A single latent joint gradient beats phased pixel co-evolution on both SR axes.**
    - *Prediction*: $\mathcal{L} = \mathbb{E}[A \cdot \log \pi(a, \hat z_{t+1} \mid s_t)]$ updating both heads in one backward pass over a pretrained latent WAM ([[2504.02792|UWM]] / [[2602.10098|VLA-JEPA]]) beats [[2602.06508|World-VLA-Loop]]-style phased pixel co-evolution and [[2602.12063|VLAW]]-style alternation on *both* ≥97.2% in-dist and ≥79.5% OOD [[2510.13626|LIBERO-Plus]] (which the pixel-phased loops never report).
-   - *Test*: hold the backbone and data fixed; swap only the WM↔policy coupling (single latent gradient vs phased pixel co-evolution vs alternation); report both SR axes and per-step latency.
+   - *Test*: hold the backbone and data fixed; swap only the WM↔policy coupling (single latent gradient vs phased pixel co-evolution vs alternation); report both SR axes (the in-dist [[2306.03310|LIBERO]] ceiling + [[2603.22078|WAM vs VLA Robustness]]'s 7-category perturbation OOD-SR grid — light/background/camera/language — for category-level WM-coupled-vs-not granularity) and per-step latency.
    - *Row*: World-VLA-Loop (phased pixel co-evolution) / VLAW (alternating).
    - *Falsifier*: phased co-evolution matches or beats the single-gradient pass on either axis at equal latency → the schedule, not the gradient, carries the gain.
 2. **H2 — A latent-consistency reward supplies the dense signal task reward lacks.**
@@ -193,12 +194,12 @@ Twenty-three systems that put the WM↔policy relationship together in different
    - *Falsifier*: the un-insulated loop matches the insulated one → the action gradient does not corrupt the WM encoder.
 4. **H4 — Latent rollout makes the joint loop run at no latency cost vs pixel co-training.**
    - *Prediction*: a latent backbone ([[2602.10098|VLA-JEPA]] ~10 ms) closes the joint loop at inference latency indistinguishable from a policy-only baseline, while a pixel-space joint loop ([[2603.19370|VAMPO]] / [[2606.01027|τ0-WM]]) pays ~150 ms.
-   - *Test*: profile per-step inference latency of latent vs pixel joint loops at matched accuracy.
+   - *Test*: profile per-step inference latency of latent vs pixel joint loops at matched accuracy, against [[2603.22078|WAM vs VLA Robustness]]'s quantified WAM-vs-VLA speed gap (WAMs ≥4.8× slower than VLA's **63 ms/chunk**) as the latency-cost reference.
    - *Row*: VAMPO (pixel) / τ0-WM (pixel) vs VLA-JEPA (latent).
    - *Falsifier*: the latent loop's latency is not below the pixel loop's at matched accuracy → latent buys no deployment advantage.
 5. **H5 — A shared latent makes the joint loop co-evolve where a frozen-WM loop plateaus.**
    - *Prediction*: letting the WM update inside the loop (vs [[2511.09515|WMPO]]'s frozen-WM inner loop) widens the OOD margin over training, because the imagination target tracks the improving policy instead of a fixed model.
-   - *Test*: compare frozen-WM vs co-evolving-WM inner loops on the same backbone; plot OOD SR vs training steps.
+   - *Test*: compare frozen-WM vs co-evolving-WM inner loops on the same backbone on [[2510.18135|World-in-World]] (the only KH suite scoring a WM by its closed-loop control-loop utility — counterfactual rollouts → re-planning → task SR, incl. a Robotic Manipulation task); plot OOD SR vs training steps.
    - *Row*: WMPO (WM frozen) / AHEAD (policy frozen).
    - *Falsifier*: the frozen-WM loop matches the co-evolving one at convergence → freezing one side costs nothing.
 6. **H6 — Real-robot transfer survives deploying only the policy (WM stays sim-only).**
@@ -272,7 +273,7 @@ Twenty-six systems that supervise reasoning differently — explicit-text CoT, v
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (latent CoT + step rewards beats outcome-only and explicit-CoT at matched latency), with the experiment and the Related-table row it lands on.
 1. **H1 — A causal-importance step reward on latent tokens beats both outcome-only RL and uniform latent-trajectory credit.**
    - *Prediction*: exposing [[2604.18486|OneVL]]'s K=8 latent tokens and training $\mathcal{L} = \lambda_a \mathcal{L}_{\text{action}} + \lambda_s \sum_i w_i\, r_{\text{step},i}(z_i)$ with learned per-step causal weights $w_i$ gets ≥+5 pp SR on LIBERO-Long over vanilla OneVL, over outcome-only RL, *and* over [[2602.10520|RLTT]]'s uniform $w_i$ trajectory credit, at answer-only latency.
-   - *Test*: build LIBERO-Subgoals (130 tasks → 3–7 verifiable subgoals each, auto-generated via [[2503.15558|Cosmos-Reason1]] LLM-as-judge, validated on a 100-subgoal gold set at κ > 0.7); train with causal-importance step rewards vs uniform-credit vs outcome-only; report SR + latency.
+   - *Test*: build LIBERO-Subgoals (130 tasks → 3–7 verifiable subgoals each) on the [[2509.19524|StepEval]] protocol — its per-subgoal SR-vector as the primary evaluation artifact, VLM-as-judge of subgoal outcomes from recorded images/videos, with the gold-set agreement diagnostic supplying the κ > 0.7 validation; train with causal-importance step rewards vs uniform-credit vs outcome-only; report SR + latency.
    - *Row*: RLTT (uniform latent-trajectory credit) / OneVL (latent, answer-only) / CIR/SR Reasoning (step reward, explicit).
    - *Falsifier*: uniform-credit (RLTT-style) or outcome-only RL matches the causal-importance variant → the *weighting*, not the per-step signal, is what matters and the embodied wedge collapses to RLTT.
 2. **H2 — The latent tokens are functionally used, not just present.**
@@ -307,8 +308,8 @@ Twenty-six systems that supervise reasoning differently — explicit-text CoT, v
 |---|---|
 | **Cluster** | A — Architecture & Training |
 | **Thesis** | Enforce verifiable physics predicates at the *action* level, not just the generated-video level. Physical laws (momentum, gravity, friction, contact) are checkable and hold the same for held-out and OOD data, so a loss enforcing them extrapolates without distribution shift. The field assumes a physics-aware video generator hands you a physics-aware *policy* for free. The bet is in First-principles below. |
-| **Anchor papers** | [[2604.04974\|Video-to-Control Survey]] (survey), [[2503.21765\|Physics Cognition Survey]] (survey), [[2510.04978\|Physical AI Survey]] (survey), [[2604.17896\|Physical-Feasibility VLA]] (method), [[2605.08567\|ACWM-Phys]] (benchmark), [[2603.23376\|ABot-PhysWorld]] (method) |
-| **Key targets** | obstacle-perturbation Safe-SR **43.50% → >55%** ([[2604.17896\|Physical-Feasibility VLA]]'s geometric-only action-level ceiling); sim-to-real SR retention **≥0.70**; DPO pass-target **≥90%** on held-out via [[2603.23376\|ABot-PhysWorld]] physics-rejected negatives; non-trivial $\rho(\sum P_i,\ \text{task SR})$ |
+| **Anchor papers** | [[2604.04974\|Video-to-Control Survey]] (survey), [[2503.21765\|Physics Cognition Survey]] (survey), [[2510.04978\|Physical AI Survey]] (survey), [[2604.17896\|Physical-Feasibility VLA]] (method), [[2605.08567\|ACWM-Phys]] (benchmark), [[2512.11891\|VLSA]] (benchmark), [[2603.23376\|ABot-PhysWorld]] (method) |
+| **Key targets** | obstacle-perturbation Safe-SR **43.50% → >55%** ([[2604.17896\|Physical-Feasibility VLA]]'s geometric-only action-level ceiling); [[2512.11891\|VLSA]]'s SafeLIBERO obstacle gauntlet (32 scenarios / 1600 episodes, Collision-Avoidance Rate + Task-SR jointly — AEGIS CAR **77.85%** / TSR **68.13%** vs π0.5 CAR **18.69%**); sim-to-real SR retention **≥0.70**; DPO pass-target **≥90%** on held-out via [[2603.23376\|ABot-PhysWorld]] physics-rejected negatives; non-trivial $\rho(\sum P_i,\ \text{task SR})$ |
 
 **Why it matters.**
 - **The gap**: physical laws are universal and checkable, yet policies are trained with empirical losses that only trust the samples they saw — so the generation-side progress on physics-aware video does not obviously reach the *chosen action*, and the imagination→policy chain is untested end-to-end.
@@ -343,12 +344,12 @@ Thirteen systems that put physics somewhere in the pipeline — in the generated
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (verifiable action-level physics predicates extrapolate where geometric/generation-side losses don't), with the experiment and the Related-table row it lands on.
 1. **H1 — Verifiable physics predicates over actions lift the Safe-SR ceiling past geometric-only.**
    - *Prediction*: five binary predicates — P1 momentum ($|\Delta p_{\text{total}}| < 0.05\,p_{\max}$ off-contact), P2 no inter-object penetration (signed-distance > 0), P3 free-flight $\Delta z \sim -\tfrac12 g t^2 \pm 10\%$, P4 Newton's-3rd-law on contact wrenches, P5 Coulomb friction ($|F_t| \le \mu|F_n|$) — added as a differentiable training loss lift obstacle-perturbation Safe-SR from **43.50%** to **>55%**, beating [[2604.17896|Physical-Feasibility VLA]]'s geometric-only loss.
-   - *Test*: instrument 50 [[2306.03310|LIBERO]] + 30 [[2502.16707|ReflectVLM]] long-horizon tasks (~4,000 labeled trajectories); compare physics-law predicate-loss vs [[2604.17896|Physical-Feasibility VLA]]'s geometric loss *and* [[2604.01570|FAN Prior]]'s tolerance-geometry regularizer on the same obstacle gauntlet; track plain SR on [[2510.13626|LIBERO-Plus]] separately.
+   - *Test*: run [[2512.11891|VLSA]]'s SafeLIBERO obstacle gauntlet (LIBERO-derived, 32 obstacle-intervention scenarios / 1600 episodes with Level-I/II obstacle-proximity + randomized obstacle positions, scoring Collision-Avoidance Rate + Task-SR jointly); compare physics-law predicate-loss vs [[2604.17896|Physical-Feasibility VLA]]'s geometric loss *and* [[2604.01570|FAN Prior]]'s tolerance-geometry regularizer on the same gauntlet; track plain SR on [[2510.13626|LIBERO-Plus]] separately.
    - *Row*: Physical-Feasibility VLA (geometric) / FAN Prior (tolerance-geometry).
    - *Falsifier*: the physics-law loss ≤ FAN Prior's tolerance-geometry OOD Safe-SR → enforcing *laws* adds nothing over shaping action *geometry*, and the wedge collapses.
 2. **H2 — The interface where physics enters (implicit/abstract/explicit) changes Safe-SR at matched FLOPs.**
    - *Prediction*: per the [[2604.04974|Video-to-Control Survey]] taxonomy, an explicit physics-predicate interface beats implicit and abstract interfaces on the obstacle + physics gauntlet at matched FLOPs, with latent within ±2 pp at lower latency.
-   - *Test*: same backbone, three interfaces, matched FLOPs; report Safe-SR on the gauntlet + [[2605.08567|ACWM-Phys]] OOD splits.
+   - *Test*: same backbone, three interfaces, matched FLOPs; report CAR + Task-SR on [[2512.11891|VLSA]]'s SafeLIBERO gauntlet + [[2605.08567|ACWM-Phys]] OOD splits (the WM-cliff side).
    - *Row*: ACWM-Phys (measures the OOD cliff the interface must close).
    - *Falsifier*: implicit matches explicit → the interface is not the lever and physics can stay latent.
 3. **H3 — Physics-rejected preference negatives generalize to held-out via DPO.**
@@ -384,8 +385,8 @@ Thirteen systems that put physics somewhere in the pipeline — in the generated
 |---|---|
 | **Cluster** | B — Evaluation, Robustness & Deployment |
 | **Thesis** | Measure the world model and policy on one joint causal-consistency axis, not two separate ones (WM quality via FVD/PSNR, action quality via SR). A WM and a policy are causally bound only when the action taken in an imagined future matches the executed one — a property visual fidelity cannot see. The field assumes the visual fidelity of WM-generated futures predicts policy success. The bet is in First-principles below. |
-| **Anchor papers** | [[2605.12090\|WAM Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2310.06253\|Objective Mismatch MBRL Survey]] (survey), [[2606.05773\|PiL-World]] (method), [[2606.04463\|OSCAR]] (method), [[2605.06311\|VISER]] (benchmark) |
-| **Key targets** | ASR + COD → real SR Pearson **ρ > 0.7** (separate axes: ρ < 0.4); the joint metric replaces FID-style WM eval |
+| **Anchor papers** | [[2605.12090\|WAM Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2310.06253\|Objective Mismatch MBRL Survey]] (survey), [[2606.05773\|PiL-World]] (method), [[2606.04463\|OSCAR]] (method), [[2605.06311\|VISER]] (benchmark), [[2605.29360\|MiraBench]] (benchmark) |
+| **Key targets** | ASR + COD → real SR Pearson **ρ > 0.7** (separate axes: ρ < 0.4); [[2605.29360\|MiraBench]]'s paired action-counterfactual probes (Physics Adherence + Action-Following Fidelity + Optimism-Bias Detection, scene-fixed, 16,704 human decisions) as the action-causal probe; the joint metric replaces FID-style WM eval |
 
 **Why it matters.**
 - **The gap**: current protocols score WM quality (FVD/PSNR) and action quality (SR) *separately*, so a joint model can score high on each while imagination and actions are causally disconnected — and [[2310.06253|Objective Mismatch MBRL Survey]] gives the MBRL substrate showing predictive WM loss doesn't correlate with downstream return.
@@ -434,7 +435,7 @@ Twenty-seven evaluation systems that measure something — WM fidelity, controll
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (a joint causal-consistency metric predicts real SR where separate axes don't), with the experiment and the Related-table row it lands on.
 1. **H1 — An *action*-counterfactual metric beats both FID and *scene*-counterfactual rubrics at predicting real SR.**
    - *Prediction*: a metric that samples $a'_t$ (the action, not a scene prompt), generates $\hat s'_{t+1}$, and requires $\|\hat s_{t+1} - \hat s'_{t+1}\|$ to scale monotonically with $\|a_t - a'_t\|$ (on [[2304.07193|DINOv2]] features) predicts real-fleet SR better than FID/FVD *and* better than [[2605.27589|What-If World]]'s scene-prompt APEO rubric on the same models.
-   - *Test*: compute the action-counterfactual metric, FID, and a What-If-World-style scene-counterfactual score on a fixed WAM set; regress each against real SR ([[2603.13966|vla-eval]] reference harness).
+   - *Test*: compute the action-counterfactual metric on [[2605.29360|MiraBench]]'s paired probes (which perturb a nominal successful action into a physically-interpretable failure-inducing $a'_t$ while holding the scene fixed — the action-counterfactual structure the metric needs), alongside FID and a [[2605.27589|What-If World]]-style scene-counterfactual score on the same fixed WAM set; regress each against real SR ([[2603.13966|vla-eval]] reference harness).
    - *Row*: What-If World (scene-counterfactual, no SR correlation) / WorldMark (fidelity-vs-consistency decoupling).
    - *Falsifier*: FID or the scene-counterfactual rubric predicts real SR as well as the action-counterfactual metric → varying the *action* buys nothing over varying the scene, and B1's diagonal collapses.
 2. **H2 — ASR + COD jointly clear ρ > 0.7 where separate sub-scores stay below 0.4.**
@@ -469,8 +470,8 @@ Twenty-seven evaluation systems that measure something — WM fidelity, controll
 |---|---|
 | **Cluster** | B — Evaluation, Robustness & Deployment |
 | **Thesis** | Make a trained VLA's memory work *across episodes* — recognize "I have failed this same way before" and route to *cause-attributed* recovery, not uniform rollback. An episode-local memory cannot notice recurrence; a recovery that doesn't diagnose the cause picks the wrong fix and oscillates. The field now wires memory + detection + recovery into one loop, but episode-locally and with undiagnosed rollback. The bet is in First-principles below. |
-| **Anchor papers** | [[2604.16592\|Cognition WM Survey]] (survey), [[2602.04411\|Self-evolving Embodied AI]] (survey), [[2604.23775\|VLA Safety Survey]] (survey), [[2605.10921\|RoboMemArena]] (benchmark), [[2604.18791\|HELM]] (method), [[2606.03385\|GTP-FA]] (method) |
-| **Key targets** | ≥+5 pp SR on [[2605.10921\|RoboMemArena]] cross-episode repeated-failure subtasks over [[2604.18791\|HELM]]'s episode-local loop (HELM: **+23.1 pp** LIBERO-Long over OpenVLA); recovery SR lift from cause-attribution ([[2606.03385\|GTP-FA]] **11.2→76.8%**); oscillation incidents **−50%** via state-machine integration |
+| **Anchor papers** | [[2604.16592\|Cognition WM Survey]] (survey), [[2602.04411\|Self-evolving Embodied AI]] (survey), [[2604.23775\|VLA Safety Survey]] (survey), [[2605.10921\|RoboMemArena]] (benchmark), [[2505.12224\|RoboFAC]] (benchmark), [[2604.18791\|HELM]] (method), [[2606.03385\|GTP-FA]] (method) |
+| **Key targets** | ≥+5 pp SR on [[2605.10921\|RoboMemArena]] cross-episode repeated-failure subtasks over [[2604.18791\|HELM]]'s episode-local loop (HELM: **+23.1 pp** LIBERO-Long over OpenVLA); recovery SR lift from cause-attribution ([[2606.03385\|GTP-FA]] **11.2→76.8%**; [[2505.12224\|RoboFAC]]'s 3-level failure taxonomy + closed-loop correction SR **47.5→61.25%** sim+real); oscillation incidents **−50%** via state-machine integration |
 
 **Why it matters.**
 - **The gap**: the integrated loop now exists — but it is *episode-local* and *cause-blind*. [[2604.18791|HELM]] wires an episodic memory + a memory-conditioned state verifier + a recovery harness into one frozen-VLA loop and hits **+23.1 pp** on LIBERO-Long, yet its memory keeps only the most-recent checkpoint per subgoal (no cross-episode carryover) and its harness rolls back *uniformly* without attributing the cause. So the two faces that turn a recovery loop into *learning* — recognizing "I've failed this way before" and choosing the fix for the *cause* — are exactly what the integrated systems skip.
@@ -516,6 +517,7 @@ Twenty-eight systems spanning the loop — a few now integrate three or four fac
 | [[2509.04018\|FPC-VLA]] | VLA + VLM-supervisor predict-then-correct | detect+diagnose+recover | **86.0%** real, disturbance drop **31.3% → 16%** | the closest single-loop predict-and-correct — three faces in one model, but still no long-horizon memory of repeated failure |
 | [[2603.09030\|PlayWorld]] | self-play failure-data engine | data engine | Pearson **0.8766**, **+65%** real SR | the failure-data engine feeding the loop, not the loop itself |
 | [[2603.13528\|Counterfactual Failure Synthesis]] | counterfactual-rollout failure-data engine | data engine | **120K+** verified pairs, **46%** real closed-loop recovery | the second data engine — synthesizes failures by perturbing actions into a WM rather than self-play, with paired recovery labels, but the loop still has to consume them |
+| [[2506.06677\|RoboCerebra]] | long-horizon memory benchmark | — (measures) | **2,972** sim-steps/traj (~6× prior), 100 task variants, scores memory + reflection + plan-efficiency | the shared long-horizon, memory-intensive suite H4's trained-loop-vs-orchestrator comparison lacks — but a benchmark, not a loop component |
 
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the reframed FP bet (cross-episode memory + cause-attributed recovery beats HELM's episode-local uniform-rollback loop), with the experiment and the Related-table row it lands on.
 1. **H1 — Cross-episode memory recognizes recurrence that an episode-local loop cannot.**
@@ -525,7 +527,7 @@ Twenty-eight systems spanning the loop — a few now integrate three or four fac
    - *Falsifier*: cross-episode memory adds no SR over episode-local → recurrence recognition buys nothing and HELM's locality is sufficient.
 2. **H2 — Cause-attributed recovery beats uniform rollback at matched detection.**
    - *Prediction*: inserting [[2606.03385|GTP-FA]]-style grasp-vs-planning attribution between detection and recovery raises recovery SR over [[2604.18791|HELM]]'s uniform "return-to-checkpoint" rollback, because the fix is chosen for the *cause* (the GTP-FA **11.2→76.8%** attribution gain is the reference).
-   - *Test*: hold HELM's memory + detector fixed; swap uniform rollback for diagnosis-conditioned recovery; compare recovery SR on the same failures.
+   - *Test*: hold HELM's memory + detector fixed; swap uniform rollback for diagnosis-conditioned recovery; compare recovery SR on [[2505.12224|RoboFAC]]'s failure suite (9,440 erroneous trajectories + 78,623 QA pairs, 3-level grasp/planning/perception failure taxonomy + corrective annotations + sim+real recovery-SR test sets) so cause-attributed vs uniform recovery are scored on the same labeled failures.
    - *Row*: GTP-FA (diagnose) / HELM (uniform rollback).
    - *Falsifier*: diagnosis-conditioned recovery matches uniform rollback → cause attribution doesn't improve recovery and HELM's uniform fix is enough.
 3. **H3 — State-machine integration cuts the oscillation an undiagnosed loop produces.**
@@ -535,7 +537,7 @@ Twenty-eight systems spanning the loop — a few now integrate three or four fac
    - *Falsifier*: undiagnosed composition shows no oscillation → the state-machine overhead buys nothing.
 4. **H4 — A trained-VLA loop matches the agentic-orchestrated all-four-faces system at lower latency.**
    - *Prediction*: a *trained* cross-episode-memory loop matches [[2602.13086|UniManip]]'s zero-shot LLM-orchestrated four-face SR on long-horizon tasks while running at a fraction of its per-step orchestration latency, because the loop is amortized into weights, not re-planned by an LLM each step.
-   - *Test*: head-to-head trained-loop vs UniManip on a shared long-horizon suite; report SR and per-step latency.
+   - *Test*: head-to-head trained-loop vs UniManip on [[2506.06677|RoboCerebra]] (long-horizon, memory-intensive — 2,972-step trajectories, 100 task variants, with an explicit memory-utilization + reflection protocol); report SR and per-step latency.
    - *Row*: UniManip (agentic four-face) / LiLo (modular recovery).
    - *Falsifier*: the trained loop cannot match the orchestrator's SR → the four faces need an LLM planner, not a trained policy.
 5. **H5 — Each verified recovery becomes a cross-episode training example without eroding base skills.**
@@ -555,8 +557,8 @@ Twenty-eight systems spanning the loop — a few now integrate three or four fac
 |---|---|
 | **Cluster** | B — Evaluation, Robustness & Deployment |
 | **Thesis** | Treat efficiency as a primary research target, not "engineering to sort out after publication." Inference cost has three independent levers — what / how often / how precisely you predict — and a contact-rich control loop has a *stability* floor (Nyquist), not just a speed preference, so the levers' Pareto frontier needs co-design. The field assumes single-lever tuning or faster silicon will suffice. The bet is in First-principles below. |
-| **Anchor papers** | [[2510.24795\|Efficient VLA Survey]] (survey), [[2510.07077\|VLA Robotics Real-World Review]] (survey), [[2603.28489\|Video Gen as WM Survey]] (survey), [[2505.04769\|VLA Concepts Survey]] (survey), [[2605.14598\|DSSP]] (method) |
-| **Key targets** | ≥30 Hz on edge ([Jetson Orin](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/) / Apple M, vs the AR 3–5 Hz ceiling); ≥95% of base-policy [[2306.03310\|LIBERO]] SR retained; matched-FLOPs Pareto sweep |
+| **Anchor papers** | [[2510.24795\|Efficient VLA Survey]] (survey), [[2510.07077\|VLA Robotics Real-World Review]] (survey), [[2603.28489\|Video Gen as WM Survey]] (survey), [[2505.04769\|VLA Concepts Survey]] (survey), [[2509.11480\|VLA Cross-Platform Scaling]] (benchmark), [[2605.14598\|DSSP]] (method) |
+| **Key targets** | ≥30 Hz on edge ([Jetson Orin](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/) / Apple M, vs the AR 3–5 Hz ceiling); ≥95% of base-policy [[2306.03310\|LIBERO]] SR retained; matched-FLOPs Pareto sweep on [[2509.11480\|VLA Cross-Platform Scaling]] (5 VLA models incl VOTE × Jetson AGX Orin power modes 15/30/50W/MAX, LIBERO SR + latency + throughput + peak memory jointly — VOTE-MLP4 hits **55.57 Hz** on Orin MAX) |
 
 **Why it matters.**
 - **The gap**: a contact-rich policy runs as a feedback loop on discrete time steps, so it has a Nyquist *stability* floor — a manipulator whose contacts ring at tens of Hz cannot be stabilized by a 3–5 Hz loop, no matter how well tuned — yet efficiency is treated as post-publication engineering.
@@ -596,11 +598,12 @@ Twenty-two efficiency methods — most pulling *one* lever, a few composing two 
 | [[2605.28634\|PrimitiveVLA]] | reusable motion primitives | (data lever) | full-data SR at **50%** data, **6×** zero-shot | the data-efficiency lever, not composed with the others |
 | [[2602.16710\|EgoScale]] | log-linear ego data scaling | (data lever) | **+54%** dexterous | the data lever — pretraining, not inference speed |
 | [[2505.23705\|Knowledge Insulation VLA]] | stop-gradient PEFT | (training lever) | knowledge-insulated fine-tuning | the training lever for efficient RL on small backbones |
+| [[2602.18397\|VLA-Perf]] | analytical roofline over the full knob space | — (profiler) | datacenter **61–314 Hz**, edge Jetson Thor **19 Hz**; diffusion **102×** over AR | the analytical latency/throughput landscape across architecture × decoding × async × dual-system × placement — but no SR axis, a profiler not a SR suite |
 
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (co-design clears the stability floor where single levers and silicon don't), with the experiment and the Related-table row it lands on.
 1. **H1 — A composed point beats the best single lever on the SR-vs-frequency frontier (not merely clears the floor).**
    - *Prediction*: a matched-FLOPs Pareto sweep of backbone (Transformer / linear-attn / Mamba) × decoding (AR / parallel / diffusion) × precision (FP16 / INT8 / INT4) finds a *composed* point that dominates the best single-lever winner — [[2507.05116|VOTE]] (which already clears ≥30 Hz at **98.0%** SR with one lever) — on the SR-vs-Hz frontier, with a stated rule for when composing wins.
-   - *Test*: sweep the three axes on [[2306.03310|LIBERO]] + 1 real task; plot the full frontier; locate composed points that Pareto-dominate VOTE and [[2502.19645|OpenVLA-OFT]].
+   - *Test*: sweep the three axes on [[2306.03310|LIBERO]] + 1 real task on [[2509.11480|VLA Cross-Platform Scaling]]'s Jetson AGX Orin substrate (which already plots VOTE configs vs throughput/accuracy across power modes, finding high-throughput variants achievable without significant accuracy loss); plot the full frontier; locate composed points that Pareto-dominate VOTE and [[2502.19645|OpenVLA-OFT]].
    - *Row*: VOTE (single-lever floor-clearer) / OpenVLA-OFT (2-lever, 109.7 Hz).
    - *Falsifier*: no composed point Pareto-dominates VOTE → composing levers buys nothing over the best single lever and the composition-law thesis collapses (floor-reachability, which VOTE already proves, was never the bet).
 2. **H2 — Linear-time backbones hold SR at the floor only with knowledge-insulated RL.**
@@ -615,12 +618,12 @@ Twenty-two efficiency methods — most pulling *one* lever, a few composing two 
    - *Falsifier*: ego co-training needs the full robot data anyway → the data lever doesn't move the frontier.
 4. **H4 — A real-time joint policy+latent-WM (A1) runs above the floor.**
    - *Prediction*: A1's joint loop with a Mamba latent WM ([[2511.15605|SRPO]] [[2506.09985|V-JEPA 2]] substrate, ~10 ms) runs >30 Hz, confirming the latent-for-speed thesis composes with the joint-loop thesis.
-   - *Test*: profile the latent joint loop on edge; report frequency and SR.
+   - *Test*: profile the latent joint loop on edge via [[2602.18397|VLA-Perf]] (the analytical roofline tool for latency/throughput of arbitrary model-system combos incl async + dual-system + placement against the real-time floor); report frequency and SR.
    - *Row*: Flash-WAM (distilled WAM real-time) / S-VAM (single-pass foresight).
    - *Falsifier*: the joint latent loop runs below 30 Hz → A1 and B3 don't compose at the floor.
 5. **H5 — The edge-deployment chain loses ≤5% SR per stage.**
    - *Prediction*: train → quantize ([[2602.20309|QuantVLA]]) → distill ([[2606.05254|Flash-WAM]]) → deploy on [Jetson Orin](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/) / Apple M holds ≥95% base SR end-to-end, validated cross-lab via [[2605.20774|VLA-REPLICA]] (ID 0.49 vs 0.48).
-   - *Test*: measure SR retention per stage; validate cross-lab reproducibility.
+   - *Test*: measure SR retention per stage on [[2509.11480|VLA Cross-Platform Scaling]]'s per-config Jetson AGX Orin protocol (per-config SR loss under power-mode constraints); validate cross-lab reproducibility.
    - *Row*: QuantVLA (quantization) / Realtime-VLA FLASH (speculative latency).
    - *Falsifier*: cumulative SR loss exceeds 5% → the chain doesn't preserve the policy and the floor is unreachable at deployable quality.
 
@@ -635,8 +638,8 @@ Twenty-two efficiency methods — most pulling *one* lever, a few composing two 
 |---|---|
 | **Cluster** | B — Evaluation, Robustness & Deployment |
 | **Thesis** | Protect selective weight subspaces during continual policy fine-tuning instead of defaulting to data-replay. In an over-parameterized policy, the directions a new skill needs and those an old skill occupies are *mostly disjoint*, so forgetting is a subspace-overlap problem, not a storage one. The field assumes replaying old trajectories is the price of retention. The bet is in First-principles below. |
-| **Anchor papers** | [[2508.07407\|Self-Evolving AI Agents Survey]] (survey), [[2404.14387\|LLM Self-Evolution Survey]] (survey), [[2506.21872\|Continual RL Survey]] (survey), [[2510.20685\|C-Nav]] (benchmark), [[2605.15735\|UAM]] (method), [[1612.00796\|EWC]] (method) |
-| **Key targets** | ≥+9.7 pp old-task SR over Data Replay ([[2510.20685\|C-Nav]] **42.61% vs 32.9%** [[2109.08238\|HM3D]]); replay-free manipulation transfer ([[2605.29562\|VLA-Pro]] real **5.8% → 65.0%**, unseen **+207%** [[2504.13059\|RoboTwin]]); embodiment tax **<5%** ([[2605.15735\|UAM]]); ≤−3 pp new-task SR vs full fine-tune |
+| **Anchor papers** | [[2508.07407\|Self-Evolving AI Agents Survey]] (survey), [[2404.14387\|LLM Self-Evolution Survey]] (survey), [[2506.21872\|Continual RL Survey]] (survey), [[2510.20685\|C-Nav]] (benchmark), [[2306.03310\|LIBERO]] (benchmark), [[2605.15735\|UAM]] (method), [[1612.00796\|EWC]] (method) |
+| **Key targets** | ≥+9.7 pp old-task SR over Data Replay ([[2510.20685\|C-Nav]] **42.61% vs 32.9%** [[2109.08238\|HM3D]]); manipulation retention on [[2306.03310\|LIBERO]]'s lifelong suites (130 tasks across SPATIAL/OBJECT/GOAL/LONG with built-in FWT / NBT / AUC for sequential continual learning); replay-free manipulation transfer ([[2605.29562\|VLA-Pro]] real **5.8% → 65.0%**, unseen **+207%** [[2504.13059\|RoboTwin]]); embodiment tax **<5%** ([[2605.15735\|UAM]]); ≤−3 pp new-task SR vs full fine-tune |
 
 **Why it matters.**
 - **The gap**: a fielded policy is fine-tuned again and again (new objects, new corrections from B2's loop), and every fine-tune erodes prior skill — yet forgetting shows up elsewhere in this doc only as a *risk* (B2 names it the hazard its recovery-update loop must avoid), never as a first-class objective.
@@ -678,16 +681,17 @@ Twenty-four systems that handle continual learning — by subspace protection, p
 | [[2408.07666\|Model Merging in LLMs/MLLMs]] | weight-space merging as consolidation | yes | replay-free consolidation operator | not validated on action policies — candidate for fusing adapters |
 | [[2511.18810\|MergeVLA]] | merge-oriented sparse-LoRA + value-PC test-time router | yes | **90.2%** LIBERO cross-skill (vs **0%** direct merge), **62.5%** LIBERO-Plus | the action-policy validation Model Merging in LLMs/MLLMs lacks — but skills live in separate masked adapters, not one protected subspace |
 | [[2405.09673\|LoRA-Learns-Less]] | PEFT under-fits but forgets less | yes | quantifies plasticity-retention trade-off | documents the trade-off B4 must navigate, not a protection method |
+| [[2105.10919\|Continual World]] | benchmark (CW10/CW20 Meta-World task sequence) | — (measures) | PackNet **0.80** CW20, regularizers F≈**0.00–0.02** but negative forward transfer | the canonical continual-RL Meta-World task sequence with forgetting / FWT / BWT — the substrate for H4's RFT recovery stream + the CRL Survey's taxonomy, but a benchmark not a method |
 
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (replay-free subspace protection beats replay on action policies), with the experiment and the Related-table row it lands on.
 1. **H1 — The Geometric Forgetting Law holds on policies: consecutive fine-tunes overlap below threshold and the principal angle predicts forgetting.**
    - *Prediction*: for a sequence of [[2510.13626|LIBERO-Plus]] / object-nav tasks, the principal angle $\cos^2\theta_{\min}$ between consecutive fine-tunes predicts measured forgetting at r > 0.5 (the [[2603.02224|Subspace Geometry Forgetting]] law, untested on policies), and overlap stays below 0.3 for most pairs — the precondition for shared-subspace protection.
-   - *Test*: measure principal-angle / Fisher overlap across the task sequence; fit the Geometric Forgetting Law on policies; build an overlap matrix predicting which pairs forget.
+   - *Test*: measure principal-angle / Fisher overlap across [[2306.03310|LIBERO]]'s lifelong task stream (LIBERO-Long / the 130-task sequence supplying consecutive fine-tunes + NBT/AUC, the continual-sequence substrate — not the OOD-perturbation LIBERO-Plus); fit the Geometric Forgetting Law on policies; build an overlap matrix predicting which pairs forget.
    - *Row*: Subspace Geometry Forgetting (the law) / EWC (subspace-importance prior).
    - *Falsifier*: the law doesn't transfer (overlap > 0.5 dominates, or principal angle doesn't predict forgetting) → subspaces aren't disjoint on policies and shared-subspace protection can't work.
 2. **H2 — A single protected shared subspace matches per-task expansion at a flat parameter budget.**
    - *Prediction*: protecting only the high-overlap (H1) directions in one shared subspace ([[2602.06043|Shared LoRA Subspaces for almo]]-style, ported to policies) matches [[2601.09512|CLARE]]'s per-task-expansion retention (near-zero NBT) *without* growing parameters per task.
-   - *Test*: head-to-head unified-shared-subspace vs CLARE/CORAL per-task expansion vs replay on the same task stream; report old-task SR, NBT, and parameter growth.
+   - *Test*: head-to-head unified-shared-subspace vs CLARE/CORAL per-task expansion vs replay on [[2306.03310|LIBERO]]'s lifelong suite (the shared substrate on which CLARE / CORAL / AtomicVLA / ConSFT / MergeVLA all report AUC/NBT, making the comparison directly comparable); report old-task SR, NBT, and parameter growth.
    - *Row*: CLARE (per-task expansion) / Shared LoRA Subspaces (unified subspace, LLM-only).
    - *Falsifier*: the shared subspace underperforms expansion at equal retention → per-task expansion is necessary on policies and the flat-budget claim fails.
 3. **H3 — The embodiment tax stays <5% across a continual sequence.**
@@ -702,7 +706,7 @@ Twenty-four systems that handle continual learning — by subspace protection, p
    - *Falsifier*: protected updates still erase base skills → the loop B2+B4 forms is unstable.
 5. **H5 — A shared-subspace point dominates per-task expansion on the storage-vs-retention Pareto.**
    - *Prediction*: sweeping subspace dimension × protection strength yields a flat-budget shared-subspace point that dominates *both* replay and per-task expansion ([[2601.09512|CLARE]]/[[2603.09298|CORAL (LoRA Experts)]]) on the storage-vs-retention frontier, not merely matching them.
-   - *Test*: plot retention vs cumulative storage for shared-subspace vs per-task-expansion vs replay over a growing task sequence; locate the dominating point.
+   - *Test*: plot retention vs cumulative storage for shared-subspace vs per-task-expansion vs replay over [[2306.03310|LIBERO]]'s lifelong manipulation sequence (AUC across the task stream supplying per-step retention); locate the dominating point.
    - *Row*: CLARE (per-task expansion) / PHASER (replay-content).
    - *Falsifier*: no shared-subspace point dominates → per-task expansion stays Pareto-competitive and the claim narrows to "matches expansion."
 
@@ -724,7 +728,7 @@ Twenty-four systems that handle continual learning — by subspace protection, p
 | **Cluster** | C — Mobility & Embodiment Generalization |
 | **Thesis** | Put a latent dream-ahead head *inside* the navigation policy instead of bolting on an external world model. A navigation decision needs only the *control-relevant* slice of the future — "will this action open a path to the goal?" — which a latent token carries far more cheaply than a rendered frame. The field assumes anticipatory VLN needs an external pixel-space world model. The bet is in First-principles below. |
 | **Anchor papers** | [[2311.00530\|LLM Embodied Navigation Survey]] (survey), [[2605.00080\|WM Robot Learning Survey]] (survey), [[2504.21853\|Interactive Generative Video Survey]] (survey), [[2603.29165\|LatentPilot]] (method), [[2506.23468\|NavMorph]] (method) |
-| **Key targets** | ≥62.0% SR / 58.0% SPL [[2004.02857\|R2R-CE]] Val-Unseen at ≤130 ms / 22.8 GB ([[2603.29165\|LatentPilot]]); **+4.1% SR** online adaptation at **2.1×** speed ([[2506.23468\|NavMorph]]) |
+| **Key targets** | ≥62.0% SR / 58.0% SPL [[2004.02857\|R2R-CE]] Val-Unseen at ≤130 ms / 22.8 GB ([[2603.29165\|LatentPilot]]); cross-episode adaptation on [[2210.03087\|IVLN]]'s IR2R-CE (persistent-environment tours of ≤100 ordered episodes, t-nDTW: map-based **47–48%** vs unstructured ~**38%** Val-Unseen); **+4.1% SR** online adaptation at **2.1×** speed ([[2506.23468\|NavMorph]]) |
 
 **Why it matters.**
 - **The gap**: VLN agents decide myopically from current observations alone; the obvious fix — an external world model rendering candidate futures — adds compounding prediction error, memory, and latency to a per-step closed loop, paying to render pixels when only a low-dimensional control-relevant slice is needed.
@@ -765,7 +769,7 @@ Nineteen navigation systems that handle foresight differently — in-policy late
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (in-policy latent dreaming matches external-WM VLN at a fraction of the cost), with the experiment and the Related-table row it lands on.
 1. **H1 — Fusing in-policy dreaming with online self-evolution beats either alone *and* beats imagination+memory-without-evolution within the latency budget.**
    - *Prediction*: bolting [[2506.23468|NavMorph]]'s Contextual Evolution Memory onto [[2603.29165|LatentPilot]]'s Pilot Token improves the dreamed latent at test time, staying ≤130 ms while gaining NavMorph's +4.1% online-adaptation SR *and* beating [[2510.08553|Dream to Recall]]'s imagination+memory (no evolution) on unseen splits.
-   - *Test*: add a test-time CEM update to the Pilot Token; report SR and latency vs LatentPilot, NavMorph, and Memoir alone.
+   - *Test*: add a test-time CEM update to the Pilot Token on [[2210.03087|IVLN]]'s IR2R-CE (the persistent-environment, cross-episode-memory protocol — tours of ≤100 ordered episodes that reward online self-evolution, which bare R2R-CE erases by resetting memory each episode); cross-check drift with [[2409.02561|VLNCL]]'s catastrophic-forgetting metric (bare R2R-CE/RxR-CE SR cannot detect forgetting, VLNCL's metric can); report SR and latency vs LatentPilot, NavMorph, and Memoir alone.
    - *Row*: Dream to Recall (imagination+memory, no evolution) / NavMorph (online RSSM).
    - *Falsifier*: the fused system exceeds 130 ms, gains no online SR, or fails to beat Memoir → self-evolution adds nothing over imagination+memory and the fusion bet collapses.
 2. **H2 — Latent foresight pays off only up to a shallow dream horizon.**
@@ -785,7 +789,7 @@ Nineteen navigation systems that handle foresight differently — in-policy late
    - *Falsifier*: explicit reasoning wins broadly at acceptable latency → latent foresight is not the efficient default.
 5. **H5 — The latent dream head transfers cross-embodiment, or needs C2-style invariance.**
    - *Prediction*: the latent dream head transfers zero-shot to a new mobile base (matching [[2509.23203|CE-Nav]]'s cross-robot mSR **0.745–0.860**), or it needs a C2-style morphology-invariant interface — the test that ties C1 to C2.
-   - *Test*: deploy the dream head on a held-out base zero-shot; if it fails, add a morphology-invariant action interface and re-test.
+   - *Test*: deploy the dream head on a held-out base zero-shot on [[2507.13019|VLN-PE]] (which supports humanoid Unitree H1/G1, quadruped Aliengo, and wheeled Jetbot with cross-embodiment evaluation and exposes VLN models' sensitivity to camera-height / motion dynamics across bodies); if it fails, add a morphology-invariant action interface and re-test.
    - *Row*: CE-Nav (cross-embodiment local nav) / S2E (zero-shot to wheeled + quadruped).
    - *Falsifier*: the head transfers zero-shot with no invariance scaffolding → C1 is embodiment-agnostic on its own.
 
@@ -839,6 +843,7 @@ Twenty cross-embodiment systems that make a *different* intermediate invariant �
 | [[2505.06111\|UniVLA]] | latent-action backbone | no | **95.2%** [[2306.03310\|LIBERO]], **47.1%** [[2004.02857\|R2R-CE]] | cross-task + cross-embodiment latent, not tested on the wall |
 | [[2507.23682\|villa-X]] | latent-action cross-embodiment | no | the lineage Demo-JEPA extends | latent-action transfer, not faced with novel link structures |
 | [[2212.06817\|RT-1]] | native action tokens | no (the baseline) | foundational cross-embodiment transformer | tokenizes natively — the joint-space precedent C2 inverts |
+| [[2506.09366\|SkillBlender]] | SkillBench (cross-embodiment whole-body loco-manip) | coupled-body, not arm-extrapolation | 8 loco-manip tasks across 3 Unitree humanoids (H1/G1/H1-2) w/ Accuracy + Feasibility (Tilt / Root-Height / Joint-Torque) | the closest coupled-body, cross-embodiment substrate for H5's handoff — but a control-blending suite with narrow morphology, not invariant-transfer across families |
 
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (an intent-grounded invariant breaks AnyBody's extrapolation wall), with the experiment and the Related-table row it lands on.
 1. **H1 — A bake-off names *which* invariant beats 0% on AnyBody arm-extrapolation.**
@@ -863,7 +868,7 @@ Twenty cross-embodiment systems that make a *different* intermediate invariant �
    - *Falsifier*: the invariance tax is unbounded (precision collapses on seen robots) → the invariant is unusable for precise control.
 5. **H5 — Handoff: the invariant survives the jump from fixed arms to a coupled body, or it doesn't.**
    - *Prediction*: an invariant *task intent* assumes the body is a passive executor, but whole-body loco-manipulation couples that intent to balance and contact — the invariant either survives the jump to a humanoid or coupling breaks it (the instantiation belongs to [[Whole-Body|Whole-Body]]; C2 certifies the cross-family representation it hands off).
-   - *Test*: evaluate the AnyBody-validated invariant on a coupled whole-body platform; measure SR retention vs the fixed-arm result.
+   - *Test*: evaluate the AnyBody-validated invariant on [[2506.09366|SkillBlender]]'s SkillBench (the coupled whole-body, cross-embodiment loco-manip substrate across 3 Unitree humanoids with balance/feasibility metrics — Tilt / Root-Height / Joint-Torque — that capture intent coupled to balance and contact); measure SR retention vs the fixed-arm result.
    - *Row*: Qwen-VLA (manipulation+navigation generalist) / HoloBrain-0 (embodiment-prior generalist).
    - *Falsifier*: the invariant transfers to the coupled body with no loss → intent-invariance is sufficient even under coupling, and the handoff to Whole-Body is unnecessary.
 
@@ -903,15 +908,15 @@ Twenty cross-embodiment systems that make a *different* intermediate invariant �
 
 | Gap | Direction | Existing closest |
 |---|---|---|
-| Joint-vs-alternating co-training ablation on a fixed latent backbone | A1 | [[2605.21800\|stable-worldmodel]] (OOD harness, but not the joint-vs-alternating grid) + [[2603.25406\|MMaDA-VLA]] (single-objective joint, but offline) |
-| Causal faithfulness of latent reasoning under compositional novelty | A2 | [[2606.02277\|RoboSemanticBench]] (reasoning-into-action gap) + [[2510.16281\|SEAL]] (runtime verifier, not a benchmark) |
-| Physics-consistency of policy *action* sequences against a verifiable simulator | A3 | [[2605.08567\|ACWM-Phys]] (WM rollouts) + [[2604.17896\|Physical-Feasibility VLA]] (geometric only) |
-| Joint WM-action causal-consistency metric on manipulation | B1 | [[2603.22212\|Omni-WorldBench]] (WM-only) + [[2603.22078\|WAM vs VLA Robustness]] (separate axes) + [[2605.06311\|VISER]] (sim-real r, no action causality) |
-| Cross-episode-memory + diagnosis-conditioned recovery in a *trained* VLA loop | B2 | [[2604.18791\|HELM]] (integrated loop, but episode-local + uniform rollback) + [[2605.10921\|RoboMemArena]] (memory benchmark, no cross-episode recurrence axis) |
-| Policy SR × control freq × edge-compute Pareto | B3 | [[2306.03310\|LIBERO]] (SR only) + [[2603.13966\|vla-eval]] (training speedup) + [[2605.20774\|VLA-REPLICA]] (real SR, no compute axis) |
-| Replay-free continual policy fine-tuning with bounded embodiment tax | B4 | [[2510.20685\|C-Nav]] (continual object-nav, **+9.7 pp** replay-free) + [[2605.15735\|UAM]] (**<5%** tax, no task sequence) + [[1612.00796\|EWC]] (classification/Atari, pre-action-policy) |
-| Joint in-policy latent-dreaming + online self-evolution for VLN | C1 | [[2603.29165\|LatentPilot]] (in-policy dreaming, no online evolution) + [[2506.23468\|NavMorph]] (online CEM, not fused with dreaming) |
-| Zero-shot extrapolation to novel link structures (morphology-invariant) | C2 | [[2505.14986\|AnyBody]] (**0%** extrapolation wall) + [[2602.10556\|LAP]] (**>50%** zero-shot, untested on [[2505.14986\|AnyBody]]) + [[2605.20811\|Demo-JEPA]] (**0.36** one-shot) |
+| Joint-vs-alternating co-training ablation on a fixed latent backbone | A1 | [[2605.21800\|stable-worldmodel]] (OOD harness, but not the joint-vs-alternating grid) + [[2603.25406\|MMaDA-VLA]] (single-objective joint, but offline) + [[2603.22078\|WAM vs VLA Robustness]] (WAM-vs-VLA OOD-SR + latency grid on LIBERO-Plus + RoboTwin 2.0-Plus, but compares architectures not the training-coupling schedule) + [[2510.18135\|World-in-World]] (closed-loop WM-utility SR, but visual-WM and not the joint-vs-alternating grid) |
+| Causal faithfulness of latent reasoning under compositional novelty | A2 | [[2606.02277\|RoboSemanticBench]] (reasoning-into-action faithfulness gap, in-domain) + [[2509.19524\|StepEval]] (per-subgoal SR-vector protocol w/ VLM-as-judge + κ-validation — the named methodology behind H1's LIBERO-Subgoals, but a blueprint, not a packaged suite); no turnkey suite pairs a verifiable subgoal-step decomposition with a causal-importance credit measurement on a robot policy |
+| Physics-consistency of policy *action* sequences against a verifiable simulator | A3 | [[2512.11891\|VLSA]] (LIBERO-derived obstacle-perturbation Safe-SR: 32 scenarios / 1600 episodes, CAR + SR jointly — the closest named action-Safe-SR suite, but bundled in the AEGIS method paper) + [[2605.08567\|ACWM-Phys]] (WM-rollout physics, not actions); no benchmark measures physics-law-predicate Σ P_i → SR correlation (H5's ρ) or DPO physics-preference held-out accuracy (H3) — true field gaps |
+| Joint WM-action causal-consistency metric on manipulation | B1 | [[2605.29360\|MiraBench]] (paired action-counterfactual probes, scene-fixed: Physics Adherence + Action-Following Fidelity + Optimism-Bias Detection — the action-causal probe structure, but scores WM reliability not regressed to real-fleet SR) + [[2603.22212\|Omni-WorldBench]] (WM-only) + [[2605.06311\|VISER]] (sim-real r, no action causality); no suite yet regresses an action-counterfactual divergence against real-fleet SR — the ρ>0.7 loop the bet needs |
+| Cross-episode-memory + diagnosis-conditioned recovery in a *trained* VLA loop | B2 | [[2604.18791\|HELM]] (integrated loop, but episode-local + uniform rollback) + [[2605.10921\|RoboMemArena]] (memory benchmark, no cross-episode recurrence axis) + [[2505.12224\|RoboFAC]] (failure-analysis + correction benchmark with a 3-level failure taxonomy and sim+real recovery-SR test sets — the closest standalone diagnosis/recovery eval, but failure-labeled and episode-local); cross-episode-recurrence SR (H1) and oscillation reduction (H3) have no benchmark — confirmed field gaps |
+| Policy SR × control freq × edge-compute Pareto | B3 | [[2509.11480\|VLA Cross-Platform Scaling]] (LIBERO SR + latency + throughput + memory jointly on Jetson Orin across power modes — the SR-vs-throughput Pareto, but a fixed model set, not the 4-lever sweep) + [[2602.18397\|VLA-Perf]] (analytical latency/throughput landscape across architecture × decoding × async × dual-system × placement — but no SR axis) + [[2605.20774\|VLA-REPLICA]] (cross-lab real SR, no compute axis); no suite runs the full architecture × decoding × precision × data matched-FLOPs sweep that yields the composition law |
+| Replay-free continual policy fine-tuning with bounded embodiment tax | B4 | [[2510.20685\|C-Nav]] (continual object-nav, **+9.7 pp** replay-free — backs the NAV half) + [[2306.03310\|LIBERO]] (the lifelong manipulation suite with FWT/NBT/AUC across 130 sequenced tasks — backs the MANIPULATION half H1/H2/H5, but single-domain IL fine-tuning, not a flat-budget shared-subspace-vs-expansion protocol) + [[2105.10919\|Continual World]] (canonical continual-RL Meta-World task sequence, backs H4's RFT recovery stream); no benchmark runs the flat-budget single-shared-subspace vs per-task-expansion vs replay head-to-head with principal-angle overlap across the same manipulation task stream |
+| Joint in-policy latent-dreaming + online self-evolution for VLN | C1 | [[2210.03087\|IVLN]] (IR2R-CE: persistent-environment tours of ≤100 ordered episodes — the named cross-episode / online-adaptation substrate, but no in-policy dreaming) + [[2409.02561\|VLNCL]] (continual-learning + forgetting metrics for the drift axis) + [[2603.29165\|LatentPilot]] (in-policy dreaming, no online evolution); no suite fuses in-policy latent dreaming with online self-evolution in one protocol |
+| Zero-shot extrapolation to novel link structures (morphology-invariant) | C2 | [[2505.14986\|AnyBody]] (**0%** extrapolation wall) + [[2602.10556\|LAP]] (**>50%** zero-shot, untested on [[2505.14986\|AnyBody]]) + [[2605.20811\|Demo-JEPA]] (**0.36** one-shot) + [[2506.09366\|SkillBlender]] (cross-embodiment whole-body loco-manip across 3 Unitree humanoids with balance/feasibility metrics — closest coupled-body substrate for the H5 handoff, but narrow morphology and a control-blending suite, not invariant-transfer); no benchmark measures SR-retention of an AnyBody-validated invariant onto a coupled body across families |
 
 ---
 

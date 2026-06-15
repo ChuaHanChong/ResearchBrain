@@ -90,8 +90,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 |---|---|
 | **Cluster** | A — Geometry-Native Policies |
 | **Thesis** | An action is a function of *where things are in metric 3D* — and a point cloud says that directly, while an RGB token leaves it implicit. The policy field skips explicit 3D because it assumes a 2D-pretrained backbone already encodes the geometry the head needs. That assumption breaks under appearance shift, where geometry stays fixed but pixels move. The bet is in First-principles below. |
-| **Anchor papers** | [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2606.03943\|PointAction]] (method), [[2508.09071\|GeoVLA]] (method), [[2605.21414\|PointACT]] (method) |
-| **Key targets** | Cross-embodiment zero-shot SR ≥43.0% ([[2606.03943\|PointAction]] xArm7); ID SR ≥47.7% RoboCasa365; LIBERO ≥97.7% ([[2508.09071\|GeoVLA]]); RLBench ≥82.3% ([[2605.21414\|PointACT]]) |
+| **Anchor papers** | [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2402.02500\|Point Cloud Matters]] (benchmark), [[2606.03943\|PointAction]] (method), [[2508.09071\|GeoVLA]] (method), [[2605.21414\|PointACT]] (method) |
+| **Key targets** | Cross-embodiment zero-shot SR ≥43.0% ([[2606.03943\|PointAction]] xArm7); ID SR ≥47.7% RoboCasa365; LIBERO ≥97.7% ([[2508.09071\|GeoVLA]]); RLBench ≥82.3% ([[2605.21414\|PointACT]]); graded-shift sweep point > RGB by up to **76.92%** mean SR across **125** tasks ([[2402.02500\|Point Cloud Matters]]) |
 
 **Why it matters.**
 - **The gap**: the dominant recipe ([[2501.15830|SpatialVLA]], OpenVLA-class) feeds the head RGB tokens from a 2D backbone and hopes the geometry needed for contact-precise control falls out of the semantic features, so metric 3D motion and contact geometry stay implicit.
@@ -133,7 +133,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 **Hypotheses & tests.** The FP bet — the small-scale geometry-over-RGB advantage survives at VLA scale *and* from sparse geometry — decomposed. H1/H2 are *confirmed prior* ([[2402.02500|Point Cloud Matters]], [[2306.06799|Point Cloud RL Study]]) re-run at VLA scale to anchor the regime; the front-line contribution is H3 (minimal-geometry knee) + H4 (representation-vs-decoder) + H5 (beat the latent on OOD).
 1. **H1 — The graded-shift advantage replicates at 2D-pretrained-VLA scale (confirmed prior, extended).**
    - *Prediction*: [[2402.02500|Point Cloud Matters]]'s graded lighting/noise/background sweep — which already showed point > RGB on simple encoders — holds with a *2D-pretrained-VLA backbone*: holding the backbone fixed, the point-head-minus-RGB SR margin grows monotonically with shift magnitude, ≈0 at zero shift.
-   - *Test*: re-run [[2402.02500|Point Cloud Matters]]'s shift sweep with a [[2508.09071|GeoVLA]]-style VLA point head vs an RGB head; check the small-scale monotone pattern survives the backbone swap.
+   - *Test*: re-run [[2402.02500|Point Cloud Matters]]'s sim shift sweep with a [[2508.09071|GeoVLA]]-style VLA point head vs an RGB head; check the small-scale monotone pattern survives the backbone swap, then confirm it physically on [[2509.18953|Eva-VLA]]'s real-world graded-shift suite (illumination + 3D object transforms + adversarial patches, per-variation failure rates — SOTA VLAs surge from **4.0–23.5%** to over **80%** under optimized shift).
    - *Row*: Point Cloud Matters / GeoVLA / SpatialVLA.
    - *Falsifier*: a flat/non-monotone margin at VLA scale → the small-scale result is encoder-specific, not a backbone-invariant geometry principle.
 2. **H2 — The advantage concentrates in relational/contact sub-segments at VLA scale (confirmed prior, extended).**
@@ -148,7 +148,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
    - *Falsifier*: gain scales with density up to the full branch → cheap geometry doesn't suffice; A3's depth bridge is the only economical path.
 4. **H4 — The point *representation*, not the factorized decoder, carries the zero-shot win.**
    - *Prediction*: swapping [[2606.03943|PointAction]]'s point representation for an RGB-feature representation (decoder architecture held fixed) collapses most of the 43.0% xArm7 transfer; swapping the decoder while keeping points does not.
-   - *Test*: 2×2 representation-vs-decoder swap on the embodiment-free pretraining.
+   - *Test*: 2×2 representation-vs-decoder swap on the embodiment-free pretraining, scored on [[2505.14986|AnyBody]]'s controlled morphology-distance protocol (18 Isaac-Sim morphologies, explicit interpolation/extrapolation/composition splits) so the transfer is read off a suite that *isolates* morphological generalization from appearance/geometry confounds — though its reach/push tasks narrow rather than close the contact-precise side.
    - *Row*: PointAction.
    - *Falsifier*: the decoder swap costs as much as the representation swap → factorization, not geometry, is the driver.
 5. **H5 — A native point head beats the strongest latent-geometry policy on the geometry-bound split, not on ID.**
@@ -169,7 +169,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | **Cluster** | A — Geometry-Native Policies |
 | **Thesis** | Planning needs to know *what space will be filled*, not *what the scene will look like* — a voxel grid answers that directly, while pixels make you re-infer geometry every step. The field defaults to pixel forward models because that's what video foundation models predict; occupancy world models matured in driving and were never ported to tabletop. The bet is in First-principles below. |
 | **Anchor papers** | [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2506.20134\|3D World Models Survey]] (survey), [[2603.28887\|OccSim]] (method), [[2510.10125\|CTRL-WORLD]] (method) |
-| **Key targets** | Stable rollout ≥3,000 frames / ≥4 km ([[2603.28887\|OccSim]]); +22.1% relative mIoU vs asset-based sim; 67% zero-shot; manipulation port: beat a pixel-world-model baseline on geometry-bound [[2406.02523\|RoboCasa]] tasks |
+| **Key targets** | Stable rollout ≥3,000 frames / ≥4 km ([[2603.28887\|OccSim]]); +22.1% relative mIoU vs asset-based sim; 67% zero-shot; manipulation port: beat a pixel-world-model baseline on geometry-bound [[2406.02523\|RoboCasa]] tasks, scored via [[2604.19092\|RoboWM-Bench]]'s WM→executable-action→step+final SR (more discriminative than perceptual-plausibility metrics) |
 
 **Why it matters.**
 - **The gap**: model-based control needs a forward model, and the default is a pixel-space video predictor the policy must re-parse into geometry every step — so drift piles up fast (pixel/occupancy WMs in driving were "limited to fewer than 50 frames," per [[2603.28887|OccSim]]).
@@ -192,6 +192,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | [[2506.23126\|ParticleFormer]] | particle/point forward dynamics + MPC | superior MSE/CD dynamics, robust to hyperparams, lower MPC final-state error | particle (not dense-voxel-occupancy) substrate — the point-set alternative to A2's grid; no occupancy horizon-to-divergence |
 | [[2506.23135\|RoboScape]] | physics-informed RGB + temporal depth + keypoint dynamics | **91%** Robomimic (200 synthetic trajectories), **0.953** Pearson real-SR | depth-augmented but still pixel-anchored — geometry not the native state |
 | [[2605.09196\|RigidFormer]] | transformer rigid-body dynamics forecaster | **0.161 m / 15.33°** MOVi-B error, **23.9** FPS (8× FIGNet), stable to 217 objects | object-level rigid bodies, not a dense occupancy field the planner queries |
+| [[2604.22152\|dWorldEval]] | pixel-video drift-over-horizon evaluator (benchmark) | LPIPS **0.243** at 20-step round-trip horizon (beats drifting baselines), policy-ranking Pearson **~0.9–0.92** | standardizes the drift-over-horizon measurement A2 borrows from driving, but pixel substrate — cannot score *geometric* divergence; the metric vehicle for H1's frames-to-divergence axis |
 | [[2504.20995\|TesserAct]] | 4D RGB-D-N world model | depth+normal channels sharpen action prediction | the depth-augmented midpoint — geometry is a channel, not the substrate |
 | [[2604.16484\|DexWorldModel]] | O(1)-memory latent dexterous WM | constant-memory rollout over 2,000 steps | latent, not explicit — the efficiency budget the occupancy loop must respect |
 | [[2604.26694\|X-WAM]] | latent-4D unified WAM (sibling C3) | Chamfer **0.0049** vs 0.0680, 15 Hz | internal latent the planner can't read directly — A2's delta is *external* occupancy |
@@ -202,7 +203,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 **Hypotheses & tests.** The FP bet — a *dense explicit* voxel substrate beats pixels on horizon at RoboCasa scale, holds sub-cm, and conditions A1's head — decomposed. (That occupancy-is-the-forward-model-state is settled by [[2203.06856|ACID]] / [[2505.16249|3D-Occ-MPC]]; the front-line is the dense-voxel/scale/conditioning conjunction nobody has run.)
 1. **H1 — A dense voxel-occupancy inner loop beats the pixel inner loop on horizon-to-divergence at RoboCasa scale.**
    - *Prediction*: swapping a manipulation WM's pixel-prediction loop for a *dense-voxel* occupancy loop (backbone fixed) raises rollout-horizon-to-geometric-divergence ≥10× — beyond what [[2203.06856|ACID]]'s implicit field or [[2505.16249|3D-Occ-MPC]]'s single-object grid demonstrated — and the 80× driving gain partially survives the scale change.
-   - *Test*: matched-backbone dense-occupancy-vs-pixel forward models on [[2406.02523|RoboCasa]]; measure frames-to-divergence + downstream SR.
+   - *Test*: matched-backbone dense-occupancy-vs-pixel forward models on [[2406.02523|RoboCasa]], hosting both WM contestants on [[2604.19092|RoboWM-Bench]]'s shared WM→action→step+final SR scorecard (its discriminative-power finding — execution accuracy varies even at high perceptual scores — is exactly the fixed-horizon-SR-hides-stability claim) and comparing the two inner loops in genuine closed loop via [[2510.18135|World-in-World]] (counterfactual rollout → revision policy → task SR, manipulation in its suite); measure frames-to-divergence + downstream SR.
    - *Row*: OccSim / CTRL-WORLD / 3D-Occ-MPC.
    - *Falsifier*: occupancy ≤ pixel horizon at RoboCasa scale → the driving gain is scale-specific and ACID/3D-Occ-MPC's single-object result doesn't densify.
 2. **H2 — The Warp-DiT error bound is resolution-portable to sub-cm.**
@@ -217,7 +218,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
    - *Falsifier*: the monolithic predictor matches the decoupled one → the static/dynamic split is driving-specific.
 4. **H4 — Predicted future-occupancy can condition A1's action head directly.**
    - *Prediction*: feeding A2's forecast occupancy into A1's point-cloud head closes a fully-geometric perceive-imagine-act loop that beats the same head on present-frame geometry alone on long-horizon tasks.
-   - *Test*: condition the A1 head on forecast vs present occupancy; report long-horizon SR.
+   - *Test*: condition the A1 head on forecast vs present occupancy; report long-horizon SR on [[2510.18135|World-in-World]]'s closed-loop embodied-utility protocol (WM counterfactual rollout → plan selection → task success), the standardized inner-loop substrate the perceive-imagine-act comparison otherwise lacks.
    - *Row*: OccSim / DexWorldModel.
    - *Falsifier*: forecast conditioning ≤ present-frame → imagination adds nothing for the action head.
 5. **H5 — Explicit occupancy beats the latent-4D substrate on horizon, not per-frame fidelity.**
@@ -237,8 +238,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 |---|---|
 | **Cluster** | A — Geometry-Native Policies |
 | **Thesis** | A 2D policy's geometry deficit is a *missing channel*, not a *wrong backbone* — so a cheap depth-token side-input can supply it without disturbing the pretrained semantic alignment. The field assumes 3D-awareness needs a full parallel 3D branch and re-training, forcing a false choice between RGB-only (cheap, geometry-blind) and full-3D (capable, expensive). The bet is in First-principles below. |
-| **Anchor papers** | [[2504.05786\|3D Spatial Reasoning in LLM Survey]] (survey), [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2510.14836\|QDepth-VLA]] (method), [[2508.09071\|GeoVLA]] (method) |
-| **Key targets** | +8.8% LIBERO-Spatial, +29.7% long-horizon over open_pi_0, +10–20% real-robot ([[2510.14836\|QDepth-VLA]], single-view); recover ≥80% of [[2508.09071\|GeoVLA]]'s full-3D-branch gain (97.7% LIBERO) at side-channel cost |
+| **Anchor papers** | [[2504.05786\|3D Spatial Reasoning in LLM Survey]] (survey), [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2306.03310\|LIBERO]] (benchmark), [[2510.14836\|QDepth-VLA]] (method), [[2508.09071\|GeoVLA]] (method) |
+| **Key targets** | +8.8% LIBERO-Spatial, +29.7% long-horizon over open_pi_0, +10–20% real-robot ([[2510.14836\|QDepth-VLA]], single-view) on [[2306.03310\|LIBERO]]'s 4-suite SR (SPATIAL/OBJECT/GOAL/100); recover ≥80% of [[2508.09071\|GeoVLA]]'s full-3D-branch gain (97.7% LIBERO) at side-channel cost; alignment-preservation tracked via [[2505.05456\|SITE]]'s spatial-VQA→LIBERO-Spatial-SR correlation (**0.902** Pearson) |
 
 **Why it matters.**
 - **The gap**: A1 and A2 buy geometry by changing the architecture — a parallel point branch or an occupancy loop — but that strands the huge installed base of RGB-pretrained policies that already work and that nobody wants to re-train.
@@ -277,7 +278,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 **Hypotheses & tests.** The FP bet — the cost-efficiency frontier and alignment-cost nobody has measured, not "a depth bridge works" ([[2503.07511|PointVLA]] settled that) — decomposed. H1 (recovery-fraction knee) + H4 (alignment-preservation number) are the front-line; H2 is largely pre-answered by [[2408.05107|Depth Helps]] and re-run only to extend it to a capacity sweep.
 1. **H1 — The recovery-fraction curve has a knee well below full-branch cost.**
    - *Prediction*: sweeping depth-token capacity (codebook size, expert depth) on one common backbone, the recovered fraction of [[2508.09071|GeoVLA]]'s full-3D-branch SR gain reaches ≥80% at a small fraction of the added parameters, with a clear knee — the frontier neither [[2503.07511|PointVLA]] nor [[2510.13375|DepthVLA]] plotted.
-   - *Test*: capacity sweep on a common backbone; plot recovered-fraction vs added params.
+   - *Test*: capacity sweep on a common backbone; plot recovered-fraction vs added params on [[2306.03310|LIBERO]]-Spatial / long-horizon SR (the named suite the sweep is read off, against GeoVLA's full-3D ceiling).
    - *Row*: QDepth-VLA / GeoVLA / PointVLA.
    - *Falsifier*: recovery scales linearly to full-branch cost → no cheap operating point exists.
 2. **H2 — Quantization, not just the decoupled expert, drives the noise-robustness gain (extend pre-answered).**
@@ -291,8 +292,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
    - *Row*: QDepth-VLA / GeoVLA.
    - *Falsifier*: a second view doesn't help → the bridge ceiling is intrinsic, not view-limited.
 4. **H4 — The side-channel perturbs semantic alignment far less than full-branch fusion.**
-   - *Prediction*: a held-out VQA probe shows the frozen-backbone depth expert perturbs semantic alignment measurably less than full-branch fusion that backprops into the backbone.
-   - *Test*: VQA-probe drift, depth-expert vs full-branch fusion, same data.
+   - *Prediction*: [[2505.05456|SITE]]'s spatial-VQA probe shows the frozen-backbone depth expert perturbs semantic alignment measurably less than full-branch fusion that backprops into the backbone — and because SITE's CAA tracks LIBERO-Spatial manipulation SR at **0.902** Pearson, the probe drift it measures demonstrably predicts the downstream SR the side-channel must not damage.
+   - *Test*: [[2505.05456|SITE]] spatial-VQA-probe drift, depth-expert vs full-branch fusion, same data.
    - *Row*: QDepth-VLA / GeoVLA.
    - *Falsifier*: the side-channel perturbs alignment as much as fusion → the "non-disruptive" claim fails.
 5. **H5 — Train-time-only distillation matches the inference depth channel on geometry-bound tasks.**
@@ -319,7 +320,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | **Cluster** | B — 3D-Grounded Cognition |
 | **Thesis** | Metric spatial relations are a *graph over geometric entities*; free-form language CoT only describes that graph lossily and hallucinates when ungrounded. The MLLM field trusts language CoT over RGB and assumes scale alone closes the spatial gap. The bet is in First-principles below. |
 | **Anchor papers** | [[2504.05786\|3D Spatial Reasoning in LLM Survey]] (survey), [[2506.20134\|3D World Models Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2507.13362\|VLM Spatial Reasoning RL]] (method), [[2501.10074\|SpatialCoT]] (method), [[2601.13304\|CausalSpatial]] (benchmark) |
-| **Key targets** | CVBench ≥77.69% ([[2507.13362\|VLM Spatial Reasoning RL]]); manip SR ≥82.57% / nav SR ≥61.83% ([[2501.10074\|SpatialCoT]]); close part of the [[2601.13304\|CausalSpatial]] 54.17%→84.49% human gap |
+| **Key targets** | CVBench ≥77.69% ([[2507.13362\|VLM Spatial Reasoning RL]]); per-relation-type metric-spatial-QA on [[2412.07825\|3DSRBench]] (12 question types / 4 categories, FlipEval+CircularEval bias controls, 6D-viewpoint OOD split, human **95.7%** vs LMM **52.0–60.3%**); manip SR ≥82.57% / nav SR ≥61.83% ([[2501.10074\|SpatialCoT]]); close part of the [[2601.13304\|CausalSpatial]] 54.17%→84.49% human gap |
 
 **Why it matters.**
 - **The gap**: [[2504.05786|3D Spatial Reasoning in LLM Survey]] and [[2601.13304|CausalSpatial]] reach the same diagnosis — MLLMs don't reason about metric space, they *describe* it in language and hallucinate when ungrounded; on causal tasks (collision, occlusion, trajectory) GPT-5 scores 54.17% vs human 84.49% and is overconfident (low Not-Sure-Rate).
@@ -353,6 +354,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | [[2605.18162\|SAGE]] | self-evolving geometric-logic duality + GRPO | **+15.0** MindCube at **<37%** of the data | targets "pseudo-understanding" via RL, but not a metric graph per se |
 | [[2604.14144\|SpatialEvo]] | deterministic geometric environment for RL labels | **54.7** avg (7B), **−5.1 pt** without DGE GT | structure-as-supervision, but the graph isn't the reasoning substrate |
 | [[2505.12448\|SSR]] | raw depth → structured rationales → compact latents | **+13.6%** spatial accuracy, CoT cost **23.16s→0.32s** | depth-grounded rationale (B1×A3 tie) — not a relational scene-graph |
+| [[2506.03135\|OmniSpatial]] | comprehensive spatial-reasoning benchmark + built-in PointGraph scene-graph baseline | **>56%** top VLM vs human **92.6%** (30-pt gap); Complex-Spatial-Logic **30–40%**; PointGraph + SpatialCoT boost, SFT **+7.82** avg | a standardized suite where B1's metric-vs-structure comparison runs against a *built-in* scene-graph baseline, but reports answer accuracy, not graph-construction accuracy (H5) |
+| [[2605.29074\|Embodied3DBench]] | metric-3D perception suite (3D bbox / object point / grasp point) + View-Augmented-CoT | 13 VLMs, none robust on low-level metric 3D; score correlates with downstream LIBERO SR | the load-bearing metric-3D substrate for the reasoning-vs-perception split (H3), but a diagnostic, not a deployable graph layer |
 | [[2601.13304\|CausalSpatial]] | causal-spatial diagnostic + COW visual simulation | GPT-5 **54.17%** vs human **84.49%**; visual sim suppresses hallucination | measures the gap; the COW is a probe, not a deployable graph layer |
 | [[2604.24300\|ReVSI]] | dummy-video hallucination stress test | fine-tuned models hallucinate absent objects catastrophically | a diagnostic — exposes shortcut-vs-metric, prescribes no fix |
 | [[2605.30161\|Why Far Looks Up]] | vertical-distance-entanglement probe | **36.9 pp** shortcut gap (consistent vs counter) | proves reasoning is shortcut, not metric — no remedy |
@@ -361,7 +364,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 **Hypotheses & tests.** The FP bet — explicit metric scene-graph CoT + RL grounding closes the causal slice of the human gap — decomposed.
 1. **H1 — Metric edges, not topological relations, carry the gain.**
    - *Prediction*: a scene-graph with metric edge labels (distances, angles) beats a purely topological graph (left-of, on-top-of) on CVBench, with the gap concentrated in metric-relation question types.
-   - *Test*: ablate metric-vs-topological edges on [[2507.13362|VLM Spatial Reasoning RL]]; decompose gains by relation type.
+   - *Test*: ablate metric-vs-topological edges on [[2507.13362|VLM Spatial Reasoning RL]]; decompose gains by relation type over [[2412.07825|3DSRBench]]'s 12-question-type / 4-category split (its FlipEval directly tests the left/right topological shortcut to dissociate from metric content, and its 6D-viewpoint OOD split doubles as the H2 OOD substrate CVBench lacks).
    - *Row*: VLM Spatial Reasoning RL.
    - *Falsifier*: topological edges match metric edges → the win is structure, not metric content.
 2. **H2 — RL grounding transfers the scene-graph habit OOD better than SFT (settled prior, re-confirm on causal-OOD).**
@@ -371,8 +374,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
    - *Falsifier*: SFT matches RL on causal-OOD → grounding is prompt-tuning, not a transferable habit.
 3. **H3 — The residual human gap is reasoning-bound on trajectory, perception-bound on occlusion.**
    - *Prediction*: decomposing the 30-point gap by task, scene-graph CoT closes most of the *trajectory* slice (reasoning) but little of the *occlusion* slice (perception/depth).
-   - *Test*: per-task (collision/occlusion/trajectory) gain measurement on CausalSpatial.
-   - *Row*: CausalSpatial / Embodied3DBench.
+   - *Test*: per-task (collision/occlusion/trajectory) gain measurement on CausalSpatial, extended by [[2506.03135|OmniSpatial]]'s per-dimension split (Complex-Spatial-Logic 30–40% = reasoning-bound vs Perspective-Taking/perception = perception-bound) for a standardized reasoning-vs-perception decomposition beyond CausalSpatial's slice.
+   - *Row*: CausalSpatial / Embodied3DBench / OmniSpatial.
    - *Falsifier*: uniform closure across tasks → the gap isn't split reasoning-vs-perception.
 4. **H4 — Upstream scene-graph grounding partially substitutes for downstream geometry.**
    - *Prediction*: feeding [[2501.10074|SpatialCoT]]'s reasoned coordinates into a simpler RGB action head recovers a measurable fraction of A1's point-cloud-head SR on geometry-bound tasks — but not all of it, leaving a residual only sensed geometry closes.
@@ -396,8 +399,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 |---|---|
 | **Cluster** | B — 3D-Grounded Cognition |
 | **Thesis** | For an action to be planned over a horizon, an object's geometry and identity must stay coherent across time and viewpoint — 4D consistency. The field forces a choice: stay 2D (cheap, inconsistent) or generate explicit future frames (expensive). The bet is in First-principles below. |
-| **Anchor papers** | [[2506.20134\|3D World Models Survey]] (survey), [[2504.05786\|3D Spatial Reasoning in LLM Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2605.05126\|ConsisVLA-4D]] (method), [[2508.07917\|MolmoAct]] (method) |
-| **Key targets** | LIBERO ≥98.1% ([[2605.05126\|ConsisVLA-4D]]); real bimanual ≥70.0% (vs OpenVLA 28.5%); 2.31× inference speedup / 1.36× training-cost cut; OOD SR ≥72.1% ([[2508.07917\|MolmoAct]]) |
+| **Anchor papers** | [[2506.20134\|3D World Models Survey]] (survey), [[2504.05786\|3D Spatial Reasoning in LLM Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2603.22078\|WAM vs VLA Robustness]] (benchmark), [[2605.05126\|ConsisVLA-4D]] (method), [[2508.07917\|MolmoAct]] (method) |
+| **Key targets** | LIBERO ≥98.1% ([[2605.05126\|ConsisVLA-4D]]); factor-decomposed OOD on [[2510.13626\|LIBERO-Plus]] (7 axes, isolated camera-viewpoint where SR drops 95%→<30%); real bimanual ≥70.0% (vs OpenVLA 28.5%) on [[2506.18088\|RoboTwin 2.0]] (5-dim DR, +24.4% real few-shot); 2.31× inference speedup / 1.36× training-cost cut; OOD SR ≥72.1% ([[2508.07917\|MolmoAct]]) |
 
 **Why it matters.**
 - **The gap**: a policy that plans over a horizon must keep an object's geometry and identity coherent across time and viewpoint — else the action it commits at step 1 is invalidated by a hallucinated scene at step 5; the field's two answers (projection-biased 2D, or expensive explicit future-frame generation) both fall short.
@@ -431,16 +434,18 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | [[2604.08532\|SelfEvo]] | consistency-as-self-supervision (self-distillation, no labels) | **−19.7%** depth AbsRel, **+20.1%** AUC@30 on new domains | proves consistency is learnable label-free — not yet a deployed policy |
 | [[2604.16484\|DexWorldModel]] | O(1)-memory latent WM | constant-memory rollout | the efficiency budget the consistency mechanism must fit |
 | [[2505.05800\|3D-CAVLA]] | 3D context-aware scene-level conditioning over time | scene-level 3D conditioning | conditions on 3D, doesn't enforce cross-time consistency |
+| [[2603.22078\|WAM vs VLA Robustness]] | implicit-VLA-vs-explicit-WAM SR×latency frontier (benchmark) | shared 21-sub-dim / 7-category perturbation taxonomy over LIBERO-Plus + RoboTwin-2.0-Plus; WAMs **≥4.8×** slower than π0.5's 63 ms/chunk; π0.5 **85.7%** LIBERO-Plus | the only suite plotting OOD-SR *and* implicit-vs-explicit cost jointly, but compares architecture *families* — doesn't hold perception fixed to isolate consistency-as-driver (H1) |
+| [[2506.18088\|RoboTwin 2.0]] | standardized bimanual domain-randomized suite (benchmark) | 5-dim DR; **+24.4%** real few-shot / **+21.0%** zero-shot unseen-background; auto expert-code **71.3%** | the named substrate behind B2's real-bimanual ≥70% target (and the suite EvoScene-VLA/OptimusVLA's RoboTwin numbers come from), but a DR suite, not a consistency mechanism itself |
 
 **Hypotheses & tests.** The FP bet — implicit 4D-consistency matches explicit-3D at far lower cost, and consistency (not raw 3D) drives OOD — decomposed.
 1. **H1 — Over full space+time 4D, ablating consistency collapses OOD more than ablating perception.**
    - *Prediction*: removing [[2605.05126|ConsisVLA-4D]]'s consistency attention (perception held fixed) collapses OOD SR more than removing any single perceptual feature, and more than it dents ID SR — the consistency-vs-perception isolation that [[2509.14117|GeoAware]] (VGGT-layer ablation, viewpoint-only) and [[2511.17199|VLA-4D]] (coordinate-chaos, 3D-presence) did *not* run, and over *time* not just viewpoint.
-   - *Test*: consistency-ablation vs perceptual-feature-ablation on temporal-4D tasks; report ID-vs-OOD delta for each.
+   - *Test*: consistency-ablation vs perceptual-feature-ablation on [[2510.13626|LIBERO-Plus]]'s decomposed factor axes (the isolated camera-viewpoint slice vs background/lighting/layout) and [[2603.22078|WAM vs VLA Robustness]]'s per-category SR breakdown over LIBERO-Plus + RoboTwin-2.0-Plus; report ID-vs-OOD delta for each.
    - *Row*: ConsisVLA-4D / GeoAware / VLA-4D.
    - *Falsifier*: a perceptual-feature ablation hurts OOD as much → raw 3D / viewpoint-geometry, not consistency, drives robustness.
 2. **H2 — Implicit 4D is Pareto-dominant on the SR-vs-latency plane, except on a task sub-class.**
    - *Prediction*: plotting implicit ([[2605.05126|ConsisVLA-4D]]) vs explicit ([[2507.01099|Geometry-aware 4D Robot Video]], [[2604.26848|STARRY]]) on SR-vs-latency, implicit dominates except where externally-readable geometry is required (debuggability, tracker handoff).
-   - *Test*: build the frontier across implicit and explicit methods on matched tasks.
+   - *Test*: build the frontier across implicit and explicit methods on matched tasks — [[2603.22078|WAM vs VLA Robustness]] already plots exactly this SR×latency frontier (implicit-VLA vs explicit-generation-WAM, WAMs ≥4.8× slower than π0.5's 63 ms/chunk) on a shared perturbation suite, the substrate this test otherwise lacks.
    - *Row*: ConsisVLA-4D / Geometry-aware 4D Robot Video.
    - *Falsifier*: explicit dominates broadly → the cost advantage is illusory.
 3. **H3 — Implicit consistency + explicit traces compound, not redundant.**
@@ -454,8 +459,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
    - *Row*: ConsisVLA-4D / STARRY.
    - *Falsifier*: no crossover (implicit always or never wins) → horizon isn't the operating variable; beyond the upper crossover, route to C4.
 5. **H5 — A scene-flow prior recovers most of the consistency gain at lower cost.**
-   - *Prediction*: [[2603.25399|LaMP]]'s dense 3D-scene-flow prior recovers a large fraction of ConsisVLA-4D's OOD gain (toward 79.3% LIBERO-Plus) at lower architectural cost than full consistency attention — flow is the cheap form of the constraint.
-   - *Test*: scene-flow prior vs full consistency attention on LIBERO-Plus at matched backbone.
+   - *Prediction*: [[2603.25399|LaMP]]'s dense 3D-scene-flow prior recovers a large fraction of ConsisVLA-4D's OOD gain (toward 79.3% [[2510.13626|LIBERO-Plus]]) at lower architectural cost than full consistency attention — flow is the cheap form of the constraint.
+   - *Test*: scene-flow prior vs full consistency attention on [[2510.13626|LIBERO-Plus]] at matched backbone.
    - *Row*: LaMP / ConsisVLA-4D.
    - *Falsifier*: the flow prior underperforms materially → the full attention mechanism is load-bearing, not just the temporal-geometry signal.
 
@@ -476,8 +481,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 |---|---|
 | **Cluster** | C — Geometry-Native World Models |
 | **Thesis** | A world model's long-horizon stability is bounded by how fast *geometric* error piles up — and an explicit occupancy grid with rigid-transform constraints bounds that error where a latent substrate doesn't. The manipulation-WM field assumes the rollout substrate should be the same RGB-D latent the policy sees, and nobody has run the occupancy-vs-latent horizon comparison at tabletop scale. The bet is in First-principles below. |
-| **Anchor papers** | [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2506.20134\|3D World Models Survey]] (survey), [[2603.28887\|OccSim]] (method), [[2604.26694\|X-WAM]] (method) |
-| **Key targets** | Stable rollout ≥3,000 frames / ≥4 km ([[2603.28887\|OccSim]]); +22.1% rel mIoU vs asset-based sim; 80× horizon over prior <50-frame WMs; manipulation port: minute-scale geometric coherence vs latent-world-model drift |
+| **Anchor papers** | [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2506.20134\|3D World Models Survey]] (survey), [[2604.19092\|RoboWM-Bench]] (benchmark), [[2603.28887\|OccSim]] (method), [[2604.26694\|X-WAM]] (method) |
+| **Key targets** | Stable rollout ≥3,000 frames / ≥4 km ([[2603.28887\|OccSim]]); +22.1% rel mIoU vs asset-based sim; 80× horizon over prior <50-frame WMs; manipulation port: minute-scale geometric coherence vs latent-world-model drift, scored on [[2604.19092\|RoboWM-Bench]]'s step+final manipulation SR (rigid/articulated/deformable/long-horizon/bimanual, more discriminative than perceptual-plausibility metrics) |
 
 **Why it matters.**
 - **The gap**: [[2510.16732|World Models for Embodied AI Survey]] traces the WM spatial axis from latent → token → explicit 3D, but the manipulation default is a latent/pixel substrate whose geometric error compounds — the rollout drifts within tens of frames over long horizons.
@@ -502,6 +507,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | [[2510.10125\|CTRL-WORLD]] | controllable pixel video | **38.7→83.4%** on unseen objects | pixel substrate re-parses geometry; drifts long-horizon, not planner-readable |
 | [[2504.20995\|TesserAct]] | RGB-D-N (depth-augmented) | depth+normal channels sharpen prediction | midpoint between latent and occupancy — geometry is a channel, not the state |
 | [[2604.16484\|DexWorldModel]] | O(1)-memory latent | constant-memory rollout over 2,000 steps | latent, not explicit — the efficiency budget occupancy must respect |
+| [[2604.22152\|dWorldEval]] | pixel-video horizon-drift evaluator (benchmark) | round-trip LPIPS **0.243** at 20-step horizon, policy-ranking Pearson **~0.9–0.92** | the manipulation drift-over-horizon metric vehicle for C1's central horizon claim, but pixel substrate — cannot itself score *occupancy-geometric* divergence |
 | [[2406.02523\|RoboCasa]] | the proposed target suite | geometry-bound long-horizon manipulation (X-WAM 79.2% on 24 tasks) | no occupancy-substrate baseline on it yet — the gap C1 fills |
 | [[2510.16732\|World Models for Embodied AI Survey]] | latent → token → explicit-3D taxonomy | locates occupancy at the explicit end | a map, not a manipulation WM |
 | [[2604.22748\|Agentic World Modeling Survey]] | L2-Simulator domain-law rollout requirement | names the stability occupancy supplies | requirement, not mechanism |
@@ -510,12 +516,12 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 **Hypotheses & tests.** The FP bet — explicit occupancy beats latent on horizon-to-divergence, complementary on per-frame fidelity — decomposed.
 1. **H1 — Occupancy beats latent on horizon-to-divergence at tabletop scale (the head-to-head nobody ran).**
    - *Prediction*: on matched manipulation tasks, frames-to-geometric-divergence for an occupancy WM exceeds sibling C3's [[2604.26694|X-WAM]]-class latent by ≥one order of magnitude — the explicit-vs-latent horizon comparison [[2505.16249|3D-Occ-MPC]] and [[2011.01968|DSR-Net]] never ran — partially surviving the driving→tabletop scale change.
-   - *Test*: matched-task occupancy vs X-WAM latent; measure frames-to-divergence.
+   - *Test*: matched-task occupancy vs X-WAM latent on [[2604.19092|RoboWM-Bench]]'s long-horizon manipulation tasks (step+final SR, the shared substrate the occupancy-vs-latent head-to-head otherwise lacks), measuring frames-to-divergence via [[2604.22152|dWorldEval]]'s 20-step round-trip-consistency LPIPS (the manipulation analog of OccSim's driving stable-frame-count).
    - *Row*: OccSim / X-WAM / 3D-Occ-MPC.
    - *Falsifier*: occupancy ≤ latent horizon → the driving gain is scale-specific.
 2. **H2 — Externally-readable occupancy beats a decoded latent for collision-checking.**
    - *Prediction*: an off-the-shelf planner consumes the occupancy grid for collision-checking without a learned decoder, and this beats decoding C3's latent into a usable state on planning latency and accuracy.
-   - *Test*: planner-on-occupancy vs planner-on-decoded-latent on collision-check tasks.
+   - *Test*: planner-on-occupancy vs planner-on-decoded-latent on collision-check tasks, hosted on [[2510.18135|World-in-World]]'s closed-loop WM-in-control-loop protocol (counterfactual rollout → unified planning → downstream SR, with Robotic Manipulation in its suite) — the planner-on-WM-state substrate H2 otherwise lacks.
    - *Row*: OccSim / X-WAM.
    - *Falsifier*: decoding the latent matches direct occupancy → externality buys nothing.
 3. **H3 — A hybrid substrate beats either alone on (horizon × fidelity).**
@@ -530,7 +536,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
    - *Falsifier*: the bound collapses below meter-scale → occupancy doesn't transfer to manipulation precision.
 5. **H5 — Occupancy-grid drift, not Chamfer, predicts downstream planning failure.**
    - *Prediction*: downstream long-horizon planning SR correlates with horizon-to-divergence (mIoU-over-horizon), not per-frame Chamfer — confirming the right failure axis is horizon length.
-   - *Test*: regress planning SR on both metrics across rollouts.
+   - *Test*: regress planning SR on both metrics across rollouts — [[2510.18135|World-in-World]] supplies the downstream closed-loop SR (e.g. Image-Goal Nav 38.19→45.14%, manipulation) to regress against, and [[2604.22152|dWorldEval]] the complementary policy-ranking correlation (Pearson ~0.9 of WM-proxy vs real SR) tying drift to outcome.
    - *Row*: OccSim / X-WAM.
    - *Falsifier*: per-frame Chamfer predicts SR as well → C1 and C3 measure the same thing.
 
@@ -545,8 +551,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 |---|---|
 | **Cluster** | C — Geometry-Native World Models |
 | **Thesis** | A 6-DoF pose is a geometric quantity — cross-view-consistent pointmaps expose it directly to any tracker, while RGB-only frames leave it ambiguous. The field predicts RGB-only frames and re-estimates 3D after the fact, assuming a pixel video model plus a downstream pose estimator suffices. The bet is in First-principles below. |
-| **Anchor papers** | [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2507.01099\|Geometry-aware 4D Robot Video]] (method), [[2507.13347\|Pi3]] (method) |
-| **Key targets** | Avg task SR ≥0.64 across three sim tasks ([[2507.01099\|Geometry-aware 4D Robot Video]]) vs Dreamitate 0.12 / Diffusion Policy 0.12 (≈5× baseline); cross-view geometric consistency (higher mIoU) + lower FVD/AbsRel; generalize to novel viewpoints without retraining |
+| **Anchor papers** | [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2604.19092\|RoboWM-Bench]] (benchmark), [[2507.01099\|Geometry-aware 4D Robot Video]] (method), [[2507.13347\|Pi3]] (method) |
+| **Key targets** | Avg task SR ≥0.64 across three sim tasks ([[2507.01099\|Geometry-aware 4D Robot Video]]) vs Dreamitate 0.12 / Diffusion Policy 0.12 (≈5× baseline), scaled out on [[2604.19092\|RoboWM-Bench]]'s predicted-video→executable-action step+final SR (more discriminative than perceptual plausibility); cross-view geometric consistency (higher mIoU) + lower FVD/AbsRel; generalize to novel viewpoints without retraining |
 
 **Why it matters.**
 - **The gap**: video-prediction-for-action methods (Dreamitate-class) predict future RGB frames and then bolt on a pose estimator — but RGB-only frames leave 6-DoF pose ambiguous, so the policies are brittle (Dreamitate and Diffusion Policy both at 0.12 avg task SR in [[2507.01099|Geometry-aware 4D Robot Video]]'s evaluation).
@@ -576,12 +582,13 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | [[2604.26694\|X-WAM]] | latent-4D, end-effector-derived camera poses | Chamfer 0.0049, 15 Hz | latent substrate — pose is internal, not externally read (sibling C3) |
 | [[2505.20279\|VLM-3R]] | reading geometry out of reconstructed 3D | grounds reasoning in reconstructed 3D | reconstruction for reasoning, not 6-DoF trajectory readout |
 | [[2507.13347\|Pi3]] | pointmap/3D-reconstruction model | the consistent-pointmap machinery | a reconstruction backbone, not a predictive rollout |
+| [[2604.19092\|RoboWM-Bench]] | predicted-video→executable-action SR (benchmark) | step+final SR across rigid/articulated/deformable/long-horizon, real-to-sim-validated; separates executable from merely-plausible where perceptual metrics saturate | the discriminative SR substrate the ≈5× headline scales onto (its perceptual-vs-executability split *is* H1's "consistency not RGB fidelity drives action"), but doesn't itself isolate 6-DoF readout from predicted vs sensed geometry |
 | [[2510.16732\|World Models for Embodied AI Survey]] | explicit-geometry WM + pose-extraction framing | frames the use case | survey only |
 
 **Hypotheses & tests.** The FP bet — cross-view-consistent predicted pointmaps make pose tracker-readable, and consistency (not RGB fidelity) drives the action gain — decomposed.
 1. **H1 — Cross-view consistency, not RGB fidelity or single-view depth, drives the action gain.**
    - *Prediction*: removing the cross-view pointmap diffusion loss (RGB quality held fixed) collapses trajectory-extraction accuracy and downstream SR more than degrading RGB FVD does — *and* a single-view-depth + learned-estimator variant ([[2509.00361|Gen Visual Foresight Pose]]-style) underperforms the cross-view-consistent tracker readout on the same tasks, isolating consistency-for-tracker as the lever neither neighbor tested.
-   - *Test*: ablate the cross-view loss vs degrade RGB vs swap to single-view-depth + learned estimator; report SR delta for each.
+   - *Test*: ablate the cross-view loss vs degrade RGB vs swap to single-view-depth + learned estimator; report SR delta for each on [[2604.19092|RoboWM-Bench]]'s predicted-video→action SR (its perceptual-vs-executability discrimination is exactly H1's axis — execution accuracy varies even at high perceptual scores) and against [[2602.08971|WorldArena]]'s measured *perception–functionality gap* (high FVD/visual quality ≠ downstream SR) at the world-model level.
    - *Row*: Geometry-aware 4D Robot Video / Gen Visual Foresight Pose.
    - *Falsifier*: degrading RGB or single-view depth hurts SR as much → appearance / single-view geometry, not cross-view consistency, carries the gain.
 2. **H2 — Predicted pointmaps cost little vs sensed depth on pose readout.**
@@ -616,8 +623,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 |---|---|
 | **Cluster** | C — Geometry-Native World Models & Memory |
 | **Thesis** | For contact and spatial tasks the action is set by geometry a model can only infer indirectly from pixels — so a representation that is *natively 4D* (RGB + depth + 3D geometry over time) carries it directly, where 2D pixels lifted after the fact don't. The field treats live 4D as too expensive to deploy. The bet is in First-principles below. |
-| **Anchor papers** | [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2604.26509\|3D Generation for Embodied AI Survey]] (survey), [[2604.26694\|X-WAM]] (method), [[2503.18945\|Aether]] (method), [[2506.01103\|DeepVerse]] (method) |
-| **Key targets** | [[2406.02523\|RoboCasa]] 79.2% avg over 24 tasks (+12.1 pp vs [[2601.16163\|Cosmos Policy]]); Chamfer 0.0049 vs 0.0680 two-stage; +2.34 dB PSNR; 4.5× action-latency speedup (4665→1033 ms) at 5 denoising steps → 15 Hz real-time |
+| **Anchor papers** | [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2604.26509\|3D Generation for Embodied AI Survey]] (survey), [[2406.02523\|RoboCasa]] (benchmark), [[2602.08971\|WorldArena]] (benchmark), [[2604.26694\|X-WAM]] (method), [[2503.18945\|Aether]] (method), [[2506.01103\|DeepVerse]] (method) |
+| **Key targets** | [[2406.02523\|RoboCasa]] 79.2% avg over 24 tasks (+12.1 pp vs [[2601.16163\|Cosmos Policy]]); native-vs-lift geometric fidelity on [[2603.03485\|Phys4D]]'s three-tier protocol (per-frame AbsRel → short-term consistency → world-level 4D Chamfer + Worldline-L2 over horizon — lowest 4D-CD **0.4626**); Chamfer 0.0049 vs 0.0680 two-stage; +2.34 dB PSNR; 4.5× action-latency speedup (4665→1033 ms) at 5 denoising steps → 15 Hz real-time |
 
 **Why it matters.**
 - **The gap**: [[2510.16732|World Models for Embodied AI Survey]] traces the spatial axis latent → token → explicit 3D and [[2506.20134|3D World Models Survey]] frames the move "from 2D visual perception to comprehensive 3D spatial cognition," yet almost every deployed model still imagines in 2D pixels and recovers geometry only implicitly — which [[2604.26694|X-WAM]] says "leads to physically implausible predictions and hinders geometrically faithful reconstruction."
@@ -649,6 +656,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | [[2604.16484\|DexWorldModel]] | causal latent on DINOv3 semantic targets | **94%** RoboTwin | semantic-latent, not geometric — the non-geometric alternative |
 | [[2602.10098\|VLA-JEPA]] | pure latent JEPA, no geometric decoder | **97.2%** LIBERO | no geometry channel at all — the latent-only baseline to beat |
 | [[2603.16666\|Fast-WAM]] | train video, test latent (drops WM at deploy) | drop-at-deploy efficiency | opposite of keeping 4D online — the deploy-light contrast |
+| [[2603.03485\|Phys4D]] | three-tier 4D-geometric-fidelity evaluator (benchmark) | per-frame AbsRel **0.2711** → world-level 4D-CD **0.4626** + Worldline-L2 over horizon; +11.4 pp Physics-IQ | finally measures Chamfer + horizon *jointly* (the native-vs-lift fidelity axis), but doesn't itself run native-vs-recovered at matched latency |
+| [[2602.08971\|WorldArena]] | WM-functional-utility evaluator: data-engine / policy-evaluator / action-planner (benchmark) | EWMScore↔human **r=0.825** perceptual but only **r=0.360** action-planning — the *perception–functionality gap* | tests whether a WM substrate transfers to control (H5), but scores functional utility, not geometric fidelity, and doesn't isolate native-vs-recovered |
 | [[2604.07209\|INSPATIO-WORLD]] | real-time 4D from a single video (ST-AR + JDMD) | **24 FPS**, RotErr **2.8762** | real-time-4D neighbor, but reconstruction-from-video, not action-conditioned |
 | [[2605.01799\|Embody4D]] | generalist 4D synthesizing novel views from mono video | data engine lifts robot SR **74% vs 32%** OOD | manufactures geometry as data, not an online action substrate |
 | [[2605.15153\|Pelican-Unified]] | shared latent z + pixel-side generator | **93.5%** RoboTwin | multi-modal but not natively 4D-geometric |
@@ -657,12 +666,12 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 **Hypotheses & tests.** The FP bet — native-4D beats lift-after on geometry-bound tasks at no deployment penalty, and the substrate is model-agnostic — decomposed.
 1. **H1 — Native 4D beats lift-after-pixel on geometry-bound tasks.**
    - *Prediction*: holding the backbone fixed, [[2604.26694|X-WAM]]'s interleaved depth branch beats a pixel substrate + post-hoc depth estimator on geometry-bound [[2406.02523|RoboCasa]] tasks, isolating native-over-recovered 4D.
-   - *Test*: native-4D vs pixel+post-hoc-depth at matched backbone on RoboCasa.
+   - *Test*: native-4D vs pixel+post-hoc-depth at matched backbone on [[2406.02523|RoboCasa]] SR, with native-vs-recovered geometric fidelity scored on [[2603.03485|Phys4D]]'s per-frame-3D (AbsRel) + 4D-Chamfer protocol (the standardized native-vs-recovered measurement H1 otherwise reads off X-WAM's single self-reported Chamfer).
    - *Row*: X-WAM / GaussianDream.
    - *Falsifier*: recovered 4D matches native → online geometry is an unnecessary cost; train-time signal suffices.
 2. **H2 — The async action schedule shrinks to 1–4 steps without degrading the read-out geometry.**
    - *Prediction*: generalizing Asynchronous Noise Sampling, the action denoising schedule shrinks to 1–4 steps (step-distillation) without degrading the 4D geometry a consumer reads.
-   - *Test*: sweep action denoising steps; report geometry fidelity (Chamfer) vs steps.
+   - *Test*: sweep action denoising steps; report geometry fidelity vs steps on [[2603.03485|Phys4D]]'s short-term-consistency + world-level-4D-Chamfer + Worldline-L2 tiers (the over-horizon geometric-degradation axis the step-distillation sweep needs, not just per-frame Chamfer).
    - *Row*: X-WAM.
    - *Falsifier*: fewer steps degrade geometry → the speedup trades away the substrate's value.
 3. **H3 — Explicit 3D makes discrete contact-mode prediction easier than a latent.**
@@ -677,7 +686,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
    - *Falsifier*: free camera matches → the self-consistency constraint is inert.
 5. **H5 — A *native-4D-RGB-D-video* substrate transfers WM→policy as well as PointWorld's point-flow (settled-in-part, extend to RGB-D).**
    - *Prediction*: [[2601.03782|PointWorld]] already shows model-agnostic cross-embodiment transfer for a point-flow substrate; the open extension is whether a native-4D-RGB-D-video substrate ([[2604.26694|X-WAM]]'s) transfers WM→policy-head *with its appearance channel intact* — planning in explicit geometry beats latent on spatial tasks (insertion, stacking, pouring), and the same substrate plugged into a policy head matches its WM-consumer gain.
-   - *Test*: 4D-plan vs latent-plan on spatial tasks; then swap the RGB-D substrate into an action head, compare to the WM-consumer result and to PointWorld's point-flow transfer.
+   - *Test*: 4D-plan vs latent-plan on spatial tasks via [[2602.08971|WorldArena]]'s action-planner + policy-evaluator tracks (does the WM substrate transfer to control); then swap the RGB-D substrate into an action head and score closed-loop physical executability on [[2604.19092|RoboWM-Bench]]'s step+final SR, comparing to the WM-consumer result and to PointWorld's point-flow transfer.
    - *Row*: X-WAM / PointWorld.
    - *Falsifier*: latent planning matches, or the RGB-D substrate transfers no better than point-flow → the appearance-carrying native-4D form adds nothing PointWorld didn't.
 
@@ -693,7 +702,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 | **Cluster** | C — Geometry-Native World Models & Memory |
 | **Thesis** | That explicit geometric memory holds long-horizon coherence where attention-only models drift is now *settled* — [[2505.05495|3D Persistent Embodied WM]] showed it for an action-conditioned consumer. The unsolved question is whether one world-frame memory can serve as a *reusable persistence layer* over C1's occupancy, C2's pointmaps, and C3's latent-4D — and whether geometric + episodic memory *compound* on action-conditioned memory-required tasks. The field builds memory once, per substrate, and never benchmarks the two memory types together. The bet is in First-principles below. |
 | **Anchor papers** | [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2504.21853\|Interactive Generative Video Survey]] (survey), [[2602.04411\|Self-evolving Embodied AI]] (survey), [[2505.05495\|3D Persistent Embodied WM]] (method), [[2603.17117\|MosaicMem]] (method), [[2603.24576\|Chameleon (Episodic Memory)]] (method), [[2605.10921\|RoboMemArena]] (benchmark) |
-| **Key targets** | Substrate-agnostic persistence: each of C1/C2/C3 + the C4 layer beats the bare substrate on minute-scale coherence; episodic+geometric compound > max(either) on [[2605.10921\|RoboMemArena]] (68.9% of subtasks need history); anchored to [[2505.05495\|3D Persistent Embodied WM]] SRC 81.7% / FVD 91.9 (vs no-memory 63.4 / 194), [[2603.17117\|MosaicMem]] RotErr 0.51° vs 1.42°/4.65° at 16 FPS, [[2603.24576\|Chameleon (Episodic Memory)]] 100% episodic-recall / 73.5% spatial-tracking |
+| **Key targets** | Substrate-agnostic persistence: each of C1/C2/C3 + the C4 layer beats the bare substrate on minute-scale coherence, scored on [[2602.08025\|MIND-Bench]]'s closed-loop revisit memory-consistency + action-control metric (>**4%** context-memory gain on the long-context-memory metric, substrate-level not per-method); episodic+geometric compound > max(either) on [[2605.10921\|RoboMemArena]] (68.9% of subtasks need history); anchored to [[2505.05495\|3D Persistent Embodied WM]] SRC 81.7% / FVD 91.9 (vs no-memory 63.4 / 194), [[2603.17117\|MosaicMem]] RotErr 0.51° vs 1.42°/4.65° at 16 FPS, [[2603.24576\|Chameleon (Episodic Memory)]] 100% episodic-recall / 73.5% spatial-tracking |
 
 **Why it matters.**
 - **The gap**: the headline "explicit geometric memory beats attention-only on action-conditioned long-horizon coherence" is *already taken* — [[2505.05495|3D Persistent Embodied WM]] (PEWM) builds a volumetric world-frame memory, conditions an *action*-conditioned RGB-D WM on it, and beats the no-memory baseline (Scene-Revisit-Consistency **81.7%** vs **63.4%**, FVD **91.9** vs **194**) with downstream MPC/policy gains. So the open gap is not "does it help" but two things nobody has done: a memory layer that serves *any* substrate (C1/C2/C3), and a benchmark of geometric + episodic memory *together*.
@@ -729,7 +738,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 **Hypotheses & tests.** The reframed bet — one world-frame memory is a substrate-agnostic persistence *layer*, and geometric + episodic memory *compound* on action-conditioned tasks — decomposed. (The headline "geometric memory beats attention-only for an action-conditioned consumer" is *settled* by [[2505.05495|3D Persistent Embodied WM]]; the front-line is the layer-reuse + compound nobody has run.)
 1. **H1 — One world-frame memory layer transfers across C1/C2/C3 substrates.**
    - *Prediction*: dropping a single world-frame memory mechanism over C1's occupancy, C2's pointmaps, and C3's latent-4D raises each substrate's minute-scale coherence above the bare substrate by a margin tracking [[2505.05495|3D Persistent Embodied WM]]'s SRC 81.7% vs 63.4% gap — i.e. the layer is substrate-agnostic, not the bespoke per-model memory PEWM/MosaicMem built.
-   - *Test*: each of C1/C2/C3 with vs without the shared C4 layer on minute-scale tasks; compare coherence lift across substrates.
+   - *Test*: each of C1/C2/C3 with vs without the shared C4 layer, scored on [[2602.08025|MIND-Bench]]'s closed-loop revisit memory-consistency + action-control metric (temporal stability + scene-revisit coherence, decoupled from any one method's bespoke metric) so the coherence lift is read off a substrate-level, model-agnostic suite rather than PEWM/MosaicMem self-numbers — though MIND-Bench is camera/scene-navigation, so it backs the coherence-metric + model-agnostic claim, not all three manipulation substrates by itself.
    - *Row*: 3D Persistent Embodied WM / MosaicMem.
    - *Falsifier*: the lift varies wildly per substrate or one substrate gets none → memory is substrate-bespoke, not a reusable layer.
 2. **H2 — Episodic events + geometric memory compound on action-conditioned tasks.**
@@ -770,8 +779,8 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 |---|---|
 | **Cluster** | D — Reconstruction for Embodied Perception |
 | **Thesis** | An embodied agent acts on *scene-level interaction-readiness* — geometric validity, physical parameterization, kinematic executability of a whole reconstructed environment — not on appearance. The reconstruction field optimizes visual fidelity (PSNR/FID) and assumes a higher-fidelity NeRF/3DGS scene is a better embodied asset. The bet is in First-principles below. |
-| **Anchor papers** | [[2604.26509\|3D Generation for Embodied AI Survey]] (survey), [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2404.09833\|Video2Game]] (method), [[2605.26115\|TriSplat]] (method), [[2506.06440\|Vid2Sim]] (method) |
-| **Key targets** | Single-video → interactive environment at ≥100 FPS browser-compatible ([[2404.09833\|Video2Game]]); simulation-readiness criteria met (geometric validity + physical parameterization + kinematic executability + URDF/MJCF compat) per [[2604.26509\|3D Generation for Embodied AI Survey]] |
+| **Anchor papers** | [[2604.26509\|3D Generation for Embodied AI Survey]] (survey), [[2506.20134\|3D World Models Survey]] (survey), [[2510.16732\|World Models for Embodied AI Survey]] (survey), [[2505.17966\|Single-View Mesh for Robotics]] (benchmark), [[2404.09833\|Video2Game]] (method), [[2605.26115\|TriSplat]] (method), [[2506.06440\|Vid2Sim]] (method) |
+| **Key targets** | Single-video → interactive environment at ≥100 FPS browser-compatible ([[2404.09833\|Video2Game]]); per-criterion readiness pass/fail on [[2505.17966\|Single-View Mesh for Robotics]]'s 5 robotics desiderata (Chamfer<**2 mm**, no-collision, stability<5° tilt, occlusion-robustness, <2 s — 12 recon models on YCB-Video + Aria, ~**50%** grasp transfer); simulation-readiness criteria met (geometric validity + physical parameterization + kinematic executability + URDF/MJCF compat) per [[2604.26509\|3D Generation for Embodied AI Survey]] |
 
 **Why it matters.**
 - **The gap**: the reconstruction community optimizes radiance (PSNR/SSIM/FID), and [[2604.26509|3D Generation for Embodied AI Survey]] names the mismatch as *the* embodied bottleneck — "a crucial distinction between conventional 3D generation (focused on visual appearance) and embodied-oriented 3D generation, which demands interaction readiness, physical grounding, and simulator compatibility," blocked by "scarcity of physical annotations."
@@ -789,7 +798,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 |---|---|---|---|
 | [[2404.09833\|Video2Game]] | single-video → NeRF + baked mesh + rigid-body physics | **100+ FPS** browser-compatible interactive environment | rigid entities only — articulated structure from single video unproven |
 | [[2510.05560\|HoloScene]] | single-video → sim-ready interactive twin, Isaac-Sim-in-the-loop | **81.7%** stable-ratio, **100%** object-reconstruction (Replica); Table-3 fidelity-vs-stability trade-off | reports the orthogonality as an ablation co-product, not D1's controlled per-criterion measurement; rigid-body only (articulation named as future work) |
-| [[2505.17966\|Single-View Mesh for Robotics]] | readiness probe over single-view reconstruction methods | most miss **2 mm** bar (~5 mm–1 cm Chamfer), ~**50%** grasp transfer, colliding/unstable poses | proves fidelity-optimal ≠ readiness (pre-validates H1), but a *diagnostic*, prescribes no readiness-optimizing pipeline or scorecard |
+| [[2505.17966\|Single-View Mesh for Robotics]] | per-criterion readiness scorecard over 12 single-view recon models (benchmark) | 5 robotics desiderata (Chamfer<2 mm / no-collision / stability<5° / occlusion / <2 s); most miss **2 mm** bar (~5 mm–1 cm Chamfer), ~**50%** grasp transfer, colliding/unstable poses | the standardized per-criterion readiness protocol H1 needs (object-level on YCB-Video + Aria), but a one-sided probe — no readiness-*optimizing* pipeline, no scene-level dual-objective isolation |
 | [[2603.14010\|URDF-Anything+]] | image→articulated URDF generation | Part IoU **0.879**, Joint-Axis-Err **0.129 rad**, zero-shot real laptop 100% / drawer 90% | recovers articulation→URDF (D1's H2 gap), but from a curated image, not in-the-wild single video of a whole scene |
 | [[2506.08334\|iTACO]] | casual-capture → articulated object reconstruction | Joint-Axis-Err **0.32 rad** (vs 0.82–1.16), type-error **15.9%** (vs 40–89%) | articulation from casual capture, but per-object — not whole-scene articulated decomposition for an act-in environment |
 | [[2509.17647\|VideoArtGS]] | monocular video → articulated digital twin (3DGS) | revolute-axis error **0.32°** (vs 13.83°), position error **0.42 cm** | the single-video articulation path D1's H2 needs, but object-level twins, not a readiness-scored scene |
@@ -807,12 +816,12 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 **Hypotheses & tests.** The FP bet — readiness, not fidelity, is the embodied target, and it is reachable from single video — decomposed.
 1. **H1 — Fidelity-optimal scenes fail readiness criteria measurably more often (controlled, beyond HoloScene's co-product).**
    - *Prediction*: building the same scene optimizing (a) PSNR vs (b) [[2604.26509|3D Generation for Embodied AI Survey]]'s four readiness criteria, the fidelity-optimal asset fails ≥1 readiness criterion substantially more often — the *controlled* per-criterion isolation [[2510.05560|HoloScene]] surfaces only as a Table-3 trade-off ablation and [[2505.17966|Single-View Mesh for Robotics]] shows only as a one-sided probe.
-   - *Test*: dual-objective reconstruction on a matched scene set; report per-criterion pass/fail rates.
+   - *Test*: dual-objective reconstruction on a matched scene set; report per-criterion pass/fail rates against [[2505.17966|Single-View Mesh for Robotics]]'s 5-desiderata protocol (Chamfer<2 mm / no-collision / stability<5° / occlusion / <2 s + grasp-transfer SR), the standardized per-criterion readiness scorecard the card otherwise treats as nonexistent.
    - *Row*: HoloScene / Single-View Mesh for Robotics / 3D Generation for Embodied AI Survey.
    - *Falsifier*: fidelity-optimal assets also pass readiness → fidelity and readiness aren't orthogonal.
 2. **H2 — Single-video recovers rigid structure but not articulation (the ceiling HoloScene names).**
    - *Prediction*: [[2404.09833|Video2Game]]/[[2510.05560|HoloScene]]-style single-video reconstruction recovers rigid-entity decomposition reliably but fails articulated structure (joints, DoF) for URDF/MJCF export without multi-view or interaction data — closable by porting the [[2603.14010|URDF-Anything+]] / [[2506.08334|iTACO]] / [[2509.17647|VideoArtGS]] articulation path into the scene pipeline.
-   - *Test*: single-video vs multi-view kinematic recovery on articulated scenes; report URDF-exportability.
+   - *Test*: single-video vs multi-view kinematic recovery on articulated scenes; report URDF-exportability + joint-axis/type error on [[2604.05621|FunRec]]'s RealFun4D (the only scene-level articulated-readiness suite — 127 photorealistic sequences in 12 OmniGibson scenes + a real counterpart, URDF/USD-exportable, part-mIoU / joint-axis / pose metrics), with [[2603.19231|MonoArt]] establishing the single-image articulation ceiling on PartNet-Mobility (Chamfer **0.77**, type-accuracy **88.26%**).
    - *Row*: VideoArtGS / URDF-Anything+ / SAPIEN.
    - *Falsifier*: single-video recovers articulation directly → the multi-view requirement is unnecessary.
 3. **H3 — A readiness threshold for physical parameters exists below sim-accurate fidelity.**
@@ -889,7 +898,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
    - *Falsifier*: the advantage is uniform across classes → physics-with-geometry helps everywhere, not specifically the hard cases.
 3. **H3 — Energy-conservation predicts out-of-category readiness better than fidelity.**
    - *Prediction*: enforcing a physical-consistency constraint (energy, momentum, [[2412.17804|GausSim]]'s mass conservation) at generation time predicts out-of-category readiness better than fidelity (PSNR/Chamfer) alone — mirroring [[2605.30347|NeuROK]]'s energy-conserving generalization.
-   - *Test*: regress out-of-category readiness on a consistency metric vs a fidelity metric.
+   - *Test*: regress out-of-category readiness on a consistency metric vs a fidelity metric — using [[2503.21745|3DGen-Bench]]'s standardized human-preference fidelity yardstick (3DGen-Score, **0.725/0.767** human-alignment for text/image-to-3D) as the *fidelity arm* the consistency-vs-fidelity comparison structurally requires (cited only as the fidelity comparator — never as a physical-readiness backer, which would invert the bet's contrast).
    - *Row*: NeuROK / GausSim.
    - *Falsifier*: fidelity predicts out-of-category readiness as well → physical consistency isn't the generalization signal.
 4. **H4 — A generated object transfers to a sim-trained policy via material *or* kinematics.**
@@ -930,17 +939,17 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 
 | Gap | Direction | Existing closest |
 |---|---|---|
-| No benchmark isolates *cross-embodiment appearance-shift* SR to test the geometry-vs-RGB claim — current suites mix appearance and geometry shift | A1 | [[2606.03943\|PointAction]] xArm7 zero-shot (43.0%) is the closest split, but conflates embodiment + appearance + geometry shift in one number |
-| No manipulation benchmark measures *rollout-horizon-to-geometric-divergence* for forward models — SR is reported at fixed horizon, hiding stability | A2 | [[2603.28887\|OccSim]]'s stable-frame-count (3,000+) is the metric, but only in driving; no manipulation analog |
-| No benchmark reports the *recovery-fraction* of a cheap depth-bridge vs a full-3D branch on a common backbone — gains are vs weak RGB baselines, not the full-3D ceiling | A3 | [[2510.14836\|QDepth-VLA]] +8.8% / +29.7% over open_pi_0 vs [[2508.09071\|GeoVLA]] 97.7% — never head-to-head on one backbone |
-| No benchmark splits the human-model spatial gap into *reasoning* vs *perception* failure, nor isolates *genuine metric 3D* from *shortcut* answering | B1 | [[2601.13304\|CausalSpatial]] (GPT-5 54.17% vs human 84.49%) measures the gap; [[2605.29074\|Embodied3DBench]], [[2605.30161\|Why Far Looks Up]] (36.9 pp), [[2605.30557\|SpatialUncertain]] diagnose the shortcut, but none isolate reasoning from depth-perception failure on one probe |
-| No benchmark plots the *implicit-vs-explicit 4D* cost/accuracy frontier at matched accuracy | B2 | [[2605.05126\|ConsisVLA-4D]] (98.1% LIBERO, 2.31× speedup) reports both but only for the implicit method; no explicit-4D point on the same plane |
-| No manipulation benchmark stress-tests *long-horizon geometric coherence* of occupancy vs latent at sub-cm resolution | C1 | [[2603.28887\|OccSim]] horizon stability (driving, meter-scale) + [[2604.26694\|X-WAM]] Chamfer 0.0049 (per-frame) — neither measures sub-cm horizon-to-divergence |
-| No benchmark isolates *6-DoF-extraction accuracy from predicted vs sensed geometry* across viewpoints | C2 | [[2507.01099\|Geometry-aware 4D Robot Video]] (0.64 vs 0.12 SR, 3 tasks) shows the gap but on a narrow set, no predicted-vs-sensed isolation |
-| No benchmark scores *native-4D-at-deployment vs lift-after-pixel* on geometry-bound tasks (Chamfer + SR + latency jointly), nor whether the latent-4D substrate transfers WM↔policy | C3 | [[2604.26694\|X-WAM]] (native 4D, single system, no native-vs-recovered ablation) + [[2605.20752\|GaussianDream]] (4D at train, dropped at deploy) |
-| No benchmark scores *persistent geometric + episodic memory* on memory-dependent manipulation over minute-scale horizons, model-agnostic across substrates | C4 | [[2605.10921\|RoboMemArena]] (demand-side, reactive baselines) + [[2603.17117\|MosaicMem]] (geometric memory on camera-video, not action-conditioned) |
-| No benchmark scores *scene* reconstruction on *interaction-readiness* (the four criteria) rather than fidelity — readiness is a checklist with no leaderboard | D1 | [[2604.26509\|3D Generation for Embodied AI Survey]] names the four criteria; [[2404.09833\|Video2Game]] meets them, but no standardized readiness benchmark exists ([[2604.25459\|GS-Playground]]/[[2511.04665\|Real-to-Sim GS]] grade transfer, not readiness) |
-| No benchmark scores *per-object* physical-asset generation uniformly across *rigid + deformable + articulated* classes — readiness metrics are class-siloed | D2 | [[2605.21572\|PhysX-Omni]] PhysX-Bench (kinematic 0.92) is rigid/articulated-leaning; [[2503.17973\|PhysTwin]]/[[2605.09538\|PhysHanDI]] are deformable-specific; [[2605.30347\|NeuROK]] reports Chamfer/IoU — none score all three classes on one scorecard |
+| No benchmark isolates *cross-embodiment appearance-shift* SR to test the geometry-vs-RGB claim — current suites mix appearance and geometry shift | A1 | [[2606.03943\|PointAction]] xArm7 zero-shot (43.0%) conflates embodiment + appearance + geometry in one number; the gap is now *narrowed via two single-axis benchmarks* — [[2505.14986\|AnyBody]] isolates the embodiment axis (18 morphologies, interpolation/extrapolation/composition splits, reach/push only) and [[2509.18953\|Eva-VLA]] the real-world appearance axis (graded illumination + 3D-transform + patches, per-variation failure rates), but no single suite does both on contact-rich tasks |
+| No manipulation benchmark measures *rollout-horizon-to-geometric-divergence* for forward models — SR is reported at fixed horizon, hiding stability | A2 | [[2604.19092\|RoboWM-Bench]] scores WM→executable-action→step+final SR (discriminative beyond fixed-horizon, but SR not geometric divergence), [[2604.22152\|dWorldEval]] measures pixel drift over a 20-step rollout (LPIPS, round-trip consistency), and [[2510.18135\|World-in-World]] standardizes closed-loop WM utility — but none scores *geometric* divergence at sub-cm voxel resolution (the only occupancy-forecasting suites — UniOcc driving, restructured OccWorld-ScanNet inside [[2505.05512\|Occupancy World Model]] — have no tabletop analog), the residual A2 fills |
+| No benchmark reports the *recovery-fraction* of a cheap depth-bridge vs a full-3D branch on a common backbone — gains are vs weak RGB baselines, not the full-3D ceiling | A3 | [[2306.03310\|LIBERO]]-Spatial/long-horizon is the named SR substrate, but no protocol plots recovery-fraction vs [[2508.09071\|GeoVLA]]'s full-3D ceiling (97.7%) on one backbone ([[2510.14836\|QDepth-VLA]] +8.8% / +29.7% over open_pi_0 — never head-to-head); the alignment-preservation half (H4) has only [[2505.05456\|SITE]]'s spatial-VQA→SR correlation (0.902), which links alignment to SR but not the recovery-fraction frontier — both protocols remain genuine gaps |
+| No benchmark splits the human-model spatial gap into *reasoning* vs *perception* failure, nor isolates *genuine metric 3D* from *shortcut* answering | B1 | [[2601.13304\|CausalSpatial]] (GPT-5 54.17% vs human 84.49%) measures the gap; [[2605.29074\|Embodied3DBench]], [[2605.30161\|Why Far Looks Up]] (36.9 pp), [[2605.30557\|SpatialUncertain]] diagnose the shortcut; for the metric-vs-shortcut isolation, [[2412.07825\|3DSRBench]] (12 relation types, FlipEval/CircularEval controls, 6D-viewpoint OOD) and [[2506.03135\|OmniSpatial]] (50 subcategories + built-in PointGraph scene-graph baseline) are the closest standardized substrates — but neither reports graph-construction accuracy separately from answer accuracy, and none isolate reasoning from depth-perception on one probe (H5 stays open) |
+| No benchmark plots the *implicit-vs-explicit 4D* cost/accuracy frontier at matched accuracy | B2 | [[2603.22078\|WAM vs VLA Robustness]] already plots the implicit-VLA-vs-explicit-generation-WAM SR×latency frontier (WAMs ≥4.8× slower than π0.5's 63 ms/chunk) over a shared LIBERO-Plus + RoboTwin-2.0-Plus suite, and [[2510.13626\|LIBERO-Plus]] supplies the factor-decomposed OOD axis — so the residual gap narrows to: no benchmark plots the frontier with *perception held fixed* (the consistency-as-driver isolation H1 needs), only architecture-family comparisons |
+| No manipulation benchmark stress-tests *long-horizon geometric coherence* of occupancy vs latent at sub-cm resolution | C1 | [[2604.19092\|RoboWM-Bench]] supplies the manipulation rollout substrate (step+final SR, discriminative beyond perceptual metrics) and [[2604.22152\|dWorldEval]] the horizon-DRIFT metric (round-trip LPIPS@20-step), but both score pixel/video drift — no benchmark measures sub-cm *occupancy*-geometric horizon-to-divergence at tabletop scale (all 3D occupancy-forecasting suites are driving — Cam4DOcc/UniOcc/Occ3D-nuScenes — or static indoor — Occ-ScanNet/RoboOcc, no temporal horizon); the sub-cm occupancy variant (H4 + occupancy half of H1) is a true field gap |
+| No benchmark isolates *6-DoF-extraction accuracy from predicted vs sensed geometry* across viewpoints | C2 | [[2604.19092\|RoboWM-Bench]] (executability-vs-perceptual discrimination, step+final SR) and [[2602.08971\|WorldArena]] (perception–functionality gap) provide the discriminative predicted-video→action SR axis the headline needs, but neither isolates 6-DoF-extraction-accuracy from predicted vs sensed geometry across viewpoints — that predicted-vs-sensed pose-readout isolation (H2/H3) remains a genuine field gap (FoundationPose-as-tracker is the method, no standardized suite scores it) |
+| No benchmark scores *native-4D-at-deployment vs lift-after-pixel* on geometry-bound tasks (Chamfer + SR + latency jointly), nor whether the latent-4D substrate transfers WM↔policy | C3 | [[2603.03485\|Phys4D]] scores geometry-over-horizon (per-frame AbsRel → 4D-Chamfer → Worldline-L2) and [[2602.08971\|WorldArena]] scores WM functional utility (action-planner / policy-evaluator), with [[2406.02523\|RoboCasa]] the in-dist SR substrate — but none isolates the *single-system matched-backbone* native-4D-at-deploy vs lift-after-pixel head-to-head scoring Chamfer-over-horizon + SR + latency on one plane (H3/H4 stay method-internal) |
+| No benchmark scores *persistent geometric + episodic memory* on memory-dependent manipulation over minute-scale horizons, model-agnostic across substrates | C4 | [[2602.08025\|MIND-Bench]] is the model-agnostic memory-CONSISTENCY benchmark (closed-loop revisit-coherence + action control at the WM substrate level, narrowing the "model-agnostic" half) and [[2605.10921\|RoboMemArena]] the action-conditioned-manipulation demand-side anchor; but MIND is scene-navigation (not manipulation at sub-cm), so no suite instantiates the *same* memory layer over C1-occupancy / C2-pointmaps / C3-latent-4D substrates, and no world-frame-vs-robot-frame drift suite exists for H4 |
+| No benchmark scores *scene* reconstruction on *interaction-readiness* (the four criteria) rather than fidelity — readiness is a checklist with no leaderboard | D1 | [[2505.17966\|Single-View Mesh for Robotics]] is the closest readiness-CRITERIA protocol (5 desiderata, 12 recon models, YCB-Video + Aria, per-criterion pass/fail + ~50% grasp transfer) but object-level with no readiness-OPTIMIZING pipeline, and [[2604.05621\|FunRec]]'s RealFun4D the closest scene-level articulation-readiness suite (127 seqs / 12 OmniGibson, URDF/USD-exportable); the residual gap is a standardized scene-level four-criteria leaderboard running the controlled PSNR-vs-readiness dual-objective comparison ([[2604.25459\|GS-Playground]]/[[2511.04665\|Real-to-Sim GS]] grade transfer, not readiness) |
+| No benchmark scores *per-object* physical-asset generation uniformly across *rigid + deformable + articulated* classes — readiness metrics are class-siloed | D2 | The only cross-class readiness scorecard is PhysX-Bench, shipped by the [[2605.21572\|PhysX-Omni]] method itself (kinematic 0.92, rigid/articulated-leaning); [[2503.17973\|PhysTwin]]/[[2605.09538\|PhysHanDI]] are deformable-specific. The closest *standardized* 3D-gen benchmark is fidelity-only ([[2503.21745\|3DGen-Bench]] human-preference/3DGen-Score) — which scores appearance fidelity, the very axis D2's bet argues against, so the standardized leaderboards measure the wrong axis for embodied readiness |
 
 ---
 

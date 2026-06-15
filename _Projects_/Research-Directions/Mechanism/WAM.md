@@ -184,8 +184,8 @@ Twenty-seven systems that put the imagined state at a different point on the *tr
    - *Falsifier*: the dual-decoder z underperforms latent-only on SR → the shared substrate cannot serve both jobs.
 4. **H4 — Process-adaptive gating beats a fixed deploy substrate.**
    - *Prediction*: gating latent-only (free-space transit) vs pixel/3DGS-aided (predicted-contact) by a contact predictor beats [[2605.10942|HarmoWAM]]'s fixed dual-expert gating on contact-rich tasks, with the gain concentrated where contact is imminent.
-   - *Test*: stratify tasks by contact-onset proximity; compare contact-gated substrate switching vs HarmoWAM's adaptive gating.
-   - *Row*: HarmoWAM (dual-expert gating).
+   - *Test*: stratify by contact-onset proximity using [[2605.19986|MetaFine]]'s stage-wise diagnostic scoring (it separates "Grasp Part" 80% from "Rotate Along" 12% and flags behavioral arrest at multi-stage transitions — the contact-phase boundaries H4 isolates) over [[2505.18472|ManiFeel]]'s 13 contact-rich visuotactile tasks (insertion/screwing/exploration, where +26 pp from the force-field channel marks the contact-onset regime); compare contact-gated substrate switching vs HarmoWAM's adaptive gating.
+   - *Row*: HarmoWAM (dual-expert gating); contact-phase scoring via MetaFine + ManiFeel.
    - *Falsifier*: a fixed substrate matches the gated one on contact-rich tasks → switching adds nothing.
 5. **H5 — Semantic-latent supervision survives a dense pixel branch.**
    - *Prediction*: [[2604.16484|DexWorldModel]]'s [[2508.10104|DINOv3]]-target advantage (94% [[2504.13059|RoboTwin]]) persists when a dense pixel/3DGS branch co-supervises training — i.e., the dense branch does not wash out the semantic-latent gain.
@@ -210,7 +210,7 @@ Twenty-seven systems that put the imagined state at a different point on the *tr
 | **Cluster** | A — Substrate & Encoding |
 | **Thesis** | Make a WAM forecast a *future 6-DoF wrench* (force + torque) as a rolled-forward output the policy acts on inside imagination — not a present-time force token consumed as input. The reason it must work: in contact, force is the generative *cause* and what you see is the *effect*, so the causal law lives in the future-wrench rollout, not in a consumed reading. The field now predicts force, but as a low-dimensional token fed to the policy ([[2602.02142\|FD-VLA]]) or as tactile *images* ([[2512.23864\|DreamTacVLA]]). The bet is in First-principles below — tense + 6-DoF + acted-on-in-rollout is the surviving wedge. |
 | **Anchor papers** | [[2605.12090\|WAM Survey]] (survey), [[2511.02097\|WM Manipulation Survey]] (survey), [[2604.16592\|Cognition WM Survey]] (survey), [[2603.17851\|DexViTac]] (method), [[2601.20321\|TaF-VLA]] (method) |
-| **Key targets** | Beat [[2602.02142\|FD-VLA]]'s present-time force-token 61.1% by ≥5 pp with a future-wrench rollout, sensorless; recover ≥50% of [[2603.17851\|DexViTac]]'s measured-tactile→no-tactile drop (83.3%→43.3% pipetting) using *imagined* wrench, toward the 85.8% with-tactile ceiling; cross-sensor transfer >60.3% ([[2601.20321\|TaF-VLA]] baseline) |
+| **Key targets** | Beat [[2602.02142\|FD-VLA]]'s present-time force-token 61.1% by ≥5 pp with a future-wrench rollout, sensorless; recover ≥50% of [[2603.17851\|DexViTac]]'s measured-tactile→no-tactile drop (83.3%→43.3% pipetting) using *imagined* wrench, toward the 85.8% with-tactile ceiling; stake the head-to-head on a *shared* suite — [[2505.18472\|ManiFeel]]'s 13 contact-rich tasks separating TacFF force-field (+26 pp peg insertion) vs TacRGB tactile-image vs vision-only — not each method's private set; cross-sensor transfer >60.3% ([[2601.20321\|TaF-VLA]] baseline) |
 
 **Why it matters.**
 - **The gap**: current WAMs imagine visual and proprioceptive futures but rarely tactile/force futures, even though force is the dominant signal in contact-rich manipulation — [[2605.12090|WAM Survey]] names the modality gap and [[2511.02097|WM Manipulation Survey]]'s 13 capabilities rank Multimodal Perception first, Physics Awareness third.
@@ -247,17 +247,18 @@ Nineteen systems that differ on *where force lives in the loop* — the axis the
 | [[2604.20444\|VTouch++]] | bimanual vision+tactile+proprioception data | n/a (dataset) | 120K episodes, 36M synced frames | data substrate with no WAM consumer — the synchronized corpus A2 trains on |
 | [[2604.07335\|TAMEn]] | closed-loop tactile + AR recovery data | no (collection) | 75% SR | collection engine, no WM prediction |
 | [[2605.13083\|TouchAnything]] | multi-view egocentric + dense tactile | n/a (dataset) | dense-tactile corpus | dataset only, no imagination consumer |
+| [[2411.12503\|ManiSkill-ViTac 2025]] | n/a (benchmark/challenge) | n/a (eval suite) | standardized tactile + vision-tactile contact-rich SR (peg insertion, lock opening) with shape-OOD + sim2real, 18 global teams | the *shared* sensorless contact-rich SR suite with a shape-OOD axis none of the method papers provide — but scores consumed tactile, no future-wrench-rollout head |
 
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (imagined wrench recovers ≥50% of the no-tactile drop at deploy), with the experiment and the Related-table row it lands on.
 1. **H1 — A future-wrench rollout head beats a present-time force token at deploy.**
    - *Prediction*: a 6-DoF wrench head that *rolls forward* (predicts $\hat{\mathbf{w}}_{t+1..t+k}$ inside the WM, policy acts on the rollout), trained on [[2604.20444|VTouch++]]'s 36M synchronized frames and [[2506.14754|Sparsh-X]]'s 1M contacts, beats [[2602.02142|FD-VLA]]'s present-time force-token 61.1% by ≥5 pp on contact-rich SR sensorlessly, and lifts the no-tactile pipetting floor above ~63% (≥50% of the 83.3→43.3 drop).
-   - *Test*: A/B future-wrench-rollout vs FD-VLA-style present-time-token vs vision-only, all sensorless at deploy; report contact-task SR against DexViTac's with-tactile 85.8% ceiling.
-   - *Row*: FD-VLA (present-time token) vs DexViTac (perceives).
+   - *Test*: run the A/B on [[2505.18472|ManiFeel]]'s shared sim-to-real-validated suite, whose TacFF force-field vs TacRGB tactile-image vs vision-only modalities *are* the three-way structure — future-wrench-rollout (over the force channel) vs FD-VLA-style present-time-token vs vision-only, all sensorless at deploy; report contact-task SR against DexViTac's with-tactile 85.8% ceiling.
+   - *Row*: FD-VLA (present-time token) vs DexViTac (perceives); shared substrate ManiFeel (TacFF vs TacRGB vs vision).
    - *Falsifier*: the rolled-forward wrench ties FD-VLA's present-time token at matched SR → tense + rollout adds nothing over a consumed force token, and A2 collapses to FD-VLA.
 2. **H2 — A tactile latent transfers across sensors as an imagination target.**
    - *Prediction*: using [[2601.20321|TaF-VLA]]'s VQ-VAE force latent (or [[2603.17851|DexViTac]]'s kinematics-grounded latent) as the WAM's *imagination target* and decoding per-sensor on demand beats TaF-VLA's 60.3% policy-side cross-sensor transfer.
-   - *Test*: train the WAM to imagine the shared force latent; decode to a held-out sensor; report cross-sensor SR.
-   - *Row*: TaF-VLA (policy reads it).
+   - *Test*: evaluate on [[2410.24090|Sparsh]]'s cross-sensor labeled protocol (DIGIT / GelSight / ReSkin force-estimation + slip detection, 95.1% avg improvement over end-to-end baselines) — train the WAM to imagine the shared force latent, decode to a held-out sensor, report cross-sensor SR; the same labeled force/slip ground truth backs H1/H3's wrench-prediction accuracy and H4's contact make/break.
+   - *Row*: TaF-VLA (policy reads it); cross-sensor substrate Sparsh.
    - *Falsifier*: imagination-target transfer ≤ 60.3% → the latent is no better predicted than consumed.
 3. **H3 — Imagined-vs-measured wrench is a useful auxiliary loss.**
    - *Prediction*: supervising imagined wrench against measured wrench at train time (where sensors exist) improves contact-task SR more than an equal-capacity proprioception-only auxiliary loss.
@@ -287,7 +288,7 @@ Nineteen systems that differ on *where force lives in the loop* — the axis the
 | **Cluster** | A — Substrate & Encoding |
 | **Thesis** | Once a WAM goes latent, the encoder's *training objective* sets the control ceiling — and the open, *contested* question is the bottleneck *type*: continuous vs discrete-FSQ vs VQ, scored by closed-loop control. The reason it must work: a policy consumes dynamics, not pixels, so what the encoder is told to preserve fixes a ceiling no architecture lifts. The semantic-vs-static split is now settled cross-backbone ([[2602.11832\|JEPA-VLA]]); two papers disagree on continuous-vs-discrete *for control*. The bet is in First-principles below — the bottleneck type breaks the tie on closed-loop SR. |
 | **Anchor papers** | [[2604.02029\|Latent Space Survey]] (survey), [[2511.02097\|WM Manipulation Survey]] (survey), [[2605.06388\|Semantic-LDM-WM]] (method), [[2605.15725\|DiLA]] (method), [[2604.16484\|DexWorldModel]] (method) |
-| **Key targets** | Reproduce [[2605.06388\|Semantic-LDM-WM]]'s +9.8 pp closed-loop / +13.6 pp OOD semantic-over-*reconstruction* margin *with a recon arm* on [[2602.11832\|JEPA-VLA]]'s non-LDM backbone (it ran the swap but omitted recon); break the continuous ([[2605.15725\|DiLA]]) vs discrete-FSQ ([[2603.05438\|CompACT]]) tie by ≥5 pp closed-loop SR at matched dim; hold the gain on [[2510.13626\|LIBERO-Plus]] OOD at fixed deploy latency |
+| **Key targets** | Reproduce [[2605.06388\|Semantic-LDM-WM]]'s +9.8 pp closed-loop / +13.6 pp OOD semantic-over-*reconstruction* margin *with a recon arm* on [[2602.11832\|JEPA-VLA]]'s non-LDM backbone (it ran the swap but omitted recon); break the continuous ([[2605.15725\|DiLA]]) vs discrete-FSQ ([[2603.05438\|CompACT]]) tie by ≥5 pp closed-loop SR at matched dim; hold the gain on [[2510.13626\|LIBERO-Plus]] OOD at fixed deploy latency, with the variational-vs-deterministic split run on [[2402.08191\|THE COLOSSEUM]]'s distractor axis (20 tasks × 14 perturbations, 30–50% per-factor SR drop, R²=0.614 sim-real) |
 
 **Why it matters.**
 - **The gap**: A1 decides *how dense* the imagined state is at train vs deploy; A3 decides *what the latent encodes* once you commit to one — and the second is the under-examined axis, because [[2604.02029|Latent Space Survey]] names evaluability and controllability of the latent as open and [[2511.02097|WM Manipulation Survey]] ranks structured task-relevant representation above raw capacity.
@@ -350,8 +351,8 @@ Sixteen systems that differ on *what the latent is trained to preserve* — the 
    - *Falsifier*: the pixel branch erases the semantic-latent gap → density and encoding interfere, and A1/A3 are not orthogonal.
 6. **H6 — Uncertainty-aware encoding wins specifically under distractors.**
    - *Prediction*: [[2601.14354|VJEPA-Probabilistic]]'s variational bottleneck beats deterministic semantic encoders *specifically* on distractor-heavy OOD (where it holds R²>0.84 vs ~0.50), and ties them on clean tasks — so the win is the discard-nuisance mechanism, not capacity.
-   - *Test*: compare variational vs deterministic semantic on clean vs noisy-TV-style OOD.
-   - *Row*: VJEPA-Probabilistic (uncertainty-aware).
+   - *Test*: compare variational vs deterministic semantic on a real manipulation distractor suite — [[2402.08191|THE COLOSSEUM]]'s 14-axis perturbations (distractor count + object color + lighting are its top-3 most-damaging, the exact nuisance the variational bottleneck must discard) — and on [[2409.18330|DMC-VB]]'s static+dynamic-distractor control tasks (paired state/pixel observations isolate the representation gap), versus matched clean tasks.
+   - *Row*: VJEPA-Probabilistic (uncertainty-aware); distractor substrate THE COLOSSEUM (manipulation) + DMC-VB (representation-for-control).
    - *Falsifier*: the variational encoder wins equally on clean tasks → the gain is capacity, not nuisance-discarding.
 
 > [!warning] Risks
@@ -419,23 +420,23 @@ Fifteen systems that differ on *how contact is represented in the model* — the
    - *Falsifier*: smooth SR keeps rising to match the discrete-mode WAM with enough scale → the jump is learnable smoothly.
 3. **H3 — Contact-mode-conditional physics losses beat a single global physics loss.**
    - *Prediction*: applying Coulomb friction only in `in-contact` and ballistic dynamics only in `no-contact` (mode-gated losses) beats a single regime-agnostic physics loss on contact-onset-heavy tasks.
-   - *Test*: ablate mode-gated vs global physics loss; stratify by contact-onset frequency.
-   - *Row*: asRoBallet (friction-aware) as the loss prior.
+   - *Test*: ablate mode-gated vs global physics loss, stratifying contact-onset frequency by [[2502.05086|REASSEMBLE]]'s hierarchical temporal action segmentation (approach/align/insert/release = make/break-style contact-state boundaries over 4,551 NIST-board demos with 6-axis force-torque) rather than a hand-defined split.
+   - *Row*: asRoBallet (friction-aware) as the loss prior; contact-state segmentation via REASSEMBLE.
    - *Falsifier*: the global loss matches mode-gated → conditioning the physics on the mode adds nothing.
 4. **H4 — Distilling DOT-Sim contact ground truth supplies the supervision smooth WAMs lack.**
    - *Prediction*: distilling [[2604.27367|DOT-Sim]]'s differentiable make/break/slip labels into the discrete-mode latent gives contact-mode classification accuracy high enough that downstream insertion SR tracks it — a smooth WAM cannot manufacture these labels for itself.
-   - *Test*: train the mode classifier on DOT-Sim labels; correlate mode accuracy with insertion SR; compare to a self-supervised contact proxy.
-   - *Row*: DOT-Sim (ground truth).
+   - *Test*: train the mode classifier on DOT-Sim sim labels; validate against [[2502.05086|REASSEMBLE]]'s real-hardware action-segmentation + anomaly annotations (the real make/break-style contact-state labels the card otherwise lacks, with a force-torque axis); correlate mode accuracy with insertion SR; compare to a self-supervised contact proxy.
+   - *Row*: DOT-Sim (sim ground truth) / REASSEMBLE (real contact-state labels).
    - *Falsifier*: insertion SR is flat in mode-classification accuracy → the discrete modes are not the operative variable.
 5. **H5 — Discrete contact modes transfer sim-to-real on AutoMate / NIST.**
-   - *Prediction*: training the discrete-mode WAM on [[2511.04665|Real-to-Sim GS]] twins and evaluating on real [[2407.08028|AutoMate]] / [NIST](https://www.nist.gov/el/intelligent-systems-division-73500/benchmarks-and-datasets-tackle-real-world-robotic) holds the contact-mode advantage zero-shot, beating [[2602.23253|SPARR]]'s +74.5% relative on unseen transfer.
-   - *Test*: train in sim twins; eval real; report SR retention and unseen-task relative gain.
-   - *Row*: SPARR (policy-side) / Real-to-Sim GS (eval substrate).
+   - *Prediction*: training the discrete-mode WAM on [[2511.04665|Real-to-Sim GS]] twins and evaluating on real [[2407.08028|AutoMate]] / [[2502.05086|REASSEMBLE]]'s NIST Task Board #1 holds the contact-mode advantage zero-shot, beating [[2602.23253|SPARR]]'s +74.5% relative on unseen transfer.
+   - *Test*: train in sim twins; eval on REASSEMBLE's real NIST-board contact-rich tasks (DMP baselines 70–100% SR, insertion the hardest at 70%); report SR retention and unseen-task relative gain.
+   - *Row*: SPARR (policy-side) / Real-to-Sim GS (eval substrate) / REASSEMBLE (real NIST-board contact-state eval).
    - *Falsifier*: the discrete-mode advantage vanishes on real → the modes overfit the simulator.
 6. **H6 — Contact-event time prediction is a useful auxiliary head.**
    - *Prediction*: an auxiliary regression head predicting contact-onset time $\hat t_{\text{contact}}$ (supervised by the simulator) improves pre-contact deceleration and raises insertion SR over the discrete-mode WAM without it.
-   - *Test*: add the $\hat t_{\text{contact}}$ head; compare insertion SR + impact force at contact.
-   - *Row*: DOT-Sim (ground truth) for the timing supervision.
+   - *Test*: add the $\hat t_{\text{contact}}$ head; compare insertion SR + impact force at contact on [[2603.15257|HapticVLA]]'s fragile force-regulated tasks (jar/waffles/egg, safety-aware reward; its +45 pp absolute egg-manipulation gain is the impact-force-sensitive regime where pre-contact deceleration pays off).
+   - *Row*: DOT-Sim (ground truth) for the timing supervision; impact-force eval via HapticVLA.
    - *Falsifier*: the timing head leaves SR and impact force unchanged → onset timing is already implicit in the modes.
 
 > [!warning] Risks
@@ -450,7 +451,7 @@ Fifteen systems that differ on *how contact is represented in the model* — the
 | **Cluster** | B — Training-Time Grounding |
 | **Thesis** | Close a loop where the WAM *actively* generates failures, a ρ stop-gate detects WM-gaming, and a separate verifier screens bad dreams — not just RL inside imagination. The reason it must work: imagined RL improving SR is now established, so the residue is *which* failures get imagined (active vs passive), *when* to stop (ρ as operative gate), and *whether* to trust each dream (separate verifier). The field treats the imagined-RL loop as sufficient on its own. The bet is in First-principles below — the active-finder + ρ-gate + verifier beat a plain imagined-RL loop. |
 | **Anchor papers** | [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2602.04411\|Self-evolving Embodied AI]] (survey), [[2508.07407\|Self-Evolving AI Agents Survey]] (survey), [[2602.11075\|RISE]] (method), [[2603.08403\|SPIRAL]] (method), [[2605.22446\|Pre-VLA]] (method) |
-| **Key targets** | Imagined-vs-real SR Pearson $\rho$ > 0.7 + continual per-cycle SR improvement; [[2605.22446\|Pre-VLA]]-style verifier ≥0.83 F1 on bad-rollout filtering (+6.83 pp [[2306.03310\|LIBERO]]); catastrophic forgetting held to [[2401.16650\|WMAR]]-class +0.071 vs 0.665 baseline |
+| **Key targets** | Imagined-vs-real SR Pearson $\rho$ > 0.7 + continual per-cycle SR improvement; [[2605.22446\|Pre-VLA]]-style verifier ≥0.83 F1 on bad-rollout filtering (+6.83 pp [[2306.03310\|LIBERO]]); failure-mode coverage + recovery SR anchored on [[2505.12224\|RoboFAC]] (9,440 labeled failure trajectories, detection/identification/locating eval types; as external critic closed-loop SR 47.5→61.25% on real tasks); catastrophic forgetting held to [[2401.16650\|WMAR]]-class +0.071 vs 0.665 baseline |
 
 **Why it matters.**
 - **The gap**: [[2604.22748|Agentic World Modeling Survey]] defines L1 Predictor / L2 Simulator / L3 Evolver and calls physical L3 Evolver the gap ("emerging not mature") — an agent that revises itself when predictions fail — yet no system integrates detection + diagnosis + recovery + memory + WAM-driven imagination + rollout verification end-to-end.
@@ -494,8 +495,8 @@ Twenty-one systems that differ on *which stage of the detect→imagine→recover
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (a WAM-driven loop drives real improvement at high imagined-vs-real $\rho$), with the experiment and the Related-table row it lands on.
 1. **H1 — An *active* WAM failure-finder beats RISE's *passive* failure discovery on real recovery.**
    - *Prediction*: recasting [[2412.02818|RoboMD]] as a WAM adversary (finder proposes initial states, WAM rolls forward, policy judged on imagined outcomes) covers more failure modes and yields higher real recovery than [[2602.11075|RISE]]'s passive low-advantage discovery at equal imagined-rollout budget, at least matching [[2603.13528|Counterfactual Failure Synthesis]]'s offline 46% real recovery.
-   - *Test*: A/B active-adversary vs RISE-style passive discovery inside the same WM; evaluate real-robot recovery SR + failure-mode coverage.
-   - *Row*: RISE (passive RL-on-imagination) vs RoboMD-as-WAM-adversary (active).
+   - *Test*: A/B active-adversary vs RISE-style passive discovery inside the same WM; evaluate real-robot recovery SR + failure-mode coverage against [[2505.12224|RoboFAC]]'s labeled-failure taxonomy (Failure Detection / Identification / Locating over 9,440 erroneous trajectories, 16 tasks, sim+real) — the named suite that operationalizes "failure-mode coverage," with its external-critic closed-loop gain (47.5→61.25%) as the real-recovery-SR reference.
+   - *Row*: RISE (passive RL-on-imagination) vs RoboMD-as-WAM-adversary (active); failure-coverage substrate RoboFAC.
    - *Falsifier*: the active finder ties RISE's passive discovery on real recovery → active generation adds no coverage, and B2's first pillar collapses.
 2. **H2 — Per-cycle SR rises only while imagined-vs-real $\rho$ stays > 0.7.**
    - *Prediction*: across self-evolution cycles, real SR improves monotonically while $\rho$ > 0.7 and stalls once $\rho$ drops — so $\rho$ is the operative stop condition, validated against [[2606.05773|PiL-World]]'s r=0.94 closed-loop reference.
@@ -504,8 +505,8 @@ Twenty-one systems that differ on *which stage of the detect→imagine→recover
    - *Falsifier*: real SR keeps rising after $\rho$ < 0.7 → the WM need not be grounded for the loop to work.
 3. **H3 — A runtime verifier on imagined rollouts beats an unverified loop.**
    - *Prediction*: gating recovery candidates through a [[2605.22446|Pre-VLA]]-class verifier (≥0.83 F1) before execution beats the same loop without verification, with the gap largest on tasks where the WM hallucinates most.
-   - *Test*: A/B verified vs unverified recovery selection; stratify by WM hallucination rate.
-   - *Row*: Pre-VLA (verify).
+   - *Test*: A/B verified vs unverified recovery selection; score the verifier's F1 on bad-rollout filtering against [[2505.12224|RoboFAC]]'s detection/identification/locating annotations (its three-level hierarchical failure taxonomy as the labeled ground truth), stratifying by failure type and WM hallucination rate.
+   - *Row*: Pre-VLA (verify); bad-rollout ground truth RoboFAC.
    - *Falsifier*: verification leaves SR unchanged → the WM's dreams are reliable enough to skip the filter.
 4. **H4 — GRPO over joint (action, imagination) beats RL on action alone.**
    - *Prediction*: optimizing GRPO over the joint (action, imagination) log-prob — reward = imagined task SR + COD + novelty — beats action-only PPO-in-imagination ([[2509.19080|World4RL]]) on per-cycle gain, because the joint objective shapes the WM and policy together.
@@ -535,7 +536,7 @@ Twenty-one systems that differ on *which stage of the detect→imagine→recover
 | **Cluster** | B — Training-Time Grounding |
 | **Thesis** | Settle two unclaimed questions about the forward-inverse asymmetry: does *train-time* calibration beat a *runtime* filter, and can imagined-vs-real ρ be *trained for* rather than merely gated on? The reason it must work: verifying is structurally cheaper than generating (action-free video is abundant, action features low-dimensional) — but that mechanism is now collectively owned ([[2604.01985\|WAV]], [[2602.06130\|SWIRL]], [[2604.16391\|DeFI]]). The field filters the dream at runtime and uses ρ only as a diagnostic. The bet is in First-principles below — train-time calibration dominates and ρ is directly maximizable. |
 | **Anchor papers** | [[2604.22748\|Agentic World Modeling Survey]] (survey), [[2310.06253\|Objective Mismatch MBRL Survey]] (survey), [[2601.07823\|Video Generation in Robotics Survey]] (survey), [[2604.01985\|WAV]] (method), [[2602.06130\|SWIRL]] (method), [[2504.16680\|RWM-U]] (method) |
-| **Key targets** | ≥2× WM sample-efficiency + 22% downstream reward with no extra action labels ([[2604.01985\|WAV]]); epistemic-uncertainty gating 0.91 normalized reward on real [ANYmal D](https://www.anybotics.com/robotics/anymal/) / [Unitree G1](https://www.unitree.com/g1/) ([[2504.16680\|RWM-U]]); imagined-vs-real $\rho$ maximized as the calibration objective (shared with B2) |
+| **Key targets** | ≥2× WM sample-efficiency + 22% downstream reward with no extra action labels ([[2604.01985\|WAV]]); epistemic-uncertainty gating 0.91 normalized reward on real [ANYmal D](https://www.anybotics.com/robotics/anymal/) / [Unitree G1](https://www.unitree.com/g1/) ([[2504.16680\|RWM-U]]); executability (not visual plausibility) scored on [[2604.19092\|RoboWM-Bench]] (video→inverse-dynamics→real-to-sim step-level + final SR across rigid/articulated/deformable/long-horizon/bimanual) and [[2606.04811\|Dream.exe]] (101 tasks × 3 complexity levels, decouples visual-quality from execution-success); imagined-vs-real $\rho$ maximized as the calibration objective (shared with B2) |
 
 **Why it matters.**
 - **The gap**: [[2604.22748|Agentic World Modeling Survey]]'s L3 Evolver "revises its own model when predictions fail" — but the usual tool for knowing *when* a prediction failed is uncertainty estimation, which [[2604.01985|WAV]] shows "often fails in under-explored data regions where new information is most needed," exactly where calibration matters, and [[2310.06253|Objective Mismatch MBRL Survey]] generalizes it: low predictive WM loss does not imply high downstream return.
@@ -574,8 +575,8 @@ Seventeen systems that differ on *when and how the imagination is made trustwort
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (train-time calibration via the make-vs-check gap beats runtime filtering), with the experiment and the Related-table row it lands on.
 1. **H1 (lead) — Train-time forward-inverse calibration beats a matched runtime-only verifier on a latent WAM.**
    - *Prediction*: wrapping [[2604.01985|WAV]]'s subgoal-generator + sparse-inverse decomposition around a JEPA WAM ([[2602.10098|VLA-JEPA]] / [[2605.25313|UWM-JEPA]]) at *train time* beats the *same* asymmetry signal applied only as a [[2605.22446|Pre-VLA]]-style *runtime* filter — by ≥2× WM sample-efficiency and +22% downstream reward at equal labels — the train-vs-runtime head-to-head no paper has run.
-   - *Test*: A/B identical forward-inverse signal as train-time calibration vs runtime filter on the same WAM; report sample-efficiency + downstream reward.
-   - *Row*: WAV (train-time asymmetry) vs Pre-VLA (runtime filter).
+   - *Test*: A/B identical forward-inverse signal as train-time calibration vs runtime filter on the same WAM; report sample-efficiency + downstream reward, with the downstream-execution leg scored on [[2604.19092|RoboWM-Bench]]'s video→inverse-dynamics→real-to-sim executability + final task SR and [[2606.04811|Dream.exe]]'s 101-task × 3-complexity execution-success (both decouple executability from visual plausibility — B3's thesis made empirical).
+   - *Row*: WAV (train-time asymmetry) vs Pre-VLA (runtime filter); executability substrate RoboWM-Bench + Dream.exe.
    - *Falsifier*: the runtime-only filter matches train-time calibration → calibration-time is a free choice and B3's lead claim is empty.
 2. **H2 — Epistemic-uncertainty gating as a dense reward stabilizes A1's latent rollout.**
    - *Prediction*: adapting [[2504.16680|RWM-U]]'s [[2005.13239|MOPO]] penalty to a latent-consistency reward on A1's hybrid backbone stabilizes the latent-rollout objective (lower divergence over horizon) vs an ungated rollout.
@@ -584,8 +585,8 @@ Seventeen systems that differ on *when and how the imagination is made trustwort
    - *Falsifier*: the penalty leaves rollout divergence unchanged → uncertainty gating does not stabilize the latent.
 3. **H3 — Training to maximize imagined-vs-real $\rho$ beats gating on it.**
    - *Prediction*: treating the B2 $\rho$ > 0.7 gate as B3's *objective* (train the WM to maximize imagined-vs-real SR correlation directly, against [[2606.05773|PiL-World]]'s r=0.94 reference) yields higher final $\rho$ than using $\rho$ only as a stop condition.
-   - *Test*: A/B $\rho$-as-objective vs $\rho$-as-stop-condition; report final $\rho$ and downstream SR.
-   - *Row*: PiL-World ($\rho$-calibration) / Video WM Policy Eval (measures $\rho$).
+   - *Test*: A/B $\rho$-as-objective vs $\rho$-as-stop-condition on [[2605.03941|iWorld-Bench]]'s action-controllability + memory protocol (nine metrics, 0.8053 Spearman alignment with human preference — the named suite for the controllability/$\rho$ axis); report final $\rho$ and downstream SR.
+   - *Row*: PiL-World ($\rho$-calibration) / Video WM Policy Eval (measures $\rho$); controllability substrate iWorld-Bench.
    - *Falsifier*: optimizing $\rho$ directly does not raise final $\rho$ over gating → $\rho$ is not directly trainable.
 4. **H4 — Verifier disagreement is a useful active-data signal.**
    - *Prediction*: using [[2604.01985|WAV]]'s plausibility/reachability discrepancy to choose which real-robot interactions to collect next (closing the loop with B2's failure-finder) reaches target SR with fewer real interactions than uniform collection.
@@ -599,8 +600,8 @@ Seventeen systems that differ on *when and how the imagination is made trustwort
    - *Falsifier*: pixel or preference reward matches IDM → the inverse signal is not the calibration lever.
 6. **H6 — Sparse-inverse OOD robustness holds in contact-rich regimes.**
    - *Prediction*: [[2604.01985|WAV]]'s sparse-inverse OOD robustness holds on contact-rich tasks when paired with B1's discrete contact modes — i.e., the low-dimensional action features remain recoverable across make/break transitions.
-   - *Test*: evaluate sparse-vs-dense inverse on contact-onset-heavy tasks with B1's contact-mode gating.
-   - *Row*: WAV (train-time asymmetry) / cross-ref B1.
+   - *Test*: evaluate sparse-vs-dense inverse on contact-onset-heavy tasks with B1's contact-mode gating, scoring execution success at the high-complexity end of [[2606.04811|Dream.exe]]'s three physical-complexity levels and on [[2604.19092|RoboWM-Bench]]'s rigid/articulated/deformable contact splits.
+   - *Row*: WAV (train-time asymmetry) / cross-ref B1; contact-complexity substrate Dream.exe + RoboWM-Bench.
    - *Falsifier*: the sparse inverse drops contact transients → calibration must go dense in contact, bounding the claim.
 
 > [!warning] Risks
@@ -615,7 +616,7 @@ Seventeen systems that differ on *when and how the imagination is made trustwort
 | **Cluster** | B — Training-Time Grounding |
 | **Thesis** | Ask *what makes imagined data executable rather than merely plausible* — and whether that property lives in the filter (transferable) or the generator (bound). The reason it must work: a video can look right and be kinematically impossible, so the filter decides what the policy learns; a kinematic-physics predicate is intrinsic to the data and should transfer across generators, where success-replay or a learned judge may not. The field treats the engine as the contribution and the filter as plumbing. The bet is in First-principles below — the filter *type* is load-bearing and transferable. |
 | **Anchor papers** | [[2605.12090\|WAM Survey]] (survey), [[2601.15533\|Actionable Simulators]] (survey), [[2604.15395\|Foundation Models in Robotics Survey]] (survey), [[2606.04708\|VISTA]] (method), [[2606.02577\|RoboDream]] (method), [[2604.03552\|CRAFT]] (method) |
-| **Key targets** | Kinematic-physics filter reproduces its validated-vs-unfiltered gap ≥15 pp ([[2606.04708\|VISTA]] 0.65 vs 0.00) on a *second* generator ([[2606.02577\|RoboDream]]) where success-replay ([[2604.03552\|CRAFT]]) does not transfer as cleanly; (settled backdrop) engine ≥25 pp SR over real-only at ≥2× lower cost ([[2606.02577\|RoboDream]] +26.2 pp, 2.2×) |
+| **Key targets** | Kinematic-physics filter reproduces its validated-vs-unfiltered gap ≥15 pp ([[2606.04708\|VISTA]] 0.65 vs 0.00) on a *second* generator ([[2606.02577\|RoboDream]]) where success-replay ([[2604.03552\|CRAFT]]) does not transfer as cleanly; the 2×2 filter-type ablation measured on a *fixed* in-distribution suite — [[2406.02523\|RoboCasa]] (100 tasks = 25 atomic + 75 composite, MimicGen synthetic-vs-human-demo comparison, Franka sim-to-real) — paired with [[2510.13626\|LIBERO-Plus]] OOD, not each generator's idiosyncratic task set; (settled backdrop) engine ≥25 pp SR over real-only at ≥2× lower cost ([[2606.02577\|RoboDream]] +26.2 pp, 2.2×) |
 
 **Why it matters.**
 - **The gap**: the field knows a WAM data engine helps, but not *why a given synthesized demo is learnable* — engines validate by sim-success-replay or generation-time anchoring, never isolating which *property* of the data (kinematic feasibility vs success vs VLM-plausibility) is the load-bearing one, nor whether that property transfers across engines. [[2605.12090|WAM Survey]] names "data-ecosystem mixing" and [[2604.15395|Foundation Models in Robotics Survey]] names dataset/challenge mapping as the underexploited output, but neither asks the filter-mechanism question.
@@ -657,8 +658,8 @@ Twenty systems that differ on *what kind of data engine the WAM is and what type
 **Hypotheses & tests.** Each item is a falsifiable sub-hypothesis of the FP bet (a physics-validated WAM data engine beats real-only and the filter is load-bearing), with the experiment and the Related-table row it lands on.
 1. **H1 (lead) — A kinematic-physics filter's load-bearingness transfers across generators; success-replay's does not.**
    - *Prediction*: putting [[2606.04708|VISTA]]'s continuity / self-collision / execution-fidelity scoring downstream of [[2606.02577|RoboDream]]'s compositional generator reproduces VISTA's validated-vs-unfiltered gap (≥15 pp, anchor 0.65 vs 0.00) on an engine it was *not* built for, whereas [[2604.03552|CRAFT]]'s success-replay filter shows a smaller cross-generator gap — isolating *filter type* as the transferable variable.
-   - *Test*: 2×2 ablation — {VISTA kinematic filter, CRAFT success-replay} × {built-for engine, RoboDream engine}; report validated-vs-unfiltered downstream SR.
-   - *Row*: VISTA (kinematic-physics) vs CRAFT (success-replay) on RoboDream (compositional).
+   - *Test*: 2×2 ablation — {VISTA kinematic filter, CRAFT success-replay} × {built-for engine, RoboDream engine} — with downstream SR scored on a *fixed* common suite ([[2406.02523|RoboCasa]]'s 100 tasks, the standard synthetic-data manipulation eval) so the validated-vs-unfiltered gap is comparable across generators rather than measured on each engine's own task set; report validated-vs-unfiltered downstream SR.
+   - *Row*: VISTA (kinematic-physics) vs CRAFT (success-replay) on RoboDream (compositional); fixed eval suite RoboCasa.
    - *Falsifier*: the kinematic filter's gap vanishes on the second generator (or success-replay transfers equally) → the filter is generator-specific decoration and B4's transfer claim is wrong.
 2. **H2 — Gen-Mix beats both extremes, and the optimal ratio is task-family-specific.**
    - *Prediction*: sweeping the synthesized:real ratio, downstream SR peaks at an interior Gen-Mix point ([[2606.02577|RoboDream]] 62.5% beats Real-50 36.3% and Orig-100 0%), and the peak ratio differs across task families.
@@ -717,12 +718,12 @@ Twenty systems that differ on *what kind of data engine the WAM is and what type
 | Gap | Direction | Existing closest |
 |---|---|---|
 | Hybrid latent+pixel/3DGS vs pure-latent vs pure-pixel WAM at matched FLOPs (OOD × latency, at matched real SR) | A1 | [[2605.20752\|GaussianDream]] (train-dense/deploy-light, single point on the plane) + [[2603.22078\|WAM vs VLA Robustness]] (4.8× latency cost, no hybrid) |
-| WAM that rolls forward a *future 6-DoF wrench* the policy acts on (not a present-time token, not tactile *images*, not consumed force) | A2 | [[2602.02142\|FD-VLA]] (predicts a present-time force *token* consumed as input) + [[2604.13015\|HTD]] (forecasts future per-joint force, not a structured wrench) |
-| Bottleneck-type ablation at matched dim: continuous vs discrete-FSQ vs VQ, scored by closed-loop SR (breaking the DiLA↔CompACT contradiction) | A3 | [[2605.15725\|DiLA]] (continuous wins generation) ↔ [[2603.05438\|CompACT]] (discrete-FSQ wins planning) — disagree, neither scores manipulation SR; [[2602.11832\|JEPA-VLA]] ran the cross-backbone swap with no recon arm |
-| *Explicit, tactile-supervised* contact-mode latent for sub-mm assembly (vs an implicit mode gate) | B1 | [[2512.08411\|PRISM-WM]] (implicit MoE mode gate, locomotion only) + [[2604.27367\|DOT-Sim]] (tactile contact ground truth, no WAM consumer) |
-| Imagined-RL loop with an *active* failure-finder + ρ stop-gate + *separate* verifier (vs passive imagined RL) | B2 | [[2602.11075\|RISE]] (imagined RL, but *passive* failure discovery, no ρ-gate, no separate verifier) + [[2605.22446\|Pre-VLA]] (verifier only, no full loop) |
-| Train-time-vs-runtime calibration head-to-head + ρ trained-for (not gated-on) on a latent robot WAM | B3 | [[2604.01985\|WAV]] / [[2602.06130\|SWIRL]] / [[2604.16391\|DeFI]] (asymmetry cycle, none runs the train-vs-runtime A/B or a $\rho$-objective) + [[2504.16680\|RWM-U]] (uncertainty gating, locomotion only) |
-| Filter-*type* transfer across generators: kinematic-physics vs success-replay, ablated downstream | B4 | [[2606.04708\|VISTA]] (kinematic-physics filter, single engine) + [[2604.03552\|CRAFT]] (success-replay filter, not tested cross-generator) |
+| WAM that rolls forward a *future 6-DoF wrench* the policy acts on (not a present-time token, not tactile *images*, not consumed force) | A2 | [[2505.18472\|ManiFeel]] (standardized visuotactile sim suite separating TacFF force-field vs TacRGB tactile-image vs vision-only over 13 contact-rich tasks — but evaluates *consumed* force, no future-wrench-rollout head) + [[2410.24090\|Sparsh]] (cross-sensor force-estimation + slip accuracy — perception, not a WM forecast) + [[2411.12503\|ManiSkill-ViTac 2025]] (tactile contact-rich SR with shape-OOD + sim2real, no force-output head) — a *benchmark* gap: no suite scores a future-6-DoF-wrench-rollout policy |
+| Bottleneck-type ablation at matched dim: continuous vs discrete-FSQ vs VQ, scored by closed-loop SR (breaking the DiLA↔CompACT contradiction) | A3 | The scoring suites exist — closed-loop manipulation SR via [[2306.03310\|LIBERO]] / [[2510.13626\|LIBERO-Plus]] (in-dist + 7-axis OOD), distractor-stratified robustness via [[2402.08191\|THE COLOSSEUM]] (14-axis manipulation perturbations) + [[2409.18330\|DMC-VB]] (representation-for-control under distractors) — what is missing is the continuous/discrete-FSQ/VQ three-arm at matched dim *run on them*: [[2605.15725\|DiLA]] scores generation (SSIM/LPIPS), [[2603.05438\|CompACT]] scores planning latency/APE, [[2602.11832\|JEPA-VLA]] omits the recon arm |
+| *Explicit, tactile-supervised* contact-mode latent for sub-mm assembly (vs an implicit mode gate) | B1 | [[2512.08411\|PRISM-WM]] (implicit MoE mode gate, locomotion only) + [[2604.27367\|DOT-Sim]] (tactile contact ground truth, no WAM consumer); on the eval side [[2502.05086\|REASSEMBLE]] (NIST Task Board #1, real 6-axis force-torque + event-camera, hierarchical make/break-style action-segmentation + 96% anomaly accuracy — the real contact-state eval DOT-Sim's sim labels cannot supply) + [[2603.15257\|HapticVLA]] (fragile force-regulated eval for the impact-force axis) — both eval suites, not WAM consumers, so the explicit-tactile-supervised-WAM novelty stands |
+| Imagined-RL loop with an *active* failure-finder + ρ stop-gate + *separate* verifier (vs passive imagined RL) | B2 | [[2602.11075\|RISE]] (imagined RL, but *passive* failure discovery, no ρ-gate, no separate verifier) + [[2605.22446\|Pre-VLA]] (verifier only, no full loop) — and on the evaluation side [[2505.12224\|RoboFAC]] (9,440 labeled failure trajectories, detection/identification/locating eval types + closed-loop correction-SR 47.5→61.25%) for failure-mode coverage and bad-rollout F1, though it tests reactive correction, not an active-finder + ρ-gated imagined loop |
+| Train-time-vs-runtime calibration head-to-head + ρ trained-for (not gated-on) on a latent robot WAM | B3 | [[2604.19092\|RoboWM-Bench]] (video→inverse-dynamics→real-to-sim execution SR across manipulation types — measures executability, but evaluates fixed WMs, runs no train-vs-runtime calibration A/B and no $\rho$-objective) + [[2606.04811\|Dream.exe]] (101 tasks × 3 physical-complexity levels, decouples visual-quality from execution-success — the plausibility≠executability suite, but no calibration-time comparison) + [[2504.16680\|RWM-U]] (uncertainty gating, locomotion only) |
+| Filter-*type* transfer across generators: kinematic-physics vs success-replay, ablated downstream | B4 | [[2606.04708\|VISTA]] (kinematic-physics filter, single engine) + [[2604.03552\|CRAFT]] (success-replay filter, not tested cross-generator) — neither a shared suite; downstream SR should be anchored on [[2406.02523\|RoboCasa]] (in-dist) + [[2510.13626\|LIBERO-Plus]] (OOD), with rollout executability scored via [[2511.11520\|Video WM Policy Eval]] (VLM-judged, RoboMimic correlation 0.833–0.879; already in B3) |
 
 ---
 
