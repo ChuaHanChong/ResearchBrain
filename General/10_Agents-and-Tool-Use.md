@@ -332,7 +332,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2603.15386\|RieMind]] — Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations
 
 **Scientific & Research Agents** — Agents designed for autonomous scientific research, from literature review to experiment design and execution.
-- [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557\|FlowPIE]], [[2603.26499\|AIRA2]], [[2603.07642|Helix (Scientific)]], [[2602.24288|DARE-bench]], [[2601.19439|OSIRIS]], [[2601.15715|RebuttalAgent]], [[2601.10402\|ML-Master 2.0]], [[2511.02824\|Kosmos AI Scientist]], [[2510.11661|SR-Scientist]], [[2509.01684|ML Engineering RL Agents]], [[2506.02153\|SLMs for Agentic AI]], [[2505.16938\|InternAgent]]
+- [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557|FlowPIE]], [[2603.26499|AIRA2]], [[2603.07642|Helix (Scientific)]], [[2602.24288|DARE-bench]], [[2601.19439|OSIRIS]], [[2601.15715|RebuttalAgent]], [[2601.10402|ML-Master 2.0]], [[2511.02824|Kosmos AI Scientist]], [[2510.11661|SR-Scientist]], [[2509.01684|ML Engineering RL Agents]], [[2506.02153|SLMs for Agentic AI]], [[2505.16938|InternAgent]], [[2504.01538|AI-Newton]]
 
 > [!star] Key Papers
 > - [[2505.16938\|InternAgent]] — Unified closed-loop multi-agent system for fully autonomous scientific research

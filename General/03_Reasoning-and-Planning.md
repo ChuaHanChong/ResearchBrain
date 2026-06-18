@@ -210,7 +210,7 @@ Extending CoT to jointly reason over vision and language, producing interleaved 
 Moving reasoning from explicit token chains into continuous latent spaces, enabling models to "think" without generating human-readable text.
 
 **Continuous Latent Reasoning** — Models that perform reasoning in a continuous embedding space rather than discrete token sequences.
-- [[2605.12466|Attractor Models]], [[2605.02735|Silenced Visual Latents]], [[2604.22709|Abstract-CoT]], [[2604.18486|OneVL]], [[2603.04948|Nabla-Reasoner]], [[2602.10520|RLTT]], [[2602.05359|HIVE]], [[2601.10129|LaViT]], [[2601.09708|Fast-ThinkAct]], [[2601.06803|Laser]], [[2601.05877|iReasoner]], [[2512.21218|LIVR]], [[2512.16584|SkiLa]], [[2510.23925|LaCoT]], [[2510.12603|IVT-LR]], [[2509.24251|LVR]], [[2505.13308|LATENTSEEK]], [[2505.12514|COCONUT]], [[2505.11484|SoftCoT++]], [[2502.21074|CODI]], [[2502.03275|Token Assorted]], [[2412.13171|CCoT]], [[2412.06769|Coconut]]
+- [[2606.16222|LTF]], [[2605.12466|Attractor Models]], [[2605.02735|Silenced Visual Latents]], [[2604.22709|Abstract-CoT]], [[2604.18486|OneVL]], [[2603.04948|Nabla-Reasoner]], [[2602.10520|RLTT]], [[2602.05359|HIVE]], [[2601.10129|LaViT]], [[2601.09708|Fast-ThinkAct]], [[2601.06803|Laser]], [[2601.05877|iReasoner]], [[2512.21218|LIVR]], [[2512.16584|SkiLa]], [[2510.23925|LaCoT]], [[2510.12603|IVT-LR]], [[2509.24251|LVR]], [[2505.13308|LATENTSEEK]], [[2505.12514|COCONUT]], [[2505.11484|SoftCoT++]], [[2502.21074|CODI]], [[2502.03275|Token Assorted]], [[2412.13171|CCoT]], [[2412.06769|Coconut]]
 
 > [!star] Key Papers
 > - [[2412.06769\|Coconut]] — Meta FAIR's Chain of Continuous Thought: LLM reasons in continuous latent space, outperforming token-based CoT on multi-step problems
@@ -218,7 +218,7 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 > - [[2505.11484\|SoftCoT++]] — First framework for scalable test-time reasoning in continuous latent space with speculative decoding
 
 **Depth-Recurrent & Looped Architectures** — Models that increase reasoning depth through weight-sharing loops or recurrence, decoupling compute from parameter count.
-- [[2604.11791\|Looped Reasoning Mechanistic Analysis]], [[2604.07822\|Recurrent-Depth Reasoning]], [[2602.07845|RD-VLA]], [[2602.02156\|LoopViT]], [[2510.25741\|Ouro]], [[2510.04871\|TRM]], [[2510.00219\|Thoughtbubbles]], [[2507.02199\|Huginn Latent CoT]], [[2505.05522\|CTM]], [[2502.17416\|Looped Transformers]], [[2502.05171\|Huginn]]
+- [[2604.11791|Looped Reasoning Mechanistic Analysis]], [[2604.07822|Recurrent-Depth Reasoning]], [[2602.07845|RD-VLA]], [[2602.02156|LoopViT]], [[2511.16886|DIS]], [[2510.25741|Ouro]], [[2510.04871|TRM]], [[2510.00219|Thoughtbubbles]], [[2507.02199|Huginn Latent CoT]], [[2505.05522|CTM]], [[2502.17416|Looped Transformers]], [[2502.05171|Huginn]]
 
 > [!star] Key Papers
 > - [[2502.05171\|Huginn]] — Depth-recurrent Transformer that matches larger models through adaptive compute via loop iterations
@@ -264,7 +264,7 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 > - [[2407.14414\|System-1.x]] — Balances fast System-1 and slow System-2 reasoning adaptively
 
 **World Models for Reasoning** — Learning predictive models of the environment to support planning and decision-making.
-- [[2606.05645|Discrete-WAM]], [[2605.28293|ProRL (Recommendation)]], [[2605.19957|WEM]], [[2605.15153|Pelican-Unified]], [[2605.12090|WAM Survey]], [[2605.09131|MCP-Cosmos]], [[2605.08732|GC-IDM]], [[2605.03413|NEO Theorizer]], [[2605.01772|Anticipation-VLA]], [[2602.05842|RWML]], [[2512.23541|Act2Goal]], [[2511.19684|IndEgo]], [[2506.22007|RoboEnvision]], [[2506.06199|3DFlowAction]], [[2502.05086|REASSEMBLE]], [[2502.01784|VILP]], [[2412.18194|VLABench]], [[2406.13301|ARDuP]], [[2403.13358|QUARD-Auto]], [[2403.09227|BEHAVIOR-1K]], [[2403.04253|R2I]], [[2309.15278|Out of Sight Still in Mind]], [[2210.06407|Language-Table]], [[1910.11956|Franka Kitchen]]
+- [[2606.18208|LoopWM]], [[2606.05645|Discrete-WAM]], [[2605.28293|ProRL (Recommendation)]], [[2605.19957|WEM]], [[2605.15153|Pelican-Unified]], [[2605.12090|WAM Survey]], [[2605.09131|MCP-Cosmos]], [[2605.08732|GC-IDM]], [[2605.03413|NEO Theorizer]], [[2605.01772|Anticipation-VLA]], [[2602.05842|RWML]], [[2512.23541|Act2Goal]], [[2511.19684|IndEgo]], [[2506.22007|RoboEnvision]], [[2506.06199|3DFlowAction]], [[2502.05086|REASSEMBLE]], [[2502.01784|VILP]], [[2412.18194|VLABench]], [[2406.13301|ARDuP]], [[2403.13358|QUARD-Auto]], [[2403.09227|BEHAVIOR-1K]], [[2403.04253|R2I]], [[2309.15278|Out of Sight Still in Mind]], [[2210.06407|Language-Table]], [[1910.11956|Franka Kitchen]]
 
 > [!star] Key Papers
 > - [[2411.04983\|DINO-WM]] — Task-agnostic world model leveraging frozen DINOv2 for visual planning

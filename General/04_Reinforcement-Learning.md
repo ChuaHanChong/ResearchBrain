@@ -195,7 +195,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2603.04333|floq]] — Explains the empirical success of flow-matching critics in Temporal Difference learning
 
 **JEPA & Latent Prediction for RL** — Joint-Embedding Predictive Architectures adapted for RL, predicting future states in latent space rather than pixel space.
-- [[2601.19336|EAWM]], [[2512.07733|SpatialDreamer]], [[2510.00739|TD-JEPA]], [[2508.20294|DALI]], [[2504.16591|JEPA for RL]], [[2502.14819|PLDM]], [[2407.01570|Ego-Foresight]]
+- [[2606.14418|COMET]], [[2601.19336|EAWM]], [[2512.07733|SpatialDreamer]], [[2511.05963|NextLat]], [[2510.00739|TD-JEPA]], [[2508.20294|DALI]], [[2504.16591|JEPA for RL]], [[2502.14819|PLDM]], [[2407.01570|Ego-Foresight]]
 
 > [!star] Key Papers
 > - [[2502.14819|PLDM]] — Planning with Latent Dynamics Models from NYU/Meta FAIR; leveraging reconstruction-free latent dynamics for control
@@ -254,8 +254,8 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2506.15050|T-PPO]] — Truncated PPO significantly enhances training efficiency for LLM reasoning
 
 **DPO, Preference & Alignment** — Direct Preference Optimization and its multimodal extensions — aligning models with human preferences without explicit reward models.
-- [[2605.02087|MSM]], [[2604.02349|OPRIDE]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.28204|ERPO]], [[2603.25077|ToR]], [[2603.23355|ReVal]], [[2603.22117|RLVR Direction]], [[2603.21383|PivotRL]], [[2603.19835|FIPO]], [[2603.12595|SPL (Swap)]], [[2602.22703|GEODPO]], [[2602.21346|Alignment-Weighted DPO]], [[2512.16626|SLHF]], [[2511.20629|MapReduce LoRA]], [[2511.15605|SRPO]], [[2511.10985|DPO Data Curation Study]], [[2510.20413|AuxDPO]], [[2510.16333|PIVOT]], [[2510.11194|CDRA]], [[2510.03269|GEB]], [[2509.26346|EditReward]], [[2509.26074|LENS]], [[2509.23802|STAIR]], [[2509.23102|MNPO]], [[2509.14234|CaT]], [[2509.11452|Multi-Objective RL Alignment]], [[2509.07414|LSP]], [[2507.13579|PLUS]], [[2507.08068|QRPO]]
-- [[2506.21495|Offline-Online RL for LLMs]], [[2506.16895|STRUCTURE Alignment]], [[2506.10054|Uni-DPO]], [[2506.09508|Efficient Preference RL]], [[2506.08681|IS-DAAs]], [[2506.07127|APO]], [[2506.01183|DRPO]], [[2505.15456|RLPA]], [[2504.16801|DeGLA]], [[2504.15619|AdaViP]], [[2504.12717|RaFA]], [[2503.09561|Strategyproof RLHF]], [[2503.03480|SafeVLA]], [[2502.16852|ONPO]], [[2502.08922|SCIR]], [[2502.07193|One-Pass RLHF]], [[2411.19309|GRAPE]], [[2411.10442|MPO]], [[2411.04109|SCPO]], [[2411.00361|DIPPER]], [[2410.23223|COMAL]], [[2410.12735|CREAM]], [[2410.02355|AlphaEdit]], [[2405.12961|Energy Rank Alignment]], [[2210.05639|DPO]]
+- [[2606.16856|VOTP]], [[2605.02087|MSM]], [[2604.02349|OPRIDE]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.28204|ERPO]], [[2603.25077|ToR]], [[2603.23355|ReVal]], [[2603.22117|RLVR Direction]], [[2603.21383|PivotRL]], [[2603.19835|FIPO]], [[2603.12595|SPL (Swap)]], [[2602.22703|GEODPO]], [[2602.21346|Alignment-Weighted DPO]], [[2512.16626|SLHF]], [[2511.20629|MapReduce LoRA]], [[2511.15605|SRPO]], [[2511.10985|DPO Data Curation Study]], [[2510.20413|AuxDPO]], [[2510.16333|PIVOT]], [[2510.11194|CDRA]], [[2510.03269|GEB]], [[2509.26346|EditReward]], [[2509.26074|LENS]], [[2509.23802|STAIR]], [[2509.23102|MNPO]], [[2509.14234|CaT]], [[2509.11452|Multi-Objective RL Alignment]], [[2509.07414|LSP]], [[2507.13579|PLUS]]
+- [[2507.08068|QRPO]], [[2506.21495|Offline-Online RL for LLMs]], [[2506.16895|STRUCTURE Alignment]], [[2506.10054|Uni-DPO]], [[2506.09508|Efficient Preference RL]], [[2506.08681|IS-DAAs]], [[2506.07127|APO]], [[2506.01183|DRPO]], [[2505.15456|RLPA]], [[2504.16801|DeGLA]], [[2504.15619|AdaViP]], [[2504.12717|RaFA]], [[2503.09561|Strategyproof RLHF]], [[2503.03480|SafeVLA]], [[2502.16852|ONPO]], [[2502.08922|SCIR]], [[2502.07193|One-Pass RLHF]], [[2411.19309|GRAPE]], [[2411.10442|MPO]], [[2411.04109|SCPO]], [[2411.00361|DIPPER]], [[2410.23223|COMAL]], [[2410.12735|CREAM]], [[2410.02355|AlphaEdit]], [[2405.12961|Energy Rank Alignment]], [[2210.05639|DPO]]
 
 > [!star] Key Papers
 > - [[2506.21495|Offline-Online RL for LLMs]] — Shows DPO adapted to online or hybrid settings matches full RL performance at lower cost
@@ -306,7 +306,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2504.20571|1-shot RLVR]] — Achieves competitive reasoning with just 1 rollout per sample; extreme sample efficiency
 
 **Efficient & Practical RL Training** — Infrastructure, precision tricks, and engineering insights for scaling RL training to production.
-- [[2605.15855|AdaScope]], [[2604.26779|Speculative RL Rollouts]], [[2604.03489|FAB]], [[2603.01639|RL Speculative Decoding]], [[2602.01601|VIP (Rollout)]], [[2510.26788|FP16 RL Training]], [[2510.11696|QeRL]], [[2510.01764|Octax]], [[2510.00819|Stable PG LLM]], [[2509.25762|OPPO]], [[2509.25174|XQC]], [[2509.24305|Async Policy Gradient]], [[2509.23931|AutoPrune]], [[2509.23791|CaRe-BN]], [[2509.22566|Policy Space Compression]], [[2509.21792|FastGRPO]], [[2509.19846|BoreaRL]], [[2509.01920|DSP (Speculative)]], [[2508.17850|GEPO]], [[2507.19234|Virne]], [[2506.02177|GRESO]], [[2505.24034|LlamaRL]], [[2505.15345|Hadamax]], [[2505.07291|INTELLECT-2]], [[2503.18929|TBA]], [[2404.08233|GPBT-PL]], [[2311.12244|muLV-Rep]]
+- [[2606.12370|MTP-RS]], [[2605.15855|AdaScope]], [[2604.26779|Speculative RL Rollouts]], [[2604.03489|FAB]], [[2603.01639|RL Speculative Decoding]], [[2602.01601|VIP (Rollout)]], [[2510.26788|FP16 RL Training]], [[2510.11696|QeRL]], [[2510.01764|Octax]], [[2510.00819|Stable PG LLM]], [[2509.25762|OPPO]], [[2509.25174|XQC]], [[2509.24305|Async Policy Gradient]], [[2509.23931|AutoPrune]], [[2509.23791|CaRe-BN]], [[2509.22566|Policy Space Compression]], [[2509.21792|FastGRPO]], [[2509.19846|BoreaRL]], [[2509.01920|DSP (Speculative)]], [[2508.17850|GEPO]], [[2507.19234|Virne]], [[2506.02177|GRESO]], [[2505.24034|LlamaRL]], [[2505.15345|Hadamax]], [[2505.07291|INTELLECT-2]], [[2503.18929|TBA]], [[2404.08233|GPBT-PL]], [[2311.12244|muLV-Rep]]
 
 > [!star] Key Papers
 > - [[2505.24034|LlamaRL]] — Meta's distributed asynchronous RL framework for large-scale LLM training
@@ -377,7 +377,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.13438|AnytimeReasoner]] — Produces usable reasoning at any compute budget; true anytime behavior
 
 **RL Pre-Training** — Applying RL during pre-training rather than just post-training, fundamentally changing how models learn from data.
-- [[2512.07203|MMRPT]], [[2512.03442|PretrainZero]], [[2510.01265|RLP]], [[2509.25810|RA3]], [[2509.24375|Reinforcement Mid-Training]], [[2506.08007|RPT]]
+- [[2606.17024|ExpRL]], [[2512.07203|MMRPT]], [[2512.03442|PretrainZero]], [[2510.01265|RLP]], [[2509.25810|RA3]], [[2509.24375|Reinforcement Mid-Training]], [[2506.08007|RPT]]
 
 > [!star] Key Papers
 > - [[2506.08007|RPT]] — Reinforcement Pre-Training: reframes next-token prediction as RL; models learn reasoning during pre-training
