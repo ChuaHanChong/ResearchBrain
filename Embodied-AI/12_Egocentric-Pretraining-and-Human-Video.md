@@ -159,6 +159,7 @@ Large, diverse first-person video corpora that anchor the *scale* tier of egocen
 
 Specialist egocentric datasets that target fine motor / dexterous-hand action priors rather than general activity.
 
+- **[[2606.17054|HUG]]** — A multi-fingered grasping model trained on 1M-HUGS, a **1-million-frame** egocentric human-grasp dataset (RGB-D + 3D hand poses via smart glasses), using ==flow-matching== RGB+point-cloud fusion to predict 99-D ==MANO grasp poses==; **66.7%** real SR on HUG-BENCH (**+23pp** over Dex1B), **62.0%** zero-shot in-the-wild.
 - **[[2505.11709|EgoDex]]** — An ==Apple Vision Pro== egocentric dataset of **829 hr** / **338,000** demos across **194** tabletop tasks, annotated at **30 Hz** with ==SE(3) poses== for head, arms, and **25** hand joints via ARKit, that benchmarks ==dexterous trajectory prediction==. Flow-matching + diffusion beat BC when K>1; visual goal-conditioning gives **22%** average-distance reduction.
 - **UniHand** (curated dataset in **[[2507.15597|Being-H0]]**) — **150M** human-hand motion-instruction pairs in standardized MANO parameters with LLM-generated task descriptions. Purpose-built for VLA training; turns raw egocentric video into trainable action priors.
 
@@ -166,6 +167,8 @@ Specialist egocentric datasets that target fine motor / dexterous-hand action pr
 
 Robot-free egocentric corpora collected specifically to bridge the human-robot embodiment gap.
 
+- **[[2606.17385|EgoInfinity]]** — A web-scale 4D hand-object-interaction data engine converting in-the-wild RGB video into agent-agnostic metric trajectories via ==cross-module calibration==, then transferring them through ==SE(3)-equivariant cross-embodiment retargeting==; **0.821** IK success / **2.86 cm** error on Unitree G1, direct cutting/pouring on a dual-arm Franka FR3.
+- **[[2606.14665|EgoGuide]]** — A robot-free demonstration-collection system giving demonstrators real-time ==visual-geometric novelty guidance== plus a ==Gated Egocentric Residual Policy== that blends a wrist-only base policy with a head-camera corrective branch via a learned gate; comparable SR with **~50%** fewer demos, **80%** SR on Pepper Sorting, gating raises ego influence under occlusion.
 - **[[2602.10106|EgoHumanoid]]** — A robot-free egocentric-demonstration corpus aligned to humanoid loco-manipulation via ==depth-based view alignment== + ==unified 6-DoF delta end-effector poses==; **~2×** faster to collect than teleoperation, **+51pp** novel-environment generalization (**82% vs 31%**); bridges the embodiment gap at *data-collection time* rather than training or policy time.
 - **[[2503.13441|PH2D]]** — A task-oriented egocentric demonstration dataset via *consumer-grade VR* (**~3.02M** frames / **~27k** demos), paired with the ==Human Action Transformer (HAT)== co-trained on mixed human/robot data in a **54-dim** state-action space; improves relative OOD generalization **~100%** vs robot-only and collects **~5×** faster than teleop (**4.09s** vs **19.72s** grasping).
 - **[[2409.19499|FastUMI]]** — A redesigned, ==hardware-independent Universal Manipulation Interface== with decoupled hardware + first-person-tuned software; ships **10,000+** real demos across **22** tasks. RealSense T265 hits **10.5 mm** error; a ==Depth-Enhanced Diffusion Policy== lifts depth-sensitive tasks (Open Ricecooker **20% → 93.33%**) — scalable embodiment-agnostic collection.
@@ -266,6 +269,7 @@ Pretrain a video-prediction backbone on internet video (including egocentric), t
 
 The 2026 frontier. Pretrain the entire VLA — vision, language, *and* action — on human videos by treating human hand motions as an action modality.
 
+- **[[2606.17200|ACE-Ego-0]]** — A VLA pretraining framework unifying egocentric human video + robot data via a ==Unified Action Representation== (canonical head-camera frame) and a ==Reliability-Aware Objective== that down-weights noisy human pseudo-actions; **72.8%** RoboCasa GR1, **91.12%** RoboTwin 2.0 Easy, **78.3%** real bimanual ARX (**+6.6%** over π0.5), **4×** gain in data-scarce tasks.
 - **[[2606.06194|ActiveMimic]]** (Active Perception) — An active-perception VLA that recovers *synchronized* egocentric camera + bimanual wrist trajectories from human video as a unified ==27-D action vector== via ==mix-of-transformers== (human pretrain → robot fine-tune); **90.1%** Restocking / **91.7%** Finding over robot-pretrained baselines, **79.0%** under flashing light.
 - **[[2507.15597|Being-H0]]** (Physical Instruction Tuning) — A three-stage VLA: Stage 1 pretrains on UniHand via ==GRQ-VAE== for part-level (wrist + finger) motion tokenization, Stage 2 physical-space alignment, Stage 3 robot-data post-training. **99.8–100%** valid generation rate, beating [[2503.14734|GR00T N1.5]] on MPJPE; **25%** of teleop data matches **50–100%** baselines.
 - **[[2605.00078|Being-H0.7]]** (Latent Dual-Branch) — A ==latent world-action model== replacing the pixel WAM, using a ==Mixture-of-Transformers== to align a deployable "prior" branch to a "posterior" branch fed privileged future embeddings, dropped at deploy; **3–4 ms/step**, **99.2%** [[2306.03310|LIBERO]], **62.1%** [[2406.02523|RoboCasa]], **67.5%** real-world Dynamic Scene.
@@ -310,6 +314,7 @@ The kinematic gap is real: human hands have 22+ DoF; most grippers have 1–7. *
 
 Map human-hand outputs into gripper space via differentiable retargeting, MANO parameterization, hand-keypoint estimation, or 3D hand-object reconstruction. The kinematic mismatch is solved *at the projection layer* — the policy never sees the raw human hand.
 
+- **[[2606.19333|Do as I Do]]** — A dexterous-data-generation algorithm reconstructing ==3D hand-object interactions== from monocular human video via ==guided-diffusion== object pose estimation, then retargeting them to robot actions through ==dynamics-aware sampling-based optimization== in a GPU simulator; **71%** retargeting SR on 655 in-the-wild trajectories vs **25%** baseline, 10 real tasks.
 - **[[2606.01951|Ego-Video Robot Nav]]** — An explicit ==camera-motion projection== pipeline for navigation that estimates 6-DoF egocentric camera motion, ==kinematically projects== it to a ==2-DoF planar action space==, then co-trains a VLA with robot data; human-only nearly fails (**11.1%**) but co-training reaches **100%** seen, **94.4%** with distractors, **75.0%** on untrained positions.
 - **[[2507.15597|Being-H0]]** — An explicit-projection recipe that applies ==part-level tokenization== via ==GRQ-VAE==, tokenizing wrist and finger motions *separately* on standardized ==MANO parameters== so the gripper inherits structure from the wrist-token stream; **99.8–100%** valid generation, beating [[2503.14734|GR00T N1.5]] on MPJPE, **25%** of teleop data matching **50–100%** baselines.
 - **[[2602.09013|VIDEOMANIP]]** — A ==3D hand-object trajectory reconstruction== method from monocular RGB human video (3D meshes + hand poses + metric depth), refined with ==contact optimization== to synthesize multiple demos per video using RGB as the *only* data source; on the dexterous LEAP Hand it reaches **63.75%** grasping (20 objects in IsaacGym) and **62.86%** real-world (7 tasks).
@@ -331,6 +336,13 @@ Insert a dedicated training stage *between* broad human pretraining and final ro
 
 - **[[2604.20012|EmbodiedMidtrain]]** — A mid-training method quantifying the VLM↔VLA *data*-distribution gap (==Maximum Mean Discrepancy==); a ==data engine== scores VLM samples by proximity to the VLA distribution and mid-trains on the top-K closest. A **1.1B** InternVL3.5 surpasses expert VLA baselines **3–8×** larger across Calvin ABC-D, SimplerEnv Bridge, and LIBERO-10.
 - **[[2602.16710|EgoScale]]** — A two-stage recipe whose mid-training keeps the log-linear curve flat at scale: Stage 1 broad human pretraining (**20,854 hours**), Stage 2 mid-training on a smaller embodiment-aligned human-robot dataset bridging the kinematic gap. **+54%** task SR on 22-DoF hand; **88%** shirt-folding from a single robot demo; **+30%** cross-embodiment. See §3.
+
+#### 5.4 Active Vision from Egocentric Video
+
+Rather than absorb the *kinematic* gap, these methods transfer the human's *active-perception* behavior — where to look, when to move the viewpoint — from egocentric video, decoupling the robot's gaze policy from its hand control.
+
+- **[[2602.22461|EgoAVFlow]]** — An active-vision policy framework learning manipulation + viewpoint control from human egocentric video through a shared ==3D flow== embodiment-agnostic interface, with three diffusion models predicting actions, future flow, and viewpoints under a ==visibility-aware denoising reward==; **1.8–2.5×** SR over EgoZero, up to **4×** over Human-Viewpoint Imitation.
+- **[[2602.04600|Act-Sense-Act]]** — A non-Markovian active-perception VLA (CoMe-VLA) pretrained on large-scale egocentric human data then robot-fine-tuned in a unified egocentric action space, via a ==Cognitive Auxiliary Head== + ==Dual-Track Memory==; **83.3%** mean SR over five long-horizon tasks (vs OpenVLA-OFT **12.7%**), **72.0→87.3%** as human data scales 400k→800k.
 
 **Transfer Mechanism — Decision Matrix**
 
