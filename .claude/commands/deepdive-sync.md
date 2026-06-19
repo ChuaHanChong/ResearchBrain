@@ -24,7 +24,7 @@ Parse `$ARGUMENTS`:
 
 - **Full sweep** (default, empty `$ARGUMENTS`): run all phases (0–6) across the full in-scope set (`Embodied-AI/[0-9][0-9]_*.md` minus `01_Embodied-AI-101.md`). Autonomous discovery → placement → enrichment → anti-pattern repair → cross-vault reciprocity → audit.
 
-- **Single-file** (`<NN_File>`, e.g. `07_WAM`, `07_WAM.md`, `Embodied-AI/07_WAM.md`): run all phases (0–6) scoped to that file only:
+- **Single-file** (`<NN_File>`, e.g. `06_WAM`, `06_WAM.md`, `Embodied-AI/06_WAM.md`): run all phases (0–6) scoped to that file only:
   - **Argument normalization**: strip `Embodied-AI/` prefix and `.md` suffix; resolve to `Embodied-AI/<NN_Title>.md` for file operations
   - **Phase 5 differs**: only outbound links from the in-scope file are checked; inbound reciprocity from sibling files is skipped (single-file scope can't justify edits to other files' L6 callouts)
 
@@ -363,7 +363,7 @@ Unplaced:       (N - M) papers — no good home in any file (listed below)
 
 Per-file deltas:
   02_Dataset-Benchmark-Environment.md  +3 papers  4 enriched  2 AP fixed  seq✓  links✓
-  07_WAM.md                            +1 paper   0 enriched  0 AP fixed  seq✓  links✓
+  06_WAM.md                            +1 paper   0 enriched  0 AP fixed  seq✓  links✓
   ...
 
 Aggregate: +M papers placed, N bullets enriched, N anti-patterns repaired,
