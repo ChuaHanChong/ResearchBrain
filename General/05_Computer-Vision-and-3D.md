@@ -282,7 +282,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 From class-specific masks to open-world, language-guided segmentation. Modern segmentation leverages VLM reasoning to handle arbitrary queries ("the object the person is pointing at") rather than fixed category lists.
 
 **Language-Guided Segmentation** — Segment objects described by natural language queries, combining VLM reasoning with pixel-level prediction.
-- [[2605.00891|X2SAM]], [[2603.04002|DPAD]], [[2602.23339|Retrieve and Segment]], [[2602.17134|B3-Seg]], [[2601.10477|SocioSeg]], [[2601.05244|GREx]], [[2601.03054|IBISAgent]], [[2511.16624|SAM 3D]], [[2508.10104|DINOv3]], [[2506.22880|DeSa2VA]], [[2506.22624|Seg-R1]], [[2506.04277|RSVP]], [[2505.22596|SAM-R1]], [[2505.12081|VisionReasoner]], [[2503.06520|Seg-Zero]], [[2310.11441|SoM]], [[2308.00692|LISA]], [[2203.16265|SeqTR]]
+- [[2605.00891|X2SAM]], [[2603.04002|DPAD]], [[2602.23339|Retrieve and Segment]], [[2602.17134|B3-Seg]], [[2601.10477|SocioSeg]], [[2601.05244|GREx]], [[2511.16624|SAM 3D]], [[2508.10104|DINOv3]], [[2506.22880|DeSa2VA]], [[2506.22624|Seg-R1]], [[2506.04277|RSVP]], [[2505.22596|SAM-R1]], [[2505.12081|VisionReasoner]], [[2503.06520|Seg-Zero]], [[2310.11441|SoM]], [[2308.00692|LISA]], [[2203.16265|SeqTR]]
 
 > [!star] Key Papers
 > - [[2308.00692|LISA]] — Reasoning segmentation: handles complex referring expressions that require multi-step inference

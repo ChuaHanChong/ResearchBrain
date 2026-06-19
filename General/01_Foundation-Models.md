@@ -99,10 +99,10 @@ The architectural revolution that brought attention mechanisms to computer visio
 > - [[2302.05442|ViT-22B]] — Largest dense ViT at 22B parameters; demonstrated continued scaling benefits for vision
 
 **Hierarchical & Domain-Specific ViTs** — Specialized adaptations of ViT for high-resolution inputs and domain-specific tasks like medical imaging.
-- [[2602.17807|VidEoMT]], [[2505.22195|S2AFormer]], [[2503.19108|EoMT]], [[2403.18361|ViTAR]], [[2310.00632|WIN-WIN]], [[2306.06189|FasterViT]], [[2305.00104|MMViT]], [[2304.06250|RSIR Transformer]], [[2212.07740|TERT]], [[2206.02647|HIPT]], [[2205.14949|HiViT]], [[2205.14756|EfficientViT]], [[2204.01697|MaxViT]], [[2203.16527|ViTDet]], [[2203.11926|FocalNet]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[2107.06263|CMT]], [[2107.00641|Focal Transformer]], [[2105.13677|ResT]], [[2104.11227|MViT]]
+- [[2602.17807|VidEoMT]], [[2505.22195|S2AFormer]], [[2503.19108|EoMT]], [[2403.18361|ViTAR]], [[2310.00632|WIN-WIN]], [[2306.06189|FasterViT]], [[2305.00104|MMViT]], [[2304.06250|RSIR Transformer]], [[2212.07740|TERT]], [[2205.14949|HiViT]], [[2205.14756|EfficientViT]], [[2204.01697|MaxViT]], [[2203.16527|ViTDet]], [[2203.11926|FocalNet]], [[2112.11010|MPViT]], [[2112.01526|MViTv2]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[2107.06263|CMT]], [[2107.00641|Focal Transformer]], [[2105.13677|ResT]], [[2104.11227|MViT]]
 
 > [!star] Key Papers
-> - [[2206.02647|HIPT]] — Hierarchical self-supervised ViT for gigapixel pathology images; processes whole slide images across multiple magnifications
+> -  — Hierarchical self-supervised ViT for gigapixel pathology images; processes whole slide images across multiple magnifications
 > -  — Extends attention-based multiple instance learning with global spatial context for digital pathology
 
 **Key Surveys** — Comprehensive overviews of the vision transformer landscape.
