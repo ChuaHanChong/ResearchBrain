@@ -534,4 +534,4 @@ Following [[2506.18088|RoboTwin 2.0]]'s 5-dimension approach + [[2603.16861|Molm
 
 ---
 
-*Revision of [[00_How-to-Build-Self-Evolving-WAM]]. Informed by [[01_Critique-Self-Evolving-WAM]] and [[01_Critique-Methodology-Self-Evolving-WAM]]. See also: [[13_Self-Evolving-VLA-WAM]] | [[07_WAM]] | [[05_VLA]]*
+*Revision of [[00_How-to-Build-Self-Evolving-WAM]]. Informed by [[01_Critique-Self-Evolving-WAM]] and [[01_Critique-Methodology-Self-Evolving-WAM]]. See also: [[15_Self-Evolving-VLA-WAM]] | [[06_WAM]] | [[04_VLA]]*

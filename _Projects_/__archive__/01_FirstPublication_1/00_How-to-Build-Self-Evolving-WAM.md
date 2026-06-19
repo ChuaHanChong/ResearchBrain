@@ -17,7 +17,7 @@ aliases:
 > A 3-loop architecture for adding self-evolution to a trained [[2602.15922|DreamZero]] or [[2602.10098|VLA-JEPA]]: an ==Inner Loop== (test-time adaptation), a ==Middle Loop== (training-time co-evolution of Imaginer + Actor), and an ==Outer Loop== (auto-curriculum + environment generation) — stabilized by continual learning across all layers.
 
 > [!info] Prerequisite Reading
-> [[13_Self-Evolving-VLA-WAM]] | [[07_WAM]] | [[08_Latent-World-Models]]
+> [[15_Self-Evolving-VLA-WAM]] | [[06_WAM]] | [[07_Latent-World-Models]]
 
 ---
 
@@ -627,4 +627,4 @@ Edge cases are where self-evolving WAMs differentiate from static models — the
 
 ---
 
-*See [[13_Self-Evolving-VLA-WAM]] for conceptual foundations, [[07_WAM]] for the WAM landscape, and [[05_VLA]] for VLA design principles.*
+*See [[15_Self-Evolving-VLA-WAM]] for conceptual foundations, [[06_WAM]] for the WAM landscape, and [[04_VLA]] for VLA design principles.*
