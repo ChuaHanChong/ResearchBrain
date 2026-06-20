@@ -6,6 +6,7 @@ __pycache__/
 .vscode/
 .playwright*/
 .claude/agent-memory-local/
+.claude/projects/
 
 # Vault directories that don't go in git (binaries, big, generated)
 data/
@@ -16,6 +17,7 @@ TODO.md
 PROMPT.md
 
 # Graphify-out: commit the graph data, exclude per-machine pointers + transients
+.graphifyignore
 graphify-out/.graphify_python
 graphify-out/.graphify_root
 graphify-out/.graphify_chunk_*.json

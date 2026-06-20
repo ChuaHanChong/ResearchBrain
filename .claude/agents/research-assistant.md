@@ -282,7 +282,7 @@ When the user asks for a vault-wide view ("how many papers per topic?", "show me
 The vault has a precomputed concept graph at `graphify-out/graph.json` built by graphify on `_KnowledgeHub_/` only. Other directories aren't indexed:
 - `General/`, `Embodied-AI/`, `_Projects_/` — consumers, read at query time directly from .md files
 - `data/papers/` — not indexed; for paper Q&A invoke `Skill(skill="alphaxiv-search")` (no local indexing needed)
-- `data/repo/` — indexed separately by gitnexus (per-repo callgraph); query via the `gitnexus-*` skills (see Research Flow Step 4)
+- `data/.repositories/` — indexed separately by gitnexus (per-repo callgraph); query via the `gitnexus-*` skills (see Research Flow Step 4)
 
 **Common operations:**
 
@@ -338,14 +338,14 @@ When the user explicitly asks for a paper's method/architecture figure ("crop th
 Check, clone if missing, then **always invoke `Skill(skill="gitnexus-cli")`** to run `analyze` and make the repo queryable:
 
 ```bash
-if [ ! -d "data/repo/{REPO_NAME}" ]; then
-  git clone {REPO_URL} "data/repo/{REPO_NAME}"
+if [ ! -d "data/repositories/{REPO_NAME}" ]; then
+  git clone {REPO_URL} "data/repositories/{REPO_NAME}"
 fi
 ```
 
 Then invoke `Skill(skill="gitnexus-cli")` with the repo path — the skill handles `analyze` (and re-analyze on subsequent calls). After analyze, route follow-up questions to the matching gitnexus skill (`Skill(skill="gitnexus-exploring")`, `Skill(skill="gitnexus-debugging")`, `Skill(skill="gitnexus-impact-analysis")`, `Skill(skill="gitnexus-refactoring")`, `Skill(skill="gitnexus-pr-review")`) — see Research Flow Step 4. The callgraph + community structure that gitnexus computes is the value-add — without it, you're back to grep+Read which is slow on large repos.
 
-Create `data/papers/` or `data/repo/` directories if they don't exist yet.
+Create `data/papers/` or `data/repositories/` directories if they don't exist yet.
 
 ## Using Memory
 

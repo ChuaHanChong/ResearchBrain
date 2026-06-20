@@ -20,7 +20,7 @@ ResearchBrain/
 ├── General/                  # Topic overviews with evolution graphs
 ├── Embodied-AI/              # Deep-dive notes on VLA, WAM, JEPA, self-evolving
 ├── data/papers/              # Local PDFs (downloaded on demand)
-├── data/repo/                # Local code repos (cloned on demand)
+├── data/.repositories/       # Local code repos (cloned on demand)
 ├── graphify-out/             # Graphify pilot artifacts (gitignored except report)
 └── .claude/                  # Agent, skills, config
     ├── agents/
