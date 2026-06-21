@@ -40,4 +40,4 @@ Every novelty/whitespace claim was stress-tested against the **live literature v
 | [[Whole-Body-Review]] | Capability | 4 + 13 |
 | [[Focus-Direction-Review]] | chosen synthesis | 1 holistic |
 
-`Focus-Direction-Repo-Map.md` was excluded (it is a paper↔code infrastructure index, not a research thesis). The per-unit raw analyst/peer blocks were assembled into the per-doc files above and the scaffolding archived outside the vault.
+`Focus-Direction-Paper-Code-Index.md` was excluded (it is a paper↔code infrastructure index, not a research thesis). The per-unit raw analyst/peer blocks were assembled into the per-doc files above and the scaffolding archived outside the vault.
