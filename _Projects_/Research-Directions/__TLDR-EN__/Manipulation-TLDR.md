@@ -50,17 +50,17 @@ tags:
 
 ### A2: Cross-Morphology Grasp Transfer
 > [!abstract] The bet
-> A discrete grasp-type latent (power / precision / lateral, plus a continuous force value). At matched data it transfers grasp-establishment to unseen hands better than continuous FAAS, beating UniDex's 60%/40% zero-shot, the discrete bottleneck strips out the hand-specific leftovers continuous spaces keep, at ≥5× lower per-hand cost (UniDex 5.2×), with DexUMI-class in-domain SR (86%).
-> Falsifiers: if the discrete latent loses to continuous FAAS on the held-out hand, continuous function-space already captures the invariant; if a joint-space policy with equal data matches either, the invariant is not function at all.
+> The durable asset is the *protocol*, not an inequality: the field's first matched-data discrete-vs-continuous-vs-hybrid grasp-taxonomy shoot-out on a fixed held-out hand (Cross-Embodiment DexGrasp's 45-object YCB split, 4 seen → held-out LEAP/Inspire), which nobody has run. The predicted headline finding is the **hybrid**: a discrete grasp-type prior (power / precision / lateral) over a *continuous force residual* beats *both* pure-discrete and pure-continuous FAAS at matched data, because the discrete prior is a coarse mode-selector while the residual restores the hand-specific dexterity a hard 3-way code throws away, at ≥5× lower per-hand cost (UniDex 5.2×), with DexUMI-class in-domain SR (86%).
+> Falsifiers: if the matched-data ablation cannot reproduce the FAAS-beats-joint-space margin on this split, the protocol does not discriminate coordinates; if pure-continuous FAAS ties the hybrid on the held-out hand, the discrete prior buys nothing and the invariant is just continuous function-space.
 
-**Why**: Function-space transfer is settled (Cross-Embodiment DexGrasp's eigengrasps, DexGrasp-Zero's 85%/82% zero-shot, DexUMI's 86%). Sparse Taxonomy Grasp built a discrete taxonomy for controllability only.
+**Why**: Function-space transfer is settled (Cross-Embodiment DexGrasp's eigengrasps, DexGrasp-Zero's 85%/82% zero-shot, DexUMI's 86%), so "discrete beats continuous" is a single inequality the Historian predicts loses. Sparse Taxonomy Grasp built a discrete taxonomy for controllability only, never as a cross-hand transfer carrier, and no continuous anchor runs the hybrid arm.
 
-**First-principles**: *Principle:* a grasp is which surfaces press at what force, not joint angles; *type* is the low-dim invariant. *Challenged:* the continuous consensus never tested a discrete bottleneck. *Wager:* a discrete taxonomy expels leftovers.
+**First-principles**: *Principle:* a grasp is which surfaces press at what force, not joint angles; *type* is the low-dim invariant, but the force detail is continuous and hand-specific, so neither pure pole is obviously the carrier. *Challenged:* not "function-space transfers" (consensus) but the idea that discrete-vs-continuous has one winner, the eigengrasp/taxonomy debate has oscillated 30 years. *Wager:* the matched-data shoot-out is the contribution, and the hybrid is the live resolution.
 
-**Sharpest questions**: 1) Does a discrete power/precision/lateral latent beat continuous FAAS zero-shot to a held-out hand (Oymotion/Wuji) at matched data? 2) Does re-parameterizing DexJoCo in function-space turn the 50.4%→20.0% degradation positive? 3) Do exoskeleton-normalized demos (DexUMI) beat kinematic retargeting for cross-hand SR at matched volume?
+**Sharpest questions**: 1) On one fixed protocol, does the hybrid (discrete prior + continuous force residual) beat *both* pure-discrete and pure-continuous FAAS zero-shot to a held-out hand (Oymotion/Wuji) at matched data? 2) Does re-parameterizing DexJoCo in function-space turn the 50.4%→20.0% degradation positive? 3) Do exoskeleton-normalized demos (DexUMI) beat kinematic retargeting for cross-hand SR at matched volume?
 
 > [!warning] Risks
-> - Function-space loses fine dexterity → grasp-establishment only, a joint-space residual for fine work (D1).
+> - A pure-discrete code loses fine dexterity, a wrong type on a novel hand fails catastrophically → this is why the headline is the *hybrid* (discrete prior + continuous residual), not pure-discrete; report the held-out-hand type-misclassification rate.
 > - 40–60% transfer is not deployment-ready (UniDex's Wuji 40%) → frame as a few-shot seed; report the curve.
 > - Negative-transfer risk (DexJoCo) → run the degradation-vs-transfer test before scaling up.
 

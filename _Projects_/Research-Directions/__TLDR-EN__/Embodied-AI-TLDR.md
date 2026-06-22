@@ -30,6 +30,9 @@ tags:
 ## A: Architecture & Training: How the Model Learns
 *Match training goals to the causal structure of physical reasoning: don't cascade WM and policy (A1), don't supervise reasoning on outcomes alone (A2), don't trust empirical losses off-distribution where physics is checkable (A3).*
 
+> [!tip] Cluster-A gate: synergy is a gate, not a given
+> The claim that A1's latent-consistency reward, A2's causal-importance step weight, and A3's physics-predicate loss co-train cooperatively on one shared latent is *asserted, not tested*: A3's predicates live in world coordinates while A1/A2's signals live on latent tokens, so A3's loss may not even back-propagate into the same latent. Run the three-loss interference probe (H7) first. If the losses cooperate, Cluster A is one synergistic mechanism; if they gradient-conflict or one dominates, it is three sibling papers on a common diagnosis ("dense local signal on a latent substrate beats sparse outcome"), and each direction is defended on its own falsifier, not as a stacked system.
+
 ### A1: Single-Loop Co-Evolving Policy + World Model in Latent Space
 > [!abstract] The bet
 > One backward pass over a *shared latent* backbone beats *phased/iterative* co-evolution (World-VLA-Loop-style). It wins on *both* in-distribution SR (≥97.2% LIBERO) and OOD SR (≥79.5% LIBERO-Plus), which pixel-phased loops never report. No extra latency (latent ~10 ms vs pixel ~150 ms), and it avoids the CoLA-World collapse without warm-up.
@@ -93,13 +96,13 @@ tags:
 
 ### B2: Long-Horizon Memory + Failure Recovery Loops for Real-World Deployment
 > [!abstract] The bet
-> A trained-VLA loop with cross-episode memory plus cause-attributed recovery lifts SR on RoboMemArena's repeated-failure subtasks by ≥+5 pp over HELM's episode-local loop (baseline: HELM's +23.1 pp LIBERO-Long). Diagnosis over uniform rollback raises recovery SR (the GTP-FA **11.2→76.8%** attribution gain), and state-machine integration cuts oscillation incidents ≥50%.
+> The safe core comes first: **cause-attributed recovery beats uniform rollback** (the GTP-FA **11.2→76.8%** real-Franka attribution gain), and it stands on its own. The higher-variance extension is the cross-episode-memory face: a trained-VLA loop carrying failure memory across episodes lifts SR on RoboMemArena's repeated-failure subtasks by ≥+5 pp over HELM's episode-local loop (baseline: HELM's +23.1 pp LIBERO-Long). State-machine integration cuts oscillation incidents ≥50%.
 
-**Why**: HELM wires episodic memory, memory-conditioned detection, and recovery into one frozen-VLA loop (+23.1 pp LIBERO-Long), but it is *episode-local* (most-recent checkpoint only) and *cause-blind* (uniform rollback). RoboMemArena shows 68.9% of subtasks need historical info. Challenged: HELM bets episode-local memory plus uniform rollback suffices; UniManip bets a zero-shot LLM orchestrator does.
+**Why**: HELM wires episodic memory, memory-conditioned detection, and recovery into one frozen-VLA loop (+23.1 pp LIBERO-Long), but it is *episode-local* (most-recent checkpoint only) and *cause-blind* (uniform rollback). The lowest-risk win is just fixing the cause-blindness, diagnosis-then-recovery, which GTP-FA already shows on real hardware. RoboMemArena shows 68.9% of subtasks need historical info, which motivates the riskier cross-episode extension. Challenged: HELM bets episode-local memory plus uniform rollback suffices; UniManip and SOMA bet a within-episode LLM orchestrator does (SOMA even supplies cause-*typed* attribution, but in-context, not a cross-episode trained-policy memory, so the trained-VLA cross-episode wedge survives).
 
-**First-principles**: *Principle:* episode-local memory can't recognize recurrence; cause-blind recovery oscillates. *Challenged:* HELM's episode-local uniform-rollback loop; UniManip's agentic orchestration. *Wager:* a *trained* VLA with cross-episode memory routed to diagnosis-conditioned recovery.
+**First-principles**: *Principle:* cause-blind recovery oscillates (the safe core); episode-local memory can't recognize recurrence (the extension). *Challenged:* HELM's uniform-rollback loop; UniManip's / SOMA's within-episode LLM orchestration. *Wager:* diagnosis-conditioned recovery first, then a *trained* VLA carrying cross-episode failure memory.
 
-**Sharpest questions**: 1) Does cross-episode memory recognize recurrence (≥+5 pp on repeated-failure subtasks, higher strategy-switch rate on the second encounter) where HELM re-fails identically? 2) Does GTP-FA-style grasp-vs-planning attribution beat uniform rollback at matched detection? 3) Does state-machine integration cut oscillation incidents ≥50% without SR loss?
+**Sharpest questions**: 1) Does GTP-FA-style grasp-vs-planning attribution beat uniform rollback at matched detection (the safe core)? 2) Does cross-episode memory recognize recurrence (≥+5 pp on repeated-failure subtasks, higher strategy-switch rate on the second encounter) where HELM re-fails identically? 3) Does state-machine integration cut oscillation incidents ≥50% without SR loss?
 
 > [!warning] Risks
 > - Memory growth plus retrieval latency → compress to per-failure-signature keys (HELM's CLIP-indexed store); invoke recovery only when the verifier fires.
@@ -123,13 +126,13 @@ tags:
 
 ### B4: Continual Policy Learning Without Catastrophic Forgetting
 > [!abstract] The bet
-> On a robot-policy task sequence, consecutive fine-tunes overlap below the Geometric-Forgetting-Law threshold (principal-angle $\cos^2\theta_{\min}$ predicting forgetting at r > 0.5). Protecting that single shared subspace matches per-task-expansion retention (CLARE's near-zero NBT) at a *flat* parameter budget. It holds the embodiment tax <5% (UAM), and keeps new-task SR within −3 pp of full fine-tune. So forgetting is geometry, not storage.
+> The durable deliverable is the **policy-overlap-matrix diagnostic**, and it must hold on *two* streams, not one: an **orthogonal** stream (a diverse LIBERO sequence where overlap stays below ~0.3 and principal-angle $\cos^2\theta_{\min}$ predicts forgetting at r > 0.5) *and* a **correlated** stream, repeated re-fine-tunes of one skill family (the realistic deployment case where B2's recovery updates keep hitting the same skill), where overlap is high and the law's prediction must still hold. Protecting that single shared subspace then matches per-task-expansion retention (CLARE's near-zero NBT) at a *flat* parameter budget, holds the embodiment tax <5% (UAM), and keeps new-task SR within −3 pp of full fine-tune. So forgetting is geometry, not storage.
 
 **Why**: A fielded policy is fine-tuned again and again (new objects, B2's corrections), and every one erodes prior skill. Challenged: a *single protected shared subspace* beats *per-task adapter expansion* on policies, i.e. the Geometric Forgetting Law (r=0.994 on Split-CIFAR100/GLUE, never on policies) transfers. CLARE/CORAL go replay-free but bet expansion is necessary; Shared LoRA Subspaces bets a unified subspace suffices, proven only for LLMs.
 
 **First-principles**: *Principle:* a large policy has far more weights than any one skill needs, so forgetting happens only on the small overlap of shared directions. *Challenged:* CLARE/CORAL's per-task expansion and replay-as-default. *Wager:* the law transfers, so one protected subspace matches expansion at flat budget.
 
-**Sharpest questions**: 1) Does the Geometric Forgetting Law hold on policies, principal angle predicting forgetting at r > 0.5, overlap below 0.3 for most pairs? 2) Does one protected shared subspace match CLARE's retention *without* growing parameters per task? 3) Does subspace protection stop B2's recovery updates from erasing base skills (old-task SR within −3 pp over 100 updates)?
+**Sharpest questions**: 1) Does the Geometric Forgetting Law hold on policies on *both* streams, the orthogonal one (overlap below 0.3, r > 0.5) *and* the correlated one (high overlap from repeated re-fine-tunes of one skill family, where the law must still predict forgetting)? 2) Does one protected shared subspace match CLARE's retention *without* growing parameters per task? 3) Does subspace protection stop B2's recovery updates from erasing base skills (old-task SR within −3 pp over 100 updates)?
 
 > [!warning] Risks
 > - Subspaces may not be disjoint for *similar* tasks (shared contact dynamics) → H1's overlap matrix is the go/no-go; if overlap >0.5 dominates, fall back to memory (ECHO-VLA).
@@ -158,7 +161,7 @@ tags:
 > [!abstract] The bet
 > In a head-to-head bake-off, at least one intent-grounded invariant reaches >30% zero-shot SR on AnyBody's arm-extrapolation split (current best: **0%**). This fits LAP's **>50%** zero-shot and GET's **20%** zero-shot to unseen graph structure. It turns extrapolation into a measurable transfer rate, and names which invariant carries it.
 
-**Why**: "Pick up the cup" is the same intent for a 7-DoF arm, a gripper, or a humanoid hand, but a *joint-space* tokenizer ties it to one body plan. AnyBody is the brutal diagnostic: multi-embodiment policies match single-embodiment baselines on seen robots and interpolation, but collapse to **0%** SR on extrapolation across very different link structures. Candidates differ only in *which intermediate they make invariant* (language, latent goal, pointmap, phase, kinematic graph). Cross-family transfer without per-robot fine-tuning is done (MetaMorph 2022, GET 2024); the open question is *which* invariant survives the arm-extrapolation split.
+**Why**: "Pick up the cup" is the same intent for a 7-DoF arm, a gripper, or a humanoid hand, but a *joint-space* tokenizer ties it to one body plan. AnyBody is the brutal diagnostic: multi-embodiment policies match single-embodiment baselines on seen robots and interpolation, but collapse to **0%** SR on extrapolation across very different link structures. But that 0% is one paper's baseline number, and AnyBody's reported 0% may be an *architecture artifact* (an under-tuned multi-embodiment head), not a property of joint-space tokenization, so before it can anchor a "law" you must reproduce it under a *properly-tuned* baseline, in order: a **sim-RL-tuned joint-space control first**, then the **interpolation control second**. Candidates differ only in *which intermediate they make invariant* (language, latent goal, pointmap, phase, kinematic graph). Cross-family transfer without per-robot fine-tuning is done (MetaMorph 2022, GET 2024); the open question is *which* invariant survives the arm-extrapolation split, measured against the *tuned* baseline, not the reported 0%.
 
 **First-principles**: *Principle:* task intent is morphology-invariant while the joint-space trajectory is morphology-specific. *Challenged:* native-joint tokenization (HPT stems, RT-1), and each candidate (LAP, Demo-JEPA, GET) betting its own untested intermediate. *Wager:* a bake-off names which intent-grounded invariant breaks the 0% wall.
 
@@ -166,5 +169,5 @@ tags:
 
 > [!warning] Risks
 > - Invariance may cost precision (language/latent action space blurs fine-grained control) → H4 bounds the invariance tax on seen robots first; report the precision floor.
-> - AnyBody's 0% may be partly task-hardness, not pure morphology → control with interpolation SR on the *same* tasks; attribute the gap to morphology only if interpolation succeeds.
+> - AnyBody's 0% may be partly task-hardness or an architecture artifact, not pure morphology → run two ordered controls: a sim-RL-tuned joint-space baseline at matched budget *first* (if it rises above 0%, the wall was under-tuning), then interpolation SR on the *same* tasks; attribute the gap to morphology only if the tuned baseline still scores ~0% and interpolation succeeds. Report the *tuned* baseline as the real wall, not AnyBody's reported 0%.
 > - Language-actions discretize continuous control (LAP loses high-frequency detail) → pair the language intermediate with a knowledge-insulated continuous action expert.

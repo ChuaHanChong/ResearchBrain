@@ -31,7 +31,7 @@ tags:
 
 ### A1: Point-Cloud-Native Action Heads vs RGB-Token Policies
 > [!abstract] The bet
-> A1: Point Cloud Matters proved a geometry-over-RGB advantage with simple encoders. The bet: it survives at 2D-pretrained-VLA scale, *and* most is recoverable from sparse geometry. (i) The recovery-vs-density curve knees far below GeoVLA's full branch, ≥80% of the full-branch SR gain at DP3-level sparsity. (ii) The point *representation*, not PointAction's factorized decoder, carries the 43.0% xArm7 zero-shot transfer: swapping points for RGB-features (decoder fixed) collapses most of it; swapping the decoder (points fixed) doesn't.
+> A1: Point Cloud Matters proved a geometry-over-RGB advantage with simple encoders. The bet: it survives at 2D-pretrained-VLA scale, *and* most is recoverable from sparse geometry. The **primary gate for the whole A cluster** is the explicit-point-head vs distilled-latent head-to-head, on a cross-embodiment, geometry-bound split (not saturated ID): only if explicit metric structure beats the latent there does A1's native head stay load-bearing and A2/A3 become its cost-reduction frontier; if the latent matches, the cluster's gravity moves to A3. Two sub-bets: (i) the recovery-vs-density curve knees far below GeoVLA's full branch, ≥80% of the full-branch SR gain at DP3-level sparsity. (ii) The point *representation*, not PointAction's factorized decoder, carries the 43.0% xArm7 zero-shot transfer: swapping points for RGB-features (decoder fixed) collapses most of it; swapping the decoder (points fixed) doesn't.
 
 **Why**: Today's policies (SpatialVLA, OpenVLA-class) feed the head RGB tokens, leaving metric 3D implicit. GFM-VLA Study linear-probes GR00T-N1.5's VLM output at 0.73 m depth RMSE vs a geometric model's 0.41 m.
 
@@ -45,10 +45,12 @@ tags:
 2. Does the margin grow with the shift and sit ≈0 at zero shift?
 3. Where is the cheapest-geometry knee, does sparse-point conditioning recover ≥80% of the full-branch gain?
 4. In a 2×2 swap on PointAction, does the representation carry the zero-shot transfer, not the decoder?
-5. Does a native point head beat the best latent-geometry policy (VLA-JEPA, 3DThinkVLA) on OOD LIBERO-Plus but only tie in-distribution?
+5. **(The primary gate)** Does a native point head beat the best *sensor-free* latent (VLA-JEPA, 3DThinkVLA, Evo) on a cross-embodiment, geometry-bound OOD split but only tie in-distribution? The margin's sign decides whether A1 stays the headline or the gravity shifts to A3.
+6. Once you *charge for the depth source* (the sensor, or the second network that invents the points and errs worst on the contact-rich tail), does the explicit head keep its margin over a sensor-free latent, or does the sensing tax invert the externalized-geometry recommendation?
 
 > [!warning] Risks
 > - Depth may be noisy or unavailable. Fix: predicted-pointmap path (PointAction).
+> - The unpriced geometry-source / sensing tax may decide the bet, a sensed head needs a depth sensor and a predicted-pointmap head needs a second network whose error is worst on the contact-rich tail where geometry matters most. Fix: gate the explicit-head recommendation on the *cost-charged* explicit-vs-latent margin under realistic estimated-depth noise, not the clean-depth number.
 > - Advantage may vanish on saturated ID benchmarks (LIBERO ~97%). Fix: evaluate on appearance-shift and cross-embodiment splits; expect ID parity.
 > - Full 3D branches add latency. Fix: the minimal-geometry sweep and A3's depth bridge.
 
@@ -68,9 +70,11 @@ tags:
 2. Does OccSim's Warp-DiT bound hold at the sub-cm voxels manipulation needs?
 3. Does forecasting future-occupancy into A1's point head beat present-frame conditioning on long-horizon success?
 4. Does explicit occupancy beat latent-4D (X-WAM) on horizon while losing per-frame Chamfer? (then complementary)
+5. Is a dense-voxel loop *deployable-latency-competitive* with the sparser explicit substrates? "Latency favours a sparser substrate" is a *hypothesis, not a settled fact*: the sparse incumbents already run deployable (PointWorld ~0.12 s per 10-step ≈ 0.012 s/step, *not* 0.1 s/step), so dense voxels must be shown to fall within a usable multiple on the same hardware, plot horizon-to-divergence against latency as a *frontier*.
 
 > [!warning] Risks
 > - Driving (meter-scale/static) vs manipulation (sub-cm/dynamic). Fix: the resolution sweep and dynamic-agent analog; report where Warp-DiT breaks.
+> - The "deployable axis" *may* favour a sparser explicit substrate, sparse-point incumbents (PointWorld ~0.12 s/10-step, ParticleFormer) already run in real-time MPC, so dense voxels can win horizon yet lose latency. Fix: make deployability a *measured frontier* (horizon-to-divergence vs matched-hardware latency), not an asserted advantage; report the latency multiple before claiming the dense-voxel substrate is deployable.
 > - Occupancy ground truth is scarce. Fix: derive from depth plus gripper geometry, or pretrain in sim.
 > - Voxel grids are memory-heavy at sub-cm. Fix: sparse hierarchical octree bounded to the end-effector.
 

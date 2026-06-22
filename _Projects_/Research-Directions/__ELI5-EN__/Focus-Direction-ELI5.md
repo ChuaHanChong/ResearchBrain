@@ -35,7 +35,7 @@ The tempting fix is "just collect more data and let the robot figure the pull ou
 
 Four sibling research directions each do one job, together forming a closed loop around that push-back.
 
-- **Anchor: make the pull explicit.** The trap: hope the robot quietly learns the arm-pulls-legs effect inside a black box, where nobody can point to it. The flip: force the robot to *name* the pull out loud, as its own quantity the controller plans against. The payoff: a named pull holds up far better in new situations, and the gain grows as the arm moves faster.
+- **Anchor: make the pull explicit.** First, a smaller win: a robot that lets the pull *count at all*, even hidden inside a black box, already braces far better in new situations than one that pretends the arm and legs are separate, and that lead grows as things get harder. The bet builds on top of that: force the robot to *name* the pull out loud, as its own quantity the controller plans against. The extra payoff is small but real, and it shows up right where it matters most: the fast, hard reaches where the push-back is biggest.
 
 - **Predict: imagine the pull before it happens.** The trap: wait until the arm has swung and the body is lurching, then react. The flip: give the robot a mind's-eye test run, so it *imagines* the push-back its next reach will cause, just as you brace before you grab. The payoff: this imagined push-back stands in for a real "feel" sensor, so the robot sees the pull coming even with none.
 
@@ -53,9 +53,11 @@ Second, this pull is uniquely a *humanoid* problem. Two arms working together ha
 
 ## The cheapest way to be wrong
 
-Before building anything fancy, run the one test that can kill the idea fast and cheap. In simulation, with no new data: build the version that says the pull out loud, and pit it against the one that hides it. Same body, brain, and tasks.
+Before building anything fancy, run the one test that can kill the idea fast and cheap. In simulation, with no new data: build the version that says the pull out loud, and pit it against the one that just hides it, and also against one that only *reacts* after it feels the body lurch. Same body, brain, and tasks. The real edge being tested is *anticipating* the pull before the arm moves, not just feeling it once it's there, so look hardest at the fast reaches.
 
-Maybe naming the pull gives no real gain, no extra steadiness, no bigger payoff on the fast, hard reaches. Then the idea is wrong, and you learned that in months, not years. An idea that can cheaply prove *itself* wrong up front is a good problem, not a shiny one.
+One honesty trap to avoid: if you grade the named pull against the very same body-weight picture the robot used to make it, of course they agree. So deliberately feed it a slightly *wrong* picture of its own weight, and watch how the advantage holds up as the picture gets worse.
+
+Maybe naming the pull gives no real extra gain over the version that just lets it count, no bigger payoff on the fast, hard reaches. Then the idea is wrong, and you learned that in months, not years. An idea that can cheaply prove *itself* wrong up front is a good problem, not a shiny one.
 
 > [!summary] The takeaway
 > A humanoid that reaches has to brace. The brace comes from one small, predictable push-back the arm puts on the legs. The whole bet: name it out loud, imagine it, calibrate it against the robot's real body, and check it matches reality. And the very first test tells you fast whether the bet is right.
