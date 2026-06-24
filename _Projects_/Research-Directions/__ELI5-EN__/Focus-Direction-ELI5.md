@@ -63,7 +63,7 @@ Second, this pull is uniquely a *humanoid* problem. Two arms working together ha
 
 Before building anything fancy, run the test that can kill the idea fast and cheap, and run it for all three pulls at once. In simulation, with no new data: for each pull, build the version that says the pull out loud and pit it against the version that just hides it inside a black box. Same body, brain, and tasks. For the self-reach and the load, also pit it against a version that only *reacts* after it feels the body lurch, because the real edge being tested is *anticipating* the pull before it arrives, not just feeling it once it is there. Look hardest where each pull is biggest: the fast reaches, the big steps mid-grab, the heavy loads.
 
-Each of the three is its own clean go-or-no-go, and all three lean on the same one idea, so running them side by side cross-checks the idea three ways at once. If naming the pull gives no real gain on a pull, that one is wrong, and you learned it in months, not years, while the other two still stand on their own.
+Each of the three is its own clean go-or-no-go, and all three lean on the same one idea, so running them side by side cross-checks the idea three ways at once. If naming the pull gives no real gain on a pull, that one is wrong, and you learned it cheaply, while the other two still stand on their own.
 
 One honesty trap to avoid: if you grade the named pull against the very same body-and-load picture the robot used to make it, of course they agree. So deliberately feed it a slightly *wrong* picture, and watch how the advantage holds up as the picture gets worse.
 
