@@ -106,7 +106,7 @@ Diffusion is no longer just for images. Masked diffusion models (MDMs) generate 
 > - [[2505.19223|LLaDA 1.5]] — Variance-Reduced Preference Optimization for aligning masked diffusion models with human preferences
 
 **Reasoning in dLLMs** — Applying RL post-training and chain-of-thought to boost diffusion LLM reasoning on math, code, and planning tasks.
-- [[2606.03988|Imaginative Perception Tokens]], [[2509.23653|RemeDi]], [[2507.08838|wd1]], [[2505.13138|NESYDMS]], [[2504.12216|d1]], [[2403.09227|BEHAVIOR-1K]]
+- [[2606.18195|d-OPSD]], [[2606.03988|Imaginative Perception Tokens]], [[2509.23653|RemeDi]], [[2507.08838|wd1]], [[2505.13138|NESYDMS]], [[2504.12216|d1]], [[2403.09227|BEHAVIOR-1K]]
 
 > [!star] Key Papers
 > - [[2504.12216|d1]] — First RL post-training framework for dLLMs; introduced diffu-GRPO with +26.2% on Countdown
@@ -264,7 +264,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 - [[2605.04128|JoyAI-Image]], [[2602.21435|AD-Loop]], [[2602.12205|DeepGen 1.0]], [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 **Text-to-Motion Generation** — Diffusion and contrastive methods for synthesizing and retrieving 3D human motions from natural language, including LLM-planned + physics-aware refinement pipelines.
-- [[2606.18243|MOCHI]], [[2604.24833|MotionBricks]], [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.15546|Kimodo]], [[2510.14427|Compositional Phase Diffusion]], [[2305.00976|TMR]]
+- [[2606.26981|ICMPG]], [[2606.18243|MOCHI]], [[2604.24833|MotionBricks]], [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.15546|Kimodo]], [[2510.14427|Compositional Phase Diffusion]], [[2305.00976|TMR]]
 
 > [!star] Key Papers
 > - [[2604.17807|Re2MoGen]] — MCTS-enhanced LLM keyframe planning + diffusion completion + PPO physics refinement; SOTA open-vocabulary T2M with 2.46 mm float error

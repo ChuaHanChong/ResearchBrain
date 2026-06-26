@@ -189,8 +189,8 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2106.08254|BEiT]] — BERT-style pre-training for vision: predict discrete visual tokens from masked patches
 
 **JEPA & Latent Prediction** — Joint-Embedding Predictive Architectures that predict in representation space rather than pixel space, avoiding reconstruction artifacts.
-- [[2605.03413|NEO Theorizer]], [[2605.02134|PV-VAE]], [[2605.00078|Being-H0.7]], [[2603.20111|Var-JEPA]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.23058|GeoWorld]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2601.14354|VJEPA-Probabilistic]], [[2512.24497|JEPA-WM]], [[2512.19605|KerJEPA]], [[2512.10942|VL-JEPA]], [[2511.18424|CrossJEPA]], [[2511.08544|LeJEPA]], [[2510.00974|JEPA-T]], [[2510.00739|TD-JEPA]], [[2509.25449|TS-JEPA]], [[2509.14252|LLM-JEPA]], [[2509.12249|P-JEPA]], [[2507.15216|N-JEPA]], [[2506.09985|V-JEPA 2]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2504.10512|JEPA4Rec]], [[2504.03169|REJEPA]], [[2503.06380|TI-JEPA]], [[2412.14123|AnySat]], [[2410.19560|C-JEPA]], [[2410.03755|D-JEPA]]
-- [[2409.15803|3D-JEPA]], [[2407.03475|JEPA Noisy Features]], [[2406.12913|T-JEPA (Trajectory)]], [[2404.16432|Point-JEPA]], [[2404.08471|V-JEPA]], [[2403.00504|IWM]], [[2312.04000|LiDAR (Metric)]], [[2311.15153|SAR-JEPA]], [[2309.16014|Graph-JEPA]], [[2307.12698|MC-JEPA]], [[2301.08243|I-JEPA]], [[2211.10831|JEPA Slow Features]]
+- [[2606.15956|TDV]], [[2605.03413|NEO Theorizer]], [[2605.02134|PV-VAE]], [[2605.00078|Being-H0.7]], [[2603.20111|Var-JEPA]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA 2.1]], [[2602.23058|GeoWorld]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2601.14354|VJEPA-Probabilistic]], [[2512.24497|JEPA-WM]], [[2512.19605|KerJEPA]], [[2512.10942|VL-JEPA]], [[2511.18424|CrossJEPA]], [[2511.08544|LeJEPA]], [[2510.00974|JEPA-T]], [[2510.00739|TD-JEPA]], [[2509.25449|TS-JEPA]], [[2509.14252|LLM-JEPA]], [[2509.12249|P-JEPA]], [[2507.15216|N-JEPA]], [[2506.09985|V-JEPA 2]], [[2505.03176|seq-JEPA]], [[2504.16591|JEPA for RL]], [[2504.10512|JEPA4Rec]], [[2504.03169|REJEPA]], [[2503.06380|TI-JEPA]], [[2412.14123|AnySat]], [[2410.19560|C-JEPA]]
+- [[2410.03755|D-JEPA]], [[2409.15803|3D-JEPA]], [[2407.03475|JEPA Noisy Features]], [[2406.12913|T-JEPA (Trajectory)]], [[2404.16432|Point-JEPA]], [[2404.08471|V-JEPA]], [[2403.00504|IWM]], [[2312.04000|LiDAR (Metric)]], [[2311.15153|SAR-JEPA]], [[2309.16014|Graph-JEPA]], [[2307.12698|MC-JEPA]], [[2301.08243|I-JEPA]], [[2211.10831|JEPA Slow Features]]
 
 > [!star] Key Papers
 > - [[2301.08243|I-JEPA]] — Predicts in latent space instead of pixel space; avoids reconstruction artifacts
@@ -339,7 +339,7 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 Core training recipes, optimizers, scaling laws, and architectural insights for training large language models efficiently.
 
 **Optimizers** — Second-order and novel optimizers that improve over AdamW for large-scale training.
-- [[2605.31159|TRB]], [[2605.21699|X-Token]], [[2604.17535|OPSDL]], [[2506.07254|SPlus]], [[2506.05454|Zeroth-Order Flat Minima]], [[2506.01393|GP-UCB Regret]], [[2505.23725|MuLoCo]], [[2505.16932|Polar Express]], [[2505.02222|Muon]], [[2502.16982|Muon]], [[2411.08380|EgoVid-5M]], [[2409.16283|Gen2Act]]
+- [[2606.25971|MD Decoupling]], [[2605.31159|TRB]], [[2605.21699|X-Token]], [[2604.17535|OPSDL]], [[2506.07254|SPlus]], [[2506.05454|Zeroth-Order Flat Minima]], [[2506.01393|GP-UCB Regret]], [[2505.23725|MuLoCo]], [[2505.16932|Polar Express]], [[2505.02222|Muon]], [[2502.16982|Muon]], [[2411.08380|EgoVid-5M]], [[2409.16283|Gen2Act]]
 
 > [!star] Key Papers
 > - [[2502.16982|Muon]] — Breakthrough: second-order optimizer demonstrating superior training efficiency over AdamW for LLMs
@@ -404,7 +404,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2505.12082|PMA]] — Pre-trained Model Average for effective merging of LLM checkpoints
 
 **Knowledge Distillation** — Compressing large models into smaller ones via teacher-student training or multi-teacher distillation.
-- [[2606.08432|Trajectory-Refined Distillation]], [[2606.07082|On-Policy Distillation Geometry]], [[2605.03821|RoboAlign-R1]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.01193|SSD Code Generation]], [[2604.00626|On-Policy Distillation Survey]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2602.05449|DisCa]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2512.22238|Mask Teacher Distill]], [[2510.23497|VOLD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2503.11339|CSD]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
+- [[2606.24143|AsyncOPD]], [[2606.08432|Trajectory-Refined Distillation]], [[2606.07082|On-Policy Distillation Geometry]], [[2605.03821|RoboAlign-R1]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.01193|SSD Code Generation]], [[2604.00626|On-Policy Distillation Survey]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2602.05449|DisCa]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2512.22238|Mask Teacher Distill]], [[2510.23497|VOLD]], [[2508.13167|CoA]], [[2508.04816|CoMAD]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2503.11339|CSD]], [[2502.21074|CODI]], [[2312.06709|AM-RADIO]], [[2306.08543|MiniLLM]]
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] — Foundational KD method for LLMs using reverse KL divergence; set the standard for language model compression

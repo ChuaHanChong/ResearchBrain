@@ -247,7 +247,7 @@ Agents that operate in real digital environments -- browsing the web, interactin
 Systems where multiple LLM agents collaborate, specialize, or compete. Multi-agent architectures enable division of labor, debate-based reasoning, and scalable task decomposition that single agents cannot achieve.
 
 **Multi-Agent Frameworks & Orchestration** — Architectures for coordinating multiple specialized agents, managing communication, and distributing tasks across agent teams.
-- [[2604.25135\|FAMA]], [[2604.01658\|CORAL]], [[2602.14926|MAC-AMP]], [[2601.23265\|PaperBanana]], [[2601.19204\|MATA]], [[2601.09295\|MACRO-LLM]], [[2512.04388|Conductor]], [[2511.22235|CES Scheduler]], [[2510.11062|AT-GRPO]], [[2509.14295|Aegis (Agent)]], [[2509.03312|AgenTracer]], [[2508.13167\|CoA]], [[2507.01701\|LbMAS]], [[2506.12508\|AgentOrchestra]], [[2505.23885|OWL (Workforce)]], [[2505.19591|Puppeteer (Agent)]], [[2504.16129\|MARFT]], [[2504.01990\|Foundation Agents Survey]], [[2503.11739|CoLLMLight]], [[2501.15228|MMOA-RAG]]
+- [[2606.25404|HEART]], [[2604.25135|FAMA]], [[2604.01658|CORAL]], [[2602.14926|MAC-AMP]], [[2601.23265|PaperBanana]], [[2601.19204|MATA]], [[2601.09295|MACRO-LLM]], [[2512.04388|Conductor]], [[2511.22235|CES Scheduler]], [[2510.11062|AT-GRPO]], [[2509.14295|Aegis (Agent)]], [[2509.03312|AgenTracer]], [[2508.13167|CoA]], [[2507.01701|LbMAS]], [[2506.12508|AgentOrchestra]], [[2505.23885|OWL (Workforce)]], [[2505.19591|Puppeteer (Agent)]], [[2504.16129|MARFT]], [[2504.01990|Foundation Agents Survey]], [[2503.11739|CoLLMLight]], [[2501.15228|MMOA-RAG]]
 
 > [!star] Key Papers
 > - [[2504.01990\|Foundation Agents Survey]] — Brain-inspired comprehensive framework integrating diverse LLM agent research areas
@@ -310,7 +310,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Multimodal Agent Architectures** — Integrated architectures combining vision-language understanding with agent capabilities for complex multimodal tasks.
-- [[2606.05395|VASO]], [[2602.17558|RetouchIQ]], [[2512.18745|InSight-o3]], [[2512.05111|ARM-Thinker]], [[2511.19524|VideoChat-M1]], [[2511.05271|DeepEyesV2]], [[2510.21817|VITA-E]], [[2505.19486|VLMLight]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
+- [[2606.16295|VisualClaw]], [[2606.05395|VASO]], [[2602.17558|RetouchIQ]], [[2512.18745|InSight-o3]], [[2512.05111|ARM-Thinker]], [[2511.19524|VideoChat-M1]], [[2511.05271|DeepEyesV2]], [[2510.21817|VITA-E]], [[2505.19486|VLMLight]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]]
 
 > [!star] Key Papers
 > - [[2402.15116\|LMA Survey]] — Systematic review of Large Multimodal Agents deconstructing their core components and capabilities
@@ -332,7 +332,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 > - [[2603.15386\|RieMind]] — Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations
 
 **Scientific & Research Agents** — Agents designed for autonomous scientific research, from literature review to experiment design and execution.
-- [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557|FlowPIE]], [[2603.26499|AIRA2]], [[2603.07642|Helix (Scientific)]], [[2602.24288|DARE-bench]], [[2601.19439|OSIRIS]], [[2601.15715|RebuttalAgent]], [[2601.10402|ML-Master 2.0]], [[2511.02824|Kosmos AI Scientist]], [[2510.11661|SR-Scientist]], [[2509.01684|ML Engineering RL Agents]], [[2506.02153|SLMs for Agentic AI]], [[2505.16938|InternAgent]], [[2504.01538|AI-Newton]]
+- [[2606.21891|ARTS]], [[2605.03808|Agentic-imodels]], [[2604.28158|Intern-Atlas]], [[2603.29557|FlowPIE]], [[2603.26499|AIRA2]], [[2603.07642|Helix (Scientific)]], [[2602.24288|DARE-bench]], [[2601.19439|OSIRIS]], [[2601.15715|RebuttalAgent]], [[2601.10402|ML-Master 2.0]], [[2511.02824|Kosmos AI Scientist]], [[2510.11661|SR-Scientist]], [[2509.01684|ML Engineering RL Agents]], [[2506.02153|SLMs for Agentic AI]], [[2505.16938|InternAgent]], [[2504.01538|AI-Newton]]
 
 > [!star] Key Papers
 > - [[2505.16938\|InternAgent]] — Unified closed-loop multi-agent system for fully autonomous scientific research
