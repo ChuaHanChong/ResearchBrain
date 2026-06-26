@@ -22,7 +22,7 @@ General/ (topic overview, landscape, key papers)
 | **alphaxiv-summary-extract skill** | `.claude/skills/alphaxiv-summary-extract/` | Batch scraping via Selenium → `_KnowledgeHub_/` notes, enrichment rules, tag taxonomy |
 | **knowledgehub-query skill** | `.claude/skills/knowledgehub-query/` | Reads KnowledgeHub notes by arxiv ID and answers questions from their content |
 | **paper-curate skill** | `.claude/skills/paper-curate/` | Assigns papers to General/ topics, audits coverage, formatting rules |
-| **paper-figure-extract skill** | `.claude/skills/paper-figure-extract/` | Downloads a paper's figure from ar5iv and embeds it under the KH note's `## Method` section |
+| **paper-figure-extract skill** | `.claude/skills/paper-figure-extract/` | Extracts a paper's pipeline figure from its **alphaxiv overview** (alphaxiv alt-label + caption), or its **arxiv HTML render** as a fallback, requires a visual check that it is the real diagram, and embeds it (caption verbatim) under the KH note's `## Method` section |
 | **kh-graph-sync skill** | `.claude/skills/kh-graph-sync/` | Additively adds new KH notes to `graphify-out/graph.json` (delta → subagent extract → additive merge + `tag_*` wiring); `enrich` subcommand adds TF-IDF similarity + `concept_*` hub edges. Bypasses graphify's broken native `--update` |
 | **alphaxiv MCP** | External service | 6 tools: semantic search, full-text search, agentic retrieval, paper content, PDF Q&A, GitHub reader |
 
