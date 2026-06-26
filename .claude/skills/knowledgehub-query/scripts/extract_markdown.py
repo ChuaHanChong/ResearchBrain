@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Extract and print KnowledgeHub note content for arxiv IDs found in the input text.
+"""extract_markdown.py — print KnowledgeHub note content for arxiv IDs found in the input text.
 
 Usage:
     echo "query text with https://arxiv.org/abs/2602.15922 and 2507.04447" | python extract_markdown.py
@@ -16,6 +15,7 @@ import re
 import sys
 from pathlib import Path
 
+KH_DIR = "_KnowledgeHub_"  # default notes dir (vault-relative)
 
 ARXIV_ID_PATTERN = re.compile(
     r"(?:arxiv\.org/(?:abs|pdf)/|arxiv\.org/overview/)?(\d{4}\.\d{4,5})(?:v\d+)?"
@@ -34,10 +34,11 @@ def extract_ids(text: str) -> list[str]:
     return ids
 
 
-def main():
+def main() -> None:
+    """Print each matching KH note for arxiv IDs from args or stdin; warn on missing notes."""
     parser = argparse.ArgumentParser(description="Print KnowledgeHub note content for arxiv IDs")
     parser.add_argument("ids", nargs="*", help="Arxiv IDs or URLs (if omitted, reads from stdin)")
-    parser.add_argument("--notes-dir", default="_KnowledgeHub_", help="KnowledgeHub directory")
+    parser.add_argument("--notes-dir", default=KH_DIR, help="KnowledgeHub directory")
     args = parser.parse_args()
 
     notes_dir = Path(args.notes_dir)

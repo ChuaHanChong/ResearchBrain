@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Batch-extract paper summaries from alphaxiv.org and write Obsidian markdown notes.
+"""run.py — batch-extract paper summaries from alphaxiv and write Obsidian markdown notes.
 
 Usage:
     python run.py --input scripts/knowledge.py --out _KnowledgeHub_
@@ -18,8 +17,11 @@ from selenium import webdriver
 
 from utils import fetch_bibtex
 
+KH_DIR = "_KnowledgeHub_"  # default output dir for KH notes (vault-relative)
+
 
 def load_papers(input_path: str) -> list:
+    """Import the knowledge.py module at the given path and return its papers list."""
     spec = importlib.util.spec_from_file_location("knowledge", input_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -27,6 +29,7 @@ def load_papers(input_path: str) -> list:
 
 
 def init_driver() -> webdriver.Chrome:
+    """Build and return a headless Chrome webdriver configured for scraping."""
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
@@ -36,8 +39,8 @@ def init_driver() -> webdriver.Chrome:
 
 
 def arxiv_id_from_url(url: str) -> str:
+    """Return the arxiv ID from a URL by taking its last path segment."""
     return url.rstrip("/").split("/")[-1]
-
 
 
 def render_note(
@@ -46,9 +49,11 @@ def render_note(
     summary: dict,
     bibtex: str,
 ) -> str:
+    """Render the full Obsidian KH note markdown for a paper from its summary and BibTeX."""
     link = f"https://www.alphaxiv.org/overview/{arxiv_id}"
 
     def bullets(items: list) -> str:
+        """Render items as a markdown bullet list, or a placeholder bullet when empty."""
         return "\n".join(f"- {item}" for item in items) if items else "- (none)"
 
     bibtex_block = f"```bibtex\n{bibtex}\n```" if bibtex else "```bibtex\n(unavailable)\n```"
@@ -93,17 +98,19 @@ aliases: []
 
 
 def quality_check(entry: dict, url: str) -> None:
+    """Warn when any summary section has fewer than three extracted items."""
     for section in ["Problem", "Method", "Results", "Takeaways"]:
         items = entry.get(section, [])
         if isinstance(items, list) and len(items) < 3:
             print(f"  Warning: {section} has only {len(items)} items for {url}")
 
 
-def main():
+def main() -> None:
+    """Parse args, scrape each paper, and write its Obsidian KH note, reporting a summary."""
     parser = argparse.ArgumentParser(description="Scrape alphaxiv and write Obsidian notes")
     parser.add_argument("--input", default=None, help="Path to knowledge.py with papers list (batch mode)")
     parser.add_argument("--ids", nargs="+", help="One or more arxiv IDs or URLs to process directly")
-    parser.add_argument("--out", default="_KnowledgeHub_", help="Output directory for .md notes")
+    parser.add_argument("--out", default=KH_DIR, help="Output directory for .md notes")
     parser.add_argument("--limit", type=int, default=None, help="Process at most N papers (for testing)")
     parser.add_argument("--force", action="store_true", help="Overwrite existing notes")
     args = parser.parse_args()

@@ -1,9 +1,10 @@
-"""Shared utilities for alphaxiv-summary-extract scripts."""
+"""utils.py — shared utilities for alphaxiv-summary-extract scripts (dedup, BibTeX fetch)."""
 
 import requests
 
 
-def find_duplicates(papers):
+def find_duplicates(papers: list[str]) -> set[str]:
+    """Return the set of papers that appear more than once in the given list."""
     seen = set()
     duplicates = set()
     for paper in papers:

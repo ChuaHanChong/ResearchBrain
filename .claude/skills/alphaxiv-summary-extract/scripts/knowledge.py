@@ -1,39 +1,74 @@
 # Reading list — non-arxiv resources (blogs, repos, docs); commented out, not scraped by run.py.
 
-# --- RL for LLMs ---
+# --- LLMs (RL, fine-tuning, evaluation, architecture) ---
+# https://github.com/google-deepmind/disco_rl  # Discovering State-of-the-art Reinforcement Algorithms (DeepMind, Nature)
+# https://thinkingmachines.ai/blog/lora/  # LoRA Without Regret
+# https://goyalpramod.github.io/blogs/Transformers_laid_out/  # Transformers Laid Out
 # https://cameronrwolfe.substack.com/p/online-rl  # Online versus Offline RL for LLMs
 # https://cameronrwolfe.substack.com/p/grpo-tricks  # GRPO++: Tricks for Making RL Actually Work
+# https://alexzhang13.github.io/blog/2025/rlm/  # Recursive Language Models
 # https://huggingface.co/posts/Kseniase/304021452230579  # 10 Latest Preference Optimization Techniques
 # https://accessible-dragon-75f.notion.site/RL-Grokking-Recipe-How-Can-We-Enable-LLMs-to-Solve-Previously-Unsolvable-Tasks-with-RL-100a1714e6778062bae5eafad8e7677d  # RL Grokking Recipe: How Can We Enable LLMs to Solve Previously Unsolvable Tasks with RL?
 # https://relieved-cafe-fe1.notion.site/JustRL-Scaling-a-1-5B-LLM-with-a-Simple-RL-Recipe-24f6198b0b6b80e48e74f519bfdaf0a8  # JustRL: Scaling a 1.5B LLM with a Simple RL Recipe
-# https://github.com/google-deepmind/disco_rl
-
-# --- LLM evaluation (LLM-as-Judge) ---
-# https://eugeneyan.com/writing/eval-process/  # An LLM-as-Judge Won't Save The Product—Fixing Your Process Will
+# https://eugeneyan.com/writing/eval-process/  # An LLM-as-Judge Won't Save The Product: Fixing Your Process Will
 # https://eugeneyan.com/writing/llm-evaluators/  # Evaluating the Effectiveness of LLM-Evaluators (aka LLM-as-Judge)
-
-# --- Fine-tuning & distillation ---
-# https://thinkingmachines.ai/blog/lora/  # LoRA Without Regret
-# https://huggingface.co/spaces/HuggingFaceH4/on-policy-distillation
-# https://yumoxu.notion.site/multi-teacher-on-policy-distillation
-
-# --- Transformers & LLM architecture ---
-# https://goyalpramod.github.io/blogs/Transformers_laid_out/  # Transformers Laid Out
-# https://alexzhang13.github.io/blog/2025/rlm/  # Recursive Language Models
+# https://huggingface.co/spaces/HuggingFaceH4/on-policy-distillation  # On-Policy Distillation
+# https://yumoxu.notion.site/multi-teacher-on-policy-distillation  # Multi-Teacher On-Policy Distillation
+# https://unsloth.ai/blog/rl-environments  # Reinforcement Learning environments and how to build them (Unsloth)
 
 # --- Agents ---
-# https://tencentcloudadp.github.io/youtu-agent/
-# https://github.com/Memento-Teams/Memento-Skills
-# https://github.com/nousresearch/hermes-agent
+# https://github.com/nousresearch/hermes-agent  # Hermes Agent: the agent that grows with you
+# https://tencentcloudadp.github.io/youtu-agent/  # Youtu-Agent (Tencent)
+# https://github.com/Memento-Teams/Memento-Skills  # Memento-Skills: Let Agents Design Agents
 
 # --- Multimodal & vision (repos) ---
-# https://github.com/EvolvingLMMs-Lab/lmms-engine  # A simple, unified multimodal models training engine. Lean, flexible, and built for hacking at scale.
-# https://github.com/alexstoken/image-matching-models
+# https://github.com/EvolvingLMMs-Lab/lmms-engine  # lmms-engine: unified multimodal models training engine
+# https://github.com/alexstoken/image-matching-models  # Image Matching Models (benchmark library)
 
 # --- Embodied, robotics & spatial intelligence ---
-# https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence  # From Words to Worlds: Spatial Intelligence is AI’s Next Frontier
-# https://github.com/huggingface/lerobot
-# https://genesis-world.readthedocs.io/en/latest/
+# https://github.com/huggingface/lerobot  # LeRobot: making AI for robotics more accessible (end-to-end learning)
+# https://genesis-world.readthedocs.io/en/latest/  # Genesis: generative physics engine for robotics (docs)
+# https://drfeifei.substack.com/p/from-words-to-worlds-spatial-intelligence  # From Words to Worlds: Spatial Intelligence is AI's Next Frontier
+# https://github.com/amazon-far/holosoma  # HoloSOMA (Amazon FAR)
+
+# --- Tools & misc ---
+# https://datasets.bot  # datasets.bot: dataset search/discovery tool
+# https://nlp.csai.tsinghua.edu.cn/~ly/talks/cwmt14_tut.pdf  # CWMT 2014 tutorial (machine translation)
+
+# --- Humanoid Datasets (HuggingFace) ---
+# https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-X-Embodiment-Sim  # PhysicalAI-Robotics-GR00T-X-Embodiment-Sim
+# https://huggingface.co/datasets/X-Humanoid/ArtVIP  # ArtVIP
+# https://huggingface.co/datasets/x-humanoid-robomind/RoboMIND  # RoboMIND
+# https://huggingface.co/datasets/USC-PSI-Lab/humanoid-everyday  # humanoid-everyday
+# https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Open-H-Embodiment  # PhysicalAI-Robotics-Open-H-Embodiment
+# https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-Teleop-GR1  # PhysicalAI-Robotics-GR00T-Teleop-GR1
+# https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-Teleop-G1  # PhysicalAI-Robotics-GR00T-Teleop-G1
+# https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-Teleop-Sim  # PhysicalAI-Robotics-GR00T-Teleop-Sim
+# https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-GR1  # PhysicalAI-Robotics-GR00T-GR1
+# https://huggingface.co/datasets/USC-PSI-Lab/Humanoid-X  # Humanoid-X
+# https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Locomanipulation-GRAIL  # PhysicalAI-Robotics-Locomanipulation-GRAIL
+# https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-Eval  # PhysicalAI-Robotics-GR00T-Eval
+# https://huggingface.co/datasets/x-humanoid-robomind/RoboMIND2.0  # RoboMIND2.0
+# https://huggingface.co/datasets/ai-habitat/habitat_humanoids  # habitat_humanoids
+# https://huggingface.co/datasets/nvidia/Arena-G1-Loco-Manipulation-Task  # Arena-G1-Loco-Manipulation-Task
+# https://huggingface.co/datasets/nvidia/Arena-GR1-Manipulation-Task  # Arena-GR1-Manipulation-Task
+# https://huggingface.co/datasets/nvidia/PhysicalAI-GR00T-Tuned-Tasks  # PhysicalAI-GR00T-Tuned-Tasks
+# https://huggingface.co/datasets/nvidia/g1_locomanip_dataset  # g1_locomanip_dataset
+# https://huggingface.co/datasets/EgoVLA/EgoVLA-Humanoid-Sim  # EgoVLA-Humanoid-Sim
+# https://huggingface.co/datasets/USC-PSI-Lab/Humanoid-Everyday-H1  # Humanoid-Everyday-H1
+# https://huggingface.co/datasets/TeleEmbodied/humanoidgen_dataset  # humanoidgen_dataset
+# https://huggingface.co/datasets/humanoid-vstar/hos-sft  # hos-sft
+# https://huggingface.co/datasets/ermandmand/humanoid-motion-dataset-v1  # humanoid-motion-dataset-v1
+# https://huggingface.co/datasets/yan0116/SMPL_Humanoid_offline_dataset  # SMPL_Humanoid_offline_dataset
+# https://huggingface.co/datasets/X-Humanoid/WoW-1-Benchmark-Samples  # WoW-1-Benchmark-Samples
+# https://huggingface.co/datasets/USC-PSI-Lab/Humanoid-Everyday-G1  # Humanoid-Everyday-G1
+# https://huggingface.co/datasets/X-Humanoid/XR-1-Dataset-Sample  # XR-1-Dataset-Sample
+# https://huggingface.co/datasets/DynamicIntelligence/humanoid-robots-training-dataset  # humanoid-robots-training-dataset
+# https://huggingface.co/datasets/ami-iit/paper_Sorrentino_Humanoids2024_Friction  # paper_Sorrentino_Humanoids2024_Friction
+# https://huggingface.co/datasets/danielsanjosepro/first-humanoid-dataset  # first-humanoid-dataset
+# https://huggingface.co/datasets/danielsanjosepro/humanoid-pick-and-place  # humanoid-pick-and-place
+# https://huggingface.co/datasets/HumanoidTeam/R2_VLA_6_items_sample  # R2_VLA_6_items_sample
+# https://huggingface.co/datasets/OliverUrbann/HumanoidRobotSoccer  # HumanoidRobotSoccer
 
 papers = [
     "https://arxiv.org/abs/1312.5602",  # Playing Atari with Deep Reinforcement Learning
@@ -6261,4 +6296,69 @@ papers = [
     "https://arxiv.org/abs/2606.19161",  # HT-Bench: Benchmarking and Learning Dexterous Full-Hand Tactile Representations with Egocentric Vision
     "https://arxiv.org/abs/2606.19194",  # Invertible Neural Network Adapter for One-Step Flow Matching in Robot Manipulation
     "https://arxiv.org/abs/2606.19333",  # Do as I Do: Dexterous Manipulation Data from Everyday Human Videos
+    "https://arxiv.org/abs/2606.11628",
+    "https://arxiv.org/abs/2605.28816",
+    "https://arxiv.org/abs/2604.08544",
+    "https://arxiv.org/abs/2606.20008",
+    "https://arxiv.org/abs/2503.05453",
+    "https://arxiv.org/abs/2606.18208",
+    "https://arxiv.org/abs/2606.15133",
+    "https://arxiv.org/abs/2606.18247",
+    "https://arxiv.org/abs/2606.17551",
+    "https://arxiv.org/abs/2606.19531",
+    "https://arxiv.org/abs/2606.17055",
+    "https://arxiv.org/abs/2603.12255",
+    "https://arxiv.org/abs/2606.19333",
+    "https://arxiv.org/abs/2606.20549",
+    "https://arxiv.org/abs/2606.17055",
+    "https://arxiv.org/abs/2606.16917",
+    "https://arxiv.org/abs/2606.19419",
+    "https://arxiv.org/abs/2606.17055",
+    "https://arxiv.org/abs/2606.17385",
+    "https://arxiv.org/abs/2606.19980",
+    "https://arxiv.org/abs/2606.20246",
+    "https://arxiv.org/abs/2606.20562",
+    "https://arxiv.org/abs/2606.20285",
+    "https://arxiv.org/abs/2606.20197",
+    "https://arxiv.org/abs/2606.20479",
+    "https://arxiv.org/abs/2606.16295",
+    "https://arxiv.org/abs/2606.18206",
+    "https://arxiv.org/abs/2606.09806",
+    "https://arxiv.org/abs/2606.12365",
+    "https://arxiv.org/abs/2606.20008",
+    "https://arxiv.org/abs/2606.08057",
+    "https://arxiv.org/abs/2606.12604",
+    "https://arxiv.org/abs/2606.23689",
+    "https://arxiv.org/abs/2606.00267",
+    "https://arxiv.org/abs/2606.21173",
+    "https://arxiv.org/abs/2606.22836",
+    "https://arxiv.org/abs/2605.27817",
+    "https://arxiv.org/abs/2605.00416",
+    "https://arxiv.org/abs/2606.10305",
+    "https://arxiv.org/abs/2606.24597",
+    "https://arxiv.org/abs/2507.04447",
+    "https://arxiv.org/abs/2605.13435",
+    "https://arxiv.org/abs/2606.24884",
+    "https://arxiv.org/abs/2606.16295",
+    "https://arxiv.org/abs/2606.24742",
+    "https://arxiv.org/abs/2606.24884",
+    "https://arxiv.org/abs/2606.21891",
+    "https://arxiv.org/abs/2606.24143",
+    "https://arxiv.org/abs/2605.27817",
+    "https://arxiv.org/abs/2605.27284",
+    "https://arxiv.org/abs/2503.10626",
+    "https://arxiv.org/abs/2606.14218",
+    "https://arxiv.org/abs/2606.23686",
+    "https://arxiv.org/abs/2606.18195",
+    "https://arxiv.org/abs/2605.12369",
+    "https://arxiv.org/abs/2606.13102",
+    "https://arxiv.org/abs/2606.19752",
+    "https://arxiv.org/abs/2606.21406",
+    "https://arxiv.org/abs/2606.25971",
+    "https://arxiv.org/abs/2606.15956",
+    "https://arxiv.org/abs/2604.06168",
+    "https://arxiv.org/abs/2606.19340",
+    "https://arxiv.org/abs/2606.25319",
+    "https://arxiv.org/abs/2606.10818",
+    "https://arxiv.org/abs/2606.25319",
 ]

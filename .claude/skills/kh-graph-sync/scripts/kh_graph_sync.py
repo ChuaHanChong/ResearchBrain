@@ -19,9 +19,13 @@ Why not `graphify --update`: its content-addressed cache is invalidated by bulk 
 edits, and its generic extraction/merge corrupts this vault (wrong IDs, no tag wiring,
 destructive dedup). See SKILL.md.
 """
-import sys, json, re, glob
+import glob
+import json
 import os.path as osp
+import re
+import sys
 from pathlib import Path
+from typing import Any, Optional
 from collections import defaultdict
 
 OUT = Path("graphify-out")
@@ -35,23 +39,28 @@ CONCEPT_MIN_PAPERS = 3
 
 
 # ---------- shared helpers ----------
-def _load_graph():
+def _load_graph() -> tuple:
+    """Load graph.json and return (graph dict, edge list)."""
     g = json.loads(GRAPH.read_text())
     return g, g.get("links", g.get("edges", []))
 
 
-def _edges_of(g):
+def _edges_of(g: dict) -> list:
+    """Return the edge list of a graph dict, under either the links or edges key."""
     return g.get("links", g.get("edges", []))
 
 
-def _arx(path_or_name):
+def _arx(path_or_name: str) -> str:
+    """Derive the sanitized arxiv id (dots to underscores) from a note path or filename."""
     return Path(path_or_name).name.replace(".md", "").replace(".", "_")
 
 
-def _auto_labels(G, communities, id2label):
+def _auto_labels(G: Any, communities: dict, id2label: dict) -> dict:
+    """Label each community by its highest-degree non-tag/concept member node."""
     deg = dict(G.degree())
 
-    def clean(lbl):
+    def clean(lbl: str) -> str:
+        """Trim a label to its first clause and at most five words."""
         head = re.split(r"[:(]", str(lbl))[0].strip()
         return " ".join(head.split()[:5]) or "Concept Cluster"
 
@@ -62,7 +71,7 @@ def _auto_labels(G, communities, id2label):
     return labels
 
 
-def _rebuild(extraction, total_files):
+def _rebuild(extraction: dict, total_files: int) -> tuple:
     """build_from_json -> cluster -> report -> to_json. Returns (G, communities)."""
     from graphify.build import build_from_json
     from graphify.cluster import cluster, score_all
@@ -88,7 +97,8 @@ def _rebuild(extraction, total_files):
 
 
 # ---------- delta ----------
-def cmd_delta():
+def cmd_delta() -> None:
+    """Diff KH notes against graph nodes; write missing list + chunk files, print counts."""
     g, _ = _load_graph()
     srcs = {osp.basename(n.get("source_file") or n.get("source") or "") for n in g["nodes"]}
     disk = {osp.basename(p) for p in glob.glob(str(KH / "*.md"))}
@@ -108,7 +118,8 @@ def cmd_delta():
 
 
 # ---------- finalize ----------
-def _merge_chunks():
+def _merge_chunks() -> tuple:
+    """Combine subagent chunk files, sanitize node ids, and return (nodes, edges, n_chunks, n_fixed)."""
     nodes, edges = [], []
     chunks = sorted(glob.glob(str(OUT / ".graphify_chunk_*.json")))
     for c in chunks:
@@ -125,7 +136,8 @@ def _merge_chunks():
     return nodes, edges, len(chunks), len(remap)
 
 
-def _parse_tags(md):
+def _parse_tags(md: str) -> list:
+    """Parse frontmatter tags (block or inline list) from a note's markdown and return them."""
     m = re.match(r"^---\n(.*?)\n---", md, re.S)
     fm = m.group(1) if m else ""
     blk = re.search(r"^tags:\s*\n((?:[ \t]*-[ \t]*.+\n?)+)", fm, re.M)
@@ -140,7 +152,8 @@ def _parse_tags(md):
     return [x.strip().strip("\"'") for x in inl.group(1).split(",") if x.strip()] if inl else []
 
 
-def cmd_finalize():
+def cmd_finalize() -> None:
+    """Additively merge chunk files + tag backbone into graph.json, re-cluster, print before->after diff."""
     if not glob.glob(str(OUT / ".graphify_chunk_*.json")):
         print("ERROR: no .graphify_chunk_*.json found — dispatch extraction subagents first.")
         sys.exit(1)
@@ -160,7 +173,8 @@ def cmd_finalize():
     id_set = {n["id"] for n in nodes}
 
     # tag-backbone wiring for the new notes
-    def tagid(t):
+    def tagid(t: str) -> str:
+        """Convert a tag string into its tag_* node id."""
         return "tag_" + re.sub(r"[^a-z0-9]+", "_", t.strip().lower()).strip("_")
 
     tag_edges = []
@@ -200,7 +214,8 @@ def cmd_finalize():
     save_manifest(detect(KH)["files"])
 
     # before -> after
-    def stats(gg):
+    def stats(gg: dict) -> tuple:
+        """Return (node count, edge count, community count) for a graph dict."""
         return len(gg["nodes"]), len(_edges_of(gg)), len({n.get("community") for n in gg["nodes"] if "community" in n})
     on, oe, oc = stats(old)
     ng = json.loads(GRAPH.read_text())
@@ -222,7 +237,8 @@ def cmd_finalize():
 
 
 # ---------- enrich ----------
-def cmd_enrich():
+def cmd_enrich() -> None:
+    """Add TF-IDF similarity edges + concept_* hub nodes for cross-paper entities, then re-cluster."""
     import numpy as np
     from scipy import sparse
 
@@ -241,7 +257,8 @@ def cmd_enrich():
 
     STOP = set("the a an of for to in on and or with via using based model models method approach learning "
                "network networks task tasks data new from into is are be we our this that it as by at".split())
-    def toks(text):
+    def toks(text: str) -> list:
+        """Tokenize text into lowercase words >=3 chars, dropping stopwords."""
         out = []
         for w in re.findall(r"[a-zA-Z][a-zA-Z0-9\-]+", text.lower()):
             w = w.strip("-")
@@ -298,7 +315,8 @@ def cmd_enrich():
     CAMEL = re.compile(r"\b([A-Z][a-z]+(?:[A-Z][a-z0-9]+)+)\b")
     norm = lambda s: re.sub(r"[^a-z0-9]+", "_", s.lower()).strip("_")
     ent_papers, disp = defaultdict(set), {}
-    def scan(text, paper):
+    def scan(text: str, paper: Optional[str]) -> None:
+        """Collect acronym/CamelCase entity mentions in text and map each to the paper."""
         if not paper:
             return
         for m in ACRO.findall(text) + CAMEL.findall(text):
@@ -336,7 +354,8 @@ def cmd_enrich():
     print(f"graph: {G.number_of_nodes()} nodes, {G.number_of_edges()} edges, {len(communities)} communities")
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Parse the subcommand argument and dispatch to cmd_delta / cmd_finalize / cmd_enrich."""
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
     OUT.mkdir(exist_ok=True)
     if cmd == "delta":
@@ -348,3 +367,7 @@ if __name__ == "__main__":
     else:
         print(__doc__)
         sys.exit(2)
+
+
+if __name__ == "__main__":
+    main()

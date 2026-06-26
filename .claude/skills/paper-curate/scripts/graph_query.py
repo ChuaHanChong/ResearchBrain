@@ -30,15 +30,17 @@ KH_DIR = "_KnowledgeHub_"
 ARXIV_PATTERN = re.compile(r"\[\[(\d{4}\.\d{4,5})")
 
 
-def _load_graph():
+def _load_graph() -> dict:
+    """Load and return the graphify graph JSON from GRAPH_PATH."""
     return json.load(open(GRAPH_PATH))
 
 
-def _edges(g):
+def _edges(g: dict) -> list:
+    """Return the graph's edge list (stored under the 'links' or 'edges' key)."""
     return g.get("links") or g.get("edges") or []
 
 
-def _node_to_paper(g):
+def _node_to_paper(g: dict) -> dict:
     """Map node_id → arxiv_id (for KH paper-nodes only)."""
     out = {}
     for n in g.get("nodes", []):
@@ -48,7 +50,7 @@ def _node_to_paper(g):
     return out
 
 
-def _topic_assignments():
+def _topic_assignments() -> dict:
     """Scan General/ for [[arxiv_id]] wikilinks → {arxiv_id: [topic_files]}."""
     out = defaultdict(set)
     if not os.path.isdir(GEN_DIR):
@@ -64,7 +66,7 @@ def _topic_assignments():
     return out
 
 
-def _topic_node_set(g, topic_file):
+def _topic_node_set(g: dict, topic_file: str) -> set:
     """Set of node IDs belonging to a General/ topic (its source_file or wikilinked KH papers)."""
     try:
         wikilinked = set(ARXIV_PATTERN.findall(open(topic_file).read()))
@@ -84,7 +86,7 @@ def _topic_node_set(g, topic_file):
     return out
 
 
-def _communities(g):
+def _communities(g: dict) -> dict:
     """{community_id: [node_ids]}."""
     groups = defaultdict(list)
     for n in g.get("nodes", []):
@@ -94,7 +96,7 @@ def _communities(g):
     return groups
 
 
-def _cohesion(g, groups):
+def _cohesion(g: dict, groups: dict) -> dict:
     """{community_id: cohesion_float} — internal-density per community."""
     node_cid = {n["id"]: n.get("community") for n in g.get("nodes", [])}
     intra = Counter()
@@ -112,7 +114,7 @@ def _cohesion(g, groups):
 # ───── Mode A Step 1 ─────────────────────────────────────────────────────
 
 
-def cmd_unassigned():
+def cmd_unassigned() -> None:
     """KH papers with no wikilink in any General/ topic file."""
     all_kh = set(f.replace(".md", "") for f in os.listdir(KH_DIR) if f.endswith(".md"))
     assigned = set()
@@ -134,7 +136,7 @@ def cmd_unassigned():
 # ───── Mode A Step 2 ─────────────────────────────────────────────────────
 
 
-def cmd_neighbors(arxiv_id):
+def cmd_neighbors(arxiv_id: str) -> None:
     """For an arxiv ID, vote of which General/ topics its graph neighbors belong to."""
     g = _load_graph()
     n2p = _node_to_paper(g)
@@ -169,7 +171,7 @@ def cmd_neighbors(arxiv_id):
 # ───── Mode A Step 3 ─────────────────────────────────────────────────────
 
 
-def cmd_same_community(arxiv_id, topic_file):
+def cmd_same_community(arxiv_id: str, topic_file: str) -> None:
     """Papers already wikilinked in topic_file that share a graph community with arxiv_id."""
     g = _load_graph()
     target_sf = f"_KnowledgeHub_/{arxiv_id}.md"
@@ -211,7 +213,7 @@ def cmd_same_community(arxiv_id, topic_file):
 # ───── Mode B ─────────────────────────────────────────────────────────────
 
 
-def cmd_audit_coverage():
+def cmd_audit_coverage() -> None:
     """Coverage table + unassigned-by-centrality + orphan flagging."""
     g = _load_graph()
     all_kh = set(f.replace(".md", "") for f in os.listdir(KH_DIR) if f.endswith(".md"))
@@ -264,7 +266,7 @@ def cmd_audit_coverage():
 # ───── Mode C ─────────────────────────────────────────────────────────────
 
 
-def cmd_sprawl(cohesion_threshold=0.3, size_threshold=5, sprawl_threshold=3):
+def cmd_sprawl(cohesion_threshold: float = 0.3, size_threshold: int = 5, sprawl_threshold: int = 3) -> None:
     """SPRAWL: General/ topics that span many high-cohesion communities (split candidates)."""
     g = _load_graph()
     groups = _communities(g)
@@ -296,7 +298,7 @@ def cmd_sprawl(cohesion_threshold=0.3, size_threshold=5, sprawl_threshold=3):
 # ───── Mode D [!star] ────────────────────────────────────────────────────
 
 
-def cmd_star(topic_file, top_n=5):
+def cmd_star(topic_file: str, top_n: int = 5) -> None:
     """Top-N KH papers in topic ranked by topic-restricted degree."""
     g = _load_graph()
     in_topic = _topic_node_set(g, topic_file)
@@ -328,7 +330,7 @@ def cmd_star(topic_file, top_n=5):
 # ───── Mode D [!tip] ─────────────────────────────────────────────────────
 
 
-def cmd_recent(topic_file, n=5):
+def cmd_recent(topic_file: str, n: int = 5) -> None:
     """N newest arxiv IDs in the topic (lexical sort — arxiv IDs are date-prefixed)."""
     try:
         wikilinked = set(ARXIV_PATTERN.findall(open(topic_file).read()))
@@ -346,7 +348,7 @@ def cmd_recent(topic_file, n=5):
 # ───── Mode D [!success] ─────────────────────────────────────────────────
 
 
-def cmd_bridges(topic_file, top_n=5):
+def cmd_bridges(topic_file: str, top_n: int = 5) -> None:
     """Topic papers ranked by edges into OTHER communities (recipe-bridge candidates)."""
     g = _load_graph()
     in_topic = _topic_node_set(g, topic_file)
@@ -383,7 +385,7 @@ def cmd_bridges(topic_file, top_n=5):
 # ───── Mode E data-quality ──────────────────────────────────────────────
 
 
-def cmd_data_quality():
+def cmd_data_quality() -> None:
     """Find KH notes with weak Method sections or empty authors/tags/aliases."""
     issues = []
     for f in sorted(os.listdir(KH_DIR)):
@@ -408,7 +410,7 @@ def cmd_data_quality():
 # ───── Mode E stale-stars ────────────────────────────────────────────────
 
 
-def cmd_stale_stars():
+def cmd_stale_stars() -> None:
     """For each topic, check whether current [!star] papers still match the graph's top-5."""
     g = _load_graph()
     nodes_by_id = {n["id"]: n for n in g.get("nodes", [])}
@@ -462,7 +464,7 @@ def cmd_stale_stars():
 # ───── Mode E SPLIT ──────────────────────────────────────────────────────
 
 
-def cmd_split(cohesion_threshold=0.5, size_threshold=10, off_dom_threshold=0.4):
+def cmd_split(cohesion_threshold: float = 0.5, size_threshold: int = 10, off_dom_threshold: float = 0.4) -> None:
     """SPLIT: high-cohesion communities whose papers span multiple General/ topics."""
     g = _load_graph()
     groups = _communities(g)
@@ -508,7 +510,7 @@ ALPHAXIV_PATH = ".claude/skills/alphaxiv-summary-extract/SKILL.md"
 TAG_TOKEN = re.compile(r"`([A-Za-z0-9][A-Za-z0-9_-]*?)`")
 
 
-def _extract_tags_in_table(path, header_marker):
+def _extract_tags_in_table(path: str, header_marker: str) -> set:
     """Pull backtick-quoted tag tokens from the markdown table that follows header_marker.
 
     Scans only lines starting with `|` (table rows) and skips the header/separator rows.
@@ -531,7 +533,7 @@ def _extract_tags_in_table(path, header_marker):
     return tags
 
 
-def cmd_validate_tags():
+def cmd_validate_tags() -> None:
     """Lint: every tag in paper-curate routing table must appear in alphaxiv master vocabulary."""
     master = _extract_tags_in_table(ALPHAXIV_PATH, "Canonical Tag Taxonomy")
     routing = _extract_tags_in_table(SKILL_PATH, "Tag → Topic mapping")
@@ -583,7 +585,8 @@ COMMANDS = {
 }
 
 
-def main():
+def main() -> None:
+    """Dispatch the named CLI subcommand to its handler, or print usage and exit 1."""
     if len(sys.argv) < 2 or sys.argv[1] not in COMMANDS:
         print(__doc__)
         sys.exit(1)
