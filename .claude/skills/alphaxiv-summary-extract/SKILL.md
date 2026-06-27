@@ -75,7 +75,7 @@ Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each
 
 > Do NOT add highlights or bold to Summary, Problem, or Takeaways sections.
 
-##### Canonical Tag Taxonomy (62 tags)
+##### Canonical Tag Taxonomy (71 tags)
 
 > **Single source of truth for the tag vocabulary used across all skills.** `Skill(skill="paper-curate")` references this table for routing — keep tag names exact (renames must propagate). Run `validate-tags` (see `Skill(skill="paper-curate")`) after any change to detect drift.
 
@@ -108,7 +108,9 @@ Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 | | `self-play` | Improving by competing / cooperating with copies of oneself |
 | | `flow-matching` | Continuous-time generative training via velocity fields |
 | | `model-merging` | Combining multiple models' weights into one |
+| | `retrieval` | Retrieval-augmented generation (RAG) and retrieval / memory systems that fetch external context |
 | | `sim-to-real` | Simulation-to-real transfer (domain randomization, real-to-sim, etc.) |
+| | `optimal-control` | Model-based control via optimization — MPC, trajectory optimization, sampling-based / receding-horizon control, LQR; solves for actions by optimization rather than a learned policy (distinguishes control-theory papers from learning ones) |
 | **Training/Scaling** | `pre-training` | Large-scale training of a foundation model from scratch |
 | | `scaling` | Scaling laws / behavior of compute, data, or model size |
 | | `synthetic-data` | Training on generated or simulated data |
@@ -121,7 +123,10 @@ Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 | | `code-generation` | Generating or reasoning about source code |
 | | `medical-imaging` | Medical / clinical image analysis |
 | | `humanoid` | Humanoid / whole-body / bipedal robot platforms |
+| | `locomotion` | Legged / quadruped / bipedal locomotion, gait, and agile-skill control (the moving-the-body problem, vs. `humanoid` = platform) |
 | | `dexterous` | Multi-finger / dexterous manipulation (vs. parallel-jaw) |
+| | `human-robot-interaction` | Human-robot interaction, teleoperation, shared autonomy, assistive / collaborative robotics |
+| | `multi-agent` | Multiple interacting agents or robots — coordination, cooperation, swarms, decentralized control (vs. `agentic-AI` = single agent) |
 | **Tasks/Capabilities** | `reasoning` | Multi-step logical / mathematical / commonsense inference |
 | | `spatial-reasoning` | Reasoning about spatial relations and layout |
 | | `visual-grounding` | Linking language to image regions / objects |
@@ -129,8 +134,11 @@ Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 | | `object-detection` | Localizing and classifying objects |
 | | `segmentation` | Pixel-level region / instance labeling |
 | | `3D-understanding` | 3D geometry, scenes, reconstruction, and pose |
+| | `neural-rendering` | NeRF / 3D Gaussian Splatting / radiance fields / novel-view synthesis (scene representation & rendering, vs. `3D-understanding` = geometry analysis) |
+| | `state-estimation` | SLAM, localization, odometry, visual-inertial / Kalman / observer-based estimation of pose and state |
 | | `video-understanding` | Temporal understanding of video |
 | | `image-generation` | Synthesizing images |
+| | `video-generation` | Synthesizing video — text-to-video, image-to-video, video diffusion (vs. `image-generation` = stills) |
 | | `navigation` | Moving an agent to goals through environments |
 | | `manipulation` | Grasping and manipulating objects |
 | | `tool-use` | Invoking external tools / APIs / functions |
@@ -140,6 +148,7 @@ Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 | | `efficiency` | Compute / memory / latency efficiency |
 | | `interpretability` | Understanding model internals / behavior |
 | | `robustness` | Resistance to perturbations, OOD, and adversarial inputs |
+| | `uncertainty-estimation` | Uncertainty quantification, calibration, conformal prediction, predictive confidence |
 | | `safety` | Alignment, harm avoidance, and safe deployment |
 | | `physics-aware` | Grounds models in physical priors / Newtonian / commonsense physics |
 | **Paper Type** | `survey` | Literature review / taxonomy of a research area |
