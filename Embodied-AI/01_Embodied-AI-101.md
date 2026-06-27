@@ -323,6 +323,8 @@ Landscape reviews for going deeper, grouped by theme. These broad surveys span t
 - [[2504.02477|Multimodal Fusion & VLM Survey]] — reviews multimodal fusion and VLMs for robot vision across 3D object detection, navigation, SLAM, and manipulation.
 - [[2502.15336|Embodied Multimodal LLMs Survey]] — full-stack review of Embodied Multimodal Large Models (EMLMs), spanning foundation models, embodied perception/navigation/interaction, datasets, and simulators.
 - [[2408.03539|Deep RL for Robotics Survey]] — surveys real-world deep-RL successes in robotics with a novel taxonomy and a "Level of Real-World Success" metric assessing DRL maturity.
+- [[2606.07017|FM Agent Sim-to-Real Gap]] — recasts foundation-model agent robustness as a classical sim-to-real gap, dissecting observation/action/transition/reward discrepancies under a unified MDP perspective.
+- [[2504.09848|LLM Spatial Intelligence Survey]] — surveys LLM-powered spatial intelligence across scales, leading with embodied agents and linking cognitive-science principles to spatial-reasoning implementations.
 
 **Manipulation & skill learning**
 - [[2504.08438|Diffusion for Manipulation Survey]] — first comprehensive survey of diffusion models in robotic manipulation, classifying applications, architectures, and adaptations for multi-modal distribution modeling.
@@ -330,6 +332,8 @@ Landscape reviews for going deeper, grouped by theme. These broad surveys span t
 - [[2503.03464|GenAI in Manipulation Survey]] — surveys generative AI in robotic manipulation, covering data synthesis, LLM task decomposition, and grasp/trajectory policy generation across operational layers.
 - [[2507.05906|Feature vs GAN LfD Survey]] — compares feature-based vs GAN-based learning-from-demonstration, framing principled method selection by task priorities like fidelity vs diversity.
 - [[2408.11537|Object-Centric Manipulation Survey]] — surveys embodied learning for object-centric manipulation, categorizing methods into perceptual, policy, and task-oriented learning.
+- [[2510.10903|Manipulation Survey 2025]] — unifies the fragmented robot-manipulation field under new taxonomies for high-level planning, low-level learning-based control, and key data/generalization bottlenecks.
+- [[2512.11908|Contact-Rich Safe Learning Survey]] — first safety-centric survey of learning-based contact-rich manipulation, with a taxonomy over learning phase, sensing modality, and enforcement space spanning classical control to safe foundation models.
 
 **Navigation & mapping**
 - [[2505.01458|Nav & Manip Physics-Sim Survey]] — analyzes how low-level physics-simulator properties shape robotic navigation and manipulation performance and sim-to-real transfer, guiding simulator selection.
@@ -345,10 +349,12 @@ Landscape reviews for going deeper, grouped by theme. These broad surveys span t
 - [[2411.14499|World Models Survey]] — broad survey framed around the central debate: does a world model understand the present state or predict the future?
 - [[2506.20134|3D World Models Survey]] — traces the shift from 2D-visual world models to 3D-cognitive ones that simulate motion, contact, and causal reasoning.
 - [[2602.01630|Unified World Model Framework]] — argues world-model research is more than injecting knowledge into task-specific systems; proposes a unified, exploration-driven framing.
+- [[2504.21853|Interactive Generative Video Survey]] — frames interactive generative video across gaming, embodied AI, and autonomous driving via five modules (Generation, Control, Memory, Dynamics, Intelligence) — a video-as-controllable-policy taxonomy.
 
 **3D & simulation for robotics**
 - [[2512.03422|3D Scene Rep Survey]] — compares geometric, neural (NeRF/3DGS), and foundation-model 3D scene representations across robotic perception, mapping, and manipulation.
 - [[2604.26509|3D Generation for Embodied AI Survey]] — surveys 3D content generation for simulation-ready, physically accurate assets, not just visual realism or static geometry.
+- [[2504.13159|Digital Twin Survey]] — reviews digital-twin generation from visual data, centering 3D Gaussian Splatting as a unifying representation that captures geometry, appearance, dynamics, physics, and semantics.
 
 **Multi-robot**
 - [[2604.00061|R2X Multi-Robot MLLM Survey]] — surveys multi-robot networks driven by MLLMs, joining sensing, communication, and computation for language-grounded coordination.
