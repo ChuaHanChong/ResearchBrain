@@ -17,11 +17,11 @@ aliases:
 # Self-Discovering Imagination vs. Action Failure in Diffusion-WAMs — Summary
 
 > [!abstract] The paper in one paragraph
-> A per-episode **2-bit attribution gate** for diffusion-WAMs, built by **generalizing [[2510.09459|FIPER]]'s dual-signal CP architecture** from single-flag detection to component-level attribution. We evaluate the gate as a **2×2 factorial = 4 cells** spanning: two public diffusion-WAM backbones ([[2504.02792|UWM]] DDPM-VP, [[2601.16163|Cosmos Policy]] rectified-flow), one label-free imagination signal ([[2503.08558|FAIL-Detect]] `logpZO` — distributional OOD via CNF density on the WM's predicted $\hat{O}_{t+1}$, a novel extension), and two action signals (FIPER-ACE, Sentinel-STAC). All cells share success-only functional CP, Bonferroni-corrected 2×2 joint calibration, and **zero failure labels**. Cross-cell generality is claimed on LIBERO across both backbones.
+> A per-episode **2-bit attribution gate** for diffusion-WAMs, built by **generalizing [[2510.09459|FIPER]]'s dual-signal CP architecture** from single-flag detection to component-level attribution. We evaluate the gate as a **2×2 factorial = 4 cells** spanning: two public diffusion-WAM backbones ([[2504.02792|UWM]] DDPM-VP, [[2601.16163|Cosmos-Policy]] rectified-flow), one label-free imagination signal ([[2503.08558|FAIL-Detect]] `logpZO` — distributional OOD via CNF density on the WM's predicted $\hat{O}_{t+1}$, a novel extension), and two action signals (FIPER-ACE, Sentinel-STAC). All cells share success-only functional CP, Bonferroni-corrected 2×2 joint calibration, and **zero failure labels**. Cross-cell generality is claimed on LIBERO across both backbones.
 
 ## 1. Scope
 
-**In scope**: two diffusion-WAM backbones — [[2504.02792|UWM]] (~90M DiT, DDPM ε-prediction VP schedule, modality-independent diffusion timesteps, Robomimic + LIBERO) + [[2601.16163|Cosmos Policy]] (~2B Cosmos-Predict2 DiT, rectified-flow, latent-frame roles, LIBERO + RoboCasa + ALOHA). One imag anchor — FAIL-Detect `logpZO` extended to $\hat{O}_{t+1}$. Two act anchors — FIPER-ACE and Sentinel-STAC. FIPER as structural ancestor. Per-episode diagnostic label only.
+**In scope**: two diffusion-WAM backbones — [[2504.02792|UWM]] (~90M DiT, DDPM ε-prediction VP schedule, modality-independent diffusion timesteps, Robomimic + LIBERO) + [[2601.16163|Cosmos-Policy]] (~2B Cosmos-Predict2 DiT, rectified-flow, latent-frame roles, LIBERO + RoboCasa + ALOHA). One imag anchor — FAIL-Detect `logpZO` extended to $\hat{O}_{t+1}$. Two act anchors — FIPER-ACE and Sentinel-STAC. FIPER as structural ancestor. Per-episode diagnostic label only.
 
 **Out of scope**: AR-video-diffusion (DreamZero); latent-only WMs (Dreamer / JEPA); Fast-WAM-class backbones that remove test-time future imagination (incompatible with `logpZO`); closed-loop updates; self-improvement; any method requiring failure labels (SAFE, Guardian, WAV, etc.); second imag signal (explored — all candidates structurally distinct from `logpZO` lack robotics/VLA validation; deferred to publication #2).
 
@@ -33,8 +33,8 @@ Each of the 4 cells instantiates the **2×2 attribution gate** (imag × act → 
 |---|---|---|---|
 | 1 | [[2504.02792\|UWM]] | [[2503.08558\|FAIL-Detect]] `logpZO` | [[2510.09459\|FIPER]]-ACE |
 | 2 | [[2504.02792\|UWM]] | [[2503.08558\|FAIL-Detect]] `logpZO` | [[2410.04640\|Sentinel]]-STAC |
-| 5 | [[2601.16163\|Cosmos Policy]] | [[2503.08558\|FAIL-Detect]] `logpZO` | [[2510.09459\|FIPER]]-ACE |
-| 6 | [[2601.16163\|Cosmos Policy]] | [[2503.08558\|FAIL-Detect]] `logpZO` | [[2410.04640\|Sentinel]]-STAC |
+| 5 | [[2601.16163\|Cosmos-Policy]] | [[2503.08558\|FAIL-Detect]] `logpZO` | [[2510.09459\|FIPER]]-ACE |
+| 6 | [[2601.16163\|Cosmos-Policy]] | [[2503.08558\|FAIL-Detect]] `logpZO` | [[2410.04640\|Sentinel]]-STAC |
 
 (Cell numbers 1/2/5/6 preserved from prior design drafts so intermediate artifacts map cleanly; cells 3/4/7/8 were second-imag-signal cells and are dropped.)
 
@@ -105,7 +105,7 @@ Gate output in every cell is the 4-cell attribution label:
 | Detection | FAIL-Detect `logpZO` alone on $O_t$ (native use) | No |
 | Detection | FAIL-Detect full ensemble (logpZO + logpO + RND, CDF-combined) on $\hat{O}_{t+1}$ | No |
 | Detection | Sentinel STAC alone | No |
-| Detection | [[2602.16182\|WM Failure Classifier]] (success / known-failure / OOD + CP) | **Yes** |
+| Detection | [[2602.16182\|WM-Failure-Classifier]] (success / known-failure / OOD + CP) | **Yes** |
 | Detection | **B-SAFE** ([[2506.09937\|SAFE]] MLP/LSTM probe + CP) | **Yes** |
 | Attribution | [[2604.01985\|WAV]] forward-inverse (latent-WM, sparse-IDM) | **Yes** |
 | **Ours (M)** | 2×2 gate (per cell of the 2×2 factorial) | **No** |

@@ -151,7 +151,7 @@ These mechanisms interfere:
 - Experience Replay pushes the model toward past data distributions. The Middle Loop pushes it toward ==novel== distributions via curiosity. These are opposing gradients. The net effect depends on the replay ratio, which the blueprint sets at "start 50%, decay to 5%" — but the decay schedule is arbitrary, not derived from any principle.
 - All three mechanisms add ==regularization penalties== to the loss function. Combined, they may over-regularize, preventing the plasticity needed for self-evolution. The entire self-evolution thesis requires the model to ==change== — but CL mechanisms exist to ==prevent change==.
 
-**And the strongest evidence from the blueprint's own sources suggests none of this is necessary:** [[2603.11653|VLA RL Continual Learning]] showed that simple Sequential Fine-Tuning with LoRA achieves ==less than 2% forgetting==, and [[2603.03818|VLA Continual Learning]] found VLAs need only ==2% replay buffer== for near-zero forgetting. Both suggest the complex CL machinery solves a problem that may not exist for pretrained models.
+**And the strongest evidence from the blueprint's own sources suggests none of this is necessary:** [[2603.11653|VLA-RL-Continual-Learning]] showed that simple Sequential Fine-Tuning with LoRA achieves ==less than 2% forgetting==, and [[2603.03818|VLA-Continual-Learning]] found VLAs need only ==2% replay buffer== for near-zero forgetting. Both suggest the complex CL machinery solves a problem that may not exist for pretrained models.
 
 ### 2.5 The Imaginer-Actor Decoupling Creates a Representation Mismatch
 
@@ -160,7 +160,7 @@ These mechanisms interfere:
 
 This decoupling is clean in theory. In practice, it means the Actor receives ==compressed latent states from the Imaginer==. The Actor-Critic Design (from [[2301.04104|DreamerV3]]) trains both actor and critic "entirely in latent space."
 
-But [[2505.23705|Knowledge Insulation VLA]] discovered that gradient flow between action modules and the VLM backbone ==degrades the backbone's knowledge==. They had to ==stop gradients== from the action expert to prevent corruption.
+But [[2505.23705|Knowledge-Insulation-VLA]] discovered that gradient flow between action modules and the VLM backbone ==degrades the backbone's knowledge==. They had to ==stop gradients== from the action expert to prevent corruption.
 
 If the Actor-Critic trains in the Imaginer's latent space, critic gradients flow through the Imaginer's representations. The same gradient interference that Knowledge Insulation VLA documented will corrupt the Imaginer's physics understanding. The blueprint proposes "mathematically linking their loss functions so that an upgrade in the Imaginer immediately forces an upgrade in the Actor, and vice versa" — but Knowledge Insulation showed that linked gradients between action and perception modules are precisely what causes degradation.
 
@@ -353,7 +353,7 @@ Each row is a two-component interaction. The full system has ==dozens of such in
 > VLAW showed bounded co-evolution works (0.46 → 0.868 over fixed rounds). But the blueprint proposes ==indefinite== co-evolution, where the World Model perpetually chases a changing Actor. Either the system converges (and stops evolving) or diverges (and breaks). There is no stable, perpetually-improving regime.
 
 > [!failure] 3. The CL machinery fights the self-evolution objective
-> EWC + Replay + Gradient Projection resist parameter changes. Self-evolution requires parameter changes. The blueprint's own citations show simple LoRA fine-tuning achieves <2% forgetting ([[2603.11653|VLA RL Continual Learning]]), making the complex CL stack both ==unnecessary and counterproductive==.
+> EWC + Replay + Gradient Projection resist parameter changes. Self-evolution requires parameter changes. The blueprint's own citations show simple LoRA fine-tuning achieves <2% forgetting ([[2603.11653|VLA-RL-Continual-Learning]]), making the complex CL stack both ==unnecessary and counterproductive==.
 
 > [!failure] 4. The three loops cannot synchronize
 > Inner Loop forward-updates (ms) are overwritten by Middle Loop backprop (hours). Middle Loop's training distribution is corrupted by Inner Loop's ephemeral adaptations. Outer Loop's environment changes invalidate both Inner and Middle Loop progress. The nesting diagram implies hierarchical control, but the update mechanisms ==interfere destructively==.

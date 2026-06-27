@@ -120,7 +120,7 @@ These papers prove that ALL static models (VLAs and WAMs) fail under distributio
 | [[2510.03827\|LIBERO-PRO]] | VLAs collapse from >90% to near 0% under minor perturbations — models memorize, don't generalize |
 | [[2602.06556\|LIBERO-X]] | Only 39.4% at easiest level; near-zero for 3+ step tasks — structural limitation |
 | [[2603.28301\|LIBERO-Para]] | 22.8-51.9pp drops from paraphrased instructions — language overfitting |
-| [[2603.22078\|WAM vs VLA Robustness]] | π0.5: 85.7% → 58.6% under perturbation; WAMs more robust but 4.8x slower |
+| [[2603.22078\|WAM-vs-VLA-Robustness]] | π0.5: 85.7% → 58.6% under perturbation; WAMs more robust but 4.8x slower |
 | [[2601.11421\|GM-100]] | Detail-oriented manipulation remains unsolved (best: 24.9%) |
 | [[2505.03500\|TLI]] | Static models spatially overfit: 9% on novel compositions |
 | [[2602.15922\|DreamZero]] | Even 14B WAMs get only 39.5% on unseen tasks |
@@ -234,7 +234,7 @@ The self-evolving loop is ==identical for both models== except DETECT (world mod
 
 **Step 1: Set Up LoRA on the Action Model**
 
-Apply LoRA (rank=32) to the action model's attention layers. For ==Fast-WAM==: apply only on layers that do NOT participate in mixed attention with Video DiT — these shared layers were calibrated during joint training, and changing only ActionDiT's side would break alignment. Video DiT remains frozen throughout. For ==VLA-JEPA==: apply LoRA to the Qwen3-VL-2B action head layers — no mixed attention concern since V-JEPA2 and the action head are more loosely coupled. Estimated trainable parameters: ~7.9M for Fast-WAM, similar scale for VLA-JEPA ([[2603.11653|VLA RL CL]]).
+Apply LoRA (rank=32) to the action model's attention layers. For ==Fast-WAM==: apply only on layers that do NOT participate in mixed attention with Video DiT — these shared layers were calibrated during joint training, and changing only ActionDiT's side would break alignment. Video DiT remains frozen throughout. For ==VLA-JEPA==: apply LoRA to the Qwen3-VL-2B action head layers — no mixed attention concern since V-JEPA2 and the action head are more loosely coupled. Estimated trainable parameters: ~7.9M for Fast-WAM, similar scale for VLA-JEPA ([[2603.11653|VLA-RL-CL]]).
 
 **Step 2: Add Flow-SDE Stochastic Action Sampling**
 
@@ -246,7 +246,7 @@ Following [[2510.25889|πRL]]'s Flow-SDE mechanism: both Fast-WAM's ActionDiT an
 
 **Step 4: Set Up Broad Procedural Randomization**
 
-Randomize ALL simulation parameters broadly before each episode using [[2009.12293|robosuite]]'s [MuJoCo](https://mujoco.org) API: object mass (0.5x to 3.0x of default, [[2506.12851|KungfuBot]]-style), surface friction (0.2 to 2.0), joint damping (0.5x to 2.0x), object spawn positions (±0.2 units from default), camera angles, lighting, and backgrounds ([[2506.18088|RoboTwin 2.0]]'s 5-dimension approach). Additionally, an LLM generates 3-5 paraphrased versions of each task instruction for language diversity. This is ==NOT targeted per benchmark== — broad diversity lets the prediction error and active probing discover which conditions actually matter.
+Randomize ALL simulation parameters broadly before each episode using [[2009.12293|robosuite]]'s [MuJoCo](https://mujoco.org) API: object mass (0.5x to 3.0x of default, [[2506.12851|KungfuBot]]-style), surface friction (0.2 to 2.0), joint damping (0.5x to 2.0x), object spawn positions (±0.2 units from default), camera angles, lighting, and backgrounds ([[2506.18088|RoboTwin-2.0]]'s 5-dimension approach). Additionally, an LLM generates 3-5 paraphrased versions of each task instruction for language diversity. This is ==NOT targeted per benchmark== — broad diversity lets the prediction error and active probing discover which conditions actually matter.
 
 **Step 5: Set Up RoboMD RL Adversary**
 
@@ -267,7 +267,7 @@ Each round consists of seven sub-steps:
 >
 > **d. PROBE + LEARN**: [[2511.00091|PLD]] identifies the specific states where the model failed during rollouts. [[2510.25889|πRL]] trains lightweight residual RL specialists on those failure states — each specialist learns a small correction (additive residual) that recovers from the failure.
 >
-> **e. DISTILL**: Collect the successful recovery trajectories from the specialists. LoRA fine-tune the action model (Fast-WAM: ActionDiT non-mixed layers; VLA-JEPA: Qwen3-VL-2B action head) on recovery data plus a 2% replay buffer ([[2603.03818|VLA CL]]). If LoRA capacity saturates, merge weights into base and restart with fresh adapters.
+> **e. DISTILL**: Collect the successful recovery trajectories from the specialists. LoRA fine-tune the action model (Fast-WAM: ActionDiT non-mixed layers; VLA-JEPA: Qwen3-VL-2B action head) on recovery data plus a 2% replay buffer ([[2603.03818|VLA-CL]]). If LoRA capacity saturates, merge weights into base and restart with fresh adapters.
 >
 > **f. DREAM**: World model generates additional future-state rollouts from diverse initial conditions. Fast-WAM: Video DiT → pixel-level dreams. VLA-JEPA: V-JEPA2 → latent-level dreams. Filter for quality: keep only those where action predictions are consistent (low flow matching sample variance).
 >
@@ -289,7 +289,7 @@ All training data is ==self-generated==. No human-designed perturbations needed.
 | **PLD recovery data** | Recovery trajectories from failure states | [[2511.00091\|PLD]] + [[2510.25889\|πRL]] RL specialists generate these |
 | **Autonomous rollouts** | Diverse self-play including failures | [[2603.09030\|PlayWorld]]-style deployment in sim |
 | **Dream rollouts** | Future-state imagination | Fast-WAM: Video DiT (pixel); VLA-JEPA: V-JEPA2 (latent) |
-| **Replay buffer** | 2% of original [[2306.03310\|LIBERO]] demonstrations | Prevents forgetting ([[2603.03818\|VLA CL]]) |
+| **Replay buffer** | 2% of original [[2306.03310\|LIBERO]] demonstrations | Prevents forgetting ([[2603.03818\|VLA-CL]]) |
 
 ### Optional: Benchmark-Targeted Perturbations (Acceleration)
 
@@ -319,9 +319,9 @@ For faster improvement on specific benchmarks, you CAN additionally generate per
 |-------|-------------------|
 | [[2505.05470\|Flow-GRPO]] | ODE-to-SDE conversion enables stochastic exploration in flow matching models |
 | [[2505.22094\|ReinFlow]] | First online RL for flow matching robot control. Learnable noise injection for exploration |
-| [[2603.11653\|VLA RL CL]] | LoRA + GRPO achieves <2% forgetting on [[2410.24164\|π0]] |
-| [[2603.03818\|VLA CL]] | 2% replay buffer suffices for near-zero backward transfer |
-| [[2603.04029\|Self-Adapting RL]] | World model prediction residuals detect OOD without human-specified change types |
+| [[2603.11653\|VLA-RL-CL]] | LoRA + GRPO achieves <2% forgetting on [[2410.24164\|π0]] |
+| [[2603.03818\|VLA-CL]] | 2% replay buffer suffices for near-zero backward transfer |
+| [[2603.04029\|Self-Adapting-RL]] | World model prediction residuals detect OOD without human-specified change types |
 | [[2510.09459\|FIPER]] | Runtime failure prediction via RND + action entropy, works with diffusion/flow matching |
 
 ### Known Risks and Mitigations
@@ -329,7 +329,7 @@ For faster improvement on specific benchmarks, you CAN additionally generate per
 | Risk | Severity | Mitigation | Reference |
 |------|----------|-----------|-----------|
 | **Mixed attention drift**: LoRA changes ActionDiT but Video DiT is frozen — mixed attention alignment breaks | HIGH | LoRA on ==non-mixed-attention layers only==. Monitor cosine similarity of mixed attention outputs before/after LoRA | Verified from Fast-WAM's `mot.py` architecture |
-| **LoRA rank-32 saturation**: Accumulated corrections across rounds may exceed rank-32 capacity | MEDIUM | Monitor LoRA singular values. If saturated, ==merge LoRA into base weights and restart fresh adapters== | [[2603.11653\|VLA RL CL]] supports merge-and-restart |
+| **LoRA rank-32 saturation**: Accumulated corrections across rounds may exceed rank-32 capacity | MEDIUM | Monitor LoRA singular values. If saturated, ==merge LoRA into base weights and restart fresh adapters== | [[2603.11653\|VLA-RL-CL]] supports merge-and-restart |
 | **Dream validity after LoRA**: World model generates dreams based on pre-LoRA action model dynamics (Fast-WAM: Video DiT; VLA-JEPA: V-JEPA2) | MEDIUM | LoRA changes <1.2% of params per round — drift is small. Add ==dream validity check==: compare dreams vs sim for same initial conditions | Architectural analysis |
 | **Compute throughput**: Full MoT at 1.2Hz = ~170 episodes/day | MEDIUM | ==Two-speed strategy==: fast screening (ActionDiT only, ~5Hz) for broad exploration; full MoT only for prediction error computation on flagged scenarios | Compute estimate from architecture |
 | **Language blind spot**: Prediction error catches physics/visual weaknesses but NOT language paraphrasing | HIGH | ==Mandatory language augmentation== in DIVERSIFY step. Detect language weakness via action divergence across paraphrases, not prediction error | [[2603.28301\|LIBERO-Para]] |
@@ -424,7 +424,7 @@ Final benchmarks: LIBERO-PRO, LIBERO-X, LIBERO-Para, GM-100
 > "Co-evolution" was [[2602.12063|VLAW]]'s term for alternating between training a separate world model and policy. Both our WAMs integrate them: Fast-WAM trains jointly via MoT; VLA-JEPA unifies V-JEPA2 and the action head. There's nothing to alternate. We use **"self-evolving loop"** instead: the model generates its own training data through targeted failure discovery, adapts on-the-fly, and distills improvements back into itself. One model evolving itself — demonstrated on two architectures.
 
 > [!question] Is this post-training research?
-> Yes. Both WAMs are already pre-trained (by their respective authors). We use their released checkpoints and apply ==post-training== methods (LoRA fine-tuning, online adaptation, targeted data generation) to extend their capabilities to OOD scenarios. This is the same framing as [[2511.00091|PLD]] ("Self-Improving VLAs"), [[2602.20057|AdaWorldPolicy]] ("Online Adaptive Learning"), and [[2603.11653|VLA RL CL]] ("Continual RL for VLAs") — all post-training on pre-trained models.
+> Yes. Both WAMs are already pre-trained (by their respective authors). We use their released checkpoints and apply ==post-training== methods (LoRA fine-tuning, online adaptation, targeted data generation) to extend their capabilities to OOD scenarios. This is the same framing as [[2511.00091|PLD]] ("Self-Improving VLAs"), [[2602.20057|AdaWorldPolicy]] ("Online Adaptive Learning"), and [[2603.11653|VLA-RL-CL]] ("Continual RL for VLAs") — all post-training on pre-trained models.
 
 ---
 

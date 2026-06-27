@@ -92,7 +92,7 @@ The field evolved through three phases: **proving the paradigm** (2022-2023), **
 | 2024 | [[2410.06158\|GR-2]] | Web-scale video pre-training for actions | Video knowledge → robot manipulation |
 | 2024 | [[2410.24164\|π0]] | Flow matching action expert + VLM | Continuous actions + dexterous manipulation |
 | 2025 | [[2504.16054\|π0.5]] | Co-training on heterogeneous embodiments | Open-world generalization to unseen homes |
-| 2025 | [[2503.20020\|Gemini Robotics]] | Gemini 2.0 extended to physical robots | Industrial-scale VLA |
+| 2025 | [[2503.20020\|Gemini-Robotics]] | Gemini 2.0 extended to physical robots | Industrial-scale VLA |
 | 2025 | [[2501.09747\|FAST]] | DCT+Huffman action compression | 5x faster VLA inference |
 | 2025 | [[2506.01844\|SmolVLA]] | 450M param VLA | 7x less memory, 40% faster training |
 | 2025 | [[2503.15558\|Cosmos-Reason1]] | Physical common-sense + embodied reasoning at WAM scale | Bridges physics priors and reasoning |
@@ -101,7 +101,7 @@ The field evolved through three phases: **proving the paradigm** (2022-2023), **
 | 2026 | [[2602.16710\|EgoScale]] | 20,854-hour log-linear scaling law on egocentric data | Egocentric-data scaling laws |
 | 2026 | [[2604.15483\|π0.7]] | Steerable generalist with emergent capabilities | Steerable open-world deployment |
 | 2026 | [[2604.20100\|JoyAI-RA]] | Foundation model for robotic autonomy | Robust autonomy across embodiments |
-| 2026 | [[2512.22414\|π0.5 + ego]] | Human→robot transfer via co-trained egocentric pretraining | Human-to-robot transfer emergence |
+| 2026 | [[2512.22414\|π0.5-+-ego]] | Human→robot transfer via co-trained egocentric pretraining | Human-to-robot transfer emergence |
 
 > [!tip] Three Evolutionary Phases
 > **Phase 1 — Proof of concept** (2022-2023): [[2212.06817|RT-1]] proved Transformers work, [[2307.15818|RT-2]] showed VLM knowledge transfers, [[2310.08864|OXE]] built the cross-embodiment data foundation. **Phase 2 — Democratization** (2024): [[2406.09246|OpenVLA]] and [[2405.12213|Octo]] opened weights/code, [[2410.24164|π0]] introduced flow matching for continuous control. **Phase 3 — Specialization** (2025+): The field split — generalists scaled up ([[2504.16054|π0.5]] → [[2604.15483|π0.7]], Gemini, [[2604.20100|JoyAI-RA]]), efficient variants scaled down ([[2501.09747|FAST]], [[2506.01844|SmolVLA]]), WAMs added world prediction ([[2602.15922|DreamZero]]), and egocentric pretraining emerged as a fourth branch ([[2507.15597|Being-H0]], [[2602.16710|EgoScale]], [[2504.16054|π0.5]]+ego). See [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the egocentric scaling story and [[05_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for reasoning-augmented variants.
@@ -130,7 +130,7 @@ Based on [[2412.14058|RoboVLMs]]' 600+ experiments — the most systematic VLA d
 
 #### 1.2 Architecture Axes
 
-**Action Space**: ==Continuous== (recommended) — avoids compounding ==discretization errors== that plague tokenized approaches. When you discretize a 7-DoF arm into 256 bins per dimension, you get $256^7 \approx 72$ quadrillion possible actions — most of which are physically impossible. [[2510.13054|VLA-0]] showed that even representing actions as plain text numbers works, because the VLM's tokenizer already handles numerical sequences — no custom action head needed. ==Flow matching== ([[2410.24164|π0]]) goes further: it models the action distribution as a continuous flow, enabling smooth, multi-modal action generation that captures the full diversity of valid solutions rather than collapsing to a single mode. [[2605.04678|Pixels-to-Tokens VLA]] systematically compares latent-action supervision strategies on Qwen3-VL-2B and finds the opposite for *learned* tokens: discrete latent-action token supervision (LA-Tok) beats continuous regression by **+2.2-2.7%** average, with image-based latents helping long-horizon [[2306.03310|LIBERO]]-Long (+8.4-10.8 pp) and action-based latents helping motorically complex [[2506.18088|RoboTwin 2.0]] (+17.5%) — discretization hurts when applied to *raw* joint angles, but helps when applied to a learned latent-action codebook.
+**Action Space**: ==Continuous== (recommended) — avoids compounding ==discretization errors== that plague tokenized approaches. When you discretize a 7-DoF arm into 256 bins per dimension, you get $256^7 \approx 72$ quadrillion possible actions — most of which are physically impossible. [[2510.13054|VLA-0]] showed that even representing actions as plain text numbers works, because the VLM's tokenizer already handles numerical sequences — no custom action head needed. ==Flow matching== ([[2410.24164|π0]]) goes further: it models the action distribution as a continuous flow, enabling smooth, multi-modal action generation that captures the full diversity of valid solutions rather than collapsing to a single mode. [[2605.04678|Pixels-to-Tokens-VLA]] systematically compares latent-action supervision strategies on Qwen3-VL-2B and finds the opposite for *learned* tokens: discrete latent-action token supervision (LA-Tok) beats continuous regression by **+2.2-2.7%** average, with image-based latents helping long-horizon [[2306.03310|LIBERO]]-Long (+8.4-10.8 pp) and action-based latents helping motorically complex [[2506.18088|RoboTwin-2.0]] (+17.5%) — discretization hurts when applied to *raw* joint angles, but helps when applied to a learned latent-action codebook.
 
 **History Fusion**: ==Policy Head== (best balance) — VLM provides per-step features; separate head fuses history. [[2506.19816|CronusVLA]] extends this to multi-frame observations for temporal robustness. For truly long-horizon tasks requiring memory over minutes, [[2603.03596|MEM]] factorizes memory into ==dense short-term visual== (space-time separable attention over seconds) + ==compressed long-term language== (LLM summaries), enabling tasks requiring up to 15 minutes of memory. [[2603.12942|ReMem-VLA]] takes a different approach via ==dual-level recurrent queries== (frame-level EMA + chunk-level EMA) with gradient-free updates, hitting **94.5%** on memory-dependent simulation tasks.
 
@@ -175,10 +175,10 @@ A distinct design axis from the backbone/action-space choices above: *how to lea
 - **[[2601.15197|LangForce]]** — A ==Bayesian-decomposition== framework curing the VLA "vision shortcut" by maximizing conditional ==PMI== between action and instruction via a Log-Likelihood-Ratio objective over K=64 ==Latent Action Queries== (causal-masked dual branches, flow-matching); **66.5%** SimplerEnv (+11.3pp), **99.4%** LIBERO-Goal, preserves VLM reasoning at no inference overhead.
 - **[[2602.10556|LAP]]** — A ==Language-Action Pre-training== method that parses continuous actions into structured natural-language tokens predicted autoregressively by PaliGemma-3B + knowledge-insulated diffusion head; **>50%** zero-shot across 3 unseen embodiments (**2×** prior), **2.5×** fewer demos to fine-tune.
 - **[[2605.28634|PrimitiveVLA]]** — A ==primitive-centric disassemble-and-assemble== paradigm with 11 reusable motion primitives auto-extracted from task demos + VLM primitive planner; **+9.2%** OpenVLA on LIBERO-90, matches full-data at **50%** data, **6×** novel-task SR (to **45.5%**).
-- **[[2605.24931|Latent Action Chunks]]** — A ==VAE==-based latent-action method that compresses high-frequency action chunks into a continuous low-frequency latent a policy predicts, plus a training-free ==Reuse-then-Refine== strategy for async-execution continuity; **−80%** Cartesian deviation (7.59→1.47mm OpenVLA-OFT), **−79%** chunk-overlap diff, **28%→74%** real Peel-Cucumber SR.
+- **[[2605.24931|Latent-Action-Chunks]]** — A ==VAE==-based latent-action method that compresses high-frequency action chunks into a continuous low-frequency latent a policy predicts, plus a training-free ==Reuse-then-Refine== strategy for async-execution continuity; **−80%** Cartesian deviation (7.59→1.47mm OpenVLA-OFT), **−79%** chunk-overlap diff, **28%→74%** real Peel-Cucumber SR.
 - **[[2605.22671|BehaviorVLA]]** — A ==Mamba causal three-stream== Visuomotor Behavior Encoder that distills demos into time-invariant prototypes + phase states, paired with a Phase-conditioned decoder; **98%** LIBERO, **58%** RoboTwin 2.0 Hard (+37.7% over RDT), **70%** real bimanual generalization.
 - **[[2605.22183|AVP]]** — An end-to-end VLA with an explicit ==visual-primitive interface== where the VLM predicts discretized 2D spatial anchors as next-stage subtasks so the action expert offloads spatial reasoning to focus on motion; **90.28%** chess / **86.18%** pick-place, **83%** unseen board-to-board (π0.5 **0%**).
-- **[[2503.01206|Action Tokenizer Matters In-Context]]** — A ==Lipschitz-constrained VQ-VAE== (LipVQ-VAE) action tokenizer enforcing latent smoothness via encoder weight normalization, fed to an In-Context Robotic Transformer for ICIL; **0.530** RoboCasa (+5.3%), **0.617** ManiSkill (+6% over ACT+LFQ-VAE), best smoothness **0.63**, **12-14%** higher real Kinova Gen3 SR.
+- **[[2503.01206|Action-Tokenizer-Matters-In-Context]]** — A ==Lipschitz-constrained VQ-VAE== (LipVQ-VAE) action tokenizer enforcing latent smoothness via encoder weight normalization, fed to an In-Context Robotic Transformer for ICIL; **0.530** RoboCasa (+5.3%), **0.617** ManiSkill (+6% over ACT+LFQ-VAE), best smoothness **0.63**, **12-14%** higher real Kinova Gen3 SR.
 
 > [!star] Key Papers
 > - [[2412.14058|RoboVLMs]] — The 600+-experiment design-space study that anchors every recommendation in this section
@@ -202,9 +202,9 @@ Reduce the *information* the VLA processes — action streams are highly redunda
 
 - **[[2606.02735|S2-VLA]]** — A cleaner executor-conditioning interface combining ==Specify More== (hierarchical relabeling) + ==See Less== (==visual evidence budgeting== via learned gate heads); **94.0%/95.5%** on LIBERO-PRO goal/object and a real-robot jump from **54.2% → 79.0%** mean subtask success over π0.5.
 - **[[2501.09747|FAST]]** — A ==DCT+Huffman action tokenization== scheme exploiting that adjacent action timesteps are highly correlated, so frequency-domain compression is nearly lossless; **5x** faster inference. The foundational efficiency-via-tokenization paper.
-- **[[2604.03191|Compression Gap]]** — An ==information-theoretic data-processing-inequality framework== that isolates fixed discrete codebooks as the binding bottleneck; Diffusion Policy gains **+26.0pp** (ResNet-18 → SigLIP) vs only **+10.4pp** for OAT discrete tokenization. A negative result motivating one-step flow.
+- **[[2604.03191|Compression-Gap]]** — An ==information-theoretic data-processing-inequality framework== that isolates fixed discrete codebooks as the binding bottleneck; Diffusion Policy gains **+26.0pp** (ResNet-18 → SigLIP) vs only **+10.4pp** for OAT discrete tokenization. A negative result motivating one-step flow.
 - **[[2604.05323|VLA-InfoEntropy]]** — A training-free vision-token selection method ranking tokens by ==visual entropy== + ==attention entropy==, with ==timestep-conditioned dynamic selection== and ==KV-cache== reuse of low-information tokens; **1.53x** speedup (**−39.8%** latency, **−34.9%** FLOPs) at **76.4%** LIBERO (vs OpenVLA **75.0%**).
-- **[[2509.22093|Action-Aware VLA Pruning]]** — A ==text-driven anticipatory pruning== of task-relevant visual tokens from an early layer + an ==action-aware dynamic strategy== gating pruning by end-effector motion magnitude; **1.35x** LIBERO speedup at **94.4–96.3%** SR, **1.49x** real Jaco2 (76.9→**51.8 ms**) with SR rising **85.8→88.3%**.
+- **[[2509.22093|Action-Aware-VLA-Pruning]]** — A ==text-driven anticipatory pruning== of task-relevant visual tokens from an early layer + an ==action-aware dynamic strategy== gating pruning by end-effector motion magnitude; **1.35x** LIBERO speedup at **94.4–96.3%** SR, **1.49x** real Jaco2 (76.9→**51.8 ms**) with SR rising **85.8→88.3%**.
 - **[[2506.12723|SP-VLA]]** — A joint ==action-type model scheduling== (full VLA for deliberative steps, Ridge-regression generator for intuitive steps) + ==spatio-semantic dual-aware token pruning== (cumulative attention + Canny contours); **1.5x** LIBERO / **2.4x** SimplerEnv speedup at **<3%** accuracy drop.
 - **[[2506.10100|EfficientVLA]]** — A ==training-free== three-axis compression that prunes inconsequential language layers, selects task-aware diverse visual tokens, and statically caches diffusion-head features across denoising steps; **1.93x** speedup at **28.9%** FLOPs (**−0.6%** SR) on SIMPLER, **2.0x** on CogACT-Large.
 - **[[2509.05614|SpecPrune-VLA]]** — A training-free two-level ==self-speculative visual-token pruning== combining action-level static pruning (global temporal context + patch-diff) with layer-level dynamic pruning (cumulative importance) gated by an ==action-aware controller==; **1.46×** (up to 1.57×) OpenVLA-OFT, **−57%** FLOPs, **<0.7%** SR drop, **1.70×** real.
@@ -231,7 +231,7 @@ Replace expensive components with minimal ones — complex action decoders are u
 - **[[2605.06175|VLA-GSE]]** — An SVD-initialized generalized+specialized expert PEFT method; **81.2%** zero-shot on [[2510.13626|LIBERO-Plus]], beating full fine-tuning by **+6.3pp** while preserving multimodal understanding.
 - **[[2604.11757|StarVLA-alpha]]** — A ==lightweight MLP action head== on a strong ==pre-trained VLM backbone== with a ==minimal data pipeline== and a ==single generalist model== across embodiments; **98.8%** [[2306.03310|LIBERO]], **76.0%** SimplerEnv Google-VM, **33.6%** real RoboChallenge — continuous-action MLP matches complex action heads, proving complex action decoders are unnecessary.
 - **[[2604.05672|A1]]** (7B) — A ==Molmo-7B backbone== + Qwen3 flow-matching head with ==budget-aware adaptive inference== (==multi-exit training== + action-consistency ==early-termination==) and ==Inter-Layer Truncated Flow Matching== (10→2 steps); **72.3%** latency reduction (**37.8s → 10.5s**) at **96.4%** LIBERO, plus **75.3%** LIBERO-Plus OOD (vs OpenVLA-OFT **69.6%**).
-- **[[2602.00780|Adaptive VLA Pruning]]** — A training-free ==Environment-aware Adaptive Pruning== (structured channel pruning whose sparsity updates from inter-frame visual similarity) + ==Interleaved Inference Orchestration== hiding the overhead in action-expert "FLOPs bubbles"; **1.41×** OpenVLA-OFT at 40% prune (**2.8%** SR loss), **2.18×** with FastV — pruning that adapts to dynamic scenes.
+- **[[2602.00780|Adaptive-VLA-Pruning]]** — A training-free ==Environment-aware Adaptive Pruning== (structured channel pruning whose sparsity updates from inter-frame visual similarity) + ==Interleaved Inference Orchestration== hiding the overhead in action-expert "FLOPs bubbles"; **1.41×** OpenVLA-OFT at 40% prune (**2.8%** SR loss), **2.18×** with FastV — pruning that adapts to dynamic scenes.
 - **[[2601.03309|VLM4VLA]]** — A ==minimalist adaptation== study integrating general-purpose VLMs into VLA policies with **<1%** added params via an MLP head + Huber-loss imitation across 24 VLMs; matches OpenVLA/π0 despite simplicity, and freezing the *vision* encoder (not language) is what hurts — locating the visual semantic gap.
 - **[[2510.13054|VLA-0]]** — An unmodified ==Qwen-VL-2.5-3B== that emits actions as ==space-separated numerical text strings== via native text generation + ==masked action augmentation== + ==action ensembling==; **94.7%** LIBERO (rank **1.0** of non-pretrained), surpasses SmolVLA by **+12.5pp** on real SO-100 robot — the simplest-possible recipe.
 - **[[2508.21046|CogVLA]]** — An ==instruction-driven routing + sparsification== framework: 3-stage EFA-Routing (visual aggregation) + LFP-Routing (LLM pruning) + coupled ==CAtten== with parallel action-chunk decoding; **97.4%** LIBERO, **70.0%** real ALOHA at **2.79x** faster inference, **3.12x** fewer FLOPs, **2.49x** lower training cost.
@@ -243,18 +243,18 @@ Replace expensive components with minimal ones — complex action decoders are u
 
 Eliminate the iterative denoising / autoregressive bottleneck — the *amount* of refinement should be learned or skipped, not fixed.
 
-- **[[2606.05737|One-Step VLA]]** — A distillation-free ==noise-shift strategy== in ==conditional flow matching== that biases training toward high-noise states so one decode step learns an accurate velocity field for VLA's "rich-condition, compact-target" structure; one-step matches or beats 10-step at **95.6%** LIBERO-Long, validated on real bimanual π0.5.
+- **[[2606.05737|One-Step-VLA]]** — A distillation-free ==noise-shift strategy== in ==conditional flow matching== that biases training toward high-noise states so one decode step learns an accurate velocity field for VLA's "rich-condition, compact-target" structure; one-step matches or beats 10-step at **95.6%** LIBERO-Long, validated on real bimanual π0.5.
 - **[[2605.09948|LoopVLA]]** (1.2B) — A recurrent ==Loop Block== + learned sufficiency head that dynamically allocates depth per state; **−45%** params, **1.7x** throughput while maintaining [[2306.03310|LIBERO]] performance.
-- **[[2605.08799|ElasticFlow]]** — A one-step ==average velocity field== policy + ==elastic time abstraction==; **14ms** inference at **71Hz**, **98.5%** [[2306.03310|LIBERO]], **5x** faster than [[2303.04137|Diffusion Policy]] with smoother trajectories (Jerk **1.1×10⁻³** vs **3.2×10⁻³**).
+- **[[2605.08799|ElasticFlow]]** — A one-step ==average velocity field== policy + ==elastic time abstraction==; **14ms** inference at **71Hz**, **98.5%** [[2306.03310|LIBERO]], **5x** faster than [[2303.04137|Diffusion-Policy]] with smoother trajectories (Jerk **1.1×10⁻³** vs **3.2×10⁻³**).
 - **[[2604.05656|SnapFlow]]** — A one-step flow-distillation method; **3.3x** faster [[2504.16054|π0.5]] at **83ms** with minimal quality loss.
 - **[[2604.04161|AAC]]** — A training-free ==inference-time== chunk-size selector from predictive uncertainty: ==action entropy== (==Gaussian differential entropy== for continuous + ==discrete entropy== for gripper) sampled over parallel candidates, picking the size where the entropy jump peaks; **+15%** real-world success (**67.0% → 82.0%**), **+2.3%** RoboCasa, **+4%** LIBERO-Long.
 - **[[2604.02965|SV-VLA]]** — A ==speculative verification== scheme that decouples a heavy ==Macro-Planner== (long action chunks + a ==planning-context feature==) from a lightweight ==Verifier== which re-plans only when execution deviates past a threshold; **2.17x** speedup over closed-loop OpenVLA-OFT and **90.9%** LIBERO (**+11.4%** over open-loop chunking).
 - **[[2603.26320|DFM-VLA]]** — A ==discrete flow matching== method for iterative full-sequence action refinement that cures the "irreversible commitment" of AR/discrete-diffusion decoding via a two-stage ==stochastic-refine + greedy-validate== schedule with ==adaptive KV caching==; **4.44** CALVIN avg length, **95.7%** LIBERO, **70.8%** real bimanual (vs π0-FAST **42.5%**) at a **2.4×** speedup.
 - **[[2602.20200|OptimusVLA]]** — A memory-conditioned denoising VLA that cuts NFE via a ==Global Prior Memory== (retrieves similar trajectories to adapt noise scale + NFE by retrieval confidence) + a Mamba ==Local Consistency Memory== injecting a temporal-coherence bias; **98.6%** LIBERO, NFE **10.0→3.2**, **2.9x** real / **6.5x** sim speedup.
-- **[[2507.13231|VITA (world-model)]]** — A noise-free, conditioning-free flow-matching policy flowing directly from a latent visual representation to latent actions via a dimension-matched ==Action Autoencoder==, stabilized by ==Flow Latent Decoding== backpropagating reconstruction loss through the ODE solver; **1.5-2×** faster, **−18.6-28.7%** memory, matching DP/ACT on 9 sim + 5 real tasks.
+- **[[2507.13231|VITA-world-model]]** — A noise-free, conditioning-free flow-matching policy flowing directly from a latent visual representation to latent actions via a dimension-matched ==Action Autoencoder==, stabilized by ==Flow Latent Decoding== backpropagating reconstruction loss through the ODE solver; **1.5-2×** faster, **−18.6-28.7%** memory, matching DP/ACT on 9 sim + 5 real tasks.
 - **[[2507.05116|VOTE]]** — A VLA compressing an action chunk into one special ==<ACT> token== read by a bottleneck MLP head + a ==trajectory ensemble voting== inference that aggregates historical predictions by cosine similarity; **up to 48.8×** A6000 / **38.6×** Jetson Orin speedup, **98.0%** LIBERO, <20% of OpenVLA-OFT's training samples.
 - **[[2506.13725|CEED-VLA]]** — A ==consistency-distilled== VLA mapping any ==Jacobi-decoding== intermediate state to its fixed point in one step + ==mixed-label AR supervision== + ==early-exit decoding== skipping inefficient iterations; **4.1×** OpenVLA acceleration (225 Tokens/s) / **4.3×** frequency (**25.6 Hz**), real **13 Hz** at 75–80% dexterous SR.
-- **[[2505.01179|COT Policy]]** — A ==Conditional Optimal Transport== flow-matching policy whose OT cost incorporates the observation condition (encoder + K-means discretization) to pair noise-target samples unbiasedly, straightening 1-2-step integration; **81.8%** sim manipulation at 2 steps (~**10×** faster than Diffusion Policy at 20 NFE), preserving action multimodality on a real KUKA IIWA.
+- **[[2505.01179|COT-Policy]]** — A ==Conditional Optimal Transport== flow-matching policy whose OT cost incorporates the observation condition (encoder + K-means discretization) to pair noise-target samples unbiasedly, straightening 1-2-step integration; **81.8%** sim manipulation at 2 steps (~**10×** faster than Diffusion Policy at 20 NFE), preserving action multimodality on a real KUKA IIWA.
 - **[[2509.06932|LLaDA-VLA]]** — The first VLA built on a ==diffusion-based VLM== (d-VLM) with ==Localized Special-token Classification== (restricting the decode space to action tokens) + ==Hierarchical Action-Structured Decoding== (intra/inter-action confidence remasking) for parallel coherent action generation; **55.5%** SimplerEnv (+0.74 CALVIN length), **58%** real in-domain / **40%** OOD.
 - **[[2511.14148|AsyncVLA]]** — An ==Asynchronous Flow Matching (AFM)== policy with a ==confidence rater== that masks low-confidence action tokens for regeneration + ==unified SFM/AFM training== + ==KV-cache reuse==; **97.4%** LIBERO, **70.8%** WidowX, **74.9%** Google Robot visual matching.
 - **[[2511.19433|MoH]]** — A ==Mixture of Horizons== action-chunking policy fusing multiple chunk-length predictions through a gated mixture network + balance loss, with a ==cross-horizon-consensus dynamic inference== that self-truncates executable chunks; SOTA **99%** LIBERO (π0.5), up to **2.5×** throughput while resolving the foresight-vs-precision trade-off.
@@ -265,17 +265,17 @@ Eliminate the iterative denoising / autoregressive bottleneck — the *amount* o
 
 The other efficiency frontier targets the *control loop* rather than per-call FLOPs: skip the heavy VLM on intermediate steps, overlap generation with execution, or draft-then-verify across a fast/slow path. These compose with §2.1–2.4 and matter most when the bottleneck is wall-clock latency, not parameter count.
 
-- **[[2512.05964|Training-Time RTC]]** — A ==training-time action conditioning== drop-in for Real-Time Chunking that learns action postfixes conditioned on known prefixes by ==simulating inference delay during training== (per-token flow timesteps, postfix-only loss), removing inference-time inpainting overhead; matches inference-time RTC at higher delays, **135→108 ms** on π₀.₆.
-- **[[2605.02739|Latent Bridge]]** — A lightweight model that predicts ==temporal feature deltas== so the VLM backbone is skipped on intermediate steps via a ==feature-space bridge== (GR00T) + ==KV-cache bridge== (π0.5); cuts VLM calls **50–75%**, **1.73×** GR00T speedup at **94.5%** retention.
+- **[[2512.05964|Training-Time-RTC]]** — A ==training-time action conditioning== drop-in for Real-Time Chunking that learns action postfixes conditioned on known prefixes by ==simulating inference delay during training== (per-token flow timesteps, postfix-only loss), removing inference-time inpainting overhead; matches inference-time RTC at higher delays, **135→108 ms** on π₀.₆.
+- **[[2605.02739|Latent-Bridge]]** — A lightweight model that predicts ==temporal feature deltas== so the VLM backbone is skipped on intermediate steps via a ==feature-space bridge== (GR00T) + ==KV-cache bridge== (π0.5); cuts VLM calls **50–75%**, **1.73×** GR00T speedup at **94.5%** retention.
 - **[[2603.28565|StreamingVLA]]** — A ==streaming paradigm== that overlaps all VLA stages via ==State-based Action Flow Matching== (single-action generation+execution) + ==saliency-aware adaptive early observation==; **1.57×** per-action speedup, **6.45×** halting-time cut at **94.9%** (vs 95.1%).
-- **[[2605.13778|Realtime-VLA FLASH]]** — A dual-path ==speculative inference== system where a 110M ==draft model== proposes action chunks and the full path verifies/falls back; **3.04×** task-latency speedup (58.0→**19.1 ms**) at **93.8%** LIBERO (−0.3pp).
-- **[[2508.20072|Discrete Diffusion VLA]]** — A ==masked-token discrete diffusion== action decoder unified in the VLM transformer + ==confidence-guided easy-first== adaptive inference; **96.3%** LIBERO, **~2×** lower latency, only **1.4%** language degradation OOD.
+- **[[2605.13778|Realtime-VLA-FLASH]]** — A dual-path ==speculative inference== system where a 110M ==draft model== proposes action chunks and the full path verifies/falls back; **3.04×** task-latency speedup (58.0→**19.1 ms**) at **93.8%** LIBERO (−0.3pp).
+- **[[2508.20072|Discrete-Diffusion-VLA]]** — A ==masked-token discrete diffusion== action decoder unified in the VLM transformer + ==confidence-guided easy-first== adaptive inference; **96.3%** LIBERO, **~2×** lower latency, only **1.4%** language degradation OOD.
 - **[[2603.28740|FocusVLA]]** — A ==Modality Cascaded Attention== design (sequential action-latent/query/visual integration) + dual-level ==Focus Attention== pruning action-irrelevant patches; 0.5B beats 7B models at **98.7%** LIBERO, **58%/15%** RoboTwin 2.0 easy/hard.
 - **[[2603.22003|VP-VLA]]** — A dual-system VLA (System-2 Planner / System-1 Controller) using structured ==visual prompts== (crosshairs, bounding boxes) as an explicit interface + an auxiliary ==visual-grounding objective== on key frames; **53.8%** Robocasa-GR1-Tabletop (**+5.0%** over QwenOFT), **85%** real waste-sorting OOD at a **2.5%** generalization gap (vs **16.7%** drop).
 - **[[2604.20834|PokeVLA]]** — A compact ==PokeVLM== (Qwen2.5-0.5B, 2.4M-sample embodied pretrain) + VL-Action post-training; the **1.22B** model hits **83.5%** LIBERO-Plus (SOTA), **79.3%** LIBERO-only transfer, **81.25%** real-world — pocket-sized dual-system.
 - **[[2602.13710|HBVLA]]** — A ==1-bit post-training quantization== method via ==rectified-Hessian weight partitioning== protecting action-critical weights + ==Haar-domain group-wise binarization==; **90.3%** OpenVLA-OFT LIBERO (only **6.5%** drop vs other 1-bit PTQ), real Mobile-ALOHA.
 - **[[2510.21817|VITA-E]]** — A concurrent see-hear-speak-act VLA pairing ==dual Active/Standby VLAs== for near-real-time interruption with a ==model-as-controller== scheme where the VLM emits `[ACT]`/`[HALT]` ==control tokens== driving state transitions; **100%** speech-interruption + emergency-stop SR, **93.3%** action-switching on a Fourier GR2 humanoid — interaction overlaps execution.
-- **[[2505.21851|Streaming Flow Policy]]** — A flow-matching imitation policy modeling action trajectories directly as ==flow trajectories in action space== so generation aligns with execution time, ==streaming actions on-the-fly== to the controller + ==analytically-constructed stabilizing flows== against distribution shift; **3.5 ms** Push-T / **4.5 ms** RoboMimic per action at SOTA SR.
+- **[[2505.21851|Streaming-Flow-Policy]]** — A flow-matching imitation policy modeling action trajectories directly as ==flow trajectories in action space== so generation aligns with execution time, ==streaming actions on-the-fly== to the controller + ==analytically-constructed stabilizing flows== against distribution shift; **3.5 ms** Push-T / **4.5 ms** RoboMimic per action at SOTA SR.
 - **[[2410.08001|RoboDual]]** — A synergistic ==dual-system== framework pairing a LoRA-tuned 7B ==OpenVLA generalist== (slow high-level guidance via action chunks + latents) with a fast ==Diffusion-Transformer specialist== consuming RGB/depth/tactile under ==latency-aware training==; **+13.2%** CALVIN ABC→D, **15 Hz** real control (vs OpenVLA **3.9 Hz**), specialist trained in **8** GPU-hours.
 
 #### 2.6 Post-Training Quantization
@@ -298,7 +298,7 @@ Optimize the *runtime system* rather than the model — kernel fusion, cross-req
 - **[[2606.07383|RhinoVLA]]** — A token-efficient edge VLA (2.13B Qwen3-VL with 64 merged visual tokens + 0.40B Action Expert) co-designed with the Huixi R1 SoC via ==hardware-aware compilation== + W8A16 + a cross-robot ==72D state-action slot space== with robot-instance LoRA; **11.69 Hz** on-SoC (2× over baseline), **90.0%** avg LIBERO.
 - **[[2512.20276|ActionFlow]]** — A training-free system framework that overlaps the compute-bound prefill of the current request with the memory-bound decode of historical requests via ==Cross-Request Pipelining== + ==CRS Packed-Forward== + a unified KV ring buffer; **2.56×** Jetson AGX Orin / up to **4.36×** speedup on OpenVLA-7B, lossless LIBERO SR.
 - **[[2604.24447|VLA-XPU]]** — A model-hardware co-characterization of VLA pipelines across GPUs/NPUs/XPUs via a ==Cost-Energy-Time leaderboard==, plus two training-free optimizations: ==DP-Cache== (cuts diffusion-step redundancy) + ==V-AEFusion== (VLM/Action-Expert pipeline parallelism); up to **6.0×** on Ascend 310P, **1.3×** π0 — exposes the compute-bound-VLM vs memory-bound-AE imbalance.
-- **[[2510.26742|Running VLAs Real-time]]** — A multi-stage system optimization (==CUDA graphs== + QKV-projection fusion + manual GEMM/kernel tuning + pinned memory) pushing a two-view live VLA to real-time on one consumer GPU; **106.5→27.3 ms** on an RTX 4090 (~4× speedup, near the **20.6 ms** lower bound), **100%** falling-pen grasping at <200 ms reaction.
+- **[[2510.26742|Running-VLAs-Real-time]]** — A multi-stage system optimization (==CUDA graphs== + QKV-projection fusion + manual GEMM/kernel tuning + pinned memory) pushing a two-view live VLA to real-time on one consumer GPU; **106.5→27.3 ms** on an RTX 4090 (~4× speedup, near the **20.6 ms** lower bound), **100%** falling-pen grasping at <200 ms reaction.
 
 **Efficient VLA — Decision Matrix**
 
@@ -314,7 +314,7 @@ Optimize the *runtime system* rather than the model — kernel fusion, cross-req
 | Action-stream compression | [[2501.09747\|FAST]] (DCT+Huffman, **5x** faster) |
 
 > [!star] Key Papers
-> - [[2605.08799|ElasticFlow]] — One-step physics-consistent policy via average velocity field; **14ms** inference at **71Hz**, **98.5%** [[2306.03310|LIBERO]], **5x** faster than [[2303.04137|Diffusion Policy]]
+> - [[2605.08799|ElasticFlow]] — One-step physics-consistent policy via average velocity field; **14ms** inference at **71Hz**, **98.5%** [[2306.03310|LIBERO]], **5x** faster than [[2303.04137|Diffusion-Policy]]
 > - [[2501.09747|FAST]] — DCT+Huffman action compression for **5x** faster VLA inference; the foundational efficiency-via-tokenization paper
 > - [[2506.01844|SmolVLA]] — 450M-param distilled VLA; **7x** less memory, **40%** faster training; the canonical small-VLA baseline
 
@@ -334,7 +334,7 @@ Add depth sensors, point clouds, or 3D coordinate embeddings as additional input
 - **[[2606.03943|PointAction]]** — A ==3D-pointmap-as-universal-action== framework where a ==universal video-to-point model== predicts dynamic 3D pointmaps from embodiment-agnostic video + a lightweight ==point-to-action decoder==; **47.7%** in-distribution + **17.0%** unseen-task SR on RoboCasa365 (2–**2.5×** over baselines), **43.0%** cross-embodiment real xArm7.
 - **[[2606.02274|Dexterity-BEV]]** — A 3D-aware VLA integrating per-pixel 3D into multi-view RGB-D via ==aligned vertex maps + vertex spectrums== and a canonical ==Bird's-Eye-View reference frame==; **89.9%** avg on modified-pose LIBERO where 2D baselines fall **<10%**, plus **76.7%** "Fold Mailer Box" (vs X-VLA **56.7%**) and **93.3%** "Handover Book" real bimanual.
 - **[[2508.09071|GeoVLA]]** — A ==dual-path== architecture: a frozen VLM for 2D vision-language parallel to a ==Point Embedding Network== (PEN) using an ==end-effector token== as spatial anchor, fused by a ==3D-enhanced Action Expert== (3DAE) Diffusion Transformer with static-routed MoE; **97.7%** [[2306.03310|LIBERO]], **77%** ManiSkill2; robust to viewpoint/scale shifts.
-- **[[2605.11832|AML-VLA]]** — A ==Geometry-Guided Gated Transformer== (G³T) fusing synthesized multi-view + monocular geometric priors with Action Manifold Learning; **98.6%** [[2306.03310|LIBERO]], **85.7%** [[2510.13626|LIBERO-Plus]], **86.06%** [[2506.18088|RoboTwin 2.0]] real bimanual.
+- **[[2605.11832|AML-VLA]]** — A ==Geometry-Guided Gated Transformer== (G³T) fusing synthesized multi-view + monocular geometric priors with Action Manifold Learning; **98.6%** [[2306.03310|LIBERO]], **85.7%** [[2510.13626|LIBERO-Plus]], **86.06%** [[2506.18088|RoboTwin-2.0]] real bimanual.
 - **[[2604.12908|VGA]]** — A ==VGGT== 3D-world-model backbone + Progressive Volumetric Modulation for vision-to-geometry mapping; **98.1%** [[2306.03310|LIBERO]] with **+6%** OOD.
 - **[[2603.25399|LaMP]]** — A ==dual-expert== framework where a Motion Expert learns dense ==3D scene flow== as a latent motion prior via ==conditional flow matching==, fused into last-layer VLM features by ==gated cross-attention== to condition the Action Expert; **98.3%** [[2306.03310|LIBERO]] (**96.7%** Long), **79.3%** LIBERO-Plus OOD (**+9.7pp** over OpenVLA-OFT), **62.5%** real OOD.
 - **[[2603.24393|3D-MIX]]** — A plug-and-play ==VGGT-derived 3D feature fusion== with ==semantic-conditioned adaptive gating== (==GatedFusion==) blending 3D geometry with 2D MLLM semantics into GR00T-/π-style VLAs unchanged; **98.05%** LIBERO, **68.23%** SIMPLER (**+10.42%** over baseline), **+12.51%** OOD on RynnBrain-8B.
@@ -360,21 +360,21 @@ Add depth sensors, point clouds, or 3D coordinate embeddings as additional input
 - **[[2511.17199|VLA-4D]]** — A VLA embedding 4D awareness into both streams: ==Fourier spatiotemporal embeddings== fuse 3D coords + 1D time into visual features, and the action space adds an explicit ==step-duration variable Δt==; **97.4%** LIBERO at **5.8 s** avg completion, smooth global trajectories with stable local motion speeds.
 - **[[2511.01571|PixelVLA]]** — A pixel-grounded VLA with ==visual-prompt-aware== + ==multiscale pixel-aware== encoders + ==Pixel-160K== auto-annotated dataset; **86.7%** LIBERO, **61.4%/50.1%** SimplerEnv-Google VM/VA (+28.7%/+10.1% over OpenVLA).
 - **[[2605.14950|Evo-Depth]]** — A lightweight ==Implicit Depth Encoding Module== (multi-view-depth init) + ==FiLM-style Spatial Enhancement== injecting implicit depth into 2D VL features; **95.4%** LIBERO, **84.4%** Meta-World, **90%** real xArm6 — depth without a depth sensor.
-- **[[2510.17439|FALCON (Spatial VLA)]]** — An ==Embodied Spatial Model== that extracts global 3D geometric priors from RGB (+optional depth/pose) into a ==Spatial-Enhanced Action Head== preserving the 2D VLM's alignment; **62.9%** SimplerEnv-Google, **70.0%** real cluttered (**+25.6%** over SpatialVLA), lifts height-sensitive SR 60→80%.
+- **[[2510.17439|FALCON-Spatial-VLA]]** — An ==Embodied Spatial Model== that extracts global 3D geometric priors from RGB (+optional depth/pose) into a ==Spatial-Enhanced Action Head== preserving the 2D VLM's alignment; **62.9%** SimplerEnv-Google, **70.0%** real cluttered (**+25.6%** over SpatialVLA), lifts height-sensitive SR 60→80%.
 - **[[2510.14836|QDepth-VLA]]** — An ==auxiliary quantized-depth prediction== VLA: a VQ-VAE turns depth into discrete tokens predicted by a dedicated ==depth expert== fed straight from the vision encoder + ==hybrid attention==; **+8.8%** LIBERO-Spatial over open-π0, **+29.7%** SimplerEnv long-horizon, single-view rivaling multi-view.
 - **[[2506.07961|BridgeVLA]]** — A VLA that projects 3D point clouds into ==2D orthographic== images so a PaliGemma backbone processes them natively + a ==2D-heatmap pretraining== phase whose heatmaps back-project to 3D targets; **88.2%** RLBench (vs RVT-2 81.4%), **95.4%** real with only **3** demos/task.
 - **[[2502.13143|SoFar]]** — A ==semantic orientation== representation (reference-frame-free, language-grounded direction) + ==OrienText300K== + ==PointSO== cross-modal 3D Transformer for zero-shot 6-DoF reasoning; **85.3%** positional / **48.9%** real 6-DoF manip, **48.7%** Open6DOR V2 — orientation bridges spatial reasoning and manipulation.
 - **[[2505.05800|3D-CAVLA]]** — An ==OpenVLA-OFT== variant adding ==CoT narrative instructions== (GPT-4 decomposition) + RGB-D→point-cloud depth encoder + ==Task-Aware ROI detection==; **98.1%** LIBERO, **+8.8pp** on LIBERO-Unseen novel tasks.
-- **[[2605.24642|GFM-VLA Study]]** — A diagnostic study that linear-probes GR00T-N1.5's geometric deficiency (0.73m vs VGGT 0.41m depth RMSE) and compares Early/Late-Fusion vs Spatial Forcing integration; quantifies *why* explicit 3D helps.
+- **[[2605.24642|GFM-VLA-Study]]** — A diagnostic study that linear-probes GR00T-N1.5's geometric deficiency (0.73m vs VGGT 0.41m depth RMSE) and compares Early/Late-Fusion vs Spatial Forcing integration; quantifies *why* explicit 3D helps.
 
 #### 3.2 Implicit 3D Reasoning
 
 Achieve spatial awareness without explicit depth input — supervise 3D understanding at training time or overlay 2D cues. Cheapest to deploy but can fail when the camera moves significantly from training distribution.
 
 - **[[2602.10109|ST4VLA]]** — A ==dual-system== VLA (Qwen2.5-VL planner + DINOv2 Diffusion-Transformer action expert) with two-stage ==spatial-grounding pretraining== then ==spatially-guided post-training==, activating internal scene-geometry reasoning via ==spatial prompting==; **95.9%** LIBERO, **84.6%** SimplerEnv-Google VM, strong unseen-object/instruction generalization.
-- **[[2512.02902|VLA Generalizability Study]]** — A study decoupling ==spatial (visual encoder)== from ==physical (VLM + action expert)== modeling: ==Feature Token Modulation== (4K-param affine on visual tokens) lifts novel-viewpoint SR 48.5→**87.1%**, while ==Feature Linear Adaptation== (LoRA) hits **94.8%** on Libero-V at **99×** fewer trainable params.
+- **[[2512.02902|VLA-Generalizability-Study]]** — A study decoupling ==spatial (visual encoder)== from ==physical (VLM + action expert)== modeling: ==Feature Token Modulation== (4K-param affine on visual tokens) lifts novel-viewpoint SR 48.5→**87.1%**, while ==Feature Linear Adaptation== (LoRA) hits **94.8%** on Libero-V at **99×** fewer trainable params.
 - **[[2512.00903|SwiftVLA]]** — A VLA distilling frozen 4D ==VGGT== spatiotemporal features into a lightweight VLM via learnable ==Fusion Tokens== (supervised by future-EE-trajectory) + ==mask-and-reconstruct== so the 4D branch is dropped at inference; **0.53** RoboTwin 2.0 (vs SmolVLA 0.29), **94.7%** LIBERO, **18×** faster on Jetson Orin.
-- **[[2510.12276|Spatial Forcing]]** — An ==implicit cosine-similarity alignment== of a VLA causal-attention layer to ==VGGT 3D foundation model== features (24th layer); **98.5%** LIBERO at **3.8×** training + **5.9×** data efficiency, **zero inference overhead**.
+- **[[2510.12276|Spatial-Forcing]]** — An ==implicit cosine-similarity alignment== of a VLA causal-attention layer to ==VGGT 3D foundation model== features (24th layer); **98.5%** LIBERO at **3.8×** training + **5.9×** data efficiency, **zero inference overhead**.
 - **[[2509.14117|GeoAware-VLA]]** — A VLA replacing the standard vision encoder with a frozen ==VGGT geometric foundation model== + a lightweight multi-scale projection layer for view-invariant features, no explicit 3D; **+35pp** zero-shot unseen-viewpoint LIBERO, **96.8%** LIBERO / **94.8%** CALVIN in-distribution with the VQ-BeT head.
 - **[[2508.13103|OC-VLA]]** — A plug-and-play ==observation-centric== reframing that predicts actions in the ==camera observation space== (via extrinsic calibration), not the robot base frame, to remove the camera/control spatial-misalignment "learning conflict"; **+14%** discrete / **+8%** continuous sim, **77.5%** real 10-shot, only **−14%** under a novel zero-shot viewpoint.
 - **[[2508.07917|MolmoAct]]** — A ==three-stage autoregressive pipeline==: depth-aware perception tokens → visual reasoning traces → low-level actions with ==byte-level BPE action tokenization==; **86.6%** LIBERO, **+10pp** real-world single-arm + **+22.7pp** bimanual over π0-FAST, **75%** visual-trace steering SR (**+33pp** over language steering).
@@ -385,7 +385,7 @@ Achieve spatial awareness without explicit depth input — supervise 3D understa
 Align the student VLA's visual encoder with a frozen 3D-pretrained teacher — inject spatial awareness *at the encoder* before linguistic entanglement, with zero inference overhead. The newest direction, fastest path to deployment.
 
 - **[[2606.03240|GeoAlign]]** — A ==state-guided geometry alignment== method: post-training a depth model's encoder on robot-domain RGB-D yields ==Geometry-Enhanced Post-Trained (GEP) features== from RGB alone; **99.0%** LIBERO (over GR00T N1.6's **97.0%**) and **78.8%** on eight geometry-critical real ALOHA tasks (vs RGB-only **65.0%** / π0.5 **67.5%**).
-- **[[2605.10485|VEGA]]** — A representation-alignment method that aligns a student [[2304.07193|DINOv2]] visual encoder with a frozen ==DINOv2-FiT3D== teacher (fine-tuned on multi-view-consistent 3D Gaussian Splatting) via patch-cosine loss + lightweight LayerNorm+MLP projector; **[[2506.18088|RoboTwin 2.0]] SOTA** (Easy **67.5%**, Hard **30.7%**) at **zero inference overhead**.
+- **[[2605.10485|VEGA]]** — A representation-alignment method that aligns a student [[2304.07193|DINOv2]] visual encoder with a frozen ==DINOv2-FiT3D== teacher (fine-tuned on multi-view-consistent 3D Gaussian Splatting) via patch-cosine loss + lightweight LayerNorm+MLP projector; **[[2506.18088|RoboTwin-2.0]] SOTA** (Easy **67.5%**, Hard **30.7%**) at **zero inference overhead**.
 - **[[2602.17951|ROCKET]]** — A ==residual-oriented multi-layer alignment== injecting 3D into a 2D-pretrained VLA via a *single shared projector* across aligned student/teacher layer pairs (avoids gradient interference) + ==Matryoshka sparse activation==; **98.5%** LIBERO at **~4%** of prior compute, **81.7%** LIBERO-Plus with biggest gains under robot/layout shift.
 - **[[2510.01711|CRR-VLA]]** — A ==Robot State-aware Contrastive Loss (RS-CL)== that aligns VLM representations with proprioceptive states using continuous proprioceptive distances as soft contrastive labels, plus a learnable summarization token + ==view cutoff== augmentation at low compute; **69.7%** RoboCasa-Kitchen SOTA, **+13.3pp** real (45.0→58.3%), beats TCN at 2.6× lower FLOPs.
 
@@ -394,20 +394,20 @@ Align the student VLA's visual encoder with a frozen 3D-pretrained teacher — i
 | Need | Recommendation |
 |---|---|
 | Novel-viewpoint generalization | Explicit: [[2508.09071\|GeoVLA]] or [[2605.11832\|AML-VLA]] |
-| Deploy without depth sensors | Implicit: [[2510.12276\|Spatial Forcing]] or [[2412.10345\|TraceVLA]] |
+| Deploy without depth sensors | Implicit: [[2510.12276\|Spatial-Forcing]] or [[2412.10345\|TraceVLA]] |
 | Zero inference overhead, 2D deployment | Representation alignment: [[2605.10485\|VEGA]] |
-| Bimanual real-world manipulation | [[2605.11832\|AML-VLA]] (**86.06%** [[2506.18088\|RoboTwin 2.0]]) |
+| Bimanual real-world manipulation | [[2605.11832\|AML-VLA]] (**86.06%** [[2506.18088\|RoboTwin-2.0]]) |
 | 3D plug-and-play for existing VLA | [[2603.24393\|3D-MIX]] (**+12.51%** OOD) |
 | Foundational adaptive 3D representation | [[2501.15830\|SpatialVLA]] |
 | 4D temporal-spatial context | [[2506.22242\|4D-VLA]] |
 
 > [!star] Key Papers
 > - [[2508.09071|GeoVLA]] — Dual-path 2D-VLM + 3D point-cloud PEN with end-effector anchor + MoE 3DAE; **97.7%** [[2306.03310|LIBERO]]; the cleanest explicit-3D architecture
-> - [[2605.10485|VEGA]] — DINOv2-FiT3D teacher alignment via patch-cosine loss; **[[2506.18088|RoboTwin 2.0]] SOTA** with **zero inference overhead**; representation alignment beats explicit 3D fusion
+> - [[2605.10485|VEGA]] — DINOv2-FiT3D teacher alignment via patch-cosine loss; **[[2506.18088|RoboTwin-2.0]] SOTA** with **zero inference overhead**; representation alignment beats explicit 3D fusion
 > - [[2501.15830|SpatialVLA]] — Foundational adaptive 3D spatial representations for VLAs; the canonical explicit-3D baseline
 
 > [!tip] 3D Without 3D Sensors
-> The field is split three ways: explicit ([[2501.15830|SpatialVLA]], [[2506.22242|4D-VLA]], [[2508.09071|GeoVLA]]) generalizes best to novel viewpoints but requires depth sensors; implicit ([[2510.12276|Spatial Forcing]], [[2412.10345|TraceVLA]]) deploys cheapest but degrades under camera drift; representation alignment ([[2605.10485|VEGA]]) is the 2026 compromise — 3D priors inherited at training-time, 2D-only pipeline at deployment. Cross-reference [[07_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA-side 3D-aware predictors and [[02_Dataset-Benchmark-Environment#9. Spatial Reasoning & 3D Benchmarks]] for the 3D-grounded benchmarks that test these claims.
+> The field is split three ways: explicit ([[2501.15830|SpatialVLA]], [[2506.22242|4D-VLA]], [[2508.09071|GeoVLA]]) generalizes best to novel viewpoints but requires depth sensors; implicit ([[2510.12276|Spatial-Forcing]], [[2412.10345|TraceVLA]]) deploys cheapest but degrades under camera drift; representation alignment ([[2605.10485|VEGA]]) is the 2026 compromise — 3D priors inherited at training-time, 2D-only pipeline at deployment. Cross-reference [[07_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA-side 3D-aware predictors and [[02_Dataset-Benchmark-Environment#9. Spatial Reasoning & 3D Benchmarks]] for the 3D-grounded benchmarks that test these claims.
 
 ---
 
@@ -450,9 +450,9 @@ Generate a fast open-loop action draft, then verify it with a closed-loop check.
 
 Invert the typical stack entirely — VLM agent at the top, VLAs as bounded callable executors below. Decouples high-level planning from low-level execution; redistributes the long-horizon dual burden across components.
 
-- **[[2606.10267|Hi-VLA Orchestration Study]]** — A systematic study unifying ==hierarchical VLA== agents under one VLM-planner + VLA-controller framework, dissecting VLM reasoning, termination conditions, observation representation, and memory; an ==Optimized Hierarchy== beats Naive-Hierarchy and Flat-VLA on long-horizon + reasoning-intensive ALOHA tasks in sim and real.
+- **[[2606.10267|Hi-VLA-Orchestration-Study]]** — A systematic study unifying ==hierarchical VLA== agents under one VLM-planner + VLA-controller framework, dissecting VLM reasoning, termination conditions, observation representation, and memory; an ==Optimized Hierarchy== beats Naive-Hierarchy and Flat-VLA on long-horizon + reasoning-intensive ALOHA tasks in sim and real.
 - **[[2605.13119|VLAs-as-Tools]]** — A strategy formalizing VLAs as ==bounded, callable executors== invoked by a VLM agent via a ==Bidirectional VLA tool-family interface== adapted by ==Tool-Aligned Post-Training (TAPT)==; **+35.5pp** OpenVLA-OFT on RoboTwin, **+34.6pp** Faithful Rate on LIBERO-CF-Long; VLM calls **109.5 → 1.988** per task (~**55x** reduction).
-- **[[2502.19417|Hi Robot]]** — A hierarchical ==System-1/System-2== stack where a high-level VLM turns open-ended instructions and real-time corrections into atomic commands for a low-level VLA, trained on ==synthetic VLM-generated== prompts; beats GPT-4o + flat-VLA on instruction accuracy/task progress (synthetic data **+46%** IA). The foundational hierarchical instruction-following VLA.
+- **[[2502.19417|Hi-Robot]]** — A hierarchical ==System-1/System-2== stack where a high-level VLM turns open-ended instructions and real-time corrections into atomic commands for a low-level VLA, trained on ==synthetic VLM-generated== prompts; beats GPT-4o + flat-VLA on instruction accuracy/task progress (synthetic data **+46%** IA). The foundational hierarchical instruction-following VLA.
 
 #### 4.5 Latent & Efficient Reasoning
 
@@ -461,10 +461,10 @@ The cost of reasoning is latency — explicit token-by-token CoT can be **80×**
 - **[[2602.01166|LaRA-VLA]]** — A latent-reasoning VLA folding multi-modal CoT into ==continuous latent representations== on Qwen3-VL + ==curriculum== replacing discrete CoT with learnable latents; **97.9%** LIBERO, **68.8%** SimplerEnv-WidowX SOTA — latent reasoning at no token cost.
 - **[[2602.07845|RD-VLA]]** — A ==weight-tied recurrent transformer== that iteratively refines a latent "scratchpad" with an ==adaptive stopping criterion==; **93.0%** LIBERO beating larger token-reasoning models, **−34%** compute, up to **80×** faster than explicit-CoT VLAs.
 - **[[2601.09708|Fast-ThinkAct]]** — A ==teacher-student distillation== that compresses verbose textual CoT into compact ==verbalizable latent vectors== via DPO-like preference distillation; **−89.3%** latency (9.3× faster than ThinkAct-7B) while beating SOTA reasoning VLAs.
-- **[[2603.05147|Act, Think or Abstain]]** — A SmolVLA backbone re-purposed as a ==task-complexity detector== for a dynamic act/think/abstain policy; **84.34%** Macro-F1 ID/OOD classification with zero fully-OOD-as-Act errors, **+6.67%** on hard tasks via selective thinking.
+- **[[2603.05147|Act,-Think-or-Abstain]]** — A SmolVLA backbone re-purposed as a ==task-complexity detector== for a dynamic act/think/abstain policy; **84.34%** Macro-F1 ID/OOD classification with zero fully-OOD-as-Act errors, **+6.67%** on hard tasks via selective thinking.
 - **[[2605.29438|ElegantVLA]]** — A plug-in ==phase-adaptive inference== method with a lightweight RL scheduler using ==CKA semantic-stability cues== to allocate backbone compute; **3.77×** sim / **2.18×** real FLOPs speedup (16.6→35.0 Hz) while raising Google-Robot SR **71.08→75.00%**.
 - **[[2510.01623|VLA-R1]]** — A ==VLA-CoT data engine== (13K auto CoT annotations aligned with affordance+trajectory) + SFT-then-RLVR; **+17.78%** affordance IoU, **−17.25%** trajectory distance on ShareRobot with robust cross-domain transfer.
-- **[[2510.00600|Hybrid Training VLA]]** — A ==Hybrid Training== scheme learning three conditional action distributions (act / think / follow) under one weighted-NLL objective, so the model internalizes CoT but runs in a fast think-free 'act' mode at deployment; **63%** real (vs OpenVLA 41%), **~3 Hz** (vs ECoT 3×, hierarchical 4× slower).
+- **[[2510.00600|Hybrid-Training-VLA]]** — A ==Hybrid Training== scheme learning three conditional action distributions (act / think / follow) under one weighted-NLL objective, so the model internalizes CoT but runs in a fast think-free 'act' mode at deployment; **63%** real (vs OpenVLA 41%), **~3 Hz** (vs ECoT 3×, hierarchical 4× slower).
 - **[[2507.17520|InstructVLA]]** — An instruction-tuned VLA on Eagle2-2B with ==MoE adaptation== dynamically switching between textual reasoning and ==latent action== generation, two-stage Action-Pretraining→VLA-IT over a 650K instruction set + the SimplerEnv-Instruct benchmark; **+92%** over fine-tuned OpenVLA (46.0 vs 23.9%), **+36.1%** from internal test-time thinking.
 
 #### 4.6 Affordance & Symbolic Long-Horizon Planning
@@ -477,7 +477,7 @@ When horizons span many decision points, reactive reasoning isn't enough — the
 - **[[2602.21531|LiLo-VLA]]** — A modular long-horizon framework decoupling a ==classical-motion-planning Reaching Module== from an ==object-centric VLA Interaction Module== (wrist-cam + clutter-masking augmentation) with closed-loop recovery; **69%** SR / **86%** progress on a 21-task suite (vs π0.5 **28%**, OpenVLA-OFT **2%**), **85%** real, **0%**→stable on permuted sequences.
 - **[[2602.13086|UniManip]]** — A zero-shot manipulation framework built on a ==Bi-level Agentic Operational Graph== (Agentic Logic Layer + Semantic-Operational State Graph) with a ==task-to-motion bridge== (conservative recon + relaxed IK) and closed-loop recovery; **93.75%** zero-shot SR (vs NORA-1.5 **71.25%**), **82.5%** cluttered, fine-tune-free mobile transfer.
 - **[[2506.00411|LoHoVLA]]** — A unified long-horizon VLA that ==jointly predicts linguistic sub-tasks and robot actions== on a shared PaliGemma-3B with ==hierarchical closed-loop control== distinguishing planning from execution errors (re-plans only past a K=2 failure threshold) + the LoHoSet dataset; **85.1%** reward / **81.0%** SR vs **8.2%** best hierarchical baseline.
-- **[[2505.23450|Agentic Robot]]** — A brain-inspired ==Standardized Action Procedure== orchestrating a GPT-4o reasoning planner + OpenVLA executor + fine-tuned Qwen2.5-VL verifier in a closed perception-reasoning-execution-verification loop with recovery; **79.6%** LIBERO, **61.6%** LIBERO-Long (+12.1% over OpenVLA), verifier worth **26.5%**.
+- **[[2505.23450|Agentic-Robot]]** — A brain-inspired ==Standardized Action Procedure== orchestrating a GPT-4o reasoning planner + OpenVLA executor + fine-tuned Qwen2.5-VL verifier in a closed perception-reasoning-execution-verification loop with recovery; **79.6%** LIBERO, **61.6%** LIBERO-Long (+12.1% over OpenVLA), verifier worth **26.5%**.
 - **[[2601.07060|PALM]]** — A multi-modal transformer + ==DiT== policy with a fine-grained ==affordance predictor== anticipating object relevance, contact geometry, and motion; **82.0%** CALVIN ABC→D (+17.7pp, avg length **4.48**), **94.5%** LIBERO (91.8% LONG).
 - **[[2602.11291|H-WM]]** — A ==Hierarchical World Model== where a ==Logic World Model== (fine-tuned LLM, symbolic planning dynamics) + Visual WM jointly guide the VLA; **64.8%** LIBERO-LoHo vs **6.4%** unguided — logic guidance alone adds **+40pp**.
 - **[[2512.05955|SIMPACT]]** — A ==multi-physics simulator== built from a single RGB-D image (VLM-inferred geometry + ==physical parameters==), with a ==VLM-driven planning loop== that proposes ==symbolic actions==, evaluates via ==simulated rollouts==, and refines before emitting 6-DoF trajectories; **80–90%** on 7 real tasks where π0.5 scores **0%**, **89%** sim-real agreement.
@@ -544,8 +544,8 @@ Attach a JEPA-style or latent-diffusion predictor to the VLA backbone — predic
 Train jointly with video-prediction objectives but strip the video head at deployment — WAM-level representations at VLA-level speed. The dominant 2026 efficient-WAM recipe.
 
 - **[[2603.16666|Fast-WAM]]** — A ==Mixture-of-Transformer== that decouples video co-training (train) from future-imagination (inference); ==structured attention== prevents future-video leakage; **91.8%** RoboTwin + **97.6%** LIBERO at **190 ms** inference vs **810 ms** imagine-then-execute variants (**4× faster**).
-- **[[2601.16163|Cosmos Policy]]** — A ==Cosmos-Predict2 latent video diffusion== fine-tuned as unified policy + world model + value function via ==latent-frame injection== (proprio + actions + states + multi-cam); SOTA **98.5%** LIBERO, **67.1%** RoboCasa, **93.6%** real ALOHA; model-based planning adds **+12.5pp** on hardest ALOHA tasks.
-- **[[2604.06168|Action Images]]** — A representation encoding 7-DoF actions as ==multi-view 2D Gaussian heatmap action images== of EE-position/up/normal + ==unified video-action joint training== with diverse masking; zero-shot **60%** RLBench reach-target + **45%** real-world close-drawer (vs **0–20%** baselines); PSNR **23.48** vs **20.83** TesserAct.
+- **[[2601.16163|Cosmos-Policy]]** — A ==Cosmos-Predict2 latent video diffusion== fine-tuned as unified policy + world model + value function via ==latent-frame injection== (proprio + actions + states + multi-cam); SOTA **98.5%** LIBERO, **67.1%** RoboCasa, **93.6%** real ALOHA; model-based planning adds **+12.5pp** on hardest ALOHA tasks.
+- **[[2604.06168|Action-Images]]** — A representation encoding 7-DoF actions as ==multi-view 2D Gaussian heatmap action images== of EE-position/up/normal + ==unified video-action joint training== with diverse masking; zero-shot **60%** RLBench reach-target + **45%** real-world close-drawer (vs **0–20%** baselines); PSNR **23.48** vs **20.83** TesserAct.
 - **[[2604.09330|VAG]]** — A ==dual-stream flow-matching== framework synchronously denoising video + action conditioned on an initial image + instruction, with an ==adaptive 3D pooling== module passing global video context to the action branch (no extra params); **45%** AgiBot SR (vs two-stage **29%**), and VAG-synthesized data lifts downstream VLA real SR **35%→55%**.
 - **[[2511.07732|ViPRA]]** — A VLA learning motion-centric latent actions from videos + flow-matching action head, learning control priors from actionless video; **69.8%** SIMPLER, **79%** LIBERO-Long, **22Hz** real-time.
 - **[[2604.08168|ViVa]]** — A ==Video diffusion Transformer== repurposed as a value function jointly predicting scalar value + future proprioception via ==normalized episode-success labels==; **73%** real-world box-assembly SR (vs **58%** VLM-based value, **42–53%** imitation-only) + robust pants-folding novel-object generalization.
@@ -590,7 +590,7 @@ Single end-to-end architecture combining understanding, imagination, and action 
 | Need | Recommendation |
 |---|---|
 | Fast latent prediction (~10ms) | [[2602.10098\|VLA-JEPA]] or [[2603.03195\|CoWVLA]] |
-| Production deployment (no test-time imagination) | [[2603.16666\|Fast-WAM]] or [[2601.16163\|Cosmos Policy]] |
+| Production deployment (no test-time imagination) | [[2603.16666\|Fast-WAM]] or [[2601.16163\|Cosmos-Policy]] |
 | Iterative WM ↔ VLA co-improvement | [[2602.12063\|VLAW]] or [[2603.10448\|DiT4DiT]] |
 | Unified end-to-end VLA + WM | [[2605.15153\|Pelican-Unified]] (**93.5%** RoboTwin) or [[2605.15298\|PhysBrain]] |
 | Learn from action-free human video | [[2505.15659\|FLARE]] or [[2511.07732\|ViPRA]] |
@@ -606,7 +606,7 @@ Single end-to-end architecture combining understanding, imagination, and action 
 > - [[2602.15922|DreamZero]] — Joint video + action prediction (14B WAM); the landmark zero-shot generalization paper for WAM-augmented VLAs
 
 > [!tip] The Speed-Quality Trade-off
-> WAM-augmented VLAs are more robust (spatiotemporal priors from video pretraining) but **4.8x** slower than pure VLAs ([[2603.22078|WAM vs VLA Robustness]]). [[2603.16666|Fast-WAM]] shows you can get most of the benefit without test-time imagination — use video co-training, not video generation. Cross-reference [[06_WAM#2. VideoGen WAMs]] for the full WAM taxonomy and [[07_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA lineage these latent-WM-VLAs descend from.
+> WAM-augmented VLAs are more robust (spatiotemporal priors from video pretraining) but **4.8x** slower than pure VLAs ([[2603.22078|WAM-vs-VLA-Robustness]]). [[2603.16666|Fast-WAM]] shows you can get most of the benefit without test-time imagination — use video co-training, not video generation. Cross-reference [[06_WAM#2. VideoGen WAMs]] for the full WAM taxonomy and [[07_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA lineage these latent-WM-VLAs descend from.
 
 ---
 
@@ -628,12 +628,12 @@ Stabilize the SFT side of the recipe so RL doesn't start from a damaged policy. 
 - **[[2603.26666|VLA-OPD]]** — An on-policy distillation method with ==Reverse-KL== for dense token-level RL supervision; **3x** faster convergence.
 - **[[2502.05450|ConRFT]]** — A two-stage reinforced fine-tuning on a lightweight ==Consistency Policy== head: offline ==Cal-ConRFT== (==BC== + ==Cal-QL==) initializes from small inconsistent demos, online ==HIL-ConRFT== adapts with human-in-the-loop; **96.3%** across 8 real tasks (**+144%** over SFT), beating HIL-SERL **31.9%**.
 - **[[2502.19645|OpenVLA-OFT]]** — A systematic FT-recipe study (==parallel decoding + action chunking + continuous actions + L1 loss==); **97.1%** LIBERO (from 76.5%), **26×** throughput (**109.7 Hz**). The canonical optimized-fine-tuning baseline.
-- **[[2604.01570|FAN Prior]]** — A ==Feasible Action Neighborhood== KL regularizer that shapes the policy toward a smooth unimodal Gaussian; **+11.7%** ID / **+5.2%** OOD on ManiSkill, OpenVLA-OFT to **98.8%** LIBERO-Spatial.
-- **[[2509.11417|VLA Pretrain Preserve]]** — A ==partially-frozen dual encoder== (frozen high-level + trainable specialist) + string action tokenizer; **+40%** OpenVLA in sim, **76.6%** OOD visual robustness.
+- **[[2604.01570|FAN-Prior]]** — A ==Feasible Action Neighborhood== KL regularizer that shapes the policy toward a smooth unimodal Gaussian; **+11.7%** ID / **+5.2%** OOD on ManiSkill, OpenVLA-OFT to **98.8%** LIBERO-Spatial.
+- **[[2509.11417|VLA-Pretrain-Preserve]]** — A ==partially-frozen dual encoder== (frozen high-level + trainable specialist) + string action tokenizer; **+40%** OpenVLA in sim, **76.6%** OOD visual robustness.
 - **[[2509.02055|Align-Then-Steer]]** — An ==InfoVAE unified latent== that embeds adaptation actions into pretrain modes (reverse KL) + classifier-guidance steering; **+9.8%** RDT-1B / **+8.7%** π0 sim, **+32%** real dual-arm.
-- **[[2505.19789|RL for VLA Study]]** — An empirical RL-vs-SFT study on OpenVLA across a vision/semantics/execution generalization benchmark with an efficient PPO recipe; RL beats the strongest SFT baseline by **+42.6%** on unseen objects/tables — RL's gain is semantic + execution robustness, not visual.
+- **[[2505.19789|RL-for-VLA-Study]]** — An empirical RL-vs-SFT study on OpenVLA across a vision/semantics/execution generalization benchmark with an efficient PPO recipe; RL beats the strongest SFT baseline by **+42.6%** on unseen objects/tables — RL's gain is semantic + execution robustness, not visual.
 - **[[2605.27284|FineVLA]]** — A ==fine-grained instruction alignment== method via cleaned, clustered, human-verified annotations on 47K trajectories + RoboFine-Bench; **71.0%** VQA (+8.9 over Gemini-3.1-Pro), FG-only training lifts policy SR.
-- **[[2503.05833|Refined Policy Distillation]]** — An RL method distilling compact task-specific policies from generalist VLA teachers by folding a ==Behavioral-Cloning== MSE term (student-action mean vs VLA-teacher samples) into ==PPO== to guide exploration; outperforms vanilla PPO with faster learning and higher SR in sparse-reward settings, even surpassing suboptimal/zero-success teachers.
+- **[[2503.05833|Refined-Policy-Distillation]]** — An RL method distilling compact task-specific policies from generalist VLA teachers by folding a ==Behavioral-Cloning== MSE term (student-action mean vs VLA-teacher samples) into ==PPO== to guide exploration; outperforms vanilla PPO with faster learning and higher SR in sparse-reward settings, even surpassing suboptimal/zero-success teachers.
 
 #### 6.2 Reward Design & Q-Value Engineering
 
@@ -644,7 +644,7 @@ Design better reward and value signals — most VLA RL fails because the reward 
 - **[[2606.09630|ReCoVLA]]** — A failure-recovery framework training an additive ==residual== RL policy in a frozen VLA's latent space, where a VLM identifies failure categories/stages and a deterministic ==reward compiler== emits ==stage-gated rewards== activated only when preconditions hold; **36.7%→66.7%** sim SR, **61.7%** zero-shot physical, OpenVLA **23.3%→45.0%**.
 - **[[2606.05468|FlowPRO]]** — A reward-free offline RL for flow-matching VLAs: ==RPRO== extends ==Proximalized Preference Optimization== to continuous actions with a ==proximal regularizer== anchoring implicit-reward magnitude to stop reward-hacking; highest SR / fastest completion across 4 bimanual tasks ($p<10^{-3}$); dropping the regularizer collapses to **13%/5%** SR.
 - **[[2606.04968|ForesightFlow]]** — A ==potential-guided flow matching== method that augments the flow state with a ==success-potential vector==, so advantage is read off without a separate critic; matches separate-critic IDQL on BEHAVIOR-1K (**39.6%**), **35.4%** real bimanual SR while cutting training cost **38%**.
-- **[[2606.02313|VLA Aerial Nav GRPO]]** — An ==Expert-Guided GRPO (EG-GRPO)== that folds few-shot expert demos into the online RL loop to stabilize sparse-reward intent alignment for UAV navigation; SR **26.1% → 55.6%** (**+29.5pp**), **+60.9%** intent-alignment, zero-shot real-UAV transfer.
+- **[[2606.02313|VLA-Aerial-Nav-GRPO]]** — An ==Expert-Guided GRPO (EG-GRPO)== that folds few-shot expert demos into the online RL loop to stabilize sparse-reward intent alignment for UAV navigation; SR **26.1% → 55.6%** (**+29.5pp**), **+60.9%** intent-alignment, zero-shot real-UAV transfer.
 - **[[2605.08774|ProcVLM]]** — A procedure-grounded progress reward via ProcCorpus-60M frame-level annotations; **+25.0pp** real-robot Stack-Bowls vs noisy teleop baseline.
 - **[[2605.05544|AQC]]** — An Adaptive Q-Chunking method via a per-scale advantage criterion $(Q_k − V_k)/γ^k$ for offline-to-online RL; **100%** on OGBench cube-double, **63.2%** on RoboCasa-GR1 with GR00T N1.6.
 - **[[2605.05172|Q2RL]]** — A method extracting Q-values from a BC policy via the ==Boltzmann assumption== to seed online RL with Q-gating; **3.75x** improvement on real robot in 1-2 hrs without original BC data.
@@ -656,7 +656,7 @@ Design better reward and value signals — most VLA RL fails because the reward 
 - **[[2509.15937|VLAC]]** — A model unifying actor + ==dense-reward critic== in one InternVL autoregressive model predicting pairwise progress; critic hits **0.95** VOC-F1 OOD one-shot, separates success/fail (**0.89** vs **0.44**).
 - **[[2509.04063|ARFM]]** — An ==Adaptive Reinforced Flow Matching== that folds an RL advantage into the flow loss with an adaptive scaling factor; **92.1%** LIBERO (+4.5 over π0), **+11.4%** robustness to action noise.
 - **[[2603.27670|ProgressVLA]]** — A frozen DINOv2+CLIP ==progress estimator== (normalized 0–1) guiding a two-stage latent ==diffusion policy==; **95.2%** CALVIN 1-in-a-row, **84.5%** LIBERO — dense progress without manual reward.
-- **[[2603.15600|Active Critic RL]]** — A ==PRIMO-R1== method reframing progress estimation as generative reasoning + outcome-based ==GRPO==; MRA **82.90** (+9.10 over Qwen2.5-VL-72B) — RL elicits a progress critic.
+- **[[2603.15600|Active-Critic-RL]]** — A ==PRIMO-R1== method reframing progress estimation as generative reasoning + outcome-based ==GRPO==; MRA **82.90** (+9.10 over Qwen2.5-VL-72B) — RL elicits a progress critic.
 - **[[2603.13925|SmoothVLA]]** — A ==physics-informed hybrid reward== (sparse task success + dense ==trajectory-jerk penalty==) optimized by ==GRPO== to resolve the exploration-stability paradox; **80.5%** LIBERO (**+6.6pp** over Octo), **+24.2%** LIBERO-Plus over SFT, smoothness **+4.5%** vs SFT.
 - **[[2602.00743|SA-VLA]]** — A ==spatially-aware flow-matching RL==: spatial-token fusion of multi-view features + ==step-level dense rewards== over Reach/Place/Leave phases (signed geometric-distance change) + ==Spatially-Conditioned Annealed Noise== for targeted exploration; **83.75%** SR with faster, smoother convergence than ablations.
 - **[[2412.09858|RLDG]]** — A method distilling task-specialized RL policies into a generalist VLA via filtered optimal rollouts; **+37%** Connector-Insertion, **+33%** FMB-Insertion over human-teleop baselines.
@@ -665,13 +665,13 @@ Design better reward and value signals — most VLA RL fails because the reward 
 
 Apply LoRA, freeze the VLM backbone, or insulate gradients — preserve the VLM's broad spatial and semantic knowledge while allowing the policy to specialize.
 
-- **[[2505.23705|Knowledge Insulation VLA]]** — A ==stop gradient== method from the continuous ==action expert== into the VLM backbone, with a ==joint discrete + continuous action objective== and ==co-training== on general VL data to prevent ==catastrophic forgetting==; preserves visual representations during RL fine-tuning, converging up to **7.5×** faster than diffusion VLAs.
+- **[[2505.23705|Knowledge-Insulation-VLA]]** — A ==stop gradient== method from the continuous ==action expert== into the VLM backbone, with a ==joint discrete + continuous action objective== and ==co-training== on general VL data to prevent ==catastrophic forgetting==; preserves visual representations during RL fine-tuning, converging up to **7.5×** faster than diffusion VLAs.
 - **[[2601.14133|TwinBrainVLA]]** — An asymmetric dual-stream VLA preventing catastrophic forgetting via a frozen generalist ==Left Brain== + trainable ==Right Brain== bridged by an ==Asymmetric Mixture-of-Transformers== (unidirectional flow) feeding a flow-matching action expert; **+7.4pp** SimplerEnv / **+7.0pp** RoboCasa over Isaac-GR00T-N1.6, preserving VL understanding.
 - **[[2505.17016|RIPT-VLA]]** — A third training stage with ==binary success/failure rewards== via ==REINFORCE leave-one-out (RLOO) + PPO== + ==dynamic sampling==; LIBERO-90 SR **88.6% → 94.3%** (QueST), LIBERO-LONG **+21.2pp** (**50.2% → 71.4%**), **>80%** SR with single-demo training.
 - **[[2505.18719|VLA-RL]]** — A framework formulating manipulation as ==multi-modal multi-turn conversation== + ==trajectory-level RL== + ==vision-language robotic process reward model== + GPU-balanced vectorized envs + critic warmup; **+4.5pp** over SFT on LIBERO matching π0-FAST commercial perf.
 - **[[2511.15605|SRPO]]** — A ==self-referential progress reward== from the model's own successful trajectories via ==V-JEPA 2 latent world representations== + ==L2-distance clustering==; SOTA **99.2%** LIBERO (+103% rel. over 1-shot SFT) in only **200** RL steps, **+167%** rel. on LIBERO-Plus, Spearman **0.998** progress correlation.
-- **[[2603.11653|VLA RL Continual Learning]]** — A Simple Sequential Fine-Tuning recipe (==LoRA== + RL); high plasticity with minimal forgetting.
-- **[[2603.03818|VLA Continual Learning]]** — A study of pretrained π0 + GR00T N1.5 + ==Experience Replay== with tiny buffers; **2–4×** lower NBT vs non-pretrained even with **2%** replay, and apparent forgetting recovers in **<10%** of original training steps — pretraining alters the continual-learning regime.
+- **[[2603.11653|VLA-RL-Continual-Learning]]** — A Simple Sequential Fine-Tuning recipe (==LoRA== + RL); high plasticity with minimal forgetting.
+- **[[2603.03818|VLA-Continual-Learning]]** — A study of pretrained π0 + GR00T N1.5 + ==Experience Replay== with tiny buffers; **2–4×** lower NBT vs non-pretrained even with **2%** replay, and apparent forgetting recovers in **<10%** of original training steps — pretraining alters the continual-learning regime.
 - **[[2510.00406|VLA-RFT]]** — A ==world-model simulator== that fine-tunes flow-matching VLAs via ==Generalized RPO== with dense WM feedback; **+4.5pp** LIBERO in only **400** iters, robust to OOD — RL without real rollouts.
 - **[[2510.05580|MetaVLA]]** — A backbone-agnostic ==Context-Aware Meta Co-Training==: a lightweight Attentive-Neural-Process ==Meta-Action-Reasoner== adapts from diverse context tasks via LoRA; **79.3%** LIBERO (+4.4 over OpenVLA), **−68.75%** training steps, consolidates 4 task models into 1 at **+0.3 ms**/token.
 - **[[2506.08440|TGRPO]]** — A method where an LLM auto-decomposes tasks into ==multi-stage dense rewards== + ==Trajectory-wise GRPO==; **80.7%** LIBERO over OpenVLA-SFT (76.5%) and DPO/GRAPE.
@@ -700,12 +700,12 @@ The newest RL frontier is *systems*: distributed/asynchronous infrastructure tha
 | Need | Recommendation |
 |---|---|
 | Stable VLA RL recipe (canonical baseline) | [[2501.16664\|iRe-VLA]] (RL/SFT alternation + LoRA + frozen VLM) |
-| Preserve VLM backbone capabilities | [[2505.23705\|Knowledge Insulation VLA]] (stop-gradient) or [[2605.08879\|ConSFT]] (**34%** retention) |
+| Preserve VLM backbone capabilities | [[2505.23705\|Knowledge-Insulation-VLA]] (stop-gradient) or [[2605.08879\|ConSFT]] (**34%** retention) |
 | Bootstrap from BC policy without retraining | [[2605.05172\|Q2RL]] (**3.75x** in 1-2 hrs) |
 | Offline-to-online RL with strong final performance | [[2605.05544\|AQC]] (**100%** OGBench cube-double) |
 | Procedure-grounded reward (no manual reward eng.) | [[2605.08774\|ProcVLM]] (**+25.0pp** real-robot) |
 | Deployment-loop RL | [[2505.17016\|RIPT-VLA]] |
-| Continual / sequential task RL | [[2603.11653\|VLA RL Continual Learning]] (LoRA + RL) |
+| Continual / sequential task RL | [[2603.11653\|VLA-RL-Continual-Learning]] (LoRA + RL) |
 | Preference-based alignment | [[2604.05614\|GPLA]] (SimPO) or [[2411.19309\|GRAPE]] (trajectory-wise TPO) |
 | Spatial-understanding-aware RL | [[2604.17706\|OmniVLA-RL]] (Flow-GSPO) |
 | Scalable online RL infrastructure | [[2510.06710\|RLinf-VLA]] (**+20–85%**, 2.27× speedup) or [[2509.09674\|SimpleVLA-RL]] (**99.1%** LIBERO) |
@@ -716,15 +716,15 @@ The newest RL frontier is *systems*: distributed/asynchronous infrastructure tha
 > 1. ==SFT== on demonstration data (format learning) — use [[2605.08879|ConSFT]] to prevent collapse
 > 2. ==RL with verifiable rewards== (task success signal) — use [[2605.08774|ProcVLM]] for dense progress reward
 > 3. ==LoRA== for parameter-efficient updates ([[2501.16664|iRe-VLA]] alternation pattern)
-> 4. ==Knowledge insulation==: keep VLM backbone frozen from action gradients ([[2505.23705|Knowledge Insulation VLA]])
+> 4. ==Knowledge insulation==: keep VLM backbone frozen from action gradients ([[2505.23705|Knowledge-Insulation-VLA]])
 
 > [!star] Key Papers
-> - [[2505.23705|Knowledge Insulation VLA]] — Stop-gradient from action expert to VLM backbone preserves visual representations during RL fine-tuning
+> - [[2505.23705|Knowledge-Insulation-VLA]] — Stop-gradient from action expert to VLM backbone preserves visual representations during RL fine-tuning
 > - [[2501.16664|iRe-VLA]] — Two-stage alternation between online RL and SFT with LoRA + frozen VLM; the canonical stable RL recipe for VLAs
 > - [[2505.17016|RIPT-VLA]] — Interactive post-training treats deployment trials as RL signal; closes the loop between deployment and learning
 
 > [!tip] Why RL Works for VLAs
-> VLAs pre-trained on diverse data already have good representations — RL doesn't need to learn from scratch. It just needs to *calibrate* the policy to the deployment environment. LoRA makes this cheap, and VLAs don't catastrophically forget ([[2603.03818|VLA Continual Learning]]). Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]] for how egocentric pretraining + RL post-training compose, and [[06_WAM#5. VLM-Integrated WAMs]] for how VLM-integrated WAMs handle the same backbone-preservation problem.
+> VLAs pre-trained on diverse data already have good representations — RL doesn't need to learn from scratch. It just needs to *calibrate* the policy to the deployment environment. LoRA makes this cheap, and VLAs don't catastrophically forget ([[2603.03818|VLA-Continual-Learning]]). Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]] for how egocentric pretraining + RL post-training compose, and [[06_WAM#5. VLM-Integrated WAMs]] for how VLM-integrated WAMs handle the same backbone-preservation problem.
 
 ---
 
@@ -732,7 +732,7 @@ The newest RL frontier is *systems*: distributed/asynchronous infrastructure tha
 
 Vision-only policies fail on contact-rich tasks (insertion, assembly, surface following) because cameras cannot see force — visual feedback is delayed and ambiguous during contact. The architectural insight that emerged across this cluster is that **force should be treated as a first-class modality routed through dedicated experts**, not concatenated naively with visual tokens. Late-fusion of force after VLM encoding outperforms early concatenation by **10-20pp** on contact-rich benchmarks because the pretrained VLM representations are preserved rather than diluted with raw F/T noise. The cluster splits into two architectural strategies: force routed through dedicated MoE experts (first-class modality), or tactile signals fused into the visual stream (augmented vision).
 
-> See [[10_Contact-Rich-and-Tactile-Control#1. Design-Space Principles]] for the full deep-dive — covering tactile sensor hardware ([[2509.18830|DexSkin]], [[2604.28156|FlexiTac]], [[2604.20689|FingerEye]]), the three landmark force-conditioned VLA architectures, force-as-generation-conditioning ([[2505.19386|Force Prompting]]), contact-rich benchmarks, and open problems.
+> See [[10_Contact-Rich-and-Tactile-Control#1. Design-Space Principles]] for the full deep-dive — covering tactile sensor hardware ([[2509.18830|DexSkin]], [[2604.28156|FlexiTac]], [[2604.20689|FingerEye]]), the three landmark force-conditioned VLA architectures, force-as-generation-conditioning ([[2505.19386|Force-Prompting]]), contact-rich benchmarks, and open problems.
 
 #### 7.1 Force as First-Class Modality
 
@@ -781,7 +781,7 @@ Single-arm tabletop manipulation is the default VLA setting — but real robots 
 
 The 14-DoF coordination problem: two arms must be synchronized in time and space, not just controlled independently.
 
-- **[[2606.13279|Dual-Level Bimanual VLA]]** — A ==Dual-Level Structural Decomposition== framework augmenting a VLA with a ==View-Selective Visual Router== (dynamic wrist-view weighting) + an ==Interaction-Aware Action MoE== (coordinated vs arm-wise pathways); up to **+37%** absolute sim and **+50%** real-world hard-setting SR over monolithic baselines.
+- **[[2606.13279|Dual-Level-Bimanual-VLA]]** — A ==Dual-Level Structural Decomposition== framework augmenting a VLA with a ==View-Selective Visual Router== (dynamic wrist-view weighting) + an ==Interaction-Aware Action MoE== (coordinated vs arm-wise pathways); up to **+37%** absolute sim and **+50%** real-world hard-setting SR over monolithic baselines.
 - **[[2605.18722|Dexora]]** — An open-source dual-arm dual-hand ==36-DoF== platform (two 6-DoF arms + two 12-DoF XHANDs) + a hybrid exoskeleton/Vision-Pro teleop pipeline + a ==discriminator-guided quality-aware== training recipe; **89.6%** basic / **66.7%** dexterous real tasks (beats GR00T N1, π0), transfers to lower-DoF embodiments.
 - **[[2603.03836|SkillVLA]]** — A dual-arm VLA fighting ==skill entanglement== via a two-level architecture (high-level VLM emits per-arm sub-prompts → separate low-level experts) + an ==adaptive cooperation estimator== predicting a scalar α gating cross-attention; **51%** on novel skill combinations (baselines ~0%), **−21%** completion time, strong with **5** demos.
 - **[[2511.05275|TwinVLA]]** — A composition of two ==pre-trained single-arm VLAs== with shared encoder + ==Joint Attention== + ==MoE== on shared inputs + ==attention re-weighting==; requires only **~50** bimanual episodes + **~25 H100-days**; **76%** real Anubis (vs **45%** RDT-1B); **75.8%** Tabletop-Sim Easy vs **61.6%** RDT-1B.
@@ -850,16 +850,16 @@ VLAs that autonomously improve through self-play, continual learning, or evoluti
 Sequential task fine-tuning with parameter-efficient updates (LoRA) preserves prior capabilities — the conventional NLP wisdom that "fine-tuning destroys prior knowledge" does not hold for VLAs trained on diverse data.
 
 - **[[2605.15735|UAM]]** — A framework reframing catastrophic forgetting as the ==embodiment tax== (unfreeze kills understanding, freeze kills action); ==dual-stream== VLM **Semantic Expert** + parallel **Dorsal Expert** (UMM prior + visual-dynamics objective); retains **>95%** MMMU/MME/MMBench/TextVQA while improving OOD bimanual ALOHA.
-- **[[2603.03818|VLA Continual Learning]]** — A study showing pretrained VLAs (π0, GR00T N1.5) achieve **2–4×** lower NBT even with **2%** replay, recovering "forgotten" skills in **<10%** original training steps — simple sequential fine-tuning works.
-- **[[2603.11653|VLA RL Continual Learning]]** — A sequential RL fine-tuning with ==LoRA==; minimal forgetting.
+- **[[2603.03818|VLA-Continual-Learning]]** — A study showing pretrained VLAs (π0, GR00T N1.5) achieve **2–4×** lower NBT even with **2%** replay, recovering "forgotten" skills in **<10%** original training steps — simple sequential fine-tuning works.
+- **[[2603.11653|VLA-RL-Continual-Learning]]** — A sequential RL fine-tuning with ==LoRA==; minimal forgetting.
 - **[[2602.03445|CRL-VLA]]** — A ==dual-critic architecture== (frozen Goal-Conditioned Value critic + trainable Monte Carlo critic) + ==asymmetric regulation== with PPO+KL; achieves positive Backward Transfer **0.17** + Final Average Return **0.74** in multi-task.
-- **[[2602.10503|Long-Lived Robots]]** — A ==LifeLong-RFT== recipe: chunking-level on-policy ==GRPO== + ==Multi-Dimensional Process Reward (QACR+CTAR+FCR)==; **+8.7pp** real Franka multi-task, **+19.6pp** forward transfer on LIBERO continual + NBT **1.5 vs 6.8** SFT, using only **20%** of SFT data.
+- **[[2602.10503|Long-Lived-Robots]]** — A ==LifeLong-RFT== recipe: chunking-level on-policy ==GRPO== + ==Multi-Dimensional Process Reward (QACR+CTAR+FCR)==; **+8.7pp** real Franka multi-task, **+19.6pp** forward transfer on LIBERO continual + NBT **1.5 vs 6.8** SFT, using only **20%** of SFT data.
 - **[[2603.09030|PlayWorld]]** — An ==autonomous robot self-play== method with a VLM ==Task Proposer== + ==curriculum learning== on Stable-Video-Diffusion; Pearson **0.8766** with real-world policy success, **+65%** real-world SR via in-model fine-tuning — the "free data" continual recipe.
 - **[[2605.29562|VLA-Pro]]** — A method storing ==per-task LoRA procedural-memory adapters== over a shared base + structured procedural states; **+207%** unseen RoboTwin (RDT) / **+47%** (π0.5), **+7.1pp** RLBench zero-shot — cross-task procedural transfer.
-- **[[2511.18085|Stellar VLA]]** — A ==Dirichlet-Process== non-parametric model (DPMM/HDP) for an adaptively expanding knowledge space + VAE self-supervised cycle; **>50%** avg improvement on LIBERO with reduced NBT.
+- **[[2511.18085|Stellar-VLA]]** — A ==Dirichlet-Process== non-parametric model (DPMM/HDP) for an adaptively expanding knowledge space + VAE self-supervised cycle; **>50%** avg improvement on LIBERO with reduced NBT.
 - **[[2601.09512|CLARE]]** — A modular ==low-rank adapters== per task (freeze old) + ==autoencoder routing==; **75.11%** AUC (DiT-Dec, +15% over exemplar baselines), near-zero NBT — autonomous continual adaptation.
-- **[[2605.26820|VLA Continual Forgetting]]** — A real-world sequential 4-task study: naive FT drops avg **99.2→17.8**, but ==experience replay== at 0.2 buffer/freq keeps all tasks within **10pp** — the real-world replay-budget result.
-- **[[2510.12710|Reflective Self-Adaptation]]** — A ==dual-pathway== method learning from failures + successes where VLM causal failure analysis synthesizes ==dense adaptive rewards==; **83.6%** LIBERO with faster convergence, no human intervention.
+- **[[2605.26820|VLA-Continual-Forgetting]]** — A real-world sequential 4-task study: naive FT drops avg **99.2→17.8**, but ==experience replay== at 0.2 buffer/freq keeps all tasks within **10pp** — the real-world replay-budget result.
+- **[[2510.12710|Reflective-Self-Adaptation]]** — A ==dual-pathway== method learning from failures + successes where VLM causal failure analysis synthesizes ==dense adaptive rewards==; **83.6%** LIBERO with faster convergence, no human intervention.
 - **[[2506.06658|SILVR]]** — An ==iterative self-improvement loop== that fine-tunes an in-domain video model on online successes + optional internet video prior via ==Inverse Probabilistic Adaptation==; **+285%** on 12 unseen MetaWorld tasks.
 - **[[2511.02239|LACY]]** — A unified ==Language↔Action cycle== (L2A/A2L/L2C) with a ==self-improving L2A2L loop== + filtering; **95%** L2A, **76%** A2L in sim, self-improvement boosts A2L to **85%** — language-action consistency as self-supervision.
 
@@ -868,14 +868,14 @@ Sequential task fine-tuning with parameter-efficient updates (LoRA) preserves pr
 Detect errors mid-task and recover — a stronger form of autonomy than continual learning. The agent monitors its own confidence or subtask completion, backtracks when it goes wrong, and avoids continuing with a doomed plan.
 
 - **[[2601.02295|CycleVLA]]** — A proactive self-correction VLA fine-tuned with explicit ==stop/progress signals== on LLM-decomposed subtasks, where an off-the-shelf VLM does zero-shot ==failure prediction== (`transit` vs `backtrack`) and ==Minimum Bayes Risk (MBR) decoding== picks robust recovery actions; **95.3%** LIBERO (vs OpenVLA **76.5%**), MBR adding up to **+9.9%**.
-- **[[2602.21633|Self-Correcting VLA]]** — A two-stage ==Sparse World Imagination + Online Action Refinement== via ==residual RL== with ==intrinsic dense rewards== from SPI physical-evolution prediction; **86%** ManiSkill3 (vs **72%** GR00T N1.5, **55%** π_0), **−43%** steps to success, **71%** real ARX5 (vs **57%** GR00T N1.5).
+- **[[2602.21633|Self-Correcting-VLA]]** — A two-stage ==Sparse World Imagination + Online Action Refinement== via ==residual RL== with ==intrinsic dense rewards== from SPI physical-evolution prediction; **86%** ManiSkill3 (vs **72%** GR00T N1.5, **55%** π_0), **−43%** steps to success, **71%** real ARX5 (vs **57%** GR00T N1.5).
 - **[[2605.01191|Sentinel-VLA]]** — A ==metacognitive architecture== with a ==Status Monitor Expert== for on-demand error reasoning + ==EC-Gen== error-annotation pipeline; **63.5%** seen / **51.3%** unseen RLBench (vs π0 57.8/42.0) at **13 ms/action**.
 - **[[2602.01811|VLA-SCT]]** — A ==training-free== modular control layer: ==Trajectory Evaluation== + ==Grasp Perturbation== for self-correction and termination; **81.55%** LIBERO (+6.1pp over OpenVLA) without retraining.
 - **[[2512.03913|VINE]]** — A hierarchical System-2 planner + System-1 executor with a ==failure-aware value estimator== (trained on successes + failures); **+17.4%** relative over VLM-as-planner on unseen plug-insertion vs π0.
 - **[[2512.02787|ViFailback]]** — A method where ==seven explicit visual symbols== (arrows/crosshairs/labels) annotate failures for multimodal corrective guidance + 5.2K-sample dataset; ViFailback-8B **93.70%** closed / **72.64%** open (+39.14% over Gemini-2.5-Pro).
 - **[[2509.14889|CollabVLA]]** — An InternVL2.5 + ==MoE== + ==diffusion DiT== VLA unifying reasoning, reflection, and action with a ==dream-together== self-reflective stage; **88.6** CONREF, best across all 8 Simpler-Collab subtasks while preserving VLM skills.
 - **[[2405.17418|SC-VLA]]** — A dual-process ==fast 6-DoF pose + slow reflective error correction== with adaptive expert feedback; **87%** seen / **68%** unseen sim (+30%/+21% over ManipLLM). The foundational fast/slow self-correcting VLA.
-- **[[2406.11548|AIC MLLM]]** — An MLLM that predicts manipulation poses + comprehends ==visual+textual correction prompts== (mask positional, highlight rotational errors); **0.75** unseen-category sim SR, strong real Franka recovery.
+- **[[2406.11548|AIC-MLLM]]** — An MLLM that predicts manipulation poses + comprehends ==visual+textual correction prompts== (mask positional, highlight rotational errors); **0.75** unseen-category sim SR, strong real Franka recovery.
 
 #### 9.3 Evolutionary & Counterfactual Adaptation
 
@@ -889,22 +889,22 @@ Explore policy variants via evolutionary strategies or counterfactual reasoning 
 
 | Need | Recommendation |
 |---|---|
-| Sequential task continual learning | [[2603.11653\|VLA RL Continual Learning]] (LoRA + RL) |
-| Evidence that VLAs resist forgetting | [[2603.03818\|VLA Continual Learning]] |
+| Sequential task continual learning | [[2603.11653\|VLA-RL-Continual-Learning]] (LoRA + RL) |
+| Evidence that VLAs resist forgetting | [[2603.03818\|VLA-Continual-Learning]] |
 | Proactive self-correction at runtime | [[2601.02295\|CycleVLA]] (subtask backtracking + MBR) |
 | End-to-end self-evolution framework | [[2511.16166\|EvoVLA]] (overcomes stage hallucination) |
 | Counterfactual reasoning over alternatives | [[2512.24426\|CF-VLA]] |
 | Evolutionary progressive adaptation | [[2512.14666\|EVOLVE-VLA]] |
-| Long-lived deployment continual learning | [[2602.10503\|Long-Lived Robots]] |
+| Long-lived deployment continual learning | [[2602.10503\|Long-Lived-Robots]] |
 | Self-play world-model training | [[2603.09030\|PlayWorld]] |
 
 > [!star] Key Papers
 > - [[2511.16166|EvoVLA]] — First end-to-end self-evolving VLA; overcomes stage hallucination and fragile memory through evolutionary strategies
-> - [[2603.03818|VLA Continual Learning]] — Showed pre-trained VLAs are naturally resistant to catastrophic forgetting; simple sequential fine-tuning works
+> - [[2603.03818|VLA-Continual-Learning]] — Showed pre-trained VLAs are naturally resistant to catastrophic forgetting; simple sequential fine-tuning works
 > - [[2601.02295|CycleVLA]] — Proactive self-correction via subtask backtracking and MBR decoding; detects and recovers from errors without restarting
 
 > [!tip] The Continual Learning Surprise
-> Two independent studies ([[2603.11653|VLA RL Continual Learning]], [[2603.03818|VLA Continual Learning]]) found the same result: VLAs pre-trained on diverse data are *naturally* resistant to catastrophic forgetting. You don't need complex continual learning algorithms — simple sequential fine-tuning works. This is the opposite of what the NLP literature suggests. ==LoRA=='s low-rank constraint further stabilizes this: updates are confined to a low-dimensional subspace, preserving the vast majority of pre-trained parameters. Cross-reference [[15_Self-Evolving-VLA-WAM#6. Self-Evolving VLAs]] for the full self-evolution deep-dive across VLAs / WAMs / agents, and [[06_WAM#7. Self-Evolving WAMs]] for the WAM-side self-evolution mechanisms (reflective planning, self-play, RL co-evolution).
+> Two independent studies ([[2603.11653|VLA-RL-Continual-Learning]], [[2603.03818|VLA-Continual-Learning]]) found the same result: VLAs pre-trained on diverse data are *naturally* resistant to catastrophic forgetting. You don't need complex continual learning algorithms — simple sequential fine-tuning works. This is the opposite of what the NLP literature suggests. ==LoRA=='s low-rank constraint further stabilizes this: updates are confined to a low-dimensional subspace, preserving the vast majority of pre-trained parameters. Cross-reference [[15_Self-Evolving-VLA-WAM#6. Self-Evolving VLAs]] for the full self-evolution deep-dive across VLAs / WAMs / agents, and [[06_WAM#7. Self-Evolving WAMs]] for the WAM-side self-evolution mechanisms (reflective planning, self-play, RL co-evolution).
 
 ---
 
@@ -934,7 +934,7 @@ Maintain a durable representation of the scene — a 3D voxel map, an episodic k
 
 Track *task progress* explicitly — a scalar or structured estimate of how far the task has advanced — and use past dynamics (hindsight) to disambiguate the current step. This corrects error accumulation that pure reactive policies suffer on long horizons.
 
-- **[[2603.09292|See Plan Rewind]]** — A ==See-Plan-Rewind== cycle that decomposes tasks into spatially-grounded 2D subgoals with explicit ==error-recovery rewind==; **91.8%** LIBERO (+5.0 over MolmoAct), SOTA OOD robustness on LIBERO-Plus.
+- **[[2603.09292|See-Plan-Rewind]]** — A ==See-Plan-Rewind== cycle that decomposes tasks into spatially-grounded 2D subgoals with explicit ==error-recovery rewind==; **91.8%** LIBERO (+5.0 over MolmoAct), SOTA OOD robustness on LIBERO-Plus.
 - **[[2604.17880|ST-π]]** — A ==Spatiotemporal VLM== that decomposes tasks into ==causally-ordered chunk-level prompts== (semantic + spatial + temporal) + ==Spatiotemporal Action Expert==; highest SR and shortest completion across LIBERO suites, leads real STAR dataset.
 - **[[2512.09928|HiF-VLA]]** — A ==Hindsight-Insight-Foresight== bidirectional temporal reasoning over compact codec ==motion vectors== (past/current/future dynamics); **94.4%/96.4%** LIBERO-Long third/multi-view at negligible overhead.
 - **[[2508.19958|Long-VLA]]** — An end-to-end long-horizon VLA that decomposes trajectories into ==moving vs interaction phases== with a phase identifier + a ==dynamic binary input-masking== that selectively attends to phase-relevant views (third-person for moving, ego for interaction); up to **+81%** rel over base on 10-step L-CALVIN (avg length **8.24**), real 8-step where baseline fails.
@@ -947,7 +947,7 @@ Track *task progress* explicitly — a scalar or structured estimate of how far 
 | Long-horizon with error recovery | [[2604.18791\|HELM]] (**81.5%** LIBERO-LONG + verifier) |
 | Lightweight history retrofit for a pretrained VLA | [[2510.00695\|HAMLET]] (**+47.2%**, ~1% overhead) |
 | Object-identity / non-Markovian diagnosis | [[2511.11478\|LIBERO-Mem]] (benchmark + Embodied-SlotSSM) |
-| Explicit progress tracking | [[2603.09292\|See Plan Rewind]] or [[2604.17880\|ST-π]] |
+| Explicit progress tracking | [[2603.09292\|See-Plan-Rewind]] or [[2604.17880\|ST-π]] |
 | Efficient past+future dynamics | [[2512.09928\|HiF-VLA]] (codec motion vectors) |
 
 > [!star] Key Papers
@@ -976,7 +976,7 @@ Define an action representation that is invariant to the specific gripper, hand,
 - **[[2505.02152|Interleave-VLA]]** — A method adapting VLAs to ==interleaved image-text instructions== via a lightweight module + special tokens + the auto-generated ==Open Interleaved X-Embodiment Dataset==; **2×** sim OOD / **2–3×** real generalization over text-only VLAs, zero-shot following cropped/web/sketch visual instructions.
 - **[[2503.13446|MoManipVLA]]** — A framework transferring a pretrained fixed-base VLA to mobile manipulation via ==bi-level trajectory optimization== that jointly plans base + end-effector motion under reachability/smoothness/collision objectives; **+4.2%** over SOTA on OVMM, real-world deployment from only **50** episodes, generalizing across stacking/drawer tasks.
 - **[[2505.07817|LangToMo]]** — A dual-system framework using ==pixel-motion forecasts as a universal, embodiment-agnostic representation==: a System-2 diffusion model self-supervisedly generates text-conditioned pixel motion from one frame, and System-1 maps it to actions (learned or geometric); **71.3%** real xArm, **33.8%** zero-shot (vs GPT-4o 18.8%), **57.7%** MetaWorld.
-- **[[2409.03299|RT-1-X SCARA Transfer]]** — A case study fine-tuning ==RT-1-X== onto a 40-year-old kidney-workspace SCARA absent from training; zero-shot fails, **100** teleop demos reach **23%** (80% near-miss) — quantifies the kinematic-novelty transfer cost.
+- **[[2409.03299|RT-1-X-SCARA-Transfer]]** — A case study fine-tuning ==RT-1-X== onto a 40-year-old kidney-workspace SCARA absent from training; zero-shot fails, **100** teleop demos reach **23%** (80% near-miss) — quantifies the kinematic-novelty transfer cost.
 - **[[2501.10105|UniAct]]** — A framework learning a discrete ==Universal Action Space== (a VQ codebook of atomic cross-embodiment behaviors) extracted by a shared VLM, with lightweight per-robot MLP decoders translating universal actions to control; UniAct-0.5B beats **14×**-larger OpenVLA-7B/LAPA-7B on cross-embodiment generalization, adapting to new robots by tuning only **0.8%** of params.
 
 #### 11.2 Sim-to-Real & Video-Transfer Adaptation
@@ -1004,7 +1004,7 @@ Close the appearance/physics gap so policies learned in simulation or from video
 > [!star] Key Papers
 > - [[2510.10274|X-VLA]] — The reference embodiment-agnostic architecture: a soft-prompt per hardware config absorbs heterogeneity while one backbone serves all
 > - [[2510.11689|Phys2Real]] — Establishes that *physics conditioning* beats blind domain randomization for sim-to-real on physically-distinct objects
-> - [[2409.03299|RT-1-X SCARA Transfer]] — The honest negative result that quantifies how badly cross-embodiment transfer fails on truly novel kinematics
+> - [[2409.03299|RT-1-X-SCARA-Transfer]] — The honest negative result that quantifies how badly cross-embodiment transfer fails on truly novel kinematics
 
 > [!tip] Heterogeneity Is the Real Bottleneck
 > Whether the gap is *action-space* (gripper vs dexterous hand) or *domain* (sim vs real, video vs robot), the winning recipe is the same: absorb the variation into a shared representation rather than relearning per embodiment. Soft prompts ([[2510.10274|X-VLA]]), unified diffusion heads ([[2605.25044|X-DiffVLA]]), and physics conditioning ([[2510.11689|Phys2Real]]) all instantiate this. Cross-reference [[14_Sim-to-Real-Transfer#1. Design-Space Principles]] for the full sim-to-real deep-dive and [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]] for human-video-to-robot kinematic transfer.
@@ -1088,7 +1088,7 @@ A VLA that controls a physical arm is an attack surface and a safety risk in a w
 Systematically *break* VLAs to map the threat surface — adversarial patches and 3D textures in the visual channel, jailbreak-style prompt attacks and backdoors in the language channel, and automated red-teaming that searches for failure-inducing instructions. The control-authority threat model (force arbitrary physical actions) is what makes these distinct from LLM attacks.
 
 - **[[2511.12149|AttackVLA]]** — A unified ==attack+backdoor evaluation framework== + ==BackdoorVLA== bi-modal trigger; **100%** untargeted ASR and **95.4%** static-state induction (FreezeVLA) on OpenVLA, **75.35%** backdoor target rate. The standardized attack benchmark.
-- **[[2411.13587|VLA Adversarial Vulnerabilities]]** — A study of three robot-specific attack objectives (==UADA==, ==UPA==, ==TMA==); untargeted attacks reach ~**100%** task-failure in sim *and* physical settings. The foundational demonstration that VLAs are catastrophically attackable.
+- **[[2411.13587|VLA-Adversarial-Vulnerabilities]]** — A study of three robot-specific attack objectives (==UADA==, ==UPA==, ==TMA==); untargeted attacks reach ~**100%** task-failure in sim *and* physical settings. The foundational demonstration that VLAs are catastrophically attackable.
 - **[[2506.03350|GCG-VLA]]** — An attack adapting ==Greedy Coordinate Gradient== jailbreaks to optimize ==adversarial text suffixes== for ==control authority==; **77–97%** success in 3–10 min, persistence **28×** baseline, sim-to-real transfer.
 - **[[2605.00880|AFM]]** — An ==Adversarial Flow Matching== attack crafting imperceptible perturbations against end-to-end driving VLAs by matching the perturbation flow to a target-trajectory distribution; induces unsafe planning while staying near-invisible, exposing the flow-matching action head as an attack surface.
 - **[[2604.09651|FlowHijack]]** — A ==dynamics-aware backdoor== for flow-matching VLAs: a trigger steers the learned velocity field so denoising converges to attacker-chosen trajectories while clean behavior is preserved — the first backdoor tailored to the flow-matching action generator.
@@ -1106,7 +1106,7 @@ Systematically *break* VLAs to map the threat surface — adversarial patches an
 
 Defend by *being robust* — preserve visual grounding under low-data fine-tuning, regularize for smoothness, dual-expert designs that keep motor priors frozen, and audits that quantify how badly current VLAs degrade under realistic perturbation. The recurring finding: standard VLAs lose 50–80% success under modest OOD shift.
 
-- **[[2604.21192|VLA Open-World Audit]]** — A BEHAVIOR-1K reproducibility audit: Q-score disparities **>27%** between reported and reproduced, grasp failure the dominant error — quantifies how perturbation-sensitive top VLAs really are.
+- **[[2604.21192|VLA-Open-World-Audit]]** — A BEHAVIOR-1K reproducibility audit: Q-score disparities **>27%** between reported and reproduced, grasp failure the dominant error — quantifies how perturbation-sensitive top VLAs really are.
 - **[[2509.18953|Eva-VLA]]** — A method parameterizing ==3D rotations + dynamic lighting + natural adversarial placement==; OpenVLA/UniVLA failure surges from 4.0–23.5% to **>80%** under optimized physical transforms — the realistic-perturbation stress test.
 - **[[2603.22126|ROBOGATE]]** — A ==two-stage adaptive sampling== (Latin-Hypercube → ==boundary-focused== on the 30–70% transition zone) + a logistic risk model yielding closed-form failure boundaries and a deployment-gate leaderboard; **all 7** SOTA VLAs score **0/68** on Isaac-Sim industrial scenes despite high LIBERO SR.
 - **[[2503.03480|SafeVLA]]** — A formulation of safety as a ==Constrained MDP== with an ==Integrated Safety Approach==; **83.58%** reduction in cumulative safety cost *and* **+3.85%** task SR — safety and performance aren't a strict trade-off.
@@ -1117,9 +1117,9 @@ Defend by *being robust* — preserve visual grounding under low-data fine-tunin
 - **[[2605.10925|PriorVLA]]** — A ==Dual Action Experts== design: frozen Prior Expert preserves motor priors + trainable Adaptation Expert specializes; **77% ID / 53% OOD** RoboTwin 2.0 (+10/+11pp over π0.5).
 - **[[2512.11891|VLSA]]** — A plug-and-play ==Safety Constraint layer== wrapping any VLA: a VLM + GroundingDINO localize obstacles in 3D, modeled as ==Minimum Volume Enclosing Ellipsoids==, and a ==Control Barrier Function QP== minimally adjusts nominal actions, no retraining; **77.85%** collision-avoidance (4× over π0.5's **18.69%**) + **68.13%** TSR at **0.356 ms**/loop.
 - **[[2512.08333|RETAIN]]** — A ==robust finetuning via parameter merging== method linearly interpolating a pretrained generalist and a task-finetuned policy with modality-specific (vision/language/action) weights; **~40%** higher real OOD SR while preserving generalist skill and enabling sequential continual-skill merging.
-- **[[2511.22780|Distracted Robot]]** — A clutter-robustness audit introducing the ==Dual-View Feature Congestion (DvFC)== psychophysical measure over 6,000 sim + 216 real scenarios on five VLAs (Octo/OpenVLA/CogACT/π0/SpatialVLA); clutter drops SR up to **34%** (π0 collision **0.287**), DvFC inversely tracks SR, and distractor-augmented fine-tuning recovers only **18%**.
+- **[[2511.22780|Distracted-Robot]]** — A clutter-robustness audit introducing the ==Dual-View Feature Congestion (DvFC)== psychophysical measure over 6,000 sim + 216 real scenarios on five VLAs (Octo/OpenVLA/CogACT/π0/SpatialVLA); clutter drops SR up to **34%** (π0 collision **0.287**), DvFC inversely tracks SR, and distractor-augmented fine-tuning recovers only **18%**.
 - **[[2511.19878|MAPS]]** — A ==Module-Wise Proximity Scheduling== that extends Selective Projection Decay with a per-submodule schedule (high regularization on early visual layers → low on late language layers); **+26.9%** SimplerEnv OOD for MiniVLA-OFT, real Franka ID 40→**72.5%** / OOD 22.5→**52.5%**, parameter-free.
-- **[[2510.00037|RobustVLA (VLA)]]** — A method jointly hardening output (PGD worst-case ==action-noise== regularization) and input (==UCB bandit== adaptively selecting impactful observation/environment/language perturbations) on diffusion VLAs; **+14.0%** avg over π0 across 17 perturbations, **+65.6%** real with 25 demos, at π0-comparable speed.
+- **[[2510.00037|RobustVLA-VLA]]** — A method jointly hardening output (PGD worst-case ==action-noise== regularization) and input (==UCB bandit== adaptively selecting impactful observation/environment/language perturbations) on diffusion VLAs; **+14.0%** avg over π0 across 17 perturbations, **+65.6%** real with 25 demos, at π0-comparable speed.
 - **[[2510.13778|InternVLA-M1]]** — A dual-system VLM planner (Qwen2.5-VL-3B) + diffusion action expert with ==spatially-guided two-stage training==; **+14.6%** SimplerEnv-Google, **+9.8%** WidowX, strong unseen generalization.
 - **[[2503.03734|OTTER]]** — A VLA that ==freezes the pre-trained CLIP== vision/language encoders to preserve semantic alignment and adds ==text-aware visual feature extraction== (temperature-weighted attention selecting patches by language similarity); **62%** unseen real pick-place (vs OpenVLA 9%, Octo 12%), and fine-tuning CLIP collapses it 62→15% — frozen-encoder generalization.
 - **[[2502.19250|ObjectVLA]]** — A diffusion VLA achieving ==open-world novel-object== manipulation without demos via ==co-training== on robot trajectories + diverse image-text data with injected ==localization (bounding-box) metadata== linking objects↔language↔actions; **64%** SR on 100 OOD objects (100% ID), **+46.7%** over OpenVLA, 80–90% on new objects after one epoch of phone photos.
@@ -1131,15 +1131,15 @@ Defend by *monitoring* — detect when the policy is failing or about to fail an
 - **[[2606.18043|VFD]]** — An epistemic-uncertainty estimator for flow-based VLAs, ==Velocity Field Disagreement==, reading ensemble velocity-field disagreement (theoretically linking KL to L2 velocity differences), paired with the ==SAVE== active-fine-tuning loop; Spearman **−0.71** with SR (calibrated at M=2), **67%** failure-detection accuracy / **79%** TPR, **22–50%** fewer demos.
 - **[[2606.09740|ProbeAct]]** — A training-free inference-time failure-recovery framework using a multi-target ==hidden-state probe== to read 3D object positions from the VLA's visual backbone + an object-agnostic kinematic state machine + a ==hierarchical CBF filter== deflecting from memory-trap locations; **74.1%** LIBERO-plus (vs OpenVLA-OFT **69.6%**), strongest under geometric shift.
 - **[[2605.30834|Hide-and-Seek]]** — A method extracting ==internal action embeddings== into a lightweight ==LSTM sequential detector== with inter/intra-trajectory contrastive losses; SOTA balanced accuracy (**0.852** OpenVLA LIBERO-10) over 12 baselines.
-- **[[2602.12281|Scaling Verification VLA]]** — A ==CoVer-VLA== hierarchical test-time ==contrastive verifier== of vision-language-action alignment (rephrase aug + bi-directional InfoNCE); **+15%** ID / **+12%** OOD over scaling policy pretraining. Verification scales better than policy.
+- **[[2602.12281|Scaling-Verification-VLA]]** — A ==CoVer-VLA== hierarchical test-time ==contrastive verifier== of vision-language-action alignment (rephrase aug + bi-directional InfoNCE); **+15%** ID / **+12%** OOD over scaling policy pretraining. Verification scales better than policy.
 - **[[2605.22446|Pre-VLA]]** — A ==preemptive verification== method transforming PPO-critic advantages into absolute safety constraints + failure-aware penalty; **0.83** F1, **0.02** invalid-action false-pass, improved closed-loop LIBERO SR.
-- **[[2602.16182|WM Failure Classifier]]** — A hybrid ==supervised failure classification + anomaly detection== on a world-model backbone with ==conformal latent-prediction-error==; **>90%** accuracy across success/known-failure/OOD.
-- **[[2603.06987|Foundational WM]]** — A ==history-conditioned probabilistic WM== trained only on nominal trajectories in Cosmos-Tokenizer latent space; uncertainty rises on OOD/anomalous inputs for bimanual-manipulator failure detection.
-- **[[2602.12405|Self-Refining VLM Failure]]** — An ==ARMOR== multi-task self-refinement VLM with separate binary-detection + NL-reasoning heads; top scores across four robotic failure datasets in detection and reasoning quality.
+- **[[2602.16182|WM-Failure-Classifier]]** — A hybrid ==supervised failure classification + anomaly detection== on a world-model backbone with ==conformal latent-prediction-error==; **>90%** accuracy across success/known-failure/OOD.
+- **[[2603.06987|Foundational-WM]]** — A ==history-conditioned probabilistic WM== trained only on nominal trajectories in Cosmos-Tokenizer latent space; uncertainty rises on OOD/anomalous inputs for bimanual-manipulator failure detection.
+- **[[2602.12405|Self-Refining-VLM-Failure]]** — An ==ARMOR== multi-task self-refinement VLM with separate binary-detection + NL-reasoning heads; top scores across four robotic failure datasets in detection and reasoning quality.
 - **[[2512.01946|FailCoT]]** — An automated cross-environment failure-data generation + ==Guardian-8B== judge; SOTA on three unseen real benchmarks (RoboFail/UR5-Fail/RoboVQA), surpassing GPT-4o. Scales failure-reasoning data.
 - **[[2604.20472|TDQC]]** — A ==sequential calibration== in a POMDP via a ==sequential Brier score==; lower Brier and higher ROC-AUC for failure detection across OpenVLA/UniVLA/π0/π0-FAST. The calibration-theory grounding.
 - **[[2601.07821|FARL]]** — A method pre-training task + ==recovery policy== + ==latent WM with a constraint-prediction head== forecasting future failures; **−43.6%** failure episodes on FailureBench, dramatic real Franka reduction.
-- **[[2503.15202|VLM-BT Failure Handling]]** — A VLM-reasoning + reactive ==dynamic Behavior-Tree== generation for real-time failure handling; **100%** REFLECT-benchmark SR and failure detection in AI2-THOR + real ABB YuMi.
+- **[[2503.15202|VLM-BT-Failure-Handling]]** — A VLM-reasoning + reactive ==dynamic Behavior-Tree== generation for real-time failure handling; **100%** REFLECT-benchmark SR and failure detection in AI2-THOR + real ABB YuMi.
 - **[[2306.15724|REFLECT]]** — A ==Hierarchical Robot Summary== that converts RGB-D/audio into scene graphs + event captions for LLM failure reasoning; **88.4%** sim / **68.8%** real explanation success. The foundational failure-explanation framework.
 - **[[2303.07280|SuccessVQA]]** — A reframing of ==success detection as VQA== on a generative VLM (Flamingo-3B); **59.3%** balanced accuracy on unseen-language tasks (vs bespoke **49.9%**). The foundational VLM-as-success-detector baseline.
 
@@ -1153,17 +1153,17 @@ Defend by *monitoring* — detect when the policy is failing or about to fail an
 | Safety-constrained policy (cost + success) | [[2503.03480\|SafeVLA]] (CMDP, −83.58% cost) |
 | Preserve grounding under low-data FT | [[2604.23121\|DeLock]] or [[2605.10925\|PriorVLA]] (dual experts) |
 | Internal-embedding failure detection | [[2605.30834\|Hide-and-Seek]] (**0.852** bal-acc) |
-| World-model uncertainty monitoring | [[2602.16182\|WM Failure Classifier]] or [[2603.06987\|Foundational WM]] |
+| World-model uncertainty monitoring | [[2602.16182\|WM-Failure-Classifier]] or [[2603.06987\|Foundational-WM]] |
 | Predict-and-recover from failure | [[2601.07821\|FARL]] (−43.6% failures) |
 
 > [!star] Key Papers
-> - [[2411.13587|VLA Adversarial Vulnerabilities]] — The foundational proof that VLAs are catastrophically attackable; defined the robot-specific attack objectives the field now uses
+> - [[2411.13587|VLA-Adversarial-Vulnerabilities]] — The foundational proof that VLAs are catastrophically attackable; defined the robot-specific attack objectives the field now uses
 > - [[2503.03480|SafeVLA]] — Establishes that safety (CMDP constraints) and task success are not a strict trade-off — both improve together
 > - [[2605.30834|Hide-and-Seek]] — The reference internal-embedding failure detector; reads the VLA's own representations rather than bolting on external sensors
 > - [[2509.18953|Eva-VLA]] — The realistic-perturbation audit that exposes how a modest 3D shift collapses SOTA VLAs to >80% failure
 
 > [!tip] Offense, Robustness, and Monitoring Are One Problem
-> The three sub-sections are a single defense-in-depth story: red-teaming ([[2411.13587|VLA Adversarial Vulnerabilities]], [[2411.18676|ERT]]) maps the attack surface, robustness methods ([[2503.03480|SafeVLA]], [[2605.10925|PriorVLA]]) shrink it, and runtime monitors ([[2605.30834|Hide-and-Seek]], [[2601.07821|FARL]]) catch what slips through. No single layer suffices — an attacked-and-robustified policy still needs a monitor, and a monitored policy still needs robustness so the monitor isn't constantly firing. Cross-reference [[04_VLA#18. Open Problems & Failure Modes]] below for the orthogonal *intrinsic* failure modes (spatial overfitting, embodiment tax) and [[15_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for the self-evolving recovery view.
+> The three sub-sections are a single defense-in-depth story: red-teaming ([[2411.13587|VLA-Adversarial-Vulnerabilities]], [[2411.18676|ERT]]) maps the attack surface, robustness methods ([[2503.03480|SafeVLA]], [[2605.10925|PriorVLA]]) shrink it, and runtime monitors ([[2605.30834|Hide-and-Seek]], [[2601.07821|FARL]]) catch what slips through. No single layer suffices — an attacked-and-robustified policy still needs a monitor, and a monitored policy still needs robustness so the monitor isn't constantly firing. Cross-reference [[04_VLA#18. Open Problems & Failure Modes]] below for the orthogonal *intrinsic* failure modes (spatial overfitting, embodiment tax) and [[15_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for the self-evolving recovery view.
 
 ---
 
@@ -1180,9 +1180,9 @@ End-to-end generalist VLAs released as system reports — the reference architec
 - **[[2508.21112|EO-1]]** — A unified ==decoder-only== transformer (Qwen2.5-VL init) with ==interleaved vision-text-action pretraining==; **58.5** RoboVQA BLEU-4 (beats GPT-4o 47.2), SOTA control — reasoning and control in one model.
 - **[[2507.15493|GR-3]]** — An end-to-end ==Mixture-of-Transformers== generalist (pre-trained VLM + Action Diffusion Transformer) trained with a multi-stage recipe (robot imitation + web VL co-training + few-shot human-VR data) on the ByteMini 22-DoF bi-manual robot; **77.1%** unseen-instruction / **57.8%** unseen-object pick-place (→86.7% with 10 VR demos), **97.5%** long-horizon bussing.
 - **[[2503.19757|Dita]]** — A ==Diffusion Transformer== policy on a LLaMA-style causal backbone with ==in-context conditioning==; **83.7%** SimplerEnv coke-can (vs OpenVLA 16.3%). The foundational scalable-DiT generalist.
-- **[[2410.15959|DiT Policy]]** — An ==in-context conditional diffusion transformer== denoising 7-DoF action chunks from a single static RGB; **3.61** CALVIN avg length, **50.0%** 5-instruction SR. The DiT-policy reference.
+- **[[2410.15959|DiT-Policy]]** — An ==in-context conditional diffusion transformer== denoising 7-DoF action chunks from a single static RGB; **3.61** CALVIN avg length, **50.0%** 5-instruction SR. The DiT-policy reference.
 - **[[2502.13130|Magma]]** — A ConvNeXt + LLaMA-3-8B agent foundation model with ==Set-of-Mark== action grounding + ==Trace-of-Mark== trajectory learning from video; one model spans UI navigation + robotic manipulation with strong **zero-shot** cross-domain transfer — unifies digital-agent and embodied action.
-- **[[2507.05331|LBM TRI]]** — A TRI ==Large Behavior Model==: a ==Diffusion Transformer== pretrained on ~**1,695 hours** of real+sim demos, evaluated under ==blind A/B testing==; finetuned LBMs beat single-task baselines and widen the gap OOD (**10/16** vs **3/16** sim tasks under shift) — rigorous evidence that pretrain-then-finetune wins.
+- **[[2507.05331|LBM-TRI]]** — A TRI ==Large Behavior Model==: a ==Diffusion Transformer== pretrained on ~**1,695 hours** of real+sim demos, evaluated under ==blind A/B testing==; finetuned LBMs beat single-task baselines and widen the gap OOD (**10/16** vs **3/16** sim tasks under shift) — rigorous evidence that pretrain-then-finetune wins.
 - **[[2503.10631|HybridVLA]]** — A VLA unifying ==diffusion + autoregressive== action generation in one LLM backbone via a ==collaborative training recipe==; **74%** RLBench (+33% over OpenVLA, +14% over CogACT).
 - **[[2411.19650|CogACT]]** — A ==componentized== architecture separating cognition from action via distinct vision/language/action modules + a specialized DiT action module; **61.3%/74.8%** SIMPLER VA/VM, beats RT-2-X.
 - **[[2504.19854|NORA]]** — A small generalist on Qwen-2.5-VL-3B + ==FAST+ tokenization== + FlashAttention/bf16; OpenVLA-comparable LIBERO at **57%** lower overhead, runs on consumer GPUs.
@@ -1196,20 +1196,20 @@ End-to-end generalist VLAs released as system reports — the reference architec
 
 Open-source infrastructure — unified training stacks, modular codebases, and low-cost hardware — that lowers the barrier to VLA research and makes results reproducible.
 
-- **[[2604.19728|VLA Foundry]]** — A ==unified open-source framework== integrating LLM/VLM/VLA training in one codebase with shared data-loading + modular config; near-linear DDP scaling, ships FOUNDRY-QWEN3VLA-2.1B-MT.
+- **[[2604.19728|VLA-Foundry]]** — A ==unified open-source framework== integrating LLM/VLM/VLA training in one codebase with shared data-loading + modular config; near-linear DDP scaling, ships FOUNDRY-QWEN3VLA-2.1B-MT.
 - **[[2604.05014|StarVLA]]** — A modular ==backbone–action-head== codebase supporting VLM *and* world-model backbones with pluggable heads + unified I/O; StarVLA-OFT **96.6%** LIBERO, StarVLA-GR00T **65.3%** SimplerEnv.
 - **[[2606.03392|OpenEAI-Platform]]** — An open ==$790 6+1-DoF arm== (GA-optimized) + OpenEAI-VLA; manipulation comparable to >$8K commercial arms, **0.75** π0 SR — democratized embodied-AI hardware.
-- **[[2604.01179|Florence-2 ROS 2 Wrapper]]** — An open-source ==ROS 2 wrapper== hosting **Florence-2** in one node for local multi-mode VLM inference, exposing ==topics + synchronous services + asynchronous actions== over the model's prompt-based task tokens (detection, captioning, OCR); **9.75 FPS** detection on RTX 3060 Mobile (base), 26.6 FPS on RTX 3080 Ti — advanced VLMs on consumer GPUs.
+- **[[2604.01179|Florence-2-ROS-2-Wrapper]]** — An open-source ==ROS 2 wrapper== hosting **Florence-2** in one node for local multi-mode VLM inference, exposing ==topics + synchronous services + asynchronous actions== over the model's prompt-based task tokens (detection, captioning, OCR); **9.75 FPS** detection on RTX 3060 Mobile (base), 26.6 FPS on RTX 3080 Ti — advanced VLMs on consumer GPUs.
 
 **Foundation Models — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
 | Unified reasoning + control generalist | [[2508.21112\|EO-1]] (RoboVQA 58.5 BLEU-4) |
-| Scalable DiT generalist baseline | [[2503.19757\|Dita]] or [[2410.15959\|DiT Policy]] |
+| Scalable DiT generalist baseline | [[2503.19757\|Dita]] or [[2410.15959\|DiT-Policy]] |
 | Hybrid diffusion + autoregressive | [[2503.10631\|HybridVLA]] (**74%** RLBench) |
 | Small / consumer-GPU generalist | [[2504.19854\|NORA]] or [[2509.04996\|FLOWER]] (950M, −99% pretrain) |
-| Unified LLM/VLM/VLA training codebase | [[2604.19728\|VLA Foundry]] or [[2604.05014\|StarVLA]] |
+| Unified LLM/VLM/VLA training codebase | [[2604.19728\|VLA-Foundry]] or [[2604.05014\|StarVLA]] |
 | Low-cost open hardware | [[2606.03392\|OpenEAI-Platform]] ($790 arm) |
 
 > [!star] Key Papers
@@ -1218,7 +1218,7 @@ Open-source infrastructure — unified training stacks, modular codebases, and l
 > - [[2604.05014|StarVLA]] — The modular codebase that made "backbone + pluggable action head" a reproducible research substrate
 
 > [!tip] The Generalist Layer Is Now an Engineering Problem
-> By 2026 the design space (§1) is largely settled — strong VLM backbone, continuous action head, heterogeneous pretraining — so the foundation-model frontier is *integration and scale*, not architecture novelty. The differentiators are tokenization efficiency ([[2504.19854|NORA]], [[2509.04996|FLOWER]]), unified training stacks ([[2604.19728|VLA Foundry]]), and open hardware ([[2606.03392|OpenEAI-Platform]]). Cross-reference [[04_VLA#1. Design-Space Principles]] for the design choices these systems instantiate and [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]] for the data corpora they train on.
+> By 2026 the design space (§1) is largely settled — strong VLM backbone, continuous action head, heterogeneous pretraining — so the foundation-model frontier is *integration and scale*, not architecture novelty. The differentiators are tokenization efficiency ([[2504.19854|NORA]], [[2509.04996|FLOWER]]), unified training stacks ([[2604.19728|VLA-Foundry]]), and open hardware ([[2606.03392|OpenEAI-Platform]]). Cross-reference [[04_VLA#1. Design-Space Principles]] for the design choices these systems instantiate and [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]] for the data corpora they train on.
 
 ---
 
@@ -1230,10 +1230,10 @@ A VLA needs a *brain* — a VLM whose spatial, temporal, and causal reasoning is
 
 VLMs purpose-built or post-trained for embodiment — 3D spatial reasoning, temporal-causal grounding, and affordance understanding — that serve as the cognitive layer of a hierarchical robot system.
 
-- **[[2507.02029|RoboBrain 2.0]]** — A heterogeneous encoder-decoder (Qwen2.5-VL decoder) for embodied spatial reasoning; 32B variant is SOTA on BLINK (**83.63**), RoboSpatial (**72.43**), RefSpatial. The reference embodied-reasoning brain.
-- **[[2601.14352|RoboBrain 2.5]]** — A brain adding precise ==3D spatial reasoning== via decoupled ==(u,v,d)== coordinate prediction + collision-free 3D keypoint sequences; **75.82** 2D spatial avg (beats Gemini-3-Pro 66.14), **44%** manipulation SR.
+- **[[2507.02029|RoboBrain-2.0]]** — A heterogeneous encoder-decoder (Qwen2.5-VL decoder) for embodied spatial reasoning; 32B variant is SOTA on BLINK (**83.63**), RoboSpatial (**72.43**), RefSpatial. The reference embodied-reasoning brain.
+- **[[2601.14352|RoboBrain-2.5]]** — A brain adding precise ==3D spatial reasoning== via decoupled ==(u,v,d)== coordinate prediction + collision-free 3D keypoint sequences; **75.82** 2D spatial avg (beats Gemini-3-Pro 66.14), **44%** manipulation SR.
 - **[[2601.21199|Thinker]]** — A 10B unified vision-language-time VLM for images/videos/instructions; Thinker-7B SOTA RoboVQA (**63.5** BLEU vs GPT-4V 26.8) — temporal grounding as a first-class axis.
-- **[[2511.00108|Pelican-VL 1.0]]** — A 7B–72B open embodied-brain family + ==Deliberate Practice Policy Optimization==; **+20.3%** over base, beats 100B open models by **10.6%**, stable against forgetting.
+- **[[2511.00108|Pelican-VL-1.0]]** — A 7B–72B open embodied-brain family + ==Deliberate Practice Policy Optimization==; **+20.3%** over base, beats 100B open models by **10.6%**, stable against forgetting.
 - **[[2509.01106|Robix]]** — A unified high-level ==cognitive layer== generating atomic commands + verbal responses; Robix-32B **92.6%** task progress in human-in-the-loop (edges Gemini-2.5-Pro 91%) — the planning/interaction brain.
 - **[[2510.11027|Vlaser]]** — An InternVL3 backbone + flow-matching action expert + ==Vlaser-6M== synergistic-reasoning corpus; SOTA across 12 embodied-reasoning benchmarks (2B avg **15.2→45.3**).
 - **[[2604.19839|EUEA]]** — A method fine-tuning one VLM with ==four environmental-understanding skills== as reward-free ==POMDP== sub-skills + a ==sampling-based recovery step== + ==GRPO== refinement; **+10.96%** ALFRED SR over BC, **86.48%** via recovery, **99.40%** goal recognition — closes the action-understanding gap zero-shot VLMs lack.
@@ -1247,7 +1247,7 @@ VLMs purpose-built or post-trained for embodiment — 3D spatial reasoning, temp
 
 The VLA recipe transplanted to non-tabletop domains — autonomous driving, video games, aerial control, and navigation — where the action space and grounding differ but the vision-language-action pattern holds.
 
-- **[[2605.21061|Driving VLA IK]]** — A driving VLA grounded with ==next-visual-state prediction== + an ==Inverse-Kinematics== objective to stop "blind planning"; 0.5B model **92.2** NAVSIM-v1 PDMS (+19.0 over OpenDriveVLA), matching 7–8B VLAs.
+- **[[2605.21061|Driving-VLA-IK]]** — A driving VLA grounded with ==next-visual-state prediction== + an ==Inverse-Kinematics== objective to stop "blind planning"; 0.5B model **92.2** NAVSIM-v1 PDMS (+19.0 over OpenDriveVLA), matching 7–8B VLAs.
 - **[[2604.01765|DriveDreamer-Policy]]** — A unified ==driving world-action model== (LLM + lightweight generative experts for depth/video/action) with causal modeling; SOTA **89.2** Navsim-v1 PDMS, **88.7** v2 EPDMS.
 - **[[2605.22816|AwareVLN]]** — A unified VLM for ==vision-language navigation== with ==sparse self-reflective reasoning== at key nav nodes; **73.5%** SR / **65.4%** SPL on R2R-CE Val-Unseen from monocular RGB.
 - **[[2505.23189|TrackVLA]]** — A unified VLA for ==embodied visual tracking== on a shared Vicuna-7B backbone (task-dependent decoding for understanding vs action) + an ==anchor-based diffusion action model== denoising waypoints from clustered patterns; perfect zero-shot Gym-UnrealCV, **10 FPS** (~100× over GPT-4o), **90%/70%** real quadruped medium/hard.
@@ -1261,13 +1261,13 @@ The VLA recipe transplanted to non-tabletop domains — autonomous driving, vide
 The VLA recipe specialized to driving: trajectory planning as the action space, NAVSIM/Bench2Drive as the benchmark. The shared frontier here is *grounding* — MoE scene/skill specialization, unified language-action tokenization, and learning-from-failure RL — to stop the "blind planning" that plagues naive driving VLAs.
 
 - **[[2604.02190|UniDriveVLA]]** — A ==Mixture-of-Transformers== with masked joint attention decoupling understanding/perception/action + a ==sparse spatial perception module== + 3-stage progressive training; **78.37** Bench2Drive Driving Score, lowest nuScenes L2 without ego-state, retaining VQA ability.
-- **[[2603.25740|Drive My Way]]** — A personalized driving VLA fusing visual input, user profiles, and instructions + a ==Personalized Driving Dataset== (30 drivers) with ==GRPO== reinforcement fine-tuning + style-aware reward adaptation; **18.77%** efficiency gain for aggressive instructions (vs SimLingo 3.70%), highest user ratings ID + OOD.
+- **[[2603.25740|Drive-My-Way]]** — A personalized driving VLA fusing visual input, user profiles, and instructions + a ==Personalized Driving Dataset== (30 drivers) with ==GRPO== reinforcement fine-tuning + style-aware reward adaptation; **18.77%** efficiency gain for aggressive instructions (vs SimLingo 3.70%), highest user ratings ID + OOD.
 - **[[2603.14851|AutoMoT]]** — A ==Mixture-of-Transformers== (frozen VLM Scene-Understanding Expert + task Action Expert) with ==asynchronous inference== sharing a KV cache + joint attention; **87.34%** Bench2Drive Driving Score, **0.07%** nuScenes collision, **86.8%** latency cut (7.6x) at only **+1.24%** L2.
 - **[[2603.01441|LinkVLA]]** — A ==unified language-action tokenization== in one VLM with a ==bidirectional== understand-and-generate objective + ==coarse-to-fine== parallel waypoint generation; **91.01** Bench2Drive Driving Score / **74.55%** SR (+5.94 over SimLingo), **361→48 ms** (**86%** latency cut).
 - **[[2603.01063|ELF-VLA]]** — An ==Explicit Learning from Failures== method: a VLM teacher generates ==diagnostic feedback== that, with difficult-sample curation + ==Policy Shaping==, refines trajectories during GRPO; SOTA **91.0** NAVSIMv1 / **87.1** NAVSIMv2 PDMS, total-failure rate **2.73→1.08%**.
 - **[[2602.21172|NoRD]]** — A ==reasoning-free== driving VLA (Qwen2.5VL-3B) trained weak-SFT then ==Dr. GRPO== (drops the std term to fight difficulty bias); **85.6** NAVSIM PDM (BoN 92.4 beats reasoning AutoVLA-BoN), outperforming models using **12–17×** more data; Dr. GRPO adds **+11.68%** vs +0.67% standard GRPO.
 - **[[2512.04733|E3AD]]** — An ==emotion-aware== driving VLA using a continuous ==Valence-Arousal-Dominance== model to read emotional tone/urgency from commands + a ==dual-pathway spatial reasoning== module (egocentric + allocentric fusion) trained with DPO for emotion-action consistency; **−20.00%** FDE, **+6.86%** Talk2Car IoU, **>0.8** Spearman/Kendall with human VAD — human-centric driving.
-- **[[2509.20109|Discrete Diffusion VLA (VLA)]]** — A ==discrete-diffusion== driving VLA (from a Diffusion LM) tokenizing 2D trajectories + a gradient-free two-stage ==reflective inference== (goal-conditioned then safety-guided regeneration via inpainting); **91.1** NAVSIM PDMS, DAC 99.3 / TTC 93.5, oracle-reflection reaches near-human 94.7.
+- **[[2509.20109|Discrete-Diffusion-VLA-VLA]]** — A ==discrete-diffusion== driving VLA (from a Diffusion LM) tokenizing 2D trajectories + a gradient-free two-stage ==reflective inference== (goal-conditioned then safety-guided regeneration via inpainting); **91.1** NAVSIM PDMS, DAC 99.3 / TTC 93.5, oracle-reflection reaches near-human 94.7.
 - **[[2509.00789|CogDriver]]** — A driving VLA instilling ==cognitive inertia== via narrative-annotated ==CogDriver-Data== (persistent-intent rationales from a Multi-View Spatiotemporal MLLM) + a ==Temporal Coherence Module== keeping a dynamic world-state for long-range reasoning; **78.21** Driving Score / **56.93%** SR Bench2Drive (**+22%/+63%** rel), **0.34 m** nuScenes L2.
 - **[[2505.16278|DriveMoE]]** — A ==Scene-Specialized Vision MoE== (dynamic camera-view selection) + ==Skill-Specialized Action MoE== fighting mode-averaging, two-stage teacher-forcing→adaptive training; SOTA Bench2Drive (**+22.8%** Driving Score, **+62.1%** SR over Drive-π0) at competitive **260 ms** latency.
 
@@ -1284,10 +1284,10 @@ Most VLAs assume a clean text instruction; this cluster widens the *input/superv
 
 | Need | Recommendation |
 |---|---|
-| Embodied spatial-reasoning brain | [[2507.02029\|RoboBrain 2.0]] or [[2601.14352\|RoboBrain 2.5]] (3D coords) |
+| Embodied spatial-reasoning brain | [[2507.02029\|RoboBrain-2.0]] or [[2601.14352\|RoboBrain-2.5]] (3D coords) |
 | High-level planning/interaction layer | [[2509.01106\|Robix]] (**92.6%** task progress) |
 | Embodied reasoning + action in one | [[2510.11027\|Vlaser]] (12-benchmark SOTA) |
-| Open embodied-brain weights | [[2511.00108\|Pelican-VL 1.0]] (7B–72B) |
+| Open embodied-brain weights | [[2511.00108\|Pelican-VL-1.0]] (7B–72B) |
 | Game / non-tabletop foundation policy | [[2601.02427\|NitroGen]] (40K-hr gameplay) or [[2503.09527\|CombatVLA]] |
 | Driving-domain VLA (planning + grounding) | [[2603.01441\|LinkVLA]] (**91.01** Bench2Drive) or [[2604.02190\|UniDriveVLA]] |
 | Learning-from-failure driving RL | [[2603.01063\|ELF-VLA]] (**91.0** NAVSIMv1) |
@@ -1296,7 +1296,7 @@ Most VLAs assume a clean text instruction; this cluster widens the *input/superv
 | Teach via language / visual prompts (no typed task) | [[2411.00508\|CLIP-RT]] (NL supervision) or [[2505.02166\|CrayonRobo]] (visual prompts) |
 
 > [!star] Key Papers
-> - [[2507.02029|RoboBrain 2.0]] — The reference embodied-reasoning brain; sets the spatial-reasoning bar that the hierarchical-robot literature builds on
+> - [[2507.02029|RoboBrain-2.0]] — The reference embodied-reasoning brain; sets the spatial-reasoning bar that the hierarchical-robot literature builds on
 > - [[2510.11027|Vlaser]] — Shows synergistic embodied-reasoning pretraining can triple a VLM's embodied-benchmark score before it ever drives an arm
 > - [[2604.01765|DriveDreamer-Policy]] — The cleanest cross-domain proof that the world-action-model recipe transfers from tabletop to autonomous driving
 
@@ -1315,9 +1315,9 @@ Replace the single success bit with multi-dimensional diagnostics — fine-grain
 
 - **[[2605.19986|MetaFine]]** — A ==compositional task graph== with atomic skills + three-dimensional diagnostic probe; shows binary success inflates capability up to **70%** (top policies **80%** "Grasp Part" but **12%** "Rotate Along" under fine-grained constraints).
 - **[[2603.28545|ManipArena]]** — A standardized real-world ==reasoning-oriented== eval (20 tabletop+mobile tasks, server-side green-screen control); baselines max **42.7%** (640.5/1500), quantifying the generalist gap.
-- **[[2507.17049|VLA Uncertainty Eval]]** — An evaluation of eight ==uncertainty== + five ==quality metrics== beyond success; SpatialVLA's **43.5–69.1%** "high-quality" successes show same-success policies differ in execution quality.
-- **[[2605.28527|VLA Value Probing]]** — A ==probing-to-selection== protocol that decodes ==value-like signals== from frozen VLA features via linear ridge probes; R² **0.51–0.55** (vs scalar baseline 0.03) — frozen VLAs already know success.
-- **[[2605.00321|Embodied Interpretability]]** — A causal-attribution framework casting visual-action attribution as interventional estimation: an ==Interventional Significance Score== (expected KL under interventions) gives faithful explanations, a ==Nuisance Mass Ratio== scores reliance on task-irrelevant regions; NMR@k=10 shows **−0.77** Pearson with SR — spurious reliance predicts OOD failure.
+- **[[2507.17049|VLA-Uncertainty-Eval]]** — An evaluation of eight ==uncertainty== + five ==quality metrics== beyond success; SpatialVLA's **43.5–69.1%** "high-quality" successes show same-success policies differ in execution quality.
+- **[[2605.28527|VLA-Value-Probing]]** — A ==probing-to-selection== protocol that decodes ==value-like signals== from frozen VLA features via linear ridge probes; R² **0.51–0.55** (vs scalar baseline 0.03) — frozen VLAs already know success.
+- **[[2605.00321|Embodied-Interpretability]]** — A causal-attribution framework casting visual-action attribution as interventional estimation: an ==Interventional Significance Score== (expected KL under interventions) gives faithful explanations, a ==Nuisance Mass Ratio== scores reliance on task-irrelevant regions; NMR@k=10 shows **−0.77** Pearson with SR — spurious reliance predicts OOD failure.
 - **[[2506.09930|INT-ACT]]** — A 50-task generalization benchmark (object diversity, language complexity, vision-language thinking) with an ==Intention Correct Rate== metric that decouples high-level understanding from low-level execution; exposes that VLAs hit **80–100%** intention correctness yet collapse on task success under shift, losing the VLM's linguistic robustness.
 
 #### 16.2 Reproducible Real/Sim Evaluation
@@ -1347,15 +1347,15 @@ Probe *specific capabilities* — 3D spatial structure, active interaction, soci
 Measure *what efficiency actually costs* — analytical performance models, cross-hardware throughput characterization, and embodied-execution metrics that expose where computational savings trade against physical execution quality. The shared lesson: inference-FLOP cuts are not free, and a model's "efficiency" depends on the hardware, the metric, and the robot's motion, not just parameter count.
 
 - **[[2602.18397|VLA-Perf]]** — A roofline-based analytical performance model decomposing VLA inference into ==Vision Encoder + VLM Backbone + Action Expert== to predict latency across architectures and hardware (73.3–82.6% fidelity to a Triton π0); datacenter GPUs hit **61–314 Hz** vs Jetson Thor **19 Hz**, and diffusion VLAs run **1–2 orders** faster than AR with chunking.
-- **[[2603.19131|Embodied Efficiency]]** — A study introducing ==embodied-efficiency metrics== (task time, path length, jerk-L2, action rate) showing compression preserves SR but harms execution: weight pruning/quantization raises jerk-L2 up to **+19.5%** and visual-token pruning blows π0.5 jerk **204%→375%** — inference savings degrade physical execution.
-- **[[2509.11480|Edge-to-Cloud VLA]]** — A cross-platform characterization of five VLAs (OpenVLA, SpatialVLA, OFT, VOTE, QwenVLA) across Jetson AGX Orin and four datacenter GPUs on SR/latency/throughput/memory; VOTE-1T tops **96.9%** LIBERO, and an optimized edge device hits **55.57 Hz** > a V100's **32.28 Hz** — edge can beat older datacenter GPUs.
+- **[[2603.19131|Embodied-Efficiency]]** — A study introducing ==embodied-efficiency metrics== (task time, path length, jerk-L2, action rate) showing compression preserves SR but harms execution: weight pruning/quantization raises jerk-L2 up to **+19.5%** and visual-token pruning blows π0.5 jerk **204%→375%** — inference savings degrade physical execution.
+- **[[2509.11480|Edge-to-Cloud-VLA]]** — A cross-platform characterization of five VLAs (OpenVLA, SpatialVLA, OFT, VOTE, QwenVLA) across Jetson AGX Orin and four datacenter GPUs on SR/latency/throughput/memory; VOTE-1T tops **96.9%** LIBERO, and an optimized edge device hits **55.57 Hz** > a V100's **32.28 Hz** — edge can beat older datacenter GPUs.
 
 **Evaluation Methodology — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
 | Diagnose beyond binary success | [[2605.19986\|MetaFine]] (binary inflates **70%**) |
-| Trajectory-quality metrics | [[2507.17049\|VLA Uncertainty Eval]] or [[2507.00435\|RoboEval]] |
+| Trajectory-quality metrics | [[2507.17049\|VLA-Uncertainty-Eval]] or [[2507.00435\|RoboEval]] |
 | Low-cost reproducible real eval | [[2605.20774\|VLA-REPLICA]] (~$1050) |
 | Statistically-efficient sim-to-real eval | [[2510.04354\|SureSim]] (**−25%** real effort) |
 | Reliability + throughput jointly | [[2605.29710\|PhAIL]] (time-to-success CDF) |
@@ -1368,7 +1368,7 @@ Measure *what efficiency actually costs* — analytical performance models, cros
 > - [[2510.04354|SureSim]] — Brings prediction-powered inference to robot evaluation, cutting the real-hardware cost of statistically honest numbers
 
 > [!tip] Binary Success Is a Liar
-> The unifying finding: pass/fail hides most of what matters. Fine-grained constraints expose 70% inflation ([[2605.19986|MetaFine]]), same-success policies differ in jerk/path/uncertainty ([[2507.00435|RoboEval]], [[2507.17049|VLA Uncertainty Eval]]), and capability benchmarks show VLMs far below human on 3D grounding and active intelligence ([[2605.29074|Embodied3DBench]], [[2605.06234|RobotEQ]]). Report trajectory quality, time-to-success ([[2605.29710|PhAIL]]), and reproducible cheap real numbers ([[2605.20774|VLA-REPLICA]]) — not just a success bit. Cross-reference [[02_Dataset-Benchmark-Environment#5. Diagnostic & Evaluation Datasets]] for the full benchmark landscape and [[04_VLA#18. Open Problems & Failure Modes]] below for the failure modes these diagnostics surface.
+> The unifying finding: pass/fail hides most of what matters. Fine-grained constraints expose 70% inflation ([[2605.19986|MetaFine]]), same-success policies differ in jerk/path/uncertainty ([[2507.00435|RoboEval]], [[2507.17049|VLA-Uncertainty-Eval]]), and capability benchmarks show VLMs far below human on 3D grounding and active intelligence ([[2605.29074|Embodied3DBench]], [[2605.06234|RobotEQ]]). Report trajectory quality, time-to-success ([[2605.29710|PhAIL]]), and reproducible cheap real numbers ([[2605.20774|VLA-REPLICA]]) — not just a success bit. Cross-reference [[02_Dataset-Benchmark-Environment#5. Diagnostic & Evaluation Datasets]] for the full benchmark landscape and [[04_VLA#18. Open Problems & Failure Modes]] below for the failure modes these diagnostics surface.
 
 ---
 
@@ -1380,32 +1380,32 @@ The field has matured enough to need maps — systematic reviews that trace VLA 
 
 Systematic reviews of the VLA landscape — architecture taxonomies, dataset/benchmark catalogs, and consensus open-challenge lists.
 
-- **[[2604.23775|VLA Safety Survey]]** — The first comprehensive review of VLA safety with a unified ==threat/defense taxonomy by timing==: training-time backdoors (GoBA, SilentDrift) vs inference-time jailbreaks (RoboPAIR) and physical interventions, mapped to defenses across **6** deployment domains; flags a fragmented evaluation landscape lacking real-world long-horizon safety metrics.
-- **[[2512.11362|VLA Anatomy Survey]]** — A structured pedagogical survey dissecting VLAs into ==Modules== (perception, brain, action), tracing ==Milestones== (2017–2025), and giving a ==challenge-centric== analysis of five grand challenges (alignment, instruction following, open-world generalization, safety, data/benchmarking) with future directions. A learning-path reference.
-- **[[2507.10672|VLA Manipulation Survey]]** — A systematic review of **102** VLA models, **26** datasets, **12** simulators (2022–2025); structured taxonomy separating large generalists (RT-2, Octo) from modular specialists (DexVLA, CLIPort). The reference catalog.
-- **[[2507.01925|Action Tokenization Survey]]** — A survey unifying VLAs as processes generating a chain of ==action tokens== from vision+language, with an ==eight-type taxonomy== (language description, code, affordance, raw action, etc.) analyzing each type's properties/limits; surfaces hierarchical-VLA and the "Data Pyramid" as key trends. The action-token-centric reference.
-- **[[2510.24795|Efficient VLA Survey]]** — The first survey dedicated to ==efficient VLAs==, taxonomizing the whole "model–training–data" stack into Efficient Model Design (linear attention, Mamba, quantization, pruning), Efficient Training (data/parameter-efficient pre/post-training), and Efficient Data Collection. The reference map for §2.
-- **[[2510.17111|Efficient VLA Survey 2]]** — A systematic survey of efficient VLAs for embodied manipulation with a ==four-dimensional taxonomy== (model architecture, perception feature processing, action generation, training/inference) and five future directions (model-data co-optimization, efficient spatio-temporal perception, compact action gen, efficiency-centric eval).
-- **[[2509.19012|Pure VLA Survey]]** — A review of **300+** "pure VLA" methods with a taxonomy by ==action-generation strategy== (autoregression / diffusion / reinforcement / hybrid) plus foundational datasets and simulators; flags data scarcity, architectural heterogeneity, and real-time inference as the core open challenges.
-- **[[2508.13073|Large VLM-based VLA Survey]]** — A survey defining and taxonomizing large-VLM-based VLAs into ==monolithic== (single/dual-system) vs ==hierarchical== (planner-only / planner+policy) paradigms, surveying their integration with RL, training-free optimization, human-video learning, and world models.
-- **[[2510.07077|VLA Robotics Real-World Review]]** — A full-stack review tracing VLA architecture from CNN-era to transformer/diffusion; identifies the trend toward VLM-backed, hierarchically-structured models + practical gradient-insulation/PEFT considerations.
-- **[[2511.05936|10 VLA Challenges]]** — An expert-consensus catalog of **10** open challenges (multimodal sensing, robust reasoning, data quality, evaluation, cross-robot generalization, efficiency, whole-body coordination, safety) + 6 emerging trends.
+- **[[2604.23775|VLA-Safety-Survey]]** — The first comprehensive review of VLA safety with a unified ==threat/defense taxonomy by timing==: training-time backdoors (GoBA, SilentDrift) vs inference-time jailbreaks (RoboPAIR) and physical interventions, mapped to defenses across **6** deployment domains; flags a fragmented evaluation landscape lacking real-world long-horizon safety metrics.
+- **[[2512.11362|VLA-Anatomy-Survey]]** — A structured pedagogical survey dissecting VLAs into ==Modules== (perception, brain, action), tracing ==Milestones== (2017–2025), and giving a ==challenge-centric== analysis of five grand challenges (alignment, instruction following, open-world generalization, safety, data/benchmarking) with future directions. A learning-path reference.
+- **[[2507.10672|VLA-Manipulation-Survey]]** — A systematic review of **102** VLA models, **26** datasets, **12** simulators (2022–2025); structured taxonomy separating large generalists (RT-2, Octo) from modular specialists (DexVLA, CLIPort). The reference catalog.
+- **[[2507.01925|Action-Tokenization-Survey]]** — A survey unifying VLAs as processes generating a chain of ==action tokens== from vision+language, with an ==eight-type taxonomy== (language description, code, affordance, raw action, etc.) analyzing each type's properties/limits; surfaces hierarchical-VLA and the "Data Pyramid" as key trends. The action-token-centric reference.
+- **[[2510.24795|Efficient-VLA-Survey]]** — The first survey dedicated to ==efficient VLAs==, taxonomizing the whole "model–training–data" stack into Efficient Model Design (linear attention, Mamba, quantization, pruning), Efficient Training (data/parameter-efficient pre/post-training), and Efficient Data Collection. The reference map for §2.
+- **[[2510.17111|Efficient-VLA-Survey-2]]** — A systematic survey of efficient VLAs for embodied manipulation with a ==four-dimensional taxonomy== (model architecture, perception feature processing, action generation, training/inference) and five future directions (model-data co-optimization, efficient spatio-temporal perception, compact action gen, efficiency-centric eval).
+- **[[2509.19012|Pure-VLA-Survey]]** — A review of **300+** "pure VLA" methods with a taxonomy by ==action-generation strategy== (autoregression / diffusion / reinforcement / hybrid) plus foundational datasets and simulators; flags data scarcity, architectural heterogeneity, and real-time inference as the core open challenges.
+- **[[2508.13073|Large-VLM-based-VLA-Survey]]** — A survey defining and taxonomizing large-VLM-based VLAs into ==monolithic== (single/dual-system) vs ==hierarchical== (planner-only / planner+policy) paradigms, surveying their integration with RL, training-free optimization, human-video learning, and world models.
+- **[[2510.07077|VLA-Robotics-Real-World-Review]]** — A full-stack review tracing VLA architecture from CNN-era to transformer/diffusion; identifies the trend toward VLM-backed, hierarchically-structured models + practical gradient-insulation/PEFT considerations.
+- **[[2511.05936|10-VLA-Challenges]]** — An expert-consensus catalog of **10** open challenges (multimodal sensing, robust reasoning, data quality, evaluation, cross-robot generalization, efficiency, whole-body coordination, safety) + 6 emerging trends.
 
 **Surveys — Decision Matrix**
 
 | Need | Recommendation |
 |---|---|
-| Comprehensive model/dataset/simulator catalog | [[2507.10672\|VLA Manipulation Survey]] (102 models) |
-| Architecture-history + practical deployment review | [[2510.07077\|VLA Robotics Real-World Review]] |
-| Open-challenge orientation | [[2511.05936\|10 VLA Challenges]] |
+| Comprehensive model/dataset/simulator catalog | [[2507.10672\|VLA-Manipulation-Survey]] (102 models) |
+| Architecture-history + practical deployment review | [[2510.07077\|VLA-Robotics-Real-World-Review]] |
+| Open-challenge orientation | [[2511.05936\|10-VLA-Challenges]] |
 
 > [!star] Key Papers
-> - [[2507.10672|VLA Manipulation Survey]] — The most comprehensive landscape catalog: 102 models, 26 datasets, 12 simulators with a clean generalist-vs-specialist taxonomy
-> - [[2511.05936|10 VLA Challenges]] — The consensus open-challenge map; the cleanest articulation of what the field still has to solve
-> - [[2510.07077|VLA Robotics Real-World Review]] — The full-stack history that situates each architectural era against the bottleneck it solved
+> - [[2507.10672|VLA-Manipulation-Survey]] — The most comprehensive landscape catalog: 102 models, 26 datasets, 12 simulators with a clean generalist-vs-specialist taxonomy
+> - [[2511.05936|10-VLA-Challenges]] — The consensus open-challenge map; the cleanest articulation of what the field still has to solve
+> - [[2510.07077|VLA-Robotics-Real-World-Review]] — The full-stack history that situates each architectural era against the bottleneck it solved
 
 > [!tip] Read the Map Before the Territory
-> These surveys converge on the same arc this deep-dive traces: proof-of-concept → democratization → specialization, with the open frontier now in robustness, evaluation, cross-embodiment, and whole-body coordination. The [[2511.05936|10 VLA Challenges]] list maps almost one-to-one onto this file's Part C clusters (memory, cross-embodiment, safety, evaluation) — read it to see which §10–§16 cluster attacks which named challenge. Cross-reference [[08_Benchmarks-and-Surveys]] for the vault-wide survey index and [[04_VLA#18. Open Problems & Failure Modes]] below for the failure-mode synthesis these surveys flag as the field's hardest problems.
+> These surveys converge on the same arc this deep-dive traces: proof-of-concept → democratization → specialization, with the open frontier now in robustness, evaluation, cross-embodiment, and whole-body coordination. The [[2511.05936|10-VLA-Challenges]] list maps almost one-to-one onto this file's Part C clusters (memory, cross-embodiment, safety, evaluation) — read it to see which §10–§16 cluster attacks which named challenge. Cross-reference [[08_Benchmarks-and-Surveys]] for the vault-wide survey index and [[04_VLA#18. Open Problems & Failure Modes]] below for the failure-mode synthesis these surveys flag as the field's hardest problems.
 
 ---
 
@@ -1420,8 +1420,8 @@ Understanding when VLAs break is as important as knowing when they work.
 | Failure Mode | Evidence | Implication |
 |-------------|----------|-------------|
 | **Spatial overfitting** | [[2505.03500\|TLI]] — VLAs map object names to *fixed training locations* instead of abstract identities | Novel object positions break policies |
-| **Visual perturbation brittleness** | [[2603.22078\|WAM vs VLA Robustness]] — VLAs struggle under camera/light/background changes | WAMs are more robust (spatiotemporal priors from video pretraining) |
-| **Adversarial patch attacks** | [[2606.03556\|VLA Patch Attack]] — a static physical patch from a trajectory *prefix* reaches **90.7%** ASR on LIBERO, dropping real-robot success **72% → 12%** | A single patch causes persistent long-horizon failure under partial observability |
+| **Visual perturbation brittleness** | [[2603.22078\|WAM-vs-VLA-Robustness]] — VLAs struggle under camera/light/background changes | WAMs are more robust (spatiotemporal priors from video pretraining) |
+| **Adversarial patch attacks** | [[2606.03556\|VLA-Patch-Attack]] — a static physical patch from a trajectory *prefix* reaches **90.7%** ASR on LIBERO, dropping real-robot success **72% → 12%** | A single patch causes persistent long-horizon failure under partial observability |
 | **Embodiment tax (VLM degradation during VLA training)** | [[2605.15735\|UAM]] — naive VLA fine-tuning destroys **>5–30%** of the underlying VLM's multimodal capability (MMMU/MME/MMBench/TextVQA); freezing preserves understanding but kills action | Dual-stream architecture (Semantic Expert + Dorsal Expert with a generative prior) retains **>95%** VLM competence while improving OOD manipulation — control-visual features need their own parameters |
 | **Detail-oriented failure** | [[2601.11421\|GM-100]] — 100 detail-oriented tasks expose very low VLA success rates | Current VLAs are coarse-grained; fine manipulation is unsolved |
 | **Counterfactual failures (vision > language)** | [[2602.17659\|CAG]] — OpenVLA-OFT: 0.4% on counterfactual tasks vs 78.6% on originals; VLAs ignore language when visual cues conflict | Inference-time [[2602.17659\|CAG]] scheme with a VA prior mitigates; +15.5% grounding |
@@ -1439,7 +1439,7 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 3. **Predictive failure**: [[2510.09459|FIPER]] combines ==OOD detection== with ==action uncertainty== to predict failures *before* they happen, giving the system time to intervene or hand off to a human operator. This is especially valuable for safety-critical tasks where post-hoc detection is too late.
 4. **Density-based OOD via normalizing flows**: [[2603.11106|RC-NF]] learns the joint distribution of successful task execution via ==robot-conditioned normalizing flows==, signaling deviations in under **100ms** for real-time intervention. [[2503.08558|FAIL-Detect]] uses a novel ==logpZO== flow-based density estimator with ==Conformal Prediction== thresholds, achieving 78% balanced accuracy without any failure data.
 5. **Multi-detector ensembles**: [[2410.04640|Sentinel]] runs ==STAC== (Statistical Temporal Action Consistency via ==MMD==/KL-divergence) for erratic failures in parallel with a VLM for task progression failures — together detecting 18% more failures than either alone.
-6. **Confidence calibration**: [[2507.17383|VLA Confidence Calibration]] introduces ==Action-Wise Platt Scaling== + prompt ensembles to reduce Expected Calibration Error by over **20%** — trustworthy uncertainty scores for each action dimension.
+6. **Confidence calibration**: [[2507.17383|VLA-Confidence-Calibration]] introduces ==Action-Wise Platt Scaling== + prompt ensembles to reduce Expected Calibration Error by over **20%** — trustworthy uncertainty scores for each action dimension.
 7. **Uncertainty from the policy's own loss**: [[2410.14868|Diff-DAgger]] uses the diffusion policy's training objective directly as an uncertainty signal, achieving **39%** higher F1 in failure prediction than ensemble baselines.
 8. **LLM-driven reactive recovery**: [[2407.08735|AESOP]] combines a fast embedding-based LLM anomaly detector with a slow generative LLM for deliberative intervention, using latency-aware multi-contingency MPC to achieve **100%** recovery in simulated quadrotor anomalies.
 9. **Human-shared-control scaling**: [[2510.02298|ARMADA]] uses ==FLOAT== (optimal-transport-based failure detection) to achieve **95%** accuracy and pool interventions across multiple robots, cutting human intervention by **23.3%**.
@@ -1449,7 +1449,7 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 | Problem | Remediation Path |
 |---|---|
 | Spatial overfitting (names → fixed locations) | Identity-abstracting representations; diagnose with [[2505.03500\|TLI]] |
-| Visual perturbation brittleness | WAM augmentation (video priors) per [[2603.22078\|WAM vs VLA Robustness]] |
+| Visual perturbation brittleness | WAM augmentation (video priors) per [[2603.22078\|WAM-vs-VLA-Robustness]] |
 | Embodiment tax (VLM degrades during VLA training) | Dual-stream Semantic + Dorsal experts ([[2605.15735\|UAM]], retains **>95%** VLM competence) |
 | Counterfactual failure (vision overrides language) | Inference-time [[2602.17659\|CAG]] with VA prior (**+15.5%** grounding) |
 | Instruction paraphrase brittleness | Paraphrase-augmented training; diagnose with [[2603.28301\|LIBERO-Para]] |
@@ -1458,7 +1458,7 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 | Physical hardware degradation | Condition on joint-health vector ([[2605.16056\|Health-VLA]], **45%→89%** at 0.3 weakness) |
 
 > [!star] Key Papers — VLA Failure Frontier
-> - [[2603.22078|WAM vs VLA Robustness]] — The definitive VLA-vs-WAM brittleness comparison; sets the visual-perturbation failure baseline
+> - [[2603.22078|WAM-vs-VLA-Robustness]] — The definitive VLA-vs-WAM brittleness comparison; sets the visual-perturbation failure baseline
 > - [[2605.15735|UAM]] — Names and quantifies the "embodiment tax"; dual-stream fix retains **>95%** VLM competence while improving OOD action
 > - [[2510.09459|FIPER]] — Predictive failure (OOD + action uncertainty) before the failure happens; the safety-critical detection reference
 > - [[2602.17659|CAG]] — Isolates the vision-overrides-language counterfactual failure (0.4% vs 78.6%); inference-time mitigation
@@ -1476,12 +1476,12 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 | Why VLAs? | Strong robustness in real scenarios via VLM pre-training |
 | Which backbone? | KosMos, [[2407.07726\|PaliGemma]] (extensive multi-modal pre-training) |
 | Current generalist SOTA? | [[2604.15483\|π0.7]] (steerable open-world) and [[2604.20100\|JoyAI-RA]] (multi-embodiment) |
-| Egocentric pretraining? | [[2507.15597\|Being-H0]], [[2602.16710\|EgoScale]], [[2512.22414\|π0.5 + ego]] — see [[13_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]] |
+| Egocentric pretraining? | [[2507.15597\|Being-H0]], [[2602.16710\|EgoScale]], [[2512.22414\|π0.5-+-ego]] — see [[13_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]] |
 | How to formulate? | ==Continuous actions== + ==Policy Head== for history fusion |
 | How to train? | Flow Matching ≈ MSE; ==MoE== for zero-shot generalization |
 | Data strategy? | ==Post-training==: cross-embodiment pre-train → in-domain fine-tune |
 | Need efficiency? | [[2605.08799\|ElasticFlow]] (one-step FM, **14ms**), [[2501.09747\|FAST]] tokenization, or [[2506.01844\|SmolVLA]] (450M) |
-| Need 3D? | [[2508.09071\|GeoVLA]] / [[2501.15830\|SpatialVLA]] (explicit), [[2510.12276\|Spatial Forcing]] (implicit), or [[2605.10485\|VEGA]] (representation alignment, zero inference cost) |
+| Need 3D? | [[2508.09071\|GeoVLA]] / [[2501.15830\|SpatialVLA]] (explicit), [[2510.12276\|Spatial-Forcing]] (implicit), or [[2605.10485\|VEGA]] (representation alignment, zero inference cost) |
 | Need parameter-efficient FT? | [[2605.06175\|VLA-GSE]] (SVD generalized+specialized experts) — beats FFT **+6.3pp** on [[2510.13626\|LIBERO-Plus]] |
 | Need to preserve foundational capabilities? | [[2605.08879\|ConSFT]] (confidence-weighted SFT bounds parameter disruption) |
 | Need reasoning? | [[2503.22020\|CoT-VLA]] (visual CoT), [[2507.16815\|ThinkAct]] (RL latent), or [[2509.22643\|VLA-Reasoner]] (MCTS) — full taxonomy in [[05_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] |
@@ -1492,7 +1492,7 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 | Need long-horizon memory? | [[2604.18791\|HELM]] (episodic store + verifier) or [[2510.00695\|HAMLET]] — see [[04_VLA#10. Memory-Augmented & Long-Horizon VLAs]] |
 | Need cross-embodiment transfer? | [[2510.10274\|X-VLA]] (soft-prompt) — see [[04_VLA#11. Cross-Embodiment & Domain-Transfer VLAs]] |
 | Need runtime adaptation (frozen weights)? | [[2601.06748\|TT-VLA]] (test-time RL) or [[2510.05681\|MG-Select]] (steering) — see [[04_VLA#12. Runtime Adaptation & Inference-Time Steering]] |
-| Need safety / attack analysis? | [[2503.03480\|SafeVLA]], [[2411.13587\|VLA Adversarial Vulnerabilities]] — see [[04_VLA#13. Safety, Robustness & Adversarial VLAs]] |
+| Need safety / attack analysis? | [[2503.03480\|SafeVLA]], [[2411.13587\|VLA-Adversarial-Vulnerabilities]] — see [[04_VLA#13. Safety, Robustness & Adversarial VLAs]] |
 | Need a generalist foundation model? | [[2508.21112\|EO-1]] or [[2503.19757\|Dita]] — see [[04_VLA#14. VLA Foundation Models & Infrastructure]] |
 | Need honest evaluation? | [[2605.19986\|MetaFine]] (binary inflates **70%**) — see [[04_VLA#16. VLA Evaluation & Benchmarking Methodology]] |
 | Need robustness? | WAM augmentation or diverse cross-embodiment training |
@@ -1503,7 +1503,7 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 
 - [[01_Embodied-AI-101]] — VLA vs WAM basics and four learning strategies
 - [[06_WAM]] — Full WAM taxonomy (VideoGen, VLM-based, From Scratch)
-- [[07_Latent-World-Models]] — JEPA evolution lineage ([[2506.09985|V-JEPA 2]] → [[2602.10098|VLA-JEPA]])
+- [[07_Latent-World-Models]] — JEPA evolution lineage ([[2506.09985|V-JEPA-2]] → [[2602.10098|VLA-JEPA]])
 - [[15_Self-Evolving-VLA-WAM]] — Self-evolving VLAs, failure detection, and continual learning
 - [[08_Physics-Aware-Embodied-AI]] — Physics priors for embodied AI; physics-coupled VLA pipelines
 - [[05_VLA-Reasoning-and-CoT]] — Full taxonomy of where to insert reasoning into VLA pipelines

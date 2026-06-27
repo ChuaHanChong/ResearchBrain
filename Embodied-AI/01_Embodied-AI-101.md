@@ -63,7 +63,7 @@ graph TD
     style J fill:#fde8f4,stroke:#d94a90
 ```
 
-The field progressed through: **Foundations** ([[2212.06817|RT-1]], [[2303.04137|Diffusion Policy]], [[2307.15818|RT-2]]) — proving Transformers and VLMs work for robot control; **Generalist VLAs** ([[2406.09246|OpenVLA]], [[2410.24164|π0]], [[2504.16054|π0.5]]) — open-source weights, flow-matching action heads, cross-embodiment transfer; **World-Model-Augmented** ([[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]]) — adding video/latent prediction for physics grounding; **Self-Evolving** ([[2502.05907|EvoAgent]], [[2506.24119|SPIRAL]]) — agents that improve autonomously through imagination loops and curiosity.
+The field progressed through: **Foundations** ([[2212.06817|RT-1]], [[2303.04137|Diffusion-Policy]], [[2307.15818|RT-2]]) — proving Transformers and VLMs work for robot control; **Generalist VLAs** ([[2406.09246|OpenVLA]], [[2410.24164|π0]], [[2504.16054|π0.5]]) — open-source weights, flow-matching action heads, cross-embodiment transfer; **World-Model-Augmented** ([[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]]) — adding video/latent prediction for physics grounding; **Self-Evolving** ([[2502.05907|EvoAgent]], [[2506.24119|SPIRAL]]) — agents that improve autonomously through imagination loops and curiosity.
 
 > [!star] Canonical Papers — Start Here
 > - [[2212.06817|RT-1]] — Proof that Transformers work for robot control; the foundational VLA
@@ -196,7 +196,7 @@ VLA design choices break into three axes:
 - ==Discrete== — action tokens predicted auto-regressively (compounding errors over long horizons)
 - ==Continuous== — floating-point values via MSE, BCE, or ==Flow Matching== (better temporal coherence)
 
-==Flow Matching== has emerged as the dominant continuous-action recipe: [[2410.24164|π0]] established it for VLAs, [[2503.20314|Wan]] scaled it for video-conditioned generation, [[2504.18471|Action Flow Matching]] adapted it for continual robot learning, and [[2505.05470|Flow-GRPO]] showed RL fine-tuning works directly on flow-matching policies — closing the loop between flow-matching SFT and RL post-training.
+==Flow Matching== has emerged as the dominant continuous-action recipe: [[2410.24164|π0]] established it for VLAs, [[2503.20314|Wan]] scaled it for video-conditioned generation, [[2504.18471|Action-Flow-Matching]] adapted it for continual robot learning, and [[2505.05470|Flow-GRPO]] showed RL fine-tuning works directly on flow-matching policies — closing the loop between flow-matching SFT and RL post-training.
 
 > [!abstract] Current SOTA Configuration (2026)
 > ==Policy Head fusion + Continuous Action Space + Flow-Matching action expert + MoE backbone== — best trade-off between reasoning capacity, throughput, and zero-shot generalization. Frontier exemplars: [[2604.15483|π0.7]] (steerable generalist), [[2602.15922|DreamZero]] (joint video+action 14B WAM), [[2602.10098|VLA-JEPA]] (latent world model + flow head), and [[2603.16666|Fast-WAM]] (training-time video, deployment-time speed).
@@ -241,8 +241,8 @@ Researcher → Data → Training → Simulation → Deployment
 
 | Component | Tool | Role |
 |-----------|------|------|
-| **Data** | [[2310.08864\|Open X-Embodiment]] | 1M+ cross-embodiment trajectories for pre-training |
-| **Training Framework** | [LeRobot (HuggingFace)](https://github.com/huggingface/lerobot) | End-to-end training pipeline for VLAs ([[2406.09246\|OpenVLA]], ACT, [[2303.04137\|Diffusion Policy]]) |
+| **Data** | [[2310.08864\|Open-X-Embodiment]] | 1M+ cross-embodiment trajectories for pre-training |
+| **Training Framework** | [LeRobot (HuggingFace)](https://github.com/huggingface/lerobot) | End-to-end training pipeline for VLAs ([[2406.09246\|OpenVLA]], ACT, [[2303.04137\|Diffusion-Policy]]) |
 | **Simulation** | [Genesis](https://genesis-world.readthedocs.io/en/latest/), [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics) | Physics-accurate simulation for verification before real-world deployment |
 | **Hardware** | [SO-100](https://github.com/TheRobotStudio/SO-ARM100) (~$100) | Low-cost robot arm for real-world testing and deployment |
 
@@ -259,7 +259,7 @@ Researcher → Data → Training → Simulation → Deployment
 #### Building a WAM (Quick Recipe)
 
 1. **Choose your prediction space** — Pixel (richest but slowest), Latent (fastest), or Action-only (most efficient)
-2. **Pick a backbone** — Video diffusion ([[2501.03575|Cosmos]] / [[2602.15922|DreamZero]]), JEPA ([[2506.09985|V-JEPA 2]]), or RSSM ([[1912.01603|Dreamer]] lineage)
+2. **Pick a backbone** — Video diffusion ([[2501.03575|Cosmos]] / [[2602.15922|DreamZero]]), JEPA ([[2506.09985|V-JEPA-2]]), or RSSM ([[1912.01603|Dreamer]] lineage)
 3. **Pre-train on video** — internet-scale video teaches physics priors
 4. **Decide test-time strategy** — Full imagination (robust but 4.8x slower) or training-only video ([[2603.16666|Fast-WAM]] approach)
 5. **Add action decoding** — Flow matching or inverse dynamics from predicted states
@@ -273,7 +273,7 @@ Researcher → Data → Training → Simulation → Deployment
 
 Both VLAs and WAMs can be made self-evolving — autonomously discovering failure modes and improving through experience. Three paths to self-evolution:
 
-1. **RL Fine-Tuning** (VLA path): Apply reinforcement learning after initial imitation learning. The VLA explores, receives task-success reward, and adapts its policy. Simple and effective — VLAs are naturally resistant to catastrophic forgetting ([[2603.03818|VLA Continual Learning]]). Best for: in-domain improvement.
+1. **RL Fine-Tuning** (VLA path): Apply reinforcement learning after initial imitation learning. The VLA explores, receives task-success reward, and adapts its policy. Simple and effective — VLAs are naturally resistant to catastrophic forgetting ([[2603.03818|VLA-Continual-Learning]]). Best for: in-domain improvement.
 2. **Imagination Loops** (WAM path): The world model generates synthetic "dream" rollouts. The policy trains on dreams, improving without real-world interaction. [[2506.24119|SPIRAL]] and [[2502.05907|EvoAgent]] show this creates positive feedback loops. Best for: safe exploration, data-scarce settings.
 3. **Curiosity-Driven Exploration**: The agent actively seeks states where its world model is uncertain ([[2503.01584|SENSEI]]) or where an adversary finds failures ([[2412.02818|RoboMD]]). This creates a self-directed curriculum that focuses practice on the agent's weaknesses.
 
@@ -310,54 +310,54 @@ The critical prerequisite for all three paths: **the agent must first detect tha
 Landscape reviews for going deeper, grouped by theme. These broad surveys span the whole field rather than any single mechanism deep-dive — start here when you want a wide map before drilling into a specific note.
 
 **The embodied field**
-- [[2507.10087|Foundation Robotics Review]] — comprehensive review of foundation models (LLMs/VLMs/VLAs) across the robotics stack, from perception to control.
-- [[2605.02900|Safety in Embodied AI Survey]] — multi-level taxonomy of risks, attacks, and defenses unique to AI that acts in the physical world.
-- [[2510.04978|Physical AI Survey]] — surveys physical understanding across perception, reasoning, modeling, and interaction, asking why models learn correlation rather than causal physics.
-- [[2407.06886|Aligning Cyber Space with Physical World]] — broad post-2023 embodied-AI survey covering MLMs, world models, datasets, simulators, and embodied agents.
-- [[2602.04411|Self-evolving Embodied AI]] — reviews agents that adapt autonomously in open, in-the-wild settings beyond fixed human-crafted configurations.
-- [[2505.07634|Neural Brain Framework]] — neuroscience-inspired blueprint for a central intelligence system unifying perception, memory, and control in embodied agents.
-- [[2212.14020|System-Level OOD Robotics]] — frames out-of-distribution data as a whole-stack robotics problem of safety in feedback loops, not just per-model robustness.
-- [[2301.11972|Social Cues HRI Survey]] — how robots can recognize their own task failures from human social cues during interaction — the prerequisite for self-correction.
-- [[2508.10399|Large-Model Embodied AI Survey]] — surveys large-model-empowered embodied AI across hierarchical and end-to-end decision-making and embodied-learning paradigms, naming data scarcity and the sim-to-real gap.
-- [[2506.24044|VLA4AD Survey]] — first structured overview of Vision-Language-Action models for autonomous driving (VLA4AD), categorizing 20+ models with their architectures, datasets, and challenges.
-- [[2504.02477|Multimodal Fusion & VLM Survey]] — reviews multimodal fusion and VLMs for robot vision across 3D object detection, navigation, SLAM, and manipulation.
-- [[2502.15336|Embodied Multimodal LLMs Survey]] — full-stack review of Embodied Multimodal Large Models (EMLMs), spanning foundation models, embodied perception/navigation/interaction, datasets, and simulators.
-- [[2408.03539|Deep RL for Robotics Survey]] — surveys real-world deep-RL successes in robotics with a novel taxonomy and a "Level of Real-World Success" metric assessing DRL maturity.
-- [[2606.07017|FM Agent Sim-to-Real Gap]] — recasts foundation-model agent robustness as a classical sim-to-real gap, dissecting observation/action/transition/reward discrepancies under a unified MDP perspective.
-- [[2504.09848|LLM Spatial Intelligence Survey]] — surveys LLM-powered spatial intelligence across scales, leading with embodied agents and linking cognitive-science principles to spatial-reasoning implementations.
+- [[2507.10087|Foundation-Robotics-Review]] — comprehensive review of foundation models (LLMs/VLMs/VLAs) across the robotics stack, from perception to control.
+- [[2605.02900|Safety-in-Embodied-AI-Survey]] — multi-level taxonomy of risks, attacks, and defenses unique to AI that acts in the physical world.
+- [[2510.04978|Physical-AI-Survey]] — surveys physical understanding across perception, reasoning, modeling, and interaction, asking why models learn correlation rather than causal physics.
+- [[2407.06886|Aligning-Cyber-Space-with-Physical-World]] — broad post-2023 embodied-AI survey covering MLMs, world models, datasets, simulators, and embodied agents.
+- [[2602.04411|Self-evolving-Embodied-AI]] — reviews agents that adapt autonomously in open, in-the-wild settings beyond fixed human-crafted configurations.
+- [[2505.07634|Neural-Brain-Framework]] — neuroscience-inspired blueprint for a central intelligence system unifying perception, memory, and control in embodied agents.
+- [[2212.14020|System-Level-OOD-Robotics]] — frames out-of-distribution data as a whole-stack robotics problem of safety in feedback loops, not just per-model robustness.
+- [[2301.11972|Social-Cues-HRI-Survey]] — how robots can recognize their own task failures from human social cues during interaction — the prerequisite for self-correction.
+- [[2508.10399|Large-Model-Embodied-AI-Survey]] — surveys large-model-empowered embodied AI across hierarchical and end-to-end decision-making and embodied-learning paradigms, naming data scarcity and the sim-to-real gap.
+- [[2506.24044|VLA4AD-Survey]] — first structured overview of Vision-Language-Action models for autonomous driving (VLA4AD), categorizing 20+ models with their architectures, datasets, and challenges.
+- [[2504.02477|Multimodal-Fusion-&-VLM-Survey]] — reviews multimodal fusion and VLMs for robot vision across 3D object detection, navigation, SLAM, and manipulation.
+- [[2502.15336|Embodied-Multimodal-LLMs-Survey]] — full-stack review of Embodied Multimodal Large Models (EMLMs), spanning foundation models, embodied perception/navigation/interaction, datasets, and simulators.
+- [[2408.03539|Deep-RL-for-Robotics-Survey]] — surveys real-world deep-RL successes in robotics with a novel taxonomy and a "Level of Real-World Success" metric assessing DRL maturity.
+- [[2606.07017|FM-Agent-Sim-to-Real-Gap]] — recasts foundation-model agent robustness as a classical sim-to-real gap, dissecting observation/action/transition/reward discrepancies under a unified MDP perspective.
+- [[2504.09848|LLM-Spatial-Intelligence-Survey]] — surveys LLM-powered spatial intelligence across scales, leading with embodied agents and linking cognitive-science principles to spatial-reasoning implementations.
 
 **Manipulation & skill learning**
-- [[2504.08438|Diffusion for Manipulation Survey]] — first comprehensive survey of diffusion models in robotic manipulation, classifying applications, architectures, and adaptations for multi-modal distribution modeling.
-- [[2503.09829|SE(3)-Equivariant Survey]] — tutorial survey of SE(3)-equivariant methods in robot learning, showing how 3D symmetries improve data efficiency, generalization, and robustness in manipulation.
-- [[2503.03464|GenAI in Manipulation Survey]] — surveys generative AI in robotic manipulation, covering data synthesis, LLM task decomposition, and grasp/trajectory policy generation across operational layers.
-- [[2507.05906|Feature vs GAN LfD Survey]] — compares feature-based vs GAN-based learning-from-demonstration, framing principled method selection by task priorities like fidelity vs diversity.
-- [[2408.11537|Object-Centric Manipulation Survey]] — surveys embodied learning for object-centric manipulation, categorizing methods into perceptual, policy, and task-oriented learning.
-- [[2510.10903|Manipulation Survey 2025]] — unifies the fragmented robot-manipulation field under new taxonomies for high-level planning, low-level learning-based control, and key data/generalization bottlenecks.
-- [[2512.11908|Contact-Rich Safe Learning Survey]] — first safety-centric survey of learning-based contact-rich manipulation, with a taxonomy over learning phase, sensing modality, and enforcement space spanning classical control to safe foundation models.
+- [[2504.08438|Diffusion-for-Manipulation-Survey]] — first comprehensive survey of diffusion models in robotic manipulation, classifying applications, architectures, and adaptations for multi-modal distribution modeling.
+- [[2503.09829|SE3-Equivariant-Survey]] — tutorial survey of SE(3)-equivariant methods in robot learning, showing how 3D symmetries improve data efficiency, generalization, and robustness in manipulation.
+- [[2503.03464|GenAI-in-Manipulation-Survey]] — surveys generative AI in robotic manipulation, covering data synthesis, LLM task decomposition, and grasp/trajectory policy generation across operational layers.
+- [[2507.05906|Feature-vs-GAN-LfD-Survey]] — compares feature-based vs GAN-based learning-from-demonstration, framing principled method selection by task priorities like fidelity vs diversity.
+- [[2408.11537|Object-Centric-Manipulation-Survey]] — surveys embodied learning for object-centric manipulation, categorizing methods into perceptual, policy, and task-oriented learning.
+- [[2510.10903|Manipulation-Survey-2025]] — unifies the fragmented robot-manipulation field under new taxonomies for high-level planning, low-level learning-based control, and key data/generalization bottlenecks.
+- [[2512.11908|Contact-Rich-Safe-Learning-Survey]] — first safety-centric survey of learning-based contact-rich manipulation, with a taxonomy over learning phase, sensing modality, and enforcement space spanning classical control to safe foundation models.
 
 **Navigation & mapping**
-- [[2505.01458|Nav & Manip Physics-Sim Survey]] — analyzes how low-level physics-simulator properties shape robotic navigation and manipulation performance and sim-to-real transfer, guiding simulator selection.
-- [[2504.15643|Goal-Oriented Nav Survey]] — introduces "inference domains" to categorize multimodal perception for goal-oriented navigation (PointNav, ObjectNav), highlighting sim-to-real challenges.
-- [[2501.05750|Semantic Mapping Survey]] — systematic survey of semantic mapping in indoor embodied AI with a two-axis taxonomy over map structures and semantic encodings.
-- [[2108.11544|VLN Survey & Taxonomy]] — introduces a taxonomy for Vision-Language Navigation (VLN) that classifies tasks by language-instruction characteristics, mapping methodologies and open directions.
+- [[2505.01458|Nav-&-Manip-Physics-Sim-Survey]] — analyzes how low-level physics-simulator properties shape robotic navigation and manipulation performance and sim-to-real transfer, guiding simulator selection.
+- [[2504.15643|Goal-Oriented-Nav-Survey]] — introduces "inference domains" to categorize multimodal perception for goal-oriented navigation (PointNav, ObjectNav), highlighting sim-to-real challenges.
+- [[2501.05750|Semantic-Mapping-Survey]] — systematic survey of semantic mapping in indoor embodied AI with a two-axis taxonomy over map structures and semantic encodings.
+- [[2108.11544|VLN-Survey-&-Taxonomy]] — introduces a taxonomy for Vision-Language Navigation (VLN) that classifies tasks by language-instruction characteristics, mapping methodologies and open directions.
 
 **World models & video-as-policy**
-- [[2511.02097|WM Manipulation Survey]] — pins down what "world model" means for robotic manipulation, covering definitions, architectures, and a capability taxonomy.
-- [[2604.04974|Video-to-Control Survey]] — surveys interfaces that translate action-free temporal video into robot control, sidestepping costly action-labeled demos.
-- [[2603.28489|Video Gen as WM Survey]] — efficiency-focused review of video generation models as world simulators, spanning paradigms, architectures, and algorithms for scalable video WMs.
-- [[2604.22748|Agentic World Modeling Survey]] — unifies "world model" across fields into foundations, capabilities, and scaling laws, with emphasis on agentic applications.
-- [[2411.14499|World Models Survey]] — broad survey framed around the central debate: does a world model understand the present state or predict the future?
-- [[2506.20134|3D World Models Survey]] — traces the shift from 2D-visual world models to 3D-cognitive ones that simulate motion, contact, and causal reasoning.
-- [[2602.01630|Unified World Model Framework]] — argues world-model research is more than injecting knowledge into task-specific systems; proposes a unified, exploration-driven framing.
-- [[2504.21853|Interactive Generative Video Survey]] — frames interactive generative video across gaming, embodied AI, and autonomous driving via five modules (Generation, Control, Memory, Dynamics, Intelligence) — a video-as-controllable-policy taxonomy.
+- [[2511.02097|WM-Manipulation-Survey]] — pins down what "world model" means for robotic manipulation, covering definitions, architectures, and a capability taxonomy.
+- [[2604.04974|Video-to-Control-Survey]] — surveys interfaces that translate action-free temporal video into robot control, sidestepping costly action-labeled demos.
+- [[2603.28489|Video-Gen-as-WM-Survey]] — efficiency-focused review of video generation models as world simulators, spanning paradigms, architectures, and algorithms for scalable video WMs.
+- [[2604.22748|Agentic-World-Modeling-Survey]] — unifies "world model" across fields into foundations, capabilities, and scaling laws, with emphasis on agentic applications.
+- [[2411.14499|World-Models-Survey]] — broad survey framed around the central debate: does a world model understand the present state or predict the future?
+- [[2506.20134|3D-World-Models-Survey]] — traces the shift from 2D-visual world models to 3D-cognitive ones that simulate motion, contact, and causal reasoning.
+- [[2602.01630|Unified-World-Model-Framework]] — argues world-model research is more than injecting knowledge into task-specific systems; proposes a unified, exploration-driven framing.
+- [[2504.21853|Interactive-Generative-Video-Survey]] — frames interactive generative video across gaming, embodied AI, and autonomous driving via five modules (Generation, Control, Memory, Dynamics, Intelligence) — a video-as-controllable-policy taxonomy.
 
 **3D & simulation for robotics**
-- [[2512.03422|3D Scene Rep Survey]] — compares geometric, neural (NeRF/3DGS), and foundation-model 3D scene representations across robotic perception, mapping, and manipulation.
-- [[2604.26509|3D Generation for Embodied AI Survey]] — surveys 3D content generation for simulation-ready, physically accurate assets, not just visual realism or static geometry.
-- [[2504.13159|Digital Twin Survey]] — reviews digital-twin generation from visual data, centering 3D Gaussian Splatting as a unifying representation that captures geometry, appearance, dynamics, physics, and semantics.
+- [[2512.03422|3D-Scene-Rep-Survey]] — compares geometric, neural (NeRF/3DGS), and foundation-model 3D scene representations across robotic perception, mapping, and manipulation.
+- [[2604.26509|3D-Generation-for-Embodied-AI-Survey]] — surveys 3D content generation for simulation-ready, physically accurate assets, not just visual realism or static geometry.
+- [[2504.13159|Digital-Twin-Survey]] — reviews digital-twin generation from visual data, centering 3D Gaussian Splatting as a unifying representation that captures geometry, appearance, dynamics, physics, and semantics.
 
 **Multi-robot**
-- [[2604.00061|R2X Multi-Robot MLLM Survey]] — surveys multi-robot networks driven by MLLMs, joining sensing, communication, and computation for language-grounded coordination.
+- [[2604.00061|R2X-Multi-Robot-MLLM-Survey]] — surveys multi-robot networks driven by MLLMs, joining sensing, communication, and computation for language-grounded coordination.
 
 ## Cross-References
 

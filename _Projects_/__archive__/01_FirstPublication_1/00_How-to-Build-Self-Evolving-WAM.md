@@ -30,7 +30,7 @@ aliases:
 
 | Failure Mode | Evidence | Impact |
 |-------------|----------|--------|
-| **Visual brittleness** | VLAs fail under camera/lighting/background perturbations; WAMs are robust but ==4.8× slower== ([[2603.22078\|WAM vs VLA Robustness]]) | Deployed robots break in new lighting conditions |
+| **Visual brittleness** | VLAs fail under camera/lighting/background perturbations; WAMs are robust but ==4.8× slower== ([[2603.22078\|WAM-vs-VLA-Robustness]]) | Deployed robots break in new lighting conditions |
 | **Spatial overfitting** | VLAs map object names to ==fixed training locations==, not abstract identities — only 9% on novel compositions ([[2505.03500\|TLI]]) | Cannot generalize to rearranged workspaces |
 | **Stage hallucination** | VLAs report false progress based on superficial visual cues, not actual task completion ([[2511.16166\|EvoVLA]]) | Multi-step tasks silently fail partway through |
 | **Detail-task ceiling** | Best VLA achieves ==only 24.9%== on detail-oriented manipulation tasks ([[2601.11421\|GM-100]]) | Precision tasks (assembly, tool-use) remain unsolved |
@@ -42,7 +42,7 @@ Two deeper structural problems emerge even with abundant data:
 
 1. **World model over-optimism**: [[2602.12063|VLAW]] showed that world models trained only on successful demonstrations generate ==overly optimistic synthetic rollouts==, failing to predict failure modes. The world model must experience and learn from failures — which requires ongoing interaction, not just more training data.
 
-2. **Catastrophic forgetting under task expansion**: Even with diverse pre-training, VLAs still lose capabilities when fine-tuned on new tasks. [[2603.03818|VLA Continual Learning]] found that ==experience replay is still required== to maintain past skills, and [[2505.23705|Knowledge Insulation VLA]] showed that gradient interference during fine-tuning actively degrades the VLM backbone's knowledge.
+2. **Catastrophic forgetting under task expansion**: Even with diverse pre-training, VLAs still lose capabilities when fine-tuned on new tasks. [[2603.03818|VLA-Continual-Learning]] found that ==experience replay is still required== to maintain past skills, and [[2505.23705|Knowledge-Insulation-VLA]] showed that gradient interference during fine-tuning actively degrades the VLM backbone's knowledge.
 
 ### The Self-Evolution Thesis
 
@@ -127,7 +127,7 @@ This is the most practical innovation missing from current WAM architectures. Al
 - Use prediction confidence to decide ==when and how much== to imagine
 - High confidence → skip imagination, act directly (VLA-speed)
 - Low confidence → deep imagination (WAM-quality)
-- This bridges the speed-quality gap identified in [[2603.22078|WAM vs VLA Robustness]]
+- This bridges the speed-quality gap identified in [[2603.22078|WAM-vs-VLA-Robustness]]
 
 **Mechanism 3: Fast-WAM Inference (from [[2603.16666|Fast-WAM]])**
 - Use video generation objectives at ==training time only==
@@ -161,7 +161,7 @@ This is the most practical innovation missing from current WAM architectures. Al
 
 | Paper | What to Borrow | Why |
 |-------|----------------|-----|
-| [[2506.09985\|V-JEPA 2]] | Action-free pretraining → action-conditioned fine-tuning | Learn general physics from massive unlabeled datasets before conditioning on agent actions |
+| [[2506.09985\|V-JEPA-2]] | Action-free pretraining → action-conditioned fine-tuning | Learn general physics from massive unlabeled datasets before conditioning on agent actions |
 | [[2603.23376\|ABot-PhysWorld]] | ==Diffusion-DPO== for physics alignment | Explicitly suppress physically impossible predictions (object penetration, anti-gravity) |
 | [[2409.18964\|PhysGen]] | Physics simulation pipeline | Infers physical parameters from video, simulates with rigid-body engine, refines with diffusion — provides grounding for physically plausible motion |
 | [[2310.06114\|UniSim]] | Universal interactive simulation | Provides grounding for what physically plausible futures look like |
@@ -178,7 +178,7 @@ This is the most practical innovation missing from current WAM architectures. Al
 |-----------|--------|-----|
 | Refining known manipulation skills | ==Gradient descent== (actor-critic in latent space, like DreamerV3) | Converges faster, less compute |
 | Discovering novel action strategies | ==Population-based evolution== (5-10 variants, not 50) | Escapes local optima, finds unconventional solutions |
-| Adapting to new embodiment | ==Knowledge insulation== ([[2505.23705\|Knowledge Insulation VLA]]) | Preserves backbone knowledge while adapting action head |
+| Adapting to new embodiment | ==Knowledge insulation== ([[2505.23705\|Knowledge-Insulation-VLA]]) | Preserves backbone knowledge while adapting action head |
 | Online deployment | ==Forward-update== (Inner Loop) | No training compute needed |
 
 **The Actor-Critic Design (from [[2301.04104|DreamerV3]]):**
@@ -241,7 +241,7 @@ $$R_{\text{intrinsic}} = \text{Var}\left(\hat{s}_{t+1}^{(1)}, \ldots, \hat{s}_{t
 - ==Task-Aware Prompt Gradient Projection==: project new gradients orthogonally to weights critical for past tasks
 
 > [!tip] The VLA Surprise
-> Two independent studies ([[2603.11653|VLA RL Continual Learning]], [[2603.03818|VLA Continual Learning]]) found that VLAs pre-trained on diverse data are *naturally resistant* to catastrophic forgetting. Simple sequential fine-tuning works. This suggests WAMs with diverse pre-training may also resist forgetting more than expected — ==test this assumption empirically before adding complex CL mechanisms==.
+> Two independent studies ([[2603.11653|VLA-RL-Continual-Learning]], [[2603.03818|VLA-Continual-Learning]]) found that VLAs pre-trained on diverse data are *naturally resistant* to catastrophic forgetting. Simple sequential fine-tuning works. This suggests WAMs with diverse pre-training may also resist forgetting more than expected — ==test this assumption empirically before adding complex CL mechanisms==.
 
 ---
 
@@ -298,8 +298,8 @@ Ideas that translate to WAMs:
 
 | Agent Mechanism | WAM Translation | Source |
 |-----------------|-----------------|--------|
-| Self-rewarding (model judges own output) | Imaginer judges own prediction quality via consistency checks | [[2401.10020\|Self-Rewarding LM]] |
-| Zero-data self-play (model proposes + solves tasks) | Imaginer proposes novel physics scenarios, Actor solves them | [[2505.03335\|Absolute Zero]] |
+| Self-rewarding (model judges own output) | Imaginer judges own prediction quality via consistency checks | [[2401.10020\|Self-Rewarding-LM]] |
+| Zero-data self-play (model proposes + solves tasks) | Imaginer proposes novel physics scenarios, Actor solves them | [[2505.03335\|Absolute-Zero]] |
 | Experience lifecycle (distill trajectories into principles) | Distill successful co-evolution rounds into "physics principles" stored in memory | [[2510.16079\|EVOLVER]] |
 | Stage-aligned reward (different rewards per learning phase) | Different curiosity signals for exploration vs exploitation phases | [[2511.16166\|EvoVLA]] |
 | Socratic self-debate (model debates itself) | Imaginer ensemble debates physics predictions; disagreement = learning signal | [[2509.24726\|Socratic-Zero]] |
@@ -329,7 +329,7 @@ Ideas that translate to WAMs:
 | DriveDreamer-2 | LLM as scenario injector — generate diverse edge-case conditions |
 
 > [!tip] From LLM Auto-Curriculum to Robotics
-> [[2505.03335|Absolute Zero]] showed models can propose their own tasks, solve them, and verify via code — with zero human data. The WAM equivalent: the Imaginer proposes novel physics scenarios (e.g., "what happens if this object is heavier?"), the Actor attempts them, and a physics engine verifies plausibility. This creates a fully autonomous curriculum.
+> [[2505.03335|Absolute-Zero]] showed models can propose their own tasks, solve them, and verify via code — with zero human data. The WAM equivalent: the Imaginer proposes novel physics scenarios (e.g., "what happens if this object is heavier?"), the Actor attempts them, and a physics engine verifies plausibility. This creates a fully autonomous curriculum.
 
 ---
 
@@ -353,7 +353,7 @@ Ideas that translate to WAMs:
 
 **Borrowing from LLM self-evolution:**
 - [[2504.16084|TTRL]]: Majority-vote consensus as pseudo-reward — when all sampled rollouts agree, the model has converged on that scenario
-- [[2412.01951|Sharpening Mechanism]]: Formalizes self-improvement as "sharpening" — theoretical framework explaining when and why self-training converges
+- [[2412.01951|Sharpening-Mechanism]]: Formalizes self-improvement as "sharpening" — theoretical framework explaining when and why self-training converges
 
 ---
 
@@ -376,7 +376,7 @@ Ideas that translate to WAMs:
 
 | Dataset | Scale | Why Use It |
 |---------|-------|-----------|
-| [[2310.08864\|OXE / RT-X]] | 1M+ trajectories, 22 embodiments | Cross-embodiment foundation; positive transfer across platforms |
+| [[2310.08864\|OXE-/-RT-X]] | 1M+ trajectories, 22 embodiments | Cross-embodiment foundation; positive transfer across platforms |
 | [[2405.12213\|Octo]] | 800K trajectories (OXE subset) | Proven generalist baseline; ~100 in-domain demos for fine-tuning |
 | [[2307.00595\|RH20T]] | 110K+ sequences, 147 tasks | Multi-modal (RGB, depth, tactile, force-torque, audio) — critical for contact-rich world modeling |
 | [[2412.13877\|RoboMIND]] | 107K trajectories, 479 tasks | ==5,000 failure demonstrations with documented causes== — failure data is essential for honest world models |
@@ -444,7 +444,7 @@ Edge cases are where self-evolving WAMs differentiate from static models — the
 - World model must predict at sub-millimeter spatial resolution for these scenarios
 
 **Out-of-Distribution Environments:**
-- Camera/lighting/background shifts cause >65% performance drops ([[2603.22078|WAM vs VLA Robustness]])
+- Camera/lighting/background shifts cause >65% performance drops ([[2603.22078|WAM-vs-VLA-Robustness]])
 - Strategy: The ==Outer Loop auto-curriculum== should explicitly generate visual perturbations as training scenarios
 - Domain randomization in simulation covers known perturbation axes; the world model handles novel ones through test-time adaptation (Inner Loop)
 
@@ -546,11 +546,11 @@ Edge cases are where self-evolving WAMs differentiate from static models — the
 
 | Paper | Borrowable Insight |
 |-------|-------------------|
-| [[2505.03335\|Absolute Zero]] | Zero-data self-play: propose + solve + verify with no human data |
+| [[2505.03335\|Absolute-Zero]] | Zero-data self-play: propose + solve + verify with no human data |
 | [[2504.16084\|TTRL]] | Majority-vote consensus as pseudo-reward for RL self-improvement |
 | [[2601.06794\|ECHO]] | Policy + critic co-evolve; saturation-aware reward prevents stale feedback |
 | [[2510.16079\|EVOLVER]] | Distill trajectories into strategic principles |
-| [[2401.10020\|Self-Rewarding LM]] | Model judges own output quality |
+| [[2401.10020\|Self-Rewarding-LM]] | Model judges own output quality |
 | [[2509.24726\|Socratic-Zero]] | Data-free self-debate for reasoning improvement |
 | [[2511.16166\|EvoVLA]] | Stage-aligned reward + long-horizon memory |
 
@@ -558,8 +558,8 @@ Edge cases are where self-evolving WAMs differentiate from static models — the
 
 | Paper | Role |
 |-------|------|
-| [[2603.11653\|VLA RL Continual Learning]] | VLAs naturally resist forgetting under sequential fine-tuning |
-| [[2603.03818\|VLA Continual Learning]] | Confirms forgetting resistance; simple methods suffice |
+| [[2603.11653\|VLA-RL-Continual-Learning]] | VLAs naturally resist forgetting under sequential fine-tuning |
+| [[2603.03818\|VLA-Continual-Learning]] | Confirms forgetting resistance; simple methods suffice |
 | [[2603.23376\|ABot-PhysWorld]] | Diffusion-DPO for physics-aligned generation |
 | [[2602.08236\|AVIC]] | Adaptive imagination: when and how much to imagine |
 | [[2603.16666\|Fast-WAM]] | Training-time video, test-time speed |
@@ -568,10 +568,10 @@ Edge cases are where self-evolving WAMs differentiate from static models — the
 
 | Paper | Role |
 |-------|------|
-| [[1803.10122\|World Models]] | Encoder + dynamics + controller architecture (Ha & Schmidhuber) |
+| [[1803.10122\|World-Models]] | Encoder + dynamics + controller architecture (Ha & Schmidhuber) |
 | [[2301.04104\|DreamerV3]] | Actor-critic in latent space; fixed hyperparameters across 150+ tasks |
 | [[2005.05960\|Plan2Explore]] | Ensemble disagreement as curiosity signal |
-| [[2412.01951\|Sharpening Mechanism]] | Formalizes when and why self-training converges |
+| [[2412.01951\|Sharpening-Mechanism]] | Formalizes when and why self-training converges |
 | [[1901.01753\|POET]] | Open-ended coevolution of environments + solutions |
 | [[2603.19312\|LeWM]] | Stable end-to-end JEPA; SIGReg prevents collapse; 48× faster planning; single-GPU; VoE for physics understanding |
 | [[1612.00796\|EWC]] | Elastic Weight Consolidation; protect critical weights via Fisher information |
@@ -590,8 +590,8 @@ Edge cases are where self-evolving WAMs differentiate from static models — the
 
 | Paper | Role |
 |-------|------|
-| [[2603.11653\|VLA RL Continual Learning]] | VLAs naturally resist forgetting under sequential fine-tuning |
-| [[2603.03818\|VLA Continual Learning]] | Confirms forgetting resistance; simple methods suffice |
+| [[2603.11653\|VLA-RL-Continual-Learning]] | VLAs naturally resist forgetting under sequential fine-tuning |
+| [[2603.03818\|VLA-Continual-Learning]] | Confirms forgetting resistance; simple methods suffice |
 | [[2305.13622\|SER]] | Strong Experience Replay; uses current data as "future experiences" via forward consistency loss |
 | [[2112.15402\|RER]] | Relational Experience Replay; bi-level stability-plasticity |
 | [[2411.13852\|ESRM]] | Entropy selection + similarity maximization for synthetic data quality in online CL |
@@ -604,18 +604,18 @@ Edge cases are where self-evolving WAMs differentiate from static models — the
 
 | Paper | What It Shows |
 |-------|--------------|
-| [[2603.22078\|WAM vs VLA Robustness]] | VLAs brittle to perturbations; WAMs robust but 4.8× slower — static models face speed-quality tradeoff |
+| [[2603.22078\|WAM-vs-VLA-Robustness]] | VLAs brittle to perturbations; WAMs robust but 4.8× slower — static models face speed-quality tradeoff |
 | [[2505.03500\|TLI]] | VLAs spatially overfit: 9% on novel compositions → 83% with latent intervention |
 | [[2511.16166\|EvoVLA]] | Stage hallucination + fragile memory in long-horizon tasks; self-evolution reduces hallucination by 23.7pp |
 | [[2601.11421\|GM-100]] | Best VLA achieves only 24.9% on detail-oriented tasks |
 | [[2212.06817\|RT-1]] | 17 months of 13-robot data → 76% on unseen tasks; data scaling plateaus |
-| [[2505.23705\|Knowledge Insulation VLA]] | Gradient interference degrades VLM knowledge during fine-tuning |
+| [[2505.23705\|Knowledge-Insulation-VLA]] | Gradient interference degrades VLM knowledge during fine-tuning |
 
 ### Data & Simulation
 
 | Paper | Role |
 |-------|------|
-| [[2310.08864\|OXE / RT-X]] | 1M+ cross-embodiment trajectories; foundation dataset for VLA pre-training |
+| [[2310.08864\|OXE-/-RT-X]] | 1M+ cross-embodiment trajectories; foundation dataset for VLA pre-training |
 | [[2405.12213\|Octo]] | Generalist robot policy on OXE; ~100 in-domain demos for fine-tuning |
 | [[2307.00595\|RH20T]] | 110K multi-modal sequences (RGB, depth, tactile, force-torque); contact-rich grounding |
 | [[2412.13877\|RoboMIND]] | 107K trajectories with 5,000 failure demos + frame-level language annotations |

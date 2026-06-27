@@ -36,7 +36,7 @@ aliases:
 
 | Failure Scenario | Evidence | Gap |
 |-----------------|----------|-----|
-| **Visual/spatial perturbations** | [[2603.22078\|WAM vs VLA Robustness]]: π0.5 drops to ==58.6%== on RoboTwin 2.0-Plus; [[2510.03827\|LIBERO-PRO]]: VLAs collapse from >90% to ==near 0%== under minor perturbations; [[2602.06556\|LIBERO-X]]: only ==39.4%== at easiest level | Fast-WAM never tested; VLA-JEPA has 79.5% LIBERO-Plus but untested on PRO/X |
+| **Visual/spatial perturbations** | [[2603.22078\|WAM-vs-VLA-Robustness]]: π0.5 drops to ==58.6%== on RoboTwin 2.0-Plus; [[2510.03827\|LIBERO-PRO]]: VLAs collapse from >90% to ==near 0%== under minor perturbations; [[2602.06556\|LIBERO-X]]: only ==39.4%== at easiest level | Fast-WAM never tested; VLA-JEPA has 79.5% LIBERO-Plus but untested on PRO/X |
 | **Language paraphrase** | [[2603.28301\|LIBERO-Para]]: ==22.8-51.9pp drops== from paraphrased instructions alone | Both untested — do they overfit to instruction phrasing? |
 | **Detail-oriented tasks** | [[2601.11421\|GM-100]]: best VLA achieves only ==24.9%== on detail-oriented manipulation | Both untested on GM-100 |
 | **Novel compositions** | [[2505.03500\|TLI]]: only ==9%== on novel spatial compositions | Structural limitation of all static models |
@@ -293,7 +293,7 @@ This is validation, not training. Should take hours, not days.
 | **PLD recovery data** | Recovery trajectories from failure states | [[2511.00091\|PLD]] + [[2510.25889\|πRL]] RL specialists generate these |
 | **Dream rollouts** | Future-state imagination | World model generates from diverse initial conditions (Fast-WAM: Video DiT pixel dreams; VLA-JEPA: V-JEPA2 latent dreams) |
 | **Autonomous rollouts** | Diverse self-play including failures | [[2603.09030\|PlayWorld]]-style deployment in sim |
-| **Replay buffer** | 2% of original [[2306.03310\|LIBERO]] demonstrations | Prevents forgetting ([[2603.03818\|VLA CL]]) |
+| **Replay buffer** | 2% of original [[2306.03310\|LIBERO]] demonstrations | Prevents forgetting ([[2603.03818\|VLA-CL]]) |
 
 ### Why NOT VLAW?
 
@@ -322,8 +322,8 @@ The original blueprint proposed three simultaneous CL mechanisms: EWC, Latent Ex
 
 The strongest counter-evidence:
 
-- [[2603.11653|VLA RL Continual Learning]]: Simple LoRA fine-tuning achieves ==$<2\%$ forgetting==. Tested on [[2410.24164|π0]] (flow-matching VLA — same training paradigm as both WAMs). Complex CL methods were consistently outperformed.
-- [[2603.03818|VLA Continual Learning]]: Only ==$2\%$ replay buffer== needed for near-zero backward transfer.
+- [[2603.11653|VLA-RL-Continual-Learning]]: Simple LoRA fine-tuning achieves ==$<2\%$ forgetting==. Tested on [[2410.24164|π0]] (flow-matching VLA — same training paradigm as both WAMs). Complex CL methods were consistently outperformed.
+- [[2603.03818|VLA-Continual-Learning]]: Only ==$2\%$ replay buffer== needed for near-zero backward transfer.
 
 > [!success] The Principle
 > ==LoRA + replay buffer.== That's it. LoRA constrains updates to low-rank (preventing catastrophic changes), replay prevents forgetting, and flow matching's objective is inherently stable. No SIGReg, no EWC, no gradient projection.
@@ -339,10 +339,10 @@ The strongest counter-evidence:
 
 | Benchmark | Scale | WAMs Tested On It | Role |
 |-----------|-------|-------------------|------|
-| **[[2306.03310\|LIBERO]]** | 130 language-conditioned tasks, 7-DOF arm ([GitHub](https://github.com/Lifelong-Robot-Learning/LIBERO)) | Fast-WAM (97.6%), VLA-JEPA (97.2%), [[2601.16163\|Cosmos Policy]] (98.5%) | ==Primary benchmark== — both WAMs' target, [MuJoCo](https://mujoco.org)-based |
-| **LIBERO-Plus** ([[2603.22078\|WAM vs VLA Robustness]]) | LIBERO + 7 perturbation dimensions, 21 sub-dimensions | Fast-WAM untested; VLA-JEPA: ==79.5%==; [[2410.24164\|π0.5]] drops from 85.7% to 58.6% on perturbed RoboTwin | ==OOD evaluation== — where self-evolution should show improvement |
+| **[[2306.03310\|LIBERO]]** | 130 language-conditioned tasks, 7-DOF arm ([GitHub](https://github.com/Lifelong-Robot-Learning/LIBERO)) | Fast-WAM (97.6%), VLA-JEPA (97.2%), [[2601.16163\|Cosmos-Policy]] (98.5%) | ==Primary benchmark== — both WAMs' target, [MuJoCo](https://mujoco.org)-based |
+| **LIBERO-Plus** ([[2603.22078\|WAM-vs-VLA-Robustness]]) | LIBERO + 7 perturbation dimensions, 21 sub-dimensions | Fast-WAM untested; VLA-JEPA: ==79.5%==; [[2410.24164\|π0.5]] drops from 85.7% to 58.6% on perturbed RoboTwin | ==OOD evaluation== — where self-evolution should show improvement |
 | **[[2601.11421\|GM-100]]** | 100 detail-oriented tasks, 2 platforms | Best VLA ([[2410.24164\|π0.5]]): 24.9% | ==Detail task evaluation== — the hard frontier |
-| **[[2506.18088\|RoboTwin 2.0]]** | Bimanual, 5D domain randomization ([GitHub](https://github.com/TianxingChen/RoboTwin)) | [[2603.16666\|Fast-WAM]] (91.8%), [[2512.13030\|Motus]] (88.66%) | ==Secondary== — harder bimanual tasks |
+| **[[2506.18088\|RoboTwin-2.0]]** | Bimanual, 5D domain randomization ([GitHub](https://github.com/TianxingChen/RoboTwin)) | [[2603.16666\|Fast-WAM]] (91.8%), [[2512.13030\|Motus]] (88.66%) | ==Secondary== — harder bimanual tasks |
 | **[[2405.05941\|SimplerEnv]]** | Perturbation diagnostics ($r > 0.85$ sim-real) ([GitHub](https://github.com/simpler-env/SimplerEnv)) | [[2508.19236\|MemoryVLA]] (71.9%) | ==Diagnostic== — cheap policy ranking, detects regression |
 
 ### Training Data Sources
@@ -364,15 +364,15 @@ The strongest counter-evidence:
 
 ### Domain Randomization
 
-Following [[2506.18088|RoboTwin 2.0]]'s 5-dimension approach + [[2603.16861|MolmoBot]]'s procedural generation:
+Following [[2506.18088|RoboTwin-2.0]]'s 5-dimension approach + [[2603.16861|MolmoBot]]'s procedural generation:
 
 | Dimension | What to Randomize | Source |
 |-----------|-------------------|--------|
-| **Camera** | Position, angle, field of view | [[2506.18088\|RoboTwin 2.0]] |
-| **Lighting** | Direction, intensity, color temperature | [[2506.18088\|RoboTwin 2.0]] |
-| **Background** | Textures, distractor objects | [[2506.18088\|RoboTwin 2.0]] |
+| **Camera** | Position, angle, field of view | [[2506.18088\|RoboTwin-2.0]] |
+| **Lighting** | Direction, intensity, color temperature | [[2506.18088\|RoboTwin-2.0]] |
+| **Background** | Textures, distractor objects | [[2506.18088\|RoboTwin-2.0]] |
 | **Physics** | Object mass, friction, damping, size | Broad randomization ([[2506.12851\|KungfuBot]]-style) |
-| **Language** | Task instruction paraphrases | [[2506.18088\|RoboTwin 2.0]] |
+| **Language** | Task instruction paraphrases | [[2506.18088\|RoboTwin-2.0]] |
 | **Objects** | Geometry, texture, count (procedural) | [[2603.16861\|MolmoBot]] |
 
 > [!warning] Physics randomization supports self-discovery
@@ -428,7 +428,7 @@ Following [[2506.18088|RoboTwin 2.0]]'s 5-dimension approach + [[2603.16861|Molm
 > "Co-evolution" was [[2602.12063|VLAW]]'s term for alternating between a separate world model and policy. Both our WAMs integrate them: Fast-WAM trains jointly via MoT; VLA-JEPA unifies V-JEPA2 and the action head. There's nothing to alternate. **"Self-evolving loop"** means: the model generates its own training data through targeted failure discovery ([[2511.00091|PLD]]), adapts on-the-fly ([[2602.20057|AdaWorldPolicy]]), and distills improvements back into itself. One model evolving itself — demonstrated on two architectures.
 
 > [!question] Is this post-training research?
-> Yes. Both WAMs are already pre-trained (by their respective authors). We use their released checkpoints and apply ==post-training== methods (LoRA fine-tuning, online adaptation, targeted data generation) to extend their capabilities to OOD scenarios. Same framing as [[2511.00091|PLD]], [[2602.20057|AdaWorldPolicy]], and [[2603.11653|VLA RL CL]].
+> Yes. Both WAMs are already pre-trained (by their respective authors). We use their released checkpoints and apply ==post-training== methods (LoRA fine-tuning, online adaptation, targeted data generation) to extend their capabilities to OOD scenarios. Same framing as [[2511.00091|PLD]], [[2602.20057|AdaWorldPolicy]], and [[2603.11653|VLA-RL-CL]].
 
 ---
 
@@ -476,12 +476,12 @@ Following [[2506.18088|RoboTwin 2.0]]'s 5-dimension approach + [[2603.16861|Molm
 
 | Paper | What It Validates |
 |-------|-------------------|
-| [[2603.11653\|VLA RL Continual Learning]] | LoRA + GRPO achieves <2% forgetting on [[2410.24164\|π0]] (flow matching) — confirms our LoRA fine-tuning strategy works |
-| [[2603.03818\|VLA Continual Learning]] | Only 2% replay buffer needed — confirms replay-only CL is sufficient |
+| [[2603.11653\|VLA-RL-Continual-Learning]] | LoRA + GRPO achieves <2% forgetting on [[2410.24164\|π0]] (flow matching) — confirms our LoRA fine-tuning strategy works |
+| [[2603.03818\|VLA-Continual-Learning]] | Only 2% replay buffer needed — confirms replay-only CL is sufficient |
 | [[2504.18471\|AFM]] | Flow matching supports continual dynamics adaptation — confirms the training paradigm is compatible |
 | [[2505.05470\|Flow-GRPO]] | ODE-to-SDE conversion enables stochastic exploration in flow matching — theoretical foundation for πRL |
 | [[2505.22094\|ReinFlow]] | First online RL for flow matching robot control. Noise injection enables exploration in Franka Kitchen/RoboMimic |
-| [[2603.04029\|Self-Adapting RL]] | World model prediction residuals detect OOD without human-specified change types — validates self-directed discovery |
+| [[2603.04029\|Self-Adapting-RL]] | World model prediction residuals detect OOD without human-specified change types — validates self-directed discovery |
 | [[2510.09459\|FIPER]] | Runtime failure prediction via RND + action entropy — works with diffusion/flow matching, no failure data needed |
 
 ### OOD Evaluation Benchmarks
@@ -490,7 +490,7 @@ Following [[2506.18088|RoboTwin 2.0]]'s 5-dimension approach + [[2603.16861|Molm
 |-------|---------------|
 | [[2510.03827\|LIBERO-PRO]] | 4 perturbation dimensions (object attributes, positions, language, environment). VLAs collapse from >90% to ==near 0%== |
 | [[2602.06556\|LIBERO-X]] | 5 hierarchical difficulty levels, 600 tasks. VLAs: 39.4% at easiest level. Progressive spatial/object/instruction perturbations |
-| [[2603.22078\|WAM vs VLA Robustness]] | LIBERO-Plus: 7 perturbation dimensions, 21 sub-dims. π0.5: 58.6% on perturbed RoboTwin |
+| [[2603.22078\|WAM-vs-VLA-Robustness]] | LIBERO-Plus: 7 perturbation dimensions, 21 sub-dims. π0.5: 58.6% on perturbed RoboTwin |
 | [[2603.28301\|LIBERO-Para]] | Paraphrase robustness: 22.8-51.9pp drops from semantically equivalent instructions |
 | [[2601.11421\|GM-100]] | 100 detail-oriented tasks. Best VLA ([[2410.24164\|π0.5]]): 24.9%. The hard frontier |
 | [[2505.03500\|TLI]] | 9% on novel spatial compositions. Structural limitation of static models |
@@ -501,7 +501,7 @@ Following [[2506.18088|RoboTwin 2.0]]'s 5-dimension approach + [[2603.16861|Molm
 
 | Paper | What It Shows |
 |-------|---------------|
-| [[2603.22078\|WAM vs VLA Robustness]] | Static models face speed-quality tradeoff; both fail under distribution shift |
+| [[2603.22078\|WAM-vs-VLA-Robustness]] | Static models face speed-quality tradeoff; both fail under distribution shift |
 | [[2511.16166\|EvoVLA]] | Self-evolution reduces stage hallucination by 23.7pp |
 | [[2601.11421\|GM-100]] | Best VLA achieves only 24.9% on detail-oriented manipulation |
 | [[2602.15922\|DreamZero]] | 39.5% on unseen tasks — even 14B models struggle OOD |
@@ -512,7 +512,7 @@ Following [[2506.18088|RoboTwin 2.0]]'s 5-dimension approach + [[2603.16861|Molm
 |-------|-------------|
 | [[2603.16861\|MolmoBot]] | Procedural sim data (1.8M trajectories, MuJoCo). 79.2% real-world zero-shot |
 | [[2403.12945\|DROID]] | Diversity > scale for generalization |
-| [[2506.18088\|RoboTwin 2.0]] | 5-dimension domain randomization strategy |
+| [[2506.18088\|RoboTwin-2.0]] | 5-dimension domain randomization strategy |
 | [[2405.05941\|SimplerEnv]] | Diagnostic benchmark, $r > 0.85$ sim-real correlation |
 
 ### Architecture Context
@@ -522,7 +522,7 @@ Following [[2506.18088|RoboTwin 2.0]]'s 5-dimension approach + [[2603.16861|Molm
 | [[2603.17240\|GigaWorld-Policy]] | Action-centered WAM design, curriculum training, 9x speedup. Validates the MoT pattern |
 | [[2512.13030\|Motus]] | MoT with latent actions, tri-model joint attention. Validates the architecture class |
 | [[2506.01844\|SmolVLA]] | Layer skipping, token reduction, async inference. Future compression reference |
-| [[2601.16163\|Cosmos Policy]] | Fine-tuned foundation video model as WAM. 98.5% LIBERO, 93.6% real-world ALOHA |
+| [[2601.16163\|Cosmos-Policy]] | Fine-tuned foundation video model as WAM. 98.5% LIBERO, 93.6% real-world ALOHA |
 | [[2410.24164\|π0]] | Flow-matching VLA from Physical Intelligence. LoRA + GRPO continual learning validated on this architecture |
 
 ### Critiques Informing This Design

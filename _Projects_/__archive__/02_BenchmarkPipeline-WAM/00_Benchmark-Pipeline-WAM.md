@@ -21,9 +21,9 @@ aliases:
 > [!abstract] Purpose
 > A focused, **7-item production-ready evaluation plan** for a **video-generative World-Action Model (WAM)**. Every benchmark scores **action quality** — that's what the WAM ultimately delivers. The world model is internal scaffolding; benchmarks for WAM are still fundamentally action benchmarks. Pick #2 is the special case: it scores actions *selected via WM imagination*, which is the WAM's coupling claim.
 >
-> **WAM paradigm assumed**: video-generative ([[2601.16163|Cosmos Policy]] / [[2504.02792|UWM]] style) — predicted future *frames* are the WM output. Paradigm only affects pick #2 (joint WM+action requires the WM to emit video to be rollouted as a simulator); the other 5 axes are paradigm-agnostic.
+> **WAM paradigm assumed**: video-generative ([[2601.16163|Cosmos-Policy]] / [[2504.02792|UWM]] style) — predicted future *frames* are the WM output. Paradigm only affects pick #2 (joint WM+action requires the WM to emit video to be rollouted as a simulator); the other 5 axes are paradigm-agnostic.
 >
-> **Cross-cutting hygiene** (applies to every entry below): report inference latency alongside SR — [[2603.22078|WAM vs VLA Robustness]] shows WAMs are ≥4.8× slower than VLAs; cite [[2603.16666|Fast-WAM]] if imagination is decoupled from deploy.
+> **Cross-cutting hygiene** (applies to every entry below): report inference latency alongside SR — [[2603.22078|WAM-vs-VLA-Robustness]] shows WAMs are ≥4.8× slower than VLAs; cite [[2603.16666|Fast-WAM]] if imagination is decoupled from deploy.
 
 **Why these 7 axes.** A WAM is judged by its actions, but the path runs through *dynamics prediction* and *imagination-time planning*. The 7 axes cover the distinct failure modes on that path: (i) memorization vs generalization, (ii) WM↔action coupling, (iii) bimanual coordination, (iv) humanoid whole-body + dex, (v) long-horizon rollout, (vi) sim-to-real correlation, (vii) third-party credibility + safety.
 
@@ -51,7 +51,7 @@ Each gate has higher cost and higher credibility than the previous. Passing #1 i
 |---|------|-----------|-------------|-------|--------------------------|
 | 1 | Diagnostic gate | [[2510.03827\|LIBERO-PRO]] | Huazhong UST + Lehigh | arXiv 2025 | Is the WAM memorizing or generalizing? |
 | 2 | Joint WM+action | [[2506.00613\|WorldGym]] + [[2602.08971\|WorldArena]] + [[2601.04137\|WoW-World-Eval]] | Stanford (Liang + Yang); Tsinghua (Yong Li); PKU (Shanghang Zhang) | arXiv 2025; arXiv 2026 (leaderboard); arXiv 2026 | Does WM-mediated policy ranking transfer to real action quality, and can imagined videos be inverted to executable actions? |
-| 3 | Bimanual | [[2506.18088\|RoboTwin 2.0]] | HKU + Shanghai AI Lab + CUHK | arXiv 2025 | Can the WAM coordinate two arms? |
+| 3 | Bimanual | [[2506.18088\|RoboTwin-2.0]] | HKU + Shanghai AI Lab + CUHK | arXiv 2025 | Can the WAM coordinate two arms? |
 | 4 | Humanoid | [[2403.10506\|HumanoidBench]] | UC Berkeley + Yonsei | **RSS 2024** | Can the WAM drive a humanoid (whole-body + dex)? |
 | 5 | Long-horizon | [[2506.06677\|RoboCerebra]] | Beihang + NUS + SJTU | **NeurIPS 2025** | Can imagined rollouts survive multi-step compositional tasks? |
 | 6 | Sim-to-real (primary + supplement) | [[2405.05941\|SimplerEnv]] + [[2605.06311\|VISER]] | UCSD/Stanford/Berkeley/GDM; Nanjing U | **CoRL 2024**; arXiv 2026 | Does the sim score predict the real score? |
@@ -113,7 +113,7 @@ The only axis that scores *coupling* between the WAM's two halves. Three benchma
 > [!tip] Suite-wide joint-coupling reporting
 > Beyond the three benchmark numbers, compute a paper-internal correlation table — regress your WAM's imagined-rollout SR against its closed-loop real-robot SR across your 7-axis tasks. Per the methodological successor [Scalable Policy Evaluation with Video WMs (2511.11520)](https://arxiv.org/abs/2511.11520) (NVIDIA + U Toronto, 2025; r=0.83–0.88 synthetic, 0.687 Bridge), this self-computed coupling metric is the cleanest publishable joint-coupling claim.
 
-### 3. Bimanual coordination: [[2506.18088|RoboTwin 2.0]]
+### 3. Bimanual coordination: [[2506.18088|RoboTwin-2.0]]
 - **Institution / venue**: HKU + Shanghai AI Lab + CUHK (Ping Luo, Yao Mu) — arXiv 2025 (live leaderboard)
 - **Embodiment**: Bimanual dual-arm (5 platforms); ManiSkill / [MuJoCo](https://mujoco.org) backend
 - **Why for WAM**: Ships **data generator + benchmark + domain randomization** together. **+24.4% real-world few-shot SR**, **+21.0% zero-shot unseen-background**. Dual identity (generator + benchmark) suits the data-hungry inner loop of WAM training.
@@ -125,7 +125,7 @@ The only axis that scores *coupling* between the WAM's two halves. Three benchma
 - **Embodiment**: Unitree H1 + dual Shadow Hand (101 DoF total, 61-D action space)
 - **Why for WAM**: 27 standardized tasks (**12 locomotion + 15 whole-body manipulation**), shared rewards, open-source code, 4 reproducible baselines (==DreamerV3==, ==TD-MPC2==, ==SAC==, ==PPO==). Paradigm-agnostic: WAM ingests 151D state, imagines futures internally, outputs 61-D actions.
 - **SOTA to beat**: All 4 baselines fail most manipulation; locomotion partial. Hierarchical RL with pretrained low-level skills the only progress. Vast headroom; you'd be the first video-generative WAM number.
-- **Reporting**: locomotion subset SR + manipulation subset SR (separately) + 4 baseline numbers for context. *Reference baseline*: [[2502.20396|Humanoid Sim2Real Dex]] reports 80% box-lift, 52.5% bimanual handover on Fourier GR-1 — cite for vision-conditioned context.
+- **Reporting**: locomotion subset SR + manipulation subset SR (separately) + 4 baseline numbers for context. *Reference baseline*: [[2502.20396|Humanoid-Sim2Real-Dex]] reports 80% box-lift, 52.5% bimanual handover on Fourier GR-1 — cite for vision-conditioned context.
 
 ### 5. Long-horizon chains: [[2506.06677|RoboCerebra]]
 - **Institution / venue**: Beihang + NUS + Shanghai Jiao Tong — **NeurIPS 2025**

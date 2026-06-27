@@ -67,7 +67,7 @@ Note: in the updated loop, this is one of three detection signals. The full DETE
 
 ## Why not adopt existing self-evolving VLA methods directly?
 
-Papers like [[2602.06508|World-VLA-Loop]], [[2511.16166|EvoVLA]], [[2511.15605|SRPO]], [[2506.21669|SEEA-R1]], and [[2509.15155|Self-Improving EFM]] each tackle self-improvement for VLAs, but none can be directly applied to Fast-WAM or VLA-JEPA for two reasons:
+Papers like [[2602.06508|World-VLA-Loop]], [[2511.16166|EvoVLA]], [[2511.15605|SRPO]], [[2506.21669|SEEA-R1]], and [[2509.15155|Self-Improving-EFM]] each tackle self-improvement for VLAs, but none can be directly applied to Fast-WAM or VLA-JEPA for two reasons:
 
 1. **Action representation mismatch** — 3 of 5 (SRPO, SEEA-R1, Self-Improving EFM) use discrete token actions with PPO/GRPO/REINFORCE on token log-probabilities. Our WAMs use continuous action chunks via flow matching — the RL algorithms don't transfer. Even SRPO, which tested on π0 in real-world, only transferred the *reward* via offline RL — not the full online optimization loop.
 

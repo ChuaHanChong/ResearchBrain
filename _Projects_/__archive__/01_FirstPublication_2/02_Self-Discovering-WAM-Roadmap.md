@@ -17,7 +17,7 @@ aliases:
 # Self-Discovering Imagination vs. Action Failure in Diffusion-WAMs — Research Roadmap
 
 > [!abstract] What This Document Is
-> A step-ordered plan for a **per-episode 2-bit attribution gate** for diffusion-WAMs, evaluated as a **2×2 factorial = 4 cells**: two diffusion-WAM backbones × two act signals, with one WM-prediction-native imag signal. The method generalizes [[2510.09459|FIPER]]'s dual-signal CP detector to component-level attribution. **Imag anchor**: [[2503.08558|FAIL-Detect]] `logpZO` (distributional OOD via CNF density, novel extension to $\hat{O}_{t+1}$). **Act anchors**: FIPER-ACE + [[2410.04640|Sentinel]]-STAC. **Backbones**: [[2504.02792|UWM]] (~90M, DDPM-VP) + [[2601.16163|Cosmos Policy]] (~2B, rectified-flow). Success-only functional CP, Bonferroni-corrected joint FPR, zero failure labels. Second imag signal, AR sub-variant, multi-component stacks, and closed-loop updates are deferred to publication #2.
+> A step-ordered plan for a **per-episode 2-bit attribution gate** for diffusion-WAMs, evaluated as a **2×2 factorial = 4 cells**: two diffusion-WAM backbones × two act signals, with one WM-prediction-native imag signal. The method generalizes [[2510.09459|FIPER]]'s dual-signal CP detector to component-level attribution. **Imag anchor**: [[2503.08558|FAIL-Detect]] `logpZO` (distributional OOD via CNF density, novel extension to $\hat{O}_{t+1}$). **Act anchors**: FIPER-ACE + [[2410.04640|Sentinel]]-STAC. **Backbones**: [[2504.02792|UWM]] (~90M, DDPM-VP) + [[2601.16163|Cosmos-Policy]] (~2B, rectified-flow). Success-only functional CP, Bonferroni-corrected joint FPR, zero failure labels. Second imag signal, AR sub-variant, multi-component stacks, and closed-loop updates are deferred to publication #2.
 
 > [!info] One-Line Pitch
 > FIPER, but (a) WM-prediction-native `logpZO` on $\hat{O}_{t+1}$ (novel extension of FAIL-Detect), (b) two act signals (ACE + STAC), (c) AND-gate → Bonferroni-corrected 2×2 cross-tabulation, (d) validated across **two diffusion-WAM backbones** as a 2×2 factorial.
@@ -33,8 +33,8 @@ aliases:
 |---|---|---|---|---|
 | **1** | [[2504.02792\|UWM]] (~90M) | [[2503.08558\|FAIL-Detect]] `logpZO` | FIPER-ACE | UWM + FIPER + FAIL-Detect |
 | **2** | [[2504.02792\|UWM]] (~90M) | [[2503.08558\|FAIL-Detect]] `logpZO` | Sentinel-STAC | UWM + Sentinel + FAIL-Detect |
-| **5** | [[2601.16163\|Cosmos Policy]] (~2B) | [[2503.08558\|FAIL-Detect]] `logpZO` | FIPER-ACE | Cosmos + FIPER + FAIL-Detect |
-| **6** | [[2601.16163\|Cosmos Policy]] (~2B) | [[2503.08558\|FAIL-Detect]] `logpZO` | Sentinel-STAC | Cosmos + Sentinel + FAIL-Detect |
+| **5** | [[2601.16163\|Cosmos-Policy]] (~2B) | [[2503.08558\|FAIL-Detect]] `logpZO` | FIPER-ACE | Cosmos + FIPER + FAIL-Detect |
+| **6** | [[2601.16163\|Cosmos-Policy]] (~2B) | [[2503.08558\|FAIL-Detect]] `logpZO` | Sentinel-STAC | Cosmos + Sentinel + FAIL-Detect |
 
 (Cell numbers 1/2/5/6 preserved from prior design drafts so intermediate artifacts and git history map cleanly; cells 3/4/7/8 were second-imag-signal cells and are dropped in this revision.)
 
@@ -51,7 +51,7 @@ Shared across all cells:
 [[2503.08558|FAIL-Detect]]'s `logpZO` requires a predicted next-frame $\hat{O}_{t+1}$ at inference, so any backbone that removes test-time imagination (e.g., [[2603.16666|Fast-WAM]]) is structurally ruled out. AdaWorldPolicy (2602.20057) would have been the ideal backbone — distinct WM and action weight modules — but has no public code. Among public diffusion-WAMs with preserved future imagination:
 
 - **[[2504.02792|UWM]]** (~90M): one shared DiT with **modality-independent diffusion timesteps** for video and action. DDPM ε-prediction, VP schedule.
-- **[[2601.16163|Cosmos Policy]]** (~2B): one shared Cosmos-Predict2 DiT with **distinct latent-frame roles** for action / future-image / value tokens. Rectified flow.
+- **[[2601.16163|Cosmos-Policy]]** (~2B): one shared Cosmos-Predict2 DiT with **distinct latent-frame roles** for action / future-image / value tokens. Rectified flow.
 
 Neither has AdaWorldPolicy-style distinct-weight-module separation. Both are coupled through shared backbone weights + shared visual tokenizers. The 2×2 factorial spans two backbone coupling mechanisms × two act signals, testing generality of the imag-vs-act separation across both architectures.
 
@@ -75,10 +75,10 @@ The imag axis uses `logpZO` alone. A second structurally-distinct imag signal wa
 | [[2510.09459\|FIPER]] | No (success-only CP; ACE + RND-OE) | Structural ancestor + ACE act anchor (Cells 1, 5) |
 | [[2410.04640\|Sentinel]] | No (STAC calibrated on success rollouts) | STAC act anchor (Cells 2, 6) |
 | [[2504.02792\|UWM]] | No (pretrained WM; we don't retrain) | Backbone A |
-| [[2601.16163\|Cosmos Policy]] | No (pretrained NVIDIA checkpoints) | Backbone B |
+| [[2601.16163\|Cosmos-Policy]] | No (pretrained NVIDIA checkpoints) | Backbone B |
 | [[2506.09937\|SAFE]] | **Yes** | Baseline only (B-SAFE) |
 | [[2604.01985\|WAV]] | **Yes** | Baseline only (B-WAV) |
-| [[2602.16182\|WM Failure Classifier]] | **Yes** | Baseline only (B-WMFC) |
+| [[2602.16182\|WM-Failure-Classifier]] | **Yes** | Baseline only (B-WMFC) |
 
 ---
 
@@ -371,7 +371,7 @@ Compute budget: 1× 8×H100 node. UWM cells first; commit Cosmos Policy compute 
 > [!warning] S4 — Act × imag decorrelation gate (cell selection, H2)
 > **KILL if** all 4 cells have $\rho > 0.7$ AND the same holds on public anchor data.
 >
-> **PIVOT** to Plan B: reimplement [[2603.06987|Foundational WM]] (~3-4 weeks) as single-axis detection paper.
+> **PIVOT** to Plan B: reimplement [[2603.06987|Foundational-WM]] (~3-4 weeks) as single-axis detection paper.
 >
 > **PARTIAL PIVOT**: if only 1 cell has $\rho < 0.7$, proceed with that single cell as headline; withdraw H4.
 

@@ -14,7 +14,7 @@ aliases:
 # Planning
 
 > [!info] Scope
-> **Sim-based self-evolving WAM via single-stage cooperative-RL: PS-uGRPO + RoboMD-modified-to-GRPO failure-finder.** A pretrained unified WAM (Cosmos Policy / UWM) is fine-tuned via LoRA under a **single unified GRPO loop on the joint (action, imagination) log-prob**, driven by a task + physics + spatial reward (Eq. 1). A small failure-finder network ([[2412.02818|RoboMD]]-modified-to-GRPO) actively selects hard perturbations from a hand-coded XML bank; both networks update concurrently in one optimizer step per round. The Cosmos base $\theta_{\text{base}}$ stays FROZEN throughout — dual-purpose: body for LoRA adapters AND encoder feeding the failure-finder. MSE (variable-length prefix AR), LPIPS, and DreamDojo TC serve as dense anchors. No task-specific demonstrations required. Primary pilot backbones: [[2504.02792|UWM]] and [[2601.16163|Cosmos Policy]].
+> **Sim-based self-evolving WAM via single-stage cooperative-RL: PS-uGRPO + RoboMD-modified-to-GRPO failure-finder.** A pretrained unified WAM (Cosmos Policy / UWM) is fine-tuned via LoRA under a **single unified GRPO loop on the joint (action, imagination) log-prob**, driven by a task + physics + spatial reward (Eq. 1). A small failure-finder network ([[2412.02818|RoboMD]]-modified-to-GRPO) actively selects hard perturbations from a hand-coded XML bank; both networks update concurrently in one optimizer step per round. The Cosmos base $\theta_{\text{base}}$ stays FROZEN throughout — dual-purpose: body for LoRA adapters AND encoder feeding the failure-finder. MSE (variable-length prefix AR), LPIPS, and DreamDojo TC serve as dense anchors. No task-specific demonstrations required. Primary pilot backbones: [[2504.02792|UWM]] and [[2601.16163|Cosmos-Policy]].
 
 ## Literature
 
@@ -28,7 +28,7 @@ Score weights: loop 0.30, label-free 0.20, gating 0.15, empirical 0.15, novelty 
 |---|---|---|---|---|---|---|---|
 | 1 | 4.7 | [[2511.09515\|WMPO]] | [WM-PO/WMPO](https://github.com/WM-PO/WMPO) | VLA + pixel-space video WM (on-policy GRPO in imagination) | ≈ frozen during inner GRPO; fine-tuned in outer lifelong loop | ✓ GRPO | ≈ outer-loop (not headline) |
 | 2 | 4.6 | [[2511.15605\|SRPO]] | [sii-research/siiRL](https://github.com/sii-research/siiRL) | VLA + frozen V-JEPA-2 latent WM (latent-cluster self-rewarding RL) | ✗ (V-JEPA-2 frozen — trajectory clustering only) | ✓ RL | NO |
-| 3 | 4.5 | [[2509.15155\|Self-Improving EFM]] | [self-improving-efms](https://github.com/self-improving-efms/self-improving-efms.github.io/blob/main/pointmass_notebook.ipynb) | EFM (steps-to-go → dense reward + success detector; pointmass ref impl) | ≈ (no explicit WM — steps-to-go head inside unified EFM) | ✓ | Ambiguous — unified end-to-end update |
+| 3 | 4.5 | [[2509.15155\|Self-Improving-EFM]] | [self-improving-efms](https://github.com/self-improving-efms/self-improving-efms.github.io/blob/main/pointmass_notebook.ipynb) | EFM (steps-to-go → dense reward + success detector; pointmass ref impl) | ≈ (no explicit WM — steps-to-go head inside unified EFM) | ✓ | Ambiguous — unified end-to-end update |
 | 4 | 4.4 | [[2602.13977\|WoVR]] | [RLinf/RLinf](https://github.com/RLinf/RLinf) — ⚠ **partial**: KIR + masked GRPO shipped; **PACE not shipped** | VLA + video-diffusion WM (masked GRPO + KIR + PACE) | ✓ PACE periodically refines WM | ✓ masked GRPO + KIR | **YES — explicit co-evolution** (paper) |
 | 5 | 4.3 | [[2510.00406\|VLA-RFT]] | [OpenHelix-Team/VLA-RFT](https://github.com/OpenHelix-Team/VLA-RFT) | VLA + learned video world simulator (GRPO with verified rewards) | ✗ (WM trained offline — frozen during RFT) | ✓ GRPO | NO |
 | 6 | 4.3 | [[2602.11075\|RISE]] | [OpenDriveLab/RISE](https://github.com/OpenDriveLab/RISE) | Compositional WM: Dynamics + Progress Value Model; online RL in imagination | ✗ (WM + PVM frozen during loop) | ✓ online RL on imagined rollouts | NO — WM frozen during loop |
@@ -53,7 +53,7 @@ Seven code-available **World Action Models** whose action and future-state paths
 | # | Paper | Paradigm | Backbone | Scale | Imagination output | Action output | Head symmetry |
 |---|---|---|---|---|---|---|---|
 | 1 | [[2504.02792\|UWM]] | Diffusion (DDPM + DDIM) | Shared DiT + independent diffusion timesteps $t_a, t_{o'}$ | ~0.2B | Single-Linear image patch decoder | Symmetric encoder/decoder: 2-Linear + Mish MLP | Near-symmetric |
-| 2 | [[2601.16163\|Cosmos Policy]] | Latent video diffusion | Cosmos-Predict2 single video denoiser | 2B | Future frames as latent frames | Actions as latent frames | **Fully symmetric** |
+| 2 | [[2601.16163\|Cosmos-Policy]] | Latent video diffusion | Cosmos-Predict2 single video denoiser | 2B | Future frames as latent frames | Actions as latent frames | **Fully symmetric** |
 
 **Additional candidates** (same unified-weights criterion, deferred to second-backbone validation or future work):
 
@@ -84,7 +84,7 @@ Seven code-available **World Action Models** whose action and future-state paths
 
 ### Core loop
 
-Given a pretrained unified-backbone WAM ([[2601.16163|Cosmos Policy]] or [[2504.02792|UWM]]) and a simulator with next-state + success ground truth, the backbone's policy and world-model **co-evolve through a single GRPO loop** (PS-uGRPO, Eq. 8) whose reward combines task, physics, and spatial signals. Three dense anchors — MSE with prefix-AR (Eq. 10), LPIPS (Eq. 11), DreamDojo TC (Eq. 12) — supply the per-pixel and per-velocity gradient that scalar RL cannot.
+Given a pretrained unified-backbone WAM ([[2601.16163|Cosmos-Policy]] or [[2504.02792|UWM]]) and a simulator with next-state + success ground truth, the backbone's policy and world-model **co-evolve through a single GRPO loop** (PS-uGRPO, Eq. 8) whose reward combines task, physics, and spatial signals. Three dense anchors — MSE with prefix-AR (Eq. 10), LPIPS (Eq. 11), DreamDojo TC (Eq. 12) — supply the per-pixel and per-velocity gradient that scalar RL cannot.
 
 **Active failure-search** — a small failure-finder network $\theta_{\text{finder}}$ ([[2412.02818|RoboMD]]-modified-to-GRPO) selects which sim perturbation to deploy each round: continuous action over an embedding manifold (frozen $\theta_{\text{base}}$); argmin to the nearest XML edit anchor in bank $B$ realizes the perturbation in MuJoCo. Reward is the **regret-aligned** signal $r^{\text{finder}}_j = -\bar r^{\text{uni}}_j + \lambda_\sigma \cdot \overline{|A^{\text{uni}}|}_j$ (Eq. 9): (a) **currency-aligned** with PS-uGRPO — surfaces physics/spatial failures, not just task-incompletion; (b) **learning-signal aware** (mean absolute PS-uGRPO advantage — ACCEL/PAIRED regret) — avoids the all-fail-uniform trap where group advantages collapse. Full $K \times T$ rollout enters the PS-uGRPO update; group-relative advantage in Eq. 5 implicitly down-weights solved rollouts.
 
@@ -99,9 +99,9 @@ Given a pretrained unified-backbone WAM ([[2601.16163|Cosmos Policy]] or [[2504.
 > Round 0 runs $K$ rollouts through pure sim verification. **Backbone precondition**: ≥ 5–10% Round-0 zero-shot success. PVM refit every `RECAL` rounds on the sliding success window (§Algorithm step 10).
 >
 > **Pre-Round-0 one-time calibration** (sim rollouts + sim oracle only — same dependency tier as the simulator; no demos, no LLM, no human labels):
-> - **Progress reward** ([[2511.15605|SRPO]] over [[2506.09985|V-JEPA 2]] ViT-g — same encoder as $D_{\text{phys}}$, no extra dependency): DBSCAN-cluster successful trajectories' V-JEPA 2 latents (density-based, no fixed $k$); per-trajectory reward $V^{\text{SRPO}}(\tau_i) = 1 - (d_i - d_{\min})/(d_{\max} - d_{\min}) \in [0,1]$ with $d_i = \min_k \|z_{\tau_i} - z^{\text{cent}}_k\|_2$, broadcast to all $T$ steps. Cold-start threshold: ≥ 1 success per batch (DBSCAN `min_samples`). One frozen V-JEPA 2 serves two reward channels: per-frame physics (Eq. 3) + per-trajectory progress (Eq. 2).
+> - **Progress reward** ([[2511.15605|SRPO]] over [[2506.09985|V-JEPA-2]] ViT-g — same encoder as $D_{\text{phys}}$, no extra dependency): DBSCAN-cluster successful trajectories' V-JEPA 2 latents (density-based, no fixed $k$); per-trajectory reward $V^{\text{SRPO}}(\tau_i) = 1 - (d_i - d_{\min})/(d_{\max} - d_{\min}) \in [0,1]$ with $d_i = \min_k \|z_{\tau_i} - z^{\text{cent}}_k\|_2$, broadcast to all $T$ steps. Cold-start threshold: ≥ 1 success per batch (DBSCAN `min_samples`). One frozen V-JEPA 2 serves two reward channels: per-frame physics (Eq. 3) + per-trajectory progress (Eq. 2).
 > - **POE forward-dynamics model $\hat{f}_{\text{fwd}}$** ([[2511.16166|EvoVLA]] / [[1705.05363|ICM]]): small MLP on sim transitions $(z_t, a_t, z_{t+1})$ with pose features $z = \psi(T_{\text{ee}}^{-1} T_{\text{obj}})$; ~10k random-action rollouts, MSE loss (~minutes on CPU).
-> - **V-JEPA 2 surprise scorer** ([[2601.10553|WMReward]] over [[2506.09985|V-JEPA 2]] ViT-g, ~1B, MIT) + **LPIPS Alex-lin** (frozen): both pretrained, plug-and-play.
+> - **V-JEPA 2 surprise scorer** ([[2601.10553|WMReward]] over [[2506.09985|V-JEPA-2]] ViT-g, ~1B, MIT) + **LPIPS Alex-lin** (frozen): both pretrained, plug-and-play.
 > - **LoRA setup**: freeze Cosmos base $\theta_{\text{base}}$; initialize LoRA adapters $\theta_{\text{lora}}$ ($r=32$, $\alpha_{\text{lora}}=64$) on attention Q/K/V/O + FFN up/down per §LoRA strategy.
 > - **Hand-coded XML perturbation bank** ([[2412.02818|RoboMD]]-inspired): 14–19 edits per LIBERO task variant (RoboMD-counted: lift=16, stack=16, square=14, can=19, thread=14; cube/object color, table size, lighting, robot color, etc.). One-time engineering, ~few hundred lines.
 > - **Pre-compute perturbation anchor embeddings $B$**: under FROZEN $\theta_{\text{base}}$ (which never changes after this point), encode each XML edit's resulting scene → 512-d anchor; store as bank $B = \{e_1, \ldots, e_M\}$. One-shot, no refresh needed (since $\theta_{\text{base}}$ is permanently frozen by the LoRA design).
@@ -126,11 +126,11 @@ Ten mechanisms compose PS-uGRPO + three anchor sources + RoboMD-modified failure
 | [[2509.20570\|PIRF]] | Decoder-restricted gradient routing for physics rewards | Gradient routing on `r^phys` (Eq. 3) | PDE-residual reward (we use V-JEPA 2 surprise); resolution-stratified U-Net layer selection (we use VAE-decoder + final-N DiT blocks heuristic — DiT trunks are single-resolution) |
 | [[2511.16166\|EvoVLA]] | POE pose-grounded curiosity (forward-dynamics prediction error on relative gripper-to-object pose); [[1705.05363\|ICM]] is the canonical underlying method | `λ_cur · r^cur` (Eq. 2) | SAR (CLIP + Gemini hard negatives — LLM-dependent), Long-Horizon Memory (system-architectural) |
 | [[2012.06644\|CAPS]] | 1st-order temporal action-smoothness regularizer; ICRA 2021 canonical reference. [[2210.13702\|DeXtreme]] action-delta penalty as manipulation corroboration | `λ_smooth · S_act` in `r^task` (Eq. 2) — folded into task component as action-quality penalty | Spatial smoothness term, direct policy regularization (we use temporal only, route through GRPO advantage) |
-| [[2601.10553\|WMReward]] (over [[2506.09985\|V-JEPA 2]] ViT-g) | Frozen V-JEPA 2 surprise score on adjacent imagined frames; ~1B, MIT, no LLM, no fine-tuning; SOTA PhysicsIQ (62.0%) | `λ_phys · D_phys` in `r^phys` (Eq. 3) — object-state physics axis | Best-of-N video selection (their use); we route the scalar into GRPO advantage |
+| [[2601.10553\|WMReward]] (over [[2506.09985\|V-JEPA-2]] ViT-g) | Frozen V-JEPA 2 surprise score on adjacent imagined frames; ~1B, MIT, no LLM, no fine-tuning; SOTA PhysicsIQ (62.0%) | `λ_phys · D_phys` in `r^phys` (Eq. 3) — object-state physics axis | Best-of-N video selection (their use); we route the scalar into GRPO advantage |
 | [[2602.06949\|DreamDojo]] | Velocity-change TC loss (DreamDojo's Eq. 4), over $K_{\text{lat}}$ latent frames per video chunk | `β_TC · L^TC` (Eq. 12). Active on multi-latent-frame backbones: UWM default config $K_{\text{lat}} \approx 8$ (17 future frames + temporal-patch-2); Cosmos Wan2.1 4:1 → $K_{\text{lat}} \geq 4$. Inactive only on $K_{\text{lat}}=1$ configs | Relative-action conditioning + chunked injection (backbone-provided) |
 | [[2602.00743\|SA-VLA]] | Phase-conditioned signed geometric reward (Reach/Place/Leave) | `λ_geo · Δ_geo(phase)` in `r^spatial` (Eq. 4) | SCAN annealed-noise (Flow-GRPO's SDE subsumes) |
 | [[2511.07403\|SpatialThinker]] | CIoU bbox-alignment reward | `λ_CIoU · CIoU(bbox)` in `r^spatial` | STVQA-7K dataset (sim bboxes replace) |
-| [[2603.25685\|Persistent Robot WMs]] | Variable-length-prefix AR training (F4 mitigation) | `L_img^flow-prefix` (Eq. 10) — essential dense anchor | Reward-contrasted denoising (PS-uGRPO subsumes with richer reward) |
+| [[2603.25685\|Persistent-Robot-WMs]] | Variable-length-prefix AR training (F4 mitigation) | `L_img^flow-prefix` (Eq. 10) — essential dense anchor | Reward-contrasted denoising (PS-uGRPO subsumes with richer reward) |
 | [[1801.03924\|LPIPS]] | Perceptual anchor (partial F5 mitigation) | `β_LPIPS · L_img^LPIPS` (Eq. 11) | Extensive backbone fine-tuning (paper warns against; Alex-lin frozen) |
 
 **Alternatives / deployment-only (5)** — noted for completeness, not in the stack. Each row has a distinct reason for exclusion (not just "alt reward"):
@@ -308,7 +308,7 @@ The unified GRPO does task / physics / spatial work; anchors (MSE, LPIPS, TC) ke
 - $\eta$ — POE intrinsic scale (default $1.0$).
 
 *Physics reward internals* (Eq. 3):
-- $E_\theta, P_\phi$ — frozen [[2506.09985|V-JEPA 2]] ViT-g encoder + predictor (~1B, MIT; matches WMReward default `vitg`); context window $\le t$ at 256² resolution.
+- $E_\theta, P_\phi$ — frozen [[2506.09985|V-JEPA-2]] ViT-g encoder + predictor (~1B, MIT; matches WMReward default `vitg`); context window $\le t$ at 256² resolution.
 - $D_{\text{phys}} \in [0, 1]$ — [[2601.10553|WMReward]] surprise score (higher = imagined next frame matches predictor's expectation).
 - $\lambda_{\text{phys}} \ge 0$ — physics weight; default $1.0$.
 
@@ -355,7 +355,7 @@ The unified GRPO does task / physics / spatial work; anchors (MSE, LPIPS, TC) ke
 - $\overline{\text{success}}_j$ — empirical task-success rate; diagnostics only (not in $r^{\text{finder}}_j$).
 
 *Anchor losses* (Eqs. 10, 11, 12):
-- $K_{\max}$ — max rollout prefix length; default $9$ ([[2603.25685|Persistent Robot WMs]] §S1).
+- $K_{\max}$ — max rollout prefix length; default $9$ ([[2603.25685|Persistent-Robot-WMs]] §S1).
 - $\tilde{o}_{i,t-k:t}$ — WAM free-rolled obs of length $k$ (ground-truth at $k=0$, fully imagined at $k=K_{\max}$).
 - $\mathrm{LPIPS}(\cdot, \cdot)$ — learned perceptual similarity (frozen Alex-lin).
 - $\hat{x}^{\text{clean}}_{i,t+1}$ — single-Euler-step clean prediction at $s \approx 0.9$ (flow); AR uses $\mathrm{Dec}(\arg\max p_\theta)$ + straight-through.
@@ -554,7 +554,7 @@ Three contributions, each a falsifiable claim against a named prior-work target.
 
 | Backbone | Pure PS-uGRPO (no anchors) suffices? | Needs anchors (Eqs. 10, 11, 12)? | What to ablate |
 |---|---|---|---|
-| [[2601.16163\|Cosmos Policy]] | ✓ (single denoiser → automatic imag-policy *alignment* under shared RL gradient) | Optional — sharpens imagination *fidelity* | `β_MSE = β_LPIPS = 0` vs. defaults; FVD on held-out benchmark decoupled from task reward |
+| [[2601.16163\|Cosmos-Policy]] | ✓ (single denoiser → automatic imag-policy *alignment* under shared RL gradient) | Optional — sharpens imagination *fidelity* | `β_MSE = β_LPIPS = 0` vs. defaults; FVD on held-out benchmark decoupled from task reward |
 | [[2504.02792\|UWM]] | ✗ — patch decoder cut off from direct policy gradient; WM receives only the weaker log `u_θ` signal; DiT body still updates via shared self-attention | **Required** for sharp image decoding (C3) | Per-head gradient-norm ratio (C3); `β_MSE = 0` vs. `β_MSE = 0.1` image-decoder FVD; per-head frozen-weight ablation |
 
 #### Cosmos Policy — detailed plan
@@ -597,7 +597,7 @@ Multi-round continual learning rules out full backbone fine-tuning (accumulating
 
 The three anchor losses (Eqs. 10, 11, 12) supervise the WM against sim's `o^sim_{t+1}`; PS-uGRPO's physics and spatial rewards (Eqs. 3, 4) are computed on WAM imagined frames — `D_phys` via frozen V-JEPA 2 (manipulation-relevant prior from V-JEPA 2's pretraining); bbox extractors reference sim. The WM therefore learns **sim physics**, not real physics.
 
-**Policy sim-to-real** is in scope (standard — domain randomization per [[2601.16163|Cosmos Policy]] / [[2511.09515|WMPO]]). **WM sim-to-real is out of scope** — the WM is sim-fit and stays behind at deployment; imagination-based planning on real robots requires a separate real-corpus WM fine-tune (DROID, AgiBot) in a follow-up paper. **Failure-finder + XML perturbation bank are sim-only** — both are training-time scaffolding for active failure-search and have no role at deployment.
+**Policy sim-to-real** is in scope (standard — domain randomization per [[2601.16163|Cosmos-Policy]] / [[2511.09515|WMPO]]). **WM sim-to-real is out of scope** — the WM is sim-fit and stays behind at deployment; imagination-based planning on real robots requires a separate real-corpus WM fine-tune (DROID, AgiBot) in a follow-up paper. **Failure-finder + XML perturbation bank are sim-only** — both are training-time scaffolding for active failure-search and have no role at deployment.
 
 **Deployment recipe**: ship Cosmos Policy with $\theta_{\text{base}} + \theta_{\text{lora}}$ fused to the real robot; discard (a) the WM, (b) the failure-finder $\theta_{\text{finder}}$, and (c) the hand-coded XML perturbation bank $B$. The deployed policy is architecturally unchanged from a vanilla Cosmos Policy — fused LoRA adds zero inference overhead, and the failure-finder + perturbation curriculum exist only inside the sim training loop. The WM is a training-time scaffold, consumed by PS-uGRPO (Eq. 8) and all three anchors (Eqs. 10, 11, 12) during sim training only.
 
@@ -619,7 +619,7 @@ Papers / mechanisms the proposal does not use, and why.
 
 | Excluded | Why |
 |---|---|
-| [[2509.15155\|Self-Improving EFM]] steps-to-go | Requires SFT demos |
+| [[2509.15155\|Self-Improving-EFM]] steps-to-go | Requires SFT demos |
 | [[2511.15605\|SRPO]] latent clusters | Cluster fit needs demo successes (V-JEPA-2 distance retained as deployment-fallback reward only) |
 | [[2511.16166\|EvoVLA]] SAR | CLIP + Gemini hard negatives — LLM-dependent. We adopt **POE faithfully** (pose-curiosity); skip Long-Horizon Memory (system-architectural) |
 | [[2603.23376\|ABot-PhysWorld]] | LLM-tainted at every stage (Qwen3-VL captions, Qwen3-VL + Gemini 3 Pro DPO triplets, Qwen2.5-VL-72B PBench). Replaced by [[2601.10553\|WMReward]] V-JEPA 2 surprise |

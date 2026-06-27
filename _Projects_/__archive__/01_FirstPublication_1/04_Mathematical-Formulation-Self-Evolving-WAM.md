@@ -345,7 +345,7 @@ where $L_{FM}$ uses the base model's own velocity convention: $\|f_\theta(\cdot)
 
 $$A, B \leftarrow A, B - \eta \nabla_{A,B} L_{\text{distill}}$$
 
-Only $A, B$ are updated — $W_0$ remains frozen. This constrains updates to a rank-$r$ subspace, preventing catastrophic changes (<2% forgetting on π0, [[2603.11653|VLA RL CL]]).
+Only $A, B$ are updated — $W_0$ remains frozen. This constrains updates to a rank-$r$ subspace, preventing catastrophic changes (<2% forgetting on π0, [[2603.11653|VLA-RL-CL]]).
 
 > **Output of Step 5**: ==Updated action model== with LoRA adapters that encode the recovery behaviors.
 

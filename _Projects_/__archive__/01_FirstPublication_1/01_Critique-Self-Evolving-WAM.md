@@ -28,7 +28,7 @@ The blueprint stitches ~45 papers into one architecture. Reading the actual pape
 |------|--------|---------------|
 | **Real manipulation** | [[2602.12063\|VLAW]], [[2603.09030\|PlayWorld]], [[2603.16666\|Fast-WAM]], [[2505.22159\|ForceVLA]], [[2603.23376\|ABot-PhysWorld]], [[2511.16166\|EvoVLA]] | Physical robots, contact-rich tasks |
 | **Adjacent (navigation / simple control)** | [[2506.23468\|NavMorph]], [[2603.19312\|LeWM]], [[2005.05960\|Plan2Explore]] | VLN-CE 3D navigation, Push-T / Reacher 2D control, DMC (Cheetah, Walker) |
-| **Different domain entirely** | [[2502.05907\|EvoAgent]], [[2601.06794\|ECHO]], [[2603.08403\|SPIRAL]], [[2505.03335\|Absolute Zero]], [[1901.01753\|POET]], [[2503.01584\|SENSEI]] | Minecraft LLM planning, text-based LLM agents, video generation, code reasoning, 2D bipedal walkers |
+| **Different domain entirely** | [[2502.05907\|EvoAgent]], [[2601.06794\|ECHO]], [[2603.08403\|SPIRAL]], [[2505.03335\|Absolute-Zero]], [[1901.01753\|POET]], [[2503.01584\|SENSEI]] | Minecraft LLM planning, text-based LLM agents, video generation, code reasoning, 2D bipedal walkers |
 
 The blueprint combines mechanisms from all three tiers with "borrow from" and "mechanism transfers" but provides no evidence that these mechanisms compose across domains.
 
@@ -44,7 +44,7 @@ The blueprint combines mechanisms from all three tiers with "borrow from" and "m
 > [[2601.06794|ECHO]]'s "saturation-aware reward design" was demonstrated on ==WebShop (shopping), ALFWorld (text adventures), SciWorld (science experiments), and DeepSearch==. These are discrete, language-grounded actions with clear success criteria (did the agent buy the right item?). Physical manipulation has continuous action spaces with noisy, delayed, partially observable reward signals. The +7.28 point improvement over GRPO was measured in text-agent benchmarks, not robotic control.
 
 > [!danger] Absolute Zero requires a formal verifier that doesn't exist for manipulation
-> [[2505.03335|Absolute Zero]]'s "zero-data self-play" works because it has a ==code executor as a formal verifier== — the answer is provably correct or not. The blueprint's WAM equivalent ("the Imaginer proposes novel physics scenarios... a physics engine verifies plausibility") requires a physics engine accurate enough to verify arbitrary manipulation scenarios — which is itself the sim-to-real problem the entire blueprint is trying to solve.
+> [[2505.03335|Absolute-Zero]]'s "zero-data self-play" works because it has a ==code executor as a formal verifier== — the answer is provably correct or not. The blueprint's WAM equivalent ("the Imaginer proposes novel physics scenarios... a physics engine verifies plausibility") requires a physics engine accurate enough to verify arbitrary manipulation scenarios — which is itself the sim-to-real problem the entire blueprint is trying to solve.
 
 > [!danger] POET is 2D bipedal walkers
 > [[1901.01753|POET]] demonstrated open-ended coevolution in a ==2-D Bipedal Walker domain== with parameterizable terrain (stumps, gaps, roughness). Real manipulation environments have infinite-dimensional variation (object geometry, material properties, friction, lighting, occlusion). The "environment generator" in the Outer Loop would need to parameterize this infinite space — a problem POET never addressed.
@@ -138,7 +138,7 @@ The blueprint simultaneously argues two incompatible positions:
 > The architecture includes ==EWC== (Elastic Weight Consolidation), ==Latent Experience Replay Buffer==, ==Task-Aware Prompt Gradient Projection==, ==Diffusion-DPO== quality gating, and ==SPIRAL CriticAgent== — five separate continual learning mechanisms operating across all three loops.
 
 > [!question] Position B: CL may not even be necessary
-> The blueprint's own "[!tip] The VLA Surprise" callout cites [[2603.03818|VLA Continual Learning]], which found that pretrained VLAs achieve "==near-zero to positive Negative Backward Transfer==" with only ==2% replay buffer==, and recover forgotten skills in "==less than 10% of original training steps==."
+> The blueprint's own "[!tip] The VLA Surprise" callout cites [[2603.03818|VLA-Continual-Learning]], which found that pretrained VLAs achieve "==near-zero to positive Negative Backward Transfer==" with only ==2% replay buffer==, and recover forgotten skills in "==less than 10% of original training steps==."
 
 The VLA Continual Learning paper tested ==sequential fine-tuning on discrete LIBERO tasks==, not continuous open-ended self-evolution. So Position B's evidence doesn't directly apply to the WAM setting. But Position A adds five complex CL mechanisms without evidence that any of them are needed for a pretrained WAM — and without testing the simpler approach first.
 
@@ -208,7 +208,7 @@ The plan is completely hardware-agnostic, but self-evolution is fundamentally co
 ## Summary: The Three Killing Arguments
 
 > [!failure] Kill 1: Domain transfer without evidence
-> Of ~15 core mechanism papers, only ==6 demonstrated on real manipulation== ([[2602.12063|VLAW]], [[2603.09030|PlayWorld]], [[2603.16666|Fast-WAM]], [[2505.22159|ForceVLA]], [[2603.23376|ABot-PhysWorld]], [[2511.16166|EvoVLA]]). The rest span Minecraft ([[2502.05907|EvoAgent]]), text agents ([[2601.06794|ECHO]]), video generation ([[2603.08403|SPIRAL]]), code reasoning ([[2505.03335|Absolute Zero]]), 2D walkers ([[1901.01753|POET]]), visual QA + navigation ([[2602.08236|AVIC]]), and simple 2D control ([[2603.19312|LeWM]], [[2005.05960|Plan2Explore]]). The blueprint combines mechanisms from all tiers as if they're plug-compatible components.
+> Of ~15 core mechanism papers, only ==6 demonstrated on real manipulation== ([[2602.12063|VLAW]], [[2603.09030|PlayWorld]], [[2603.16666|Fast-WAM]], [[2505.22159|ForceVLA]], [[2603.23376|ABot-PhysWorld]], [[2511.16166|EvoVLA]]). The rest span Minecraft ([[2502.05907|EvoAgent]]), text agents ([[2601.06794|ECHO]]), video generation ([[2603.08403|SPIRAL]]), code reasoning ([[2505.03335|Absolute-Zero]]), 2D walkers ([[1901.01753|POET]]), visual QA + navigation ([[2602.08236|AVIC]]), and simple 2D control ([[2603.19312|LeWM]], [[2005.05960|Plan2Explore]]). The blueprint combines mechanisms from all tiers as if they're plug-compatible components.
 
 > [!failure] Kill 2: The data strategy contradicts its own sources
 > [[2602.12063|VLAW]] and [[2603.09030|PlayWorld]] — the blueprint's two strongest citations — both depend on ==substantial real-world data at every co-evolution round==. VLAW explicitly requires real rollouts including failures. PlayWorld's 65% improvement came from adding 30 hours of real play data, not reducing it. The Phase 4 target of 5% real / 90% dream has ==no empirical precedent in any cited paper==.
@@ -221,7 +221,7 @@ The plan is completely hardware-agnostic, but self-evolution is fundamentally co
 ## What Survives the Critique
 
 > [!success] The thesis is sound
-> The core argument — that static VLAs/WAMs need self-evolution — is well-supported by the motivation papers ([[2603.22078|WAM vs VLA Robustness]], [[2505.03500|TLI]], [[2601.11421|GM-100]], [[2511.16166|EvoVLA]]).
+> The core argument — that static VLAs/WAMs need self-evolution — is well-supported by the motivation papers ([[2603.22078|WAM-vs-VLA-Robustness]], [[2505.03500|TLI]], [[2601.11421|GM-100]], [[2511.16166|EvoVLA]]).
 
 > [!success] Three mechanisms are well-grounded
 > 1. **VLAW iterative alternation** — real robot co-evolution, 39.2% improvement, contact-rich tasks

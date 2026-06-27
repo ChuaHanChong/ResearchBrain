@@ -64,14 +64,14 @@ with conditioning $c = (o_{1:t}, l)$ fed to the shared DiT. The two backbones us
 | Backbone | Parameterization | Network predicts |
 |---|---|---|
 | **[[2504.02792\|UWM]]** (~90M) | **DDPM ε-prediction, VP schedule** (verified `unified-world-model/models/uwm/uwm.py` — `DDIMScheduler` + `F.mse_loss(noise_pred, noise)`) | $\varepsilon_\theta(x_t, t)$ (noise) |
-| **[[2601.16163\|Cosmos Policy]]** (~2B) | **Rectified Flow** (verified `cosmos-policy/_src/predict2/schedulers/rectified_flow.py` — $x_\tau = \tau\,x_\text{noise} + (1-\tau)\,x_\text{data}$, $v = x_\text{noise} - x_\text{data}$) | $v_\theta(x_\tau, \tau)$ (velocity) |
+| **[[2601.16163\|Cosmos-Policy]]** (~2B) | **Rectified Flow** (verified `cosmos-policy/_src/predict2/schedulers/rectified_flow.py` — $x_\tau = \tau\,x_\text{noise} + (1-\tau)\,x_\text{data}$, $v = x_\text{noise} - x_\text{data}$) | $v_\theta(x_\tau, \tau)$ (velocity) |
 
 The two backbones also differ on how they route $\hat{O}_{t+1}$ and $\mathbf{a}_{t:t+H}$ out of the shared DiT:
 
 | Backbone | Decoupling mechanism | What shares $\theta$ | What differs |
 |---|---|---|---|
 | **[[2504.02792\|UWM]]** (~90M) | Modality-independent diffusion timesteps | DiT weights + visual tokenizer | Timestep schedule for video vs. action outputs |
-| **[[2601.16163\|Cosmos Policy]]** (~2B) | Distinct latent-frame roles | Cosmos-Predict2 DiT + tokenizer | Role assignment of latent frames: action / future-image / value |
+| **[[2601.16163\|Cosmos-Policy]]** (~2B) | Distinct latent-frame roles | Cosmos-Predict2 DiT + tokenizer | Role assignment of latent frames: action / future-image / value |
 
 Let $\pi(O \mid o_{1:t}, l; \theta)$ denote the diffusion-WAM's conditional distribution over next frames, and let $p(\mathbf{a} \mid o_{1:t}, l; \theta)$ denote the conditional over action chunks. Both are parameterized either through an $\varepsilon$-prediction denoising process (UWM, DDPM-VP) or through a flow-matching velocity field (Cosmos Policy, rectified flow).
 
@@ -473,7 +473,7 @@ $\qed$
 
 | Section | Component | Source | Our delta |
 |---|---|---|---|
-| 2 | Diffusion-WAM forward | [[2504.02792\|UWM]] §3; [[2601.16163\|Cosmos Policy]] §3 | Unified notation covering both DDPM-VP and RF parameterizations |
+| 2 | Diffusion-WAM forward | [[2504.02792\|UWM]] §3; [[2601.16163\|Cosmos-Policy]] §3 | Unified notation covering both DDPM-VP and RF parameterizations |
 | 3.1 | CNF training / inference | [[2503.08558\|FAIL-Detect]] §3.4 | — (verbatim) |
 | 3.2 | ==logpZO on $\hat{O}_{t+1}$== | — | ==Novel: re-train CNF on predicted frames, per-backbone== |
 | 4.1 | 3-D ACE | [[2510.09459\|FIPER]] `entropy_eval.py:56-104` | — |

@@ -52,11 +52,11 @@ tags:
 
 **The coupling core (green) leaves all three channels on the table:**
 - **WB.A · arm↔leg:** handled **implicitly**, [[2604.07993|HEX]]'s predictive MoE never makes the inertial cross-term an explicit term, [[2606.16542|ADAPT]] reacts after the fact.
-- **WB.B · base↔arm:** handled **one-directionally**, [[2507.01961|AC-DiT]] conditions base→arm only, [[2401.02117|Mobile ALOHA]] flat-concats and lets drift accumulate.
+- **WB.B · base↔arm:** handled **one-directionally**, [[2507.01961|AC-DiT]] conditions base→arm only, [[2401.02117|Mobile-ALOHA]] flat-concats and lets drift accumulate.
 - **WB.C · force-under-load:** handled **reactively**, [[2505.06776|FALCON]] / [[2510.26280|Thor]] / [[2606.03297|SplitAdapter]] estimate-then-compensate from the past; [[2201.03871|ALMA]] anticipates only the self-induced *known* wrench, on a quadruped, in a separate policy.
 
 **The three enabler seams (cyan) are each unwired:**
-- **WAM.A · predict:** world-action models imagine *scene* futures ([[2411.04983|DINO-WM]], [[2504.02792|UWM]], [[2603.14482|V-JEPA 2.1]]), none output an **anticipatory coupling-wrench** as a modeled physics quantity.
+- **WAM.A · predict:** world-action models imagine *scene* futures ([[2411.04983|DINO-WM]], [[2504.02792|UWM]], [[2603.14482|V-JEPA-2.1]]), none output an **anticipatory coupling-wrench** as a modeled physics quantity.
 - **Sim2Real.B · ground:** differentiable system-ID recovers *object* physics ([[2603.01151|D-REX]]), never re-pointed at the robot's **own** M(base,arm) and contact model (the self physics).
 - **Embodied-AI.B · verify:** WM-evaluation harnesses score **fidelity / plausibility** ([[2606.05773|PiL-World]], [[2606.18610|SC3-Eval]]), none certify the **causal binding** of predicted coupling to realized coupling.
 
@@ -98,9 +98,9 @@ graph TD
 
 *Unified advance:* one whole-body interface advanced at four layers, where upper-limb intent and lower-body support are coupled **before** commands issue, so the legs anticipate the arm's inertial demand rather than absorbing it late.
 
-- **WB.A1 CoReWA** = [[2604.07993|HEX]] + [[2509.21231|SEEC]] + [[2506.14278|Heavy-Limbs WBC]]: forecast arm latents into an anticipatory base reaction wrench feeding gate and controller.
+- **WB.A1 CoReWA** = [[2604.07993|HEX]] + [[2509.21231|SEEC]] + [[2506.14278|Heavy-Limbs-WBC]]: forecast arm latents into an anticipatory base reaction wrench feeding gate and controller.
 - **WB.A2 BlendBridge** = [[2506.09366|SkillBlender]] + [[2602.08594|MOSAIC]] + [[2602.06341|HiWET]]: entropy-gated per-joint residual adapts a frozen skill blend across the sim-to-real gap.
-- **WB.A3 ReachSched-WBT** = [[2602.06341|HiWET]] + [[2508.11275|Differentiable Reachability Maps]]: schedule the base along a reachability gradient, shrink the margin with tracking residuals.
+- **WB.A3 ReachSched-WBT** = [[2602.06341|HiWET]] + [[2508.11275|Differentiable-Reachability-Maps]]: schedule the base along a reachability gradient, shrink the margin with tracking residuals.
 - **WB.A4 CoLA-WB** = [[2512.11047|WholeBodyVLA]] + [[2506.13751|LeVERB]] + [[2606.18772|HALOMI]]: loco latent as residual of manip code, projected onto a feasible manifold.
 
 > [!tip] First principles (WB.A)
@@ -122,7 +122,7 @@ graph TD
 *Unified advance:* one anticipatory, conditionally-certified loop off a shared upstream signal, PROWL's sensorless load-mismatch forecast (predict and pre-brace) feeding a conformal disturbance bound (certify and re-size shields).
 
 - **WB.C1 PROWL** = [[2505.06776|FALCON]] + [[2201.03871|ALMA]] + [[2606.16542|ADAPT]]: momentum-observer residual forecasts hand wrench into FALCON's dual agents, legs pre-brace before loads peak; only ALMA's anticipatory-leaning mechanism is the transferable claim, its headline numbers are on a quadruped, not the claim here.
-- **WB.C2 PALADIN** = [[2605.25546|ISSf-CBF WBC]] + [[2604.07457|CMP]] + [[2602.01515|RAPT]] (cross-check): PROWL's forecast is conformally bounded into a disturbance that re-sizes the ISSf-CBF QP and narrows CMP's radius, with RAPT's residual demoted to a runtime cross-check.
+- **WB.C2 PALADIN** = [[2605.25546|ISSf-CBF-WBC]] + [[2604.07457|CMP]] + [[2602.01515|RAPT]] (cross-check): PROWL's forecast is conformally bounded into a disturbance that re-sizes the ISSf-CBF QP and narrows CMP's radius, with RAPT's residual demoted to a runtime cross-check.
 
 > [!tip] First principles (WB.C)
 > The bet: a learned forecast channel cuts peak base-tilt and end-effector-tracking error in the first 0 to 300 ms after load onset for ramped loads, beating a persistence baseline, and the same residual sizes a conformal safety bound.
@@ -148,7 +148,7 @@ graph TD
 
 *Dual role:* a standalone advance in **sim2real** (one differentiable-twin grounding pipeline emitting a per-twin certificate of where physics can be relied on) AND the **ground** move CoWAM uses, re-pointing sysID at the robot's own M(base,arm) and contact model.
 
-- **S2R.B1 SENSE-T** = [[2503.17973|PhysTwin]] + [[2511.04665|Real-to-Sim GS]] + [[2603.01151|D-REX]]: one differentiable rollout yields per-channel analytic sensitivity of sim-real divergence, replacing the discrete fidelity sweep.
+- **S2R.B1 SENSE-T** = [[2503.17973|PhysTwin]] + [[2511.04665|Real-to-Sim-GS]] + [[2603.01151|D-REX]]: one differentiable rollout yields per-channel analytic sensitivity of sim-real divergence, replacing the discrete fidelity sweep.
 - **S2R.B2 AMORTI-SIM** = [[2603.01151|D-REX]] + [[2603.23973|SLAT-Phys]] + [[2410.20357|Dynamics-as-Prompts]]: clutter-conditioned net predicts a novel object's full constitutive vector in one pass, zero per-object loops.
 - **S2R.B3 FideliGate** = [[2403.03949|RialTo]] + [[2504.03597|Real-is-Sim]] + [[2604.13645|CFG-ADDA]]: photometric correction residual becomes a fidelity gate on fold-back demos, making rounds monotonically improve real success.
 - **S2R.B4 CLaRe** = [[2304.14369|NCLaw]] + [[2508.01112|MASIV]] + [[2603.22039|RAFL]]: two-head MPM splits a constitutive law from a starved residual, making the split a falsifiable extrapolation measurement.
@@ -163,7 +163,7 @@ graph TD
 - **B1 CIC** = [[2606.05773|PiL-World]] + [[2606.18610|SC3-Eval]] + [[2605.29360|MiraBench]]: self-certifying action-counterfactual metric, U_cf-gated, rho=0.94/0.984 references.
 - **B2 CALM** = [[2606.03385|GTP-FA]] + [[2506.21669|SEEA-R1]] + [[2508.19236|MemoryVLA]]: cause-attributed failure memory, channel-routed supervised correction, subspace-protected.
 - **B3 ElastiVote** = [[2507.05116|VOTE]] + [[2605.08799|ElasticFlow]] + [[2605.29438|ElegantVLA]]: one-NFE policy, span+backbone knobs, c_{t-1}-gated recompute at >=30 Hz.
-- **B4 GSE-Null** = [[2602.21919|Learning in the Null Space]] + [[2603.02224|Subspace Geometry Forgetting]] + [[2605.06175|VLA-GSE]]: two-space continual FT, null-space-protected wrench head, no forgetting.
+- **B4 GSE-Null** = [[2602.21919|Learning-in-the-Null-Space]] + [[2603.02224|Subspace-Geometry-Forgetting]] + [[2605.06175|VLA-GSE]]: two-space continual FT, null-space-protected wrench head, no forgetting.
 
 > [!tip] First principles (EAI.B)
 > The bet: a validity-gated action-counterfactual metric predicts real-fleet success better than fidelity scores, and the same residual holds R-squared at least 0.70 with backward transfer at least -2 pp through deployment and re-training.
@@ -184,7 +184,7 @@ The claim **both WB.C directions ride on**: one anticipatory load-mismatch forec
 
 ### WB.B cluster falsifier · base↔arm (kinematic)
 
-The claim **the whole WB.B loop wraps**: a base-first coupling backbone with one arm-to-base feasibility edge. **Autoregressive base→torso→arm ([[2503.05652|BRS]]-style) vs flat-concatenation ([[2401.02117|Mobile ALOHA]] floor)**, with [[2507.01961|AC-DiT]]'s one-directional base→arm conditioning as the middle rung (a factoring claim, no reactive-observer arm): the margin must **concentrate on reach-extension** tasks (target outside the standing arm-workspace) and vanish on fixed-base reaches. A pass validates the backbone **B1** contributes, that **B2** (memory-conditioned look-at) and **B3** (self-correcting memory) compound on, so the whole WB.B perceive-move-update-act loop advances together.
+The claim **the whole WB.B loop wraps**: a base-first coupling backbone with one arm-to-base feasibility edge. **Autoregressive base→torso→arm ([[2503.05652|BRS]]-style) vs flat-concatenation ([[2401.02117|Mobile-ALOHA]] floor)**, with [[2507.01961|AC-DiT]]'s one-directional base→arm conditioning as the middle rung (a factoring claim, no reactive-observer arm): the margin must **concentrate on reach-extension** tasks (target outside the standing arm-workspace) and vanish on fixed-base reaches. A pass validates the backbone **B1** contributes, that **B2** (memory-conditioned look-at) and **B3** (self-correcting memory) compound on, so the whole WB.B perceive-move-update-act loop advances together.
 
 ### The ε-curve: the de-circularization move (the cleverest single idea)
 
@@ -207,7 +207,7 @@ Supervise each force head on a **deliberately wrong** physics model (perturbed b
 |---|---|---|
 | **The three cluster falsifiers** (WB.A · WB.B · WB.C, parallel, co-equal) | per-cluster three-way / autoregressive ablations + per-cluster ε-curves | each cluster's go/no-go (A ≥ 5 pp at high arm-accel AND anticipatory beats reactive ≥ 5 pp; C first-100 ms CoM-excursion ≥ 20% at matched load; B ≥ 5 pp on reach-extension, near-zero fixed-base) |
 | **Ground the terms** | differentiable sysID of M(base,arm) (A) and the contact model / J_ext (C) on the real robot; B's mobile-manip object physics rides the same engine's native recovery (no separate gate) | ≤ 15% Frobenius AND beats broad-DR on OOD mass/load AND ≥ 80% real-SR retention |
-| **CoWAM** | shared wrench head, sensor-free forecast of the self-induced (A) and external (C) reaction | sensor-free wrench MSE ≤ 2x the tactile-available baseline on held-out [[2604.13015\|Touch Dreaming]] (real, its "w/o Touch" ablation) + [[2403.10506\|HumanoidBench]] taxel-toggle sim arm |
+| **CoWAM** | shared wrench head, sensor-free forecast of the self-induced (A) and external (C) reaction | sensor-free wrench MSE ≤ 2x the tactile-available baseline on held-out [[2604.13015\|Touch-Dreaming]] (real, its "w/o Touch" ablation) + [[2403.10506\|HumanoidBench]] taxel-toggle sim arm |
 | **Verify + continual** | causal-consistency metric across all three clusters + hardware | predicted-vs-realized R² ≥ 0.70 AND continual lift retained (NBT ≥ -2 pp) |
 
 The cheap cluster falsifiers and the verify track run first; the costly downstream builds (ground, CoWAM, verify-on-hardware) **commit only after the falsifiers' gate clears**. The **C2 certified safe set** (a barrier / QP guaranteeing balance + collision-freeness under load) stays a **deferred extension** of WB.C, opened only once the coupling is predicted, grounded, and verified.
@@ -224,7 +224,7 @@ Real Unitree **H1** (Shadow Hands + 448-taxel tactile) for the grounded story, *
 
 ### WB.A arm↔leg (balance, disturbance, whole-body loco-manip)
 
-[[2403.10506|HumanoidBench]] (the standard humanoid suite), [[2603.20147|AGILE]], [[2606.17833|HumanoidArena]], [[2503.05652|BRS]] (whole-body on Galaxea R1), [[2506.09366|SkillBench]] (SkillBlender's own), [[2506.13751|LeVERB-Bench]] (LeVERB's own), [[2308.14636|Disturbance-Rejection]] and [[2404.19173|Single-Contact++]] (Digit impact tests), with [[2602.13656|KungFuAthlete]], [[2508.19926|FARM]], [[2602.13850|Humanoid-Hanoi]], [[2511.17925|Switch-JustDance]], [[2602.21599|Iterative Closed-Loop Motion]], [[2507.18883|Partial-Observation Loco]], [[2307.10142|Potential-Based Rewards]], [[2408.00342|MuJoCo-MPC-HB]].
+[[2403.10506|HumanoidBench]] (the standard humanoid suite), [[2603.20147|AGILE]], [[2606.17833|HumanoidArena]], [[2503.05652|BRS]] (whole-body on Galaxea R1), [[2506.09366|SkillBench]] (SkillBlender's own), [[2506.13751|LeVERB-Bench]] (LeVERB's own), [[2308.14636|Disturbance-Rejection]] and [[2404.19173|Single-Contact++]] (Digit impact tests), with [[2602.13656|KungFuAthlete]], [[2508.19926|FARM]], [[2602.13850|Humanoid-Hanoi]], [[2511.17925|Switch-JustDance]], [[2602.21599|Iterative-Closed-Loop-Motion]], [[2507.18883|Partial-Observation-Loco]], [[2307.10142|Potential-Based-Rewards]], [[2408.00342|MuJoCo-MPC-HB]].
 
 ### WB.B base↔arm (humanoid mobile-manipulation)
 
@@ -232,7 +232,7 @@ Real Unitree **H1** (Shadow Hands + 448-taxel tactile) for the grounded story, *
 
 ### WB.C force-under-load (external wrench, contact)
 
-[[2505.06776|FALCON]] force-curriculum (FALCON's own), [[2510.26280|Thor]] (167.7 N pull), [[2606.03297|SplitAdapter]] (6 kg OOD), and the contact wrench on [[2604.13015|Touch Dreaming]] (real, L_force forecast head + "w/o Touch" ablation) with the [[2403.10506|HumanoidBench]] taxel-toggle sim arm, plus [[2510.25725|Humanoid Visual-Tactile-Action]] as the tactile dataset.
+[[2505.06776|FALCON]] force-curriculum (FALCON's own), [[2510.26280|Thor]] (167.7 N pull), [[2606.03297|SplitAdapter]] (6 kg OOD), and the contact wrench on [[2604.13015|Touch-Dreaming]] (real, L_force forecast head + "w/o Touch" ablation) with the [[2403.10506|HumanoidBench]] taxel-toggle sim arm, plus [[2510.25725|Humanoid-Visual-Tactile-Action]] as the tactile dataset.
 
 ### Real-robot sim2real (humanoid)
 
@@ -240,7 +240,7 @@ Real Unitree **H1** (Shadow Hands + 448-taxel tactile) for the grounded story, *
 
 ### The backbone grid
 
-{ PPO floor, [[2411.04983|DINO-WM]], [[2504.02792|UWM]], [[2501.03575|Cosmos]], [[2603.14482|V-JEPA 2.1]] } × { coupling off / on }, run on the humanoid benchmarks above. The within-backbone paired off/on isolates the lift, and the grid shows the lift is the coupling term, not the backbone.
+{ PPO floor, [[2411.04983|DINO-WM]], [[2504.02792|UWM]], [[2501.03575|Cosmos]], [[2603.14482|V-JEPA-2.1]] } × { coupling off / on }, run on the humanoid benchmarks above. The within-backbone paired off/on isolates the lift, and the grid shows the lift is the coupling term, not the backbone.
 
 ---
 

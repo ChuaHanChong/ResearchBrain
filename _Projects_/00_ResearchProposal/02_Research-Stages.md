@@ -20,7 +20,7 @@ aliases:
 | Benchmark | What It Tests |
 | --- | --- |
 | [[2505.21500\|ViewSpatial-Bench]] | Cross-view localization and composition |
-| [[2504.15280\|All-Angles Bench]] | Multi-perspective understanding |
+| [[2504.15280\|All-Angles-Bench]] | Multi-perspective understanding |
 | [[2505.23764\|MMSI-Bench]] | Multi-image spatial intelligence |
 | [[2506.18385\|InternSpatial-Bench]] | Multi-view split |
 | [[2506.21458\|MindCube]] | Mental modeling from limited views |
