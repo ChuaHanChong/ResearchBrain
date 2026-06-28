@@ -10,7 +10,7 @@ tags:
 # Focus-Direction Paper-Code Index: Papers ↔ Code Repositories
 
 > [!abstract] What this is
-> One row per paper: it links each of the **567 papers** across [[Focus-Direction]]'s 18 core directions (Whole-Body A+B, WAM·A, Sim2Real·B, Embodied-AI·B) plus Whole-Body Cluster C (Force-Adaptive Coordination Under Load) to its KnowledgeHub note, local PDF, and official code repo. **349** papers have a confirmed official repo; **347** of those are cloned into `data/.repositories/`. The other **218** released no public code.
+> One row per paper: it links each of the **567 papers** across [[Focus-Direction]]'s 18 core directions (Whole-Body A+B, WAM·A, Sim2Real·B, Embodied-AI·B) plus Whole-Body Cluster C (Force-Adaptive Coordination Under Load), 20 directions across the 6 clusters in all, to its KnowledgeHub note, local PDF, and official code repo. **349** papers have a confirmed official repo; **347** of those are cloned-and-catalogued in `data/.repositories/` (the live folder now holds **358** directories in all, the extra being later or uncatalogued clones; the in-program figure of 358 is that live folder count). The other **218** released no public code.
 >
 > **Indexing:** all **567** papers are indexed in a graphify concept graph at `data/papers/graphify-out/` (1,918 nodes, cross-paper semantic + citation links, community clusters); **343** of the **347** cloned repos are indexed in GitNexus code-graphs (`.gitnexus/`, queryable via the gitnexus MCP for call-graphs / impact analysis / symbol context) — the 4 exceptions are in Known gaps.
 >

@@ -1,5 +1,5 @@
 ---
-title: "Focus-Direction Workflow: the CoWAM program pitch (canvas source)"
+title: "Focus-Direction Workflow: the CoWAM program pitch (companion to the canvas)"
 aliases:
   - "CoWAM Pitch"
   - "Focus-Direction Workflow"
@@ -14,21 +14,20 @@ tags:
 # Focus-Direction Workflow: the CoWAM program pitch
 
 > [!abstract] The bet
-> Improve whole-body humanoid capability by attacking it across **six clusters at once**: three **coupling** clusters that are the co-equal core (the **green** spine) and three **mechanism** clusters that supply and complement it (the **cyan** layer). The coupling core makes the whole-body couplings a humanoid policy normally discards **explicit and anticipatory**: **WB.A arm↔leg** (self-induced inertial), **WB.B base↔arm** (kinematic), **WB.C force-under-load** (external wrench), working name **CoWAM** (Coupling-aware World-Action Model). The mechanism clusters are general embodied-AI breakthroughs in their own right that also feed CoWAM's loop: **WAM.A predict** (better world-model architecture and training), **Sim2Real.B ground** (better sim2real), **Embodied-AI.B verify** (better evaluation). The whole program is one bet, that a cheap, structured physics term, predicted, grounded, and verified, beats far larger data and compute on a fixed budget and can cheaply prove itself wrong up front. Companions: [[Focus-Direction]], [[Focus-Direction-Research-Plan]], [[Focus-Direction-Research-Plan-detailed]].
+> Improve whole-body humanoid capability by attacking it across **six clusters at once**: three **coupling** clusters that are the co-equal core (the **green** spine) and three **mechanism** clusters that supply and complement it (the **cyan** layer). The coupling core makes the whole-body couplings a humanoid policy normally discards **explicit and anticipatory**: **WB.A arm↔leg** (self-induced inertial), **WB.B base↔arm** (kinematic), **WB.C force-under-load** (external wrench), working name **CoWAM** (Coupling-aware World-Action Model). The mechanism clusters are each intended as a candidate standalone advance in their own right that also feeds CoWAM's loop: **WAM.A predict** (better world-model architecture and training), **Sim2Real.B ground** (better sim2real), **Embodied-AI.B verify** (better evaluation). The whole program is one bet, that a cheap, structured physics term, predicted, grounded, and verified, beats far larger data and compute on a fixed budget and can cheaply prove itself wrong up front. Companions: [[Focus-Direction]], [[Focus-Direction-Research-Plan]], [[Focus-Direction-Research-Plan-detailed]].
 
 > [!note] How to read this
-> The walkthrough for the face-to-face: seven rows top to bottom, then the closing **ask**. The color legend below maps every node.
-> 1. **Physics and first principles.** *Speaker note (what I say):* the generalized mass matrix is non-block-diagonal, so every whole-body motion transmits a low-dimensional structured cross-term, a quantity to predict, not data to collect.
-> 2. **The gap across the program.** *Speaker note (what I say):* each coupling is handled today, but reactively, one-directionally, or implicitly, never anticipatory inside one coupled humanoid policy, and the predict / ground / verify mechanisms are unwired to the coupling.
-> 3. **The six-cluster program.** *Speaker note (what I say):* the **green** coupling core (WB.A, WB.B, WB.C, each improved as a whole) plus the **cyan** mechanism clusters (WAM.A predict, Sim2Real.B ground, Embodied-AI.B verify), six recipe-card columns, one shared spine.
-> 4. **The de-risking experiments.** *Speaker note (what I say):* three cheap falsifiers in parallel, one per coupling **cluster**, each testing the shared claim every direction in that cluster is built on, so a pass advances the whole cluster, same data, same backbone, in sim, with per-cluster go/no-go and the de-circularizing ε-curve.
-> 5. **What to build.** *Speaker note (what I say):* gate-driven, not a calendar, de-risk first, then ground, then CoWAM, then verify, every expensive build commits only after its gate clears. Just what to build per cluster and the go/no-go that green-lights the next.
-> 6. **Benchmarks.** *Speaker note (what I say):* three core humanoid axes are the actual hypothesis tests (balance / disturbance for A, mobile-manipulation for B, force-under-load for C), everything else is a robustness check.
-> 7. **Risks.** *Speaker note (what I say):* each cluster can fail independently and every failure branch still yields a result, which is why grounding sits in the core, not the extension.
-> Then the **ask**: an early read on the full program direction and which clusters to prioritize first.
+> The walkthrough for the face-to-face, tracing the canvas: the numbered problem funnel feeds the coupling mind-maps, which feed Phase 0, the build steps, the benchmarks, and the closing **ask**. The color legend below maps every node.
+> 1. **The problem funnel (1-4).** *Speaker note (what I say):* four numbered stops narrowing to the single bet, the headline problem, then the physics (the non-block-diagonal mass matrix transmits a low-dimensional structured cross-term, a quantity to predict, not data to collect), then the gap (each coupling handled reactively, one-directionally, or implicitly, never anticipatory inside one coupled humanoid policy), then the borrowed proof-of-life kept honest.
+> 2. **The three coupling mind-maps.** *Speaker note (what I say):* arm-legs (WB.A), base-arm (WB.B), and force-under-load (WB.C), each opening from its first-principle box and branching the reactive foils it must beat.
+> 3. **Phase 0.** *Speaker note (what I say):* the cheap up-front falsifier that can prove the whole bet wrong before any expensive build, same data, same backbone, in sim, with the de-circularizing ε-curve.
+> 4. **The five build / plan steps.** *Speaker note (what I say):* gate-driven, not a calendar, de-risk first, then ground, then predict, then couple, then verify, every expensive build committing only after its go/no-go gate clears.
+> 5. **Benchmarks.** *Speaker note (what I say):* three core humanoid axes are the actual hypothesis tests (balance / disturbance for A, mobile-manipulation for B, force-under-load for C), everything else is a robustness check.
+> *On the cards:* the method-paper names on the build and verify steps are **illustrative exemplars** of each move's lineage, not the committed recipe; the precise per-cluster recipe triples (the exact papers each step builds on) live in [[Focus-Direction-Research-Plan-detailed|the detailed plan]].
+> Then the **ask**: an early read on the full program direction and which couplings to prioritize first.
 
 > [!note] Color legend (for the canvas)
-> **green** = coupling core (CoWAM): the three co-equal coupling clusters WB.A / WB.B / WB.C, the bet. **cyan** = mechanism complementary clusters: the predict / ground / verify general breakthroughs (WAM.A, Sim2Real.B, Embodied-AI.B) that also supply CoWAM's loop. **red** = reactive foils, what fails. **orange** = the headline benchmark axes. **purple** = deferred extension (C2 certified safe set). **grey** = context that recedes (deployment surface, mechanism substrate).
+> **green** = the coupling core (CoWAM) plus the goal and build cards, the bet. **cyan** = the first-principles and insight boxes plus the predict / ground / verify build steps (WAM.A, Sim2Real.B, Embodied-AI.B). **red** = the problem plus every method-paper foil, what fails. **orange** = the benchmarks, the headline test axes. **purple** = the deferred certified-safety item (C2 certified safe set). **yellow** = the Phase-0 de-risk / cheap-check gate.
 
 ---
 
@@ -41,8 +40,8 @@ tags:
 > - **Assumption challenged:** the field decouples whole-body control into an arm controller plus a balance controller and leaves the coupling implicit or reactive.
 > - **The bet:** making each coupling an explicit, anticipatory, grounded, and verified world-model output beats far larger data and compute on a fixed budget, with the gain concentrated where the cross-term is largest, and it falsifies cheaply via the epsilon-curve.
 
-- **The coupling physics (the core, green):** the non-block-diagonal mass matrix M(q) gives **three coupling channels** part-wise control discards: arm↔leg self-induced inertial (**δ_base = M(base,arm)·q̈_arm**, A), force-under-load external wrench (**δ_ext = J_ext^T·F_ext**, C), and base↔arm kinematic (the base is itself a manipulation DoF, B). A and C are the two *dominant* force pathways and share one output head; B is the separate kinematic one. These are structured terms the physics already contains, not a new dataset or a bigger model.
-- **The three enablers (mechanism-complementary, cyan):** an explicit-coupling model needs **predicting** (the architecture and training that carries the cross-term on a world-action latent: [[WAM|WAM·A]]), **grounding** (the sim2real that makes the imagined physics real via differentiable system-ID: [[Sim2Real|S2R·B]]), and **verifying** (the evaluation that binds predicted to realized coupling: [[Embodied-AI|EAI·B]]). Each is also a standalone general embodied-AI breakthrough: a control-relevant predictive latent, robot-self system-ID, and a causal-consistency metric that no public benchmark provides.
+- **The coupling physics (the core, green):** the non-block-diagonal mass matrix M(q) gives **three coupling channels** part-wise control discards: arm↔leg self-induced inertial (**δ_base = M(base,arm)·q̈_arm + C(base,arm)·q̇_arm**, A), force-under-load external wrench (**δ_ext = J_ext^T·F_ext**, C), and base↔arm kinematic (the base is itself a manipulation DoF, B). A and C are the two *dominant* force pathways and share one output head; B is the separate kinematic one. The three are co-equal in the explicit-coupling *bet* but not in mechanism *depth*: A is the deepest (it carries its own reactive-observer baseline), C rides A's shared head, and B is a thinner factoring-only claim with no reactive-observer comparator. These are structured terms the physics already contains, not a new dataset or a bigger model.
+- **The three enablers (mechanism-complementary, cyan):** an explicit-coupling model needs **predicting** (the architecture and training that carries the cross-term on a world-action latent: [[WAM|WAM·A]]), **grounding** (the sim2real that makes the imagined physics real via differentiable system-ID: [[Sim2Real|S2R·B]]), and **verifying** (the evaluation that binds predicted to realized coupling: [[Embodied-AI|EAI·B]]). Each is also intended as a candidate standalone advance: a control-relevant predictive latent, robot-self system-ID, and a causal-consistency metric that no public benchmark provides.
 
 ---
 
@@ -61,7 +60,7 @@ tags:
 - **Embodied-AI.B · verify:** WM-evaluation harnesses score **fidelity / plausibility** ([[2606.05773|PiL-World]], [[2606.18610|SC3-Eval]]), none certify the **causal binding** of predicted coupling to realized coupling.
 
 > [!warning] The honest headline (say this, do not oversell)
-> The well-known "**41% → 62%**" out-of-distribution margin is **borrowed**: it is [[2604.07993|HEX]]-implicit beating part-wise stacks (implicit-vs-part-wise, on the arm↔leg channel), the **field's** proof-of-life, **not my claim** and **not explicit-vs-implicit**. My testable wedge per channel is **explicit-vs-implicit** (and, on the two force channels A and C, **explicit-vs-reactive**), which each falsifier *tests*, not a number already in hand.
+> The well-known "**41% → 62%**" out-of-distribution margin is **borrowed**: it is [[2604.07993|HEX]]'s implicit MoE beating **monolithic generalist VLAs** (pi0.5 44.3, GR00T N1.5 41.0) across eight unseen **scene** variations, a **scene-generalization** axis, the **field's** proof-of-life that an implicit MoE pays off, **not part-wise stacks**, **not the disturbance / coupling-OOD axis** this program targets, and **not my claim**. My testable wedge per channel is **explicit-vs-implicit** (and, on the two force channels A and C, **explicit-vs-reactive**), which each falsifier *tests*, not a number already in hand.
 
 **The gap in one line:** no prior work makes the self-induced inertial cross-term (A) *or* the unknown external wrench (C) an **explicit, anticipatory world-model output carried inside one coupled humanoid policy**, nor binds **predicted coupling to realized coupling** as a metric, and the predict / ground / verify fields each leave the matching seam unwired.
 
@@ -88,7 +87,7 @@ graph TD
     style Bk fill:#eeeeee,stroke:#888888
 ```
 
-*Backbone-agnostic: the three **green** modules are the contribution, a plug-in on **any** WAM backbone, grounded (S2R.B) and verified (EAI.B). The backbone grid (DINO-WM / UWM / V-JEPA / Cosmos / a PPO floor) proves the lift is the coupling term, not the backbone.*
+*Backbone-agnostic: the three **green** modules are the contribution, a plug-in on **any** WAM backbone, grounded (S2R.B) and verified (EAI.B). The backbone grid (DINO-WM / UWM / V-JEPA 2.1 / Cosmos-Policy / a PPO floor) proves the lift is the coupling term, not the backbone.*
 
 ---
 
@@ -206,7 +205,7 @@ Supervise each force head on a **deliberately wrong** physics model (perturbed b
 | Build | Deliverable | Gate (pre-registered) |
 |---|---|---|
 | **The three cluster falsifiers** (WB.A · WB.B · WB.C, parallel, co-equal) | per-cluster three-way / autoregressive ablations + per-cluster ε-curves | each cluster's go/no-go (A ≥ 5 pp at high arm-accel AND anticipatory beats reactive ≥ 5 pp; C first-100 ms CoM-excursion ≥ 20% at matched load; B ≥ 5 pp on reach-extension, near-zero fixed-base) |
-| **Ground the terms** | differentiable sysID of M(base,arm) (A) and the contact model / J_ext (C) on the real robot; B's mobile-manip object physics rides the same engine's native recovery (no separate gate) | ≤ 15% Frobenius AND beats broad-DR on OOD mass/load AND ≥ 80% real-SR retention |
+| **Ground the terms** | differentiable sysID of M(base,arm) (A) and the contact model / J_ext (C) on the real robot; B's mobile-manip object physics rides the same engine's native recovery (no separate gate) | beats broad-DR on OOD-mass SR AND ≥ 80% real-SR retention AND PR-4 self-consistency (no real-robot Frobenius-to-truth: that 15% test lives only in the PR-0b planted-M̃ sim check) |
 | **CoWAM** | shared wrench head, sensor-free forecast of the self-induced (A) and external (C) reaction | sensor-free wrench MSE ≤ 2x the tactile-available baseline on held-out [[2604.13015\|Touch-Dreaming]] (real, its "w/o Touch" ablation) + [[2403.10506\|HumanoidBench]] taxel-toggle sim arm |
 | **Verify + continual** | causal-consistency metric across all three clusters + hardware | predicted-vs-realized R² ≥ 0.70 AND continual lift retained (NBT ≥ -2 pp) |
 
@@ -214,7 +213,7 @@ The cheap cluster falsifiers and the verify track run first; the costly downstre
 
 ### Feasibility: robot, compute, code (one line)
 
-Real Unitree **H1** (Shadow Hands + 448-taxel tactile) for the grounded story, **G1** for the lighter deploy; the cluster falsifiers run cheap on a few GPUs, CoWAM on a multi-GPU node, deploy on a Jetson Orin at ≥ 30 Hz; **327 repos already cloned** with named fork targets per build (`humanoid-bench` / `HEX`, `FALCON` / `ADAPT`, `brs-algo` / `AC-DiT`, `D-rex` / `gradsim`, `dino_wm` / `UWM` / `vjepa2`, `stable-worldmodel` / `VLA-GSE`).
+Real Unitree **H1** (Shadow Hands + 448-taxel tactile) for the grounded story, **G1** for the lighter deploy; the cluster falsifiers run cheap on a few GPUs, CoWAM on a multi-GPU node, deploy on a Jetson Orin at ≥ 30 Hz; **358 repos already cloned** (snapshot at writing) with named fork targets per build (`humanoid-bench` / `HEX`, `FALCON` / `ADAPT`, `brs-algo` / `AC-DiT`, `D-rex` / `gradsim`, `dino_wm` / `UWM` / `vjepa2`, `stable-worldmodel` / `VLA-GSE`).
 
 ---
 
@@ -236,11 +235,11 @@ Real Unitree **H1** (Shadow Hands + 448-taxel tactile) for the grounded story, *
 
 ### Real-robot sim2real (humanoid)
 
-[[2602.01515|RAPT]] humanoid sim2real OOD, on the H1/G1 deploy from Row 5.
+[[2602.01515|RAPT]] humanoid sim2real OOD, on the H1/G1 deploy from Row 5. No public whole-body coupling-transfer suite exists, so the sim-vs-real gap is anchored on [[2505.12748|TeleOpBench]] (a dual-arm teleoperation sim-vs-real anchor, non-humanoid) and [[2602.02331|TTT-Parkour]] (sim 99% to robust on a real G1), measured on my own coupling tasks.
 
 ### The backbone grid
 
-{ PPO floor, [[2411.04983|DINO-WM]], [[2504.02792|UWM]], [[2501.03575|Cosmos]], [[2603.14482|V-JEPA-2.1]] } × { coupling off / on }, run on the humanoid benchmarks above. The within-backbone paired off/on isolates the lift, and the grid shows the lift is the coupling term, not the backbone.
+{ PPO floor, [[2411.04983|DINO-WM]], [[2504.02792|UWM]], [[2603.22078|Cosmos-Policy]], [[2603.14482|V-JEPA-2.1]] } × { coupling off / on }, run on the humanoid benchmarks above. The within-backbone paired off/on isolates the lift, and the grid shows the lift is the coupling term, not the backbone.
 
 ---
 
