@@ -1,6 +1,6 @@
 ---
 name: alphaxiv-summary-extract
-description: "Extract paper summaries from alphaxiv.org and write enriched Obsidian notes into KnowledgeHub. Use whenever the user says 'update knowledge hub', 'add this paper', 'save this paper', 'extract this paper', shares an arxiv URL/ID and wants it saved as a note, or wants to batch-process new papers. Also trigger when the user asks about enrichment rules, tag taxonomy, or KnowledgeHub note formatting conventions."
+description: "Scrape alphaxiv.org paper summaries into enriched Obsidian KnowledgeHub notes ({arxiv_ID}.md), single paper or full knowledge.py batch. Use whenever the user wants to ingest, add, or save arxiv papers into the knowledge hub, or shares an arxiv URL/ID to save (e.g. 'update knowledge hub', 'add these papers'). Also use it to rescue failed scrapes by auto-generating missing alphaxiv overview pages via a cmux browser (e.g. 'generate the overviews for the failed papers', 'rescue the pending scrapes'). Covers enrichment, tagging, and note-formatting rules too."
 ---
 
 # AlphaXiv Summary Extract
@@ -75,7 +75,7 @@ Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each
 
 > Do NOT add highlights or bold to Summary, Problem, or Takeaways sections.
 
-##### Canonical Tag Taxonomy (71 tags)
+##### Canonical Tag Taxonomy (64 tags)
 
 > **Single source of truth for the tag vocabulary used across all skills.** `Skill(skill="paper-curate")` references this table for routing — keep tag names exact (renames must propagate). Run `validate-tags` (see `Skill(skill="paper-curate")`) after any change to detect drift.
 
@@ -192,9 +192,30 @@ python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
 
 ## Papers with no pre-generated alphaxiv overview (rescue)
 
-Persistent failures (chromedriver stack traces surviving `run.py`'s auto-retry) are papers with **no pre-generated overview** — `alphaxiv.org/overview/{ID}` shows a *"Generate Overview"* button behind a login the headless scraper can't click. This is **not** transient or rate-limiting; re-running alone won't fix it.
+Persistent failures (chromedriver stack traces surviving `run.py`'s auto-retry) are papers with **no pre-generated overview** — `alphaxiv.org/overview/{ID}` shows a *"Generate Overview"* button the headless scraper can't click. This is **not** transient or rate-limiting; re-running alone won't fix it. Generation is **server-side and per-paper** (not per-browser): once an overview exists, any later scrape — even the headless one — can read it. So the rescue is to trigger generation once, wait for it, then `run.py --force` the still-missing IDs.
 
-**Rescue: warm the backend / generate the overview, then retry — don't block.** Opening the paper's page in a real (logged-in) browser warms alphaxiv's backend so a later retry succeeds (and lets the user generate the overview on their own schedule). Open *all* failed URLs at once and keep enriching/curating the successful notes meanwhile:
+### Preferred: auto-generate via cmux browser (hands-free)
+
+`scripts/generate_overviews.py` drives a cmux browser surface (Chrome DevTools Protocol — no extension, no Chrome setting to toggle) to reach each overview by **clicking through from `/abs/{ID}`** (the direct `/overview/` SSR route is per-IP rate-limited — the same workaround `retrieve.py` uses), click *"Generate Overview"*, and **wait for the overview to fully render before advancing**:
+
+```bash
+python .claude/skills/alphaxiv-summary-extract/scripts/generate_overviews.py --ids-file failed.json
+# or target everything still missing a KH note:
+python .claude/skills/alphaxiv-summary-extract/scripts/generate_overviews.py --pending
+```
+
+It opens a **visible** surface by default (`--focus true`) so a human can watch it work, reuses that one surface (navigating in place), retries the probe on warm-up, detects withdrawn/404 pages, and caps each paper at `--timeout` seconds so one stuck page can't hang the loop. When it finishes, recompute pending and re-scrape with `run.py --force`.
+
+Four gotchas the script encodes — they cost real debugging time, so respect them when invoking or adapting it:
+
+- **Never `nohup ... &` it.** Detaching from the TTY breaks cmux's socket `eval` (returns empty → every paper silently skipped, nothing generated). Run it in the **foreground**, or via a harness-managed background runner that keeps the cmux socket alive (Claude Code's `run_in_background`). The tell-tale is `[probe empty]` on every paper.
+- **Completion = a "Table of Contents" heading + a large body (~>5000 chars).** Don't poll for the word *"generating"* — it false-positives on section headings (e.g. *"Generating Obstacle-Aware Trajectory Supervision"*).
+- **The first probe after navigation is often empty** (browser warm-up); one empty read is not a failure, so the script retries before giving up.
+- **Each paper takes ~30–120 s** to generate, so a large failed batch runs for a while — that's inherent (you're waiting on alphaxiv's server), not a bug.
+
+### Fallback: open the pages for a human to generate
+
+If cmux automation isn't available, open all failed `/abs/` pages at once (opening `/overview/` directly in a burst hits the per-IP rate-limit; the abstract page soft-navigates there safely) and let the user click through to each overview and hit *"Generate Overview"* on their own schedule, then retry — don't block on it:
 
 ```bash
 cmux new-surface --type browser --url "https://www.alphaxiv.org/abs/<ID>" --focus false
@@ -202,11 +223,12 @@ cmux new-surface --type browser --url "https://www.alphaxiv.org/abs/<ID>" --focu
 
 Tell them how many surfaces opened and list the pending IDs in the run's **Failed** line. On retry, recompute pending (the still-missing `{ID}.md`) and re-scrape with `--force`.
 
-Every note must be sourced from the alphaxiv overview: do **not** fabricate one from the arxiv abstract/HTML/PDF as a substitute. If an overview still cannot be generated, leave the paper **un-ingested** (a missing note beats a fabricated one). A `404` on `/abs/{ID}.md` means the paper is withdrawn — skip it.
+Every note must be sourced from the alphaxiv overview: do **not** fabricate one from the arxiv abstract/HTML/PDF as a substitute. If an overview still cannot be generated, leave the paper **un-ingested** (a missing note beats a fabricated one). A `404` on `/abs/{ID}.md` (or an `err` page in the generator) means the paper is withdrawn — skip it.
 
 ## Notes
 
 - The script skips papers whose `{ID}.md` already exists — safe to interrupt and resume
+- Scraped text is auto-sanitized at extraction (`scripts/sanitize.py`, applied inside `retrieve.py`): KaTeX math corruption (triple-render like `π0.5\pi_{0.5}π0.5`, leaked LaTeX, control chars, mangled `±`) is repaired, while inline `$…$`, `` `code` ``, and bibtex blocks are preserved verbatim
 - BibTeX is fetched from `https://arxiv.org/bibtex/{ID}` during note generation
 - `authors`, `tags`, and `aliases` in frontmatter start empty (`[]`) — the post-processing enrichment step fills them in
 - `authors` must never contain `- ...` as a placeholder — use real names only, or omit the field

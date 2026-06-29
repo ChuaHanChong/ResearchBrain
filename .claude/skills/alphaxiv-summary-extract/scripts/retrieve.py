@@ -1,4 +1,5 @@
-"""retrieve.py — Selenium helpers to scrape a paper's title and Problem/Method/Results/Takeaways from its alphaxiv overview."""
+"""Selenium helpers to scrape a paper's title and Problem/Method/Results/Takeaways from its alphaxiv overview."""
+import re
 import time
 from typing import Optional
 
@@ -8,6 +9,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+
+from sanitize import sanitize
 
 
 def extract_title(url: str) -> Optional[str]:
@@ -34,8 +37,12 @@ def _js_click(driver: webdriver.Chrome, xpath: str) -> object:
 
 
 def _js_text(driver: webdriver.Chrome, element: object) -> str:
-    """Extract text via JS textContent (works even when CSS hides the element from .text)."""
-    return driver.execute_script("return arguments[0].textContent;", element).strip()
+    """Extract text via JS textContent (works even when CSS hides the element from .text), then
+    repair KaTeX/LaTeX/control-char corruption via sanitize()."""
+    raw = driver.execute_script("return arguments[0].textContent;", element)
+    # collapse spurious newlines (each call is one paragraph/<li>; KaTeX math else explodes per token)
+    raw = re.sub(r'\s*\n\s*', ' ', raw).strip()
+    return sanitize(raw)
 
 
 def _click_through_to_overview(driver: webdriver.Chrome, arxiv_id: str) -> None:
