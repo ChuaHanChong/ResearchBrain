@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""kh-graph-sync — additively refresh graphify-out/graph.json from _KnowledgeHub_.
+"""Additively refresh graphify-out/graph.json from _KnowledgeHub_.
 
 Run under graphify's interpreter (it imports graphify):
     PY=$(cat graphify-out/.graphify_python)

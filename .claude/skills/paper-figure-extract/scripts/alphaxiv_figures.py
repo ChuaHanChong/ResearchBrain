@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""alphaxiv_figures.py — extract a paper's pipeline figure from its alphaxiv OVERVIEW page
+"""Extract a paper's pipeline figure from its alphaxiv OVERVIEW page
 (headless Chromium): alphaxiv's own alt-label + caption + the CDN image, then embed a chosen
 figure (verbatim alphaxiv caption) under the KH note's ``## Method``.
 

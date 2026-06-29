@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""refresh_bibtex.py — refresh the BibTeX block in existing KnowledgeHub notes in place.
+"""Refresh the BibTeX block in existing KnowledgeHub notes in place.
 
 Reads the arxiv ID from each filename, fetches fresh BibTeX, and rewrites the block.
 

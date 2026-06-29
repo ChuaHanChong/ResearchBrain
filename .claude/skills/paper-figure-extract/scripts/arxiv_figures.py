@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""arxiv_figures.py — extract a paper's pipeline figure from its arxiv HTML render
+"""Extract a paper's pipeline figure from its arxiv HTML render
 (https://arxiv.org/html/{ID}, static HTML): the paper's own figures + figcaptions,
 then embed a chosen figure (verbatim caption) under the KH note's ``## Method``.
 

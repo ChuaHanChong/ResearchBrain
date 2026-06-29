@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""extract_markdown.py — print KnowledgeHub note content for arxiv IDs found in the input text.
+"""Print KnowledgeHub note content for arxiv IDs found in the input text.
 
 Usage:
     echo "query text with https://arxiv.org/abs/2602.15922 and 2507.04447" | python extract_markdown.py

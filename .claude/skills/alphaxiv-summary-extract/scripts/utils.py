@@ -1,4 +1,4 @@
-"""utils.py — shared utilities for alphaxiv-summary-extract scripts (dedup, BibTeX fetch)."""
+"""Shared utilities for alphaxiv-summary-extract scripts (dedup, BibTeX fetch)."""
 
 import requests
 

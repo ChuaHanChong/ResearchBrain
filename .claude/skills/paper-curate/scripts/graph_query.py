@@ -1,4 +1,4 @@
-"""graph_query.py — graph helpers for paper-curate.
+"""Graph helpers for paper-curate.
 
 CLI commands (one per Mode/sub-step):
 

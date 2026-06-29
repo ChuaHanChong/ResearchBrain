@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run.py — batch-extract paper summaries from alphaxiv and write Obsidian markdown notes.
+"""Batch-extract paper summaries from alphaxiv and write Obsidian markdown notes.
 
 Usage:
     python run.py --input scripts/knowledge.py --out _KnowledgeHub_
