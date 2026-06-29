@@ -361,7 +361,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 - [[2603.15359|NavThinker]], [[2506.09839|OctoNav]], [[2505.20897|Cross-from-Left-to-Right-Brain]], [[2504.14478|ApexNav]], [[2503.16394|Do-Visual-Imaginations-Improve]], [[2502.09238|OpenBench-navigation]], [[2405.07060|Memory-Maze]]
 
 **VLA & Policy Benchmarks** — VLA / policy evaluation suites.
-- [[2606.05773|PiL-World]], [[2606.05159|X4Val]], [[2605.22896|Agentic]], [[2603.13616|N-SCORE]], [[2511.11520|Video-WM-Policy-Eval]], [[2508.13103|Grounding-Actions-Camera-Space]], [[2503.01378|CognitiveDrone]], [[2503.00774|Shadow]], [[2502.03270|Temporal-Trap-Entanglement-Pre-Trained]]
+- [[2606.05773|PiL-World]], [[2606.05159|X4Val]], [[2605.22896|Agentic]], [[2603.13616|N-SCORE]], [[2512.04597|AbstainEQA]], [[2511.11520|Video-WM-Policy-Eval]], [[2508.13103|Grounding-Actions-Camera-Space]], [[2503.01378|CognitiveDrone]], [[2503.00774|Shadow]], [[2502.03270|Temporal-Trap-Entanglement-Pre-Trained]]
 
 **Physics & World-Model Benchmarks** — Physics / world-model benchmarks.
 - [[2606.27326|MMBench2]], [[2605.27589|What-If-World]], [[2604.21686|WorldMark]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2603.09030|PlayWorld]], [[2602.23152|Trinity-of-Consistency]], [[2602.08971|WorldArena]], [[2602.08025|MIND-Bench]], [[2601.04137|WoW-World-Eval]], [[2505.09694|EWMBench]], [[2503.10480|World-Modeling-Makes-Better]], [[2503.08481|PhysVLM]], [[2310.12931|Eureka]]
