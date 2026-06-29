@@ -29,7 +29,7 @@ Two entry modes (single paper / batch) feed identical post-processing.
 When `$ARGUMENTS` contains an arxiv ID or URL:
 
 ```bash
-python .claude/skills/alphaxiv-summary-extract/scripts/run.py \
+python .claude/skills/alphaxiv-summary-extract/scripts/extract_summaries.py \
   --ids $ARGUMENTS \
   --out _KnowledgeHub_
 ```
@@ -49,7 +49,7 @@ Defaults (relative to vault root):
 - Output directory: `_KnowledgeHub_`
 
 ```bash
-python .claude/skills/alphaxiv-summary-extract/scripts/run.py \
+python .claude/skills/alphaxiv-summary-extract/scripts/extract_summaries.py \
   --input .claude/skills/alphaxiv-summary-extract/scripts/knowledge.py \
   --out _KnowledgeHub_
 ```
@@ -192,7 +192,7 @@ python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
 
 ## Papers with no pre-generated alphaxiv overview (rescue)
 
-Persistent failures (chromedriver stack traces surviving `run.py`'s auto-retry) are papers with **no pre-generated overview** — `alphaxiv.org/overview/{ID}` shows a *"Generate Overview"* button the headless scraper can't click. This is **not** transient or rate-limiting; re-running alone won't fix it. Generation is **server-side and per-paper** (not per-browser): once an overview exists, any later scrape — even the headless one — can read it. So the rescue is to trigger generation once, wait for it, then `run.py --force` the still-missing IDs.
+Persistent failures (chromedriver stack traces surviving `extract_summaries.py`'s auto-retry) are papers with **no pre-generated overview** — `alphaxiv.org/overview/{ID}` shows a *"Generate Overview"* button the headless scraper can't click. This is **not** transient or rate-limiting; re-running alone won't fix it. Generation is **server-side and per-paper** (not per-browser): once an overview exists, any later scrape — even the headless one — can read it. So the rescue is to trigger generation once, wait for it, then `extract_summaries.py --force` the still-missing IDs.
 
 ### Preferred: auto-generate via cmux browser (hands-free)
 
@@ -204,7 +204,7 @@ python .claude/skills/alphaxiv-summary-extract/scripts/generate_overviews.py --i
 python .claude/skills/alphaxiv-summary-extract/scripts/generate_overviews.py --pending
 ```
 
-It opens a **visible** surface by default (`--focus true`) so a human can watch it work, reuses that one surface (navigating in place), retries the probe on warm-up, detects withdrawn/404 pages, and caps each paper at `--timeout` seconds so one stuck page can't hang the loop. When it finishes, recompute pending and re-scrape with `run.py --force`.
+It opens a **visible** surface by default (`--focus true`) so a human can watch it work, reuses that one surface (navigating in place), retries the probe on warm-up, detects withdrawn/404 pages, and caps each paper at `--timeout` seconds so one stuck page can't hang the loop. When it finishes, recompute pending and re-scrape with `extract_summaries.py --force`.
 
 Four gotchas the script encodes — they cost real debugging time, so respect them when invoking or adapting it:
 

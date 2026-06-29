@@ -49,7 +49,7 @@ General/ (topic overview, landscape, key papers)
 
 ### alphaxiv API Notes
 
-- Overview page: `https://www.alphaxiv.org/overview/{PAPER_ID}` — JS-rendered HTML, scraped via Selenium + BeautifulSoup in `alphaxiv-summary-extract/scripts/run.py`
+- Overview page: `https://www.alphaxiv.org/overview/{PAPER_ID}` — JS-rendered HTML, scraped via Selenium + BeautifulSoup in `alphaxiv-summary-extract/scripts/extract_summaries.py`
 - Domain redirects from `alphaxiv.org` → `www.alphaxiv.org` (use `-L` if probing with curl)
 - The `.md` suffix endpoint exists (machine-readable render) but is **not used** — static render misses JS-loaded sections this vault needs
 - MCP tools (preferred over scraping when possible): `embedding_similarity_search`, `full_text_papers_search`, `agentic_paper_retrieval`, `get_paper_content`, `answer_pdf_queries`, `read_files_from_github_repository`
@@ -67,7 +67,7 @@ General/ (topic overview, landscape, key papers)
 - KH enrichment rules (authors, tags, aliases, formatting) are in the `alphaxiv-summary-extract` skill
 - General/ formatting rules (wikilinks, sorting, callouts) are in the `paper-curate` skill
 - Use Edit tool + obsidian-markdown skill for KH enrichment, not custom Python scripts
-- Download arxiv PDFs with `curl -fLJO --create-dirs --output-dir data/papers "https://arxiv.org/pdf/{ID}"` — the version suffix comes from arxiv's `Content-Disposition` filename (e.g., `2412.02818v4.pdf`); one file per paper. Selenium (`alphaxiv-summary-extract/scripts/run.py`) scrapes alphaxiv overview pages, not PDFs.
+- Download arxiv PDFs with `curl -fLJO --create-dirs --output-dir data/papers "https://arxiv.org/pdf/{ID}"` — the version suffix comes from arxiv's `Content-Disposition` filename (e.g., `2412.02818v4.pdf`); one file per paper. Selenium (`alphaxiv-summary-extract/scripts/extract_summaries.py`) scrapes alphaxiv overview pages, not PDFs.
 
 ## Deep-Dive Format (`Embodied-AI/`)
 

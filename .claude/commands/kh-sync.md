@@ -10,7 +10,7 @@ Use the **research-assistant agent** to sync the vault with `.claude/skills/alph
 
 Invoke `Skill(skill="alphaxiv-summary-extract")` in batch mode. The skill skips papers whose `{ID}.md` already exists and reports Processed / Skipped / Failed counts.
 
-`knowledge.py` is a living mirror — the user appends IDs continuously, sometimes mid-run. Compute pending fresh as `{knowledge.py IDs} − {existing KH stems}` (not the truncatable run.py "Failed" line), and recompute after every scrape/retry.
+`knowledge.py` is a living mirror — the user appends IDs continuously, sometimes mid-run. Compute pending fresh as `{knowledge.py IDs} − {existing KH stems}` (not the truncatable extract_summaries.py "Failed" line), and recompute after every scrape/retry.
 
 ## 2. Enrich
 

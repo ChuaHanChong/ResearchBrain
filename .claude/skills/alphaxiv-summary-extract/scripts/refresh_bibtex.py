@@ -13,9 +13,7 @@ import re
 import sys
 from pathlib import Path
 
-from utils import fetch_bibtex
-
-KH_DIR = "_KnowledgeHub_"  # default notes dir (vault-relative)
+from common import KH_DIR, fetch_bibtex
 
 
 def update_bibtex_in_note(note_path: Path, bibtex: str) -> bool:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Drive a cmux browser to generate the alphaxiv overview pages for papers
-that failed to scrape (those with no pre-generated overview), so `run.py --force` can then ingest
+that failed to scrape (those with no pre-generated overview), so `extract_summaries.py --force` can then ingest
 them. Run it in the foreground or a harness-managed background — nohup breaks cmux's socket eval.
 See the SKILL.md "rescue" section for the why and the gotchas; the inline comments cover the
 completion-detection logic.
@@ -21,8 +21,7 @@ import time
 from pathlib import Path
 from typing import Optional
 
-OVERVIEW = "https://www.alphaxiv.org/overview/{}"  # alphaxiv overview page URL template
-ABS = "https://www.alphaxiv.org/abs/{}"  # arxiv abstract page — soft-nav entry (avoids rate-limited /overview/)
+from common import ABS_URL, ARXIV_ID_RE, KH_DIR, OVERVIEW_URL, overview_link_selector
 
 # Probe the page state: is the Generate button present, and is the overview fully rendered?
 PROBE_JS = r"""(() => {
@@ -100,14 +99,15 @@ def is_done(state: Optional[dict]) -> bool:
 def open_overview(surface: str, paper_id: str) -> str:
     """Reach /overview/<id> by clicking through from /abs/ — the direct /overview/ SSR route is
     per-IP rate-limited (HTTP 500), but the in-app soft-nav from /abs/ is not. Returns ok/navfail."""
-    if cmux(surface, "goto", ABS.format(paper_id)).startswith("__ERR__"):
+    if cmux(surface, "goto", ABS_URL.format(paper_id)).startswith("__ERR__"):
         return "navfail"
     cmux(surface, "wait", "--load-state", "complete", "--timeout", "25")
     time.sleep(3)
-    link_js = (f'(() => {{ const a = document.querySelector("a[href*=\'/overview/{paper_id}\']"); '
+    sel = overview_link_selector(paper_id)
+    link_js = (f'(() => {{ const a = document.querySelector("{sel}"); '
                'if (!a) return "no-link"; a.click(); return "clicked"; })()')
     if "clicked" not in cmux(surface, "eval", link_js):
-        cmux(surface, "goto", OVERVIEW.format(paper_id))  # link not rendered — fall back to direct nav
+        cmux(surface, "goto", OVERVIEW_URL.format(paper_id))  # link not rendered — fall back to direct nav
     cmux(surface, "wait", "--load-state", "complete", "--timeout", "25")
     return "ok"
 
@@ -162,22 +162,23 @@ def load_ids(args: argparse.Namespace) -> list:
         try:
             return list(dict.fromkeys(json.loads(raw)))
         except Exception:
-            return list(dict.fromkeys(re.findall(r"\d{4}\.\d{4,5}", raw)))
+            return list(dict.fromkeys(re.findall(ARXIV_ID_RE, raw)))
     if args.pending:
         knowledge = Path(args.knowledge).read_text(encoding="utf-8")
-        kp = set(re.findall(r"arxiv\.org/abs/(\d{4}\.\d{4,5})", knowledge))
-        kh = {p.stem for p in Path(args.kh_dir).glob("*.md") if re.match(r"^\d{4}\.\d{4,5}$", p.stem)}
+        kp = set(re.findall(rf"arxiv\.org/abs/({ARXIV_ID_RE})", knowledge))
+        kh = {p.stem for p in Path(args.kh_dir).glob("*.md") if re.match(rf"^{ARXIV_ID_RE}$", p.stem)}
         return sorted(kp - kh, key=lambda i: (int(i.split(".")[0]), int(i.split(".")[1])))
     sys.exit("provide --ids, --ids-file, or --pending")
 
 
 def main() -> None:
+    """Parse args, open a cmux surface, and generate the overview for each target paper, reporting outcomes."""
     parser = argparse.ArgumentParser(description="Auto-generate alphaxiv overviews via cmux browser.")
     parser.add_argument("--ids", nargs="*", help="explicit arxiv IDs")
     parser.add_argument("--ids-file", help="JSON array or newline-delimited file of IDs")
     parser.add_argument("--pending", action="store_true", help="target every knowledge.py ID with no KH note")
     parser.add_argument("--knowledge", default=".claude/skills/alphaxiv-summary-extract/scripts/knowledge.py")
-    parser.add_argument("--kh-dir", default="_KnowledgeHub_")
+    parser.add_argument("--kh-dir", default=KH_DIR)
     parser.add_argument("--surface", help="reuse an existing cmux surface (e.g. surface:51)")
     parser.add_argument("--no-visible", action="store_true", help="open the surface unfocused (default: visible)")
     parser.add_argument("--timeout", type=int, default=360, help="max seconds to wait per paper (default 360)")
@@ -191,7 +192,7 @@ def main() -> None:
         print("nothing to generate (0 papers)")
         return
 
-    surface = args.surface or open_surface(ABS.format(ids[0]), visible=not args.no_visible)
+    surface = args.surface or open_surface(ABS_URL.format(ids[0]), visible=not args.no_visible)
     print(f"surface={surface} | {len(ids)} papers | timeout={args.timeout}s/paper")
     print("NOTE: keep this in the foreground or a harness-managed background — nohup breaks cmux eval.\n")
 
@@ -202,7 +203,7 @@ def main() -> None:
         stats[outcome] = stats.get(outcome, 0) + 1
         print(f"[{n:>3}/{len(ids)}] {paper_id}  {outcome}  ({int(time.time() - start)}s)", flush=True)
     print(f"\nDONE  {json.dumps(stats)}")
-    print("Next: re-run run.py --force on the still-missing IDs to ingest the newly-generated overviews.")
+    print("Next: re-run extract_summaries.py --force on the still-missing IDs to ingest the newly-generated overviews.")
 
 
 if __name__ == "__main__":

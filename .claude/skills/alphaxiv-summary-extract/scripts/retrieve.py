@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+from common import ABS_URL, overview_link_selector
 from sanitize import sanitize
 
 
@@ -48,11 +49,11 @@ def _js_text(driver: webdriver.Chrome, element: object) -> str:
 def _click_through_to_overview(driver: webdriver.Chrome, arxiv_id: str) -> None:
     """Reach the overview by clicking through from /abs/ rather than hitting
     /overview/ directly — the direct SSR route is per-IP rate-limited (HTTP 500)."""
-    driver.get(f"https://www.alphaxiv.org/abs/{arxiv_id}")
+    driver.get(ABS_URL.format(arxiv_id))
     time.sleep(5)
     # Click the in-app anchor (not driver.get) so the SPA router soft-navigates.
     link = WebDriverWait(driver, 15).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, f"a[href*='/overview/{arxiv_id}']"))
+        EC.presence_of_element_located((By.CSS_SELECTOR, overview_link_selector(arxiv_id)))
     )
     driver.execute_script("arguments[0].click();", link)
 

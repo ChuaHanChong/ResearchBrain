@@ -1,4 +1,4 @@
-# Reading list — non-arxiv resources (blogs, repos, docs); commented out, not scraped by run.py.
+# Reading list — non-arxiv resources (blogs, repos, docs); commented out, not scraped by extract_summaries.py.
 
 # --- LLMs (RL, fine-tuning, evaluation, architecture) ---
 # https://github.com/google-deepmind/disco_rl  # Discovering State-of-the-art Reinforcement Algorithms (DeepMind, Nature)

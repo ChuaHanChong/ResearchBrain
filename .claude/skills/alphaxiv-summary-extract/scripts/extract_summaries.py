@@ -2,9 +2,9 @@
 """Batch-extract paper summaries from alphaxiv and write Obsidian markdown notes.
 
 Usage:
-    python run.py --input scripts/knowledge.py --out _KnowledgeHub_
-    python run.py --input scripts/knowledge.py --out _KnowledgeHub_ --limit 3
-    python run.py --input scripts/knowledge.py --out _KnowledgeHub_ --force
+    python extract_summaries.py --input scripts/knowledge.py --out _KnowledgeHub_
+    python extract_summaries.py --input scripts/knowledge.py --out _KnowledgeHub_ --limit 3
+    python extract_summaries.py --input scripts/knowledge.py --out _KnowledgeHub_ --force
 """
 
 import argparse
@@ -15,9 +15,7 @@ from pathlib import Path
 from tqdm import tqdm
 from selenium import webdriver
 
-from utils import fetch_bibtex
-
-KH_DIR = "_KnowledgeHub_"  # default output dir for KH notes (vault-relative)
+from common import KH_DIR, OVERVIEW_URL, fetch_bibtex, parse_arxiv_id
 
 
 def load_papers(input_path: str) -> list:
@@ -38,11 +36,6 @@ def init_driver() -> webdriver.Chrome:
     return webdriver.Chrome(options=options)
 
 
-def arxiv_id_from_url(url: str) -> str:
-    """Return the arxiv ID from a URL by taking its last path segment."""
-    return url.rstrip("/").split("/")[-1]
-
-
 def render_note(
     arxiv_id: str,
     title: str,
@@ -50,7 +43,7 @@ def render_note(
     bibtex: str,
 ) -> str:
     """Render the full Obsidian KH note markdown for a paper from its summary and BibTeX."""
-    link = f"https://www.alphaxiv.org/overview/{arxiv_id}"
+    link = OVERVIEW_URL.format(arxiv_id)
 
     def bullets(items: list) -> str:
         """Render items as a markdown bullet list, or a placeholder bullet when empty."""
@@ -97,10 +90,10 @@ aliases: []
 """
 
 
-def quality_check(entry: dict, url: str) -> None:
+def warn_sparse_sections(summary: dict, url: str) -> None:
     """Warn when any summary section has fewer than three extracted items."""
     for section in ["Problem", "Method", "Results", "Takeaways"]:
-        items = entry.get(section, [])
+        items = summary.get(section, [])
         if isinstance(items, list) and len(items) < 3:
             print(f"  Warning: {section} has only {len(items)} items for {url}")
 
@@ -129,7 +122,7 @@ def main() -> None:
     if args.ids:
         # Normalise IDs/URLs to full arxiv URLs
         all_papers = [
-            f"https://arxiv.org/abs/{arxiv_id_from_url(id_or_url)}"
+            f"https://arxiv.org/abs/{parse_arxiv_id(id_or_url)}"
             for id_or_url in args.ids
         ]
     else:
@@ -142,7 +135,7 @@ def main() -> None:
     to_process = []
     skipped = 0
     for url in unique_papers:
-        arxiv_id = arxiv_id_from_url(url)
+        arxiv_id = parse_arxiv_id(url)
         note_path = out_dir / f"{arxiv_id}.md"
         if note_path.exists() and not args.force:
             skipped += 1
@@ -166,12 +159,12 @@ def main() -> None:
 
     try:
         for url in tqdm(to_process, desc="Extracting"):
-            arxiv_id = arxiv_id_from_url(url)
+            arxiv_id = parse_arxiv_id(url)
             try:
                 title = extract_title(url)
 
                 summary = extract_summary(driver, arxiv_id)
-                quality_check(summary, url)
+                warn_sparse_sections(summary, url)
 
                 bibtex = fetch_bibtex(arxiv_id)
 
