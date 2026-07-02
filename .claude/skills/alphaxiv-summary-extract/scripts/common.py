@@ -10,11 +10,12 @@ KH_DIR = "_KnowledgeHub_"                              # default KH notes dir (v
 ARXIV_ID_RE = r"\d{4}\.\d{4,5}"                        # arxiv ID, e.g. 2602.15922
 OVERVIEW_URL = "https://www.alphaxiv.org/overview/{}"  # alphaxiv overview page
 ABS_URL = "https://www.alphaxiv.org/abs/{}"            # arxiv abstract page — soft-nav entry; the direct /overview/ SSR route is rate-limited
+REPORT_URL = "https://www.alphaxiv.org/overview/{}.md" # machine-readable render — the detailed analysis rendered as the note's ## Research Report
 
 
 def parse_arxiv_id(url_or_id: str) -> str:
-    """Return the bare arxiv ID from a URL or raw ID (e.g. '.../abs/2602.15922v2' -> '2602.15922').
-    Falls back to the last path segment when no ID pattern is present."""
+    """Return the bare arxiv ID from a URL or raw ID (e.g. '.../abs/2602.15922v2' -> '2602.15922')."""
+    # Fall back to the last path segment when no ID pattern is present.
     match = re.search(ARXIV_ID_RE, url_or_id)
     return match.group(0) if match else url_or_id.rstrip("/").split("/")[-1]
 
@@ -25,9 +26,9 @@ def overview_link_selector(paper_id: str) -> str:
 
 
 def fetch_bibtex(arxiv_id: str) -> str:
-    """Fetch BibTeX from arXiv and return with trailing whitespace stripped per line. Imports
-    `requests` lazily so importing this module stays light for callers that only need the helpers
-    above (e.g. generate_overviews.py)."""
+    """Fetch BibTeX from arXiv, with trailing whitespace stripped per line."""
+    # Import `requests` lazily so importing this module stays light for callers that only need the
+    # constants/parsers above (e.g. generate_overviews.py).
     import requests
 
     try:

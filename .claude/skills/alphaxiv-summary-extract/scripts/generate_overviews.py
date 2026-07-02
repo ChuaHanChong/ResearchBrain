@@ -78,8 +78,8 @@ def open_surface(first_url: str, visible: bool) -> str:
 
 
 def probe(surface: str, retries: int = 4) -> Optional[dict]:
-    """Eval the page state and parse its JSON. Retries because the first read after navigation
-    is often empty (browser warm-up) — one empty read is not a failure."""
+    """Eval the page state and parse its JSON, retrying transient empty reads."""
+    # The first read after navigation is often empty (browser warm-up) — one empty read isn't a failure.
     last = ""
     for _ in range(retries):
         last = cmux(surface, "eval", PROBE_JS)
@@ -97,8 +97,9 @@ def is_done(state: Optional[dict]) -> bool:
 
 
 def open_overview(surface: str, paper_id: str) -> str:
-    """Reach /overview/<id> by clicking through from /abs/ — the direct /overview/ SSR route is
-    per-IP rate-limited (HTTP 500), but the in-app soft-nav from /abs/ is not. Returns ok/navfail."""
+    """Reach /overview/<id> by clicking through from /abs/. Returns ok/navfail."""
+    # The direct /overview/ SSR route is per-IP rate-limited (HTTP 500); the in-app soft-nav from
+    # /abs/ is not.
     if cmux(surface, "goto", ABS_URL.format(paper_id)).startswith("__ERR__"):
         return "navfail"
     cmux(surface, "wait", "--load-state", "complete", "--timeout", "25")
@@ -113,8 +114,8 @@ def open_overview(surface: str, paper_id: str) -> str:
 
 
 def generate_one(surface: str, paper_id: str, per_timeout: int, poll: int = 7) -> str:
-    """Generate one paper's overview. Returns an outcome: already / generated / timeout /
-    withdrawn / probe-fail / navfail."""
+    """Generate one paper's overview; returns an outcome string."""
+    # Outcomes: already / generated / timeout / withdrawn / probe-fail / navfail.
     if open_overview(surface, paper_id) == "navfail":
         return "navfail"
     time.sleep(3)

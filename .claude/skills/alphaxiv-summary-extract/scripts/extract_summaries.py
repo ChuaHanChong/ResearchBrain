@@ -16,6 +16,7 @@ from tqdm import tqdm
 from selenium import webdriver
 
 from common import KH_DIR, OVERVIEW_URL, fetch_bibtex, parse_arxiv_id
+from retrieve import extract_title, extract_summary, fetch_research_report
 
 
 def load_papers(input_path: str) -> list:
@@ -41,8 +42,9 @@ def render_note(
     title: str,
     summary: dict,
     bibtex: str,
+    research_report: str = "",
 ) -> str:
-    """Render the full Obsidian KH note markdown for a paper from its summary and BibTeX."""
+    """Render the full Obsidian KH note markdown from a paper's summary, BibTeX, and optional Research Report."""
     link = OVERVIEW_URL.format(arxiv_id)
 
     def bullets(items: list) -> str:
@@ -50,6 +52,8 @@ def render_note(
         return "\n".join(f"- {item}" for item in items) if items else "- (none)"
 
     bibtex_block = f"```bibtex\n{bibtex}\n```" if bibtex else "```bibtex\n(unavailable)\n```"
+    # Detailed analysis rendered after (outside) the hidden BibTeX block, so it shows in preview.
+    report_block = f"\n## Research Report\n\n{research_report}\n" if research_report.strip() else ""
 
     return f"""\
 ---
@@ -87,6 +91,7 @@ aliases: []
 
 {bibtex_block}
 %%
+{report_block}
 """
 
 
@@ -114,7 +119,6 @@ def main() -> None:
     scripts_dir = str(Path(__file__).parent)
     if scripts_dir not in sys.path:
         sys.path.insert(0, scripts_dir)
-    from retrieve import extract_title, extract_summary
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -167,8 +171,9 @@ def main() -> None:
                 warn_sparse_sections(summary, url)
 
                 bibtex = fetch_bibtex(arxiv_id)
+                research_report = fetch_research_report(arxiv_id)
 
-                note = render_note(arxiv_id, title or arxiv_id, summary, bibtex)
+                note = render_note(arxiv_id, title or arxiv_id, summary, bibtex, research_report)
                 (out_dir / f"{arxiv_id}.md").write_text(note, encoding="utf-8")
                 processed += 1
 

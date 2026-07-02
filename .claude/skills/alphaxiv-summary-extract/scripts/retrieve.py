@@ -1,4 +1,4 @@
-"""Selenium helpers to scrape a paper's title and Problem/Method/Results/Takeaways from its alphaxiv overview."""
+"""Helpers to pull a paper's title, its Problem/Method/Results/Takeaways (Selenium), and its detailed Research Report (`.md`) from the alphaxiv overview."""
 import re
 import time
 from typing import Optional
@@ -10,7 +10,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from common import ABS_URL, overview_link_selector
+from common import ABS_URL, REPORT_URL, overview_link_selector
 from sanitize import sanitize
 
 
@@ -30,6 +30,53 @@ def extract_title(url: str) -> Optional[str]:
         return None
 
 
+def _clean_research_report(md: str) -> str:
+    """Normalize alphaxiv's raw overview `.md` into the note's ## Research Report body."""
+    # The `.md` render is inconsistent across papers (some open with `## Research Report: <title>`,
+    # others a bare paragraph + `---`); normalize to a stable shape. render_note adds the heading back.
+    lines = md.replace("\r\n", "\n").split("\n")
+
+    # Drop a single leading `## Research Report...` heading if the render included one.
+    body, dropped_heading = [], False
+    for line in lines:
+        if not dropped_heading and re.match(r"^##\s+Research Report\b", line):
+            dropped_heading = True
+            continue
+        body.append(line)
+
+    # Each `### ` heading opens a section running until the next `### `. Drop the authors section,
+    # drop standalone `---` rules, and renumber the rest from 1.
+    out, drop_section, seq = [], False, 0
+    for line in body:
+        heading = re.match(r"^###\s+(?:\d+\.\s*)?(.*)$", line)
+        if heading:
+            title = heading.group(1).strip()
+            drop_section = bool(re.search(r"\bauthors?\b", title, re.IGNORECASE))
+            if drop_section:
+                continue
+            seq += 1
+            out.append(f"### {seq}. {title}")
+        elif drop_section or line.strip() == "---":
+            continue
+        else:
+            out.append(line)
+
+    return "\n".join(out).strip()
+
+
+def fetch_research_report(arxiv_id: str) -> str:
+    """Fetch alphaxiv's detailed overview `.md`, normalized for the note's ## Research Report section."""
+    # Return "" on any failure (rate-limit, 404/withdrawn) so the note is still written without it —
+    # a missing report beats a fabricated one.
+    try:
+        resp = requests.get(REPORT_URL.format(arxiv_id), headers={"User-Agent": "Mozilla/5.0"}, timeout=20)
+        resp.raise_for_status()
+    except Exception as e:
+        print(f"  Warning: could not fetch research report for {arxiv_id}: {e}")
+        return ""
+    return _clean_research_report(resp.text)
+
+
 def _js_click(driver: webdriver.Chrome, xpath: str) -> object:
     """Find element by XPath and click it via JS (bypasses overflow/interactability issues)."""
     el = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
@@ -38,8 +85,8 @@ def _js_click(driver: webdriver.Chrome, xpath: str) -> object:
 
 
 def _js_text(driver: webdriver.Chrome, element: object) -> str:
-    """Extract text via JS textContent (works even when CSS hides the element from .text), then
-    repair KaTeX/LaTeX/control-char corruption via sanitize()."""
+    """Extract an element's text via JS textContent and repair KaTeX/LaTeX/control-char corruption."""
+    # textContent works even when CSS hides the element from Selenium's .text.
     raw = driver.execute_script("return arguments[0].textContent;", element)
     # collapse spurious newlines (each call is one paragraph/<li>; KaTeX math else explodes per token)
     raw = re.sub(r'\s*\n\s*', ' ', raw).strip()
@@ -47,8 +94,9 @@ def _js_text(driver: webdriver.Chrome, element: object) -> str:
 
 
 def _click_through_to_overview(driver: webdriver.Chrome, arxiv_id: str) -> None:
-    """Reach the overview by clicking through from /abs/ rather than hitting
-    /overview/ directly — the direct SSR route is per-IP rate-limited (HTTP 500)."""
+    """Navigate to the paper's overview by clicking through from its /abs/ page."""
+    # Click through from /abs/ rather than hitting /overview/ directly — the direct SSR route is
+    # per-IP rate-limited (HTTP 500).
     driver.get(ABS_URL.format(arxiv_id))
     time.sleep(5)
     # Click the in-app anchor (not driver.get) so the SPA router soft-navigates.

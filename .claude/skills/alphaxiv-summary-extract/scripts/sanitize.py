@@ -39,8 +39,8 @@ _GREEK_RX = re.compile(r'\\(' + '|'.join(_GREEK) + r')\b')
 
 
 def sanitize(text: str) -> str:
-    """Return `text` with KaTeX triple-render, leaked LaTeX, control chars, and mangled ±
-    repaired. Inline $…$, `code`, and ``` fenced blocks are protected verbatim."""
+    """Repair KaTeX triple-render, leaked LaTeX, control chars, and mangled ± in `text`."""
+    # Inline $…$, `code`, and ``` fenced blocks are protected verbatim.
     if not text:
         return text
 

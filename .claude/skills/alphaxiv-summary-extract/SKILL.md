@@ -5,7 +5,7 @@ description: "Scrape alphaxiv.org paper summaries into enriched Obsidian Knowled
 
 # AlphaXiv Summary Extract
 
-Scrape paper summaries from alphaxiv.org and write Obsidian markdown notes (`{ID}.md`) — works for a single paper or a full batch from `knowledge.py`.
+Scrape paper summaries from alphaxiv.org and write Obsidian markdown notes (`{ID}.md`) — works for a single paper or a full batch from `knowledge.py`. Each note carries the structured summary (Summary / Problem / Method / Results / Takeaways), a hidden BibTeX block, and a detailed `## Research Report` pulled from alphaxiv's machine-readable render.
 
 ## When to Use
 
@@ -74,6 +74,8 @@ Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each
    - Use `**X%**` in bold for numbers, percentages, and key metrics.
 
 > Do NOT add highlights or bold to Summary, Problem, or Takeaways sections.
+
+> The **`## Research Report`** section (appended after the BibTeX block) is auto-generated from alphaxiv's `.md` render and already normalized by the extractor — leave it as-is: do not hand-format, re-highlight, or edit its prose.
 
 ##### Canonical Tag Taxonomy (64 tags)
 
@@ -230,6 +232,7 @@ Every note must be sourced from the alphaxiv overview: do **not** fabricate one 
 - The script skips papers whose `{ID}.md` already exists — safe to interrupt and resume
 - Scraped text is auto-sanitized at extraction (`scripts/sanitize.py`, applied inside `retrieve.py`): KaTeX math corruption (triple-render like `π0.5\pi_{0.5}π0.5`, leaked LaTeX, control chars, mangled `±`) is repaired, while inline `$…$`, `` `code` ``, and bibtex blocks are preserved verbatim
 - BibTeX is fetched from `https://arxiv.org/bibtex/{ID}` during note generation
+- A **`## Research Report`** section is appended from alphaxiv's machine-readable render (`https://www.alphaxiv.org/overview/{ID}.md`, via `retrieve.fetch_research_report`). The raw `.md` is inconsistent across papers (some open with `## Research Report: <title>`, others with a bare lead paragraph + `---`), so `_clean_research_report` normalizes it: the top heading becomes a plain `## Research Report`, the `### Authors and Institution(s)` block and any `---` rules are stripped, and the surviving `### N.` sections are renumbered from 1. It sits **outside** the `%%` BibTeX block so it renders in preview. If the `.md` fetch fails (rate-limit / withdrawn), the note is written without it — a missing report beats a fabricated one
 - `authors`, `tags`, and `aliases` in frontmatter start empty (`[]`) — the post-processing enrichment step fills them in
 - `authors` must never contain `- ...` as a placeholder — use real names only, or omit the field
 - `aliases` must never remain `[]` — always derive at least one alias from the title or paper content
