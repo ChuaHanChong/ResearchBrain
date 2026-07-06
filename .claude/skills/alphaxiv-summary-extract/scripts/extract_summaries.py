@@ -44,7 +44,7 @@ def render_note(
     bibtex: str,
     research_report: str = "",
 ) -> str:
-    """Render the full Obsidian KH note markdown from a paper's summary, BibTeX, and optional Research Report."""
+    """Render the full Obsidian KH note markdown from a paper's summary, BibTeX, and optional Detailed Report."""
     link = OVERVIEW_URL.format(arxiv_id)
 
     def bullets(items: list) -> str:
@@ -53,7 +53,7 @@ def render_note(
 
     bibtex_block = f"```bibtex\n{bibtex}\n```" if bibtex else "```bibtex\n(unavailable)\n```"
     # Detailed analysis rendered after (outside) the hidden BibTeX block, so it shows in preview.
-    report_block = f"\n## Research Report\n\n{research_report}\n" if research_report.strip() else ""
+    report_block = f"\n## Detailed Report\n\n{research_report}\n" if research_report.strip() else ""
 
     return f"""\
 ---
@@ -157,6 +157,9 @@ def main() -> None:
         print("Nothing to do.")
         return
 
+    # in-vault arxiv IDs, so the Detailed Report can wikilink citations to existing KH notes
+    kh_ids = {p.stem for p in out_dir.glob("*.md")}
+
     driver = init_driver()
     processed = 0
     failed = []
@@ -171,7 +174,7 @@ def main() -> None:
                 warn_sparse_sections(summary, url)
 
                 bibtex = fetch_bibtex(arxiv_id)
-                research_report = fetch_research_report(arxiv_id)
+                research_report = fetch_research_report(arxiv_id, kh_ids)
 
                 note = render_note(arxiv_id, title or arxiv_id, summary, bibtex, research_report)
                 (out_dir / f"{arxiv_id}.md").write_text(note, encoding="utf-8")

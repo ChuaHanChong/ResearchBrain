@@ -5,7 +5,7 @@ description: "Scrape alphaxiv.org paper summaries into enriched Obsidian Knowled
 
 # AlphaXiv Summary Extract
 
-Scrape paper summaries from alphaxiv.org and write Obsidian markdown notes (`{ID}.md`) — works for a single paper or a full batch from `knowledge.py`. Each note carries the structured summary (Summary / Problem / Method / Results / Takeaways), a hidden BibTeX block, and a detailed `## Research Report` pulled from alphaxiv's machine-readable render.
+Scrape paper summaries from alphaxiv.org and write Obsidian markdown notes (`{ID}.md`) — works for a single paper or a full batch from `knowledge.py`. Each note carries the structured summary (Summary / Problem / Method / Results / Takeaways), a hidden BibTeX block, and a `## Detailed Report` pulled from alphaxiv's machine-readable render and cleaned by `format_reports.py`.
 
 ## When to Use
 
@@ -75,7 +75,7 @@ Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each
 
 > Do NOT add highlights or bold to Summary, Problem, or Takeaways sections.
 
-> The **`## Research Report`** section (appended after the BibTeX block) is auto-generated from alphaxiv's `.md` render and already normalized by the extractor — leave it as-is: do not hand-format, re-highlight, or edit its prose.
+> The **`## Detailed Report`** section is fetched from alphaxiv's `.md` render and auto-formatted at ingest by `format_reports.py` (see **"Detailed Report — auto-formatted, then read a sample"** below). Don't add highlights or hand-tune its prose; after a batch, run the validator and read a sample.
 
 ##### Canonical Tag Taxonomy (64 tags)
 
@@ -227,12 +227,26 @@ Tell them how many surfaces opened and list the pending IDs in the run's **Faile
 
 Every note must be sourced from the alphaxiv overview: do **not** fabricate one from the arxiv abstract/HTML/PDF as a substitute. If an overview still cannot be generated, leave the paper **un-ingested** (a missing note beats a fabricated one). A `404` on `/abs/{ID}.md` (or an `err` page in the generator) means the paper is withdrawn — skip it.
 
+## Detailed Report — auto-formatted, then read a sample
+
+The `## Detailed Report` comes from alphaxiv's `.md` render, whose raw format is inconsistent, so **note generation formats it automatically**: `extract_summaries.py` calls `retrieve.fetch_research_report(id, kh_ids)`, which runs the raw `.md` through `scripts/format_reports.py::format_report`. New notes are clean from the start, so you don't hand-clean reports as routine work. What the formatter does (heading hierarchy + numbering, boilerplate/figure/`[N]`-citation removal, in-KH citation wikilinks, mangled-math rejoin, punctuation) and *why* is documented in `format_reports.py` itself; read its function docstrings rather than duplicating them here. It deliberately does **not** force canonical section titles, merge near-duplicate sections, or edit `**bold**`/`*italic*` emphasis (bluntly applied, those did more harm than good).
+
+After a batch, two things are your job:
+
+1. **Validate.** `scripts/validate_reports.py` is the single source of truth for "does the format meet our requirements?" It checks every note and prints `checked N | PASS x | FAIL y` with the failing notes and reasons; a clean run is `FAIL 0`. The full rule set is the script's `check()` function (self-documenting), so it is not re-listed here.
+   ```bash
+   python .claude/skills/alphaxiv-summary-extract/scripts/validate_reports.py
+   ```
+2. **Read a random sample.** `FAIL 0` is necessary but not sufficient: regex under-counts judgement cases (truncated source, a subtly-wrong title, prose that reads oddly), and every "check again" this vault went through surfaced a pattern only reading caught.
+
+If a report genuinely needs manual repair, drive headless `claude -p` subagents (≈12 notes/batch, `--permission-mode acceptEdits`, model `opus`) to READ and fix, requiring each flag to **quote the exact offending line verbatim** so hallucinations self-expose. **Never blanket-join consecutive lines to "fix" broken content:** most reports have legit consecutive lines (a label then its paragraph, an equation on its own line) and gluing them corrupts the note. If a bulk edit goes wrong, `git checkout -- <file>` restores the staged version.
+
 ## Notes
 
 - The script skips papers whose `{ID}.md` already exists — safe to interrupt and resume
 - Scraped text is auto-sanitized at extraction (`scripts/sanitize.py`, applied inside `retrieve.py`): KaTeX math corruption (triple-render like `π0.5\pi_{0.5}π0.5`, leaked LaTeX, control chars, mangled `±`) is repaired, while inline `$…$`, `` `code` ``, and bibtex blocks are preserved verbatim
 - BibTeX is fetched from `https://arxiv.org/bibtex/{ID}` during note generation
-- A **`## Research Report`** section is appended from alphaxiv's machine-readable render (`https://www.alphaxiv.org/overview/{ID}.md`, via `retrieve.fetch_research_report`). The raw `.md` is inconsistent across papers (some open with `## Research Report: <title>`, others with a bare lead paragraph + `---`), so `_clean_research_report` normalizes it: the top heading becomes a plain `## Research Report`, the `### Authors and Institution(s)` block and any `---` rules are stripped, and the surviving `### N.` sections are renumbered from 1. It sits **outside** the `%%` BibTeX block so it renders in preview. If the `.md` fetch fails (rate-limit / withdrawn), the note is written without it — a missing report beats a fabricated one
+- A **`## Detailed Report`** section is appended from alphaxiv's machine-readable render (`https://www.alphaxiv.org/overview/{ID}.md`, via `retrieve.fetch_research_report`). `_clean_research_report` does a first structural pass at fetch time (drops the top title heading + `---` rules, renumbers `### N.` sections), but the raw `.md` is inconsistent enough that this alone is **not sufficient** — every note still needs the read-based cleaning pass in **"Detailed Report — review by reading"** above to meet the Format requirements. The section sits **outside** the `%%` BibTeX block so it renders in preview. If the `.md` fetch fails (rate-limit / withdrawn), the note is written without it — a missing report beats a fabricated one
 - `authors`, `tags`, and `aliases` in frontmatter start empty (`[]`) — the post-processing enrichment step fills them in
 - `authors` must never contain `- ...` as a placeholder — use real names only, or omit the field
 - `aliases` must never remain `[]` — always derive at least one alias from the title or paper content

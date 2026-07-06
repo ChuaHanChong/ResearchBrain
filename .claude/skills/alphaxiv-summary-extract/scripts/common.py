@@ -10,7 +10,7 @@ KH_DIR = "_KnowledgeHub_"                              # default KH notes dir (v
 ARXIV_ID_RE = r"\d{4}\.\d{4,5}"                        # arxiv ID, e.g. 2602.15922
 OVERVIEW_URL = "https://www.alphaxiv.org/overview/{}"  # alphaxiv overview page
 ABS_URL = "https://www.alphaxiv.org/abs/{}"            # arxiv abstract page — soft-nav entry; the direct /overview/ SSR route is rate-limited
-REPORT_URL = "https://www.alphaxiv.org/overview/{}.md" # machine-readable render — the detailed analysis rendered as the note's ## Research Report
+REPORT_URL = "https://www.alphaxiv.org/overview/{}.md" # machine-readable render — the detailed analysis rendered as the note's ## Detailed Report
 
 
 def parse_arxiv_id(url_or_id: str) -> str:
