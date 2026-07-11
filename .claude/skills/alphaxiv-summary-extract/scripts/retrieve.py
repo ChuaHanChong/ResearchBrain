@@ -8,6 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -46,13 +47,6 @@ def fetch_research_report(arxiv_id: str, kh_ids: Set[str] = frozenset()) -> str:
     return format_report(resp.text, kh_ids)
 
 
-def _js_click(driver: webdriver.Chrome, xpath: str) -> object:
-    """Find element by XPath and click it via JS (bypasses overflow/interactability issues)."""
-    el = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath)))
-    driver.execute_script("arguments[0].click();", el)
-    return el
-
-
 def _js_text(driver: webdriver.Chrome, element: object) -> str:
     """Extract an element's text via JS textContent and repair KaTeX/LaTeX/control-char corruption."""
     # textContent works even when CSS hides the element from Selenium's .text.
@@ -75,6 +69,17 @@ def _click_through_to_overview(driver: webdriver.Chrome, arxiv_id: str) -> None:
     driver.execute_script("arguments[0].click();", link)
 
 
+def _panel_for(driver: webdriver.Chrome, tab: str) -> WebElement:
+    """Return the ARIA tabpanel element that the tab button labeled `tab` controls."""
+    # The overview renders each section as a role=tabpanel whose id the tab button points to via
+    # aria-controls (the id prefix is a dynamic React useId, so resolve it per-page). Inactive panels
+    # are hidden but already in the DOM with their content, so no click is needed — textContent reads them.
+    btn = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, f"//button[normalize-space()='{tab}']"))
+    )
+    return driver.find_element(By.ID, btn.get_attribute("aria-controls"))
+
+
 def extract_summary(driver: webdriver.Chrome, arxiv_id: str) -> dict[str, object]:
     """Scrape the alphaxiv overview and return Summary/Problem/Method/Results/Takeaways."""
     _click_through_to_overview(driver, arxiv_id)
@@ -88,17 +93,11 @@ def extract_summary(driver: webdriver.Chrome, arxiv_id: str) -> dict[str, object
 
     info = {}
 
-    # Summary tab — plain text paragraph
-    _js_click(driver, "//button[normalize-space()='Summary']")
-    time.sleep(1)
-    content = driver.find_element(By.XPATH, "//button[normalize-space()='Summary']/../../../../div[2]")
-    info["Summary"] = _js_text(driver, content)
-
-    # Problem / Method / Results / Takeaways — each renders a <ul><li> list
+    # Summary is a paragraph panel; Problem/Method/Results/Takeaways each render a <ul><li> list. Read
+    # each from its own aria-controls panel (earlier ancestor-hop grabbed a shared wrapper of all tabs).
+    info["Summary"] = _js_text(driver, _panel_for(driver, "Summary"))
     for tab in ["Problem", "Method", "Results", "Takeaways"]:
-        _js_click(driver, f"//button[normalize-space()='{tab}']")
-        time.sleep(1)
-        items = driver.find_elements(By.XPATH, f"//button[normalize-space()='{tab}']/../../../../div[2]//li")
+        items = _panel_for(driver, tab).find_elements(By.XPATH, ".//li")
         info[tab] = [t for t in (_js_text(driver, li) for li in items) if t]
 
     return info

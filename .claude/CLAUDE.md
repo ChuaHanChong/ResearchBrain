@@ -30,7 +30,7 @@ General/ (topic overview, landscape, key papers)
 
 | Command | Purpose |
 |---------|---------|
-| `/kh-sync` | Sync `_KnowledgeHub_/` + `General/` with `knowledge.py` — scrape, enrich, rescue chromedriver failures via cmux, curate, then refresh the concept graph via the **kh-graph-sync skill** |
+| `/kh-sync` | Sync `_KnowledgeHub_/` + `General/` with `knowledge.py` — scrape, enrich, validate + subagent format-QA the Detailed Reports, rescue chromedriver failures via cmux, curate, then refresh the concept graph via the **kh-graph-sync skill** |
 | `/deepdive-sync` | Sync `Embodied-AI/NN_*.md` deep dives with current KH state (embeds Deep-Dive Format spec) |
 | `/research-directions` | Generate or refresh a research-direction doc under `_Projects_/Research-Directions/` (embeds Format spec) |
 

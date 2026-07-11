@@ -14,11 +14,8 @@ Scrape paper summaries from alphaxiv.org and write Obsidian markdown notes (`{ID
 
 ## Prerequisites
 
-- Chrome + ChromeDriver installed and on PATH
-- Python dependencies:
-  ```bash
-  python3 -m pip install selenium requests beautifulsoup4 tqdm
-  ```
+- **Chrome** installed. ChromeDriver need **not** be on PATH — Selenium 4's built-in Manager auto-fetches a matching driver.
+- The vault's **`.venv`** (managed by `uv`) with `selenium`, `requests`, `beautifulsoup4`, `tqdm`. Run every `python …` command below with that interpreter — `.venv/bin/python …` (or `uv run python …`); the system `python3` won't have `selenium`. Install if missing: `uv sync` (or `.venv/bin/python -m pip install selenium requests beautifulsoup4 tqdm`).
 
 ## Workflow
 
@@ -157,6 +154,19 @@ Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 | | `benchmark` | Primary contribution is an evaluation protocol / suite |
 | | `dataset` | Primary contribution is a data corpus / collection for training (vs. `benchmark` = eval protocol; a paper can carry both) |
 
+#### Validate & format-QA the Detailed Reports
+
+The ingest-time `format_reports.py` cleans most reports, but the raw alphaxiv render is inconsistent enough that some slip through — so validate + repair on **every** ingest (single or batch), scoped to the notes just written.
+
+1. **Deterministic validate** — the single source of truth for the format rules:
+   ```bash
+   python .claude/skills/alphaxiv-summary-extract/scripts/validate_reports.py
+   ```
+   A clean run is `FAIL 0`; it lists each failing note + reason (`check()` is self-documenting).
+2. **Validate-driven repair** — for flagged notes, drive headless `claude -p --permission-mode acceptEdits` subagents (≈8–12 notes/batch, `sonnet`; escalate to `opus` only if quotes reveal hallucinated fixes) to READ and fix, each flag **quoting the exact offending line verbatim**. Also wikilink any in-KH citations flagged as unlinked. **Never blanket-join consecutive lines** (legit label→paragraph / equation-on-its-own-line get corrupted); `git checkout -- <file>` restores if a bulk edit goes wrong. See the standalone **"Detailed Report — auto-formatted, then read a sample"** section for the full rationale.
+3. **Semantic format-QA** — dispatch `claude -p --model sonnet` subagents over the new notes for what the regex validator can't catch: sub-sections mis-leveled as `### N` instead of `#### N.M`, non-sequential numbering, a whole report nested under a title wrapper, glued words (`model.The`). Fix **formatting only**; never reword content.
+4. **Re-validate** — confirm `FAIL 0` (the safety net that repairs didn't break structure — this is how a fix that drops a heading's blank line gets caught).
+
 #### Report results
 
 - **Processed**: N new notes written to `_KnowledgeHub_/`
@@ -169,11 +179,7 @@ After enrichment, verify each new alias is unique across the vault. For each new
 
 #### Refresh graph
 
-If extraction wrote at least one new note:
-
-```
-Skill(skill="graphify", args="./_KnowledgeHub_ --update --no-viz")
-```
+If extraction wrote at least one new note, invoke `Skill(skill="kh-graph-sync")` — it additively adds just the new notes to `graphify-out/graph.json`. **Do not run `graphify --update` on this vault:** bulk note edits invalidate its content-addressed cache (→ full multi-hour re-extract) and its generic merge corrupts existing nodes; `kh-graph-sync` bypasses both.
 
 ## Refreshing BibTeX (optional, on demand)
 
@@ -217,7 +223,7 @@ Four gotchas the script encodes — they cost real debugging time, so respect th
 
 ### Fallback: open the pages for a human to generate
 
-If cmux automation isn't available, open all failed `/abs/` pages at once (opening `/overview/` directly in a burst hits the per-IP rate-limit; the abstract page soft-navigates there safely) and let the user click through to each overview and hit *"Generate Overview"* on their own schedule, then retry — don't block on it:
+Only if the automated eval-clicking above can't run (e.g. cmux `eval` can't reach the Generate button): fall back to opening the failed `/abs/` pages **in small batches** — *not* all at once (a large burst swamps the machine and hits the per-IP rate-limit; the abstract page soft-navigates to the overview safely) — for the user to click through and hit *"Generate Overview"* manually on their own schedule, then retry — don't block on it:
 
 ```bash
 cmux new-surface --type browser --url "https://www.alphaxiv.org/abs/<ID>" --focus false
@@ -231,22 +237,17 @@ Every note must be sourced from the alphaxiv overview: do **not** fabricate one 
 
 The `## Detailed Report` comes from alphaxiv's `.md` render, whose raw format is inconsistent, so **note generation formats it automatically**: `extract_summaries.py` calls `retrieve.fetch_research_report(id, kh_ids)`, which runs the raw `.md` through `scripts/format_reports.py::format_report`. New notes are clean from the start, so you don't hand-clean reports as routine work. What the formatter does (heading hierarchy + numbering, boilerplate/figure/`[N]`-citation removal, in-KH citation wikilinks, mangled-math rejoin, punctuation) and *why* is documented in `format_reports.py` itself; read its function docstrings rather than duplicating them here. It deliberately does **not** force canonical section titles, merge near-duplicate sections, or edit `**bold**`/`*italic*` emphasis (bluntly applied, those did more harm than good).
 
-After a batch, two things are your job:
+The operational procedure is the **"Validate & format-QA the Detailed Reports"** post-processing step above. The rationale behind it:
 
-1. **Validate.** `scripts/validate_reports.py` is the single source of truth for "does the format meet our requirements?" It checks every note and prints `checked N | PASS x | FAIL y` with the failing notes and reasons; a clean run is `FAIL 0`. The full rule set is the script's `check()` function (self-documenting), so it is not re-listed here.
-   ```bash
-   python .claude/skills/alphaxiv-summary-extract/scripts/validate_reports.py
-   ```
-2. **Read a random sample.** `FAIL 0` is necessary but not sufficient: regex under-counts judgement cases (truncated source, a subtly-wrong title, prose that reads oddly), and every "check again" this vault went through surfaced a pattern only reading caught.
-
-If a report genuinely needs manual repair, drive headless `claude -p` subagents (≈12 notes/batch, `--permission-mode acceptEdits`, model `opus`) to READ and fix, requiring each flag to **quote the exact offending line verbatim** so hallucinations self-expose. **Never blanket-join consecutive lines to "fix" broken content:** most reports have legit consecutive lines (a label then its paragraph, an equation on its own line) and gluing them corrupts the note. If a bulk edit goes wrong, `git checkout -- <file>` restores the staged version.
+- **`FAIL 0` is necessary but not sufficient — also read a random sample.** `validate_reports.py`'s `check()` is the single source of truth for the mechanical rules (a clean run is `FAIL 0`), but regex under-counts judgement cases (truncated source, a subtly-wrong title, prose that reads oddly), and every "check again" this vault went through surfaced a pattern only reading caught.
+- **Repair subagents must quote the exact offending line verbatim** (so hallucinations self-expose), and **never blanket-join consecutive lines** to "fix" broken content — most reports have legit consecutive lines (a label then its paragraph, an equation on its own line) and gluing them corrupts the note. `sonnet` suffices; escalate to `opus` only if a batch's quotes reveal hallucinated fixes. If a bulk edit goes wrong, `git checkout -- <file>` restores the staged version.
 
 ## Notes
 
 - The script skips papers whose `{ID}.md` already exists — safe to interrupt and resume
 - Scraped text is auto-sanitized at extraction (`scripts/sanitize.py`, applied inside `retrieve.py`): KaTeX math corruption (triple-render like `π0.5\pi_{0.5}π0.5`, leaked LaTeX, control chars, mangled `±`) is repaired, while inline `$…$`, `` `code` ``, and bibtex blocks are preserved verbatim
 - BibTeX is fetched from `https://arxiv.org/bibtex/{ID}` during note generation
-- A **`## Detailed Report`** section is appended from alphaxiv's machine-readable render (`https://www.alphaxiv.org/overview/{ID}.md`, via `retrieve.fetch_research_report`). `_clean_research_report` does a first structural pass at fetch time (drops the top title heading + `---` rules, renumbers `### N.` sections), but the raw `.md` is inconsistent enough that this alone is **not sufficient** — every note still needs the read-based cleaning pass in **"Detailed Report — review by reading"** above to meet the Format requirements. The section sits **outside** the `%%` BibTeX block so it renders in preview. If the `.md` fetch fails (rate-limit / withdrawn), the note is written without it — a missing report beats a fabricated one
+- A **`## Detailed Report`** section is appended from alphaxiv's machine-readable render (`https://www.alphaxiv.org/overview/{ID}.md`, via `retrieve.fetch_research_report`), cleaned at ingest by `format_reports.py::format_report`. The raw `.md` is inconsistent enough that some cases still slip through, so every note also gets the **"Validate & format-QA the Detailed Reports"** post-processing pass above. The section sits **outside** the `%%` BibTeX block so it renders in preview. If the `.md` fetch fails (rate-limit / withdrawn), the note is written without it — a missing report beats a fabricated one
 - `authors`, `tags`, and `aliases` in frontmatter start empty (`[]`) — the post-processing enrichment step fills them in
 - `authors` must never contain `- ...` as a placeholder — use real names only, or omit the field
 - `aliases` must never remain `[]` — always derive at least one alias from the title or paper content
