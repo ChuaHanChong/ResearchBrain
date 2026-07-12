@@ -11,7 +11,7 @@ aliases:
   - "Embodied AI Datasets"
 ---
 
-# Datasets, Benchmarks & Environments
+# Datasets, Benchmarks & Environments — Deep Dive
 
 > [!abstract] Overview
 > The data and evaluation infrastructure that enables all embodied AI research. Embodied progress depends on three interlocked axes — the **data** the policy trains on, the **environment** it learns in, and the **benchmark** it is judged by. This note maps the full landscape: cross-embodiment scale datasets, multi-modal specialist data (tactile, bimanual, egocentric), simulation environments (rigid, soft-body, differentiable, household-scale), the diagnostic stack ([[2306.03310|LIBERO]] family, [[2601.11421|GM-100]], [[2507.10548|EmbRACE]]), language-conditioned long-horizon evals, sim-to-real transfer benchmarks, spatial reasoning probes, and the new generation of *interaction-centric* world model benchmarks. The field evolved from single-robot setups ([[1909.12271|RLBench]]) through million-trajectory cross-embodiment corpora ([[2310.08864|OXE]]) to household-scale simulation ([[2406.02523|RoboCasa]]), soft-body Gaussian-splat digital twins ([[2511.04665|Real-to-Sim-GS]]) and diagnostic robustness evaluation ([[2510.13626|LIBERO-Plus]], [[2601.11421|GM-100]], [[2507.10548|EmbRACE-3K]]).
@@ -50,6 +50,28 @@ graph LR
 ```
 
 The three axes co-evolved. Datasets grew from gesture clips through household ego-video to million-trajectory robot corpora. Simulators grew from 100-task rigid-body sandboxes through articulated-object physics to GPU-parallel + photorealistic + soft-body. Benchmarks grew from in-distribution success rates through diagnostic perturbation suites and finally to interaction-fidelity world-model evaluation. The same paper now often releases data + sim + benchmark *together* ([[2506.18088|RoboTwin-2.0]], [[2406.02523|RoboCasa]], [[2503.06669|AgiBot-World]]) — the trio is no longer separable.
+
+| Year | Paper | Contribution |
+|------|-------|-------------|
+| 2017 | [[1706.04261\|Something-Something]] | Foundational gesture-clip dataset — the origin point the field's datasets grew from before household ego-video and robot corpora |
+| 2019 | [[1909.12271\|RLBench]] | A benchmark of 100 visually-guided manipulation tasks via motion-planned expert demos; the few-shot evaluation standard for the Franka Panda |
+| 2020 | [[2003.08515\|SAPIEN]] | A simulator of 2,346 articulated PartNet-Mobility objects; the foundational platform for articulation-heavy research |
+| 2022 | [[2110.07058\|Ego4D]] | Egocentric human-video substrate the field passed through en route to million-trajectory robot corpora |
+| 2023 | [[2307.00595\|RH20T]] | A multi-modal dataset of 110,000+ contact-rich sequences; targets one-shot skill learning, complementing OXE as the novel-skill reference |
+| 2023 | [[2310.08864\|OXE]] | A cross-embodiment corpus of 1M+ trajectories from 22 embodiments; the "ImageNet moment" for robotics — first to prove cross-embodiment transfer feasible |
+| 2023 | [[2306.03310\|LIBERO]] | A lifelong robot-learning benchmark of 130 tasks across 4 suites; the standard language-conditioned long-horizon benchmark, later saturated at ~97% |
+| 2024 | [[2403.12945\|DROID]] | An in-the-wild dataset across 16 institutions proving environmental diversity beats curation at fixed trajectory count |
+| 2024 | [[2406.02523\|RoboCasa]] | A household simulator of 120 kitchens + 100-task benchmark; MimicGen-generated demos transfer to a real Franka Panda, pioneering data-gen-as-benchmark |
+| 2025 | [[2503.06669\|AgiBot-World]] | A single-lab corpus of 1M+ trajectories + GO-1 generalist policy; the dominant single-lab scaling proof |
+| 2025 | [[2506.18088\|RoboTwin-2.0]] | A bimanual sim + benchmark shipping data generator, evaluation suite, and domain randomization together |
+| 2025 | [Genesis](https://genesis-world.readthedocs.io/) / [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics) | Next-gen multi-physics engines aiming to combine PhysX's parallelism with MuJoCo's contact accuracy in one runtime |
+| 2025 | [[2510.13626\|LIBERO-Plus]] | A 7-axis visual robustness suite; WAMs outperform VLAs by large margins (VLA-JEPA 79.5%) |
+| 2025 | [[2510.03827\|LIBERO-PRO]] | A minor-task-perturbation suite on which VLAs collapse from >90% to near 0% under small changes |
+| 2025 | [[2507.10548\|EmbRACE-3K]] | A benchmark of 3,000 multi-stage language-guided tasks testing embodied reasoning; reveals high LIBERO scores don't imply embodied intelligence |
+| 2026 | [[2512.24653\|RoboMIND-2.0]] | A dual-arm dataset of 310K trajectories from 6 platforms with tactile feedback + Isaac Sim digital twin; the paired MIND-2 dual-system reaches 1.0 SR on multi-robot collaborative tasks |
+| 2026 | [[2602.06556\|LIBERO-X]] | A benchmark of 600 tasks / 100 scenes with a 5-level perturbation protocol; VLAs hit only 39.4% at Level 1, declining further by Level 5 |
+| 2026 | [[2603.28301\|LIBERO-Para]] | A meaning-preserving paraphrase suite scored by the PRIDE metric; SR drops 22.8–51.9pp — models overfit to exact instruction phrasing |
+| 2026 | [[2601.11421\|GM-100]] | A benchmark of 100 detail-oriented tasks (precise insertion, fine alignment); exposes real precision gaps beyond "grasping things" |
 
 ## Part A — Datasets
 
@@ -109,6 +131,7 @@ Standard VLA datasets capture RGB images + actions — sufficient for simple pic
 
 Coordinated two-arm control requires specialized data with synchronized dual-arm timing, tactile feedback, and contact-rich task variety.
 
+- **[[2606.31682|HABIT]]** — A **10,563**-episode (**164 hours**) bimanual manipulation dataset with a co-present human across ==Collaborator/Coworker/Supervisor== task-workflow roles; π0.5 fine-tuned on HABIT lifts Coworker SR **40%→95%** (Waste Sorting) and enables sample-efficient HRI adaptation (**50** vs **200** demos).
 - **[[2604.20444|VTouch++]]** — A bimanual tactile dataset of **120,000+** episodes and **1,000+** hours across **380+** systematically categorized tasks, each with synchronized fingertip tactile + multi-view RGB-D + proprioception; the modern bimanual tactile landmark.
 - **[[2604.07335|TAMEn]]** — A closed-loop bimanual collection system combining a ==modular gripper-adaptive wearable== + ==feasibility-aware acquisition== + ==AR teleop (tAmeR)== recovery + ==pyramid-structured data regime==; object tracking **100%** SR (vs **32–78%** marker-only), validation lifts replay to **100%** (from **12–39%**), full system **75%** avg SR on 4 contact-rich tasks.
 - **[[2603.05687|CGP]]** — A contact-grounded policy that feeds ==coupled state+tactile diffusion trajectories== into a ==contact-consistency mapping== for a compliance controller; outperforms visuomotor + visuotactile diffusion baselines on **5** dexterous tasks (jar-opening, in-hand box flipping) at real-time inference latency.
@@ -129,6 +152,7 @@ Depth over breadth: consistent data from one robot in diverse environments. The 
 
 Human-perspective video and motion data for cross-embodiment skill transfer. [[2602.16710|EgoScale]] demonstrates that egocentric *dexterous* human data scales differently than RGB-only embodiments — finger-level supervision is the bottleneck, not viewpoint. [[2605.06747|HumanNet]] pushes the scale axis to 1M hours, demonstrating that 1,000 hours of curated egocentric pretrain can match 100 hours of real-robot data. [[2605.05945|MobileEgo-Anywhere]] pushes the *accessibility* axis — long-horizon (up to 108-minute) egocentric capture from commodity LiDAR-enabled smartphones, democratizing the hardware bar.
 
+- **[[2606.30598|EPIC-Contact]]** — An in-the-wild egocentric dataset of **62.3K** frames / **2,272** clips with dense 3D hand-object pose + ==bijective contact annotations== (==EC-fit== optimization); paired **HOPformer** ==cross-attention decoder== hits **82.4%** SR@0.05 on ARCTIC (**+6.2pp**), lifts wild SR@0.05 **17.6%→29.8%**.
 - **[[2605.06747|HumanNet]]** — A **1,000,000-hour** human-centric video corpus (==egocentric + exocentric==) via a ==three-stage collection→processing→annotation pipeline== with ==interaction-centric annotations==; **1,000 hr** of egocentric pretrain matches **100 hr** of real-robot CoBot pretrain and closes the gap to **LingBot** (**20,000 hr** robot data) — the largest to date.
 - **[[2605.05945|MobileEgo-Anywhere]]** — An open infrastructure providing **200-hour / 354-session** long-horizon (up to 108-min) egocentric data on commodity iPhone Pro + open-source Python pipeline; [ARKit](https://developer.apple.com/augmented-reality/arkit/) drift **<1 cm** for hour-long household activities; automated hierarchical action labels at **$1.29** for all sessions.
 - **[[2602.16710|EgoScale]]** — A dataset of **20,854 hours** of ==egocentric human video== with ==two-stage learning== (human pretrain → embodiment-aligned mid-train); **+54%** task completion on a **22-DoF** robot hand, **log-linear scaling law** in action-prediction validation loss, **88%** one-shot shirt folding, **+30%** absolute cross-embodiment gain on a **7-DoF** tri-finger hand.
@@ -147,6 +171,8 @@ Human-perspective video and motion data for cross-embodiment skill transfer. [[2
 - **[[2203.15709|OakInk]]** — An ==affordance-aware hand-object interaction repository== combining ==Oakbase== (1,800-object affordance knowledge graph), ==Inkbase== (real 3D hand/object motion + contact + force over 5 intents), and ==Tink== interaction-transfer; over **50,000** affordance-aware interactions improving hand-pose estimation, grasp generation, and intent-based generation.
 - **[[2203.01577|HOI4D]]** — A **4D egocentric** category-level human-object interaction dataset on head-mounted dual RGB-D and a hard articulated-HOI probe: **800** object instances across **16** categories (7 rigid / 9 articulated) in **610** indoor rooms; BundleTrack pose accuracy collapses **86.5%→19.3%** (bottle) and 4D segmentation hits only **44.6%** mIoU.
 - **[[2104.11181|H2O]]** — The first markerless ==two-hands-manipulating-objects== egocentric dataset and the two-hand egocentric pose reference: **571,645** frames with 3D two-hand + 6D object pose + **36** interaction classes at ~**1 cm** annotation error; a ==Topology-Aware GCN== reaches **79.25%** interaction recognition (beating SlowFast/I3D).
+- **[[2104.04631|DexYCB]]** — A ==multi-camera RGB-D== hand-object benchmark of **582,000** frames / **1,000** sequences across **10** subjects and **20** YCB objects via ==MANO + multi-view 3D optimization==; CosyPose tops object-pose baselines, the **S3** unseen-grasp split shows the sharpest generalization drop — the joint hand+object pose reference feeding robot handover.
+- **[[2008.11200|GRAB]]** — A whole-body human-grasping MoCap dataset (54-camera Vicon, ==SMPL-X== + ==MoSh++==) with per-vertex ==proximity-based contact== over **51** objects; **1,334** sequences / **1.6M** frames, GrabNet grasp-refinement reaches **4.4mm** v2v error — the whole-body-grasp complement to hand-only mocap sets.
 - **[[2006.00626|EGTEA-Gaze+]]** — The first-person video benchmark with synchronized ==binocular gaze== + pixel-level hand masks + fine-grained actions; a ==probabilistic gaze + action joint model== (Gumbel-Softmax attention) hits **55.03%** mean-class accuracy and generalizes to EPIC-Kitchens without gaze supervision — the canonical gaze-grounded egocentric dataset.
 - [SEED (Bones Studio)](https://huggingface.co/datasets/bones-studio/seed) — High-quality motion capture and manipulation dataset for dexterous skill learning
 - [EgoVerse (Georgia Tech)](https://github.com/gatech-rl2/egoverse) — Egocentric video dataset capturing first-person human activities for robot skill transfer
@@ -159,7 +185,9 @@ The data collection systems themselves. [[2402.10329|UMI]] introduced the "in-th
 - **[[2505.21864|DexUMI]]** — A dexterous extension of UMI using robot-specific wearable hand ==exoskeletons== (Inspire Hand, XHand) for natural haptic feedback + a ==visual adaptation pipeline== that ==inpaints the human hand== with the robot hand image; **86%** SR across 4 contact-rich tasks, **3.2×** data efficiency vs teleop.
 - **[[2605.03452|BifrostUMI]]** — A gripper-cam paradigm generalized to humanoid whole-body manipulation via ==head-and-hand pose retargeting== that maps gripper-cam pose into a humanoid frame — humanoid demos collected without ever wearing a teleop harness.
 - **[[2510.08022|FastUMI-100K]]** — A **100,000+**-trajectory (~**600 hours** / **54** tasks) ==UMI-style multimodal dataset== on an enhanced FastUMI system (RealSense T265 6-DoF + GoPro) with ==dual-level subtask/motion text==; Diffusion Policy reaches **66.67%** single-task SR with robust cross-embodiment transfer (Xarm6↔Flexiv Rizon4), and π0-base fine-tuning hits **93.33%** on Unplug-Charger.
+- **[[2311.16098|Dobb-E]]** — A **$25** hand-held ==reacher-grabber== teleop tool ("The Stick") + Hello-Robot Stretch platform pairing the **Homes-of-New-York** 13-hour dataset with ==MoCo-v3== self-supervised ==Home Pretrained Representations==; **81%** avg SR over **109** real-home tasks, new task deployable in **~30 min**.
 - **[[2309.13037|GELLO]]** — A ==kinematically isomorphic== 3D-printed leader replica using ==backdrivable servo motors as encoders== + ==passive joint regularizers==; **92%** avg SR across 5 bi-manual tasks (vs **63%** for 3D mouse, **72%** for VR), validated on **3** robots (UR5/xArm7/Franka) at **<$300** BOM per device.
+- **[[2307.04577|AnyTeleop]]** — A general vision-based arm-hand teleop system with a server-client architecture, ==multi-camera fusion==, ==optimization-based hand-pose retargeting==, and ==CuRobo== GPU collision-free motion generation across real + sim; beats a specialized system on **8/10** dexterous tasks and lifts IL success on **5/6** simulated tasks.
 - **[[2304.13705|ALOHA]]** — An open-source bimanual platform (**<$20K**) + ==ACT (Action Chunking with Transformers)== — a ==Transformer CVAE== predicting multi-step action sequences with ==temporal ensembling==; the original benchmark for fine-grained tasks (zip-tie threading, cup separation, ping-pong juggling).
 - **[[2411.02214|DexHub-and-DART]]** — An internet-scale robot-data-collection system: ==DART== AR teleoperation (Apple Vision Pro + gRPC) of cloud MuJoCo sims + the ==DexHub== open cloud data repository; **2.1×** faster collection (**7.8** vs **3.6** parts/min), and augmented sim data gives zero-shot Sim2Real **60%** under background changes (vs **10%** real) / **70%** under unseen distractions.
 - **[[1911.04052|RoboTurk]]** — A scalable human-supervision platform extending crowdsourced ==remote teleoperation== to physical arms with a mutual-exclusion access system + input low-pass filtering + proximate servers; **111+ hours** / **2,144** demos across 3 tasks from **54** users in one week — the foundational data-collection platform.
@@ -168,6 +196,8 @@ The data collection systems themselves. [[2402.10329|UMI]] introduced the "in-th
 
 Large-scale grasp-annotation corpora and graspability benchmarks — the data substrate for learning grasp synthesis at scale, distinct from trajectory datasets.
 
+- **[[2607.05869|GraspIT]]** — A sim-to-real grasp dataset of **316,160** RGB-D frames with a closed ==Real↔Sim loop== + ==Robot School== ==four-stage physical slip test==; validates **2.2M** candidates (**82.94%** "good"), **11.46%** kinematically unfeasible, **38.84%** fail dynamic pendulum-swing.
+- **[[2604.14944|HRDexDB]]** — A paired human-robot dexterous-grasp dataset of **2.1K** trials / **24M** frames across **100** objects and **4** robotic hands via ==two-stage teleoperated acquisition== + ==MANO/FoundationPose 6D tracking==; human-to-robot ==contact-map transfer== lifts real grasp SR **63.3%→80.0%** (Allegro) — the real-world cross-embodiment grasp-transfer benchmark.
 - **[[2507.02747|DexVLG]]** — A vision-language-grasp model + **DexGraspNet 3.0**, the largest synthetic dexterous-grasp dataset of **170M** semantically-annotated poses on **174,000** objects via a ==part-aware energy== framework; DexVLG hits **87.7%** sim SR / **62.1%** part accuracy on seen objects, **79.1%** zero-shot unseen, **80%** real ShadowHand SR.
 - **[[2504.10857|ZeroGrasp]]** — A zero-shot grasping framework shipping two datasets — **ZeroGrasp-11B** (training) and **ReOcS** (reconstruction-under-occlusion benchmark) — via an ==octree-based conditional VAE== coupling 3D shape reconstruction with grasp-pose prediction; SOTA on the GraspNet-1B benchmark with near-real-time synthetic-to-real transfer to novel objects.
 - **[[2503.02387|RGBSQGrasp]]** — A graspability-aware bin-picking framework trained on a ==cross-platform synthetic superquadric dataset==, inferring local ==superquadric primitives== from a single RGB image via Depth Pro + SAM 2 partial point clouds; **92%** grasp SR on a UR5e over 189 cluttered picks (vs **79.7–80.5%** baselines).
@@ -187,6 +217,7 @@ Language-, symbol-, and design-grounding corpora — the *semantic* supervision 
 - **[[2504.02069|RoboAct-CLIP]]** — A purified ==atomic-action== video corpus built via semantic-constrained action-unit segmentation + re-annotation, feeding a ==Temporal Diff-Transformer== CLIP extension with feature disentanglement; **76.5%** avg SR in Franka Kitchen (**+12.0pp** over MPI-Base), validated on a 4-step physical-arm task.
 - **[[2503.06796|RoboDesign1M]]** — A large-scale multimodal corpus of **~1M** image-text pairs for ==robot design understanding== mined from scientific literature via a semi-automated pipeline + **1.3M** LLM-generated visual instruction QA; finetuning lifts cross-dataset VQA **+15–62%** and cuts text-to-design FID **45.83 → 39.42**.
 - **[[2503.02249|Natural-Selection-Foundation-Models]]** — A **36,000**-pair multimodal QA benchmark (==RoboCrafter-QA==) grounding LLM soft-robot *design intelligence* across 12 tasks, with ==LoRA-finetuned Qwen2.5-0.5B==; **94.01%** morphology-selection accuracy (vs Grok-4 **59.72%**) and **10×** higher generated-design reward, sim-to-real verified.
+- **[[2408.02272|COM-Kitchens]]** — An unedited ==overhead-view== cooking-video dataset of **145** videos / **40 hours** across **70** kitchens with fine-grained ==visual action graphs== linking instructions to ingredient bounding boxes; zero-shot DVC-OV (SODA_c **0.02**) closes to **0.58** with ==Action-Graph relation + attention supervision== — atomic-action grounding beyond web video.
 
 #### 2.7 Perception & Segmentation Datasets
 
@@ -194,13 +225,10 @@ Raw-sensor and pixel-level perception corpora — the *perception* substrate (mu
 
 - **[[2606.27317|OctoSense]]** — A **59-hour / 8.4 TB** time-synchronized multimodal robot-perception dataset + open-source 8-sensor platform (RGB, event, thermal, LiDAR, IMU, RTK-GPS, proprioception) + a ==late-fusion masked autoencoder==; lower depth RMSE (**4.73m** vs **6.38m** V-JEPA 2.1) + optical-flow EPE (**1.97px** vs **9.13px**), zero-shot M3ED transfer with sensor-failure reconstruction.
 - **[[2511.22950|RobotSeg]]** — A ==SAM 2==-based robot-segmentation foundation model + the **Video Robot Segmentation (VRS)** dataset (**2,812** videos / **138,707** frames, hierarchical first-frame-only annotation) via ==structure-enhanced memory== + ==autonomous prompt generation==; **85.1** J&F whole-robot (**+4.9** over RoboEngine) across **10** robot categories at **>10 FPS**.
-
-> [!star] Key Papers
-> - [[2604.20444|VTouch++]] — The bimanual-tactile landmark: 120,000+ episodes / 380+ skill-axis-categorized tasks with synchronized fingertip tactile; contrastive learning lifts cross-modal retrieval **7×**, diffusion policy reaches **0.022 MAE** on real hardware
-> - [[2605.03452|BifrostUMI]] — Robot-free demonstration paradigm extended to humanoids; the dominant scaling alternative for whole-body data
-> - [[2512.24653|RoboMIND-2.0]] — 310K bimanual + mobile manipulation trajectories with tactile sensing and digital twin
-> - [[2602.16710|EgoScale]] — Scaling dexterous manipulation specifically via diverse egocentric *human* data — fingers, not arms, are the bottleneck
-> - [[2402.10329|UMI]] — Hand-held in-the-wild data collection; **>3x faster** than teleop, cross-robot zero-shot generalization, dynamic tasks impossible via teleop; the dominant alternative to teleoperation
+- **[[2504.14604|RoboOcc]]** — An ==Opacity-guided Self-Encoder== + ==Geometry-aware Cross-Encoder== extending [[2412.04380|EmbodiedOcc]]'s Gaussian occupancy pipeline; **56.48** IoU / **47.67** mIoU local (**+2.53/+2.19**) and only **1.81%** IoU drop under heavy Gaussian overlap (vs **9.49%** for EmbodiedOcc).
+- **[[2412.04380|EmbodiedOcc]]** — A ==3D semantic Gaussian== framework for online monocular 3D occupancy prediction with a ==depth-aware refinement module== + confidence-weighted ==global Gaussian memory==; **45.15%** mIoU local / **42.53%** mIoU global on the new **EmbodiedOcc-ScanNet** benchmark, beating a splicing baseline (**40.74%**).
+- **[[2406.04316|Omni6DPose]]** — A universal 6D pose benchmark spanning **149** categories / **5,000+** instances (transparent, specular materials) pairing real ==ROPE== + ==mixed-reality-synthesized SOPE== data; the paired ==GenPose++== diffusion model (DINOv2 semantics + DBSCAN clustering) hits AUC@IoU25 **39.0** vs GenPose's **6.6** — perception substrate for grasp-ready pose estimation.
+- **[[2212.08051|Objaverse]]** — A **818,000**-object annotated 3D asset corpus (**16×** ShapeNet) from Creative-Commons Sketchfab models + the ==Objaverse-LVIS== CLIP-mapped **47,000**-object subset; powers GET3D generative diversity, ==3D Copy-Paste== augmentation for rare-class instance segmentation, and open-vocabulary object navigation.
 
 **Specialist Datasets — Decision Matrix**
 
@@ -214,8 +242,15 @@ Raw-sensor and pixel-level perception corpora — the *perception* substrate (mu
 | Robot-free collection without teleop | [[2402.10329\|UMI]], [[2505.21864\|DexUMI]], [[2605.03452\|BifrostUMI]] |
 | Low-cost bimanual teleop baseline | [[2304.13705\|ALOHA]] (**<$20K**) |
 
+> [!star] Key Papers
+> - [[2604.20444|VTouch++]] — The bimanual-tactile landmark: 120,000+ episodes / 380+ skill-axis-categorized tasks with synchronized fingertip tactile; contrastive learning lifts cross-modal retrieval **7×**, diffusion policy reaches **0.022 MAE** on real hardware
+> - [[2605.03452|BifrostUMI]] — Robot-free demonstration paradigm extended to humanoids; the dominant scaling alternative for whole-body data
+> - [[2512.24653|RoboMIND-2.0]] — 310K bimanual + mobile manipulation trajectories with tactile sensing and digital twin
+> - [[2602.16710|EgoScale]] — Scaling dexterous manipulation specifically via diverse egocentric *human* data — fingers, not arms, are the bottleneck
+> - [[2402.10329|UMI]] — Hand-held in-the-wild data collection; **>3x faster** than teleop, cross-robot zero-shot generalization, dynamic tasks impossible via teleop; the dominant alternative to teleoperation
+
 > [!tip] When Scale Doesn't Help
-> [[2509.00576|G0]] showed single-embodiment in-domain data quality can outperform heterogeneous cross-embodiment scale. If your deployment robot is fixed, invest in diverse *scenes* not diverse *robots*. The corollary from [[2602.16710|EgoScale]]: if your deployment robot has *fingers*, invest in diverse *human hand* data — VLA-scale RGB does not cover the finger-control space.
+> [[2509.00576|G0]] showed single-embodiment in-domain data quality can outperform heterogeneous cross-embodiment scale. If your deployment robot is fixed, invest in diverse *scenes* not diverse *robots*. The corollary from [[2602.16710|EgoScale]]: if your deployment robot has *fingers*, invest in diverse *human hand* data — VLA-scale RGB does not cover the finger-control space. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]] for how that human-hand data actually transfers to a gripper.
 
 ---
 
@@ -231,10 +266,12 @@ The physical simulation substrate on which benchmarks are built. Choice of envir
 
 General-purpose physics platforms for robot learning. Each picks a different point on the (visual fidelity × physics accuracy × throughput) trade-off.
 
+- **[[2607.06701|SPEAR]]** — A modular ==Unreal Engine== plugin exposing **14,000+** UE functions + **53,000+** properties to Python via ==runtime reflection== and a ==client-server architecture== with ==interprocess shared memory==; **21×** faster high-res rendering than UnrealCV+ (**73 FPS** at 1920×1080), with multi-agent control and real-time MuJoCo co-simulation.
 - **[[2606.03551|Isaac-Sim-Survey]]** — A system overview of ==NVIDIA Isaac Sim== integrating ==GPU-accelerated PhysX== dynamics + ==RTX photorealistic rendering== over a ==USD-based asset system==, with ==IsaacLab== for GPU-parallel ==reinforcement learning== + ==Replicator== synthetic-data generation; the reference high-fidelity GPU simulator on the visual-fidelity end.
 - **[[2602.11337|MolmoSpaces]]** — A large-scale open ecosystem + zero-shot benchmark suite for robot navigation and manipulation spanning ==230,000+ environments==, ==130,000+ annotated objects==, **42M+** 6-DoF grasps, and ==multi-simulator compatibility== (MuJoCo / ManiSkill / IsaacSim); Pearson **r ~0.96** on `pick` vs RoboArena, diagnosing prompt-phrasing + camera-occlusion sensitivities.
 - **[[2003.08515|SAPIEN]]** — A simulator of **2,346** articulated PartNet-Mobility objects with ==part-level kinematic/dynamic attributes==, [PhysX 4.1](https://developer.nvidia.com/physx-sdk) at **~5000 Hz** + OpenGL+OptiX renderer at **~700 Hz**; heuristic baselines reach **95.3%** drawer-pull / **81.8%** door-open; the foundational platform for articulation-heavy research.
 - **[[1909.12271|RLBench]]** — A benchmark of **100** visually-guided manipulation tasks on [CoppeliaSim](https://www.coppeliarobotics.com/) + PyRep with ==Task/Variation/Episode hierarchy== and ==waypoint motion-planned== infinite expert demos; the few-shot evaluation standard for the Franka Panda.
+- **[[1712.05474|AI2-THOR]]** — An interactive 3D environment using a ==Python API== + ==Unity 3D engine== with ==ManipulaTHOR== arm manipulation + procedurally-generated ==ProcTHOR-10K== scenes; **150+** publications, **500,000+** downloads, SOTA 0-shot ObjectNav generalization — the foundational embodied-AI interaction platform.
 - **[[2009.12293|robosuite]]** — A [MuJoCo](https://mujoco.org) framework with separate ==Modeling/Simulation APIs==, **10** robot + **9** gripper models, ==variable-impedance control==, **9** single-arm/bimanual/mobile tasks; SAC solves **3/9** environments, OSC-POSE learns faster than joint-velocity — reproducibility substrate under [[2406.02523|RoboCasa]] / [[2506.18088|RoboTwin-2.0]].
 - **[[2604.08258|EvoGymCM]]** — An EvoGym extension adding ==continuous material stiffness== S∈[0.5, 2] as a first-class optimizable parameter via ==bi-level optimization== over morphology + material + control; **+41%** in Reactive-Material co-design on BridgeWalker (**2.10 → 2.97**) and AreaMaximizer (**0.62 → 0.74**).
 - [Genesis](https://genesis-world.readthedocs.io/) — GPU-native, open-source, multi-physics (rigid + soft + cloth + fluid) in one runtime; emerging community-driven research substrate.
@@ -245,6 +282,7 @@ General-purpose physics platforms for robot learning. Each picks a different poi
 - **[[2506.04941|ArtVIP]]** — An open-source library of **992** ==digital-twin articulated assets== with ==PBR materials==, pixel-level affordance labels, tuned joint stiffness/friction, and **5** ==modular interaction primitives== (latching, variable damping); beats BEHAVIOR-1K / PartNet-Mobility on CLIP-feature realism, **98%** RL trashcan-closing, **0.9886** sim-real Pearson.
 - **[[2302.04659|ManiSkill2]]** — A throughput-oriented manipulation benchmark of **20** task families including real-time ==rigid-MPM soft-body== environments with two-way coupling + multi-controller support + cross-action-space demo conversion; ~**2000 FPS** visual-RL collection (RGBD) and **80–84 FPS** soft-body sim — the predecessor to [[2410.00425|ManiSkill3]].
 - **[[2107.14483|ManiSkill]]** — A ==SAPIEN full-physics== manipulation benchmark of **162** PartNet-Mobility articulated objects with ego-centric 3D point-cloud / RGB-D inputs + **~36,000** demo trajectories (1.5M frames) for LfD and offline RL; the ==PointNet + Transformer== BC baseline reaches only **8–11%** object-level generalization SR — the original ManiSkill anchoring §3.1.
+- **[[2203.03570|Kubric]]** — A scalable ==Blender (Cycles) + PyBullet== synthetic-dataset generator with an object-oriented API + ==SunDs== export, producing **13** vision datasets (segmentation, optical flow, NeRF) from ray-traced physics scenes; beats FlyingChairs on optical-flow pretraining — general-purpose sim+render infra behind task-specific engines.
 - [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics) — Successor to [Isaac Gym](https://developer.nvidia.com/isaac-gym) physics; [PhysX-5](https://github.com/NVIDIA-Omniverse/PhysX) with full soft-body and fluid in one runtime; aims to be the "universal" sim.
 
 #### 3.2 Household-Scale
@@ -253,6 +291,9 @@ Realistic home environments with diverse objects and tasks. Bridges the visual r
 
 - **[[2406.02523|RoboCasa]]** — A household simulator of **120** unique kitchen scenes across **10** floor plans / **12** styles + **2,500+** ==asset library== + **100-task** benchmark (25 atomic / 75 LLM-composed); ==MimicGen== machine-generated demos generalize better than human teleop and transfer to a real Franka Panda — pioneered data-gen-as-benchmark.
 - **[[2602.10116|SAGE]]** — An ==agentic LLM-orchestrated== scene generator chaining a ==Scene Initializer + Asset Placer + Mover/Remover== with ==Visual Critic + Physics Critic (simulator-in-the-loop)==; **99.9%** stability / **1.9%** collision in Isaac Sim (vs **63.8%/22.0%** Holodeck, **67.7%/32.8%** SceneWeaver); policies trained on SAGE data reach **39.1%** OOD SR (vs **13.2%** baseline).
+- **[[2108.03332|BEHAVIOR]]** — A **100**-activity household benchmark defined via ==BDDL== predicate-logic language, implemented in [[2108.03272|iGibson 2.0]] with a new **1,217**-object dataset + **500** human VR demonstrations; SOTA RL (SAC/PPO) scores **Success Score Q=0** on 12 activities under full realism — exposes long-horizon + sensing + actuation as compounding bottlenecks.
+- **[[2108.03272|iGibson 2.0]]** — An object-centric household simulator adding five continuous ==extended physical states== (temperature/wetness/cleanliness/toggled/sliced) via a bidirectional ==logical-predicate system== + VR demo interface with ==assistive grasping==; **100%** SR on several extended-state RL tasks, **25%** faster (**125 steps/s**) than v1.0.
+- **[[1806.07011|VirtualHome]]** — A ==3D household simulator== (Unity3D) pairing the crowdsourced **ActivityPrograms** dataset with a ==seq2seq + REINFORCE== program-generation model translating language/video into ==executable programs==; **77.4%** LCS / **39.8%** executability from text, **2,821** real + **5,193** simulated activity programs.
 
 #### 3.3 Photorealistic 3D Environments
 
@@ -310,17 +351,11 @@ Environments designed for collecting human demonstrations with low-friction inte
 
 Sim platforms that ship with a paired benchmark and data generator.
 
+- **[[2607.08751|DexVerse]]** — A modular ==Isaac Lab== dexterous-manipulation sim + benchmark of **100** tasks across **8** categories, **3** arms x **6** hands, with an ==embodiment-adaptive Vision Pro teleop== pipeline collecting **3,180** expert demos; SOTA IL policies (DP3, π0.5) reach only **34%** mean online SR.
 - **[[2506.18088|RoboTwin-2.0]]** — A bimanual sim + benchmark using ==automated MLLM expert-code generation== with closed-loop simulation feedback + ==5-axis domain randomization== (clutter / texture / lighting / heights / instructions) + ==embodiment-aware grasp adaptation==; **71.3%** auto-code SR, **+24.4%** real-world few-shot SR, **+21.0%** zero-shot on unseen backgrounds.
 - **[[2605.16257|DexJoCo]]** — A benchmark of **11 task-oriented dexterous manipulation tasks** in [MuJoCo](https://mujoco.org) (finger coordination, tool-use, bimanual, long-horizon) with Rokoko-Smartgloves + HTC-Vive teleop (GeoRT) for low-cost demos; exposes IL brittleness under full visual randomization (DP-T **50.4%→20.0%**) and a lack of true language generalization in VLAs.
 
 Simulator choice has profound implications for what you can test — articulation fidelity, task variety, photorealism, and physics accuracy each gate different research questions. The 2025-2026 frontier moves along two axes: (1) **next-gen multi-physics engines** ([Genesis](https://genesis-world.readthedocs.io/), [NVIDIA Newton](https://developer.nvidia.com/newton-physics)) aim to combine [PhysX](https://developer.nvidia.com/physx-sdk)'s parallelism with [MuJoCo](https://mujoco.org)'s contact accuracy; (2) **LLM-driven scene generation** sidesteps the 3D-artistry bottleneck — producing simulation environments at the rate of LLM prompting rather than per-scene authoring effort.
-
-> [!star] Key Papers
-> - [[2003.08515|SAPIEN]] — 2,346 articulated objects with physics-accurate simulation; foundational platform for manipulation research
-> - [[1909.12271|RLBench]] — 100 tasks with infinite expert demos via motion planning; standardized few-shot and imitation learning evaluation
-> - [[2406.02523|RoboCasa]] — Scaling synthetic data significantly improves generalist policy performance; data-generation platform + benchmark
-> - [[2506.18088|RoboTwin-2.0]] — Bimanual sim + benchmark with strong domain randomization; the modern bimanual reference
-> - [[2602.10116|SAGE]] — Agentic 3D scene generation; bypasses the scene-authoring bottleneck via LLM-driven layout + asset retrieval
 
 #### 3.9 Physics Engines — Quick Reference
 
@@ -336,9 +371,6 @@ Simulator choice has profound implications for what you can test — articulatio
 | **[Taichi](https://www.taichi-lang.org) / [DiffTaichi](https://github.com/taichi-dev/difftaichi)** | Differentiable Lagrangian / MPM | Soft body, fluid, deformable manipulation |
 | **[PhysX-5](https://github.com/NVIDIA-Omniverse/PhysX) / [Newton (NVIDIA)](https://developer.nvidia.com/newton-physics)** | GPU contact-rich + soft + fluid + cloth in one engine | Next-gen general-purpose sim |
 | **[Genesis](https://genesis-world.readthedocs.io/)** | GPU-native, open-source, multi-physics (rigid + soft + cloth) | Emerging research substrate |
-
-> [!tip] Sim Engine Choice
-> [PhysX](https://developer.nvidia.com/physx-sdk) dominates GPU-parallel training (throughput). [MuJoCo](https://mujoco.org) is gold standard for contact-rich manipulation accuracy. [PyBullet](https://pybullet.org) enabled rapid prototyping but is increasingly replaced. For production: [PhysX](https://developer.nvidia.com/physx-sdk) if GPU-parallel, [MuJoCo](https://mujoco.org) if contact accuracy matters.
 
 **Simulator — Decision Matrix**
 
@@ -356,6 +388,16 @@ Simulator choice has profound implications for what you can test — articulatio
 | Generative real-to-sim simulators | [[2506.06440\|Vid2Sim]], [[2510.21447\|PhysWorld-Deformable]], [[2501.03575\|NVIDIA-Cosmos]] |
 | Driving / wheeled robots | [CARLA](https://carla.org), [NVIDIA Drive Sim](https://developer.nvidia.com/drive/simulation) |
 | GPU-parallel scaled training | See **Part C** (the engine layer); pair an engine with a §3 simulator |
+
+> [!star] Key Papers
+> - [[2003.08515|SAPIEN]] — 2,346 articulated objects with physics-accurate simulation; foundational platform for manipulation research
+> - [[1909.12271|RLBench]] — 100 tasks with infinite expert demos via motion planning; standardized few-shot and imitation learning evaluation
+> - [[2406.02523|RoboCasa]] — Scaling synthetic data significantly improves generalist policy performance; data-generation platform + benchmark
+> - [[2506.18088|RoboTwin-2.0]] — Bimanual sim + benchmark with strong domain randomization; the modern bimanual reference
+> - [[2602.10116|SAGE]] — Agentic 3D scene generation; bypasses the scene-authoring bottleneck via LLM-driven layout + asset retrieval
+
+> [!tip] Sim Engine Choice
+> [PhysX](https://developer.nvidia.com/physx-sdk) dominates GPU-parallel training (throughput). [MuJoCo](https://mujoco.org) is gold standard for contact-rich manipulation accuracy. [PyBullet](https://pybullet.org) enabled rapid prototyping but is increasingly replaced. For production: [PhysX](https://developer.nvidia.com/physx-sdk) if GPU-parallel, [MuJoCo](https://mujoco.org) if contact accuracy matters. Cross-reference [[14_Sim-to-Real-Transfer#2. Sim-Side: Learned & Procedural Simulators]] for how this engine choice interacts with the learned-vs-procedural simulator trade-off.
 
 ---
 
@@ -382,6 +424,7 @@ Trade contact accuracy for thousands-of-environment parallelism, enabling RL dat
 
 - **[[2511.04831|Isaac-Lab]]** — A GPU-parallel engine succeeding [Isaac Gym](https://developer.nvidia.com/isaac-gym) on [PhysX-5](https://github.com/NVIDIA-Omniverse/PhysX) + RTX + [OpenUSD](https://openusd.org); **>900K FPS** state-based, up to **1.6M FPS** in distributed training; foundational for **[[2503.14734|GR00T-N1]]/N1.5** training and Mimic synthetic-data pipeline.
 - **[Isaac Gym](https://developer.nvidia.com/isaac-gym) / [Isaac Sim](https://developer.nvidia.com/isaac-sim)** (NVIDIA, legacy) — Original [PhysX](https://developer.nvidia.com/physx-sdk)-backed parallel sims; 4,096+ envs/GPU; superseded by [[2511.04831|Isaac-Lab]] for most use cases.
+- **[[2108.10470|Isaac Gym]]** — An end-to-end GPU-resident RL pipeline packing thousands of ==PhysX== environments into one scene with a zero-copy ==PyTorch tensor API==; **2–3 orders of magnitude** speedup, Shadow Hand cube rotation trained in **<1hr** on one A100 (vs **30hrs** on a CPU cluster) — the seminal paper behind [[2511.04831|Isaac-Lab]].
 - **[[2603.12185|ComFree-Sim]]** — A GPU-parallelized analytical contact engine (complementarity-free); **~3×** simulation speed and near-linear scaling with contact count vs [MJWarp](https://github.com/google-deepmind/mujoco_warp); real-time MPPI on physical hardware gains **2.4×** compute speedup and **+27pp** closed-loop SR for dexterous manipulation.
 - **[Genesis](https://genesis-world.readthedocs.io/)** — Open-source GPU-native, multi-physics (rigid + soft + cloth + fluid) in one runtime; community-driven alternative to Isaac.
 - **[Newton (NVIDIA)](https://developer.nvidia.com/newton-physics)** — Successor to [Isaac Gym](https://developer.nvidia.com/isaac-gym) physics; [PhysX-5](https://github.com/NVIDIA-Omniverse/PhysX) with full soft-body and fluid in one runtime; aims to be the "universal" sim.
@@ -439,6 +482,8 @@ Diagnostics that target the *low-level skill* and *high-level reasoning* axes �
 
 Diagnostics that decompose a single "success rate" into ==capability axes== (planning vs perception vs memory) — answer the question *which* part of the policy stack is failing.
 
+- **[[2607.04610|RoboVista]]** — An expert-annotated ==Robot Question Answering (RQA)== benchmark decomposing VLM decisions into perception/planning/motion/failure-recovery layers across **39** robot tasks / **6** domains; best VLM (Gemini 2.5 Pro) hits **56.5%** accuracy, correlating with real-robot task success (Pearson **r=-0.70 to -0.93**).
+- **[[2606.29937|REPAIR-Bench]]** — An HRI benchmark on the RFM-HRI dataset decomposing robot-failure handling into detection / multi-class classification / recovery-strategy prediction; hierarchical HRNN hits **0.80** F1 detection, QLoRA-tuned Mistral-7B reaches **0.76** Hit@5 recovery.
 - **[[2510.08759|Embodied-Skill-Eval]]** — A skill-level diagnostic benchmark (==BEAR==) of **4,469** image-video-text entries across ==14 atomic skills / 6 categories== with horizontal/vertical/cross-skill failure attribution; most MLLMs score **20–40%** and GPT-5 only **52%** (vs **89.4%** human), **54.8%** of errors perceptual; ==BEAR-AGENT== lifts GPT-5 **+9.12%**, real grasping **+23.4%**.
 - **[[2605.10921|RoboMemArena]]** — The first comprehensive robotic-memory benchmark; **26 sim + 5 real** tasks where **68.9%** of subtasks require historical information; ==PrediMem== (predictive-coding VLA with hierarchical memory) hits **38.5%** TSR vs MemER's **27.3%** — the dedicated memory-failure-axis diagnostic.
 - **[[2603.09513|VQ-Memory]]** — A ==RuleSafe== non-Markovian long-horizon articulated-unlocking benchmark (LLM-aided SAPIEN) + a model-agnostic ==VQ-VAE memory== over proprioceptive history with K-means codebook clustering; lifts avg SR across 20 tasks **25.0% → 56.3%** (**+31.3%**), DP3 **5.0% → 45.0%**, π0 **0.0% → 45.0%** on rule 020.
@@ -467,30 +512,6 @@ Distinct from the LIBERO-family's *passive* perturbation children, this tier *ac
 - **[[2511.12149|AttackVLA]]** — A ==unified adversarial + backdoor attack benchmark== across OpenVLA / SpatialVLA / π0-fast; ==BackdoorVLA== bi-modal trigger induces attacker-specified long-horizon actions at **75.35%** ASR_t in sim and **50.00%** on a physical Franka arm (untargeted UADA up to **100%** ASR_u) — the first targeted physical-robot backdoor threat model.
 - **[[2509.18953|Eva-VLA]]** — A ==gradient-free black-box robustness search== (CMA-ES over ==3D rotations==, ==point-light illumination==, ==natural adversarial patches==) with a cosine-action-similarity objective; drives OpenVLA/UniVLA failure rates **4.0–23.5% → >80%**, adversarial examples retrain π0.5 to **85.8% → 56.8%** 3D-transform failure.
 
-> [!star] Key Papers
-> - [[2605.10921|RoboMemArena]] — First comprehensive robotic-memory benchmark: 26 sim + 5 real-world tasks with multimodal annotations (visual keyframes + language) where **68.9%** of subtasks genuinely require historical information; **PrediMem** (predictive-coding VLA with hierarchical memory) hits **38.5%** TSR vs MemER's **27.3%** — the dedicated memory-failure-axis diagnostic
-> - [[2502.09560|EmbodiedBench]] — 1,128 tasks across 4 environments (ALFRED, [Habitat](https://aihabitat.org), Nav, Manipulation) × 6 capabilities (commonsense, instructions, spatial, perception, planning, basic). Exposes that **GPT-4o** scores **>60%** on high-level planning but only **28.9%** on low-level manipulation; removing vision drops Nav from **57.7% → 17.4%** — the de-facto capability-disentangling MLLM-agent benchmark
-> - [[2601.11421|GM-100]] — 100 detail-oriented tasks; current VLAs achieve very low success rates, exposing real capability gaps
-> - [[2507.10548|EmbRACE-3K]] — 3,000 scenarios testing embodied reasoning (spatial + causal + task-decomposition); reveals that high [[2306.03310|LIBERO]] scores do not imply embodied intelligence
-> - [[2510.03827|LIBERO-PRO]] — Minor-perturbation collapse from **>90% → ~0%**; the field's "memorization vs generalization" reference point
-
-**Diagnostic — Decision Matrix**
-
-| Need | Diagnostic |
-|---|---|
-| Baseline in-distribution skill | [[2306.03310\|LIBERO]], [[2112.03227\|CALVIN]] |
-| Visual robustness (camera, lighting, occlusion) | [[2510.13626\|LIBERO-Plus]] (**7-axis**) |
-| Memorization vs generalization | [[2510.03827\|LIBERO-PRO]] (**>90% → ~0%** collapse under small changes) |
-| Cross-task / cross-instruction transfer | [[2602.06556\|LIBERO-X]] + [[2603.28301\|LIBERO-Para]] |
-| Detail-oriented precision (insertion, alignment) | [[2601.11421\|GM-100]] |
-| Embodied reasoning (spatial + causal) | [[2507.10548\|EmbRACE-3K]], [[2508.13142\|EASI]] |
-| Capability decomposition (planning vs perception) | [[2502.09560\|EmbodiedBench]] (**6-axis**) |
-| Long-term memory failure | [[2605.10921\|RoboMemArena]] (**68.9%** subtasks memory-dependent) |
-| Robust evaluation under perturbation | [[2507.05258\|REA]] |
-
-> [!tip] Use the Diagnostic Stack
-> Each benchmark stresses one failure axis. A model can score >90% on [[2306.03310|LIBERO]] yet collapse on [[2510.13626|LIBERO-Plus]] (visual), [[2603.28301|LIBERO-Para]] (language), [[2510.03827|LIBERO-PRO]] (minor perturbations), or [[2601.11421|GM-100]] (precision). Always evaluate across the full diagnostic stack before claiming generalization. The [[2510.03827|LIBERO-PRO]] collapse from >90% to near 0% under *small* changes is the most damning data point in recent VLA evaluation literature. Cross-reference [[04_VLA#1. Design-Space Principles]] for architectural responses to these failure modes, [[07_Latent-World-Models#5. Latent vs Pixel Comparison]] for the WAM-vs-VLA robustness gap, and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for policy-side robustness recipes.
-
 #### 5.5 Open-Ended Game-Agent Evaluation
 
 Open-ended game worlds (Minecraft) are an embodied substrate with no single success signal — these evaluate *generalist* agents over thousands of configurable tasks, pairing large vision-speech-action data collection with scalable VLM-based scoring.
@@ -514,6 +535,32 @@ MLLM-agent benchmarks that decompose *embodied agentic competence* — tool-need
 - **[[2605.26637|Embodied-Tool-Protocol]]** — A capability-externalization framework defining the ==Embodied Tool Protocol (ETP)== (register / discover / invoke / isolated-execute) + the **EmbodiedToolBench** suite of **100+** tools/tasks probing tool-need recognition / selection / execution / chaining; augmentation adds **+31%** EB-ALFRED / **+36%** EB-Navigation, recall as low as **0.31**.
 - **[[2602.03430|ProAct]]** — A vision-based ==proactive-response== benchmark (**ProAct-75**) with explicit ==DAG task graphs== of step dependencies + parallelism, paired with the **ProAct-Helper** MLLM framework (==Hierarchical Binding Module== + entropy-driven search); the 7B helper gains **+17.09%** task-F1 / **+11.72%** step-F1 over Gemini-2.5-Pro, **~73%** task-F1 retained cross-view.
 
+**Diagnostic — Decision Matrix**
+
+| Need | Diagnostic |
+|---|---|
+| Baseline in-distribution skill | [[2306.03310\|LIBERO]], [[2112.03227\|CALVIN]] |
+| Visual robustness (camera, lighting, occlusion) | [[2510.13626\|LIBERO-Plus]] (**7-axis**) |
+| Memorization vs generalization | [[2510.03827\|LIBERO-PRO]] (**>90% → ~0%** collapse under small changes) |
+| Cross-task / cross-instruction transfer | [[2602.06556\|LIBERO-X]] + [[2603.28301\|LIBERO-Para]] |
+| Detail-oriented precision (insertion, alignment) | [[2601.11421\|GM-100]] |
+| Embodied reasoning (spatial + causal) | [[2507.10548\|EmbRACE-3K]], [[2508.13142\|EASI]] |
+| Capability decomposition (planning vs perception) | [[2502.09560\|EmbodiedBench]] (**6-axis**) |
+| Long-term memory failure | [[2605.10921\|RoboMemArena]] (**68.9%** subtasks memory-dependent) |
+| Robust evaluation under perturbation | [[2507.05258\|REA]] |
+| Open-ended generalist agent eval (Minecraft) | [[2310.08367\|MCU]] (**3,452** tasks, AutoEval VLM judge) |
+| Proactive tool-use / agentic capability | [[2605.26637\|Embodied-Tool-Protocol]], [[2602.03430\|ProAct]] |
+
+> [!star] Key Papers
+> - [[2605.10921|RoboMemArena]] — First comprehensive robotic-memory benchmark: 26 sim + 5 real-world tasks with multimodal annotations (visual keyframes + language) where **68.9%** of subtasks genuinely require historical information; **PrediMem** (predictive-coding VLA with hierarchical memory) hits **38.5%** TSR vs MemER's **27.3%** — the dedicated memory-failure-axis diagnostic
+> - [[2502.09560|EmbodiedBench]] — 1,128 tasks across 4 environments (ALFRED, [Habitat](https://aihabitat.org), Nav, Manipulation) × 6 capabilities (commonsense, instructions, spatial, perception, planning, basic). Exposes that **GPT-4o** scores **>60%** on high-level planning but only **28.9%** on low-level manipulation; removing vision drops Nav from **57.7% → 17.4%** — the de-facto capability-disentangling MLLM-agent benchmark
+> - [[2601.11421|GM-100]] — 100 detail-oriented tasks; current VLAs achieve very low success rates, exposing real capability gaps
+> - [[2507.10548|EmbRACE-3K]] — 3,000 scenarios testing embodied reasoning (spatial + causal + task-decomposition); reveals that high [[2306.03310|LIBERO]] scores do not imply embodied intelligence
+> - [[2510.03827|LIBERO-PRO]] — Minor-perturbation collapse from **>90% → ~0%**; the field's "memorization vs generalization" reference point
+
+> [!tip] Use the Diagnostic Stack
+> Each benchmark stresses one failure axis. A model can score >90% on [[2306.03310|LIBERO]] yet collapse on [[2510.13626|LIBERO-Plus]] (visual), [[2603.28301|LIBERO-Para]] (language), [[2510.03827|LIBERO-PRO]] (minor perturbations), or [[2601.11421|GM-100]] (precision). Always evaluate across the full diagnostic stack before claiming generalization. The [[2510.03827|LIBERO-PRO]] collapse from >90% to near 0% under *small* changes is the most damning data point in recent VLA evaluation literature. Cross-reference [[04_VLA#1. Design-Space Principles]] for architectural responses to these failure modes, [[07_Latent-World-Models#5. Latent vs Pixel Comparison]] for the WAM-vs-VLA robustness gap, and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for policy-side robustness recipes.
+
 ---
 
 ### 6. Tactile & Contact-Rich Benchmarks
@@ -524,6 +571,7 @@ Force-feedback, touch, and contact-rich manipulation form their own evaluation a
 
 The *representation* axis: do learned tactile features beat sensor-specific end-to-end pipelines on a fixed, multi-sensor task suite? Introduced in [[2410.24090|Sparsh]], [[2410.24090|TacBench]] is the de-facto standard.
 
+- **[[2606.31694|RCT]]** — A robot-collected touch-vision-language dataset of **122** materials preserving full ==contact sequences==, defining ==held-out evaluation protocols== that expose **17.7pp** overestimation from frame-random splits; held-out-material Recall@1 only **20.4%**.
 - **[[2410.24090|Sparsh]]** / [[2410.24090|TacBench]] — A tactile-representation benchmark of **6** touch tasks (force estimation, slip detection, contact localization, fabric classification, dynamic pose tracking, bead maze) across ==DIGIT==, ==GelSight Mini==, ==OmniTact==, ==OptoTact== sensors; self-supervised reps beat sensor-specific end-to-end on **6/6** across the **95.8K-image** benchmark.
 - **[[2506.14754|Sparsh-X]]** — A ==multisensory touch== extension of [[2410.24090|Sparsh]] (image + audio + IMU + pressure) from ==Digit 360== via ==attention bottlenecks==, self-supervised on ~**1M** unlabeled contact interactions; **>3× improvement** on hardest force-and-vibration tasks and **+500%** plug-insertion SR over vision-only (to **90%**) — defines the multisensory tactile axis.
 
@@ -548,13 +596,6 @@ The *policy* axis: full robot policies (not just representations) evaluated unde
 - **[[2403.08716|DIFFTACTILE]]** — A physics-based ==differentiable tactile simulator== unifying ==FEM== sensor deformation + ==MLS-MPM== multi-material objects + ==Position-Based Dynamics== cables in Taichi, with an MLP optical module; gradient-based system-ID lowers Real2Sim marker MSE, optical sim beats Taxim (**7.94** vs **16.1** L1), tactile feedback cuts grasp slipping **0.18 → 0.07** m.
 - **[[2109.04027|Taxim]]** — An ==example-based optical simulation== for GelSight sensors: a polynomial look-up table maps contact geometry to per-pixel intensity, with ==linear-elastic== marker-field motion (first to combine marker + optical sim); **lowest pixel-wise intensity error** vs prior work, runs **online on CPU** — the foundational tactile simulator for sim-to-real data generation.
 
-> [!star] Key Papers
-> - [[2410.24090|Sparsh]] — Introduces [[2410.24090|TacBench]] (6 tasks, 4 sensors); first standardized tactile representation benchmark; self-supervised reps beat end-to-end on **6/6** tasks
-> - [[2506.14754|Sparsh-X]] — Extends [[2410.24090|Sparsh]] to multisensory touch (image + audio + vibration + force); **>3x improvement** on force-and-vibration tasks; defines the multisensory tactile evaluation axis
-> - [[2603.17851|DexViTac]] — The *human-demo* data engine (248 demos/hr, kinematics-grounded tactile pretrain); its **83.3% → 43.3%** Pipetting SR collapse without grounded pretrain is the most damning ablation for naïve tactile fusion
-> - [[2604.07335|TAMEn]] — The *closed-loop* data engine (online feasibility + AR recovery); pairs with [[2603.17851|DexViTac]] as the dual-pillar tactile collection pipeline (human bulk-pretrain → robot online-recovery refinement)
-> - [[2509.07962|TA-VLA]] — Torque-aware VLA design study; the de-facto reference for which torque-integration recipe matters most under contact-rich evaluation
-
 **Tactile Benchmarks — Decision Matrix**
 
 | Need | Benchmark |
@@ -570,6 +611,13 @@ The *policy* axis: full robot policies (not just representations) evaluated unde
 | Full-arm skin coverage | [[2509.18830\|DexSkin]] |
 | Slow-fast visuotactile control | [[2503.02881\|Reactive-Diffusion-Policy]] |
 | Force-feedback wiping / surface task | [[2505.06451\|Adaptive-Wiping]] |
+
+> [!star] Key Papers
+> - [[2410.24090|Sparsh]] — Introduces [[2410.24090|TacBench]] (6 tasks, 4 sensors); first standardized tactile representation benchmark; self-supervised reps beat end-to-end on **6/6** tasks
+> - [[2506.14754|Sparsh-X]] — Extends [[2410.24090|Sparsh]] to multisensory touch (image + audio + vibration + force); **>3x improvement** on force-and-vibration tasks; defines the multisensory tactile evaluation axis
+> - [[2603.17851|DexViTac]] — The *human-demo* data engine (248 demos/hr, kinematics-grounded tactile pretrain); its **83.3% → 43.3%** Pipetting SR collapse without grounded pretrain is the most damning ablation for naïve tactile fusion
+> - [[2604.07335|TAMEn]] — The *closed-loop* data engine (online feasibility + AR recovery); pairs with [[2603.17851|DexViTac]] as the dual-pillar tactile collection pipeline (human bulk-pretrain → robot online-recovery refinement)
+> - [[2509.07962|TA-VLA]] — Torque-aware VLA design study; the de-facto reference for which torque-integration recipe matters most under contact-rich evaluation
 
 > [!tip] Cross-Reference
 > See [[10_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]] for the full deep-dive on how [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] representations feed into VLAs ([[2509.07962|TA-VLA]], [[2510.13324|FARM]], [[2603.05687|CGP]]). The benchmarks here measure *what* you're getting from touch; the policies in 10 measure *how to use it*. The tactile axis also overlaps with §2.1 bimanual data ([[2604.20444|VTouch++]], [[2604.07335|TAMEn]]) where collection and evaluation use the same hardware.
@@ -592,6 +640,7 @@ Build a deformable scene's digital twin from real video / Gaussian-splat reconst
 
 Rigid + soft + fluid + cloth in a unified evaluation suite — measures whether a policy / WAM handles *every* deformable category, not just one.
 
+- **[[2607.05390|Deform360]]** — A massive multi-view visuotactile dataset of **198** deformable objects (1D/2D/3D) via **41** surround cameras + tactile UMI grippers; benchmarks 2D-vs-3D WAMs (PhysTwin/ParticleFormer/Cosmos) across 3 generalization tiers, tactile cuts tracking error **~5×**.
 - **[[2506.02794|PhysGaia]]** — A physics-aware dynamic-novel-view-synthesis benchmark of **17** Houdini scenes spanning ==liquids + gases + viscoelastic + textiles==, with ground-truth ==3D particle trajectories== + per-material physics params (FLIP / Pyro / ==MPM== / Vellum); SOTA DyNVS (D-3DGS, 4DGS, STG) score **PSNR < 30** even multiview — unified deformable + rigid + fluid evaluation.
 - **[[2401.15318|Gaussian-Splashing]]** — A single 3DGS substrate unifying ==3DGS rendering kernels + Position-Based Dynamics + Position-Based Fluids== under one particle representation with ==anisotropy loss== + ==PBR materials== + ==surface tension== modeling; demonstrates robust two-way fluid-solid coupling (deformable solids in water, waves, flooding) for cloth + fluid + rigid.
 
@@ -629,6 +678,7 @@ Humanoid whole-body manipulation and bimanual coordination form their own evalua
 
 Whole-body locomotion + manipulation evaluation on bipedal humanoid platforms — tests bilateral coordination *under* whole-body balance constraints that arm-only benchmarks ignore.
 
+- **[[2607.06052|ThorArena]]** — A humanoid physical-interaction benchmark pairing human motion-force demonstrations with a ==force-replay protocol== + ==Force-Aware Tracking Score (FATS)==; Thor2 hits **81.71** FATS / **1.000** survival vs rivals' **0.73–0.81** survival under contact-rich forces.
 - **[[2604.17335|G1-WBC-Gen+Track]]** — A whole-body humanoid locomotion system via ==diffusion motion generation + RL motion tracking==; Unitree G1 climbs **75cm** boxes, traverses stairs, vaults hurdles, with Tracker+Gen achieving **0.962 SR** on 80cm box vs **0.230** for Tracker-Only — the current reference for online terrain-aware whole-body locomotion.
 - **[[2506.12851|KungfuBot]]** — A ==physics-based motion-processing pipeline== (raw video → physically feasible robot reference) + ==adaptive tracking factor== + ==asymmetric actor-critic + reference state init==; **53.25 mm** mean per-body position error on easy motions (vs **>233 mm** OmniH2O/ExBody2), zero-shot martial arts + dance on Unitree G1.
 - **[[2604.07993|HEX]]** — A hierarchical VLA + ==RL whole-body controller== with ==Unified Proprioceptive Predictor + morphology MoE== + ==review-and-forecast== visual cache; **79.8%** avg SR on 7 real-robot tasks (vs **70.2%** GR00T N1.5, **57.1%** ACT), **61.8%** on unseen scenes (vs **44.3%** π0.5), pretrained on **12M+** humanoid frames.
@@ -866,7 +916,10 @@ Evaluating whether learned world models generate physically plausible, action-co
 - **[[2505.19017|WorldEval]]** — A ==WM-as-evaluator== framework generating policy-execution video via ==Policy2Vec latent-action injection== + ==LLM (Gemini-2.0) success detection==; **0.79** Pearson with real-world SR, beats real-to-sim on MMRV + correlation, and flags unsafe policies pre-deployment — video generation as a safer-than-hardware policy test bed.
 - **[[2410.18072|WorldSimBench]]** — A 4-stage ==predictive-model hierarchy== (S0–S3, S3 = "World Simulator") + dual ==Explicit Perceptual== and ==Implicit Manipulative== (closed-loop task SR) evaluation; its ==HF-Embodied== dataset trains a Human Preference Evaluator beating GPT-4o alignment — current video models largely fail to capture physical rules for *actionable* generation.
 - **[[2505.09694|EWMBench]]** — The first embodied-WM generation benchmark on ==AgiBot-World== scoring ==Visual Scene Consistency (DINOv2)== + ==Motion Correctness (YOLO-World HSD/NDTW/DYN)== + ==Semantic Alignment==; domain-adapted models beat general video generators, motion correctness the hardest axis — separates "good embodied WM" from "good video model".
+- **[[1910.01442|CLEVRER]]** — A synthetic collision-video benchmark of **20,000** clips with descriptive/explanatory/predictive/counterfactual questions over a ==Bullet physics engine==; the ==Neuro-Symbolic Dynamic Reasoning== model hits **42.2%** counterfactual accuracy vs baselines' near-chance **13.7%** — the founding causal-reasoning video benchmark predating action-conditioned WAM evals.
 - **[[2106.08261|Physion]]** — The foundational physical-prediction-from-vision benchmark generated in ==ThreeDWorld== across **8** scenarios (Dominoes/Support/Collide…) via the binary ==Object Contact Prediction== task; humans hit **0.71** avg while all vision models underperform, isolating ==extracting physical representations from pixels== — not simulation — as the bottleneck.
+- **[[2304.13723|VP2]]** — A control-centric video-prediction benchmark pairing **Tabletop-robosuite** + **RoboDesk** manipulation environments with a ==MPPI visual-foresight planner==; perceptual metrics (FVD/LPIPS) often anti-correlate with control SR (**35%** vs **65%** on identical pushing tasks) — the founding "video-quality ≠ control success" diagnostic.
+- **[[1803.07616|IntPhys]]** — A ==violation-of-expectation== physics benchmark using ==pixels-matched quadruplets== to test object permanence / shape constancy / spatio-temporal continuity; self-supervised baselines hit chance (**0.50** error) under occlusion vs **18–28%** human error — predates action-conditioned WAM evals as the founding plausibility-judgment benchmark.
 
 World model evaluation has shifted from passive video quality metrics (FVD, SSIM) to *interactive* benchmarks that test whether the model can predict consequences of actions. Two axes drive the new generation: **action-following fidelity** (given an action, does the predicted next frame match the actual outcome?) and **causal consistency** (do counterfactual actions produce counterfactual futures?). The most ambitious framing — **WM-as-environment** — replaces "is the video pretty?" with "does a policy trained inside the WM transfer to real?".
 
@@ -893,7 +946,7 @@ World model evaluation has shifted from passive video quality metrics (FVD, SSIM
 > - [[2602.05986|RISE-Video]] — Probes whether video generators decode implicit world rules; rule-induction evaluation
 
 > [!tip] Beyond Visual Quality
-> Early world model evals focused on video quality (FID, FVD). 2026 benchmarks ([[2603.22212|Omni-WorldBench]], [[2603.23497|WildWorld]], [[2506.00613|WorldGym]]) shifted to *interaction fidelity*: does the model follow actions? Are state transitions consistent? Can a policy trained inside the world model transfer to real? This is what matters for robot control.
+> Early world model evals focused on video quality (FID, FVD). 2026 benchmarks ([[2603.22212|Omni-WorldBench]], [[2603.23497|WildWorld]], [[2506.00613|WorldGym]]) shifted to *interaction fidelity*: does the model follow actions? Are state transitions consistent? Can a policy trained inside the world model transfer to real? This is what matters for robot control. Cross-reference [[08_Physics-Aware-Embodied-AI#6. Physics Commonsense Benchmarks]] for the parallel finding that video-generation benchmarks must separate visual fidelity from physical plausibility.
 
 ---
 
@@ -949,6 +1002,7 @@ Sim benchmarks predict sim performance. The 2025-2026 wave introduced *standardi
 - **[[2509.17057|RoboManipBaselines]]** — An ==OpenAI-Gym-compatible== unified IL framework spanning MuJoCo / Isaac Gym / PyBullet + real UR5e / xArm 7; Diffusion Policy hits **52.0%** sim avg, **47.9%** real avg across **8** tasks; data-augmentation case study lifts SR **36% → 82%**.
 - **[[2511.16518|MiMo-Embodied]]** — A cross-embodied VLM unifying autonomous-driving + embodied-AI via ==4-stage training== (SFT → embodied SFT → CoT → RLHF); SOTA across **17** embodied + **12** driving benchmarks (**29** total), demonstrating positive cross-domain transfer.
 - **[[2603.13966|vla-eval]]** — A unified VLA eval harness across [[2306.03310|LIBERO]]/[[2112.03227|CALVIN]]/[[2405.05941|SimplerEnv]] whose client-server architecture decouples inference from execution; **47x speedup on [[2306.03310|LIBERO]]** (14h → 18min / 2,000 episodes); reproduced 6 VLAs / 3 benchmarks, exposed pitfalls (wrong proprioception **55pp**, quaternion errors **14–39pp**).
+- **[[2605.11665|Nautilus]]** — A domain-specific agent harness combining ==typed Policy/Benchmark/Robot interfaces==, ==chambered execution==, and a ==WebSocket transport== layer to automate cross-family robot-learning reproduction; generated wrappers faithfully reproduce published SR on [[2306.03310|LIBERO]]/ManiSkill/RoboCasa, deploying unmodified from sim to Franka + Unitree H1.
 - **[[2207.06780|VIO-Eval]]** — A real-world empirical benchmark of **4** off-the-shelf proprietary visual-inertial odometry systems (==Apple ARKit==, Google ARCore, Intel RealSense T265, Stereolabs ZED 2) on a custom synchronized rig across **6** indoor/outdoor environments; ARKit leads (FDE **0.19** m stairs / **2.68** m urban) while ZED 2 drifts worst (**409.25** m).
 
 **Real-World Evaluation — Decision Matrix**
@@ -968,7 +1022,7 @@ Sim benchmarks predict sim performance. The 2025-2026 wave introduced *standardi
 > - [[2603.13966|vla-eval]] — Unified VLA eval harness; **47x [[2306.03310|LIBERO]] speedup**; exposes undocumented evaluation pitfalls that drop reported scores by **14–55 pp** — first eval-side audit framework for VLAs
 
 > [!tip] Real-World Evaluation is a Coordination Problem
-> Real robots break, fall over, and need humans to reset them. The bottleneck for real-world benchmarking has always been the *scheduling* and *coordination* of multi-lab evaluation, not the algorithms. [[2506.18123|RoboArena]] and [[2510.17950|RoboChallenge]] address this by treating evaluation as distributed infrastructure rather than per-paper effort.
+> Real robots break, fall over, and need humans to reset them. The bottleneck for real-world benchmarking has always been the *scheduling* and *coordination* of multi-lab evaluation, not the algorithms. [[2506.18123|RoboArena]] and [[2510.17950|RoboChallenge]] address this by treating evaluation as distributed infrastructure rather than per-paper effort. Cross-reference [[14_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for how sim-side correlation benchmarks try to reduce how often that real-robot coordination is even needed.
 
 ---
 
@@ -979,6 +1033,7 @@ The field has matured enough that several recent surveys structure the entire be
 - **[[2606.12207|Embodied-Benchmark-Pipeline]]** — A ==five-stage pipeline== + ==Construction Automation and Auditability Rubric (CAAR)== classifying automation levels (A0–A3) across embodied-benchmark construction; finds automation ==transfers cost== to validation/governance/debugging rather than reducing it, and argues for structured failure diagnosis over aggregate scores.
 - **[[2606.04233|Manipulation-Benchmark-Audit]]** — A ==validity audit== probing shortcut solvability, significance, creeping overfitting, and data-source dependence; a DINO+MLP probe hits **99–100%** on LIBERO without pretraining/language, only **19.8%** of LIBERO SOTA claims are significant, CALVIN ATC drops **1.03**, and a **22M** policy on 120 SimplerEnv demos reaches **94.8%**.
 - **[[2103.04918|Embodied-AI-Survey]]** — A foundational embodied-AI survey evaluating **9** simulators across **7 technical features** + categorizing **3** core tasks (visual exploration, visual navigation, embodied QA); identifies Habitat-Sim / iGibson as graphics leaders and AI2-THOR as interaction leader.
+- **[[2107.13411|Egocentric Future Prediction Survey]]** — A systematic review unifying ==Prediction/Anticipation/Expectation/Prospection/Forecasting== terminology from psychology, categorizing **9** future-prediction challenges across **20** egocentric datasets; only short-term action-anticipation is standardized — names the task-standardization gap facing longer-horizon prediction.
 - **[[2507.00917|Embodied-Intelligence-Survey]]** — A modern follow-up survey integrating the world-model wave; proposes a ==5-level IR-L0→IR-L4 grading== for intelligent robots + identifies ==3 core WM functional roles== (neural simulators / dynamic models / reward models).
 - **[[2510.16732|World-Models-for-Embodied-AI-Survey]]** — A canonical WM survey with ==3-axis taxonomy== (Functionality × Temporal Modeling × Spatial Representation) under a POMDP-ELBO formalism; tracks evolution from RSSM latent vectors → Transformer token sequences → 3DGS-based explicit rendering.
 - **[[2503.21765|Physics-Cognition-Survey]]** — A canonical video-generation physics survey with a ==Piaget-inspired 3-tier taxonomy== (Basic Schema Perception / Passive / Active Cognition) + ==4-domain physical-phenomena map== (mechanics / optics / thermal / material); reviews PhyBench + VideoPhy failure modes.
@@ -1007,7 +1062,7 @@ The field has matured enough that several recent surveys structure the entire be
 > - [[2503.21765|Physics-Cognition-Survey]] — Frames physics-aware video generation as an evaluation problem, not just a generation problem
 
 > [!tip] Use Surveys as Map, Not Encyclopedia
-> The four surveys above structure the landscape but they're inevitably stale on the latest 6 months of work. Use them to learn the *axis* — what categories exist, what evaluation criteria are accepted — then use the per-section benchmarks above for the current frontier.
+> The four surveys above structure the landscape but they're inevitably stale on the latest 6 months of work. Use them to learn the *axis* — what categories exist, what evaluation criteria are accepted — then use the per-section benchmarks above for the current frontier. Cross-reference [[01_Embodied-AI-101#Surveys & Further Reading]] for the field-wide reading list this benchmark-specific survey table is a specialization of.
 
 ---
 
