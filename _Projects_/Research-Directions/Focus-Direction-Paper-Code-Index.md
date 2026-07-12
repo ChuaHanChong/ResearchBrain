@@ -10,7 +10,7 @@ tags:
 # Focus-Direction Paper-Code Index: Papers ↔ Code Repositories
 
 > [!abstract] What this is
-> One row per paper: it links each of the **567 papers** across [[Focus-Direction]]'s 18 core directions (Whole-Body A+B, WAM·A, Sim2Real·B, Embodied-AI·B) plus Whole-Body Cluster C (Force-Adaptive Coordination Under Load), 20 directions across the 6 clusters in all, to its KnowledgeHub note, local PDF, and official code repo. **349** papers have a confirmed official repo; **347** of those are cloned-and-catalogued in `data/.repositories/` (the live folder now holds **358** directories in all, the extra being later or uncatalogued clones; the in-program figure of 358 is that live folder count). The other **218** released no public code.
+> One row per paper: it links each of the **581 papers** across [[Focus-Direction]]'s 18 core directions (Whole-Body A+B, WAM·A, Sim2Real·B, Embodied-AI·B) plus Whole-Body Cluster C (Force-Adaptive Coordination Under Load), 20 directions across the 6 clusters in all, to its KnowledgeHub note, local PDF, and official code repo. **352** papers have a confirmed official repo; **347** of those are cloned-and-catalogued in `data/.repositories/` (the live folder now holds **358** directories in all, the extra being later or uncatalogued clones; the in-program figure of 358 is that live folder count). The other **229** released no public code (of which 11 are the newest additions whose code is not yet released).
 >
 > **Indexing:** all **567** papers are indexed in a graphify concept graph at `data/papers/graphify-out/` (1,918 nodes, cross-paper semantic + citation links, community clusters); **343** of the **347** cloned repos are indexed in GitNexus code-graphs (`.gitnexus/`, queryable via the gitnexus MCP for call-graphs / impact analysis / symbol context) — the 4 exceptions are in Known gaps.
 >
@@ -19,7 +19,7 @@ tags:
 > [!info] Columns
 > **Cluster(s)** = which source clusters cite the paper · **KH** = KnowledgeHub note · **PDF** = local file in `data/papers/` · **Repo** = official GitHub (clickable) · **Cloned** = ✓ in `data/.repositories/` · ✗ repo found but clone failed · — no public code · **Size** = on-disk size of the full clone (complete history; Git-LFS blobs skipped) · **Indexed** = ✓ has a gitnexus code-graph index (`.gitnexus/`, queryable via the gitnexus MCP) · ✗ cloned but not indexed · **Remarks** = repo-completeness note from studying the paper + repo (blank = complete; e.g. README-only, partial, survey-list, website, data-only).
 
-**Totals** — papers 567 · with repo 349 · cloned 347 · clone-failed 2 · no public code 218 · cloned size 154.6 GB · gitnexus-indexed 343.
+**Totals** — papers 581 · with repo 352 · cloned 347 · clone-failed 2 · no public code 229 · cloned size 154.6 GB · gitnexus-indexed 343. The 14 newest (rows 568-581, added 2026-07-12) are cataloged but not yet cloned or graph-indexed: 11 have no released code yet, and 3 have identified repos (MuSe, IMPACT, FAWAM) not yet cloned.
 
 **Repo completeness** (studied paper + repo across 347 cloned) — complete **242** · partial **41** · README-only/placeholder **33** · survey-list **15** · project-website-only **12** · benchmark-data-only **4**. Non-complete repos are flagged in the **Remarks** column.
 
@@ -592,6 +592,20 @@ tags:
 | 565 | EAI·B | [[2606.15685\|SCE]] | [[2606.15685v1.pdf]] | — *(no public code)* | — | — | — |  |
 | 566 | EAI·B | [[2606.17493\|Sleeping-Robots]] | [[2606.17493v1.pdf]] | — *(no public code)* | — | — | — |  |
 | 567 | EAI·B | [[2606.18610\|SC3-Eval]] | [[2606.18610v1.pdf]] | — *(no public code)* | — | — | — |  |
+| 568 | WAM·A | [[2605.23856\|JOPAT]] | [[2605.23856v1.pdf]] | — *(no public code)* | — | — | — | added 2026-07-12; WAM·A predict anchor (structured-target beats pixels) |
+| 569 | WAM·A | [[2607.08436\|EgoWAM]] | [[2607.08436v1.pdf]] | — *(project page, code coming soon)* | — | — | — | added 2026-07-12; WAM·A predict anchor (auxiliary WM head) |
+| 570 | EAI·B | [[2607.05966\|iKCE]] | [[2607.05966v1.pdf]] | — *(no public code)* | — | — | — | added 2026-07-12; dynamics-blindness diagnostic (evidence for the predict bet) |
+| 571 | EAI·B | [[2607.02403\|ACID]] | [[2607.02403v1.pdf]] | — *(project page, code coming soon)* | — | — | — | added 2026-07-12; verify build-on (inverse-dynamics consistency) |
+| 572 | S2R·B | [[2606.28476\|FADA]] | [[2606.28476v1.pdf]] | — *(project page only)* | — | — | — | added 2026-07-12; ground foil (model-free humanoid dynamics adaptation) |
+| 573 | S2R·B | [[2607.02205\|Actuator Reality Shaping]] | [[2607.02205v2.pdf]] | — *(project page only)* | — | — | — | added 2026-07-12; ground foil (actuator counter-philosophy) |
+| 574 | WAM·A | [[2607.02503\|VT-WAM]] | [[2607.02503v1.pdf]] | — *(project page, code coming soon)* | — | — | — | added 2026-07-12; contact-WAM anchor for WrenchCast |
+| 575 | WAM·A | [[2606.30988\|MuSe]] | [[2606.30988v3.pdf]] | [`jadenvc/multisensory_wm`](https://github.com/jadenvc/multisensory_wm) | ✗ | — | — | placeholder repo, code to be released; added 2026-07-12; anticipatory force-torque prediction |
+| 576 | WB·C | [[2607.02332\|HEFT]] | [[2607.02332v1.pdf]] | — *(project page only)* | — | — | — | added 2026-07-12; force-under-load foil (heavy-payload reactive) |
+| 577 | WB·C | [[2606.10818\|IMPACT]] | [[2606.10818v1.pdf]] | [`Winston-Gu/IMPACT`](https://github.com/Winston-Gu/IMPACT) | ✗ | — | — | added 2026-07-12; sensorless-feedforward force-under-load foil (WB·C1); not yet cloned |
+| 578 | WAM·A | [[2606.08555\|FAWAM]] | [[2606.08555v2.pdf]] | [`HaotianHehaha/FAWAM`](https://github.com/HaotianHehaha/FAWAM) | ✗ | — | — | added 2026-07-12; force-WAM baseline for WrenchCast; not yet cloned (residual-correction code being organized) |
+| 579 | S2R·B | [[2606.09640\|Physics-Aware-Sparse-EL]] | [[2606.09640v1.pdf]] | — *(no public code)* | — | — | — | added 2026-07-12; structure-preserving sysID ground anchor |
+| 580 | S2R·B | [[2607.06824\|CaLiSym]] | [[2607.06824v1.pdf]] | — *(no public code)* | — | — | — | added 2026-07-12; symplectic-dynamics ground foil |
+| 581 | WAM·A | [[2607.05468\|MECo-WAM]] | [[2607.05468v1.pdf]] | — *(no public code)* | — | — | — | added 2026-07-12; discardable-teacher predict precedent |
 
 ## Known gaps
 
