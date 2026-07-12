@@ -7737,4 +7737,10 @@ papers = [
     "https://arxiv.org/abs/2607.08751",  # DexVerse: A Modular Benchmark for Multi-Task, Multi-Embodiment Dexterous Manipulation
     "https://arxiv.org/abs/2607.08766",  # OPSD-V: On-Policy Self-Distillation for Post-Training Few-Step Autoregressive Video Generators
     "https://arxiv.org/abs/2607.08770",  # LongE2V: Long-Horizon Event-based Video Reconstruction, Prediction, and Frame Interpolation with Video Diffusion Models
+    "https://arxiv.org/abs/2607.08436",
+    "https://arxiv.org/abs/2607.04443",
+    "https://arxiv.org/abs/2607.08742",
+    "https://arxiv.org/abs/2607.08024",
+    "https://arxiv.org/abs/2607.05247",
+    "https://arxiv.org/abs/2607.02642",
 ]
