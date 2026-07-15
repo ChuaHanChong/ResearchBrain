@@ -273,7 +273,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 > - [[2504.06256|MetaQueries]] — Bridges frozen MLLMs with diffusion generators via learned meta-query tokens
 
 **End-to-End Multimodal Generators** — Models that natively produce interleaved text and images, trained end-to-end for seamless multimodal output.
-- [[2605.04128|JoyAI-Image]], [[2602.21435|AD-Loop]], [[2602.12205|DeepGen-1.0]], [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
+- [[2607.04443|Wan-Streamer v0.2]], [[2605.04128|JoyAI-Image]], [[2602.21435|AD-Loop]], [[2602.12205|DeepGen-1.0]], [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 **Text-to-Motion Generation** — Diffusion and contrastive methods for synthesizing and retrieving 3D human motions from natural language, including LLM-planned + physics-aware refinement pipelines.
 - [[2607.08741|ARDY]], [[2607.05938|Prior-First, Condition-Second]], [[2606.26981|ICMPG]], [[2606.18243|MOCHI]], [[2604.24833|MotionBricks]], [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.19305|PhyGile]], [[2603.15546|Kimodo]], [[2510.14427|Compositional-Phase-Diffusion]], [[2401.08570|RoHM]], [[2306.00416|A-MDM]], [[2305.00976|TMR]], [[2209.14916|MDM]]
@@ -478,7 +478,7 @@ Foundational work on how diffusion models learn representations, the theoretical
 - [[2210.02747|Flow Matching]], [[2010.02502|DDIM]], [[2006.11239|DDPM]], [[1907.05600|NCSN]], [[1802.05957|SN-GAN]]
 
 **Diffusion as Pre-Training** — Use the diffusion denoising objective as a self-supervised pre-training method for representation learning, improving downstream classification and understanding tasks.
-- [[2607.06856|Gen4U]], [[2605.27079|TRQAM]], [[2604.11386|ComSim]], [[2512.19693|Prism-Hypothesis]], [[2507.01467|REG]], [[2505.06890|RCLDT]], [[2505.02831|SRA]], [[2503.06132|USP]], [[2410.06940|REPA]], [[2402.11337|Reconstruction vs Perception]]
+- [[2607.09024|GenCeption]], [[2607.06856|Gen4U]], [[2607.06553|ReChannel]], [[2605.27079|TRQAM]], [[2604.11386|ComSim]], [[2512.19693|Prism-Hypothesis]], [[2507.01467|REG]], [[2505.06890|RCLDT]], [[2505.02831|SRA]], [[2503.06132|USP]], [[2410.06940|REPA]], [[2402.11337|Reconstruction vs Perception]]
 
 > [!star] Key Papers
 > - [[2503.06132|USP]] — Unified pretraining in VAE latent space that 11.7x accelerates DiT convergence and improves both generation and understanding

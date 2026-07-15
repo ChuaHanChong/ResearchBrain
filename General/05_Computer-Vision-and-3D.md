@@ -191,6 +191,13 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 > - [[2401.08541|AIM]] — Apple's autoregressive image model; proved autoregressive pre-training scales for vision just as for language
 > - [[2302.05442|ViT-22B]] — 22B parameter ViT; established feasibility of scaling vision models to LLM-scale
 
+**Generative Pre-training as Representation Learning** — Treat large-scale generative diffusion backbones (text-to-image, text-to-video) as the visual pre-training objective, repurposing their frozen priors into efficient feed-forward dense predictors.
+- [[2607.09024|GenCeption]], [[2607.06553|ReChannel]]
+
+> [!star] Key Papers
+> - [[2607.09024|GenCeption]] — DeepMind's single-step repurposing of a text-to-video diffusion model into a generalist perception backbone; beats V-JEPA and VideoMAE V2 pre-training on depth
+> - [[2607.06553|ReChannel]] — Drops the target-side VAE decoder for a token-local linear readout; SOTA on six dense tasks at up to 2.48x faster inference
+
 **Foundation Model Unification** — Distilling or merging multiple vision foundation models into a single encoder.
 - [[2412.07679|RADIOv2.5]], [[2312.06709|AM-RADIO]]
 

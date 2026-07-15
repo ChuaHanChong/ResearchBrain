@@ -70,6 +70,12 @@
 # https://huggingface.co/datasets/HumanoidTeam/R2_VLA_6_items_sample  # R2_VLA_6_items_sample
 # https://huggingface.co/datasets/OliverUrbann/HumanoidRobotSoccer  # HumanoidRobotSoccer
 
+# --- Skipped: alphaxiv cannot generate an overview (server-side failure, not transient).
+# Kept here (outside `papers`) so they aren't re-attempted every /kh-sync. Move back into
+# `papers` if alphaxiv ever generates them — check with: curl -sI alphaxiv.org/overview/<ID>.md
+# https://arxiv.org/abs/2607.04438  # stuck perpetually "Generating overview", never completes (timed out across 3 syncs)
+# https://arxiv.org/abs/2607.12800  # alphaxiv reports "Error occurred during processing" (0%)
+
 papers = [
     "https://arxiv.org/abs/0912.1128",  # How to Explain Individual Classification Decisions
     "https://arxiv.org/abs/1312.5602",  # Playing Atari with Deep Reinforcement Learning
@@ -7560,6 +7566,7 @@ papers = [
     "https://arxiv.org/abs/2607.02496",  # Controllable Sim Agents with Behavior Latents
     "https://arxiv.org/abs/2607.02501",  # Embodied.cpp: A Portable Inference Runtime of Embodied AI Models on Heterogeneous Robots
     "https://arxiv.org/abs/2607.02503",  # VT-WAM: Visual-Tactile World Action Model for Contact-Rich Manipulation
+    "https://arxiv.org/abs/2607.02642",  # GigaWorld-1: A Roadmap to Build World Models for Robot Policy Evaluation
     "https://arxiv.org/abs/2607.03693",  # CoRE-VLA: Towards Scalable and Robust Vision-Language-Action Modeling via Conditional Routing of Experts
     "https://arxiv.org/abs/2607.03723",  # OmniTacTune: Policy-Agnostic Real-World RL for Tactile Residual Adaptation of Visual Policies
     "https://arxiv.org/abs/2607.03751",  # Look Before You Leap: Distilling Tree Search into Action Evaluation for Frozen VLA Models
@@ -7580,8 +7587,8 @@ papers = [
     "https://arxiv.org/abs/2607.04265",  # HALO-WA: Hybrid-Attention Latent-Guided Online Reinforcement Learning for World-Action Models
     "https://arxiv.org/abs/2607.04426",  # ACE-Brain-0.5: A Unified Embodied Foundational Model for Physical Agentic AI
     "https://arxiv.org/abs/2607.04434",  # RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist Robot Manipulation Policies
-    "https://arxiv.org/abs/2607.04438",
     "https://arxiv.org/abs/2607.04439",  # ResearchStudio-Idea: An Evidence-Grounded Research-Ideation Skill Suite from ML Conference Outcomes
+    "https://arxiv.org/abs/2607.04443",  # Wan-Streamer v0.2: Higher Resolution, Same Latency
     "https://arxiv.org/abs/2607.04508",  # Compressing the Validation Bottleneck: An Agentic Self-Driving Lab for Scientific Discovery
     "https://arxiv.org/abs/2607.04541",  # CRISP: A Spatiotemporal Camera-Radar Backbone for Driving via Forecasting-Based World-Model Pretraining
     "https://arxiv.org/abs/2607.04546",  # Mask2Real-WM: Segmentation Masks as a Sim-to-Real Bridge for Controllable Dexterous World Models
@@ -7656,6 +7663,7 @@ papers = [
     "https://arxiv.org/abs/2607.06501",  # Hypothesis-driven Model Expansion under Uncertainty for Open-World Robot Planning
     "https://arxiv.org/abs/2607.06535",  # Neural-ESO: A Dual-Pathway Architecture for Provably Robust Learning-Based Control
     "https://arxiv.org/abs/2607.06537",  # UniLM-Nav: A Unified Framework for Zero-Shot Last-Mile Navigation
+    "https://arxiv.org/abs/2607.06553",  # From RGB Generation to Dense Field Readout: Pixel-Space Dense Prediction with Text-to-Image Models
     "https://arxiv.org/abs/2607.06558",  # RynnWorld-Teleop: An Action-Conditioned World Model for Digital Teleoperation
     "https://arxiv.org/abs/2607.06559",  # RynnWorld-4D: 4D Embodied World Models for Robotic Manipulation
     "https://arxiv.org/abs/2607.06560",  # Vision as Unified Multimodal Generation
@@ -7737,10 +7745,10 @@ papers = [
     "https://arxiv.org/abs/2607.08751",  # DexVerse: A Modular Benchmark for Multi-Task, Multi-Embodiment Dexterous Manipulation
     "https://arxiv.org/abs/2607.08766",  # OPSD-V: On-Policy Self-Distillation for Post-Training Few-Step Autoregressive Video Generators
     "https://arxiv.org/abs/2607.08770",  # LongE2V: Long-Horizon Event-based Video Reconstruction, Prediction, and Frame Interpolation with Video Diffusion Models
-    "https://arxiv.org/abs/2607.08436",
-    "https://arxiv.org/abs/2607.04443",
-    "https://arxiv.org/abs/2607.08742",
-    "https://arxiv.org/abs/2607.08024",
-    "https://arxiv.org/abs/2607.05247",
-    "https://arxiv.org/abs/2607.02642",
+    "https://arxiv.org/abs/2607.08877",  # FlowDAgger: Human-in-the-Loop Adaptation of Generative Robot Policies in Latent Space
+    "https://arxiv.org/abs/2607.09024",  # Video Generation Models are General-Purpose Vision Learners
+    "https://arxiv.org/abs/2607.09218",  # TACTIC: Tactile and Vision Conditioned Contact-Centric Control for Whole-Arm Manipulation
+    "https://arxiv.org/abs/2607.10350",  # ABot-AgentOS: A General Robotic Agent OS with Lifelong Multi-modal Memory
+    "https://arxiv.org/abs/2607.10383",  # ABot-N1: Toward a General Visual Language Navigation Foundation Model
+    "https://arxiv.org/abs/2607.11397",  # WALA Learning Executable Latent Actions from Action-Labeled Demonstrations and Action-Free Videos
 ]
