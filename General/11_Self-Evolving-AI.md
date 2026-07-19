@@ -199,7 +199,7 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 
 **Agent Self-Evolution Frameworks** — End-to-end frameworks where agents improve by interacting with diverse environments, distilling experience into reusable strategies, and iterating.
 - [[2607.00272|ASPIRE]], [[2606.08671|SkillHone]], [[2606.09498|Self-Harness]], [[2605.15188|FutureSim]], [[2605.15155|SDAR]], [[2605.07465|SEIF]], [[2605.06614|SkillOS]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.18292|Agent-World]], [[2604.18131|Native-Evolution]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting-RL]], [[2603.02224|Subspace-Geometry-Forgetting]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective-Self-Adaptation]], [[2510.08558|Early-Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]]
-- [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]], [[2403.02334|GCSL]]
+- [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]], [[2403.02334|GCSL]], [[2305.16291|Voyager]]
 
 > [!star] Key Papers
 > - [[2604.18292|Agent-World]] — ByteDance/Renmin's framework unifying real-world environment synthesis with continuous self-evolution; 14B agent evaluated on 23 benchmarks, with average tool-use scores more than doubling as environment diversity scales from 0 to 1,978
@@ -230,7 +230,7 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomously discover failure modes, generate new experience, and improve through real-world or simulated interaction. The embodied setting adds unique challenges — physical safety, sensor noise, and the cost of real-world data collection — making world-model-based imagination particularly valuable.
 
 **Self-Evolving VLAs** — VLAs that improve through RL post-training, continual learning, or self-play without requiring an explicit world model.
-- [[2605.10993|ECHO-VLA]], [[2605.01191|Sentinel-VLA]], [[2603.11653|VLA-RL-Continual-Learning]], [[2603.09030|PlayWorld]], [[2603.03818|VLA-Continual-Learning]], [[2602.21633|SC-VLA]], [[2602.10503|Long-Lived-Robots]], [[2602.03445|CRL-VLA]], [[2601.09512|CLARE]], [[2512.14666|EVOLVE-VLA]], [[2511.16166|EvoVLA]], [[2510.05580|MetaVLA]], [[2509.22195|Actions-as-Language]]
+- [[2607.15275|RoboTTT]], [[2605.10993|ECHO-VLA]], [[2605.01191|Sentinel-VLA]], [[2603.11653|VLA-RL-Continual-Learning]], [[2603.09030|PlayWorld]], [[2603.03818|VLA-Continual-Learning]], [[2602.21633|SC-VLA]], [[2602.10503|Long-Lived-Robots]], [[2602.03445|CRL-VLA]], [[2601.09512|CLARE]], [[2512.14666|EVOLVE-VLA]], [[2511.16166|EvoVLA]], [[2510.05580|MetaVLA]], [[2509.22195|Actions-as-Language]]
 
 > [!star] Key Papers
 > - [[2511.16166|EvoVLA]] — Self-evolving VLA framework that overcomes stage hallucination and fragile memory; the first end-to-end self-evolving VLA
@@ -245,7 +245,7 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 > - [[2603.19370|VAMPO]] — RL optimization of visual dynamics in video action models via GRPO; bridges world model quality and action quality
 
 **Self-Evolving Robots & Navigation** — Embodied agents that discover their own failure modes and improve through real-world or simulated experience, combining exploration, curiosity, and RL.
-- [[2607.04764|SLAM (Lifelong VPR)]], [[2607.01111|FAR]], [[2605.09387|NEXUS]], [[2604.07392|ERA]], [[2603.04029|Self-Adapting-RL]], [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.12252|Robot-Trains-Robot]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.06658|SILVR]], [[2503.10949|SCDA]], [[2409.02561|VLNCL]]
+- [[2607.12114|GaitSpan]], [[2607.04764|SLAM (Lifelong VPR)]], [[2607.01111|FAR]], [[2605.09387|NEXUS]], [[2604.07392|ERA]], [[2603.04029|Self-Adapting-RL]], [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.12252|Robot-Trains-Robot]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.06658|SILVR]], [[2503.10949|SCDA]], [[2409.02561|VLNCL]]
 
 > [!star] Key Papers
 > - [[2506.21669|SEEA-R1]] — Tree-structured RL for self-evolving embodied agents; +24% via MCTS + generative reward
@@ -337,7 +337,7 @@ Self-evolution over time: systems that accumulate knowledge from ongoing experie
 > - [[2509.25140|ReasoningBank]] — Memory-aware test-time scaling: stores and retrieves reasoning patterns for efficient reuse across problems
 
 **Multimodal Continual Skill Acquisition** — Agents that continually learn new skills from visual and language grounding, building an expanding repertoire without losing prior capabilities.
-- [[2607.07574|Context-Aware Force Estimation]], [[2607.00302|Splash]], [[2606.30988|MuSe]], [[2606.05395|VASO]], [[2604.18075|DPW]], [[2604.08532|SelfEvo]], [[2603.18743|Memento-Skills]], [[2603.17621|Complementary-RL]], [[2603.12056|XSkill]], [[2603.08763|SPREAD]], [[2603.07648|AtomicVLA]], [[2603.04560|MEMO]], [[2603.02951|CGL]], [[2602.03445|CRL-VLA]], [[2511.18085|Stellar-VLA]], [[2504.21024|WebEvolver]], [[2504.18471|AFM]], [[2410.04891|LoRA-Continual-Diffusion]]
+- [[2607.14852|LifelongVLA]], [[2607.07574|Context-Aware Force Estimation]], [[2607.00302|Splash]], [[2606.30988|MuSe]], [[2606.05395|VASO]], [[2604.18075|DPW]], [[2604.08532|SelfEvo]], [[2603.18743|Memento-Skills]], [[2603.17621|Complementary-RL]], [[2603.12056|XSkill]], [[2603.08763|SPREAD]], [[2603.07648|AtomicVLA]], [[2603.04560|MEMO]], [[2603.02951|CGL]], [[2602.03445|CRL-VLA]], [[2511.18085|Stellar-VLA]], [[2504.21024|WebEvolver]], [[2504.18471|AFM]], [[2410.04891|LoRA-Continual-Diffusion]]
 
 > [!star] Key Papers
 > - [[2603.12056|XSkill]] — Dual-stream framework for continual learning from visually-grounded experience; skills transfer across tasks and modalities

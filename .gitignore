@@ -35,3 +35,4 @@ graphify-out/.graphify_analysis.json
 
 # Paper-curate Mode F/G report output (regenerated each run)
 graphs/vault-pilot/proposals/
+.claude/.synctools/
