@@ -372,7 +372,7 @@ RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal m
 - [[2602.00170|Blessing-of-Dimensionality-LLM]], [[2504.19599|GVPO]]
 
 **Efficient & Off-Policy RLVR** — Efficient / off-policy RLVR.
-- [[2606.18967|EfficientRollout]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]], [[2507.16814|SOPHIA]], [[2410.18252|Asynchronous-RLHF]]
+- [[2607.15161|OPD^2]], [[2606.18967|EfficientRollout]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]], [[2507.16814|SOPHIA]], [[2410.18252|Asynchronous-RLHF]]
 
 **Code & Tool RL** — RLVR for code / tool use.
 - [[2508.11630|Thyme]], [[2507.20766|RRVF]]

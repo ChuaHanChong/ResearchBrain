@@ -6093,6 +6093,7 @@ papers = [
     "https://arxiv.org/abs/2603.25744",  # MuRF: Unlocking the Multi-Scale Potential of Vision Foundation Models
     "https://arxiv.org/abs/2603.25887",  # World Reasoning Arena
     "https://arxiv.org/abs/2603.25902",  # Chasing Autonomy: Dynamic Retargeting and Control Guided RL for Performant and Controllable Humanoid Running
+    "https://arxiv.org/abs/2603.25937",  # Can Vision Foundation Models Navigate? Zero-Shot Real-World Evaluation and Lessons Learned
     "https://arxiv.org/abs/2603.25942",  # Reinforcing Structured Chain-of-Thought for Video Understanding
     "https://arxiv.org/abs/2603.25968",  # Neuro-Cognitive Reward Modeling for Human-Centered Autonomous Vehicle Control
     "https://arxiv.org/abs/2603.25981",  # Policy-Guided World Model Planning for Language-Conditioned Visual Navigation
@@ -7182,6 +7183,7 @@ papers = [
     "https://arxiv.org/abs/2606.15594",  # Pixels to Proofs: Probabilistically-Safe Latent World Model Control via Parallel Conformal Robust MPC
     "https://arxiv.org/abs/2606.15654",  # PO-PDDL: Learning Symbolic POMDPs from Visual Demonstrations for Robot Planning Under Uncertainty
     "https://arxiv.org/abs/2606.15685",  # Learning New Tasks via Reusable Skills: Skill-Compositional Experts for Embodied Continual Learning
+    "https://arxiv.org/abs/2606.15691",  # Can Causal Models Enhance Robot Navigation? Online Causal Adaptation for Real-Robot Navigation
     "https://arxiv.org/abs/2606.15768",  # LaWAM: Latent World Action Models for Efficient Dynamics-Aware Robot Policies
     "https://arxiv.org/abs/2606.15846",  # FlashNav: Ultra-Fast Policy Training for Robot Navigation within 20 Seconds
     "https://arxiv.org/abs/2606.15956",  # You Don't Need Strong Assumptions: Visual Representation Learning via Temporal Differences
@@ -7915,6 +7917,7 @@ papers = [
     "https://arxiv.org/abs/2607.15054",  # Beyond Single Expert: Harmonizing Diverse Visual Priors in MLLMs for Spatial Understanding
     "https://arxiv.org/abs/2607.15065",  # DriftWorld: Fast World Modeling through Drifting
     "https://arxiv.org/abs/2607.15079",  # BrainPilot: Automating Brain Discovery with Agentic Research
+    "https://arxiv.org/abs/2607.15161",  # On-Policy Delta Distillation
     "https://arxiv.org/abs/2607.15163",  # Scaling Behavior Foundation Model for Humanoid Robots
     "https://arxiv.org/abs/2607.15207",  # BadWAM: When World-Action Models Dream Right but Act Wrong
     "https://arxiv.org/abs/2607.15275",  # RoboTTT: Context Scaling for Robot Policies
