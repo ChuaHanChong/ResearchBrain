@@ -1,0 +1,208 @@
+<!doctype html>
+<!--
+  Starting skeleton for a single-file visual artifact.
+
+  Copy this, rename it, then build the artifact inside <body>. Keep the :root
+  palette and the reset; everything below the reset is scaffolding you are meant
+  to replace. The idiom blocks at the bottom (clipboard export, deck navigation,
+  SVG arrowheads) are commented out. Paste in the ones the form needs and delete
+  the rest, along with this comment.
+
+  Hard rule that survives every edit: no external requests. No CDN scripts, no
+  webfonts, no remote images. The file has to render correctly opened from disk
+  with the network off.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REPLACE ME</title>
+<style>
+  :root {
+    /* surface + ink */
+    --ivory:    #FAF9F5;
+    --slate:    #141413;
+    --gray-150: #F0EEE6;
+    --gray-300: #D1CFC5;
+    --gray-500: #87867F;
+    --gray-700: #3D3D3A;
+
+    /* accents. clay carries emphasis, olive reads as good, rust as bad,
+       sky as neutral-informational. Stay inside this set so separate
+       artifacts look like they came from the same hand. */
+    --clay:  #D97757;
+    --oat:   #E3DACC;
+    --olive: #788C5D;
+    --rust:  #B04A3F;
+    --sky:   #6A8CAF;
+
+    /* system stacks only, so nothing is fetched */
+    --serif: ui-serif, Georgia, "Times New Roman", serif;
+    --sans:  system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono:  ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ivory);
+    color: var(--gray-700);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    padding: 56px 24px 120px;
+  }
+
+  /* One centered column is the default. Swap to a grid when the form needs a
+     margin rail (glossary, jump links, filters) and drop the rail below the
+     content at the breakpoint. */
+  .page { max-width: 900px; margin: 0 auto; }
+
+  /* ── header ─────────────────────────────────────────────── */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 33px;
+    color: var(--slate);
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  .lead { max-width: 640px; color: var(--gray-500); margin-bottom: 40px; }
+
+  /* ── body ───────────────────────────────────────────────── */
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--slate);
+    margin: 44px 0 14px;
+  }
+  p + p { margin-top: 12px; }
+  code { font-family: var(--mono); font-size: 13px; background: var(--gray-150); padding: 1px 5px; border-radius: 3px; }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    padding: 20px 22px;
+  }
+
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-500);
+    font-weight: 500;
+    text-align: left;
+  }
+  th, td { padding: 9px 12px; border-bottom: 1px solid var(--gray-300); vertical-align: top; }
+
+  @media (max-width: 760px) {
+    body { padding: 32px 16px 80px; }
+    h1 { font-size: 27px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="eyebrow">EYEBROW</div>
+  <h1>REPLACE ME</h1>
+  <p class="lead">One sentence saying what this artifact is and what it is for.</p>
+
+  <!-- build here -->
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     IDIOM: clipboard export
+     For any artifact the reader manipulates. End with a button that turns
+     their work back into text they can paste to you. The textarea fallback
+     matters because navigator.clipboard is frequently unavailable on file://
+     ═══════════════════════════════════════════════════════════════════════
+<script>
+function copyOut(text, btn) {
+  function done() {
+    const orig = btn.textContent;
+    btn.textContent = "Copied";
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 1200);
+  }
+  function fallback() {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    done();
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, fallback);
+  } else {
+    fallback();
+  }
+}
+</script>
+     ═══════════════════════════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     IDIOM: deck navigation
+     Arrow keys plus a live slide counter. Give each slide class="slide" and
+     add an element with id="counter".
+     ═══════════════════════════════════════════════════════════════════════
+<script>
+(function () {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const counter = document.getElementById('counter');
+  let current = 0;
+  function go(i) {
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    slides[current].scrollIntoView({ behavior: 'smooth' });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); go(current - 1); }
+  });
+  const obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) {
+        current = slides.indexOf(en.target);
+        counter.textContent = (current + 1) + ' / ' + slides.length;
+      }
+    });
+  }, { threshold: 0.6 });
+  slides.forEach(function (s) { obs.observe(s); });
+})();
+</script>
+     ═══════════════════════════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     IDIOM: SVG arrowheads for diagrams
+     Define one marker per edge color, then reference it with marker-end.
+     Draw edges as <path> with explicit coordinates on a viewBox grid.
+     ═══════════════════════════════════════════════════════════════════════
+<svg viewBox="0 0 620 400">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#87867F"/>
+    </marker>
+  </defs>
+  <path d="M310,56 L310,92" stroke="#87867F" fill="none" marker-end="url(#arrow)"/>
+</svg>
+     ═══════════════════════════════════════════════════════════════════════ -->
+
+</body>
+</html>
