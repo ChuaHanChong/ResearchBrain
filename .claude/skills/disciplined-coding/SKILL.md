@@ -1,6 +1,7 @@
 ---
 name: disciplined-coding
 description: "Engineering discipline for writing or editing code — read the codebase before writing, keep diffs surgical, prefer the simplest solution that works, verify behavior with tests, and resist over-engineering. Use this whenever writing new code, modifying existing code, fixing a bug, refactoring, or reviewing a diff, even for changes that seem small or obvious."
+disable-model-invocation: true
 ---
 
 # Disciplined Coding
