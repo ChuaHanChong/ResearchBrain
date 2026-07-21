@@ -69,7 +69,7 @@ For each in-scope file, enumerate KH papers that *should* be cited but aren't:
    - **Tag overlap** (`obsidian:obsidian-cli` for tag/property queries): candidate ↔ file tag intersection
    - **Concept proximity** (`graphify`): candidate's graph distance to the file's cited-set centroid; God-node co-membership is a strong positive
    - **General/ co-location** (`General/` topic → `knowledgehub-query`): if a candidate sits in the General/ topic that points at this deep-dive in Cross-References, that's a strong positive
-4. **Assign each candidate to its best-fit file** (or to none — long-tail papers may legitimately belong nowhere). When two files tie, prefer the one with more existing thematic siblings of the candidate. Each paper goes to **exactly one** deep-dive file. For a borderline control / optimization paper, confirm it has a genuine learning or embodied-robot-policy contribution before placing — a pure control-theory / solver paper is off-axis for these learning-centric deep-dives and should be left unplaced.
+4. **Assign each candidate to its best-fit file** (or to none — long-tail papers may legitimately belong nowhere). When two files tie, prefer the one with more existing thematic siblings of the candidate. Each NEW paper is initially placed in **exactly one** deep-dive file (its mechanism-owning home; this does not forbid framework / design-space sections elsewhere from later carrying a deliberate additional exemplar bullet — see L3 rule 3). For a borderline control / optimization paper, confirm it has a genuine learning or embodied-robot-policy contribution before placing — a pure control-theory / solver paper is off-axis for these learning-centric deep-dives and should be left unplaced.
 5. **Flag confidence** (high/med/low) — high = multiple signals agree; low = only one signal, with surfaceable rationale for Phase 6's deferred-review list.
 6. **Cluster the "no good home" pool** — for papers that score low against *every* existing file, check whether they cluster among themselves (graphify community membership + shared tags). If a cluster of **5+ papers** shares a coherent theme that no existing file covers, flag it as a candidate **new-deep-dive proposal** for Phase 2's deferral list. Below 5 papers → just leave them unplaced (long-tail).
 
@@ -123,6 +123,10 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
   grep -oE '^### [0-9]+\.' "$F" | grep -oE '[0-9]+' | \
     awk 'NR==1{p=$1} NR>1{if ($1!=p+1) print "GAP/DUPE at #" NR ": expected " p+1 " got " $1; p=$1}'
 
+  # Duplicate-citation soft check (within-file): multi-home bullets are ALLOWED (framework/design-space
+  # sections may repeat an exemplar); flag them only to review metric consistency across copies — never remove
+  grep -oE '^- \*\*\[\[[0-9]{4}\.[0-9]+' "$F" | sort | uniq -d | sed 's/^/  MULTI-CITED (review consistency, do not remove): /'
+
   # Per-section 6-layer distribution: each `### N.` section MUST have exactly 1 L4 + 1 L5 + 1 L6
   awk '
     BEGIN { l4=0; l5=0; l6=0 }
@@ -153,6 +157,15 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
   grep -oE '\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u | sed 's/\[\[//' | \
     while read id; do [ -f "_KnowledgeHub_/${id}.md" ] || echo "MISSING: $id in $F"; done
 done
+```
+
+**Cross-file multi-citation soft check** (in-scope-set-wide, after the per-file loop): multi-home L3 bullets are ALLOWED — a paper's canonical bullet lives in its mechanism-owning file, and other files' framework / design-space / pattern sections may deliberately carry an additional exemplar bullet. Flag multi-cited papers only to review that the copies stay consistent on metrics (reconcile drift by syncing text, never by deleting a copy a section's structure depends on):
+
+```bash
+for F in Embodied-AI/[0-9][0-9]_*.md; do
+  [[ "$(basename "$F")" == 01_* ]] && continue
+  grep -oE '^- \*\*\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u | sed "s|^|$(basename $F) |"
+done | awk '{print $2}' | sort | uniq -d | sed 's/^/MULTI-CITED ACROSS FILES (review consistency, do not remove): /'
 ```
 
 Report per-file drift summary: `+N missing papers / N sparse bullets / N anti-pattern hits / N broken links / sequence ok|broken`.
@@ -340,6 +353,18 @@ done
 [ "$T_H" -eq 0 ]       && echo "✓ Anti-pattern H (over-long bullets): 0"              || echo "✗ Anti-pattern H: $T_H over-long bullets (>400ch or >1.8× section median)"
 [ "$T_MISSING" -eq 0 ] && echo "✓ All KH wikilinks resolve"                           || echo "✗ $T_MISSING broken KH wikilinks"
 
+# Multi-citation info (soft, never a fail): multi-home bullets are allowed; counts shown so drift
+# in duplicated copies can be spot-reviewed for metric consistency (sync text, never delete a copy)
+T_DUP_SAME=$(for F in Embodied-AI/[0-9][0-9]_*.md; do
+  [[ "$(basename "$F")" == 01_* ]] && continue
+  grep -oE '^- \*\*\[\[[0-9]{4}\.[0-9]+' "$F" | sort | uniq -d
+done | wc -l | tr -d ' ')
+T_DUP_CROSS=$(for F in Embodied-AI/[0-9][0-9]_*.md; do
+  [[ "$(basename "$F")" == 01_* ]] && continue
+  grep -oE '^- \*\*\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u
+done | sort | uniq -d | wc -l | tr -d ' ')
+echo "ℹ Multi-cited papers (allowed; review copies for metric consistency): $T_DUP_SAME within-file, $T_DUP_CROSS cross-file"
+
 # Structural drift (LAYER, H2 SPINE, SEQ) and UNCURATED are surfaced inline by the per-file loops above.
 # Clean run = no output for those checks. UNCURATED is a soft warning, not a fail.
 ```
@@ -433,7 +458,7 @@ Every `### N. Section` contains these layers in order. **L4, L5, L6 each appear 
       - Arxiv paper: `- **[[arxiv_id|Paper Alias]]** — Description with ==highlighted methods== + **bold metrics**; significance clause.`
       - Non-arxiv tool (engine, simulator, framework, dataset without arxiv ID): `- **[Tool Name](https://url)** — Description with ==highlighted methods== + **bold metrics**; significance clause.`
    2. **Bold the lead link** at bullet start — either `- **[[...]]**` (wikilink) or `- **[...](url)**` (external link).
-   3. **One bullet = one paper / tool.** Multi-sentence OK if precise — every sentence earns its place.
+   3. **One bullet = one paper / tool.** Multi-sentence OK if precise — every sentence earns its place. **Multi-home is allowed**: a paper's *canonical* L3 bullet lives in the file whose axis its core mechanism instantiates, but framework / design-space / pattern sections in the same or other files may deliberately carry an additional exemplar bullet when their axis genuinely covers the paper. Duplicated bullets should stay consistent on metrics (verbatim-diverged copies are drift — reconcile them, never delete a copy that a section's structure depends on).
    4. **`==highlight==` the methods** (e.g. `==RSSM==`, `==MoE gating==`, `==flow-matching action expert==`) and **bold the metric numbers** (`**99.2%**`, `**+27pp**`, `**3–4 ms/step**`, `**>900K FPS**`). If no metric available, skip — no placeholder.
    5. **Length discipline** (two ceilings, both on raw line length incl. markup): (a) **absolute** — no bullet exceeds **400 chars**; (b) **relative** — no bullet exceeds **~1.5× its section's median** bullet length (it must not tower over its neighbors). A bullet that breaches either is an over-long bullet (anti-pattern **H**). When trimming to fit: keep every `**bold metric**` and `[[wikilink]]` and the lead `==method==`; cut only connective prose, mechanism-explanation clauses, parenthetical asides, and secondary highlights. Length and detail-density are independent — a tight 250-char bullet can still carry 4 bold metrics. Never drop a metric to hit length; if a genuinely metric-dense bullet can't fit, keep all metrics and get as close as possible.
 4. **L4 — Decision Matrix**: `**<Section> — Decision Matrix**` header + table (paragon-canonical, no brackets — e.g., `**Engine — Decision Matrix**`). 2 columns canonical (`| Need | Recommendation |`); 3+ columns OK when the decision is an axis-comparison (e.g. `| Paradigm | Speed | Robustness | Best For |`). Table cells may carry wikilinks `[[id\|alias]]` *or* bold external links `[Tool](url)` depending on whether the entry has an arxiv ID. Decision-oriented (intent → paper/tool), not a data-dump of L3 bullets.
