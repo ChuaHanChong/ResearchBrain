@@ -111,11 +111,15 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
   grep -nE '^\*\*\[[^]]+— Decision Matrix\]\*\*' "$F"
 
   # Anti-pattern H: over-long L3 bullet — absolute (>400 chars) OR relative (>1.8× section median)
-  awk '
+  # NOTE: forced LC_ALL=C + charlen() strips UTF-8 continuation bytes (0x80-0xBF) before counting —
+  # plain length($0) counts BYTES on byte-oriented awk (BWK/"one true awk"), over-reporting length
+  # ~7x on bullets dense with multi-byte glyphs (—, →, ×, °, ≤, ≥). Do not revert to length($0).
+  LC_ALL=C awk '
+    function charlen(s,   t){t=s;gsub(/[\200-\277]/,"",t);return length(t)}
     function flushsec(){for(i in B){if(B[i]>400||(med>0&&B[i]>1.8*med))printf "OVER-LONG BULLET %s %s: %d chars (median %d)\n",sect,A[i],B[i],med}}
     function median(){c=0;for(i in B)V[c++]=B[i];for(a=0;a<c;a++)for(b=a+1;b<c;b++)if(V[b]<V[a]){t=V[a];V[a]=V[b];V[b]=t};med=(c?V[int(c/2)]:0)}
     /^### [0-9]+\./{median();flushsec();delete B;delete A;delete V;n=0;sect=$0;next}
-    /^- \*\*\[\[/{m=$0;sub(/^- \*\*\[\[/,"",m);sub(/\|.*/,"",m);A[n]=m;B[n]=length($0);n++}
+    /^- \*\*\[\[/{m=$0;sub(/^- \*\*\[\[/,"",m);sub(/\|.*/,"",m);A[n]=m;B[n]=charlen($0);n++}
     END{median();flushsec()}
   ' "$F"
 
