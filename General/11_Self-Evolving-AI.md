@@ -245,7 +245,7 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 > - [[2603.19370|VAMPO]] — RL optimization of visual dynamics in video action models via GRPO; bridges world model quality and action quality
 
 **Self-Evolving Robots & Navigation** — Embodied agents that discover their own failure modes and improve through real-world or simulated experience, combining exploration, curiosity, and RL.
-- [[2607.12114|GaitSpan]], [[2607.04764|SLAM (Lifelong VPR)]], [[2607.01111|FAR]], [[2605.09387|NEXUS]], [[2604.07392|ERA]], [[2603.04029|Self-Adapting-RL]], [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.12252|Robot-Trains-Robot]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.06658|SILVR]], [[2503.10949|SCDA]], [[2409.02561|VLNCL]]
+- [[2607.20110|Extreme-RGMT]], [[2607.12114|GaitSpan]], [[2607.04764|SLAM (Lifelong VPR)]], [[2607.01111|FAR]], [[2605.09387|NEXUS]], [[2604.07392|ERA]], [[2603.04029|Self-Adapting-RL]], [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.12252|Robot-Trains-Robot]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.06658|SILVR]], [[2503.10949|SCDA]], [[2409.02561|VLNCL]]
 
 > [!star] Key Papers
 > - [[2506.21669|SEEA-R1]] — Tree-structured RL for self-evolving embodied agents; +24% via MCTS + generative reward
@@ -275,7 +275,7 @@ Learning to learn: models that adapt their own learning process, discover optimi
 > - [[2309.05858|Mesa-Optimization-Transformers]] — Mechanistic explanation of how Transformers implicitly learn optimization algorithms (mesa-optimization) in-context
 
 **Self-Adapting Language Models** — LLMs that generate their own fine-tuning data and adaptation strategies, optimizing internal parameters without external supervision.
-- [[2604.06169|In-Place-TTT]], [[2510.16932|Prompt-MII]], [[2510.03259|MASA]], [[2506.10943|SEAL]], [[1902.00751|Adapters]]
+- [[2607.15314|Cura-1T]], [[2604.06169|In-Place-TTT]], [[2510.16932|Prompt-MII]], [[2510.03259|MASA]], [[2506.10943|SEAL]], [[1902.00751|Adapters]]
 
 > [!star] Key Papers
 > - [[2506.10943|SEAL]] — Models autonomously generate optimized fine-tuning data and adaptation strategies; outperforms GPT-4.1-generated synthetic data

@@ -149,7 +149,13 @@ def _parse_tags(md: str) -> list:
                 out.append(mm.group(1).strip().strip("\"'"))
         return out
     inl = re.search(r"^tags:\s*\[(.*?)\]", fm, re.M)
-    return [x.strip().strip("\"'") for x in inl.group(1).split(",") if x.strip()] if inl else []
+    if inl:
+        return [x.strip().strip("\"'") for x in inl.group(1).split(",") if x.strip()]
+    # bare CSV form (non-standard but occasionally produced by enrichment): tags: a, b, c
+    bare = re.search(r"^tags:[ \t]*(?!\[)(.+)$", fm, re.M)
+    if bare and not bare.group(1).strip().startswith("-"):
+        return [x.strip().strip("\"'") for x in bare.group(1).split(",") if x.strip()]
+    return []
 
 
 def cmd_finalize() -> None:

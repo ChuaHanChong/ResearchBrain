@@ -97,7 +97,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2112.01526|MViTv2]] — Refined pooling mechanism and added decomposed relative position embeddings; strong on both classification and detection
 
 **Self-Supervised Video Models** — Learn general video representations from unlabeled data, progressing toward world models that support zero-shot downstream transfer.
-- [[2607.09024|GenCeption]], [[2607.08436|EgoWAM]], [[2607.06856|Gen4U]], [[2606.02058|TIDES]], [[2605.22629|H-Flow]], [[2605.15618|V-JEPA-Robustness-Study]], [[2605.02134|PV-VAE]], [[2604.26488|LILA]], [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA-2.1]], [[2603.12217|Verifier-Point-Tracking]], [[2602.11832|JEPA-VLA]], [[2512.11782|MatAnyone-2]], [[2512.01342|InternVideo-Next]], [[2511.20886|V2-SAM]], [[2507.19468|DINO-world]], [[2507.14793|FERNN]], [[2506.09985|V-JEPA-2]], [[2505.17006|CoMo]], [[2505.11129|PhiNet-v2]], [[2502.11831|V-JEPA (Intuitive Physics)]], [[2303.16727|VideoMAE V2]], [[2203.12601|R3M]], [[1504.08023|Visual Representation Anticipation]]
+- [[2607.21576|SDM]], [[2607.09024|GenCeption]], [[2607.08436|EgoWAM]], [[2607.06856|Gen4U]], [[2606.02058|TIDES]], [[2605.22629|H-Flow]], [[2605.15618|V-JEPA-Robustness-Study]], [[2605.02134|PV-VAE]], [[2604.26488|LILA]], [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA-2.1]], [[2603.12217|Verifier-Point-Tracking]], [[2602.11832|JEPA-VLA]], [[2512.11782|MatAnyone-2]], [[2512.01342|InternVideo-Next]], [[2511.20886|V2-SAM]], [[2507.19468|DINO-world]], [[2507.14793|FERNN]], [[2506.09985|V-JEPA-2]], [[2505.17006|CoMo]], [[2505.11129|PhiNet-v2]], [[2502.11831|V-JEPA (Intuitive Physics)]], [[2303.16727|VideoMAE V2]], [[2203.12601|R3M]], [[1504.08023|Visual Representation Anticipation]]
 
 > [!star] Key Papers
 > - [[2506.09985|V-JEPA-2]] — Self-supervised model trained on 1M+ hours of video; learned world model enables zero-shot robotic control via MPC
@@ -111,7 +111,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2504.16072|DAM]] — Region-level video captioning via focal prompts; SOTA across 7 benchmarks
 
 **Foundational Video & Egocentric Datasets** — Large-scale video corpora that have shaped video understanding research, from action-recognition datasets that taught models physical common sense to egocentric video foundations for embodied AI.
-- [[2607.14183|Open-AoE]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.30598|HOPformer]], [[2606.28133|Bridging Action VLA]], [[2603.15847|FEEL]], [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]], [[2503.13441|PH2D]], [[2502.04144|HD-EPIC]], [[2411.19167|HOT3D]], [[2411.08380|EgoVid-5M]], [[2410.24221|EgoMimic]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]], [[2308.13561|Project Aria]], [[2203.14712|Assembly101]], [[2203.01577|HOI4D]], [[2110.07058|Ego4D]], [[2107.13411|Egocentric Future Prediction Survey]], [[2104.11181|H2O]], [[2005.00343|EPIC-KITCHENS (Collection & Baselines)]], [[1806.07011|VirtualHome]], [[1706.04261|Something-Something]]
+- [[2607.19745|EgoRecovery]], [[2607.14183|Open-AoE]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.30598|HOPformer]], [[2606.28133|Bridging Action VLA]], [[2603.15847|FEEL]], [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]], [[2503.13441|PH2D]], [[2502.04144|HD-EPIC]], [[2411.19167|HOT3D]], [[2411.08380|EgoVid-5M]], [[2410.24221|EgoMimic]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]], [[2308.13561|Project Aria]], [[2203.14712|Assembly101]], [[2203.01577|HOI4D]], [[2110.07058|Ego4D]], [[2107.13411|Egocentric Future Prediction Survey]], [[2104.11181|H2O]], [[2005.00343|EPIC-KITCHENS (Collection & Baselines)]], [[1806.07011|VirtualHome]], [[1706.04261|Something-Something]]
 
 > [!star] Key Papers
 > - [[2110.07058|Ego4D]] — 3,670 hours of egocentric video from 931 wearers across 9 countries; foundational dataset for first-person perception and the basis for Being-H0/EgoScale-style VLA pretraining
@@ -154,7 +154,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.12382|SPARROW]] — Temporal referential consistency via target-specific tracked features; +8.9 J&F on MeViS RVOS
 
 **Embodied Video Memory** — Systems that build persistent, structured memory from egocentric video streams so agents can reason and plan over accumulated past experience.
-- [[2607.14252|MEMORA]]
+- [[2607.14252|MEMORA]], [[2607.09759|ReflectWorld-MM]]
 
 **Temporal Traps & Failure Analysis** — Studies revealing fundamental limitations and failure modes of current Video-LLMs, especially around the tension between image and video capabilities.
 - [[2603.17541|Temporal-Trap-Analysis]], [[2603.14145|MMOU]], [[2511.13787|TC2]], [[2006.00626|EGTEA-Gaze+]]

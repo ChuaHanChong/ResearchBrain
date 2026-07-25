@@ -359,7 +359,7 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 The frontier of perception: giving AI models true 3D spatial awareness. This capability is critical for embodied AI, where robots must reason about object positions, spatial relationships, and scene geometry from limited viewpoints.
 
 **3D Scene & Geometry** — Spatial reasoning over 3D scenes and geometry.
-- [[2607.13245|JITOMA]], [[2607.10879|BRO Scene Graph Prediction]], [[2607.08537|Whareformer]], [[2607.07885|TTC Obstacle Avoidance]], [[2607.05543|GEM-Occ]], [[2606.30598|HOPformer]], [[2606.29786|OP3DSG]], [[2606.02551|AFUN]], [[2606.00637|GLAD]], [[2605.29563|ViewSuite]], [[2604.11302|3D-ALP]], [[2603.15386|RieMind]], [[2602.20363|3D-Aesthetic-Field]], [[2602.15989|SAM-3D-Body]], [[2602.12087|MetricMM]], [[2602.06037|GeoThinker]], [[2601.22231|PE-Spatial-Reasoning-Analysis]], [[2512.16811|GeoPredict]], [[2512.14692|O-Voxel]], [[2510.16714|SceneCOT]], [[2509.21420|QuadGPT]], [[2507.07781|SURPRISE3D]], [[2505.20279|VLM-3R]], [[2505.12448|SSR]], [[2411.17735|3D-Mem]], [[2410.08208|SPA]], [[2402.15487|RoboEXP]], [[1709.06158|Matterport3D]]
+- [[2607.21281|HGeo-TopoMap]], [[2607.13245|JITOMA]], [[2607.10879|BRO Scene Graph Prediction]], [[2607.08537|Whareformer]], [[2607.07885|TTC Obstacle Avoidance]], [[2607.05543|GEM-Occ]], [[2606.30598|HOPformer]], [[2606.29786|OP3DSG]], [[2606.02551|AFUN]], [[2606.00637|GLAD]], [[2605.29563|ViewSuite]], [[2604.11302|3D-ALP]], [[2603.15386|RieMind]], [[2602.20363|3D-Aesthetic-Field]], [[2602.15989|SAM-3D-Body]], [[2602.12087|MetricMM]], [[2602.06037|GeoThinker]], [[2601.22231|PE-Spatial-Reasoning-Analysis]], [[2512.16811|GeoPredict]], [[2512.14692|O-Voxel]], [[2510.16714|SceneCOT]], [[2509.21420|QuadGPT]], [[2507.07781|SURPRISE3D]], [[2505.20279|VLM-3R]], [[2505.12448|SSR]], [[2411.17735|3D-Mem]], [[2410.08208|SPA]], [[2402.15487|RoboEXP]], [[1709.06158|Matterport3D]]
 
 **Spatial Benchmarks & Probing** — Benchmarks and analyses of 3D spatial ability.
 - [[2605.27367|SpatialBench-SFM]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.00515|MLLM-4D]], [[2602.11236|ABot-M0]], [[2601.14339|CityCube]], [[2601.13304|CausalSpatial]], [[2601.11729|SpaRRTa]], [[2601.00092|Spatial4D-Bench]], [[2512.23365|SpatialMosaic]], [[2512.19683|OpenBench]], [[2510.18873|DSI-Bench]], [[2510.11549|ODI-Bench]], [[2507.20174|LRR-Bench]], [[2507.07610|SpatialViz-Bench]], [[2507.05258|REA]], [[2507.02978|Inf-Bench]], [[2506.23120|R2S]], [[2506.18385|InternSpatial]], [[2506.14512|SIRI-Bench]], [[2506.07966|SpaCE-10]], [[2506.04633|STARE]], [[2506.03135|OmniSpatial]], [[2505.24257|DISJOINT-3DQA]], [[2505.21500|MVSM]], [[2505.17015|Multi-SpatialMLLM]], [[2505.17012|SpatialScore]], [[2505.12363|ViCA2]], [[2505.12312|ViCA-7B]], [[2505.11907|OSR-Bench]], [[2505.00788|SpatialLLM]], [[2504.01805|SpaceR]], [[2503.22976|SPAR-7M]], [[2503.13111|MM-Spatial]], [[2412.10908|Do-VLMs-Understand-3D-Shapes]], [[2412.07825|3DSRBench]], [[2410.06468|SPACE]], [[2408.16662|Space3D-Bench]], [[2404.12390|BLINK]]
@@ -368,7 +368,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 - [[2607.12398|Dual-Cam 3D Ultrasound]], [[2607.10873|X-GuideAR]], [[2503.21745|3DGen-Bench]], [[2212.08051|Objaverse]], [[2204.11918|GSO]], [[2103.16397|3D-AffordanceNet]], [[2005.00343|EPIC-KITCHENS (Collection & Baselines)]]
 
 **VLM 3D Spatial Methods** — VLM-based 3D spatial reasoning methods.
-- [[2607.15054|ViPS]], [[2607.14586|SoftNav]], [[2607.06564|Lift3D-VLA]], [[2607.04057|PreSIST]], [[2606.31329|3D HAMSTER]], [[2606.30632|GROW²]], [[2606.03682|GN0]], [[2605.08064|Proxy3D]], [[2603.27967|XVR]], [[2603.27287|Uni-World-VLA]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.00905|pySpatial]], [[2602.19063|Direction-aware-3D-LMM]], [[2601.16538|OnlineSI]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2512.24331|LVLDrive]], [[2512.17012|4D-RGPT]], [[2512.12822|LEMON]], [[2511.01618|Actial]], [[2510.17439|FALCON-Spatial-VLA]], [[2510.13800|GS-Reasoner]], [[2510.08673|Puffin]], [[2510.08531|SpatialLadder]], [[2508.07804|Pose-RFT]], [[2507.12508|MindJourney]], [[2506.07961|BridgeVLA]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2505.23747|Spatial-MLLM]], [[2505.18947|OpenHOI]], [[2505.11383|Dynam3D]]
+- [[2607.21595|VLM-IE3D]], [[2607.18016|POT-VLA]], [[2607.17977|RynnBrain 1.1]], [[2607.15054|ViPS]], [[2607.14586|SoftNav]], [[2607.06564|Lift3D-VLA]], [[2607.04057|PreSIST]], [[2606.31329|3D HAMSTER]], [[2606.30632|GROW²]], [[2606.03682|GN0]], [[2605.08064|Proxy3D]], [[2603.27967|XVR]], [[2603.27287|Uni-World-VLA]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.00905|pySpatial]], [[2602.19063|Direction-aware-3D-LMM]], [[2601.16538|OnlineSI]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2512.24331|LVLDrive]], [[2512.17012|4D-RGPT]], [[2512.12822|LEMON]], [[2511.01618|Actial]], [[2510.17439|FALCON-Spatial-VLA]], [[2510.13800|GS-Reasoner]], [[2510.08673|Puffin]], [[2510.08531|SpatialLadder]], [[2508.07804|Pose-RFT]], [[2507.12508|MindJourney]], [[2506.07961|BridgeVLA]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2505.23747|Spatial-MLLM]], [[2505.18947|OpenHOI]], [[2505.11383|Dynam3D]]
 - [[2504.20024|SpatialReasoner]], [[2504.05786|3D-Spatial-Reasoning-in-LLM-Survey]], [[2503.18470|MetaSpatial]], [[2407.07895|LLaVA-NeXT-Interleave]], [[2307.12981|3D-LLM]], [[2008.01655|Adaptive-Memory-VO]]
 
 > [!star] Key Papers
@@ -386,8 +386,8 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2312.14132|DUSt3R]] — Feed-forward pairwise pointmap regression with no camera calibration; the foundational architecture behind Pi3, Depth-Anything-3, and Speed3R
 > - [[2308.04079|3D Gaussian Splatting]] — Real-time explicit radiance field via differentiable 3D Gaussians; became the standard scene representation underlying GaussianProperty, PhysGaussian, and dozens of downstream reconstruction/physics methods
 
-**Human Body & Motion Reconstruction** — Recover 3D human pose, shape, hands, and motion from images or video, often world-grounded or diffusion-based for robustness to occlusion and noisy input.
-- [[2401.08570|RoHM]], [[2312.07531|WHAM]], [[2312.05251|HaMeR]], [[2308.12969|ROAM]], [[2012.00924|CPF]], [[2008.11200|GRAB]], [[1904.05767|ObMan]], [[1904.03278|AMASS]]
+**Human Body & Motion Reconstruction** — Recover 3D human pose, shape, hands, and motion from images, video, or other sensors (e.g. LiDAR), often world-grounded or diffusion-based for robustness to occlusion and noisy input.
+- [[2607.21309|ST-Block]], [[2401.08570|RoHM]], [[2312.07531|WHAM]], [[2312.05251|HaMeR]], [[2308.12969|ROAM]], [[2012.00924|CPF]], [[2008.11200|GRAB]], [[1904.05767|ObMan]], [[1904.03278|AMASS]]
 
 > [!star] Key Papers
 > - [[2312.07531|WHAM]] — Reconstructs world-grounded human motion from video with accurate global trajectory, not just root-relative pose
@@ -421,7 +421,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 - [[2604.15805|WorldComposer]], [[2604.14268|HY-World-2.0]], [[2604.04707|OpenWorldLib]], [[2604.01001|EgoSim]], [[2603.28887|OccSim]], [[2603.17117|MosaicMem]], [[2602.10116|SAGE]], [[2512.10949|RL-Text-to-3D-Study]], [[2506.04941|ArtVIP]], [[2504.20995|TesserAct]], [[2502.13144|RAD]], [[2411.04999|DynaMem]], [[2309.17024|HoloAssist]], [[2203.01914|Playable-Environments]]
 
 **Latent World Models for Dynamics Prediction** — Learn a compact latent (occupancy, 4D, or metric) state to predict future dynamics for control or driving, distinct from the simulation-environment tooling above.
-- [[2607.05468|MECo-WAM]], [[2607.04541|CRISP]], [[2607.03941|WSA1]], [[2605.08279|LaWM]], [[2603.01549|Pri4R]], [[2311.16038|OccWorld]]
+- [[2607.21576|SDM]], [[2607.05468|MECo-WAM]], [[2607.04541|CRISP]], [[2607.03941|WSA1]], [[2605.08279|LaWM]], [[2603.01549|Pri4R]], [[2311.16038|OccWorld]]
 
 > [!star] Key Papers
 > - [[2311.16038|OccWorld]] — First 3D occupancy world model for autonomous driving; predicts future scene evolution and ego trajectory jointly
@@ -479,7 +479,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 > - [[2407.21311|EUDA]] — Uses frozen DINOv2 features for efficient unsupervised domain adaptation; no fine-tuning needed
 
 **Sim-to-Real Policy Transfer via RL** — Adapt reinforcement-learning policies trained in simulation to real-world or cross-platform dynamics via distribution reshaping, invariant feature representations, or distillation.
-- [[2607.13319|OptCar]], [[2607.02037|Cross-Platform ASV RL]], [[2607.01410|BIFROST]], [[2606.31043|Warp RL]], [[2606.28476|FADA]], [[2603.22039|RAFL]], [[2507.23445|Physics-Guided-Gain-Regularization]], [[2503.20839|TAR]], [[2003.02471|BayRn]], [[1703.06907|Domain Randomization]], [[1702.02453|UP-OSI]]
+- [[2607.18154|World Translation]], [[2607.13319|OptCar]], [[2607.02037|Cross-Platform ASV RL]], [[2607.01410|BIFROST]], [[2606.31043|Warp RL]], [[2606.28476|FADA]], [[2603.22039|RAFL]], [[2507.23445|Physics-Guided-Gain-Regularization]], [[2503.20839|TAR]], [[2003.02471|BayRn]], [[1703.06907|Domain Randomization]], [[1702.02453|UP-OSI]]
 
 **Source-Free & Low-Data Adaptation** — Adapt to a target domain when source data is unavailable due to privacy or storage constraints.
 - [[2603.24322|HeuSCM]], [[2507.09961|TDCRL]], [[2507.00462|MS-TTA]], [[2506.00513|SSAM]], [[2406.10973|ExPLoRA]], [[2403.14410|GLC++]], [[2403.03421|LEAD]], [[2303.07110|GLC]], [[2303.01906|DPCL]], [[2211.03876|CoNMix]], [[2210.17067|UniOT]], [[2104.03344|OVANet]], [[2006.10726|Tent]]
@@ -495,7 +495,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 > - [[2403.13257|MergeKit]] — Open-source toolkit that made model merging practical and accessible
 
 **OOD Generalization & Robustness** — Predicting and improving model performance on out-of-distribution data.
-- [[2605.05328|Query2Uncertainty]], [[2604.02260|Time-Varying-MBRL]], [[2603.21191|BST-Scaling-Rule]], [[2602.02140|GAPEVAL]], [[2511.13787|TC2]], [[2506.10133|Offline-Domain-Randomization]], [[2504.13292|GrokTransfer]], [[2502.16736|AdaConG]], [[2410.02735|OOD-Chameleon]], [[2404.04452|ViT-Domain-Robustness-Survey]], [[2305.18712|Transfer-Score]]
+- [[2607.18540|Recti-Q]], [[2605.05328|Query2Uncertainty]], [[2604.02260|Time-Varying-MBRL]], [[2603.21191|BST-Scaling-Rule]], [[2602.02140|GAPEVAL]], [[2511.13787|TC2]], [[2506.10133|Offline-Domain-Randomization]], [[2504.13292|GrokTransfer]], [[2502.16736|AdaConG]], [[2410.02735|OOD-Chameleon]], [[2404.04452|ViT-Domain-Robustness-Survey]], [[2305.18712|Transfer-Score]]
 
 > [!star] Key Papers
 > - [[2410.02735|OOD-Chameleon]] — Meta-learning framework that automatically selects the best OOD generalization strategy for a given distribution shift
@@ -513,6 +513,9 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 
 > [!star] Key Papers
 > - [[2506.18504|VLM-Generalization-Survey]] — Comprehensive survey of VLM generalization and adaptation methods; maps the taxonomy of domain shift strategies
+
+**Cross-Spectral Image Translation** — Diffusion-based translation between visible and non-visible imaging modalities (e.g. infrared), generating semantically-aware training data for domain-shifted perception.
+- [[2503.19012|DiffV2IR]]
 
 **Additional methods** — Foundational transfer-learning studies not covered by the sub-topics above.
 - [[2607.05665|Morphological Similarity Transfer Learning]], [[1706.07522|DAH]], [[1411.1792|Transferable Features]]
