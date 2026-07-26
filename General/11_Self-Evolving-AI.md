@@ -130,33 +130,23 @@ The original self-improvement paradigm: models generate their own training data 
 
 The most radical branch of self-evolution: models that improve with zero human-curated data. They either generate their own training problems (Absolute Zero), derive reward from consensus (TTRL), or use evolutionary self-play (EVOL-RL). This eliminates the last human bottleneck — the training dataset itself.
 
-**Task Self-Generation** — The model both proposes and solves its own problems, using only a code executor or environment for verification. No human data at any stage.
-- [[2604.14144|SpatialEvo]], [[2603.09206|MM-Zero]], [[2602.01619|SUSD]], [[2509.25541|Vision-Zero]], [[2509.24726|Socratic-Zero]], [[2506.24119|SPIRAL]], [[2506.08989|SwS]], [[2506.06499|SPARQ]], [[2506.05980|AMPED]], [[2506.05634|AutoQD]], [[2506.00103|Writing-Zero]], [[2505.03335|Absolute-Zero]]
+**Task Self-Generation** — The model both proposes and solves its own problems — including on unlabeled test data via self-consistency, and by optimizing its own inference/sampling hyperparameters — using only a code executor, environment, or majority-vote signal for verification. No human data at any stage.
+- [[2604.14144|SpatialEvo]], [[2603.09206|MM-Zero]], [[2603.01771|HTI]], [[2602.01619|SUSD]], [[2512.11114|TAMO]], [[2510.02752|Self-Aware-RL-for-LLMs]], [[2510.02263|RLAD]], [[2509.25541|Vision-Zero]], [[2509.24726|Socratic-Zero]], [[2509.15194|EVOL-RL]], [[2506.24119|SPIRAL]], [[2506.08989|SwS]], [[2506.06499|SPARQ]], [[2506.05980|AMPED]], [[2506.05634|AutoQD]], [[2506.00103|Writing-Zero]], [[2505.24726|Reflect-Retry-Reward]], [[2505.03335|Absolute-Zero]], [[2504.16084|TTRL]], [[2502.05234|TURN]]
 
 > [!star] Key Papers
 > - [[2505.03335|Absolute-Zero]] — The defining paper: model proposes tasks, solves them, verifies via code execution, and retrains; SOTA on coding and math with literally zero human data
 > - [[2509.24726|Socratic-Zero]] — Data-free Socratic dialogue where the model debates itself to improve reasoning; no environment needed
 > - [[2509.25541|Vision-Zero]] — Extends the zero-data paradigm to Vision-Language Models via gamified self-play
-
-**Label-Free RL on Test Data** — Apply reinforcement learning directly on unlabeled test distributions, using self-consistency (majority voting) as the reward signal.
-- [[2510.02752|Self-Aware-RL-for-LLMs]], [[2509.15194|EVOL-RL]], [[2505.24726|Reflect-Retry-Reward]], [[2504.16084|TTRL]]
-
-> [!star] Key Papers
 > - [[2504.16084|TTRL]] — Proved LLMs can self-improve on unlabeled test data via majority-vote rewards; 211% improvement on AIME 2024
 > - [[2509.15194|EVOL-RL]] — Evolutionary RL that prevents entropy collapse in label-free self-improvement; balances selection pressure with novelty-driven diversity
+> - [[2502.05234|TURN]] — Automatically discovers near-optimal sampling temperature for self-improvement; removes a key manual tuning step
+> - [[2510.02263|RLAD]] — Models self-discover high-level reasoning abstractions and learn to apply them; meta-cognitive self-improvement
 
 **Self-Play & Multi-Agent Competition** — Multiple model instances compete or cooperate, driving improvement through adversarial pressure or consensus-seeking dynamics.
 - [[2605.27276|SIA]], [[2603.15255|SAGE]], [[2510.24684|SPICE]], [[2510.23595|MAE]], [[2509.15172|MACA]], [[2509.07414|LSP]], [[2506.07468|SELF-REDTEAM]]
 
 > [!star] Key Papers
 > - [[2509.07414|LSP]] — Language Self-Play from Meta: models improve through self-play dialogue without external reward models
-
-**Hyperparameter & Sampling Self-Optimization** — Meta-level self-improvement: models learn to optimize their own inference parameters (temperature, sampling strategy) rather than just their weights.
-- [[2603.01771|HTI]], [[2512.11114|TAMO]], [[2510.02263|RLAD]], [[2502.05234|TURN]]
-
-> [!star] Key Papers
-> - [[2502.05234|TURN]] — Automatically discovers near-optimal sampling temperature for self-improvement; removes a key manual tuning step
-> - [[2510.02263|RLAD]] — Models self-discover high-level reasoning abstractions and learn to apply them; meta-cognitive self-improvement
 
 > [!tip] The Zero-Data Frontier
 > Absolute Zero and TTRL proved the concept; EVOL-RL solved the entropy collapse problem. The next challenge is scaling zero-data self-play to open-ended domains beyond math and code, where verification is harder.
@@ -174,17 +164,12 @@ Self-evolving systems need to practice on the right problems at the right diffic
 > - [[2504.05520|ADARFT]] — Adaptive curriculum for RLVR that selects training problems matching the model's current capability frontier
 > - [[2510.09001|DARO]] — Dynamic reweighting for RL with verifiable rewards; prevents the model from wasting compute on too-easy or too-hard problems
 
-**Self-Evolving Curricula** — The curriculum itself evolves: a synthesizer or environment generates new, capability-aligned challenges as the model improves, creating an unbounded supply of training signal.
-- [[2604.26707|CurEvo]], [[2601.22628|TTCS]], [[2512.06835|DoGe]], [[2511.07317|RLVE]], [[2505.14970|SEC]], [[2502.05726|ACCEL]], [[1901.01753|POET]]
+**Self-Evolving Curricula** — The curriculum itself evolves: a synthesizer or environment generates new, capability-aligned challenges as the model improves, creating an unbounded supply of training signal — including curricula specialized for vision-language models and multi-stage reasoning pipelines.
+- [[2604.26707|CurEvo]], [[2601.22628|TTCS]], [[2512.06835|DoGe]], [[2511.07317|RLVE]], [[2509.14234|CaT]], [[2507.22607|VL-Cogito]], [[2505.14970|SEC]], [[2502.05726|ACCEL]], [[1901.01753|POET]]
 
 > [!star] Key Papers
 > - [[2505.14970|SEC]] — Self-Evolving Curriculum: the training data distribution co-evolves with the model, ensuring the curriculum never becomes stale
 > - [[2511.07317|RLVE]] — Procedurally generates an unbounded supply of verifiable environments; the challenges grow as the model grows
-
-**Multimodal & Reasoning Curricula** — Curriculum strategies specifically designed for vision-language models or multi-stage reasoning pipelines.
-- [[2509.14234|CaT]], [[2507.22607|VL-Cogito]]
-
-> [!star] Key Papers
 > - [[2507.22607|VL-Cogito]] — Progressive curriculum for VLMs that sequences visual reasoning tasks from simple to complex
 > - [[2509.14234|CaT]] — Compute as Teacher: uses more capable model runs to generate supervision for less capable configurations; compute itself becomes the curriculum
 
@@ -197,28 +182,27 @@ Self-evolving systems need to practice on the right problems at the right diffic
 
 When self-improvement meets agentic AI: systems that autonomously explore environments, accumulate experience, distill lessons, and evolve their own capabilities across tasks. These go beyond single-turn reasoning to multi-step, tool-using, environment-interacting agents that learn from deployment.
 
-**Agent Self-Evolution Frameworks** — End-to-end frameworks where agents improve by interacting with diverse environments, distilling experience into reusable strategies, and iterating.
-- [[2607.00272|ASPIRE]], [[2606.08671|SkillHone]], [[2606.09498|Self-Harness]], [[2605.15188|FutureSim]], [[2605.15155|SDAR]], [[2605.07465|SEIF]], [[2605.06614|SkillOS]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.18292|Agent-World]], [[2604.18131|Native-Evolution]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting-RL]], [[2603.02224|Subspace-Geometry-Forgetting]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.16079|EVOLVER]], [[2510.12710|Reflective-Self-Adaptation]], [[2510.08558|Early-Experience]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]]
-- [[2506.01716|SCA]], [[2409.00872|SAGE]], [[2406.04151|AgentGym]], [[2403.02334|GCSL]], [[2305.16291|Voyager]]
+**General Agent Self-Evolution Frameworks** — End-to-end frameworks where a fixed agent's own reasoning, RL, or reflection loop directly drives capability growth across diverse domains — no separate curated artifact (skill library, memory store, or synthetic environment) sits between experience and improvement.
+- [[2605.07465|SEIF]], [[2604.18131|Native-Evolution]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting-RL]], [[2603.02224|Subspace-Geometry-Forgetting]], [[2602.00359|A-EVOLVE]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]], [[2510.12710|Reflective-Self-Adaptation]], [[2510.08558|Early-Experience]], [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]], [[2506.01716|SCA]], [[2406.04151|AgentGym]], [[2403.02334|GCSL]]
+
+> [!star] Key Papers
+> - [[2406.04151|AgentGym]] — Multi-environment agent evolution via behavioral cloning + self-evolution (AGENTEVOL); showed agents can generalize across diverse tasks
+> - [[2506.01716|SCA]] — Self-Challenging Agent: generates its own hard problems to practice on, driving continuous capability growth
+
+**Skill, Memory & Environment Curation** — Frameworks that build their self-evolution around an explicit external artifact — a skill library, episodic memory store, evolving harness/scaffold, or synthetic environment/benchmark — that accumulates across rounds and feeds back into the agent, including self-play on real software repositories.
+- [[2607.00272|ASPIRE]], [[2606.09498|Self-Harness]], [[2606.08671|SkillHone]], [[2605.15188|FutureSim]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.18292|Agent-World]], [[2601.03192|MemRL]], [[2512.18552|SSR]], [[2510.16079|EVOLVER]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2507.14172|SOAR]], [[2409.00872|SAGE]], [[2305.16291|Voyager]]
 
 > [!star] Key Papers
 > - [[2604.18292|Agent-World]] — ByteDance/Renmin's framework unifying real-world environment synthesis with continuous self-evolution; 14B agent evaluated on 23 benchmarks, with average tool-use scores more than doubling as environment diversity scales from 0 to 1,978
-> - [[2406.04151|AgentGym]] — Multi-environment agent evolution via behavioral cloning + self-evolution (AGENTEVOL); showed agents can generalize across diverse tasks
 > - [[2510.16079|EVOLVER]] — Agents distill raw interaction trajectories into strategic principles; experience-driven lifecycle closes the self-improvement loop
-> - [[2506.01716|SCA]] — Self-Challenging Agent: generates its own hard problems to practice on, driving continuous capability growth
+> - [[2512.18552|SSR]] — Meta's Self-play SWE-RL: agents autonomously generate learning experiences from real codebases; +10.4 on SWE-bench Verified without human issue descriptions
+> - [[2507.14172|SOAR]] — Self-improving operators for automated program refinement; LLMs iteratively improve their own code transformations
 
 **Co-Evolutionary & Multi-Agent** — Multiple agents or model components (policy + environment, actor + critic) evolve together, each improving the other in a virtuous cycle.
 - [[2605.13775|RoboEvolve]], [[2604.20987|Co-Evolve-Agents]], [[2603.28386|COvolve]], [[2603.17621|Complementary-RL]], [[2603.08403|SPIRAL]], [[2602.23413|EvoX]], [[2602.20057|AdaWorldPolicy]], [[2601.10402|ML-Master-2.0]], [[2601.06794|ECHO]], [[2510.26433|CoLA-World]], [[2509.03771|Co-Evolving-MARL]], [[2507.16518|C2-Evo]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2502.05907|EvoAgent]], [[2302.01877|AdaptDiffuser]]
 
 > [!star] Key Papers
 > - [[2601.06794|ECHO]] — Policy and environment co-evolve: the environment generates harder challenges as the policy improves, and vice versa
-
-**Self-Play for Software Engineering** — Agents that generate, solve, and verify coding tasks through self-play on real codebases, autonomously creating training signal from software repositories.
-- [[2512.18552|SSR]], [[2507.14172|SOAR]]
-
-> [!star] Key Papers
-> - [[2512.18552|SSR]] — Meta's Self-play SWE-RL: agents autonomously generate learning experiences from real codebases; +10.4 on SWE-bench Verified without human issue descriptions
-> - [[2507.14172|SOAR]] — Self-improving operators for automated program refinement; LLMs iteratively improve their own code transformations
 
 > [!tip] From Models to Agents
 > Self-improving models optimize weights; self-evolving agents optimize behavior. The key difference is persistent experience: EVOLVER and ACE show that distilling interaction history into reusable principles is what turns a self-improving model into a self-evolving agent.
@@ -267,11 +251,16 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 
 Learning to learn: models that adapt their own learning process, discover optimization algorithms, or rapidly adjust to new tasks from minimal data. While self-training improves outputs, meta-learning improves the learning procedure itself.
 
-**Meta-Reinforcement Learning** — Agents that learn an RL algorithm implicitly through experience, enabling rapid adaptation to new reward structures without retraining from scratch.
-- [[2606.29082|EFT]], [[2605.10899|RubricEM]], [[2604.24532|MORL-FB]], [[2604.11768|GC-PFO]], [[2602.19134|Mapping-Networks]], [[2601.19810|ULEE]], [[2512.19154|Adaptive-Stacking]], [[2512.16848|LAMER]], [[2510.20264|OpTI-BFM]], [[2506.13690|MASP]], [[2506.10085|VITA-Value]], [[2506.07259|ALINE]], [[2505.00787|Option-Keyboard-Basis]], [[2503.18684|OMLA]], [[2502.03752|SISL]], [[2502.02869|OmniRL]], [[2410.05975|ConML]], [[2309.05858|Mesa-Optimization-Transformers]], [[2301.08028|Meta-RL-Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]], [[2111.09793|Robotic-Interestingness]], [[2103.07945|Forward-Backward-Representation]], [[2003.01239|Evolutionary-Meta-Learning-Legged]], [[1910.10897|Meta-World]], [[1903.08254|PEARL]], [[1803.11347|GrBAL]], [[1703.07326|One-Shot-Imitation-Learning]], [[1703.03400|MAML]], [[1606.05312|Successor-Features]]
+**Foundational Meta-RL & Representation Transfer** — Classic algorithmic families for rapid task adaptation: gradient-based meta-learning (MAML-style), context-conditioned policies (PEARL-style), model-based fast adaptation (GrBAL-style), and representation-based zero-shot transfer (successor features, forward-backward representations, option/behavior bases) — mostly evaluated on continuous-control and robotics benchmarks.
+- [[2604.24532|MORL-FB]], [[2604.11768|GC-PFO]], [[2602.19134|Mapping-Networks]], [[2601.19810|ULEE]], [[2512.19154|Adaptive-Stacking]], [[2510.20264|OpTI-BFM]], [[2506.13690|MASP]], [[2506.07259|ALINE]], [[2505.00787|Option-Keyboard-Basis]], [[2503.18684|OMLA]], [[2502.03752|SISL]], [[2410.05975|ConML]], [[2301.08028|Meta-RL-Tutorial]], [[2210.05639|DPO]], [[2112.15402|RER]], [[2111.09793|Robotic-Interestingness]], [[2103.07945|Forward-Backward-Representation]], [[2003.01239|Evolutionary-Meta-Learning-Legged]], [[1910.10897|Meta-World]], [[1903.08254|PEARL]], [[1803.11347|GrBAL]], [[1703.07326|One-Shot-Imitation-Learning]], [[1703.03400|MAML]], [[1606.05312|Successor-Features]]
 
 > [!star] Key Papers
 > - [[2301.08028|Meta-RL-Tutorial]] — Definitive survey structuring the meta-RL landscape: context-based, task-inference, and black-box approaches
+
+**In-Context & Foundation-Model Meta-RL** — Recent methods where meta-RL emerges implicitly inside a large sequence model's forward pass — mesa-optimization in Transformers, in-context RL via meta-training on randomized worlds, and LLM/VLM agents that adapt at test time without an explicit outer meta-gradient loop.
+- [[2606.29082|EFT]], [[2605.10899|RubricEM]], [[2512.16848|LAMER]], [[2506.10085|VITA-Value]], [[2502.02869|OmniRL]], [[2309.05858|Mesa-Optimization-Transformers]]
+
+> [!star] Key Papers
 > - [[2309.05858|Mesa-Optimization-Transformers]] — Mechanistic explanation of how Transformers implicitly learn optimization algorithms (mesa-optimization) in-context
 
 **Self-Adapting Language Models** — LLMs that generate their own fine-tuning data and adaptation strategies, optimizing internal parameters without external supervision.
@@ -327,14 +316,19 @@ Extending self-evolution beyond text-only LLMs to multimodal models that process
 
 Self-evolution over time: systems that accumulate knowledge from ongoing experience without catastrophic forgetting. While sections 1-4 focus on improving within a training run, continual learning ensures improvements persist across deployment episodes and new environments.
 
-**Experience-Driven Lifelong Learning** — Agents that build persistent memory banks of experiences and learn to retrieve and apply relevant past knowledge to new situations.
-- [[2607.10350|ABot-AgentOS]], [[2607.06740|SMPL]], [[2607.01988|Identity-Stable-Consolidation]], [[2605.29548|Capacity-Interference-Retention]], [[2605.15735|UAM]], [[2605.15220|OP-MIX]], [[2605.14938|Octopus]], [[2605.12484|FST]], [[2605.10663|Evolving-RL]], [[2604.27063|FADE]], [[2604.15814|Continual-Hand-Eye-Calibration]], [[2604.13074|PersonaVLM]], [[2604.11306|Hierarchical-Episodic-Memory]], [[2604.10892|HECTOR]], [[2604.10096|ABot-Claw]], [[2604.04503|MIA]], [[2604.01007|Omni-SimpleMem]], [[2603.24576|Chameleon-Episodic-Memory]], [[2603.24350|Emergent-Self]], [[2603.17684|AFSS]], [[2603.16856|OEL]], [[2603.00903|Continual-RL-Theory]], [[2602.10503|Long-Lived-Robots]], [[2602.08040|FIRE]], [[2512.24695|Hope]], [[2512.09441|MoP-CIL]], [[2510.20328|MemER]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2509.22562|Activation-Plasticity]], [[2508.19005|ELL-Framework]], [[2507.10434|CLA]]
-- [[2507.09177|Online-Agent-OA]], [[2507.07712|GDR-Federated]], [[2501.10395|t-DGR]], [[2411.13852|ESRM]], [[2410.07812|TD-VCL]], [[2402.15109|MU-Mis]], [[2305.13622|SER]], [[2211.15944|Continual-Dreamer]]
+**Memory-Augmented Agent Systems** — LLM and multimodal agents that build persistent, retrievable memory banks of past experience, distilling raw interaction trajectories into reusable knowledge that improves future performance.
+- [[2607.01988|Identity-Stable-Consolidation]], [[2605.10663|Evolving-RL]], [[2604.13074|PersonaVLM]], [[2604.04503|MIA]], [[2604.01007|Omni-SimpleMem]], [[2603.16856|OEL]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2508.19005|ELL-Framework]]
 
 > [!star] Key Papers
 > - [[2508.19005|ELL-Framework]] — Experience-driven Lifelong Learning: introduces the framework and StuLife benchmark for measuring continual self-improvement in realistic settings
 > - [[2603.16856|OEL]] — Microsoft's Online Experiential Learning: LLMs continuously learn from deployment interactions without forgetting prior knowledge
 > - [[2509.25140|ReasoningBank]] — Memory-aware test-time scaling: stores and retrieves reasoning patterns for efficient reuse across problems
+
+**Embodied Continual Learning** — Physical robots and VLA policies that must retain manipulation, locomotion, and control skills across morphology changes, deployments, and new tasks without forgetting.
+- [[2607.10350|ABot-AgentOS]], [[2607.06740|SMPL]], [[2605.15735|UAM]], [[2604.15814|Continual-Hand-Eye-Calibration]], [[2604.11306|Hierarchical-Episodic-Memory]], [[2604.10892|HECTOR]], [[2604.10096|ABot-Claw]], [[2603.24576|Chameleon-Episodic-Memory]], [[2603.24350|Emergent-Self]], [[2602.10503|Long-Lived-Robots]], [[2510.20328|MemER]], [[2501.10395|t-DGR]]
+
+**Continual-Learning Theory & Forgetting Mechanisms** — Theoretical and mechanistic analyses of catastrophic forgetting: stability-plasticity tradeoffs, replay-buffer design, gradient orthogonalization, and architectural fixes.
+- [[2605.29548|Capacity-Interference-Retention]], [[2605.15220|OP-MIX]], [[2605.14938|Octopus]], [[2605.12484|FST]], [[2604.27063|FADE]], [[2603.17684|AFSS]], [[2603.00903|Continual-RL-Theory]], [[2602.08040|FIRE]], [[2512.24695|Hope]], [[2512.09441|MoP-CIL]], [[2509.22562|Activation-Plasticity]], [[2507.10434|CLA]], [[2507.09177|Online-Agent-OA]], [[2507.07712|GDR-Federated]], [[2411.13852|ESRM]], [[2410.07812|TD-VCL]], [[2402.15109|MU-Mis]], [[2305.13622|SER]], [[2211.15944|Continual-Dreamer]]
 
 **Multimodal Continual Skill Acquisition** — Agents that continually learn new skills from visual and language grounding, building an expanding repertoire without losing prior capabilities.
 - [[2607.14852|LifelongVLA]], [[2607.07574|Context-Aware Force Estimation]], [[2607.00302|Splash]], [[2606.30988|MuSe]], [[2606.05395|VASO]], [[2604.18075|DPW]], [[2604.08532|SelfEvo]], [[2603.18743|Memento-Skills]], [[2603.17621|Complementary-RL]], [[2603.12056|XSkill]], [[2603.08763|SPREAD]], [[2603.07648|AtomicVLA]], [[2603.04560|MEMO]], [[2603.02951|CGL]], [[2602.03445|CRL-VLA]], [[2511.18085|Stellar-VLA]], [[2504.21024|WebEvolver]], [[2504.18471|AFM]], [[2410.04891|LoRA-Continual-Diffusion]]

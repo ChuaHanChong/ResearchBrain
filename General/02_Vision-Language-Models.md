@@ -100,10 +100,11 @@ Learning visual representations without labels through contrastive, masked, or j
 > - [[2104.02057|MoCo-v3]] — Established robust self-supervised training recipes for Vision Transformers; bridged the gap from CNNs to ViTs
 > - [[2504.16929|I-Con]] — Information-theoretic framework unifying 23+ contrastive methods under a single loss function
 
-**Masked Image Modeling & Reconstruction** — BERT-style approaches that mask patches and reconstruct, learning dense visual features.
-- [[2505.12477|Joint-Embedding-vs-Reconstruction-SSL]], [[2402.10093|MIM-Refiner]]
+**Additional Self-Supervised Methods** — Masked image modeling, reconstruction, and knowledge distillation techniques for compact self-supervised visual representations.
+- [[2508.04816|CoMAD]], [[2505.12477|Joint-Embedding-vs-Reconstruction-SSL]], [[2505.10526|MASSV]], [[2505.07675|DHO]], [[2412.01282|Align-KD]], [[2402.10093|MIM-Refiner]]
 
 > [!star] Key Papers
+> - [[2508.04816|CoMAD]] — Multi-teacher self-supervised distillation creating compact ViTs with complementary feature qualities
 > - [[2402.10093|MIM-Refiner]] — Short contrastive refinement converts masked image models into top-performing feature extractors
 
 **SSL Surveys, Theory & Analysis** — Comprehensive overviews and theoretical foundations for self-supervised visual learning.
@@ -112,12 +113,6 @@ Learning visual representations without labels through contrastive, masked, or j
 > [!star] Key Papers
 > - [[2305.13689|SSL-Survey]] — Comprehensive survey of image-based self-supervised learning covering contrastive, generative, and self-distillation paradigms
 > - [[2408.17059|SSL-for-ViT-Survey]] — Detailed taxonomy of SSL mechanisms tailored specifically for Vision Transformers
-
-**Knowledge Distillation & Compact Models** — Compressing large visual models into efficient representations through multi-teacher distillation.
-- [[2508.04816|CoMAD]], [[2505.10526|MASSV]], [[2505.07675|DHO]], [[2412.01282|Align-KD]]
-
-> [!star] Key Papers
-> - [[2508.04816|CoMAD]] — Multi-teacher self-supervised distillation creating compact ViTs with complementary feature qualities
 
 > [!tip] SSL to VLM Pipeline
 > Self-supervised features (DINO, MAE, MoCo) provide the visual backbone that CLIP-style alignment then connects to language. The SSL quality directly determines downstream VLM performance — see [[01_Foundation-Models]] for the backbone architectures.
@@ -150,11 +145,12 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 > - [[2403.18293|TDA]] — Training-free dynamic adapter enabling efficient test-time adaptation via positive/negative caching
 > - [[2506.00513|SSAM]] — Self-supervised test-time adaptation for VLMs using dynamic memory alignment
 
-**Domain Adaptation & Generalization** — Transferring VLM knowledge across domains — from source to target distributions.
-- [[2603.17655|CC-CDFSL]], [[2509.11417|VLA-Pretrain-Preserve]], [[2504.06389|SemiDAViL]], [[2502.17159|RobustMerge]], [[2407.15173|CLIP-Domain-Adaptation]], [[2303.01906|DPCL]]
+**Domain Adaptation, Generalization & Model Merging** — Transferring, merging, or evolving VLM knowledge across domains and models without full retraining.
+- [[2603.17655|CC-CDFSL]], [[2601.10497|MERGETUNE]], [[2509.11417|VLA-Pretrain-Preserve]], [[2508.01558|EvoVLMA]], [[2506.13723|OTFusion]], [[2504.06389|SemiDAViL]], [[2502.17159|RobustMerge]], [[2407.15173|CLIP-Domain-Adaptation]], [[2403.13187|EvoLLM-JP]], [[2303.01906|DPCL]]
 
 > [!star] Key Papers
 > - [[2504.06389|SemiDAViL]] — First language-guided semi-supervised domain adaptation framework for VLMs
+> - [[2403.13187|EvoLLM-JP]] — Evolutionary Model Merge: automated framework using evolutionary algorithms to combine VLMs across languages and modalities
 
 **Few-Shot & Zero-Shot Transfer** — Maximizing VLM performance with minimal labeled examples.
 - [[2601.08499|EfficientFSL]], [[2510.08022|FastUMI-100K]], [[2508.03102|CCA]], [[2507.03657|ProtoMM]], [[2507.03458|D&D]], [[2506.23822|LaZSL]], [[2506.04005|SiM]], [[2504.12104|Logits-DeConfusion]], [[2504.06608|Cross-Domain-FSL-with-DKM]], [[2504.06120|HypCD]], [[2503.19903|PS3]], [[2405.13532|VLM-Few-Shot-Example-Selection]], [[2210.03094|VIMA]]
@@ -163,17 +159,12 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 > - [[2405.13532|VLM-Few-Shot-Example-Selection]] — Demonstrated that few-shot VLM performance is highly sensitive to example choice; provides optimal selection strategies
 > - [[2506.04005|SiM]] — Addresses vocabulary-free few-shot learning where target class names are unknown at test time
 
-**Model Merging & Evolutionary Adaptation** — Combining multiple fine-tuned VLMs or using evolutionary methods to create stronger models without retraining.
-- [[2601.10497|MERGETUNE]], [[2508.01558|EvoVLMA]], [[2506.13723|OTFusion]], [[2403.13187|EvoLLM-JP]]
-
-> [!star] Key Papers
-> - [[2403.13187|EvoLLM-JP]] — Evolutionary Model Merge: automated framework using evolutionary algorithms to combine VLMs across languages and modalities
-
-**Surveys** — Comprehensive reviews of VLM adaptation and generalization strategies.
-- [[2510.11106|CZSL-Survey]], [[2510.09586|VLM-Survey-26K]], [[2508.05547|VLM-Unsupervised-Adaptation-Survey]], [[2508.04227|VLM-Continual-Learning-Survey]], [[2506.18504|VLM-Generalization-Survey]], [[2501.02189|VLM-SOTA-Survey]]
+**Surveys** — Comprehensive reviews of VLM adaptation, generalization, and open-vocabulary detection/segmentation strategies.
+- [[2510.11106|CZSL-Survey]], [[2510.09586|VLM-Survey-26K]], [[2508.05547|VLM-Unsupervised-Adaptation-Survey]], [[2508.04227|VLM-Continual-Learning-Survey]], [[2506.18504|VLM-Generalization-Survey]], [[2501.02189|VLM-SOTA-Survey]], [[2307.09220|OVD/OVS-Survey]], [[2306.15880|Open-Vocabulary-Learning-Survey]]
 
 > [!star] Key Papers
 > - [[2506.18504|VLM-Generalization-Survey]] — First comprehensive review of knowledge transfer and generalization strategies for pre-trained VLMs
+> - [[2306.15880|Open-Vocabulary-Learning-Survey]] — First exhaustive review of open vocabulary learning across detection, segmentation, and recognition
 
 > [!tip] The Adaptation Spectrum
 > From training-free (Tip-Adapter, TDA) to lightweight prompt tuning (CoOp) to full fine-tuning — the optimal strategy depends on your data budget and domain shift. Test-time adaptation is emerging as a compelling middle ground for deployment.
@@ -184,8 +175,11 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 
 Detecting and localizing objects described by arbitrary text — not limited to a fixed set of training categories.
 
-**Open-Vocabulary Detectors** — Extending object detection beyond fixed class lists by leveraging VLM embeddings.
-- [[2603.24454|VLAForge]], [[2507.03302|SemiOVS]], [[2506.23785|VisTex-OVLM]], [[2503.07465|YOLOE]], [[2501.18954|LLMDet]], [[2412.18273|SBV]], [[2408.10787|UniProj-Det]], [[2405.08593|NRAA]], [[2401.17981|MLLM-Detection-Infusion]], [[2401.02361|MM-Grounding-DINO]], [[2312.10439|SIC-CADS]], [[2306.09683|OWLv2]], [[2305.07011|RO-ViT]], [[2304.11463|OmniLabel]], [[2304.04514|DetCLIPv2]], [[2303.13076|CORA]], [[2303.11331|EVA-02]], [[2303.05892|OADP]], [[2303.05499|Grounding-DINO]], [[2303.02489|CapDet]], [[2209.09407|DetCLIP]], [[2206.05836|GLIPv2]], [[2205.06230|OWL-ViT]], [[2203.17273|FindIt]], [[2203.16513|PromptDet]], [[2203.12555|GriTS]], [[2201.02605|Detic]], [[2112.03857|GLIP]], [[2104.13921|ViLD]], [[2011.10678|OVR-CNN]]
+**Open-Vocabulary Detectors: Region-Text Alignment & Contrastive Methods** — Classic open-vocabulary detectors built on region-level contrastive alignment or distillation from CLIP-style backbones.
+- [[2306.09683|OWLv2]], [[2305.07011|RO-ViT]], [[2304.11463|OmniLabel]], [[2304.04514|DetCLIPv2]], [[2303.13076|CORA]], [[2303.11331|EVA-02]], [[2303.05892|OADP]], [[2303.05499|Grounding-DINO]], [[2303.02489|CapDet]], [[2209.09407|DetCLIP]], [[2206.05836|GLIPv2]], [[2205.06230|OWL-ViT]], [[2203.17273|FindIt]], [[2203.16513|PromptDet]], [[2203.12555|GriTS]], [[2201.02605|Detic]], [[2112.03857|GLIP]], [[2104.13921|ViLD]], [[2011.10678|OVR-CNN]]
+
+**Open-Vocabulary Detectors: LLM-Augmented & Efficient Methods** — Recent detectors that leverage MLLMs/LLMs for detection or focus on semi-supervision and inference efficiency.
+- [[2603.24454|VLAForge]], [[2507.03302|SemiOVS]], [[2506.23785|VisTex-OVLM]], [[2503.07465|YOLOE]], [[2501.18954|LLMDet]], [[2412.18273|SBV]], [[2408.10787|UniProj-Det]], [[2405.08593|NRAA]], [[2401.17981|MLLM-Detection-Infusion]], [[2401.02361|MM-Grounding-DINO]], [[2312.10439|SIC-CADS]]
 
 > [!star] Key Papers
 > - [[2303.05499|Grounding-DINO]] — Married DINO with grounded pre-training for open-set detection; the go-to open-vocabulary detector
@@ -205,8 +199,20 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 **Open-Vocabulary Detection & Grounding** — Open-vocabulary detection and phrase grounding.
 - [[2605.27365|LocateAnything]], [[2603.14609|GroundSet]], [[2510.12798|Rex-Omni]], [[2506.18448|GraspMAS]], [[2506.02359|Auto-Labeling]], [[2307.12813|DOD]]
 
-**Grounding Methods & Benchmarks** — Visual grounding models and benchmarks.
-- [[2607.21571|Sequential-EQA]], [[2607.21400|VoLN]], [[2607.20785|Robostral Navigate]], [[2607.20679|CAT-Nav]], [[2607.20061|ReferTrack]], [[2607.19850|SOPD-SocialNav]], [[2607.14586|SoftNav]], [[2607.13624|VLM Semantic Navigation]], [[2607.13461|JOP-VLN]], [[2607.10383|ABot-N1]], [[2607.08359|FSD-VLN]], [[2607.07897|StiffNET]], [[2607.06882|GemNav]], [[2607.06537|UniLM-Nav]], [[2607.03792|REALM]], [[2607.01043|DART-VLN]], [[2606.31654|DynFly]], [[2606.30696|ViTL]], [[2606.30632|GROW²]], [[2606.30613|SPARK (Anchored Robotic Keypoints)]], [[2606.02277|RoboSemanticBench]], [[2605.24203|Afford-VLA]], [[2605.15198|ATLAS]], [[2605.14712|IntentVLA]], [[2605.12369|GuidedVLA]], [[2605.11856|UniVLR]], [[2605.05163|PhysForge]], [[2605.04128|JoyAI-Image]], [[2605.02881|MolmoAct2]], [[2604.05697|GraspSense]], [[2603.25411|HiSpatial]], [[2603.16860|DreamPlan]], [[2603.16253|EVPV]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.16702|SAP]], [[2602.08241|SAYO]], [[2601.10129|LaViT]], [[2601.08246|FSAG]], [[2601.07645|PlaM]], [[2601.06993|ReFine-RFT]], [[2601.05328|BFD]], [[2601.00659|CRoPS]], [[2601.00215|Sight-to-Insight]], [[2512.24297|FIGR]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.21218|LIVR]], [[2512.16922|NEPA]], [[2512.16584|SkiLa]], [[2511.13327|ZeroDexGrasp]], [[2511.01571|PixelVLA]], [[2510.21501|GranViT]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.11689|Phys2Real]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image-Grounding-RL]], [[2506.11991|VGR]], [[2506.05576|TD-TOG]], [[2505.02278|GCLIP]], [[2503.15202|VLM-BT-Failure-Handling]], [[2502.01828|FOREWARN]], [[2411.09691|TinyGroundingGPT]], [[2407.04689|RAM (Retrieval Affordance Transfer)]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2309.16118|D3Fields]], [[2301.05226|IPVR]], [[2210.03087|IVLN]], [[2203.02764|Candidate Waypoints Predictor]], [[1811.10092|RCM+SIL]]
+**Embodied Navigation & Visual Tracking Grounding** — Grounding natural-language instructions into navigation actions, waypoints, and embodied visual tracking.
+- [[2607.21571|Sequential-EQA]], [[2607.21400|VoLN]], [[2607.20785|Robostral Navigate]], [[2607.20679|CAT-Nav]], [[2607.20061|ReferTrack]], [[2607.19850|SOPD-SocialNav]], [[2607.14586|SoftNav]], [[2607.13624|VLM Semantic Navigation]], [[2607.13461|JOP-VLN]], [[2607.10383|ABot-N1]], [[2607.08359|FSD-VLN]], [[2607.06882|GemNav]], [[2607.06537|UniLM-Nav]], [[2607.03792|REALM]], [[2607.01043|DART-VLN]], [[2606.31654|DynFly]], [[2606.30696|ViTL]], [[2210.03087|IVLN]], [[2203.02764|Candidate Waypoints Predictor]], [[1811.10092|RCM+SIL]]
+
+**Robotic Manipulation, Grasping & Affordance Grounding** — Grounding language and visual affordances into manipulation, grasping, and action-execution policies.
+- [[2607.07897|StiffNET]], [[2606.30632|GROW²]], [[2606.30613|SPARK (Anchored Robotic Keypoints)]], [[2606.02277|RoboSemanticBench]], [[2605.24203|Afford-VLA]], [[2605.14712|IntentVLA]], [[2605.12369|GuidedVLA]], [[2605.02881|MolmoAct2]], [[2604.05697|GraspSense]], [[2603.16860|DreamPlan]], [[2601.08246|FSAG]], [[2511.13327|ZeroDexGrasp]], [[2511.01571|PixelVLA]], [[2510.11689|Phys2Real]], [[2506.05576|TD-TOG]], [[2503.15202|VLM-BT-Failure-Handling]], [[2502.01828|FOREWARN]], [[2407.04689|RAM (Retrieval Affordance Transfer)]], [[2309.16118|D3Fields]]
+
+**Spatial & Scene Grounding** — Grounding VLM reasoning in 3D scene geometry and physical space.
+- [[2605.05163|PhysForge]], [[2605.04128|JoyAI-Image]], [[2603.25411|HiSpatial]], [[2602.22703|GEODPO]], [[2512.24119|GeoBench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]]
+
+**Visual Grounding, Referring & Retrieval Methods** — Localizing, verifying, and retrieving specific visual-textual references.
+- [[2603.16253|EVPV]], [[2601.07645|PlaM]], [[2512.23169|REVEALER]], [[2510.21501|GranViT]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image-Grounding-RL]], [[2506.11991|VGR]], [[2505.02278|GCLIP]], [[2411.09691|TinyGroundingGPT]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2301.05226|IPVR]]
+
+**Latent & RL-Driven Visual Reasoning** — Reasoning, hallucination mitigation, and self-improvement methods trained via RL or latent chain-of-thought.
+- [[2605.15198|ATLAS]], [[2605.11856|UniVLR]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.16702|SAP]], [[2602.08241|SAYO]], [[2601.10129|LaViT]], [[2601.06993|ReFine-RFT]], [[2601.05328|BFD]], [[2601.00659|CRoPS]], [[2601.00215|Sight-to-Insight]], [[2512.24297|FIGR]], [[2512.23453|CoFi-Dec]], [[2512.21218|LIVR]], [[2512.16922|NEPA]], [[2512.16584|SkiLa]]
 
 > [!star] Key Papers
 > - [[2203.16265|SeqTR]] — Reformulated grounding as autoregressive coordinate prediction; unified phrase localization and referring expression tasks
@@ -231,12 +237,6 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 
 > [!star] Key Papers
 > - [[2602.23759|Selfment]] — Fully self-supervised framework achieving accurate object segmentation without any labels
-
-**Surveys** — Comprehensive overviews of open-vocabulary detection and segmentation.
-- [[2307.09220|OVD/OVS-Survey]], [[2306.15880|Open-Vocabulary-Learning-Survey]]
-
-> [!star] Key Papers
-> - [[2306.15880|Open-Vocabulary-Learning-Survey]] — First exhaustive review of open vocabulary learning across detection, segmentation, and recognition
 
 > [!tip] From Closed to Open Vocabulary
 > The progression ViLD -> GLIP -> Grounding DINO shows how VLM embeddings replaced fixed class heads. The current frontier combines detection with grounding (DOD) and self-training at scale (OWLv2). For embodied AI, open-vocabulary detection is essential — robots encounter objects never seen in training.
@@ -349,8 +349,11 @@ A growing focus area bridging VLMs toward embodied tasks — understanding where
 > [!tip] The Spatial Gap
 > Standard VLMs struggle with spatial relations because they are trained on 2D image-text pairs. SpatialVLM and SpatialRGPT address this with 3D-aware training, while RieMind takes an agentic approach. For robotics, spatial understanding is non-negotiable — see [[05_Computer-Vision-and-3D]].
 
-**Physical Understanding in VLMs** — Probing whether VLMs and MLLMs can reason about physical properties (mass, stability, materials, dynamics) from images and video, not just spatial relations. This is a distinct capability from spatial reasoning: it requires inferring *physical* state and predicting outcomes.
-- [[2606.06076|MGSD]], [[2606.03988|Imaginative-Perception-Tokens]], [[2606.03920|VSTAT]], [[2606.02551|AFUN]], [[2605.30561|VLM3]], [[2605.30557|SpatialUncertain]], [[2605.29563|ViewSuite]], [[2605.22536|SpaceDG]], [[2605.18746|ESI-Bench]], [[2605.06758|R3L]], [[2602.06033|VLM-Intuitive-Physics]], [[2601.19834|Visual-Generation-Reasoning]], [[2512.19526|QuantiPhy]], [[2512.17012|4D-RGPT]], [[2511.20280|VLM-Refine-Physics-Video]], [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object-Understanding-Cog-Eval]], [[2502.19868|C-Drag]], [[2501.16411|PhysBench]], [[2311.18259|Ego-Exo4D]], [[2311.10111|VideoCon]]
+**Physical & Spatial Understanding Benchmarks** — Benchmarks and diagnostics measuring whether VLMs/MLLMs reason about physical properties (mass, stability, materials, dynamics) from images and video, not just spatial relations.
+- [[2606.03920|VSTAT]], [[2605.30557|SpatialUncertain]], [[2605.22536|SpaceDG]], [[2605.18746|ESI-Bench]], [[2512.19526|QuantiPhy]], [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object-Understanding-Cog-Eval]], [[2501.16411|PhysBench]], [[2311.10111|VideoCon]]
+
+**Physics-Grounded Reasoning, Generation & Prediction Methods** — Methods that instill or leverage physical-world priors for reasoning, video generation, and outcome prediction.
+- [[2606.06076|MGSD]], [[2606.03988|Imaginative-Perception-Tokens]], [[2606.02551|AFUN]], [[2605.30561|VLM3]], [[2605.29563|ViewSuite]], [[2605.06758|R3L]], [[2602.06033|VLM-Intuitive-Physics]], [[2601.19834|Visual-Generation-Reasoning]], [[2512.17012|4D-RGPT]], [[2511.20280|VLM-Refine-Physics-Video]], [[2506.10778|SlotPi]], [[2502.19868|C-Drag]], [[2311.18259|Ego-Exo4D]]
 
 > [!star] Key Papers
 > -  — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhysGenBench
@@ -362,8 +365,14 @@ A growing focus area bridging VLMs toward embodied tasks — understanding where
 
 Large multimodal models — the workhorses of modern vision-language understanding, spanning from sub-3B efficient designs to unified generation architectures.
 
-**Large-Scale MLLMs** — General-purpose instruction-tuned multimodal models at scale.
-- [[2607.12894|Hy-Embodied-VLM-1.0]], [[2606.30534|Orca]], [[2605.30161|Why-Far-Looks-Up]], [[2605.29074|Embodied3DBench]], [[2605.22816|AwareVLN]], [[2605.22812|GesVLA]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20914|RISE-Self-Evolving-VLM]], [[2605.20246|GROW]], [[2605.18162|SAGE-Spatial-VLM]], [[2605.06234|RobotEQ]], [[2604.07430|HY-Embodied-0.5]], [[2511.16518|MiMo-Embodied]], [[2509.25794|Point-It-Out]], [[2508.11737|Ovis2.5]], [[2507.23278|UniLiP]], [[2507.01949|Kwai-Keye-VL]], [[2507.01006|GLM-4.5V]], [[2505.18842|v1]], [[2505.14683|BAGEL]], [[2505.07062|Seed1.5-VL]], [[2504.15271|Eagle-2.5]], [[2504.13180|PerceptionLM]], [[2504.10479|InternVL3]], [[2504.07491|Kimi-VL]], [[2504.00595|Open-Qwen2VL]], [[2503.10705|ConDU]], [[2410.21276|GPT-4o]], [[2410.13733|Arcana]], [[2410.10855|CoreCognition]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2408.03326|LLaVA-OneVision]], [[2407.07895|LLaVA-NeXT-Interleave]], [[2407.07726|PaliGemma]], [[2406.16860|Cambrian-1]], [[2406.07476|VideoLLaMA 2]], [[2406.04325|ShareGPT4Video]], [[2404.16821|InternVL 1.5]], [[2403.05525|DeepSeek-VL]], [[2306.13549|MLLM-Survey]], [[2305.18565|PaLI-X]], [[2305.06500|InstructBLIP]], [[2304.08485|LLaVA]], [[2304.07193|DINOv2]], [[2303.08774|GPT-4]], [[2301.12597|BLIP-2]], [[2210.05714|VLMaps]], [[2210.03347|Pix2Struct]], [[2209.06794|PaLI]], [[2204.14198|Flamingo]], [[2201.12086|BLIP]], [[2102.02779|VL-T5]], [[2005.14165|GPT-3]]
+**Embodied & Spatially-Grounded Large MLLMs** — Large multimodal models purpose-built for embodied, robotic, or spatial-reasoning deployment.
+- [[2607.12894|Hy-Embodied-VLM-1.0]], [[2605.30161|Why-Far-Looks-Up]], [[2605.29074|Embodied3DBench]], [[2605.22816|AwareVLN]], [[2605.22812|GesVLA]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20914|RISE-Self-Evolving-VLM]], [[2605.20246|GROW]], [[2605.18162|SAGE-Spatial-VLM]], [[2605.06234|RobotEQ]], [[2604.07430|HY-Embodied-0.5]], [[2511.16518|MiMo-Embodied]], [[2509.25794|Point-It-Out]], [[2210.05714|VLMaps]]
+
+**General-Purpose MLLMs** — General-purpose instruction-tuned multimodal models at scale, not domain- or embodiment-specific.
+- [[2606.30534|Orca]], [[2508.11737|Ovis2.5]], [[2507.23278|UniLiP]], [[2507.01949|Kwai-Keye-VL]], [[2507.01006|GLM-4.5V]], [[2505.18842|v1]], [[2505.14683|BAGEL]], [[2505.07062|Seed1.5-VL]], [[2504.15271|Eagle-2.5]], [[2504.13180|PerceptionLM]], [[2504.10479|InternVL3]], [[2504.07491|Kimi-VL]], [[2504.00595|Open-Qwen2VL]], [[2503.10705|ConDU]], [[2410.21276|GPT-4o]], [[2410.13733|Arcana]], [[2410.10855|CoreCognition]], [[2410.08202|Mono-InternVL]], [[2409.17146|Molmo]], [[2408.03326|LLaVA-OneVision]], [[2407.07895|LLaVA-NeXT-Interleave]], [[2407.07726|PaliGemma]], [[2406.16860|Cambrian-1]], [[2406.07476|VideoLLaMA 2]], [[2406.04325|ShareGPT4Video]], [[2404.16821|InternVL 1.5]], [[2403.05525|DeepSeek-VL]]
+
+**Foundational MLLM Architectures** — Seminal architectures and papers that established the modern MLLM paradigm.
+- [[2306.13549|MLLM-Survey]], [[2305.18565|PaLI-X]], [[2305.06500|InstructBLIP]], [[2304.08485|LLaVA]], [[2304.07193|DINOv2]], [[2303.08774|GPT-4]], [[2301.12597|BLIP-2]], [[2210.03347|Pix2Struct]], [[2209.06794|PaLI]], [[2204.14198|Flamingo]], [[2201.12086|BLIP]], [[2102.02779|VL-T5]], [[2005.14165|GPT-3]]
 
 > [!star] Key Papers
 > - [[2504.10479|InternVL3]] — Native multimodal pre-training paradigm achieving 72.2 on MMMU; top open-source MLLM competitive with proprietary models
@@ -377,8 +386,11 @@ Large multimodal models — the workhorses of modern vision-language understandi
 > - [[2412.04468|NVILA]] — Scale-then-compress paradigm reducing training cost 5x and enabling VLM fine-tuning under 24GB; real-time robotic deployment on a laptop GPU
 > - [[2504.15271|Eagle-2.5]] — 8B model matching 72B+ performance on video understanding via information-first sampling and progressive mixed post-training
 
-**Unified Understanding & Generation MLLMs** — Models that jointly handle visual understanding, generation, and editing in a single architecture.
-- [[2607.14187|RxBrain]], [[2607.12800|UniVR]], [[2607.06560|SenseNova-Vision]], [[2605.31604|Representation-Forcing]], [[2605.28820|NEO-ov]], [[2605.26656|DV-SFT]], [[2605.21931|EvoVid]], [[2605.18678|Lance]], [[2604.02097|LatentUM]], [[2603.29620|Unify-Agent]], [[2603.03276|Beyond-LLMs]], [[2510.08673|Puffin]], [[2506.22880|DeSa2VA]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2505.16933|LLaDA-V]], [[2505.05472|Mogao]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2501.17811|Janus-Pro]], [[2501.00289|D-DiT]], [[2412.03069|TokenFlow]], [[2410.13848|Janus]], [[2408.12528|Show-o]], [[2408.11039|Transfusion]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
+**Discrete-Token & Native Autoregressive Unified Architectures** — Unified models built on discrete visual tokens and native autoregressive transformers for joint understanding and generation.
+- [[2605.31604|Representation-Forcing]], [[2605.28820|NEO-ov]], [[2605.26656|DV-SFT]], [[2604.02097|LatentUM]], [[2603.03276|Beyond-LLMs]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2501.17811|Janus-Pro]], [[2412.03069|TokenFlow]], [[2410.13848|Janus]], [[2408.12528|Show-o]], [[2407.06135|ANOLE]], [[2405.09818|Chameleon]], [[2404.14396|SEED-X]]
+
+**Diffusion, Fusion & Agentic Unified Models** — Unified models built on diffusion decoders, cross-modal fusion, or agentic multi-task orchestration.
+- [[2607.14187|RxBrain]], [[2607.12800|UniVR]], [[2607.06560|SenseNova-Vision]], [[2605.21931|EvoVid]], [[2605.18678|Lance]], [[2603.29620|Unify-Agent]], [[2510.08673|Puffin]], [[2506.22880|DeSa2VA]], [[2505.16933|LLaDA-V]], [[2505.05472|Mogao]], [[2504.20996|X-Fusion]], [[2504.06256|MetaQueries]], [[2501.00289|D-DiT]], [[2408.11039|Transfusion]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 > [!star] Key Papers
 > - [[2408.12528|Show-o]] — Single transformer unifying understanding and generation via omni-attention that switches between causal and full attention per modality
@@ -401,8 +413,11 @@ Large multimodal models — the workhorses of modern vision-language understandi
 
 Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-thought, and multimodal decision-making.
 
-**RL-Trained Visual Reasoners** — VLMs fine-tuned with RL for improved visual reasoning and chain-of-thought.
-- [[2607.02490|VRRL]], [[2606.25319|V-Zero-Visual]], [[2605.21973|Foresee-to-Ground]], [[2604.20705|SSL-R1]], [[2604.20328|HyLaR]], [[2604.04917|Vero]], [[2604.03128|Self-Distilled-RLVR]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.25629|LanteRn]], [[2603.25077|ToR]], [[2603.24984|MoE-GRPO]], [[2603.24533|UI-Voyager]], [[2603.22847|PEPO]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein-RL-Analysis]], [[2602.07605|Fine-R1]], [[2511.07403|SpatialThinker]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal-RL-Cold-Start]], [[2505.22019|VRAG-RL]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot-RLVR]], [[2504.07615|VLM-R1]], [[2503.23905|Hint-GRPO]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]], [[2501.12599|Kimi k1.5]], [[2311.16502|MMMU]]
+**RL Recipes, Reward Design & Policy Optimization for Visual Reasoning** — Core RL algorithms, reward schemes, and policy-optimization recipes for training visual chain-of-thought.
+- [[2607.02490|VRRL]], [[2606.25319|V-Zero-Visual]], [[2604.20705|SSL-R1]], [[2604.20328|HyLaR]], [[2604.04917|Vero]], [[2604.03128|Self-Distilled-RLVR]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.25629|LanteRn]], [[2603.25077|ToR]], [[2603.24984|MoE-GRPO]], [[2603.22847|PEPO]], [[2602.07605|Fine-R1]], [[2505.19094|SATORI]], [[2505.17018|SophiaVL-R1]], [[2505.10088|MMRL++]], [[2504.20571|1-shot-RLVR]], [[2504.07615|VLM-R1]], [[2503.23905|Hint-GRPO]], [[2503.08497|MMRL]], [[2503.01785|Visual-RFT]], [[2501.12599|Kimi k1.5]]
+
+**Agentic, Analysis & Domain-Specific RL Visual Reasoning** — RL-trained agentic tool-use/GUI models, spatial- or retrieval-specific reasoners, and analyses of what RL training actually improves.
+- [[2605.21973|Foresee-to-Ground]], [[2603.24533|UI-Voyager]], [[2602.20739|PyVision-RL]], [[2602.12395|Frankenstein-RL-Analysis]], [[2511.07403|SpatialThinker]], [[2510.17045|V-Reason]], [[2509.24251|LVR]], [[2506.07218|Perception-R1]], [[2505.22334|Multimodal-RL-Cold-Start]], [[2505.22019|VRAG-RL]], [[2311.16502|MMMU]]
 
 > [!star] Key Papers
 > - [[2503.01785|Visual-RFT]] — Pioneered RL fine-tuning for visual tasks with verifiable rewards; 24.3% accuracy boost in fine-grained classification
@@ -418,8 +433,11 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2411.10440|LLaVA-CoT]] — Autonomous multistage reasoning with stage-wise retracing; 5.8% improvement enabling 11B model to rival larger closed-source MLLMs
 > - [[2603.22281|ThinkJEPA]] — Integrates JEPA-style world modeling into VLM chain-of-thought for grounded visual prediction
 
-**VLM Evaluation & Benchmarks** — Evaluation frameworks, benchmarks, and quality assessment for multimodal models.
-- [[2607.18062|UniETP]], [[2607.04610|RoboVista]], [[2605.29360|MiraBench]], [[2604.24300|ReVSI]], [[2604.22884|SOUBench]], [[2603.03944|SCP-Bench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.16520|TangramPuzzle]], [[2601.12585|MLLM-Visualization-Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2502.09621|MME-CoT]], [[2502.05086|REASSEMBLE]], [[2406.18925|VisArgs]], [[2405.16473|M3CoT]], [[2404.19205|TableVQA-Bench]], [[2403.14624|MathVerse]], [[2401.07781|T2VScore]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2307.06281|MMBench]], [[2306.13394|MME]], [[2305.13786|Perception Test]], [[2210.02506|GameBugDescriptions]], [[2204.03162|Winoground]], [[2203.10244|ChartQA]]
+**Spatial, Temporal & Compositional Reasoning Benchmarks** — Benchmarks targeting spatial, 3D, temporal, video, and compositional reasoning in VLMs.
+- [[2604.24300|ReVSI]], [[2603.03944|SCP-Bench]], [[2601.16520|TangramPuzzle]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2502.09621|MME-CoT]], [[2405.16473|M3CoT]], [[2403.14624|MathVerse]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2204.03162|Winoground]]
+
+**General Capability, Embodied & Domain-Specific Benchmarks** — Broad-coverage MLLM capability benchmarks alongside embodied, robotics, and domain-specific evaluation suites.
+- [[2607.18062|UniETP]], [[2607.04610|RoboVista]], [[2605.29360|MiraBench]], [[2604.22884|SOUBench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.12585|MLLM-Visualization-Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2502.05086|REASSEMBLE]], [[2406.18925|VisArgs]], [[2404.19205|TableVQA-Bench]], [[2401.07781|T2VScore]], [[2307.06281|MMBench]], [[2306.13394|MME]], [[2305.13786|Perception Test]], [[2210.02506|GameBugDescriptions]], [[2203.10244|ChartQA]]
 
 > [!star] Key Papers
 > - [[2603.03944|SCP-Bench]] — Spatial causal prediction benchmark revealing a 23% gap between best MLLMs and humans on unseen spatio-temporal reasoning
@@ -460,12 +478,20 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2504.17432|UniME]] — Universal multimodal embeddings via distillation and hard-negative tuning; SOTA on MMEB with 14-18% gains on long-caption retrieval
 > - [[2507.04590|VLM2Vec-V2]] — Unified embedding model for videos, images, and documents achieving top scores on the 78-task MMEB-V2 benchmark
 
-**Vision-Language Navigation** — VLMs and LLMs that ground natural-language instructions into embodied navigation, from instance-level semantic mapping to social navigation and pixel-space trajectory generation.
+**Additional Multimodal & Embodied Methods** — Cross-cutting embodied navigation and other methods that don't fit the section's other buckets.
 - [[2607.12630|MTEFR]], [[2607.10991|HUMA]], [[2607.10744|Traj-VLN]]
 
-**Domain-Specific VLMs** — VLMs adapted for specific domains like medicine, science, video, and document understanding.
-- [[2607.20207|SeededGrasp]], [[2607.19190|Agentic Real2Sim]], [[2607.18709|RoboInter1.5]], [[2607.13926|S2-VLA]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.06186|Calf-Integrated Quadruped Manipulator]], [[2607.05883|DexTele]], [[2607.04988|InternVLA-A1.5]], [[2607.04057|PreSIST]], [[2607.02417|LIME]], [[2607.01658|DriveTeach-VLA]], [[2607.01287|Adaptive Companionship for Group-Following Robots]], [[2607.00530|Multimodal HRI User Study]], [[2607.00302|Splash]], [[2607.00283|Planning-Critical Occlusion VLM]], [[2606.31909|CoDex]], [[2606.31451|UniTac]], [[2606.31144|Modular VLA Framework]], [[2606.30809|GaussLite]], [[2606.29028|Keypose Exploration]], [[2606.28760|VLM Social Robot Navigation Survey]], [[2604.02190|UniDriveVLA]], [[2603.28116|AutoDrive-P3]], [[2603.22003|VP-VLA]], [[2603.19235|VEGA-3D]], [[2603.17729|SARE]], [[2603.14497|WorldVLM]], [[2603.14145|MMOU]], [[2603.14117|SIEVE]], [[2603.13825|Explicit-WM-Manipulation]], [[2603.10052|OmniGuide]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.24041|AIR]], [[2602.20119|NovaPlan]], [[2602.15727|LoRWeB]], [[2602.11144|GENIUS]], [[2602.04884|RAL]], [[2602.03361|Z3D]], [[2602.02951|NUWA]], [[2602.02453|TwC]], [[2602.02004|ClueTracer]], [[2601.23265|PaperBanana]], [[2601.21187|FRISM]], [[2601.19099|m2sv]], [[2601.09430|Video-MSR]], [[2601.04777|GeM-VG]], [[2601.03193|UniCorn]], [[2601.00561|AEGIS]], [[2512.22799|VPTracker]]
-- [[2512.12633|DiG]], [[2512.06281|LaVer]], [[2512.04563|COOPER]], [[2508.13142|EASI]], [[2507.10203|ARL]], [[2507.10202|ECP]], [[2507.01544|MARVIS]], [[2506.17218|Mirage]], [[2506.16112|AutoV]], [[2506.04220|Struct2D]], [[2506.03569|MiMo-VL]], [[2506.03147|UniWorld-V1]], [[2505.23705|Knowledge-Insulation-VLA]], [[2505.19017|WorldEval]], [[2505.02056|VLM-Pseudo-label-Calibration]], [[2504.13055|NoisyRollout]], [[2504.10462|SAIL]], [[2504.09997|GenTe]], [[2503.15621|LLaVA-MORE]], [[2503.01773|ADAPTVIS]], [[2503.01584|SENSEI]], [[2410.06237|BUMBLE]], [[2404.10220|COME-robot]], [[2403.08248|CoPa]], [[2401.12202|OK-Robot]], [[2307.00329|DoReMi]], [[2303.00905|MOO]], [[2204.06252|HULC]]
+**Robotic Manipulation & Dexterous Control VLMs** — VLMs and VLAs adapted for grasping, dexterous manipulation, and arm/hand control.
+- [[2607.20207|SeededGrasp]], [[2607.18709|RoboInter1.5]], [[2607.13926|S2-VLA]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.06186|Calf-Integrated Quadruped Manipulator]], [[2607.05883|DexTele]], [[2607.04988|InternVLA-A1.5]], [[2607.04057|PreSIST]], [[2607.00302|Splash]], [[2607.00283|Planning-Critical Occlusion VLM]], [[2606.31909|CoDex]], [[2606.31451|UniTac]], [[2606.31144|Modular VLA Framework]], [[2606.29028|Keypose Exploration]], [[2603.22003|VP-VLA]], [[2603.13825|Explicit-WM-Manipulation]], [[2505.23705|Knowledge-Insulation-VLA]], [[2404.10220|COME-robot]], [[2403.08248|CoPa]], [[2401.12202|OK-Robot]], [[2307.00329|DoReMi]], [[2303.00905|MOO]], [[2204.06252|HULC]]
+
+**Embodied Navigation, Driving, World-Models & HRI** — VLMs adapted for autonomous driving, social/HRI robotics, and robot world-model planning.
+- [[2607.19190|Agentic Real2Sim]], [[2607.02417|LIME]], [[2607.01658|DriveTeach-VLA]], [[2607.01287|Adaptive Companionship for Group-Following Robots]], [[2607.00530|Multimodal HRI User Study]], [[2606.30809|GaussLite]], [[2606.28760|VLM Social Robot Navigation Survey]], [[2604.02190|UniDriveVLA]], [[2603.28116|AutoDrive-P3]], [[2603.14497|WorldVLM]], [[2603.10052|OmniGuide]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.20119|NovaPlan]], [[2505.19017|WorldEval]], [[2504.09997|GenTe]], [[2503.01584|SENSEI]], [[2410.06237|BUMBLE]]
+
+**Reasoning, Hallucination Mitigation & Efficient Training Methods** — Non-embodied VLM methods for visual reasoning, hallucination suppression, and efficient training/inference.
+- [[2603.14117|SIEVE]], [[2602.24041|AIR]], [[2602.15727|LoRWeB]], [[2602.04884|RAL]], [[2602.02453|TwC]], [[2602.02004|ClueTracer]], [[2601.21187|FRISM]], [[2507.10203|ARL]], [[2507.10202|ECP]], [[2506.17218|Mirage]], [[2506.16112|AutoV]], [[2504.13055|NoisyRollout]], [[2504.10462|SAIL]], [[2503.01773|ADAPTVIS]]
+
+**Grounding, Spatial Reasoning & Unified-Model Benchmarks** — Non-embodied grounding, spatial-reasoning, and unified-architecture VLM methods, plus their benchmarks.
+- [[2603.19235|VEGA-3D]], [[2603.17729|SARE]], [[2603.14145|MMOU]], [[2602.11144|GENIUS]], [[2602.03361|Z3D]], [[2602.02951|NUWA]], [[2601.23265|PaperBanana]], [[2601.19099|m2sv]], [[2601.09430|Video-MSR]], [[2601.04777|GeM-VG]], [[2601.03193|UniCorn]], [[2601.00561|AEGIS]], [[2512.22799|VPTracker]], [[2512.12633|DiG]], [[2512.06281|LaVer]], [[2512.04563|COOPER]], [[2508.13142|EASI]], [[2507.01544|MARVIS]], [[2506.04220|Struct2D]], [[2506.03569|MiMo-VL]], [[2506.03147|UniWorld-V1]], [[2505.02056|VLM-Pseudo-label-Calibration]], [[2503.15621|LLaVA-MORE]]
 
 > [!tip] RL is Reshaping VLM Training
 > The RL-for-vision wave (Visual-RFT, SATORI, VLM-R1) is the biggest shift since instruction tuning. Key insight: verifiable visual rewards (bounding box accuracy, count correctness) work far better than language-only RLHF for grounding. Meanwhile, inference-time scaling via chain-of-thought (LLaVA-CoT) and dynamic zooming (ZoomEye, FOCUS) lets smaller models punch above their weight without retraining.
@@ -476,20 +502,35 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 
 In-context learning, few-shot detection, and meta-learning methods applied to visual tasks.
 
-**Few-Shot Object Detection** — Detecting novel object categories from minimal examples using meta-learning or in-context strategies.
-- [[2602.12275|OPCD]], [[2505.00147|AdaptMI]], [[2502.14214|ACT]], [[2401.13987|ADAPTER]], [[2401.07629|FPD]], [[2312.04684|LaRS]], [[2311.13601|DINOv]], [[2305.14676|GRILL]], [[2303.14240|BSPG]], [[2201.02609|GCD]], [[2112.02814|Low-Shot-Detection-Survey]], [[2104.14984|CAT]], [[2004.02684|Attribute-Mix]], [[2003.06800|OS2D]], [[2002.04741|POTD]], [[1911.12529|CoAE]], [[1909.13032|Meta-R-CNN]], [[1908.01998|Attention-RPN]], [[1811.11507|Siamese-Mask-R-CNN]], [[1810.09091|SG-One]], [[1806.04728|RepMet]], [[1803.01529|LSTD]]
+**Modern & Foundation-Model-Adapted Few-Shot Detectors** — Recent few-shot detection methods leveraging foundation-model features, ICL, or adapter-based strategies.
+- [[2602.12275|OPCD]], [[2505.00147|AdaptMI]], [[2502.14214|ACT]], [[2401.13987|ADAPTER]], [[2401.07629|FPD]], [[2312.04684|LaRS]], [[2311.13601|DINOv]], [[2305.14676|GRILL]], [[2303.14240|BSPG]], [[2201.02609|GCD]], [[2112.02814|Low-Shot-Detection-Survey]], [[2104.14984|CAT]], [[2004.02684|Attribute-Mix]], [[2003.06800|OS2D]], [[2002.04741|POTD]]
+
+**Foundational Meta-Learning & Metric-Learning Detectors** — Pioneering meta-learning and metric-learning architectures (Siamese networks, attention RPN) for few-shot detection.
+- [[1911.12529|CoAE]], [[1909.13032|Meta-R-CNN]], [[1908.01998|Attention-RPN]], [[1811.11507|Siamese-Mask-R-CNN]], [[1810.09091|SG-One]], [[1806.04728|RepMet]], [[1803.01529|LSTD]]
 
 **Chain-of-Thought & Prompting Techniques** — Foundational prompting strategies that elicit step-by-step reasoning from LLMs without additional training.
 - [[2305.04091|Plan-and-Solve]], [[2211.01910|APE]], [[2210.03493|Auto-CoT]], [[2205.10625|Least-to-Most]], [[2201.11903|Chain-of-Thought Prompting]]
 
-**In-Context Learning Theory & Mechanisms** — Understanding how Transformers perform in-context learning and meta-optimization.
-- [[2606.04269|Instant-Fold]], [[2604.26488|LILA]], [[2603.15975|UMO]], [[2602.23339|Retrieve-and-Segment]], [[2602.00795|DVLA-RL]], [[2512.24766|Dream2Flow]], [[2512.15934|IC-SSL]], [[2510.26493|Context-Engineering-2.0]], [[2510.04618|ACE]], [[2509.06806|MachineLearningLM]], [[2507.16003|ICL-Implicit-Dynamics]], [[2506.07936|MM-ICL-Mimicking-vs-Reasoning]], [[2506.06105|T2L]], [[2505.01812|New-News]], [[2502.17666|IC-QL]], [[2502.14010|ICL-Attention-Heads]], [[2412.06464|Gated DeltaNet]], [[2311.12424|Looped-Transformers]], [[2310.15916|Task Vectors]], [[2310.15213|Function Vectors]], [[2309.05858|Mesa-Optimization-Transformers]], [[2302.00674|FLAD]], [[2301.08028|Meta-RL-Tutorial]], [[2301.02419|eTT]], [[2209.11895|Induction Heads]], [[2203.09093|SaFT]]
+**Mechanistic Theory of In-Context Learning** — Understanding how Transformers perform in-context learning and meta-optimization internally.
+- [[2512.15934|IC-SSL]], [[2510.26493|Context-Engineering-2.0]], [[2510.04618|ACE]], [[2509.06806|MachineLearningLM]], [[2507.16003|ICL-Implicit-Dynamics]], [[2506.07936|MM-ICL-Mimicking-vs-Reasoning]], [[2505.01812|New-News]], [[2502.17666|IC-QL]], [[2502.14010|ICL-Attention-Heads]], [[2412.06464|Gated DeltaNet]], [[2311.12424|Looped-Transformers]], [[2310.15916|Task Vectors]], [[2310.15213|Function Vectors]], [[2309.05858|Mesa-Optimization-Transformers]], [[2301.08028|Meta-RL-Tutorial]], [[2209.11895|Induction Heads]]
 
-**VLM Reasoning & Tool Use via ICL** — In-context approaches for visual reasoning, tool use, and task planning.
-- [[2606.30457|Behavior Prompting Policy]], [[2606.04433|Stateful-Visual-Encoders]], [[2606.03937|VEPO]], [[2604.20348|BiCICLe]], [[2604.08539|OpenVLThinkerV2]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X-Multi-Robot-MLLM-Survey]], [[2603.28301|LIBERO-Para]], [[2603.01667|Chain-of-Context-Learning]], [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2601.07298|CINEMA]], [[2512.11061|VDAWorld]], [[2511.19684|IndEgo]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot-RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain-FSL-with-DKM]], [[2503.01785|Visual-RFT]], [[2501.04693|FuSe]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic-Models]]
+**Applied Few-Shot & In-Context Vision/Robotics Methods** — Practical applications of in-context and few-shot learning to vision, manipulation, and detection tasks.
+- [[2606.04269|Instant-Fold]], [[2604.26488|LILA]], [[2603.15975|UMO]], [[2602.23339|Retrieve-and-Segment]], [[2602.00795|DVLA-RL]], [[2512.24766|Dream2Flow]], [[2506.06105|T2L]], [[2302.00674|FLAD]], [[2301.02419|eTT]], [[2203.09093|SaFT]]
 
-**Visual Grounding via ICL** — In-context visual grounding, referring, and perception methods.
-- [[2603.16253|EVPV]], [[2603.12382|SPARROW]], [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.22703|GEODPO]], [[2602.21497|ECRD]], [[2602.21054|VAUQ]], [[2602.20980|CrystaL]], [[2602.16702|SAP]], [[2602.11858|ZwZ]], [[2602.11737|OA-VCD]], [[2602.11073|VILAVT]], [[2602.08241|SAYO]], [[2601.11322|VLM-Logic-Situational-Awareness]], [[2601.10129|LaViT]], [[2601.07645|PlaM]], [[2601.06993|ReFine-RFT]], [[2601.06521|BabyVision]], [[2601.05600|SceneAlign]], [[2601.05552|UniADet]], [[2601.05344|Im2Sim]], [[2601.05328|BFD]], [[2601.05244|GREx]], [[2601.02771|AbductiveMLLM]], [[2601.02356|Talk2Move]], [[2601.00659|CRoPS]], [[2601.00215|Sight-to-Insight]], [[2512.24297|FIGR]], [[2512.24119|GeoBench]], [[2512.23453|CoFi-Dec]], [[2512.23169|REVEALER]], [[2512.21218|LIVR]], [[2512.19605|KerJEPA]], [[2512.16584|SkiLa]], [[2510.23603|PixelRefer]], [[2510.21311|FineRS]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2510.12798|Rex-Omni]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2301.05226|IPVR]]
+**Robotic Tool Use & Manipulation via ICL** — In-context and few-shot approaches for robot manipulation, multi-robot control, and embodied task planning.
+- [[2606.30457|Behavior Prompting Policy]], [[2604.20348|BiCICLe]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X-Multi-Robot-MLLM-Survey]], [[2603.28301|LIBERO-Para]], [[2512.11061|VDAWorld]], [[2511.19684|IndEgo]], [[2501.04693|FuSe]]
+
+**VLM Reasoning & Tool Use via ICL** — In-context approaches for generic visual reasoning, tool use, and task planning.
+- [[2606.04433|Stateful-Visual-Encoders]], [[2606.03937|VEPO]], [[2604.08539|OpenVLThinkerV2]], [[2603.01667|Chain-of-Context-Learning]], [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2601.07298|CINEMA]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot-RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain-FSL-with-DKM]], [[2503.01785|Visual-RFT]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic-Models]]
+
+**Spatial & Scene Grounding via ICL** — In-context grounding of VLM reasoning in 3D scene geometry and physical space.
+- [[2602.22703|GEODPO]], [[2601.05600|SceneAlign]], [[2601.05344|Im2Sim]], [[2601.02356|Talk2Move]], [[2512.24119|GeoBench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]]
+
+**Visual Grounding & Referring via ICL** — In-context visual grounding, referring expression, and detection/segmentation perception methods.
+- [[2603.16253|EVPV]], [[2603.12382|SPARROW]], [[2602.11858|ZwZ]], [[2601.07645|PlaM]], [[2601.05552|UniADet]], [[2601.05244|GREx]], [[2512.23169|REVEALER]], [[2510.23603|PixelRefer]], [[2510.12798|Rex-Omni]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2301.05226|IPVR]]
+
+**Latent & RL-Driven Visual Reasoning via ICL** — In-context latent-space reasoning, self-evaluation, and hallucination mitigation methods.
+- [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.21497|ECRD]], [[2602.21054|VAUQ]], [[2602.20980|CrystaL]], [[2602.16702|SAP]], [[2602.11737|OA-VCD]], [[2602.11073|VILAVT]], [[2602.08241|SAYO]], [[2601.11322|VLM-Logic-Situational-Awareness]], [[2601.10129|LaViT]], [[2601.06993|ReFine-RFT]], [[2601.06521|BabyVision]], [[2601.05328|BFD]], [[2601.02771|AbductiveMLLM]], [[2601.00659|CRoPS]], [[2601.00215|Sight-to-Insight]], [[2512.24297|FIGR]], [[2512.23453|CoFi-Dec]], [[2512.21218|LIVR]], [[2512.19605|KerJEPA]], [[2512.16584|SkiLa]], [[2510.21311|FineRS]]
 
 **Additional VLM & Perception Methods** — Cross-cutting papers on VLM training, perception, and multi-modal understanding.
 - [[2604.12148|ViLL-E]], [[2604.11751|GWM-MPC]], [[2604.11320|CLASP]], [[2604.08626|WildDet3D]], [[2604.08121|Uni-ViGU]], [[2604.06870|RefineAnything]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image-Grounding-RL]], [[2506.02843|REAP]], [[2505.23769|TextRegion]], [[2505.17316|Patch-Aligned-Training]], [[2504.16801|DeGLA]], [[2502.17425|VPT]], [[2502.07503|RINS]], [[2407.01400|GalLoP]], [[2403.19103|PRISM]], [[2209.15639|F-VLM]]
