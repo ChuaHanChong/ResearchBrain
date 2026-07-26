@@ -1,6 +1,6 @@
 # Topic-File Formatting Reference
 
-Read this when creating or restructuring a General/ topic overview file. Covers paper ordering, callout types, wikilink format, sub-topic groups, mermaid evolution graphs, and anti-patterns.
+Read this when creating or restructuring a General/ topic overview file. Covers paper ordering, callout types, wikilink format, sub-topic groups, ASCII evolution graphs, and anti-patterns.
 
 ### Paper Ordering
 
@@ -44,26 +44,45 @@ Rules:
 - Papers comma-separated on a single bullet line, sorted by ID descending
 - When a sub-topic exceeds ~15 papers, split into two more specific sub-topics
 
-### Mermaid Evolution Graphs
+### Evolution Graph Diagrams
 
-```mermaid
-graph TD
-    subgraph "Era/Category"
-        A["Paper Name<br/><i>Year</i>"]
-    end
+Plain-text ASCII/Unicode box diagrams in a fenced `text` block — **not mermaid**. All 12 `General/` files were converted off mermaid (which Obsidian renders inconsistently and which invited hex-color/legend clutter); this is the current and only canonical format.
+
+````
+```text
+Phase Name
+
+╔══════════════╗
+║ *Landmark (2022) ║───────► Follow-on (2023)
+╚══════════════╝
+       │
+       ▼
+┌─────────────┐
+│ Other (2023) │───────► Cross-Phase Target (2024)   [Other Phase, below]
+└─────────────┘
+
+
+Other Phase
+
+┌─────────────────┐
+│ Cross-Phase Target (2024) │
+└─────────────────┘
+
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
+````
 
-- `graph TD` (top-down directed)
-- Nodes use **plain text** (not wikilinks): `["Name<br/><i>Year</i>"]`
-- Colors:
-  - Blue (`fill:#e8f4fd,stroke:#4a90d9`) = foundational/early work
-  - Purple (`fill:#f0e8fd,stroke:#9b59b6`) = paradigm shift/novel approach
-  - Green (`fill:#e8fde8,stroke:#27ae60`) = frontier/latest work
-- Update the graph when a new paper represents a significant evolution milestone
+- Each phase is a **plain Title-Case header** (e.g. `Contrastive Alignment`, `WAMs`) — no brackets, no ALL-CAPS, no `==wrapping==`, no letter-codes (`A:`, `B:`) on nodes.
+- **Unicode box-drawing only** (`┌─┐│└┘├┬┴╔═╗║╚╝`) — never ASCII `+---+` boxes.
+- Node text is `Name (Year)`, plain text, no wikilinks (wikilinks live in the reference table below, not the diagram).
+- **Double border (`╔═╗`) + a single leading `*`** marks a landmark/foundational node — the one paper in that phase a newcomer should recognize. Single border (`┌─┐`) for everything else. Use sparingly: not every phase needs one, and not every paper in a phase gets one.
+- Cross-phase edges (an arrow pointing to a node that lives in a *different* phase block below) get a bracket hint after the target name: `───────► Target (Year)   [Phase Name, below]`.
+- Exactly **one legend line** at the end of the block: `Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.` — do not restate per-node colors, hex codes, or "originally highlighted in mermaid as..." backstory; the legend explains the diagram's own symbols only.
+- Update the graph when a new paper represents a significant evolution milestone — but only when it's genuinely phase-defining (the narrative's own next chapter), not merely the newest paper by date. A diagram whose newest node is a year or two behind the file's body content is normal (the diagram is a curated historical narrative, not an exhaustive feed) as long as no undiagrammed body section represents an actual missed phase of that file's own story.
 
 ### Evolution Reference Table
 
-After the mermaid graph, add a **trend paragraph** (1-2 sentences explaining the evolutionary phases), then a **3-column reference table**:
+After the evolution graph diagram, add a **trend paragraph** (1-2 sentences explaining the evolutionary phases), then a **3-column reference table**:
 
 ```
 The field evolved through N phases: **phase name** (years), **phase name** (years), ...
@@ -74,7 +93,7 @@ The field evolved through N phases: **phase name** (years), **phase name** (year
 | 2024 | [[2410.24164\|π0]] | Flow matching action expert + VLM for dexterous manipulation |
 ```
 
-- **Year**: extracted from the mermaid node label `<i>Year</i>`
+- **Year**: extracted from the diagram node label `Name (Year)`
 - **Paper**: wikilink with escaped pipe (`\|`) inside table cells
 - **Contribution**: one sentence explaining what this paper introduced or proved
 - Rows sorted chronologically (oldest first — this is the one place ascending order is used, because the table tells a story of progression)
@@ -88,5 +107,6 @@ The field evolved through N phases: **phase name** (years), **phase name** (year
 - No `[!star]` without explanation — always include em-dash + 1-sentence justification
 - No papers sorted randomly — always sort by arxiv ID descending within each sub-topic
 - General/ files should be standalone — do not cross-reference deep-dive folders
-- No wikilinks inside mermaid graph nodes — use plain text in nodes, put wikilinks in the reference table below
+- No wikilinks inside evolution-graph diagram nodes — use plain text in nodes, put wikilinks in the reference table below
+- No mermaid — evolution graphs are plain-text Unicode box diagrams (see Evolution Graph Diagrams above), not `mermaid` code blocks
 

@@ -257,7 +257,7 @@ aliases:
 > {2-3 sentences explaining scope and evolution}
 
 ## Evolution Graph
-{mermaid graph}
+{ASCII/Unicode box diagram in a ```text fence — see references/topic-file-formatting.md}
 
 {1-2 sentence evolutionary trend paragraph}
 
@@ -295,7 +295,7 @@ aliases:
 *Next: [[Next_Topic]] for X.*
 ```
 
-> When creating or restructuring a General/ topic file, read `references/topic-file-formatting.md` for paper-ordering rules, callout types, wikilink format, sub-topic group conventions, mermaid evolution graphs, and the "what NOT to do" list.
+> When creating or restructuring a General/ topic file, read `references/topic-file-formatting.md` for paper-ordering rules, callout types, wikilink format, sub-topic group conventions, ASCII evolution graphs, and the "what NOT to do" list.
 
 ## Notes
 

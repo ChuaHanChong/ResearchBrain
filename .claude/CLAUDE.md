@@ -39,7 +39,7 @@ General/ (topic overview, landscape, key papers)
 | Folder | Purpose |
 |--------|---------|
 | `_KnowledgeHub_/` | Individual paper notes (`{arxiv_ID}.md`) with structured summaries |
-| `General/` | Topic overview files grouping papers by theme with sub-topics, callouts, mermaid graphs |
+| `General/` | Topic overview files grouping papers by theme with sub-topics, callouts, ASCII/Unicode evolution-graph diagrams |
 | `Embodied-AI/` | 14 deep dives (`02`–`15`, mechanism-organized in five blocks). **Substrate:** `02` datasets/benchmarks/sim, `03` imitation-learning & RL. **Model families:** `04` VLA, `05` VLA reasoning/CoT, `06` WAM, `07` JEPA/latent world models, `08` physics-aware. **Physical capabilities:** `09` manipulation skill-learning, `10` contact-rich & tactile, `11` whole-body & locomotion, `12` navigation & mobile-manipulation. **Scaling data:** `13` egocentric pretraining. **Deployment lifecycle:** `14` sim-to-real, `15` self-evolving. (`01` is the 101 intro.) |
 | `_Projects_/` | Active project `00_ResearchProposal/`; retired projects (`01_FirstPublication*`, `02_BenchmarkPipeline-WAM`) live in `__archive__/`. `Research-Directions/` holds the synthesis docs: `Embodied-AI.md` umbrella + `Focus-Direction.md`, plus `Mechanism/` & `Capability/` axes (3 docs each) with `__ELI5__/` + `__TLDR__/` Chinese derived versions |
 | `data/papers/` | Local PDF files for papers (downloaded on demand with version suffix, e.g., `2602.15922v2.pdf`) |
