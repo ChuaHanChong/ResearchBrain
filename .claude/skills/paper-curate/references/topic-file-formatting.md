@@ -46,39 +46,39 @@ Rules:
 
 ### Evolution Graph Diagrams
 
-Plain-text ASCII/Unicode box diagrams in a fenced `text` block — **not mermaid**. All 12 `General/` files were converted off mermaid (which Obsidian renders inconsistently and which invited hex-color/legend clutter); this is the current and only canonical format.
+Plain-text Unicode box diagrams in a fenced `text` block — not mermaid (all 12 `General/` files were converted off it).
 
 ````
 ```text
 Phase Name
 
-╔══════════════╗
+╔══════════════════╗
 ║ *Landmark (2022) ║───────► Follow-on (2023)
-╚══════════════╝
-       │
-       ▼
-┌─────────────┐
+╚═════════╤════════╝
+          │
+          ▼
+┌──────────────┐
 │ Other (2023) │───────► Cross-Phase Target (2024)   [Other Phase, below]
-└─────────────┘
+└──────────────┘
 
 
 Other Phase
 
-┌─────────────────┐
+┌───────────────────────────┐
 │ Cross-Phase Target (2024) │
-└─────────────────┘
+└───────────────────────────┘
 
 Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 ````
 
-- Each phase is a **plain Title-Case header** (e.g. `Contrastive Alignment`, `WAMs`) — no brackets, no ALL-CAPS, no `==wrapping==`, no letter-codes (`A:`, `B:`) on nodes.
-- **Unicode box-drawing only** (`┌─┐│└┘├┬┴╔═╗║╚╝`) — never ASCII `+---+` boxes.
-- Node text is `Name (Year)`, plain text, no wikilinks (wikilinks live in the reference table below, not the diagram).
-- **Double border (`╔═╗`) + a single leading `*`** marks a landmark/foundational node — the one paper in that phase a newcomer should recognize. Single border (`┌─┐`) for everything else. Use sparingly: not every phase needs one, and not every paper in a phase gets one.
-- Cross-phase edges (an arrow pointing to a node that lives in a *different* phase block below) get a bracket hint after the target name: `───────► Target (Year)   [Phase Name, below]`.
-- Exactly **one legend line** at the end of the block: `Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.` — do not restate per-node colors, hex codes, or "originally highlighted in mermaid as..." backstory; the legend explains the diagram's own symbols only.
-- Update the graph when a new paper represents a significant evolution milestone — but only when it's genuinely phase-defining (the narrative's own next chapter), not merely the newest paper by date. A diagram whose newest node is a year or two behind the file's body content is normal (the diagram is a curated historical narrative, not an exhaustive feed) as long as no undiagrammed body section represents an actual missed phase of that file's own story.
+- Plain Title-Case phase headers (`Contrastive Alignment`, `WAMs`) — no brackets, ALL-CAPS, `==wrapping==`, or letter-codes on nodes.
+- Unicode box-drawing only (`┌─┐│└┘├┬┴╔═╗║╚╝`) — never ASCII `+---+`.
+- Node text is `Name (Year)`, plain text — no wikilinks (those live in the reference table below).
+- Double border + leading `*` marks the one landmark/foundational node per phase, sparingly — not every phase or paper needs one.
+- Cross-phase arrow gets a bracket hint: `───────► Target (Year)   [Phase Name, below]`.
+- One legend line only: `Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.` No colors, hex codes, or mermaid backstory.
+- Add a node only when it's genuinely phase-defining, not just the newest by date. A diagram trailing the body by a year or so is normal curation lag, not a defect — only fix it if an undiagrammed body section is an actual missed phase.
 
 ### Evolution Reference Table
 
