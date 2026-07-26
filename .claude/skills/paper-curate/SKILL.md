@@ -49,21 +49,21 @@ $PY $HELPER neighbors 2604.28192   # any unassigned arxiv ID
 | Tags | Topic File |
 |------|-----------|
 | `pre-training`, `vision-transformer`, `self-supervised-learning`, `contrastive-learning`, `scaling`, `knowledge-distillation` | `01_Foundation-Models.md` |
-| `VLM`, `visual-grounding`, `in-context-learning` | `02_Vision-Language-Models.md` |
-| `reasoning`, `spatial-reasoning`, `chain-of-thought`, `planning` | `03_Reasoning-and-Planning.md` |
-| `reinforcement-learning`, `RLHF`, `reward-model`, `self-play`, `curriculum-learning` | `04_Reinforcement-Learning.md` |
-| `object-detection`, `segmentation`, `3D-understanding`, `domain-adaptation` | `05_Computer-Vision-and-3D.md` |
-| `video-understanding`, `egocentric` | `06_Video-and-Temporal.md` |
-| `robotics`, `VLA`, `world-model`, `manipulation`, `embodied-AI`, `navigation`, `imitation-learning`, `autonomous-driving`, `humanoid`, `dexterous`, `tactile`, `sim-to-real`, `egocentric` | `07_Robotics-and-Embodied-AI.md` |
-| `survey`, `benchmark`, `dataset` | `08_Benchmarks-and-Surveys.md` |
-| `LLM`, `hallucination` | `09_Multimodal-LLMs.md` |
+| `VLM`, `visual-grounding`, `in-context-learning` | `05_Vision-Language-Models.md` |
+| `reasoning`, `spatial-reasoning`, `chain-of-thought`, `planning` | `07_Reasoning-and-Planning.md` |
+| `reinforcement-learning`, `RLHF`, `reward-model`, `self-play`, `curriculum-learning` | `08_Reinforcement-Learning.md` |
+| `object-detection`, `segmentation`, `3D-understanding`, `domain-adaptation` | `02_Computer-Vision-and-3D.md` |
+| `video-understanding`, `egocentric` | `04_Video-and-Temporal.md` |
+| `robotics`, `VLA`, `world-model`, `manipulation`, `embodied-AI`, `navigation`, `imitation-learning`, `autonomous-driving`, `humanoid`, `dexterous`, `tactile`, `sim-to-real`, `egocentric` | `11_Robotics-and-Embodied-AI.md` |
+| `survey`, `benchmark`, `dataset` | `12_Benchmarks-and-Surveys.md` |
+| `LLM`, `hallucination` | `06_Multimodal-LLMs.md` |
 | `agentic-AI`, `tool-use`, `code-generation` | `10_Agents-and-Tool-Use.md` |
-| `continual-learning`, `meta-learning` | `11_Self-Evolving-AI.md` |
-| `diffusion`, `image-generation`, `flow-matching`, `generative-model`, `physics-aware` | `12_Diffusion-and-Generation.md` |
+| `continual-learning`, `meta-learning` | `09_Self-Evolving-AI.md` |
+| `diffusion`, `image-generation`, `flow-matching`, `generative-model`, `physics-aware` | `03_Diffusion-and-Generation.md` |
 
 Edge cases:
 - **Tag absent from the table** — pick the closest topic by reading the KH note's content. Add a row here if the same un-mapped tag recurs across 3+ papers.
-- **Survey or benchmark in a specific domain** — assign to `08_Benchmarks-and-Surveys.md` AND the domain topic.
+- **Survey or benchmark in a specific domain** — assign to `12_Benchmarks-and-Surveys.md` AND the domain topic.
 - **`tags: []` empty** — re-extract via `Skill(skill="alphaxiv-summary-extract")` before treating as un-mapped.
 
 To detect drift between this table and the canonical vocabulary, run:
@@ -152,7 +152,7 @@ Each callout type follows the same template: **graph supplies candidates → age
 ```bash
 PY=$(head -1 "$(command -v graphify)" | sed 's|^#!||')
 HELPER=.claude/skills/paper-curate/scripts/graph_query.py
-TOPIC=General/04_Reinforcement-Learning.md   # any General/<X>.md
+TOPIC=General/08_Reinforcement-Learning.md   # any General/<X>.md
 ```
 
 #### `[!star]` — top central papers in this topic
@@ -300,7 +300,7 @@ aliases:
 ## Notes
 
 - A paper can appear in multiple topic files if it spans multiple areas
-- Surveys and benchmarks go in `08_Benchmarks-and-Surveys.md` AND the relevant domain file
+- Surveys and benchmarks go in `12_Benchmarks-and-Surveys.md` AND the relevant domain file
 - When >15 papers in a sub-topic, consider splitting into 2 sub-topics
 - Keep the Index file's paper count updated after changes
 - When adding papers, always check if they deserve `[!star]` status — a great paper buried in a list without recognition is a missed opportunity

@@ -30,7 +30,7 @@ Persistent failures (chromedriver stack traces surviving auto-retry) are papers 
 
 ## 4. Curate
 
-Invoke `Skill(skill="paper-curate")` (Mode A). For each newly-enriched note, the agent places its `[[ID|Alias]]` wikilink into the matching sub-topic of the right `General/` topic file (descending-arxiv-ID sort). Surveys and benchmarks also go into `08_Benchmarks-and-Surveys.md`.
+Invoke `Skill(skill="paper-curate")` (Mode A). For each newly-enriched note, the agent places its `[[ID|Alias]]` wikilink into the matching sub-topic of the right `General/` topic file (descending-arxiv-ID sort). Surveys and benchmarks also go into `12_Benchmarks-and-Surveys.md`.
 
 Refresh the paper count in `General/00_Index.md`.
 
