@@ -19,63 +19,62 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Implicit Physics (3D Gaussians)"
-        A["PhysGaussian<br/><i>2023</i>"]
-        B["VR-GS<br/><i>2024</i>"]
-        C["Physics3D<br/><i>2024</i>"]
-        D["GausSim<br/><i>2024</i>"]
-        E["OmniPhysGS<br/><i>2025</i>"]
-    end
+```
+[Implicit Physics (3D Gaussians), 2023-2025]
++---------------------+     +--------------+     +------------------+
+| PhysGaussian (2023) | --> | VR-GS (2024) | --> | Physics3D (2024) |
++---------------------+     +--------------+     +------------------+
+                                                           v
+                                                  +----------------+     +-------------------+
+                                                  | GausSim (2024) | --> | OmniPhysGS (2025) |
+                                                  +----------------+     +-------------------+
 
-    subgraph "Explicit Physics Losses (Video)"
-        F["PIRF<br/><i>2025</i>"]
-        G["PISA<br/><i>2025</i>"]
-        H["NewtonGen<br/><i>2025</i>"]
-        I["PhysCtrl<br/><i>2025</i>"]
-        J["PhysMaster<br/><i>2025</i>"]
-        K["NewtonRewards<br/><i>2025</i>"]
-        L["PhysAlign<br/><i>2026</i>"]
-        M["PhysVid<br/><i>2026</i>"]
-    end
+[Explicit Physics Losses (Video), 2025-2026]
++-------------+      +-------------+
+| PIRF (2025) |      | PISA (2025) |
++-------------+      +-------------+
+       |                    |
+       +---------+----------+
+                 v
+       +------------------+
+       | NewtonGen (2025) |
+       +------------------+
+                 |-----+
+                 |     v
+                 |  (feeds into Physics Reasoning lane: Cosmos-Reason1)
+         +-------+-------------------------------------------+-------------+
+         v                                                   v             |
++-----------------+     +-------------------+    +----------------------+  |
+| PhysCtrl (2025) | --> | PhysMaster (2025) |    | NewtonRewards (2025) |  |
++-----------------+     +-------------------+    +----------------------+  |
+                                                                           v
+                                                                 +------------------+     +----------------+
+                                                                 | PhysAlign (2026) | --> | PhysVid (2026) |
+                                                                 +------------------+     +----------------+
 
-    subgraph "External Simulators (Sim-Coupled)"
-        N["PhysTwin<br/><i>2025</i>"]
-        O["PhysWorld<br/><i>2025</i>"]
-    end
+[External Simulators (Sim-Coupled), 2025]
++-----------------+     +------------------+
+| PhysTwin (2025) | --> | PhysWorld (2025) |
++-----------------+     +------------------+
 
-    subgraph "Physics Reasoning"
-        P["Cosmos-Reason1<br/><i>2025</i>"]
-    end
+[Physics Reasoning, 2025]
+            ^
+          (fed by NewtonGen)
++-----------------------+
+| Cosmos-Reason1 (2025) |
++-----------------------+
 
-    subgraph "Physics Benchmarks"
-        Q["PhyGenBench<br/><i>2024</i>"]
-        R["VideoPhy-2<br/><i>2025</i>"]
-        S["Physics-IQ<br/><i>2025</i>"]
-        T["Morpheus<br/><i>2025</i>"]
-    end
+[Physics Benchmarks, 2024-2025]
++--------------------+     +-------------------+
+| PhyGenBench (2024) | --> | VideoPhy-2 (2025) |
++--------------------+     +-------------------+
+                                     |
+          +--------------------------+--------+
+          v                                   v
 
-    A --> B --> C --> D --> E
-    F --> H --> I --> J
-    G --> H
-    H --> K
-    H --> L
-    L --> M
-    N --> O
-    Q --> R
-    R --> S
-    R --> T
-    H --> P
-
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style E fill:#e8f4fd,stroke:#4a90d9
-    style H fill:#fde8f4,stroke:#d94a90
-    style J fill:#fde8f4,stroke:#d94a90
-    style M fill:#fde8f4,stroke:#d94a90
-    style O fill:#e8fde8,stroke:#27ae60
-    style P fill:#f0e8fd,stroke:#9b59b6
-    style T fill:#fef3e8,stroke:#e67e22
++-------------------+                +-----------------+
+| Physics-IQ (2025) |                | Morpheus (2025) |
++-------------------+                +-----------------+
 ```
 
 The field evolved through four parallel tracks. **3D-Gaussian-based implicit physics** (2023→2025) embeds material properties directly into renderable 3D Gaussians, unifying simulation and rendering. **Explicit physics losses** for video generation (2025→2026) backpropagate physics-residual rewards or Newton's laws through diffusion models. **External-simulator coupling** (2025→2026) hands generated state to a real physics solver — [[2503.17973|PhysTwin]] reconstructs deformable digital twins from video; [[2511.07416|PhysWorld]] trains the policy against a learned physics simulator. **Physics commonsense reasoning** (2025) lifts physical priors from pixel/state-level losses into language-level reasoning ([[2503.15558|Cosmos-Reason1]]).

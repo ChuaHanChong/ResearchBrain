@@ -18,57 +18,44 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Model-Based RL (2019-2026)"
-        A["Dreamer<br/><i>2019</i>"]
-        B["DreamerV3<br/><i>2023</i>"]
-        C["Dreamer 4<br/><i>2026</i>"]
-    end
+```
+[Model-Based RL, 2019-2026]
++----------------+     +------------------+     +------------------+
+| Dreamer (2019) | --> | DreamerV3 (2023) | --> | Dreamer 4 (2026) |
++----------------+     +------------------+     +------------------+
 
-    subgraph "Video Generation (2023-2026)"
-        D["UniPi<br/><i>2023</i>"]
-        E["UniSim<br/><i>2023</i>"]
-        F["Cosmos Policy<br/><i>2025</i>"]
-        G["DreamZero<br/><i>2026</i>"]
-    end
+[Video Generation, 2023-2026]
++---------------+
+| UniPi (2023)  | --+
++---------------+   |
+                    |     +----------------------+     +------------------+
+                    +---> | Cosmos Policy (2025) | --> | DreamZero (2026) |
+                    |     +----------------------+     +------------------+
++---------------+   |
+| UniSim (2023) | --+
++---------------+
+                                      |                          |
+                                      v                          v
+                            (feeds into Physics-Aware lane: NewtonGen)
+                                                       (feeds into VLM-Integrated lane: Fast-WAM)
 
-    subgraph "Latent Prediction (2023-2026)"
-        H["I-JEPA<br/><i>2023</i>"]
-        I["V-JEPA 2<br/><i>2025</i>"]
-        J["VLA-JEPA<br/><i>2026</i>"]
-    end
+[Latent Prediction, 2023-2026]
++---------------+     +-----------------+     +-----------------+
+| I-JEPA (2023) | --> | V-JEPA 2 (2025) | --> | VLA-JEPA (2026) |
++---------------+     +-----------------+     +-----------------+
+                                                       |
+                                                       v
+                                             (feeds into VLM-Integrated lane: VLAW)
 
-    subgraph "VLM-Integrated (2025-2026)"
-        K["VLAW<br/><i>2026</i>"]
-        L["Fast-WAM<br/><i>2026</i>"]
-    end
+[VLM-Integrated, 2025-2026]
++-------------+     +-----------------+
+| VLAW (2026) |     | Fast-WAM (2026) |
++-------------+     +-----------------+
 
-    subgraph "Physics-Aware (2025-2026)"
-        N["NewtonGen<br/><i>2025</i>"]
-        O["PhysCtrl<br/><i>2025</i>"]
-        P["PhysWorld<br/><i>2025</i>"]
-    end
-
-    A --> B --> C
-    D --> F --> G
-    E --> F
-    H --> I --> J
-    J --> K
-    G --> L
-    F --> N
-    N --> O
-    O --> P
-
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style B fill:#e8f4fd,stroke:#4a90d9
-    style G fill:#f0e8fd,stroke:#9b59b6
-    style J fill:#f0e8fd,stroke:#9b59b6
-    style K fill:#e8fde8,stroke:#27ae60
-    style L fill:#e8fde8,stroke:#27ae60
-    style N fill:#fde8f4,stroke:#d94a90
-    style O fill:#fde8f4,stroke:#d94a90
-    style P fill:#fde8f4,stroke:#d94a90
+[Physics-Aware, 2025-2026]
++------------------+     +-----------------+     +------------------+
+| NewtonGen (2025) | --> | PhysCtrl (2025) | --> | PhysWorld (2025) |
++------------------+     +-----------------+     +------------------+
 ```
 
 The field evolved through four threads: **model-based RL** (2019-2026) where [[1912.01603|Dreamer]] established latent imagination for planning; **video generation** (2023-2026) where diffusion models learned physics from internet video; **latent prediction** (2023-2026) where JEPA showed you can predict in representation space without reconstructing pixels; and **VLM integration** (2025-2026) where world models merged with VLAs for robust, efficient policies.

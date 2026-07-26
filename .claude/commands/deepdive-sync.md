@@ -444,7 +444,7 @@ aliases:
 
 1. `# <Topic> — Deep Dive` — H1 matches frontmatter `title`
 2. `> [!abstract] Overview` callout — 2–4 sentence top-level summary: what the deep-dive covers, the canonical papers, the key tension, what the reader gets
-3. `## Evolution Graph` — `mermaid` diagram with year-range subgraphs + 1–2 paragraph narrative + 3-col timeline table (`Year | Paper | Contribution`)
+3. `## Evolution Graph` — plain ASCII diagram (fenced ` ``` ` block, no `mermaid` tag) with year-range lanes + 1–2 paragraph narrative + 3-col timeline table (`Year | Paper | Contribution`)
 4. `## Part A — <Conceptual / Foundational chunk>`, `## Part B — <Methods / Architecture chunk>`, `## Part C — <Capabilities / Comparison / Open Problems chunk>` — each opens with italicized 1-line framing, then contains the per-section `### N.` blocks (next H3 below)
 5. `## Quick-Reference Matrix` — 2-col `| Question | Answer |` table; the file's "fast scan" entry point
 6. `## Cross-References` — wikilinks to sibling deep-dives with 1-line relevance note + 1-line trailing italicized "See [[X]] for Y" sentence
@@ -566,6 +566,6 @@ A deep-dive that triggers *any* of A–H or Seq is not yet at canonical state �
 | **Cross-vault links (L6 callouts)** | Section-anchored: `[[NN_File#N. Section Title]]` or `[[NN_File#N.N Sub-section Title]]`. Whole-file `[[NN_File]]` only for genuine whole-doc references. |
 | **Required callouts** | `[!star]` (L5) and `[!tip]` (L6) appear **exactly once** per `### N.` section (also `[Section] — Decision Matrix` for L4). Phase 6 audit's per-section LAYER DRIFT check enforces this. L5-title flexibility is specified in the L5 spec. |
 | **Optional callouts** | `[!abstract]` (Overview), `[!success]`, `[!warning]`, `[!example]`, `[!info]`, `[!question]` (in-section supplements; placed wherever they aid the reader) |
-| **Mermaid in Evolution Graph** | `graph TD` or `graph LR`; year-range subgraphs; `style A fill:#hex,stroke:#hex` for thread colouring |
+| **ASCII diagram in Evolution Graph** | Plain ` ``` ` fence, no `mermaid` tag, keyboard characters only (`- \| + > < / \`, no Unicode box-drawing, no color); year-range lanes as labeled rows; cross-lane edges as vertical drops with an inline target label; never two dash-only separator lines back to back |
 | **Dates in prose** | Avoid — frontmatter carries no `created` / `modified` either; Obsidian tracks mtime |
 | **File 01 (`Embodied-AI-101`)** | Out of scope for `/deepdive-sync` — intentional 101-narrative format; do not retrofit |

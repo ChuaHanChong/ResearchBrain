@@ -19,46 +19,46 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Foundations"
-        A["STaR<br/><i>2022</i>"]
-        B["Dreamer<br/><i>2019</i>"]
-    end
+```
+[Foundations, 2019-2022]
++------------------+    +---------------+
+|  Dreamer (2019)  |    |  STaR (2022)  |
++------------------+    +---------------+
+          |                     |
+          v  (feeds into Self-Evolving WAMs lane: EvoAgent)
+                                v  (feeds into Self-Evolving Agents lane: EVOLVER)
 
-    subgraph "Self-Evolving WAMs"
-        C["EvoAgent<br/><i>2025</i>"]
-        D["SPIRAL<br/><i>2026</i>"]
-        E["PlayWorld<br/><i>2026</i>"]
-        F["VAMPO<br/><i>2026</i>"]
-    end
+[Self-Evolving WAMs, 2025-2026]
++-------------------+     +-----------------+     +----------------+
+|  EvoAgent (2025)  | --> |  SPIRAL (2026)  | --> |  VAMPO (2026)  |
++-------------------+     +-----------------+     +----------------+
+          |
+          v
++--------------------+
+|  PlayWorld (2026)  |
++--------------------+
 
-    subgraph "Self-Evolving VLAs"
-        G["EvoVLA<br/><i>2025</i>"]
-        H["VLA CL<br/><i>2026</i>"]
-        I["EVOLVE-VLA<br/><i>2025</i>"]
-    end
+[Self-Evolving VLAs, 2025-2026]
++-----------------+     +---------------------+
+|  EvoVLA (2025)  |     |  EVOLVE-VLA (2025)  |
++-----------------+     +---------------------+
+         |                         |
+         +------------+------------+
+                      |
+                      v
+             +-----------------+
+             |  VLA-CL (2026)  |
+             +-----------------+
 
-    subgraph "Self-Evolving Agents"
-        J["EVOLVER<br/><i>2025</i>"]
-        K["ECHO<br/><i>2026</i>"]
-        L["SE-Agent<br/><i>2025</i>"]
-    end
-
-    B --> C
-    C --> D
-    C --> E
-    D --> F
-    A --> J
-    J --> K
-    G --> H
-    I --> H
-    J --> L
-
-    style D fill:#f0e8fd,stroke:#9b59b6
-    style F fill:#f0e8fd,stroke:#9b59b6
-    style H fill:#e8fde8,stroke:#27ae60
-    style K fill:#e8fde8,stroke:#27ae60
+[Self-Evolving Agents, 2025-2026]
++------------------+     +---------------+
+|  EVOLVER (2025)  | --> |  ECHO (2026)  |
++------------------+     +---------------+
+          |
+          v
++-------------------+
+|  SE-Agent (2025)  |
++-------------------+
 ```
 
 > [!info] Graph Legend
@@ -143,7 +143,7 @@ Start from a pretrained world action model; evolve via imagination loops (synthe
 > - [[2510.16079|EVOLVER]] — Canonical *agent path*: experience-distillation lifecycle; behavior evolves without weight updates — the cheapest entry to self-evolution.
 
 > [!tip] Pick Your Substrate Before Your Mechanism
-> The starting point dictates the failure mode. *Agent path*: cheap but external memory dominates inference cost; *VLA path*: weights internalize improvement but RL signal is noisy without ground-truth reward; *WAM path*: imagination compounds gains but ==hallucinated dynamics== can corrupt the policy (see §8). Three substrates, three risk profiles — and the 2026 frontier is hybrid: WAM-pretrained backbone + VLA-style RL post-training + agent-style experience memory. Cross-reference [[06_WAM#1. The Design Space]] for the WAM design space the dynamics path inherits, [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA path's continual-learning recipes, and [[11_Self-Evolving-AI#4. Self-Evolving Agents]] for the broader self-evolving landscape beyond embodied AI.
+> The starting point dictates the failure mode. *Agent path*: cheap but external memory dominates inference cost; *VLA path*: weights internalize improvement but RL signal is noisy without ground-truth reward; *WAM path*: imagination compounds gains but ==hallucinated dynamics== can corrupt the policy (see §8). Three substrates, three risk profiles — and the 2026 frontier is hybrid: WAM-pretrained backbone + VLA-style RL post-training + agent-style experience memory. Cross-reference [[06_WAM#1. The Design Space]] for the WAM design space the dynamics path inherits, [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA path's continual-learning recipes, and [[09_Self-Evolving-AI#4. Self-Evolving Agents]] for the broader self-evolving landscape beyond embodied AI.
 
 ---
 
@@ -202,7 +202,7 @@ A world model that maps $(S_t, A_t) \to (S_{t+1}, R_{t+1})$ — explicit dynamic
 > - [[2502.05907|EvoAgent]] — Defines the WAM-side blueprint: DreamerV3 + self-planning/control/reflection; **+105%** long-horizon improvement validates Option 2.
 
 > [!tip] Three Substrates, Three Failure Modes
-> The substrate decision dictates the failure mode you inherit. Agent-side: sample-inefficient — real-world trials dominate the cost curve unless you have verifiable rewards ([[2506.21669|SEEA-R1]]). VLA-side: RL signal is noisy and the backbone can degrade if SFT is unconservative ([[2605.08879|ConSFT]] mitigates). WAM-side: dream hallucination corrupts policy unless filtered ([[2603.08403|SPIRAL]]'s CriticAgent, [[2603.23376|ABot-PhysWorld]]'s Diffusion-DPO). Cross-reference [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA self-evolution recipes in depth, [[06_WAM#7. Self-Evolving WAMs]] for the WAM self-evolution paradigms, and [[11_Self-Evolving-AI#5. Self-Evolving Embodied AI]] for the broader landscape beyond embodied AI.
+> The substrate decision dictates the failure mode you inherit. Agent-side: sample-inefficient — real-world trials dominate the cost curve unless you have verifiable rewards ([[2506.21669|SEEA-R1]]). VLA-side: RL signal is noisy and the backbone can degrade if SFT is unconservative ([[2605.08879|ConSFT]] mitigates). WAM-side: dream hallucination corrupts policy unless filtered ([[2603.08403|SPIRAL]]'s CriticAgent, [[2603.23376|ABot-PhysWorld]]'s Diffusion-DPO). Cross-reference [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA self-evolution recipes in depth, [[06_WAM#7. Self-Evolving WAMs]] for the WAM self-evolution paradigms, and [[09_Self-Evolving-AI#5. Self-Evolving Embodied AI]] for the broader landscape beyond embodied AI.
 
 ---
 
@@ -362,17 +362,18 @@ After detection, generate recovery plans and learn from failures so they don't r
 > [!tip] Detection Before Correction
 > Self-evolution requires self-awareness. An agent that can't detect failure can't improve from it. The detection mechanism determines what the agent can learn: [[2510.09459|FIPER]] detects WHEN tasks fail, [[2412.02818|RoboMD]] discovers WHERE policies are weak, and [[2503.01584|SENSEI]] finds WHAT the world model doesn't know. Together they form a complete diagnostic stack — temporal detection, spatial localization, and epistemic coverage — that feeds the self-improvement loops in Sections 5-7. Cross-reference [[04_VLA#13. Safety, Robustness & Adversarial VLAs]] for the VLA-specific runtime-verification methods (internal-embedding probes, sequential calibration, WM-based failure classifiers) that instantiate this same detect-diagnose-recover stack at the policy level.
 
-```mermaid
-graph LR
-    A["Detect<br/>FIPER, SAFE"] --> B["Diagnose<br/>RoboMD, SOE"]
-    B --> C["Recover<br/>CycleVLA, FPC-VLA"]
-    C --> D["Learn<br/>LoRA fine-tune"]
-    D --> E["Verify<br/>Benchmark eval"]
-    E -->|"still failing"| A
-
-    style A fill:#fde8e8,stroke:#e74c3c
-    style C fill:#e8f4fd,stroke:#4a90d9
-    style E fill:#e8fde8,stroke:#27ae60
+```
++------------------------+     +--------------------------+     +-------------------------------+
+|  Detect (FIPER, SAFE)  | --> |  Diagnose (RoboMD, SOE)  | --> |  Recover (CycleVLA, FPC-VLA)  |
++------------------------+     +--------------------------+     +-------------------------------+
+                                                                                |
+                                                                                v
++--------------------------+     +---------------------------+
+|  Learn (LoRA fine-tune)  | --> |  Verify (Benchmark eval)  |
++--------------------------+     +---------------------------+
+                                               |
+                                               v
+                                               (loops back up to Detect if "still failing")
 ```
 
 ---
@@ -587,7 +588,7 @@ Evolve the *training process itself* — tree-search RL, curriculum-guided explo
 > - [[2604.18131|Native-Evolution]] — Recent paradigm shift: spontaneous ==reward-free== self-evolution via world-knowledge exploration; **+19% abs** SR on WebWalker.
 
 > [!tip] From Weight Updates to Behavior Evolution
-> Self-improving models optimize weights; self-evolving agents optimize *behavior*. The key difference is persistent experience: [[2510.16079|EVOLVER]] and [[2601.06794|ECHO]] show that distilling interaction history into reusable principles is what turns a self-improving model into a self-evolving agent. [[2603.18743|Memento-Skills]] and [[2603.05218|KARL]] extend this with external skill/knowledge storage; [[2604.18292|Agent-World]] proves the substrate scales with environment count, not just model size; [[2604.18131|Native-Evolution]] removes the reward-signal requirement entirely. The 2026 arc: from "RL self-improvement" to "world-knowledge-driven evolution" — and the bridge is *memory*, not gradient. Cross-reference [[11_Self-Evolving-AI#4. Self-Evolving Agents]] for the broader self-evolving landscape beyond embodied agents, [[06_WAM#7. Self-Evolving WAMs]] for WAM-driven self-evolution, and [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA continual-learning counterpart.
+> Self-improving models optimize weights; self-evolving agents optimize *behavior*. The key difference is persistent experience: [[2510.16079|EVOLVER]] and [[2601.06794|ECHO]] show that distilling interaction history into reusable principles is what turns a self-improving model into a self-evolving agent. [[2603.18743|Memento-Skills]] and [[2603.05218|KARL]] extend this with external skill/knowledge storage; [[2604.18292|Agent-World]] proves the substrate scales with environment count, not just model size; [[2604.18131|Native-Evolution]] removes the reward-signal requirement entirely. The 2026 arc: from "RL self-improvement" to "world-knowledge-driven evolution" — and the bridge is *memory*, not gradient. Cross-reference [[09_Self-Evolving-AI#4. Self-Evolving Agents]] for the broader self-evolving landscape beyond embodied agents, [[06_WAM#7. Self-Evolving WAMs]] for WAM-driven self-evolution, and [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA continual-learning counterpart.
 
 ---
 
@@ -645,7 +646,7 @@ The world model the agent trains on predicts physically impossible futures; the 
 > - [[2603.23376|ABot-PhysWorld]] — Canonical dream-quality filter: ==Diffusion-DPO== on physics-preference pairs suppresses implausible WM predictions; the physics-aware safeguard.
 
 > [!tip] The Safety Imperative — Two Distinct Layers
-> Self-evolving systems need built-in safety checks at *two* layers: the *reward layer* (detect value drift via [[2509.26354|Misevolution]]; mitigate via [[2506.07468|SELF-REDTEAM]] adversarial self-play) and the *imagination layer* (filter hallucinated dynamics via [[2603.23376|ABot-PhysWorld]] DPO, [[2603.08403|SPIRAL]]'s CriticAgent, or [[2502.05907|EvoAgent]]'s self-reflection). Skipping either layer means a self-evolving system that *appears* to improve until deployment exposes the drift. Cross-reference [[08_Physics-Aware-Embodied-AI#6. Physics Commonsense Benchmarks]] for physics-aware methods that target imagination quality at the source, [[06_WAM#9. Open Problems & Failure Modes]] for the WAM-specific failure modes, and [[11_Self-Evolving-AI#5. Self-Evolving Embodied AI]] for the broader safety-evolution literature beyond embodied AI.
+> Self-evolving systems need built-in safety checks at *two* layers: the *reward layer* (detect value drift via [[2509.26354|Misevolution]]; mitigate via [[2506.07468|SELF-REDTEAM]] adversarial self-play) and the *imagination layer* (filter hallucinated dynamics via [[2603.23376|ABot-PhysWorld]] DPO, [[2603.08403|SPIRAL]]'s CriticAgent, or [[2502.05907|EvoAgent]]'s self-reflection). Skipping either layer means a self-evolving system that *appears* to improve until deployment exposes the drift. Cross-reference [[08_Physics-Aware-Embodied-AI#6. Physics Commonsense Benchmarks]] for physics-aware methods that target imagination quality at the source, [[06_WAM#9. Open Problems & Failure Modes]] for the WAM-specific failure modes, and [[09_Self-Evolving-AI#5. Self-Evolving Embodied AI]] for the broader safety-evolution literature beyond embodied AI.
 
 ---
 

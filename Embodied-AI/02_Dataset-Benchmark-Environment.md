@@ -29,24 +29,51 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph LR
-  subgraph Datasets
-    SS[Something-Something<br/>2017] --> E4[Ego4D<br/>2022] --> RH[RH20T<br/>2023] --> OXE[OXE<br/>2023]
-    OXE --> DR[DROID<br/>2024] --> AGI[AgiBot World<br/>2025] --> RM2[RoboMIND 2.0<br/>2026]
-  end
-  subgraph Sim
-    RL[RLBench<br/>2019] --> SP[SAPIEN<br/>2020] --> RC[RoboCasa<br/>2024] --> RT2[RoboTwin 2.0<br/>2025] --> GEN[Genesis / Newton<br/>2025]
-  end
-  subgraph Benchmarks
-    L1[LIBERO<br/>2023] --> LPL[LIBERO-Plus<br/>2025]
-    L1 --> LPA[LIBERO-Para<br/>2026]
-    L1 --> LPR[LIBERO-PRO<br/>2025]
-    L1 --> LX[LIBERO-X<br/>2026]
-    L1 --> GM[GM-100<br/>2026] --> EMB[EmbRACE-3K<br/>2025]
-  end
-  RM2 -.feeds.-> RT2
-  RT2 -.evaluates.-> LPL
+```
+[Datasets, 2017-2026]
++----------------------------+     +--------------+     +--------------+     +------------+
+| Something-Something (2017) | --> | Ego4D (2022) | --> | RH20T (2023) | --> | OXE (2023) |
++----------------------------+     +--------------+     +--------------+     +------------+
+                                                                                    |
+                                                                                    v
+                                                                    (chain continues below --> DROID)
++--------------+     +---------------------+     +---------------------+
+| DROID (2024) | --> | AgiBot World (2025) | --> | RoboMIND 2.0 (2026) |
++--------------+     +---------------------+     +---------------------+
+                                                            |
+                                                            v
+                                           (feeds into Sim lane: RoboTwin 2.0)
+
+[Sim, 2019-2025]
++----------------+     +---------------+     +-----------------+
+| RLBench (2019) | --> | SAPIEN (2020) | --> | RoboCasa (2024) |
++----------------+     +---------------+     +-----------------+
+                                                      |
+                                                      v
+                                  (chain continues below --> RoboTwin 2.0)
++---------------------+     +-------------------------+
+| RoboTwin 2.0 (2025) | --> | Genesis / Newton (2025) |
++---------------------+     +-------------------------+
+           |
+           v
+(evaluates into Benchmarks lane: LIBERO-Plus)
+
+[Benchmarks, 2023-2026]
+                                            +---------------+
+                                            | LIBERO (2023) |
+                                            +---------------+
+                                                    |
+           +----------------------+-----------------+---+--------------------+------------------+
+           |                      |                     |                    |                  |
+           v                      v                     v                    v                  v
++--------------------+ +--------------------+ +-------------------+ +-----------------+ +---------------+
+| LIBERO-Plus (2025) | | LIBERO-Para (2026) | | LIBERO-PRO (2025) | | LIBERO-X (2026) | | GM-100 (2026) |
++--------------------+ +--------------------+ +-------------------+ +-----------------+ +---------------+
+                                                                                                |
+                                                                                                v
+                                                                                      +-------------------+
+                                                                                      | EmbRACE-3K (2025) |
+                                                                                      +-------------------+
 ```
 
 The three axes co-evolved. Datasets grew from gesture clips through household ego-video to million-trajectory robot corpora. Simulators grew from 100-task rigid-body sandboxes through articulated-object physics to GPU-parallel + photorealistic + soft-body. Benchmarks grew from in-distribution success rates through diagnostic perturbation suites and finally to interaction-fidelity world-model evaluation. The same paper now often releases data + sim + benchmark *together* ([[2506.18088|RoboTwin-2.0]], [[2406.02523|RoboCasa]], [[2503.06669|AgiBot-World]]) — the trio is no longer separable.
@@ -190,7 +217,7 @@ The data collection systems themselves. [[2402.10329|UMI]] introduced the "in-th
 - **[[2411.02214|DexHub-and-DART]]** — An internet-scale robot-data-collection system: ==DART== AR teleoperation (Apple Vision Pro + gRPC) of cloud MuJoCo sims + the ==DexHub== open cloud data repository; **2.1×** faster collection (**7.8** vs **3.6** parts/min), and augmented sim data gives zero-shot Sim2Real **60%** under background changes (vs **10%** real) / **70%** under unseen distractions.
 - **[[1911.04052|RoboTurk]]** — A scalable human-supervision platform extending crowdsourced ==remote teleoperation== to physical arms with a mutual-exclusion access system + input low-pass filtering + proximate servers; **111+ hours** / **2,144** demos across 3 tasks from **54** users in one week — the foundational data-collection platform.
 
-#### 2.5 Grasp-Pose Datasets & Benchmarks
+#### 2.5 Grasp-Pose Datasets
 
 Large-scale grasp-annotation corpora and graspability benchmarks — the data substrate for learning grasp synthesis at scale, distinct from trajectory datasets.
 
@@ -686,6 +713,7 @@ Humanoid whole-body manipulation and bimanual coordination form their own evalua
 
 Whole-body locomotion + manipulation evaluation on bipedal humanoid platforms — tests bilateral coordination *under* whole-body balance constraints that arm-only benchmarks ignore.
 
+- **[[2403.10506|HumanoidBench]]** — The foundational ==MuJoCo-based== simulated environment on Unitree H1 + Shadow Hands across **27** tasks (**12** locomotion / **15** manipulation), ==151D proprioception== + ==448-taxel tactile==, **61-DoF** action space; SOTA RL struggles broadly, hierarchical RL with pretrained reaching improves push/package — the canonical pre-2026 whole-body benchmark.
 - **[[2607.06052|ThorArena]]** — A humanoid physical-interaction benchmark pairing human motion-force demonstrations with a ==force-replay protocol== + ==Force-Aware Tracking Score (FATS)==; Thor2 hits **81.71** FATS / **1.000** survival vs rivals' **0.73–0.81** survival under contact-rich forces.
 - **[[2506.12851|KungfuBot]]** — A ==physics-based motion-processing pipeline== (raw video → physically feasible robot reference) + ==adaptive tracking factor== + ==asymmetric actor-critic + reference state init==; **53.25 mm** mean per-body position error on easy motions (vs **>233 mm** OmniH2O/ExBody2), zero-shot martial arts + dance on Unitree G1.
 - **[[2604.07993|HEX]]** — A hierarchical VLA + ==RL whole-body controller== with ==Unified Proprioceptive Predictor + morphology MoE== + ==review-and-forecast== visual cache; **79.8%** avg SR on 7 real-robot tasks (vs **70.2%** GR00T N1.5, **57.1%** ACT), **61.8%** on unseen scenes (vs **44.3%** π0.5), pretrained on **12M+** humanoid frames.
@@ -694,6 +722,10 @@ Whole-body locomotion + manipulation evaluation on bipedal humanoid platforms �
 - **[[2510.25725|HumanoidVTA]]** — The first humanoid ==visual-tactile-action dataset== with **2,124-sensor** Inspire Hands (proprioception + egocentric vision + dense tactile) for *soft-object* manipulation across **4** tasks (towel, sponge under strong/weak pressure); ==ACT== baseline shows dense tactile separates conditions under t-SNE where sparse collapse — the dense-vs-sparse axis.
 - **[[2503.05652|BRS]]** (BEHAVIOR Robot Suite) — An integrated whole-body household manipulation suite around the ==Galaxea R1== wheeled dual-arm + ==4-DoF torso==; ==JoyLo== Joy-Con teleop + ==WB-VIMA== autoregressive whole-body decoding; **88%** avg sub-task / **58%** entire-task across **5** household tasks at near-zero safety-violation; **13×**–**21×** over DP3/RGB-DP.
 - **[[2502.12152|HUMANUP]]** — The first learned humanoid fall-recovery policy via ==two-stage RL curriculum== (Discovery Policy in simplified sim → Deployable Policy with full URDF + **20,000** initial postures); Unitree G1 recovers from supine at **78.3%** SR / rolls over at **98.3%** across **6 terrains** in **~6s** (vs **11s** manufacturer); canonical whole-body fall-recovery reference.
+- **[[2604.17335|G1-WBC-Gen+Track]]** — A whole-body humanoid locomotion system via ==diffusion motion generation + RL motion tracking==; Unitree G1 climbs **75cm** boxes, traverses stairs, vaults hurdles, with Tracker+Gen achieving **0.962** SR on 80cm box vs **0.230** for Tracker-Only — the current reference for online terrain-aware whole-body locomotion.
+- **[[2512.01061|Sim-to-Real-Door]]** — A DoorMan ==teacher-student-bootstrap== recipe in NVIDIA Isaac Lab with PPO teacher + ==staged-reset exploration== + DAgger student + ==GRPO== partial-observability fine-tune; **83%** SR on diverse real doors (matches **80%** human teleoperator), **23.8%** faster than human experts.
+- **[[2606.08278|SIMPLE]]** — A unified humanoid loco-manipulation testbed decoupling ==MuJoCo physics== from ==Isaac Sim photorealistic rendering==, spanning **60** tasks / **50** scenes / **1,000+** objects; benchmarks **9** VLA/WAM policies (π0, π0.5, GR00T-N1.6, DreamZero…) with strong sim-real ranking correlation and zero-shot sim-to-real transfer (Pick & Place **0.90** sim / **0.80** real).
+- **[[2606.31037|Labimus]]** — The first humanoid dexterous-manipulation benchmark for precision-critical chemical-lab tasks, with ==particle-level powder physics== + closed-loop balance readout + an LLM-driven ==SOP-to-simulation pipeline== + ==three-tier precision evaluation==; exposes a "precision gap" — ACT's **5.3%** task completion drops to **3.3%** precision pass rate on Grasp & Place.
 
 #### 8.2 Bimanual Benchmarks
 
@@ -717,6 +749,9 @@ Two-arm coordination evaluation — tests *timing*, *handover*, and *contact-ric
 
 | Need | Benchmark |
 |---|---|
+| Canonical / foundational whole-body sim benchmark | [[2403.10506\|HumanoidBench]] (**27** tasks, H1 + Shadow Hands) |
+| General-purpose humanoid loco-manipulation sim benchmark | [[2606.08278\|SIMPLE]] (**60** tasks, **9** VLA/WAM policies) |
+| Precision-critical dexterous lab manipulation | [[2606.31037\|Labimus]] (exposes the "precision gap") |
 | Terrain-aware humanoid locomotion | [[2604.17335\|G1-WBC-Gen+Track]] (**0.962** SR on 80cm box) |
 | Highly-dynamic humanoid skills (jump / kick / parkour) | [[2506.12851\|KungfuBot]] |
 | Humanoid-centered cross-embodiment eval | [[2604.07993\|HEX]] |
@@ -730,6 +765,8 @@ Two-arm coordination evaluation — tests *timing*, *handover*, and *contact-ric
 | Low-cost bimanual baseline | [[2304.13705\|ALOHA]] |
 
 > [!star] Key Papers
+> - [[2403.10506|HumanoidBench]] — The foundational simulated humanoid whole-body benchmark (H1 + Shadow Hands, 27 tasks); the pre-2026 reference point everything after builds on
+> - [[2606.08278|SIMPLE]] — Unified MuJoCo+Isaac-Sim testbed benchmarking 9 mainstream VLA/WAM policies with validated sim-real correlation; the most comprehensive current general-purpose humanoid loco-manip benchmark
 > - [[2604.17335|G1-WBC-Gen+Track]] — Online terrain-aware diffusion-motion-gen + RL-motion-track on Unitree G1; the dominant 2026 whole-body locomotion recipe (75cm box / vault / stairs)
 > - [[2603.15469|RoCo-Challenge]] — AAAI 2026 industrial-assembly challenge; first benchmark to formally quantify the "Sim-to-Real Cliff" for collaborative manipulation
 > - [[2506.12851|KungfuBot]] — Dynamic-skill humanoid benchmark; the only published reference for kungfu-class moves on a humanoid
@@ -903,35 +940,53 @@ The same parent benchmark re-released along distinct *language-conditioned long-
 
 Evaluating whether learned world models generate physically plausible, action-consistent, long-horizon predictions.
 
+#### 11.1 Physics Plausibility & Causal Reasoning
+
+Passive, largely non-interactive benchmarks judging whether generated/predicted video obeys physical law and supports causal inference — the founding lineage that action-conditioned WAM evals build on.
+
+- **[[2605.08567|ACWM-Phys]]** — An ==action-conditioned video-WM physics benchmark== of **8** envs (rigid/deformable/particle/kinematic) with InD vs OoD physical-shift protocols + the ACWM-DiT baseline; strong in-distribution (Push Rope **M-MSE 2.61** / **SSIM 0.988**) but large OoD drops (Robot Arm **ΔM-MSE +40.35**, Cloth Move **+29.99**), with model scale improving OoD robustness most.
+- **[[2603.19607|Physion-Eval]]** — A ==human-reasoning== benchmark for physical realism in generated video: **2,400+** real + **12,718** generated clips, with **90** STEM experts giving temporally-grounded diagnoses across **22** glitch types (exo + ego); experts flag glitches in **83.3%** exo / **93.5%** ego clips, the best MLLM critic only **19.1%** / **9.8%**.
+- **[[2512.01989|PAI-Bench]]** — A ==three-track Physical-AI benchmark== (generation / conditional-generation / understanding) probing physics plausibility via ==MLLM-as-Judge== Domain Scores; VGMs match source video on Quality but lag badly on physical plausibility, and all MLLMs trail the **93.2%** human baseline — separates visual fidelity from physical understanding.
+- **[[1910.01442|CLEVRER]]** — A synthetic collision-video benchmark of **20,000** clips with descriptive/explanatory/predictive/counterfactual questions over a ==Bullet physics engine==; the ==Neuro-Symbolic Dynamic Reasoning== model hits **42.2%** counterfactual accuracy vs baselines' near-chance **13.7%** — the founding causal-reasoning video benchmark predating action-conditioned WAM evals.
+- **[[2106.08261|Physion]]** — The foundational physical-prediction-from-vision benchmark generated in ==ThreeDWorld== across **8** scenarios (Dominoes/Support/Collide…) via the binary ==Object Contact Prediction== task; humans hit **0.71** avg while all vision models underperform, isolating ==extracting physical representations from pixels== — not simulation — as the bottleneck.
+- **[[1803.07616|IntPhys]]** — A ==violation-of-expectation== physics benchmark using ==pixels-matched quadruplets== to test object permanence / shape constancy / spatio-temporal continuity; self-supervised baselines hit chance (**0.50** error) under occlusion vs **18–28%** human error — predates action-conditioned WAM evals as the founding plausibility-judgment benchmark.
+- **[[2601.15282|RBench]]** — A robot-oriented video-generation benchmark scoring ==physical realism + task correctness== across 5 domains, paired with ==RoVid-X== — a **4M**-annotated-clip robotic video dataset; automated MLLM metrics hit **0.96** Spearman with human preference, and RoVid-X fine-tuning lifts open generators across all 5 domains / 4 embodiments.
+
+#### 11.2 Interactive & Action-Following Fidelity
+
+Does the model follow given actions, and stay chronologically/spatially consistent over a long interactive rollout?
+
 - **[[2607.02642|WMBench]]** — **2,989** real/world-model trajectory pairs across **eight** tasks + **324,000** segments, scored via ==WMES== + a ==4-step closed-loop protocol==; **GigaWorld-1** (diffusion-transformer, ==spatially-aligned control injection==) reaches **0.6834** vs Cosmos-Predict2.5's **0.6123**, Wan 2.2's **0.5948** — first design study of a reliable WAM evaluator.
 - **[[2605.25874|WBench]]** — A ==multi-turn interactive video-WM benchmark== (**289** cases / **1,058** turns) scoring five roles (Renderer/Director/Controller/Memory/Engine) via **22** sub-metrics; native-control models beat text-driven by ~**10** points on navigation, perspective-switching collapses to **30.7**, and navigation drops **33** points by Turn 4+ — exposing spatial-frame drift.
-- **[[2605.21800|stable-worldmodel]]** — An open-source ==reproducible WM platform== (PyTorch + Gymnasium + Lance data layer) with controllable Factors-of-Variation for OOD robustness studies; reproduces LeWM **94%** / DINO-WM **92%** Push-T in-distribution but planning decays sharply under mild visual perturbation, and prediction-error magnitude correlates *weakly* with planning success.
-- **[[2605.08567|ACWM-Phys]]** — An ==action-conditioned video-WM physics benchmark== of **8** envs (rigid/deformable/particle/kinematic) with InD vs OoD physical-shift protocols + the ACWM-DiT baseline; strong in-distribution (Push Rope **M-MSE 2.61** / **SSIM 0.988**) but large OoD drops (Robot Arm **ΔM-MSE +40.35**, Cloth Move **+29.99**), with model scale improving OoD robustness most.
 - **[[2605.03941|iWorld-Bench]]** — An ==interactive world-model== benchmark (12 datasets + 100K clips, unified semantic annotation); evaluates memory + trajectory-following for interactive WMs (HY-World 1.5 **0.787**).
 - **[[2604.21686|WorldMark]]** — A unified benchmark for *interactive* I2V world models whose ==unified action-mapping layer== maps WASD-style vocabulary to each model's native control; **500** cases, **8** metrics in **3** dimensions; Spearman **ρ > 0.9** with human judgments; visual quality and world consistency are *uncorrelated* ([[2402.15391|Genie]] 3 leads consistency, YUME 1.5 quality).
-- **[[2603.19607|Physion-Eval]]** — A ==human-reasoning== benchmark for physical realism in generated video: **2,400+** real + **12,718** generated clips, with **90** STEM experts giving temporally-grounded diagnoses across **22** glitch types (exo + ego); experts flag glitches in **83.3%** exo / **93.5%** ego clips, the best MLLM critic only **19.1%** / **9.8%**.
-- **[[2604.22152|dWorldEval]]** — A ==discrete-diffusion WM for policy evaluation== treating actions as primary tokens + ==sparse keyframe memory== + a ==discrete progress token== for automatic success detection; Pearson **~0.9–0.92** with real success across LIBERO/RoboTwin/real and LPIPS **0.243** at a 20-step round-trip horizon, ranking diverse policies without hardware.
 - **[[2603.25887|WR-Arena]]** — A ==World Reasoning Arena== scoring WMs on Action-Simulation Fidelity / Long-horizon Forecast / Simulative-Reasoning-&-Planning via ==LLM action-proposers + VLM judges==; MiniMax leads fidelity (**72.33%** agent / **51.67%** env), a PAN+VLM planner adds **+26.33%** open-ended / **+23.40%** structured, no model exceeds **65%** long-horizon consistency.
 - **[[2603.22212|Omni-WorldBench]]** — The first ==interaction-centric== WM evaluation with ==Omni-WorldSuite== (1,068 prompts × 3 levels) + ==Omni-Metrics== agent-based protocol (long-horizon consistency / causal faithfulness / event chronology); Wan2.2 + Cosmos lead at **75.92%** / **75.42%** AgenticScore; WonderWorld trades **84.96%** long-horizon for **24.89%** non-target stability.
-- **[[2512.01989|PAI-Bench]]** — A ==three-track Physical-AI benchmark== (generation / conditional-generation / understanding) probing physics plausibility via ==MLLM-as-Judge== Domain Scores; VGMs match source video on Quality but lag badly on physical plausibility, and all MLLMs trail the **93.2%** human baseline — separates visual fidelity from physical understanding.
-- **[[2506.00613|WorldGym]]** — An ==action-conditioned latent DiT== trained on robot data + ==VLM (GPT-4o) reward computation== eliminating hand-coded rewards; Pearson **r = 0.78** with real-world success on 17 Bridge tasks, mean SR differs by only **3.3%**; preserves relative rankings across RT-1-X / Octo / OpenVLA.
 - **[[2603.23497|WildWorld]]** — A game-scale WM benchmark of **108M** frames from *Monster Hunter: Wilds* with **119** annotation columns / **29** monster species / **450+** actions + ==Action Following + State Alignment metrics==; AF metric **85%** human-judgment agreement; SkelCtrl reaches **92.81%** AF + **22.03%** SA.
+- **[[2505.09694|EWMBench]]** — The first embodied-WM generation benchmark on ==AgiBot-World== scoring ==Visual Scene Consistency (DINOv2)== + ==Motion Correctness (YOLO-World HSD/NDTW/DYN)== + ==Semantic Alignment==; domain-adapted models beat general video generators, motion correctness the hardest axis — separates "good embodied WM" from "good video model".
+
+#### 11.3 WM-as-Policy-Evaluator
+
+Does the world model predict *policy success*, not just visual plausibility — the "train/evaluate inside the WM" framing.
+
+- **[[2604.22152|dWorldEval]]** — A ==discrete-diffusion WM for policy evaluation== treating actions as primary tokens + ==sparse keyframe memory== + a ==discrete progress token== for automatic success detection; Pearson **~0.9–0.92** with real success across LIBERO/RoboTwin/real and LPIPS **0.243** at a 20-step round-trip horizon, ranking diverse policies without hardware.
+- **[[2506.00613|WorldGym]]** — An ==action-conditioned latent DiT== trained on robot data + ==VLM (GPT-4o) reward computation== eliminating hand-coded rewards; Pearson **r = 0.78** with real-world success on 17 Bridge tasks, mean SR differs by only **3.3%**; preserves relative rankings across RT-1-X / Octo / OpenVLA.
 - **[[2510.10125|CTRL-WORLD]]** — A ==Stable-Video-Diffusion== world model adapted with ==multi-view joint prediction== + ==pose-conditioned memory retrieval== + ==frame-level action conditioning==; in-imagination fine-tuning lifts π0.5 from **38.7% → 83.4%** (**+44.7pp**) on novel-object + novel-instruction tasks.
 - **[[2510.19430|GigaBrain-0]]** — A ==Mixture-of-Transformers== VLA with RGBD + ==Action Diffusion Transformer== + ==Embodied CoT== supervision + ==GigaWorld synthetic data engine== (Real2Real/Sim2Real/View/Human transfers); **+30%** laundry-folding SR, **>80%** novel-viewpoint, **>90%** unseen-placement; GigaBrain-0-Small hits **80%** at **12.5%** parameters / **9×** lower latency.
 - **[[2603.22078|WAM-vs-VLA-Robustness]]** — A comparison of VLAs, WAMs, and hybrids over a ==21-sub-dimension / 7-category== perturbation taxonomy on ==LIBERO-Plus== + ==RoboTwin 2.0-Plus==; WAMs more visually robust (LingBot-VA **74.2%** bimanual, Cosmos-Policy **82.2%** LIBERO-Plus) but data-rich π0.5 matches (**85.7%**) at **4.8×** faster — diffusion is the latency cost.
+- **[[2603.09030|PlayWorld]]** — An ==autonomous robot self-play data collection== framework via VLM ==Task Proposer + VLA Task Executer== + ==curriculum learning== on Stable-Video-Diffusion; Pearson **0.8766** with real-world policy success, up to **+65%** real-world SR via in-model fine-tuning, broader contact-rich coverage than human demos.
+- **[[2505.19017|WorldEval]]** — A ==WM-as-evaluator== framework generating policy-execution video via ==Policy2Vec latent-action injection== + ==LLM (Gemini-2.0) success detection==; **0.79** Pearson with real-world SR, beats real-to-sim on MMRV + correlation, and flags unsafe policies pre-deployment — video generation as a safer-than-hardware policy test bed.
+- **[[2410.18072|WorldSimBench]]** — A 4-stage ==predictive-model hierarchy== (S0–S3, S3 = "World Simulator") + dual ==Explicit Perceptual== and ==Implicit Manipulative== (closed-loop task SR) evaluation; its ==HF-Embodied== dataset trains a Human Preference Evaluator beating GPT-4o alignment — current video models largely fail to capture physical rules for *actionable* generation.
+- **[[2605.21800|stable-worldmodel]]** — An open-source ==reproducible WM platform== (PyTorch + Gymnasium + Lance data layer) with controllable Factors-of-Variation for OOD robustness studies; reproduces LeWM **94%** / DINO-WM **92%** Push-T in-distribution but planning decays sharply under mild visual perturbation, and prediction-error magnitude correlates *weakly* with planning success.
+
+#### 11.4 Reasoning & Representation Probes
+
+Isolates *what* the model implicitly learned — rule-induction, latent-action quality, or control-relevant representation — from raw video-quality metrics.
+
 - **[[2602.05986|RISE-Video]]** — A benchmark of **467 human-annotated samples** across 8 reasoning categories + ==4-dim eval== (Reasoning Alignment / Temporal Consistency / Physical Rationality / Visual Quality) + ==LMM (GPT-5) auto-judging==; best TI2V Hailuo 2.3 only **22.5%** across 11 models, exposing logical-reasoning collapse despite visual fidelity.
 - **[[2601.19834|VisWorld-Eval]]** — A benchmark suite of **7** atomic-capability tasks isolating ==visual world modeling== (reconstruction vs simulation) for Unified Multimodal Models, testing the ==visual-superiority hypothesis==; visual generation cuts training data **4×** and exceeds **50%** structural correctness (Cube 3-View) where verbal modeling is near-zero, but no gain on Maze / Sokoban.
 - **[[2604.11689|LARY]]** — A ==Latent Action Representation== quantitative benchmark with **1.2M+** videos + **595K** trajectories from an ==automated data engine==; V-JEPA 2 + DINOv3 (no action supervision) hit **76.62%** / **68.68%** semantic accuracy vs Embodied LAMs at **17.99–20.90%**, proving general visual backbones beat specialized embodied LAMs.
-- **[[2603.09030|PlayWorld]]** — An ==autonomous robot self-play data collection== framework via VLM ==Task Proposer + VLA Task Executer== + ==curriculum learning== on Stable-Video-Diffusion; Pearson **0.8766** with real-world policy success, up to **+65%** real-world SR via in-model fine-tuning, broader contact-rich coverage than human demos.
-- **[[2601.15282|RBench]]** — A robot-oriented video-generation benchmark scoring ==physical realism + task correctness== across 5 domains, paired with ==RoVid-X== — a **4M**-annotated-clip robotic video dataset; automated MLLM metrics hit **0.96** Spearman with human preference, and RoVid-X fine-tuning lifts open generators across all 5 domains / 4 embodiments.
-- **[[2601.07823|Video-Generation-in-Robotics-Survey]]** — A review positioning ==diffusion / flow-matching video models== as embodied world models across **4** application areas (IL data-gen, RL dynamics/rewards, policy evaluation, visual planning) + **10** challenges (hallucination, physics violation, uncertainty, cost); maps the WM-as-evaluator + WM-as-environment literature.
-- **[[2505.19017|WorldEval]]** — A ==WM-as-evaluator== framework generating policy-execution video via ==Policy2Vec latent-action injection== + ==LLM (Gemini-2.0) success detection==; **0.79** Pearson with real-world SR, beats real-to-sim on MMRV + correlation, and flags unsafe policies pre-deployment — video generation as a safer-than-hardware policy test bed.
-- **[[2410.18072|WorldSimBench]]** — A 4-stage ==predictive-model hierarchy== (S0–S3, S3 = "World Simulator") + dual ==Explicit Perceptual== and ==Implicit Manipulative== (closed-loop task SR) evaluation; its ==HF-Embodied== dataset trains a Human Preference Evaluator beating GPT-4o alignment — current video models largely fail to capture physical rules for *actionable* generation.
-- **[[2505.09694|EWMBench]]** — The first embodied-WM generation benchmark on ==AgiBot-World== scoring ==Visual Scene Consistency (DINOv2)== + ==Motion Correctness (YOLO-World HSD/NDTW/DYN)== + ==Semantic Alignment==; domain-adapted models beat general video generators, motion correctness the hardest axis — separates "good embodied WM" from "good video model".
-- **[[1910.01442|CLEVRER]]** — A synthetic collision-video benchmark of **20,000** clips with descriptive/explanatory/predictive/counterfactual questions over a ==Bullet physics engine==; the ==Neuro-Symbolic Dynamic Reasoning== model hits **42.2%** counterfactual accuracy vs baselines' near-chance **13.7%** — the founding causal-reasoning video benchmark predating action-conditioned WAM evals.
-- **[[2106.08261|Physion]]** — The foundational physical-prediction-from-vision benchmark generated in ==ThreeDWorld== across **8** scenarios (Dominoes/Support/Collide…) via the binary ==Object Contact Prediction== task; humans hit **0.71** avg while all vision models underperform, isolating ==extracting physical representations from pixels== — not simulation — as the bottleneck.
 - **[[2304.13723|VP2]]** — A control-centric video-prediction benchmark pairing **Tabletop-robosuite** + **RoboDesk** manipulation environments with a ==MPPI visual-foresight planner==; perceptual metrics (FVD/LPIPS) often anti-correlate with control SR (**35%** vs **65%** on identical pushing tasks) — the founding "video-quality ≠ control success" diagnostic.
-- **[[1803.07616|IntPhys]]** — A ==violation-of-expectation== physics benchmark using ==pixels-matched quadruplets== to test object permanence / shape constancy / spatio-temporal continuity; self-supervised baselines hit chance (**0.50** error) under occlusion vs **18–28%** human error — predates action-conditioned WAM evals as the founding plausibility-judgment benchmark.
 
 World model evaluation has shifted from passive video quality metrics (FVD, SSIM) to *interactive* benchmarks that test whether the model can predict consequences of actions. Two axes drive the new generation: **action-following fidelity** (given an action, does the predicted next frame match the actual outcome?) and **causal consistency** (do counterfactual actions produce counterfactual futures?). The most ambitious framing — **WM-as-environment** — replaces "is the video pretty?" with "does a policy trained inside the WM transfer to real?".
 
@@ -1048,6 +1103,7 @@ The field has matured enough that several recent surveys structure the entire be
 - **[[2107.13411|Egocentric Future Prediction Survey]]** — A systematic review unifying ==Prediction/Anticipation/Expectation/Prospection/Forecasting== terminology from psychology, categorizing **9** future-prediction challenges across **20** egocentric datasets; only short-term action-anticipation is standardized — names the task-standardization gap facing longer-horizon prediction.
 - **[[2507.00917|Embodied-Intelligence-Survey]]** — A modern follow-up survey integrating the world-model wave; proposes a ==5-level IR-L0→IR-L4 grading== for intelligent robots + identifies ==3 core WM functional roles== (neural simulators / dynamic models / reward models).
 - **[[2510.16732|World-Models-for-Embodied-AI-Survey]]** — A canonical WM survey with ==3-axis taxonomy== (Functionality × Temporal Modeling × Spatial Representation) under a POMDP-ELBO formalism; tracks evolution from RSSM latent vectors → Transformer token sequences → 3DGS-based explicit rendering.
+- **[[2601.07823|Video-Generation-in-Robotics-Survey]]** — A review positioning ==diffusion / flow-matching video models== as embodied world models across **4** application areas (IL data-gen, RL dynamics/rewards, policy evaluation, visual planning) + **10** challenges (hallucination, physics violation, uncertainty, cost); maps the WM-as-evaluator + WM-as-environment literature.
 - **[[2503.21765|Physics-Cognition-Survey]]** — A canonical video-generation physics survey with a ==Piaget-inspired 3-tier taxonomy== (Basic Schema Perception / Passive / Active Cognition) + ==4-domain physical-phenomena map== (mechanics / optics / thermal / material); reviews PhyBench + VideoPhy failure modes.
 - **[[2505.05108|Multi-agent-Embodied-AI-Survey]]** — The first systematic review of ==multi-agent embodied AI== across classic control / learning-based / generative-integration; articulates exponential complexity, partial observability, non-stationarity, credit assignment, and the nascent-benchmark gap for coordinated embodied agents.
 - **[[2401.03568|Agent-AI-Survey]]** — A survey defining ==Agent AI== as multimodal-perception + embodied-action systems via a ==Unified Agent Multimodal Transformer== with agent tokens; introduces ==CuisineWorld== (multi-agent gaming) + ==VideoAnalytica== benchmarks; the foundational generalist-agent framing.
@@ -1218,8 +1274,6 @@ The evaluation stack is mature enough to expose first-order failures, but six st
 | Test long-horizon planning | Skill-chaining + subgoal recovery | [[2305.12821\|FurnitureBench]], [[2604.21924\|LoHo-Manip]], [[2605.01772\|Anticipation-VLA]] |
 | Compare humanoid whole-body control | Bilateral + whole-body coordination | [[2506.12851\|KungfuBot]], [[2604.07993\|HEX]], [[2502.20396\|Humanoid-Sim2Real-Dex]] |
 | Read a survey of the whole space | Build a structural mental map | [[2510.16732\|World-Models-for-Embodied-AI-Survey]], [[2507.00917\|Embodied-Intelligence-Survey]], [[2103.04918\|Embodied-AI-Survey-2021]] |
-
----
 
 ---
 

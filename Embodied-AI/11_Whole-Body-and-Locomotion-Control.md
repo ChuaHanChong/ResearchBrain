@@ -20,56 +20,52 @@ aliases:
 
 The whole-body thread mirrors the touch thread's arc one scale up: task-specific gait controllers gave way to unified policies that regulate the locomotion–manipulation coupling, then to reward-free pretraining (motion tracking, unsupervised behavior) playing the role touch-SSL played for tactile, and finally to *manufactured* skill data (retargeting, generative priors) attacking the same data-scarcity bottleneck that throttles force-instrumented manipulation.
 
-```mermaid
-graph TD
-    subgraph "Unified & Hierarchical WBC (2024-2026)"
-        W1["SkillBlender<br/><i>2025</i>"]
-        W2["ULC<br/><i>2026</i>"]
-        W3["HiWET<br/><i>2026</i>"]
-    end
+```
+[Behavioral & Motion-Tracking FMs, 2025]
++--------------------+     +--------------+
+| Meta Motivo (2025) | --> | SONIC (2025) |
++--------------------+     +--------------+
+                                   |
+                                   v
+             (feeds Unified & Hierarchical WBC lane: ULC,
+               and Retargeting & Skill Data lane: GRAIL)
 
-    subgraph "Behavioral & Motion-Tracking FMs (2025)"
-        F1["Meta Motivo<br/><i>2025</i>"]
-        F2["SONIC<br/><i>2025</i>"]
-    end
+[Balance / Load-Aware, 2026]
++---------------------+     +-------------+
+| SplitAdapter (2026) |     | Thor (2026) |
++---------------------+     +-------------+
+           |
+           v
+(feeds Unified & Hierarchical WBC lane: HiWET)
 
-    subgraph "Balance / Load-Aware (2026)"
-        B1["SplitAdapter<br/><i>2026</i>"]
-        B2["Thor<br/><i>2026</i>"]
-    end
+[Retargeting & Skill Data, 2026]
++------------+
+| NMR (2026) |
++------------+
+       |
+       v
+(feeds Unified & Hierarchical WBC lane: HiWET)
 
-    subgraph "Agile Locomotion (2026)"
-        L1["TAGA<br/><i>2026</i>"]
-        L2["SMASH<br/><i>2026</i>"]
-        L3["MotionDisco<br/><i>2026</i>"]
-    end
++--------------+     +-------------------------+
+| GRAIL (2026) | --> | HumanoidMimicGen (2026) |
++--------------+     +-------------------------+
 
-    subgraph "Retargeting & Skill Data (2026)"
-        D1["NMR<br/><i>2026</i>"]
-        D2["GRAIL<br/><i>2026</i>"]
-        D3["HumanoidMimicGen<br/><i>2026</i>"]
-    end
+[Unified & Hierarchical WBC, 2024-2026]
+                            (fed by SONIC)
+                                   v
+                                          (fed by SplitAdapter, NMR)
+                                                       v
++---------------------+     +------------+     +--------------+
+| SkillBlender (2025) | --> | ULC (2026) | --> | HiWET (2026) |
++---------------------+     +------------+     +--------------+
+                                   |
+                                   v
+                  (feeds Agile Locomotion lane: TAGA)
 
-    W1 --> W2 --> W3
-    F1 --> F2
-    F2 --> W2
-    B1 --> W3
-    W2 --> L1
-    L1 --> L2 --> L3
-    D1 --> W3
-    D2 --> D3
-    F2 --> D2
-
-    style W2 fill:#fdf3e8,stroke:#e67e22
-    style W3 fill:#fdf3e8,stroke:#e67e22
-    style F1 fill:#e8f4fd,stroke:#4a90d9
-    style F2 fill:#e8f4fd,stroke:#4a90d9
-    style B1 fill:#fde8f4,stroke:#d94a90
-    style L1 fill:#e8fde8,stroke:#27ae60
-    style L2 fill:#e8fde8,stroke:#27ae60
-    style L3 fill:#e8fde8,stroke:#27ae60
-    style D2 fill:#f0e8fd,stroke:#9b59b6
-    style D3 fill:#f0e8fd,stroke:#9b59b6
+[Agile Locomotion, 2026]
++-------------+     +--------------+     +--------------------+
+| TAGA (2026) | --> | SMASH (2026) | --> | MotionDisco (2026) |
++-------------+     +--------------+     +--------------------+
 ```
 
 Unsupervised behavioral foundation models ([[2504.11054|Meta-Motivo]]) and skill-blending hierarchies ([[2506.09366|SkillBlender]]) established that a *single* policy could absorb many whole-body tasks; unified fine-grained controllers ([[2507.06905|ULC]]) and world-frame end-effector tracking ([[2602.06341|HiWET]]) then sharpened precision under the locomotion–manipulation coupling. By 2026 the thread mirrors the fingertip lesson exactly: massive motion-tracking pretraining ([[2511.07820|SONIC]], **100M** frames) plays the role tactile-SSL played for touch, factorized load-context ([[2606.03297|SplitAdapter]]) plays the role of phase-aware force experts, and generative skill data ([[2606.05160|GRAIL]], [[2605.27724|HumanoidMimicGen]]) attacks the same data-scarcity bottleneck that throttles force-instrumented manipulation.

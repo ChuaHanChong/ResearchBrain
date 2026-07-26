@@ -23,44 +23,49 @@ Embodied AI gives intelligent systems physical presence — robots that manipula
 
 The embodied-AI field evolved through four phases — from single-task imitation foundations, to generalist VLAs, to world-model-augmented systems, to self-evolving agents.
 
-```mermaid
-graph TD
-    subgraph "Foundations (2022-2023)"
-        A["RT-1<br/><i>2022</i>"]
-        B["Diffusion Policy<br/><i>2023</i>"]
-        C["RT-2<br/><i>2023</i>"]
-    end
+```
+[Foundations (2022-2023)]
 
-    subgraph "Generalist VLAs (2024-2025)"
-        D["OpenVLA<br/><i>2024</i>"]
-        E["π0<br/><i>2024</i>"]
-        F["π0.5<br/><i>2025</i>"]
-    end
++-------------+
+| RT-1 (2022) |
++-------------+
+       |
++------+----------------------+
+|                             |
+v                             v
++-------------------------+   +-------------+
+| Diffusion Policy (2023) |   | RT-2 (2023) |
++-------------------------+   +-------------+
 
-    subgraph "World-Model-Augmented (2026)"
-        G["DreamZero<br/><i>2026</i>"]
-        H["VLA-JEPA<br/><i>2026</i>"]
-    end
+                                     |
+                                     v
+(RT-2 feeds into Generalist VLAs lane: OpenVLA)
 
-    subgraph "Self-Evolving (2025-2026)"
-        I["EvoAgent<br/><i>2025</i>"]
-        J["SPIRAL<br/><i>2026</i>"]
-    end
+[Generalist VLAs (2024-2025)]
 
-    A --> B
-    A --> C --> D --> E --> F
-    F --> G
-    F --> H
-    E --> I
-    I --> J
++----------------+     +-----------+     +-------------+
+| OpenVLA (2024) | --> | π0 (2024) | --> | π0.5 (2025) |
++----------------+     +-----------+     +-------------+
 
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style C fill:#e8f4fd,stroke:#4a90d9
-    style E fill:#f0e8fd,stroke:#9b59b6
-    style F fill:#f0e8fd,stroke:#9b59b6
-    style G fill:#e8fde8,stroke:#27ae60
-    style H fill:#e8fde8,stroke:#27ae60
-    style J fill:#fde8f4,stroke:#d94a90
+                             |
+                             v
+(π0 feeds into Self-Evolving lane: EvoAgent)
+
+                                                |
+                                                v
+(π0.5 feeds into World-Model-Augmented lane: DreamZero, VLA-JEPA)
+
+[World-Model-Augmented (2026)]
+
++------------------+   +-----------------+
+| DreamZero (2026) |   | VLA-JEPA (2026) |
++------------------+   +-----------------+
+
+[Self-Evolving (2025-2026)]
+
++-----------------+     +---------------+
+| EvoAgent (2025) | --> | SPIRAL (2026) |
++-----------------+     +---------------+
 ```
 
 The field progressed through: **Foundations** ([[2212.06817|RT-1]], [[2303.04137|Diffusion-Policy]], [[2307.15818|RT-2]]) — proving Transformers and VLMs work for robot control; **Generalist VLAs** ([[2406.09246|OpenVLA]], [[2410.24164|π0]], [[2504.16054|π0.5]]) — open-source weights, flow-matching action heads, cross-embodiment transfer; **World-Model-Augmented** ([[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]]) — adding video/latent prediction for physics grounding; **Self-Evolving** ([[2502.05907|EvoAgent]], [[2506.24119|SPIRAL]]) — agents that improve autonomously through imagination loops and curiosity.
@@ -102,8 +107,6 @@ Because it actually understands the rules of the world (like gravity and momentu
 
 ---
 
----
-
 ### 2. Vision-Language-Action (VLA) Models
 
 VLAs are essentially multimodal large language models fine-tuned for robotic control. Well-known examples include [[2307.15818|RT-2]] and [[2406.09246|OpenVLA]].
@@ -117,8 +120,6 @@ VLAs are essentially multimodal large language models fine-tuned for robotic con
 
 > [!warning] Limitations
 > VLAs are effectively **"blind" to physics**. Because they only output an action, they do not inherently understand its physical consequences. This makes them struggle in novel environments with unseen physical dynamics, and they require thousands of carefully collected, repetitive expert demonstrations to learn a single task.
-
----
 
 ---
 
@@ -136,8 +137,6 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 
 > [!warning] Limitations
 > WAMs are computationally expensive. Generating future video states alongside actions introduces high latency, requiring significant optimizations (decoupled noise schedules, KV-caching) to reach real-time control frequencies.
-
----
 
 ---
 
@@ -223,8 +222,6 @@ Three training recipes for bridging sim-to-real:
 
 > [!success] Ideal VLA Design Spec
 > ==KosMos/[[2407.07726|PaliGemma]] backbone== + ==Policy Head fusion== + ==Continuous actions (Flow Matching)== + ==MoE== + ==Post-training on in-domain data==
-
----
 
 ---
 

@@ -19,50 +19,52 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "JEPA Family"
-        A["I-JEPA<br/><i>2023</i>"]
-        B["V-JEPA 2<br/><i>2025</i>"]
-        C["V-JEPA 2.1<br/><i>2026</i>"]
-        D["VL-JEPA<br/><i>2025</i>"]
-        E["VLA-JEPA<br/><i>2026</i>"]
-        K["JEPA-VLA<br/><i>2026</i>"]
-        L["TD-JEPA<br/><i>2026</i>"]
-        M["Percept-WAM<br/><i>2026</i>"]
-    end
+```
+[JEPA Family, 2023-2026]
 
-    subgraph "Other Latent Models"
-        F["DINO-WM<br/><i>2024</i>"]
-        G["UWM<br/><i>2025</i>"]
-        H["Motus<br/><i>2025</i>"]
-    end
++-----------------+     +-------------------+
+|  I-JEPA (2023)  | --> |  V-JEPA 2 (2025)  |
++-----------------+     +-------------------+
+                                   |
+           +-----------------------+---------------------+
+           v                       v                     v
++---------------------+  +------------------+  +-------------------+
+|  V-JEPA 2.1 (2026)  |  |  VL-JEPA (2025)  |  |  VLA-JEPA (2026)  |
++---------------------+  +------------------+  +-------------------+
+                                                         |
+                                                       +-+-+
+                                                       v   v  (crosses to Latent Reasoning lane: ThinkJEPA)
+                                                       |
+                                                       |
+                                +----------------------+-----------------------+
+                                v                      v                       v
+                      +-------------------+  +------------------+  +----------------------+
+                      |  JEPA-VLA (2026)  |  |  TD-JEPA (2026)  |  |  Percept-WAM (2026)  |
+                      +-------------------+  +------------------+  +----------------------+
 
-    subgraph "Latent Reasoning"
-        I["ThinkJEPA<br/><i>2026</i>"]
-        J["ATP-Latent<br/><i>2026</i>"]
-        N["Abstract-CoT<br/><i>2026</i>"]
-    end
+[Other Latent Models, 2024-2025]
 
-    A --> B
-    B --> C
-    B --> D
-    B --> E
-    E --> K
-    E --> L
-    E --> M
-    E --> I
-    F --> G
-    I --> N
++------------------+     +--------------+
+|  DINO-WM (2024)  | --> |  UWM (2025)  |
++------------------+     +--------------+
 
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style E fill:#e8fde8,stroke:#27ae60
-    style K fill:#e8fde8,stroke:#27ae60
-    style L fill:#e8fde8,stroke:#27ae60
-    style M fill:#e8fde8,stroke:#27ae60
-    style I fill:#f0e8fd,stroke:#9b59b6
-    style J fill:#f0e8fd,stroke:#9b59b6
-    style N fill:#f0e8fd,stroke:#9b59b6
++----------------+
+|  Motus (2025)  |
++----------------+
+   (standalone -- no outgoing/incoming edges)
+
+[Latent Reasoning, 2026]
+
+   ^
+   |  (incoming, from JEPA Family lane: VLA-JEPA)
++--------------------+     +-----------------------+
+|  ThinkJEPA (2026)  | --> |  Abstract-CoT (2026)  |
++--------------------+     +-----------------------+
+
++---------------------+
+|  ATP-Latent (2026)  |
++---------------------+
+   (standalone -- no outgoing/incoming edges)
 ```
 
 The field evolved through three threads: **JEPA** (2023-2026) where [[2301.08243|I-JEPA]] established latent prediction and [[2506.09985|V-JEPA-2]] scaled it to 1M+ hours of video; **alternative latent models** (2024-2025) where [[2411.04983|DINO-WM]] and [[2504.02792|UWM]] showed other self-supervised features work too; and **latent reasoning** (2026) where [[2603.22281|ThinkJEPA]] and [[2601.21598|ATP-Latent]] brought reasoning into latent planning for embodied agents.
@@ -285,20 +287,19 @@ Field-defining surveys that taxonomize the latent-prediction landscape — one a
 
 Beyond the JEPA lineage, a parallel thread builds latent world models on different SSL substrates. The threads converge on the same insight (predict in latent space) via different routes.
 
-```mermaid
-graph LR
-    A["DINOv2<br/><i>Frozen visual SSL</i>"] --> B["DINO-WM<br/><i>2024</i>"]
-    B --> C["UWM<br/><i>2025</i>"]
-    C --> D["Motus<br/><i>2025</i>"]
-    D --> E["LaDi-WM<br/><i>2025</i>"]
-
-    F["AdaWorld<br/><i>2025</i>"] --> C
-    G["DINO-world<br/><i>2025</i>"] --> B
-
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style B fill:#e8f4fd,stroke:#4a90d9
-    style D fill:#f0e8fd,stroke:#9b59b6
-    style E fill:#f0e8fd,stroke:#9b59b6
+```
++------------------------------+     +------------------+     +--------------+
+|  DINOv2 (Frozen visual SSL)  | --> |  DINO-WM (2024)  | --> |  UWM (2025)  |
++------------------------------+     +------------------+     +--------------+
+                                               ^                        ^
+                                               |                        |
+                                    +---------------------+ | +-------------------+
+                                    |  DINO-world (2025)  | | |  AdaWorld (2025)  |
+                                    +---------------------+ | +-------------------+
+                                                            v
+                                                   +----------------+     +------------------+
+                                                   |  Motus (2025)  | --> |  LaDi-WM (2025)  |
+                                                   +----------------+     +------------------+
 ```
 
 The thread walks four convergent steps — each substituting a different missing capability into the same latent-prediction skeleton.

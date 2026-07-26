@@ -20,55 +20,39 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Foundations (2022-2024)"
-        A["CoT (text)<br/><i>2022</i>"]
-        B["RT-2 reasoning<br/><i>2023</i>"]
-        C["EmbodiedVSR<br/><i>2024</i>"]
-    end
+```
+[Foundations, 2022-2024]
++-------------------+     +-----------------------+     +--------------------+
+| CoT (text) (2022) | --> | RT-2 reasoning (2023) | --> | EmbodiedVSR (2024) |
++-------------------+     +-----------------------+     +--------------------+
+                                                                   |
+                                                                   v
+                                                                   (feeds into Visual CoT lane: CoT-VLA)
 
-    subgraph "Visual CoT (2025)"
-        D["CoT-VLA<br/><i>2025</i>"]
-        E["ThinkAct<br/><i>2025</i>"]
-        F["MolmoAct<br/><i>2025</i>"]
-        G["dVLA<br/><i>2025</i>"]
-    end
+[Visual CoT, 2025]
++----------------+     +-----------------+     +-----------------+
+| CoT-VLA (2025) | --> | ThinkAct (2025) |     | MolmoAct (2025) |
++----------------+     +-----------------+     +-----------------+
+         |                      |
+         v                      v
+  +-------------+
+  | dVLA (2025) |
+  +-------------+
+                                (feeds into Latent Reasoning lane: VLA-Reasoner)
 
-    subgraph "Latent Reasoning (2025-2026)"
-        H["Cosmos-Reason1<br/><i>2025</i>"]
-        I["VLA-Reasoner<br/><i>2025</i>"]
-        J["VLAPS<br/><i>2025</i>"]
-        K["Abstract-CoT<br/><i>2026</i>"]
-        L["OneVL<br/><i>2026</i>"]
-        M["LaST-R1<br/><i>2026</i>"]
-    end
+[Latent Reasoning, 2025-2026]
++---------------------+     +--------------+     +----------------+
+| VLA-Reasoner (2025) | --> | VLAPS (2025) | --> | LaST-R1 (2026) |
++---------------------+     +--------------+     +----------------+
 
-    subgraph "RL-Trained Reasoning (2025-2026)"
-        N["REVER<br/><i>2025</i>"]
-        O["VG-CoT<br/><i>2026</i>"]
-        P["ReFineVLA<br/><i>2026</i>"]
-        Q["CIR/SR<br/><i>2026</i>"]
-    end
++---------------------+     +--------------+     +-----------------------+
+| Abstract-CoT (2026) | --> | OneVL (2026) |     | Cosmos-Reason1 (2025) |
++---------------------+     +--------------+     +-----------------------+
 
-    A --> B --> C
-    C --> D --> E
-    D --> G
-    E --> I
-    I --> J
-    J --> M
-    K --> L
-    N --> O
-    O --> P
-    P --> Q
-
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style D fill:#f0e8fd,stroke:#9b59b6
-    style E fill:#f0e8fd,stroke:#9b59b6
-    style L fill:#e8fde8,stroke:#27ae60
-    style K fill:#e8fde8,stroke:#27ae60
-    style M fill:#e8fde8,stroke:#27ae60
-    style Q fill:#fde8f4,stroke:#d94a90
+[RL-Trained Reasoning, 2025-2026]     (independent thread, no cross-lane edges)
++--------------+     +---------------+     +------------------+     +---------------+
+| REVER (2025) | --> | VG-CoT (2026) | --> | ReFineVLA (2026) | --> | CIR/SR (2026) |
++--------------+     +---------------+     +------------------+     +---------------+
 ```
 
 The field evolved through three phases. **Visual CoT** (2025) ported language CoT to visual subgoals — [[2503.22020|CoT-VLA]] predicts future frames as reasoning steps, [[2507.16815|ThinkAct]] and [[2508.07917|MolmoAct]] add visual latent planning. **Latent reasoning** (2025-2026) collapsed the explicit text trace into compact embeddings — [[2604.22709|Abstract-CoT]] eliminates words entirely, [[2604.18486|OneVL]] achieves answer-only latency while beating explicit CoT, [[2604.28192|LaST-R1]] reinforces action via adaptive physical latent reasoning. **RL-trained reasoning** (2025-2026) trains the reasoning trace itself with verifiable rewards — [[2509.25852|REVER]] (embodied planning), [[2604.21396|VG-CoT]] (grounded), [[2604.17800|ReFineVLA]] (teacher-guided), CIR/SR (causally important reasoning).

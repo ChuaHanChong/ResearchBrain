@@ -19,65 +19,85 @@ aliases:
 
 From Transformer-as-policy to flow-matching generalists — each step solved a specific bottleneck.
 
-```mermaid
-graph TD
-    subgraph "Foundations (2022-2023)"
-        A["RT-1<br/><i>2022</i>"]
-        B["RT-2<br/><i>2023</i>"]
-        C["OXE / RT-X<br/><i>2023</i>"]
-    end
+```
+[Foundations, 2022-2023]
 
-    subgraph "Scaling (2024)"
-        D["OpenVLA<br/><i>2024</i>"]
-        E["Octo<br/><i>2024</i>"]
-        F["GR-2<br/><i>2024</i>"]
-        G["π0<br/><i>2024</i>"]
-    end
++-------------+     +-------------+     +-----------------+
+| RT-1 (2022) | --> | RT-2 (2023) | --> | OXE/RT-X (2023) |
++-------------+     +-------------+     +-----------------+
 
-    subgraph "Generalists (2025-2026)"
-        H["π0.5<br/><i>2025</i>"]
-        I["Gemini Robotics<br/><i>2025</i>"]
-        J["DreamZero<br/><i>2026</i>"]
-        M["π0.7<br/><i>2026</i>"]
-        N["Cosmos-Reason1<br/><i>2025</i>"]
-    end
+                           |
+                           v
+        (feeds into Scaling lane: GR-2 (2024))
 
-    subgraph "Efficient (2025)"
-        K["SmolVLA<br/><i>2025</i>"]
-        L["FAST<br/><i>2025</i>"]
-    end
+                                                 |
+                                                 v
+                      (feeds into Scaling lane: OpenVLA (2024), Octo (2024))
 
-    subgraph "Egocentric (2025-2026)"
-        O["Being-H0<br/><i>2025</i>"]
-        P["EgoScale<br/><i>2026</i>"]
-        Q["π0.5+ego<br/><i>2026</i>"]
-    end
 
-    A --> B --> C --> D
-    C --> E
-    B --> F
-    G --> H
-    D --> G
-    E --> G
-    H --> I
-    H --> J
-    H --> M
-    D --> K
-    D --> L
-    O --> P
-    P --> Q
-    Q --> M
+[Scaling, 2024]
 
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style B fill:#e8f4fd,stroke:#4a90d9
-    style G fill:#f0e8fd,stroke:#9b59b6
-    style H fill:#e8fde8,stroke:#27ae60
-    style J fill:#e8fde8,stroke:#27ae60
-    style I fill:#e8fde8,stroke:#27ae60
-    style M fill:#e8fde8,stroke:#27ae60
-    style N fill:#e8fde8,stroke:#27ae60
-    style P fill:#fde8f4,stroke:#d94a90
-    style Q fill:#fde8f4,stroke:#d94a90
++-------------+
+| GR-2 (2024) |   (dead end; reached from Foundations lane: RT-2 (2023))
++-------------+
+
++----------------+     +-------------+
+| OpenVLA (2024) |     | Octo (2024) |
++----------------+     +-------------+
+         |                    |
+         +---------+----------+
+                   |
+                   v
+             +-----------+
+             | π0 (2024) |
+             +-----------+
+                   |
+                   v
+(feeds into Generalists lane: π0.5 (2025))
+
+         |   <- second edge from OpenVLA (2024) above
+         v
+(feeds into Efficient lane: SmolVLA (2025), FAST (2025))
+
+
+[Generalists, 2025-2026]
+
++-------------+
+| π0.5 (2025) |
++-------------+
+
+       |
+       +-----+------------------------+------------------+
+             |                        |                  |
+             v                        v                  v
++------------------------+  +------------------+  +-------------+
+| Gemini Robotics (2025) |  | DreamZero (2026) |  | π0.7 (2026) |
++------------------------+  +------------------+  +-------------+
+
+(π0.7 (2026) also receives an edge from Egocentric lane: π0.5+ego (2026) -- see below)
+
++-----------------------+
+| Cosmos-Reason1 (2025) |   (standalone -- no edges in or out)
++-----------------------+
+
+
+[Efficient, 2025]
+
++----------------+     +-------------+
+| SmolVLA (2025) |     | FAST (2025) |
++----------------+     +-------------+
+(both dead ends; both reached from Scaling lane: OpenVLA (2024))
+
+
+[Egocentric, 2025-2026]
+
++-----------------+     +-----------------+     +-----------------+
+| Being-H0 (2025) | --> | EgoScale (2026) | --> | π0.5+ego (2026) |
++-----------------+     +-----------------+     +-----------------+
+
+                                                         |
+                                                         v
+                                    (feeds into Generalists lane: π0.7 (2026))
 ```
 
 The field evolved through three phases: **proving the paradigm** (2022-2023), **scaling and opening** (2024), and **specialization** (2025-2026) — splitting into generalist, efficient, world-model-augmented, and egocentric-pretrained branches.
@@ -1455,7 +1475,7 @@ The field has matured enough to need maps — systematic reviews of the VLA land
 > - [[2510.07077|VLA-Robotics-Real-World-Review]] — The full-stack history that situates each architectural era against the bottleneck it solved
 
 > [!tip] Read the Map Before the Territory
-> These surveys converge on the same arc this deep-dive traces: proof-of-concept → democratization → specialization, with the open frontier now in robustness, evaluation, cross-embodiment, and whole-body coordination. The [[2511.05936|10-VLA-Challenges]] list maps almost one-to-one onto this file's Part C clusters (memory, cross-embodiment, safety, evaluation) — read it to see which §10–§16 cluster attacks which named challenge. Cross-reference [[08_Benchmarks-and-Surveys]] for the vault-wide survey index and [[04_VLA#18. Open Problems & Failure Modes]] below for the failure-mode synthesis these surveys flag as the field's hardest problems.
+> These surveys converge on the same arc this deep-dive traces: proof-of-concept → democratization → specialization, with the open frontier now in robustness, evaluation, cross-embodiment, and whole-body coordination. The [[2511.05936|10-VLA-Challenges]] list maps almost one-to-one onto this file's Part C clusters (memory, cross-embodiment, safety, evaluation) — read it to see which §10–§16 cluster attacks which named challenge. Cross-reference [[12_Benchmarks-and-Surveys]] for the vault-wide survey index and [[04_VLA#18. Open Problems & Failure Modes]] below for the failure-mode synthesis these surveys flag as the field's hardest problems.
 
 ---
 

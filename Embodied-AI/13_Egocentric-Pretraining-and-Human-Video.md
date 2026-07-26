@@ -20,45 +20,40 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Datasets (2017-2025)"
-        A["Something-Something<br/><i>2017</i>"]
-        B["EPIC-KITCHENS<br/><i>2018</i>"]
-        C["Ego4D<br/><i>2021</i>"]
-        D["EgoDex<br/><i>2025</i>"]
-        E["UniHand<br/><i>2025</i>"]
-    end
+```
+[Datasets (2017-2025)]
++----------------------------+     +----------------------+
+| Something-Something (2017) | --> | EPIC-KITCHENS (2018) |
++----------------------------+     +----------------------+
+                                               |
+                                               v
+                                       (continues below: Ego4D)
++--------------+     +---------------+     +----------------+
+| Ego4D (2021) | --> | EgoDex (2025) | --> | UniHand (2025) |
++--------------+     +---------------+     +----------------+
+        |
+        v
+   (feeds into Pretraining Recipes lane: Being-H0)
+                                                    |
+                                                    v
+                                               (feeds into Pretraining Recipes lane: EgoScale)
 
-    subgraph "Pretraining Recipes (2022-2026)"
-        F["R3M / VIP<br/><i>2022</i>"]
-        G["GR-1<br/><i>2024</i>"]
-        H["Being-H0<br/><i>2025</i>"]
-        I["EgoHumanoid<br/><i>2025</i>"]
-        J["EgoScale<br/><i>2026</i>"]
-    end
+[Pretraining Recipes (2022-2026)]
+                                                                   +--------------------+
+                                                                   | EgoHumanoid (2025) |
+                                                                   +--------------------+
+                                                                              |
+                                                                              v
++------------------+     +-------------+     +-----------------+     +-----------------+
+| R3M / VIP (2022) | --> | GR-1 (2024) | --> | Being-H0 (2025) | --> | EgoScale (2026) |
++------------------+     +-------------+     +-----------------+     +-----------------+
 
-    subgraph "Transfer Frontier (2026)"
-        K["π0.5+ego<br/><i>2026</i>"]
-        L["π0.7<br/><i>2026</i>"]
-    end
-
-    A --> B --> C --> D
-    D --> E
-    F --> G --> H
-    H --> J
-    I --> J
-    J --> K
-    K --> L
-    C --> H
-    E --> J
-
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style C fill:#e8f4fd,stroke:#4a90d9
-    style H fill:#f0e8fd,stroke:#9b59b6
-    style J fill:#e8fde8,stroke:#27ae60
-    style K fill:#e8fde8,stroke:#27ae60
-    style L fill:#e8fde8,stroke:#27ae60
+[Transfer Frontier (2026)]
+                                                                              |
+                                                                              v
++-----------------+     +-------------+
+| π0.5+ego (2026) | --> | π0.7 (2026) |
++-----------------+     +-------------+
 ```
 
 The field evolved through three phases. **Egocentric datasets** (2017-2025) scaled from [[1706.04261|Something-Something]]'s 108K clips to UniHand's 150M instruction-motion pairs. **Pretraining recipes** (2022-2026) progressed from frozen-encoder transfer (R3M/VIP) to full VLA pretraining on human videos ([[2507.15597|Being-H0]]) to scaling-law-validated egocentric pretraining ([[2602.16710|EgoScale]]). **Transfer frontier** (2026) treats humans as another embodiment in the VLA's pretraining mixture ([[2512.22414|π0.5+ego]]), letting transfer *emerge* without explicit alignment.

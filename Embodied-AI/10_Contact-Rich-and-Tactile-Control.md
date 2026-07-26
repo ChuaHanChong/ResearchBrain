@@ -23,50 +23,36 @@ aliases:
 
 The *fingertip* thread of the contact-dynamics axis: bolt-on force sensors and per-task contact policies gave way to force-aware MoE VLAs that treat force/torque as a first-class modality, then to hybrid force-position control, contact grounding, and affordable open-source sensing hardware — all converging on force/contact as a dedicated signal rather than a concatenated input.
 
-```mermaid
-graph TD
-    subgraph "Tactile Sensors (2025-2026)"
-        S1["DexSkin<br/><i>2025</i>"]
-        S2["FlexiTac<br/><i>2026</i>"]
-        S3["FingerEye<br/><i>2026</i>"]
-    end
+```
+[Force as Generation Conditioning, 2025]
++------------------------+
+| Force Prompting (2025) |
++------------------------+
+             |
+             v
+   (--> Force-Conditioned Policies lane: Tactile-VLA)
 
-    subgraph "Force-Conditioned Policies (2025)"
-        P1["Adaptive Wiping<br/><i>2025</i>"]
-        P2["ChatVLA<br/><i>2025</i>"]
-        P3["Tactile-VLA<br/><i>2025</i>"]
-        P4["ForceVLA<br/><i>2025</i>"]
-    end
+[Force-Conditioned Policies, 2025]
++------------------------+     +----------------+     +--------------------+     +-----------------+
+| Adaptive Wiping (2025) | --> | ChatVLA (2025) | --> | Tactile-VLA (2025) | --> | ForceVLA (2025) |
++------------------------+     +----------------+     +--------------------+     +-----------------+
+                                                                 |                        |
+                                                                 v                        v
+                (Tactile-VLA --> Refinement lane below: AVA-VLA, ReconVLA)
+                (ForceVLA --> Refinement lane below: CGP, ForceVLA2)
 
-    subgraph "Force-Aware VLA Refinement (2026)"
-        R1["AVA-VLA<br/><i>2025</i>"]
-        R2["ReconVLA<br/><i>2025</i>"]
-        R3["CGP<br/><i>2026</i>"]
-        R4["ForceVLA2<br/><i>2026</i>"]
-    end
+[Tactile Sensors, 2025-2026]
++----------------+     +-----------------+     +------------------+
+| DexSkin (2025) |     | FlexiTac (2026) |     | FingerEye (2026) |
++----------------+     +-----------------+     +------------------+
+         |                      |                        |
+         v                      v                        v
+    (DexSkin, FlexiTac, FingerEye --> Refinement lane below: CGP)
 
-    subgraph "Force as Generation Conditioning (2025)"
-        G1["Force Prompting<br/><i>2025</i>"]
-    end
-
-    P1 --> P2 --> P3 --> P4
-    P3 --> R1
-    P3 --> R2
-    P4 --> R4
-    S1 --> R3
-    S2 --> R3
-    S3 --> R3
-    P4 --> R3
-    G1 --> P3
-
-    style P3 fill:#fde8f4,stroke:#d94a90
-    style P4 fill:#fde8f4,stroke:#d94a90
-    style R4 fill:#e8fde8,stroke:#27ae60
-    style R3 fill:#e8fde8,stroke:#27ae60
-    style S1 fill:#e8f4fd,stroke:#4a90d9
-    style S2 fill:#e8f4fd,stroke:#4a90d9
-    style S3 fill:#e8f4fd,stroke:#4a90d9
-    style G1 fill:#f0e8fd,stroke:#9b59b6
+[Force-Aware VLA Refinement, 2026]
++----------------+     +-----------------+     +------------+     +------------------+
+| AVA-VLA (2025) |     | ReconVLA (2025) |     | CGP (2026) |     | ForceVLA2 (2026) |
++----------------+     +-----------------+     +------------+     +------------------+
 ```
 
 **The fingertip thread** evolved through three overlapping phases. **Phase 1 — Force as auxiliary signal** (early 2025): [[2505.06451|Adaptive-Wiping]] and [[2502.14420|ChatVLA]] used force feedback as a closed-loop sensor reading, treated as one input among many. **Phase 2 — Force as first-class modality** (mid 2025): [[2507.09160|Tactile-VLA]] and [[2505.22159|ForceVLA]] elevated force/torque to a primary modality with dedicated experts and force-aware MoE routing — these are the cluster's two landmark papers. **Phase 3 — Hybrid force-position control and contact grounding** (2026): [[2603.15169|ForceVLA2]] introduces cross-scale MoE with force prompts at the VLM level; [[2603.05687|CGP]] grounds policies in predicted multi-point contact trajectories; [[2604.28156|FlexiTac]] and [[2604.20689|FingerEye]] attack the hardware bottleneck with sub-$30 conformable skins and binocular vision-tactile fingertips. The body-scale echo of this exact lesson — force/contact as a dedicated, factorized signal for whole-body balance and locomotion — runs in parallel in the sibling deep-dive [[11_Whole-Body-and-Locomotion-Control]].

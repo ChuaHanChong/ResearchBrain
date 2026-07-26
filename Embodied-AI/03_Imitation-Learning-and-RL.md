@@ -17,62 +17,78 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "2018–2021 · Demonstrations & Offline Foundations"
-        A["ILPO<br/><i>2018</i>"]
-        B["SPiRL<br/><i>2020</i>"]
-        C["Recovery RL<br/><i>2020</i>"]
-        D["BC-Z<br/><i>2022</i>"]
-        E["Robomimic<br/><i>2021</i>"]
-        F["LocoTransformer<br/><i>2021</i>"]
-    end
+```
+[Lane 1: Demonstrations & Offline Foundations, 2018-2021]
 
-    subgraph "2022–2024 · Reward Learning & Hybrid IL+RL"
-        G["SkiMo<br/><i>2022</i>"]
-        H["PAINT<br/><i>2022</i>"]
-        I["Uni-O4<br/><i>2023</i>"]
-        J["ResiP<br/><i>2024</i>"]
-        K["Single-Goal CRL<br/><i>2024</i>"]
-    end
++-------------+   +--------------+   +--------------------+
+| ILPO (2018) |   | SPiRL (2020) |   | Recovery-RL (2020) |
++-------------+   +--------------+   +--------------------+
+       |
+       v
+     (feeds Lane 2: Single-Goal-CRL)
+       |
+       v
+     (feeds Lane 3: CoMo)
+                          |
+                          v
+                        (feeds Lane 2: SkiMo)
+                                                |
+                                                v
+                                              (feeds Lane 2: PAINT)
 
-    subgraph "2025–2026 · Scaling, Flow Policies & Learned Rewards"
-        L["FastTD3<br/><i>2025</i>"]
-        M["CoMo<br/><i>2025</i>"]
-        N["H-RDT<br/><i>2025</i>"]
-        O["RL's Razor<br/><i>2025</i>"]
-        P["ScoRe-Flow<br/><i>2026</i>"]
-        Q["Robometer<br/><i>2026</i>"]
-        R["SOLE-R1<br/><i>2026</i>"]
-        S["HumanEgo<br/><i>2026</i>"]
-        T["BFM-Zero<br/><i>2026</i>"]
-        U["FlashSAC<br/><i>2026</i>"]
-    end
++------------------+     +-------------+   +------------------------+
+| Robomimic (2021) | --> | BC-Z (2022) |   | LocoTransformer (2021) |
++------------------+     +-------------+   +------------------------+
+                                |
+                                v
+                              (feeds Lane 3: H-RDT)
+                                |
+                                v
+                              (feeds Lane 3: HumanEgo)
+                                                        |
+                                                        v
+                                                      (feeds Lane 3: FastTD3)
 
-    A --> M
-    A --> K
-    B --> G
-    E --> D --> N
-    D --> S
-    C --> H
-    I --> J
-    J --> P
-    G --> T
-    K --> L --> U
-    M --> N
-    O --> P
-    Q --> R
-    F --> L
+[Lane 2: Reward Learning & Hybrid IL+RL, 2022-2024]
 
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style E fill:#e8f4fd,stroke:#4a90d9
-    style D fill:#e8f4fd,stroke:#4a90d9
-    style Q fill:#fde8f4,stroke:#d94a90
-    style R fill:#fde8f4,stroke:#d94a90
-    style J fill:#fef3e8,stroke:#e67e22
-    style P fill:#fef3e8,stroke:#e67e22
-    style L fill:#e8fde8,stroke:#27ae60
-    style U fill:#e8fde8,stroke:#27ae60
++--------------+   +--------------+
+| SkiMo (2022) |   | PAINT (2022) |
++--------------+   +--------------+
+        |
+        v
+      (feeds Lane 3: BFM-Zero)
+
++---------------+     +--------------+   +------------------------+
+| Uni-O4 (2023) | --> | ResiP (2024) |   | Single-Goal-CRL (2024) |
++---------------+     +--------------+   +------------------------+
+                              |
+                              v
+                            (feeds Lane 3: ScoRe-Flow)
+                                                      |
+                                                      v
+                                                    (feeds Lane 3: FastTD3)
+
+[Lane 3: Scaling, Flow Policies & Learned Rewards, 2025-2026]
+
++----------------+     +-----------------+
+| FastTD3 (2025) | --> | FlashSAC (2026) |
++----------------+     +-----------------+
+
++-------------+     +--------------+
+| CoMo (2025) | --> | H-RDT (2025) |
++-------------+     +--------------+
+
++-------------------+     +-------------------+
+| RL's-Razor (2025) | --> | ScoRe-Flow (2026) |
++-------------------+     +-------------------+
+
++------------------+     +----------------+
+| Robometer (2026) | --> | SOLE-R1 (2026) |
++------------------+     +----------------+
+
++-----------------+   +-----------------+
+| HumanEgo (2026) |   | BFM-Zero (2026) |
++-----------------+   +-----------------+
 ```
 
 The field evolved along the signal-cost spectrum. **Demonstration foundations** (2018→2022) established that history matters ([[2108.03298|Robomimic]]'s BC-RNN), that diverse multi-task demos enable zero-shot generalization ([[2202.02005|BC-Z]]), and that latent actions can be learned from observation alone ([[1805.07914|ILPO]]). **Reward learning & hybrid IL+RL** (2022→2024) attacked the demo ceiling — residual RL refines a frozen BC base ([[2407.16677|ResiP]]), offline-to-online unifies both phases under one objective ([[2311.03351|Uni-O4]]), and contrastive critics learn skills with a *single* goal and no reward ([[2408.05804|Single-Goal-CRL]]). **Scaling, flow policies & learned rewards** (2025→2026) is the current frontier — off-policy RL trains humanoids in hours ([[2505.22642|FastTD3]], [[2604.04539|FlashSAC]]), flow/diffusion policies finally admit policy-gradient fine-tuning ([[2604.10962|ScoRe-Flow]], [[2602.02481|FPO++]]), and VLM-based reward models supply dense progress signals that make from-scratch on-robot RL viable ([[2603.02115|Robometer]], [[2603.28730|SOLE-R1]]).

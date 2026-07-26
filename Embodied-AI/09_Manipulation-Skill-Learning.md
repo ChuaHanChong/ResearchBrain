@@ -20,70 +20,90 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Foundations (2018–2022)"
-        A["QT-Opt<br/><i>2018</i>"]
-        B["MIME<br/><i>2018</i>"]
-        C["MT-Opt<br/><i>2021</i>"]
-        D["ManipulaTHOR<br/><i>2021</i>"]
-        E["PerAct<br/><i>2022</i>"]
-        F["Socratic Models<br/><i>2022</i>"]
-        G["LLM Planners<br/><i>2022</i>"]
-    end
+```
+[Foundations, 2018-2022]
 
-    subgraph "Generative Policies (2023–2024)"
-        H["VoxPoser<br/><i>2023</i>"]
-        I["RPT<br/><i>2023</i>"]
-        J["DP3<br/><i>2024</i>"]
-        K["MDT<br/><i>2024</i>"]
-        L["Moto<br/><i>2024</i>"]
-        M["ReKep<br/><i>2024</i>"]
-        N["RoboData<br/><i>2024</i>"]
-    end
++-----------------+     +-----------------+
+|  QT-Opt (2018)  | --> |  MT-Opt (2021)  |
++-----------------+     +-----------------+
 
-    subgraph "Spatial · Memory · Flow (2025)"
-        O["DP3-lineage<br/><i>2025</i>"]
-        P["SAM2Act<br/><i>2025</i>"]
-        Q["DTP<br/><i>2025</i>"]
-        R["FPO<br/><i>2025</i>"]
-        S["3DFlowAction<br/><i>2025</i>"]
-        T["RWM<br/><i>2025</i>"]
-        U["MemER<br/><i>2025</i>"]
-    end
++---------------+     +-----------------+     +-----------------------+
+|  MIME (2018)  |     |  PerAct (2022)  |     |  ManipulaTHOR (2021)  |
++---------------+     +-----------------+     +-----------------------+
+        |
+        v  (feeds into Generative Policies lane: RPT)
 
-    subgraph "Backbone × Memory × Data (2026)"
-        V["DSSP<br/><i>2026</i>"]
-        W["Soft RTC<br/><i>2026</i>"]
-        X["MWM<br/><i>2026</i>"]
-        Y["Chameleon<br/><i>2026</i>"]
-        Z["Neuro-Symbolic<br/><i>2026</i>"]
-        AA["ZPRL<br/><i>2026</i>"]
-        AB["AFUN<br/><i>2026</i>"]
-    end
+                               |
+                               v  (feeds into Generative Policies lane: DP3)
 
-    A --> C
-    B --> I --> L
-    E --> J --> O --> V
-    F --> G --> Z
-    H --> M --> AB
-    K --> Q --> S
-    J --> X
-    I --> T --> X
-    P --> U --> Y
-    R --> AA
-    L --> X
++--------------------------+     +-----------------------+
+|  Socratic Models (2022)  | --> |  LLM Planners (2022)  |
++--------------------------+     +-----------------------+
+                                             |
+                                             v  (feeds into Backbone x Memory x Data lane: Neuro-Symbolic)
 
-    style A fill:#fef3e8,stroke:#e67e22
-    style J fill:#e8f4fd,stroke:#4a90d9
-    style O fill:#e8f4fd,stroke:#4a90d9
-    style V fill:#e8f4fd,stroke:#4a90d9
-    style T fill:#e8fde8,stroke:#27ae60
-    style X fill:#e8fde8,stroke:#27ae60
-    style U fill:#fde8f4,stroke:#d94a90
-    style Y fill:#fde8f4,stroke:#d94a90
-    style Z fill:#f4e8fd,stroke:#8e44ad
-    style AB fill:#f4e8fd,stroke:#8e44ad
+
+[Generative Policies, 2023-2024]
+
++--------------+     +---------------+
+|  RPT (2023)  | --> |  Moto (2024)  |
++--------------+     +---------------+
+        |
+        v  (feeds into Spatial x Memory x Flow lane: RWM)
+
+                             |
+                             v  (feeds into Backbone x Memory x Data lane: MWM)
+
++-------------------+     +----------------+
+|  VoxPoser (2023)  | --> |  ReKep (2024)  |
++-------------------+     +----------------+
+                                   |
+                                   v  (feeds into Backbone x Memory x Data lane: AFUN)
+
++--------------+     +--------------+     +-------------------+
+|  DP3 (2024)  |     |  MDT (2024)  |     |  RoboData (2024)  |
++--------------+     +--------------+     +-------------------+
+        |
+        v  (feeds into Spatial x Memory x Flow lane: DP3-lineage; also Backbone x Memory x Data lane: MWM)
+
+                             |
+                             v  (feeds into Spatial x Memory x Flow lane: DTP)
+
+
+[Spatial x Memory x Flow, 2025]
+
++--------------+     +-----------------------+
+|  DTP (2025)  | --> |  3DFlowAction (2025)  |
++--------------+     +-----------------------+
+
++------------------+     +----------------+
+|  SAM2Act (2025)  | --> |  MemER (2025)  |
++------------------+     +----------------+
+                                  |
+                                  v  (feeds into Backbone x Memory x Data lane: Chameleon)
+
++----------------------+     +--------------+     +--------------+
+|  DP3-lineage (2025)  |     |  FPO (2025)  |     |  RWM (2025)  |
++----------------------+     +--------------+     +--------------+
+            |
+            v  (feeds into Backbone x Memory x Data lane: DSSP)
+
+                                     |
+                                     v  (feeds into Backbone x Memory x Data lane: ZPRL)
+
+                                                          |
+                                                          v  (feeds into Backbone x Memory x Data lane: MWM)
+
+
+[Backbone x Memory x Data, 2026]
+
++---------------+     +-------------------+     +--------------+     +--------------------+
+|  DSSP (2026)  |     |  Soft RTC (2026)  |     |  MWM (2026)  |     |  Chameleon (2026)  |
++---------------+     +-------------------+     +--------------+     +--------------------+
+
++-------------------------+     +---------------+     +---------------+
+|  Neuro-Symbolic (2026)  |     |  ZPRL (2026)  |     |  AFUN (2026)  |
++-------------------------+     +---------------+     +---------------+
 ```
 
 Manipulation skill learning evolved from *monolithic value-based RL* ([[1806.10293|QT-Opt]], [[2104.08212|MT-Opt]]) and *demonstration scaling* ([[1810.07121|MIME]], [[2306.10007|RPT]]) into a **three-axis design space**. The **action-generation** axis matured from voxel-classification ([[2209.05451|PerAct]]) to 3D diffusion ([[2403.03954|DP3]]) to flow-matching and real-time chunking ([[2507.21053|FPO]], [[2605.25537|Soft-RTC]]). The **memory** axis emerged once tasks went non-Markovian — from frame-stacking to learned episodic retrieval ([[2510.20328|MemER]], [[2603.24576|Chameleon]]). The **reasoning/data** axis grew from zero-shot LLM planners ([[2201.07207|LLM-Zero-Shot-Planners]], [[2204.00598|Socratic-Models]]) into neuro-symbolic supervision ([[2604.02812|Neuro-Symbolic-Robot-Policies]]) and world-model-driven imagination ([[2604.19683|MWM]], [[2501.10100|RWM]]). The 2026 frontier is no longer "which backbone" but how the three axes *compose*.

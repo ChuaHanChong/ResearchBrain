@@ -21,87 +21,107 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Sim-Side: Learned & Procedural Simulators"
-        A["GAIA-1<br/><i>2023</i>"]
-        B["UniSim<br/><i>2023</i>"]
-        C["Genie<br/><i>2024</i>"]
-        D["Video2Game<br/><i>2024</i>"]
-        E["Cosmos<br/><i>2025</i>"]
-        F["MolmoB0T<br/><i>2026</i>"]
-        G["AffordSim<br/><i>2026</i>"]
-        H["MultiWorld<br/><i>2026</i>"]
-        I["SimScale<br/><i>2026</i>"]
-    end
+```
+[Sim-Side: Learned & Procedural Simulators, 2023-2026]
+  +---------------+     +--------------+     +-------------------+
+  | UniSim (2023) | --> | Genie (2024) | --> | MultiWorld (2026) |
+  +---------------+     +--------------+     +-------------------+
+          |
+          v
+        (also --> Cosmos (2025), row below)
+  +---------------+     +---------------+     +-----------------+
+  | GAIA-1 (2023) | --> | Cosmos (2025) | --> | SimScale (2026) |
+  +---------------+     +---------------+     +-----------------+
+  +-------------------+
+  | Video2Game (2024) |
+  +-------------------+
+            |
+            v
+          (feeds into Real2Sim2Real lane: PhysTwin)
+  +-----------------+   +------------------+
+  | MolmoB0T (2026) |   | AffordSim (2026) |
+  +-----------------+   +------------------+
+           |
+           v
+         (feeds into Policy-Side lane: ExpertGen)
+                                  |
+                                  v
+                                (feeds into Policy-Side lane: ExpertGen)
 
-    subgraph "Policy-Side: Robustness & Domain Randomization"
-        J["RAMBO-RL<br/><i>2022</i>"]
-        K["DeXtreme<br/><i>2022</i>"]
-        L["Humanoid Sim2Real Dex<br/><i>2025</i>"]
-        M["KungfuBot<br/><i>2025</i>"]
-        N["DR-RPO<br/><i>2025</i>"]
-        O["VIRAL<br/><i>2025</i>"]
-        P["TCRL<br/><i>2026</i>"]
-        Q["Force-Based Sim2Real<br/><i>2026</i>"]
-        R["ExpertGen<br/><i>2026</i>"]
-        S["ULTRA<br/><i>2026</i>"]
-        T["QuietWalk<br/><i>2026</i>"]
-        U["asRoBallet<br/><i>2026</i>"]
-        V["ViserDex<br/><i>2026</i>"]
-        W["HiPAN<br/><i>2026</i>"]
-        X["Tune to Learn<br/><i>2026</i>"]
-    end
+[Policy-Side: Robustness & Domain Randomization, 2022-2026]
+  +-----------------+     +---------------+     +-------------+
+  | RAMBO-RL (2022) | --> | DR-RPO (2025) | --> | TCRL (2026) |
+  +-----------------+     +---------------+     +-------------+
+  +-----------------+     +------------------------------+     +--------------+
+  | DeXtreme (2022) | --> | Humanoid Sim2Real Dex (2025) | --> | VIRAL (2025) |
+  +-----------------+     +------------------------------+     +--------------+
+           |
+           v
+         (also --> ViserDex (2026), row below)
+                                                                       |
+                                                                       v
+                                                                     (also --> ULTRA (2026), rows below)
+  +-----------------+
+  | ViserDex (2026) |
+  +-----------------+
+  +------------------+     +--------------+
+  | KungfuBot (2025) | --> | ULTRA (2026) |
+  +------------------+     +--------------+
+            |
+            v
+          (also --> QuietWalk (2026), row below)
+  +------------------+
+  | QuietWalk (2026) |
+  +------------------+
+  +------------------+
+  | ExpertGen (2026) |
+  +------------------+
+  +-----------------------------+   +-------------------+
+  | Force-Based Sim2Real (2026) |   | asRoBallet (2026) |
+  +-----------------------------+   +-------------------+
+  +--------------+   +----------------------+
+  | HiPAN (2026) |   | Tune to Learn (2026) |
+  +--------------+   +----------------------+
 
-    subgraph "Real2Sim2Real Loops & Digital Twins"
-        Y["PhysTwin<br/><i>2025</i>"]
-        Z["PhysWorld<br/><i>2025</i>"]
-        AA["DOT-Sim<br/><i>2026</i>"]
-        AB["Explicit WM Manip<br/><i>2026</i>"]
-        AC["CoEnv<br/><i>2026</i>"]
-        AD["Self-Adapting RL<br/><i>2026</i>"]
-    end
+[Real2Sim2Real Loops & Digital Twins, 2025-2026]
+  +-----------------+     +------------------+     +--------------------------+
+  | PhysTwin (2025) | --> | PhysWorld (2025) | --> | Explicit WM Manip (2026) |
+  +-----------------+     +------------------+     +--------------------------+
+           |
+           v
+         (also --> DOT-Sim (2026), row below)
+                                    |
+                                    v
+                                  (also --> CoEnv (2026), row below)
+  +----------------+   +--------------+
+  | DOT-Sim (2026) |   | CoEnv (2026) |
+  +----------------+   +--------------+
+  +-------------------------+
+  | Self-Adapting RL (2026) |
+  +-------------------------+
 
-    subgraph "Evaluation & Reality-Gap Measurement"
-        AE["SimplerEnv<br/><i>2024</i>"]
-        AF["RoboTwin 2.0<br/><i>2025</i>"]
-        AG["Embodied Arena<br/><i>2025</i>"]
-        AH["BridgeSim<br/><i>2026</i>"]
-        AI["WorldMark<br/><i>2026</i>"]
-        AJ["Sim2Real Betting<br/><i>2026</i>"]
-        AK["VISER<br/><i>2026</i>"]
-    end
-
-    A --> E
-    B --> C --> H
-    B --> E
-    D --> Y
-    E --> I
-    F --> R
-    G --> R
-    J --> N --> P
-    K --> L --> O
-    K --> V
-    M --> S
-    M --> T
-    O --> S
-    Y --> Z --> AB
-    Y --> AA
-    Z --> AC
-    AE --> AF --> AK
-    AE --> AH
-    AG --> AK
-
-    style B fill:#e8f4fd,stroke:#4a90d9
-    style E fill:#e8f4fd,stroke:#4a90d9
-    style I fill:#e8f4fd,stroke:#4a90d9
-    style K fill:#fde8f4,stroke:#d94a90
-    style O fill:#fde8f4,stroke:#d94a90
-    style R fill:#fde8f4,stroke:#d94a90
-    style Y fill:#e8fde8,stroke:#27ae60
-    style Z fill:#e8fde8,stroke:#27ae60
-    style AE fill:#fef3e8,stroke:#e67e22
-    style AK fill:#fef3e8,stroke:#e67e22
+[Evaluation & Reality-Gap Measurement, 2024-2026]
+  +-------------------+     +---------------------+
+  | SimplerEnv (2024) | --> | RoboTwin 2.0 (2025) |
+  +-------------------+     +---------------------+
+            |
+            v
+          (also --> BridgeSim (2026), row below)
+                                       |
+                                       v
+                                     (also --> VISER (2026), rows below)
+  +------------------+   +-----------------------+
+  | BridgeSim (2026) |   | Embodied Arena (2025) |
+  +------------------+   +-----------------------+
+                                     |
+                                     v
+                                   (also --> VISER (2026), row below)
+  +--------------+
+  | VISER (2026) |
+  +--------------+
+  +------------------+   +-------------------------+
+  | WorldMark (2026) |   | Sim2Real Betting (2026) |
+  +------------------+   +-------------------------+
 ```
 
 The field evolved through four parallel research threads. **Sim-side** (2023→2026) replaces hand-crafted simulators with *learned* world simulators that absorb internet-scale video — [[2310.06114|UniSim]] → [[2501.03575|Cosmos]] → [[2511.23369|SimScale]] push photorealistic, action-conditioned generation. **Policy-side** (2022→2026) trains the *policy* to be sim-noise-invariant — [[2210.13702|DeXtreme]]'s automatic domain randomization, [[2506.12851|KungfuBot]]'s physics-feasible motion retargeting, and [[2510.14246|DR-RPO]]'s distributionally robust policy optimization treat the reality gap as adversarial. **Real2sim2real** (2024→2026) reconstructs the *deployment* scene as a high-fidelity digital twin ([[2503.17973|PhysTwin]], [[2404.09833|Video2Game]], [[2511.07416|PhysWorld]]), then trains the policy against the twin before transfer. **Evaluation** (2024→2026) builds diagnostic benchmarks ([[2405.05941|SimplerEnv]], [[2605.06311|VISER]]) that *measure* the sim-to-real correlation — making the reality gap quantifiable rather than mythical.

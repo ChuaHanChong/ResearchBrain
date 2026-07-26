@@ -19,51 +19,84 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph Y2020_2022["2020–2022 · Maps & Memory"]
-        A1["MultiON<br/>semantic-map memory"]
-        A2["MemAug Image-Goal<br/>episodic memory"]
-        A3["Blind Nav Agents<br/>emergent maps in RNN"]
-        A4["VLMaps<br/>open-vocab semantic map"]
-        A5["GGCS<br/>geodesic motion planning"]
-    end
-    subgraph Y2023_2024["2023–2024 · LLM Nav & Cognitive Maps"]
-        B1["LLM Nav Survey"]
-        B2["TDB<br/>discrete cognitive maps"]
-        B3["MemoNav<br/>working memory"]
-        B4["CogNav<br/>cognitive states"]
-        B5["3D-Mem<br/>snapshot memory"]
-        B6["DynaMem<br/>dynamic mobile manip"]
-        B7["FLaRe<br/>large-scale RL fine-tune"]
-        B8["Embodied-RAG<br/>semantic forest"]
-    end
-    subgraph Y2025_2026["2025–2026 · World-Model & Self-Evolving Nav"]
-        C1["SE-VLN / C-Nav<br/>self-evolving VLN"]
-        C2["LatentPilot / SAGE<br/>latent imagination"]
-        C3["MWM / PiJEPA<br/>WM-in-the-loop planning"]
-        C4["GN0<br/>3DGS nav foundation"]
-        C5["SigLoMa / TAGA / MIF<br/>loco-mobile-manip"]
-        C6["VIA / Conformal Crowd<br/>safe nav"]
-    end
+```
+(L1 = 2020-2022 lane, L2 = 2023-2024 lane, L3 = 2025-2026 lane)
 
-    A1 --> A4 --> B5
-    A2 --> B3 --> B4
-    A3 --> B2
-    A5 --> B6
-    B1 --> C1
-    B4 --> C2
-    B6 --> C5
-    B7 --> C6
-    B8 --> C2
-    B5 --> C3
-    C2 --> C4
+[2020-2022 : Maps & Memory]
 
-    style A3 fill:#e8f0ff,stroke:#3060c0
-    style A4 fill:#e8f0ff,stroke:#3060c0
-    style B6 fill:#fff0e8,stroke:#c06030
-    style C3 fill:#e8ffe8,stroke:#30a030
-    style C5 fill:#fff0e8,stroke:#c06030
++--------------------------------+     +----------------------------------+
+| A1 MultiON (2020): sem-map mem | --> | A4 VLMaps (2022): open-vocab map |
++--------------------------------+     +----------------------------------+
+                                                         |
+                                                         v
+                                                         (-> L2: B5 3D-Mem)
+
++------------------------------------+    +-------------------------------------------+
+| A2 MemAug-ImgGoal (2021): episodic |    | A3 Blind-Nav-Agents (2022): emergent maps |
++------------------------------------+    +-------------------------------------------+
+                   |
+                   v
+                   (-> L2: B3 MemoNav)
+                                                                |
+                                                                v
+                                                                (-> L2: B2 TDB)
+
++-----------------------------------+
+| A5 GGCS (2022): geodesic planning |
++-----------------------------------+
+                  |
+                  v
+                  (-> L2: B6 DynaMem)
+
+[2023-2024 : LLM Nav & Cognitive Maps]
+
++--------------------------------+     +------------------------------------+
+| B3 MemoNav (2023): working mem | --> | B4 CogNav (2024): cognitive states |
++--------------------------------+     +------------------------------------+
+                                                          |
+                                                          v
+                                                          (-> L3: C2 LatentPilot/SAGE)
+
++--------------------------+    +----------------------------------+
+| B1 LLM-Nav-Survey (2023) |    | B2 TDB (2023): discrete cog-maps |
++--------------------------+    +----------------------------------+
+              |
+              v
+              (-> L3: C1 SE-VLN/C-Nav)
+
++--------------------------------+    +--------------------------------------+
+| B5 3D-Mem (2024): snapshot mem |    | B6 DynaMem (2024): dynamic mob-manip |
++--------------------------------+    +--------------------------------------+
+                 |
+                 v
+                 (-> L3: C3 MWM/PiJEPA)
+                                                          |
+                                                          v
+                                                          (-> L3: C5 SigLoMa/TAGA/MIF)
+
++-------------------------------+    +------------------------------------+
+| B7 FLaRe (2024): RL fine-tune |    | B8 Embodied-RAG (2024): sem forest |
++-------------------------------+    +------------------------------------+
+                |
+                v
+                (-> L3: C6 VIA/ConformalCrowd)
+                                                        |
+                                                        v
+                                                        (-> L3: C2 LatentPilot/SAGE)
+
+[2025-2026 : World-Model & Self-Evolving Nav]
+
++-----------------------------------------+     +-----------------------------+
+| C2 LatentPilot/SAGE (2026): latent imag | --> | C4 GN0 (2026): 3DGS nav fdn |
++-----------------------------------------+     +-----------------------------+
+
++-----------------------------------------+    +---------------------------------------+
+| C1 SE-VLN/C-Nav (2025): self-evolve VLN |    | C3 MWM/PiJEPA (2026): WM-in-loop plan |
++-----------------------------------------+    +---------------------------------------+
+
++--------------------------------------------+    +----------------------------------------+
+| C5 SigLoMa/TAGA/MIF (2026): loco-mob-manip |    | C6 VIA/ConformalCrowd (2026): safe nav |
++--------------------------------------------+    +----------------------------------------+
 ```
 
 Navigation research bifurcated early into two threads that this graph colours separately: the **explicit-representation thread** (blue — semantic maps, cognitive maps, scene graphs) that prizes interpretability and verifiable planning, and the **end-to-end-policy thread** (green — RL/IL agents whose spatial knowledge lives in latent state). The 2023–2024 LLM wave grafted language onto both — cognitive-map navigators that prompt an LLM over a scene graph, and RAG-style episodic memory for embodied Q&A. The 2025–2026 frontier (the bottom subgraph) is convergence: world models supply *imagined* rollouts to plan over, latent "pilot tokens" internalize anticipation inside a VLM backbone, and **mobile manipulation** (orange) closes the loop where the navigator must also act on what it reaches.
