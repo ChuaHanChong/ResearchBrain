@@ -16,58 +16,49 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Self-Training Origins"
-        A["STaR<br/><i>2022</i>"]
-    end
+```text
+Self-Training Origins
+                 ╔══════════════╗
+                 ║ *STaR (2022) ║
+                 ╚══════╦═══════╝
+                        │
+                  ┌─────┴──────┐
+                  │            │
+                  ▼            ▼
+Reward & Reasoning
+┌──────────────────────────┐   ┌───────────────────┐        ┌────────────────┐
+│ Self-Rewarding LM (2024) │   │ Quiet-STaR (2024) │───────►│ STILL-2 (2024) │
+└──────────┬────────┬──────┘   └───────────────────┘        └─────────┬──────┘
+           │        │                                                 │
+           │        └──────────► SSR (2025)   [Self-Evolving Agents, below]
+           ▼                                                          │
+Zero-Data & Self-Play                                                 ▼
+╔═══════════════════════╗          ┌─────────────┐      ┌────────────────┐
+║ *Absolute Zero (2025) ║          │ TTRL (2025) │─────►│ EVOL-RL (2025) │
+╚═══════════╦═══════════╝          └─────────────┘      └────────────────┘
+            │
+      ┌─────┴──────┐
+      │            │
+      ▼            ▼
+┌──────────────────────┐   ┌────────────────────┐
+│ Socratic-Zero (2025) │   │ Vision-Zero (2025) │
+└──────────────────────┘   └────────────────────┘
 
-    subgraph "Reward & Reasoning"
-        B["Self-Rewarding LM<br/><i>2024</i>"]
-        C["Quiet-STaR<br/><i>2024</i>"]
-        D["STILL-2<br/><i>2024</i>"]
-    end
+Self-Evolving Agents
+┌─────────────────┐        ┌────────────────┐
+│ AgentGym (2024) │───────►│ EVOLVER (2025) │────┐
+└─────────────────┘        └────────────────┘    │
+                                                 ▼
+┌────────────┐                            ╔══════════════╗
+│ SSR (2025) │───────────────────────────►║ *ECHO (2026) ║
+└────────────┘                            ╚══════════════╝
 
-    subgraph "Zero-Data & Self-Play"
-        E["Absolute Zero<br/><i>2025</i>"]
-        F["TTRL<br/><i>2025</i>"]
-        G["EVOL-RL<br/><i>2025</i>"]
-        H["Socratic-Zero<br/><i>2025</i>"]
-        I["Vision-Zero<br/><i>2025</i>"]
-    end
+Continual & Experiential
+┌────────────┐      ┌────────────┐      ╔════════════════╗
+│ ELL (2025) │─────►│ OEL (2026) │─────►║ *XSkill (2026) ║
+└────────────┘      └────────────┘      ╚════════════════╝
 
-    subgraph "Self-Evolving Agents"
-        J["AgentGym<br/><i>2024</i>"]
-        K["EVOLVER<br/><i>2025</i>"]
-        L["SSR<br/><i>2025</i>"]
-        M["ECHO<br/><i>2026</i>"]
-    end
-
-    subgraph "Continual & Experiential"
-        N["ELL<br/><i>2025</i>"]
-        O["OEL<br/><i>2026</i>"]
-        P["XSkill<br/><i>2026</i>"]
-    end
-
-    A --> C
-    A --> B
-    B --> E
-    C --> D
-    D --> F
-    F --> G
-    E --> H
-    E --> I
-    J --> K
-    K --> M
-    L --> M
-    B --> L
-    N --> O
-    O --> P
-
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style E fill:#f0e8fd,stroke:#9b59b6
-    style M fill:#e8fde8,stroke:#27ae60
-    style P fill:#e8fde8,stroke:#27ae60
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
 The field evolved through five threads: **self-training origins** (2022) where STaR established iterative rationale bootstrapping; **reward and reasoning** (2024) where Self-Rewarding LM, Quiet-STaR, and STILL-2 added self-judging and slow-thinking; **zero-data and self-play** (2025) where Absolute Zero, TTRL, EVOL-RL, Socratic-Zero, and Vision-Zero eliminated human data entirely; **self-evolving agents** (2024-2026) where AgentGym, EVOLVER, SSR, and ECHO scaled self-improvement to multi-step agent behavior; and **continual experiential learning** (2025-2026) where ELL, OEL, and XSkill added persistent memory for lifelong improvement.
@@ -375,10 +366,10 @@ Comprehensive reviews and theoretical analyses that map the self-evolving AI lan
 
 ## Cross-References
 
-- [[04_Reinforcement-Learning]] — RL as the self-improvement engine
+- [[08_Reinforcement-Learning]] — RL as the self-improvement engine
 - [[10_Agents-and-Tool-Use]] — Self-evolving agents
-- [[07_Robotics-and-Embodied-AI]] — Self-evolving embodied AI
+- [[11_Robotics-and-Embodied-AI]] — Self-evolving embodied AI
 
 ---
 
-*Next: [[04_Reinforcement-Learning]] for the RL foundations that power self-evolving systems.*
+*Next: [[10_Agents-and-Tool-Use]] for how self-improving agents use tools and multi-step plans.*

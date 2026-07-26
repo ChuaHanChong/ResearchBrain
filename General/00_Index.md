@@ -10,31 +10,70 @@ aliases:
 ## Research Topics — Index
 
 > [!abstract]
-> Complete overview of all 7,941 papers in [[_KnowledgeHub_]], organized into 12 topic areas. Each topic file has curated narrative sections with evolution graphs, grouped sub-topics, key paper highlights, and practical insights.
+> Complete overview of all 7,943 papers in [[_KnowledgeHub_]], organized into 12 topic areas. Each topic file has curated narrative sections with evolution graphs, grouped sub-topics, key paper highlights, and practical insights.
 
 ### Topic Map
 
-```mermaid
-graph LR
-    A["1. Foundation Models"] --> B["2. VLMs"]
-    A --> C["4. RL"]
-    B --> D["3. Reasoning"]
-    A --> E["5. CV & 3D"]
-    E --> F["6. Video"]
-    B --> G["7. Robotics"]
-    C --> G
-    D --> G
-    F --> G
-    B --> H["9. Multimodal LLMs"]
-    D --> I["10. Agents"]
-    C --> J["11. Self-Evolving"]
-    A --> K["12. Diffusion"]
-    K --> F
-    J --> G
+```text
+╔═════════════════════════╗
+║  1. Foundation Models   ║──────► 2. CV & 3D
+║                         ║──────► 3. Diffusion
+║                         ║──────► 5. VLMs
+║                         ║──────► 8. RL
+╚═════════════════════════╝
 
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style G fill:#e8fde8,stroke:#27ae60
-    style J fill:#f0e8fd,stroke:#9b59b6
+┌──────────────┐
+│  2. CV & 3D  │──────► 4. Video
+└──────────────┘
+
+┌──────────────────┐
+│  3. Diffusion    │──────► 4. Video
+└──────────────────┘
+
+┌──────────────┐
+│  4. Video    │──────► 11. Robotics
+└──────────────┘
+
+┌──────────────┐
+│  5. VLMs     │──────► 6. Multimodal LLMs
+│              │──────► 7. Reasoning
+│              │┄┄┄┄┄┄► 11. Robotics   (skip-layer)
+└──────────────┘
+
+┌───────────────────────┐
+│  6. Multimodal LLMs   │  (sink — no outgoing edges)
+└───────────────────────┘
+
+┌──────────────────┐
+│  7. Reasoning    │──────► 10. Agents
+│                  │──────► 11. Robotics
+└──────────────────┘
+
+┌──────────────┐
+│  8. RL       │──────► 9. Self-Evolving
+│              │┄┄┄┄┄┄► 11. Robotics   (skip-layer)
+└──────────────┘
+
+╔══════════════════════╗
+║  9. Self-Evolving    ║──────► 11. Robotics
+╚══════════════════════╝
+
+┌──────────────┐
+│  10. Agents  │  (sink — no outgoing edges)
+└──────────────┘
+
+╔══════════════════╗
+║  11. Robotics    ║  (sink — no outgoing edges)
+╚══════════════════╝
+
+┌───────────────────────┐
+│  12. Benchmarks       │  (cross-cutting capstone; evaluates topics 1-11, no dependency edges)
+└───────────────────────┘
+
+Legend:
+  ╔═╗ double border = notable/highlighted node (Foundation Models, Robotics, Self-Evolving).
+  ──────► = direct edge to the adjacent layer.  ┄┄┄┄┄┄► = edge that skips a layer (e.g. VLMs/RL straight to Robotics).
+  File numbers now follow this dependency order: each topic is numbered after everything it depends on.
 ```
 
 ### Files
@@ -42,19 +81,19 @@ graph LR
 | # | Topic | Key Threads | Papers |
 | --- | --- | --- | --- |
 | [[01_Foundation-Models]] | ViT, SSL, CLIP, PEFT, theory | ViT → DINO → DINOv2 → I-JEPA | 931 |
-| [[02_Vision-Language-Models]] | Grounding, alignment, hallucination, spatial | CLIP → GLIP → Grounding DINO → LISA | 903 |
-| [[03_Reasoning-and-Planning]] | CoT, agentic reasoning, visual reasoning, TTS | CoT → STaR → ReAct → R1-style RL | 1188 |
-| [[04_Reinforcement-Learning]] | Model-based RL, RLHF, GRPO, agentic RL | Dreamer → DreamerV3; STaR → GRPO → Absolute Zero | 2048 |
-| [[05_Computer-Vision-and-3D]] | Detection, segmentation, 3D, spatial reasoning | FPN → Grounding DINO; DINO → RieMind | 821 |
-| [[06_Video-and-Temporal]] | Video SSL, generation as world models, physics, motion | V-JEPA → V-JEPA 2.1; UniPi → UniSim → WAMs; Force Prompting → Cosmos → NewtonGen | 508 |
-| [[07_Robotics-and-Embodied-AI]] | VLAs, WAMs, self-evolving, driving, datasets | RT-1 → RT-2 → OpenVLA → π0 → DreamZero → SPIRAL | 4292 |
-| [[08_Benchmarks-and-Surveys]] | Cross-cutting surveys and evaluation resources | LIBERO, CALVIN, OXE, Physion → VideoPhy → PhyGenBench → FysicsWorld | 1264 |
-| [[09_Multimodal-LLMs]] | MLLMs, instruction tuning, omni-modal | InstructBLIP → KOSMOS-2 → PaliGemma → Magma | 1015 |
+| [[02_Computer-Vision-and-3D]] | Detection, segmentation, 3D, spatial reasoning | FPN → Grounding DINO; DINO → RieMind | 821 |
+| [[03_Diffusion-and-Generation]] | Diffusion, flow matching, image/text, physics-aware | Diffuser → Diffusion Policy → Transfusion → Flow-GRPO → PhysGaussian → NewtonRewards → OmniPhysGS | 773 |
+| [[04_Video-and-Temporal]] | Video SSL, generation as world models, physics, motion | V-JEPA → V-JEPA 2.1; UniPi → UniSim → WAMs; Force Prompting → Cosmos → NewtonGen | 508 |
+| [[05_Vision-Language-Models]] | Grounding, alignment, hallucination, spatial | CLIP → GLIP → Grounding DINO → LISA | 903 |
+| [[06_Multimodal-LLMs]] | MLLMs, instruction tuning, omni-modal | InstructBLIP → KOSMOS-2 → PaliGemma → Magma | 1015 |
+| [[07_Reasoning-and-Planning]] | CoT, agentic reasoning, visual reasoning, TTS | CoT → STaR → ReAct → R1-style RL | 1188 |
+| [[08_Reinforcement-Learning]] | Model-based RL, RLHF, GRPO, agentic RL | Dreamer → DreamerV3; STaR → GRPO → Absolute Zero | 2048 |
+| [[09_Self-Evolving-AI]] | Self-training, bootstrapping, curriculum, meta | STaR → Self-Rewarding → Absolute Zero → SPIRAL | 296 |
 | [[10_Agents-and-Tool-Use]] | LLM agents, tool use, multi-agent, code gen | ReAct → LATS → AgentGym → KARL → Memento-Skills | 425 |
-| [[11_Self-Evolving-AI]] | Self-training, bootstrapping, curriculum, meta | STaR → Self-Rewarding → Absolute Zero → SPIRAL | 296 |
-| [[12_Diffusion-and-Generation]] | Diffusion, flow matching, image/text, physics-aware | Diffuser → Diffusion Policy → Transfusion → Flow-GRPO → PhysGaussian → NewtonRewards → OmniPhysGS | 773 |
+| [[11_Robotics-and-Embodied-AI]] | VLAs, WAMs, self-evolving, driving, datasets | RT-1 → RT-2 → OpenVLA → π0 → DreamZero → SPIRAL | 4292 |
+| [[12_Benchmarks-and-Surveys]] | Cross-cutting surveys and evaluation resources | LIBERO, CALVIN, OXE, Physion → VideoPhy → PhyGenBench → FysicsWorld | 1264 |
 
-**Total: 7,941 papers** — papers may appear in multiple topic files where relevant.
+**Total: 7,943 papers** — papers may appear in multiple topic files where relevant.
 
 ### Deep-Dive Folders
 

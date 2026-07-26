@@ -12,61 +12,75 @@ aliases:
 # Multimodal LLMs
 
 > [!abstract] Overview
-> Multimodal LLMs extend language models with visual, audio, and other modalities. This topic covers architectures that process and generate across modalities — distinct from [[02_Vision-Language-Models|VLMs]] (which focus on vision-language alignment) and [[01_Foundation-Models]] (which cover the base architectures). The field has evolved from early encoder-decoder designs (BLIP, Flamingo) through instruction-tuned MLLMs (InstructBLIP, LLaVA) to unified native multimodal models (InternVL3, BAGEL) and efficient sub-3B deployments (SmolVLM, TinyVLM).
+> Multimodal LLMs extend language models with visual, audio, and other modalities. This topic covers architectures that process and generate across modalities — distinct from [[05_Vision-Language-Models]] (which focus on vision-language alignment) and [[01_Foundation-Models]] (which cover the base architectures). The field has evolved from early encoder-decoder designs (BLIP, Flamingo) through instruction-tuned MLLMs (InstructBLIP, LLaVA) to unified native multimodal models (InternVL3, BAGEL) and efficient sub-3B deployments (SmolVLM, TinyVLM).
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Foundational Alignment"
-        A["CLIP (2021)"]
-        B["BLIP (2022)"]
-        C["CoCa (2022)"]
-    end
+```text
+Foundational Vision-Language Alignment
 
-    subgraph "Early MLLMs"
-        D["InstructBLIP (2023)"]
-        E["KOSMOS-2 (2023)"]
-        F["Shikra (2023)"]
-    end
+╔════════════════╗
+║ *CLIP (2021)   ║──┬──► BLIP (2022)
+╚════════════════╝  ├──► CoCa (2022)
+                    └──► InstructBLIP (2023)  [Early MLLMs]
 
-    subgraph "Instruction-Tuned MLLMs"
-        G["LLaVA-MORE (2025)"]
-        H["Molmo (2024)"]
-        I["PaliGemma (2024)"]
-    end
+┌────────────────┐
+│ BLIP (2022)    │──┬──► InstructBLIP (2023)   [Early MLLMs]
+└────────────────┘  └──► PaliGemma (2024)      [Instruction-Tuned MLLMs]
 
-    subgraph "Unified & Native Multimodal"
-        J["InternVL3 (2025)"]
-        K["BAGEL (2025)"]
-        L["SAIL (2025)"]
-    end
+┌────────────────┐
+│ CoCa (2022)    │─────► InstructBLIP (2023)   [Early MLLMs]
+└────────────────┘
 
-    subgraph "Efficient MLLMs"
-        M["SmolVLM (2025)"]
-        N["NVILA (2024)"]
-        O["TinyVLM (2026)"]
-    end
 
-    A --> B --> D
-    A --> C
-    A --> E
-    C --> D
-    D --> G
-    E --> F
-    D --> H
-    B --> I
-    G --> J
-    H --> J
-    J --> K
-    L --> K
-    N --> M
-    M --> O
+Early MLLMs
 
-    style A fill:#f0e8fd,stroke:#9b59b6
-    style D fill:#e8f4fd,stroke:#4a90d9
-    style J fill:#e8fde8,stroke:#27ae60
-    style M fill:#fde8e8,stroke:#e74c3c
+╔═════════════════════════╗
+║ *InstructBLIP (2023)    ║──┬──► LLaVA-MORE (2025)  [Instruction-Tuned MLLMs]
+╚═════════════════════════╝  └──► Molmo (2024)       [Instruction-Tuned MLLMs]
+
+┌─────────────────┐
+│ KOSMOS-2 (2023) │─────► Shikra (2023)   (leaf)
+└─────────────────┘
+
+
+Instruction-Tuned MLLMs
+
+┌────────────────────┐
+│ LLaVA-MORE (2025)  │─────► InternVL3 (2025)  [Unified & Native Multimodal]
+└────────────────────┘
+
+┌────────────────┐
+│ Molmo (2024)   │─────► InternVL3 (2025)      [Unified & Native Multimodal]
+└────────────────┘
+
+┌────────────────────┐
+│ PaliGemma (2024)   │   (leaf, no outgoing edges)
+└────────────────────┘
+
+
+Unified & Native Multimodal
+
+╔════════════════════╗
+║ *InternVL3 (2025)  ║─────► BAGEL (2025)
+╚════════════════════╝
+
+┌────────────────┐
+│ SAIL (2025)    │─────► BAGEL (2025)
+└────────────────┘
+
+┌────────────────┐
+│ BAGEL (2025)   │   (leaf; receives from InternVL3 + SAIL above)
+└────────────────┘
+
+
+Efficient MLLMs                              (disconnected sub-graph, no edges to/from groups above)
+
+┌────────────────┐     ╔═══════════════════╗     ┌─────────────────┐
+│ NVILA (2024)   │────►║ *SmolVLM (2025)   ║────►│ TinyVLM (2026)  │
+└────────────────┘     ╚═══════════════════╝     └─────────────────┘
+
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
 The field evolved through four phases: **foundational alignment** (2021-2022) where CLIP, BLIP, and CoCa established vision-language pretraining paradigms; **early MLLMs** (2023) where InstructBLIP, KOSMOS-2, and Shikra connected visual encoders to LLMs with instruction tuning and grounding; **instruction-tuned MLLMs** (2024-2025) where LLaVA-MORE, Molmo, and PaliGemma refined the recipe for general-purpose multimodal understanding; and **unified native multimodal + efficient deployment** (2024-2026) where InternVL3 and BAGEL achieved native multi-task generation while SmolVLM and TinyVLM pushed sub-3B parameter efficiency.
@@ -103,10 +117,10 @@ The core pretraining paradigms that established how to connect visual encoders w
 > - [[2502.14786|SigLIP-2]] — Multilingual vision-language encoders integrating decoder-based pretraining with sigmoid loss; advances over original SigLIP
 > - [[2507.22062|Meta-CLIP-2]] — Transparent, open-sourced methodology for training CLIP on native worldwide web data at scale
 
-**RL, Policy-Optimization & Distillation for Reasoning** — Reinforcement-learning and knowledge-distillation methods for LLM/VLM reasoning; tagged into this alignment bucket during ingest but topically distinct — see [[04_Reinforcement-Learning]].
+**RL, Policy-Optimization & Distillation for Reasoning** — Reinforcement-learning and knowledge-distillation methods for LLM/VLM reasoning; tagged into this alignment bucket during ingest but topically distinct — see [[08_Reinforcement-Learning]].
 - [[2605.31159|TRB]], [[2605.29198|GCPO]], [[2605.22817|VPO]], [[2605.22217|Survive-or-Collapse]], [[2605.21699|X-Token]], [[2605.21467|DelTA]], [[2605.16787|RLVR-Unlearnability]], [[2605.12227|dGRPO]], [[2605.10663|Evolving-RL]], [[2605.07396|ROPD]], [[2604.17535|OPSDL]], [[2603.07079|EOPD]], [[2602.20574|GATES]]
 
-**Agentic, Embodied & Self-Play Systems** — Agentic, self-play, and embodied-memory papers misfiled into this alignment bucket during ingest — closer to [[07_Robotics-and-Embodied-AI]] and [[10_Agents-and-Tool-Use]].
+**Agentic, Embodied & Self-Play Systems** — Agentic, self-play, and embodied-memory papers misfiled into this alignment bucket during ingest — closer to [[11_Robotics-and-Embodied-AI]] and [[10_Agents-and-Tool-Use]].
 - [[2606.03374|eMEM]], [[2606.03047|ModuLoop]], [[2605.30557|SpatialUncertain]], [[2605.28814|BES]], [[2605.27276|SIA]], [[2605.26494|MiniMax-M2]], [[2605.25832|AUTO-ROBOTIST]], [[2605.20025|AutoResearchClaw]], [[2602.16313|MemoryArena]], [[2506.14968|FEAST]], [[2409.18313|Embodied-RAG]], [[2209.07753|Code-as-Policies]]
 
 **Encoder-Decoder & Generative Alignment** — Architectures that unify contrastive and generative objectives for both understanding and generation.
@@ -123,7 +137,6 @@ The core pretraining paradigms that established how to connect visual encoders w
 > [!star] Key Papers
 > - [[2505.02278|GCLIP]] — Training-free method enhancing CLIP's compositional understanding through grounding
 > - [[2504.16801|DeGLA]] — Decoupled Global-Local Alignment for compositional VLM understanding
-> -  — Medical vision-language pretraining framework adapting CLIP to clinical domains
 
 > [!success] Three-Layer Alignment Stack
 > ==Layer 1: Contrastive pretraining== (CLIP/SigLIP 2) for broad zero-shot transfer → ==Layer 2: Generative alignment== (BLIP/CoCa) for understanding + generation → ==Layer 3: Compositional refinement== (grounding-based and decoupled alignment methods) for fine-grained reasoning. Modern MLLMs inherit all three layers.
@@ -373,16 +386,16 @@ Enabling MLLMs to localize, reference, and reason about specific objects and reg
 - [[2604.18484|XEmbodied]], [[2602.21619|VSR-Information-Injection-Analysis]], [[2602.15950|VLM-Spatial-Reasoning-OCR]], [[2602.15918|EarthSpatialBench]], [[2602.03916|SpatiaLab]], [[2601.22231|PE-Spatial-Reasoning-Analysis]], [[2504.15037|MLLM-Spatial-Reasoning-Position-Paper]], [[2502.11859|VLM-Spatial-Abilities-Benchmark]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]]
 
 **Spatial Grounding & Scene Understanding Methods** — Models and mechanisms for localizing and reasoning about scene structure beyond object detection, including physical-property inference (gravity, mass, materials, dynamics) as a distinct capability from geometric/spatial reasoning.
-- [[2602.03361|Z3D]], [[2601.19834|Visual-Generation-Reasoning]], [[2601.05600|SceneAlign]], [[2601.04777|GeM-VG]], [[2511.21688|G2VLM]], [[2507.00505|LLaVA-SP]], [[2506.21710|FOCUS]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]], [[2504.13469|HMPE]], [[2411.16044|ZoomEye]], [[2410.08500|STMR]], [[2410.06468|SPACE]], [[2312.14135|V*]], [[2307.12981|3D-LLM]]
+- [[2602.03361|Z3D]], [[2601.19834|Visual-Generation-Reasoning]], [[2601.05600|SceneAlign]], [[2601.04777|GeM-VG]], [[2511.21688|G2VLM]], [[2507.00505|LLaVA-SP]], [[2506.21710|FOCUS]], [[2506.10778|SlotPi]], [[2506.08708|PhyBlock]], [[2504.13469|HMPE]], [[2501.09038|Physics-IQ]], [[2411.16044|ZoomEye]], [[2410.08500|STMR]], [[2410.06468|SPACE]], [[2312.14135|V*]], [[2307.12981|3D-LLM]]
 
 > [!star] Key Papers
 > - [[2601.05600|SceneAlign]] — Aligns MLLMs with scene-level spatial structure for holistic visual understanding
 > - [[2602.15950|VLM-Spatial-Reasoning-OCR]] — Reveals consistent spatial reasoning degradation in VLMs on OCR-related tasks
-> -  — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhyGenBench-style generation tests
+> - [[2501.09038|Physics-IQ]] — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhyGenBench-style generation tests
 > - [[2506.08708|PhyBlock]] — Block-stacking benchmark exposing whether MLLMs reason about gravitational stability from images alone
 
 > [!tip] Grounding as First-Class Capability
-> Grounding is no longer an afterthought — KOSMOS-2 and Shikra (Section 2) showed it can be native. The trend is toward models that ground by default (Groma, PixelRefer) rather than requiring external detection modules. For robotics applications, this shift is critical — see [[07_Robotics-and-Embodied-AI]].
+> Grounding is no longer an afterthought — KOSMOS-2 and Shikra (Section 2) showed it can be native. The trend is toward models that ground by default (Groma, PixelRefer) rather than requiring external detection modules. For robotics applications, this shift is critical — see [[11_Robotics-and-Embodied-AI]].
 
 ---
 
@@ -390,6 +403,7 @@ Enabling MLLMs to localize, reference, and reason about specific objects and reg
 
 Extending multimodal understanding to video inputs, requiring models to handle temporal dynamics, long-form content, and cross-frame reasoning.
 
+**Video & Temporal MLLM Methods** — Architectures and benchmarks for temporal reasoning, long-context video memory, and cross-frame understanding.
 - [[2603.17541|Temporal-Trap-Analysis]], [[2602.20159|VBVR]], [[2602.05986|RISE-Video]], [[2602.01984|Delimiter-Token-Scaling]], [[2601.09430|Video-MSR]], [[2507.01544|MARVIS]], [[2506.06279|CoMemo]], [[2406.07476|VideoLLaMA 2]]
 
 > [!star] Key Papers
@@ -551,7 +565,11 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 
 Understanding what MLLMs learn internally — which visual features matter, how cross-modal representations are structured, and why models produce specific outputs.
 
-- [[2607.03973|MANCE]], [[2604.11791|Looped-Reasoning-Mechanistic-Analysis]], [[2603.17063|Transformers-as-Bayesian-Networks]], [[2603.07335|VisualScratchpad]], [[2602.15029|Language-Symmetry-Representations]], [[2602.11217|Magic-Correlations]], [[2602.11144|GENIUS]], [[2602.02140|GAPEVAL]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2506.15679|Dense-SAE-Latents]], [[2506.11976|VLM-Visual-Language-Alignment]], [[2506.07326|Reward-Model-Interpretability]], [[2504.19627|VCM]], [[2502.02013|Layer-by-Layer-Representations]], [[2501.09333|Prompt-CAM]], [[2310.15916|Task Vectors]], [[2310.15213|Function Vectors]], [[2309.08600|Sparse Autoencoders]], [[2209.11895|Induction Heads]]
+**Mechanistic Analysis & Circuit-Level Tools** — General mechanistic-interpretability primitives (circuits, sparse features, task representations) applied to transformers.
+- [[2604.11791|Looped-Reasoning-Mechanistic-Analysis]], [[2603.17063|Transformers-as-Bayesian-Networks]], [[2506.15679|Dense-SAE-Latents]], [[2501.09333|Prompt-CAM]], [[2310.15916|Task Vectors]], [[2310.15213|Function Vectors]], [[2309.08600|Sparse Autoencoders]], [[2209.11895|Induction Heads]]
+
+**Visual Representation & Cross-Modal Probing** — Tools and analyses specific to probing what MLLMs encode visually and cross-modally.
+- [[2607.03973|MANCE]], [[2603.07335|VisualScratchpad]], [[2602.15029|Language-Symmetry-Representations]], [[2602.11217|Magic-Correlations]], [[2602.11144|GENIUS]], [[2602.02140|GAPEVAL]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2506.11976|VLM-Visual-Language-Alignment]], [[2506.07326|Reward-Model-Interpretability]], [[2504.19627|VCM]], [[2502.02013|Layer-by-Layer-Representations]]
 
 > [!star] Key Papers
 > - [[2602.00462|LatentLens]] — Training-free method interpreting visual token representations layer-by-layer inside MLLMs
@@ -601,6 +619,7 @@ Applying MLLMs and VLMs to downstream tasks including fine-grained recognition, 
 
 Extending MLLM capabilities to open-vocabulary object detection — detecting objects described by arbitrary text at inference time.
 
+**Open-Vocabulary Detection with MLLMs** — Steering or pretraining MLLMs/VLMs to detect objects described by arbitrary text.
 - [[2505.23004|QLIP]], [[2502.17425|VPT]], [[2501.18954|LLMDet]], [[2410.13842|D-FINE]], [[2404.09216|DetCLIPv3]], [[2304.04514|DetCLIPv2]], [[2209.15639|F-VLM]], [[2209.09407|DetCLIP]]
 
 > [!star] Key Papers
@@ -609,7 +628,7 @@ Extending MLLM capabilities to open-vocabulary object detection — detecting ob
 > - [[2502.17425|VPT]] — Visual Perception Tokens enabling MLLMs to dynamically attend to detection-relevant regions
 
 > [!tip] Detection Without Boundaries
-> Open-vocabulary detection removes the fixed-class bottleneck. DetCLIPv2 and F-VLM show that CLIP-style alignment can drive detection, while VPT demonstrates that MLLMs can be steered toward detection tasks through learned perception tokens. See [[02_Vision-Language-Models]] for the broader open-vocabulary detection landscape.
+> Open-vocabulary detection removes the fixed-class bottleneck. DetCLIPv2 and F-VLM show that CLIP-style alignment can drive detection, while VPT demonstrates that MLLMs can be steered toward detection tasks through learned perception tokens. See [[05_Vision-Language-Models]] for the broader open-vocabulary detection landscape.
 
 ---
 
@@ -617,6 +636,7 @@ Extending MLLM capabilities to open-vocabulary object detection — detecting ob
 
 Comprehensive overviews and large-scale analyses of the MLLM field.
 
+**MLLM Surveys & Meta-Analyses** — Field-wide reviews spanning MLLM architectures, efficiency, prompting, and predecessor visual-transformer surveys.
 - [[2604.02029|Latent-Space-Survey]], [[2603.22862|LLM-Tool-Use-Survey]], [[2510.09586|VLM-Survey-26K]], [[2508.02120|Efficient-R1-style-Reasoning-Survey]], [[2501.09223|LLM-Foundations]], [[2501.02765|VLLM-Survey]], [[2501.02189|VLM-SOTA-Survey]], [[2405.10739|Efficient-MLLM-Survey]], [[2402.07927|Prompt-Engineering-Survey]], [[2306.13549|MLLM-Survey]], [[2303.18223|LLM Survey]], [[2111.06091|Visual-Transformers-Survey]], [[2012.12556|Visual-Transformer-Survey]]
 
 > [!star] Key Papers
@@ -633,12 +653,12 @@ Comprehensive overviews and large-scale analyses of the MLLM field.
 ## Cross-References
 
 - [[01_Foundation-Models]] — Backbone architectures (ViT, DINO, CLIP)
-- [[02_Vision-Language-Models]] — Vision-language alignment, prompt learning, open-vocabulary detection
-- [[03_Reasoning-and-Planning]] — Reasoning capabilities built on MLLMs
-- [[05_Computer-Vision-and-3D]] — 3D and spatial understanding
-- [[07_Robotics-and-Embodied-AI]] — MLLMs as perception backbone for VLAs
-- [[12_Diffusion-and-Generation]] — Generation models that complement MLLM understanding
+- [[05_Vision-Language-Models]] — Vision-language alignment, prompt learning, open-vocabulary detection
+- [[07_Reasoning-and-Planning]] — Reasoning capabilities built on MLLMs
+- [[02_Computer-Vision-and-3D]] — 3D and spatial understanding
+- [[11_Robotics-and-Embodied-AI]] — MLLMs as perception backbone for VLAs
+- [[03_Diffusion-and-Generation]] — Generation models that complement MLLM understanding
 
 ---
 
-*Next: [[10_Agents-and-Tool-Use]] for how MLLMs are deployed as autonomous agents.*
+*Next: [[07_Reasoning-and-Planning]] for how these multimodal models learn to reason step-by-step.*

@@ -17,46 +17,80 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Contrastive Alignment"
-        A["CLIP<br/><i>2021</i>"]
-        B["GLIP<br/><i>2021</i>"]
-    end
+```text
+Contrastive Alignment
 
-    subgraph "Open-Vocabulary Detection"
-        F["Grounding DINO<br/><i>2023</i>"]
-        G["OWL-ViT<br/><i>2022</i>"]
-    end
+╔══════════════╗
+║ *CLIP (2021) ║───────► OWL-ViT (2022)             [Open-Vocabulary Detection]
+╚══════════════╝
+       │
+       ├───────► KOSMOS-2 (2023)                    [Grounded VLMs]
+       ├───────► VISPROG (2022)                     [Visual Reasoning]
+       ├───────► ViperGPT (2023)                    [Visual Reasoning]
+       ▼
+┌─────────────┐
+│ GLIP (2021) │───────► Grounding DINO (2023)        [Open-Vocabulary Detection]
+└─────────────┘
 
-    subgraph "Grounded VLMs"
-        C["KOSMOS-2<br/><i>2023</i>"]
-        D["Shikra<br/><i>2023</i>"]
-        E["LISA<br/><i>2023</i>"]
-    end
 
-    subgraph "Visual Reasoning"
-        H["ViperGPT<br/><i>2023</i>"]
-        I["Multimodal-CoT<br/><i>2023</i>"]
-        J["VISPROG<br/><i>2022</i>"]
-    end
+Open-Vocabulary Detection
 
-    A --> B --> F
-    A --> C
-    A --> G
-    C --> D
-    D --> E
-    A --> H
-    A --> J
-    J --> H
-    I --> H
+┌────────────────┐
+│ OWL-ViT (2022) │
+└────────────────┘
 
-    style A fill:#f0e8fd,stroke:#9b59b6
-    style C fill:#e8f4fd,stroke:#4a90d9
-    style F fill:#e8fde8,stroke:#27ae60
+╔════════════════════════╗
+║ *Grounding DINO (2023) ║
+╚════════════════════════╝
+
+
+Grounded VLMs
+
+╔══════════════════╗
+║ *KOSMOS-2 (2023) ║
+╚══════════════════╝
+        │
+        ▼
+┌───────────────┐
+│ Shikra (2023) │
+└───────────────┘
+        │
+        ▼
+┌─────────────┐
+│ LISA (2023) │──────► LLaVA (2023)   [MLLM Architectures & Scaling, below]
+└─────────────┘
+
+
+Visual Reasoning
+
+┌────────────────┐          ┌───────────────────────┐
+│ VISPROG (2022) │          │ Multimodal-CoT (2023) │
+└────────────────┘          └───────────────────────┘
+        │                                │
+        └────────────────┬───────────────┘
+                         ▼
+             ┌─────────────────┐
+             │ ViperGPT (2023) │──────► Visual-RFT (2025)   [RL-Trained Visual Reasoning, below]
+             └─────────────────┘
+
+
+MLLM Architectures & Scaling
+
+╔═══════════════╗
+║ *LLaVA (2023) ║
+╚═══════════════╝
+
+
+RL-Trained Visual Reasoning
+
+╔════════════════════╗
+║ *Visual-RFT (2025) ║
+╚════════════════════╝
+
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
-The field progressed from **contrastive alignment** (2021) where CLIP proved image-text pairing at web scale, through **open-vocabulary grounding** (2022-2023) where GLIP, Grounding DINO, and OWL-ViT brought language-driven detection to arbitrary categories, to **grounded reasoning** (2023) where models like LISA and ViperGPT combined spatial understanding with multi-step inference.
+The field progressed from **contrastive alignment** (2021) where CLIP proved image-text pairing at web scale, through **open-vocabulary grounding** (2022-2023) where GLIP, Grounding DINO, and OWL-ViT brought language-driven detection to arbitrary categories, to **grounded reasoning** (2023) where models like LISA and ViperGPT combined spatial understanding with multi-step inference, then scaled into **instruction-tuned MLLMs** (2023, LLaVA) and, most recently, **RL-trained visual reasoning** (2025) where Visual-RFT showed verifiable rewards beat imitation for grounding-heavy tasks.
 
 | Year | Paper | Contribution |
 |------|-------|-------------|
@@ -70,6 +104,8 @@ The field progressed from **contrastive alignment** (2021) where CLIP proved ima
 | 2023 | [[2308.00692\|LISA]] | Introduced reasoning segmentation -- MLLMs generate pixel-level masks from implicit natural language queries |
 | 2023 | [[2303.08128\|ViperGPT]] | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning without training |
 | 2023 | [[2302.00923\|Multimodal-CoT]] | Chain-of-thought with vision for sub-1B models; mitigated hallucinated rationales via two-stage reasoning |
+| 2023 | [[2304.08485\|LLaVA]] | Visual instruction tuning connects a frozen vision encoder to an LLM; the paradigm the whole MLLM-scaling wave builds on |
+| 2025 | [[2503.01785\|Visual-RFT]] | RL fine-tuning with verifiable visual rewards (box IoU, count correctness); 24.3% accuracy boost in fine-grained classification |
 
 ---
 
@@ -77,7 +113,17 @@ The field progressed from **contrastive alignment** (2021) where CLIP proved ima
 
 The foundational approach: learning shared vision-language embeddings from web-scale image-text pairs. CLIP established the paradigm; subsequent work scaled it, opened it, and refined its representations.
 
-- [[2601.10497|MERGETUNE]], [[2601.09859|TuneCLIP]], [[2507.22062|Meta-CLIP-2]], [[2507.00754|LUViT]], [[2506.09691|VLC-Compositionality-Inference]], [[2506.04209|LIFT]], [[2506.03096|FuseLIP]], [[2505.23004|QLIP]], [[2505.21549|DCLIP]], [[2505.18983|AmorLIP]], [[2505.16416|Circle-RoPE]], [[2505.14204|Perceptual-Initialization]], [[2505.04601|OpenVision]], [[2505.04410|DeCLIP]], [[2504.12717|RaFA]], [[2504.01017|Web-SSL]], [[2503.15485|TULIP]], [[2503.06626|DiffCLIP]], [[2502.14786|SigLIP-2]], [[2406.17639|AlignCLIP]], [[2406.06973|RWKV-CLIP]], [[2309.17425|DFN]], [[2309.16671|MetaCLIP]], [[2303.15343|SigLIP]], [[2208.12262|MaskCLIP]], [[2112.04482|FLAVA]], [[2111.10050|BASIC]], [[2111.07991|LiT]], [[2111.07783|FILIP]], [[2111.02114|LAION-400M]], [[2103.00020|CLIP]], [[2010.00747|ConVIRT]], [[2006.06666|VirTex]], [[1612.09161|Visual N-Grams]]
+**Foundational Contrastive Pretraining** — The original wave establishing image-text contrastive alignment as a paradigm, from early proto-CLIP efforts to CLIP itself and its first scaling companions.
+- [[2112.04482|FLAVA]], [[2111.10050|BASIC]], [[2111.07991|LiT]], [[2111.07783|FILIP]], [[2111.02114|LAION-400M]], [[2103.00020|CLIP]], [[2010.00747|ConVIRT]], [[2006.06666|VirTex]], [[1612.09161|Visual N-Grams]]
+
+**Scaling & Data Curation** — Recipes for scaling contrastive pretraining through better data filtering, curation, or sigmoid-style losses.
+- [[2507.22062|Meta-CLIP-2]], [[2502.14786|SigLIP-2]], [[2406.17639|AlignCLIP]], [[2406.06973|RWKV-CLIP]], [[2309.17425|DFN]], [[2309.16671|MetaCLIP]], [[2303.15343|SigLIP]], [[2208.12262|MaskCLIP]]
+
+**Fine-Grained & Compositional Alignment** — Methods targeting CLIP's weakness at compositional and fine-grained region/attribute matching.
+- [[2506.09691|VLC-Compositionality-Inference]], [[2506.04209|LIFT]], [[2506.03096|FuseLIP]], [[2505.23004|QLIP]], [[2505.21549|DCLIP]], [[2505.04410|DeCLIP]], [[2503.15485|TULIP]], [[2503.06626|DiffCLIP]]
+
+**Efficiency & Parameter-Efficient Adaptation** — Lower-cost training, tuning, or merging strategies for CLIP-style encoders.
+- [[2601.10497|MERGETUNE]], [[2601.09859|TuneCLIP]], [[2507.00754|LUViT]], [[2505.18983|AmorLIP]], [[2505.16416|Circle-RoPE]], [[2505.14204|Perceptual-Initialization]], [[2505.04601|OpenVision]], [[2504.12717|RaFA]], [[2504.01017|Web-SSL]]
 
 > [!star] Key Papers
 > - [[2103.00020|CLIP]] — Contrastive pre-training on 400M image-text pairs; enabled zero-shot classification via text prompts and launched the VLM era
@@ -171,7 +217,49 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 
 ---
 
-## 4. Open-Vocabulary Detection & Grounding
+## 4. In-Context & Few-Shot Learning for Vision
+
+In-context learning, few-shot detection, and meta-learning methods applied to visual tasks.
+
+**Modern & Foundation-Model-Adapted Few-Shot Detectors** — Recent few-shot detection methods leveraging foundation-model features, ICL, or adapter-based strategies.
+- [[2602.12275|OPCD]], [[2505.00147|AdaptMI]], [[2502.14214|ACT]], [[2401.13987|ADAPTER]], [[2401.07629|FPD]], [[2312.04684|LaRS]], [[2311.13601|DINOv]], [[2305.14676|GRILL]], [[2303.14240|BSPG]], [[2201.02609|GCD]], [[2112.02814|Low-Shot-Detection-Survey]], [[2104.14984|CAT]], [[2004.02684|Attribute-Mix]], [[2003.06800|OS2D]], [[2002.04741|POTD]]
+
+**Foundational Meta-Learning & Metric-Learning Detectors** — Pioneering meta-learning and metric-learning architectures (Siamese networks, attention RPN) for few-shot detection.
+- [[1911.12529|CoAE]], [[1909.13032|Meta-R-CNN]], [[1908.01998|Attention-RPN]], [[1811.11507|Siamese-Mask-R-CNN]], [[1810.09091|SG-One]], [[1806.04728|RepMet]], [[1803.01529|LSTD]]
+
+**Chain-of-Thought & Prompting Techniques** — Foundational prompting strategies that elicit step-by-step reasoning from LLMs without additional training.
+- [[2305.04091|Plan-and-Solve]], [[2211.01910|APE]], [[2210.03493|Auto-CoT]], [[2205.10625|Least-to-Most]], [[2201.11903|Chain-of-Thought Prompting]]
+
+**Mechanistic Theory of In-Context Learning** — Understanding how Transformers perform in-context learning and meta-optimization internally.
+- [[2512.15934|IC-SSL]], [[2510.26493|Context-Engineering-2.0]], [[2510.04618|ACE]], [[2509.06806|MachineLearningLM]], [[2507.16003|ICL-Implicit-Dynamics]], [[2506.07936|MM-ICL-Mimicking-vs-Reasoning]], [[2505.01812|New-News]], [[2502.17666|IC-QL]], [[2502.14010|ICL-Attention-Heads]], [[2412.06464|Gated DeltaNet]], [[2311.12424|Looped-Transformers]], [[2310.15916|Task Vectors]], [[2310.15213|Function Vectors]], [[2309.05858|Mesa-Optimization-Transformers]], [[2301.08028|Meta-RL-Tutorial]], [[2209.11895|Induction Heads]]
+
+**Applied Few-Shot & In-Context Vision/Robotics Methods** — Practical applications of in-context and few-shot learning to vision, manipulation, and detection tasks.
+- [[2606.04269|Instant-Fold]], [[2604.26488|LILA]], [[2603.15975|UMO]], [[2602.23339|Retrieve-and-Segment]], [[2602.00795|DVLA-RL]], [[2512.24766|Dream2Flow]], [[2506.06105|T2L]], [[2302.00674|FLAD]], [[2301.02419|eTT]], [[2203.09093|SaFT]]
+
+**Robotic Tool Use & Manipulation via ICL** — In-context and few-shot approaches for robot manipulation, multi-robot control, and embodied task planning.
+- [[2606.30457|Behavior Prompting Policy]], [[2604.20348|BiCICLe]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X-Multi-Robot-MLLM-Survey]], [[2603.28301|LIBERO-Para]], [[2512.11061|VDAWorld]], [[2511.19684|IndEgo]], [[2501.04693|FuSe]]
+
+**VLM Reasoning & Tool Use via ICL** — In-context approaches for generic visual reasoning, tool use, and task planning.
+- [[2606.04433|Stateful-Visual-Encoders]], [[2606.03937|VEPO]], [[2604.08539|OpenVLThinkerV2]], [[2603.01667|Chain-of-Context-Learning]], [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2601.07298|CINEMA]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot-RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain-FSL-with-DKM]], [[2503.01785|Visual-RFT]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic-Models]]
+
+**Spatial & Scene Grounding via ICL** — In-context grounding of VLM reasoning in 3D scene geometry and physical space.
+- [[2602.22703|GEODPO]], [[2601.05600|SceneAlign]], [[2601.05344|Im2Sim]], [[2601.02356|Talk2Move]], [[2512.24119|GeoBench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]]
+
+**Visual Grounding & Referring via ICL** — In-context visual grounding, referring expression, and detection/segmentation perception methods.
+- [[2603.16253|EVPV]], [[2603.12382|SPARROW]], [[2602.11858|ZwZ]], [[2601.07645|PlaM]], [[2601.05552|UniADet]], [[2601.05244|GREx]], [[2512.23169|REVEALER]], [[2510.23603|PixelRefer]], [[2510.12798|Rex-Omni]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2301.05226|IPVR]]
+
+**Latent & RL-Driven Visual Reasoning via ICL** — In-context latent-space reasoning, self-evaluation, and hallucination mitigation methods.
+- [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.21497|ECRD]], [[2602.21054|VAUQ]], [[2602.20980|CrystaL]], [[2602.16702|SAP]], [[2602.11737|OA-VCD]], [[2602.11073|VILAVT]], [[2602.08241|SAYO]], [[2601.11322|VLM-Logic-Situational-Awareness]], [[2601.10129|LaViT]], [[2601.06993|ReFine-RFT]], [[2601.06521|BabyVision]], [[2601.05328|BFD]], [[2601.02771|AbductiveMLLM]], [[2601.00659|CRoPS]], [[2601.00215|Sight-to-Insight]], [[2512.24297|FIGR]], [[2512.23453|CoFi-Dec]], [[2512.21218|LIVR]], [[2512.19605|KerJEPA]], [[2512.16584|SkiLa]], [[2510.21311|FineRS]]
+
+**Additional VLM & Perception Methods** — Cross-cutting papers on VLM training, perception, and multi-modal understanding.
+- [[2604.12148|ViLL-E]], [[2604.11751|GWM-MPC]], [[2604.11320|CLASP]], [[2604.08626|WildDet3D]], [[2604.08121|Uni-ViGU]], [[2604.06870|RefineAnything]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image-Grounding-RL]], [[2506.02843|REAP]], [[2505.23769|TextRegion]], [[2505.17316|Patch-Aligned-Training]], [[2504.16801|DeGLA]], [[2502.17425|VPT]], [[2502.07503|RINS]], [[2407.01400|GalLoP]], [[2403.19103|PRISM]], [[2209.15639|F-VLM]]
+
+> [!tip] In-Context Learning Beyond Text
+> Transformers implement internal gradient-based optimization during their forward pass (Mesa-Optimization), which explains why ICL works for vision too. DINOv showed that purely visual in-context prompts can match text-prompted models for segmentation. The practical upshot: few-shot visual adaptation does not always require fine-tuning -- well-chosen in-context examples can suffice, especially when combined with RL-trained reasoning (Visual-RFT, Fine-R1).
+
+---
+
+## 5. Open-Vocabulary Detection & Grounding
 
 Detecting and localizing objects described by arbitrary text — not limited to a fixed set of training categories.
 
@@ -243,55 +331,11 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 
 ---
 
-## 5. Interpretability & Mechanistic Analysis
-
-Understanding what VLMs learn internally — which features matter, how representations are structured, and why models make specific predictions.
-
-**Mechanistic Interpretability** — Dissecting VLM internals through sparse autoencoders, attention analysis, and probing.
-- [[2607.03973|MANCE]], [[2604.10949|Pseudo-Unification-Probing]], [[2602.06218|SAE-A]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2507.10442|VLM-Three-Space-Analysis]], [[2506.11976|VLM-Visual-Language-Alignment]], [[2506.01247|VS2]], [[2505.22664|VLM-Surrogate-Grafting]], [[2505.20229|CLIP-Attribution-SAE]], [[2504.19475|Prisma]], [[2310.05916|TEXTSPAN]], [[2208.10431|ProtoPFormer]], [[1806.10574|ProtoPNet]]
-
-> [!star] Key Papers
-> - [[2310.05916|TEXTSPAN]] — Systematic method to interpret CLIP's image representations by decomposing them into text-describable components
-> - [[2504.19475|Prisma]] — Open-source toolkit adapting mechanistic interpretability methods from language models to vision
-
-**Explainability & Attribution** — Methods for explaining model predictions through attribution maps, saliency, and causal analysis.
-- [[2510.00034|MOWI]], [[2507.04380|Explainability-Task-Arithmetic]], [[2506.02138|PA-LRP]], [[2506.01097|Explainability-Guided-Token-Compression]], [[2503.01776|CSR]], [[2503.00641|How-to-Probe]], [[2501.13620|VLM-Perception-Reasoning-Probe]], [[2106.09141|SVO-Probes]], [[1610.02391|Grad-CAM]], [[1512.04150|CAM (Class Activation Mapping)]]
-
-> [!star] Key Papers
-> - [[2506.02138|PA-LRP]] — Positional-Aware Layer-wise Relevance Propagation for Transformer explainability accounting for positional encoding effects
-> - [[2510.00034|MOWI]] — Model-Observer-World-Input framework systematizing visual explanation and interpretation
-
-**Active Learning & Data Curation** — Intelligent selection of training data using VLM representations.
-- [[2506.11967|Annotation-Bootstrapping]], [[2506.02557|KUEA]], [[2506.01724|ALOR]], [[2412.18072|MMFactory]], [[2412.07012|ProVision]]
-
-> [!star] Key Papers
-> - [[2506.01724|ALOR]] — Active Learning with Open Resources integrating VLMs for efficient annotation selection
-
-> [!tip] Opening the Black Box
-> Mechanistic interpretability for VLMs is still nascent compared to language models. TEXTSPAN showed that CLIP representations are surprisingly decomposable into text-describable components. Tools like Prisma and VS2 are making systematic VLM analysis accessible.
-
----
-
-## 6. VLM Robustness & Distribution Shift
-
-Making VLMs reliable under distribution shift, adversarial conditions, and out-of-distribution inputs.
-
-- [[2607.10655|AFP]], [[2607.01518|Overthink-Triggered Slowdown Attack]], [[2604.21343|Latent-Denoising-LMM]], [[2604.18867|HyperRobust-VLM]], [[2510.10487|Triangular-Consistency]], [[2509.07979|VIRAL]], [[2508.15568|ADAPT]], [[2507.08979|PRISM]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2410.17385|COMFORT]], [[2406.07145|Failure-Landscape-DRL]], [[2211.13854|ComCLIP]], [[2207.01887|MKT]], [[2206.01986|CLIP Openness]]
-
-> [!star] Key Papers
-> - [[2604.18867|HyperRobust-VLM]] — Hyperbolic hierarchy-aware adversarial fine-tuning; defends against superclass attacks that transfer to base classes, extends to medical imaging
-> - [[2508.15568|ADAPT]] — Improves VLM robustness to distribution shifts through adaptive prompting
-> - [[2507.08979|PRISM]] — Data-free, task-agnostic framework leveraging LLMs for VLM adaptation without target domain data
-
-> [!tip] Robustness Matters for Deployment
-> VLMs trained on web-scraped data are brittle to domain shifts. Methods like ADAPT and test-time adaptation (Section 3) address this — critical for deploying VLMs in robotics or medical imaging where training and deployment distributions diverge.
-
----
-
-## 7. Grounded Multimodal LLMs
+## 6. Grounded Multimodal LLMs
 
 VLMs that can point to what they are talking about — generating text with spatial references like bounding boxes or segmentation masks. Essential for embodied AI and interactive visual dialogue.
 
+**Grounded VLM Architectures** — Models that generate or condition on spatially-grounded outputs: boxes, masks, and referring expressions inline with text.
 - [[2602.11073|VILAVT]], [[2601.11322|VLM-Logic-Situational-Awareness]], [[2601.05600|SceneAlign]], [[2601.05344|Im2Sim]], [[2601.02771|AbductiveMLLM]], [[2404.13013|Groma]], [[2308.00692|LISA]], [[2307.03601|GPT4RoI]], [[2306.15195|Shikra]], [[2306.14824|KOSMOS-2]], [[2305.11175|VisionLLM]], [[2109.12098|CLIPort]], [[2104.12763|MDETR]]
 
 > [!star] Key Papers
@@ -300,68 +344,11 @@ VLMs that can point to what they are talking about — generating text with spat
 > - [[2308.00692|LISA]] — Reasoning segmentation: segment objects described in complex natural language queries
 
 > [!tip] Grounding = Embodiment Bridge
-> Grounded VLMs are the bridge between vision-language understanding and physical action. KOSMOS-2's bounding box generation directly enables VLAs to localize manipulation targets. See [[07_Robotics-and-Embodied-AI]] for how these grounding capabilities feed into robot policies.
+> Grounded VLMs are the bridge between vision-language understanding and physical action. KOSMOS-2's bounding box generation directly enables VLAs to localize manipulation targets. See [[11_Robotics-and-Embodied-AI]] for how these grounding capabilities feed into robot policies.
 
 ---
 
-## 8. Visual Reasoning & Tool Use
-
-Teaching VLMs to reason step-by-step, often by generating programs or invoking external tools rather than producing answers directly.
-
-- [[2607.08024|APIVOT]], [[2604.22875|SketchVLM]], [[2603.07335|VisualScratchpad]], [[2505.19255|VTool-R1]], [[2505.05464|Bring-Reason-to-Vision]], [[2504.09828|FATE]], [[2503.16434|Interactive-Sketchpad]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]], [[2410.16400|VipAct]], [[2406.19934|VIREO]], [[2406.09403|VisualSketchPad]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2311.05437|LLaVA-Plus]], [[2303.08128|ViperGPT]], [[2303.04671|Visual-ChatGPT]], [[2302.00923|Multimodal-CoT]], [[2211.11559|VISPROG]], [[2204.00598|Socratic-Models]], [[1811.10830|VCR]], [[1811.00491|NLVR2]], [[1709.07871|FiLM]], [[1705.03633|IEP]], [[1704.05526|N2NMN]], [[1612.00837|VQA v2.0]], [[1511.02799|NMN]]
-
-> [!star] Key Papers
-> - [[2302.00923|Multimodal-CoT]] — First chain-of-thought reasoning in multimodal LLMs, jointly reasoning over vision and language
-> - [[2303.08128|ViperGPT]] — VLM generates Python programs to compose vision modules for reasoning; no task-specific training
-> - [[2406.09403|VisualSketchPad]] — Sketching as visual chain-of-thought for spatial reasoning
-
-> [!tip] The Reasoning Progression
-> Simple prompting (CoT) -> program generation (ViperGPT) -> tool use (Visual ChatGPT) -> RL-trained reasoning (Vision-R1). See [[03_Reasoning-and-Planning]] and [[04_Reinforcement-Learning#4. Visual & Multimodal RL]].
-
----
-
-## 9. The Hallucination Problem
-
-VLMs confidently describe things that are not in the image — a critical obstacle for embodied AI and trustworthy deployment.
-
-- [[2607.21556|VCSD]], [[2604.20328|HyLaR]], [[2604.15809|AIF]], [[2602.21054|VAUQ]], [[2602.11858|ZwZ]], [[2602.11737|OA-VCD]], [[2509.12132|Reflection-V]], [[2509.03518|LLM-Lying]], [[2508.01781|LLM-Hallucination-Taxonomy]], [[2507.00898|ONLY]], [[2506.09047|Back-Patching-VLM]], [[2505.22651|Sherlock]], [[2505.16151|FRANK]], [[2505.05177|MARK]], [[2504.19254|uqlm]], [[2410.12735|CREAM]], [[2406.01920|CODE]], [[2402.00253|LVLM-Hallucination-Survey]], [[2401.06209|MMVP]], [[2310.00754|LURE]], [[2305.10355|POPE]], [[2211.09699|PromptCap]], [[1809.02156|CHAIR]]
-
-> [!star] Key Papers
-> - [[2402.00253|LVLM-Hallucination-Survey]] — Comprehensive survey of VLM hallucination types, causes, and mitigation strategies
-> - [[2508.01781|LLM-Hallucination-Taxonomy]] — Formal taxonomy defining hallucination as an inherent, irreducible phenomenon in LLMs
-> - [[2509.03518|LLM-Lying]] — Distinguishes intentional LLM "lying" from hallucination via dummy token rehearsal mechanisms
-
-> [!tip] Hallucination vs Lying
-> Not all incorrect outputs are created equal. Hallucination arises from distributional gaps; lying (per LLM Lying) involves the model's internal representations contradicting its output. For safety-critical VLM deployment, both failure modes require distinct mitigation strategies.
-
----
-
-## 10. Spatial Understanding in VLMs
-
-A growing focus area bridging VLMs toward embodied tasks — understanding where things are relative to each other in 3D space.
-
-- [[2607.21595|VLM-IE3D]], [[2607.21072|ProVisE]], [[2607.15054|ViPS]], [[2607.14543|SafeRelBench]], [[2607.06165|EAGOR]], [[2606.30367|FutureNav]], [[2606.29786|OP3DSG]], [[2605.08064|Proxy3D]], [[2604.26934|World2VLM]], [[2604.20570|GSI-Bench]], [[2603.27967|XVR]], [[2603.25629|LanteRn]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.18892|MultihopSpatial]], [[2603.16506|VIEW2SPACE]], [[2603.15386|RieMind]], [[2602.21619|VSR-Information-Injection-Analysis]], [[2602.15950|VLM-Spatial-Reasoning-OCR]], [[2602.15918|EarthSpatialBench]], [[2602.06037|GeoThinker]], [[2602.04413|H-GIVR]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2601.11644|Trust-Spatial]], [[2511.21471|SpatialBench]], [[2510.09606|SpaceVista]], [[2507.07610|SpatialViz-Bench]], [[2506.18385|InternSpatial]], [[2506.03135|OmniSpatial]], [[2505.23747|Spatial-MLLM]], [[2505.00788|SpatialLLM]], [[2504.20024|SpatialReasoner]], [[2504.15037|MLLM-Spatial-Reasoning-Position-Paper]], [[2503.22976|SPAR-7M]], [[2503.19707|VLM-Spatial-Reasoning-Benchmark]], [[2503.13111|MM-Spatial]], [[2502.11859|VLM-Spatial-Abilities-Benchmark]], [[2502.03214|iVISPAR]], [[2412.10908|Do-VLMs-Understand-3D-Shapes]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.14852|SpatialEval]], [[2406.02537|TopViewRS]], [[2406.01584|SpatialRGPT]], [[2404.12390|BLINK]], [[2401.12168|SpatialVLM]], [[2307.12981|3D-LLM]], [[2205.00363|VSR]], [[1711.07280|Room-to-Room (R2R)]]
-
-> [!star] Key Papers
-> - [[2401.12168|SpatialVLM]] — Endowed VLMs with spatial reasoning via 3D-aware training data
-> - [[2603.15386|RieMind]] — Geometry-grounded agentic framework decoupling perception from spatial reasoning
-
-> [!tip] The Spatial Gap
-> Standard VLMs struggle with spatial relations because they are trained on 2D image-text pairs. SpatialVLM and SpatialRGPT address this with 3D-aware training, while RieMind takes an agentic approach. For robotics, spatial understanding is non-negotiable — see [[05_Computer-Vision-and-3D]].
-
-**Physical & Spatial Understanding Benchmarks** — Benchmarks and diagnostics measuring whether VLMs/MLLMs reason about physical properties (mass, stability, materials, dynamics) from images and video, not just spatial relations.
-- [[2606.03920|VSTAT]], [[2605.30557|SpatialUncertain]], [[2605.22536|SpaceDG]], [[2605.18746|ESI-Bench]], [[2512.19526|QuantiPhy]], [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object-Understanding-Cog-Eval]], [[2501.16411|PhysBench]], [[2311.10111|VideoCon]]
-
-**Physics-Grounded Reasoning, Generation & Prediction Methods** — Methods that instill or leverage physical-world priors for reasoning, video generation, and outcome prediction.
-- [[2606.06076|MGSD]], [[2606.03988|Imaginative-Perception-Tokens]], [[2606.02551|AFUN]], [[2605.30561|VLM3]], [[2605.29563|ViewSuite]], [[2605.06758|R3L]], [[2602.06033|VLM-Intuitive-Physics]], [[2601.19834|Visual-Generation-Reasoning]], [[2512.17012|4D-RGPT]], [[2511.20280|VLM-Refine-Physics-Video]], [[2506.10778|SlotPi]], [[2502.19868|C-Drag]], [[2311.18259|Ego-Exo4D]]
-
-> [!star] Key Papers
-> -  — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhysGenBench
-> - [[2506.08708|PhyBlock]] — Block-stacking benchmark exposing whether MLLMs reason about gravitational stability from images alone
-
----
-
-## 11. MLLM Architectures & Scaling
+## 7. MLLM Architectures & Scaling
 
 Large multimodal models — the workhorses of modern vision-language understanding, spanning from sub-3B efficient designs to unified generation architectures.
 
@@ -409,7 +396,30 @@ Large multimodal models — the workhorses of modern vision-language understandi
 
 ---
 
-## 12. Visual Reasoning with RL
+## 8. Visual Reasoning & Tool Use
+
+Teaching VLMs to reason step-by-step, often by generating programs or invoking external tools rather than producing answers directly.
+
+**Program Synthesis & Tool-Augmented Reasoning** — VLMs that compose or invoke external tools/code modules rather than answering directly.
+- [[2607.08024|APIVOT]], [[2505.19255|VTool-R1]], [[2410.16400|VipAct]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2311.05437|LLaVA-Plus]], [[2303.08128|ViperGPT]], [[2303.04671|Visual-ChatGPT]], [[2211.11559|VISPROG]], [[2204.00598|Socratic-Models]]
+
+**Visual Chain-of-Thought & Sketch-Based Reasoning** — Step-by-step visual reasoning traces, including sketching as an intermediate scratchpad.
+- [[2604.22875|SketchVLM]], [[2603.07335|VisualScratchpad]], [[2505.05464|Bring-Reason-to-Vision]], [[2504.09828|FATE]], [[2503.16434|Interactive-Sketchpad]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]], [[2406.19934|VIREO]], [[2406.09403|VisualSketchPad]], [[2302.00923|Multimodal-CoT]]
+
+**Neural Module Networks & Classic Compositional Reasoning** — Foundational pre-LLM compositional VQA architectures that decompose questions into executable sub-modules.
+- [[1811.10830|VCR]], [[1811.00491|NLVR2]], [[1709.07871|FiLM]], [[1705.03633|IEP]], [[1704.05526|N2NMN]], [[1612.00837|VQA v2.0]], [[1511.02799|NMN]]
+
+> [!star] Key Papers
+> - [[2302.00923|Multimodal-CoT]] — First chain-of-thought reasoning in multimodal LLMs, jointly reasoning over vision and language
+> - [[2303.08128|ViperGPT]] — VLM generates Python programs to compose vision modules for reasoning; no task-specific training
+> - [[2406.09403|VisualSketchPad]] — Sketching as visual chain-of-thought for spatial reasoning
+
+> [!tip] The Reasoning Progression
+> Simple prompting (CoT) -> program generation (ViperGPT) -> tool use (Visual ChatGPT) -> RL-trained reasoning (Vision-R1). See [[07_Reasoning-and-Planning]] and [[08_Reinforcement-Learning#4. Visual & Multimodal RL]].
+
+---
+
+## 9. Visual Reasoning with RL
 
 Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-thought, and multimodal decision-making.
 
@@ -498,56 +508,112 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 
 ---
 
-## 13. In-Context & Few-Shot Learning for Vision
+## 10. Spatial Understanding in VLMs
 
-In-context learning, few-shot detection, and meta-learning methods applied to visual tasks.
+A growing focus area bridging VLMs toward embodied tasks — understanding where things are relative to each other in 3D space.
 
-**Modern & Foundation-Model-Adapted Few-Shot Detectors** — Recent few-shot detection methods leveraging foundation-model features, ICL, or adapter-based strategies.
-- [[2602.12275|OPCD]], [[2505.00147|AdaptMI]], [[2502.14214|ACT]], [[2401.13987|ADAPTER]], [[2401.07629|FPD]], [[2312.04684|LaRS]], [[2311.13601|DINOv]], [[2305.14676|GRILL]], [[2303.14240|BSPG]], [[2201.02609|GCD]], [[2112.02814|Low-Shot-Detection-Survey]], [[2104.14984|CAT]], [[2004.02684|Attribute-Mix]], [[2003.06800|OS2D]], [[2002.04741|POTD]]
+**3D-Grounded Spatial Representations** — Models and methods that inject explicit 3D geometry, scene graphs, or shape priors into VLMs rather than relying on 2D image-text pretraining alone.
+- [[2607.21595|VLM-IE3D]], [[2606.29786|OP3DSG]], [[2605.08064|Proxy3D]], [[2603.25411|HiSpatial]], [[2603.15386|RieMind]], [[2602.06037|GeoThinker]], [[2505.00788|SpatialLLM]], [[2504.20024|SpatialReasoner]], [[2503.22976|SPAR-7M]], [[2503.13111|MM-Spatial]], [[2412.10908|Do-VLMs-Understand-3D-Shapes]], [[2401.12168|SpatialVLM]], [[2307.12981|3D-LLM]]
 
-**Foundational Meta-Learning & Metric-Learning Detectors** — Pioneering meta-learning and metric-learning architectures (Siamese networks, attention RPN) for few-shot detection.
-- [[1911.12529|CoAE]], [[1909.13032|Meta-R-CNN]], [[1908.01998|Attention-RPN]], [[1811.11507|Siamese-Mask-R-CNN]], [[1810.09091|SG-One]], [[1806.04728|RepMet]], [[1803.01529|LSTD]]
+**Spatial Reasoning Benchmarks & Diagnostics** — Evaluation suites and diagnostic studies measuring whether VLMs actually reason about spatial relations, from foundational VSR/R2R to fine-grained 3D and multi-hop benchmarks.
+- [[2607.14543|SafeRelBench]], [[2603.18892|MultihopSpatial]], [[2602.15918|EarthSpatialBench]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2511.21471|SpatialBench]], [[2507.07610|SpatialViz-Bench]], [[2506.18385|InternSpatial]], [[2506.03135|OmniSpatial]], [[2503.19707|VLM-Spatial-Reasoning-Benchmark]], [[2502.03214|iVISPAR]], [[2412.07825|3DSRBench]], [[2408.16662|Space3D-Bench]], [[2406.02537|TopViewRS]], [[2404.12390|BLINK]], [[2205.00363|VSR]], [[1711.07280|Room-to-Room (R2R)]]
 
-**Chain-of-Thought & Prompting Techniques** — Foundational prompting strategies that elicit step-by-step reasoning from LLMs without additional training.
-- [[2305.04091|Plan-and-Solve]], [[2211.01910|APE]], [[2210.03493|Auto-CoT]], [[2205.10625|Least-to-Most]], [[2201.11903|Chain-of-Thought Prompting]]
+**Spatial Reasoning Mechanisms & Embodied Methods** — Training techniques, architectural interventions, and analyses that improve or explain VLM spatial reasoning, including embodied/navigation-flavored approaches.
+- [[2607.21072|ProVisE]], [[2607.15054|ViPS]], [[2607.06165|EAGOR]], [[2606.30367|FutureNav]], [[2604.26934|World2VLM]], [[2604.20570|GSI-Bench]], [[2603.27967|XVR]], [[2603.25629|LanteRn]], [[2603.23404|TRACE]], [[2603.16506|VIEW2SPACE]], [[2602.21619|VSR-Information-Injection-Analysis]], [[2602.15950|VLM-Spatial-Reasoning-OCR]], [[2602.04413|H-GIVR]], [[2601.11644|Trust-Spatial]], [[2510.09606|SpaceVista]], [[2505.23747|Spatial-MLLM]], [[2504.15037|MLLM-Spatial-Reasoning-Position-Paper]], [[2502.11859|VLM-Spatial-Abilities-Benchmark]], [[2406.14852|SpatialEval]], [[2406.01584|SpatialRGPT]]
 
-**Mechanistic Theory of In-Context Learning** — Understanding how Transformers perform in-context learning and meta-optimization internally.
-- [[2512.15934|IC-SSL]], [[2510.26493|Context-Engineering-2.0]], [[2510.04618|ACE]], [[2509.06806|MachineLearningLM]], [[2507.16003|ICL-Implicit-Dynamics]], [[2506.07936|MM-ICL-Mimicking-vs-Reasoning]], [[2505.01812|New-News]], [[2502.17666|IC-QL]], [[2502.14010|ICL-Attention-Heads]], [[2412.06464|Gated DeltaNet]], [[2311.12424|Looped-Transformers]], [[2310.15916|Task Vectors]], [[2310.15213|Function Vectors]], [[2309.05858|Mesa-Optimization-Transformers]], [[2301.08028|Meta-RL-Tutorial]], [[2209.11895|Induction Heads]]
+> [!star] Key Papers
+> - [[2401.12168|SpatialVLM]] — Endowed VLMs with spatial reasoning via 3D-aware training data
+> - [[2603.15386|RieMind]] — Geometry-grounded agentic framework decoupling perception from spatial reasoning
 
-**Applied Few-Shot & In-Context Vision/Robotics Methods** — Practical applications of in-context and few-shot learning to vision, manipulation, and detection tasks.
-- [[2606.04269|Instant-Fold]], [[2604.26488|LILA]], [[2603.15975|UMO]], [[2602.23339|Retrieve-and-Segment]], [[2602.00795|DVLA-RL]], [[2512.24766|Dream2Flow]], [[2506.06105|T2L]], [[2302.00674|FLAD]], [[2301.02419|eTT]], [[2203.09093|SaFT]]
+> [!tip] The Spatial Gap
+> Standard VLMs struggle with spatial relations because they are trained on 2D image-text pairs. SpatialVLM and SpatialRGPT address this with 3D-aware training, while RieMind takes an agentic approach. For robotics, spatial understanding is non-negotiable — see [[02_Computer-Vision-and-3D]].
 
-**Robotic Tool Use & Manipulation via ICL** — In-context and few-shot approaches for robot manipulation, multi-robot control, and embodied task planning.
-- [[2606.30457|Behavior Prompting Policy]], [[2604.20348|BiCICLe]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X-Multi-Robot-MLLM-Survey]], [[2603.28301|LIBERO-Para]], [[2512.11061|VDAWorld]], [[2511.19684|IndEgo]], [[2501.04693|FuSe]]
+**Physical & Spatial Understanding Benchmarks** — Benchmarks and diagnostics measuring whether VLMs/MLLMs reason about physical properties (mass, stability, materials, dynamics) from images and video, not just spatial relations.
+- [[2606.03920|VSTAT]], [[2605.30557|SpatialUncertain]], [[2605.22536|SpaceDG]], [[2605.18746|ESI-Bench]], [[2512.19526|QuantiPhy]], [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object-Understanding-Cog-Eval]], [[2501.16411|PhysBench]], [[2311.10111|VideoCon]]
 
-**VLM Reasoning & Tool Use via ICL** — In-context approaches for generic visual reasoning, tool use, and task planning.
-- [[2606.04433|Stateful-Visual-Encoders]], [[2606.03937|VEPO]], [[2604.08539|OpenVLThinkerV2]], [[2603.01667|Chain-of-Context-Learning]], [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2601.07298|CINEMA]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot-RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain-FSL-with-DKM]], [[2503.01785|Visual-RFT]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic-Models]]
+**Physics-Grounded Reasoning, Generation & Prediction Methods** — Methods that instill or leverage physical-world priors for reasoning, video generation, and outcome prediction.
+- [[2606.06076|MGSD]], [[2606.03988|Imaginative-Perception-Tokens]], [[2606.02551|AFUN]], [[2605.30561|VLM3]], [[2605.29563|ViewSuite]], [[2605.06758|R3L]], [[2602.06033|VLM-Intuitive-Physics]], [[2601.19834|Visual-Generation-Reasoning]], [[2512.17012|4D-RGPT]], [[2511.20280|VLM-Refine-Physics-Video]], [[2506.10778|SlotPi]], [[2502.19868|C-Drag]], [[2501.09038|Physics-IQ]], [[2311.18259|Ego-Exo4D]]
 
-**Spatial & Scene Grounding via ICL** — In-context grounding of VLM reasoning in 3D scene geometry and physical space.
-- [[2602.22703|GEODPO]], [[2601.05600|SceneAlign]], [[2601.05344|Im2Sim]], [[2601.02356|Talk2Move]], [[2512.24119|GeoBench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]]
+> [!star] Key Papers
+> - [[2501.09038|Physics-IQ]] — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhysGenBench
+> - [[2506.08708|PhyBlock]] — Block-stacking benchmark exposing whether MLLMs reason about gravitational stability from images alone
 
-**Visual Grounding & Referring via ICL** — In-context visual grounding, referring expression, and detection/segmentation perception methods.
-- [[2603.16253|EVPV]], [[2603.12382|SPARROW]], [[2602.11858|ZwZ]], [[2601.07645|PlaM]], [[2601.05552|UniADet]], [[2601.05244|GREx]], [[2512.23169|REVEALER]], [[2510.23603|PixelRefer]], [[2510.12798|Rex-Omni]], [[2411.09691|TinyGroundingGPT]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2310.11441|SoM]], [[2301.05226|IPVR]]
+---
 
-**Latent & RL-Driven Visual Reasoning via ICL** — In-context latent-space reasoning, self-evaluation, and hallucination mitigation methods.
-- [[2603.03857|DeepScan]], [[2603.02556|VC-STaR]], [[2603.00207|VisRef]], [[2602.23959|NV-CoT]], [[2602.23615|HART]], [[2602.22766|CapImagine]], [[2602.21497|ECRD]], [[2602.21054|VAUQ]], [[2602.20980|CrystaL]], [[2602.16702|SAP]], [[2602.11737|OA-VCD]], [[2602.11073|VILAVT]], [[2602.08241|SAYO]], [[2601.11322|VLM-Logic-Situational-Awareness]], [[2601.10129|LaViT]], [[2601.06993|ReFine-RFT]], [[2601.06521|BabyVision]], [[2601.05328|BFD]], [[2601.02771|AbductiveMLLM]], [[2601.00659|CRoPS]], [[2601.00215|Sight-to-Insight]], [[2512.24297|FIGR]], [[2512.23453|CoFi-Dec]], [[2512.21218|LIVR]], [[2512.19605|KerJEPA]], [[2512.16584|SkiLa]], [[2510.21311|FineRS]]
+## 11. The Hallucination Problem
 
-**Additional VLM & Perception Methods** — Cross-cutting papers on VLM training, perception, and multi-modal understanding.
-- [[2604.12148|ViLL-E]], [[2604.11751|GWM-MPC]], [[2604.11320|CLASP]], [[2604.08626|WildDet3D]], [[2604.08121|Uni-ViGU]], [[2604.06870|RefineAnything]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image-Grounding-RL]], [[2506.02843|REAP]], [[2505.23769|TextRegion]], [[2505.17316|Patch-Aligned-Training]], [[2504.16801|DeGLA]], [[2502.17425|VPT]], [[2502.07503|RINS]], [[2407.01400|GalLoP]], [[2403.19103|PRISM]], [[2209.15639|F-VLM]]
+VLMs confidently describe things that are not in the image — a critical obstacle for embodied AI and trustworthy deployment.
 
-> [!tip] In-Context Learning Beyond Text
-> Transformers implement internal gradient-based optimization during their forward pass (Mesa-Optimization), which explains why ICL works for vision too. DINOv showed that purely visual in-context prompts can match text-prompted models for segmentation. The practical upshot: few-shot visual adaptation does not always require fine-tuning -- well-chosen in-context examples can suffice, especially when combined with RL-trained reasoning (Visual-RFT, Fine-R1).
+**Hallucination Detection, Benchmarks & Surveys** — Diagnosing and quantifying VLM hallucination through evaluation protocols and taxonomies.
+- [[2602.21054|VAUQ]], [[2509.03518|LLM-Lying]], [[2508.01781|LLM-Hallucination-Taxonomy]], [[2505.22651|Sherlock]], [[2505.16151|FRANK]], [[2505.05177|MARK]], [[2504.19254|uqlm]], [[2402.00253|LVLM-Hallucination-Survey]], [[2401.06209|MMVP]], [[2305.10355|POPE]], [[2211.09699|PromptCap]], [[1809.02156|CHAIR]]
+
+**Hallucination Mitigation Mechanisms** — Training and inference-time interventions that reduce ungrounded generation.
+- [[2607.21556|VCSD]], [[2604.20328|HyLaR]], [[2604.15809|AIF]], [[2602.11858|ZwZ]], [[2602.11737|OA-VCD]], [[2509.12132|Reflection-V]], [[2507.00898|ONLY]], [[2506.09047|Back-Patching-VLM]], [[2410.12735|CREAM]], [[2406.01920|CODE]], [[2310.00754|LURE]]
+
+> [!star] Key Papers
+> - [[2402.00253|LVLM-Hallucination-Survey]] — Comprehensive survey of VLM hallucination types, causes, and mitigation strategies
+> - [[2508.01781|LLM-Hallucination-Taxonomy]] — Formal taxonomy defining hallucination as an inherent, irreducible phenomenon in LLMs
+> - [[2509.03518|LLM-Lying]] — Distinguishes intentional LLM "lying" from hallucination via dummy token rehearsal mechanisms
+
+> [!tip] Hallucination vs Lying
+> Not all incorrect outputs are created equal. Hallucination arises from distributional gaps; lying (per LLM Lying) involves the model's internal representations contradicting its output. For safety-critical VLM deployment, both failure modes require distinct mitigation strategies.
+
+---
+
+## 12. Interpretability & Mechanistic Analysis
+
+Understanding what VLMs learn internally — which features matter, how representations are structured, and why models make specific predictions.
+
+**Mechanistic Interpretability** — Dissecting VLM internals through sparse autoencoders, attention analysis, and probing.
+- [[2607.03973|MANCE]], [[2604.10949|Pseudo-Unification-Probing]], [[2602.06218|SAE-A]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2507.10442|VLM-Three-Space-Analysis]], [[2506.11976|VLM-Visual-Language-Alignment]], [[2506.01247|VS2]], [[2505.22664|VLM-Surrogate-Grafting]], [[2505.20229|CLIP-Attribution-SAE]], [[2504.19475|Prisma]], [[2310.05916|TEXTSPAN]], [[2208.10431|ProtoPFormer]], [[1806.10574|ProtoPNet]]
+
+> [!star] Key Papers
+> - [[2310.05916|TEXTSPAN]] — Systematic method to interpret CLIP's image representations by decomposing them into text-describable components
+> - [[2504.19475|Prisma]] — Open-source toolkit adapting mechanistic interpretability methods from language models to vision
+
+**Explainability & Attribution** — Methods for explaining model predictions through attribution maps, saliency, and causal analysis.
+- [[2510.00034|MOWI]], [[2507.04380|Explainability-Task-Arithmetic]], [[2506.02138|PA-LRP]], [[2506.01097|Explainability-Guided-Token-Compression]], [[2503.01776|CSR]], [[2503.00641|How-to-Probe]], [[2501.13620|VLM-Perception-Reasoning-Probe]], [[2106.09141|SVO-Probes]], [[1610.02391|Grad-CAM]], [[1512.04150|CAM (Class Activation Mapping)]]
+
+> [!star] Key Papers
+> - [[2506.02138|PA-LRP]] — Positional-Aware Layer-wise Relevance Propagation for Transformer explainability accounting for positional encoding effects
+> - [[2510.00034|MOWI]] — Model-Observer-World-Input framework systematizing visual explanation and interpretation
+
+**Active Learning & Data Curation** — Intelligent selection of training data using VLM representations.
+- [[2506.11967|Annotation-Bootstrapping]], [[2506.02557|KUEA]], [[2506.01724|ALOR]], [[2412.18072|MMFactory]], [[2412.07012|ProVision]]
+
+> [!star] Key Papers
+> - [[2506.01724|ALOR]] — Active Learning with Open Resources integrating VLMs for efficient annotation selection
+
+> [!tip] Opening the Black Box
+> Mechanistic interpretability for VLMs is still nascent compared to language models. TEXTSPAN showed that CLIP representations are surprisingly decomposable into text-describable components. Tools like Prisma and VS2 are making systematic VLM analysis accessible.
+
+---
+
+## 13. VLM Robustness & Distribution Shift
+
+Making VLMs reliable under distribution shift, adversarial conditions, and out-of-distribution inputs.
+
+**Robustness, Adversarial Defense & Distribution-Shift Methods** — Attacks, defenses, and adaptation strategies that keep VLMs reliable outside their training distribution.
+- [[2607.10655|AFP]], [[2607.01518|Overthink-Triggered Slowdown Attack]], [[2604.21343|Latent-Denoising-LMM]], [[2604.18867|HyperRobust-VLM]], [[2510.10487|Triangular-Consistency]], [[2509.07979|VIRAL]], [[2508.15568|ADAPT]], [[2507.08979|PRISM]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2410.17385|COMFORT]], [[2406.07145|Failure-Landscape-DRL]], [[2211.13854|ComCLIP]], [[2207.01887|MKT]], [[2206.01986|CLIP Openness]]
+
+> [!star] Key Papers
+> - [[2604.18867|HyperRobust-VLM]] — Hyperbolic hierarchy-aware adversarial fine-tuning; defends against superclass attacks that transfer to base classes, extends to medical imaging
+> - [[2508.15568|ADAPT]] — Improves VLM robustness to distribution shifts through adaptive prompting
+> - [[2507.08979|PRISM]] — Data-free, task-agnostic framework leveraging LLMs for VLM adaptation without target domain data
+
+> [!tip] Robustness Matters for Deployment
+> VLMs trained on web-scraped data are brittle to domain shifts. Methods like ADAPT and test-time adaptation (Section 3) address this — critical for deploying VLMs in robotics or medical imaging where training and deployment distributions diverge.
 
 ---
 
 ## Cross-References
 
 - [[01_Foundation-Models]] — Backbone architectures (ViT, DINO, CLIP)
-- [[03_Reasoning-and-Planning]] — Reasoning methods built on VLMs
-- [[05_Computer-Vision-and-3D]] — 3D understanding that feeds spatial VLMs
-- [[07_Robotics-and-Embodied-AI]] — VLMs as the perception backbone for VLAs
-- [[09_Multimodal-LLMs]] — MLLMs that build on VLM foundations
+- [[07_Reasoning-and-Planning]] — Reasoning methods built on VLMs
+- [[02_Computer-Vision-and-3D]] — 3D understanding that feeds spatial VLMs
+- [[11_Robotics-and-Embodied-AI]] — VLMs as the perception backbone for VLAs
+- [[06_Multimodal-LLMs]] — MLLMs that build on VLM foundations
 
 ---
 
-*Next: [[03_Reasoning-and-Planning]] for how VLMs learn to reason step-by-step.*
+*Next: [[06_Multimodal-LLMs]] for how VLM alignment scales into general-purpose multimodal assistants.*

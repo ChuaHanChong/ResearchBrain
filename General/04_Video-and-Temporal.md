@@ -18,49 +18,50 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Video Architectures"
-        A["MViT<br/><i>2021</i>"]
-        B["V-JEPA 2<br/><i>2025</i>"]
-        C["V-JEPA 2.1<br/><i>2026</i>"]
-    end
+```text
+Video Architectures
 
-    subgraph "Video Generation as World Models"
-        D["UniPi<br/><i>2023</i>"]
-        E["UniSim<br/><i>2023</i>"]
-        F["DriveDreamer-2<br/><i>2024</i>"]
-        G["AdaWorld<br/><i>2025</i>"]
-        H["Dreamer 4<br/><i>2025</i>"]
-    end
+┌────────────────┐     ╔═══════════════════╗     ┌───────────────────┐
+│  MViT (2021)   │────►║ *V-JEPA 2 (2025)  ║────►│ V-JEPA 2.1 (2026) │
+└────────────────┘     ╚═════════╤═════════╝     └───────────────────┘
+                                 │
+                                 └───────────────► *Video-R1 (2025)   [Video Reasoning, below]
 
-    subgraph "Video Reasoning"
-        I["Video-R1<br/><i>2025</i>"]
-        J["VIDEORFT<br/><i>2025</i>"]
-        K["CoF<br/><i>2025</i>"]
-        L["SynRL<br/><i>2026</i>"]
-    end
 
-    subgraph "Motion Generation"
-        M["ARFM<br/><i>2025</i>"]
-        N["UMO<br/><i>2026</i>"]
-        O["MoTok<br/><i>2026</i>"]
-    end
+Video Generation as World Models
 
-    A --> B --> C
-    D --> E --> F
-    D --> G
-    E --> H
-    B --> I
-    I --> J
-    I --> K
-    K --> L
-    M --> N --> O
+┌────────────────┐     ╔══════════════════╗     ┌─────────────────────────┐
+│  UniPi (2023)  │────►║ *UniSim (2023)   ║────►│ DriveDreamer-2 (2024)   │
+└───────┬────────┘     ╚════════╤═════════╝     └─────────────────────────┘
+        │                       │
+        ▼                       ▼
+┌────────────────┐     ┌───────────────────┐
+│ AdaWorld (2025)│     │  Dreamer 4 (2025) │
+└────────────────┘     └───────────────────┘
 
-    style B fill:#e8f4fd,stroke:#4a90d9
-    style E fill:#f0e8fd,stroke:#9b59b6
-    style I fill:#e8fde8,stroke:#27ae60
-    style N fill:#fde8e8,stroke:#e74c3c
+
+Video Reasoning
+
+        (in from Video Architectures, above: *V-JEPA 2)
+                       │
+                       ▼
+╔═══════════════════╗     ┌─────────────────┐
+║ *Video-R1 (2025)  ║────►│ VIDEORFT (2025) │
+╚═════════╤═════════╝     └─────────────────┘
+          │
+          ▼
+┌────────────┐     ┌──────────────┐
+│ CoF (2025) │────►│ SynRL (2026) │
+└────────────┘     └──────────────┘
+
+
+Motion Generation
+
+┌──────────────┐     ╔═════════════╗     ┌───────────────┐
+│ ARFM (2025)  │────►║ *UMO (2026) ║────►│ MoTok (2026)  │
+└──────────────┘     ╚═════════════╝     └───────────────┘
+
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
 The field evolved through four parallel tracks: **video architectures** (2021-2026) progressed from hand-designed multiscale pooling (MViT) to self-supervised world models (V-JEPA 2/2.1); **video-as-world-model** (2023-2025) moved from proving the concept (UniPi, UniSim) to scalable latent-action imagination (Dreamer 4, AdaWorld); **video reasoning** (2025-2026) unlocked temporal understanding via RL post-training (Video-R1, VIDEORFT) and frame-aware CoT (CoF, SynRL); and **motion generation** (2025-2026) converged on unified diffusion architectures for diverse motion tasks (UMO, MoTok).
@@ -250,7 +251,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2504.21853|Interactive-Generative-Video-Survey]] — Maps the emerging interactive-video-generation paradigm where users steer model rollouts in real time, bridging T2V and world-simulation
 
 > [!tip] Video World Models Feed WAMs
-> This cluster directly feeds into World Action Models. If you can generate video of the future, you can plan by imagining outcomes. UniPi and UniSim established the pattern; Dreamer 4 and AdaWorld scale it. See [[04_Reinforcement-Learning]] for RL inside world models and [[07_Robotics-and-Embodied-AI]] for the embodied applications.
+> This cluster directly feeds into World Action Models. If you can generate video of the future, you can plan by imagining outcomes. UniPi and UniSim established the pattern; Dreamer 4 and AdaWorld scale it. See [[08_Reinforcement-Learning]] for RL inside world models and [[11_Robotics-and-Embodied-AI]] for the embodied applications.
 
 **Trajectory & Drag-Point Motion Control** — The schematic-perception lineage of point/trajectory-driven interactive video control, from ControlNet's conditional-diffusion ancestor through drag-style and DiT-scale trajectory control.
 - [[2412.15214|LeviTor]], [[2412.02700|Motion-Prompting]], [[2411.04989|SG-I2V]], [[2408.11475|TrackGo]], [[2407.21705|Tora]], [[2406.16863|FreeTraj]], [[2406.15339|Image-Conductor]], [[2403.20193|Motion-Inversion]], [[2403.07420|DragAnything]], [[2402.03162|Direct-a-Video]], [[2401.15977|Motion-I2V]], [[2312.17681|FlowVid]], [[2312.03641|MotionCtrl]], [[2312.00845|VMC]], [[2310.08465|MotionDirector]], [[2310.05922|FLATTEN]], [[2308.08089|DragNUWA]]
@@ -362,11 +363,11 @@ Synthesizing human and robot motion — bridging video understanding with physic
 ## Cross-References
 
 - [[01_Foundation-Models]] — Vision Transformer backbones for video
-- [[04_Reinforcement-Learning]] — RL inside world models (Dreamer 4, RLVR-World)
-- [[05_Computer-Vision-and-3D]] — 3D perception for spatial video understanding
-- [[07_Robotics-and-Embodied-AI]] — Video models for robotic planning and control
-- [[12_Diffusion-and-Generation]] — Diffusion architectures underlying video generation
+- [[08_Reinforcement-Learning]] — RL inside world models (Dreamer 4, RLVR-World)
+- [[02_Computer-Vision-and-3D]] — 3D perception for spatial video understanding
+- [[11_Robotics-and-Embodied-AI]] — Video models for robotic planning and control
+- [[03_Diffusion-and-Generation]] — Diffusion architectures underlying video generation
 
 ---
 
-*Next: [[07_Robotics-and-Embodied-AI]] — where video understanding, world models, and motion generation converge for embodied intelligence.*
+*Next: [[05_Vision-Language-Models]] for how visual perception connects to language grounding.*

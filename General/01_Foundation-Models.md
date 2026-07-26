@@ -17,54 +17,85 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Vision Transformers"
-        A["ViT (2020)"]
-        B["Swin V2 (2021)"]
-        C["ViT-22B (2023)"]
-    end
+```text
+Vision Transformers
 
-    subgraph "Self-Supervised Learning"
-        D["DINO (2021)"]
-        E["MAE (2021)"]
-        F["DINOv2 (2023)"]
-        G["I-JEPA (2023)"]
-    end
+╔════════════════════╗
+║    *ViT (2020)     ║──────► DINO (2021)   [Self-Supervised Learning, below]
+╚═════════╤══════════╝──────► MAE (2021)    [Self-Supervised Learning, below]
+          │
+          ▼
+┌────────────────────┐
+│   Swin V2 (2021)   │
+└─────────┬──────────┘
+          │
+          ▼
+┌────────────────────┐
+│   ViT-22B (2023)   │
+└────────────────────┘
 
-    subgraph "Vision-Language Alignment"
-        H["CLIP (2021)"]
-        I["BLIP (2022)"]
-        J["ImageBind (2023)"]
-    end
 
-    subgraph "Multimodal LLMs"
-        K["InstructBLIP (2023)"]
-        L["KOSMOS-2 (2023)"]
-        M["PaliGemma (2024)"]
-        N["BLIP3-o (2025)"]
-    end
+Self-Supervised Learning                              (fed by ViT above)
 
-    A --> B --> C
-    A --> D --> F
-    A --> E
-    E --> G
-    H --> I --> K
-    D --> F
-    F --> G
-    H --> L
-    I --> M
-    K --> N
-    I --> N
+┌────────────────────┐     ┌────────────────────┐
+│    DINO (2021)     │     │     MAE (2021)     │
+└─────────┬──────────┘     └─────────┬──────────┘
+          │                          │
+          ▼                          │
+╔════════════════════╗               │
+║  *DINOv2 (2023)    ║               │
+╚═════════╤══════════╝               │
+          │                          │
+          └────────────┬─────────────┘
+                       ▼
+             ┌────────────────────┐
+             │   I-JEPA (2023)    │
+             └────────────────────┘
 
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style H fill:#f0e8fd,stroke:#9b59b6
-    style F fill:#e8f4fd,stroke:#4a90d9
-    style M fill:#e8fde8,stroke:#27ae60
-    style N fill:#e8fde8,stroke:#27ae60
+
+Vision-Language Alignment
+
+╔════════════════════╗
+║   *CLIP (2021)     ║──────► KOSMOS-2 (2023)   [Multimodal LLMs, below]
+╚═════════╤══════════╝
+          │
+          ▼
+┌────────────────────┐
+│    BLIP (2022)     │──────► InstructBLIP (2023)   [Multimodal LLMs, below]
+└────────────────────┘──────► PaliGemma (2024)      [Multimodal LLMs, below]
+                      └─────► BLIP3-o (2025)        [Multimodal LLMs, below]
+
+┌────────────────────┐
+│  ImageBind (2023)  │   (isolated, no edges to/from other nodes)
+└────────────────────┘
+
+
+Multimodal LLMs                              (fed by CLIP and BLIP above)
+
+╔════════════════════╗
+║  *KOSMOS-1 (2023)  ║──────► KOSMOS-2 (2023)
+╚════════════════════╝
+
+┌────────────────────┐
+│ InstructBLIP (2023)│
+└─────────┬──────────┘
+          │
+          ▼
+╔════════════════════╗
+║  *BLIP3-o (2025)   ║   (also fed directly by BLIP, above)
+╚════════════════════╝
+
+┌────────────────────┐
+│  KOSMOS-2 (2023)   │   (target of CLIP's edge and of KOSMOS-1, above)
+└────────────────────┘
+
+╔════════════════════╗
+║ *PaliGemma (2024)  ║   (target of BLIP's edge above)
+╚════════════════════╝
 ```
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 
-The field evolved through three phases: **architectural proof-of-concept** (2020-2021) where ViT, DINO, and CLIP established that Transformers and contrastive learning could replace CNNs; **self-supervised scaling** (2022-2023) where DINOv2, I-JEPA, and ViT-22B showed label-free pretraining scales to billions of parameters; and **multimodal unification** (2023-2025) where InstructBLIP, PaliGemma, and BLIP3-o merged understanding and generation into single models.
+The field evolved through three phases: **architectural proof-of-concept** (2020-2021) where ViT, DINO, and CLIP established that Transformers and contrastive learning could replace CNNs; **self-supervised scaling** (2022-2023) where DINOv2, I-JEPA, and ViT-22B showed label-free pretraining scales to billions of parameters; and **multimodal unification** (2023-2025) where KOSMOS-1 established the foundational MLLM paradigm before InstructBLIP, PaliGemma, and BLIP3-o merged understanding and generation into single models.
 
 | Year | Paper | Contribution |
 |------|-------|-------------|
@@ -103,10 +134,6 @@ The architectural revolution that brought attention mechanisms to computer visio
 
 **Domain- & Task-Specific Vision Adaptations** — ViT variants adapted to specific vision tasks: stereo matching, hand-object pose, panoramic segmentation, and image/video segmentation.
 - [[2607.13674|WAVE-Stereo]], [[2606.30598|HOPformer]], [[2602.17807|VidEoMT]], [[2503.19108|EoMT]], [[2312.05251|HaMeR]], [[2207.11860|Trans4PASS+]]
-
-> [!star] Key Papers
-> -  — Hierarchical self-supervised ViT for gigapixel pathology images; processes whole slide images across multiple magnifications
-> -  — Extends attention-based multiple instance learning with global spatial context for digital pathology
 
 **Geometric & 3D/4D Reconstruction Transformers** — Feed-forward transformers for single- and multi-view 3D/4D scene geometry, depth, and dynamic reconstruction.
 - [[2607.05801|TRIG]], [[2604.13596|VGGT-Segmentor]], [[2602.20160|tttLRM]], [[2602.10094|4RC]], [[2512.08924|D4RT]], [[2512.04012|RobustVGGT]], [[2312.14132|DUSt3R]]
@@ -354,6 +381,7 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 - [[2504.10479|InternVL3]], [[2504.00595|Open-Qwen2VL]], [[2407.07726|PaliGemma]], [[2405.13800|Dense Connector]], [[2404.16821|InternVL 1.5]], [[2403.05525|DeepSeek-VL]], [[2311.07575|SPHINX (Multi-modal Weight Mixing)]], [[2310.03744|LLaVA-1.5]], [[2305.18565|PaLI-X]], [[2305.06500|InstructBLIP]], [[2303.08774|GPT-4]], [[2302.14045|KOSMOS-1]], [[2301.12597|BLIP-2]], [[2210.03347|Pix2Struct]], [[2209.06794|PaLI]], [[2204.14198|Flamingo]], [[2102.02779|VL-T5]]
 
 > [!star] Key Papers
+> - [[2302.14045|KOSMOS-1]] — First MLLM with arbitrarily interleaved image-text inputs; established the foundational MLLM paradigm this whole group builds on
 > - [[2407.07726|PaliGemma]] — Sub-3B VLM achieving SOTA on 40 tasks; SigLIP + Gemma connected by linear projection
 > - [[2310.03744|LLaVA-1.5]] — Enhanced large multimodal model achieving SOTA with simple architectural improvements
 > - [[2505.09568|BLIP3-o]] — Fully open unified multimodal model family excelling in both understanding and generation
@@ -744,12 +772,12 @@ Unconventional approaches that do not fit neatly into the above categories but r
 
 ## Cross-References
 
-- [[04_Reinforcement-Learning]] — RL fine-tunes these foundation models for reasoning
-- [[02_Vision-Language-Models]] — VLMs built on these foundations
-- [[07_Robotics-and-Embodied-AI]] — Foundation models as backbones for VLAs
-- [[09_Multimodal-LLMs]] — Detailed coverage of multimodal architectures
-- [[03_Reasoning-and-Planning]] — Reasoning methods that build on foundation models
+- [[08_Reinforcement-Learning]] — RL fine-tunes these foundation models for reasoning
+- [[05_Vision-Language-Models]] — VLMs built on these foundations
+- [[11_Robotics-and-Embodied-AI]] — Foundation models as backbones for VLAs
+- [[06_Multimodal-LLMs]] — Detailed coverage of multimodal architectures
+- [[07_Reasoning-and-Planning]] — Reasoning methods that build on foundation models
 
 ---
 
-*Next: [[02_Vision-Language-Models]] for how these foundations are applied to multi-modal understanding.*
+*Next: [[02_Computer-Vision-and-3D]] for how these foundations power detection, segmentation, and 3D perception.*

@@ -16,57 +16,35 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Reasoning-Acting Foundations"
-        A["ReAct (2022)"]
-        B["RAP (2023)"]
-        C["LATS (2023)"]
-    end
+```text
+Reasoning-Acting Foundations
+╔═══════════════╗     ┌────────────┐     ┌─────────────┐
+║ *ReAct (2022) ║────►│ RAP (2023) │────►│ LATS (2023) │
+╚═══════════════╝     └────────────┘     └─────────────┘
+  │
+  │ (feeds Tool-Augmented RL, below)
+  ▼
+Tool-Augmented RL
+╔════════════════╗     ┌───────────────┐     ┌─────────────┐     ┌───────────────────┐
+║ *ReTool (2025) ║────►│ ToolRL (2025) │────►│ ToRL (2025) │────►│ Agentic-R1 (2025) │
+╚════════════════╝     └───────────────┘     └─────────────┘     └───────────────────┘
 
-    subgraph "Code & Program Agents"
-        D["PAL (2022)"]
-        E["ViperGPT (2023)"]
-        F["AlphaEvolve (2025)"]
-    end
+Code & Program Agents
+┌────────────┐     ┌─────────────────┐     ┌────────────────────┐
+│ PAL (2022) │────►│ ViperGPT (2023) │────►│ AlphaEvolve (2025) │
+└────────────┘     └─────────────────┘     └────────────────────┘
 
-    subgraph "Tool-Augmented RL"
-        G["ReTool (2025)"]
-        H["ToolRL (2025)"]
-        I["ToRL (2025)"]
-        J["Agentic-R1 (2025)"]
-    end
+Multi-Agent Systems
+╔══════════════════╗     ┌───────────────────────┐     ┌──────────────────┐
+║ *AgentGym (2024) ║────►│ AgentOrchestra (2025) │────►│ MACRO-LLM (2026) │
+╚══════════════════╝     └───────────────────────┘     └──────────────────┘
 
-    subgraph "Multi-Agent Systems"
-        K["AgentGym (2024)"]
-        L["AgentOrchestra (2025)"]
-        M["MACRO-LLM (2026)"]
-    end
+Self-Evolving Agents
+┌──────────────┐     ┌─────────────────┐     ┌─────────────────┐     ╔════════════════════════╗
+│ RAGEN (2025) │────►│ SE-Agent (2025) │────►│ Dr. Zero (2026) │────►║ *Memento-Skills (2026) ║
+└──────────────┘     └─────────────────┘     └─────────────────┘     ╚════════════════════════╝
 
-    subgraph "Self-Evolving Agents"
-        N["RAGEN (2025)"]
-        O["SE-Agent (2025)"]
-        P["Dr. Zero (2026)"]
-        Q["Memento-Skills (2026)"]
-    end
-
-    A --> B --> C
-    A --> G
-    D --> E
-    E --> F
-    G --> H
-    H --> I
-    I --> J
-    K --> L
-    L --> M
-    N --> O
-    O --> P
-    P --> Q
-
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style G fill:#f0e8fd,stroke:#9b59b6
-    style K fill:#e8fde8,stroke:#27ae60
-    style Q fill:#fde8e8,stroke:#e74c3c
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
 The field evolved through five threads: **reasoning-acting foundations** (2022-2023) where ReAct, RAP, and LATS established think-act-observe loops with increasing search sophistication; **code agents** (2022-2025) where PAL and ViperGPT delegated computation to code, scaling to AlphaEvolve's autonomous algorithm discovery; **tool-augmented RL** (2025) where ReTool, ToolRL, ToRL, and Agentic-R1 replaced prompted tool use with learned policies; **multi-agent systems** (2024-2026) where AgentGym, AgentOrchestra, and MACRO-LLM moved from single agents to coordinated teams; and **self-evolving agents** (2025-2026) where RAGEN, SE-Agent, Dr. Zero, and Memento-Skills enabled agents that autonomously improve from experience.
@@ -278,9 +256,10 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 - [[2607.18536|MAGE-MacroPlacement]], [[2607.12050|EFLUX]], [[2607.07403|Megamind]], [[2606.31339|Verification-Gated Mission Governance]], [[2606.25404|HEART]], [[2602.14926|MAC-AMP]], [[2503.11739|CoLLMLight]], [[2409.10106|Industry 6.0]]
 
 **Software Multi-Agent Orchestration, Training & Failure Diagnosis** — Architectures, training methods, and diagnostic tools for coordinating, training, and debugging teams of software agents, including latent-space communication.
-- [[2604.25135|FAMA]], [[2604.24881|Latent-Agents]], [[2604.01658|CORAL]], [[2601.23265|PaperBanana]], [[2601.19204|MATA]], [[2601.10825\|Societies-of-Thought]], [[2601.09295|MACRO-LLM]], [[2512.04388|Conductor]], [[2511.22235|CES-Scheduler]], [[2511.20639\|LatentMAS]], [[2510.11062|AT-GRPO]], [[2509.14295|Aegis-Agent]], [[2509.03312|AgenTracer]], [[2508.13167|CoA]], [[2507.01701|LbMAS]], [[2506.12508|AgentOrchestra]], [[2505.23885|OWL-Workforce]], [[2505.19591|Puppeteer-Agent]], [[2504.16129|MARFT]], [[2504.01990|Foundation-Agents-Survey]], [[2501.15228|MMOA-RAG]], [[2410.17517\|Maynard-Cross-Learning]]
+- [[2604.25135|FAMA]], [[2604.24881|Latent-Agents]], [[2604.01658|CORAL]], [[2601.23265|PaperBanana]], [[2601.19204|MATA]], [[2601.10825\|Societies-of-Thought]], [[2601.09295|MACRO-LLM]], [[2512.04388|Conductor]], [[2511.22235|CES-Scheduler]], [[2511.20639\|LatentMAS]], [[2510.11062|AT-GRPO]], [[2509.14295|Aegis-Agent]], [[2509.03312|AgenTracer]], [[2508.13167|CoA]], [[2507.01701|LbMAS]], [[2506.12508|AgentOrchestra]], [[2505.23885|OWL-Workforce]], [[2505.19591|Puppeteer-Agent]], [[2504.16129|MARFT]], [[2504.01990|Foundation-Agents-Survey]], [[2501.15228|MMOA-RAG]], [[2410.17517\|Maynard-Cross-Learning]], [[2406.04151|AgentGym]]
 
 > [!star] Key Papers
+> - [[2406.04151|AgentGym]] — Landmark multi-environment benchmark; agents evolve via behavioral cloning + self-evolution across diverse environments, the seed this whole group's training/diagnosis pipelines build on
 > - [[2504.01990\|Foundation-Agents-Survey]] — Brain-inspired comprehensive framework integrating diverse LLM agent research areas
 > - [[2506.12508\|AgentOrchestra]] — TEA protocol (Tool-Environment-Agent) for unified multi-agent management and task orchestration
 > - [[2504.16129\|MARFT]] — Multi-Agent Reinforcement Fine-Tuning: RL-based optimization of LLM multi-agent systems
@@ -393,13 +372,13 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 
 ## Cross-References
 
-- [[03_Reasoning-and-Planning]] — Reasoning foundations for agents (CoT, search, planning)
-- [[04_Reinforcement-Learning]] — RL training methods powering agent learning
-- [[11_Self-Evolving-AI]] — Self-improving and continually learning agents
-- [[07_Robotics-and-Embodied-AI]] — Embodied agents in physical environments
-- [[09_Multimodal-LLMs]] — Multimodal foundations for visual agents
-- [[08_Benchmarks-and-Surveys]] — Agent evaluation benchmarks
+- [[07_Reasoning-and-Planning]] — Reasoning foundations for agents (CoT, search, planning)
+- [[08_Reinforcement-Learning]] — RL training methods powering agent learning
+- [[09_Self-Evolving-AI]] — Self-improving and continually learning agents
+- [[11_Robotics-and-Embodied-AI]] — Embodied agents in physical environments
+- [[06_Multimodal-LLMs]] — Multimodal foundations for visual agents
+- [[12_Benchmarks-and-Surveys]] — Agent evaluation benchmarks
 
 ---
 
-*Next: [[11_Self-Evolving-AI]] for self-improving systems that build on agentic foundations.*
+*Next: [[11_Robotics-and-Embodied-AI]] for how agentic reasoning and tool use extend into physical embodiment.*

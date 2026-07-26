@@ -18,56 +18,67 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Foundations"
-        A["Diffuser<br/><i>2022</i>"]
-        B["Diffusion Policy<br/><i>2023</i>"]
-    end
+```text
+Foundations
 
-    subgraph "Unified Multimodal"
-        C["Transfusion<br/><i>2024</i>"]
-        D["Show-o<br/><i>2024</i>"]
-        E["Chameleon<br/><i>2024</i>"]
-        F["Show-o2<br/><i>2025</i>"]
-        G["Ovis-U1<br/><i>2025</i>"]
-    end
+╔════════════════════╗          ┌───────────────────────────┐
+║ *Diffuser (2022)   ║ ───────► │ Diffusion Policy (2023)   │
+╚════════════════════╝          └───────────────────────────┘
 
-    subgraph "Discrete Diffusion LLMs"
-        H["LLaDA<br/><i>2025</i>"]
-        I["LLaDA 1.5<br/><i>2025</i>"]
-        J["MMaDA<br/><i>2025</i>"]
-        K["d1<br/><i>2025</i>"]
-    end
 
-    subgraph "RL Alignment"
-        L["Flow-GRPO<br/><i>2025</i>"]
-        M["BranchGRPO<br/><i>2025</i>"]
-        N["UniRL<br/><i>2025</i>"]
-    end
+Unified Multimodal
 
-    subgraph "CoT Generation"
-        O["CoT Image Gen<br/><i>2025</i>"]
-        P["T2I-R1<br/><i>2025</i>"]
-        Q["GoT<br/><i>2025</i>"]
-    end
+                    ╔═══════════════════════╗
+                    ║ *Transfusion (2024)   ║
+                    ╚═══════════╤═══════════╝
+                     ┌──────────┴──────────┐
+                     ▼                     ▼
+          ┌────────────────────┐  ┌────────────────────┐
+          │ Show-o (2024)      │  │ Ovis-U1 (2025)     │
+          └──────────┬─────────┘  └────────────────────┘
+                     │
+                     ▼
+          ┌────────────────────┐          ┌────────────────────┐
+          │ Show-o2 (2025)     │ ◄─────── │ Chameleon (2024)   │
+          └────────────────────┘          └────────────────────┘
 
-    A --> B
-    C --> D --> F
-    E --> F
-    C --> G
-    H --> I
-    H --> J
-    H --> K
-    L --> M
-    L --> N
-    O --> P
-    O --> Q
 
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style H fill:#f0e8fd,stroke:#9b59b6
-    style L fill:#e8fde8,stroke:#27ae60
-    style C fill:#fde8e8,stroke:#e74c3c
+Discrete Diffusion LLMs
+
+                     ╔═══════════════════╗
+                     ║ *LLaDA (2025)     ║
+                     ╚═════════╤═════════╝
+              ┌────────────────┼────────────────┐
+              ▼                ▼                ▼
+   ┌────────────────────┐ ┌────────────────┐ ┌────────────────┐
+   │ LLaDA 1.5 (2025)   │ │ MMaDA (2025)   │ │ d1 (2025)      │
+   └────────────────────┘ └────────────────┘ └────────────────┘
+
+
+RL Alignment
+
+              ╔═══════════════════════╗
+              ║ *Flow-GRPO (2025)     ║
+              ╚═══════════╤═══════════╝
+               ┌──────────┴──────────┐
+               ▼                     ▼
+    ┌─────────────────────┐  ┌─────────────────────┐
+    │ BranchGRPO (2025)   │  │ UniRL (2025)        │
+    └─────────────────────┘  └─────────────────────┘
+
+
+CoT Generation
+
+           ┌─────────────────────────────┐
+           │ CoT Image Gen (2025)        │
+           └───────────────┬─────────────┘
+                ┌──────────┴──────────┐
+                ▼                     ▼
+     ┌────────────────────┐  ┌────────────────────┐
+     │ T2I-R1 (2025)      │  │ GoT (2025)         │
+     └────────────────────┘  └────────────────────┘
+
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
 The field evolved through five threads: **foundations** (2022-2023) where Diffuser and Diffusion Policy bridged diffusion from image synthesis to RL planning and robot control; **unified multimodal** (2024-2025) where Transfusion, Show-o, Chameleon, Show-o2, and Ovis-U1 merged understanding and generation in single architectures; **discrete diffusion LLMs** (2025) where LLaDA, LLaDA 1.5, MMaDA, and d1 proved diffusion can rival autoregression for language; **RL alignment** (2025) where Flow-GRPO, BranchGRPO, and UniRL applied policy optimization to generative models; and **CoT generation** (2025) where CoT Image Gen, T2I-R1, and GoT taught generators to reason before drawing.
@@ -94,155 +105,7 @@ The field evolved through five threads: **foundations** (2022-2023) where Diffus
 
 ---
 
-## 1. Discrete Diffusion Language Models
-
-Diffusion is no longer just for images. Masked diffusion models (MDMs) generate text by iteratively unmasking tokens, offering a non-autoregressive alternative to GPT-style LLMs. The LLaDA family proved 8B-parameter diffusion models rival autoregressive models on language benchmarks, sparking a wave of follow-up work on reasoning, alignment, and efficiency.
-
-**Core dLLM Architectures** — Masked diffusion models trained from scratch on text, demonstrating that the denoising paradigm scales to language without autoregressive factorization, including training-free and KV-cache-based decoding acceleration.
-- [[2606.05737|One-Step-VLA]], [[2606.05468|FlowPRO]], [[2606.04968|ForesightFlow]], [[2605.31604|Representation-Forcing]], [[2605.28820|NEO-ov]], [[2605.21854|CrossVLA]], [[2605.18678|Lance]], [[2602.18993|SeaCache]], [[2512.13592|Diffusion-Preview]], [[2505.22618|Fast-dLLM]], [[2505.19223|LLaDA-1.5]], [[2505.16933|LLaDA-V]], [[2502.09992|LLaDA]]
-
-> [!star] Key Papers
-> - [[2502.09992|LLaDA]] — First 8B diffusion LLM competitive with AR models; proved diffusion works for large-scale language modeling and solves the reversal curse
-> - [[2505.19223|LLaDA-1.5]] — Variance-Reduced Preference Optimization for aligning masked diffusion models with human preferences
-> - [[2505.22618|Fast-dLLM]] — Training-free 27.6x throughput improvement via KV cache and confidence-aware parallel decoding
-
-**Reasoning in dLLMs** — Applying RL post-training and chain-of-thought to boost diffusion LLM reasoning on math, code, and planning tasks.
-- [[2606.18195|d-OPSD]], [[2606.03988|Imaginative-Perception-Tokens]], [[2509.23653|RemeDi]], [[2507.08838|wd1]], [[2505.13138|NESYDMS]], [[2504.12216|d1]], [[2403.09227|BEHAVIOR-1K]]
-
-> [!star] Key Papers
-> - [[2504.12216|d1]] — First RL post-training framework for dLLMs; introduced diffu-GRPO with +26.2% on Countdown
-> - [[2507.08838|wd1]] — Weighted policy optimization achieving up to 100% improvement on reasoning benchmarks while eliminating SFT
-
-**Diffusion vs. Autoregression Analysis** — Empirical studies comparing when and why diffusion beats autoregressive generation.
-- [[2606.05645|Discrete-WAM]], [[2606.01027|τ0-WM]], [[2605.30056|CGPO]], [[2605.26006|MIND]], [[2605.25044|X-DiffVLA]], [[2605.23993|Nano-World-Models]], [[2605.11367|3D-Belief]], [[2605.08078|NTM]], [[2603.17117|MosaicMem]], [[2601.16148|ActionMesh]], [[2508.20072|Discrete-Diffusion-VLA]], [[2507.15857|Diffusion-vs-AR]], [[2505.15045|DIFFEMBED]], [[2410.04891|LoRA-Continual-Diffusion]], [[2210.15097|Contrastive Decoding]]
-
-> [!star] Key Papers
-> - [[2507.15857|Diffusion-vs-AR]] — Diffusion has 16x better data reuse half-life; dominates AR in data-constrained settings
-> - [[2505.15045|DIFFEMBED]] — Diffusion LLMs outperform AR on text embeddings by 20% on long-document retrieval, thanks to bidirectional attention
-
-> [!tip] When to Use Diffusion Over Autoregression
-> Diffusion LLMs excel where bidirectional context matters (embeddings, retrieval) and where data is limited. For open-ended generation with abundant data, AR still leads — but the gap is closing fast with LLaDA 1.5 and d1.
-
----
-
-## 2. Unified Multimodal Models
-
-The hottest design question in generative AI: can one model both understand and generate across text and images? Unified models replace the pipeline of separate encoders, LLMs, and diffusion decoders with a single architecture that handles all modalities natively. The field splits into two camps: token-based (discretize everything) and hybrid (mix AR for text + diffusion for images).
-
-**Hybrid AR + Diffusion** — Use autoregressive generation for text tokens and diffusion for continuous image patches within a single Transformer, avoiding information loss from discretization.
-- [[2603.03276|Beyond-LLMs]], [[2503.10631|HybridVLA]], [[2501.00289|D-DiT]], [[2412.15188|LMFusion]], [[2412.08635|LatentLM]], [[2411.08380|EgoVid-5M]], [[2408.11039|Transfusion]]
-
-> [!star] Key Papers
-> - [[2408.11039|Transfusion]] — Pioneered mixing next-token prediction with diffusion loss in one model; outperformed quantization-based approaches in scaling efficiency
-> - [[2412.08635|LatentLM]] — Unified framework for discrete and continuous data via next-token diffusion in latent space
-
-**Token-Based Unified Models** — Discretize images into tokens and treat all modalities uniformly with a single autoregressive or diffusion objective, enabling interleaved multimodal generation; includes surveys taxonomizing the unified-model landscape.
-- [[2607.06560|SenseNova-Vision]], [[2507.23278|UniLiP]], [[2506.23044|Ovis-U1]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2506.13759|Discrete-Diffusion-LLM-Survey]], [[2505.20147|FUDOKI]], [[2505.05472|Mogao]], [[2505.02567|Unified-Multimodal-Survey]], [[2504.21356|Nexus-Gen]], [[2501.17811|Janus-Pro]], [[2410.13848|Janus]], [[2409.18869|Emu3]], [[2408.12528|Show-o]], [[2405.09818|Chameleon]], [[2107.14483|ManiSkill]], [[2104.03311|PlasticineLab]], [[2102.12092|DALL-E]]
-
-> [!star] Key Papers
-> - [[2405.09818|Chameleon]] — Meta's early-fusion token-based model; proved full unification is architecturally viable at scale
-> - [[2408.12528|Show-o]] — Single transformer unifying understanding and generation; later scaled to Show-o2 with native multimodal capabilities
-> - [[2409.18869|Emu3]] — Showed next-token prediction alone can handle text, image, and video generation without diffusion
-> - [[2506.13759|Discrete-Diffusion-LLM-Survey]] — Systematic overview of dLLMs and dMLLMs; covers up to 10x faster inference vs. AR models
-
-**Multimodal Diffusion Architectures** — Extend diffusion beyond images to jointly handle text reasoning, image generation, and multimodal understanding in a single diffusion-native model.
-- [[2606.31451|UniTac]], [[2605.02641|Mamoda2.5]], [[2604.02097|LatentUM]], [[2511.09611|MMaDA-Parallel]], [[2506.23115|MoCa]], [[2506.05340|DiT-Grafting]], [[2505.15809|MMaDA]], [[2505.13031|MindOmni]]
-
-> [!star] Key Papers
-> - [[2505.15809|MMaDA]] — Unified diffusion model handling text reasoning, image generation, and multimodal understanding simultaneously
-
-**Visual Tokenization** — Learning discrete or compressed visual representations that bridge the gap between continuous images and discrete language model architectures.
-- [[2605.02134|PV-VAE]], [[2603.19227|MoTok]], [[2506.08257|TiTok]], [[2506.06199|3DFlowAction]], [[2505.07538|Selftok]], [[2505.05422|TokLIP]], [[2412.03069|TokenFlow]], [[2406.11838|MAR]], [[2406.07550|TiTok (32 Tokens Reconstruction)]], [[2312.02116|GIVT]], [[2306.09344|DreamSim]], [[1711.00937|VQ-VAE]]
-
-> [!star] Key Papers
-> - [[2505.07538|Selftok]] — Derives discrete visual tokens from the reverse diffusion process; enables purely discrete VLMs with RL-based visual reasoning
-> - [[2506.08257|TiTok]] — Highly compressed 1D tokenizer that generates images via test-time optimization without a generative model
-
-> [!tip] Token vs. Hybrid
-> Token-based models (Chameleon, Show-o) are simpler but lose continuous detail. Hybrid models (Transfusion, LatentLM) preserve image fidelity but add architectural complexity. For production use, token-based is easier to scale; for quality-critical generation, hybrid wins.
-
----
-
-## 3. RL Alignment for Generative Models
-
-Reinforcement learning is transforming how diffusion and flow-matching models are trained. Instead of relying solely on maximum likelihood, these methods use reward signals (human preference, text-image alignment, task success) to directly optimize generation quality. The paradigm parallels RLHF for LLMs but requires novel algorithms for the continuous, multi-step denoising process.
-
-**Foundational Diffusion Fine-Tuning Methods (RL & Alternatives)** — Seminal methods that established the paradigm of RL/gradient-based fine-tuning of diffusion models against arbitrary reward functions, predating the GRPO/flow-matching wave, alongside self-distillation alternatives that fine-tune without reward signals or preference data.
-- [[2607.08766|OPSD-V]], [[2605.15458|VideoRLVR]], [[2605.13724|AnyFlow]], [[2605.06507|MARBLE-RL]], [[2605.05204|D-OPSD]], [[2605.03065|OGPO]], [[2408.14368|GR-MG]], [[2407.08737|VADER]], [[2309.17400|DRaFT]], [[2305.13301|DDPO]], [[1805.11973|MolGAN]]
-
-> [!star] Key Papers
-> - [[2305.13301|DDPO]] — Reformulated multi-step denoising as an MDP and applied policy gradients; the first principled RL approach to diffusion alignment, outperforming reward-weighted regression across compressibility, aesthetics, and prompt alignment
-> - [[2309.17400|DRaFT]] — Direct backpropagation of differentiable rewards through the entire sampling chain via LoRA + gradient checkpointing; >200× more sample-efficient than DDPO and the foundation for modern reward-gradient methods
-
-**Flow Matching + RL for Robot Policies** — Apply policy optimization to flow-matching robot-control models (VLA, manipulation, navigation), treating the denoising trajectory as a sequential decision process.
-- [[2607.14643|NavCMPO]], [[2607.10892|ESM]], [[2607.10369|VINE]], [[2607.06262|OTQL]], [[2606.31846|Z-1]], [[2606.29934|RoamFlow]], [[2606.17551|RQL]], [[2606.03834|SFMDS]], [[2603.11470|NFPO]], [[2511.01718|UD-VLA]], [[2510.08568|NovaFlow]], [[2509.04063|ARFM]], [[2507.21053|FPO]], [[2502.02538|FQL]], [[2411.18179|PAD]], [[2407.15208|Im2Flow2Act]]
-
-**Flow Matching + RL for Image/Video Generation** — Apply GRPO-style policy optimization to flow-matching and continuous diffusion models for text-to-image/video alignment, treating the denoising trajectory as a sequential decision process.
-- [[2606.11025|Flow-DPPO]], [[2605.26535|RecFM]], [[2605.15055|DiffusionOPD]], [[2605.10759|RAM]], [[2605.01663|FAN]], [[2604.24764|World-R1]], [[2604.23380|V-GRPO]], [[2604.15311|LeapAlign]], [[2604.01421|EgoFlow]], [[2603.27866|Wan-R1]], [[2603.26599|VGGRPO]], [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2602.05755|FMPose3D]], [[2509.06040|BranchGRPO]], [[2505.05470|Flow-GRPO]]
-
-> [!star] Key Papers
-> - [[2505.05470|Flow-GRPO]] — First framework adapting GRPO to flow matching; enables online RL for continuous generative models
-> - [[2509.06040|BranchGRPO]] — Tree-structured branching yields 4.7x training speedup and 16% better alignment over vanilla GRPO
-
-**Inference-Time Alignment & Steering** — Training-free methods that align pre-trained diffusion models with arbitrary rewards at sampling time using particle systems, SMC, beam search, or interacting particle resampling — preserving diversity and avoiding fine-tuning costs.
-- [[2607.14280|DiMaS]], [[2607.10781|Training-Free Norm Injection]], [[2607.07076|PriGo]], [[2606.31132|ELASTIC]], [[2511.14178|VLA-Pilot]], [[2508.03645|DiWA]], [[2505.23614|Diffusion-Search-Scaling]], [[2503.18942|Video-T1]], [[2503.02039|DSearch]], [[2501.06848|FK-Steering]], [[2501.05803|DAS]], [[2408.08252|SVDD]], [[2304.12824|CEP]]
-
-> [!star] Key Papers
-> - [[2503.02039|DSearch]] — Gradient-free dynamic beam search with Monte Carlo look-ahead for inference-time alignment; achieves 35% faster reward-per-second scaling and superior naturalness over SVDD across image, DNA, and molecule domains
-> - [[2501.06848|FK-Steering]] — Feynman-Kac Interacting Particle Systems for steering diffusion at inference; enables a 0.8B Stable Diffusion to beat a 2.6B fine-tuned SDXL-DPO and works for both continuous and discrete state spaces
-> - [[2408.08252|SVDD]] — Foundational derivative-free inference-time guidance via soft-value MDP formulation; the reference baseline that DSearch and later beam-search methods build on
-
-**Self-Improving World Models & Embodied Policies** — Self-improvement loops for world/simulation models and embodied robot policies via generated rollouts, multi-agent interaction, or self-distillation, without fresh human annotation.
-- [[2606.03536|Bionic-Whole-Body-Control]], [[2606.03159|OmniDreams]], [[2606.02800|Cosmos-3]], [[2605.30347|NeuROK]], [[2605.28816|Gamma-World]], [[2603.19370|VAMPO]], [[2502.02316|DIME]], [[2203.01914|Playable-Environments]], [[2101.12195|CADDY]]
-
-**Self-Improving Generation & 3D Reconstruction** — Self-improvement of image/video generation quality and 3D reconstruction/segmentation models via reward feedback, cycle-consistency, or model merging, without fresh human annotation.
-- [[2605.21572|PhysX-Omni]], [[2605.19376|GRAM]], [[2604.28190|FD-loss]], [[2604.27106|RecGen]], [[2603.17051|Astrolabe]], [[2602.15989|SAM-3D-Body]], [[2512.08269|EgoX]], [[2511.16624|SAM-3D]], [[2511.13720|JiT-Denoise-Transformer]], [[2508.16204|M2N2]], [[2506.02095|CycleReward]], [[2505.23380|UniRL]]
-
-> [!star] Key Papers
-> - [[2505.23380|UniRL]] — Unified self-improving post-training for both diffusion and flow models
-> - [[2506.02095|CycleReward]] — Self-supervised reward via cycle consistency; eliminates need for human preference data
-> - [[2603.17051|Astrolabe]] — Forward-process RL with rolling-KV streaming rollouts for distilled autoregressive video models; aligns long-video generation (30–60s) without sacrificing inference speed, and prevents reward hacking via uncertainty-aware selective KL
-
-**Reward Models for Image Generation** — Learning reward functions that capture human preferences for image quality, text-image alignment, or edit fidelity to guide RL training.
-- [[2604.27505|Edit-R1]], [[2604.11626|RationalRewards]], [[2601.04153|Diffusion-DRF]], [[2509.26346|EditReward]], [[2507.22003|ViHallu]], [[2502.20946|Generative-Uncertainty-Diffusion]], [[2409.16283|Gen2Act]]
-
-> [!star] Key Papers
-> - [[2509.26346|EditReward]] — Human-aligned reward model for instruction-guided image editing; enables curation of high-quality training data
-> - [[2507.22003|ViHallu]] — Vision-centric framework reducing hallucinations in LVLMs by up to 5.9% via generated visual variations
-
-> [!success] RL Post-Training for Generative Models
-> ==Likelihood pre-training== (diffusion or flow) → ==RL post-training== with reward model. Flow-matching models benefit from GRPO-adapted policy optimization; tree-structured branching yields 4–5x training speedup; cycle-consistency provides self-supervised rewards without human annotation.
-
-> [!tip] RL for Generation
-> The recipe: train a base generative model (diffusion or flow) with likelihood, then post-train with RL using a reward model. Flow-GRPO for flow matching, BranchGRPO for efficiency at scale. CycleReward eliminates the human annotation bottleneck.
-
----
-
-## 4. Chain-of-Thought and Reasoning in Generation
-
-A new paradigm: generative models that "think before they draw." Instead of generating images in a single pass, these models decompose generation into reasoning steps — planning layouts, predicting semantic structure, or generating intermediate visual states. The insight is that CoT, which transformed language reasoning, can similarly improve visual generation quality and controllability.
-
-**CoT for Image Generation** — Autoregressive image generators that plan generation via chain-of-thought at the semantic or token level before producing final output.
-- [[2602.12279|UniT]], [[2512.23568|ThinkGen]], [[2511.16671|TWIG]], [[2506.03596|ControlThinker]], [[2505.00703|T2I-R1]], [[2503.10639|GoT]], [[2501.13926|CoT-Image-Generation]]
-
-> [!star] Key Papers
-> - [[2501.13926|CoT-Image-Generation]] — First comprehensive study of CoT for AR image generation; +24% over Show-o baseline, surpasses Stable Diffusion 3
-> - [[2505.00703|T2I-R1]] — Bi-level CoT (semantic + token) with RL; excels on complex, reasoning-intensive prompts
-> - [[2503.10639|GoT]] — Integrates MLLM reasoning into visual generation and editing via a unified framework
-
-**Visual Reasoning with Generated Images** — Use generated images as intermediate reasoning artifacts, enabling models to "think" in visual space rather than text.
-- [[2607.21072|ProVisE]], [[2607.15278|HDR]], [[2607.14187|RxBrain]], [[2607.12800|UniVR]], [[2603.16870|Video-Reasoning-Chain-of-Steps]], [[2602.10675|TwiFF]], [[2601.21037|Thinking-in-Frames]], [[2505.22525|TwGI]], [[2505.19094|SATORI]]
-
-> [!star] Key Papers
-> - [[2505.22525|TwGI]] — Models generate images as intermediate reasoning steps; proves visual thinking complements textual CoT
-> - [[2601.21037|Thinking-in-Frames]] — Video generators as visual reasoners; discovers "Visual Test-Time Scaling" where more frames improve OOD performance
-
-> [!tip] Visual Chain-of-Thought
-> The pattern is clear: generation quality improves when models plan first. For T2I, use semantic CoT (T2I-R1). For spatial reasoning, generate intermediate frames (TwGI). This parallels the thinking-before-acting paradigm in VLAs.
-
----
-
-## 5. Image Generation & Editing Architectures
+## 1. Image Generation & Editing Architectures
 
 Dedicated architectures for high-quality image synthesis, editing, and multimodal generation that bridge pre-trained language models with visual output. These systems focus on the engineering challenge of getting LLMs to produce, modify, and control visual content.
 
@@ -299,7 +162,204 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 
 ---
 
-## 6. Diffusion for Robotics and Planning
+## 2. Discrete Diffusion Language Models
+
+Diffusion is no longer just for images. Masked diffusion models (MDMs) generate text by iteratively unmasking tokens, offering a non-autoregressive alternative to GPT-style LLMs. The LLaDA family proved 8B-parameter diffusion models rival autoregressive models on language benchmarks, sparking a wave of follow-up work on reasoning, alignment, and efficiency.
+
+**Core dLLM Architectures** — Masked diffusion models trained from scratch on text, demonstrating that the denoising paradigm scales to language without autoregressive factorization, including training-free and KV-cache-based decoding acceleration.
+- [[2606.05737|One-Step-VLA]], [[2606.05468|FlowPRO]], [[2606.04968|ForesightFlow]], [[2605.31604|Representation-Forcing]], [[2605.28820|NEO-ov]], [[2605.21854|CrossVLA]], [[2605.18678|Lance]], [[2602.18993|SeaCache]], [[2512.13592|Diffusion-Preview]], [[2505.22618|Fast-dLLM]], [[2505.19223|LLaDA-1.5]], [[2505.16933|LLaDA-V]], [[2502.09992|LLaDA]]
+
+> [!star] Key Papers
+> - [[2502.09992|LLaDA]] — First 8B diffusion LLM competitive with AR models; proved diffusion works for large-scale language modeling and solves the reversal curse
+> - [[2505.19223|LLaDA-1.5]] — Variance-Reduced Preference Optimization for aligning masked diffusion models with human preferences
+> - [[2505.22618|Fast-dLLM]] — Training-free 27.6x throughput improvement via KV cache and confidence-aware parallel decoding
+
+**Reasoning in dLLMs** — Applying RL post-training and chain-of-thought to boost diffusion LLM reasoning on math, code, and planning tasks.
+- [[2606.18195|d-OPSD]], [[2606.03988|Imaginative-Perception-Tokens]], [[2509.23653|RemeDi]], [[2507.08838|wd1]], [[2505.13138|NESYDMS]], [[2504.12216|d1]], [[2403.09227|BEHAVIOR-1K]]
+
+> [!star] Key Papers
+> - [[2504.12216|d1]] — First RL post-training framework for dLLMs; introduced diffu-GRPO with +26.2% on Countdown
+> - [[2507.08838|wd1]] — Weighted policy optimization achieving up to 100% improvement on reasoning benchmarks while eliminating SFT
+
+**Diffusion vs. Autoregression Analysis** — Empirical studies comparing when and why diffusion beats autoregressive generation.
+- [[2606.05645|Discrete-WAM]], [[2606.01027|τ0-WM]], [[2605.30056|CGPO]], [[2605.26006|MIND]], [[2605.25044|X-DiffVLA]], [[2605.23993|Nano-World-Models]], [[2605.11367|3D-Belief]], [[2605.08078|NTM]], [[2603.17117|MosaicMem]], [[2601.16148|ActionMesh]], [[2508.20072|Discrete-Diffusion-VLA]], [[2507.15857|Diffusion-vs-AR]], [[2505.15045|DIFFEMBED]], [[2410.04891|LoRA-Continual-Diffusion]], [[2210.15097|Contrastive Decoding]]
+
+> [!star] Key Papers
+> - [[2507.15857|Diffusion-vs-AR]] — Diffusion has 16x better data reuse half-life; dominates AR in data-constrained settings
+> - [[2505.15045|DIFFEMBED]] — Diffusion LLMs outperform AR on text embeddings by 20% on long-document retrieval, thanks to bidirectional attention
+
+> [!tip] When to Use Diffusion Over Autoregression
+> Diffusion LLMs excel where bidirectional context matters (embeddings, retrieval) and where data is limited. For open-ended generation with abundant data, AR still leads — but the gap is closing fast with LLaDA 1.5 and d1.
+
+---
+
+## 3. Unified Multimodal Models
+
+The hottest design question in generative AI: can one model both understand and generate across text and images? Unified models replace the pipeline of separate encoders, LLMs, and diffusion decoders with a single architecture that handles all modalities natively. The field splits into two camps: token-based (discretize everything) and hybrid (mix AR for text + diffusion for images).
+
+**Hybrid AR + Diffusion** — Use autoregressive generation for text tokens and diffusion for continuous image patches within a single Transformer, avoiding information loss from discretization.
+- [[2603.03276|Beyond-LLMs]], [[2503.10631|HybridVLA]], [[2501.00289|D-DiT]], [[2412.15188|LMFusion]], [[2412.08635|LatentLM]], [[2411.08380|EgoVid-5M]], [[2408.11039|Transfusion]]
+
+> [!star] Key Papers
+> - [[2408.11039|Transfusion]] — Pioneered mixing next-token prediction with diffusion loss in one model; outperformed quantization-based approaches in scaling efficiency
+> - [[2412.08635|LatentLM]] — Unified framework for discrete and continuous data via next-token diffusion in latent space
+
+**Token-Based Unified Models** — Discretize images into tokens and treat all modalities uniformly with a single autoregressive or diffusion objective, enabling interleaved multimodal generation; includes surveys taxonomizing the unified-model landscape.
+- [[2607.06560|SenseNova-Vision]], [[2507.23278|UniLiP]], [[2506.23044|Ovis-U1]], [[2506.17202|UniFork]], [[2506.15564|Show-o2]], [[2506.13759|Discrete-Diffusion-LLM-Survey]], [[2505.20147|FUDOKI]], [[2505.05472|Mogao]], [[2505.02567|Unified-Multimodal-Survey]], [[2504.21356|Nexus-Gen]], [[2501.17811|Janus-Pro]], [[2410.13848|Janus]], [[2409.18869|Emu3]], [[2408.12528|Show-o]], [[2405.09818|Chameleon]], [[2107.14483|ManiSkill]], [[2104.03311|PlasticineLab]], [[2102.12092|DALL-E]]
+
+> [!star] Key Papers
+> - [[2405.09818|Chameleon]] — Meta's early-fusion token-based model; proved full unification is architecturally viable at scale
+> - [[2408.12528|Show-o]] — Single transformer unifying understanding and generation; later scaled to Show-o2 with native multimodal capabilities
+> - [[2409.18869|Emu3]] — Showed next-token prediction alone can handle text, image, and video generation without diffusion
+> - [[2506.13759|Discrete-Diffusion-LLM-Survey]] — Systematic overview of dLLMs and dMLLMs; covers up to 10x faster inference vs. AR models
+
+**Multimodal Diffusion Architectures** — Extend diffusion beyond images to jointly handle text reasoning, image generation, and multimodal understanding in a single diffusion-native model.
+- [[2606.31451|UniTac]], [[2605.02641|Mamoda2.5]], [[2604.02097|LatentUM]], [[2511.09611|MMaDA-Parallel]], [[2506.23115|MoCa]], [[2506.05340|DiT-Grafting]], [[2505.15809|MMaDA]], [[2505.13031|MindOmni]]
+
+> [!star] Key Papers
+> - [[2505.15809|MMaDA]] — Unified diffusion model handling text reasoning, image generation, and multimodal understanding simultaneously
+
+**Visual Tokenization** — Learning discrete or compressed visual representations that bridge the gap between continuous images and discrete language model architectures.
+- [[2605.02134|PV-VAE]], [[2603.19227|MoTok]], [[2506.08257|TiTok]], [[2506.06199|3DFlowAction]], [[2505.07538|Selftok]], [[2505.05422|TokLIP]], [[2412.03069|TokenFlow]], [[2406.11838|MAR]], [[2406.07550|TiTok (32 Tokens Reconstruction)]], [[2312.02116|GIVT]], [[2306.09344|DreamSim]], [[1711.00937|VQ-VAE]]
+
+> [!star] Key Papers
+> - [[2505.07538|Selftok]] — Derives discrete visual tokens from the reverse diffusion process; enables purely discrete VLMs with RL-based visual reasoning
+> - [[2506.08257|TiTok]] — Highly compressed 1D tokenizer that generates images via test-time optimization without a generative model
+
+> [!tip] Token vs. Hybrid
+> Token-based models (Chameleon, Show-o) are simpler but lose continuous detail. Hybrid models (Transfusion, LatentLM) preserve image fidelity but add architectural complexity. For production use, token-based is easier to scale; for quality-critical generation, hybrid wins.
+
+---
+
+## 4. Representation Learning & Theory
+
+Foundational work on how diffusion models learn representations, the theoretical underpinnings that unify different formulations, and methods for leveraging diffusion dynamics for pre-training and downstream tasks beyond generation.
+
+**Foundational Generative Model Theory** — Seminal papers establishing the mathematical foundations of denoising diffusion, score-based generative modeling, flow matching, and GAN training stability that underlie the modern generative-modeling landscape.
+- [[2210.02747|Flow Matching]], [[2010.02502|DDIM]], [[2006.11239|DDPM]], [[1907.05600|NCSN]], [[1802.05957|SN-GAN]]
+
+**Diffusion as Pre-Training** — Use the diffusion denoising objective as a self-supervised pre-training method for representation learning, improving downstream classification, understanding, and robustness tasks.
+- [[2607.09024|GenCeption]], [[2607.06856|Gen4U]], [[2607.06553|ReChannel]], [[2605.27079|TRQAM]], [[2604.11386|ComSim]], [[2512.19693|Prism-Hypothesis]], [[2507.01467|REG]], [[2505.06890|RCLDT]], [[2505.02831|SRA]], [[2503.06132|USP]], [[2410.06940|REPA]], [[2402.11337|Reconstruction vs Perception]], [[2308.06038|DiffTPT]]
+
+> [!star] Key Papers
+> - [[2503.06132|USP]] — Unified pretraining in VAE latent space that 11.7x accelerates DiT convergence and improves both generation and understanding
+> - [[2505.02831|SRA]] — Diffusion transformers provide their own representation guidance; eliminates external encoders
+> - [[2410.06940|REPA]] — Aligning DiT hidden states with pretrained visual encoders accelerates convergence and improves generation quality
+> - [[2402.11337|Reconstruction vs Perception]] — Counterpoint showing pixel-reconstruction objectives alone yield uninformative features for perception, motivating explicit representation-alignment losses like REPA
+
+**Latent Space Design** — Principled methods for learning optimal latent representations that diffusion models operate in, controlling information content and generation quality.
+- [[2607.01642|MrFlow]], [[2605.16147|Register Guidance]], [[2604.16044|DCW]], [[2602.17270|UL]], [[2602.07588|PVB]], [[2505.13447|MeanFlow]], [[2503.00653|DC-MPC]], [[2410.12557|Shortcut Models]], [[2312.08762|DPMM-CoT]]
+
+> [!star] Key Papers
+> - [[2602.17270|UL]] — Google DeepMind's Unified Latents framework; principled regularization achieves SOTA on ImageNet-512 and Kinetics-600
+> - [[2604.16044|DCW]] — Characterizes SNR-t bias in DPMs and applies training-free wavelet-domain differential correction; 42.6% FID reduction on CIFAR-10 with 20 steps
+
+**Theoretical Foundations & Surveys** — Monographs and comprehensive surveys that unify variational, score-based, and flow-based perspectives on diffusion.
+- [[2605.27020|SD-MIA]], [[2604.15911|Efficient-Video-Diffusion-Survey]], [[2511.03032|DADO]], [[2510.21890|Diffusion-Models-Principles]], [[2510.09586|VLM-Survey-26K]], [[2509.26364|Data-to-Energy-Dynamics]], [[2506.19360|Synthetic-Image-Privacy-SoK]], [[2506.10047|GenBreak]], [[2506.03719|Flow-Matching-Closed-Form]], [[2410.19878|PEFT-Methodologies-Survey]], [[2403.14608|PEFT-Comprehensive-Survey]]
+
+> [!star] Key Papers
+> - [[2510.21890|Diffusion-Models-Principles]] — Definitive monograph from Sony AI, OpenAI, and Stanford unifying all diffusion formulations into a continuous-time framework
+> - [[2506.19360|Synthetic-Image-Privacy-SoK]] — Empirical evaluation showing diffusion models offer superior utility-privacy tradeoffs for synthetic data
+
+**Unified Generation Frameworks** — Architectural frameworks designed to consolidate multiple generation capabilities (understanding, generation, editing) in a single model.
+- [[2604.09168|ELT]], [[2604.08121|Uni-ViGU]], [[2510.20607|Compositional-Energy-Minimization]], [[2507.02092|EBT]], [[2506.21046|dSVA]], [[2506.03147|UniWorld-V1]], [[2404.09216|DetCLIPv3]], [[2403.10191|GenerateU]], [[2205.10337|UViM]], [[2109.10852|Pix2Seq]], [[2102.02779|VL-T5]]
+
+> [!star] Key Papers
+> - [[2506.03147|UniWorld-V1]] — Integrates VL understanding, image generation, perception, and grounding in one model
+
+**Generative-Model Signals for OOD & Anomaly Detection** — Use the internals of diffusion or flow-matching models (posterior covariance, reversed-flow vector fields) as distribution-shift signals for unsupervised OOD and anomaly detection.
+- [[2510.07206|EigenScore]], [[2510.01456|SCOPED]], [[2508.05461|WT-Flow]], [[2504.07793|RDM]], [[1606.01868|Pseudo-Counts]]
+
+> [!star] Key Papers
+> - [[2510.07206|EigenScore]] — Jacobian-free posterior-covariance spectrum as an OOD signal; +5% AUROC over best baseline, especially strong in near-OOD
+> - [[2508.05461|WT-Flow]] — First FM-native unsupervised anomaly detector; Worst-Transport paths fix the non-invertibility of linear-interpolation flow matching
+
+> [!tip] Diffusion Representations
+> Diffusion pre-training is underexplored but powerful. USP shows a single masked-latent pretraining phase improves both generation and understanding. If you need representations and generation from the same model, start here. For diagnostic use (OOD, anomaly), EigenScore and WT-Flow show that the generative model's *internals* — its posterior covariance or reversed-flow velocity — are informative distribution-shift signals.
+
+
+---
+
+## 5. RL Alignment for Generative Models
+
+Reinforcement learning is transforming how diffusion and flow-matching models are trained. Instead of relying solely on maximum likelihood, these methods use reward signals (human preference, text-image alignment, task success) to directly optimize generation quality. The paradigm parallels RLHF for LLMs but requires novel algorithms for the continuous, multi-step denoising process.
+
+**Foundational Diffusion Fine-Tuning Methods (RL & Alternatives)** — Seminal methods that established the paradigm of RL/gradient-based fine-tuning of diffusion models against arbitrary reward functions, predating the GRPO/flow-matching wave, alongside self-distillation alternatives that fine-tune without reward signals or preference data.
+- [[2607.08766|OPSD-V]], [[2605.15458|VideoRLVR]], [[2605.13724|AnyFlow]], [[2605.06507|MARBLE-RL]], [[2605.05204|D-OPSD]], [[2605.03065|OGPO]], [[2408.14368|GR-MG]], [[2407.08737|VADER]], [[2309.17400|DRaFT]], [[2305.13301|DDPO]], [[1805.11973|MolGAN]]
+
+> [!star] Key Papers
+> - [[2305.13301|DDPO]] — Reformulated multi-step denoising as an MDP and applied policy gradients; the first principled RL approach to diffusion alignment, outperforming reward-weighted regression across compressibility, aesthetics, and prompt alignment
+> - [[2309.17400|DRaFT]] — Direct backpropagation of differentiable rewards through the entire sampling chain via LoRA + gradient checkpointing; >200× more sample-efficient than DDPO and the foundation for modern reward-gradient methods
+
+**Flow Matching + RL for Robot Policies** — Apply policy optimization to flow-matching robot-control models (VLA, manipulation, navigation), treating the denoising trajectory as a sequential decision process.
+- [[2607.14643|NavCMPO]], [[2607.10892|ESM]], [[2607.10369|VINE]], [[2607.06262|OTQL]], [[2606.31846|Z-1]], [[2606.29934|RoamFlow]], [[2606.17551|RQL]], [[2606.03834|SFMDS]], [[2603.11470|NFPO]], [[2511.01718|UD-VLA]], [[2510.08568|NovaFlow]], [[2509.04063|ARFM]], [[2507.21053|FPO]], [[2502.02538|FQL]], [[2411.18179|PAD]], [[2407.15208|Im2Flow2Act]]
+
+**Flow Matching + RL for Image/Video Generation** — Apply GRPO-style policy optimization to flow-matching and continuous diffusion models for text-to-image/video alignment, treating the denoising trajectory as a sequential decision process.
+- [[2606.11025|Flow-DPPO]], [[2605.26535|RecFM]], [[2605.15055|DiffusionOPD]], [[2605.10759|RAM]], [[2605.01663|FAN]], [[2604.24764|World-R1]], [[2604.23380|V-GRPO]], [[2604.15311|LeapAlign]], [[2604.01421|EgoFlow]], [[2603.27866|Wan-R1]], [[2603.26599|VGGRPO]], [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2602.05755|FMPose3D]], [[2509.06040|BranchGRPO]], [[2505.05470|Flow-GRPO]]
+
+> [!star] Key Papers
+> - [[2505.05470|Flow-GRPO]] — First framework adapting GRPO to flow matching; enables online RL for continuous generative models
+> - [[2509.06040|BranchGRPO]] — Tree-structured branching yields 4.7x training speedup and 16% better alignment over vanilla GRPO
+
+**Inference-Time Alignment & Steering** — Training-free methods that align pre-trained diffusion models with arbitrary rewards at sampling time using particle systems, SMC, beam search, or interacting particle resampling — preserving diversity and avoiding fine-tuning costs.
+- [[2607.14280|DiMaS]], [[2607.10781|Training-Free Norm Injection]], [[2607.07076|PriGo]], [[2606.31132|ELASTIC]], [[2511.14178|VLA-Pilot]], [[2508.03645|DiWA]], [[2505.23614|Diffusion-Search-Scaling]], [[2503.18942|Video-T1]], [[2503.02039|DSearch]], [[2501.06848|FK-Steering]], [[2501.05803|DAS]], [[2408.08252|SVDD]], [[2304.12824|CEP]]
+
+> [!star] Key Papers
+> - [[2503.02039|DSearch]] — Gradient-free dynamic beam search with Monte Carlo look-ahead for inference-time alignment; achieves 35% faster reward-per-second scaling and superior naturalness over SVDD across image, DNA, and molecule domains
+> - [[2501.06848|FK-Steering]] — Feynman-Kac Interacting Particle Systems for steering diffusion at inference; enables a 0.8B Stable Diffusion to beat a 2.6B fine-tuned SDXL-DPO and works for both continuous and discrete state spaces
+> - [[2408.08252|SVDD]] — Foundational derivative-free inference-time guidance via soft-value MDP formulation; the reference baseline that DSearch and later beam-search methods build on
+
+**Self-Improving World Models & Embodied Policies** — Self-improvement loops for world/simulation models and embodied robot policies via generated rollouts, multi-agent interaction, or self-distillation, without fresh human annotation.
+- [[2606.03536|Bionic-Whole-Body-Control]], [[2606.03159|OmniDreams]], [[2606.02800|Cosmos-3]], [[2605.30347|NeuROK]], [[2605.28816|Gamma-World]], [[2603.19370|VAMPO]], [[2502.02316|DIME]], [[2203.01914|Playable-Environments]], [[2101.12195|CADDY]]
+
+**Self-Improving Generation & 3D Reconstruction** — Self-improvement of image/video generation quality and 3D reconstruction/segmentation models via reward feedback, cycle-consistency, or model merging, without fresh human annotation.
+- [[2605.21572|PhysX-Omni]], [[2605.19376|GRAM]], [[2604.28190|FD-loss]], [[2604.27106|RecGen]], [[2603.17051|Astrolabe]], [[2602.15989|SAM-3D-Body]], [[2512.08269|EgoX]], [[2511.16624|SAM-3D]], [[2511.13720|JiT-Denoise-Transformer]], [[2508.16204|M2N2]], [[2506.02095|CycleReward]], [[2505.23380|UniRL]]
+
+> [!star] Key Papers
+> - [[2505.23380|UniRL]] — Unified self-improving post-training for both diffusion and flow models
+> - [[2506.02095|CycleReward]] — Self-supervised reward via cycle consistency; eliminates need for human preference data
+> - [[2603.17051|Astrolabe]] — Forward-process RL with rolling-KV streaming rollouts for distilled autoregressive video models; aligns long-video generation (30–60s) without sacrificing inference speed, and prevents reward hacking via uncertainty-aware selective KL
+
+**Reward Models for Image Generation** — Learning reward functions that capture human preferences for image quality, text-image alignment, or edit fidelity to guide RL training.
+- [[2604.27505|Edit-R1]], [[2604.11626|RationalRewards]], [[2601.04153|Diffusion-DRF]], [[2509.26346|EditReward]], [[2507.22003|ViHallu]], [[2502.20946|Generative-Uncertainty-Diffusion]], [[2409.16283|Gen2Act]]
+
+> [!star] Key Papers
+> - [[2509.26346|EditReward]] — Human-aligned reward model for instruction-guided image editing; enables curation of high-quality training data
+> - [[2507.22003|ViHallu]] — Vision-centric framework reducing hallucinations in LVLMs by up to 5.9% via generated visual variations
+
+> [!success] RL Post-Training for Generative Models
+> ==Likelihood pre-training== (diffusion or flow) → ==RL post-training== with reward model. Flow-matching models benefit from GRPO-adapted policy optimization; tree-structured branching yields 4–5x training speedup; cycle-consistency provides self-supervised rewards without human annotation.
+
+> [!tip] RL for Generation
+> The recipe: train a base generative model (diffusion or flow) with likelihood, then post-train with RL using a reward model. Flow-GRPO for flow matching, BranchGRPO for efficiency at scale. CycleReward eliminates the human annotation bottleneck.
+
+---
+
+## 6. Chain-of-Thought and Reasoning in Generation
+
+A new paradigm: generative models that "think before they draw." Instead of generating images in a single pass, these models decompose generation into reasoning steps — planning layouts, predicting semantic structure, or generating intermediate visual states. The insight is that CoT, which transformed language reasoning, can similarly improve visual generation quality and controllability.
+
+**CoT for Image Generation** — Autoregressive image generators that plan generation via chain-of-thought at the semantic or token level before producing final output.
+- [[2602.12279|UniT]], [[2512.23568|ThinkGen]], [[2511.16671|TWIG]], [[2506.03596|ControlThinker]], [[2505.00703|T2I-R1]], [[2503.10639|GoT]], [[2501.13926|CoT-Image-Generation]]
+
+> [!star] Key Papers
+> - [[2501.13926|CoT-Image-Generation]] — First comprehensive study of CoT for AR image generation; +24% over Show-o baseline, surpasses Stable Diffusion 3
+> - [[2505.00703|T2I-R1]] — Bi-level CoT (semantic + token) with RL; excels on complex, reasoning-intensive prompts
+> - [[2503.10639|GoT]] — Integrates MLLM reasoning into visual generation and editing via a unified framework
+
+**Visual Reasoning with Generated Images** — Use generated images as intermediate reasoning artifacts, enabling models to "think" in visual space rather than text.
+- [[2607.21072|ProVisE]], [[2607.15278|HDR]], [[2607.14187|RxBrain]], [[2607.12800|UniVR]], [[2603.16870|Video-Reasoning-Chain-of-Steps]], [[2602.10675|TwiFF]], [[2601.21037|Thinking-in-Frames]], [[2505.22525|TwGI]], [[2505.19094|SATORI]]
+
+> [!star] Key Papers
+> - [[2505.22525|TwGI]] — Models generate images as intermediate reasoning steps; proves visual thinking complements textual CoT
+> - [[2601.21037|Thinking-in-Frames]] — Video generators as visual reasoners; discovers "Visual Test-Time Scaling" where more frames improve OOD performance
+
+> [!tip] Visual Chain-of-Thought
+> The pattern is clear: generation quality improves when models plan first. For T2I, use semantic CoT (T2I-R1). For spatial reasoning, generate intermediate frames (TwGI). This parallels the thinking-before-acting paradigm in VLAs.
+
+---
+
+## 7. Diffusion for Robotics and Planning
 
 Diffusion models applied to physical action generation rather than image synthesis. These methods treat robot trajectories, action sequences, or video predictions as data to denoise, enabling smooth multi-step planning that handles multimodal action distributions better than regression.
 
@@ -382,7 +442,7 @@ Diffusion models applied to physical action generation rather than image synthes
 
 ---
 
-## 7. Physics-Aware Training for Generative Models
+## 8. Physics-Aware Training for Generative Models
 
 A focused thread on injecting physical laws into generative pipelines. Standard diffusion and flow models learn from pixels alone, so they reliably violate gravity, conservation, and rigid-body constraints — limiting their use as world simulators for robotics, scientific computing, and embodied AI. Methods in this section span four mechanisms: (1) **physics-grounded training data** with synthetic simulators, (2) **physics-conditioned architectures** that consume material/force inputs, (3) **physics losses** (PDE residuals, kinematic residuals, mass conservation) backpropagated during fine-tuning, and (4) **inference-time physics rewards** from latent world models or rule-based proxies.
 
@@ -501,62 +561,13 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 
 ---
 
-## 8. Representation Learning & Theory
-
-Foundational work on how diffusion models learn representations, the theoretical underpinnings that unify different formulations, and methods for leveraging diffusion dynamics for pre-training and downstream tasks beyond generation.
-
-**Foundational Generative Model Theory** — Seminal papers establishing the mathematical foundations of denoising diffusion, score-based generative modeling, flow matching, and GAN training stability that underlie the modern generative-modeling landscape.
-- [[2210.02747|Flow Matching]], [[2010.02502|DDIM]], [[2006.11239|DDPM]], [[1907.05600|NCSN]], [[1802.05957|SN-GAN]]
-
-**Diffusion as Pre-Training** — Use the diffusion denoising objective as a self-supervised pre-training method for representation learning, improving downstream classification, understanding, and robustness tasks.
-- [[2607.09024|GenCeption]], [[2607.06856|Gen4U]], [[2607.06553|ReChannel]], [[2605.27079|TRQAM]], [[2604.11386|ComSim]], [[2512.19693|Prism-Hypothesis]], [[2507.01467|REG]], [[2505.06890|RCLDT]], [[2505.02831|SRA]], [[2503.06132|USP]], [[2410.06940|REPA]], [[2402.11337|Reconstruction vs Perception]], [[2308.06038|DiffTPT]]
-
-> [!star] Key Papers
-> - [[2503.06132|USP]] — Unified pretraining in VAE latent space that 11.7x accelerates DiT convergence and improves both generation and understanding
-> - [[2505.02831|SRA]] — Diffusion transformers provide their own representation guidance; eliminates external encoders
-> - [[2410.06940|REPA]] — Aligning DiT hidden states with pretrained visual encoders accelerates convergence and improves generation quality
-> - [[2402.11337|Reconstruction vs Perception]] — Counterpoint showing pixel-reconstruction objectives alone yield uninformative features for perception, motivating explicit representation-alignment losses like REPA
-
-**Latent Space Design** — Principled methods for learning optimal latent representations that diffusion models operate in, controlling information content and generation quality.
-- [[2607.01642|MrFlow]], [[2605.16147|Register Guidance]], [[2604.16044|DCW]], [[2602.17270|UL]], [[2602.07588|PVB]], [[2505.13447|MeanFlow]], [[2503.00653|DC-MPC]], [[2410.12557|Shortcut Models]], [[2312.08762|DPMM-CoT]]
-
-> [!star] Key Papers
-> - [[2602.17270|UL]] — Google DeepMind's Unified Latents framework; principled regularization achieves SOTA on ImageNet-512 and Kinetics-600
-> - [[2604.16044|DCW]] — Characterizes SNR-t bias in DPMs and applies training-free wavelet-domain differential correction; 42.6% FID reduction on CIFAR-10 with 20 steps
-
-**Theoretical Foundations & Surveys** — Monographs and comprehensive surveys that unify variational, score-based, and flow-based perspectives on diffusion.
-- [[2605.27020|SD-MIA]], [[2604.15911|Efficient-Video-Diffusion-Survey]], [[2511.03032|DADO]], [[2510.21890|Diffusion-Models-Principles]], [[2510.09586|VLM-Survey-26K]], [[2509.26364|Data-to-Energy-Dynamics]], [[2506.19360|Synthetic-Image-Privacy-SoK]], [[2506.10047|GenBreak]], [[2506.03719|Flow-Matching-Closed-Form]], [[2410.19878|PEFT-Methodologies-Survey]], [[2403.14608|PEFT-Comprehensive-Survey]]
-
-> [!star] Key Papers
-> - [[2510.21890|Diffusion-Models-Principles]] — Definitive monograph from Sony AI, OpenAI, and Stanford unifying all diffusion formulations into a continuous-time framework
-> - [[2506.19360|Synthetic-Image-Privacy-SoK]] — Empirical evaluation showing diffusion models offer superior utility-privacy tradeoffs for synthetic data
-
-**Unified Generation Frameworks** — Architectural frameworks designed to consolidate multiple generation capabilities (understanding, generation, editing) in a single model.
-- [[2604.09168|ELT]], [[2604.08121|Uni-ViGU]], [[2510.20607|Compositional-Energy-Minimization]], [[2507.02092|EBT]], [[2506.21046|dSVA]], [[2506.03147|UniWorld-V1]], [[2404.09216|DetCLIPv3]], [[2403.10191|GenerateU]], [[2205.10337|UViM]], [[2109.10852|Pix2Seq]], [[2102.02779|VL-T5]]
-
-> [!star] Key Papers
-> - [[2506.03147|UniWorld-V1]] — Integrates VL understanding, image generation, perception, and grounding in one model
-
-**Generative-Model Signals for OOD & Anomaly Detection** — Use the internals of diffusion or flow-matching models (posterior covariance, reversed-flow vector fields) as distribution-shift signals for unsupervised OOD and anomaly detection.
-- [[2510.07206|EigenScore]], [[2510.01456|SCOPED]], [[2508.05461|WT-Flow]], [[2504.07793|RDM]], [[1606.01868|Pseudo-Counts]]
-
-> [!star] Key Papers
-> - [[2510.07206|EigenScore]] — Jacobian-free posterior-covariance spectrum as an OOD signal; +5% AUROC over best baseline, especially strong in near-OOD
-> - [[2508.05461|WT-Flow]] — First FM-native unsupervised anomaly detector; Worst-Transport paths fix the non-invertibility of linear-interpolation flow matching
-
-> [!tip] Diffusion Representations
-> Diffusion pre-training is underexplored but powerful. USP shows a single masked-latent pretraining phase improves both generation and understanding. If you need representations and generation from the same model, start here. For diagnostic use (OOD, anomaly), EigenScore and WT-Flow show that the generative model's *internals* — its posterior covariance or reversed-flow velocity — are informative distribution-shift signals.
-
-
----
-
 ## Cross-References
 
-- [[06_Video-and-Temporal]] — Video generation as world models
-- [[07_Robotics-and-Embodied-AI]] — Diffusion Policy and flow matching for robot control
-- [[04_Reinforcement-Learning]] — RL + diffusion intersection
-- [[11_Self-Evolving-AI]] — Self-evolving generative systems
+- [[04_Video-and-Temporal]] — Video generation as world models
+- [[11_Robotics-and-Embodied-AI]] — Diffusion Policy and flow matching for robot control
+- [[08_Reinforcement-Learning]] — RL + diffusion intersection
+- [[09_Self-Evolving-AI]] — Self-evolving generative systems
 
 ---
 
-*Next: [[08_Benchmarks-and-Surveys]] for a cross-cutting view of evaluation resources.*
+*Next: [[04_Video-and-Temporal]] for how generative and perception models combine to model dynamics over time.*

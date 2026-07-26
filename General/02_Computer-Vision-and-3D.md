@@ -21,60 +21,71 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Self-Supervised Foundations"
-        A["DINO (2021)"]
-        B["MAE (2021)"]
-        C["DINOv2 (2023)"]
-    end
+```text
+Self-Supervised Foundations
 
-    subgraph "Vision Architectures"
-        D["ViT (2020)"]
-        E["Swin V2 (2021)"]
-        F["FocalNet (2022)"]
-        G["MaxViT (2022)"]
-    end
+┌──────────────┐     ┌──────────────┐
+│ DINO (2021)  │     │ MAE (2021)   │
+└──────┬───────┘     └──────┬───────┘
+       ├───────────► GLIP (2021)      [Object Detection, below]
+       ├───────────► DINOv (2023)     [Segmentation, below]
+       │                    │
+       └─────────┬──────────┘
+                 ▼
+          ╔═════════════════╗
+          ║ *DINOv2 (2023)  ║
+          ╚════════╤════════╝
+                   ├───────────► RieMind (2026)    [3D Understanding, below]
+                   └───────────► VEGA-3D (2026)    [3D Understanding, below]
 
-    subgraph "Object Detection"
-        H["FPN (2016)"]
-        I["Grounding DINO (2023)"]
-        J["GLIP (2021)"]
-    end
+Vision Architectures
 
-    subgraph "Segmentation"
-        K["LISA (2023)"]
-        L["RAM (2023)"]
-        M["DINOv (2023)"]
-    end
+╔══════════════╗
+║ *ViT (2020)  ║
+╚══════╤═══════╝
+       ├───────────► DINO (2021)   [Self-Supervised Foundations, above]
+       ├───────────► MAE (2021)    [Self-Supervised Foundations, above]
+       │
+       ▼
+┌────────────────┐
+│ Swin V2 (2021) │
+└────┬───────┬───┘
+     │       │
+     ▼       ▼
+┌──────────┐ ┌──────────┐
+│ FocalNet │ │ MaxViT   │
+│ (2022)   │ │ (2022)   │
+└──────────┘ └──────────┘
 
-    subgraph "3D Understanding"
-        N["RieMind (2026)"]
-        O["VEGA-3D (2026)"]
-        P["VIEW2SPACE (2026)"]
-    end
+Object Detection
 
-    D --> A
-    D --> B
-    D --> E
-    A --> C
-    B --> C
-    H --> I
-    J --> I
-    A --> J
-    C --> N
-    C --> O
-    I --> K
-    I --> L
-    A --> M
-    K --> P
-    E --> F
-    E --> G
+┌──────────────┐    ┌──────────────┐
+│ FPN (2016)   │    │ GLIP (2021)  │
+└──────┬───────┘    └──────┬───────┘
+       └─────────┬─────────┘
+                 ▼
+          ╔═══════════════════╗
+          ║ *Grounding DINO   ║
+          ║ (2023)            ║
+          ╚═════════╤═════════╝
+                    ├───────────► LISA (2023)
+                    └───────────► RAM (2023)
 
-    style D fill:#e8f4fd,stroke:#4a90d9
-    style C fill:#e8f4fd,stroke:#4a90d9
-    style I fill:#e8fde8,stroke:#27ae60
-    style N fill:#f0e8fd,stroke:#9b59b6
+Segmentation
+
+┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│ LISA (2023)  │   │ RAM (2023)   │   │ DINOv (2023) │
+└──────┬───────┘   └──────────────┘   └──────────────┘
+       │
+       └───────────► VIEW2SPACE (2026)   [3D Understanding, below]
+
+3D Understanding
+
+╔═════════════════╗    ┌──────────────────┐   ┌───────────────────┐
+║ *RieMind (2026) ║    │ VEGA-3D (2026)   │   │ VIEW2SPACE (2026) │
+╚═════════════════╝    └──────────────────┘   └───────────────────┘
+
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
 The field evolved through four phases: **backbone design** (2016-2022) where ViT, Swin V2, FocalNet, and FPN established the architectural vocabulary; **self-supervised feature learning** (2021-2023) where DINO, MAE, and DINOv2 eliminated label dependence; **open-vocabulary perception** (2021-2023) where GLIP, Grounding DINO, LISA, and RAM made detection and segmentation language-driven; and **3D spatial reasoning** (2023-2026) where RieMind, VEGA-3D, and VIEW2SPACE pushed models from 2D recognition into metric 3D understanding.
@@ -455,7 +466,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2512.24385|Spatial-Intelligence-Roadmap]] — Maps the multi-modal pre-training trajectory from single-modality to unified foundation models for autonomous systems
 
 > [!tip] 3D for Robotics
-> 3D understanding is the missing link between VLMs and physical manipulation. RieMind and VEGA-3D show that explicit geometric grounding dramatically improves robot task performance. See [[07_Robotics-and-Embodied-AI]].
+> 3D understanding is the missing link between VLMs and physical manipulation. RieMind and VEGA-3D show that explicit geometric grounding dramatically improves robot task performance. See [[11_Robotics-and-Embodied-AI]].
 
 ---
 
@@ -578,7 +589,6 @@ Practical methods for training vision models efficiently: dataset pruning, conti
 > [!star] Key Papers
 > - [[2205.09329|Dataset-Pruning]] — Optimization-based pruning using influence functions; reduces training data while maintaining accuracy
 > - [[2305.13622|SER]] — Strong Experience Replay with dual consistency loss; prevents catastrophic forgetting during sequential task learning
-> -  — Propagates bag-level labels to instances for MIL pre-training; improves pathology classification without pixel annotations
 > - [[2207.13050|Efficient-High-Resolution-Survey]] — First comprehensive survey of efficient high-resolution deep learning; categorizes five families of approaches
 
 > [!tip] Efficiency Stack
@@ -590,10 +600,10 @@ Practical methods for training vision models efficiently: dataset pruning, conti
 ## Cross-References
 
 - [[01_Foundation-Models]] — ViT and self-supervised backbones
-- [[02_Vision-Language-Models]] — VLMs built on these visual features
-- [[06_Video-and-Temporal]] — Extending spatial perception to temporal understanding
-- [[07_Robotics-and-Embodied-AI]] — 3D perception for robotic manipulation
+- [[05_Vision-Language-Models]] — VLMs built on these visual features
+- [[04_Video-and-Temporal]] — Extending spatial perception to temporal understanding
+- [[11_Robotics-and-Embodied-AI]] — 3D perception for robotic manipulation
 
 ---
 
-*Next: [[06_Video-and-Temporal]] for extending perception across time.*
+*Next: [[03_Diffusion-and-Generation]] for the generative counterpart to perception: synthesizing rather than recognizing.*

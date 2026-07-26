@@ -16,43 +16,63 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Simulation (2019-2021)"
-        A["RLBench<br/><i>2019</i>"]
-        B["CALVIN<br/><i>2021</i>"]
-    end
+```text
+Simulation (2019-2021)
+╔═════════════════╗
+║ *RLBench (2019) ║
+╚═════════┬═══════╝
+          │
+          ▼
+   ┌────────────────┐
+   │ CALVIN (2021)  │
+   └───────┬────────┘
+           ├──────► LIBERO-Plus (2025)   [Diagnostics, below]
+           └──────► GM-100 (2025)        [Diagnostics, below]
 
-    subgraph "Surveys (2020-2024)"
-        C["Efficient Transformers<br/><i>2020</i>"]
-        D["Transformers in Vision<br/><i>2021</i>"]
-        E["MLLM Survey<br/><i>2023</i>"]
-        F["Self-Evolution Survey<br/><i>2024</i>"]
-    end
 
-    subgraph "Datasets (2023-2025)"
-        G["OXE<br/><i>2023</i>"]
-        H["DROID<br/><i>2024</i>"]
-        I["AgiBot World<br/><i>2025</i>"]
-    end
+Surveys (2020-2024)
+╔════════════════════════════════╗
+║ *Efficient Transformers (2020) ║
+╚════════════════┬═══════════════╝
+                 │
+                 ▼
+    ┌───────────────────────────────┐
+    │ Transformers in Vision (2021) │
+    └────────────────┬──────────────┘
+                     │
+                     ▼
+    ┌──────────────────────┐
+    │ MLLM Survey (2023)   │──────► Omni-WorldBench (2026)   [Diagnostics, below]
+    └───────────┬──────────┘
+                │
+                ▼
+    ┌─────────────────────────────┐
+    │ Self-Evolution Survey (2024)│
+    └─────────────────────────────┘
 
-    subgraph "Diagnostics (2025-2026)"
-        J["LIBERO-Plus<br/><i>2025</i>"]
-        K["GM-100<br/><i>2025</i>"]
-        L["Omni-WorldBench<br/><i>2026</i>"]
-    end
 
-    A --> B --> J
-    C --> D --> E --> F
-    G --> H --> I
-    B --> K
-    E --> L
+Datasets (2023-2025)
+╔══════════════╗
+║ *OXE (2023)  ║
+╚═══════┬══════╝
+        │
+        ▼
+   ┌───────────────┐
+   │ DROID (2024)  │
+   └───────┬───────┘
+           │
+           ▼
+   ┌─────────────────────┐
+   │ AgiBot World (2025) │
+   └─────────────────────┘
 
-    style A fill:#e8f4fd,stroke:#4a90d9
-    style C fill:#e8f4fd,stroke:#4a90d9
-    style G fill:#f0e8fd,stroke:#9b59b6
-    style L fill:#e8fde8,stroke:#27ae60
-    style K fill:#e8fde8,stroke:#27ae60
+
+Diagnostics (2025-2026)
+┌─────────────────────┐   ╔═════════════════╗   ╔══════════════════════════╗
+│ LIBERO-Plus (2025)  │   ║ *GM-100 (2025)  ║   ║ *Omni-WorldBench (2026)  ║
+└─────────────────────┘   ╚═════════════════╝   ╚══════════════════════════╝
+
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
 The field evolved through four tracks: **simulation infrastructure** (2019-2021) where RLBench and CALVIN established standardized evaluation; **survey literature** (2020-2024) where comprehensive taxonomies mapped each subfield; **large-scale datasets** (2023-2025) where OXE, DROID, and AgiBot World enabled cross-embodiment training; and **diagnostic benchmarks** (2025-2026) where LIBERO-Plus, GM-100, and Omni-WorldBench shifted focus from performance to robustness.
@@ -359,6 +379,7 @@ Surveys covering specific domains and emerging fields.
 
 Surveys at the intersection of evolutionary computation and self-supervised learning, plus specialized visual architecture surveys.
 
+**Evolutionary & Self-Supervised Learning Surveys** — Reviews spanning evolutionary computation, self-supervised segmentation, and Vision Transformer-specific SSL taxonomies.
 - [[2505.13584|SSL-Segmentation-Survey]], [[2504.07213|E-SSL-Survey]], [[2408.17059|SSL-for-ViT-Survey]], [[2305.13689|SSL-Survey]]
 
 > [!star] Key Papers
@@ -401,10 +422,17 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2505.11709|EgoDex]] — Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation
 
 **LIBERO-Family, CALVIN & Lifelong-Learning Sim Suites** — The LIBERO/CALVIN lineage of lifelong and continual manipulation-learning benchmark suites.
-- [[2606.23686|LIBERO-Safety]], [[2603.28301|LIBERO-Para]], [[2602.06556|LIBERO-X]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.17057|RoboManipBaselines]], [[2506.18088|RoboTwin-2.0]], [[2412.13211|MS-HAB]], [[2410.20092|OGBench]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[2105.10919|Continual-World]]
+- [[2606.23686|LIBERO-Safety]], [[2603.28301|LIBERO-Para]], [[2602.06556|LIBERO-X]], [[2601.11421|GM-100]], [[2510.13626|LIBERO-Plus]], [[2510.03827|LIBERO-PRO]], [[2509.17057|RoboManipBaselines]], [[2506.18088|RoboTwin-2.0]], [[2412.13211|MS-HAB]], [[2410.20092|OGBench]], [[2309.13037|GELLO]], [[2306.03310|LIBERO]], [[2112.03227|CALVIN]], [[2105.10919|Continual-World]]
+
+> [!star] Key Papers
+> - [[2306.03310|LIBERO]] — The foundational suite this whole family is named after and built on
+> - [[2601.11421|GM-100]] — 100 detail-oriented tasks exposing how low VLA success rates fall once benchmark tasks demand real precision, not just high-level correctness
 
 **Classic Robot Manipulation Sim Environments** — Foundational simulated environments for manipulation-policy research.
 - [[2407.00278|PerAct2]], [[2405.12213|Octo]], [[2405.05941|SIMPLER]], [[2403.10506|HumanoidBench]], [[2307.03659|Factor-World]], [[2304.13705|ALOHA]], [[2304.04150|RoboPianist]], [[2010.14406|Transporter Networks]], [[2009.12293|robosuite]], [[2004.07219|D4RL]], [[1909.12271|RLBench]], [[1811.02790|RoboTurk (Crowdsourcing Platform)]]
+
+> [!star] Key Papers
+> - [[1909.12271|RLBench]] — 100 manipulation tasks with infinite expert demos; standardized few-shot evaluation and the field's earliest widely-adopted sim benchmark
 
 **Grasping, Dexterous-Hand, Contact & Tactile Benchmarks** — Benchmarks for grasping, dexterous hands, contact-rich and tactile manipulation.
 - [[2607.14021|IDB]], [[2607.08751|DexVerse]], [[2607.05869|GraspIT]], [[2607.00033|CHORD (Contact Wrench Guidance)]], [[2606.18097|WireCraft]], [[2606.13877|ContactWorld]], [[2606.04206|DLO-Lab]], [[2604.11674|AffordSim]], [[2604.09294|POMDAR]], [[2602.09617|AnyTouch-2]], [[2506.05576|TD-TOG]], [[2505.11032|DexGarmentLab]], [[2504.10857|ZeroGrasp]], [[2503.03890|LensDFF]], [[2411.19408|SoGraB]], [[2403.09841|MultiGripperGrasp]], [[2210.02697|DexGraspNet]], [[2103.16397|3D-AffordanceNet]], [[2001.03070|In-Hand-Manipulation-Benchmark]]
@@ -419,13 +447,13 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 - [[2605.14712|IntentVLA]], [[2603.13966|vla-eval]], [[2602.13710|HBVLA]], [[2601.18692|LingBot-VLA]], [[2512.24653|RoboMIND-2.0]], [[2509.18953|Eva-VLA]], [[2507.01961|AC-DiT]], [[2506.10826|RationalVLA]], [[2505.11563|Object-Centric-manipulation]], [[2504.21769|LLM-based]], [[2503.13446|MoManipVLA]], [[2412.14058|RoboVLMs]], [[2410.18647|Data-Scaling-Laws-Imitation]]
 
 **Domain-Specific & Novel-Task Manipulation Benchmarks** — Benchmarks targeting specific novel manipulation tasks (coding-agent control, repair, mistake-recovery, world-model-in-sim).
-- [[2607.04434|RoboDojo]], [[2606.31993|OopsieVerse]], [[2606.30457|Behavior Prompting Policy]], [[2606.29937|REPAIR-Bench]], [[2606.18239|EBench]], [[2604.25788|KinDER]], [[2604.19092|RoboWM-Bench]], [[2603.22435|CaP-X]], [[2603.22126|ROBOGATE]], [[2603.15469|RoCo-Challenge]], [[2603.12185|ComFree-Sim]], [[2603.01229|RMBench]], [[2602.13850|Humanoid-Hanoi]]
+- [[2607.04434|RoboDojo]], [[2606.31993|OopsieVerse]], [[2606.31037|Labimus]], [[2606.30457|Behavior Prompting Policy]], [[2606.29937|REPAIR-Bench]], [[2606.18239|EBench]], [[2604.25788|KinDER]], [[2604.19092|RoboWM-Bench]], [[2603.22435|CaP-X]], [[2603.22126|ROBOGATE]], [[2603.15469|RoCo-Challenge]], [[2603.12185|ComFree-Sim]], [[2603.01229|RMBench]], [[2602.13850|Humanoid-Hanoi]]
 
 **Physics, Navigation-Adjacent & Misc Manipulation Benchmarks** — Mobile-manipulation, physics-conditioned, and other manipulation benchmarks not covered above.
 - [[2602.11337|MolmoSpaces]], [[2602.05233|MobileManiBench]], [[2602.01939|EFM-10]], [[2511.10276|RoboBenchMart]], [[2510.20813|GSWorld]], [[2509.00361|Gen-Visual-Foresight-Pose]], [[2508.08328|DQ-Net]], [[2505.14030|AutoBio]], [[2505.05773|Human-Robot]], [[2505.01458|Nav-&-Manip-Physics-Sim-Survey]], [[2505.01399|Physics-Conditioned]], [[2503.02834|MuBlE]], [[2412.05313|λ/LAMBDA]]
 
 **Humanoid Whole-Body & Motion Synthesis Benchmarks** — Benchmarks for humanoid whole-body motion generation, imitation, and co-design.
-- [[2607.06052|ThorArena]], [[2606.17833|HumanoidArena]], [[2603.14327|OmniClone]], [[2602.21599|Iterative-Closed-Loop-Motion-Synthesis]], [[2602.13656|KungFuAthlete]], [[2602.00678|RoboGauge]], [[2512.16446|E-SDS]], [[2512.07248|MDS]], [[2511.17925|Switch-JustDance]], [[2511.10021|DecARt-Leg]], [[2510.22336|Humanoid-Brain-Body-Co-design-Joint]], [[2510.03081|Embracing-Evolution]], [[2509.26082|Evolutionary-Continuous-Adaptive-RL-Powered]]
+- [[2607.06052|ThorArena]], [[2606.17833|HumanoidArena]], [[2606.08278|SIMPLE]], [[2603.14327|OmniClone]], [[2602.21599|Iterative-Closed-Loop-Motion-Synthesis]], [[2602.13656|KungFuAthlete]], [[2602.00678|RoboGauge]], [[2512.16446|E-SDS]], [[2512.07248|MDS]], [[2511.17925|Switch-JustDance]], [[2511.10021|DecARt-Leg]], [[2510.22336|Humanoid-Brain-Body-Co-design-Joint]], [[2510.03081|Embracing-Evolution]], [[2509.26082|Evolutionary-Continuous-Adaptive-RL-Powered]]
 
 **Legged Locomotion Control & RL Benchmarks** — Benchmarks for legged/humanoid locomotion control, RL, and MPC comparison.
 - [[2509.11388|Quantum-deep-reinforcement-humanoid]], [[2508.04931|INTENTION]], [[2507.18883|Success-Humanoid-Reinforcement-under]], [[2507.13019|VLN-PE]], [[2503.14734|GR00T-N1]], [[2502.03132|SPARK]], [[2502.01329|QP]], [[2501.16590|MPC-vs-RL-Legged]], [[2409.15610|Full-Order]], [[2404.19173|Single-Contact++-RL]], [[2308.14636|Linear-Impactor]], [[2307.10142|Benchmarking-Potential-Based-Rewards]], [[2305.14654|Barkour]]
@@ -444,6 +472,9 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 
 **Physics-Grounded & Legacy World-Model Benchmarks** — Physics-grounded world-model evaluation and earlier-generation world-model benchmarks.
 - [[2603.22212|Omni-WorldBench]], [[2603.09030|PlayWorld]], [[2602.23152|Trinity-of-Consistency]], [[2602.08971|WorldArena]], [[2602.08025|MIND-Bench]], [[2601.04137|WoW-World-Eval]], [[2505.09694|EWMBench]], [[2503.10480|World-Modeling-Makes-Better]], [[2503.08481|PhysVLM]], [[2310.12931|Eureka]], [[2304.13723|VP2]], [[2210.02396|TECO]]
+
+> [!star] Key Papers
+> - [[2603.22212|Omni-WorldBench]] — First interaction-centric evaluation for world models; tests causal consistency rather than just visual fidelity
 
 **Simulators, Environments & 3D Asset Libraries** — Simulator/environment frameworks and the 3D object/scene asset libraries that supply them.
 - [[2607.21017|TableVerse]], [[2607.18062|UniETP]], [[2606.28276|SimFoundry]], [[2606.12207|Embodied-Benchmark-Pipeline]], [[2604.19737|Safe-Continual-RL-NSCMDP]], [[2512.05024|Simulator-Fidelity-Quantile-Curves]], [[2510.19788|AutumnBench]], [[2510.03471|Quadcopter-Control-Eval-Suite]], [[2503.02698|FlowPlan]], [[2406.15349|NAVSIM]], [[2310.12567|Safety-Gymnasium]], [[2212.08051|Objaverse]], [[2204.11918|GSO]], [[2203.03570|Kubric]], [[2106.14405|Habitat 2.0]], [[2011.01975|Rearrangement Challenge]], [[1806.07011|VirtualHome]]
@@ -568,7 +599,14 @@ Benchmarks for video-level reasoning that require understanding temporal dynamic
 
 Benchmarks that evaluate logical reasoning, cognitive planning, and visual logic in language and multimodal models.
 
-- [[2607.05155|EdgeBench]], [[2605.15188|FutureSim]], [[2605.12474|Rubric-RL-Diagnostic]], [[2604.25067|Frontier-Coding-Agents-AlphaZero]], [[2604.02029|Latent-Space-Survey]], [[2602.02196|TIDE]], [[2512.14693|URM]], [[2512.06104|CompressARC]], [[2509.02350|Implicit-Reasoning-Survey]], [[2508.02120|Efficient-R1-style-Reasoning-Survey]], [[2507.09662|Concise-Adaptive-Thinking-Survey]], [[2507.06203|Latent-Reasoning-Survey]], [[2505.24760|REASONING-GYM]], [[2505.16782|Latent-CoT-Survey]], [[2504.15279|VisuLogic]], [[2504.13828|Cognition-Engineering]], [[2504.10903|Efficient-Reasoning-Models-Survey]], [[2503.24235|Test-Time-Scaling-Survey]], [[2503.23077|LRM-Efficient-Inference-Survey]], [[2503.21614|Efficient-Reasoning-Survey]], [[2503.16419|Stop-Overthinking-Survey]], [[2503.16416|LLM-Agent-Eval-Survey]], [[2503.09567|Long-CoT-Survey]], [[2502.21321|LLM-Post-Training-Survey]], [[2501.11223|RLM-Blueprint]], [[2311.12022|GPQA]], [[2309.15129|CogEval]], [[2307.13854|WebArena]], [[2306.05685|MT-Bench]], [[2305.20050|PRM800K]], [[2210.02506|GameBugDescriptions]], [[2110.14168|GSM8K]], [[2109.00110|miniF2F]]
+**Reasoning Efficiency & Latent-CoT Surveys** — Reviews of efficient, latent, and compressed chain-of-thought reasoning strategies.
+- [[2604.02029|Latent-Space-Survey]], [[2509.02350|Implicit-Reasoning-Survey]], [[2508.02120|Efficient-R1-style-Reasoning-Survey]], [[2507.09662|Concise-Adaptive-Thinking-Survey]], [[2507.06203|Latent-Reasoning-Survey]], [[2505.16782|Latent-CoT-Survey]], [[2504.13828|Cognition-Engineering]], [[2504.10903|Efficient-Reasoning-Models-Survey]], [[2503.24235|Test-Time-Scaling-Survey]], [[2503.23077|LRM-Efficient-Inference-Survey]], [[2503.21614|Efficient-Reasoning-Survey]], [[2503.16419|Stop-Overthinking-Survey]], [[2503.16416|LLM-Agent-Eval-Survey]], [[2503.09567|Long-CoT-Survey]], [[2502.21321|LLM-Post-Training-Survey]]
+
+**Cognitive & Logical Reasoning Benchmarks** — Classic benchmarks probing planning, cognitive maps, math, and formal logic.
+- [[2505.24760|REASONING-GYM]], [[2504.15279|VisuLogic]], [[2501.11223|RLM-Blueprint]], [[2311.12022|GPQA]], [[2309.15129|CogEval]], [[2307.13854|WebArena]], [[2306.05685|MT-Bench]], [[2305.20050|PRM800K]], [[2210.02506|GameBugDescriptions]], [[2110.14168|GSM8K]], [[2109.00110|miniF2F]]
+
+**Reasoning Methods & Diagnostic Tools** — Recent methods and diagnostics for evaluating and improving reasoning quality.
+- [[2607.05155|EdgeBench]], [[2605.15188|FutureSim]], [[2605.12474|Rubric-RL-Diagnostic]], [[2604.25067|Frontier-Coding-Agents-AlphaZero]], [[2602.02196|TIDE]], [[2512.14693|URM]], [[2512.06104|CompressARC]]
 
 > [!star] Key Papers
 > - [[2309.15129|CogEval]] — Tests cognitive maps and planning in LLMs; inspired by cognitive science experiments
@@ -612,7 +650,6 @@ Benchmarks and analytical studies focused on evaluating model architectures, det
 
 > [!star] Key Papers
 > - [[2410.13842|D-FINE]] — Redefines bounding box regression in DETR models; transforms coordinate prediction into fine-grained distribution refinement
-> -  — Reveals that simple instance-based MIL methods combined with strong SSL features outperform complex architectures
 
 **Anomaly, Interpretability & Fine-Grained Recognition** — Anomaly detection, interpretable recognition, and fine-grained category discovery.
 - [[2604.10971|MMR-AD]], [[2510.21501|GranViT]], [[2504.14988|FG-BMK]], [[2504.09819|Density-Guided-Object-Detection]], [[2410.20722|ProtoViT]], [[2408.14371|SelEx]], [[2311.04157|INTR]], [[2207.14096|SODA]]
@@ -642,9 +679,9 @@ Benchmarks and analytical studies focused on evaluating model architectures, det
 ## Cross-References
 
 - [[01_Foundation-Models]] — Transformer architecture surveys and training recipes
-- [[02_Vision-Language-Models]] — VLM and open-vocabulary surveys in context
-- [[04_Reinforcement-Learning]] — RL surveys and reasoning benchmarks
-- [[07_Robotics-and-Embodied-AI]] — Robotics datasets and benchmarks applied
-- [[11_Self-Evolving-AI]] — Self-evolving paradigm surveys
+- [[05_Vision-Language-Models]] — VLM and open-vocabulary surveys in context
+- [[08_Reinforcement-Learning]] — RL surveys and reasoning benchmarks
+- [[11_Robotics-and-Embodied-AI]] — Robotics datasets and benchmarks applied
+- [[09_Self-Evolving-AI]] — Self-evolving paradigm surveys
 
 ---

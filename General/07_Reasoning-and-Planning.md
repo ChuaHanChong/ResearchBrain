@@ -17,72 +17,107 @@ aliases:
 
 ## Evolution Graph
 
-```mermaid
-graph TD
-    subgraph "Chain-of-Thought"
-        A["Chain-of-Thought (2022)"]
-        B["Multimodal-CoT (2023)"]
-        C["STaR (2022)"]
-        D["Quiet-STaR (2024)"]
-        E["Stepwise Internalization (2024)"]
-        F["LaRS (2023)"]
-    end
+```text
+Chain-of-Thought
 
-    subgraph "Agentic Reasoning"
-        G["ReAct (2022)"]
-        H["LATS (2023)"]
-        I["RAP (2023)"]
-        J["System-1.x (2024)"]
-    end
+╔══════════════════════════╗
+║ *Chain-of-Thought (2022) ║
+╚═══════════════╤══════════╝
+                ├──► ReAct (2022)        [Agentic Reasoning]
+                ├──► PAL (2022)          [Program-Aided]
+                ▼
+         ┌──────┴──────────────────────┐
+         ▼                             ▼
+┌────────────────────────┐  ┌──────────────────────┐
+│ Multimodal-CoT (2023)  │  │ STaR (2022)          │
+└────────────┬───────────┘  └──────────┬───────────┘
+             └──► VisCoT (2024)  [Visual Reasoning]
+                                          ▼
+                                  ┌───────┴────────────┐
+                                  ▼                    ▼
+                        ┌───────────────────────┐  ┌──────────────────┐
+                        │ Quiet-STaR (2024)     │  │ LaRS (2023)      │
+                        └───────────┬───────────┘  └──────────────────┘
+                                    ├──► Coconut (2024)     [Latent Reasoning]
+                                    ├──► LRM Survey (2025)  [Test-Time Scaling]
+                                    ▼
+                        ┌────────────────────────────────────┐
+                        │ Stepwise-Internalization (2024)    │
+                        └────────────────────────────────────┘
 
-    subgraph "Program-Aided"
-        K["PAL (2022)"]
-        L["ViperGPT (2023)"]
-    end
 
-    subgraph "Latent Reasoning"
-        M["Coconut (2024)"]
-        N["CODI (2025)"]
-        O["Huginn (2025)"]
-    end
+Agentic Reasoning
 
-    subgraph "Visual Reasoning"
-        P["VisCoT (2024)"]
-        Q["VoT (2024)"]
-        R["Vision-R1 (2025)"]
-    end
+╔══════════════════╗
+║ *ReAct (2022)    ║
+╚═══════╤══════════╝
+     ┌──┴───────────────────┐
+     ▼                      ▼
+┌────────────────┐        ┌────────────────┐
+│ LATS (2023)    │        │ RAP (2023)     │
+└────────┬───────┘        └─────────┬──────┘
+         ├──► TTS Survey (2025)     ▼
+         │    [Test-Time Scaling] ┌──────────────────┐
+         ▼                        │ System-1.x (2024)│
+ (no further children)            └──────────────────┘
 
-    subgraph "Test-Time Scaling"
-        S["TTS Survey (2025)"]
-        T["LRM Survey (2025)"]
-    end
 
-    A --> B
-    A --> C --> D
-    D --> E
-    C --> F
-    A --> G --> H
-    G --> I
-    I --> J
-    A --> K --> L
-    D --> M --> N
-    M --> O
-    B --> P --> Q
-    Q --> R
-    D --> T
-    H --> S
+Program-Aided
 
-    style A fill:#f0e8fd,stroke:#9b59b6
-    style G fill:#e8f4fd,stroke:#4a90d9
-    style M fill:#e8fde8,stroke:#27ae60
-    style R fill:#fde8e8,stroke:#e74c3c
+┌────────────────┐
+│ PAL (2022)     │
+└────────┬───────┘
+         ▼
+┌────────────────────┐
+│ ViperGPT (2023)    │
+└────────────────────┘
+
+
+Latent Reasoning
+
+╔═══════════════════════╗
+║ *Coconut (2024)       ║
+╚═════════════╤═════════╝
+      ┌───────┴───────────┐
+      ▼                   ▼
+┌──────────────────┐  ┌────────────────────┐
+│ CODI (2025)      │  │ Huginn (2025)      │
+└──────────────────┘  └────────────────────┘
+
+
+Visual Reasoning
+
+┌────────────────────┐
+│ VisCoT (2024)      │
+└──────────┬─────────┘
+           ▼
+┌────────────────────┐
+│ VoT (2024)         │
+└──────────┬─────────┘
+           ▼
+╔════════════════════════╗
+║ *Vision-R1 (2025)      ║
+╚════════════════════════╝
+
+
+Test-Time Scaling
+
+┌─────────────────────────┐
+│ TTS Survey (2025)       │   (receives LATS → TTS Survey from Agentic Reasoning)
+└─────────────────────────┘
+
+┌─────────────────────────┐
+│ LRM Survey (2025)       │   (receives Quiet-STaR → LRM Survey from Chain-of-Thought)
+└─────────────────────────┘
+
+Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
 ```
 
 The field evolved through six phases: **explicit CoT prompting** (2022) where chain-of-thought and STaR established step-by-step reasoning; **agentic reasoning** (2022-2023) where ReAct, RAP, and LATS added environment interaction and tree search; **program-aided reasoning** (2022-2023) where PAL and ViperGPT delegated computation to code; **latent reasoning** (2024-2025) where Coconut, CODI, and Huginn moved reasoning into continuous latent space; **visual reasoning** (2024-2025) where VisCoT, VoT, and Vision-R1 grounded CoT in visual perception; and **test-time scaling** (2025) where surveys codified how to allocate more compute at inference for better answers.
 
 | Year | Paper | Contribution |
 |------|-------|-------------|
-| 2022 | Wei et al. (2022) | Introduced chain-of-thought prompting; showed step-by-step reasoning dramatically improves LLM problem-solving |
+| 2022 | [[2201.11903\|Chain-of-Thought Prompting]] | Introduced chain-of-thought prompting; showed step-by-step reasoning dramatically improves LLM problem-solving |
 | 2022 | [[2203.14465\|STaR]] | Self-taught reasoner bootstrapping its own rationales iteratively; created a flywheel for reasoning improvement |
 | 2022 | [[2210.03629\|ReAct]] | Synergized reasoning and acting in a think-act-observe loop; launched the LLM agent paradigm |
 | 2022 | [[2211.10435\|PAL]] | Program-aided Language Models offloading computation to a Python interpreter; separated reasoning from calculation |
@@ -111,6 +146,9 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 
 **Few-Shot & Zero-Shot CoT** — The original prompting techniques that unlocked multi-step reasoning in LLMs by providing exemplar chains or simple instructions like "let's think step by step."
 - [[2506.14641|Zero-shot-vs-Few-shot-CoT]], [[2506.10979|LLM-Unhelpful-Thought-Recovery]], [[2505.24189|SLM-vs-LLM-Low-Code-Workflows]], [[2505.14684|Thought-Leap-Bridge]], [[2505.01812|New-News]], [[2504.09532|Humanoid-COA]], [[2503.16188|Think-or-Not-Think]], [[2501.19393|s1]], [[2411.14405|Marco-o1]], [[2410.21276|GPT-4o]], [[2311.12022|GPQA]], [[2305.04091|Plan-and-Solve]], [[2303.12712|Sparks of AGI]], [[2211.01910|APE]], [[2210.12320|GAPS]], [[2210.03493|Auto-CoT]], [[2210.02506|GameBugDescriptions]], [[2205.10625|Least-to-Most]], [[2204.02311|PaLM (Pathways Language Model)]], [[2201.11903|Chain-of-Thought Prompting]]
+
+> [!star] Key Papers
+> - [[2201.11903|Chain-of-Thought Prompting]] — Wei et al.'s original paper; showed that prompting LLMs to produce intermediate reasoning steps dramatically improves performance on arithmetic, commonsense, and symbolic reasoning, without any fine-tuning
 
 **RLVR Training & Policy-Optimization Variants** — RL-from-verifiable-reward training methods (token-credit assignment, on-policy distillation, unlearnability) that ended up filed alongside classic CoT prompting.
 - [[2606.03784|ERVLA]], [[2605.29198|GCPO]], [[2605.28421|DenoiseRL]], [[2605.21467|DelTA]], [[2605.16787|RLVR-Unlearnability]], [[2605.07396|ROPD]], [[2605.06234|RobotEQ]], [[2603.07079|EOPD]], [[2505.16854|TON]]
@@ -395,7 +433,7 @@ Instead of reasoning in natural language alone, these methods generate executabl
 
 ## 6. Visual Reasoning (R1-Style & RL-Trained)
 
-RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal models. See [[04_Reinforcement-Learning]] for the RL methods themselves.
+RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal models. See [[08_Reinforcement-Learning]] for the RL methods themselves.
 
 **Video Reasoning Methods** — RL/architecture methods for video-grounded chain-of-thought reasoning.
 - [[2605.21973|Foresee-to-Ground]], [[2602.20159\|VBVR]], [[2602.10675\|TwiFF]], [[2510.27363\|ToolScope]], [[2510.23569\|EgoThinker]], [[2510.23473\|Video-Thinker]], [[2508.18269\|FlowVLA]], [[2508.17692\|Agentic-Reasoning-Framework-Survey]], [[2508.09736\|M3-Agent]], [[2508.04416\|VITAL]], [[2508.03100\|AVATAR]], [[2507.01949\|Kwai-Keye-VL]], [[2505.19877|Vad-R1]], [[2505.19000\|VerIPO]], [[2504.08672\|Genius]], [[2503.21776\|Video-R1]]
@@ -588,12 +626,12 @@ The emerging paradigm: spend more compute at inference time to improve reasoning
 
 ## Cross-References
 
-- [[04_Reinforcement-Learning]] — RL methods that train reasoning models
-- [[02_Vision-Language-Models]] — VLM foundations for visual reasoning
-- [[07_Robotics-and-Embodied-AI]] — Reasoning applied to robot planning
-- [[11_Self-Evolving-AI]] — Self-improvement through reasoning bootstrapping
+- [[08_Reinforcement-Learning]] — RL methods that train reasoning models
+- [[05_Vision-Language-Models]] — VLM foundations for visual reasoning
+- [[11_Robotics-and-Embodied-AI]] — Reasoning applied to robot planning
+- [[09_Self-Evolving-AI]] — Self-improvement through reasoning bootstrapping
 - [[10_Agents-and-Tool-Use]] — Agentic systems built on reasoning
 
 ---
 
-*Next: [[05_Computer-Vision-and-3D]] for the perception foundations.*
+*Next: [[08_Reinforcement-Learning]] for how reasoning traces are optimized directly via reward signals.*
