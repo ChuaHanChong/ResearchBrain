@@ -21,7 +21,7 @@ tags:
 
 ## Methodology
 
-**Scope.** This doc reads the vault's 3D/4D-spatial and geometric-representation corpus in `_KnowledgeHub_/` — five structural surveys + benchmark suites (the Survey Landscape below) plus ~95 method papers — cross-checked against [[../General/05_Computer-Vision-and-3D|05_Computer-Vision-and-3D]] and [[../General/07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] and the deep-dives [[../Embodied-AI/07_Latent-World-Models|07_Latent-World-Models]], [[../Embodied-AI/08_Physics-Aware-Embodied-AI|08_Physics-Aware-Embodied-AI]], [[../Embodied-AI/05_VLA-Reasoning-and-CoT|05_VLA-Reasoning-and-CoT]], and [[../Embodied-AI/04_VLA|04_VLA]]. No date filter — 2024 (Video2Game) through 2026-Q2. It owns the *model-agnostic 3D/4D representation* — a geometric state any policy or model stands on. Sibling [[WAM|WAM]] owns *WAM machinery* (latent backbone, training, grounding), so the latent-4D substrate ([[2604.26694|X-WAM]]) and persistent geometric memory ([[2603.17117|MosaicMem]], [[2603.24576|Chameleon-Episodic-Memory]]) live here as C3/C4 treated as *representations*; sibling [[Sim2Real|Sim2Real]] owns the *transfer gap* of 3DGS reconstruction ([[2604.25459|GS-Playground]], [[2511.04665|Real-to-Sim-GS]]), so Cluster D owns only *interaction-readiness*. Where a card borders a sibling, one clause states the delta.
+**Scope.** This doc reads the vault's 3D/4D-spatial and geometric-representation corpus in `_KnowledgeHub_/` — five structural surveys + benchmark suites (the Survey Landscape below) plus ~95 method papers — cross-checked against [[../General/02_Computer-Vision-and-3D|02_Computer-Vision-and-3D]] and [[../General/11_Robotics-and-Embodied-AI|11_Robotics-and-Embodied-AI]] and the deep-dives [[../Embodied-AI/07_Latent-World-Models|07_Latent-World-Models]], [[../Embodied-AI/08_Physics-Aware-Embodied-AI|08_Physics-Aware-Embodied-AI]], [[../Embodied-AI/05_VLA-Reasoning-and-CoT|05_VLA-Reasoning-and-CoT]], and [[../Embodied-AI/04_VLA|04_VLA]]. No date filter — 2024 (Video2Game) through 2026-Q2. It owns the *model-agnostic 3D/4D representation* — a geometric state any policy or model stands on. Sibling [[WAM|WAM]] owns *WAM machinery* (latent backbone, training, grounding), so the latent-4D substrate ([[2604.26694|X-WAM]]) and persistent geometric memory ([[2603.17117|MosaicMem]], [[2603.24576|Chameleon-Episodic-Memory]]) live here as C3/C4 treated as *representations*; sibling [[Sim2Real|Sim2Real]] owns the *transfer gap* of 3DGS reconstruction ([[2604.25459|GS-Playground]], [[2511.04665|Real-to-Sim-GS]]), so Cluster D owns only *interaction-readiness*. Where a card borders a sibling, one clause states the delta.
 
 ---
 
@@ -1121,7 +1121,7 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 - [[../Embodied-AI/02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]] — the benchmark suites and simulation environments cited throughout.
 
 **General topics:**
-- [[../General/05_Computer-Vision-and-3D|05_Computer-Vision-and-3D]] — 3D-understanding foundations.
-- [[../General/07_Robotics-and-Embodied-AI|07_Robotics-and-Embodied-AI]] — the policy / world-model / manipulation papers.
-- [[../General/03_Reasoning-and-Planning|03_Reasoning-and-Planning]] — spatial reasoning and CoT (Cluster B).
-- [[../General/08_Benchmarks-and-Surveys|08_Benchmarks-and-Surveys]] — the five anchor surveys.
+- [[../General/02_Computer-Vision-and-3D|02_Computer-Vision-and-3D]] — 3D-understanding foundations.
+- [[../General/11_Robotics-and-Embodied-AI|11_Robotics-and-Embodied-AI]] — the policy / world-model / manipulation papers.
+- [[../General/07_Reasoning-and-Planning|07_Reasoning-and-Planning]] — spatial reasoning and CoT (Cluster B).
+- [[../General/12_Benchmarks-and-Surveys|12_Benchmarks-and-Surveys]] — the five anchor surveys.
