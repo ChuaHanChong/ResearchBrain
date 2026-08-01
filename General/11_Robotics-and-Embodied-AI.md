@@ -112,7 +112,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2311.17842|Look-Before-You-Leap-reasoning]] — VILA's direct GPT-4V vision-language planning posts the strongest reported results in the group (80% vs. 13-20% for SayCan/Grounded Decoding), evidencing that unified VLM reasoning beats bolted-on affordance modules.
 
 **VLM & Memory-Augmented Planning** — Vision-language grounding and long-horizon memory for embodied task execution.
-- [[2607.14252|MEMORA]], [[2606.31497|Communication-Aware Robot Execution]], [[2605.25813|EQA-Decision]], [[2604.19839|EUEA]], [[2508.01415|RoboMemory]], [[2507.16713|Pragmatist-Robot-Plan-Tasks]], [[2507.12846|Mind-Palace]], [[2505.13948|Memory-Centric-EQA]], [[2505.09305|Embodied-intelligent-industrial-robotics]], [[2504.00775|Visual-Environment-Interactive-Planning-Embodied]], [[2503.10110|IMPACT]], [[2503.02106|OVAMOS]], [[2503.00729|CLEA]], [[2407.09829|VLMPC]], [[2006.06444|Compositional Skill Models for TAMP]]
+- [[2607.23797|VLMM]], [[2607.14252|MEMORA]], [[2606.31497|Communication-Aware Robot Execution]], [[2605.25813|EQA-Decision]], [[2604.19839|EUEA]], [[2508.01415|RoboMemory]], [[2507.16713|Pragmatist-Robot-Plan-Tasks]], [[2507.12846|Mind-Palace]], [[2505.13948|Memory-Centric-EQA]], [[2505.09305|Embodied-intelligent-industrial-robotics]], [[2504.00775|Visual-Environment-Interactive-Planning-Embodied]], [[2503.10110|IMPACT]], [[2503.02106|OVAMOS]], [[2503.00729|CLEA]], [[2407.09829|VLMPC]], [[2006.06444|Compositional Skill Models for TAMP]]
 
 > [!star] Key Papers
 > - [[2508.01415|RoboMemory]] — a brain-inspired framework unifying spatial/temporal/episodic/semantic memory in parallel, achieving state-of-the-art EmbodiedBench results that beat Claude-3.5-Sonnet while demonstrating real-world cumulative learning across repeated trials.
@@ -120,7 +120,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2507.16713|Pragmatist-Robot-Plan-Tasks]] — PRAGMABOT's short-term self-reflection plus RAG-retrieved long-term memory nearly triples task success (84% vs. 35%) and produces emergent tool-use behavior never explicitly programmed.
 
 **Safety-Critical & Robust Control** — Formal safety guarantees, reachability, and runtime monitoring for control loops.
-- [[2607.08189|IC-STT]], [[2607.07252|Safe RL via MPC]], [[2607.07136|PINSTT]], [[2607.06535|Neural-ESO]], [[2606.28995|HJ-SafeDMP]], [[2604.23863|Safety-Value-MPC]], [[2604.08036|PriPG-RL]], [[2309.08603|Closing-the-Loop-on-Runtime-Mo]], [[2203.03432|Solution-Manifolds]], [[2002.01591|ARMTD]]
+- [[2607.25370|C-BeFore]], [[2607.23040|Actuator-Aware STT Synthesis]], [[2607.08189|IC-STT]], [[2607.07252|Safe RL via MPC]], [[2607.07136|PINSTT]], [[2607.06535|Neural-ESO]], [[2606.28995|HJ-SafeDMP]], [[2604.23863|Safety-Value-MPC]], [[2604.08036|PriPG-RL]], [[2309.08603|Closing-the-Loop-on-Runtime-Mo]], [[2203.03432|Solution-Manifolds]], [[2002.01591|ARMTD]]
 
 > [!star] Key Papers
 > - [[2002.01591|ARMTD]] — the foundational reachability-based method (rotatotopes composed from joint-level reachable sets) that first made provably-safe, real-time trajectory optimization tractable for high-DOF manipulators, achieving 0% crashes where CHOMP crashed on 18-100% of trials.
@@ -136,7 +136,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2507.06625|Q-Guided]] — unifies Soft Actor-Critic Q-values with Stein Variational Gradient Descent as a mode-preserving MPC posterior, the clearest principled bridge between RL and sampling-based control, validated with strong real-robot fruit-picking results (93.3% obstacle avoidance).
 
 **Learning-Augmented & Optimization-Based MPC** — Neural/differentiable augmentations to classical optimization-based predictive control.
-- [[2607.06824|CaLiSym]], [[2606.20197|Stable-Transformer-MPC]], [[2606.18189|E-MPC]], [[2606.13605|Distribution-Agnostic-Trajectory-Optimization]], [[2606.00383|BC-of-MPC]], [[2605.14937|Slot-MPC]], [[2604.19522|GenerativeMPC]], [[2603.18400|Graph-of-Constraints-Predictive-Control]], [[2602.03639|Variance-Reduced-Predictive-Path]], [[2511.19204|Reference-Free]], [[2510.12717|Residual-MPC]], [[2509.00836|One-Step]], [[2503.18871|Bootstrapped-MPC]], [[2212.02603|L2O-MPC]], [[2109.09910|Tube-MPC-Imitation]], [[1907.04202|VI-MPC]], [[1810.13400|Differentiable-MPC]]
+- [[2607.26370|Self-Adaptive Learning and MPC]], [[2607.06824|CaLiSym]], [[2606.20197|Stable-Transformer-MPC]], [[2606.18189|E-MPC]], [[2606.13605|Distribution-Agnostic-Trajectory-Optimization]], [[2606.00383|BC-of-MPC]], [[2605.14937|Slot-MPC]], [[2604.19522|GenerativeMPC]], [[2603.18400|Graph-of-Constraints-Predictive-Control]], [[2602.03639|Variance-Reduced-Predictive-Path]], [[2511.19204|Reference-Free]], [[2510.12717|Residual-MPC]], [[2509.00836|One-Step]], [[2503.18871|Bootstrapped-MPC]], [[2212.02603|L2O-MPC]], [[2109.09910|Tube-MPC-Imitation]], [[1907.04202|VI-MPC]], [[1810.13400|Differentiable-MPC]]
 
 > [!star] Key Papers
 > - [[1810.13400|Differentiable-MPC]] — foundational paper establishing efficient differentiation through MPC via implicit differentiation of the KKT conditions, the theoretical basis much of the later learning+MPC literature builds on.
@@ -144,7 +144,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2510.12717|Residual-MPC]] — strongest demonstrated results: GPU-parallelized MPC inside the RL loop extends trackable velocity by 78% and transfers to real MIT Humanoid hardware, the clearest evidence of MPC+RL synergy in the group.
 
 **Domain-Specific Vehicle & Hardware Control** — Control methods tailored to specific robot morphologies and vehicle platforms.
-- [[2607.14177|Adaptive Flexible-Joint Control]], [[2607.07139|Disturbance-Aware Underwater Motion Planning]], [[2607.02474|QuadRocket]], [[2607.02472|Quad-APG]], [[2607.02167|RBF-Activation-Functions-for-Robotic-Manipulator-Control]], [[2606.31889|Tractor-Trailer NMPC Path Tracking]], [[2606.31199|RBF-FBL Quadrotor Control]], [[2606.29825|KGD]], [[2606.29065|Rolling Robot Multi-Contact Path Planning]], [[2603.22201|NMR]], [[2512.09213|Satellite-Contact-MPC]], [[2510.23386|Full-Dynamics]]
+- [[2607.25985|Physics-Aware DRL Quadcopter Control]], [[2607.24292|HYPER-GNC]], [[2607.14177|Adaptive Flexible-Joint Control]], [[2607.07139|Disturbance-Aware Underwater Motion Planning]], [[2607.02474|QuadRocket]], [[2607.02472|Quad-APG]], [[2607.02167|RBF-Activation-Functions-for-Robotic-Manipulator-Control]], [[2606.31889|Tractor-Trailer NMPC Path Tracking]], [[2606.31199|RBF-FBL Quadrotor Control]], [[2606.29825|KGD]], [[2606.29065|Rolling Robot Multi-Contact Path Planning]], [[2603.22201|NMR]], [[2512.09213|Satellite-Contact-MPC]], [[2510.23386|Full-Dynamics]]
 
 > [!star] Key Papers
 > - [[2607.07139|Disturbance-Aware Underwater Motion Planning]] — novel "actuation-to-perception coupling" framing with the strongest reported results (55% RMSE reduction, 98.5% success rate) among the group.
@@ -179,7 +179,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 - [[2607.13653|REAL]], [[2607.08620|HL Index]], [[2607.07390|Morphological Information Bottleneck]], [[2607.04443|Wan-Streamer v0.2]], [[2606.31562|Stabilization Learning]], [[2606.30293|CSAR]], [[2606.30111|AgentCanvas]], [[2606.29460|LLM Intervention Explanations in HRI]], [[2606.13049|Y-BotFrame]], [[2605.26637|Embodied-Tool-Protocol]], [[2604.15475|NeuroMesh]], [[2604.01179|Florence-2-ROS-2-Wrapper]], [[2601.10744|LMEE]], [[2506.00138|Virtual-Zebrafish-RL]], [[2503.05316|CoinRobot]], [[2409.18313|Embodied-RAG]], [[2402.15116|LMA-Survey]]
 
 **Human-Robot Interaction & Trust** — Communicating robot internal states (uncertainty, confidence) through motion and proactively managing human trust in robot teammates.
-- [[2607.19534|LfH]], [[2607.13696|Anatomy of Uncertainty]], [[2607.13595|Active Trust Management Framework]], [[2607.11690|VR Social Touch Design]], [[2607.11570|ERR@HRI 3.0]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.10372|Robotic Contextual Awareness Thesis]]
+- [[2607.25327|BAIT]], [[2607.25047|XR Mediation Layer]], [[2607.24190|Kim Episodic Memory]], [[2607.24113|Kim]], [[2607.19534|LfH]], [[2607.13696|Anatomy of Uncertainty]], [[2607.13595|Active Trust Management Framework]], [[2607.11690|VR Social Touch Design]], [[2607.11570|ERR@HRI 3.0]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.10372|Robotic Contextual Awareness Thesis]]
 
 > [!star] Key Papers
 > - [[2607.13696|Anatomy of Uncertainty]] — introduces a validated Commitment-Vigilance framework mapping robot motion to human-recognizable uncertainty states, confirmed via human-subject studies with large effect sizes.
@@ -187,7 +187,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2607.11018|Soft-Trunk Flow Matching]] — strongest empirical validation in the group, combining a novel rectified-flow grounding method with a 100-participant user study showing large gains in naturalness, expressiveness, and engagement.
 
 **Dexterous Hands, Prosthetics & Robot Co-Design** — Hardware design of hands, grippers, prosthetics, and morphology/structure co-optimization.
-- [[2607.19714|Morphing MILR]], [[2607.18488|Open Ant]], [[2607.14730|Hybrid Rigid-Soft Gripper]], [[2607.11734|NeuralActuator]], [[2607.07968|Personalized Soft Exoglove]], [[2607.07775|Idiobionics]], [[2606.20549|Hand-Co-Design]], [[2606.17418|DexLink-Hand]], [[2605.12654|COSMIC]], [[2604.17245|MM-Hand]], [[2604.11768|GC-PFO]], [[2604.08258|EvoGymCM]], [[2504.04259|ORCA-Hand]], [[2309.06440|LEAP Hand]]
+- [[2607.25798|Transformer Transformer]], [[2607.19714|Morphing MILR]], [[2607.18488|Open Ant]], [[2607.14730|Hybrid Rigid-Soft Gripper]], [[2607.11734|NeuralActuator]], [[2607.07968|Personalized Soft Exoglove]], [[2607.07775|Idiobionics]], [[2606.20549|Hand-Co-Design]], [[2606.17418|DexLink-Hand]], [[2605.12654|COSMIC]], [[2604.17245|MM-Hand]], [[2604.11768|GC-PFO]], [[2604.08258|EvoGymCM]], [[2504.04259|ORCA-Hand]], [[2309.06440|LEAP Hand]]
 
 > [!star] Key Papers
 > - [[2309.06440|LEAP Hand]] — the foundational open-source dexterous hand in this group (2023), establishing the low-cost anthropomorphic-hand paradigm that later designs (ORCA, DexLink, MM-Hand) build on and benchmark against.
@@ -209,7 +209,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 - [[2607.01088|ROSA]], [[2606.17520|GASE]], [[2604.11251|CLAW]], [[2604.08544|SIM1]], [[2604.04664|ROSClaw]], [[2602.10116|SAGE]], [[2601.17251|EMPM]], [[2509.22970|RoLA]], [[2506.20553|Sim2Val]], [[2506.18088|RoboTwin-2.0]], [[2506.04941|ArtVIP]], [[2504.12684|SOPHY]], [[2503.22122|REMAC]], [[2202.09834|Differentiable-Physics-Online-MPC+SysID]], [[1910.00935|DiffTaichi]]
 
 **SLAM, VIO & Real-Time Localization** — Simultaneous localization and mapping, visual/acoustic-inertial odometry, and pose-graph estimation.
-- [[2607.21416|GLAM-SLAM]], [[2607.14009|AeroMap3D]], [[2607.12265|DiffRadar]], [[2607.11184|GeoGS-SLAM]], [[2607.08115|RadLoc]], [[2607.07452|GeoGS-SLAM]], [[2607.07374|PLED-VINS]], [[2607.06782|G-PROBE]], [[2607.06222|APVI-SLAM]], [[2607.02005|OCD-SLAM]], [[2607.01860|DL-SLAM]], [[2607.01757|DL-VINS-Factory]], [[2606.29910|Sphere-VIO]], [[2606.29851|TACO (Pose Graph Optimization)]], [[2606.29237|MoPe]], [[2606.28720|CubifyGS]], [[2606.26046|RoboAtlas]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.10982|Psi-Map]]
+- [[2607.27194|VidMap]], [[2607.26980|DSW]], [[2607.26817|CF²Loc]], [[2607.25784|Equipment-Free IMU Motion Compensation]], [[2607.25389|HOME]], [[2607.24249|SILICA]], [[2607.23901|SHARE]], [[2607.23384|skid-SLAM]], [[2607.21416|GLAM-SLAM]], [[2607.14009|AeroMap3D]], [[2607.12265|DiffRadar]], [[2607.11184|GeoGS-SLAM]], [[2607.08115|RadLoc]], [[2607.07452|GeoGS-SLAM]], [[2607.07374|PLED-VINS]], [[2607.06782|G-PROBE]], [[2607.06222|APVI-SLAM]], [[2607.02005|OCD-SLAM]], [[2607.01860|DL-SLAM]], [[2607.01757|DL-VINS-Factory]], [[2606.29910|Sphere-VIO]], [[2606.29851|TACO (Pose Graph Optimization)]], [[2606.29237|MoPe]], [[2606.28720|CubifyGS]], [[2606.26046|RoboAtlas]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.10982|Psi-Map]]
 
 > [!star] Key Papers
 > - [[2607.12265|DiffRadar]] — reformulates radar SLAM from image-like processing into a physics-aware differentiable Gaussian field (anisotropic resolution, directional backscatter, Doppler), delivering a 6x ATE reduction on Radarize and up to 20x in degenerate feature-poor corridors while running real-time at 70 FPS.
@@ -236,7 +236,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2606.12956|SERF]] — clearest demonstration that fusing environment *and* robot-body memory into a VLA policy pays off, delivering the largest reported gains (+14.7% task progress, 95% vs 65% failure-recovery rate) on long-horizon mobile manipulation.
 
 **Object/Human-Centric 3D Reconstruction & State Estimation** — Reconstructing articulated objects, human/hand interactions, and geometric state estimation.
-- [[2607.21309|ST-Block]], [[2607.00978|UTTO]], [[2605.09538|PhysHanDI]], [[2605.02306|NANO-Filter]], [[2604.27508|SASI]], [[2604.08509|Visually-grounded-Humanoid-Agents]], [[2603.19231|MonoArt]], [[2602.12087|MetricMM]], [[2511.22950|RobotSeg]], [[2511.01294|Kinematify]]
+- [[2607.23669|RRTrack]], [[2607.21309|ST-Block]], [[2607.00978|UTTO]], [[2605.09538|PhysHanDI]], [[2605.02306|NANO-Filter]], [[2604.27508|SASI]], [[2604.08509|Visually-grounded-Humanoid-Agents]], [[2603.19231|MonoArt]], [[2602.12087|MetricMM]], [[2511.22950|RobotSeg]], [[2511.01294|Kinematify]]
 
 **Recent Sim-to-Real & Cross-Embodiment Transfer** — 2025-2026 methods transferring policies across simulators, platforms, and embodiments.
 - [[2607.05665|Morphological Similarity Transfer Learning]], [[2607.02037|Cross-Platform-ASV-RL]], [[2607.01410|BIFROST]], [[2606.31043|Warp RL]], [[2606.25800|ROAD-VLA]], [[2606.15338|SimWeaver]], [[2604.13645|CFG-ADDA]], [[2604.11386|ComSim]], [[2604.11138|ViserDex]], [[2604.02911|DreamTIP]], [[2603.27313|MetaTune]], [[2603.22039|RAFL]], [[2602.23253|SPARR]], [[2602.18025|Cross-Embodiment-Offline-RL]]
@@ -248,7 +248,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2602.23253|SPARR]] — Sim-trained base + real-world vision-conditioned residual policy; **95-100%** SR on 10 AutoMate tasks without human supervision; **+38.4%** relative over AutoMate
 
 **Foundation-Model & Policy-Level Domain Adaptation** — Adapting pretrained embodied foundation models and policies across domains.
-- [[2510.05684|D2E]], [[2503.18684|OMLA]], [[2503.02249|Natural-Selection-Foundation-Models]], [[2502.16707|ReflectVLM]], [[2412.04323|GRAM-Robust-Adaptation]], [[2412.02818|RoboMD]], [[2407.13771|Training-Free-Model-Merging-MTDA]], [[2406.01967|DrEureka]]
+- [[2607.25593|Cross-Configuration Transfer Threshold]], [[2510.05684|D2E]], [[2503.18684|OMLA]], [[2503.02249|Natural-Selection-Foundation-Models]], [[2502.16707|ReflectVLM]], [[2412.04323|GRAM-Robust-Adaptation]], [[2412.02818|RoboMD]], [[2407.13771|Training-Free-Model-Merging-MTDA]], [[2406.01967|DrEureka]]
 
 > [!star] Key Papers
 > - [[2406.01967|DrEureka]] — LLM-guided reward and domain-randomization synthesis is the clearest paradigm-shifting idea in the group, autonomously solving a previously-unsolved sim-to-real task (quadruped balancing on a yoga ball).
@@ -256,7 +256,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2510.05684|D2E]] — foundational scaling contribution, a 1B-parameter model pretrained on desktop/gaming data matches or beats models up to 7x larger on real robot manipulation and navigation, establishing a new low-cost data source for foundation-model transfer.
 
 **Physical Dynamics Modeling & Residual Sim-Real Alignment** — Learning residual dynamics and physical parameters to close the sim-real gap.
-- [[2510.24673|Differentiable-Rheometry]], [[2509.18648|SPiDR]], [[2509.18631|Sim-Real-OT-Co-Training]], [[2508.21065|Learning-on-the-Fly]], [[2506.15680|Particle-Grid-Neural-Dynamics]], [[2506.10133|Offline-Domain-Randomization]], [[2505.12672|TransferTraj]], [[2503.10949|SCDA]]
+- [[2607.24079|Renormalization for Robotics]], [[2607.23268|Sling2Sim2Real]], [[2510.24673|Differentiable-Rheometry]], [[2509.18648|SPiDR]], [[2509.18631|Sim-Real-OT-Co-Training]], [[2508.21065|Learning-on-the-Fly]], [[2506.15680|Particle-Grid-Neural-Dynamics]], [[2506.10133|Offline-Domain-Randomization]], [[2505.12672|TransferTraj]], [[2503.10949|SCDA]]
 
 > [!star] Key Papers
 > - [[2508.21065|Learning-on-the-Fly]] — clearest mechanism for closing the sim-real gap: a differentiable hybrid analytical+residual dynamics model lets a real quadrotor adapt within seconds (81% hovering-error reduction vs L1-MPC under OOD disturbance), the archetype for online residual dynamics learning in this group.
@@ -286,7 +286,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 How robots learn to act from demonstrations. The field evolved from perception-based agents (PerAct) through diffusion-based action generation to spatial and language-conditioned policies. Manipulation is the proving ground — if a method works for dexterous object interaction, it can generalize to broader embodied tasks.
 
 **Real-Time & Efficient Flow Policies** — One-step, low-latency, or streaming flow-matching action generation.
-- [[2606.19194|INN-Adapter]], [[2605.15944|FocalPolicy]], [[2605.10051|SSIP]], [[2605.08799|ElasticFlow]], [[2602.13810|Mean-Velocity-Policy]], [[2506.08822|FreqPolicy]], [[2506.07339|RTC]], [[2505.11123|Condition-Dependent-Flow]], [[2505.01179|Fast-Flow-based-Visuomotor-Policies]], [[2412.04987|FlowPolicy]]
+- [[2607.26055|πR²]], [[2606.19194|INN-Adapter]], [[2605.15944|FocalPolicy]], [[2605.10051|SSIP]], [[2605.08799|ElasticFlow]], [[2602.13810|Mean-Velocity-Policy]], [[2506.08822|FreqPolicy]], [[2506.07339|RTC]], [[2505.11123|Condition-Dependent-Flow]], [[2505.01179|Fast-Flow-based-Visuomotor-Policies]], [[2412.04987|FlowPolicy]]
 
 > [!star] Key Papers
 > - [[2412.04987|FlowPolicy]] — first application of consistency flow matching to 3D manipulation policies, establishing the one-step flow-policy paradigm with a **7x** inference speedup over DP3 at matching success rate.
@@ -294,7 +294,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2505.01179|Fast-Flow-based-Visuomotor-Policies]] — clean theoretical fix (conditional optimal transport couplings) for biased noise-action pairing, hitting **81.8%** success with 2 steps, a **10x** speedup over Diffusion Policy while preserving action multimodality.
 
 **RL-Tuned, Safety-Constrained & Test-Time-Guided Flow Policies** — Flow-matching policies optimized via RL/offline-RL objectives, safety/dynamics constraints, or test-time guidance.
-- [[2607.14424|ConFlow]], [[2607.10504|SUREFlow]], [[2607.07076|PriGo]], [[2606.21086|ReFPO]], [[2606.13400|PolyFlow]], [[2606.11087|QGF]], [[2603.11470|NFPO]], [[2602.05051|ReFORM]], [[2511.05355|SAD-Flower]], [[2510.01068|GPC-RL]], [[2512.03973|Guided-Flow-Policy]], [[2507.21053|FPO]]
+- [[2607.26460|RLMM-Flow]], [[2607.14424|ConFlow]], [[2607.10504|SUREFlow]], [[2607.07076|PriGo]], [[2606.21086|ReFPO]], [[2606.13400|PolyFlow]], [[2606.11087|QGF]], [[2603.11470|NFPO]], [[2602.05051|ReFORM]], [[2511.05355|SAD-Flower]], [[2510.01068|GPC-RL]], [[2512.03973|Guided-Flow-Policy]], [[2507.21053|FPO]]
 
 > [!star] Key Papers
 > - [[2507.21053|FPO]] — foundational RL-tuned paradigm, proxies the PPO likelihood ratio with the CFM loss difference to train flow policies directly with policy gradients, doubling Gaussian-PPO success (**70.6%** vs **46.5%**) on under-conditioned humanoid control.
@@ -302,7 +302,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2606.11087|QGF]] — from Physical Intelligence/Berkeley, cleanest test-time-guided approach, guiding a frozen BC flow policy with critic gradients on the denoised action rather than noisy intermediates, matching or beating training-time RL baselines far more cheaply than Best-of-N.
 
 **Latent-Action & Source-Prior Flow Representations** — Flow-matching policies built on learned latent-action, source-prior, or vector-quantized action representations.
-- [[2607.10206|SL-FM]], [[2606.23420|LAFM]], [[2606.23090|Flow-as-Flow]], [[2606.21600|VQActFlow]], [[2606.17408|LeaP]], [[2606.16917|UMA]], [[2602.07322|A2A]]
+- [[2607.27138|DLAM]], [[2607.10206|SL-FM]], [[2606.23420|LAFM]], [[2606.23090|Flow-as-Flow]], [[2606.21600|VQActFlow]], [[2606.17408|LeaP]], [[2606.16917|UMA]], [[2602.07322|A2A]]
 
 > [!star] Key Papers
 > - [[2602.07322|A2A]] — foundational paradigm shift, starting the flow from historical proprioceptive actions instead of noise, reaching **sub-millisecond (0.56ms)** one-step inference and **100%** success within 40 training epochs.
@@ -367,7 +367,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2607.19919|DR]] — foundational revision mechanism, a programmable noise-schedule matrix that lets diffusion actively re-noise and re-denoise trajectory segments, generalizing across replanning, policy learning, and unified video-action modeling with a **56.5%** relative gain on LIBERO-10.
 
 **Spatial, Perceptual & Multimodal Conditioning** — Policies conditioned on spatial/3D structure, active perception, pixel-motion, or language and omni-modal signals, including the egocentric video datasets that supply this training data.
-- [[2607.04739|Spatial Attention]], [[2606.23625|See2Act]], [[2606.14535|SCDP-Spatial]], [[2606.03682|GN0]], [[2512.07212|Diffusion-Bridge-Policy]], [[2511.00998|GauDP]], [[2510.23763|OmniAction]], [[2509.22652|DAWN]], [[2507.06710|Spatial]], [[2506.20668|DemoDiffusion]], [[2407.00451|Language-Guided]], [[2406.09905|Nymeria]], [[2210.03094|VIMA]], [[1804.02748|EPIC-KITCHENS]]
+- [[2607.26047|S2A2]], [[2607.04739|Spatial Attention]], [[2606.23625|See2Act]], [[2606.14535|SCDP-Spatial]], [[2606.03682|GN0]], [[2512.07212|Diffusion-Bridge-Policy]], [[2511.00998|GauDP]], [[2510.23763|OmniAction]], [[2509.22652|DAWN]], [[2507.06710|Spatial]], [[2506.20668|DemoDiffusion]], [[2407.00451|Language-Guided]], [[2406.09905|Nymeria]], [[2210.03094|VIMA]], [[1804.02748|EPIC-KITCHENS]]
 
 > [!star] Key Papers
 > - [[2210.03094|VIMA]] — foundational method, unifying diverse manipulation tasks under a single multimodal-prompting formulation years ahead of this group's other work, matching baselines trained with **10x** more data using only **1%** of it.
@@ -383,7 +383,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2606.28939|ReGuide]] — most paradigm-shifting approach, converting transient test-time guidance into a reusable source of on-policy recovery data so the policy self-improves from its own corrected rollouts, delivering up to a **7.7x** success-rate lift.
 
 **Contact-Rich, Tactile & Force-Aware Manipulation** — Diffusion policies specialized for compliant, tactile-conditioned, or force/contact-guided manipulation.
-- [[2606.02432|NDPP-Grasp]], [[2603.05687|CGP]], [[2511.04812|MDF]], [[2510.13324|FARM]], [[2509.19696|Diffusion-Impedance-Learning]], [[2503.03998|DP-CA-Prying]], [[2411.12982|Hierarchical-Diffusion-Policy-manipulation]], [[2410.19235|DIPCOM]]
+- [[2607.28596|FA-RDP]], [[2606.02432|NDPP-Grasp]], [[2603.05687|CGP]], [[2511.04812|MDF]], [[2510.13324|FARM]], [[2509.19696|Diffusion-Impedance-Learning]], [[2503.03998|DP-CA-Prying]], [[2411.12982|Hierarchical-Diffusion-Policy-manipulation]], [[2410.19235|DIPCOM]]
 
 > [!star] Key Papers
 > - [[2510.13324|FARM]] — explicitly predicts target grip force from tactile force distributions rather than treating touch as passive observation; **100%** success on dynamic screw-tightening vs. **10-40%** for baselines lacking explicit force control
@@ -400,10 +400,10 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2303.04137|Diffusion-Policy]] — Pioneered action diffusion for robotics; proved denoising beats regression for multimodal distributions
 
 **Safety, Verification & Empirical Analysis** — Physical-safety alignment, safety-critical whole-body control, robustness to suboptimal data, and empirical/verification studies of diffusion-policy behavior.
-- [[2606.12365|Ambient-Diffusion-Policy]], [[2606.08414|PACT]], [[2605.26006|MIND]], [[2605.25546|ISSf-CBF-WBC]], [[2603.16368|SCDP]], [[2512.21430|EVE]], [[2512.16881|PolaRiS]], [[2505.05787|Diffusion-Policy-Memorization]], [[2503.22634|Empirical-Analysis-Sim-and-Real-Cotraining]]
+- [[2607.24296|PAC-DP]], [[2606.12365|Ambient-Diffusion-Policy]], [[2606.08414|PACT]], [[2605.26006|MIND]], [[2605.25546|ISSf-CBF-WBC]], [[2603.16368|SCDP]], [[2512.21430|EVE]], [[2512.16881|PolaRiS]], [[2505.05787|Diffusion-Policy-Memorization]], [[2503.22634|Empirical-Analysis-Sim-and-Real-Cotraining]]
 
 **One-Shot & In-Context Imitation** — Learning manipulation skills from a single or handful of demonstrations, including in-context and retrieval-based imitation.
-- [[2607.20033|HOST]], [[2607.13882|Forward-Reverse Skill LfD]], [[2604.15215|HiST-AT]], [[2603.07530|ICLR-VR]], [[2602.15010|BPP]], [[2509.22149|DemoGrasp]], [[2506.15157|Robust-Instant-Policy]], [[2503.04538|SRSA]], [[2503.01206|Action-Tokenizer-Matters-In-Context]], [[2304.08742|Behavior Retrieval]], [[2201.12716|YODO]], [[2111.07447|Self-Replay]], [[1703.07326|One-Shot Imitation Learning]]
+- [[2607.28382|SemAnCorr]], [[2607.20033|HOST]], [[2607.13882|Forward-Reverse Skill LfD]], [[2604.15215|HiST-AT]], [[2603.07530|ICLR-VR]], [[2602.15010|BPP]], [[2509.22149|DemoGrasp]], [[2506.15157|Robust-Instant-Policy]], [[2503.04538|SRSA]], [[2503.01206|Action-Tokenizer-Matters-In-Context]], [[2304.08742|Behavior Retrieval]], [[2201.12716|YODO]], [[2111.07447|Self-Replay]], [[1703.07326|One-Shot Imitation Learning]]
 
 > [!star] Key Papers
 > - [[1703.07326|One-Shot Imitation Learning]] — foundational meta-learning framework establishing that conditioning on the entire demonstration trajectory, not just the goal state, is the key to generalizable one-shot imitation
@@ -436,7 +436,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2209.05451|PerAct]] — First to use Perceiver Transformer on voxelized observations for 6-DoF multi-task manipulation
 
 **RL-Augmented Imitation & Curriculum Learning** — Hybridizing imitation with reinforcement learning, demonstration-guided policy optimization, and curriculum strategies.
-- [[2606.03335|DGPO]], [[2603.15956|ExpertGen]], [[2602.20220|Sim-to-Online-RL]], [[2602.02762|LAPO+]], [[2505.10442|IN-RIL]], [[2406.08472|RILe]], [[2405.03379|RFCL]], [[1707.05300|Reverse-Curriculum-Generation]]
+- [[2607.23515|LEACL]], [[2606.03335|DGPO]], [[2603.15956|ExpertGen]], [[2602.20220|Sim-to-Online-RL]], [[2602.02762|LAPO+]], [[2505.10442|IN-RIL]], [[2406.08472|RILe]], [[2405.03379|RFCL]], [[1707.05300|Reverse-Curriculum-Generation]]
 
 > [!star] Key Papers
 > - [[1707.05300|Reverse-Curriculum-Generation]] — foundational reverse-curriculum idea, growing the solvable start-state distribution outward from the goal to solve sparse-reward manipulation (e.g. key insertion) previously intractable for standard RL.
@@ -444,7 +444,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2505.10442|IN-RIL]] — interleaves IL and RL updates with gradient separation instead of sequential fine-tuning, lifting RobomimicTransport success from **12%** to **88%** while stabilizing training across 14 tasks.
 
 **Safety-, Constraint- & Physically-Grounded Control** — Control-theoretic and physically-aware manipulation: barrier functions, safety filters, contact-rich/deformable objects, and formal constraints.
-- [[2607.00534|STT-LfD]], [[2607.00215|ELMP]], [[2606.17317|CT-Warm-Start]], [[2605.06593|ReActor]], [[2602.17921|Diffeomorphic-End-Effector-Co-Design]], [[2602.07227|Cerebellar]], [[2512.03707|ContactRL]], [[2509.19555|AnySafe]], [[2506.06690|SpikePingpong]], [[2505.04961|Physics-Based]], [[2503.10334|Enhanced-View-Planning-Robotic]], [[2503.06736|OSC-CBF]], [[2502.00935|Generalizing-Safety-Beyond-Col]], [[2407.08028|AutoMate]], [[2401.17500|LeTO]], [[2203.06856|ACID]], [[2201.08355|Sim-to-Lab-to-Real]], [[2103.14256|SLDS-Differentiable-Control]]
+- [[2607.23473|PRISM-Motor]], [[2607.00534|STT-LfD]], [[2607.00215|ELMP]], [[2606.17317|CT-Warm-Start]], [[2605.06593|ReActor]], [[2602.17921|Diffeomorphic-End-Effector-Co-Design]], [[2602.07227|Cerebellar]], [[2512.03707|ContactRL]], [[2509.19555|AnySafe]], [[2506.06690|SpikePingpong]], [[2505.04961|Physics-Based]], [[2503.10334|Enhanced-View-Planning-Robotic]], [[2503.06736|OSC-CBF]], [[2502.00935|Generalizing-Safety-Beyond-Col]], [[2407.08028|AutoMate]], [[2401.17500|LeTO]], [[2203.06856|ACID]], [[2201.08355|Sim-to-Lab-to-Real]], [[2103.14256|SLDS-Differentiable-Control]]
 
 > [!star] Key Papers
 > - [[2502.00935|Generalizing-Safety-Beyond-Col]] — most paradigm-shifting: generalizes Hamilton-Jacobi reachability beyond collision avoidance to hard-to-model failures like spilling, learned as a latent-space classifier and validated preventing real-robot Skittles spills.
@@ -452,7 +452,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2201.08355|Sim-to-Lab-to-Real]] — strongest combined theory+results, pairing HJ-reachability shielding with PAC-Bayes generalization bounds (success bound **0.366→0.786**) and a **0.767** success / **0.867** safety rate on a real quadruped.
 
 **Action Representation, Diffusion/Flow Policies & Tokenization** — How actions are represented and generated: B-spline/waypoint/trajectory encodings, diffusion and flow-matching policies, action tokenizers.
-- [[2607.09648|B-spline Policy]], [[2607.01051|AutoSpeed]], [[2604.08418|DMBN-PTE]], [[2603.22574|GIFT]], [[2510.08568|NovaFlow]], [[2510.05057|StaMo]], [[2508.01600|CLASS]], [[2506.11948|SAIL-imitation-learning]], [[2505.21851|Streaming-Flow-Policy]], [[2505.11719|Zero-Shot-diffusion]], [[2504.16925|Latent-Diffusion-Planning-Imitation]], [[2502.09268|GEVRM]], [[2411.00965|SPOT]], [[2401.00025|Any-point]], [[2307.14326|AWE]], [[2109.00137|IBC]]
+- [[2607.26315|MoMo]], [[2607.24493|KAI]], [[2607.09648|B-spline Policy]], [[2607.01051|AutoSpeed]], [[2604.08418|DMBN-PTE]], [[2603.22574|GIFT]], [[2510.08568|NovaFlow]], [[2510.05057|StaMo]], [[2508.01600|CLASS]], [[2506.11948|SAIL-imitation-learning]], [[2505.21851|Streaming-Flow-Policy]], [[2505.11719|Zero-Shot-diffusion]], [[2504.16925|Latent-Diffusion-Planning-Imitation]], [[2502.09268|GEVRM]], [[2411.00965|SPOT]], [[2401.00025|Any-point]], [[2307.14326|AWE]], [[2109.00137|IBC]]
 
 > [!star] Key Papers
 > - [[2109.00137|IBC]] — foundational and paradigm-shifting: introduced energy-based implicit policies as an alternative to explicit regression, proving they can represent discontinuous, multi-valued action distributions where explicit models collapse.
@@ -468,7 +468,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2411.11839|RoboGSim]] — strongest quantitative results, combining 3D Gaussian Splatting with a physics engine to cut data-generation time **10x** while achieving **90%** success in novel scenes versus **60%** for real-data-trained policies.
 
 **Generalization, Data Curation & Evaluation Studies** — Analytical and methodological studies of behavior-cloning generalization, data selection, distribution shift, and scaling.
-- [[2607.21049|GuidedAttention]], [[2505.11816|Continuous-Subspace-Optimizati]], [[2505.09603|DataMIL]], [[2502.07645|Action-Labels-Sets-Rethinking]], [[2502.02853|Rethinking-Latent-Redundancy-Behavior]], [[2412.01770|CASHER]], [[2405.05439|How-Generalizable-Is-My-Behavi]], [[2307.03659|Factor World]], [[2011.06719|Grasping with Chopsticks]], [[1905.11979|Causal Confusion]]
+- [[2607.27261|CFNBC]], [[2607.23108|Curse of Precision]], [[2607.21049|GuidedAttention]], [[2505.11816|Continuous-Subspace-Optimizati]], [[2505.09603|DataMIL]], [[2502.07645|Action-Labels-Sets-Rethinking]], [[2502.02853|Rethinking-Latent-Redundancy-Behavior]], [[2412.01770|CASHER]], [[2405.05439|How-Generalizable-Is-My-Behavi]], [[2307.03659|Factor World]], [[2011.06719|Grasping with Chopsticks]], [[1905.11979|Causal Confusion]]
 
 > [!star] Key Papers
 > - [[1905.11979|Causal Confusion]] — foundational and most influential: identifies "causal misidentification" as a distinct failure mode of behavior cloning, showing that adding more information can paradoxically hurt performance, and fixes it via targeted causal interventions.
@@ -574,7 +574,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[1812.03201|Residual RL]] — the clearest exposition of combining classical controllers with learned correction, letting a robot master contact-rich block assembly in just **3 hours** (8,000 samples) of real-world training.
 
 **Modern RL & Policy Optimization** — Contemporary policy-gradient, actor-critic, motion-planning, and reward-shaping methods for sample-efficient manipulation RL.
-- [[2606.06041|iCEM+TL]], [[2605.19919|ZPRL]], [[2603.14469|PIPER]], [[2602.19313|TOPReward]], [[2508.11143|AC3]], [[2507.10914|M-GAPS]], [[2505.11175|Real-Time-reinforcement-learning]], [[2504.04191|GROVE]], [[2503.05696|MFPG]], [[2307.12983|Parallel-Q-Learning]], [[2307.12074|MRLM]], [[2209.13052|Training-Efficient-Controllers]]
+- [[2607.26985|SymmGrid]], [[2606.06041|iCEM+TL]], [[2605.19919|ZPRL]], [[2603.14469|PIPER]], [[2602.19313|TOPReward]], [[2508.11143|AC3]], [[2507.10914|M-GAPS]], [[2505.11175|Real-Time-reinforcement-learning]], [[2504.04191|GROVE]], [[2503.05696|MFPG]], [[2307.12983|Parallel-Q-Learning]], [[2307.12074|MRLM]], [[2209.13052|Training-Efficient-Controllers]]
 
 > [!star] Key Papers
 > - [[2209.13052|Training-Efficient-Controllers]] — the clearest bridge between classical MPC and RL, matching MPC's tracking accuracy while cutting runtime by **more than an order of magnitude** (0.17ms vs. 5.2ms for quadrotor control).
@@ -590,7 +590,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2501.09783|GeoManip]] — the clearest exposition of a training-free alternative to data-hungry VLAs, translating language into explicit geometric constraints to hit **65.0%** real-world success versus OpenVLA's **15.0%**.
 
 **Mobile Manipulation & Applied Robotics** — Mobile-manipulation motion generation, and domain-specific/applied robotics spanning medical, assistive, human-robot interaction, tool design, and actuator hardware.
-- [[2607.21113|RL-MACRO]], [[2607.00066|Endovascular RL-NMPC]], [[2606.30900|CTAM Soft Tail]], [[2506.14968|FEAST]], [[2506.14763|RobotSmith]], [[2505.23692|Mobi-Pi]], [[2502.19389|Surface-Based]], [[2409.00215|Intent-Aware-Co-Manipulation]], [[2405.07991|SPIN-Mobile-Manip]], [[2310.00433|Active-Perceptive-Motion-Gen]], [[1904.03815|Quasi-Direct]]
+- [[2607.26337|Thread-Assisted Needle Retrieval]], [[2607.24629|Handheld Guidewire Actuation Mechanism]], [[2607.24207|FloAff-Kitchen]], [[2607.21113|RL-MACRO]], [[2607.00066|Endovascular RL-NMPC]], [[2606.30900|CTAM Soft Tail]], [[2506.14968|FEAST]], [[2506.14763|RobotSmith]], [[2505.23692|Mobi-Pi]], [[2502.19389|Surface-Based]], [[2409.00215|Intent-Aware-Co-Manipulation]], [[2405.07991|SPIN-Mobile-Manip]], [[2310.00433|Active-Perceptive-Motion-Gen]], [[1904.03815|Quasi-Direct]]
 
 > [!star] Key Papers
 > - [[2405.12213|Octo]] — Open-source generalist policy with strong zero-shot transfer across robot morphologies
@@ -604,7 +604,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2607.18731|STL-BT Synthesis]] — clearest formal-guarantees story: synthesizes correct-by-construction Behavior Trees from Signal Temporal Logic, satisfying **six** concurrent specifications on a real quadrotor across a **192.0-second** mission and recovering from a physical perturbation mid-flight.
 
 **Teleoperation Hardware & Interfaces** — Physical systems, low-cost rigs, and human-guided control interfaces for dual-arm and dexterous data collection.
-- [[2607.19479|ModPack]], [[2607.11481|TELEDEXTER]], [[2607.05883|DexTele]], [[2607.01201|Sensorless Bilateral Teleoperation]], [[2606.23431|DexTeleop-0]], [[2602.09888|TriPilot-FF]], [[2505.21864|DexUMI]], [[2409.15095|MoMa-Teleop]], [[2403.07788|DexCap]], [[2402.10329|UMI]], [[2309.13037|GELLO]], [[2307.04577|AnyTeleop]], [[2304.13705|ALOHA]], [[1911.04052|RoboTurk]], [[1811.02790|RoboTurk (Crowdsourcing Platform)]]
+- [[2607.27784|DexDirect]], [[2607.25895|HiFi-UMI]], [[2607.19479|ModPack]], [[2607.11481|TELEDEXTER]], [[2607.05883|DexTele]], [[2607.01201|Sensorless Bilateral Teleoperation]], [[2606.23431|DexTeleop-0]], [[2602.09888|TriPilot-FF]], [[2505.21864|DexUMI]], [[2409.15095|MoMa-Teleop]], [[2403.07788|DexCap]], [[2402.10329|UMI]], [[2309.13037|GELLO]], [[2307.04577|AnyTeleop]], [[2304.13705|ALOHA]], [[1911.04052|RoboTurk]], [[1811.02790|RoboTurk (Crowdsourcing Platform)]]
 
 > [!star] Key Papers
 > - [[2309.13037|GELLO]] — clearest exposition of low-cost, intuitive teleoperation: a **$300** kinematically isomorphic leader-arm replica achieves **92%** task success versus **63%**/**72%** for 3D-mouse/VR controllers while sharply cutting self-collisions.
@@ -621,7 +621,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2601.02078|Genie-Sim-3.0]] — strongest validated sim-to-real fidelity: a comprehensive humanoid platform spanning **10,000+** hours of synthetic data across 200 tasks with an **R²=0.94** sim-to-real performance correlation.
 
 **Demonstration Generation & Data Augmentation** — Methods that synthesize, augment, or imitate manipulation demonstrations without additional physical teleoperation.
-- [[2510.18316|MoMaGen]], [[2509.19454|ROPA]], [[2507.12898|Vidar]], [[2507.00990|RIGVid]], [[2507.00833|HumanoidGen]], [[2505.04860|D-CODA]], [[2505.03233|SynGrasp-1B]], [[2412.07215|RoboData]], [[2410.24185|DexMimicGen]], [[2408.14368|GR-MG]], [[2310.17596|MimicGen]], [[2310.16014|HITL-TAMP]]
+- [[2607.27890|SIDO]], [[2510.18316|MoMaGen]], [[2509.19454|ROPA]], [[2507.12898|Vidar]], [[2507.00990|RIGVid]], [[2507.00833|HumanoidGen]], [[2505.04860|D-CODA]], [[2505.03233|SynGrasp-1B]], [[2412.07215|RoboData]], [[2410.24185|DexMimicGen]], [[2408.14368|GR-MG]], [[2310.17596|MimicGen]], [[2310.16014|HITL-TAMP]]
 
 > [!star] Key Papers
 > - [[2310.17596|MimicGen]] — foundational method the whole group builds on (cited as ancestor by DexMimicGen, RoboTwin, and MoMaGen): multiplies a small human-demonstration set by **250x** while generalizing across scenes, objects, and robot hardware.
@@ -637,10 +637,10 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2203.01577|HOI4D]] — first large-scale 4D egocentric dataset for category-level human-object interaction (2.4M RGB-D frames), exposing how far SOTA pose trackers fall short in the wild (BundleTrack accuracy drops from 86.5% to **19.3%** on bottles).
 
 **Bimanual Coordination & Dual-Arm Policy Learning** — Models and algorithms for coordinated dual-arm manipulation policies, including action-chunking, diffusion, and video-prediction based coordination architectures.
-- [[2607.21341|BiCompoDiff]], [[2606.10899|MV-Actor]], [[2605.13452|CUBic]], [[2603.08541|EquiBim]], [[2511.21264|MPPI-Bimanual]], [[2510.27607|DUST]], [[2508.11002|3D-FlowMatch-Actor]], [[2507.11296|Imaginative-Coordination]], [[2507.07969|Q-chunking]], [[2505.24156|Bimanual-Flow-Video-Prediction]], [[2504.17784|Gripper-Keypose-Object-Pointflow]], [[2503.23271|Coordinated-Bimanual-State-Diffusion]], [[2503.17309|LLM+MAP]], [[2503.09186|Decoupled-Bimanual]], [[2503.06831|ODIL]], [[2501.14208|You-Only-Teach-Once]], [[2409.07914|InterACT]]
+- [[2607.25731|TriManPolicy]], [[2607.21341|BiCompoDiff]], [[2606.10899|MV-Actor]], [[2605.13452|CUBic]], [[2603.08541|EquiBim]], [[2511.21264|MPPI-Bimanual]], [[2510.27607|DUST]], [[2508.11002|3D-FlowMatch-Actor]], [[2507.11296|Imaginative-Coordination]], [[2507.07969|Q-chunking]], [[2505.24156|Bimanual-Flow-Video-Prediction]], [[2504.17784|Gripper-Keypose-Object-Pointflow]], [[2503.23271|Coordinated-Bimanual-State-Diffusion]], [[2503.17309|LLM+MAP]], [[2503.09186|Decoupled-Bimanual]], [[2503.06831|ODIL]], [[2501.14208|You-Only-Teach-Once]], [[2409.07914|InterACT]]
 
 **Language & VLM-Guided Grasp Reasoning** — Grasp and task planning driven by vision-language models, natural-language instructions, voice, or text prompts.
-- [[2606.19340|ZeroDex]], [[2604.05697|GraspSense]], [[2512.03874|OmniDexVLG]], [[2511.13327|ZeroDexGrasp]], [[2505.12294|PartDexTOG]], [[2503.16013|GraspCoT]], [[2503.12609|VISO-Grasp]], [[2503.01616|RoboDexVLM]], [[2412.10694|Grasp-What-You-Want]], [[2407.11298|ThinkGrasp]], [[2406.18722|Open-World-Grasping-Large-Vision-Language]], [[2405.19291|Grasp-as-You-Say]], [[2404.15189|Text2Grasp]], [[2404.10399|FoundationGrasp]]
+- [[2607.26567|Speech2Grasp]], [[2606.19340|ZeroDex]], [[2604.05697|GraspSense]], [[2512.03874|OmniDexVLG]], [[2511.13327|ZeroDexGrasp]], [[2505.12294|PartDexTOG]], [[2503.16013|GraspCoT]], [[2503.12609|VISO-Grasp]], [[2503.01616|RoboDexVLM]], [[2412.10694|Grasp-What-You-Want]], [[2407.11298|ThinkGrasp]], [[2406.18722|Open-World-Grasping-Large-Vision-Language]], [[2405.19291|Grasp-as-You-Say]], [[2404.15189|Text2Grasp]], [[2404.10399|FoundationGrasp]]
 
 > [!star] Key Papers
 > - [[2404.10399|FoundationGrasp]] — extends the GraspGPT lineage by fusing LLM semantic knowledge with VLM geometric knowledge, improving over semantic-only task-oriented grasping by roughly **10%** mAP and generalizing to entirely unseen object classes and tasks.
@@ -656,7 +656,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2508.08896|Affordance-Dexterous-Grasp]] — couples human-motion imitation with negative-affordance segmentation so grasps avoid unsafe contact regions, cutting the Affordance Score from **28** to **4** while more than doubling human-likeness (HLS 5.4 → 8.6) over UniDexGrasp++.
 
 **Grasp-Pose Synthesis & Datasets** — Geometric and policy-based grasp-pose generation, large-scale grasp datasets, and universal grasping policies.
-- [[2607.04554|HUGS]], [[2606.17054|HUG]], [[2604.25897|Variational-Belief-Grasping]], [[2604.04138|Sparse-Taxonomy-Grasp]], [[2601.05499|TOSC]], [[2511.07418|Lightning-Grasp]], [[2505.20814|Spatial-RoboGrasp]], [[2504.04516|DexSinGrasp]], [[2503.19457|G-DexGrasp]], [[2503.04089|OPG-Policy]], [[2502.18423|Retrieval-Dexterity]], [[2502.04873|Training-free-TOG]], [[2502.03072|RoboGrasp]], [[2403.10187|Grasp-Anything-Combining]]
+- [[2607.25049|FIRMGrasp]], [[2607.04554|HUGS]], [[2606.17054|HUG]], [[2604.25897|Variational-Belief-Grasping]], [[2604.04138|Sparse-Taxonomy-Grasp]], [[2601.05499|TOSC]], [[2511.07418|Lightning-Grasp]], [[2505.20814|Spatial-RoboGrasp]], [[2504.04516|DexSinGrasp]], [[2503.19457|G-DexGrasp]], [[2503.04089|OPG-Policy]], [[2502.18423|Retrieval-Dexterity]], [[2502.04873|Training-free-TOG]], [[2502.03072|RoboGrasp]], [[2403.10187|Grasp-Anything-Combining]]
 
 > [!star] Key Papers
 > - [[2511.07418|Lightning-Grasp]] — decouples geometry from search via a precomputed Contact Field, generating **1,000-10,000** diverse dexterous grasps in **2-5 seconds**, orders of magnitude faster than prior procedural methods (10-2000s).
@@ -696,7 +696,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2511.16661|Dexterity-from-Smart-Lenses]] — the most paradigm-shifting entry: learns multi-fingered policies purely from smart-glasses human video with **zero** robot data (no sim, no RL, no teleoperation), reaching **86%** average success on real tasks.
 
 **Cross-Embodiment, Bimanual & Compositional Manipulation** — Policies and hand hardware that generalize beyond a single fixed hand/arm: across embodiments, across two arms, or by composing multiple skills into unified control.
-- [[2606.31909|CoDex]], [[2606.28323|DexCompose]], [[2606.20193|Belt-Finger]], [[2603.20236|EnergyAction]], [[2602.08278|DexFormer]], [[2602.05513|DECO]], [[2512.03743|House-of-Dextra]], [[2503.13916|Bimanual-Action-Chunking]], [[2502.16420|AnyDexGrasp]], [[2502.08054|COMBO-Grasp]], [[2411.16755|FunGrasp]], [[2410.02477|Diverse-Bimanual-Dexterous]], [[2407.15002|GET]]
+- [[2607.28198|UniCross]], [[2606.31909|CoDex]], [[2606.28323|DexCompose]], [[2606.20193|Belt-Finger]], [[2603.20236|EnergyAction]], [[2602.08278|DexFormer]], [[2602.05513|DECO]], [[2512.03743|House-of-Dextra]], [[2503.13916|Bimanual-Action-Chunking]], [[2502.16420|AnyDexGrasp]], [[2502.08054|COMBO-Grasp]], [[2411.16755|FunGrasp]], [[2410.02477|Diverse-Bimanual-Dexterous]], [[2407.15002|GET]]
 
 > [!star] Key Papers
 > - [[2407.15002|GET]] — the foundational graph-based transformer this group's cross-embodiment methods build on: encodes a robot's kinematic graph directly into attention, giving a **20%** zero-shot improvement over baselines on unseen hand morphologies.
@@ -704,7 +704,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2502.16420|AnyDexGrasp]] — the strongest reported efficiency result: a shared representation plus hand-specific decision model reaches **75–95%** grasp success across 3-/4-/5-finger hands using only hundreds of real-world attempts instead of millions.
 
 **Contact-Rich Manipulation, Planning & MPC Control** — Contact-aware planning, exploration, and model-predictive control for long-horizon, contact-rich dexterous manipulation.
-- [[2606.15133|DragMesh-2]], [[2606.14606|Impedance-MPC]], [[2605.21811|Safe-Steerable-Geometric-Policy]], [[2603.10971|ContactExplorer]], [[2601.10930|Contact-Intention-RL-MPC]], [[2510.14768|CADRE]], [[2509.01044|Hierarchical-Reactive-Grasping]], [[2505.04978|RT-Motion-Contact]], [[2505.02291|Contact-Trust-Region]], [[2501.03841|OmniManip]], [[2410.00841|Diffusion-Contact-Search]]
+- [[2607.25053|ECE]], [[2606.15133|DragMesh-2]], [[2606.14606|Impedance-MPC]], [[2605.21811|Safe-Steerable-Geometric-Policy]], [[2603.10971|ContactExplorer]], [[2601.10930|Contact-Intention-RL-MPC]], [[2510.14768|CADRE]], [[2509.01044|Hierarchical-Reactive-Grasping]], [[2505.04978|RT-Motion-Contact]], [[2505.02291|Contact-Trust-Region]], [[2501.03841|OmniManip]], [[2410.00841|Diffusion-Contact-Search]]
 
 > [!star] Key Papers
 > - [[2505.02291|Contact-Trust-Region]] — introduces the Contact Trust Region to fix a fundamental flaw in prior local contact models (symmetric ellipsoidal trust regions treat "pulling" as valid as "pushing"), then builds offline global roadmaps for complex reorientation in **under 10 minutes** and sustains **150 consecutive successful** hardware traversals.
@@ -720,7 +720,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2210.13702|DeXtreme]] — demonstrated that GPU-accelerated simulation plus automatic domain randomization can match OpenAI's costly Shadow-Hand Rubik's-cube-era results using an order-of-magnitude cheaper Allegro Hand and plain RGB cameras, hitting **27.8** mean consecutive cube reorientations, democratizing agile in-hand manipulation research.
 
 **Tactile Sensor Hardware & Simulation** — Sensor design, GelSight-style tactile simulators, and real-to-sim/sim-to-real transfer of raw tactile signal.
-- [[2607.18660|MVP-Tac]], [[2607.05241|GelNeuro]], [[2606.18959|TactSpace]], [[2603.04531|PTLD]], [[2512.08920|OSMO]], [[2503.19225|CoinFT]], [[2403.08716|DIFFTACTILE]], [[2207.10763|Tactile-Gym-2.0]], [[2109.04027|Taxim]], [[2106.08796|Tactile-Real-to-Sim-GAN]], [[2105.14455|TacTip]]
+- [[2607.18660|MVP-Tac]], [[2607.05241|GelNeuro]], [[2606.18959|TactSpace]], [[2603.04531|PTLD]], [[2602.21625|Tacmap]], [[2512.08920|OSMO]], [[2503.19225|CoinFT]], [[2403.08716|DIFFTACTILE]], [[2207.10763|Tactile-Gym-2.0]], [[2109.04027|Taxim]], [[2106.08796|Tactile-Real-to-Sim-GAN]], [[2105.14455|TacTip]]
 
 > [!star] Key Papers
 > - [[2105.14455|TacTip]] — the decade-spanning foundational review of the biomimetic TacTip sensor family, whose shear-sensing pin design and multi-material 3D-printed fabrication underlie a large lineage of downstream tactile-hand integrations (93% object classification, 95% grasp-success prediction).
@@ -752,7 +752,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2506.07490|RAPID-Hand]] — paradigm-shifting open-source hardware platform: a 20-DoF anthropomorphic hand with synchronized (**≤7 ms**) vision-touch-proprioception perception drove a visuotactile policy to near-perfect (**50/50**) success on in-hand rolling and translation tasks.
 
 **Contact Dynamics Modeling, State Estimation & Safety** — Learning/estimating contact dynamics and state, and certifying safety through contact.
-- [[2606.30268|ConCent]], [[2606.24450|NoContactNoWorries]], [[2601.12796|Contact-Aware-Neural-Dynamics]], [[2509.20917|Long-Range-Contact]], [[2411.07833|DOBCBF-Grasping]], [[2207.13438|Contact-Safe-RL]], [[2203.02468|Predicate-State-Estimation]], [[1909.04915|Hybrid-GP-Contact-Model]]
+- [[2607.24317|SE(3) Rigid Body Time-Stepping]], [[2606.30268|ConCent]], [[2606.24450|NoContactNoWorries]], [[2601.12796|Contact-Aware-Neural-Dynamics]], [[2509.20917|Long-Range-Contact]], [[2411.07833|DOBCBF-Grasping]], [[2207.13438|Contact-Safe-RL]], [[2203.02468|Predicate-State-Estimation]], [[1909.04915|Hybrid-GP-Contact-Model]]
 
 > [!star] Key Papers
 > - [[1909.04915|Hybrid-GP-Contact-Model]] — foundational hybrid-automaton approach combining Gaussian Processes with explicit reset maps to capture discontinuous contact dynamics (e.g., velocity jumps during slip), remaining accurate and data-efficient from just **15** training trials where GP/mGP baselines failed to scale.
@@ -768,7 +768,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2603.08342|PhaForce]] — paradigm-shifting slow-fast architecture that schedules force use by predicted task phase, lifting average success **40** percentage points to **86%** and remaining robust (**85%**) on an out-of-distribution task where chunk-level planners failed completely (**0%**).
 
 **MPC & Trajectory Optimization for Contact-Rich Manipulation** — Sampling-based and model-based predictive control, and contact-implicit trajectory optimization.
-- [[2606.20712|Parallel-Sampling-MPC]], [[2606.14188|Robust-Deformable-MPC]], [[2606.10818|IMPACT-Internal-Model]], [[2605.30778|Object-Informed-MPPI]], [[2605.20392|VBT-MPC]], [[2605.09127|IMPACT-Active-Set]], [[2604.27175|KernelSOS]], [[2604.17833|DART]], [[2604.06133|Force-Feedback-MPC]], [[2602.17199|Continuum-NMPC]], [[2510.19974|Push-Anything]], [[2510.14643|Generative-Sampling-MPC]], [[2510.03768|Adaptive-Precision-Pushing]], [[1903.04128|Deep-Tactile-MPC]]
+- [[2607.24959|IFT Contact Differentiation]], [[2606.20712|Parallel-Sampling-MPC]], [[2606.14188|Robust-Deformable-MPC]], [[2606.10818|IMPACT-Internal-Model]], [[2605.30778|Object-Informed-MPPI]], [[2605.20392|VBT-MPC]], [[2605.09127|IMPACT-Active-Set]], [[2604.27175|KernelSOS]], [[2604.17833|DART]], [[2604.06133|Force-Feedback-MPC]], [[2602.17199|Continuum-NMPC]], [[2510.19974|Push-Anything]], [[2510.14643|Generative-Sampling-MPC]], [[2510.03768|Adaptive-Precision-Pushing]], [[1903.04128|Deep-Tactile-MPC]]
 
 > [!star] Key Papers
 > - [[1903.04128|Deep-Tactile-MPC]] — foundational tactile-MPC method establishing GelSight-based Cross-Entropy Method control for touch-only manipulation: achieved an **86.6%** success rate on 20-sided die rolling, nearly double a hand-engineered centroid baseline's **46.6%**.
@@ -776,7 +776,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2605.09127|IMPACT-Active-Set]] — augmented-Lagrangian solver that enforces complementarity constraints exactly rather than smoothing them, delivering up to **70x** faster CITO optimization (**13.8x** geometric mean) with a **100%** real-Panda pushing success rate.
 
 **Koopman-Operator & Soft-Continuum Robot Control** — Data-driven Koopman-operator dynamics and controllers for soft/continuum robots.
-- [[2606.29731|Soft Arm IK/IC Controller]], [[2605.24924|Koopman-Distillation-for]], [[2605.18617|ManiSoft]], [[2605.18373|Koopman-Cloth-Folding]], [[2603.05385|Koopman-Sampling-Control]], [[2509.11567|Koopman-Continuum]], [[2505.00354|Koopman-Soft-Robot-MPC]]
+- [[2607.26345|MetaKoopman]], [[2607.25071|Continuum Robot Input Shaping]], [[2607.24029|MHE-NMPC Soft Manipulator Control]], [[2606.29731|Soft Arm IK/IC Controller]], [[2605.24924|Koopman-Distillation-for]], [[2605.18617|ManiSoft]], [[2605.18373|Koopman-Cloth-Folding]], [[2603.05385|Koopman-Sampling-Control]], [[2509.11567|Koopman-Continuum]], [[2505.00354|Koopman-Soft-Robot-MPC]]
 
 > [!star] Key Papers
 > - [[2505.00354|Koopman-Soft-Robot-MPC]] — foundational deep-Koopman auto-encoder that learns lifting functions end-to-end rather than hand-picking them, cutting real-robot trajectory-tracking error to **3.11** mm versus **22.49** mm for an RBF-based Koopman baseline.
@@ -800,7 +800,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2607.21227|FORGE-plus]] — paradigm-shifting safety architecture that decouples a frozen LLM's semantic force-budget/recovery decisions from a hard-clamped low-level controller: achieved **100%** success with **0%** breakage on fragile ABS gears/bottles, while even an oracle force ceiling still broke **49.8%** of parts.
 
 **World & Action Models for Contact-Rich Manipulation** — Foundation-style world/action models jointly predicting and acting from multisensory (visual, tactile, audio) input.
-- [[2607.02503|VT-WAM]], [[2606.08555|FAWAM]], [[2603.23481|VTAM]], [[2509.26642|MLA]], [[2405.08576|Hearing-Touch]]
+- [[2607.28391|TacWAM]], [[2607.24267|FeelWorld]], [[2607.23783|N0-TWAM]], [[2607.22530|ViTacWorld]], [[2607.02503|VT-WAM]], [[2606.08555|FAWAM]], [[2603.23481|VTAM]], [[2509.26642|MLA]], [[2405.08576|Hearing-Touch]]
 
 > [!star] Key Papers
 > - [[2606.08555|FAWAM]] — systematically integrates force at perception, prediction, and closed-loop correction levels within a world action model, reaching the group's strongest controlled result: **85%** average success across four contact-rich tasks, beating vision-only baselines by **36.25pp** and prior force-aware baselines by **21.25pp**.
@@ -840,7 +840,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2505.08787|UniSkill]] — strongest and most recent extension of this line, learning fully unaligned, in-the-wild human-to-robot skill transfer via Inverse/Forward Skill Dynamics with no scene or task alignment required; large-scale human video data boosted performance by an additional **15%**.
 
 **Human & Egocentric Video Demonstration Transfer** — Retargets manipulation skill from human or egocentric video into robot demonstrations without teleoperation.
-- [[2607.19745|EgoRecovery]], [[2606.28813|Human2Any]], [[2606.19333|Do-as-I-Do]], [[2606.14665|EgoGuide]], [[2509.22578|EgoDemoGen]], [[2509.04443|EMMA]], [[2505.11920|H2R]], [[2412.10631|ARMADA-manipulation]], [[2405.20321|ORION]]
+- [[2607.26903|Pegasus]], [[2607.19745|EgoRecovery]], [[2606.28813|Human2Any]], [[2606.19333|Do-as-I-Do]], [[2606.14665|EgoGuide]], [[2509.22578|EgoDemoGen]], [[2509.04443|EMMA]], [[2505.11920|H2R]], [[2412.10631|ARMADA-manipulation]], [[2405.20321|ORION]]
 
 > [!star] Key Papers
 > - [[2405.20321|ORION]] — earliest and foundational object-centric approach to single-video imitation, introducing Open-world Object Graphs to generalize from one actionless human video; achieved **74.4%** average success (**85.3%** with RGB-only input), decisively outperforming direct hand-motion imitation.
@@ -872,7 +872,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2607.06442|SIEVE]] — clearest exposition of the group's core idea: bridges the "granularity mismatch" between trajectory-level and state-level selection by discovering reusable visuo-motor primitives, letting a policy trained on only **50%** of the data (56.3%) beat full-dataset training (51.8%) with half the compute.
 
 **3D Scene Reconstruction & Real2Sim** — Reconstructs graphics-ready or Gaussian-splat scenes and closes the real-to-sim-to-real loop for manipulation and generalist policies.
-- [[2607.04144|Semantic-Guided Object Removal]], [[2604.05621|FunRec]], [[2603.16871|WorldCam]], [[2601.03200|A-High-Fidelity-Digital-Twin-f]], [[2510.05560|HoloScene]], [[2507.02861|LiteReality]], [[2506.04120|Splatting-Physical-Scenes]], [[2502.17894|FetchBot]], [[2502.08645|Re3Sim]], [[2409.20291|RL-GSBridge]]
+- [[2607.24538|NEO]], [[2607.04144|Semantic-Guided Object Removal]], [[2604.05621|FunRec]], [[2603.16871|WorldCam]], [[2601.03200|A-High-Fidelity-Digital-Twin-f]], [[2510.05560|HoloScene]], [[2507.02861|LiteReality]], [[2506.04120|Splatting-Physical-Scenes]], [[2502.17894|FetchBot]], [[2502.08645|Re3Sim]], [[2409.20291|RL-GSBridge]]
 
 > [!star] Key Papers
 > - [[2409.20291|RL-GSBridge]] — earliest and foundational paper in the group, establishing the 3DGS-based real2sim2real recipe for RL with a novel soft mesh binding: cut the sim-to-real success-rate drop to just **6.6%** versus an **80%** drop for a standard mesh-rendered RL baseline.
@@ -888,7 +888,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2603.00905|pySpatial]] — clearest paradigm-shifting approach to spatial reasoning: replaces implicit MLLM "imagination" with executable 3D visual programs, reaching **58.56%** on MINDCUBE (**+12.94%** over GPT-4.1-mini) and successfully guiding real-world quadrupedal robot navigation where MLLM baselines failed.
 
 **Physics-Grounded & Articulated 3D Assets** — Generates simulation-ready 3D assets with physical material properties and articulated/URDF structure for physics-aware manipulation.
-- [[2607.01938|PhysMani]], [[2606.13677|MANA]], [[2605.05163|PhysForge]], [[2603.23973|SLAT-Phys]], [[2603.14010|URDF-Anything+]], [[2603.01142|ArtLLM]], [[2511.21887|UniArt]], [[2511.13648|PhysX-Anything]], [[2508.17437|Pixie]], [[2507.12465|PhysX-3D]], [[2505.16249|3D-Occ-MPC]], [[2406.12769|Latent-Intuitive-Physics]], [[2204.03139|DiffCloud]]
+- [[2607.26889|StructureGS]], [[2607.01938|PhysMani]], [[2606.13677|MANA]], [[2605.05163|PhysForge]], [[2603.23973|SLAT-Phys]], [[2603.14010|URDF-Anything+]], [[2603.01142|ArtLLM]], [[2511.21887|UniArt]], [[2511.13648|PhysX-Anything]], [[2508.17437|Pixie]], [[2507.12465|PhysX-3D]], [[2505.16249|3D-Occ-MPC]], [[2406.12769|Latent-Intuitive-Physics]], [[2204.03139|DiffCloud]]
 
 > [!star] Key Papers
 > - [[2507.12465|PhysX-3D]] — foundational work establishing the first comprehensive physics-grounded 3D dataset (PhysXNet, 26K objects) and end-to-end generator (PhysXGen), demonstrating that injecting physical properties actually improves geometry/appearance quality (PSNR 24.53 vs 24.31) rather than trading it off.
@@ -981,7 +981,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2204.01691|SayCan]] — Foundational LLM-affordance grounding: an LLM proposes plans, a learned value function scores feasibility; the paradigm behind the whole "LLM plans, robot executes" line of work
 
 **Symbolic and Neuro-Symbolic Task Planning** — PDDL/POMDP formalisms, formal-logic constraints, and hybrid LLM+symbolic/RL planners that give robot task plans verifiable structure.
-- [[2607.18580|STeP]], [[2607.06724|EvoPlan]], [[2606.31260|SymPlan]], [[2606.15654|PO-PDDL]], [[2604.26569|LLM-Flax]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2604.02021|Discrete-Continuous-Planning-Bridge]], [[2603.30022|Hybrid-LLM-RL-Manipulation]], [[2603.04560|MEMO]], [[2511.01107|SLAP]]
+- [[2607.26770|Vision-TL-Action]], [[2607.25397|DR-LfD]], [[2607.23784|ARCHITECT]], [[2607.18580|STeP]], [[2607.06724|EvoPlan]], [[2606.31260|SymPlan]], [[2606.15654|PO-PDDL]], [[2604.26569|LLM-Flax]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2604.02021|Discrete-Continuous-Planning-Bridge]], [[2603.30022|Hybrid-LLM-RL-Manipulation]], [[2603.04560|MEMO]], [[2511.01107|SLAP]]
 
 > [!star] Key Papers
 > - [[2606.15654|PO-PDDL]] — extends PDDL itself into a symbolic POMDP formalism, learning stochastic operators and observation models directly from visual demonstrations to hit 100% task success under real perception and action uncertainty
@@ -1008,7 +1008,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 - [[2507.17520|InstructVLA]], [[2505.10359|NVSPolicy]], [[2501.04693|FuSe]], [[2412.18194|VLABench]], [[2412.05718|RLZero]], [[2410.01345|GemBench]], [[2408.01147|Astra]], [[2405.19988|Video]], [[2405.19783|IVM]], [[2403.13358|QUARD-Auto]]
 
 **Latent & Representation-Based World Models** — World models that predict dynamics in a compact latent or feature space (pretrained visual features, JEPA, discrete codebooks, causal or object-centric latents) rather than pixel space.
-- [[2607.21576|SDM]], [[2606.03834|SFMDS]], [[2606.02027|World-Task-Factorization]], [[2605.25495|RepSAM]], [[2604.19683|MWM]], [[2603.29090|HCLSM]], [[2512.24497|JEPA-WM]], [[2503.09867|OH-A-DINO]], [[2503.00653|DC-MPC]], [[2502.20168|Model-Based]], [[2411.04983|DINO-WM]], [[2310.18534|Multi-Time-Scale-WM]]
+- [[2607.28415|QQWorld]], [[2607.27924|ODEWorld]], [[2607.26924|TC-LeWM]], [[2607.26056|INTACT]], [[2607.25337|Temporal-Distance-JEPA]], [[2607.21576|SDM]], [[2606.03834|SFMDS]], [[2606.02027|World-Task-Factorization]], [[2605.25495|RepSAM]], [[2604.19683|MWM]], [[2603.29090|HCLSM]], [[2512.24497|JEPA-WM]], [[2503.09867|OH-A-DINO]], [[2503.00653|DC-MPC]], [[2502.20168|Model-Based]], [[2411.04983|DINO-WM]], [[2310.18534|Multi-Time-Scale-WM]]
 
 > [!star] Key Papers
 > - [[2411.04983|DINO-WM]] — the foundational paper showing frozen DINOv2 patch features alone support zero-shot visual MPC planning, with no reconstruction loss or task-specific reward needed
@@ -1034,7 +1034,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2606.21406|Human-Video-Dynamics]] — Human-video dynamics and value models power a training-free Dynamics-Guided Action Correction mechanism for autonomous self-improvement; 85.3% success with cross-embodiment transfer to Franka
 
 **World-Model Planning & Control** — Uses a world model as the rollout engine for downstream decision-making: MPC, tree search, safe control, and offline or online policy optimization.
-- [[2607.14943|WA-LQR]], [[2607.02431|WorldSample]], [[2607.02403|ACID]], [[2606.15594|SLS2]], [[2603.22430|RL]], [[2603.12553|Structured-WM-Planner]], [[2512.23541|Act2Goal]], [[2512.04341|NEUBAY]], [[2511.14004|STAR-Memory-Action]], [[2511.03077|WorldPlanner]], [[2506.18897|MinD]], [[2501.10100|RWM]], [[1812.00568|Visual MPC]]
+- [[2607.27599|WAP]], [[2607.25236|VisualPatchWorld]], [[2607.23602|ASAR]], [[2607.14943|WA-LQR]], [[2607.02431|WorldSample]], [[2607.02403|ACID]], [[2606.15594|SLS2]], [[2603.22430|RL]], [[2603.12553|Structured-WM-Planner]], [[2512.23541|Act2Goal]], [[2512.04341|NEUBAY]], [[2511.14004|STAR-Memory-Action]], [[2511.03077|WorldPlanner]], [[2506.18897|MinD]], [[2501.10100|RWM]], [[1812.00568|Visual MPC]]
 
 > [!star] Key Papers
 > - [[1812.00568|Visual MPC]] — Foundational Visual Foresight paper establishing the world-model-as-rollout-engine paradigm for MPC-based robot control
@@ -1042,7 +1042,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2506.18897|MinD]] — Dual-system (slow imagination, fast policy) world model enabling real-time MPC-style planning at 11.3 FPS plus implicit risk assessment from latent features
 
 **World-Model Diagnostics, Benchmarks & Surveys** — Empirical studies, benchmarks, and surveys that probe world-model behavior and failure modes rather than proposing a new world model.
-- [[2607.12547|Hi-LeWM]], [[2607.05966|iKCE]], [[2606.27326|MMBench2]], [[2604.19092|RoboWM-Bench]], [[2604.18161|DDCG]], [[2512.03422|3D-Scene-Rep-Survey]], [[2512.01119|World-Model-Surprise-Robustness]], [[2507.10087|Foundation-Robotics-Review]]
+- [[2607.23899|Embodied GPT-5.1]], [[2607.12547|Hi-LeWM]], [[2607.05966|iKCE]], [[2606.27326|MMBench2]], [[2604.19092|RoboWM-Bench]], [[2604.18161|DDCG]], [[2512.03422|3D-Scene-Rep-Survey]], [[2512.01119|World-Model-Surprise-Robustness]], [[2507.10087|Foundation-Robotics-Review]]
 
 > [!star] Key Papers
 > - [[2606.27326|MMBench2]] — Reframes world-model hallucination as a data-coverage problem rather than an architecture-scale problem; label-free predictors reach -0.80 Spearman correlation with rollout error
@@ -1062,7 +1062,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 The training paradigm question: pure imitation learning (behavior cloning) is simple but plateaus at the demonstration distribution ceiling. Adding RL post-training pushes policies beyond what demonstrations alone can teach — handling novel situations, recovering from errors, and optimizing long-horizon objectives.
 
 **Foundational Continuous-Control RL** — Canonical deep RL algorithms for continuous control, widely used as baselines and building blocks throughout robot learning.
-- [[2405.16158|BRO]], [[2106.01345|Decision Transformer]], [[1803.07055|ARS]], [[1509.02971|DDPG]], [[1502.05477|TRPO]]
+- [[2607.23726|HRL-SAC]], [[2405.16158|BRO]], [[2106.01345|Decision Transformer]], [[1803.07055|ARS]], [[1509.02971|DDPG]], [[1502.05477|TRPO]]
 
 > [!star] Key Papers
 > - [[1502.05477|TRPO]] — the foundational trust-region algorithm that first made stable, monotonic-improvement policy gradient training practical for deep neural network policies, the direct ancestor of PPO and the standard continuous-control baseline.
@@ -1078,7 +1078,7 @@ The training paradigm question: pure imitation learning (behavior cloning) is si
 > - [[2502.03369|PVP (Proxy Value Propagation)]] — the clearest reward-free reformulation of human-in-the-loop correction, directly labeling Q-values from human and agent actions rather than shaping a reward, solving MetaDrive and CARLA tasks that vanilla RL cannot touch.
 
 **Safe, Smooth & Constrained RL** — Enforce safety constraints, control barriers, and action smoothness so RL-augmented policies stay within physically safe operating regions.
-- [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2605.09772|GP-Safe-Exploration]], [[2603.13925|SmoothVLA]], [[2404.09080|Safe-Reinforcement-Learning-on]], [[2012.06644|CAPS]], [[2010.15920|Recovery-RL]]
+- [[2607.23930|FAOC]], [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2605.09772|GP-Safe-Exploration]], [[2603.13925|SmoothVLA]], [[2404.09080|Safe-Reinforcement-Learning-on]], [[2012.06644|CAPS]], [[2010.15920|Recovery-RL]]
 
 > [!star] Key Papers
 > - [[2404.09080|Safe-Reinforcement-Learning-on]] — the foundational ATACOM formulation, projecting RL actions onto the tangent space of a constraint manifold to guarantee safety by construction, validated with real online policy fine-tuning on a KUKA robot (success rate 12% to 71%, near-zero violations).
@@ -1191,13 +1191,13 @@ The training paradigm question: pure imitation learning (behavior cloning) is si
 > - [[2605.21710|PGDG]] — the strongest single-demonstration data-efficiency result, using a physics-grounded "Goldilocks Zone" curator plus DPP diversity selection to turn one demo into robust recovery data, lifting ROTATEBOX-PITCH success from 38% to 93% in sim and 35% to 82% on real zero-shot transfer.
 
 **Lifelong & Catastrophic-Forgetting-Resistant Learning** — Continual policy learning with generative replay, episodic memory, and other mechanisms that resist catastrophic forgetting across tasks.
-- [[2606.27374|REGEN]], [[2606.27353|VND]], [[2606.17493|Sleeping-Robots]], [[2604.15814|Continual-Hand-Eye-Calibration]], [[2604.11306|Hierarchical-Episodic-Memory]], [[2603.08763|SPREAD]], [[2603.03818|VLA-Continual-Learning]], [[2105.10919|Continual-World]]
+- [[2607.05609|Predictive Continual Learning]], [[2606.27374|REGEN]], [[2606.27353|VND]], [[2606.17493|Sleeping-Robots]], [[2604.15814|Continual-Hand-Eye-Calibration]], [[2604.11306|Hierarchical-Episodic-Memory]], [[2603.08763|SPREAD]], [[2603.03818|VLA-Continual-Learning]], [[2105.10919|Continual-World]]
 
 > [!star] Key Papers
 > - [[2603.03818|VLA-Continual-Learning]] — Showed pre-trained VLAs have surprising resistance to catastrophic forgetting during continual adaptation
 
 **Agentic Self-Improvement & Autonomous Skill Discovery** — Agentic loops where robots discover skills and improve policies autonomously from real-world experience, without losing prior capability.
-- [[2607.01111|FAR]], [[2607.00272|ASPIRE]], [[2606.19980|ENPIRE]], [[2606.19419|RATS]], [[2606.12372|UniIntervene]], [[2606.09615|DexPIE]], [[2604.10096|ABot-Claw]], [[2604.07799|ECM]], [[2603.24350|Emergent-Self]]
+- [[2607.26809|Practice Makes Policies]], [[2607.01111|FAR]], [[2607.00272|ASPIRE]], [[2606.19980|ENPIRE]], [[2606.19419|RATS]], [[2606.12372|UniIntervene]], [[2606.09615|DexPIE]], [[2604.10096|ABot-Claw]], [[2604.07799|ECM]], [[2603.24350|Emergent-Self]]
 
 > [!star] Key Papers
 > - [[2607.00272|ASPIRE]] — the most comprehensive skill-discovery system, pairing fine-grained per-primitive execution traces with an evolutionary search and a persistent, versioned skill library, delivering up to 77% gains on LIBERO-Pro perturbations and cutting real-robot token cost from 61.94M to 6.58M tokens via cross-embodiment skill transfer.
@@ -1242,7 +1242,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2602.16710|EgoScale]] — NVIDIA's **20,854-hour** human-video VLA pretraining; established a log-linear scaling law for human data and enables cross-embodiment transfer
 
 **Cross-Embodiment & Morphology** — One policy across robot bodies/morphologies.
-- [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2606.12352|CHORUS]], [[2605.30280|Qwen-VLA]], [[2603.00182|Morphology-Aware-Transformer]], [[2602.10556|LAP]], [[2601.12993|Being-H0.5]], [[2505.07817|Pixel-Motion-as-Universal]], [[2310.08864|OXE]]
+- [[2607.27549|BARs]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2606.12352|CHORUS]], [[2605.30280|Qwen-VLA]], [[2603.00182|Morphology-Aware-Transformer]], [[2602.10556|LAP]], [[2601.12993|Being-H0.5]], [[2505.07817|Pixel-Motion-as-Universal]], [[2310.08864|OXE]]
 
 > [!star] Key Papers
 > - [[2310.08864|OXE]] — the foundational cross-embodiment dataset and RT-X model family (1M+ trajectories, 22 embodiments) that established positive transfer across robots as an empirical fact, with the 55B-parameter RT-2-X showing roughly 3x higher emergent-skill success than embodiment-specific baselines.
@@ -1307,7 +1307,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2605.25547|TapSampling]] — a plug-and-play inference-time framework whose Action-VAE learns a compressed posterior for efficient multi-candidate sampling and whose task-progress verifier (self-supervised from trajectory order, no reward engineering) gives a 12x speedup over prior verifiers while lifting success rates across four different base policies.
 
 **Latent World-Model & JEPA VLA Backbones** — Generalist VLAs augmented with predictive latent-state world models.
-- [[2607.02195|BRIDGE-WA]], [[2607.01586|VLAFlow]], [[2606.22982|CLS-DP]], [[2606.15469|Context-ODE]], [[2605.24931|Latent-Action-Chunks]], [[2605.22597|MoSA-Continuum]], [[2605.14805|Cross-Coupled]], [[2605.11750|DreamAvoid]], [[2605.00078|Being-H0.7]], [[2603.01549|Pri4R]], [[2602.09849|BagelVLA]], [[2602.03668|MVP-LAM]], [[2602.01456|LpJEPA]], [[2601.04061|CLAP]], [[2505.06111|UniVLA]], [[2505.03500|TLI]], [[2305.08553|Distilling-Knowledge-for]]
+- [[2607.23969|LeapBot-WA]], [[2607.02195|BRIDGE-WA]], [[2607.01586|VLAFlow]], [[2606.22982|CLS-DP]], [[2606.15469|Context-ODE]], [[2605.24931|Latent-Action-Chunks]], [[2605.22597|MoSA-Continuum]], [[2605.14805|Cross-Coupled]], [[2605.11750|DreamAvoid]], [[2605.00078|Being-H0.7]], [[2603.01549|Pri4R]], [[2602.09849|BagelVLA]], [[2602.03668|MVP-LAM]], [[2602.01456|LpJEPA]], [[2601.04061|CLAP]], [[2505.06111|UniVLA]], [[2505.03500|TLI]], [[2305.08553|Distilling-Knowledge-for]]
 
 > [!star] Key Papers
 > - [[2505.06111|UniVLA]] — the foundational task-centric latent-action framework, using DINOv2-feature reconstruction with a two-stage decoupling scheme to strip camera-shake and background noise out of latent actions, reaching 95.2% on LIBERO and 47.1% on Room2Room at 1/20th the pretraining compute of OpenVLA.
@@ -1427,7 +1427,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2606.25700|LoRA-Policy-Libraries]] — extends the group's core idea beyond VLA fine-tuning into online RL policy libraries, showing up to 93% storage savings across 50 specialist policies.
 
 **Fast & Real-Time Inference Pipelines** — Caching, streaming, and one-step inference tricks that cut VLA latency.
-- [[2607.06370|ActionCache]], [[2606.21372|NAC]], [[2606.05737|One-Step-VLA]], [[2605.25477|EXPO-FT]], [[2605.13778|Realtime-VLA-FLASH]], [[2605.02739|Latent-Bridge]], [[2604.05656|SnapFlow]], [[2604.05323|VLA-InfoEntropy]], [[2604.04161|AAC]], [[2603.28740|FocusVLA]], [[2603.28565|StreamingVLA]], [[2512.04952|FASTer]], [[2510.26742|Running-VLAs-at-Real-time-Spee]], [[2509.09090|SQAP-VLA]], [[2508.19257|TTF-VLA]], [[2507.14049|EdgeVLA]], [[2506.12723|SP-VLA]], [[2506.10100|EfficientVLA]], [[2501.09747|FAST]]
+- [[2607.24008|FutureRTC]], [[2607.06370|ActionCache]], [[2606.21372|NAC]], [[2606.05737|One-Step-VLA]], [[2605.25477|EXPO-FT]], [[2605.13778|Realtime-VLA-FLASH]], [[2605.02739|Latent-Bridge]], [[2604.05656|SnapFlow]], [[2604.05323|VLA-InfoEntropy]], [[2604.04161|AAC]], [[2603.28740|FocusVLA]], [[2603.28565|StreamingVLA]], [[2512.04952|FASTer]], [[2510.26742|Running-VLAs-at-Real-time-Spee]], [[2509.09090|SQAP-VLA]], [[2508.19257|TTF-VLA]], [[2507.14049|EdgeVLA]], [[2506.12723|SP-VLA]], [[2506.10100|EfficientVLA]], [[2501.09747|FAST]]
 
 > [!star] Key Papers
 > - [[2510.26742|Running-VLAs-at-Real-time-Spee]] — landmark systems-engineering result: CUDA-graph + kernel-level optimization takes π0 from 106.5ms to 27.3ms on a consumer RTX 4090, validated with a real-robot falling-pen catch.
@@ -1436,7 +1436,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2501.09747|FAST]] — Compression-based action tokenization; makes VLAs 5x faster by compactly encoding continuous actions
 
 **Compact & Small-Footprint VLA Architectures** — Small parameter-count open-source VLAs designed to run cheaply.
-- [[2607.08575|FabriVLA]], [[2605.29562|VLA-Pro]], [[2605.28634|PrimitiveVLA]], [[2605.18722|Dexora]], [[2605.09948|LoopVLA]], [[2604.20834|PokeVLA]], [[2604.11757|StarVLA-alpha]], [[2604.05672|A1]], [[2604.02965|SV-VLA]], [[2603.03380|LiteVLA]], [[2602.22896|DySL]], [[2602.20200|OptimusVLA]], [[2602.18224|SimVLA]], [[2602.13710|HBVLA]], [[2602.12322|ForeAct]], [[2602.03782|QVLA]], [[2601.22153|DynamicVLA]], [[2601.20130|REMAC]], [[2511.04555|Evo-1]], [[2509.04996|FLOWER]], [[2506.01844|SmolVLA]], [[2504.19854|NORA]], [[2409.12514|TinyVLA]]
+- [[2607.27205|TurboVLA]], [[2607.08575|FabriVLA]], [[2605.29562|VLA-Pro]], [[2605.28634|PrimitiveVLA]], [[2605.18722|Dexora]], [[2605.09948|LoopVLA]], [[2604.20834|PokeVLA]], [[2604.11757|StarVLA-alpha]], [[2604.05672|A1]], [[2604.02965|SV-VLA]], [[2603.03380|LiteVLA]], [[2602.22896|DySL]], [[2602.20200|OptimusVLA]], [[2602.18224|SimVLA]], [[2602.13710|HBVLA]], [[2602.12322|ForeAct]], [[2602.03782|QVLA]], [[2601.22153|DynamicVLA]], [[2601.20130|REMAC]], [[2511.04555|Evo-1]], [[2509.04996|FLOWER]], [[2506.01844|SmolVLA]], [[2504.19854|NORA]], [[2409.12514|TinyVLA]]
 
 > [!star] Key Papers
 > - [[2409.12514|TinyVLA]] — foundational paper establishing the "small pretrained VLM + diffusion policy head, no large-scale robot pretraining" recipe the compact-VLA lineage builds on; 20x faster than OpenVLA with higher success.
@@ -1448,7 +1448,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 - [[2512.05964|Training-Time]], [[2511.14148|AsyncVLA]], [[2511.05936|10-VLA-Challenges]], [[2510.06710|RLinf-VLA]], [[2506.19816|CronusVLA]]
 
 **Point-Cloud & Depth-Based Spatial Representations** — Inject depth or point-cloud features into VLAs for 3D spatial generalization.
-- [[2607.12356|VistaVLA]], [[2607.11498|Robot-Centric Pointmaps]], [[2607.06564|Lift3D-VLA]], [[2606.31329|3D HAMSTER]], [[2606.02274|Dexterity-BEV]], [[2605.29416|3DVLA]], [[2605.14950|Evo-Depth]], [[2605.11832|AML-VLA]], [[2603.25399|LaMP]], [[2603.24393|3D-MIX]], [[2602.23721|StemVLA]], [[2511.01571|PixelVLA]], [[2508.09071|GeoVLA]], [[2507.02190|cVLA]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2411.02359|DeeR-VLA]], [[2403.09631|3D-VLA]]
+- [[2607.25912|SAM3D-VLA]], [[2607.12356|VistaVLA]], [[2607.11498|Robot-Centric Pointmaps]], [[2607.06564|Lift3D-VLA]], [[2606.31329|3D HAMSTER]], [[2606.02274|Dexterity-BEV]], [[2605.29416|3DVLA]], [[2605.14950|Evo-Depth]], [[2605.11832|AML-VLA]], [[2603.25399|LaMP]], [[2603.24393|3D-MIX]], [[2602.23721|StemVLA]], [[2511.01571|PixelVLA]], [[2508.09071|GeoVLA]], [[2507.02190|cVLA]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2411.02359|DeeR-VLA]], [[2403.09631|3D-VLA]]
 
 > [!star] Key Papers
 > - [[2403.09631|3D-VLA]] — foundational paper that coined the "3D Vision-Language-Action" paradigm, introducing a 3D-grounded generative world model.
@@ -1477,7 +1477,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2503.22020|CoT-VLA]] — Predicts visual subgoals as chain-of-thought before acting; bridges language reasoning with physical planning
 
 **Test-Time Search & Planning (MCTS/Tree-Search)** — Search or tree-based planning at inference time.
-- [[2607.03751|SVA]], [[2603.09292|See-Plan-Rewind]], [[2603.05147|Act,-Think-or-Abstain]], [[2602.21157|HALO]], [[2602.08167|R&B-EnCoRe]], [[2601.01618|Action-Sketcher]], [[2601.00969|V-VLAPS]], [[2512.24125|GenieReasoner]], [[2511.14178|VLA-Pilot]], [[2510.16281|SEAL]], [[2510.10975|RoVer]], [[2509.22643|VLA-Reasoner]], [[2509.20297|mindmap]], [[2508.12211|VLAPS]]
+- [[2607.26991|RL2-VLA]], [[2607.03751|SVA]], [[2603.09292|See-Plan-Rewind]], [[2603.05147|Act,-Think-or-Abstain]], [[2602.21157|HALO]], [[2602.08167|R&B-EnCoRe]], [[2601.01618|Action-Sketcher]], [[2601.00969|V-VLAPS]], [[2512.24125|GenieReasoner]], [[2511.14178|VLA-Pilot]], [[2510.16281|SEAL]], [[2510.10975|RoVer]], [[2509.22643|VLA-Reasoner]], [[2509.20297|mindmap]], [[2508.12211|VLAPS]]
 
 > [!star] Key Papers
 > - [[2508.12211|VLAPS]] — foundational: first framework to integrate MCTS-style model-based search with a pretrained VLA prior at inference time, boosting success by up to 42pp.
@@ -1525,7 +1525,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2606.03556|VLA-Patch-Attack]] — clearest safety result: a partially-observable adversarial patch drives real-robot task failure rates from 72% to 12%, exposing a realistic physical attack surface for VLAs.
 
 **Action-Video Alignment & Latent Steering** — Aligning or steering predicted video/latent trajectories with executed actions.
-- [[2606.02735|S2-VLA]], [[2606.02313|VLA-Aerial-Nav-GRPO]], [[2605.12167|MoLA]], [[2605.06192|EA-WM]], [[2605.03821|RoboAlign-R1]], [[2604.12908|VGA]], [[2604.06168|Action-Images]], [[2603.19370|VAMPO]], [[2603.16195|S-VAM]], [[2603.00110|MCSWIM]], [[2602.22010|WoG]], [[2602.11832|JEPA-VLA]], [[2602.10717|SDA]], [[2602.06508|World-VLA-Loop]], [[2511.07732|ViPRA]]
+- [[2607.24159|DeVA]], [[2606.02735|S2-VLA]], [[2606.02313|VLA-Aerial-Nav-GRPO]], [[2605.12167|MoLA]], [[2605.06192|EA-WM]], [[2605.03821|RoboAlign-R1]], [[2604.12908|VGA]], [[2604.06168|Action-Images]], [[2603.19370|VAMPO]], [[2603.16195|S-VAM]], [[2603.00110|MCSWIM]], [[2602.22010|WoG]], [[2602.11832|JEPA-VLA]], [[2602.10717|SDA]], [[2602.06508|World-VLA-Loop]], [[2511.07732|ViPRA]]
 
 > [!star] Key Papers
 > - [[2511.07732|ViPRA]] — foundational: earliest paper in the group, extracting motion-centric latent actions from actionless video and adapting them to continuous control via flow matching.
@@ -1558,7 +1558,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2607.04988|InternVLA-A1.5]] — Distills a frozen video-generation model into compact foresight tokens rather than learning pixel prediction from scratch, topping six simulation benchmarks
 
 **World-Action-Model (WAM) Coupled VLAs** — VLAs explicitly coupled to a world-action model for planning.
-- [[2606.12403|World-Pilot]], [[2605.10942|HarmoWAM]], [[2605.06481|OA-WAM]], [[2605.06247|CKT-WAM]], [[2605.06222|FFDC-WAM]], [[2604.21741|Hi-WM]], [[2604.14732|WVA]], [[2602.12063|VLAW]], [[2602.11291|H-WM]], [[2511.19221|Percept-WAM]], [[2511.09515|WMPO]], [[2508.18269|FlowVLA]], [[2506.21539|WorldVLA]]
+- [[2607.23909|WorldDiT]], [[2606.12403|World-Pilot]], [[2605.10942|HarmoWAM]], [[2605.06481|OA-WAM]], [[2605.06247|CKT-WAM]], [[2605.06222|FFDC-WAM]], [[2604.21741|Hi-WM]], [[2604.14732|WVA]], [[2602.12063|VLAW]], [[2602.11291|H-WM]], [[2511.19221|Percept-WAM]], [[2511.09515|WMPO]], [[2508.18269|FlowVLA]], [[2506.21539|WorldVLA]]
 
 > [!star] Key Papers
 > - [[2506.21539|WorldVLA]] — Foundational unification of action generation and world-state forecasting in one autoregressive transformer, showing mutual enhancement empirically
@@ -1594,7 +1594,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2510.09976|FPO]] — Sidesteps likelihood computation entirely with a likelihood-free CFM-loss ratio, reaching the group's strongest reported LIBERO result
 
 **Reward Shaping, Verification & Sample-Efficient Exploration** — Reward design and exploration strategies that make RL post-training more sample-efficient.
-- [[2606.23640|Success-Visitation-Rewards]], [[2606.01036|Bad-Behavior-Rewards]], [[2606.00151|Retry-Exploration]], [[2605.13959|WarmPrior]], [[2605.00416|LWD]], [[2603.15600|Active-Critic-RL]], [[2603.00719|Keyframe-Lab-Rewards]], [[2602.12281|Scaling-Verification-VLA]], [[2602.01789|RFS]], [[2510.26406|Hi-ORS]], [[2509.19301|ResFiT]], [[2509.18198|MMCD]], [[2509.15937|VLAC]]
+- [[2607.26513|EKG-VLA]], [[2606.23640|Success-Visitation-Rewards]], [[2606.01036|Bad-Behavior-Rewards]], [[2606.00151|Retry-Exploration]], [[2605.13959|WarmPrior]], [[2605.00416|LWD]], [[2603.15600|Active-Critic-RL]], [[2603.00719|Keyframe-Lab-Rewards]], [[2602.12281|Scaling-Verification-VLA]], [[2602.01789|RFS]], [[2510.26406|Hi-ORS]], [[2509.19301|ResFiT]], [[2509.18198|MMCD]], [[2509.15937|VLAC]]
 
 > [!star] Key Papers
 > - [[2606.23640|Success-Visitation-Rewards]] — Turns sparse outcome rewards into dense process rewards via success/failure visitation matching, with a guarantee the optimal policy is preserved
@@ -1683,7 +1683,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 - [[2603.25038|AirVLA]], [[2603.20147|AGILE]], [[2603.03279|ULTRA]], [[2602.09657|AutoFly]], [[2602.00919|Green-VLA]], [[2512.13093|PvP]], [[2512.01061|Sim-to-Real-Door]], [[2511.20351|HVS]]
 
 **Tactile & Haptic Sensing** — VLAs integrating touch/haptic feedback for dexterous, contact-rich manipulation.
-- [[2607.14609|LTP]], [[2607.14236|LIFT]], [[2606.31723|UniTacVLA]], [[2606.29089|TAP-VLA]], [[2606.11767|Blind-Dexterous-Grasping]], [[2606.11743|TacCoRL]], [[2605.27886|Tabero]], [[2605.15157|HandITL]], [[2604.28156|FlexiTac]], [[2604.27367|DOT-Sim]], [[2604.20689|FingerEye]], [[2603.15257|HapticVLA]], [[2603.12665|TacVLA]], [[2509.18830|DexSkin]], [[2507.17294|VLA-Touch]], [[2507.09160|Tactile-VLA]], [[2505.06451|Adaptive-Wiping]]
+- [[2607.24485|τ]], [[2607.23782|N0-VTLA]], [[2607.14609|LTP]], [[2607.14236|LIFT]], [[2606.31723|UniTacVLA]], [[2606.29089|TAP-VLA]], [[2606.11767|Blind-Dexterous-Grasping]], [[2606.11743|TacCoRL]], [[2605.27886|Tabero]], [[2605.15157|HandITL]], [[2604.28156|FlexiTac]], [[2604.27367|DOT-Sim]], [[2604.20689|FingerEye]], [[2603.15257|HapticVLA]], [[2603.12665|TacVLA]], [[2509.18830|DexSkin]], [[2507.17294|VLA-Touch]], [[2507.09160|Tactile-VLA]], [[2505.06451|Adaptive-Wiping]]
 
 > [!star] Key Papers
 > - [[2507.09160|Tactile-VLA]] — Earliest entry and conceptual anchor: VLMs already hold latent physical knowledge that tactile sensing activates, shown via zero-shot force-adverb transfer
@@ -1729,7 +1729,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2510.17950|RoboChallenge]] — foundational large-scale real-robot benchmark (10 robots, Table30) exposing core VLA weaknesses like temporal reasoning (**3%** SR) and soft-body manipulation (**8%** SR)
 
 **Multi-Task, Bimanual & MoE Architecture Variants** — Mixture-of-experts, bimanual, and other structural variants for multi-task VLAs.
-- [[2607.20771|MoE-VLA]], [[2607.14280|DiMaS]], [[2607.08127|Temporal Ratio (TR)]], [[2607.06655|Pelican-VLA 0.5]], [[2606.27144|PAMAE]], [[2606.23589|KEMO]], [[2606.13279|Dual-Level-Bimanual-VLA]], [[2605.15735|UAM]], [[2605.02757|VideoTransfer-VLA]], [[2604.24182|M2-VLA]], [[2604.23121|DeLock]], [[2604.20012|EmbodiedMidtrain]], [[2604.19728|VLA-Foundry]], [[2604.17896|Physical-Feasibility-VLA]], [[2604.17887|StableIDM]], [[2604.02523|Tune-to-Learn]], [[2604.01570|FAN-Prior]], [[2603.24584|TAG]], [[2603.16861|MolmoBot]]
+- [[2607.26807|KinRT]], [[2607.20771|MoE-VLA]], [[2607.14280|DiMaS]], [[2607.08127|Temporal Ratio (TR)]], [[2607.06655|Pelican-VLA 0.5]], [[2606.27144|PAMAE]], [[2606.23589|KEMO]], [[2606.13279|Dual-Level-Bimanual-VLA]], [[2605.15735|UAM]], [[2605.02757|VideoTransfer-VLA]], [[2604.24182|M2-VLA]], [[2604.23121|DeLock]], [[2604.20012|EmbodiedMidtrain]], [[2604.19728|VLA-Foundry]], [[2604.17896|Physical-Feasibility-VLA]], [[2604.17887|StableIDM]], [[2604.02523|Tune-to-Learn]], [[2604.01570|FAN-Prior]], [[2603.24584|TAG]], [[2603.16861|MolmoBot]]
 
 > [!star] Key Papers
 > - [[2606.27144|PAMAE]] — phase-aware MoE for flow-matching VLAs with ablations proving routing supervision and staged training both matter; **+9.2%/+5.6%** over π0/π0.5
@@ -1746,14 +1746,14 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2412.14058|RoboVLMs]] — 600+ experiments systematically testing VLA design choices; the definitive recipe paper
 
 **Training, Adaptation & Evaluation-Selection Methods** — Training recipes, adapters, and model/checkpoint selection methods for VLA architectures.
-- [[2512.02834|TACO]], [[2510.22201|ACG]], [[2510.05681|MG-Select]], [[2510.04354|SureSim]], [[2510.00600|Hybrid-Training-VLA]], [[2509.14889|CollabVLA]], [[2509.11417|VLA-Pretrain-Preserve]], [[2509.09372|VLA-Adapter]], [[2509.04018|FPC-VLA]], [[2409.03299|RT-1-X-SCARA-Transfer]], [[2312.01990|SARA-RT]]
+- [[2607.25516|IDR]], [[2512.02834|TACO]], [[2510.22201|ACG]], [[2510.05681|MG-Select]], [[2510.04354|SureSim]], [[2510.00600|Hybrid-Training-VLA]], [[2509.14889|CollabVLA]], [[2509.11417|VLA-Pretrain-Preserve]], [[2509.09372|VLA-Adapter]], [[2509.04018|FPC-VLA]], [[2409.03299|RT-1-X-SCARA-Transfer]], [[2312.01990|SARA-RT]]
 
 > [!tip] The VLA Stack
 > Pick a VLM backbone (PaliGemma) → add action head (flow matching) → fine-tune on in-domain data → post-train with RL. This is the proven recipe from RoboVLMs.
 
 
 **Failure Detection, Monitoring & Uncertainty Estimation** — Detecting and flagging manipulation failures via monitors, classifiers, or calibrated uncertainty.
-- [[2606.18043|VFD]], [[2606.16690|PATCH]], [[2606.09740|ProbeAct]], [[2605.16056|Health-VLA]], [[2604.20472|TDQC]], [[2604.18791|HELM]], [[2604.13788|Failure-ID-Filtering]], [[2603.11106|RC-NF]], [[2602.16182|WM-Failure-Classifier]], [[2602.12032|Vision-Proprio-Failure-Study]], [[2602.11124|PhyCritic]], [[2512.03913|VINE]], [[2509.04018|FPC-VLA]], [[2507.17383|VLA-Confidence-Calibration]], [[2507.00435|RoboEval]], [[2505.12224|RoboFAC]], [[2505.08548|FSD]], [[2505.05811|M-SVDD]], [[2504.11170|Sparse-MAF-AAE]], [[2503.08558|FAIL-Detect]], [[2303.07280|SuccessVQA]]
+- [[2607.27511|FoMo-FD]], [[2607.26789|CheckVLA]], [[2606.18043|VFD]], [[2606.16690|PATCH]], [[2606.09740|ProbeAct]], [[2605.16056|Health-VLA]], [[2604.20472|TDQC]], [[2604.18791|HELM]], [[2604.13788|Failure-ID-Filtering]], [[2603.11106|RC-NF]], [[2602.16182|WM-Failure-Classifier]], [[2602.12032|Vision-Proprio-Failure-Study]], [[2602.11124|PhyCritic]], [[2512.03913|VINE]], [[2509.04018|FPC-VLA]], [[2507.17383|VLA-Confidence-Calibration]], [[2507.00435|RoboEval]], [[2505.12224|RoboFAC]], [[2505.08548|FSD]], [[2505.05811|M-SVDD]], [[2504.11170|Sparse-MAF-AAE]], [[2503.08558|FAIL-Detect]], [[2303.07280|SuccessVQA]]
 
 > [!star] Key Papers
 > - [[2303.07280|SuccessVQA]] — first VLM-as-success-detector paradigm; robustness to viewpoint shifts drops **<10 pp** vs **10-50 pp** for bespoke models
@@ -1770,7 +1770,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2607.06256|Semantic Handoff Diagnosis]] — names and quantifies a causal mechanism (semantic handoff: 37 grounding / 58 control / 35 readiness failures), fixes it via tightened postconditions
 
 **Recovery & Correction Mechanisms** — Methods that recover from or correct a detected failure at runtime.
-- [[2607.01804|VLA-Corrector]], [[2606.27146|PhysReflect-VLA]], [[2606.23085|Foresight]], [[2606.20479|GroundControl]], [[2606.09630|ReCoVLA]], [[2604.21232|ReCAPA]], [[2604.16677|ReconVLA]], [[2410.14868|Diff-DAgger]], [[2409.03966|VLM-Failure-Recovery]], [[2407.08735|AESOP]], [[2406.15917|BGR]], [[2404.00756|Recover]], [[2310.17552|Sirius-Runtime]], [[2307.00329|DoReMi]], [[2306.15724|REFLECT]]
+- [[2607.27881|RoboBRIDGE]], [[2607.27782|RedFlow]], [[2607.01804|VLA-Corrector]], [[2606.27146|PhysReflect-VLA]], [[2606.23085|Foresight]], [[2606.20479|GroundControl]], [[2606.09630|ReCoVLA]], [[2604.21232|ReCAPA]], [[2604.16677|ReconVLA]], [[2410.14868|Diff-DAgger]], [[2409.03966|VLM-Failure-Recovery]], [[2407.08735|AESOP]], [[2406.15917|BGR]], [[2404.00756|Recover]], [[2310.17552|Sirius-Runtime]], [[2307.00329|DoReMi]], [[2306.15724|REFLECT]]
 
 > [!star] Key Papers
 > - [[2306.15724|REFLECT]] — foundational hierarchical LLM-based failure explanation and correction framework; established the RoboFail benchmark still used as a baseline today
@@ -1856,7 +1856,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 > - [[2606.14048|WAM4D]] — cleanest demonstration of train-time-only geometric supervision discarded at inference; **91.8%** across 50 RoboTwin tasks, **90%** real-world sub-action success at 525ms
 
 **Latent Action, Contact-Rich & Interactive Simulation WMs** — Action-video WMs built around discrete/latent action tokenization, tactile-contact prediction, or fully interactive playable simulators.
-- [[2606.26663|Tactile-WAM]], [[2606.05645|Discrete-WAM]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.03943|PointAction]], [[2606.01027|τ0-WM]], [[2605.08567|ACWM-Phys]], [[2603.08546|Interactive-World-Simulator]], [[2603.03482|PERSIST]], [[2601.15533|Actionable-Simulators]], [[2506.23126|ParticleFormer]], [[2506.14135|GAF]], [[2505.20922|DIMA]], [[2312.10812|LAPO]], [[2203.01914|Playable-Environments]], [[2101.12195|CADDY]]
+- [[2607.26579|ContactFlow]], [[2607.09185|CD-LAM]], [[2606.26663|Tactile-WAM]], [[2606.05645|Discrete-WAM]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.03943|PointAction]], [[2606.01027|τ0-WM]], [[2605.08567|ACWM-Phys]], [[2603.08546|Interactive-World-Simulator]], [[2603.03482|PERSIST]], [[2601.15533|Actionable-Simulators]], [[2506.23126|ParticleFormer]], [[2506.14135|GAF]], [[2505.20922|DIMA]], [[2312.10812|LAPO]], [[2203.01914|Playable-Environments]], [[2101.12195|CADDY]]
 
 > [!star] Key Papers
 > - [[2101.12195|CADDY]] — foundational paper showing discrete semantically-consistent actions can be discovered from raw unlabelled video, establishing the playable-video-generation paradigm
@@ -1875,7 +1875,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 > - [[2412.14803|VPP]] — Extracts visual representations from video diffusion in a single forward pass (no iterative denoising at test time)
 
 **Architecture & Training-Technique Variants for Action-Video WMs** — Papers distinguished mainly by a specific modeling technique: masking, flow-matching, diffusion, anchoring, or object-centric decomposition.
-- [[2607.13017|FlowWAM]], [[2606.13515|MaskWAM]], [[2606.07326|AnchorWorld]], [[2605.23993|Nano-World-Models]], [[2605.14274|CreFlow]], [[2605.07794|NoiseGate]], [[2603.07799|MWM]], [[2508.03645|DiWA]], [[2502.00466|EDELINE]], [[2501.16443|OC-STORM]], [[2408.14472|DWL]], [[2405.12399|DIAMOND]]
+- [[2607.25918|DC-WAM]], [[2607.13017|FlowWAM]], [[2606.13515|MaskWAM]], [[2606.07326|AnchorWorld]], [[2605.23993|Nano-World-Models]], [[2605.14274|CreFlow]], [[2605.07794|NoiseGate]], [[2603.07799|MWM]], [[2508.03645|DiWA]], [[2502.00466|EDELINE]], [[2501.16443|OC-STORM]], [[2408.14472|DWL]], [[2405.12399|DIAMOND]]
 
 > [!star] Key Papers
 > - [[2405.12399|DIAMOND]] — foundational diffusion-imagination world model (EDM formulation) that later diffusion/denoising variants in this group are benchmarked against
@@ -1899,7 +1899,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 > - [[2606.08737|Dream-Tac]] — strongest tactile-grounded WAM, jointly generating vision+tactile+action; **83.3%** average success (**+31.6 pp** over best baseline), **2.9x/1.8x** train/inference speedups
 
 **Physics Understanding, Benchmarks & Interpretability in Video WMs** — Studies probing whether/how video-generation world models implicitly learn physics, plus dedicated benchmarks and domain-adaptation analyses.
-- [[2606.27364|PhysiFormer]], [[2606.23296|IOI]], [[2606.22363|RefFree-PhysConsist]], [[2606.02280|LDG]], [[2604.14268|HY-World-2.0]], [[2603.25716|HyDRA]], [[2603.15759|SimDist]], [[2602.07050|Interpreting-Physics-Video-WM]], [[2601.17067|A-Mechanistic-View-on-Video-Ge]], [[2512.06628|MIND-V]], [[2411.02385|PhyWorld]]
+- [[2607.28624|PhiZero]], [[2607.27017|POKEWORLD]], [[2606.27364|PhysiFormer]], [[2606.23296|IOI]], [[2606.22363|RefFree-PhysConsist]], [[2606.02280|LDG]], [[2604.14268|HY-World-2.0]], [[2603.25716|HyDRA]], [[2603.15759|SimDist]], [[2602.07050|Interpreting-Physics-Video-WM]], [[2601.17067|A-Mechanistic-View-on-Video-Ge]], [[2512.06628|MIND-V]], [[2411.02385|PhyWorld]]
 
 **Robot-Specific Action-Conditioned Video-Policy Backbones** — Video-generation backbones wired directly into robot manipulation policy training and pretraining pipelines.
 - [[2607.19343|MVA]], [[2607.11643|Xiaomi-Robotics-U0]], [[2607.03964|Worldscape-MoE]], [[2604.11351|WM-DAgger]], [[2604.04502|Veo-Act]], [[2603.25685|Persistent-Robot-World-Models]], [[2602.17259|FRAPPE]], [[2512.24766|Dream2Flow]], [[2512.00961|GenReward]], [[2511.19861|GigaWorld-0]], [[2508.00795|Video-Policy]], [[2505.12705|DreamGen]], [[2504.15369|Inverse-Probabilistic-Adaptation]], [[2502.00622|GPC]], [[2412.14957|DREMA]], [[2406.13301|ARDuP]], [[2310.10625|VLP]], [[2302.00111|UniPi]]
@@ -1908,10 +1908,10 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 - [[2607.15278|HDR]], [[2607.15038|Wan-Streamer v0.3]], [[2607.09024|GenCeption]], [[2607.07534|LingBot-World-Infinity]], [[2607.06291|AlayaWorld]], [[2606.28804|ViPSim]], [[2606.16533|Kairos]], [[2605.30347|NeuROK]], [[2605.28816|Gamma-World]], [[2605.26535|RecFM]], [[2605.21800|stable-worldmodel]], [[2605.15178|SANA-WM]], [[2605.11367|3D-Belief]], [[2604.18564|MultiWorld]], [[2604.13036|Lyra-2.0]], [[2602.10102|VideoWorld-2]], [[2601.20540|LingBot-World]], [[2510.26583|Emu3.5]]
 
 **Latent Self-Supervised & RL-Integrated Video Backbones** — Backbone variants distinguished by self-supervised/JEPA-flavored representation learning or explicit RL-training integration, plus egocentric/game video-model precursors.
-- [[2605.26379|LeJEPA-World-Model]], [[2605.25313|UWM-JEPA]], [[2605.19957|WEM]], [[2605.09131|MCP-Cosmos]], [[2605.01694|Latent-State-Design-WM]], [[2510.01183|EvoWorld]], [[2509.15536|SAMPO]], [[2505.13934|RLVR-World]], [[2408.14837|GameNGen]], [[2408.02272|COM-Kitchens]], [[2403.04253|R2I]], [[2306.01872|Video Adapter]], [[2210.02396|TECO]], [[2103.10369|RH-UCRL]], [[1806.09655|CLASP-Action-Space]]
+- [[2607.26712|ActSWM]], [[2605.26379|LeJEPA-World-Model]], [[2605.25313|UWM-JEPA]], [[2605.19957|WEM]], [[2605.09131|MCP-Cosmos]], [[2605.01694|Latent-State-Design-WM]], [[2510.01183|EvoWorld]], [[2509.15536|SAMPO]], [[2505.13934|RLVR-World]], [[2408.14837|GameNGen]], [[2408.02272|COM-Kitchens]], [[2403.04253|R2I]], [[2306.01872|Video Adapter]], [[2210.02396|TECO]], [[2103.10369|RH-UCRL]], [[1806.09655|CLASP-Action-Space]]
 
 **Speed & Compute-Efficient WAM Architectures** — WAMs optimized for speed via caching, sparsity, or distillation: focus compute on action prediction rather than full video generation. Key insight: you need video modeling at *training time* for learning physics, but not at *test time* for acting.
-- [[2607.15065|DriftWorld]], [[2607.13960|GigaWorld-Policy-0.5]], [[2607.06216|MoWorld]], [[2607.05468|MECo-WAM]], [[2606.26217|Fast-LeWorldModel]], [[2606.10040|Efficient-WAM]], [[2606.08962|C3ache]], [[2606.05254|Flash-WAM]], [[2605.19319|SWEET]], [[2605.08732|GC-IDM]], [[2603.16666|Fast-WAM]], [[2602.08032|Horizon-Imagination]], [[2510.24482|COMBRL]], [[2506.01392|Sparse-Imagination]]
+- [[2607.27372|XM]], [[2607.26657|Enfold]], [[2607.19191|ABot-World-0]], [[2607.15065|DriftWorld]], [[2607.13960|GigaWorld-Policy-0.5]], [[2607.06216|MoWorld]], [[2607.05468|MECo-WAM]], [[2606.26217|Fast-LeWorldModel]], [[2606.10040|Efficient-WAM]], [[2606.08962|C3ache]], [[2606.05254|Flash-WAM]], [[2605.19319|SWEET]], [[2605.08732|GC-IDM]], [[2603.16666|Fast-WAM]], [[2602.08032|Horizon-Imagination]], [[2510.24482|COMBRL]], [[2506.01392|Sparse-Imagination]]
 
 > [!star] Key Papers
 > - [[2603.16666|Fast-WAM]] — Proved training-time video modeling is what matters, not test-time imagination; 97.6% on LIBERO
@@ -2000,7 +2000,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 - [[2602.21666|Biomechanical-Comparisons-Reveal-Divergence]], [[2602.06382|Now-You-See-That]], [[2512.01336|Discovering-Self-Protective-Falling-Policy]], [[2509.05581|Walk-Costume-Adversarial-Motion]], [[2508.10423|MASH]], [[2508.00362|Whole-Body-Motion-Imitation-Framework]], [[2506.20487|Survey-Behavior-Foundation-Model]], [[2503.08299|Distillation-PPO]], [[2404.17070|Deep-Reinforcement-Bipedal-Locomotion]], [[2402.18294|Whole-body]], [[2301.04317|Teleoperation-Humanoid-Robots-Survey]]
 
 **General Embodied-AI, Navigation & Agentic Foundations Surveys** — Broader embodied-AI, navigation, and agentic-foundation-model surveys not specific to VLA/WAM/manipulation/humanoid categories above.
-- [[2606.24256|TailOR]], [[2606.07017|FM-Agent-Sim-to-Real-Gap]], [[2606.06556|Robots-Need-More]], [[2605.29360|MiraBench]], [[2605.03413|NEO-Theorizer]], [[2604.04707|OpenWorldLib]], [[2603.25887|WR-Arena]], [[2511.06796|Human-Level]], [[2508.10399|Large-Model-Embodied-AI-Survey]], [[2504.15643|Goal-Oriented-Nav-Survey]], [[2504.13159|Digital-Twin-Survey]], [[2504.04170|Digital-Gene]], [[2502.15336|Embodied-Multimodal-LLMs-Survey]], [[2501.05750|Semantic-Mapping-Survey]], [[2408.03539|Deep-RL-for-Robotics-Survey]], [[2407.06886|ARIO]], [[2309.01909|PIRL-Survey]], [[2108.11544|VLN-Survey-&-Taxonomy]]
+- [[2607.26121|TEI]], [[2606.24256|TailOR]], [[2606.07017|FM-Agent-Sim-to-Real-Gap]], [[2606.06556|Robots-Need-More]], [[2605.29360|MiraBench]], [[2605.03413|NEO-Theorizer]], [[2604.04707|OpenWorldLib]], [[2603.25887|WR-Arena]], [[2511.06796|Human-Level]], [[2508.10399|Large-Model-Embodied-AI-Survey]], [[2504.15643|Goal-Oriented-Nav-Survey]], [[2504.13159|Digital-Twin-Survey]], [[2504.04170|Digital-Gene]], [[2502.15336|Embodied-Multimodal-LLMs-Survey]], [[2501.05750|Semantic-Mapping-Survey]], [[2408.03539|Deep-RL-for-Robotics-Survey]], [[2407.06886|ARIO]], [[2309.01909|PIRL-Survey]], [[2108.11544|VLN-Survey-&-Taxonomy]]
 
 > [!tip] Video vs Latent
 > DreamZero proves video generation works at scale, but Fast-WAM shows you only need video at *training time*. For deployment, latent prediction (UWM, VLA-JEPA) is faster and more practical.
@@ -2024,6 +2024,7 @@ The frontier of embodied AI: robots that improve themselves through experience w
 - [[2508.04700|SEAgent]] (2025) — ==self-evolving curriculum== with World State Model for computer use agents
 - [[2310.08367|MCU]] (2023) — Evaluation framework for open-ended game agents with AutoEval VLM judging
 - [[2305.16291|Voyager]] (2023) — ==LLM-powered lifelong-learning agent== in Minecraft: automatic curriculum + ever-growing executable skill library; discovered **3.3×** more unique items than prior agents
+- [[2607.17250|EvolvingWorld]] (2026) — open-schema framework where character profiles and a world model co-evolve over long narratives via LLM-driven role-play agents
 
 > [!star] Key Papers
 > - [[2502.05907|EvoAgent]] — Built on DreamerV3 with continual world model; demonstrated self-planning + self-control + self-reflection loop
@@ -2045,7 +2046,7 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 - [[2607.12630|MTEFR]], [[2603.29165|LatentPilot]], [[2603.25937|VNM Real-World Evaluation 2026]], [[2512.01550|NavForesee]], [[2511.18845|UNeMo]], [[2510.08553|Dream-to-Recall]], [[2509.11197|DreamNav]], [[2506.06862|Multimodal-Spatial-Language-Maps]], [[2505.07868|VISTA-navigation]], [[2504.02477|Multimodal-Fusion-&-VLM-Survey]], [[2503.02247|WMNav]], [[2502.13451|MapNav]], [[2412.01857|SALI]]
 
 **Map & Memory-Based Navigation** — Map/memory-based navigation.
-- [[2607.12811|PixelLoop]], [[2607.05543|GEM-Occ]], [[2607.04764|SLAM (Lifelong VPR)]], [[2607.04745|TAO]], [[2607.04057|PreSIST]], [[2606.30809|GaussLite]], [[2606.30404|HUMEMBR]], [[2606.28712|J-LAW]], [[2604.02829|STRNet]], [[2602.00551|APEX-Aerial]], [[2509.20739|Semantic-Object-Exploration]], [[2506.17629|CLiViS]], [[2506.06487|BeliefMapNav]], [[2506.05997|SRU]], [[2402.19161|MemoNav]], [[2202.11271|ViKiNG]], [[2101.05181|MemAug-Image-Goal-Nav]], [[2012.03912|MultiON]]
+- [[2607.27713|Map-Reference-Aware Conservative Fusion]], [[2607.12811|PixelLoop]], [[2607.05543|GEM-Occ]], [[2607.04764|SLAM (Lifelong VPR)]], [[2607.04745|TAO]], [[2607.04057|PreSIST]], [[2606.30809|GaussLite]], [[2606.30404|HUMEMBR]], [[2606.28712|J-LAW]], [[2604.02829|STRNet]], [[2602.00551|APEX-Aerial]], [[2509.20739|Semantic-Object-Exploration]], [[2506.17629|CLiViS]], [[2506.06487|BeliefMapNav]], [[2506.05997|SRU]], [[2402.19161|MemoNav]], [[2202.11271|ViKiNG]], [[2101.05181|MemAug-Image-Goal-Nav]], [[2012.03912|MultiON]]
 
 **Social & Crowd-Interactive Navigation** — Human/crowd-aware navigation with group-following, communication, and LLM/VLM social reasoning.
 - [[2607.20772|Socially Consistent Multi-Robot Navigation]], [[2607.19850|SOPD-SocialNav]], [[2607.18517|Target Interception in Crowds (TIC)]], [[2607.15036|VOP-Nav]], [[2607.10991|HUMA]], [[2607.07357|HumAIN]], [[2607.01925|SPLC]], [[2607.01287|Adaptive Companionship for Group-Following Robots]], [[2607.01044|CommNav]], [[2606.28760|VLM Social Robot Navigation Survey]], [[2606.26047|iCrowdNav]], [[2503.09758|Multi-Agent]], [[2503.07323|Navigating-Motion-Agents-Dynamic]]
@@ -2053,8 +2054,11 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 **Dynamic-Obstacle & Reactive Motion Planning** — Physics-informed and RL-based reactive planning for navigating dynamic, cluttered environments.
 - [[2607.10288|PIER-Flow]], [[2607.07885|TTC Obstacle Avoidance]], [[2606.15691|Causal Navigation Adaptation]], [[2605.21935|MIF]], [[2605.12689|3D-RL-DWA]], [[2605.02487|Visibility-Aware-Mobile-Grasping]], [[2508.05634|Conformal-Crowd-Navigation]], [[2506.02206|Reinforcement-Data-Bootstrapping-Dynamic]], [[2504.19322|Learned-Perceptive-Forward-Dynamics]]
 
+**Off-Road & Terrain-Traversability Global Planning** — Learning continuous traversability maps and long-horizon route preferences from satellite imagery, aerial LiDAR, and map data for off-road navigation.
+- [[2607.23743|Traversability-Aware Global Planner]]
+
 **Zero-Shot & Foundation-Model Nav** — Zero-shot / foundation-model navigation.
-- [[2607.21025|ZONDA]], [[2607.20785|Robostral Navigate]], [[2607.20679|CAT-Nav]], [[2607.18794|LANav]], [[2607.14586|SoftNav]], [[2607.13072|HRO]], [[2607.06882|GemNav]], [[2607.06537|UniLM-Nav]], [[2607.06165|EAGOR]], [[2606.30696|ViTL]], [[2512.24385|Spatial-Intelligence-Roadmap]], [[2509.12129|Embodied-Navigation-Foundation-Model]], [[2507.06747|LOVON]], [[2503.10630|UniGoal]], [[2503.05064|Perceiving-Reasoning-Adapting-Dual-Layer]], [[2502.13894|NavigateDiff]], [[2411.16425|TopV-Nav]], [[2311.00530|LLM-Embodied-Navigation-Survey]], [[2309.10309|Bridging-Zero-shot-Object-Navigation]], [[2306.14846|ViNT]]
+- [[2607.26148|Agentic Embodied Control]], [[2607.25448|RPV-V2]], [[2607.21025|ZONDA]], [[2607.20785|Robostral Navigate]], [[2607.20679|CAT-Nav]], [[2607.18794|LANav]], [[2607.14586|SoftNav]], [[2607.13072|HRO]], [[2607.06882|GemNav]], [[2607.06537|UniLM-Nav]], [[2607.06165|EAGOR]], [[2606.30696|ViTL]], [[2512.24385|Spatial-Intelligence-Roadmap]], [[2509.12129|Embodied-Navigation-Foundation-Model]], [[2507.06747|LOVON]], [[2503.10630|UniGoal]], [[2503.05064|Perceiving-Reasoning-Adapting-Dual-Layer]], [[2502.13894|NavigateDiff]], [[2411.16425|TopV-Nav]], [[2311.00530|LLM-Embodied-Navigation-Survey]], [[2309.10309|Bridging-Zero-shot-Object-Navigation]], [[2306.14846|ViNT]]
 
 > [!star] Key Papers
 > - [[2512.24385|Spatial-Intelligence-Roadmap]] — Comprehensive roadmap for multi-modal spatial pre-training in autonomous systems; defines the field's trajectory
@@ -2067,7 +2071,7 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 - [[2606.29222|CORE Planner]], [[2605.22814|Remember-to-be-Curious]], [[2605.10118|SAGE]], [[2511.11011|Efficient-Image-Goal-Navigatio]], [[2510.09951|Hippocampus-Actor-Critic]], [[2412.14401|One-RING-Robotic-Indoor]], [[2401.05946|TDB]], [[2308.05602|Recursive-Implicit-Maps-Nav]], [[2301.13261|Blind-Nav-Agents]]
 
 **Constrained & Generative RL Navigation Policies** — Safety-filtered/reachability-constrained policies and diffusion/flow-based generative navigation policies.
-- [[2607.19880|EA-Nav]], [[2607.18200|Adaptive Safety Critic for Visual Navigation]], [[2607.14643|NavCMPO]], [[2607.01794|Lightweight-Safe-RL-for-UAV-Navigation]], [[2606.29934|RoamFlow]], [[2605.14174|VIA]], [[2512.02851|SwarmDiffusion]], [[2510.14959|CBF-RL]], [[2505.08712|NavDP]], [[2410.16687|DARE (Diffusion Robot Exploration)]]
+- [[2607.28560|X-NavDP]], [[2607.19880|EA-Nav]], [[2607.18200|Adaptive Safety Critic for Visual Navigation]], [[2607.14643|NavCMPO]], [[2607.01794|Lightweight-Safe-RL-for-UAV-Navigation]], [[2606.29934|RoamFlow]], [[2605.14174|VIA]], [[2512.02851|SwarmDiffusion]], [[2510.14959|CBF-RL]], [[2505.08712|NavDP]], [[2410.16687|DARE (Diffusion Robot Exploration)]]
 
 **Exploration, Planning & Misc RL Navigation** — Attention-based exploration, local planning, and cross-embodiment/aerial RL navigation studies.
 - [[2607.13553|Flow-Aware RL Navigation]], [[2607.01281|WaveLander]], [[2606.15846|FlashNav]], [[2605.06595|CRONA]], [[2603.13888|Path-Conditioned-Local-Planner]], [[2506.07006|CARoL]], [[2301.11575|ARiADNE]], [[1912.06321|Sim2Real-Predictivity]]
@@ -2118,13 +2122,13 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 > - [[2603.24506|PhyGenesis]] — Physically consistent multi-view driving video world model under challenging trajectories; co-trained on nuScenes + CARLA with a 6-DoF Physical Condition Generator that rectifies physics-violating trajectories before generation
 
 **Motion & Trajectory Planning (Classical + Diffusion)** — Trajectory/motion planners spanning classical optimization and diffusion-based generative planning.
-- [[2607.14507|DRIFT]], [[2607.13626|TV-APF Intersection Planner]], [[2607.13354|Game-Theoretic Racing Planner]], [[2606.30940|Compressed Latent Motion Planning]], [[2606.30694|DSIP]], [[2606.26017|G2DP]], [[2606.16480|HOLO-MPPI]], [[2606.03296|SC-Diff-Planning]], [[2604.25329|ProDrive]], [[2604.18486|OneVL]], [[2604.11734|Multi-ORFT]], [[2603.15771|CorrectionPlanner]]
+- [[2607.26802|Hybrid Risk-Aware Motion Planner]], [[2607.14507|DRIFT]], [[2607.13626|TV-APF Intersection Planner]], [[2607.13354|Game-Theoretic Racing Planner]], [[2606.30940|Compressed Latent Motion Planning]], [[2606.30694|DSIP]], [[2606.26017|G2DP]], [[2606.16480|HOLO-MPPI]], [[2606.03296|SC-Diff-Planning]], [[2604.25329|ProDrive]], [[2604.18486|OneVL]], [[2604.11734|Multi-ORFT]], [[2603.15771|CorrectionPlanner]]
 
 **Control, RL-Policy & Vehicle Dynamics** — Low-level control, RL-trained driving policies, and vehicle-dynamics-aware optimization.
 - [[2607.13319|OptCar]], [[2607.10975|W-SQP]], [[2606.29684|ES-Optimized Steering CNN]], [[2605.04470|CRAFT-Driving]], [[2604.03023|Behavior-Constrained-RL]], [[2603.11600|H-EARS]], [[2511.07899|Ensemble-Safety-Filters]], [[2511.04679|GentleHumanoid]], [[2509.16500|RLGF]], [[2509.00789|CogDriver]], [[2506.08052|ReCogDrive]], [[2505.16394|Raw2Drive]], [[2502.13144|RAD]]
 
 **Perception, SLAM & Detection Backbones** — Camera/LiDAR/radar perception pipelines, SLAM, and object-detection backbones underlying driving stacks.
-- [[2607.10762|TOLiD]], [[2607.08402|Pedestrian Privacy Pipeline]], [[2607.08391|MURAL]], [[2606.31830|PriorEye]], [[2605.05328|Query2Uncertainty]], [[2604.12942|RMGS-SLAM]], [[2511.20348|Material-GS]], [[2309.13475|System-Level-Anomaly-Detector]], [[2308.09534|CFINet]], [[2303.17144|DAMO-StreamNet]], [[2008.01655|Adaptive-Memory-VO]], [[1904.03629|Adaptive-NMS]], [[1512.02325|SSD]]
+- [[2607.26283|HeteroPROMPT]], [[2607.10762|TOLiD]], [[2607.08402|Pedestrian Privacy Pipeline]], [[2607.08391|MURAL]], [[2606.31830|PriorEye]], [[2605.05328|Query2Uncertainty]], [[2604.12942|RMGS-SLAM]], [[2511.20348|Material-GS]], [[2309.13475|System-Level-Anomaly-Detector]], [[2308.09534|CFINet]], [[2303.17144|DAMO-StreamNet]], [[2008.01655|Adaptive-Memory-VO]], [[1904.03629|Adaptive-NMS]], [[1512.02325|SSD]]
 
 **Simulation, Evaluation & Traffic/Scenario Modeling** — Driving simulators, sim-to-real evaluation gaps, and traffic/accident scenario generation.
 - [[2607.00283|Planning-Critical Occlusion VLM]], [[2606.31209|RosettaSim]], [[2606.19641|Self-Play]], [[2606.05159|X4Val]], [[2604.10856|BridgeSim]], [[2604.05484|CoEnv]], [[2511.23369|SimScale]], [[2503.20654|AccidentSim]], [[2409.18964|PhysGen]], [[2309.00709|TrafficRLHF]]
@@ -2148,10 +2152,10 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 > Most driving WMs are ego-centric (the car's view). I-WM flips the frame: fixed roadside sensors give "temporal depth" over a location, complementing ego-vehicle "spatial breadth". Expect infrastructure + V2X world models to be a growing thread alongside ego-centric DriveDreamer-style generators.
 
 **Multi-Robot Motion Planning & Optimization** — Trajectory optimization, MPC, and search-based planning for multi-robot systems.
-- [[2607.20992|DMBD]], [[2607.14781|Simultaneous Arrival Control]], [[2607.13403|E-PDT]], [[2607.12423|MDOC]], [[2607.10649|Coverage Path Planning Survey]], [[2607.04215|mt-MPCC]], [[2607.00444|ST-GCS]], [[2607.00326|NeHMO]], [[2607.00156|DIVE]]
+- [[2607.27627|Arm2Air]], [[2607.20992|DMBD]], [[2607.14781|Simultaneous Arrival Control]], [[2607.13403|E-PDT]], [[2607.12423|MDOC]], [[2607.10649|Coverage Path Planning Survey]], [[2607.04215|mt-MPCC]], [[2607.00444|ST-GCS]], [[2607.00326|NeHMO]], [[2607.00156|DIVE]]
 
 **Multi-Robot Learning-Based Coordination & Control (RL/LLM)** — RL- and LLM-driven coordination and control policies for multi-robot tasks.
-- [[2607.20665|DGPPO]], [[2607.12050|EFLUX]], [[2607.07403|Megamind]], [[2607.05957|Delay-Aware Active Triangulation for Counter-UAS]], [[2607.05939|PFSP-CTBR]], [[2607.01029|AMBUSH]], [[2607.00160|Phase-Decomposed RL]], [[2606.30893|CIMORL]]
+- [[2607.26336|Implicit Causal WM]], [[2607.20665|DGPPO]], [[2607.12050|EFLUX]], [[2607.07403|Megamind]], [[2607.05957|Delay-Aware Active Triangulation for Counter-UAS]], [[2607.05939|PFSP-CTBR]], [[2607.01029|AMBUSH]], [[2607.00160|Phase-Decomposed RL]], [[2606.30893|CIMORL]]
 
 **Distributed Estimation, Localization & Perception (Multi-Robot)** — Distributed factor-graph optimization, collaborative localization, and shared perception across robot teams.
 - [[2607.08735|DeepCORD]], [[2607.06563|AcoustoBots]], [[2607.01106|Async-BCD]], [[2607.00191|HydraCollab]], [[2606.29868|MP-NF]], [[2606.29673|DCL]], [[2606.29372|SPACE (Swarm Pheromone Exploration)]]
@@ -2249,7 +2253,7 @@ The data and evaluation infrastructure that makes all the above research possibl
 - [[2602.21919|Learning-in-the-Null-Space]], [[2507.05116|VOTE]], [[2506.09930|From-Intention-to-Execution]], [[2504.20684|Identifying-Uncertainty-Self-Adaptive-Robotics]], [[2503.17125|LaMOuR]], [[2503.15707|Safety-Aware-Task-Planning]], [[2502.12330|X-IL]], [[2310.12931|Eureka]], [[2310.12567|Safety-Gymnasium]]
 
 **Spatial, Navigation & Multi-Agent Simulation Benchmarks** — Simulation platforms and benchmarks for spatial reasoning, navigation, aerial, and multi-agent embodied tasks.
-- [[2603.22279|3D-Layout-R1]], [[2601.01984|Thinking-with-Blueprints]], [[2511.04831|Isaac-Lab]], [[2510.23571|RobotArena-Infinity]], [[2510.03471|Quadcopter-Control-Eval-Suite]], [[2504.00839|Context-Aware]], [[2502.09560|EmbodiedBench]], [[2406.15349|NAVSIM]], [[2406.05756|EmbSpatial-Bench]], [[2307.02485|Building-Cooperative-Embodied-Agents]]
+- [[2607.27180|HumanCLAW]], [[2607.25219|SONG]], [[2603.22279|3D-Layout-R1]], [[2601.01984|Thinking-with-Blueprints]], [[2511.04831|Isaac-Lab]], [[2510.23571|RobotArena-Infinity]], [[2510.03471|Quadcopter-Control-Eval-Suite]], [[2504.00839|Context-Aware]], [[2502.09560|EmbodiedBench]], [[2406.15349|NAVSIM]], [[2406.05756|EmbSpatial-Bench]], [[2307.02485|Building-Cooperative-Embodied-Agents]]
 
 **World-Model & Simulation-Fidelity Diagnostic Benchmarks** — Diagnostic benchmarks probing embodied world-model memory, consistency, and simulator fidelity.
 - [[2605.29341|WorldMemArena]], [[2604.21686|WorldMark]], [[2603.23497|WildWorld]], [[2603.22212|Omni-WorldBench]], [[2602.08971|WorldArena]], [[2602.05986|RISE-Video]], [[2601.21282|WorldBench]], [[2512.19562|REALM]], [[2512.05024|Simulator-Fidelity-Quantile-Curves]], [[2512.00836|Counterfactual-Model-Error]], [[2511.20937|ENACT]], [[2506.18088|RoboTwin-2.0]], [[2505.19017|WorldEval]], [[2505.09694|EWMBench]]
@@ -2267,12 +2271,14 @@ The data and evaluation infrastructure that makes all the above research possibl
 > - [[2601.11421|GM-100]] — 100 detail-oriented tasks; current VLAs achieve very low success rates, exposing real capability gaps
 
 **VLA Evaluation Arenas, Agentic & Process Diagnostic Benchmarks** — General-purpose VLA evaluation arenas, agentic/process-aware diagnosis, and industrial dexterity platforms.
-- [[2607.14021|IDB]], [[2607.05709|Co-STAR]], [[2607.04610|RoboVista]], [[2606.18239|EBench]], [[2606.13040|RoboProcessBench]], [[2606.12207|Embodied-Benchmark-Pipeline]], [[2605.10921|RoboMemArena]], [[2604.11689|LARY]], [[2603.14327|OmniClone]], [[2603.13966|vla-eval]], [[2603.04639|RoboMME]], [[2602.01640|A2Eval]], [[2512.22539|VLA-Arena]], [[2512.01989|PAI-Bench]], [[2510.17801|Robobench]], [[2509.19524|StepEval]], [[2509.17057|RoboManipBaselines]], [[2509.15273|Embodied-Arena]], [[2506.18123|RoboArena]], [[2009.12293|robosuite]]
+- [[2607.24481|ArmnetBench]], [[2607.14021|IDB]], [[2607.05709|Co-STAR]], [[2607.04610|RoboVista]], [[2606.18239|EBench]], [[2606.13040|RoboProcessBench]], [[2606.12207|Embodied-Benchmark-Pipeline]], [[2605.10921|RoboMemArena]], [[2604.11689|LARY]], [[2603.14327|OmniClone]], [[2603.13966|vla-eval]], [[2603.04639|RoboMME]], [[2602.01640|A2Eval]], [[2512.22539|VLA-Arena]], [[2512.01989|PAI-Bench]], [[2510.17801|Robobench]], [[2509.19524|StepEval]], [[2509.17057|RoboManipBaselines]], [[2509.15273|Embodied-Arena]], [[2506.18123|RoboArena]], [[2009.12293|robosuite]]
 
 > [!star] Key Papers
 > - [[2506.18123|RoboArena]] — Distributed real-world VLA eval via crowd-sourced pairwise comparisons; 0.98 Pearson correlation with oracle, paradigm shift from sim-only benchmarking
 
 **Surveys:**
+- [[2607.24744|Data Pyramid]] — Peking University and collaborators introduce the "data pyramid," a taxonomy categorizing diverse data sources for embodied AI based on scalability and fidelity.
+- [[2607.21655|Progress Reward Modeling Survey]] — Comprehensive review of progress reward modeling for robotic learning; unified framework categorizing methods by interface and construction mechanism
 - [[2607.01304|Space, Time, and State Framework]] — Systematic analysis of ROS 2 middleware revealing architectural trade-offs across Space, Time, and State dimensions; proposes a research roadmap addressing eleven cross-dimensional conflicts
 - [[2606.31494|Manipulation Robustness Survey]] — Formalizes robustness across task dimensions with stochastic control models; synthesizes mechanisms from perception, planning, control, policy learning, and hardware
 - [[2605.05017|SPINE]] — Position paper: embodied AI requires a privacy-utility trade-off as life-cycle architectural constraint, not localized patches
@@ -2318,7 +2324,7 @@ Legged and humanoid control: learning to walk, balance, and coordinate the whole
 - [[2607.07830|HumoSlope]], [[2606.00637|GLAD]], [[2510.21369|Load-Bearing-Locomotion]], [[2508.11929|Omnidirectional-Bipedal]], [[2506.08840|MoRE-humanoid]], [[2504.13619|Robust-Humanoid-Walking-Compliant]], [[2504.09997|GenTe]], [[2503.07049|VMTS]], [[2503.00692|Perceptive-Humanoid-Terrain]], [[2411.01919|Real-Time-humanoid]], [[2410.11825|Smooth-Humanoid-Locomotion-through]], [[2410.03654|Humanoid-Locomotion-over-Challenging]], [[2209.12827|Position-Based-Locomotion]], [[2201.08117|ANYmal-Perceptive-Locomotion]]
 
 **Reward Shaping & Curriculum RL for Legged Locomotion** — Reward design, curriculum learning, and training methodology for legged locomotion policies.
-- [[2602.20375|Multi-Task Reference-Goal RL]], [[2602.03511|CMR]], [[2602.03002|RPL]], [[2510.09543|IMF-Reward]], [[2510.07152|DPL]], [[2509.20036|MARG]], [[2509.18466|RL-augmented]], [[2509.11504|FR-Net]], [[2509.06342|Towards-bridging-the-gap]], [[2508.00939|BarlowWalk]], [[2504.10390|Teacher-Motion-Priors]], [[2502.02934|Gait-Net]], [[2403.01928|ZSL-RPPO]], [[2402.06783|Learn-to-Teach]]
+- [[2607.24036|WARL]], [[2602.20375|Multi-Task Reference-Goal RL]], [[2602.03511|CMR]], [[2602.03002|RPL]], [[2510.09543|IMF-Reward]], [[2510.07152|DPL]], [[2509.20036|MARG]], [[2509.18466|RL-augmented]], [[2509.11504|FR-Net]], [[2509.06342|Towards-bridging-the-gap]], [[2508.00939|BarlowWalk]], [[2504.10390|Teacher-Motion-Priors]], [[2502.02934|Gait-Net]], [[2403.01928|ZSL-RPPO]], [[2402.06783|Learn-to-Teach]]
 
 **Quadruped Hardware & State Estimation** — Quadruped-specific hardware co-design and state estimation for locomotion.
 - [[2606.31912|Foot-Centric Proximity Locomotion]], [[2606.07424|Buoyancy-Co-Design]], [[2605.24975|SAC-Legged-Locomotion]], [[2605.09595|Neuromorphic-Quadruped]], [[2507.22653|UniLegs]], [[2211.07638|Egocentric Legged Locomotion]], [[2010.11251|ANYmal Locomotion]], [[1712.05873|Legged-Robot-State-Estimation-Through]]
@@ -2336,19 +2342,19 @@ Legged and humanoid control: learning to walk, balance, and coordinate the whole
 - [[2607.18760|Koopman DCM]], [[2604.03999|Humanoid-Dancing]], [[2510.08754|Spin-Aware]], [[2508.03003|Thruster-Enhanced-Locomotion-Decoupled]], [[2506.14278|Heavy-Limbs-WBC]], [[2505.23499|Centroidal-Preview-Control]], [[2309.15462|DTC]], [[1909.06586|WBIC]]
 
 **Sim-to-Real Transfer & Domain Adaptation (Locomotion)** — Bridging the sim-to-real gap for legged locomotion via domain adaptation, simulation tooling, and adaptive representations.
-- [[2606.16542|ADAPT-Locomotion]], [[2604.11090|Simulator-Adaptation-Loco]], [[2603.17927|RoboForge]], [[2510.15352|GaussGym]], [[2509.12858|Contrastive-Representation-Robust-Sim-to-Real]], [[2506.15132|Booster-Gym]], [[2504.06585|Sim-to-Real-world-model]], [[2411.08832|Diffusion-Quadruped-Adaptation]], [[2409.17992|LoopSR]], [[2406.04835|SLR]]
+- [[2607.25541|P3-VAE]], [[2606.16542|ADAPT-Locomotion]], [[2604.11090|Simulator-Adaptation-Loco]], [[2603.17927|RoboForge]], [[2510.15352|GaussGym]], [[2509.12858|Contrastive-Representation-Robust-Sim-to-Real]], [[2506.15132|Booster-Gym]], [[2504.06585|Sim-to-Real-world-model]], [[2411.08832|Diffusion-Quadruped-Adaptation]], [[2409.17992|LoopSR]], [[2406.04835|SLR]]
 
 **Generalist & Multi-Embodiment Locomotion Policies** — Single policies transferring across morphologies, tasks, or command modalities.
 - [[2607.04837|Athena-WBC]], [[2606.30290|X-Morph]], [[2606.29209|AnyBody (Whole-Body Humanoid Control)]], [[2606.25591|WOLF-VLA]], [[2603.03733|X-Loco]], [[2602.21612|Wheeled-Legged]], [[2512.00971|H-Zero]], [[2509.02815|Multi-Embodiment-Loco]], [[2505.05753|Embodiment-Scaling-Laws]], [[2503.08997|Unified-Locomotion-Transformer]], [[2503.08564|MoE-Loco]], [[2503.08007|MoRE]], [[2412.10628|Versatile-Locomotion-Skills]], [[2402.19469|Humanoid-Locomotion-as-Next]], [[2401.16889|Reinforcement-Versatile-Dynamic-Robust]], [[2312.14457|QUAR-VLA]]
 
 **Motion Imitation & Natural Gait Learning** — Learning natural, animal-like, or human-like gaits via motion tracking and imitation.
-- [[2607.19903|YAHMP]], [[2607.18737|SOM-ESN Motion Primitive Model]], [[2607.18197|NICO Gesture Imitation Pipeline]], [[2605.24592|MuGen]], [[2603.19305|PhyGile]], [[2602.23832|OmniTrack]], [[2512.23649|RoboMirror]], [[2508.14098|No-More-Marching]], [[2505.09979|Diverse-Natural-Behaviors]], [[2503.09015|Natural-Humanoid-Robot-Locomotion]], [[2503.04462|PALo]], [[2304.10888|Agile-Natural-Legged]], [[2004.00784|Imitating Animals]], [[1801.08093|Symmetric-Low-energy-Locomotion]]
+- [[2607.24083|HMP]], [[2607.19903|YAHMP]], [[2607.18737|SOM-ESN Motion Primitive Model]], [[2607.18197|NICO Gesture Imitation Pipeline]], [[2605.24592|MuGen]], [[2603.19305|PhyGile]], [[2602.23832|OmniTrack]], [[2512.23649|RoboMirror]], [[2508.14098|No-More-Marching]], [[2505.09979|Diverse-Natural-Behaviors]], [[2503.09015|Natural-Humanoid-Robot-Locomotion]], [[2503.04462|PALo]], [[2304.10888|Agile-Natural-Legged]], [[2004.00784|Imitating Animals]], [[1801.08093|Symmetric-Low-energy-Locomotion]]
 
 **Perception & State Estimation for Locomotion** — Vision, heightmap, and odometry-based state estimation feeding locomotion controllers.
 - [[2602.05855|Hybrid-Autoencoder-Robust-Heightmap]], [[2511.22744|Multi-View]], [[2511.18857|AutoOdom]], [[2510.01843|VideoGame-Footstep]], [[2505.19214|Omni-Perception]], [[2502.14814|VB-Com]], [[2411.14386|Perceptive-Internal-Model]]
 
 **Robust, Safety-Critical & Hardware-Aware Locomotion** — Fault tolerance, disturbance robustness, safety constraints, and hardware/actuation-aware locomotion design.
-- [[2606.25965|Fault-Tolerant-MoE]], [[2606.18883|ZiMPedance]], [[2603.01631|Thermal-Aware-Locomotion]], [[2511.06515|Koopman-Contact]], [[2506.23114|Quiet-Quadruped]], [[2504.17201|Collision+Force-Quadruped]], [[2504.00614|Bipedal-Locomotion-Gear-Driven-Humanoid]], [[2503.14656|Safety-Critical-and-Distributed]], [[2503.05836|Safe-Distributed-Learning-Enhanced]], [[2503.05035|QuietPaw]], [[2501.05204|Design-Control-Bipedal-Robotic]], [[2409.19795|Duke-Humanoid-Design-Control]], [[2308.09405|Risk-Averse]], [[2210.00474|Saving-the-Limping]]
+- [[2607.26434|LSTM-CPG Quadruped Policy]], [[2606.25965|Fault-Tolerant-MoE]], [[2606.18883|ZiMPedance]], [[2603.01631|Thermal-Aware-Locomotion]], [[2511.06515|Koopman-Contact]], [[2506.23114|Quiet-Quadruped]], [[2504.17201|Collision+Force-Quadruped]], [[2504.00614|Bipedal-Locomotion-Gear-Driven-Humanoid]], [[2503.14656|Safety-Critical-and-Distributed]], [[2503.05836|Safe-Distributed-Learning-Enhanced]], [[2503.05035|QuietPaw]], [[2501.05204|Design-Control-Bipedal-Robotic]], [[2409.19795|Duke-Humanoid-Design-Control]], [[2308.09405|Risk-Averse]], [[2210.00474|Saving-the-Limping]]
 
 **RL Algorithms & Control Methods for Locomotion** — Underlying RL algorithm design, model-based/predictive-control hybrids, and policy-optimization methods for locomotion.
 - [[2603.14333|Physics-Embedded-DDPC]], [[2510.21773|QP-Solvers-Review]], [[2509.23223|SAC-Loco]], [[2509.19023|Reduced-Order]], [[2506.13432|Model-Base]], [[2506.12095|DoublyAware]], [[2506.07823|Primal-Dual]], [[2505.18780|DreamPolicy]], [[2505.13549|TD-GRPC]], [[2504.17771|Learning-Based]], [[2504.08246|Spectral-Normalization-Lipschitz-Constrained-Policies]], [[2503.21401|AcL]], [[2503.06995|PINN-PC]], [[2403.14328|Distilling-Reinforcement-Policies]], [[2307.07752|MPC+PredRL]], [[1903.09537|Iterative-Reinforcement-Based]]

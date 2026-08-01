@@ -120,7 +120,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2504.16072|DAM]] — Region-level video captioning via focal prompts; SOTA across 7 benchmarks
 
 **General Egocentric & Action-Recognition Datasets** — Foundational egocentric and action-recognition corpora that taught models physical common sense from raw video.
-- [[2502.04144|HD-EPIC]], [[2411.08380|EgoVid-5M]], [[2203.14712|Assembly101]], [[2110.07058|Ego4D]], [[2107.13411|Egocentric Future Prediction Survey]], [[2005.00343|EPIC-KITCHENS (Collection & Baselines)]], [[1806.07011|VirtualHome]], [[1706.04261|Something-Something]]
+- [[2607.24744|Data Pyramid]], [[2502.04144|HD-EPIC]], [[2411.08380|EgoVid-5M]], [[2203.14712|Assembly101]], [[2110.07058|Ego4D]], [[2107.13411|Egocentric Future Prediction Survey]], [[2005.00343|EPIC-KITCHENS (Collection & Baselines)]], [[1806.07011|VirtualHome]], [[1706.04261|Something-Something]]
 
 > [!star] Key Papers
 > - [[2110.07058|Ego4D]] — 3,670 hours of egocentric video from 931 wearers across 9 countries; foundational dataset for first-person perception and the basis for Being-H0/EgoScale-style VLA pretraining
@@ -131,6 +131,9 @@ From video classification to self-supervised video representation learning. The 
 
 **Egocentric-to-Robot VLA Pretraining Datasets** — Egocentric human-video datasets built explicitly to pretrain or transfer to robot manipulation VLA policies.
 - [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]], [[2503.13441|PH2D]], [[2410.24221|EgoMimic]]
+
+**Video-Based Camera Geometry & Registration** — Methods that exploit video's temporal structure for camera pose/registration and cross-view visual consistency, from homography-based frame matching to global Structure-from-Motion.
+- [[2607.27194|VidMap]], [[2607.26985|SymmGrid]], [[2607.25389|HOME]]
 
 **Additional Methods** — Robotic and embodied methods that treat camera motion or gaze as an intent-driven action rather than a passive byproduct of navigation or manipulation.
 - [[2607.02417|LIME]], [[2605.07943|TAVIS]], [[2506.10968|EyeRobot]]
@@ -348,7 +351,7 @@ Synthesizing human and robot motion — bridging video understanding with physic
 > - [[2603.19227|MoTok]] — Diffusion-based discrete motion tokenizer decoupling semantics from kinematics; FID from 0.061 to 0.029
 
 **Motion Prediction & Flow** — Autoregressive and flow-based methods for predicting future motion trajectories and bridging video generation with 3D object manipulation.
-- [[2512.24766|Dream2Flow]], [[2512.22688|ARFM]], [[2409.19499|FastUMI]], [[2409.16283|Gen2Act]], [[2312.07531|WHAM]], [[2304.08488|VRB]], [[2204.13662|ARCTIC]]
+- [[2607.24493|KAI]], [[2512.24766|Dream2Flow]], [[2512.22688|ARFM]], [[2409.19499|FastUMI]], [[2409.16283|Gen2Act]], [[2312.07531|WHAM]], [[2304.08488|VRB]], [[2204.13662|ARCTIC]]
 
 > [!star] Key Papers
 > - [[2512.22688|ARFM]] — Autoregressive flow matching as a generalized framework for probabilistic motion prediction

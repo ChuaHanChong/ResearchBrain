@@ -245,7 +245,7 @@ Learning visual representations without labels — the foundation for data-effic
 - [[2607.09024|GenCeption]], [[2607.06856|Gen4U]]
 
 **World Models, VLA & Embodied JEPA** — JEPA variants applied to physical world modeling, video-based planning, VLA integration, and reinforcement learning.
-- [[2606.32026|AdaJEPA]], [[2605.00078|Being-H0.7]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA-2.1]], [[2602.23058|GeoWorld]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2512.24497|JEPA-WM]], [[2512.10942|VL-JEPA]], [[2510.00739|TD-JEPA]], [[2506.09985|V-JEPA-2]], [[2504.16591|JEPA-for-RL]], [[2502.11831|V-JEPA (Intuitive Physics)]], [[2404.08471|V-JEPA]], [[2403.00504|IWM]], [[1803.07616|IntPhys]]
+- [[2607.26924|TC-LeWM]], [[2606.32026|AdaJEPA]], [[2605.00078|Being-H0.7]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA-2.1]], [[2602.23058|GeoWorld]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2512.24497|JEPA-WM]], [[2512.10942|VL-JEPA]], [[2510.00739|TD-JEPA]], [[2506.09985|V-JEPA-2]], [[2504.16591|JEPA-for-RL]], [[2502.11831|V-JEPA (Intuitive Physics)]], [[2404.08471|V-JEPA]], [[2403.00504|IWM]], [[1803.07616|IntPhys]]
 
 **Core JEPA Theory & Objectives** — Foundational and theoretical studies of the JEPA objective itself: variants, regularizers, and what makes latent prediction work.
 - [[2607.02404|Object-centric LeJEPA]], [[2606.15956|TDV]], [[2606.02572|VISReg]], [[2605.03413|NEO-Theorizer]], [[2603.20111|Var-JEPA]], [[2601.14354|VJEPA-Probabilistic]], [[2512.19605|KerJEPA]], [[2511.08544|LeJEPA]], [[2509.25449|TS-JEPA]], [[2509.12249|P-JEPA]], [[2507.15216|N-JEPA]], [[2505.03176|seq-JEPA]], [[2410.19560|C-JEPA]], [[2410.03755|D-JEPA]], [[2407.03475|JEPA-Noisy-Features]], [[2312.04000|LiDAR-Metric]], [[2307.12698|MC-JEPA]], [[2301.08243|I-JEPA]], [[2211.10831|JEPA-Slow-Features]], [[1504.08023|Visual Representation Anticipation]]
@@ -447,7 +447,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2505.23725|MuLoCo]] — Muon as inner optimizer for DiLoCo distributed training; significant speedup over AdamW
 
 **Scaling Laws, Compute-Optimality & Foundational Releases** — Theoretical scaling laws and the landmark large-scale pretrained language models whose training runs put those laws into practice.
-- [[2607.16097|Pretraining-RL Scaling Law]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2510.06954|Condensation-Rank-Collapse]], [[2506.12932|Complexity-Scaling-Laws]], [[2505.10559|Neural-Thermodynamic-Laws]], [[2505.10465|Superposition-Scaling]], [[2503.12811|MPL]], [[2502.21269|Generalization-Overfitting-Decoupling]], [[2405.18392|Compute-Optimal-Scaling-Laws]], [[2302.13971|LLaMA]], [[2204.02311|PaLM (Pathways Language Model)]], [[2006.12467|Depth-to-Width Interplay]], [[2005.14165|GPT-3]], [[2001.08361|Neural Scaling Laws]]
+- [[2607.22043|Native Multimodal Scaling Laws]], [[2607.16097|Pretraining-RL Scaling Law]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2510.06954|Condensation-Rank-Collapse]], [[2506.12932|Complexity-Scaling-Laws]], [[2505.10559|Neural-Thermodynamic-Laws]], [[2505.10465|Superposition-Scaling]], [[2503.12811|MPL]], [[2502.21269|Generalization-Overfitting-Decoupling]], [[2405.18392|Compute-Optimal-Scaling-Laws]], [[2302.13971|LLaMA]], [[2204.02311|PaLM (Pathways Language Model)]], [[2006.12467|Depth-to-Width Interplay]], [[2005.14165|GPT-3]], [[2001.08361|Neural Scaling Laws]]
 
 > [!star] Key Papers
 > - [[2503.12811|MPL]] — Multi-Power Law accurately predicts training loss across learning rate schedules
@@ -455,7 +455,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2204.02311|PaLM (Pathways Language Model)]] — 540B-parameter model trained with Pathways; demonstrated emergent few-shot reasoning and chain-of-thought capabilities at scale
 
 **Training Systems, Pipelines & MoE Infrastructure** — Practical systems work on pipeline scheduling, learning-rate/hyperparameter tuning, and mixture-of-experts routing for large-scale training.
-- [[2607.05155|EdgeBench]], [[2605.22297|Layerwise-LR]], [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2602.10556|LAP]], [[2512.16913|DAP]], [[2508.18672|MoE-Sparsity-Reasoning]], [[2507.12507|Nemotron]], [[2506.16029|EvoLM]], [[2505.22323|MoE-Expert-Specialization]], [[2405.16158|BRO]], [[2310.18969|ViT-Class-Embedding-Analysis]], [[2309.14322|Transformer-Training-Instabilities]], [[2109.08203|Seed-3407]], [[2107.02027|packedBERT]]
+- [[2607.21653|Molt]], [[2607.05155|EdgeBench]], [[2605.22297|Layerwise-LR]], [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2602.10556|LAP]], [[2512.16913|DAP]], [[2508.18672|MoE-Sparsity-Reasoning]], [[2507.12507|Nemotron]], [[2506.16029|EvoLM]], [[2505.22323|MoE-Expert-Specialization]], [[2405.16158|BRO]], [[2310.18969|ViT-Class-Embedding-Analysis]], [[2309.14322|Transformer-Training-Instabilities]], [[2109.08203|Seed-3407]], [[2107.02027|packedBERT]]
 
 **Batch Size, Distributed Training & Large-Scale RL Systems** — Studies of batch size effects and the distributed/parallel training systems that enable large-scale learning, including early large-scale RL infrastructure.
 - [[2507.07101|Small-Batch-LLM-Training]], [[2308.12952|BridgeData-V2]], [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch-Training]], [[1811.03600|Data Parallelism Study]], [[1807.11205|Jizhi]], [[1803.00933|Ape-X]], [[1706.02677|ImageNet in 1 Hour]], [[1507.04296|Gorila]]
@@ -526,7 +526,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2505.12082|PMA]] — Pre-trained Model Average for effective merging of LLM checkpoints
 
 **On-Policy Distillation for LLMs & Agents** — Self-distillation methods that train student policies on their own on-policy rollouts during LLM and agent post-training.
-- [[2607.15161|OPD^2]], [[2607.14777|SEED]], [[2607.08766|OPSD-V]], [[2607.05804|TurnOPD]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.05184|Fork Suppression]], [[2607.04763|ReOPD]], [[2607.04751|TOP-D]], [[2606.30626|DOPD]], [[2606.24143|AsyncOPD]], [[2606.07082|On-Policy-Distillation-Geometry]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.00626|On-Policy-Distillation-Survey]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2510.23497|VOLD]]
+- [[2607.24731|PDM]], [[2607.15161|OPD^2]], [[2607.14777|SEED]], [[2607.08766|OPSD-V]], [[2607.05804|TurnOPD]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.05184|Fork Suppression]], [[2607.04763|ReOPD]], [[2607.04751|TOP-D]], [[2606.30626|DOPD]], [[2606.24143|AsyncOPD]], [[2606.07082|On-Policy-Distillation-Geometry]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.00626|On-Policy-Distillation-Survey]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2510.23497|VOLD]]
 
 **Teacher-Student Distillation for Robot Control** — RMA-style distillation that transfers a privileged, simulation-trained teacher policy into a deployable sensor-limited student controller.
 - [[2607.07357|HUMAIN]], [[2607.02332|HEFT]], [[2607.02037|Cross-Platform ASV RL]], [[2606.30474|GOMP]], [[2605.03821|RoboAlign-R1]], [[2603.08763|SPREAD]], [[2310.04582|PULSE]], [[2309.14341|Extreme Parkour]], [[2309.05665|Robot Parkour]], [[2211.07638|Egocentric Legged Locomotion]]
@@ -648,13 +648,13 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 - [[2607.12892|UR-VC]], [[2606.29892|T2VLA]], [[2604.19730|FASTER]], [[2603.26666|VLA-OPD]], [[2603.11653|VLA-RL-Continual-Learning]]
 
 **VLA Representation, Reasoning & Alignment** — Representation-anchoring, latent-alignment, JEPA-based, and chain-of-thought reasoning methods for VLA models.
-- [[2607.13597|Semantic Anchoring]], [[2607.13429|Anchor-Align]], [[2607.01586|VLAFlow]], [[2606.31167|MIRTH]], [[2606.30552|ZR-0]], [[2602.11832|JEPA-VLA]], [[2602.10098|VLA-JEPA]], [[2602.08167|R&B-EnCoRe]], [[2506.22242|4D-VLA]], [[2505.03500|TLI]]
+- [[2607.25912|SAM3D-VLA]], [[2607.24485|τ]], [[2607.23969|LeapBot-WA]], [[2607.13597|Semantic Anchoring]], [[2607.13429|Anchor-Align]], [[2607.01586|VLAFlow]], [[2606.31167|MIRTH]], [[2606.30552|ZR-0]], [[2602.11832|JEPA-VLA]], [[2602.10098|VLA-JEPA]], [[2602.08167|R&B-EnCoRe]], [[2506.22242|4D-VLA]], [[2505.03500|TLI]]
 
 **Efficient, Fast & Lightweight VLA Control** — Efficiency-focused VLA methods: fast action tokenization, lightweight distillation, and real-time control policies.
-- [[2607.06564|Lift3D-VLA]], [[2607.04171|XS-VLA]], [[2604.02408|F2F-AP]], [[2603.16195|S-VAM]], [[2509.04996|FLOWER]], [[2505.08971|PRIOR]], [[2501.09747|FAST]]
+- [[2607.27205|TurboVLA]], [[2607.26657|Enfold]], [[2607.06564|Lift3D-VLA]], [[2607.04171|XS-VLA]], [[2604.02408|F2F-AP]], [[2603.16195|S-VAM]], [[2509.04996|FLOWER]], [[2505.08971|PRIOR]], [[2501.09747|FAST]]
 
 **Navigation & Cross-Platform VLA Scaling** — Foundation models and scaling pipelines for vision-and-language navigation and cross-platform VLA deployment.
-- [[2607.20679|CAT-Nav]], [[2509.11480|VLA-Cross-Platform-Scaling]], [[2307.15644|ScaleVLN]], [[2306.14846|ViNT]], [[2105.06453|E.T. (Episodic Transformer)]]
+- [[2607.23743|Traversability-Aware Global Planner]], [[2607.20679|CAT-Nav]], [[2509.11480|VLA-Cross-Platform-Scaling]], [[2307.15644|ScaleVLN]], [[2306.14846|ViNT]], [[2105.06453|E.T. (Episodic Transformer)]]
 
 **Foundational Latent-Action & Video-Action Learning** — Core methods for learning action representations and goal-conditioned control from video and interaction data without explicit action labels.
 - [[2606.11525|IWR]], [[2410.11758|LAPA]], [[2410.06158|GR-2]], [[2402.15391|Genie]], [[2310.08576|AVDC]], [[2306.10007|RPT]], [[2305.02195|CALM]], [[2203.12601|R3M]], [[2112.01511|VINN]]
@@ -664,22 +664,22 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 > - [[2310.08576|AVDC]] — Learns manipulation tasks from actionless video via dense visual correspondences
 
 **Robot Datasets & Benchmarks for Action Learning** — Large-scale robot manipulation datasets and benchmarks used to pretrain and evaluate action representations.
-- [[2503.06669|AgiBot-World]], [[2310.08864|OXE]], [[2307.00595|RH20T]], [[2306.03310|LIBERO]]
+- [[2607.25895|HiFi-UMI]], [[2503.06669|AgiBot-World]], [[2310.08864|OXE]], [[2307.00595|RH20T]], [[2306.03310|LIBERO]]
 
 **Recent Action-Representation & World-Guided Pretraining Methods** — Newer methods for pretraining action representations, including world-model-guided, outcome-regularity, and task-agnostic approaches.
 - [[2607.18236|Patch Policy]], [[2607.15163|Humanoid Transformer]], [[2607.11427|EDAR]], [[2607.04714|GeoMoLa]], [[2607.02466|TAP]], [[2606.30749|G2D-Pretrain]], [[2606.29834|STEAM]], [[2606.29517|CORE (Outcome Regularities)]], [[2606.28320|WARP-RM]], [[2606.12366|APT]], [[2602.22010|WoG]], [[2601.02427|NitroGen]], [[2512.13030|Motus]], [[2512.07203|MMRPT]], [[2511.21428|LAPS]], [[2511.16407|LAOF]]
 
 **Foundational World Models & Model-Based RL** — The classic lineage of learned world models and model-based RL methods for planning.
-- [[2410.00564|JOWA]], [[2310.16828|TD-MPC2]], [[2005.05960|Plan2Explore]], [[1809.01999|World Models]], [[1507.00814|Predictive Exploration Bonus]]
+- [[2607.26712|ActSWM]], [[2410.00564|JOWA]], [[2310.16828|TD-MPC2]], [[2005.05960|Plan2Explore]], [[1809.01999|World Models]], [[1507.00814|Predictive Exploration Bonus]]
 
 **Autonomous Driving World Models** — World models specifically for autonomous-driving perception, occupancy prediction, and planning.
 - [[2607.15898|Orbis 2]], [[2607.04541|CRISP]], [[2510.12796|DriveVLA-W0]], [[2311.16038|OccWorld]]
 
 **Latent-Action & JEPA-Based World Models for Robotics** — World models built on latent-action and JEPA-style representations for robot planning and control.
-- [[2607.04978|Qantara]], [[2602.11389|Causal-JEPA]], [[2602.06949|DreamDojo]], [[2602.06130|SWIRL]], [[2601.05230|Latent-Action-World-Models]], [[2512.23541|Act2Goal]], [[2507.19468|DINO-world]], [[2502.14819|PLDM]], [[2411.04983|DINO-WM]]
+- [[2607.26056|INTACT]], [[2607.25337|Temporal-Distance-JEPA]], [[2607.09185|CD-LAM]], [[2607.04978|Qantara]], [[2602.11389|Causal-JEPA]], [[2602.06949|DreamDojo]], [[2602.06130|SWIRL]], [[2601.05230|Latent-Action-World-Models]], [[2512.23541|Act2Goal]], [[2507.19468|DINO-world]], [[2502.14819|PLDM]], [[2411.04983|DINO-WM]]
 
 **Recent World-Model Architectures & Physics Simulation** — Recent world-model architectures, physics-aware simulators, and self-improving dynamics models.
-- [[2607.21576|SDM]], [[2607.02195|BRIDGE-WA]], [[2606.30534|Orca]], [[2606.29501|A2World]], [[2606.27364|PhysiFormer]], [[2604.10333|ZWM]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.12231|Temporal-Straightening]], [[2512.09929|OWM]], [[2511.09057|PAN]]
+- [[2607.28415|QQWorld]], [[2607.28391|TacWAM]], [[2607.27924|ODEWorld]], [[2607.27017|POKEWORLD]], [[2607.25918|DC-WAM]], [[2607.21576|SDM]], [[2607.19191|ABot-World-0]], [[2607.02195|BRIDGE-WA]], [[2606.30534|Orca]], [[2606.29501|A2World]], [[2606.27364|PhysiFormer]], [[2604.10333|ZWM]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.12231|Temporal-Straightening]], [[2512.09929|OWM]], [[2511.09057|PAN]]
 
 > [!star] Key Papers
 > - [[2511.09057|PAN]] — World model using Generative Latent Prediction for general, interactable, long-horizon simulation
@@ -691,8 +691,11 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 > [!star] Key Papers
 > - [[2003.08515|SAPIEN]] — Simulated environment with 2,346 articulated objects; foundational platform for robot manipulation research
 
+**Brain-Machine Interface & Neural Decoding** — Self-supervised and continual-adaptation methods for long-term neural decoding in brain-machine interfaces, addressing domain shift and disentanglement of control-relevant signal.
+- [[2607.24031|UnSPC]], [[2607.24023|SSCDL]]
+
 **Additional methods** — Papers referenced in this section that don't fit the categories above.
-- [[2606.05555|MR.Q]], [[2603.28713|DreamLite]], [[2512.19693|Prism-Hypothesis]], [[2512.10950|E-RayZer]], [[2512.05665|ILVR]], [[2511.21395|Monet]], [[2511.20639|LatentMAS]], [[2507.01643|SAILViT]], [[2506.11136|JAFAR]], [[2209.08959|TACO-RL]], [[1803.09956|VPG]]
+- [[2607.24959|IFT Contact Differentiation]], [[2607.24538|NEO]], [[2607.23108|Curse of Precision]], [[2606.05555|MR.Q]], [[2603.28713|DreamLite]], [[2512.19693|Prism-Hypothesis]], [[2512.10950|E-RayZer]], [[2512.05665|ILVR]], [[2511.21395|Monet]], [[2511.20639|LatentMAS]], [[2507.01643|SAILViT]], [[2506.11136|JAFAR]], [[2209.08959|TACO-RL]], [[1803.09956|VPG]]
 
 > [!tip] The VLA Pipeline
 > Modern VLAs follow a pattern: large-scale pretraining on internet video (LAPA) or diverse robot data (pi0.5), then RL fine-tuning for specific tasks (VLA RL Continual Learning). World models (PAN, Causal-JEPA) are emerging as the "imagination engine" that enables sample-efficient policy learning without costly real-world interaction.
@@ -717,7 +720,7 @@ Unconventional approaches that do not fit neatly into the above categories but r
 > - [[2508.17971|LLM-NAR]] — Integrates LLMs with Graph Neural Networks for multi-agent path finding
 
 **Diffusion & Autoregressive Generation Architectures** — Core and efficient generative-model architectures for image and video synthesis.
-- [[2605.16147|Register Guidance]], [[2604.09168|ELT]], [[2603.28713|DreamLite]], [[2511.20645|PixelDiT]], [[2511.20549|Flash-DMD]], [[2408.06072|CogVideoX]], [[2312.02116|GIVT]], [[2307.01952|SDXL]], [[2212.09748|DiT]], [[2209.14916|MDM]], [[2102.12092|DALL-E]]
+- [[2607.21585|EFM]], [[2605.16147|Register Guidance]], [[2604.09168|ELT]], [[2603.28713|DreamLite]], [[2511.20645|PixelDiT]], [[2511.20549|Flash-DMD]], [[2408.06072|CogVideoX]], [[2312.02116|GIVT]], [[2307.01952|SDXL]], [[2212.09748|DiT]], [[2209.14916|MDM]], [[2102.12092|DALL-E]]
 
 > [!star] Key Papers
 > - [[2212.09748|DiT]] — Diffusion Transformer replacing U-Net backbone; established the transformer-based diffusion architecture underlying modern generative video/image models

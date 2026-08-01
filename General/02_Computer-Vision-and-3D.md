@@ -296,7 +296,7 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 > - [[2505.16993|SeNaTra]] — NVIDIA's content-aware spatial grouping inside ViTs; groups semantically related tokens for efficient segmentation
 
 **Feature Enhancement for Dense Prediction** — Methods that sharpen or enhance foundation model features to produce precise segmentation boundaries.
-- [[2602.01905|STELLAR]], [[2601.16093|SAMTok]], [[2601.12964|Cross-Scale-Pretraining]], [[2512.10554|GETok]], [[2506.13925|HVL]], [[2506.11136|JAFAR]], [[2412.03069|TokenFlow]]
+- [[2607.24249|SILICA]], [[2602.01905|STELLAR]], [[2601.16093|SAMTok]], [[2601.12964|Cross-Scale-Pretraining]], [[2512.10554|GETok]], [[2506.13925|HVL]], [[2506.11136|JAFAR]], [[2412.03069|TokenFlow]]
 
 > [!star] Key Papers
 > - [[2506.11136|JAFAR]] — Enhances frozen encoder features to produce sharp, high-resolution segmentation without fine-tuning
@@ -329,7 +329,7 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 The frontier of perception: giving AI models true 3D spatial awareness. This capability is critical for embodied AI, where robots must reason about object positions, spatial relationships, and scene geometry from limited viewpoints.
 
 **3D Scene Graphs, Occupancy & Spatial Memory** — Persistent, structured 3D scene representations (topological maps, scene graphs, occupancy/voxel memory) supporting long-horizon embodied navigation and exploration.
-- [[2607.21281|HGeo-TopoMap]], [[2607.13245|JITOMA]], [[2607.10879|BRO Scene Graph Prediction]], [[2607.08537|Whareformer]], [[2607.07885|TTC Obstacle Avoidance]], [[2607.05543|GEM-Occ]], [[2606.30598|HOPformer]], [[2606.29786|OP3DSG]], [[2606.02551|AFUN]], [[2606.00637|GLAD]], [[2604.11302|3D-ALP]], [[2512.14692|O-Voxel]], [[2411.17735|3D-Mem]], [[2402.15487|RoboEXP]]
+- [[2607.25448|RPV-V2]], [[2607.23743|Traversability-Aware Global Planner]], [[2607.21281|HGeo-TopoMap]], [[2607.13245|JITOMA]], [[2607.10879|BRO Scene Graph Prediction]], [[2607.08537|Whareformer]], [[2607.07885|TTC Obstacle Avoidance]], [[2607.05543|GEM-Occ]], [[2606.30598|HOPformer]], [[2606.29786|OP3DSG]], [[2606.02551|AFUN]], [[2606.00637|GLAD]], [[2604.11302|3D-ALP]], [[2512.14692|O-Voxel]], [[2411.17735|3D-Mem]], [[2402.15487|RoboEXP]]
 
 **VLM-Grounded 3D Reasoning, Body Pose & Benchmarks** — Agentic/VLM-based spatial reasoning over 3D scenes, human/object 3D pose estimation, and dedicated benchmarks or datasets for 3D scene understanding.
 - [[2605.29563|ViewSuite]], [[2603.15386|RieMind]], [[2602.20363|3D-Aesthetic-Field]], [[2602.15989|SAM-3D-Body]], [[2602.12087|MetricMM]], [[2602.06037|GeoThinker]], [[2601.22231|PE-Spatial-Reasoning-Analysis]], [[2512.16811|GeoPredict]], [[2510.16714|SceneCOT]], [[2509.21420|QuadGPT]], [[2507.07781|SURPRISE3D]], [[2505.20279|VLM-3R]], [[2505.12448|SSR]], [[2410.08208|SPA]], [[1709.06158|Matterport3D]]
@@ -350,7 +350,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 - [[2607.12398|Dual-Cam 3D Ultrasound]], [[2607.10873|X-GuideAR]], [[2503.21745|3DGen-Bench]], [[2212.08051|Objaverse]], [[2204.11918|GSO]], [[2103.16397|3D-AffordanceNet]], [[2005.00343|EPIC-KITCHENS (Collection & Baselines)]]
 
 **Embodied VLA: Navigation, Manipulation & Driving** — VLM-driven 3D spatial grounding applied directly to robot navigation, manipulation, or autonomous-driving action policies.
-- [[2607.18016|POT-VLA]], [[2607.17977|RynnBrain 1.1]], [[2607.14586|SoftNav]], [[2607.06564|Lift3D-VLA]], [[2606.31329|3D HAMSTER]], [[2606.30632|GROW²]], [[2606.03682|GN0]], [[2603.27287|Uni-World-VLA]], [[2512.24331|LVLDrive]], [[2510.17439|FALCON-Spatial-VLA]], [[2508.07804|Pose-RFT]], [[2506.07961|BridgeVLA]], [[2505.18947|OpenHOI]], [[2505.11383|Dynam3D]]
+- [[2607.28560|X-NavDP]], [[2607.18016|POT-VLA]], [[2607.17977|RynnBrain 1.1]], [[2607.14586|SoftNav]], [[2607.06564|Lift3D-VLA]], [[2606.31329|3D HAMSTER]], [[2606.30632|GROW²]], [[2606.03682|GN0]], [[2603.27287|Uni-World-VLA]], [[2512.24331|LVLDrive]], [[2510.17439|FALCON-Spatial-VLA]], [[2508.07804|Pose-RFT]], [[2506.07961|BridgeVLA]], [[2505.18947|OpenHOI]], [[2505.11383|Dynam3D]]
 
 **3D-Grounded VLM Reasoning & Prompting Techniques** — Prompting, chain-of-thought, and architectural techniques that inject 3D spatial grounding into VLM reasoning without a downstream action policy.
 - [[2607.15054|ViPS]], [[2603.27967|XVR]], [[2603.25411|HiSpatial]], [[2603.23404|TRACE]], [[2603.00905|pySpatial]], [[2602.19063|Direction-aware-3D-LMM]], [[2601.16538|OnlineSI]], [[2601.11442|Map2Thought]], [[2601.05172|CoV]], [[2510.13800|GS-Reasoner]], [[2507.12508|MindJourney]], [[2506.04220|Struct2D]], [[2506.03642|SpatialMind]], [[2505.23747|Spatial-MLLM]]
@@ -366,13 +366,13 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 - [[2607.07452|GeoGS-SLAM]], [[2607.06222|APVI-SLAM]], [[2607.02005|OCD SLAM]], [[2607.01860|DL-SLAM]], [[2606.30809|GaussLite]], [[2606.29237|MoPe]], [[2606.28720|CubifyGS]], [[2604.12942|RMGS-SLAM]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.02696|VBGS-SLAM]], [[2601.13132|GaussExplorer]], [[2510.08575|ReSplat]], [[2308.04079|3D Gaussian Splatting]]
 
 **Feed-Forward Geometry, Depth & Multi-View Reconstruction** — Feed-forward pointmap/depth regression and multi-view 3D reconstruction without per-scene optimization (the DUSt3R lineage).
-- [[2607.13674|WAVE-Stereo]], [[2607.13524|COLMAR]], [[2607.01962|NeoMap]], [[2605.31124|QVGGT]], [[2605.26115|TriSplat]], [[2604.14141|LingBot-Map]], [[2603.27455|NAS3R]], [[2603.26599|VGGRPO]], [[2603.19231|MonoArt]], [[2603.08055|Speed3R]], [[2603.03026|URGT]], [[2602.21186|Spa3R]], [[2512.16913|DAP]], [[2512.14696|CRISP]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.10647|Depth-Anything-3]], [[2511.06908|Mono3DVG-EnSD]], [[2507.13347|Pi3]], [[2312.14132|DUSt3R]]
+- [[2607.27194|VidMap]], [[2607.24852|Hold-Out Self-Validation]], [[2607.13674|WAVE-Stereo]], [[2607.13524|COLMAR]], [[2607.01962|NeoMap]], [[2605.31124|QVGGT]], [[2605.26115|TriSplat]], [[2604.14141|LingBot-Map]], [[2603.27455|NAS3R]], [[2603.26599|VGGRPO]], [[2603.19231|MonoArt]], [[2603.08055|Speed3R]], [[2603.03026|URGT]], [[2602.21186|Spa3R]], [[2512.16913|DAP]], [[2512.14696|CRISP]], [[2512.10950|E-RayZer]], [[2511.21688|G2VLM]], [[2511.10647|Depth-Anything-3]], [[2511.06908|Mono3DVG-EnSD]], [[2507.13347|Pi3]], [[2312.14132|DUSt3R]]
 
 **Generative & World-Model Scene Rendering** — Generative and world-model approaches that synthesize or render 3D/4D scenes rather than passively reconstructing them.
-- [[2607.06856|Gen4U]], [[2607.05373|PixWorld]], [[2607.01803|PixGS]], [[2604.19747|AnyRecon]], [[2604.08532|SelfEvo]], [[2604.07105|Genie-Sim-PanoRecon]], [[2604.02329|Generative-World-Renderer]], [[2604.01479|UniRecGen]], [[2603.30045|OmniRoam]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.18524|3DreamBooth]], [[2602.21992|PanoEnv]], [[2512.13683|I-Scene]], [[2511.01294|Kinematify]], [[2510.01183|EvoWorld]]
+- [[2607.26903|Pegasus]], [[2607.06856|Gen4U]], [[2607.05373|PixWorld]], [[2607.01803|PixGS]], [[2604.19747|AnyRecon]], [[2604.08532|SelfEvo]], [[2604.07105|Genie-Sim-PanoRecon]], [[2604.02329|Generative-World-Renderer]], [[2604.01479|UniRecGen]], [[2603.30045|OmniRoam]], [[2603.24581|Latent-WAM]], [[2603.22275|GLD]], [[2603.19235|VEGA-3D]], [[2603.18524|3DreamBooth]], [[2602.21992|PanoEnv]], [[2512.13683|I-Scene]], [[2511.01294|Kinematify]], [[2510.01183|EvoWorld]]
 
 **Occupancy, Flow, Dynamic Motion & Specialized Reconstruction** — Occupancy prediction, scene flow, dynamic motion capture, and reconstruction of challenging materials or objects.
-- [[2607.07139|Disturbance-Aware Underwater Motion Planning]], [[2607.05801|TRIG]], [[2607.04144|Semantic-Guided Object Removal]], [[2606.23293|Flow6D]], [[2606.02058|TIDES]], [[2605.14950|Evo-Depth]], [[2605.10204|3DReflecNet]], [[2605.09538|PhysHanDI]], [[2604.26262|Semantic-Foam]], [[2604.10836|HO-Flow]], [[2603.29089|WorldFlow3D]], [[2602.03361|Z3D]], [[2512.15160|EagleVision]], [[2506.13040|MAMMA]], [[2505.23663|AMBER-Mesh]], [[2505.18190|PhySense]], [[2504.14604|RoboOcc]], [[2412.04380|EmbodiedOcc]], [[2406.04316|Omni6DPose]]
+- [[2607.26889|StructureGS]], [[2607.23669|RRTrack]], [[2607.07139|Disturbance-Aware Underwater Motion Planning]], [[2607.05801|TRIG]], [[2607.04144|Semantic-Guided Object Removal]], [[2606.23293|Flow6D]], [[2606.02058|TIDES]], [[2605.14950|Evo-Depth]], [[2605.10204|3DReflecNet]], [[2605.09538|PhysHanDI]], [[2604.26262|Semantic-Foam]], [[2604.10836|HO-Flow]], [[2603.29089|WorldFlow3D]], [[2602.03361|Z3D]], [[2512.15160|EagleVision]], [[2506.13040|MAMMA]], [[2505.23663|AMBER-Mesh]], [[2505.18190|PhySense]], [[2504.14604|RoboOcc]], [[2412.04380|EmbodiedOcc]], [[2406.04316|Omni6DPose]]
 
 > [!star] Key Papers
 > - [[2604.14141|LingBot-Map]] — Feed-forward streaming 3D foundation model with Geometric Context Transformer; 20 FPS for sequences up to 10K frames with nearly constant memory
@@ -395,7 +395,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2306.13643|LightGlue]] — Adaptive deep feature matching that prunes easy pairs early; fast and accurate for real-time SLAM
 
 **Visual/Inertial Odometry & Single-Robot Localization** — Sensor fusion, odometry, and radar/UWB-based localization for a single robot or agent.
-- [[2607.14009|AeroMap3D]], [[2607.11184|GeoGS-SLAM]], [[2607.08115|RadLoc]], [[2607.07374|PLED-VINS]], [[2607.06782|G-PROBE]], [[2607.05957|Delay-Aware Active Triangulation for Counter-UAS]], [[2607.05777|CO-Calib]], [[2607.05669|EVC-Mamba]], [[2607.05449|GAIA]], [[2607.00145|IterIEKF]], [[2606.29910|Sphere-VIO]], [[2308.13561|Project Aria]]
+- [[2607.26817|CF²Loc]], [[2607.24409|FHNW Muttenz Dataset]], [[2607.23384|skid-SLAM]], [[2607.14009|AeroMap3D]], [[2607.11184|GeoGS-SLAM]], [[2607.08115|RadLoc]], [[2607.07374|PLED-VINS]], [[2607.06782|G-PROBE]], [[2607.05957|Delay-Aware Active Triangulation for Counter-UAS]], [[2607.05777|CO-Calib]], [[2607.05669|EVC-Mamba]], [[2607.05449|GAIA]], [[2607.00145|IterIEKF]], [[2606.29910|Sphere-VIO]], [[2308.13561|Project Aria]]
 
 **Multi-Robot Cooperative Localization, Pose-Graph & Force Estimation** — Distributed/cooperative multi-robot localization, pose-graph optimization, and contact/force-based state estimation.
 - [[2607.12811|PixelLoop]], [[2607.12265|DiffRadar]], [[2607.10372|Robotic Contextual Awareness Thesis]], [[2607.08735|DeepCORD]], [[2607.01201|Sensorless Bilateral Teleoperation]], [[2607.01106|Async-BCD]], [[2606.29868|MP-NF]], [[2606.29851|TACO (Pose Graph Optimization)]], [[2606.29673|DCL]], [[2606.29165|Continuum Robot Force Estimation]], [[2606.28712|J-LAW]], [[2203.02468|Predicate-State-Estimation]]
@@ -407,13 +407,13 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2403.03954|DP3]] — 3D Diffusion Policy: generalizable visuomotor policy from point clouds; enables sim-to-real without camera calibration
 
 **VLA, Flow-Matching & World-Model Manipulation Policies** — Vision-language-action, flow-matching, and world-model-conditioned policies that ground manipulation (or driving) in 3D/4D spatial representations.
-- [[2607.12356|VistaVLA]], [[2607.11498|Robot-Centric Pointmaps]], [[2607.04714|GeoMoLa]], [[2606.31493|ChronoFlow-Policy]], [[2606.29936|OpenSPM]], [[2605.25685|HumanFlow]], [[2604.14089|UMI-3D]], [[2602.23721|StemVLA]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial-Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive-Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2403.09631|3D-VLA]]
+- [[2607.25912|SAM3D-VLA]], [[2607.12356|VistaVLA]], [[2607.11498|Robot-Centric Pointmaps]], [[2607.04714|GeoMoLa]], [[2606.31493|ChronoFlow-Policy]], [[2606.29936|OpenSPM]], [[2605.25685|HumanFlow]], [[2604.14089|UMI-3D]], [[2602.23721|StemVLA]], [[2512.19133|WorldRFT]], [[2510.12276|Spatial-Forcing]], [[2506.22242|4D-VLA]], [[2505.06451|Adaptive-Wiping]], [[2505.05800|3D-CAVLA]], [[2501.15830|SpatialVLA]], [[2403.09631|3D-VLA]]
 
 **Manipulation Benchmarks, Datasets & Simulators** — Simulation environments, benchmark suites, and hand/object interaction datasets for evaluating 3D-grounded manipulation.
 - [[2504.13059|RoboTwin]], [[2412.07755|SAT]], [[2412.07215|RoboData]], [[2410.01345|GemBench]], [[2403.19417|OAKINK2]], [[2402.08191|THE-COLOSSEUM]], [[2304.04321|ARNOLD]], [[2204.13662|ARCTIC]], [[2203.15709|OakInk]], [[2107.14483|ManiSkill]], [[2104.04631|DexYCB]]
 
 **Affordance, Retrieval & Pose-Driven Manipulation** — 3D-grounded manipulation methods driven by retrieval, active pose estimation, descriptor fields, or trajectory transformation rather than diffusion action heads.
-- [[2607.07897|StiffNET]], [[2607.07129|Object-Centric Neural Field LfD]], [[2509.16063|DSPv2]], [[2411.19408|SoGraB]], [[2410.24091|3D-ViTac]], [[2407.04689|RAM (Retrieval Affordance Transfer)]], [[2403.15203|DITTO (Trajectory Transformation)]], [[2310.03478|RGBManip]], [[2309.16118|D3Fields]], [[2201.12716|YODO]]
+- [[2607.28382|SemAnCorr]], [[2607.28198|UniCross]], [[2607.26337|Thread-Assisted Needle Retrieval]], [[2607.07897|StiffNET]], [[2607.07129|Object-Centric Neural Field LfD]], [[2509.16063|DSPv2]], [[2411.19408|SoGraB]], [[2410.24091|3D-ViTac]], [[2407.04689|RAM (Retrieval Affordance Transfer)]], [[2403.15203|DITTO (Trajectory Transformation)]], [[2310.03478|RGBManip]], [[2309.16118|D3Fields]], [[2201.12716|YODO]]
 
 > [!star] Key Papers
 > - [[2309.16118|D3Fields]] — Dynamic 3D descriptor fields enable zero-shot generalizable rearrangement without task-specific training
@@ -475,7 +475,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 Transferring visual models across domains, merging multiple fine-tuned models, and adapting to new distributions without full retraining. Critical for deploying perception in real-world environments that differ from training data.
 
 **Robot & Humanoid Sim-to-Real Policy Transfer** — Sim-to-real transfer of robot/humanoid/quadruped control policies across embodiments, contact conditions, and tactile sensing.
-- [[2606.06041|iCEM+TL]], [[2606.03297|SplitAdapter]], [[2606.02280|LDG]], [[2606.02027|World-Task-Factorization]], [[2606.01851|PHASOR]], [[2605.28812|CoP-Tactile]], [[2605.26638|HyperSim]], [[2605.23733|Any2Any]], [[2605.21688|Microfiber-Shape-Control]], [[2604.02911|DreamTIP]], [[2603.15759|SimDist]], [[2505.12672|TransferTraj]], [[2502.10894|UAN]], [[2502.01143|ASAP]], [[2501.16389|Sim2Real-Encoder-Eval]]
+- [[2607.27627|Arm2Air]], [[2607.27549|BARs]], [[2607.25593|Cross-Configuration Transfer Threshold]], [[2606.06041|iCEM+TL]], [[2606.03297|SplitAdapter]], [[2606.02280|LDG]], [[2606.02027|World-Task-Factorization]], [[2606.01851|PHASOR]], [[2605.28812|CoP-Tactile]], [[2605.26638|HyperSim]], [[2605.23733|Any2Any]], [[2605.21688|Microfiber-Shape-Control]], [[2604.02911|DreamTIP]], [[2603.15759|SimDist]], [[2505.12672|TransferTraj]], [[2502.10894|UAN]], [[2502.01143|ASAP]], [[2501.16389|Sim2Real-Encoder-Eval]]
 
 **Classic CNN & Segmentation Domain Adaptation** — Pre-transformer and segmentation-focused unsupervised domain adaptation for urban-scene and classification benchmarks.
 - [[2207.11860|Trans4PASS+]], [[2204.13132|HRDA]], [[2204.00822|SAN-SAW]], [[2107.04034|RMA]], [[2103.15597|RobustNet]], [[2002.07953|DANCE]], [[1909.00889|DRPC]], [[1812.01754|M3SDA]], [[1811.10200|IDD]], [[1807.09441|IBN-Net]], [[1608.02192|Playing for Data]]
@@ -504,7 +504,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 > - [[2403.13257|MergeKit]] — Open-source toolkit that made model merging practical and accessible
 
 **OOD Generalization & Robustness** — Predicting and improving model performance on out-of-distribution data.
-- [[2607.18540|Recti-Q]], [[2605.05328|Query2Uncertainty]], [[2604.02260|Time-Varying-MBRL]], [[2603.21191|BST-Scaling-Rule]], [[2602.02140|GAPEVAL]], [[2511.13787|TC2]], [[2506.10133|Offline-Domain-Randomization]], [[2504.13292|GrokTransfer]], [[2502.16736|AdaConG]], [[2410.02735|OOD-Chameleon]], [[2404.04452|ViT-Domain-Robustness-Survey]], [[2305.18712|Transfer-Score]]
+- [[2607.27261|CFNBC]], [[2607.18540|Recti-Q]], [[2605.05328|Query2Uncertainty]], [[2604.02260|Time-Varying-MBRL]], [[2603.21191|BST-Scaling-Rule]], [[2602.02140|GAPEVAL]], [[2511.13787|TC2]], [[2506.10133|Offline-Domain-Randomization]], [[2504.13292|GrokTransfer]], [[2502.16736|AdaConG]], [[2410.02735|OOD-Chameleon]], [[2404.04452|ViT-Domain-Robustness-Survey]], [[2305.18712|Transfer-Score]]
 
 > [!star] Key Papers
 > - [[2410.02735|OOD-Chameleon]] — Meta-learning framework that automatically selects the best OOD generalization strategy for a given distribution shift
@@ -517,8 +517,11 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 > - [[2411.04997|LLM2CLIP]] — Integrates LLM text understanding into CLIP; +15.8 points on long-text retrieval over EVA02
 > - [[2407.07726|PaliGemma]] — Google's sub-3B VLM achieving strong transfer across 40 tasks; proves small VLMs can rival large ones
 
-**Additional methods** — Foundational transfer-learning studies, cross-spectral image translation, and surveys of domain adaptation/VLM generalization not covered by the sub-topics above.
-- [[2607.05665|Morphological Similarity Transfer Learning]], [[2508.05547|VLM-Unsupervised-Adaptation-Survey]], [[2506.18504|VLM-Generalization-Survey]], [[2506.02843|REAP]], [[2503.19012|DiffV2IR]], [[1706.07522|DAH]], [[1411.1792|Transferable Features]]
+**Brain-Machine Interface Neural Decoding Adaptation** — Domain adaptation and self-supervised methods for long-term neural decoder generalization in Brain-Machine Interfaces, addressing signal drift over time.
+- [[2607.24031|UnSPC]], [[2607.24023|SSCDL]]
+
+**Additional methods** — Foundational transfer-learning studies, cross-spectral image translation, heterogeneous collaborative-perception alignment, and surveys of domain adaptation/VLM generalization not covered by the sub-topics above.
+- [[2607.26283|HeteroPROMPT]], [[2607.05665|Morphological Similarity Transfer Learning]], [[2508.05547|VLM-Unsupervised-Adaptation-Survey]], [[2506.18504|VLM-Generalization-Survey]], [[2506.02843|REAP]], [[2503.19012|DiffV2IR]], [[1706.07522|DAH]], [[1411.1792|Transferable Features]]
 
 > [!star] Key Papers
 > - [[2506.18504|VLM-Generalization-Survey]] — Comprehensive survey of VLM generalization and adaptation methods; maps the taxonomy of domain shift strategies

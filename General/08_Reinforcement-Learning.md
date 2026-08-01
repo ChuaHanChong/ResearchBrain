@@ -133,13 +133,13 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2508.08189|RL-for-Large-Models-Survey]] — Comprehensive mapping of visual RL applied to large multimodal models
 
 **Causal RL** — Connecting causal inference with RL to enable more principled and generalizable decision-making.
-- [[2507.14901|Causal-Model-Reduction]], [[2307.01452|Causal-RL-Roadmap]], [[2302.05209|Causal-RL-Methods-Survey]], [[2210.13066|DaXBench]], [[2104.03311|PlasticineLab]]
+- [[2607.26336|Implicit Causal WM]], [[2507.14901|Causal-Model-Reduction]], [[2307.01452|Causal-RL-Roadmap]], [[2302.05209|Causal-RL-Methods-Survey]], [[2210.13066|DaXBench]], [[2104.03311|PlasticineLab]]
 
 > [!star] Key Papers
 > - [[2302.05209|Causal-RL-Methods-Survey]] — First comprehensive taxonomy connecting causal inference with RL
 
 **Continual & Lifelong RL** — Agents that learn across sequential tasks without catastrophic forgetting.
-- [[2605.12484|FST]], [[2603.24350|Emergent-Self]], [[2603.00903|Continual-RL-Theory]], [[2506.21872|Continual-RL-Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2502.15922|Safe-EWC]], [[2410.19925|MLLM-Continual-Learning]], [[2410.07812|TD-VCL]], [[2105.10919|Continual-World]], [[1612.00796|EWC]]
+- [[2607.24996|CPR]], [[2607.05609|Predictive Continual Learning]], [[2605.12484|FST]], [[2603.24350|Emergent-Self]], [[2603.00903|Continual-RL-Theory]], [[2506.21872|Continual-RL-Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2502.15922|Safe-EWC]], [[2410.19925|MLLM-Continual-Learning]], [[2410.07812|TD-VCL]], [[2105.10919|Continual-World]], [[1612.00796|EWC]]
 
 > [!star] Key Papers
 > - [[1612.00796|EWC]] — Foundational method for overcoming catastrophic forgetting; Elastic Weight Consolidation remains the baseline for all continual learning
@@ -241,7 +241,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 - [[2607.18433|Learnable Novelty]], [[2605.22814|Remember-to-be-Curious]], [[2605.03782|GLANCE]], [[2603.28386|COvolve]], [[2603.15789|OmniReset]], [[2603.02008|C-TeC]], [[2602.01619|SUSD]], [[2601.19810|ULEE]], [[2601.19707|QFLEX]], [[2510.24482|COMBRL]], [[2510.14129|Emergent-Exploration-GCRL]], [[2509.20648|CERMIC]], [[2509.09675|CDE]], [[2509.03771|Co-Evolving-MARL]], [[2506.22401|MEX-Primal-Dual]], [[2506.16396|GoalLadder]], [[2506.05980|AMPED]], [[2506.05634|AutoQD]], [[2506.00138|Virtual-Zebrafish-RL]], [[2505.19850|DISCOVER]]
 
 **Flow-Matching Policies & Critics** — RL methods built on flow matching rather than diffusion, for policies, critics, and value functions.
-- [[2607.10369|VINE]], [[2606.29934|RoamFlow]], [[2605.13435|Q-Flow]], [[2603.11470|NFPO]], [[2603.04333|floq]], [[2602.18015|Flow-Actor-Critic]], [[2602.01156|PolicyFlow]], [[2512.03973|Guided-Flow-Policy]], [[2510.07650|Value-Flows]], [[2509.25756|SAC-Flow]], [[2509.06863|floq-Flow]], [[2508.13904|OFQL]], [[2506.12811|FlowRL-Online]], [[2505.23062|COMPFLOW]], [[2502.02538|FQL]]
+- [[2607.26460|RLMM-Flow]], [[2607.10369|VINE]], [[2606.29934|RoamFlow]], [[2605.13435|Q-Flow]], [[2603.11470|NFPO]], [[2603.04333|floq]], [[2602.18015|Flow-Actor-Critic]], [[2602.01156|PolicyFlow]], [[2512.03973|Guided-Flow-Policy]], [[2510.07650|Value-Flows]], [[2509.25756|SAC-Flow]], [[2509.06863|floq-Flow]], [[2508.13904|OFQL]], [[2506.12811|FlowRL-Online]], [[2505.23062|COMPFLOW]], [[2502.02538|FQL]]
 
 > [!star] Key Papers
 > - [[2502.02538|FQL]] — Foundational flow-matching offline RL method; one-step distillation from a BC flow policy avoids BPTT, the baseline every other paper here compares against
@@ -250,7 +250,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2603.04333|floq]] — Explains the empirical success of flow-matching critics in Temporal Difference learning
 
 **Diffusion Planning & Trajectory Generation** — Denoising-diffusion planners that generate or condition trajectories directly.
-- [[2606.19656|DF-ExpEnse]], [[2605.28293|ProRL-Recommendation]], [[2605.20758|g-car]], [[2605.04568|Dream-MPC]], [[2604.00202|DreamControl-v2]], [[2603.14245|GoldenStart]], [[2602.08032|Horizon-Imagination]], [[2602.05051|ReFORM]], [[2601.00898|DIPOLE]], [[2505.20922|DIMA]], [[2505.10881|Prior-Guided-Diffusion-Planning]], [[2304.12824|QGPO]], [[2210.15629|LCD]], [[2208.06193|Diffusion-QL]], [[2205.09991|Diffuser]]
+- [[2607.25798|Transformer Transformer]], [[2606.19656|DF-ExpEnse]], [[2605.28293|ProRL-Recommendation]], [[2605.20758|g-car]], [[2605.04568|Dream-MPC]], [[2604.00202|DreamControl-v2]], [[2603.14245|GoldenStart]], [[2602.08032|Horizon-Imagination]], [[2602.05051|ReFORM]], [[2601.00898|DIPOLE]], [[2505.20922|DIMA]], [[2505.10881|Prior-Guided-Diffusion-Planning]], [[2304.12824|QGPO]], [[2210.15629|LCD]], [[2208.06193|Diffusion-QL]], [[2205.09991|Diffuser]]
 
 > [!star] Key Papers
 > - [[2210.15629|LCD]] — Hierarchical diffusion planner extending Diffuser to pixel/language-conditioned long-horizon control; 3.3-15x faster inference
@@ -262,14 +262,14 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 - [[2607.10892|ESM]], [[2607.06262|OTQL]], [[2606.21646|ECD]], [[2606.06049|L-SDPPO]], [[2604.23380|V-GRPO]], [[2604.19730|FASTER]], [[2510.01068|GPC-RL]], [[2509.21942|SIHD]], [[2509.04063|ARFM]], [[2506.21427|SSCP]], [[2506.08902|InFOM]], [[2506.07822|RACTD]], [[2506.00895|SCoTS]], [[2505.23527|NF-for-RL]], [[2505.01822|AEPO]]
 
 **JEPA & Latent Prediction for RL** — Joint-Embedding Predictive Architectures adapted for RL, predicting future states in latent space rather than pixel space.
-- [[2606.14418|COMET]], [[2601.19336|EAWM]], [[2512.07733|SpatialDreamer]], [[2511.05963|NextLat]], [[2510.00739|TD-JEPA]], [[2508.20294|DALI]], [[2504.16591|JEPA-for-RL]], [[2502.14819|PLDM]], [[2407.01570|Ego-Foresight]]
+- [[2607.26712|ActSWM]], [[2607.26056|INTACT]], [[2606.14418|COMET]], [[2601.19336|EAWM]], [[2512.07733|SpatialDreamer]], [[2511.05963|NextLat]], [[2510.00739|TD-JEPA]], [[2508.20294|DALI]], [[2504.16591|JEPA-for-RL]], [[2502.14819|PLDM]], [[2407.01570|Ego-Foresight]]
 
 > [!star] Key Papers
 > - [[2502.14819|PLDM]] — Planning with Latent Dynamics Models from NYU/Meta FAIR; leveraging reconstruction-free latent dynamics for control
 > - [[2510.00739|TD-JEPA]] — Temporal-difference JEPA learns policy-conditioned multi-step latents for zero-shot RL; SOTA across 65 tasks, strong on pixel-based observations
 
 **World Model Architectures & Latent Representations** — Model designs for latent-action, latent-state, and joint-embedding world models.
-- [[2606.21173|P-learning]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.02027|World-Task-Factorization]], [[2605.29564|VE2VF]], [[2605.25313|UWM-JEPA]], [[2605.22123|FLORA]], [[2605.12771|PASTA]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2503.00653|DC-MPC]], [[2408.14472|DWL]], [[2403.04253|R2I]], [[2402.19161|MemoNav]]
+- [[2607.28415|QQWorld]], [[2606.21173|P-learning]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.02027|World-Task-Factorization]], [[2605.29564|VE2VF]], [[2605.25313|UWM-JEPA]], [[2605.22123|FLORA]], [[2605.12771|PASTA]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2503.00653|DC-MPC]], [[2408.14472|DWL]], [[2403.04253|R2I]], [[2402.19161|MemoNav]]
 
 > [!star] Key Papers
 > - [[2403.04253|R2I]] — Foundational latent-state architecture integrating State Space Models into Dreamer; superhuman on Memory Maze with 9x faster training than DreamerV3
@@ -324,7 +324,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2603.24984|MoE-GRPO]] — Pioneers GRPO for a structural target, treating expert routing itself as the RL policy; boosts VLM OOD generalization by up to 4.1%
 
 **Core GRPO Algorithm & Theory** — Foundational GRPO variants addressing credit assignment, sampling, off-policy extension, and risk-sensitivity.
-- [[2602.05547|MT-GRPO]], [[2601.20614|DGPO-Difficulty]], [[2510.20150|Rank-GRPO]], [[2510.04072|SFPO]], [[2509.25849|Knapsack-GRPO]], [[2509.24261|Risk-Sensitive-GRPO]], [[2508.09726|GFPO]], [[2505.22257|Off-Policy-GRPO]], [[2505.12929|Advantage-Reweighting]], [[2505.12366|DisCO-RL]], [[2504.02546|GPG]], [[2504.00883|vsGRPO]], [[2503.20783|Dr.-GRPO]], [[2503.14476|DAPO]], [[2502.10550|MIKASA]], [[2402.03300|DeepSeekMath]]
+- [[2607.16850|GECPO]], [[2602.05547|MT-GRPO]], [[2601.20614|DGPO-Difficulty]], [[2510.20150|Rank-GRPO]], [[2510.04072|SFPO]], [[2509.25849|Knapsack-GRPO]], [[2509.24261|Risk-Sensitive-GRPO]], [[2508.09726|GFPO]], [[2505.22257|Off-Policy-GRPO]], [[2505.12929|Advantage-Reweighting]], [[2505.12366|DisCO-RL]], [[2504.02546|GPG]], [[2504.00883|vsGRPO]], [[2503.20783|Dr.-GRPO]], [[2503.14476|DAPO]], [[2502.10550|MIKASA]], [[2402.03300|DeepSeekMath]]
 
 > [!star] Key Papers
 > - [[2402.03300|DeepSeekMath]] — Introduced GRPO, the group-relative policy optimization algorithm underlying nearly all post-DeepSeek-R1 reasoning RL
@@ -491,7 +491,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2510.26788|FP16-RL-Training]] — Demonstrates FP16 precision works for RL training; halves memory cost
 
 **Distributed Training Infrastructure & Stability** — Distributed/async RL systems and algorithmic stability fixes for scaling RL training to production.
-- [[2604.03489|FAB]], [[2510.01764|Octax]], [[2510.00819|Stable-PG-LLM]], [[2509.25762|OPPO]], [[2509.25174|XQC]], [[2509.24305|Async-Policy-Gradient]], [[2509.21792|FastGRPO]], [[2509.19846|BoreaRL]], [[2508.17850|GEPO]], [[2507.19234|Virne]], [[2506.02177|GRESO]], [[2505.24034|LlamaRL]], [[2505.07291|INTELLECT-2]], [[2503.18929|TBA]], [[2404.08233|GPBT-PL]], [[1803.00933|Ape-X]]
+- [[2607.18722|Staleness-Adaptive Trust Region]], [[2604.03489|FAB]], [[2510.01764|Octax]], [[2510.00819|Stable-PG-LLM]], [[2509.25762|OPPO]], [[2509.25174|XQC]], [[2509.24305|Async-Policy-Gradient]], [[2509.21792|FastGRPO]], [[2509.19846|BoreaRL]], [[2508.17850|GEPO]], [[2507.19234|Virne]], [[2506.02177|GRESO]], [[2505.24034|LlamaRL]], [[2505.07291|INTELLECT-2]], [[2503.18929|TBA]], [[2404.08233|GPBT-PL]], [[1803.00933|Ape-X]]
 
 **Unified & Single-Stage SFT+RL Training** — Methods that fuse SFT and RL into one training objective or stage rather than sequencing them.
 - [[2510.10606|ViSurf]], [[2508.11408|CHORD]], [[2507.01679|Prefix-RFT]], [[2506.19767|SRFT]], [[2506.13056|Metis-RISE]], [[2506.07527|ReLIFT]], [[2505.18917|Behavior-Injection]], [[2505.18116|NFT]], [[2505.03181|AFSFT]]
@@ -533,7 +533,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.24207|Humanline]] — Explains why online RL outperforms offline methods from a human cognitive science perspective
 
 **Applied, Hierarchical & Domain-Specific Policy Methods** — Domain-specific and hierarchical policy-optimization applications outside the mainstream algorithm families.
-- [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]], [[2602.03086|Neural-Predictor-Corrector]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric-Action-Control]], [[2511.05005|MAC-Flow]], [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]], [[1312.5602|DQN]]
+- [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]], [[2602.03086|Neural-Predictor-Corrector]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric-Action-Control]], [[2511.05005|MAC-Flow]], [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]], [[1312.5602|DQN]]
 
 > [!success] The Post-R1 RL Recipe
 > ==SFT warm-up== (instruction following + format compliance) → ==GRPO with verifiable rewards== (math/code execution as signal) → ==Distillation== to smaller models. Stable large-scale GRPO training with decoupled clip-higher and dynamic sampling. Even 1.5B models gain reasoning; zero-data bootstrapping works via self-play RL.
@@ -960,7 +960,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2306.05685|MT-Bench]] — Established LLM-as-a-judge as a valid proxy for human preference, now a standard reward-quality benchmark
 
 **General & Text Outcome Reward Models** — Reward models that evaluate full reasoning chains and final outcomes for text-based tasks, including reward-free/verifier-free alternatives.
-- [[2509.21319|RLBFF]], [[2507.18624|RLCF]], [[2507.07375|SMORM]], [[2507.03112|RLVER]], [[2507.01352|Skywork-Reward-V2]], [[2506.18254|RLPR]], [[2506.10128|ViCrit]], [[2506.03637|RewardAnything]], [[2505.22338|Text2Grad]], [[2505.21493|VeriFree]], [[2505.15801|VerifyBench]], [[2505.15034|RL-Tango]], [[2505.14674|RRM]], [[2505.03318|UNIFIEDREWARD-THINK]], [[2503.17338|Reward-Features-Model]], [[2502.00814|Rc-BT]], [[2408.10858|CenRA]]
+- [[2607.24900|PARED]], [[2509.21319|RLBFF]], [[2507.18624|RLCF]], [[2507.07375|SMORM]], [[2507.03112|RLVER]], [[2507.01352|Skywork-Reward-V2]], [[2506.18254|RLPR]], [[2506.10128|ViCrit]], [[2506.03637|RewardAnything]], [[2505.22338|Text2Grad]], [[2505.21493|VeriFree]], [[2505.15801|VerifyBench]], [[2505.15034|RL-Tango]], [[2505.14674|RRM]], [[2505.03318|UNIFIEDREWARD-THINK]], [[2503.17338|Reward-Features-Model]], [[2502.00814|Rc-BT]], [[2408.10858|CenRA]]
 
 > [!star] Key Papers
 > - [[2507.01352|Skywork-Reward-V2]] — an 8B model trained on 40M curated preference pairs beats a 70B model by 14.8 points across seven RM benchmarks
@@ -983,7 +983,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2511.19900|Agent0-VL]] — Self-evolving vision-language agent integrating tool usage into reward learning
 
 **Domain-Specific & Applied Reward Models** — Reward models specialized to particular application domains — editing, robotics, recommendation, and evaluation.
-- [[2603.16253|EVPV]], [[2603.02115|Robometer]], [[2602.16802|RefEval]], [[2602.12116|P-GenRM]], [[2511.10648|SCS]], [[2511.09158|CRM]], [[2510.15242|DWRL]], [[2509.22807|MTRec]]
+- [[2607.21655|Progress Reward Modeling Survey]], [[2603.16253|EVPV]], [[2603.02115|Robometer]], [[2602.16802|RefEval]], [[2602.12116|P-GenRM]], [[2511.10648|SCS]], [[2511.09158|CRM]], [[2510.15242|DWRL]], [[2509.22807|MTRec]]
 
 **Image/Editing & Generation Reward Models** — Reward models for image generation, editing, and multi-modal generative quality.
 - [[2607.00483|VLM-AR3L]], [[2604.27505|Edit-R1]], [[2510.01010|ImageDoctor]], [[2509.23909|EditScore]], [[2506.06970|MAPLE]], [[2505.18531|Generative-RLHF-V]], [[2505.02835|R1-Reward]], [[2503.21745|3DGen-Bench]]
@@ -1038,7 +1038,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 - [[2604.23626|GraphPlanner]], [[2603.05044|WebFactory]], [[2510.18798|WebSeer]], [[2508.14040|ComputerRL]], [[2507.17842|Shop-R1]], [[2507.04103|LLM-Web-Agent-Diagnosis]], [[2505.23885|OWL-Workforce]], [[2505.22648|WebDancer]], [[2505.19591|Puppeteer-Agent]], [[2504.03206|CURIO]], [[2503.11739|CoLLMLight]]
 
 **Skill/Memory-Based & Self-Play Evolution** — Self-evolving agents that use skill libraries, external memory, or self-play to improve.
-- [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2603.25111|SEVerA]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2510.18821|Search-Self-play]], [[2510.13220|EvoTest]], [[2510.09577|Dyna-Mind]], [[2510.08529|CoMAS]]
+- [[2607.22529|Skill-SP]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2603.25111|SEVerA]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2510.18821|Search-Self-play]], [[2510.13220|EvoTest]], [[2510.09577|Dyna-Mind]], [[2510.08529|CoMAS]]
 
 > [!star] Key Papers
 > - [[2605.06614|SkillOS]] — an RL-trained skill curator (not just a zero-shot LLM curator) that learns to insert/update/delete skills, giving rise to emergent "meta-strategy skills"
@@ -1065,7 +1065,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2607.13461|JOP-VLN]] — strongest current results: new SOTA 69.9% SR on R2R Val-Unseen from single-view RGB alone, with real quadruped deployment
 
 **Manipulation, Planning & LLM-Guided Embodied Control** — RL for embodied manipulation and planning, including LLM-guided test-time planning.
-- [[2607.18060|RoboHarness]], [[2607.13818|Agentic Execution RL]], [[2607.13653|REAL]], [[2607.13524|COLMAR]], [[2607.01925|SPLC]], [[2606.29222|CORE Planner]], [[2604.21232|ReCAPA]], [[2603.30022|Hybrid-LLM-RL-Manipulation]], [[2602.21198|Reflective-Test-Time-Planning]], [[2601.16175|TTT-Discover]], [[2511.01107|SLAP]], [[2506.00070|Robot-R1]], [[2412.05718|RLZero]]
+- [[2607.23515|LEACL]], [[2607.18060|RoboHarness]], [[2607.13818|Agentic Execution RL]], [[2607.13653|REAL]], [[2607.13524|COLMAR]], [[2607.01925|SPLC]], [[2606.29222|CORE Planner]], [[2604.21232|ReCAPA]], [[2603.30022|Hybrid-LLM-RL-Manipulation]], [[2602.21198|Reflective-Test-Time-Planning]], [[2601.16175|TTT-Discover]], [[2511.01107|SLAP]], [[2506.00070|Robot-R1]], [[2412.05718|RLZero]]
 
 > [!star] Key Papers
 > - [[2511.01107|SLAP]] — foundational integration of classical TAMP abstract planning with RL, autonomously discovering low-level "shortcut" policies that cut plan length by 32-73% while holding 100% success where pure RL scores 0%
@@ -1076,7 +1076,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 
 
 **Agent Infrastructure & Benchmarks** — Frameworks, environments, and evaluation tools for agentic RL.
-- [[2602.04118|TinyLoRA]], [[2511.21395|Monet]], [[2511.17473|MR-RLVR]], [[2511.15661|VisPlay]], [[2505.24760|REASONING-GYM]], [[2406.18505|LLM-Xavier]]
+- [[2607.21653|Molt]], [[2602.04118|TinyLoRA]], [[2511.21395|Monet]], [[2511.17473|MR-RLVR]], [[2511.15661|VisPlay]], [[2505.24760|REASONING-GYM]], [[2406.18505|LLM-Xavier]]
 
 
 **Code Generation, Compilation & Systems RL** — RL for code generation, decompilation, compiler optimization, and low-level systems code.
@@ -1115,7 +1115,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 RL methods designed for or applied to physical robot learning — sample efficiency, safety, and real-world deployment constraints make robotics RL fundamentally different from LLM RL.
 
 **Foundational VLA RL Frameworks & Algorithms** — The core algorithmic frameworks establishing RL post-training for VLA models.
-- [[2607.20345|DEED]], [[2606.31958|SARL]], [[2604.17706|OmniVLA-RL]], [[2603.21341|RoboAlign]], [[2603.15600|Active-Critic-RL]], [[2602.12281|Scaling-Verification-VLA]], [[2602.01789|RFS]], [[2509.09674|SimpleVLA-RL]], [[2506.08440|TGRPO]], [[2505.19789|RL-for-VLA-Study]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]]
+- [[2607.26513|EKG-VLA]], [[2607.20345|DEED]], [[2606.31958|SARL]], [[2604.17706|OmniVLA-RL]], [[2603.21341|RoboAlign]], [[2603.15600|Active-Critic-RL]], [[2602.12281|Scaling-Verification-VLA]], [[2602.01789|RFS]], [[2509.09674|SimpleVLA-RL]], [[2506.08440|TGRPO]], [[2505.19789|RL-for-VLA-Study]], [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]]
 
 > [!star] Key Papers
 > - [[2509.09674|SimpleVLA-RL]] — canonical GRPO-based framework porting LLM outcome-reward RL to VLA, pushing LIBERO to 99.1% and revealing emergent policies human demonstrations never showed
@@ -1126,7 +1126,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.08440|TGRPO]] — Trajectory-wise GRPO adapted for VLA fine-tuning; bridges LLM RL and robot RL
 
 **Flow/Chunk-Based & Action-Representation VLA RL** — RL over flow-matching, action-chunking, and structured action representations for VLAs.
-- [[2607.12992|ChunkFlow]], [[2607.12931|ExToken]], [[2607.10383|ABot-N1]], [[2607.04681|Pinocchio]], [[2607.04591|S2C]], [[2607.02092|Guided Action Flow]], [[2605.13276|D-VLA]], [[2605.13105|PAIR-VLA]], [[2605.09410|RePO-VLA]], [[2604.05614|GPLA]], [[2508.18269|FlowVLA]]
+- [[2607.27782|RedFlow]], [[2607.26991|RL2-VLA]], [[2607.12992|ChunkFlow]], [[2607.12931|ExToken]], [[2607.10383|ABot-N1]], [[2607.04681|Pinocchio]], [[2607.04591|S2C]], [[2607.02092|Guided Action Flow]], [[2605.13276|D-VLA]], [[2605.13105|PAIR-VLA]], [[2605.09410|RePO-VLA]], [[2604.05614|GPLA]], [[2508.18269|FlowVLA]]
 
 > [!star] Key Papers
 > - [[2607.12992|ChunkFlow]] — foundational unified framework baking seam-aware continuity losses directly into AWAC-based RL fine-tuning for chunked VLA policies, the best success-smoothness trade-off (93.4% LIBERO-Long, lowest jitter) at no extra inference latency
@@ -1151,7 +1151,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2603.18336|ManiDreams]] — World model generates diverse manipulation scenarios; dream-based RL for dexterous tasks
 
 **MPC + RL for Control** — Combining Model Predictive Control with learned RL policies for structured, physically-grounded control, including runtime safety filters and control barrier functions.
-- [[2607.20665|DGPPO]], [[2607.14488|Acc-CBF-QP]], [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2607.07252|Safe RL via MPC]], [[2607.02472|Quad APG]], [[2607.01281|WaveLander]], [[2607.00066|Endovascular RL-NMPC]], [[2606.31562|Stabilization Learning]], [[2606.24039|TurboMPC]], [[2603.14469|PIPER]], [[2510.06179|DiffMPC]], [[2507.21533|MPAIL]], [[2505.20829|Unified-Force-Position-Control]], [[2504.06662|RAMBO]], [[2502.02133|MPC-RL-Survey]], [[2310.10509|Online Admittance Residual Learning]], [[2309.15462|DTC]], [[1504.00702|Visuomotor GPS]]
+- [[2607.23930|FAOC]], [[2607.20665|DGPPO]], [[2607.14488|Acc-CBF-QP]], [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2607.07252|Safe RL via MPC]], [[2607.02472|Quad APG]], [[2607.01281|WaveLander]], [[2607.00066|Endovascular RL-NMPC]], [[2606.31562|Stabilization Learning]], [[2606.24039|TurboMPC]], [[2603.14469|PIPER]], [[2510.06179|DiffMPC]], [[2507.21533|MPAIL]], [[2505.20829|Unified-Force-Position-Control]], [[2504.06662|RAMBO]], [[2502.02133|MPC-RL-Survey]], [[2310.10509|Online Admittance Residual Learning]], [[2309.15462|DTC]], [[1504.00702|Visuomotor GPS]]
 
 > [!star] Key Papers
 > - [[1504.00702|Visuomotor GPS]] — foundational: first to fold trajectory optimization (linear-Gaussian iLQG, MPC's local cousin) into an RL loop training an end-to-end deep policy, establishing the guided-policy-search template this group builds on
@@ -1159,7 +1159,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2309.15462|DTC]] — strongest reported results, a Science Robotics hybrid TO+RL controller hitting 2.3cm foothold accuracy while crossing gaps, beams, and slippery terrain that pure MPC or pure RL baselines fail on
 
 **Control-Theoretic, Constraint-Aware & Benchmark Infrastructure** — Control-theoretic RL (Koopman/CBF), constraint-aware planning, and benchmark/simulation infrastructure for LLM-guided robotics.
-- [[2605.26452|Koopman-CBF-SAC]], [[2604.03023|Behavior-Constrained-RL]], [[2604.02021|Discrete-Continuous-Planning-Bridge]], [[2603.13707|REFINE-DP]], [[2603.02203|T3RL]], [[2602.15827|PHP]], [[2602.06556|LIBERO-X]], [[2602.02605|ESMA]], [[2602.02481|FPO++]], [[2407.07788|BiGym]], [[2302.04659|ManiSkill2]], [[2107.04034|RMA]]
+- [[2607.23473|PRISM-Motor]], [[2605.26452|Koopman-CBF-SAC]], [[2604.03023|Behavior-Constrained-RL]], [[2604.02021|Discrete-Continuous-Planning-Bridge]], [[2603.13707|REFINE-DP]], [[2603.02203|T3RL]], [[2602.15827|PHP]], [[2602.06556|LIBERO-X]], [[2602.02605|ESMA]], [[2602.02481|FPO++]], [[2407.07788|BiGym]], [[2302.04659|ManiSkill2]], [[2107.04034|RMA]]
 
 > [!star] Key Papers
 > - [[2605.26452|Koopman-CBF-SAC]] — clearest paradigm-shifting approach for control-theoretic RL, bridging model-free SAC with data-driven Koopman-CBF safety filters and a novel residual margin giving pointwise safety guarantees
@@ -1175,7 +1175,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.08052|ReCogDrive]] — paradigm-shifting case for VLM-guided RL: cognitive tokens from a driving-tuned VLM condition a diffusion planner that DiffGRPO optimizes against closed-loop reward, achieving new SOTA (90.8 PDMS)
 
 **Applied Manipulation, Locomotion & Mobile Robot Control** — LLM-guided RL applied to specific manipulation, locomotion, and mobile-robot control tasks.
-- [[2607.21227|FORGE-plus]], [[2606.31106|AD Internal Prediction Probing]], [[2606.03441|PerchRL]], [[2606.03335|DGPO]], [[2605.27046|Thermal-Aware-Residual]], [[2605.26478|SDPG]], [[2605.21688|Microfiber-Shape-Control]], [[2605.19924|RoHIL]], [[2605.19919|ZPRL]], [[2505.22642|FastTD3]], [[2505.06776|FALCON-Loco-Manipulation]], [[2504.13818|PODS]], [[2502.01143|ASAP]], [[2405.07991|SPIN-Mobile-Manip]], [[2003.01239|Evolutionary-Meta-Learning-Legged]]
+- [[2607.25985|Physics-Aware DRL Quadcopter Control]], [[2607.21227|FORGE-plus]], [[2606.31106|AD Internal Prediction Probing]], [[2606.03441|PerchRL]], [[2606.03335|DGPO]], [[2605.27046|Thermal-Aware-Residual]], [[2605.26478|SDPG]], [[2605.21688|Microfiber-Shape-Control]], [[2605.19924|RoHIL]], [[2605.19919|ZPRL]], [[2505.22642|FastTD3]], [[2505.06776|FALCON-Loco-Manipulation]], [[2504.13818|PODS]], [[2502.01143|ASAP]], [[2405.07991|SPIN-Mobile-Manip]], [[2003.01239|Evolutionary-Meta-Learning-Legged]]
 
 
 **Classic Sim-to-Real Theory & Domain Randomization** — Foundational domain-randomization and theoretical results underpinning sim-to-real transfer.
@@ -1188,7 +1188,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2201.02373|Mirror-Learning]] — Unifying theoretical framework for diverse policy optimization methods; connects RL algorithms under one roof
 
 **Legged, Humanoid & Manipulation Sim2Real** — Sim-to-real transfer for legged locomotion, humanoid control, and dexterous manipulation.
-- [[2607.04940|Dexterous Force-Based Grasping Sim-to-Real]], [[2604.24916|asRoBallet]], [[2604.23702|QuietWalk]], [[2601.22550|Exo-Plore]], [[2512.05094|GenMimic]], [[2508.12252|Robot-Trains-Robot]], [[2503.10949|SCDA]], [[2502.20396|Humanoid-Sim2Real-Dex]], [[2411.06782|QuadWBG]], [[2403.17367|RoboDuet]], [[2403.16967|VBC]], [[2305.17110|IndustReal]]
+- [[2607.23268|Sling2Sim2Real]], [[2607.04940|Dexterous Force-Based Grasping Sim-to-Real]], [[2604.24916|asRoBallet]], [[2604.23702|QuietWalk]], [[2601.22550|Exo-Plore]], [[2512.05094|GenMimic]], [[2508.12252|Robot-Trains-Robot]], [[2503.10949|SCDA]], [[2502.20396|Humanoid-Sim2Real-Dex]], [[2411.06782|QuadWBG]], [[2403.17367|RoboDuet]], [[2403.16967|VBC]], [[2305.17110|IndustReal]]
 
 > [!star] Key Papers
 > - [[2305.17110|IndustReal]] — first end-to-end sim-to-real transfer for contact-rich assembly (detect, grasp, align, insert) with zero real-world fine-tuning, its SAPU/SDF-reward/PLAI toolkit now a reference recipe for contact-rich transfer
@@ -1199,7 +1199,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 - [[2607.04972|HOLA]], [[2607.02037|Cross-Platform ASV RL]], [[2607.01410|BIFROST]], [[2607.00160|Phase-Decomposed RL]], [[2606.31043|Warp RL]], [[2606.30268|ConCent]], [[2606.05880|TAGA]], [[2605.19033|RLFTSim]], [[2605.09789|DRIS]], [[2604.24018|Sim2Real-Betting]], [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2602.00678|RoboGauge]], [[2510.18060|SPACeR-RL]], [[2509.18648|SPiDR]], [[2508.21065|Learning-on-the-Fly]], [[2508.10538|MLM]], [[2507.06905|ULC]], [[2504.18904|RoboVerse]], [[2502.17666|IC-QL]]
 
 **RL Infrastructure & Scaling** — Engineering and scaling RL systems for real-world robot deployment.
-- [[2604.08706|RL-Experience-Replay-for-LLMs]], [[2604.06943|Sustainable-Transfer-RL]], [[2604.04539|FlashSAC]], [[2604.01158|SMASH]], [[2603.03279|ULTRA]], [[2512.20605|Internal-RL]], [[2510.22512|TRL]], [[2510.11103|SO3-Action-Representations]], [[2505.24864|ProRL]], [[2412.13211|MS-HAB]], [[2108.10470|Isaac-Gym]], [[2108.03332|BEHAVIOR]], [[2106.14405|Habitat-2.0]], [[2009.12293|robosuite]]
+- [[2607.26985|SymmGrid]], [[2604.08706|RL-Experience-Replay-for-LLMs]], [[2604.06943|Sustainable-Transfer-RL]], [[2604.04539|FlashSAC]], [[2604.01158|SMASH]], [[2603.03279|ULTRA]], [[2512.20605|Internal-RL]], [[2510.22512|TRL]], [[2510.11103|SO3-Action-Representations]], [[2505.24864|ProRL]], [[2412.13211|MS-HAB]], [[2108.10470|Isaac-Gym]], [[2108.03332|BEHAVIOR]], [[2106.14405|Habitat-2.0]], [[2009.12293|robosuite]]
 
 
 **Contrastive & Self-Supervised RL** — Self-supervised methods that learn useful representations for RL without labeled rewards.
@@ -1222,20 +1222,20 @@ RL methods designed for or applied to physical robot learning — sample efficie
 
 
 **Tactile, Contact-Rich & Teleoperation-Guided Manipulation** — Manipulation learning grounded in tactile sensing, contact signals, and teleoperated human demonstrations.
-- [[2607.11481|TELEDEXTER]], [[2607.08742|ContactMimic]], [[2607.06438|WristMimic]], [[2607.03723|OmniTacTune]], [[2607.00033|CHORD (Contact Wrench Guidance)]], [[2603.10971|ContactExplorer]], [[2506.10968|EyeRobot]], [[2409.15095|MoMa-Teleop]], [[2310.03478|RGBManip]], [[2207.10763|Tactile-Gym-2.0]], [[2207.09450|WHIRL]], [[2105.14455|TacTip]]
+- [[2607.23782|N0-VTLA]], [[2607.11481|TELEDEXTER]], [[2607.08742|ContactMimic]], [[2607.06438|WristMimic]], [[2607.03723|OmniTacTune]], [[2607.00033|CHORD (Contact Wrench Guidance)]], [[2603.10971|ContactExplorer]], [[2506.10968|EyeRobot]], [[2409.15095|MoMa-Teleop]], [[2310.03478|RGBManip]], [[2207.10763|Tactile-Gym-2.0]], [[2207.09450|WHIRL]], [[2105.14455|TacTip]]
 
 > [!star] Key Papers
 > - [[2105.14455|TacTip]] — foundational biomimetic optical tactile sensor whose decade-long design lineage and shear-sensing principle underpin most tactile-guided manipulation work in this group
 > - [[2607.11481|TELEDEXTER]] — clearest advance in teleoperation-guided dexterity, replacing kinematic retargeting with a learned hand-object co-tracking controller that hits 75.2% success where prior teleoperation baselines fail near zero
 
 **In-Hand, Grasping & Residual Manipulation RL** — In-hand reorientation, grasping, and residual-RL structuring of the dexterous action space.
-- [[2607.12105|Physics-Priors In-Hand Rotation]], [[2607.11874|REGRIND]], [[2607.06323|LAMP]], [[2607.01651|AutoSERL]], [[2606.31909|CoDex]], [[2606.30474|GOMP]], [[2606.28323|DexCompose]], [[2304.08488|VRB]], [[2304.04150|RoboPianist]], [[2303.03486|SBRL]], [[2008.03285|Residual-Hand-Pose-RL]], [[1812.03201|Residual RL]], [[1803.09956|VPG]]
+- [[2607.28198|UniCross]], [[2607.12105|Physics-Priors In-Hand Rotation]], [[2607.11874|REGRIND]], [[2607.06323|LAMP]], [[2607.01651|AutoSERL]], [[2606.31909|CoDex]], [[2606.30474|GOMP]], [[2606.28323|DexCompose]], [[2304.08488|VRB]], [[2304.04150|RoboPianist]], [[2303.03486|SBRL]], [[2008.03285|Residual-Hand-Pose-RL]], [[1812.03201|Residual RL]], [[1803.09956|VPG]]
 
 > [!star] Key Papers
 > - [[2607.06323|LAMP]] — Latent motion prior structures the high-dimensional hand-action space, enabling near-perfect success on complex dexterous tasks
 
 **Parkour, Terrain Traversal & Extreme Locomotion** — RL for traversing extreme and irregular terrain — parkour, stairs, and sparse-contact footholds.
-- [[2603.19305|PhyGile]], [[2607.12114|GaitSpan]], [[2504.09997|GenTe]], [[2502.10363|BeamDojo]], [[2404.19173|Single-Contact++-RL]], [[2309.14341|Extreme Parkour]], [[2309.05665|Robot Parkour]], [[2306.14874|ANYmal Parkour]], [[2305.14654|Barkour]], [[2205.02824|Rapid-Locomotion]], [[2105.08328|Blind-Bipedal-Stair-Climbing]]
+- [[2607.25541|P3-VAE]], [[2603.19305|PhyGile]], [[2607.12114|GaitSpan]], [[2504.09997|GenTe]], [[2502.10363|BeamDojo]], [[2404.19173|Single-Contact++-RL]], [[2309.14341|Extreme Parkour]], [[2309.05665|Robot Parkour]], [[2306.14874|ANYmal Parkour]], [[2305.14654|Barkour]], [[2205.02824|Rapid-Locomotion]], [[2105.08328|Blind-Bipedal-Stair-Climbing]]
 
 > [!star] Key Papers
 > - [[2105.08328|Blind-Bipedal-Stair-Climbing]] — foundational proof that a human-scale biped can traverse stairs from proprioception alone via terrain-randomized sim-to-real RL, no vision or reward re-engineering needed
@@ -1243,7 +1243,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2502.10363|BeamDojo]] — first learning-based method for fine-grained humanoid foothold control on sparse terrain, pairing a sampling-based foothold reward with double-critic RL to hit 90%+ sim success and robust zero-shot real-world transfer
 
 **Humanoid Whole-Body Control & Teleoperation** — Whole-body humanoid control, heavy-payload teleoperation, and novel gaits.
-- [[2607.20399|VR-RL Humanoid Tele-Loco-Manipulation]], [[2607.19903|YAHMP]], [[2607.15163|Humanoid Transformer]], [[2607.11624|SKooP]], [[2607.11041|PAKE]], [[2607.07830|HumoSlope]], [[2607.07370|ABot-C0]], [[2607.04837|Athena-WBC]], [[2607.02332|HEFT]], [[2606.31807|Skating Humanoid RL]], [[2606.29209|AnyBody (Whole-Body Humanoid Control)]], [[2602.13656|KungFuAthlete]]
+- [[2607.24083|HMP]], [[2607.20399|VR-RL Humanoid Tele-Loco-Manipulation]], [[2607.19903|YAHMP]], [[2607.15163|Humanoid Transformer]], [[2607.11624|SKooP]], [[2607.11041|PAKE]], [[2607.07830|HumoSlope]], [[2607.07370|ABot-C0]], [[2607.04837|Athena-WBC]], [[2607.02332|HEFT]], [[2606.31807|Skating Humanoid RL]], [[2606.29209|AnyBody (Whole-Body Humanoid Control)]], [[2602.13656|KungFuAthlete]]
 
 > [!star] Key Papers
 > - [[2607.15163|Humanoid Transformer]] — strongest reported results (up to 82% MPKPE reduction), establishing a principled scaling recipe for humanoid Behavior Foundation Models
@@ -1253,7 +1253,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2607.02332|HEFT]] — Single policy handles 24kg heavy-payload teleoperation on a full-size humanoid via privileged motion guidance and payload curriculum
 
 **Quadruped & Perceptive Locomotion Control** — Quadruped locomotion policies and perceptive/blind terrain-aware control, including the ANYmal lineage.
-- [[2607.20110|Extreme-RGMT]], [[2607.18365|Torque-Driven Quadruped RL]], [[2607.18135|Isaac Sim-to-Real Quadruped RL]], [[2606.31691|FastDSAC]], [[2606.30362|ReactiveBFM]], [[2606.00637|GLAD]], [[2508.11849|LocoMamba]], [[2506.09588|Attention-Map-Encoding]], [[2211.07638|Egocentric-Legged-Locomotion]], [[2209.12827|Position-Based-Locomotion]], [[2201.08117|ANYmal-Perceptive-Locomotion]], [[2010.11251|ANYmal-Locomotion]]
+- [[2607.26434|LSTM-CPG Quadruped Policy]], [[2607.24036|WARL]], [[2607.20110|Extreme-RGMT]], [[2607.18365|Torque-Driven Quadruped RL]], [[2607.18135|Isaac Sim-to-Real Quadruped RL]], [[2606.31691|FastDSAC]], [[2606.30362|ReactiveBFM]], [[2606.00637|GLAD]], [[2508.11849|LocoMamba]], [[2506.09588|Attention-Map-Encoding]], [[2211.07638|Egocentric-Legged-Locomotion]], [[2209.12827|Position-Based-Locomotion]], [[2201.08117|ANYmal-Perceptive-Locomotion]], [[2010.11251|ANYmal-Locomotion]]
 
 > [!star] Key Papers
 > - [[2010.11251|ANYmal-Locomotion]] — foundational teacher-student RL controller pioneering zero-shot sim-to-real proprioceptive locomotion, validated with zero failures in the DARPA Subterranean Challenge
@@ -1264,7 +1264,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 - [[2607.00442|STL Gait-Aware Locomotion]], [[2606.31912|Foot-Centric Proximity Locomotion]], [[2606.30290|X-Morph]], [[2603.24047|PCHC]], [[2602.23832|OmniTrack]], [[2602.20375|Multi-Task Reference-Goal RL]], [[2510.02252|GMR]], [[2102.02202|DERL]], [[2010.01856|AMORPHEUS]], [[2007.04976|SMP]], [[2004.00784|Imitating Animals]]
 
 **Robot Navigation RL** — End-to-end RL navigation policies for mobile robots and autonomous agents — crowd and social navigation, unsteady-flow fields, and low-latency trajectory generation.
-- [[2607.20785|Robostral Navigate]], [[2607.18794|LANav]], [[2607.15036|VOP-Nav]], [[2607.14643|NavCMPO]], [[2607.13553|Flow-Aware RL Navigation]], [[2607.10991|HUMA]]
+- [[2607.28560|X-NavDP]], [[2607.24292|HYPER-GNC]], [[2607.20785|Robostral Navigate]], [[2607.18794|LANav]], [[2607.15036|VOP-Nav]], [[2607.14643|NavCMPO]], [[2607.13553|Flow-Aware RL Navigation]], [[2607.10991|HUMA]]
 
 > [!star] Key Papers
 > - [[2607.20785|Robostral Navigate]] — sets a new SOTA on both R2R-CE and RxR-CE using only a monocular RGB camera, showing minimal-sensor navigation can beat multi-sensor systems

@@ -87,7 +87,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 - [[2606.03374|eMEM]], [[2605.15128|MemEye]], [[2602.16313|MemoryArena]], [[2602.11964|Gaia2]], [[2511.14004|STAR-Memory-Action]], [[2509.22391|SeekBench]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2505.15146|lmgame-Bench]], [[2504.15965|AI-Memory-Survey]], [[2403.19622|RH20T-P]]
 
 **RL Training & Planning Frameworks for Agentic Reasoning** — Reinforcement-learning algorithms and world-model-augmented planning methods that train or structure agentic reasoning.
-- [[2607.06935|Mathematical Methods of RL]], [[2606.03963|AgenticRL]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20246|GROW]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]]
+- [[2607.21653|Molt]], [[2607.06935|Mathematical Methods of RL]], [[2606.03963|AgenticRL]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20246|GROW]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]]
 
 > [!star] Key Papers
 > - [[2505.10468\|AI-Agents-vs-Agentic-AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
@@ -109,7 +109,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 - [[2510.15700|ProofOptimizer]], [[2510.01539|Executable-Counterfactuals]], [[2506.11487|DSP+]], [[2506.09820|CoRT]], [[2506.07047|Mathesis]], [[2401.08190\|MARIO]], [[2211.12588\|PoT]], [[2211.10435\|PAL]]
 
 **Domain-Specific Code Generation & Translation** — Code agents specialized for SQL, front-end, robotics, binary, and symbolic-solver targets rather than general-purpose reasoning.
-- [[2604.10929\|Ro-SLM]], [[2509.25411|KeyTrace]], [[2509.22114|SK2Decompile]], [[2504.08600|SQL-R1]], [[2504.02327|LearNAT]], [[2503.01619\|Flame]]
+- [[2607.24051|HELIOS]], [[2604.10929\|Ro-SLM]], [[2509.25411|KeyTrace]], [[2509.22114|SK2Decompile]], [[2504.08600|SQL-R1]], [[2504.02327|LearNAT]], [[2503.01619\|Flame]]
 
 **Code-Generation Training & Quality Optimization** — RL and feedback-driven methods that train code models for correctness, multi-language coverage, and interpreter-integrated reasoning quality.
 - [[2509.25810\|RA3]], [[2508.04865|Agnostics]], [[2506.20639|DiffuCoder]], [[2505.22704|REAL-Code]], [[2505.21668|R1-Code-Interpreter]], [[2505.12723|OORL]]
@@ -122,7 +122,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2211.12588\|PoT]] — Program of Thoughts prompting: LLMs delegate numerical reasoning to code execution
 
 **Visual Programming & Compositional Code** — Composing vision-and-language modules into executable programs for visual reasoning, enabling training-free compositional problem-solving.
-- [[2606.03047|ModuLoop]], [[2605.02600|CoRAL]], [[2604.01600|MM-ReCoder]], [[2603.25118|AnyDoc]], [[2603.22435\|CaP-X]], [[2603.03072|TikZilla]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.13587|Chart-to-Code-RL]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]], [[2209.07753|Code-as-Policies]]
+- [[2607.25236|VisualPatchWorld]], [[2606.03047|ModuLoop]], [[2605.02600|CoRAL]], [[2604.01600|MM-ReCoder]], [[2603.25118|AnyDoc]], [[2603.22435\|CaP-X]], [[2603.03072|TikZilla]], [[2601.05344\|Im2Sim]], [[2512.03746\|CodeVision]], [[2511.19661\|CodeV]], [[2508.13587|Chart-to-Code-RL]], [[2508.11630\|Thyme]], [[2507.20766\|RRVF]], [[2505.10557\|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128\|ViperGPT]], [[2211.11559\|VISPROG]], [[2209.07753|Code-as-Policies]]
 
 > [!star] Key Papers
 > - [[2303.08128\|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without any training
@@ -267,7 +267,7 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 > - [[2601.10825\|Societies-of-Thought]] — Reveals how advanced LLMs implicitly implement multi-agent "society of mind" reasoning internally
 
 **Co-Evolution & Group Dynamics** — Multiple agents that evolve together, with competitive or cooperative dynamics driving collective improvement beyond what individual agents achieve.
-- [[2604.22446|Skills-to-Talent]], [[2604.20987|Co-Evolve-Agents]], [[2602.08234\|SkillRL]], [[2602.04837\|GEA]], [[2601.09667\|MATTRL]], [[2510.23595\|MAE]], [[2510.18821|Search-Self-play]], [[2510.08529|CoMAS]], [[2506.24119\|SPIRAL]], [[2007.07853\|γ-Progress]]
+- [[2607.22529|Skill-SP]], [[2604.22446|Skills-to-Talent]], [[2604.20987|Co-Evolve-Agents]], [[2602.08234\|SkillRL]], [[2602.04837\|GEA]], [[2601.09667\|MATTRL]], [[2510.23595\|MAE]], [[2510.18821|Search-Self-play]], [[2510.08529|CoMAS]], [[2506.24119\|SPIRAL]], [[2007.07853\|γ-Progress]]
 
 > [!star] Key Papers
 > - [[2602.04837\|GEA]] — Group-Evolving Agents: agents co-evolve in groups, with emergent specialization and collective capability growth
@@ -299,13 +299,13 @@ Agents that accumulate experience over time, build persistent memory, and autono
 - [[2607.13104|Self-Improving Agents Survey]], [[2606.30111|AgentCanvas]], [[2605.28814|BES]], [[2605.27276|SIA]], [[2604.15034\|Autogenesis]], [[2603.19461\|HyperAgents]], [[2602.00359\|A-EVOLVE]], [[2601.03872\|ATLAS]], [[2511.00758\|ATM]], [[2510.04618\|ACE]], [[2508.02085\|SE-Agent]], [[2507.19457\|GEPA]]
 
 **Experience-Driven & Lifelong Self-Evolution** — Agents that improve by synthesizing, accumulating, or generating experience over extended interaction and environment exposure.
-- [[2604.18292\|Agent-World]], [[2604.18131\|Native-Evolution]], [[2511.03773|Experience-Synthesis-Mexp]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early-Experience]], [[2509.25047|AutoPlay]], [[2508.19005\|ELL-Framework]]
+- [[2607.17250|EvolvingWorld]], [[2604.18292\|Agent-World]], [[2604.18131\|Native-Evolution]], [[2511.03773|Experience-Synthesis-Mexp]], [[2510.16079\|EVOLVER]], [[2510.08558\|Early-Experience]], [[2509.25047|AutoPlay]], [[2508.19005\|ELL-Framework]]
 
 **Verification & Co-Evolution in Self-Improving Agents** — Critics, verifiers, and co-evolving components (policy+reward, multi-agent) that keep self-evolution reliable and safe.
 - [[2604.03098\|Self-Guide]], [[2604.01687\|EvoSkills]], [[2603.25111\|SEVerA]], [[2603.15255\|SAGE]], [[2601.06794\|ECHO]], [[2509.26354\|Misevolution]], [[2509.24726\|Socratic-Zero]], [[2506.11442|ReVeal-Agent]], [[2506.01716\|SCA]]
 
 **RL-Trained & Domain-Specific Self-Evolving Agents** — Reinforcement-learning-driven self-improvement applied to code, GUI, robotics, research, and ML-engineering domains.
-- [[2607.14777|SEED]], [[2605.25832|AUTO-ROBOTIST]], [[2605.20025|AutoResearchClaw]], [[2604.27488|Skills-Coach]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2603.17621\|Complementary-RL]], [[2602.06130\|SWIRL]], [[2601.07055\|Dr.-Zero]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2510.13220|EvoTest]], [[2510.05571|EvoPresent]], [[2508.04700\|SEAgent]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
+- [[2607.26809|Practice Makes Policies]], [[2607.14777|SEED]], [[2605.25832|AUTO-ROBOTIST]], [[2605.20025|AutoResearchClaw]], [[2604.27488|Skills-Coach]], [[2604.06268\|RAGEN-2]], [[2604.04872\|SandMLE]], [[2604.04247\|Combee]], [[2603.17621\|Complementary-RL]], [[2602.06130\|SWIRL]], [[2601.07055\|Dr.-Zero]], [[2512.18552\|SSR]], [[2511.16043\|Agent0]], [[2511.10395\|AgentEvolver]], [[2510.13220|EvoTest]], [[2510.05571|EvoPresent]], [[2508.04700\|SEAgent]], [[2505.22954\|DGM]], [[2409.00872\|SAGE]]
 
 > [!star] Key Papers
 > - [[2508.02085\|SE-Agent]] — Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement
@@ -329,7 +329,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Physical Robot Agent Architectures & Manipulation** — Integrated architectures combining vision-language understanding with agent capabilities for real-world robot manipulation and interaction.
-- [[2607.18060|RoboHarness]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2607.10350|ABot-AgentOS]], [[2607.05377|Cortex]], [[2607.04426|ACE-Brain-0.5]], [[2606.30632|GROW²]], [[2606.16295|VisualClaw]], [[2606.05395|VASO]], [[2604.20348|BiCICLe]], [[2510.21817|VITA-E]]
+- [[2607.26148|Agentic Embodied Control]], [[2607.23784|ARCHITECT]], [[2607.18060|RoboHarness]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2607.10350|ABot-AgentOS]], [[2607.05377|Cortex]], [[2607.04426|ACE-Brain-0.5]], [[2606.30632|GROW²]], [[2606.16295|VisualClaw]], [[2606.05395|VASO]], [[2604.20348|BiCICLe]], [[2510.21817|VITA-E]]
 
 **Embodied Simulation, World Engines & Foundational Benchmarks** — Simulated worlds, 3D scene engines, and benchmark environments underpinning embodied multimodal agent research.
 - [[2607.11377|PHILIA]], [[2607.07534|LingBot-World-Infinity]], [[2607.07459|EmbodiedGen V2]], [[2410.06237|BUMBLE]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]], [[1806.07011|VirtualHome]]
