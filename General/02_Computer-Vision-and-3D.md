@@ -290,7 +290,7 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 > - [[2311.13601|DINOv]] — Extends in-context prompting to generic segmentation using pure visual exemplars
 
 **High-Resolution & Efficient Segmentation** — Architectures designed for segmentation at high spatial resolution without excessive compute, maintaining fine boundary detail.
-- [[2605.25495|RepSAM]], [[2505.16993|SeNaTra]], [[2504.18158|E-InMeMo]], [[2503.19108|EoMT]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[1908.07919|HRNet]]
+- [[2607.28293|RGB-D-Affordance-HW-NAS]], [[2605.25495|RepSAM]], [[2505.16993|SeNaTra]], [[2504.18158|E-InMeMo]], [[2503.19108|EoMT]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[1908.07919|HRNet]]
 
 > [!star] Key Papers
 > - [[2505.16993|SeNaTra]] — NVIDIA's content-aware spatial grouping inside ViTs; groups semantically related tokens for efficient segmentation
