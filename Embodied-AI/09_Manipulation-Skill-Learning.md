@@ -317,17 +317,23 @@ The action-generation stack ultimately runs on physical hardware — these paper
 | Failure-avoidance at inference | [[2503.15386\|CCDP]] (**99%** Door-Opening) |
 | Cheap full-history non-Markovian control | [[2605.14598\|DSSP]] (**44.3M** params), [[2604.18933\|Gated-Memory-Policy]] |
 | Energy-constrained deployment | [[2606.06049\|L-SDPPO]] (**36.45%** energy) |
-| Unified policy + world-model + anomaly | [[2511.04812\|MDF]] | ^dm-1
+| Unified policy + world-model + anomaly | [[2511.04812\|MDF]] |
+
+^dm-1
 
 > [!star] Key Papers — Backbone Design-Space Exemplars
 > - [[2403.03954|DP3]] — the canonical 3D-diffusion-policy that proved a lightweight point-cloud encoder + conditional diffusion generalizes from a handful of demos (covered in §2).
 > - [[2407.05996|MDT]] — the reference multimodal-goal diffusion transformer; established self-supervised foresight + latent alignment as diffusion-policy auxiliaries.
 > - [[2606.03834|SFMDS]] — first to bolt provable stability guarantees onto a flow-matching policy, bridging dynamical-systems control and generative imitation.
 > - [[2602.07322|A2A]] — showed action-conditioned (not noise-conditioned) flow matching collapses the iteration count to a single sub-millisecond step.
-> - [[2605.25537|Soft-RTC]] — reframed real-time chunking as a continuous denoising window, dissolving the chunk-seam discontinuity that plagued earlier chunked policies. ^key-papers-1
+> - [[2605.25537|Soft-RTC]] — reframed real-time chunking as a continuous denoising window, dissolving the chunk-seam discontinuity that plagued earlier chunked policies.
+
+^key-papers-1
 
 > [!tip] Expressivity Is Cheap Now — Latency Is the Real Constraint
-> The 2023 question was "can a policy represent multimodal actions?" — diffusion answered yes, and by 2026 it is a solved baseline. The frontier moved to the *iteration tax*: every paper here is really fighting the inference loop, whether by collapsing steps ([[2602.07322|A2A]]'s single-step flow), hiding latency ([[2604.02408|F2F-AP]]'s future anticipation), smoothing the seam ([[2605.25537|Soft-RTC]]), or making history conditioning sub-quadratic ([[2605.14598|DSSP]]'s Mamba). The lesson: pick your backbone for the *control budget*, not the benchmark number — a tighter distribution you can't sample at 30 Hz loses to a looser one you can. For the world-model variant that turns this backbone into a planner, see [[09_Manipulation-Skill-Learning#3. World-Model & Video-as-Policy]]; for how the same diffusion backbone absorbs force signals, see [[10_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]]. ^insight-1
+> The 2023 question was "can a policy represent multimodal actions?" — diffusion answered yes, and by 2026 it is a solved baseline. The frontier moved to the *iteration tax*: every paper here is really fighting the inference loop, whether by collapsing steps ([[2602.07322|A2A]]'s single-step flow), hiding latency ([[2604.02408|F2F-AP]]'s future anticipation), smoothing the seam ([[2605.25537|Soft-RTC]]), or making history conditioning sub-quadratic ([[2605.14598|DSSP]]'s Mamba). The lesson: pick your backbone for the *control budget*, not the benchmark number — a tighter distribution you can't sample at 30 Hz loses to a looser one you can. For the world-model variant that turns this backbone into a planner, see [[09_Manipulation-Skill-Learning#3. World-Model & Video-as-Policy]]; for how the same diffusion backbone absorbs force signals, see [[10_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]].
+
+^insight-1
 
 ---
 
@@ -443,17 +449,23 @@ A policy that overfits one camera angle or confuses two similar objects fails si
 | View-robust closed-loop manipulation | [[2604.21914\|VistaBot]] (VGS **0.24→0.67**) |
 | Sim-ready 3D scene reconstruction | [[2605.26115\|TriSplat]] (**33–249×** faster) |
 | Object-centric / attribute disambiguation | [[2503.09867\|OH-A-DINO]] (**56.4%** retrieval) |
-| Parameter-efficient robotic segmentation | [[2605.25495\|RepSAM]] (**158×** fewer params) | ^dm-2
+| Parameter-efficient robotic segmentation | [[2605.25495\|RepSAM]] (**158×** fewer params) |
+
+^dm-2
 
 > [!star] Key Papers — 3D Representation Landmarks
 > - [[2209.05451|PerAct]] — the voxel-classification landmark that proved discretized 6-DoF action prediction over a 3D grid beats image-to-action regression by an order of magnitude.
 > - [[2403.03954|DP3]] — established that a *minimal* point-cloud encoder, not an elaborate one, is enough to make diffusion policies sample-efficient; the reference 3D-diffusion baseline.
 > - [[2406.01584|SpatialRGPT]] — the canonical region-aware spatial VLM; showed automatically-mined 3D scene graphs can teach metric spatial reasoning at scale.
 > - [[2604.21914|VistaBot]] — first to treat viewpoint robustness as a *generative* problem — synthesize the canonical view rather than train invariance into the policy.
-> - [[2511.05491|VST]] — mapped the SFT→CoT→RL recipe that turns a general VLM into a spatial reasoner usable as a VLA backbone. ^key-papers-2
+> - [[2511.05491|VST]] — mapped the SFT→CoT→RL recipe that turns a general VLM into a spatial reasoner usable as a VLA backbone.
+
+^key-papers-2
 
 > [!tip] Two Routes to 3D — Bake It In or Query an Oracle
-> The field has bifurcated. One camp ([[2403.03954|DP3]], [[2604.15281|R3D]], [[2602.00937|CLAMP]]) bakes geometry into the policy's perception module — fast, end-to-end, but the 3D competence is locked to the training distribution. The other ([[2406.01584|SpatialRGPT]], [[2511.05491|VST]], [[2603.27967|XVR]]) trains a *separate* spatial-reasoning VLM the policy queries — slower and more modular, but the spatial competence transfers across tasks and is reusable. The surprising 2026 finding is that the VLM route now *feeds* the policy route: XVR and VST report that a spatially-tuned VLM backbone adds **+13%** and **+8.6%** manipulation SR respectively — spatial reasoning learned in pixel-space transfers into action-space. For how this spatial substrate becomes a planning prior, see [[09_Manipulation-Skill-Learning#5. LLM / Neuro-Symbolic Planning & Affordance Grounding]]; for the latent-prediction lineage of 3D world models, see [[07_Latent-World-Models#3. Broader Latent Prediction Landscape]]. ^insight-2
+> The field has bifurcated. One camp ([[2403.03954|DP3]], [[2604.15281|R3D]], [[2602.00937|CLAMP]]) bakes geometry into the policy's perception module — fast, end-to-end, but the 3D competence is locked to the training distribution. The other ([[2406.01584|SpatialRGPT]], [[2511.05491|VST]], [[2603.27967|XVR]]) trains a *separate* spatial-reasoning VLM the policy queries — slower and more modular, but the spatial competence transfers across tasks and is reusable. The surprising 2026 finding is that the VLM route now *feeds* the policy route: XVR and VST report that a spatially-tuned VLM backbone adds **+13%** and **+8.6%** manipulation SR respectively — spatial reasoning learned in pixel-space transfers into action-space. For how this spatial substrate becomes a planning prior, see [[09_Manipulation-Skill-Learning#5. LLM / Neuro-Symbolic Planning & Affordance Grounding]]; for the latent-prediction lineage of 3D world models, see [[07_Latent-World-Models#3. Broader Latent Prediction Landscape]].
+
+^insight-2
 
 ---
 
@@ -559,17 +571,23 @@ Predict an intermediate, embodiment-agnostic motion representation — 2D/3D flo
 | Zero-shot, no physical demos | [[2507.00990\|RIGVid]], [[2510.08568\|NovaFlow]] (**85%**) |
 | Cross-embodiment motion transfer | [[2506.06199\|3DFlowAction]] (**70%**), [[2412.04445\|Moto]] |
 | Decoupled vision/action denoising | [[2510.27607\|DUST]] (**+18%** RoboCasa) |
-| JEPA world-model design guidance | [[2512.24497\|JEPA-WM]] | ^dm-3
+| JEPA world-model design guidance | [[2512.24497\|JEPA-WM]] |
+
+^dm-3
 
 > [!star] Key Papers — World-Model Manipulation Landmarks
 > - [[2412.04445|Moto]] — the bridge that proved latent motion tokens learned from action-free video transfer into robot control with near-zero action labels.
 > - [[2604.19683|MWM]] — established that predicting *task-relevant masks* rather than full RGB futures is both cheaper and more OOD-robust — the "predict less" insight.
 > - [[2507.12898|Vidar]] — the canonical "one video prior, many embodiments" factorization separating a pretrained generator from a per-robot inverse-dynamics model.
 > - [[2603.28955|WAM]] — showed an inverse-dynamics regularizer turns a Dreamer world model's latent space into an action-aware frozen simulator for cheap policy optimization.
-> - [[2512.23541|Act2Goal]] — first manipulation world model to close a reward-free online self-improvement loop, lifting real OOD tasks 3× without new supervision. ^key-papers-3
+> - [[2512.23541|Act2Goal]] — first manipulation world model to close a reward-free online self-improvement loop, lifting real OOD tasks 3× without new supervision.
+
+^key-papers-3
 
 > [!tip] Predict Less, Plan More — The Task-Relevant-Future Bet
-> The naive world model predicts every pixel of the future; the 2026 winners predict *only what the policy needs*. [[2604.19683|MWM]] predicts semantic masks (geometry, not texture), [[2603.12553|Structured-WM-Planner]] predicts sparse kinematic keyframes (decision points, not dense rollouts), and [[2412.04445|Moto]]/[[2506.06199|3DFlowAction]] predict motion flow (what moves, not how it looks). Each "predicts less" and each generalizes *better* OOD — because the discarded detail was exactly the part that overfit. This is the same lesson the latent-world-model lineage learned: representation, not reconstruction, is the planning signal. For the JEPA-style latent-prediction theory behind this, see [[07_Latent-World-Models#1. The JEPA Principle]]; for the WAM-architecture design space these draw from, see [[06_WAM#6. Efficient & Action-Centered WAMs]]. ^insight-3
+> The naive world model predicts every pixel of the future; the 2026 winners predict *only what the policy needs*. [[2604.19683|MWM]] predicts semantic masks (geometry, not texture), [[2603.12553|Structured-WM-Planner]] predicts sparse kinematic keyframes (decision points, not dense rollouts), and [[2412.04445|Moto]]/[[2506.06199|3DFlowAction]] predict motion flow (what moves, not how it looks). Each "predicts less" and each generalizes *better* OOD — because the discarded detail was exactly the part that overfit. This is the same lesson the latent-world-model lineage learned: representation, not reconstruction, is the planning signal. For the JEPA-style latent-prediction theory behind this, see [[07_Latent-World-Models#1. The JEPA Principle]]; for the WAM-architecture design space these draw from, see [[06_WAM#6. Efficient & Action-Centered WAMs]].
+
+^insight-3
 
 ---
 
@@ -614,17 +632,23 @@ Maintain explicit beliefs about objects — including occluded ones — or disti
 | Explicit memory-bank policy + benchmark | [[2501.18564\|SAM2Act]] (**94.3%** MemoryBench) |
 | Reason about occluded / out-of-view objects | [[2309.15278\|Out-of-Sight-Still-in-Mind]] (**19/20** real) |
 | Cheap semantic keyframe history | [[2602.15010\|BPP]] (**+70%** bimanual) |
-| Sub-quadratic full-history backbone | [[2605.14598\|DSSP]], [[2604.18933\|Gated-Memory-Policy]] (§1.4) | ^dm-4
+| Sub-quadratic full-history backbone | [[2605.14598\|DSSP]], [[2604.18933\|Gated-Memory-Policy]] (§1.4) |
+
+^dm-4
 
 > [!star] Key Papers — Memory Architecture Landmarks
 > - [[2501.18564|SAM2Act]] — paired an explicit memory-bank policy with MemoryBench, giving the field both an architecture and the non-Markovian benchmark to measure it.
 > - [[2510.20328|MemER]] — showed VLM-nominated keyframes plus clustering retrieval scale robot memory to minutes, matching human-provided subtask decomposition.
 > - [[2603.24576|Chameleon]] — imported the episodic-memory cognitive architecture (pattern separation/completion) into closed-loop manipulation.
 > - [[2309.15278|Out-of-Sight-Still-in-Mind]] — the object-permanence landmark: explicit per-object memory beats implicit recurrence when objects leave the frame.
-> - [[2602.15010|BPP]] — demonstrated that semantic keyframe abstraction can be *more* robust than ground-truth state, inverting the usual oracle hierarchy. ^key-papers-4
+> - [[2602.15010|BPP]] — demonstrated that semantic keyframe abstraction can be *more* robust than ground-truth state, inverting the usual oracle hierarchy.
+
+^key-papers-4
 
 > [!tip] Visual Aliasing Is the Real Enemy — Structure Beats Window-Length
-> Every failure in this section traces to one root: two moments that look the same but require different actions. Naive frame-stacking can't separate them no matter how long the window. The winners impose *structure* — episodic anchors ([[2603.24576|Chameleon]]), per-object beliefs ([[2309.15278|Out-of-Sight-Still-in-Mind]]), retrieved keyframes ([[2510.20328|MemER]]), or VLM-salient frames ([[2602.15010|BPP]]) — so aliased states cluster apart and decision-relevant history survives. The strategic read: don't ask "how long a history?" — ask "what abstraction separates my aliased states?" For the backbone side of cheap history conditioning, see [[09_Manipulation-Skill-Learning#1. Generative Policy Architectures]]; for how self-evolving agents accumulate memory across episodes, see [[15_Self-Evolving-VLA-WAM#7. Self-Evolving Embodied Agents]]. ^insight-4
+> Every failure in this section traces to one root: two moments that look the same but require different actions. Naive frame-stacking can't separate them no matter how long the window. The winners impose *structure* — episodic anchors ([[2603.24576|Chameleon]]), per-object beliefs ([[2309.15278|Out-of-Sight-Still-in-Mind]]), retrieved keyframes ([[2510.20328|MemER]]), or VLM-salient frames ([[2602.15010|BPP]]) — so aliased states cluster apart and decision-relevant history survives. The strategic read: don't ask "how long a history?" — ask "what abstraction separates my aliased states?" For the backbone side of cheap history conditioning, see [[09_Manipulation-Skill-Learning#1. Generative Policy Architectures]]; for how self-evolving agents accumulate memory across episodes, see [[15_Self-Evolving-VLA-WAM#7. Self-Evolving Embodied Agents]].
+
+^insight-4
 
 ---
 
@@ -798,17 +822,23 @@ The other half of affordance grounding: don't just locate *where* to act, genera
 | Language-driven grasp in clutter | [[2506.18448\|GraspMAS]] (**0.76** cluttered) |
 | Build a world model by interaction | [[2402.15487\|RoboEXP]] (**70–90%**) |
 | Retrieve occluded objects | [[2603.02511\|Unveiler]] (**90.0%**, 260 ms) |
-| Detect execution failures at runtime | [[2412.04455\|Code-as-Monitor]] (**90%** real), [[2604.13788\|FIDeL]] | ^dm-5
+| Detect execution failures at runtime | [[2412.04455\|Code-as-Monitor]] (**90%** real), [[2604.13788\|FIDeL]] |
+
+^dm-5
 
 > [!star] Key Papers — Foundation-Model Grounding Landmarks
 > - [[2201.07207|LLM-Zero-Shot-Planners]] — the origin paper showing a frozen LLM's plans become executable with a thin grounding harness, launching the LLM-as-planner line.
 > - [[2307.05973|VoxPoser]] — the canonical demonstration that an LLM writing code over 3D value maps yields zero-shot manipulation without any robot training data.
 > - [[2409.01652|ReKep]] — established relational keypoint constraints as a reusable, optimizable interface between VLM reasoning and real-time control.
 > - [[2604.02812|Neuro-Symbolic-Robot-Policies]] — proved a small VLM trained on synthetic behavior-tree data can match large foundation models while guaranteeing structural validity.
-> - [[2402.15487|RoboEXP]] — the interactive-perception landmark: an action-conditioned scene graph built by *acting to perceive*, not perceiving then acting. ^key-papers-5
+> - [[2402.15487|RoboEXP]] — the interactive-perception landmark: an action-conditioned scene graph built by *acting to perceive*, not perceiving then acting.
+
+^key-papers-5
 
 > [!tip] Foundation Models Reason Broadly but Ungrounded — Everything Here Is a Grounding Harness
-> The raw LLM/VLM brings generalization the policy can't learn from demos, but it hallucinates affordances, mislocalizes objects, and proposes physically impossible plans. Every system in this section is a *harness* that catches those errors: symbolic scaffolds ([[2604.26569|LLM-Flax]]'s PDDL, [[2604.02812|Neuro-Symbolic-Robot-Policies]]' behavior trees), optimization layers ([[2409.01652|ReKep]]'s solvers, [[2605.02600|CoRAL]]'s MPPI), retrieval memory ([[2603.04560|MEMO]]), or interaction to verify ([[2402.15487|RoboEXP]], [[2602.18374|ZS-IP]]). The 2026 read: the value isn't the foundation model — it's the grounding interface that makes its reasoning *physically committable*. For the reasoning/CoT lineage that trains this competence directly into VLAs, see [[05_VLA-Reasoning-and-CoT#5. Reasoning-Traced Training]] and the spatial substrate in [[09_Manipulation-Skill-Learning#2. 3D & Multi-View Spatial Representation]]. ^insight-5
+> The raw LLM/VLM brings generalization the policy can't learn from demos, but it hallucinates affordances, mislocalizes objects, and proposes physically impossible plans. Every system in this section is a *harness* that catches those errors: symbolic scaffolds ([[2604.26569|LLM-Flax]]'s PDDL, [[2604.02812|Neuro-Symbolic-Robot-Policies]]' behavior trees), optimization layers ([[2409.01652|ReKep]]'s solvers, [[2605.02600|CoRAL]]'s MPPI), retrieval memory ([[2603.04560|MEMO]]), or interaction to verify ([[2402.15487|RoboEXP]], [[2602.18374|ZS-IP]]). The 2026 read: the value isn't the foundation model — it's the grounding interface that makes its reasoning *physically committable*. For the reasoning/CoT lineage that trains this competence directly into VLAs, see [[05_VLA-Reasoning-and-CoT#5. Reasoning-Traced Training]] and the spatial substrate in [[09_Manipulation-Skill-Learning#2. 3D & Multi-View Spatial Representation]].
+
+^insight-5
 
 ---
 
@@ -973,17 +1003,23 @@ Real-robot RL dies on manual resets and sparse rewards — these methods automat
 | Steer a frozen VLA at inference | [[2603.10052\|OmniGuide]] (**93.5%** safety) |
 | Recover from failures at deployment | [[2406.15917\|BGR]] (**+50%** real), [[2409.19190\|RAIL]] (**0%** collision) |
 | Contact-rich compliance / insertion | [[2509.19696\|Diffusion-Impedance-Learning]] (**100%**) |
-| Spatial generalization without state | [[2509.18644\|State-Free-Visuomotor-Policy]] (**98%**) | ^dm-6
+| Spatial generalization without state | [[2509.18644\|State-Free-Visuomotor-Policy]] (**98%**) |
+
+^dm-6
 
 > [!star] Key Papers — Learning-Signal Landmarks
 > - [[1806.10293|QT-Opt]] — the landmark that proved continuous-action Q-learning scales to hundreds of thousands of real grasps and produces emergent manipulation behavior.
 > - [[2507.07969|Q-chunking]] — established that redefining the Q-function over action chunks gives unbiased n-step backups, reconciling RL with the chunked action spaces modern policies use.
 > - [[2507.21053|FPO]] — the reference for bringing on-policy RL to flow-matching policies without abandoning their generative expressivity.
 > - [[2605.19919|ZPRL]] — crystallized the "RL the correction, not the policy" paradigm via a latent-bottleneck residual that keeps the frozen backbone intact.
-> - [[2509.18644|State-Free-Visuomotor-Policy]] — the counter-intuitive result that *removing* proprioception improves spatial generalization, reframing what a policy should condition on. ^key-papers-6
+> - [[2509.18644|State-Free-Visuomotor-Policy]] — the counter-intuitive result that *removing* proprioception improves spatial generalization, reframing what a policy should condition on.
+
+^key-papers-6
 
 > [!tip] RL the Correction, Not the Policy — The Residual Turn
-> The field is converging on a clear strategy: a pretrained imitation backbone is too valuable to destabilize with full RL, so freeze it and learn only a small residual. [[2605.19919|ZPRL]] residualizes the latent, [[2605.05925|DexSynRefine]] residualizes task-space motion, [[2603.10052|OmniGuide]] adds inference-time guidance, [[2509.19696|Diffusion-Impedance-Learning]] residualizes impedance. Each gets the backbone's broad competence *for free* and spends its sample budget only on the last-mile correction — which is exactly where demonstrations are weakest (contact, disturbance, OOD pose). The full-RL camp ([[2507.21053|FPO]], [[2502.02316|DIME]]) still matters when there's no good backbone to start from, but for *improving* a capable policy, residual steering is the sample-efficient default. For the sim-to-real transfer this RL ultimately has to survive, see [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]]; for force-aware residual control, see [[10_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]]. ^insight-6
+> The field is converging on a clear strategy: a pretrained imitation backbone is too valuable to destabilize with full RL, so freeze it and learn only a small residual. [[2605.19919|ZPRL]] residualizes the latent, [[2605.05925|DexSynRefine]] residualizes task-space motion, [[2603.10052|OmniGuide]] adds inference-time guidance, [[2509.19696|Diffusion-Impedance-Learning]] residualizes impedance. Each gets the backbone's broad competence *for free* and spends its sample budget only on the last-mile correction — which is exactly where demonstrations are weakest (contact, disturbance, OOD pose). The full-RL camp ([[2507.21053|FPO]], [[2502.02316|DIME]]) still matters when there's no good backbone to start from, but for *improving* a capable policy, residual steering is the sample-efficient default. For the sim-to-real transfer this RL ultimately has to survive, see [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]]; for force-aware residual control, see [[10_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]].
+
+^insight-6
 
 ---
 
@@ -1178,17 +1214,23 @@ Every method above is only as trustworthy as the benchmark that measures it — 
 | Sim+real co-trained transfer | [[2605.26638\|HyperSim]] (**95%** at 35 demos) |
 | Human-video → dexterous-hand transfer | [[2603.22264\|UniDex]] (**81%**, 5.2× cheaper), [[2511.09484\|SPIDER]] |
 | Add new sensor modalities to a generalist | [[2501.04693\|FuSe]] (**>60%**) |
-| Cross-embodiment reachability transfer | [[2604.06778\|RichMap]] (**+10.97%**) | ^dm-7
+| Cross-embodiment reachability transfer | [[2604.06778\|RichMap]] (**+10.97%**) |
+
+^dm-7
 
 > [!star] Key Papers — Data & Transfer Landmarks
 > - [[1810.07121|MIME]] — an early large-scale paired human-video + robot-demonstration dataset that seeded the visual-imitation-from-human-video line.
 > - [[2403.07788|DexCap]] — the portable-mocap landmark proving high-quality dexterous policies can be learned from human-only data with zero on-robot collection.
 > - [[2505.03233|SynGrasp-1B]] — demonstrated that a billion-frame synthetic dataset plus a VLA yields ~90% zero-shot real grasping, validating synthetic-data-at-scale.
 > - [[2603.22264|UniDex]] — the cross-embodiment landmark: a function-aligned action space lets one human-video-trained policy transfer zero-shot across dexterous hands.
-> - [[2306.10007|RPT]] — established masked sensorimotor pretraining as a transferable representation that scales with data and encoder size. ^key-papers-7
+> - [[2306.10007|RPT]] — established masked sensorimotor pretraining as a transferable representation that scales with data and encoder size.
+
+^key-papers-7
 
 > [!tip] The Cheapest Demonstration Is the One You Don't Collect on the Robot
-> Data is the highest-leverage axis in this deep-dive — a 10× cheaper source uplifts every method above it — and the field is racing to push collection *off the target robot*. Onto humans ([[2403.07788|DexCap]], [[2604.08534|ActiveGlasses]], [[2603.22264|UniDex]]), onto simulators ([[2505.03233|SynGrasp-1B]], [[2507.00833|HumanoidGen]], [[2605.26638|HyperSim]]), and onto other embodiments ([[2604.06778|RichMap]], [[2604.15215|HiST-AT]]). Each strategy trades a fidelity gap (human-robot embodiment mismatch, sim-real gap, cross-morphology gap) for a massive cost reduction, then spends a thin layer of real data closing the residual. The strategic read: your data strategy *is* your manipulation strategy — pick the off-robot source whose fidelity gap your downstream method can absorb. For the sim-side of synthetic data, see [[14_Sim-to-Real-Transfer#2. Sim-Side: Learned & Procedural Simulators]]; for the egocentric-human-video pretraining substrate, see [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]]. ^insight-7
+> Data is the highest-leverage axis in this deep-dive — a 10× cheaper source uplifts every method above it — and the field is racing to push collection *off the target robot*. Onto humans ([[2403.07788|DexCap]], [[2604.08534|ActiveGlasses]], [[2603.22264|UniDex]]), onto simulators ([[2505.03233|SynGrasp-1B]], [[2507.00833|HumanoidGen]], [[2605.26638|HyperSim]]), and onto other embodiments ([[2604.06778|RichMap]], [[2604.15215|HiST-AT]]). Each strategy trades a fidelity gap (human-robot embodiment mismatch, sim-real gap, cross-morphology gap) for a massive cost reduction, then spends a thin layer of real data closing the residual. The strategic read: your data strategy *is* your manipulation strategy — pick the off-robot source whose fidelity gap your downstream method can absorb. For the sim-side of synthetic data, see [[14_Sim-to-Real-Transfer#2. Sim-Side: Learned & Procedural Simulators]]; for the egocentric-human-video pretraining substrate, see [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]].
+
+^insight-7
 
 ---
 

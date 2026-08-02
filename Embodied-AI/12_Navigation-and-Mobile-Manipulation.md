@@ -269,16 +269,22 @@ Coordinating many robots' trajectories in shared, obstacle-dense space -- whethe
 | RGB-only generalization with no map | [[2301.13261\|Blind-Nav-Agents]], [[2101.05181\|MemAug-Image-Goal-Nav]] |
 | Large outdoor / mapless long-range | [[2506.05997\|SRU]] (**+105%** SR over GTRL) |
 | Compute-bound VLN deployment | [[2604.24391\|FreqCache]] (**1.59×** speedup) |
-| Survey of LLM navigation landscape | [[2311.00530\|LLM-Embodied-Navigation-Survey]] | ^dm-1
+| Survey of LLM navigation landscape | [[2311.00530\|LLM-Embodied-Navigation-Survey]] |
+
+^dm-1
 
 > [!star] Key Papers — Design-Space Exemplars
 > - [[2301.13261|Blind-Nav-Agents]] — The landmark result that metric maps emerge spontaneously in an end-to-end agent's memory, dissolving the explicit-vs-implicit dichotomy.
 > - [[2401.05946|TDB]] — Established the discrete-bottleneck cognitive map as the interpretable middle ground between explicit maps and black-box policies.
 > - [[2506.05997|SRU]] — The reference architecture for spatially-aware recurrence in mapless long-range navigation.
-> - [[2311.00530|LLM-Embodied-Navigation-Survey]] — The canonical taxonomy of how language models slot into the navigation stack. ^key-papers-1
+> - [[2311.00530|LLM-Embodied-Navigation-Survey]] — The canonical taxonomy of how language models slot into the navigation stack.
+
+^key-papers-1
 
 > [!tip] The Map Never Disappears — It Just Moves
-> The recurring lesson across this section is that *every* navigator carries a spatial representation; the only design choice is whether it lives in an inspectable data structure or in a recurrent/latent state. Blind agents grow occupancy maps in an LSTM; TDB makes the latent map discrete and plannable; SRU bakes spatial alignment into the recurrence. Reach for explicit maps when you need to *verify* a path or debug a failure; reach for learned latent memory when you need sim-to-real robustness and generalization. The 2026 trend (see [[12_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies]]) is to keep both — a learned policy that plans over an *imagined* latent world. For the latent-world-model substrate underneath, see [[07_Latent-World-Models#1. The JEPA Principle]]. ^insight-1
+> The recurring lesson across this section is that *every* navigator carries a spatial representation; the only design choice is whether it lives in an inspectable data structure or in a recurrent/latent state. Blind agents grow occupancy maps in an LSTM; TDB makes the latent map discrete and plannable; SRU bakes spatial alignment into the recurrence. Reach for explicit maps when you need to *verify* a path or debug a failure; reach for learned latent memory when you need sim-to-real robustness and generalization. The 2026 trend (see [[12_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies]]) is to keep both — a learned policy that plans over an *imagined* latent world. For the latent-world-model substrate underneath, see [[07_Latent-World-Models#1. The JEPA Principle]].
+
+^insight-1
 
 ### 2. Vision-Language Navigation
 
@@ -410,16 +416,22 @@ The environments and platforms that stress-test instruction-following.
 | Sim-to-real photorealistic VLN foundation | [[2606.03682\|GN0]] (**67.7%** SR, G1 transfer) |
 | Anticipatory VLN at low latency | [[2603.29165\|LatentPilot]] (**130ms**/action) |
 | Training-free self-improving VLN | [[2507.13152\|SE-VLN]] (**+23.9%** SR) |
-| Realistic / aerial / humanoid benchmark | [[2405.07060\|Memory-Maze]], [[2408.15511\|AeroVerse]], [[2604.08509\|Visually-grounded-Humanoid-Agents]] | ^dm-2
+| Realistic / aerial / humanoid benchmark | [[2405.07060\|Memory-Maze]], [[2408.15511\|AeroVerse]], [[2604.08509\|Visually-grounded-Humanoid-Agents]] |
+
+^dm-2
 
 > [!star] Key Papers
 > - [[2210.05714|VLMaps]] — The canonical open-vocabulary semantic-map navigator; established language-indexed spatial maps as a VLN primitive.
 > - [[2603.29165|LatentPilot]] — First to internalize action-conditioned anticipation inside the VLM backbone, replacing bolt-on world models.
 > - [[2606.03682|GN0]] — The reference 3DGS-grounded VLN foundation model with demonstrated zero-shot sim-to-real transfer.
-> - [[2405.07060|Memory-Maze]] — The benchmark that exposed how badly VLN handles realistic, memory-imperfect human instructions. ^key-papers-2
+> - [[2405.07060|Memory-Maze]] — The benchmark that exposed how badly VLN handles realistic, memory-imperfect human instructions.
+
+^key-papers-2
 
 > [!tip] Anticipation Beats External World Models — When It's Internalized
-> The 2026 VLN surprise is that *imagining the future* helps, but the win comes from internalizing it cheaply, not from a separate module. [[2603.29165|LatentPilot]] folds action-conditioned anticipation into a single Pilot Token and beats external world models on *both* accuracy and latency (**130ms**/action); the heavy bolt-on planner is a legacy of treating perception and prediction as separate stages. Compose this with self-evolution ([[2507.13152|SE-VLN]]) for training-free improvement and frozen-VLM grounding ([[2506.15757|WPCL]]) for cheap open-vocabulary perception. For the VLA-side treatment of reasoning-augmented action models, see [[04_VLA#4. Reasoning & Planning-Augmented VLAs]]; for the egocentric pretraining that gives these agents their visual priors, see [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]]. ^insight-2
+> The 2026 VLN surprise is that *imagining the future* helps, but the win comes from internalizing it cheaply, not from a separate module. [[2603.29165|LatentPilot]] folds action-conditioned anticipation into a single Pilot Token and beats external world models on *both* accuracy and latency (**130ms**/action); the heavy bolt-on planner is a legacy of treating perception and prediction as separate stages. Compose this with self-evolution ([[2507.13152|SE-VLN]]) for training-free improvement and frozen-VLM grounding ([[2506.15757|WPCL]]) for cheap open-vocabulary perception. For the VLA-side treatment of reasoning-augmented action models, see [[04_VLA#4. Reasoning & Planning-Augmented VLAs]]; for the egocentric pretraining that gives these agents their visual priors, see [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]].
+
+^insight-2
 
 ## Part B — Methods
 
@@ -525,16 +537,22 @@ The metric state-estimation backbone underneath robot navigation: recovering pos
 | Multi-episode lifelong memory | [[2507.12846\|Mind-Palace]] (6-month, 1,000 m²) |
 | Language-queryable retrieval memory | [[2409.18313\|Embodied-RAG]], [[2511.14004\|STAR-Memory-Action]] |
 | Dynamic / changing environments | [[2411.04999\|DynaMem]] (**70%** SR, dynamic objects) |
-| Persistent neural-field exploration memory | [[2605.22814\|Remember-to-be-Curious]] (3DGS) | ^dm-3
+| Persistent neural-field exploration memory | [[2605.22814\|Remember-to-be-Curious]] (3DGS) |
+
+^dm-3
 
 > [!star] Key Papers
 > - [[2012.03912|MultiON]] — The foundational benchmark proving explicit semantic memory outperforms implicit memory, and established the multi-object navigation task.
 > - [[2411.04999|DynaMem]] — The reference architecture for dynamic spatio-semantic memory that survives object motion — the link between navigation memory and mobile manipulation.
 > - [[2409.18313|Embodied-RAG]] — Established retrieval-augmented generation as a scalable, language-queryable embodied memory paradigm.
-> - [[2402.19161|MemoNav]] — Made *selective forgetting* a first-class navigation mechanism rather than an afterthought. ^key-papers-3
+> - [[2402.19161|MemoNav]] — Made *selective forgetting* a first-class navigation mechanism rather than an afterthought.
+
+^key-papers-3
 
 > [!tip] Forgetting Is the Hard Part, Not Remembering
-> Across every memory architecture here, the binding constraint is not storage capacity but *retrieval cost and staleness* — and the systems that win make forgetting an active decision. MemoNav prunes low-attention nodes; DynaMem ray-casts to purge moved objects; C-Nav (see [[12_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies]]) keeps only outlier keyframes. The composition recipe: pick a representation by your *persistence* need (working memory for a task, semantic forest for lifelong retrieval, dynamic voxels for changing scenes), then layer a forgetting/pruning mechanism so retrieval stays cheap. For the latent-prediction view of spatial memory as a learned world model, see [[07_Latent-World-Models#3. Broader Latent Prediction Landscape]]; for how manipulation handles non-Markovian long-horizon memory, see [[09_Manipulation-Skill-Learning#4. Memory & Long-Horizon Non-Markovian Control]]. ^insight-3
+> Across every memory architecture here, the binding constraint is not storage capacity but *retrieval cost and staleness* — and the systems that win make forgetting an active decision. MemoNav prunes low-attention nodes; DynaMem ray-casts to purge moved objects; C-Nav (see [[12_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies]]) keeps only outlier keyframes. The composition recipe: pick a representation by your *persistence* need (working memory for a task, semantic forest for lifelong retrieval, dynamic voxels for changing scenes), then layer a forgetting/pruning mechanism so retrieval stays cheap. For the latent-prediction view of spatial memory as a learned world model, see [[07_Latent-World-Models#3. Broader Latent Prediction Landscape]]; for how manipulation handles non-Markovian long-horizon memory, see [[09_Manipulation-Skill-Learning#4. Memory & Long-Horizon Non-Markovian Control]].
+
+^insight-3
 
 ### 4. Learning-Based Navigation Policies
 
@@ -658,17 +676,23 @@ Policies that read human intent and social norms to move through crowds, shared 
 | High-DoF / deformable local navigation | [[2605.12689\|3D-RL-DWA]] (**<2 ms**) |
 | Socially-compliant nav in human spaces | [[2511.21135\|SocialNav]] (**86.1%** SR, **82.5%** compliance) |
 | One local policy across many embodiments | [[2509.23203\|CE-Nav]] (5 robots, **8×** less training) |
-| Scale a generalist nav policy with offline video + RL | [[2507.22028\|S2E]] (**+21%** SR over BC-only) | ^dm-4
+| Scale a generalist nav policy with offline video + RL | [[2507.22028\|S2E]] (**+21%** SR over BC-only) |
+
+^dm-4
 
 > [!star] Key Papers
 > - [[2605.10118|SAGE]] — Showed that physics-grounded sandbox imagination plus GRPO-style optimization yields navigation that beats GPT-4o and transfers to hardware.
 > - [[2605.14174|VIA]] — The reference for formally verifiable navigation: CVaR-constrained RL whose safety margins survive reachability analysis and sim-to-real.
 > - [[2510.20685|C-Nav]] — Established continual object navigation as a task and the dual-path anti-forgetting recipe for open-world skill accumulation.
 > - [[2507.22028|S2E]] — Showed RL on large-scale video pretraining ("seeing → experiencing") is what makes a navigation foundation model interactive and cross-embodiment, with the NavBench-GS benchmark.
-> - [[2509.23203|CE-Nav]] — The reference cross-embodiment recipe: an offline geometric-expert prior plus online RL transfers one local-nav policy across quadruped, biped, and aerial platforms at 8× lower cost. ^key-papers-4
+> - [[2509.23203|CE-Nav]] — The reference cross-embodiment recipe: an offline geometric-expert prior plus online RL transfers one local-nav policy across quadruped, biped, and aerial platforms at 8× lower cost.
+
+^key-papers-4
 
 > [!tip] Safety Becomes a Constraint, Generalists Become Cross-Embodiment
-> Two strategic shifts converge in 2025–2026 policy learning. **Safety** is no longer a reward penalty but a *constraint the policy is trained and certified against*: [[2605.14174|VIA]] couples CVaR-constrained RL with reachability verification for a provable safety rate, and [[2508.05634|Conformal-Crowd-Navigation]] turns prediction uncertainty into a constraint — trading efficiency for collision guarantees that survive OOD and sim-to-real. **Generalization** mirrors the VLA pretraining story: a broad offline prior (video for [[2507.22028|S2E]], a geometric expert for [[2509.23203|CE-Nav]], human-walking norms for [[2511.21135|SocialNav]]) supplies the inductive bias, and a thin online-RL stage adds reactivity and embodiment-specific competence — yielding cross-embodiment transfer without per-platform retraining (CE-Nav runs one policy across five robots). Compose the two: plan *around* the constrained safe set with world-model imagination ([[2603.07799|MWM]]) atop a broadly-pretrained generalist. For the RL-for-embodiment methodology underneath, see [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]]; for the egocentric pretraining that supplies these priors, see [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]]; for sim-to-real transfer, see [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]]. ^insight-4
+> Two strategic shifts converge in 2025–2026 policy learning. **Safety** is no longer a reward penalty but a *constraint the policy is trained and certified against*: [[2605.14174|VIA]] couples CVaR-constrained RL with reachability verification for a provable safety rate, and [[2508.05634|Conformal-Crowd-Navigation]] turns prediction uncertainty into a constraint — trading efficiency for collision guarantees that survive OOD and sim-to-real. **Generalization** mirrors the VLA pretraining story: a broad offline prior (video for [[2507.22028|S2E]], a geometric expert for [[2509.23203|CE-Nav]], human-walking norms for [[2511.21135|SocialNav]]) supplies the inductive bias, and a thin online-RL stage adds reactivity and embodiment-specific competence — yielding cross-embodiment transfer without per-platform retraining (CE-Nav runs one policy across five robots). Compose the two: plan *around* the constrained safe set with world-model imagination ([[2603.07799|MWM]]) atop a broadly-pretrained generalist. For the RL-for-embodiment methodology underneath, see [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]]; for the egocentric pretraining that supplies these priors, see [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]]; for sim-to-real transfer, see [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]].
+
+^insight-4
 
 ### 5. Mobile Manipulation & Loco-Navigation
 
@@ -734,16 +758,22 @@ Coordinating gaze, gait, and perception for humanoid locomotion in dynamic scene
 | Quadruped loco-manipulation from ego vision | [[2605.03846\|SigLoMa]] (**83–87%** grasp) |
 | Agile humanoid locomotion over gaps | [[2606.05880\|TAGA]] (**120 cm** gap, **+50%**) |
 | Humanoid interaction-pose safety | [[2605.21935\|MIF]] (**94%** IPS, **0%** collision) |
-| Aerial social navigation among humans | [[2605.25685\|HumanFlow]] (**100%** collision-free) | ^dm-5
+| Aerial social navigation among humans | [[2605.25685\|HumanFlow]] (**100%** collision-free) |
+
+^dm-5
 
 > [!star] Key Papers
 > - [[2409.16578|FLaRe]] — The reference recipe for scaling RL fine-tuning to mobile manipulation, with the largest real-robot generalization gains in the class.
 > - [[2411.04999|DynaMem]] — The bridge paper connecting navigation memory to manipulation: dynamic spatio-semantic memory is what makes open-world mobile manipulation possible.
 > - [[2605.03846|SigLoMa]] — Established the ego-centric Kalman-filter recipe for treating quadruped locomotion and manipulation as one floating-base control problem.
-> - [[2606.05880|TAGA]] — First to show emergent active gaze for agile humanoid locomotion, extending perceptive locomotion past prior gap-traversal limits. ^key-papers-5
+> - [[2606.05880|TAGA]] — First to show emergent active gaze for agile humanoid locomotion, extending perceptive locomotion past prior gap-traversal limits.
+
+^key-papers-5
 
 > [!tip] Mobile Manipulation Is Navigation Memory + Floating-Base Control, Fused
-> The unifying insight across embodiments is that mobile manipulation cannot be solved by stacking a navigation module on a manipulation module — the floating base couples them. SigLoMa and TAGA both invest in ego-motion compensation (Kalman filter, active gaze) precisely because the manipulation target's frame and the locomotion frame are the same moving frame; MIF verifies *interaction* poses, not just paths, because where the humanoid stops determines whether it can act. The composition recipe: take the dynamic memory of [[2411.04999|DynaMem]] (knows where the object is *now*), add floating-base control, and verify the interaction pose. For the manipulation-policy side of the coupling — grasping, dexterity, contact-rich skills — see [[09_Manipulation-Skill-Learning#1. Generative Policy Architectures]]; for the force-aware sensing that whole-body interaction needs, see [[11_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination]]. ^insight-5
+> The unifying insight across embodiments is that mobile manipulation cannot be solved by stacking a navigation module on a manipulation module — the floating base couples them. SigLoMa and TAGA both invest in ego-motion compensation (Kalman filter, active gaze) precisely because the manipulation target's frame and the locomotion frame are the same moving frame; MIF verifies *interaction* poses, not just paths, because where the humanoid stops determines whether it can act. The composition recipe: take the dynamic memory of [[2411.04999|DynaMem]] (knows where the object is *now*), add floating-base control, and verify the interaction pose. For the manipulation-policy side of the coupling — grasping, dexterity, contact-rich skills — see [[09_Manipulation-Skill-Learning#1. Generative Policy Architectures]]; for the force-aware sensing that whole-body interaction needs, see [[11_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination]].
+
+^insight-5
 
 ## Part C — Frontier
 
@@ -778,16 +808,22 @@ The meta-pattern is that navigation's hardest problems are *systemic*, not modul
 | Catastrophic forgetting | Dual-path anti-forgetting + outlier keyframes ([[2510.20685\|C-Nav]]) |
 | Unprovable safety | CVaR + reachability verification ([[2605.14174\|VIA]]) |
 | Imagination divergence | Consistency distillation / physics sandbox ([[2603.07799\|MWM]], [[2605.10118\|SAGE]]) |
-| Privacy leakage during perception | Life-cycle privacy as a control signal ([[2605.05017\|SPINE]]) | ^dm-6
+| Privacy leakage during perception | Life-cycle privacy as a control signal ([[2605.05017\|SPINE]]) |
+
+^dm-6
 
 > [!star] Key Papers — Navigation Failure Frontier
 > - [[2605.05017|SPINE]] — Reframed embodied privacy as a navigation-pipeline architectural constraint and quantified the non-linear privacy-utility trade-off.
 > - [[2605.14174|VIA]] — The frontier of provable navigation safety: the first to make CVaR-constrained policies survive formal reachability verification and sim-to-real.
 > - [[2405.07060|Memory-Maze]] — Exposed that VLN's grounding problem is far from solved once instructions become realistically imperfect.
-> - [[2510.20685|C-Nav]] — Surfaced continual object navigation as an open problem and the stability-plasticity wall that worsens with scale. ^key-papers-6
+> - [[2510.20685|C-Nav]] — Surfaced continual object navigation as an open problem and the stability-plasticity wall that worsens with scale.
+
+^key-papers-6
 
 > [!tip] Every Navigation Failure Is a Representation That Lied
-> The common root beneath all these failure modes is a spatial representation that diverged from the world — stale maps, forgotten goals, divergent imagined rollouts, mis-grounded instructions, privacy-blind perception. The strategic implication is that the next gains come not from better policies over fixed representations, but from representations that *know when they are wrong* — dynamic memory that purges itself, world models that flag divergence, policies that verify their own safety, and perception pipelines that treat privacy as state. This is the same systemic-failure pattern that haunts world models generally: see [[06_WAM#9. Open Problems & Failure Modes]] for the imagination-divergence failure frontier, and [[14_Sim-to-Real-Transfer#7. Open Problems]] for the sim-to-real representation-mismatch failures that navigation shares. ^insight-6
+> The common root beneath all these failure modes is a spatial representation that diverged from the world — stale maps, forgotten goals, divergent imagined rollouts, mis-grounded instructions, privacy-blind perception. The strategic implication is that the next gains come not from better policies over fixed representations, but from representations that *know when they are wrong* — dynamic memory that purges itself, world models that flag divergence, policies that verify their own safety, and perception pipelines that treat privacy as state. This is the same systemic-failure pattern that haunts world models generally: see [[06_WAM#9. Open Problems & Failure Modes]] for the imagination-divergence failure frontier, and [[14_Sim-to-Real-Transfer#7. Open Problems]] for the sim-to-real representation-mismatch failures that navigation shares.
+
+^insight-6
 
 ## Quick-Reference Matrix
 

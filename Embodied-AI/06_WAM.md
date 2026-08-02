@@ -207,17 +207,23 @@ Benchmarks that probe the *capabilities* a WAM must have — memory consistency 
 | WAM robustness *without* test-time latency | Training-time-only video co-training — [[2603.16666\|Fast-WAM]] |
 | Efficient motion signal, no full frames | Compact prediction — optical flow ([[2508.18269\|FlowVLA]]), latent ([[2602.22010\|WoG]]) |
 | Pure planning with no visual feedback | Action-space prediction — [[2205.09991\|Diffuser]] |
-| Formal cascaded-vs-joint placement | [[2605.12090\|WAM-Survey]] taxonomy | ^dm-1
+| Formal cascaded-vs-joint placement | [[2605.12090\|WAM-Survey]] taxonomy |
+
+^dm-1
 
 > [!star] Key Papers
 > - [[2606.20781|WAM-Survey-2026]] — Companion formal definition to [[2605.12090|WAM-Survey]]; its three-way design-philosophy split (Render-and-Decode, Latent-Only, Video-Generation-Free) is the taxonomy this note's own design-space axes implicitly track
 > - [[2607.00836|World Action Models Tutorial]] — The field's first tutorial-level formalization distinguishing world models from world *action* models; its four-paradigm classification is the scaffolding most later surveys inherit
 > - [[2606.06556|Robots-Need-More]] — Reframes WAMs as one pillar (Physics-Grounded World Models) inside a broader four-pillar "grounding bottleneck" argument — the most field-shaping position paper on what generalist robots still lack beyond scale
 > - [[2510.18135|World-in-World]] — First closed-loop benchmark measuring embodied *utility* rather than visual fidelity across four heterogeneous tasks; established that controllability and post-training data scale beat raw generation quality
-> - [[2411.02385|PhyWorld]] — The founding physical-generalization testbed; its order-of-magnitude OOD velocity-error gap is the empirical result every later "does scale teach physics?" study in §1.1–§1.2 responds to ^key-papers-1
+> - [[2411.02385|PhyWorld]] — The founding physical-generalization testbed; its order-of-magnitude OOD velocity-error gap is the empirical result every later "does scale teach physics?" study in §1.1–§1.2 responds to
+
+^key-papers-1
 
 > [!tip] The Core Trade-off
-> VideoGen WAMs are the most robust (spatiotemporal priors from internet video) but the slowest. Latent prediction WAMs are fast and sample-efficient. [[2603.16666|Fast-WAM]] shows you can bridge this gap: train with video generation objectives but deploy without test-time imagination. Cross-reference [[07_Latent-World-Models#5. Latent vs Pixel Comparison]] for the full latent-vs-pixel decision matrix this trade-off maps onto. ^insight-1
+> VideoGen WAMs are the most robust (spatiotemporal priors from internet video) but the slowest. Latent prediction WAMs are fast and sample-efficient. [[2603.16666|Fast-WAM]] shows you can bridge this gap: train with video generation objectives but deploy without test-time imagination. Cross-reference [[07_Latent-World-Models#5. Latent vs Pixel Comparison]] for the full latent-vs-pixel decision matrix this trade-off maps onto.
+
+^insight-1
 
 ---
 
@@ -428,17 +434,23 @@ Video models that don't just predict a robot's next observation but fully substi
 | Minute-scale 720p video on single GPU | [[2605.15178\|SANA-WM]] (**22 videos/hour**, **39×** distilled speedup) |
 | Pretrained-Cosmos fine-tune (clean LIBERO baseline) | [[2601.16163\|Cosmos-Policy]] (**98.5%** LIBERO) |
 | Geometry-aware 4D rollout (depth/normal/3DGS) | [[2504.20995\|TesserAct]] (RGB-DN) / [[2503.18945\|Aether]] / [[2403.08321\|ManiGaussian]] (§2.5) |
-| Foundational learned-sim baseline | [[2310.06114\|UniSim]] | ^dm-2
+| Foundational learned-sim baseline | [[2310.06114\|UniSim]] |
+
+^dm-2
 
 > [!star] Key Papers
 > - [[2602.15922|DreamZero]] — **14B** joint video+action; **39.5%** unseen tasks, **42%** cross-embodiment, **7Hz** real-time; the robustness ceiling for VideoGen WAMs
 > - [[2605.15178|SANA-WM]] — First viable open-source minute-scale 720p WAM; **22 videos/hour** on H100, **39×** distilled speedup
 > - [[2601.16163|Cosmos-Policy]] — Fine-tuned Cosmos video model hits **98.5%** [[2306.03310|LIBERO]]; the cleanest proof pretrained video diffusion transfers to control
 > - [[2603.23376|ABot-PhysWorld]] — Diffusion-DPO for physics alignment; the reference recipe for suppressing object-penetration / anti-gravity hallucinations
-> - [[2509.21309|NewtonGen]] — Physics-consistent T2V via neural Newtonian dynamics; explicit physics constraints during generation (Physical Invariance **0.9830** vs Sora's **0.6548**) ^key-papers-2
+> - [[2509.21309|NewtonGen]] — Physics-consistent T2V via neural Newtonian dynamics; explicit physics constraints during generation (Physical Invariance **0.9830** vs Sora's **0.6548**)
+
+^key-papers-2
 
 > [!tip] Video Generation = Physics Engine
-> Video diffusion models trained on internet data implicitly learn physics. [[2602.15922|DreamZero]] proved joint video+action generation provides spatiotemporal priors that pure VLAs lack. But test-time video generation is expensive — consider [[2603.16666|Fast-WAM]]'s training-only approach. For an explicit physics-priors view, see [[08_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation]]; for the egocentric pretraining substrate these models reuse, see [[13_Egocentric-Pretraining-and-Human-Video#6. Egocentric Pretraining Meets WAMs]]. ^insight-2
+> Video diffusion models trained on internet data implicitly learn physics. [[2602.15922|DreamZero]] proved joint video+action generation provides spatiotemporal priors that pure VLAs lack. But test-time video generation is expensive — consider [[2603.16666|Fast-WAM]]'s training-only approach. For an explicit physics-priors view, see [[08_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation]]; for the egocentric pretraining substrate these models reuse, see [[13_Egocentric-Pretraining-and-Human-Video#6. Egocentric Pretraining Meets WAMs]].
+
+^insight-2
 
 ---
 
@@ -541,21 +553,27 @@ The data axis that makes latent WAMs scalable: when video carries no action labe
 | Self-supervised from frozen vision encoder | [[2411.04983\|DINO-WM]] / [[2511.08544\|LeJEPA]] |
 | Latent actions from unlabeled / human video | [[2602.12215\|LDA-1B]] / [[2603.05815\|HiLAM]] / [[2312.10812\|LAPO]] (§3.4) |
 | Object-centric latent reasoning | [[2602.11389\|Causal-JEPA]] |
-| Massive-video pretraining for manipulation | [[2506.09985\|V-JEPA-2]] (**1M+ hours** video; **80%** pick-and-place from 62 hr unlabeled robot data) | ^dm-3
+| Massive-video pretraining for manipulation | [[2506.09985\|V-JEPA-2]] (**1M+ hours** video; **80%** pick-and-place from 62 hr unlabeled robot data) |
+
+^dm-3
 
 > [!star] Key Papers
 > - [[2602.10098|VLA-JEPA]] — Full VLA+JEPA pipeline: **97.2%** [[2306.03310|LIBERO]] in-distribution, **79.5%** [[2510.13626|LIBERO-Plus]] OOD; defines the latent speed-quality Pareto frontier
 > - [[2506.09985|V-JEPA-2]] — **1M+ hours** video pretraining; **80%** pick-and-place from **62 hours** unlabeled robot video; the JEPA-family scale anchor
 > - [[2605.06388|Semantic-LDM-WM]] — First controlled head-to-head proving semantic latents beat reconstruction VAEs (**+9.8 pp** closed-loop, **+13.6 pp** OOD) inside one LDM framework
 > - [[2504.02792|UWM]] — Unified video+action diffusion in one Diffusion Transformer; the clean modern latent-diffusion WAM
-> - [[2411.04983|DINO-WM]] — Frozen-DINOv2 transition model; the canonical self-supervised zero-shot-planning baseline ^key-papers-3
+> - [[2411.04983|DINO-WM]] — Frozen-DINOv2 transition model; the canonical self-supervised zero-shot-planning baseline
+
+^key-papers-3
 
 > [!tip] Latent > Pixel for Efficiency
-> Latent prediction avoids the expensive pixel-level reconstruction of VideoGen WAMs. [[2506.09985|V-JEPA-2]] achieves competitive manipulation performance using self-supervised video pre-training alone. The JEPA family shows that predicting in embedding space produces more semantically meaningful features — you don't waste capacity modeling textures and shadows. [[2605.06388|Semantic-LDM-WM]] formalizes this: in a controlled study within a single LDM framework, semantic-aligned latents ([[2603.14482|V-JEPA-2.1]], [[2502.14786|SigLIP-2]]) beat reconstruction VAEs by **+9.8 pp** closed-loop and **+13.6 pp** OOD — visual fidelity is *not* the right objective for control. Cross-reference [[07_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA lineage in full and [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the latent-reasoning frontier built on top. ^insight-3
+> Latent prediction avoids the expensive pixel-level reconstruction of VideoGen WAMs. [[2506.09985|V-JEPA-2]] achieves competitive manipulation performance using self-supervised video pre-training alone. The JEPA family shows that predicting in embedding space produces more semantically meaningful features — you don't waste capacity modeling textures and shadows. [[2605.06388|Semantic-LDM-WM]] formalizes this: in a controlled study within a single LDM framework, semantic-aligned latents ([[2603.14482|V-JEPA-2.1]], [[2502.14786|SigLIP-2]]) beat reconstruction VAEs by **+9.8 pp** closed-loop and **+13.6 pp** OOD — visual fidelity is *not* the right objective for control. Cross-reference [[07_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA lineage in full and [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the latent-reasoning frontier built on top.
+
+^insight-3
 
 ---
 
-### 4. [[1912.01603|Dreamer]] Lineage
+### 4. Dreamer Lineage
 
 Model-based RL from scratch: learn a latent dynamics model (RSSM) and plan via imagination in latent space. The oldest WAM paradigm, still evolving — and the only one that works without internet-scale video or a pretrained VLM.
 
@@ -711,15 +729,21 @@ Model-based RL as a policy-training algorithm rather than a decision-time planne
 | Exploration in sparse-reward domains | [[2005.05960\|Plan2Explore]] / [[2503.21047\|CBET-DreamerV3]] |
 | Continual / task-invariant transfer | [[2211.15944\|Continual-Dreamer]] / [[2604.02911\|DreamTIP]] |
 | Complex video-game-scale dynamics | [[2509.24527\|Dreamer-4]] |
-| Trajectory-level diffusion planning | [[2205.09991\|Diffuser]] / [[2302.01877\|AdaptDiffuser]] | ^dm-4
+| Trajectory-level diffusion planning | [[2205.09991\|Diffuser]] / [[2302.01877\|AdaptDiffuser]] |
+
+^dm-4
 
 > [!star] Key Papers
 > - [[2301.04104|DreamerV3]] — Fixed hyperparameters across **150+** tasks; proved model-based RL generalizes without per-task tuning — the modern domain-agnostic substrate
 > - [[2206.14176|DayDreamer]] — Adapted [[1912.01603|Dreamer]] to physical robots; **1 hour** of physical learning for quadruped locomotion (vs days for model-free RL)
-> - [[2205.09991|Diffuser]] — Denoising diffusion for trajectory optimization; unified planning and acting under one objective ^key-papers-4
+> - [[2205.09991|Diffuser]] — Denoising diffusion for trajectory optimization; unified planning and acting under one objective
+
+^key-papers-4
 
 > [!tip] Why [[1912.01603|Dreamer]] Still Matters
-> [[1912.01603|Dreamer]] models are lean (no VLM backbone needed), sample-efficient ([[2206.14176|DayDreamer]] learned quadruped locomotion in 1 hour), and domain-agnostic ([[2301.04104|DreamerV3]]'s fixed hyperparameters). When you don't have a pretrained VLM or internet video, the [[1912.01603|Dreamer]] approach remains the strongest option. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#1. Why Egocentric Pretraining Now]] for the internet-scale video pretraining substrate other WAM paradigms depend on that the Dreamer lineage sidesteps entirely. ^insight-4
+> [[1912.01603|Dreamer]] models are lean (no VLM backbone needed), sample-efficient ([[2206.14176|DayDreamer]] learned quadruped locomotion in 1 hour), and domain-agnostic ([[2301.04104|DreamerV3]]'s fixed hyperparameters). When you don't have a pretrained VLM or internet video, the [[1912.01603|Dreamer]] approach remains the strongest option. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#1. Why Egocentric Pretraining Now]] for the internet-scale video pretraining substrate other WAM paradigms depend on that the Dreamer lineage sidesteps entirely.
+
+^insight-4
 
 ---
 
@@ -823,17 +847,23 @@ Predict condensed motion signals (optical flow, motion tokens) instead of full v
 | Iterative co-improvement (VLA ↔ WM) | [[2602.12063\|VLAW]] (**+39%** improvement loop) |
 | Adaptive test-time imagination budget | [[2602.08236\|AVIC]] (decides when/how much to imagine) |
 | Compact motion representation (no full video) | [[2602.22010\|WoG]] |
-| Unified VLA + WM under one loss | [[2506.21539\|WorldVLA]] / [[2506.19850\|UniVLA]] | ^dm-5
+| Unified VLA + WM under one loss | [[2506.21539\|WorldVLA]] / [[2506.19850\|UniVLA]] |
+
+^dm-5
 
 > [!star] Key Papers
 > - [[2605.15153|Pelican-Unified]] — First single-model unification of understanding + reasoning + imagination + action via shared latent z; **64.7** VLM avg, **93.5%** RoboTwin dual-arm, **1st** on WorldArena — structurally shared representations beat modular assembly
 > - [[2605.10942|HarmoWAM]] — Resolves the generalization-precision trade-off via dual experts + process-adaptive gating; **89%** in-domain, smallest reported OOD drop (**−7.9%**)
 > - [[2602.12063|VLAW]] — The canonical iterative co-improvement loop: VLA and WM reinforce each other; **+39.2pp** on contact-rich tasks
 > - [[2602.08236|AVIC]] — Adaptive test-time imagination: decides *when and how much* to imagine, **17×** fewer WM calls than always-on
-> - [[2506.19850|UniVLA]] — Discrete-token VLA+WM unification; WM pretraining matches full-data CALVIN with only **10%** fine-tuning data ^key-papers-5
+> - [[2506.19850|UniVLA]] — Discrete-token VLA+WM unification; WM pretraining matches full-data CALVIN with only **10%** fine-tuning data
+
+^key-papers-5
 
 > [!tip] The Co-Improvement Insight
-> [[2602.12063|VLAW]] showed that VLA and world model don't just coexist — they actively improve each other through iterative training. The world model generates better synthetic data for the VLA, and the VLA's improving actions give the world model harder scenarios to learn from. Cross-reference [[04_VLA#5. World-Model-Augmented VLAs]] for the VLA-side framing of the same architectures and [[05_VLA-Reasoning-and-CoT#2. Visual Chain-of-Thought]] for how visual chain-of-thought composes with WAM-integrated VLAs. ^insight-5
+> [[2602.12063|VLAW]] showed that VLA and world model don't just coexist — they actively improve each other through iterative training. The world model generates better synthetic data for the VLA, and the VLA's improving actions give the world model harder scenarios to learn from. Cross-reference [[04_VLA#5. World-Model-Augmented VLAs]] for the VLA-side framing of the same architectures and [[05_VLA-Reasoning-and-CoT#2. Visual Chain-of-Thought]] for how visual chain-of-thought composes with WAM-integrated VLAs.
+
+^insight-5
 
 ---
 
@@ -907,18 +937,24 @@ Introspection layers so the agent knows when to *distrust* its own predictions �
 | Real-time latent planning (driving / control) | [[2512.19133\|WorldRFT]] |
 | Offline model-based RL with uncertainty | [[2504.16680\|RWM-U]] |
 | Self-correction via forward-inverse check | [[2604.01985\|WAV]] |
-| Eliminate online expert queries | [[2604.11351\|WM-DAgger]] | ^dm-6
+| Eliminate online expert queries | [[2604.11351\|WM-DAgger]] |
+
+^dm-6
 
 > [!star] Key Papers
 > - [[2603.16666|Fast-WAM]] — proves the **training-time video, test-time speed** recipe; WAM robustness without WAM latency penalty
 > - [[2605.06247|CKT-WAM]] — **86.1%** [[2510.13626|LIBERO-Plus]] with only **1.17%** trainable params; the parameter-efficient transfer baseline
-> - [[2410.00564|JOWA]] — jointly-optimized world-action pretraining; the action-centered scaling baseline ^key-papers-6
+> - [[2410.00564|JOWA]] — jointly-optimized world-action pretraining; the action-centered scaling baseline
+
+^key-papers-6
 
 > [!success] The Efficiency Recipe
 > ==Train with video objectives== (to get spatiotemporal priors) → ==Deploy without video generation== (no test-time imagination). [[2603.16666|Fast-WAM]] proved this works: you get most of the robustness benefit without the latency penalty.
 
 > [!tip] Training-Time vs Test-Time Video
-> The critical insight from 2026: you need video generation at **training time** (to learn physics) but NOT at **test time** (where it causes latency). This decouples the benefit of VideoGen WAMs from their computational cost. Cross-reference [[04_VLA#2. Efficient & Lightweight VLAs]] for the efficient-VLA design space (parameter-light models that pair well with these efficient WAMs) and [[14_Sim-to-Real-Transfer#6. Integration Patterns]] for the learned-sim deployment recipe. ^insight-6
+> The critical insight from 2026: you need video generation at **training time** (to learn physics) but NOT at **test time** (where it causes latency). This decouples the benefit of VideoGen WAMs from their computational cost. Cross-reference [[04_VLA#2. Efficient & Lightweight VLAs]] for the efficient-VLA design space (parameter-light models that pair well with these efficient WAMs) and [[14_Sim-to-Real-Transfer#6. Integration Patterns]] for the learned-sim deployment recipe.
+
+^insight-6
 
 ---
 
@@ -980,15 +1016,21 @@ Continual RL on world-model dynamics; agent and environment co-evolve. The world
 | Epistemic-driven exploration | [[2503.01584\|SENSEI]] |
 | Visual-language-navigation self-evolution | [[2506.23468\|NavMorph]] |
 | RL on video action-model dynamics | [[2603.19370\|VAMPO]] (GRPO-based) |
-| Co-evolving agent + world model | [[2504.21024\|WebEvolver]] | ^dm-7
+| Co-evolving agent + world model | [[2504.21024\|WebEvolver]] |
+
+^dm-7
 
 > [!star] Key Papers
 > - [[2603.08403|SPIRAL]] — closed-loop reflective planning (generate → critique → regenerate) is the canonical self-improving WAM template; judging plan quality is easier than generating perfect plans
 > - [[2502.05907|EvoAgent]] — three-part loop with continual world model; **+105%** on long-horizon tasks; loop contributes **72%** of total gain — proves continual world models are the key enabler for self-evolution
-> - [[2603.09030|PlayWorld]] — autonomous self-play data collection scales WAM training without human demonstrations; the "free data" recipe ^key-papers-7
+> - [[2603.09030|PlayWorld]] — autonomous self-play data collection scales WAM training without human demonstrations; the "free data" recipe
+
+^key-papers-7
 
 > [!tip] Why WAMs Enable Self-Evolution
-> WAMs already have a learned dynamics model that generates synthetic experience — the agent can "rehearse" in imagination, discover failure modes, and improve without costly real-world interaction. See [[15_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the comprehensive comparison of self-evolving VLAs, WAMs, and embodied agents, and [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA-side continual-learning landscape that pairs with these WAM mechanisms. ^insight-7
+> WAMs already have a learned dynamics model that generates synthetic experience — the agent can "rehearse" in imagination, discover failure modes, and improve without costly real-world interaction. See [[15_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the comprehensive comparison of self-evolving VLAs, WAMs, and embodied agents, and [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA-side continual-learning landscape that pairs with these WAM mechanisms.
+
+^insight-7
 
 ---
 
@@ -1026,17 +1068,23 @@ Maximize what's learnable from *limited* data without VLM priors. The frontier w
 | **Latent** ([[2602.10098\|VLA-JEPA]]) | Fast | High | High | Latent transfer | In-domain, real-time control |
 | **[[1912.01603\|Dreamer]]** ([[2301.04104\|DreamerV3]]) | Fast | Moderate | Highest | Within-domain | Limited data, no VLM available |
 | **VLM-Integrated** ([[2602.12063\|VLAW]]) | Moderate | High | Moderate | Semantic transfer | Complex tasks needing reasoning |
-| **Efficient** ([[2603.16666\|Fast-WAM]]) | Fast | High | Moderate | VideoGen priors, fast deploy | Production deployment | ^dm-8
+| **Efficient** ([[2603.16666\|Fast-WAM]]) | Fast | High | Moderate | VideoGen priors, fast deploy | Production deployment |
+
+^dm-8
 
 > [!star] Key Papers (one canonical per paradigm)
 > - [[2602.15922|DreamZero]] — canonical **VideoGen** WAM; 14B joint video+action model; **39.5%** unseen tasks; defines the robustness ceiling
 > - [[2602.10098|VLA-JEPA]] — canonical **Latent** WAM; **97.2%** LIBERO at ~**10ms/step**; defines the speed-quality Pareto frontier
 > - [[2301.04104|DreamerV3]] — canonical **Dreamer** paradigm; **150+** tasks with fixed HP; the limited-data substrate
 > - [[2605.15153|Pelican-Unified]] — canonical **VLM-Integrated** WAM; unified understanding + imagination + action; **93.5%** RoboTwin
-> - [[2603.16666|Fast-WAM]] — canonical **Efficient** WAM; proves training-time video + test-time speed; the production recipe ^key-papers-8
+> - [[2603.16666|Fast-WAM]] — canonical **Efficient** WAM; proves training-time video + test-time speed; the production recipe
+
+^key-papers-8
 
 > [!tip] No Single Winner — Match Paradigm to Constraint
-> Each paradigm dominates one axis: **VideoGen** maximizes robustness at the cost of speed (~7Hz); **Latent** ([[2602.10098|VLA-JEPA]]) maximizes speed and sample efficiency; **[[1912.01603|Dreamer]]** lineage maximizes sample efficiency for limited-data regimes; **VLM-Integrated** maximizes semantic transfer for complex tasks; **Efficient** ([[2603.16666|Fast-WAM]]) wins for production deployment. The 2026 frontier hybridizes — train with VideoGen objectives, deploy without test-time imagination ([[2603.16666|Fast-WAM]], [[2602.10098|VLA-JEPA]]) — extracting robustness without paying the latency cost. Cross-reference [[07_Latent-World-Models#1. The JEPA Principle]] for the JEPA design space in depth, [[15_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the agent-VLA-WAM comparison axis, and [[14_Sim-to-Real-Transfer#6. Integration Patterns]] for deployment-pattern selection. ^insight-8
+> Each paradigm dominates one axis: **VideoGen** maximizes robustness at the cost of speed (~7Hz); **Latent** ([[2602.10098|VLA-JEPA]]) maximizes speed and sample efficiency; **[[1912.01603|Dreamer]]** lineage maximizes sample efficiency for limited-data regimes; **VLM-Integrated** maximizes semantic transfer for complex tasks; **Efficient** ([[2603.16666|Fast-WAM]]) wins for production deployment. The 2026 frontier hybridizes — train with VideoGen objectives, deploy without test-time imagination ([[2603.16666|Fast-WAM]], [[2602.10098|VLA-JEPA]]) — extracting robustness without paying the latency cost. Cross-reference [[07_Latent-World-Models#1. The JEPA Principle]] for the JEPA design space in depth, [[15_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the agent-VLA-WAM comparison axis, and [[14_Sim-to-Real-Transfer#6. Integration Patterns]] for deployment-pattern selection.
+
+^insight-8
 
 ---
 
@@ -1087,15 +1135,21 @@ The attack surface unique to WAMs: because policies train on or read from world-
 | Don't know whether dynamics or reward is the bottleneck | [[2605.06732\|Training-in-Imagination]] (decomposed return-gap bound) |
 | WAM too slow for real-time loop | [[2603.16666\|Fast-WAM]] (training-only video) or latent WAMs (§3) |
 | Action-space adversarial robustness | [[2604.05498\|JailWAM]] (exposes attack surface; no fix yet) |
-| WAM should abstain on OOD state | [[2603.04029\|Self-Adapting-RL]] + [[2512.01119\|WM-Surprise-Robustness]] + [[2604.01985\|WAV]] (combine signals) | ^dm-9
+| WAM should abstain on OOD state | [[2603.04029\|Self-Adapting-RL]] + [[2512.01119\|WM-Surprise-Robustness]] + [[2604.01985\|WAV]] (combine signals) |
+
+^dm-9
 
 > [!star] Key Papers — WAM Failure Frontier
 > - [[2605.06732|Training-in-Imagination]] — Decomposes return-gap into separate dynamics + reward error terms; the canonical evidence that dynamics-error (exponent **0.11**) dominates reward-error (**0.96**) at scale — invest the data budget in dynamics
 > - [[2605.06481|OA-WAM]] — Object-addressable attention with cached identity; **+4.8pp** [[2510.13626|LIBERO-Plus]] geometric robustness — the first principled fix for holistic-WAM identity entanglement
-> - [[2604.05498|JailWAM]] — Exposes adversarial attack surface on WAM action generation; the canonical "WAMs are not yet safe" evidence and the open-problem benchmark for robustness research ^key-papers-9
+> - [[2604.05498|JailWAM]] — Exposes adversarial attack surface on WAM action generation; the canonical "WAMs are not yet safe" evidence and the open-problem benchmark for robustness research
+
+^key-papers-9
 
 > [!tip] When to Use WAM vs VLA — and the Common Root of WAM Failures
-> **Use WAM when** robustness to visual perturbations matters, physics-aware planning is needed, or real-world data is limited (world model enables imagination). **Use pure VLA when** inference speed is critical, tasks are simple enough for direct imitation, or in-domain data is abundant. The common root across §9.1–§9.3 failures is **calibration**: WAMs predict confidently in regimes where the prediction is unreliable. Three of seven problems above (hallucination, artifact exploitation, identity entanglement) are *training-time* miscalibration — the WAM doesn't know it's outside its training distribution. The remaining four (latency, adversarial, OOD detection, dynamics-reward decomposition) are *deployment-time* miscalibration — the WAM doesn't know when to abstain or hand off. Cross-reference [[07_Latent-World-Models#6. Open Problems]] (latent-space failure modes with the same calibration root) and [[08_Physics-Aware-Embodied-AI#8. Open Problems]] (physics-verifiability as the upstream constraint that *would* fix many of these if it generalized). ^insight-9
+> **Use WAM when** robustness to visual perturbations matters, physics-aware planning is needed, or real-world data is limited (world model enables imagination). **Use pure VLA when** inference speed is critical, tasks are simple enough for direct imitation, or in-domain data is abundant. The common root across §9.1–§9.3 failures is **calibration**: WAMs predict confidently in regimes where the prediction is unreliable. Three of seven problems above (hallucination, artifact exploitation, identity entanglement) are *training-time* miscalibration — the WAM doesn't know it's outside its training distribution. The remaining four (latency, adversarial, OOD detection, dynamics-reward decomposition) are *deployment-time* miscalibration — the WAM doesn't know when to abstain or hand off. Cross-reference [[07_Latent-World-Models#6. Open Problems]] (latent-space failure modes with the same calibration root) and [[08_Physics-Aware-Embodied-AI#8. Open Problems]] (physics-verifiability as the upstream constraint that *would* fix many of these if it generalized).
+
+^insight-9
 
 ---
 

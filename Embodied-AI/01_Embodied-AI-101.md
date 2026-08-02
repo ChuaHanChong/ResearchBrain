@@ -211,6 +211,8 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 > - **WAM** — visual-perturbation robustness, physics-aware planning, data scarcity
 > - **Both** — train with world-model objectives ([[2602.10098|VLA-JEPA]]), deploy without test-time imagination ([[2603.16666|Fast-WAM]])
 
+^insight-4
+
 ---
 
 ## Part B — Implementation
@@ -232,6 +234,8 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 
 > [!tip] WAM vs VLA — The Key Differentiator
 > WAMs predict a future goal-state then calculate actions via inverse dynamics — powerful but hard to learn for complex physics. VLAs bypass explicit world-modeling by inheriting spatial reasoning from web-scale VLM pre-training, mapping observations directly to control signals.
+
+^insight-5
 
 #### VLA Architecture Taxonomy
 
@@ -320,6 +324,8 @@ Researcher → Data → Training → Simulation → Deployment
 > [!tip] Start Simple, Add Complexity
 > Begin with a VLA (simpler, faster to iterate). Add world model augmentation only if you need robustness to visual perturbations or physics-aware planning. The [[2603.16666|Fast-WAM]] finding: you can get WAM-level robustness with VLA-level speed by using video objectives at training time only.
 
+^insight-6
+
 #### The Self-Evolving Frontier
 
 Both VLAs and WAMs can be made self-evolving — autonomously discovering failure modes and improving through experience. Three paths to self-evolution:
@@ -355,6 +361,8 @@ The critical prerequisite for all three paths: **the agent must first detect tha
 > real-time control → [[04_VLA]] §2 (efficient VLAs) + [[06_WAM]] §6 (efficient WAMs);
 > safety → [[15_Self-Evolving-VLA-WAM]] §4 (failure detection);
 > generalization → [[15_Self-Evolving-VLA-WAM]] §5–7 (self-evolving systems).
+
+^insight-7
 
 ## Surveys & Further Reading
 

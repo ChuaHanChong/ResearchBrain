@@ -341,14 +341,20 @@ DAgger-style correction (§1.3) requires an interactive expert to relabel states
 | One objective across offline + online | [[2311.03351\|Uni-O4]] — unified PPO; SOTA **14/20** D4RL |
 | On-policy correction of a dexterous policy | [[2605.27114\|VR-DAgger]] — uncertainty relabeling; **~40%** less supervision |
 
+^dm-1
+
 > [!star] Key Papers
 > - [[2108.03298|Robomimic]] — The canonical empirical study of offline robot learning; established BC-RNN as the strong baseline and exposed that validation loss does not predict task success.
 > - [[2202.02005|BC-Z]] — First convincing demonstration that *task diversity* (100 tasks) enables zero-shot generalization to entirely new tasks, not just new objects.
 > - [[1805.07914|ILPO]] — The reference for imitation-from-observation; proved abstract latent actions can be learned offline and grounded with minimal interaction.
 > - [[2407.16677|ResiP]] — The canonical residual-RL refinement: a frozen BC base plus a thin PPO residual breaks the demo ceiling on precise assembly.
 
+^key-papers-1
+
 > [!tip] The Loss You Minimize Is Not the Metric You Ship
 > [[2108.03298|Robomimic]]'s most-cited finding is that BC validation loss does not correlate with task success — offline policy selection is an open problem because the supervised objective is a proxy for closed-loop performance. The two structural fixes are *temporal modeling* (BC-RNN, and the long-context policies in [[03_Imitation-Learning-and-RL#1.2 Structured & Long-Context Policy Representations]]) to handle non-Markovian demos, and *interaction* to ground the proxy in real success ([[03_Imitation-Learning-and-RL#1.3 Imitation Beyond the Demo Ceiling]]). For the dataset-scale view of what demonstrations to collect, see [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]].
+
+^insight-1
 
 ---
 
@@ -421,14 +427,20 @@ When real data is scarce, manufacture it — augment a single demonstration into
 | Augment one demo into a robust dataset | [[2605.21710\|PGDG]] — single-demo generation; **35→82%** real |
 | Co-train real + simulation in one mixture | [[2503.24361\|Sim-and-Real-Co-Training]] — **+38%** over real-only |
 
+^dm-2
+
 > [!star] Key Papers
 > - [[2605.24934|HumanEgo]] — Landmark for zero-shot learning from human egocentric video; 30 minutes of human data beats robot teleoperation on bimanual tasks.
 > - [[2507.23523|H-RDT]] — Established human-manipulation pretraining as a strong bimanual prior, with modular fine-tuning per embodiment.
 > - [[2606.01851|PHASOR]] — The reference for morphology-invariant universal action representations; phase decomposition makes cross-embodiment transfer tractable.
 > - [[2503.24361|Sim-and-Real-Co-Training]] — The "simple recipe" that made sim+real co-training a default; co-training beats real-only even when real data is abundant.
 
+^key-papers-2
+
 > [!tip] Human Video Is the New Demonstration Substrate
 > The 2026 shift is treating *human* video — not robot teleoperation — as the primary demonstration source, because it is abundant and cheap. The recurring recipe is embodiment-agnostic alignment ([[2605.24934|HumanEgo]]'s interaction tokens, [[2604.10677|LIDEA]]'s 2D/3D distillation) plus a flow/diffusion policy ([[2507.23523|H-RDT]], [[2505.17006|CoMo]]) that absorbs the human prior, then a thin robot-specific adapter. The signal is cheap but indirect — you pay for alignment instead of teleoperation. For the egocentric-pretraining mechanism in depth see [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]]; for the synthetic-data-engine view see [[14_Sim-to-Real-Transfer#2. Sim-Side: Learned & Procedural Simulators]].
+
+^insight-2
 
 ---
 
@@ -517,14 +529,20 @@ Skip the reward entirely: condition on goals and let contrastive or divide-and-c
 | Scale contrastive RL with network depth | [[2503.14858\|CRL]] — 1024 layers; **2×–50×** gains |
 | Offline goal-conditioned long-horizon value | [[2510.22512\|TRL]] — divide-and-conquer; SOTA OGBench |
 
+^dm-3
+
 > [!star] Key Papers
 > - [[2603.02115|Robometer]] — The reference for scaling reward models; foundation-scale trajectory-comparison data makes general-purpose robot rewards viable.
 > - [[2603.28730|SOLE-R1]] — Established video-language reasoning as a directly-usable RL reward and made reward-hacking resistance a first-class design target.
 > - [[2408.05804|Single-Goal-Contrastive-RL]] — The surprising proof that exploration and skills emerge from contrastive RL with a single goal and no reward signal at all.
 > - [[2510.22512|TRL]] — The divide-and-conquer value-learning landmark for offline goal-conditioned RL on long-horizon tasks.
 
+^key-papers-3
+
 > [!tip] The Reward Model Becomes the Bottleneck
 > When you replace a hand-written reward with a learned VLM reward model ([[2603.02115|Robometer]], [[2603.28730|SOLE-R1]]), you trade reward-*design* effort for reward-*hacking* risk — the policy will exploit the reward model's perceptual blind spots unless the reward is verifiable ([[2603.28730|SOLE-R1]]'s RLVR) or structurally constrained ([[2603.02115|Robometer]]'s trajectory comparisons, [[2605.22123|FLORA]]'s object-centric invariance). The reward-free alternative ([[2408.05804|Single-Goal-Contrastive-RL]], [[2510.22512|TRL]]) sidesteps hacking entirely but gives up dense shaping. For how this couples to self-improvement loops where the model both acts and scores, see [[15_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]]; for VLA-specific RL post-training rewards see [[04_VLA#6. RL Post-Training for VLAs]].
+
+^insight-3
 
 ---
 
@@ -725,14 +743,20 @@ Cooperative and general-sum multi-agent RL inherits the single-agent expressiven
 | Smooth, deployable continuous control | [[2012.06644\|CAPS]] — temporal+spatial smoothness; **80%** less power |
 | Joint morphology + control co-design | [[2605.12654\|COSMIC]] or [[2604.11768\|GC-PFO]] — differentiable / particle-filter |
 
+^dm-4
+
 > [!star] Key Papers
 > - [[2505.22642|FastTD3]] — Reset the efficiency frontier: documented off-policy RL training a full-size humanoid in hours, beating PPO/DreamerV3 in wall-clock.
 > - [[2604.10962|ScoRe-Flow]] — The reference for RL fine-tuning flow-matching policies via a closed-form score, removing the likelihood barrier.
 > - [[2509.04259|RL's-Razor]] — Established *why* on-policy RL forgets less than SFT — a KL-minimization principle now guiding foundation-model fine-tuning.
 > - [[2510.08558|Early-Experience]] — The bridge from imitation to RL for language agents; reward-free experience as a better initialization than pure IL.
 
+^key-papers-4
+
 > [!tip] Off-Policy RL Won the Efficiency War — Expressiveness Is Next
 > The 2025 surprise: off-policy RL ([[2505.22642|FastTD3]], [[2604.04539|FlashSAC]]) is *not* too unstable for high-dimensional control — massive parallelism + large batches + a distributional critic make it beat PPO in wall-clock, no architectural stabilizers needed. With efficiency solved, the open axis is *expressiveness*: flow/diffusion policies represent multimodal actions Gaussians cannot, and [[2604.10962|ScoRe-Flow]]/[[2602.02481|FPO++]] finally make them RL-trainable. The composition recipe is now clone-with-flow, refine-with-off-policy-RL. For the safety filters that gate this on hardware see [[03_Imitation-Learning-and-RL#4.1 Efficient & Off-Policy RL]] above; for how these policies become VLA backbones see [[04_VLA#6. RL Post-Training for VLAs]], and for sim-to-real of RL policies see [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]].
+
+^insight-4
 
 ---
 
@@ -822,13 +846,19 @@ Reuse temporally-extended skills and memory to shorten the horizon — at the co
 | Lifelong learning across task sequences | [[2501.10395\|t-DGR]] — trajectory generative replay; **83.9%** CW20 |
 | Benchmark memory-dependent RL | [[2502.10550\|MIKASA]] — 32 memory-intensive robotic tasks |
 
+^dm-5
+
 > [!star] Key Papers
 > - [[2010.11944|SPiRL]] — The canonical skill-prior paper; established the continuous-skill-embedding + state-conditioned-prior recipe for hierarchical RL.
 > - [[2207.07560|SkiMo]] — Showed that planning in *skill* space with a skill-dynamics model beats flat model-based RL on long-horizon sparse-reward tasks.
 > - [[2505.13709|Policy-Driven-WM-Adaptation]] — The reference for making the offline world model adaptive to the policy's own state distribution rather than a frozen snapshot.
 
+^key-papers-5
+
 > [!tip] Structure Substitutes for Interaction — Until It Goes Stale
 > Offline datasets, learned models, and skill priors all buy sample efficiency by encoding structure that replaces unbounded interaction — but each is a *frozen snapshot* of dynamics that decays at deployment. The robust entries make the structure adaptive: [[2505.13709|Policy-Driven-WM-Adaptation]] updates the model toward the policy's visitation, [[2604.02260|Time-Varying-MBRL]] tracks drifting dynamics with bounded regret, and [[2003.01239|Evolutionary-Meta-Learning-Legged]] re-adapts in 50 real rollouts. The when-to-use rule: pick offline/model-based when interaction is expensive *and* dynamics are stable; add an adaptation loop the moment they drift. For online world-model adaptation as a sim-to-real mechanism see [[14_Sim-to-Real-Transfer#4. Real2Sim2Real Loops & Digital Twins]]; for the self-evolving framing where the model improves itself see [[15_Self-Evolving-VLA-WAM#5. Self-Evolving WAMs]].
+
+^insight-5
 
 ---
 
@@ -915,14 +945,20 @@ Coordinating dozens of joints into stable, expressive whole-body motion — the 
 | Dynamic humanoid parkour | [[2602.15827\|PHP]] — motion matching + DAgger/PPO; **1.25 m** wall |
 | Promptable humanoid behavioral foundation | [[2511.04131\|BFM-Zero]] — unsupervised RL; zero-shot multi-task G1 |
 
+^dm-6
+
 > [!star] Key Papers
 > - [[2107.03996|LocoTransformer]] — The foundational cross-modal locomotion transformer; established attention-based fusion of vision and proprioception for legged control.
 > - [[2509.23745|LocoFormer]] — Showed long-context memory is the generalization mechanism for locomotion — a single policy adapting zero-shot across morphologies and hardware failures.
 > - [[2511.04131|BFM-Zero]] — The reference for promptable whole-body behavioral foundation models trained by unsupervised RL on real humanoids.
 > - [[2602.15827|PHP]] — Landmark for dynamic humanoid parkour, chaining sparse human skills into contact-rich behaviors deployable from depth-only perception.
 
+^key-papers-6
+
 > [!tip] Adaptation Is the Real Capability, Not the Skill
 > Across locomotion, navigation, and whole-body control, the headline skill (a backflip, a perch, a parkour vault) is impressive but the durable contribution is the *adaptation mechanism* that survives a distribution the policy never trained on — [[2509.23745|LocoFormer]]'s long-context memory, [[2605.27046|Thermal-Aware-Residual]]'s residual correction, [[2606.04718|CoRe-MoE]]'s MoE gating. Domain randomization alone covers the imagined range; architectural adaptation handles the unimagined one. Reach for these when deployment conditions drift beyond your DR distribution; for the sim-to-real transfer of these locomotion policies see [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]], and for whole-body humanoid VLAs that add language conditioning see [[04_VLA#8. Humanoid & Bimanual VLAs]].
+
+^insight-6
 
 ---
 
@@ -968,14 +1004,20 @@ The metric you optimize is not the outcome you ship — validation loss, sim suc
 | Memory failures unseen until deployment | [[2502.10550\|MIKASA]] (diagnoses) — most benchmarks omit memory |
 | Safety guarantees fail in contact | [[2605.26452\|Koopman-CBF-SAC]] (degrades) + [[2605.09772\|GP-Safe-Exploration]] — fragile in contact-rich regimes |
 
+^dm-7
+
 > [!star] Key Papers — Robot-RL Failure Frontier
 > - [[2108.03298|Robomimic]] — Documented the founding failure of the field: validation loss does not predict task success, leaving offline policy selection unsolved.
 > - [[2512.20675|VLM-Reward-Objectives]] — Exposed that every learned reward objective collapses on multi-step tasks, pinpointing where dense reward modeling still fails.
 > - [[2502.10550|MIKASA]] — Isolated memory as a silent failure mode that standard benchmarks miss, explaining the deploy-time gap on long-horizon occluded tasks.
 > - [[2509.04259|RL's-Razor]] — Established the KL-minimization principle behind why on-policy RL resists forgetting — and implicitly why SFT does not.
 
+^key-papers-7
+
 > [!tip] The Common Root Is a Mis-Specified Learning Signal
 > All three clusters trace to one root: **the learning signal is a proxy that diverges from the deployment objective.** Demonstrations proxy skill but cap it; learned rewards proxy success but get hacked; offline datasets proxy dynamics but go stale; validation loss proxies deployment but does not predict it. The IL→RL spectrum is not a hierarchy where RL "wins" — it is a menu of proxies, each cheap in one currency (annotation, interaction, safety) and expensive in another. Progress comes from making the proxy *verifiable* ([[2603.28730|SOLE-R1]]'s RLVR), *adaptive* ([[2505.13709|Policy-Driven-WM-Adaptation]]), or *diagnosable* ([[2502.10550|MIKASA]]). This is the same mis-specified-target root that drives the sim-to-real reality gap — sysid error ≠ transfer quality — so cross-reference [[14_Sim-to-Real-Transfer#7. Open Problems]] for the simulator-fidelity angle and [[15_Self-Evolving-VLA-WAM#8. Open Problems & Failure Modes]] for the self-improvement loop where a mis-specified signal compounds across generations.
+
+^insight-7
 
 ---
 
