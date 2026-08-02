@@ -50,54 +50,74 @@ Plain-text Unicode box diagrams in a fenced `text` block — not mermaid (all 12
 
 ````
 ```text
-Phase Name
+2. Label-Free Representation   (drop the labels, keep the signal)
+· self-distillation
+                   +142M curated
+                   images               one teacher → many
+┌─────────────┐    ┌───────────────┐    ┌─────────────────┐
+│ DINO (2021) │───►│ DINOv2 (2023) │───►│ AM-RADIO (2023) │
+└──────┬──────┘    └───────────────┘    └─────────────────┘
+       │    +test-time domain
+       │    adaptation
+       │    ┌───────────────┐
+       └───►│ VESSA (2025)  │
+            └───────────────┘
 
-╔══════════════════╗
-║ Landmark (2022)  ║───────► Follow-on (2023)
-╚═════════╤════════╝
-          │
-          ▼
-┌──────────────┐
-│ Other (2023) │───────► Cross-Phase Target (2024)   [Other Phase, below]
-└──────────────┘
-
-
-Other Phase
-
-┌───────────────────────────┐
-│ Cross-Phase Target (2024) │
-└───────────────────────────┘
+· reconstruction to latent prediction
+                   discrete tokens →    pixel target →       +autoregressive
+                   raw pixels           latent target        scaling
+┌─────────────┐    ┌───────────────┐    ┌───────────────┐    ┌─────────────┐
+│ BEiT (2021) │───►│ MAE (2021)    │───►│ I-JEPA (2023) │───►│ AIM (2024)  │
+└─────────────┘    └───────────────┘    └───────────────┘    └─────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 ````
 
-- Plain Title-Case phase headers, numbered from 1 (`1. Contrastive Alignment`, `2. WAMs`) so the group count reads at a glance — no brackets, ALL-CAPS, `==wrapping==`, or letter-codes on nodes.
-- Unicode box-drawing only (`┌─┐│└┘├┬┴╔═╗║╚╝`) — never ASCII `+---+`.
-- Node text is `Name (Year)`, plain text — no wikilinks (those live in the reference table below).
-- Double border marks the one landmark/foundational node per phase, sparingly — not every phase or paper needs one.
-- Cross-phase arrow gets a bracket hint: `───────► Target (Year)   [Phase Name, below]`.
-- One legend line only: `Legend: ╔═╗ double border = landmark/foundational paper.` No colors, hex codes, or mermaid backstory.
-- **Edge deltas** (optional): a short "what changed" label may sit on its own line above a box-top row, starting at a real box edge — `+X` when the successor adds X, `X → Y` when the axis moves from X to Y, a bare claim when the edge carries a finding. Source it from the paper's own summary, never invent it. Full rules in `.claude/commands/deepdive-sync.md` → *Evolution Graph diagram spec*, rule 9. Never strip existing deltas during a restyle.
-- Add a node only when it's genuinely phase-defining, not just the newest by date. A diagram trailing the body by a year or so is normal curation lag, not a defect — only fix it if an undiagrammed body section is an actual missed phase.
+Lifted verbatim from `02_Computer-Vision-and-3D.md`, and it exercises every rule below: one mechanism lane holding two threads, a delta on every arrow, one-row and two-row deltas bottom-aligned side by side, `→` kept at the end of row one, and a fork drawn because VESSA adapts at test time rather than continuing the scaling line.
+
+**Lanes and nodes**
+
+- **Lanes are mechanisms, never eras.** Numbered Title-Case header naming the axis the lane divides on, optionally with a parenthetical framing. A year or year-range in the header chops every thread at the boundary, so no lane holds a full lineage. No brackets, ALL-CAPS, `==wrapping==`, or letter-codes.
+- **Every lane carries at least one `· thread` label**, lowercase, on its own line. Without it, parallel rows read as one chain someone forgot to connect. Several threads per lane when the mechanisms genuinely diverge, each with its own label and blank line.
+- Node text is `Name (Year)`, plain, and must match the table's alias **exactly**: a fenced `text` block renders no wikilinks, so the table is the only route to the note.
+- Unicode box-drawing only (`┌─┐│└┘├┬┴╔═╗║╚╝`), never ASCII. Double border marks the one landmark per thread, sparingly. One legend line, inside the fence, no colors or mermaid backstory. A cross-lane arrow may use a bracket hint: `───────► Target (Year)   [Lane Name, below]`.
+
+**Edges**
+
+- **Deltas are required.** An arrow says *came after*; the delta says *what changed*. Put it above the box the arrow **enters**, since it describes what the successor adds. Two grammars only: `+X` adds X, `X → Y` moves an axis. Source it from the paper's own summary, never invent it, and never strip existing deltas during a restyle.
+- **Branch on content, not on a template.** Competing replacements for one component branch from a shared parent; independent transplants of one recipe fan out in parallel; a genuine succession stays a chain. Never draw A → B on chronology alone. Two files should not share a topology profile unless their histories really rhyme.
+- A survey or reference that descends from nothing belongs in the table with **no** diagram node. Never draw a bare box with no arrow just to give it a home.
+- Add a node only when it's genuinely phase-defining. A diagram trailing the body slightly is curation lag, not a defect.
+
+**Width** (budget: 110 characters)
+
+- **Wrap a long delta over two rows rather than widening its box.** Width is otherwise `max(label + 4, delta)`, so one long delta stretches its box and pushes the whole row right for no gain. Two rows is the cap, since a third out-talls the box it labels. Rows bottom-align, so a one-row delta still sits on the box top beside a two-row neighbour.
+- Never let `→` start the second row: it belongs to the axis it moves *from*, and a leading bare arrow reads as a new delta (`self-distillation →` / `masked pixels`, never `self-distillation` / `→ masked pixels`).
+- Still too wide? Branch an **earlier** node, never the last one: a branch off the final node starts its stem past the entire row and comes out wider than the chain it replaced. Never abbreviate a label to make it fit.
 
 ### Evolution Reference Table
 
-After the evolution graph diagram, add a **trend paragraph** (1-2 sentences explaining the evolutionary phases), then a **3-column reference table**:
+After the evolution graph diagram, add a **trend paragraph**, then a **4-column reference table**:
 
 ```
-The field evolved through N phases: **phase name** (years), **phase name** (years), ...
+The N lanes divide on **what the axis is**. **Lane name** does X, paper to paper to paper.
+**Lane name** does Y, and forks where the field forked. ...
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2022 | [[2212.06817\|RT-1]] | Transformer policy on 130K real demos; proved Transformers work for robot control |
-| 2024 | [[2410.24164\|π0]] | Flow matching action expert + VLM for dexterous manipulation |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2022 | [[2212.06817\|RT-1]] | Action · Tokens to Continuous Flow | Transformer policy on 130K real demos; proved Transformers work for robot control |
+| 2024 | [[2410.24164\|π0]] | Action · Tokens to Continuous Flow | Flow matching action expert + VLM for dexterous manipulation |
 ```
 
 - **Year**: extracted from the diagram node label `Name (Year)`
-- **Paper**: wikilink with escaped pipe (`\|`) inside table cells
-- **Contribution**: one sentence explaining what this paper introduced or proved
+- **Paper**: wikilink with escaped pipe (`\|`) inside table cells. Escape the pipe **only** inside tables, never in prose.
+- **Track**: `Lane · Thread`, matching the diagram's lane header and `· thread` label. This is what lets a reader carry a row back to its place on the map.
+- **Contribution**: one complete sentence on what the paper introduced or proved, never cut mid-clause to hit a length target. Source it from the row already in the table, else the paper's `[!star]` justification, else its KnowledgeHub summary — the vault's own prose in every case, never written fresh.
 - Rows sorted chronologically (oldest first — this is the one place ascending order is used, because the table tells a story of progression)
+- **Every diagram node must have a row.** Extra rows are allowed for papers deliberately kept off the map (see the survey rule above); a node with no row is a broken link layer.
+
+**The trend paragraph must describe the diagram that is actually there.** Name the axis the lanes divide on, walk each lane in order, and say where a fork happens and why. Cite only papers that appear on the map: a paragraph naming papers the diagram dropped is the most common drift after a restyle.
 
 ### What NOT to Do
 

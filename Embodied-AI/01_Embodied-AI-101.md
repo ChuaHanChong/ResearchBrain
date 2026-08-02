@@ -29,14 +29,16 @@ The embodied-AI field evolved through four phases — from single-task imitation
 ╔════════════╗
 ║ DQN (2013) ║─┐
 ╚════════════╝ │
-               │    +stable policy gradient    +max entropy
-               │    ┌─────────────────────┐    ┌────────────┐
-               ├───►│ PPO (2017)          │───►│ SAC (2018) │
-               │    └─────────────────────┘    └────────────┘
-               │    +learned model     +latent imagination
-               │    ┌─────────────┐    ┌─────────────────┐
-               └───►│ MBPO (2019) │───►│ Dreamer (2019)  │
-                    └─────────────┘    └─────────────────┘
+               │    +stable policy
+               │    gradient          +max entropy
+               │    ┌────────────┐    ┌────────────┐
+               ├───►│ PPO (2017) │───►│ SAC (2018) │
+               │    └────────────┘    └────────────┘
+               │                       +latent
+               │    +learned model     imagination
+               │    ┌─────────────┐    ┌────────────────┐
+               └───►│ MBPO (2019) │───►│ Dreamer (2019) │
+                    └─────────────┘    └────────────────┘
 
 2. Vision-Language-Action   (one model from pixels to motors)
 · the VLA line
@@ -48,23 +50,26 @@ The embodied-AI field evolved through four phases — from single-task imitation
                                    │    ┌────────────────┐
                                    ├───►│ OpenVLA (2024) │
                                    │    └────────────────┘
-                                   │    +flow matching    +open-world
-                                   │    ┌────────────┐    ┌─────────────┐
-                                   └───►│ π0 (2024)  │───►│ π0.5 (2025) │
-                                        └────────────┘    └─────────────┘
+                                   │    +flow
+                                   │    matching         +open-world
+                                   │    ┌───────────┐    ┌─────────────┐
+                                   └───►│ π0 (2024) │───►│ π0.5 (2025) │
+                                        └───────────┘    └─────────────┘
 
 · action representation
 ╔═════════════════════════╗
 ║ Diffusion-Policy (2023) ║─┐
 ╚═════════════════════════╝ │
-                            │    +generalist transformer
-                            │    ┌─────────────────────┐
-                            ├───►│ Octo (2024)         │
-                            │    └─────────────────────┘
-                            │    +action tokenizer    +atomic skills
-                            │    ┌───────────────┐    ┌──────────────────┐
-                            └───►│ FAST (2025)   │───►│ AtomicVLA (2026) │
-                                 └───────────────┘    └──────────────────┘
+                            │    +generalist
+                            │    transformer
+                            │    ┌─────────────┐
+                            ├───►│ Octo (2024) │
+                            │    └─────────────┘
+                            │    +action
+                            │    tokenizer          +atomic skills
+                            │    ┌─────────────┐    ┌──────────────────┐
+                            └───►│ FAST (2025) │───►│ AtomicVLA (2026) │
+                                 └─────────────┘    └──────────────────┘
 
 3. World Models   (learning to predict what happens next)
 · predictive backbones
@@ -82,10 +87,11 @@ The embodied-AI field evolved through four phases — from single-task imitation
 
 4. Self-Evolving   (improving after deployment)
 · lifelong improvement
-                       +semantic curiosity    +self-play           +continual VLA
-╔═════════════════╗    ┌─────────────────┐    ┌───────────────┐    ┌───────────────────────────────┐
-║ EvoAgent (2025) ║───►│ SENSEI (2025)   │───►│ SPIRAL (2025) │───►│ VLA-Continual-Learning (2026) │
-╚═════════════════╝    └─────────────────┘    └───────────────┘    └───────────────────────────────┘
+                       +semantic
+                       curiosity            +self-play           +continual VLA
+╔═════════════════╗    ┌───────────────┐    ┌───────────────┐    ┌───────────────────────────────┐
+║ EvoAgent (2025) ║───►│ SENSEI (2025) │───►│ SPIRAL (2025) │───►│ VLA-Continual-Learning (2026) │
+╚═════════════════╝    └───────────────┘    └───────────────┘    └───────────────────────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```

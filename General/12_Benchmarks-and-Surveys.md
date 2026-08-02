@@ -17,80 +17,164 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Simulation (2019-2021)
-╔═════════════════╗
-║ RLBench (2019)  ║
-╚═════════┬═══════╝
-          │
-          ▼
-   ┌────────────────┐
-   │ CALVIN (2021)  │
-   └───────┬────────┘
-           ├──────► LIBERO-Plus (2025)   [Diagnostics, below]
-           └──────► GM-100 (2025)        [Diagnostics, below]
+1. Simulation Benchmarks   (scripted tasks, infinite demos)
+· task suites
+                      +lifelong task       +real-sim             +GPU-parallel
+                      suites               correlation           simulation
+┌────────────────┐    ┌───────────────┐    ┌────────────────┐    ┌──────────────────┐
+│ RLBench (2019) │───►│ LIBERO (2023) │───►│ SIMPLER (2024) │───►│ Isaac-Lab (2025) │
+└────────────────┘    └───────────────┘    └────────────────┘    └──────────────────┘
 
+2. Real-Robot Datasets   (scale by collection, not simulation)
+· corpus scale
+                    egocentric →
+                    22 embodiments    +1M trajectories, GO-1     +human-scale corpus
+┌──────────────┐    ╔════════════╗    ┌─────────────────────┐    ┌─────────────────┐
+│ Ego4D (2021) │───►║ OXE (2023) ║───►│ AgiBot-World (2025) │───►│ HumanNet (2026) │
+└──────────────┘    ╚══════┬═════╝    └─────────────────────┘    └─────────────────┘
+                           │    +dexterous
+                           │    egocentric
+                           │    ┌───────────────┐
+                           ├───►│ EgoDex (2025) │
+                           │    └───────────────┘
+                           │    +visuo-tactile
+                           │    ┌─────────────────┐
+                           └───►│ DexViTac (2026) │
+                                └─────────────────┘
 
-2. Surveys (2020-2024)
-╔════════════════════════════════╗
-║ Efficient Transformers (2020)  ║
-╚════════════════┬═══════════════╝
-                 │
-                 ▼
-    ┌───────────────────────────────┐
-    │ Transformers in Vision (2021) │
-    └────────────────┬──────────────┘
-                     │
-                     ▼
-    ┌──────────────────────┐
-    │ MLLM Survey (2023)   │──────► Omni-WorldBench (2026)   [Diagnostics, below]
-    └───────────┬──────────┘
-                │
-                ▼
-    ┌─────────────────────────────┐
-    │ Self-Evolution Survey (2024)│
-    └─────────────────────────────┘
+3. Evaluation Diagnostics   (what the headline number hides)
+· stress the benchmark
+                        +detail-oriented     +interaction-centric,
+                        tasks                causal
+┌──────────────────┐    ┌───────────────┐    ┌────────────────────────┐
+│ RoboArena (2025) │───►│ GM-100 (2026) │───►│ Omni-WorldBench (2026) │
+└─────────┬────────┘    └───────────────┘    └────────────────────────┘
+          │    +failure analysis
+          │    corpus
+          │    ┌────────────────┐
+          ├───►│ RoboFAC (2025) │
+          │    └────────────────┘
+          │    +open-world audit
+          │    ┌─────────────────────────────┐
+          └───►│ VLA-Open-World-Audit (2026) │
+               └─────────────────────────────┘
 
+4. Physics Benchmarks   (does it know how things fall)
+· probe the physics
+                      +text-to-video                                  +physics
+                      physics                +harder commonsense      reasoning
+┌────────────────┐    ┌─────────────────┐    ┌───────────────────┐    ┌─────────────┐
+│ Physion (2021) │───►│ VideoPhy (2024) │───►│ VideoPhy-2 (2025) │───►│ PhyX (2025) │
+└────────────────┘    └────────┬────────┘    └───────────────────┘    └─────────────┘
+                               │    +generation-side eval
+                               │    ┌────────────────────┐
+                               └───►│ PhyGenBench (2024) │
+                                    └────────────────────┘
 
-3. Datasets (2023-2025)
-╔══════════════╗
-║ OXE (2023)   ║
-╚═══════┬══════╝
-        │
-        ▼
-   ┌───────────────┐
-   │ DROID (2024)  │
-   └───────┬───────┘
-           │
-           ▼
-   ┌─────────────────────┐
-   │ AgiBot World (2025) │
-   └─────────────────────┘
+5. Spatial Benchmarks   (does it know where things are)
+· spatial probes
+                  +3D-aware training
+                  data                     +unified spatial score     +multi-hop spatial
+┌────────────┐    ┌───────────────────┐    ┌─────────────────────┐    ┌────────────────────────┐
+│ VSR (2022) │───►│ SpatialVLM (2024) │───►│ SpatialScore (2025) │───►│ MultihopSpatial (2026) │
+└────────────┘    └───────────────────┘    └─────────────────────┘    └────────────────────────┘
 
+6. Efficiency Surveys   (map what is affordable)
+· efficiency taxonomy
+                                                                               +empirical efficiency
+                                            +parameter-efficient tuning        study
+┌──────────────────────────────────────┐    ┌─────────────────────────────┐    ┌─────────────────────┐
+│ Efficient-Transformers-Survey (2020) │───►│ PEFT-Critical-Review (2023) │───►│ EfficientLLM (2025) │
+└───────────────────┬──────────────────┘    └─────────────────────────────┘    └─────────────────────┘
+                    │    +architecture taxonomy
+                    │    ┌───────────────────────────────────────────┐
+                    └───►│ Efficient-LLM-Architectures-Survey (2025) │
+                         └───────────────────────────────────────────┘
 
-4. Diagnostics (2025-2026)
-┌─────────────────────┐   ╔═════════════════╗   ╔══════════════════════════╗
-│ LIBERO-Plus (2025)  │   ║ GM-100 (2025)   ║   ║ Omni-WorldBench (2026)   ║
-└─────────────────────┘   ╚═════════════════╝   ╚══════════════════════════╝
+7. Multimodal Surveys   (map the same field by different lens)
+· one field, four lenses
+┌────────────────────┐
+│ MLLM-Survey (2023) │─┐
+└────────────────────┘ │
+                       │    +efficiency lens
+                       │    ┌──────────────────────────────┐
+                       ├───►│ Efficient-MLLM-Survey (2024) │
+                       │    └──────────────────────────────┘
+                       │    +failure-mode lens
+                       │    ┌──────────────────────────────────┐
+                       ├───►│ LVLM-Hallucination-Survey (2024) │
+                       │    └──────────────────────────────────┘
+                       │    +reasoning lens
+                       │    ┌────────────────────────────────────┐
+                       └───►│ Multimodal-Reasoning-Survey (2025) │
+                            └────────────────────────────────────┘
+
+8. Embodied and World-Model Surveys   (map the robot stack)
+· scope widens
+┌───────────────────────────┐
+│ Embodied-AI-Survey (2021) │─┐
+└───────────────────────────┘ │
+                              │    +3D world models
+                              │    ┌───────────────────────────────┐
+                              ├───►│ 3D-World-Models-Survey (2025) │
+                              │    └───────────────────────────────┘
+                              │    +LLM and world-model fusion
+                              │    ┌──────────────────────────────────┐
+                              ├───►│ Embodied-AI-LLM-WM-Survey (2025) │
+                              │    └──────────────────────────────────┘
+                              │    +foundation-model lens
+                              │    ┌─────────────────────────────────────────────┐
+                              ├───►│ Foundation-Models-in-Robotics-Survey (2026) │
+                              │    └─────────────────────────────────────────────┘
+                              │    survey → unifying framework
+                              │    ┌──────────────────────────────────────┐
+                              └───►│ Unified-World-Model-Framework (2026) │
+                                   └──────────────────────────────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through four tracks: **simulation infrastructure** (2019-2021) where RLBench and CALVIN established standardized evaluation; **survey literature** (2020-2024) where comprehensive taxonomies mapped each subfield; **large-scale datasets** (2023-2025) where OXE, DROID, and AgiBot World enabled cross-embodiment training; and **diagnostic benchmarks** (2025-2026) where LIBERO-Plus, GM-100, and Omni-WorldBench shifted focus from performance to robustness.
+The eight lanes divide on **what kind of evaluation artefact** each paper contributes. **Simulation benchmarks** script the tasks, RLBench to LIBERO to SIMPLER to Isaac-Lab as suites gain lifelong structure, real-sim correlation, and GPU parallelism. **Real-robot datasets** scale by collection instead, Ego4D to OXE to AgiBot-World to HumanNet, with EgoDex and DexViTac branching toward dexterous and tactile capture. **Evaluation diagnostics** attack the headline number, RoboArena to GM-100 to Omni-WorldBench, with RoboFAC and VLA-Open-World-Audit branching to failure corpora and open-world auditing. **Physics benchmarks** ask whether a model knows how things fall, Physion to VideoPhy to VideoPhy-2 to PhyX, with PhyGenBench branching to the generation side. **Spatial benchmarks** ask whether it knows where things are, VSR to SpatialVLM to SpatialScore to MultihopSpatial. **Efficiency surveys** map what is affordable, Efficient-Transformers-Survey to PEFT-Critical-Review to EfficientLLM, with Efficient-LLM-Architectures-Survey branching to an architecture taxonomy. The two survey lanes fan out rather than chain, because a survey re-maps a field through a new lens instead of building on the last one: **multimodal surveys** send Efficient-MLLM-Survey, LVLM-Hallucination-Survey, and Multimodal-Reasoning-Survey off the original MLLM-Survey, and **embodied and world-model surveys** do the same from Embodied-AI-Survey.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2019 | [[1909.12271\|RLBench]] | 100 manipulation tasks with infinite expert demos; standardized few-shot evaluation |
-| 2020 | [[2009.06732\|Efficient-Transformers-Survey]] | Foundational taxonomy of efficient attention variants |
-| 2021 | [[2101.01169\|Transformers-in-Vision-Survey]] | First comprehensive survey of vision transformers |
-| 2021 | [[2112.03227\|CALVIN]] | Long-horizon language-conditioned benchmark; compositionality standard |
-| 2023 | [[2306.13549\|MLLM-Survey]] | Mapped the rapidly evolving multimodal LLM landscape |
-| 2023 | [[2310.08864\|OXE]] | 1M+ trajectories from 22 embodiments; the ImageNet moment for robotics |
-| 2024 | [[2403.12945\|DROID]] | In-the-wild data across 16 institutions; proved diverse data beats curated data |
-| 2024 | [[2404.14387\|LLM-Self-Evolution-Survey]] | Structured taxonomy of self-evolving LLM approaches |
-| 2025 | [[2503.06669\|AgiBot-World]] | 1M trajectories + GO-1 generalist policy; largest single-lab effort |
-| 2025 | [[2510.13626\|LIBERO-Plus]] | 7 perturbation dimensions expose VLA brittleness despite high benchmark scores |
-| 2025 | [[2601.11421\|GM-100]] | 100 detail-oriented tasks; current VLAs achieve very low success rates |
-| 2026 | [[2603.22212\|Omni-WorldBench]] | First interaction-centric evaluation for world models; tests causal consistency |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2019 | [[1909.12271\|RLBench]] | Simulation · Task Suites | 100 manipulation tasks with infinite expert demos; standardized few-shot evaluation |
+| 2020 | [[2009.06732\|Efficient-Transformers-Survey]] | Efficiency Surveys · Efficiency Taxonomy | Foundational taxonomy of efficient attention variants |
+| 2021 | [[2103.04918\|Embodied-AI-Survey]] | Embodied Surveys · Scope Widens | Established the simulator-task-agent pyramid that later work builds on |
+| 2021 | [[2106.08261\|Physion]] | Physics · Probe the Physics | The foundational dataset that defined "physics prediction from video" as a benchmark setting; basis for all subsequent physical-commonsense evaluation |
+| 2021 | [[2110.07058\|Ego4D]] | Datasets · Corpus Scale | 3,670 hours of egocentric video from 931 wearers across 9 countries with rich multimodal annotations; foundational for Being-H0 and EgoScale-style VLA pretraining |
+| 2022 | [[2205.00363\|VSR]] | Spatial · Spatial Probes | Foundational spatial reasoning dataset exposing the 25-point gap between VLM and human spatial understanding |
+| 2023 | [[2306.03310\|LIBERO]] | Simulation · Task Suites | The foundational suite this whole family is named after and built on |
+| 2023 | [[2306.13549\|MLLM-Survey]] | Multimodal Surveys · One Field, Four Lenses | Mapped the rapidly evolving multimodal LLM landscape |
+| 2023 | [[2310.08864\|OXE]] | Datasets · Corpus Scale | 1M+ trajectories from 22 embodiments; the ImageNet moment for robotics |
+| 2023 | [[2312.12148\|PEFT-Critical-Review]] | Efficiency Surveys · Efficiency Taxonomy | The original comprehensive review of PEFT methods for pre-trained models |
+| 2024 | [[2401.12168\|SpatialVLM]] | Spatial · Spatial Probes | Evaluates 3D spatial reasoning in VLMs with real-world spatial queries |
+| 2024 | [[2402.00253\|LVLM-Hallucination-Survey]] | Multimodal Surveys · One Field, Four Lenses | Categorizes hallucination types, root causes, and mitigation strategies for VLMs |
+| 2024 | [[2405.05941\|SIMPLER]] | Simulation · Task Suites | Evaluates whether simulation performance predicts real-world success; bridges the sim-to-real gap |
+| 2024 | [[2405.10739\|Efficient-MLLM-Survey]] | Multimodal Surveys · One Field, Four Lenses | Focuses specifically on making multimodal LLMs practical for deployment |
+| 2024 | [[2406.03520\|VideoPhy]] | Physics · Probe the Physics | First benchmark explicitly targeting physical commonsense in T2V models; established the evaluation protocol that VideoPhy-2 and PhyCoBench refined |
+| 2024 | [[2410.05363\|PhyGenBench]] | Physics · Probe the Physics | 160-prompt benchmark across Mechanics, Optics, Thermal, and Material Properties with PhyGenEval auto-scoring (Spearman ρ = 0.81 with humans); top T2V model scored only 0.51/3.0 |
+| 2025 | [[2503.06669\|AgiBot-World]] | Datasets · Corpus Scale | 1M trajectories + GO-1 generalist policy; largest single-lab effort |
+| 2025 | [[2503.06800\|VideoPhy-2]] | Physics · Probe the Physics | Action-centric physical commonsense benchmark; best models hit only 32.6% joint performance, with VideoPhy-2-AutoEval providing 47–49% relative gains as automated judge |
+| 2025 | [[2504.03151\|Multimodal-Reasoning-Survey]] | Multimodal Surveys · One Field, Four Lenses | Systematic framework categorizing multimodal reasoning into post-training and test-time strategies, with cognitive science integration |
+| 2025 | [[2505.11709\|EgoDex]] | Datasets · Corpus Scale | Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation |
+| 2025 | [[2505.12224\|RoboFAC]] | Diagnostics · Stress the Benchmark | Researchers from Shanghai Jiao Tong University and Harbin Institute of Technology developed RoboFAC, a framework combining a large-scale, failure-centric dataset and a lightweight multimodal model to diagnose errors and suggest corrections for robotic Vision-Language-Action (VLA) models |
+| 2025 | [[2505.13840\|EfficientLLM]] | Efficiency Surveys · Efficiency Taxonomy | Empirical evaluation framework assessing efficiency techniques across architecture, training, and inference dimensions |
+| 2025 | [[2505.15929\|PhyX]] | Physics · Probe the Physics | 3,000 university-level multimodal physics questions across six domains (Mechanics, EM, Thermo, Wave/Acoustics, Optics, Modern); GPT-o4-mini hits **45.8%** vs human experts **75.6%**, with **39.6%** errors traced to visual reasoning failures |
+| 2025 | [[2505.17012\|SpatialScore]] | Spatial · Spatial Probes | Comprehensive spatial intelligence benchmark revealing significant MLLM gaps in 3D understanding; proposes SpatialAgent for +8.3% accuracy |
+| 2025 | [[2506.18123\|RoboArena]] | Diagnostics · Stress the Benchmark | Distributed real-world evaluation via double-blind pairwise comparisons across 7 institutions; 0.98 Pearson correlation with oracle rankings and 1.8% Mean Max Rank Violation; paradigm shift from sim-only benchmarking |
+| 2025 | [[2506.20134\|3D-World-Models-Survey]] | Embodied Surveys · Scope Widens | Reviews the transition from 2D to 3D world models with spatial understanding |
+| 2025 | [[2508.09834\|Efficient-LLM-Architectures-Survey]] | Efficiency Surveys · Efficiency Taxonomy | Updated 2025 taxonomy unifying efficient architectural designs and optimization strategies for LLMs |
+| 2025 | [[2509.20021\|Embodied-AI-LLM-WM-Survey]] | Embodied Surveys · Scope Widens | Maps the joint MLLM + world model architecture roadmap; the most forward-looking survey in this space |
+| 2025 | [[2511.04831\|Isaac-Lab]] | Simulation · Task Suites | NVIDIA's GPU simulation framework; up to 1.6M FPS, OpenUSD-based, foundational for GR00T N1/N1.5 training |
+| 2026 | [[2601.11421\|GM-100]] | Diagnostics · Stress the Benchmark | 100 detail-oriented tasks; current VLAs achieve very low success rates |
+| 2026 | [[2602.01630\|Unified-World-Model-Framework]] | Embodied Surveys · Scope Widens | Proposes a unified framework for world models spanning simulation, prediction, and generation |
+| 2026 | [[2603.17851\|DexViTac]] | Datasets · Corpus Scale | Portable visuo-tactile-kinematic capture rig at 248 demos/hr; kinematics-grounded tactile pretraining unlocks 85.8% avg success on contact-rich tasks |
+| 2026 | [[2603.18892\|MultihopSpatial]] | Spatial · Spatial Probes | Tests multi-hop compositional spatial reasoning; exposes failures in models that pass simpler spatial tests |
+| 2026 | [[2603.22212\|Omni-WorldBench]] | Diagnostics · Stress the Benchmark | First interaction-centric evaluation for world models; tests causal consistency |
+| 2026 | [[2604.15395\|Foundation-Models-in-Robotics-Survey]] | Embodied Surveys · Scope Widens | 435 papers across 6-criteria taxonomy; maps 5 evolutionary phases of FMs in robotics and identifies tactile/failure data gaps |
+| 2026 | [[2604.21192\|VLA-Open-World-Audit]] | Diagnostics · Stress the Benchmark | Researchers at Noah's Ark Laboratory, Huawei Technologies Canada, conducted a critical analysis of Vision-Language-Action (VLA) models in open-world robotic tasks, uncovering limitations in reproducibility, consistency, and safety |
+| 2026 | [[2605.06747\|HumanNet]] | Datasets · Corpus Scale | 1M-hour human-centric video; egocentric + exocentric viewpoints with interaction-centric annotations; 1,000 hr pretrain matches/surpasses 100 hr robot-data pretrain |
 
 ---
 

@@ -58,20 +58,22 @@ The *fingertip* thread of the contact-dynamics axis: bolt-on force sensors and p
 ╔═════════════════╗
 ║ ForceVLA (2025) ║─┐
 ╚═════════════════╝ │
-                    │    +force-aware recovery
-                    │    ┌───────────────────┐
-                    ├───►│ FARM (2025)       │
-                    │    └───────────────────┘
+                    │    +force-aware
+                    │    recovery
+                    │    ┌─────────────┐
+                    ├───►│ FARM (2025) │
+                    │    └─────────────┘
                     │    +scaled force VLA       +haptic feedback
                     │    ┌──────────────────┐    ┌──────────────────┐
                     └───►│ ForceVLA2 (2026) │───►│ HapticVLA (2026) │
                          └──────────────────┘    └──────────────────┘
 
 · tactile VLA
-                    +tactile language    +vision-tactile    +tactile priors           +torque-aware
-┌──────────────┐    ┌───────────────┐    ┌─────────────┐    ╔════════════════════╗    ┌───────────────┐
-│ FACTR (2025) │───►│ TLA (2025)    │───►│ VTLA (2025) │───►║ Tactile-VLA (2025) ║───►│ TA-VLA (2025) │
-└──────────────┘    └───────────────┘    └─────────────┘    ╚════════════════════╝    └───────────────┘
+                    +tactile
+                    language          +vision-tactile    +tactile priors           +torque-aware
+┌──────────────┐    ┌────────────┐    ┌─────────────┐    ╔════════════════════╗    ┌───────────────┐
+│ FACTR (2025) │───►│ TLA (2025) │───►│ VTLA (2025) │───►║ Tactile-VLA (2025) ║───►│ TA-VLA (2025) │
+└──────────────┘    └────────────┘    └─────────────┘    ╚════════════════════╝    └───────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```

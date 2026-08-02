@@ -19,89 +19,165 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Foundations
+1. Image Generation Backbone   (what the denoiser runs on)
+· latent space to transformer
+                                      U-Net →           +scale, refiner    +unified continuous
+                                      transformer       stage              tokens
+╔════════════════════════════════╗    ┌────────────┐    ┌─────────────┐    ┌─────────────────┐
+║ Latent Diffusion Models (2021) ║───►│ DiT (2022) │───►│ SDXL (2023) │───►│ UniFluid (2025) │
+╚════════════════┬═══════════════╝    └────────────┘    └─────────────┘    └─────────────────┘
+                 │    images → video
+                 │    ┌──────────────────┐
+                 └───►│ CogVideoX (2024) │
+                      └──────────────────┘
 
-╔════════════════════╗          ┌───────────────────────────┐
-║ Diffuser (2022)    ║ ───────► │ Diffusion Policy (2023)   │
-╚════════════════════╝          └───────────────────────────┘
+2. Discrete Diffusion LLMs   (replace autoregression outright)
+· masked-token generation
+                    +variance-reduced       +cached parallel
+                    preference opt          decoding
+╔══════════════╗    ┌──────────────────┐    ┌──────────────────┐
+║ LLaDA (2025) ║───►│ LLaDA-1.5 (2025) │───►│ Fast-dLLM (2025) │
+╚═══════┬══════╝    └──────────────────┘    └──────────────────┘
+        │    +RL
+        │    post-training
+        │    ┌───────────┐
+        ├───►│ d1 (2025) │
+        │    └───────────┘
+        │    +weighted policy
+        │    optimization
+        │    ┌──────────────┐
+        └───►│ wd1 (2025)   │
+             └──────────────┘
 
+3. Unified Multimodal   (one model, both directions)
+· fuse the objectives
+                        +diffusion loss beside    +single              +diffusion across
+                        next-token                transformer          all modalities
+┌──────────────────┐    ┌────────────────────┐    ┌───────────────┐    ┌───────────────┐
+│ Chameleon (2024) │───►│ Transfusion (2024) │───►│ Show-o (2024) │───►│ MMaDA (2025)  │
+└─────────┬────────┘    └────────────────────┘    └───────────────┘    └───────────────┘
+          │    +next-token for
+          │    everything
+          │    ┌─────────────┐
+          ├───►│ Emu3 (2024) │
+          │    └─────────────┘
+          │    +1D compact
+          │    tokenizer
+          │    ┌──────────────┐
+          └───►│ TiTok (2025) │
+               └──────────────┘
 
-2. Unified Multimodal
+4. RL Alignment   (align the sampler itself)
+· reward through the denoiser
+                   +direct reward      diffusion → flow                                 +self-improving,
+                   backprop            matching                +tree branching, 4.7x    no external data
+┌─────────────┐    ┌──────────────┐    ┌──────────────────┐    ┌───────────────────┐    ┌──────────────┐
+│ DDPO (2023) │───►│ DRaFT (2023) │───►│ Flow-GRPO (2025) │───►│ BranchGRPO (2025) │───►│ UniRL (2025) │
+└──────┬──────┘    └──────────────┘    └──────────────────┘    └───────────────────┘    └──────────────┘
+       │    training →
+       │    inference-time steering
+       │    ┌─────────────────────┐
+       └───►│ FK-Steering (2025)  │
+            └─────────────────────┘
 
-                    ╔═══════════════════════╗
-                    ║ Transfusion (2024)    ║
-                    ╚═══════════╤═══════════╝
-                     ┌──────────┴──────────┐
-                     ▼                     ▼
-          ┌────────────────────┐  ┌────────────────────┐
-          │ Show-o (2024)      │  │ Ovis-U1 (2025)     │
-          └──────────┬─────────┘  └────────────────────┘
-                     │
-                     ▼
-          ┌────────────────────┐          ┌────────────────────┐
-          │ Show-o2 (2025)     │ ◄─────── │ Chameleon (2024)   │
-          └────────────────────┘          └────────────────────┘
+5. Chain-of-Thought Generation   (reason before you draw)
+· reasoning in the loop
+                                   +bi-level             +MLLM reasoning
+                                   semantic/token CoT    in editing         images → video reasoning
+┌─────────────────────────────┐    ┌────────────────┐    ┌─────────────┐    ┌───────────────────────────┐
+│ CoT-Image-Generation (2025) │───►│ T2I-R1 (2025)  │───►│ GoT (2025)  │───►│ Thinking-in-Frames (2026) │
+└─────────────────────────────┘    └────────────────┘    └─────────────┘    └───────────────────────────┘
 
+6. Diffusion for Control   (trajectories, not images)
+· denoise the action
+                                                      +flow-matching    +efficient VLA
+                       +visuomotor control            action expert     flow
+╔═════════════════╗    ┌─────────────────────────┐    ┌────────────┐    ┌───────────────┐
+║ Diffuser (2022) ║───►│ Diffusion-Policy (2023) │───►│ pi0 (2024) │───►│ FLOWER (2025) │
+╚════════┬════════╝    └─────────────────────────┘    └────────────┘    └───────────────┘
+         │    actions → video
+         │    as policy
+         │    ┌──────────────┐
+         ├───►│ UniPi (2023) │
+         │    └──────────────┘
+         │    +compact VLA
+         │    ┌────────────────┐
+         └───►│ SmolVLA (2025) │
+              └────────────────┘
 
-3. Discrete Diffusion LLMs
+7. Physical Plausibility   (does the generated video obey physics)
+· benchmark, then reward
+                      +text-to-video physics    +harder physical         benchmark → reward
+                      eval                      commonsense              model
+┌────────────────┐    ┌────────────────────┐    ┌───────────────────┐    ┌─────────────────┐
+│ Physion (2021) │───►│ PhyGenBench (2024) │───►│ VideoPhy-2 (2025) │───►│ WMReward (2026) │
+└────────────────┘    └────────────────────┘    └───────────────────┘    └─────────────────┘
 
-                     ╔═══════════════════╗
-                     ║ LLaDA (2025)      ║
-                     ╚═════════╤═════════╝
-              ┌────────────────┼────────────────┐
-              ▼                ▼                ▼
-   ┌────────────────────┐ ┌────────────────┐ ┌────────────────┐
-   │ LLaDA 1.5 (2025)   │ │ MMaDA (2025)   │ │ d1 (2025)      │
-   └────────────────────┘ └────────────────┘ └────────────────┘
-
-
-4. RL Alignment
-
-              ╔═══════════════════════╗
-              ║ Flow-GRPO (2025)      ║
-              ╚═══════════╤═══════════╝
-               ┌──────────┴──────────┐
-               ▼                     ▼
-    ┌─────────────────────┐  ┌─────────────────────┐
-    │ BranchGRPO (2025)   │  │ UniRL (2025)        │
-    └─────────────────────┘  └─────────────────────┘
-
-
-5. CoT Generation
-
-           ┌─────────────────────────────┐
-           │ CoT Image Gen (2025)        │
-           └───────────────┬─────────────┘
-                ┌──────────┴──────────┐
-                ▼                     ▼
-     ┌────────────────────┐  ┌────────────────────┐
-     │ T2I-R1 (2025)      │  │ GoT (2025)         │
-     └────────────────────┘  └────────────────────┘
+8. Physics-Grounded 3D   (put mechanics in the representation)
+· recover material properties
+                       NeRF → Gaussian            +material               +expert constitutive
+                       continuum                  distillation            models
+┌─────────────────┐    ┌─────────────────────┐    ┌──────────────────┐    ┌───────────────────┐
+│ PAC-NeRF (2023) │───►│ PhysGaussian (2023) │───►│ Physics3D (2024) │───►│ OmniPhysGS (2025) │
+└─────────────────┘    └──────────┬──────────┘    └──────────────────┘    └───────────────────┘
+                                  │    +video-diffusion priors
+                                  │    ┌─────────────────────┐
+                                  ├───►│ DreamPhysics (2024) │
+                                  │    └─────────────────────┘
+                                  │    +real-to-sim twins
+                                  │    ┌─────────────────┐
+                                  └───►│ PhysTwin (2025) │
+                                       └─────────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through five threads: **foundations** (2022-2023) where Diffuser and Diffusion Policy bridged diffusion from image synthesis to RL planning and robot control; **unified multimodal** (2024-2025) where Transfusion, Show-o, Chameleon, Show-o2, and Ovis-U1 merged understanding and generation in single architectures; **discrete diffusion LLMs** (2025) where LLaDA, LLaDA 1.5, MMaDA, and d1 proved diffusion can rival autoregression for language; **RL alignment** (2025) where Flow-GRPO, BranchGRPO, and UniRL applied policy optimization to generative models; and **CoT generation** (2025) where CoT Image Gen, T2I-R1, and GoT taught generators to reason before drawing.
+The eight lanes divide on **what diffusion is being applied to**. **Image generation backbone** settles what the denoiser runs on, Latent Diffusion Models moving it into latent space, DiT swapping the U-Net for a transformer, SDXL scaling it, UniFluid unifying the token space, with CogVideoX branching from images to video. **Discrete diffusion LLMs** replace autoregression outright, LLaDA to LLaDA-1.5 to Fast-dLLM, while d1 and wd1 branch to post-train it with RL. **Unified multimodal** fuses both directions in one model, Chameleon to Transfusion to Show-o to MMaDA, with Emu3 and TiTok branching on pure next-token prediction and compact tokenization. **RL alignment** puts reward through the denoiser, DDPO to DRaFT to Flow-GRPO to BranchGRPO to UniRL, with FK-Steering branching to skip training and steer at inference. **Chain-of-thought generation** makes the model reason before it draws, CoT-Image-Generation to T2I-R1 to GoT to Thinking-in-Frames. **Diffusion for control** denoises actions rather than pixels, Diffuser to Diffusion-Policy to pi0 to FLOWER, with UniPi and SmolVLA branching toward video-as-policy and compact VLAs. **Physical plausibility** asks whether the output obeys physics at all, Physion to PhyGenBench to VideoPhy-2, until WMReward turns the benchmark into a reward model. **Physics-grounded 3D** puts mechanics inside the representation, PAC-NeRF to PhysGaussian to Physics3D to OmniPhysGS, with DreamPhysics and PhysTwin branching to video-diffusion priors and real-to-sim twins.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2022 | [[2205.09991\|Diffuser]] | First to use denoising diffusion for RL planning; treated trajectories as data to denoise |
-| 2023 | [[2303.04137\|Diffusion-Policy]] | Extended diffusion to visuomotor control; became the standard for robot action generation |
-| 2024 | [[2408.11039\|Transfusion]] | Pioneered mixing next-token prediction with diffusion loss in one model; outperformed quantization approaches |
-| 2024 | [[2408.12528\|Show-o]] | Single transformer unifying understanding and generation; proved unified architectures are viable |
-| 2024 | [[2405.09818\|Chameleon]] | Meta's early-fusion token-based model; proved full modality unification is architecturally viable at scale |
-| 2025 | [[2506.15564\|Show-o2]] | Scaled Show-o with native multimodal capabilities and improved generation quality |
-| 2025 | [[2506.23044\|Ovis-U1]] | Unified visual understanding and generation via an LLM-native multimodal architecture |
-| 2025 | [[2502.09992\|LLaDA]] | First 8B diffusion LLM competitive with AR models; proved diffusion works for large-scale language modeling |
-| 2025 | [[2505.19223\|LLaDA-1.5]] | Variance-Reduced Preference Optimization for aligning masked diffusion models with human preferences |
-| 2025 | [[2505.15809\|MMaDA]] | Unified diffusion model handling text reasoning, image generation, and multimodal understanding simultaneously |
-| 2025 | [[2504.12216\|d1]] | First RL post-training framework for dLLMs; introduced diffu-GRPO with +26.2% on Countdown |
-| 2025 | [[2505.05470\|Flow-GRPO]] | First framework adapting GRPO to flow matching; enables online RL for continuous generative models |
-| 2025 | [[2509.06040\|BranchGRPO]] | Tree-structured branching yielding 4.7x training speedup and 16% better alignment over vanilla GRPO |
-| 2025 | [[2505.23380\|UniRL]] | Unified self-improving post-training for both diffusion and flow models |
-| 2025 | [[2501.13926\|CoT-Image-Generation]] | First comprehensive study of CoT for AR image generation; +24% over Show-o baseline |
-| 2025 | [[2505.00703\|T2I-R1]] | Bi-level CoT (semantic + token) with RL; excels on complex, reasoning-intensive prompts |
-| 2025 | [[2503.10639\|GoT]] | Integrates MLLM reasoning into visual generation and editing via a unified framework |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2021 | [[2106.08261\|Physion]] | Physical Plausibility · Benchmark then Reward | Foundational dataset that pioneered "physics prediction from video" as a benchmark setting; the original benchmark that defined the model-vs-human physical-prediction gap |
+| 2021 | [[2112.10752\|Latent Diffusion Models]] | Backbone · Latent Space to Transformer | Runs diffusion in a compressed autoencoder latent space instead of pixel space; the architecture behind Stable Diffusion and the efficiency backbone of nearly all modern T2I systems |
+| 2022 | [[2205.09991\|Diffuser]] | Control · Denoise the Action | First to use denoising diffusion for RL planning; treated trajectories as data to denoise |
+| 2022 | [[2212.09748\|DiT]] | Backbone · Latent Space to Transformer | Replaced the U-Net backbone with a Transformer for diffusion; the architecture underlying nearly every modern T2I/T2V model |
+| 2023 | [[2302.00111\|UniPi]] | Control · Denoise the Action | Universal policy as text-conditioned video generation; crosses the boundary between video models and robot control |
+| 2023 | [[2303.04137\|Diffusion-Policy]] | Control · Denoise the Action | Extended diffusion to visuomotor control; became the standard for robot action generation |
+| 2023 | [[2303.05512\|PAC-NeRF]] | Physics-3D · Material Properties | Physics-Augmented Continuum NeRF; jointly recovers geometry and material parameters (Young's modulus, density, plasticity) from video, foundational for material-property estimation from pixels |
+| 2023 | [[2305.13301\|DDPO]] | RL Alignment · Reward through the Denoiser | Reformulated multi-step denoising as an MDP and applied policy gradients; the first principled RL approach to diffusion alignment, outperforming reward-weighted regression across compressibility, aesthetics, and prompt alignment |
+| 2023 | [[2307.01952\|SDXL]] | Backbone · Latent Space to Transformer | Scaled latent diffusion to a two-stage base+refiner pipeline; became the standard open-weight T2I model |
+| 2023 | [[2309.17400\|DRaFT]] | RL Alignment · Reward through the Denoiser | Direct backpropagation of differentiable rewards through the entire sampling chain via LoRA + gradient checkpointing; >200× more sample-efficient than DDPO and the foundation for modern reward-gradient methods |
+| 2023 | [[2311.12198\|PhysGaussian]] | Physics-3D · Material Properties | Couples 3D Gaussian Splatting with continuum mechanics MPM solver; first to make 3DGS scenes physically interactive without rebuilding meshes |
+| 2024 | [[2405.09818\|Chameleon]] | Unified · Fuse the Objectives | Meta's early-fusion token-based model; proved full modality unification is architecturally viable at scale |
+| 2024 | [[2406.01476\|DreamPhysics]] | Physics-3D · Material Properties | Physics-based 3D dynamics learned from video diffusion priors via score distillation; among the first to make image/video diffusion supervise material parameter inference |
+| 2024 | [[2406.04338\|Physics3D]] | Physics-3D · Material Properties | Distills physical properties (Young's modulus, viscosity, plasticity) into 3D Gaussians via video diffusion priors; the canonical Score-Distillation-from-video-prior recipe for material inference |
+| 2024 | [[2408.06072\|CogVideoX]] | Backbone · Latent Space to Transformer | Expert-transformer T2V diffusion model that established a strong open baseline for text-to-video generation |
+| 2024 | [[2408.11039\|Transfusion]] | Unified · Fuse the Objectives | Pioneered mixing next-token prediction with diffusion loss in one model; outperformed quantization approaches |
+| 2024 | [[2408.12528\|Show-o]] | Unified · Fuse the Objectives | Single transformer unifying understanding and generation; proved unified architectures are viable |
+| 2024 | [[2409.18869\|Emu3]] | Unified · Fuse the Objectives | Showed next-token prediction alone can handle text, image, and video generation without diffusion |
+| 2024 | [[2410.05363\|PhyGenBench]] | Physical Plausibility · Benchmark then Reward | 160-prompt benchmark across Mechanics/Optics/Thermal/Materials with PhyGenEval auto-scoring (Spearman ρ=0.81 with humans); top T2V model scored only 0.51/3.0, exposing the physics gap |
+| 2024 | [[2410.24164\|pi0]] | Control · Denoise the Action | Vision-language-action flow model for general robot control; established flow matching as the standard for VLA action generation |
+| 2025 | [[2501.06848\|FK-Steering]] | RL Alignment · Reward through the Denoiser | Feynman-Kac Interacting Particle Systems for steering diffusion at inference; enables a 0.8B Stable Diffusion to beat a 2.6B fine-tuned SDXL-DPO and works for both continuous and discrete state spaces |
+| 2025 | [[2501.13926\|CoT-Image-Generation]] | CoT Generation · Reasoning in the Loop | First comprehensive study of CoT for AR image generation; +24% over Show-o baseline |
+| 2025 | [[2501.18982\|OmniPhysGS]] | Physics-3D · Material Properties | Constitutive Gaussians with learnable per-particle constitutive networks; ensemble of 12 expert models + custom PyTorch MPM reduces memory **75%** vs Warp solvers |
+| 2025 | [[2502.09992\|LLaDA]] | Discrete Diffusion · Masked-Token Generation | First 8B diffusion LLM competitive with AR models; proved diffusion works for large-scale language modeling |
+| 2025 | [[2503.06800\|VideoPhy-2]] | Physical Plausibility · Benchmark then Reward | Action-centric physical commonsense benchmark; best models hit only 32.6% joint performance (22% on hard subset), with VideoPhy-2-AutoEval offering 47–49% relative gains as automated judge |
+| 2025 | [[2503.10639\|GoT]] | CoT Generation · Reasoning in the Loop | Integrates MLLM reasoning into visual generation and editing via a unified framework |
+| 2025 | [[2503.13436\|UniFluid]] | Backbone · Latent Space to Transformer | Google DeepMind's unified AR framework using continuous and discrete tokens for seamless visual generation and understanding |
+| 2025 | [[2503.17973\|PhysTwin]] | Physics-3D · Material Properties | Single-image-to-physical-twin pipeline; estimates material parameters and rigging that re-simulate under arbitrary forces |
+| 2025 | [[2504.12216\|d1]] | Discrete Diffusion · Masked-Token Generation | First RL post-training framework for dLLMs; introduced diffu-GRPO with +26.2% on Countdown |
+| 2025 | [[2505.00703\|T2I-R1]] | CoT Generation · Reasoning in the Loop | Bi-level CoT (semantic + token) with RL; excels on complex, reasoning-intensive prompts |
+| 2025 | [[2505.05470\|Flow-GRPO]] | RL Alignment · Reward through the Denoiser | First framework adapting GRPO to flow matching; enables online RL for continuous generative models |
+| 2025 | [[2505.15809\|MMaDA]] | Unified · Fuse the Objectives | Unified diffusion model handling text reasoning, image generation, and multimodal understanding simultaneously |
+| 2025 | [[2505.19223\|LLaDA-1.5]] | Discrete Diffusion · Masked-Token Generation | Variance-Reduced Preference Optimization for aligning masked diffusion models with human preferences |
+| 2025 | [[2505.22618\|Fast-dLLM]] | Discrete Diffusion · Masked-Token Generation | Training-free 27.6x throughput improvement via KV cache and confidence-aware parallel decoding |
+| 2025 | [[2505.23380\|UniRL]] | RL Alignment · Reward through the Denoiser | Unified self-improving post-training for both diffusion and flow models |
+| 2025 | [[2506.01844\|SmolVLA]] | Control · Denoise the Action | Affordable and efficient VLA via flow matching; democratized robot learning with minimal compute requirements |
+| 2025 | [[2506.08257\|TiTok]] | Unified · Fuse the Objectives | Highly compressed 1D tokenizer that generates images via test-time optimization without a generative model |
+| 2025 | [[2507.08838\|wd1]] | Discrete Diffusion · Masked-Token Generation | Weighted policy optimization achieving up to 100% improvement on reasoning benchmarks while eliminating SFT |
+| 2025 | [[2509.04996\|FLOWER]] | Control · Denoise the Action | Generalist flow-based VLA policy enabling broad robot skill transfer across embodiments |
+| 2025 | [[2509.06040\|BranchGRPO]] | RL Alignment · Reward through the Denoiser | Tree-structured branching yielding 4.7x training speedup and 16% better alignment over vanilla GRPO |
+| 2026 | [[2601.10553\|WMReward]] | Physical Plausibility · Benchmark then Reward | Differentiable physics reward derived from V-JEPA2 prediction surprise; first place at ICCV 2025 PhysicsIQ Challenge with 62.64%, +11.4% human-preference win rate via Best-of-N + gradient guidance |
+| 2026 | [[2601.21037\|Thinking-in-Frames]] | CoT Generation · Reasoning in the Loop | Video generators as visual reasoners; discovers "Visual Test-Time Scaling" where more frames improve OOD performance |
 
 ---
 

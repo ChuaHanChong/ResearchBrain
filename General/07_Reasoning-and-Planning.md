@@ -18,125 +18,152 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Chain-of-Thought
+1. Explicit Chain-of-Thought   (write the steps out)
+· rationales as text
+                                         +bootstrap own     +token-level             +budget-forced
+                                         rationales         rationales               scaling
+╔═══════════════════════════════════╗    ┌─────────────┐    ┌───────────────────┐    ┌────────────┐
+║ Chain-of-Thought Prompting (2022) ║───►│ STaR (2022) │───►│ Quiet-STaR (2024) │───►│ s1 (2025)  │
+╚═══════════════════════════════════╝    └──────┬──────┘    └───────────────────┘    └────────────┘
+                                                │    +tree search over
+                                                │    rationales
+                                                │    ┌────────────────┐
+                                                └───►│ AR-MCTS (2024) │
+                                                     └────────────────┘
 
-╔══════════════════════════╗
-║ Chain-of-Thought (2022)  ║
-╚═══════════════╤══════════╝
-                ├──► ReAct (2022)        [Agentic Reasoning]
-                ├──► PAL (2022)          [Program-Aided]
-                ▼
-         ┌──────┴──────────────────────┐
-         ▼                             ▼
-┌────────────────────────┐  ┌──────────────────────┐
-│ Multimodal-CoT (2023)  │  │ STaR (2022)          │
-└────────────┬───────────┘  └──────────┬───────────┘
-             └──► VisCoT (2024)  [Visual Reasoning]
-                                          ▼
-                                  ┌───────┴────────────┐
-                                  ▼                    ▼
-                        ┌───────────────────────┐  ┌──────────────────┐
-                        │ Quiet-STaR (2024)     │  │ LaRS (2023)      │
-                        └───────────┬───────────┘  └──────────────────┘
-                                    ├──► Coconut (2024)     [Latent Reasoning]
-                                    ├──► LRM Survey (2025)  [Test-Time Scaling]
-                                    ▼
-                        ┌────────────────────────────────────┐
-                        │ Stepwise-Internalization (2024)    │
-                        └────────────────────────────────────┘
+2. Latent Reasoning   (stop writing them out)
+· text into hidden state
+                                           +looped            +hierarchical
+                      +recurrent depth     pretraining        reasoning module
+┌────────────────┐    ┌───────────────┐    ┌─────────────┐    ┌──────────────┐
+│ Coconut (2024) │───►│ Huginn (2025) │───►│ Ouro (2025) │───►│ HRM (2025)   │
+└────────┬───────┘    └───────────────┘    └─────────────┘    └──────────────┘
+         │    +progressive internalization
+         │    ┌─────────────────────────────────┐
+         ├───►│ Stepwise-Internalization (2024) │
+         │    └─────────────────────────────────┘
+         │    +soft-token chain
+         │    ┌──────────────────┐
+         └───►│ SoftCoT++ (2025) │
+              └──────────────────┘
 
+3. Multimodal Chain-of-Thought   (reason over pixels)
+· ground the chain
+                             +guided                                        +multimodal
+                             visual search    +sketching as the chain       visualization
+┌───────────────────────┐    ┌───────────┐    ┌────────────────────────┐    ┌─────────────┐
+│ Multimodal-CoT (2023) │───►│ V* (2023) │───►│ VisualSketchPad (2024) │───►│ MVoT (2025) │
+└───────────┬───────────┘    └───────────┘    └────────────────────────┘    └─────────────┘
+            │    +staged autonomous
+            │    stages
+            │    ┌──────────────────┐
+            ├───►│ LLaVA-CoT (2024) │
+            │    └──────────────────┘
+            │    +atomic step
+            │    supervision
+            │    ┌──────────────────┐
+            └───►│ AtomThink (2024) │
+                 └──────────────────┘
 
-2. Agentic Reasoning
+4. Agentic Planning   (act, observe, replan)
+· search over actions
+                    +LLM as own
+                    world model       +tree search       +fast/slow router
+╔══════════════╗    ┌────────────┐    ┌─────────────┐    ┌───────────────────┐
+║ ReAct (2022) ║───►│ RAP (2023) │───►│ LATS (2023) │───►│ System-1.x (2024) │
+╚══════════════╝    └──────┬─────┘    └─────────────┘    └───────────────────┘
+                           │    language → visual
+                           │    world model
+                           │    ┌────────────────┐
+                           ├───►│ DINO-WM (2024) │
+                           │    └────────────────┘
+                           │    +formal planning
+                           │    ┌──────────────────────┐
+                           └───►│ PDDL-INSTRUCT (2025) │
+                                └──────────────────────┘
 
-╔══════════════════╗
-║ ReAct (2022)     ║
-╚═══════╤══════════╝
-     ┌──┴───────────────────┐
-     ▼                      ▼
-┌────────────────┐        ┌────────────────┐
-│ LATS (2023)    │        │ RAP (2023)     │
-└────────┬───────┘        └─────────┬──────┘
-         ├──► TTS Survey (2025)     ▼
-         │    [Test-Time Scaling] ┌──────────────────┐
-         ▼                        │ System-1.x (2024)│
- (no further children)            └──────────────────┘
+5. Program-Aided   (offload to an interpreter)
+· code as scratchpad
+                  +visual program       +Python                +just-in-time
+                  synthesis             orchestration          compilation
+┌────────────┐    ┌────────────────┐    ┌─────────────────┐    ┌────────────┐
+│ PAL (2022) │───►│ VISPROG (2022) │───►│ ViperGPT (2023) │───►│ JIT (2026) │
+└────────────┘    └────────────────┘    └─────────────────┘    └────────────┘
 
+6. RL-Trained Visual Reasoning   (reward the visual chain)
+· verifiable visual reward
+                        +stable VLM RL                                 +efficient
+                        recipe               +spatial imagination      sample filtering
+┌──────────────────┐    ┌───────────────┐    ┌────────────────────┐    ┌──────────────┐
+│ Vision-R1 (2025) │───►│ VLM-R1 (2025) │───►│ MindJourney (2025) │───►│ SIEVE (2026) │
+└──────────────────┘    └───────────────┘    └────────────────────┘    └──────────────┘
 
-3. Program-Aided
+7. Spatial Reasoning   (does it know where things are)
+· probe, then ground
+                         +region-level spatial     +multi-frame spatial            +unified benchmark
+┌───────────────────┐    ┌────────────────────┐    ┌──────────────────────────┐    ┌─────────────────────┐
+│ SpatialVLM (2024) │───►│ SpatialRGPT (2024) │───►│ Multi-SpatialMLLM (2025) │───►│ SpatialScore (2025) │
+└─────────┬─────────┘    └────────────────────┘    └──────────────────────────┘    └─────────────────────┘
+          │    correlation → causal
+          │    ┌──────────────────────┐
+          └───►│ CausalSpatial (2026) │
+               └──────────────────────┘
 
-┌────────────────┐
-│ PAL (2022)     │
-└────────┬───────┘
-         ▼
-┌────────────────────┐
-│ ViperGPT (2023)    │
-└────────────────────┘
-
-
-4. Latent Reasoning
-
-╔═══════════════════════╗
-║ Coconut (2024)        ║
-╚═════════════╤═════════╝
-      ┌───────┴───────────┐
-      ▼                   ▼
-┌──────────────────┐  ┌────────────────────┐
-│ CODI (2025)      │  │ Huginn (2025)      │
-└──────────────────┘  └────────────────────┘
-
-
-5. Visual Reasoning
-
-┌────────────────────┐
-│ VisCoT (2024)      │
-└──────────┬─────────┘
-           ▼
-┌────────────────────┐
-│ VoT (2024)         │
-└──────────┬─────────┘
-           ▼
-╔════════════════════════╗
-║ Vision-R1 (2025)       ║
-╚════════════════════════╝
-
-
-6. Test-Time Scaling
-
-┌─────────────────────────┐
-│ TTS Survey (2025)       │   (receives LATS → TTS Survey from Agentic Reasoning)
-└─────────────────────────┘
-
-┌─────────────────────────┐
-│ LRM Survey (2025)       │   (receives Quiet-STaR → LRM Survey from Chain-of-Thought)
-└─────────────────────────┘
+8. Test-Time Scaling   (decide how long to think)
+· when to stop thinking
+                                       +learn when not to      +hybrid            +adaptive
+                                       think                   reasoning modes    stopping
+┌─────────────────────────────────┐    ┌──────────────────┐    ┌─────────────┐    ┌─────────────┐
+│ Test-Time-Scaling-Survey (2025) │───►│ Thinkless (2025) │───►│ LHRM (2025) │───►│ STOP (2026) │
+└─────────────────────────────────┘    └──────────────────┘    └─────────────┘    └─────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through six phases: **explicit CoT prompting** (2022) where chain-of-thought and STaR established step-by-step reasoning; **agentic reasoning** (2022-2023) where ReAct, RAP, and LATS added environment interaction and tree search; **program-aided reasoning** (2022-2023) where PAL and ViperGPT delegated computation to code; **latent reasoning** (2024-2025) where Coconut, CODI, and Huginn moved reasoning into continuous latent space; **visual reasoning** (2024-2025) where VisCoT, VoT, and Vision-R1 grounded CoT in visual perception; and **test-time scaling** (2025) where surveys codified how to allocate more compute at inference for better answers.
+The eight lanes divide on **where the reasoning lives**. **Explicit chain-of-thought** writes the steps out, Chain-of-Thought Prompting to STaR to Quiet-STaR to s1, with AR-MCTS branching to search over rationales rather than sample them. **Latent reasoning** stops writing them out, Coconut replacing text with a continuous state before Huginn, Ouro, and HRM buy more of it with depth and hierarchy, while Stepwise-Internalization and SoftCoT++ branch as the gradual and soft-token alternatives. **Multimodal chain-of-thought** grounds the chain in pixels, Multimodal-CoT to V* to VisualSketchPad to MVoT, with LLaVA-CoT and AtomThink branching on staged and atomic supervision. **Agentic planning** puts the reasoning in the action sequence, ReAct to RAP to LATS to System-1.x, with DINO-WM and PDDL-INSTRUCT branching toward visual world models and formal planning. **Program-aided** offloads it to an interpreter, PAL to VISPROG to ViperGPT to JIT. **RL-trained visual reasoning** rewards the visual chain directly, Vision-R1 to VLM-R1 to MindJourney to SIEVE. **Spatial reasoning** probes before it grounds, SpatialVLM to SpatialRGPT to Multi-SpatialMLLM to SpatialScore, with CausalSpatial branching from correlation to cause. **Test-time scaling** asks how long to think at all, and Thinkless, LHRM, and STOP all answer by learning when to stop.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2022 | [[2201.11903\|Chain-of-Thought Prompting]] | Introduced chain-of-thought prompting; showed step-by-step reasoning dramatically improves LLM problem-solving |
-| 2022 | [[2203.14465\|STaR]] | Self-taught reasoner bootstrapping its own rationales iteratively; created a flywheel for reasoning improvement |
-| 2022 | [[2210.03629\|ReAct]] | Synergized reasoning and acting in a think-act-observe loop; launched the LLM agent paradigm |
-| 2022 | [[2211.10435\|PAL]] | Program-aided Language Models offloading computation to a Python interpreter; separated reasoning from calculation |
-| 2023 | [[2302.00923\|Multimodal-CoT]] | Chain-of-thought with vision for sub-1B models; mitigated hallucinated rationales via two-stage reasoning |
-| 2023 | [[2305.14992\|RAP]] | Treated the LLM as its own world model for lookahead planning within the reasoning-acting framework |
-| 2023 | [[2310.04406\|LATS]] | Language Agent Tree Search unifying reasoning, acting, and planning through MCTS over action spaces |
-| 2023 | [[2303.08128\|ViperGPT]] | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning |
-| 2023 | [[2312.04684\|LaRS]] | Latent reasoning skills for chain-of-thought; learned implicit skill representations to guide reasoning |
-| 2024 | [[2403.09629\|Quiet-STaR]] | Extended STaR to think before every token via internal rationales; generalized self-training to token level |
-| 2024 | [[2405.14838\|Stepwise-Internalization]] | Progressively internalized explicit CoT into implicit reasoning step by step |
-| 2024 | [[2407.14414\|System-1.x]] | Balanced fast and slow planning with learned planner routing; adaptive depth of reasoning |
-| 2024 | [[2412.06769\|Coconut]] | Trained LLMs to reason in continuous latent space instead of text tokens; eliminated verbalization overhead |
-| 2024 | [[2403.16999\|VisCoT]] | Visual chain-of-thought dataset and benchmark; grounded multi-step reasoning in image regions |
-| 2024 | [[2404.03622\|VoT]] | Visualization-of-Thought eliciting spatial reasoning in LLMs via mental imagery |
-| 2025 | [[2502.21074\|CODI]] | Compressed chain-of-thought into continuous space via self-distillation; efficient implicit reasoning |
-| 2025 | [[2502.05171\|Huginn]] | Scaled test-time compute with latent reasoning via recurrent depth; thinking without text tokens |
-| 2025 | [[2503.06749\|Vision-R1]] | RL-based incentivization of visual reasoning in MLLMs; extended R1-style training to vision |
-| 2025 | [[2503.24235\|Test-Time-Scaling-Survey]] | Comprehensive survey on what, how, where, and how well test-time scaling works for LLMs |
-| 2025 | [[2501.09686\|Large-Reasoning-Models-Survey]] | First systematic survey of RL-based reasoning in LLMs; maps the post-DeepSeek-R1 landscape |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2022 | [[2201.11903\|Chain-of-Thought Prompting]] | Explicit CoT · Rationales as Text | Introduced chain-of-thought prompting; showed step-by-step reasoning dramatically improves LLM problem-solving |
+| 2022 | [[2203.14465\|STaR]] | Explicit CoT · Rationales as Text | Self-taught reasoner bootstrapping its own rationales iteratively; created a flywheel for reasoning improvement |
+| 2022 | [[2210.03629\|ReAct]] | Agentic · Search over Actions | Synergized reasoning and acting in a think-act-observe loop; launched the LLM agent paradigm |
+| 2022 | [[2211.10435\|PAL]] | Program-Aided · Code as Scratchpad | Program-aided Language Models offloading computation to a Python interpreter; separated reasoning from calculation |
+| 2022 | [[2211.11559\|VISPROG]] | Program-Aided · Code as Scratchpad | Visual programming: compose vision-and-language modules into executable programs, training-free |
+| 2023 | [[2302.00923\|Multimodal-CoT]] | Multimodal CoT · Ground the Chain | Chain-of-thought with vision for sub-1B models; mitigated hallucinated rationales via two-stage reasoning |
+| 2023 | [[2303.08128\|ViperGPT]] | Program-Aided · Code as Scratchpad | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning |
+| 2023 | [[2305.14992\|RAP]] | Agentic · Search over Actions | Treated the LLM as its own world model for lookahead planning within the reasoning-acting framework |
+| 2023 | [[2310.04406\|LATS]] | Agentic · Search over Actions | Language Agent Tree Search unifying reasoning, acting, and planning through MCTS over action spaces |
+| 2023 | [[2312.14135\|V*]] | Multimodal CoT · Ground the Chain | LLM-guided visual search that addresses the visual information bottleneck in MLLMs |
+| 2024 | [[2401.12168\|SpatialVLM]] | Spatial · Probe then Ground | Google DeepMind equips VLMs with quantitative spatial reasoning via large-scale spatial data |
+| 2024 | [[2403.09629\|Quiet-STaR]] | Explicit CoT · Rationales as Text | Extended STaR to think before every token via internal rationales; generalized self-training to token level |
+| 2024 | [[2405.14838\|Stepwise-Internalization]] | Latent · Text into Hidden State | Progressively internalized explicit CoT into implicit reasoning step by step |
+| 2024 | [[2406.01584\|SpatialRGPT]] | Spatial · Probe then Ground | NVIDIA/UCSD enhance VLMs with grounded spatial reasoning through region-aware representations |
+| 2024 | [[2406.09403\|VisualSketchPad]] | Multimodal CoT · Ground the Chain | Equips multimodal LMs with intermediate visual sketch generation for reasoning |
+| 2024 | [[2407.14414\|System-1.x]] | Agentic · Search over Actions | Balanced fast and slow planning with learned planner routing; adaptive depth of reasoning |
+| 2024 | [[2411.04983\|DINO-WM]] | Agentic · Search over Actions | Task-agnostic world model leveraging frozen DINOv2 for visual planning |
+| 2024 | [[2411.10440\|LLaVA-CoT]] | Multimodal CoT · Ground the Chain | VLM with structured four-stage reasoning (summary, caption, reasoning, conclusion) that outperforms larger models |
+| 2024 | [[2411.11930\|AtomThink]] | Multimodal CoT · Ground the Chain | Self-structured CoT annotations for MLLMs using atomic step decomposition |
+| 2024 | [[2412.06769\|Coconut]] | Latent · Text into Hidden State | Trained LLMs to reason in continuous latent space instead of text tokens; eliminated verbalization overhead |
+| 2024 | [[2412.14835\|AR-MCTS]] | Explicit CoT · Rationales as Text | Active reward-guided MCTS enhances multi-step multimodal reasoning without additional training |
+| 2025 | [[2501.07542\|MVoT]] | Multimodal CoT · Ground the Chain | Multimodal VoT enables MLLMs to generate interleaved visual reasoning traces |
+| 2025 | [[2501.19393\|s1]] | Explicit CoT · Rationales as Text | Stanford/UW open-source 32B model achieves SOTA reasoning by training on just 1,000 curated examples with budget forcing |
+| 2025 | [[2502.05171\|Huginn]] | Latent · Text into Hidden State | Scaled test-time compute with latent reasoning via recurrent depth; thinking without text tokens |
+| 2025 | [[2503.06749\|Vision-R1]] | Visual RL · Verifiable Visual Reward | RL-based incentivization of visual reasoning in MLLMs; extended R1-style training to vision |
+| 2025 | [[2503.24235\|Test-Time-Scaling-Survey]] | Test-Time Scaling · When to Stop | Comprehensive survey on what, how, where, and how well test-time scaling works for LLMs |
+| 2025 | [[2504.07615\|VLM-R1]] | Visual RL · Verifiable Visual Reward | Stable, generalizable R1 training for VLMs across diverse visual tasks |
+| 2025 | [[2505.11484\|SoftCoT++]] | Latent · Text into Hidden State | First framework for scalable test-time reasoning in continuous latent space with speculative decoding |
+| 2025 | [[2505.13379\|Thinkless]] | Test-Time Scaling · When to Stop | LLM learns when to think versus skip reasoning, saving compute without accuracy loss |
+| 2025 | [[2505.14631\|LHRM]] | Test-Time Scaling · When to Stop | Hybrid reasoning models that activate deep thinking only when needed |
+| 2025 | [[2505.17012\|SpatialScore]] | Spatial · Probe then Ground | Comprehensive benchmark for spatial reasoning covering distances, directions, and layouts |
+| 2025 | [[2505.17015\|Multi-SpatialMLLM]] | Spatial · Probe then Ground | Meta AI/CUHK create 1.2M multi-frame spatial instruction dataset for cross-view reasoning |
+| 2025 | [[2506.21734\|HRM]] | Latent · Text into Hidden State | Hierarchical Reasoning Model structures multi-step reasoning into decomposable hierarchical levels |
+| 2025 | [[2507.12508\|MindJourney]] | Visual RL · Verifiable Visual Reward | Enhances VLMs in spatial reasoning by enabling interactive exploration of visual spaces |
+| 2025 | [[2509.13351\|PDDL-INSTRUCT]] | Agentic · Search over Actions | Instruction tuning framework that enhances LLMs' symbolic planning with PDDL |
+| 2025 | [[2510.25741\|Ouro]] | Latent · Text into Hidden State | Looped Language Models with iterative computation embedded directly in pre-training |
+| 2026 | [[2601.13304\|CausalSpatial]] | Spatial · Probe then Ground | Diagnostic benchmark for causal spatial reasoning in MLLMs |
+| 2026 | [[2601.14514\|JIT]] | Program-Aided · Code as Scratchpad | MIT/UBC "Just-in-Time" framework showing humans construct simplified mental models for reasoning |
+| 2026 | [[2603.14117\|SIEVE]] | Visual RL · Verifiable Visual Reward | Self-revisiting visual evidence via RL, +7.85% on V*Bench |
+| 2026 | [[2604.16029\|STOP]] | Test-Time Scaling · When to Stop | Super-Token path pruning for parallel reasoning; +6pp accuracy while cutting token consumption by >70% |
 
 ---
 
@@ -256,7 +283,7 @@ Extending CoT to jointly reason over vision and language, producing interleaved 
 > - [[2503.12799|GCoT]] — Grounded CoT integrates explicit visual grounding with chain-of-thought for interpretable reasoning
 
 **Visual Perception-Reasoning Analysis** — Studies dissecting the relationship between perception and reasoning in VLMs.
-- [[2604.02190|UniDriveVLA]], [[2603.22179|MARCUS]], [[2601.13562|Reasoning-as-Modality]], [[2509.25373|VLM-Perception-Cognition-Survey]], [[2506.07936|MM-ICL-Mimicking-vs-Reasoning]], [[2505.14970|SEC]], [[2504.18397|UV-CoT]], [[2502.16707|ReflectVLM]], [[2501.13620|VLM-Perception-Reasoning-Probe]], [[2407.19666|Two-Stage-Visual-Reasoning]], [[2406.19934|VIREO]], [[2404.19205|TableVQA-Bench]], [[2312.14135|V*]], [[2301.05226|IPVR]], [[2204.03162|Winoground]], [[2203.10244|ChartQA]], [[2106.09141|SVO-Probes]], [[1811.10830|VCR]], [[1811.00491|NLVR2]], [[1612.00837|VQA v2.0]]
+- [[2604.02190|UniDriveVLA]], [[2601.13562|Reasoning-as-Modality]], [[2509.25373|VLM-Perception-Cognition-Survey]], [[2506.07936|MM-ICL-Mimicking-vs-Reasoning]], [[2505.14970|SEC]], [[2504.18397|UV-CoT]], [[2502.16707|ReflectVLM]], [[2501.13620|VLM-Perception-Reasoning-Probe]], [[2407.19666|Two-Stage-Visual-Reasoning]], [[2406.19934|VIREO]], [[2404.19205|TableVQA-Bench]], [[2312.14135|V*]], [[2301.05226|IPVR]], [[2204.03162|Winoground]], [[2203.10244|ChartQA]], [[2106.09141|SVO-Probes]], [[1811.10830|VCR]], [[1811.00491|NLVR2]], [[1612.00837|VQA v2.0]]
 
 > [!star] Key Papers
 > - [[2501.13620|VLM-Perception-Reasoning-Probe]] — Cognitively-inspired framework revealing how perception failures cascade into reasoning failures in VLMs

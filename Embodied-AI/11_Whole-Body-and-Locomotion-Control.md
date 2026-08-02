@@ -23,36 +23,39 @@ The whole-body thread mirrors the touch thread's arc one scale up: task-specific
 ```text
 1. Motion Imitation & Behavioral FMs   (reward-free pretraining of whole-body skill)
 · physics-based motion imitation
-                        +adversarial prior
-╔══════════════════╗    ┌────────────────┐
-║ DeepMimic (2018) ║───►│ AMP (2021)     │─┐
-╚══════════════════╝    └────────────────┘ │
-                                           │    +latent skills
-                                           │    ┌────────────┐
-                                           ├───►│ ASE (2022) │
-                                           │    └────────────┘
-                                           │    +conditional       +masked control
-                                           │    ┌─────────────┐    ┌────────────────────┐
-                                           └───►│ CALM (2023) │───►│ MaskedMimic (2024) │
-                                                └─────────────┘    └────────────────────┘
+                        +adversarial
+                        prior
+╔══════════════════╗    ┌────────────┐
+║ DeepMimic (2018) ║───►│ AMP (2021) │─┐
+╚══════════════════╝    └────────────┘ │
+                                       │    +latent skills
+                                       │    ┌────────────┐
+                                       ├───►│ ASE (2022) │
+                                       │    └────────────┘
+                                       │    +conditional       +masked control
+                                       │    ┌─────────────┐    ┌────────────────────┐
+                                       └───►│ CALM (2023) │───►│ MaskedMimic (2024) │
+                                            └─────────────┘    └────────────────────┘
 
 · humanoid behavior foundation models
-                    +expressive tracking
-┌──────────────┐    ┌──────────────────┐
-│ HOVER (2024) │───►│ ExBody2 (2024)   │─┐
-└──────────────┘    └──────────────────┘ │
-                                         │    +behavioral FM
-                                         │    ╔════════════════════╗
-                                         ├───►║ Meta-Motivo (2025) ║
-                                         │    ╚════════════════════╝
-                                         │    +general tracking
-                                         │    ┌───────────────┐
-                                         ├───►│ GMT (2025)    │
-                                         │    └───────────────┘
-                                         │    +scaled tracking
-                                         │    ┌──────────────┐
-                                         └───►│ SONIC (2025) │
-                                              └──────────────┘
+                    +expressive
+                    tracking
+┌──────────────┐    ┌────────────────┐
+│ HOVER (2024) │───►│ ExBody2 (2024) │─┐
+└──────────────┘    └────────────────┘ │
+                                       │    +behavioral FM
+                                       │    ╔════════════════════╗
+                                       ├───►║ Meta-Motivo (2025) ║
+                                       │    ╚════════════════════╝
+                                       │    +general
+                                       │    tracking
+                                       │    ┌────────────┐
+                                       ├───►│ GMT (2025) │
+                                       │    └────────────┘
+                                       │    +scaled tracking
+                                       │    ┌──────────────┐
+                                       └───►│ SONIC (2025) │
+                                            └──────────────┘
 
 2. Legged Locomotion Control   (making the body move at all)
 · gait learning
@@ -69,17 +72,19 @@ The whole-body thread mirrors the touch thread's arc one scale up: task-specific
                            │    ┌─────────────────────────┐    ┌─────────────────┐
                            ├───►│ Humanoid-Parkour (2024) │───►│ BeamDojo (2025) │
                            │    └─────────────────────────┘    └─────────────────┘
-                           │    +terrain-aware agile
-                           │    ┌──────────────────┐
-                           └───►│ TAGA (2026)      │
-                                └──────────────────┘
+                           │    +terrain-aware
+                           │    agile
+                           │    ┌─────────────┐
+                           └───►│ TAGA (2026) │
+                                └─────────────┘
 
 3. Unified Whole-Body Control   (loco and manip in one policy)
 · loco-manipulation coupling
-                       +skill primitives          +unified controller    +hierarchical
-┌─────────────────┐    ┌─────────────────────┐    ╔═════════════════╗    ┌──────────────┐
-│ RoboDuet (2024) │───►│ SkillBlender (2025) │───►║ ULC (2025)      ║───►│ HiWET (2026) │
-└─────────────────┘    └─────────────────────┘    ╚═════════════════╝    └──────────────┘
+                                                  +unified
+                       +skill primitives          controller        +hierarchical
+┌─────────────────┐    ┌─────────────────────┐    ╔════════════╗    ┌──────────────┐
+│ RoboDuet (2024) │───►│ SkillBlender (2025) │───►║ ULC (2025) ║───►│ HiWET (2026) │
+└─────────────────┘    └─────────────────────┘    ╚════════════╝    └──────────────┘
 
 4. Cross-Embodiment & Skill Data   (one controller, many bodies)
 · cross-embodiment transfer

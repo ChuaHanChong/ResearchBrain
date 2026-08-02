@@ -17,57 +17,157 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Reasoning-Acting Foundations
-╔═══════════════╗     ┌────────────┐     ┌─────────────┐
-║ ReAct (2022)  ║────►│ RAP (2023) │────►│ LATS (2023) │
-╚═══════════════╝     └────────────┘     └─────────────┘
-  │
-  │ (feeds Tool-Augmented RL, below)
-  ▼
-2. Tool-Augmented RL
-╔════════════════╗     ┌───────────────┐     ┌─────────────┐     ┌───────────────────┐
-║ ReTool (2025)  ║────►│ ToolRL (2025) │────►│ ToRL (2025) │────►│ Agentic-R1 (2025) │
-╚════════════════╝     └───────────────┘     └─────────────┘     └───────────────────┘
+1. Reasoning-Acting Loop   (think, act, observe)
+· interleave thought and action
+                    +LLM as own
+                    world model       +tree search
+╔══════════════╗    ┌────────────┐    ┌─────────────┐
+║ ReAct (2022) ║───►│ RAP (2023) │───►│ LATS (2023) │
+╚═══════┬══════╝    └────────────┘    └─────────────┘
+        │    +field map
+        │    ┌────────────────────────────────────┐
+        └───►│ Agentic-RL-Landscape-Survey (2025) │
+             └────────────────────────────────────┘
 
-3. Code & Program Agents
-┌────────────┐     ┌─────────────────┐     ┌────────────────────┐
-│ PAL (2022) │────►│ ViperGPT (2023) │────►│ AlphaEvolve (2025) │
-└────────────┘     └─────────────────┘     └────────────────────┘
+2. Code Agents   (make code the action space)
+· programs as actions
+                                         +Python module         +evolutionary program
+                  +program-of-thought    orchestration          search
+┌────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌────────────────────┐
+│ PAL (2022) │───►│ PoT (2022)      │───►│ ViperGPT (2023) │───►│ AlphaEvolve (2025) │
+└──────┬─────┘    └─────────────────┘    └─────────────────┘    └────────────────────┘
+       │    text → visual
+       │    programs
+       │    ┌────────────────┐
+       └───►│ VISPROG (2022) │
+            └────────────────┘
 
-4. Multi-Agent Systems
-╔══════════════════╗     ┌───────────────────────┐     ┌──────────────────┐
-║ AgentGym (2024)  ║────►│ AgentOrchestra (2025) │────►│ MACRO-LLM (2026) │
-╚══════════════════╝     └───────────────────────┘     └──────────────────┘
+3. Tool-Use RL   (learn when to call, not just how)
+· reward the tool call
+                     +reward shaping      +scaled
+                     for tools            tool-integrated RL    +dual distillation
+┌───────────────┐    ┌───────────────┐    ┌────────────────┐    ┌───────────────────┐
+│ ReTool (2025) │───►│ ToolRL (2025) │───►│ ToRL (2025)    │───►│ Agentic-R1 (2025) │
+└───────┬───────┘    └───────────────┘    └────────────────┘    └───────────────────┘
+        │    +reasoning and
+        │    tools jointly
+        │    ┌───────────────┐
+        ├───►│ ARTIST (2025) │
+        │    └───────────────┘
+        │    text tools → visual
+        │    tools
+        │    ┌─────────────────────┐
+        └───►│ OpenThinkIMG (2025) │
+             └─────────────────────┘
 
-5. Self-Evolving Agents
-┌──────────────┐     ┌─────────────────┐     ┌─────────────────┐     ╔════════════════════════╗
-│ RAGEN (2025) │────►│ SE-Agent (2025) │────►│ Dr. Zero (2026) │────►║ Memento-Skills (2026)  ║
-└──────────────┘     └─────────────────┘     └─────────────────┘     ╚════════════════════════╝
+4. Multi-Turn RL   (credit across a whole episode)
+· train the trajectory
+                    +verifiable
+                    meta-reasoning reward    +decoupled RL training        +agentic RL at scale
+┌──────────────┐    ┌───────────────────┐    ┌────────────────────────┐    ┌─────────────────────┐
+│ RAGEN (2025) │───►│ RLVMR (2025)      │───►│ Agent-Lightning (2025) │───►│ rStar2-Agent (2025) │
+└──────────────┘    └───────────────────┘    └────────────────────────┘    └─────────────────────┘
+
+5. Web and GUI Agents   (act in someone else's interface)
+· operate the screen
+                                             +web world
+                      +multimodal memory     model
+┌────────────────┐    ┌─────────────────┐    ┌────────────┐
+│ CoAct-1 (2025) │───►│ M3-Agent (2025) │───►│ WWM (2025) │
+└────────┬───────┘    └─────────────────┘    └────────────┘
+         │    +task-grounded shopping
+         │    ┌──────────────────────────────┐
+         └───►│ See-Think-Act-Shopper (2025) │
+              └──────────────────────────────┘
+
+6. Multi-Agent Orchestration   (who assigns the work)
+· coordination protocol
+                                                    +multi-agent RL
+                       +orchestration protocol      fine-tuning
+┌─────────────────┐    ┌───────────────────────┐    ┌──────────────┐
+│ AgentGym (2024) │───►│ AgentOrchestra (2025) │───►│ MARFT (2025) │─┐
+└─────────────────┘    └───────────────────────┘    └──────────────┘ │
+                                                                     │    text → latent
+                                                                     │    communication
+                                                                     │    ┌──────────────────┐
+                                                                     ├───►│ LatentMAS (2025) │
+                                                                     │    └──────────────────┘
+                                                                     │    +society-scale coordination
+                                                                     │    ┌─────────────────────────────┐
+                                                                     └───►│ Societies-of-Thought (2026) │
+                                                                          └─────────────────────────────┘
+
+7. Memory and Self-Evolution   (improve without a human)
+· experience becomes capability
+                       +self-modifying    +no human
+                       code               supervision            +skill library as memory
+┌─────────────────┐    ┌─────────────┐    ┌─────────────────┐    ┌───────────────────────┐
+│ SE-Agent (2025) │───►│ DGM (2025)  │───►│ Dr.-Zero (2026) │───►│ Memento-Skills (2026) │
+└────────┬────────┘    └─────────────┘    └─────────────────┘    └───────────────────────┘
+         │    +knowledge-augmented
+         │    replay
+         │    ┌──────────────────┐
+         └───►│ KARL (2026)      │
+              └──────────────────┘
+
+8. Multimodal and Embodied Agents   (act in the world, not a shell)
+· perception in the loop
+                         +hierarchical                                 +geometry-grounded
+                         controller          +agentic visual RFT       agent
+┌───────────────────┐    ┌──────────────┐    ┌────────────────────┐    ┌────────────────┐
+│ LLaVA-Plus (2023) │───►│ HYDRA (2024) │───►│ Visual-ARFT (2025) │───►│ RieMind (2026) │
+└─────────┬─────────┘    └──────────────┘    └────────────────────┘    └────────────────┘
+          │    +scientific discovery
+          │    loop
+          │    ┌────────────────────┐
+          └───►│ InternAgent (2025) │
+               └────────────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through five threads: **reasoning-acting foundations** (2022-2023) where ReAct, RAP, and LATS established think-act-observe loops with increasing search sophistication; **code agents** (2022-2025) where PAL and ViperGPT delegated computation to code, scaling to AlphaEvolve's autonomous algorithm discovery; **tool-augmented RL** (2025) where ReTool, ToolRL, ToRL, and Agentic-R1 replaced prompted tool use with learned policies; **multi-agent systems** (2024-2026) where AgentGym, AgentOrchestra, and MACRO-LLM moved from single agents to coordinated teams; and **self-evolving agents** (2025-2026) where RAGEN, SE-Agent, Dr. Zero, and Memento-Skills enabled agents that autonomously improve from experience.
+The eight lanes divide on **how the agent decides what to do next**. **Reasoning-acting loop** interleaves thought and action, ReAct establishing the pattern, RAP making the model its own world model, LATS adding tree search, and Agentic-RL-Landscape-Survey branching off to map the lane. **Code agents** make code the action space, PAL to PoT to ViperGPT to AlphaEvolve, with VISPROG branching from text programs to visual ones. **Tool-use RL** learns when to call rather than only how, ReTool to ToolRL to ToRL to Agentic-R1, with ARTIST and OpenThinkIMG branching to joint reasoning-and-tools and to visual tools. **Multi-turn RL** assigns credit across a whole episode, RAGEN to RLVMR to Agent-Lightning to rStar2-Agent. **Web and GUI agents** act inside someone else's interface, CoAct-1 to M3-Agent to WWM, with See-Think-Act-Shopper branching to a task-grounded shopping setting. **Multi-agent orchestration** decides who assigns the work, AgentGym to AgentOrchestra to MARFT, with LatentMAS and Societies-of-Thought branching to latent communication and society-scale coordination. **Memory and self-evolution** turns experience into capability, SE-Agent to DGM to Dr.-Zero to Memento-Skills, with KARL branching to knowledge-augmented replay. **Multimodal and embodied agents** act in the world rather than a shell, LLaVA-Plus to HYDRA to Visual-ARFT to RieMind, with InternAgent branching to the scientific-discovery loop.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2022 | [[2210.03629\|ReAct]] | Synergized reasoning and acting in a think-act-observe loop; launched the LLM agent paradigm |
-| 2022 | [[2211.10435\|PAL]] | Program-aided Language Models offloading computation to a Python interpreter; separated reasoning from calculation |
-| 2023 | [[2305.14992\|RAP]] | Treated the LLM as its own world model for lookahead planning within reasoning-acting loops |
-| 2023 | [[2310.04406\|LATS]] | Language Agent Tree Search unifying reasoning, acting, and planning through MCTS over action spaces |
-| 2023 | [[2303.08128\|ViperGPT]] | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning |
-| 2024 | [[2406.04151\|AgentGym]] | Multi-environment agent evolution via behavioral cloning + self-evolution for generalist agents |
-| 2025 | [[2506.13131\|AlphaEvolve]] | Google DeepMind combining LLMs with evolutionary search to autonomously discover algorithms |
-| 2025 | [[2504.11536\|ReTool]] | ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning |
-| 2025 | [[2504.13958\|ToolRL]] | Novel reward shaping for tool-use RL; meticulously designed rewards guide optimal tool invocation |
-| 2025 | [[2503.23383\|ToRL]] | Scaling tool-integrated RL; trains LLMs to autonomously learn when and how to use tools |
-| 2025 | [[2507.05707\|Agentic-R1]] | DualDistill framework training language models as tool-using agents via distillation and RL |
-| 2025 | [[2506.12508\|AgentOrchestra]] | TEA protocol for unified multi-agent management and task orchestration |
-| 2025 | [[2504.20073\|RAGEN]] | Multi-turn RL training for LLM agents; established the paradigm for sustained agent-environment interaction |
-| 2025 | [[2508.02085\|SE-Agent]] | Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement |
-| 2026 | [[2601.09295\|MACRO-LLM]] | Macro-level multi-agent coordination for complex, multi-step LLM workflows |
-| 2026 | [[2601.07055\|Dr.-Zero]] | Meta's framework enabling search agents to self-evolve without human-provided training data |
-| 2026 | [[2603.18743\|Memento-Skills]] | Skill library as external memory for continual learning; agents store and retrieve reusable skills |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2022 | [[2210.03629\|ReAct]] | Reasoning-Acting · Thought and Action | Synergized reasoning and acting in a think-act-observe loop; launched the LLM agent paradigm |
+| 2022 | [[2211.10435\|PAL]] | Code Agents · Programs as Actions | Program-aided Language Models offloading computation to a Python interpreter; separated reasoning from calculation |
+| 2022 | [[2211.11559\|VISPROG]] | Code Agents · Programs as Actions | Neuro-symbolic visual programming: executable step-by-step programs from natural language queries |
+| 2022 | [[2211.12588\|PoT]] | Code Agents · Programs as Actions | Program of Thoughts prompting: LLMs delegate numerical reasoning to code execution |
+| 2023 | [[2303.08128\|ViperGPT]] | Code Agents · Programs as Actions | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning |
+| 2023 | [[2305.14992\|RAP]] | Reasoning-Acting · Thought and Action | Treated the LLM as its own world model for lookahead planning within reasoning-acting loops |
+| 2023 | [[2310.04406\|LATS]] | Reasoning-Acting · Thought and Action | Language Agent Tree Search unifying reasoning, acting, and planning through MCTS over action spaces |
+| 2023 | [[2311.05437\|LLaVA-Plus]] | Embodied Agents · Perception in the Loop | Training VLMs to learn when and how to use external visual tools for any task |
+| 2024 | [[2403.12884\|HYDRA]] | Embodied Agents · Perception in the Loop | Multi-stage dynamic compositional visual reasoning integrating an RL agent as cognitive controller |
+| 2024 | [[2406.04151\|AgentGym]] | Multi-Agent · Coordination Protocol | Multi-environment agent evolution via behavioral cloning + self-evolution for generalist agents |
+| 2025 | [[2503.23383\|ToRL]] | Tool-Use RL · Reward the Tool Call | Scaling tool-integrated RL; trains LLMs to autonomously learn when and how to use tools |
+| 2025 | [[2504.11536\|ReTool]] | Tool-Use RL · Reward the Tool Call | ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning |
+| 2025 | [[2504.13958\|ToolRL]] | Tool-Use RL · Reward the Tool Call | Novel reward shaping for tool-use RL; meticulously designed rewards guide optimal tool invocation |
+| 2025 | [[2504.16129\|MARFT]] | Multi-Agent · Coordination Protocol | Multi-Agent Reinforcement Fine-Tuning: RL-based optimization of LLM multi-agent systems |
+| 2025 | [[2504.20073\|RAGEN]] | Multi-Turn RL · Train the Trajectory | Multi-turn RL training for LLM agents; established the paradigm for sustained agent-environment interaction |
+| 2025 | [[2505.01441\|ARTIST]] | Tool-Use RL · Reward the Tool Call | Microsoft Research unifies agentic reasoning, dynamic tool integration, and RL training in a single framework |
+| 2025 | [[2505.08617\|OpenThinkIMG]] | Tool-Use RL · Reward the Tool Call | Open-source framework for interleaved visual tool use during reasoning |
+| 2025 | [[2505.14246\|Visual-ARFT]] | Embodied Agents · Perception in the Loop | Reinforcement fine-tuning framework for visual agents from Shanghai AI Lab |
+| 2025 | [[2505.16938\|InternAgent]] | Embodied Agents · Perception in the Loop | Unified closed-loop multi-agent system for fully autonomous scientific research |
+| 2025 | [[2505.22954\|DGM]] | Self-Evolution · Experience becomes Capability | Darwin Godel Machine: AI system that autonomously improves its own code through Darwinian evolution |
+| 2025 | [[2506.12508\|AgentOrchestra]] | Multi-Agent · Coordination Protocol | TEA protocol for unified multi-agent management and task orchestration |
+| 2025 | [[2506.13131\|AlphaEvolve]] | Code Agents · Programs as Actions | Google DeepMind combining LLMs with evolutionary search to autonomously discover algorithms |
+| 2025 | [[2507.05707\|Agentic-R1]] | Tool-Use RL · Reward the Tool Call | DualDistill framework training language models as tool-using agents via distillation and RL |
+| 2025 | [[2507.22844\|RLVMR]] | Multi-Turn RL · Train the Trajectory | Verifiable meta-reasoning rewards improve long-horizon agent performance by rewarding sound reasoning process, not just outcomes |
+| 2025 | [[2508.02085\|SE-Agent]] | Self-Evolution · Experience becomes Capability | Self-evolutionary framework optimizing multi-step agent behavior through autonomous self-improvement |
+| 2025 | [[2508.03680\|Agent-Lightning]] | Multi-Turn RL · Train the Trajectory | Microsoft Research decouples RL training from inference, enabling scalable agent training |
+| 2025 | [[2508.03923\|CoAct-1]] | Web and GUI · Operate the Screen | Multi-agent framework integrating both GUI interactions and direct programmatic API access |
+| 2025 | [[2508.09736\|M3-Agent]] | Web and GUI · Operate the Screen | ByteDance's multimodal agent processing continuous video and GUI streams for real-time task completion |
+| 2025 | [[2508.20722\|rStar2-Agent]] | Multi-Turn RL · Train the Trajectory | Microsoft's agentic reasoning model enabling LLMs to "think slow" with structured deliberation over action spaces |
+| 2025 | [[2509.02547\|Agentic-RL-Landscape-Survey]] | Reasoning-Acting · Thought and Action | Formal definition of agentic RL for LLMs using Partially Observable Markov Decision Processes |
+| 2025 | [[2510.19245\|See-Think-Act-Shopper]] | Web and GUI · Operate the Screen | VLM-driven framework simulating online shopping tasks end-to-end |
+| 2025 | [[2511.20639\|LatentMAS]] | Multi-Agent · Coordination Protocol | Agents collaborate through latent-space communication rather than verbose natural language exchanges |
+| 2025 | [[2512.23676\|WWM]] | Web and GUI · Operate the Screen | Princeton's Web World Models: a new architectural paradigm where agents build predictive models of web environments for planning |
+| 2026 | [[2601.07055\|Dr.-Zero]] | Self-Evolution · Experience becomes Capability | Meta's framework enabling search agents to self-evolve without human-provided training data |
+| 2026 | [[2601.10825\|Societies-of-Thought]] | Multi-Agent · Coordination Protocol | Reveals how advanced LLMs implicitly implement multi-agent "society of mind" reasoning internally |
+| 2026 | [[2603.05218\|KARL]] | Self-Evolution · Experience becomes Capability | Knowledge agent via off-policy RL for grounded reasoning over enterprise knowledge bases |
+| 2026 | [[2603.15386\|RieMind]] | Embodied Agents · Perception in the Loop | Geometry-grounded agentic framework decoupling spatial reasoning into interpretable geometric operations |
+| 2026 | [[2603.18743\|Memento-Skills]] | Self-Evolution · Experience becomes Capability | Skill library as external memory for continual learning; agents store and retrieve reusable skills |
 
 ---
 

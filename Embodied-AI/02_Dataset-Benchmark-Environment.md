@@ -36,10 +36,11 @@ aliases:
 ┌──────────────┐    ╔═══════════════╗
 │ RH20T (2023) │───►║ OXE (2023)    ║─┐
 └──────────────┘    ╚═══════════════╝ │
-                                      │    +in-the-wild scenes
-                                      │    ┌─────────────────┐
-                                      ├───►│ DROID (2024)    │
-                                      │    └─────────────────┘
+                                      │    +in-the-wild
+                                      │    scenes
+                                      │    ┌──────────────┐
+                                      ├───►│ DROID (2024) │
+                                      │    └──────────────┘
                                       │    +industrial scale
                                       │    ┌─────────────────────┐
                                       └───►│ AgiBot-World (2025) │
@@ -58,10 +59,11 @@ aliases:
 
 3. Physical Reasoning Benchmarks   (does it understand matter?)
 · intuitive physics
-                      +causal video QA      +dynamics prediction    +re-evaluation
-╔════════════════╗    ┌────────────────┐    ╔══════════════════╗    ┌─────────────────────┐
-║ IntPhys (2018) ║───►│ CLEVRER (2019) │───►║ Physion (2021)   ║───►│ Physion-Eval (2026) │
-╚════════════════╝    └────────────────┘    ╚══════════════════╝    └─────────────────────┘
+                                            +dynamics
+                      +causal video QA      prediction            +re-evaluation
+╔════════════════╗    ┌────────────────┐    ╔════════════════╗    ┌─────────────────────┐
+║ IntPhys (2018) ║───►│ CLEVRER (2019) │───►║ Physion (2021) ║───►│ Physion-Eval (2026) │
+╚════════════════╝    └────────────────┘    ╚════════════════╝    └─────────────────────┘
 
 4. World-Model Benchmarks   (is the dream any good?)
 · world-model evaluation

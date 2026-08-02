@@ -22,10 +22,11 @@ aliases:
 ```text
 1. Self-Improvement Foundations   (a model that trains itself)
 · bootstrapped reasoning
-                   +implicit rationales     +evolving curriculum    +self-critique
-╔═════════════╗    ┌───────────────────┐    ┌──────────────────┐    ┌─────────────┐
-║ STaR (2022) ║───►│ Quiet-STaR (2024) │───►│ EVOLVER (2025)   │───►│ ECHO (2026) │
-╚═════════════╝    └───────────────────┘    └──────────────────┘    └─────────────┘
+                                            +evolving
+                   +implicit rationales     curriculum            +self-critique
+╔═════════════╗    ┌───────────────────┐    ┌────────────────┐    ┌─────────────┐
+║ STaR (2022) ║───►│ Quiet-STaR (2024) │───►│ EVOLVER (2025) │───►│ ECHO (2026) │
+╚═════════════╝    └───────────────────┘    └────────────────┘    └─────────────┘
 
 2. Self-Evolving VLAs   (the policy improves on its own data)
 · policy self-improvement

@@ -18,94 +18,202 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Contrastive Alignment
+1. Contrastive Alignment   (pair the image with text)
+· scale the contrastive recipe
+                   +batch, data,       +decoupled
+                   model scaling       open-vocab
+╔═════════════╗    ┌──────────────┐    ┌───────────────┐
+║ CLIP (2021) ║───►│ BASIC (2021) │───►│ DeCLIP (2025) │
+╚══════┬══════╝    └──────────────┘    └───────────────┘
+       │    image level → region
+       │    level
+       │    ┌───────────────────┐
+       ├───►│ RegionCLIP (2021) │
+       │    └───────────────────┘
+       │    +fine-grained
+       │    sparse alignment
+       │    ┌──────────────┐
+       └───►│ SPARC (2024) │
+            └──────────────┘
 
-╔══════════════╗
-║ CLIP (2021)  ║───────► OWL-ViT (2022)             [Open-Vocabulary Detection]
-╚══════════════╝
-       │
-       ├───────► KOSMOS-2 (2023)                    [Grounded VLMs]
-       ├───────► VISPROG (2022)                     [Visual Reasoning]
-       ├───────► ViperGPT (2023)                    [Visual Reasoning]
-       ▼
-┌─────────────┐
-│ GLIP (2021) │───────► Grounding DINO (2023)        [Open-Vocabulary Detection]
-└─────────────┘
+2. Prompt Learning   (adapt CLIP without retraining it)
+· learnable prompts
+                   +conditional,        +decouple task        +when prompts
+                   unseen classes       from prior            hurt
+┌─────────────┐    ┌───────────────┐    ┌────────────────┐    ┌─────────────┐
+│ CoOp (2021) │───►│ CoCoOp (2022) │───►│ TaskRes (2022) │───►│ REAP (2025) │
+└──────┬──────┘    └───────────────┘    └────────────────┘    └─────────────┘
+       │    learned →
+       │    training-free cache
+       │    ┌────────────────────┐
+       ├───►│ Tip-Adapter (2021) │
+       │    └────────────────────┘
+       │    +test-time
+       │    dynamic adapter
+       │    ┌─────────────┐
+       └───►│ TDA (2024)  │
+            └─────────────┘
 
+3. Open-Vocabulary Detection   (language names the box)
+· boxes from text
+                   +deep language-vision        +self-training      +described-object
+                   fusion                       scale               unification
+┌─────────────┐    ┌───────────────────────┐    ┌──────────────┐    ┌───────────────┐
+│ GLIP (2021) │───►│ Grounding-DINO (2023) │───►│ OWLv2 (2023) │───►│ DOD (2023)    │
+└──────┬──────┘    └───────────────────────┘    └──────────────┘    └───────────────┘
+       │    boxes → coordinate
+       │    sequence
+       │    ┌────────────────┐
+       ├───►│ SeqTR (2022)   │
+       │    └────────────────┘
+       │    +unified segment/align
+       │    encoders
+       │    ┌────────────────────┐
+       └───►│ SAM-CLIP (2023)    │
+            └────────────────────┘
 
-2. Open-Vocabulary Detection
+4. Grounded MLLMs   (say where, not just what)
+· coordinates as tokens
+                       +referential         boxes → pixel
+                       dialogue             masks
+┌─────────────────┐    ┌───────────────┐    ┌─────────────┐
+│ KOSMOS-2 (2023) │───►│ Shikra (2023) │───►│ LISA (2023) │
+└────────┬────────┘    └───────────────┘    └─────────────┘
+         │    +region-of-interest
+         │    tokens
+         │    ┌─────────────────┐
+         ├───►│ GPT4RoI (2023)  │
+         │    └─────────────────┘
+         │    +localized
+         │    tokenization
+         │    ┌──────────────┐
+         ├───►│ Groma (2024) │
+         │    └──────────────┘
+         │    +pixel-level
+         │    referring
+         │    ┌───────────────────┐
+         └───►│ PixelRefer (2025) │
+              └───────────────────┘
 
-┌────────────────┐
-│ OWL-ViT (2022) │
-└────────────────┘
+5. MLLM Architecture and Scaling   (one model, both directions)
+· unify understanding and generation
+                        +single              +decoupled visual       +MoT, emergent
+                        transformer          encoding                reasoning
+┌──────────────────┐    ┌───────────────┐    ┌──────────────────┐    ┌──────────────┐
+│ Chameleon (2024) │───►│ Show-o (2024) │───►│ Janus-Pro (2025) │───►│ BAGEL (2025) │
+└─────────┬────────┘    └───────────────┘    └──────────────────┘    └──────────────┘
+          │    +scale-then-compress
+          │    ┌──────────────────┐
+          ├───►│ NVILA (2024)     │
+          │    └──────────────────┘
+          │    +native multimodal
+          │    pretraining
+          │    ┌──────────────────┐
+          └───►│ InternVL3 (2025) │
+               └──────────────────┘
 
-╔════════════════════════╗
-║ Grounding DINO (2023)  ║
-╚════════════════════════╝
+6. Visual Reasoning   (think over the pixels)
+· prompted reasoning
+                             +program synthesis     +sketching as the chain
+┌───────────────────────┐    ┌─────────────────┐    ┌────────────────────────┐
+│ Multimodal-CoT (2023) │───►│ ViperGPT (2023) │───►│ VisualSketchPad (2024) │
+└───────────┬───────────┘    └─────────────────┘    └────────────────────────┘
+            │    +tree-based image
+            │    exploration
+            │    ┌────────────────┐
+            └───►│ ZoomEye (2024) │
+                 └────────────────┘
 
+· RL-trained reasoning
+                        imitation →              +glance-focus-think
+                        verifiable reward        anchoring
+┌──────────────────┐    ┌───────────────────┐    ┌─────────────────┐
+│ LLaVA-CoT (2024) │───►│ Visual-RFT (2025) │───►│ SATORI (2025)   │
+└─────────┬────────┘    └───────────────────┘    └─────────────────┘
+          │    +internal-representation
+          │    cropping
+          │    ┌──────────────────────┐
+          └───►│ FOCUS (2025)         │
+               └──────────────────────┘
 
-3. Grounded VLMs
+7. Spatial Understanding   (does it know where things are)
+· probe, then ground
+                         +block-stacking        +geometry-grounded    +spatial causal
+                         physical probe         agent                 prediction
+┌───────────────────┐    ┌─────────────────┐    ┌────────────────┐    ┌──────────────────┐
+│ SpatialVLM (2024) │───►│ PhyBlock (2025) │───►│ RieMind (2026) │───►│ SCP-Bench (2026) │
+└───────────────────┘    └─────────────────┘    └────────────────┘    └──────────────────┘
 
-╔══════════════════╗
-║ KOSMOS-2 (2023)  ║
-╚══════════════════╝
-        │
-        ▼
-┌───────────────┐
-│ Shikra (2023) │
-└───────────────┘
-        │
-        ▼
-┌─────────────┐
-│ LISA (2023) │──────► LLaVA (2023)   [MLLM Architectures & Scaling, below]
-└─────────────┘
-
-
-4. Visual Reasoning
-
-┌────────────────┐          ┌───────────────────────┐
-│ VISPROG (2022) │          │ Multimodal-CoT (2023) │
-└────────────────┘          └───────────────────────┘
-        │                                │
-        └────────────────┬───────────────┘
-                         ▼
-             ┌─────────────────┐
-             │ ViperGPT (2023) │──────► Visual-RFT (2025)   [RL-Trained Visual Reasoning, below]
-             └─────────────────┘
-
-
-5. MLLM Architectures & Scaling
-
-╔═══════════════╗
-║ LLaVA (2023)  ║
-╚═══════════════╝
-
-
-6. RL-Trained Visual Reasoning
-
-╔════════════════════╗
-║ Visual-RFT (2025)  ║
-╚════════════════════╝
+8. Failure Modes   (what breaks, and how it is patched)
+· name it, then fix it
+                                        survey → contrastive
+                                        decoding
+┌──────────────────────────────────┐    ┌──────────────────┐
+│ LVLM-Hallucination-Survey (2024) │───►│ SECOND (2025)    │
+└─────────────────┬────────────────┘    └──────────────────┘
+                  │    +distribution-shift
+                  │    robustness
+                  │    ┌─────────────────┐
+                  ├───►│ ADAPT (2025)    │
+                  │    └─────────────────┘
+                  │    +hyperbolic adversarial
+                  │    tuning
+                  │    ┌────────────────────────┐
+                  └───►│ HyperRobust-VLM (2026) │
+                       └────────────────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field progressed from **contrastive alignment** (2021) where CLIP proved image-text pairing at web scale, through **open-vocabulary grounding** (2022-2023) where GLIP, Grounding DINO, and OWL-ViT brought language-driven detection to arbitrary categories, to **grounded reasoning** (2023) where models like LISA and ViperGPT combined spatial understanding with multi-step inference, then scaled into **instruction-tuned MLLMs** (2023, LLaVA) and, most recently, **RL-trained visual reasoning** (2025) where Visual-RFT showed verifiable rewards beat imitation for grounding-heavy tasks.
+The eight lanes divide on **what the language side is used for**. **Contrastive alignment** pairs image with text, CLIP then BASIC scaling batch, data, and model together, DeCLIP decoupling it for open vocabularies, with RegionCLIP and SPARC branching to region-level and fine-grained alignment. **Prompt learning** adapts CLIP without retraining it, CoOp to CoCoOp to TaskRes to REAP, which finally asks when a learned prompt hurts, while Tip-Adapter and TDA branch to the training-free alternative. **Open-vocabulary detection** lets language name the box, GLIP to Grounding-DINO to OWLv2 to DOD, with SeqTR recasting boxes as coordinate sequences and SAM-CLIP fusing the encoders. **Grounded MLLMs** make the model say where, KOSMOS-2 to Shikra to LISA as the output moves from boxes to masks, with GPT4RoI, Groma, and PixelRefer branching to region tokens, localized tokenization, and pixel-level referring. **MLLM architecture and scaling** unifies both directions in one model, Chameleon to Show-o to Janus-Pro to BAGEL, with NVILA and InternVL3 branching on efficiency and native pretraining. **Visual reasoning** splits cleanly at the prompting/RL break: Multimodal-CoT, ViperGPT, and VisualSketchPad build the chain by prompting, with ZoomEye branching to tree-based image exploration, while LLaVA-CoT, Visual-RFT, and SATORI train it with reward, and FOCUS branches to crop from the model's own internal representations. **Spatial understanding** probes before it grounds, SpatialVLM to PhyBlock to RieMind to SCP-Bench. **Failure modes** starts from the hallucination survey that named them, with SECOND fixing decoding and ADAPT and HyperRobust-VLM branching to distribution shift and adversarial robustness.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2021 | [[2103.00020\|CLIP]] | Contrastive pretraining on 400M image-text pairs; established the paradigm for zero-shot vision-language transfer |
-| 2021 | [[2112.03857\|GLIP]] | Unified object detection and phrase grounding; learned object-level language-aware representations for open-vocabulary detection |
-| 2022 | [[2205.06230\|OWL-ViT]] | Simple adaptation of contrastive ViT to open-vocabulary detection; unified text- and image-conditioned object finding |
-| 2022 | [[2211.11559\|VISPROG]] | Neuro-symbolic visual programming via LLM-generated executable programs; compositional reasoning without task-specific training |
-| 2023 | [[2303.05499\|Grounding-DINO]] | Deep language-vision fusion in a DINO detector; 52.5 AP zero-shot on COCO without seeing COCO categories |
-| 2023 | [[2306.14824\|KOSMOS-2]] | Grounded MLLM that perceives and generates bounding boxes as location tokens in natural language |
-| 2023 | [[2306.15195\|Shikra]] | Enabled referential dialogue by processing and generating spatial coordinates directly within MLLM text output |
-| 2023 | [[2308.00692\|LISA]] | Introduced reasoning segmentation -- MLLMs generate pixel-level masks from implicit natural language queries |
-| 2023 | [[2303.08128\|ViperGPT]] | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning without training |
-| 2023 | [[2302.00923\|Multimodal-CoT]] | Chain-of-thought with vision for sub-1B models; mitigated hallucinated rationales via two-stage reasoning |
-| 2023 | [[2304.08485\|LLaVA]] | Visual instruction tuning connects a frozen vision encoder to an LLM; the paradigm the whole MLLM-scaling wave builds on |
-| 2025 | [[2503.01785\|Visual-RFT]] | RL fine-tuning with verifiable visual rewards (box IoU, count correctness); 24.3% accuracy boost in fine-grained classification |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2021 | [[2103.00020\|CLIP]] | Alignment · Scale the Contrastive Recipe | Contrastive pretraining on 400M image-text pairs; established the paradigm for zero-shot vision-language transfer |
+| 2021 | [[2109.01134\|CoOp]] | Prompt Learning · Learnable Prompts | Pioneered learnable prompt engineering for CLIP; replaced hand-crafted prompts with optimizable context vectors |
+| 2021 | [[2111.03930\|Tip-Adapter]] | Prompt Learning · Learnable Prompts | Training-free CLIP adapter using a cache model from few-shot support sets |
+| 2021 | [[2111.10050\|BASIC]] | Alignment · Scale the Contrastive Recipe | Combined batch, data, and model scaling to push contrastive learning to 85.7% zero-shot ImageNet accuracy |
+| 2021 | [[2112.03857\|GLIP]] | Detection · Boxes from Text | Unified object detection and phrase grounding; learned object-level language-aware representations for open-vocabulary detection |
+| 2021 | [[2112.09106\|RegionCLIP]] | Alignment · Scale the Contrastive Recipe | Extended CLIP to region-level representations via region-text pre-training on pseudo-labels |
+| 2022 | [[2203.05557\|CoCoOp]] | Prompt Learning · Learnable Prompts | Conditional prompts that generalize to unseen classes by conditioning on image features |
+| 2022 | [[2203.16265\|SeqTR]] | Detection · Boxes from Text | Reformulated grounding as autoregressive coordinate prediction; unified phrase localization and referring expression tasks |
+| 2022 | [[2211.10277\|TaskRes]] | Prompt Learning · Learnable Prompts | Decouples task-specific and pre-trained knowledge via residual tuning |
+| 2023 | [[2302.00923\|Multimodal-CoT]] | Reasoning · Prompted | Chain-of-thought with vision for sub-1B models; mitigated hallucinated rationales via two-stage reasoning |
+| 2023 | [[2303.05499\|Grounding-DINO]] | Detection · Boxes from Text | Deep language-vision fusion in a DINO detector; 52.5 AP zero-shot on COCO without seeing COCO categories |
+| 2023 | [[2303.08128\|ViperGPT]] | Reasoning · Prompted | LLM generates Python programs orchestrating vision modules; composable zero-shot visual reasoning without training |
+| 2023 | [[2306.09683\|OWLv2]] | Detection · Boxes from Text | Scaled OWL-ViT with self-training to achieve SOTA open-vocabulary detection |
+| 2023 | [[2306.14824\|KOSMOS-2]] | Grounded MLLM · Coordinates as Tokens | Grounded MLLM that perceives and generates bounding boxes as location tokens in natural language |
+| 2023 | [[2306.15195\|Shikra]] | Grounded MLLM · Coordinates as Tokens | Enabled referential dialogue by processing and generating spatial coordinates directly within MLLM text output |
+| 2023 | [[2307.03601\|GPT4RoI]] | Grounded MLLM · Coordinates as Tokens | GPT4RoI introduces an end-to-end vision-language model instruction-tuned for fine-grained region-of-interest understanding |
+| 2023 | [[2307.12813\|DOD]] | Detection · Boxes from Text | Described Object Detection unifying open-vocabulary and referring expression detection |
+| 2023 | [[2308.00692\|LISA]] | Grounded MLLM · Coordinates as Tokens | Introduced reasoning segmentation -- MLLMs generate pixel-level masks from implicit natural language queries |
+| 2023 | [[2310.15308\|SAM-CLIP]] | Detection · Boxes from Text | Unified SAM and CLIP vision encoders into a single model for zero-shot semantic and panoptic segmentation |
+| 2024 | [[2401.09865\|SPARC]] | Alignment · Scale the Contrastive Recipe | Sparse fine-grained contrastive alignment for dense region-level VLM features |
+| 2024 | [[2401.12168\|SpatialVLM]] | Spatial · Probe then Ground | Endowed VLMs with spatial reasoning via 3D-aware training data |
+| 2024 | [[2402.00253\|LVLM-Hallucination-Survey]] | Failure Modes · Name it then Fix it | Comprehensive survey of VLM hallucination types, causes, and mitigation strategies |
+| 2024 | [[2403.18293\|TDA]] | Prompt Learning · Learnable Prompts | Training-free dynamic adapter enabling efficient test-time adaptation via positive/negative caching |
+| 2024 | [[2404.13013\|Groma]] | Grounded MLLM · Coordinates as Tokens | Groma enhances Multimodal Large Language Models with robust visual grounding by introducing a localized visual tokenization approach |
+| 2024 | [[2405.09818\|Chameleon]] | MLLM · Unify Understanding and Generation | Early-fusion token-based architecture scaling to 34B parameters; preferred over GPT-4V+ for mixed-modal generation in human evals |
+| 2024 | [[2406.09403\|VisualSketchPad]] | Reasoning · Prompted | Sketching as visual chain-of-thought for spatial reasoning |
+| 2024 | [[2408.12528\|Show-o]] | MLLM · Unify Understanding and Generation | Single transformer unifying understanding and generation via omni-attention that switches between causal and full attention per modality |
+| 2024 | [[2411.10440\|LLaVA-CoT]] | Reasoning · RL-Trained | Autonomous multistage reasoning with stage-wise retracing; 5.8% improvement enabling 11B model to rival larger closed-source MLLMs |
+| 2024 | [[2411.16044\|ZoomEye]] | Reasoning · Prompted | Training-free tree-based image exploration enabling 3B models to outperform GPT-4o on high-resolution benchmarks |
+| 2024 | [[2412.04468\|NVILA]] | MLLM · Unify Understanding and Generation | Scale-then-compress paradigm reducing training cost 5x and enabling VLM fine-tuning under 24GB; real-time robotic deployment on a laptop GPU |
+| 2025 | [[2501.17811\|Janus-Pro]] | MLLM · Unify Understanding and Generation | Decoupled visual encoding resolving the understanding-generation conflict; 80% on GenEval surpassing DALL-E 3 |
+| 2025 | [[2503.01785\|Visual-RFT]] | Reasoning · RL-Trained | RL fine-tuning with verifiable visual rewards (box IoU, count correctness); 24.3% accuracy boost in fine-grained classification |
+| 2025 | [[2504.10479\|InternVL3]] | MLLM · Unify Understanding and Generation | Native multimodal pre-training paradigm achieving 72.2 on MMMU; top open-source MLLM competitive with proprietary models |
+| 2025 | [[2505.04410\|DeCLIP]] | Alignment · Scale the Contrastive Recipe | Decoupled learning framework enhancing CLIP for open-vocabulary dense perception tasks |
+| 2025 | [[2505.14683\|BAGEL]] | MLLM · Unify Understanding and Generation | Unified MoT architecture with emergent reasoning; SOTA open-source on understanding and generation benchmarks |
+| 2025 | [[2505.19094\|SATORI]] | Reasoning · RL-Trained | Glance-Focus-Think paradigm anchoring RL training in explicit visual grounding; 76.2% on MathVista surpassing GPT-4o |
+| 2025 | [[2506.02843\|REAP]] | Prompt Learning · Learnable Prompts | Revealed that learnable prompts can hinder ViT generalization in cross-domain few-shot settings |
+| 2025 | [[2506.08391\|SECOND]] | Failure Modes · Name it then Fix it | Training-free contrastive decoding that reduces hallucination while improving general VLM accuracy |
+| 2025 | [[2506.08708\|PhyBlock]] | Spatial · Probe then Ground | Block-stacking benchmark exposing whether MLLMs reason about gravitational stability from images alone |
+| 2025 | [[2506.21710\|FOCUS]] | Reasoning · RL-Trained | Internal MLLM representations for efficient visual cropping; 42% accuracy boost at 3-6.5x less compute than baselines |
+| 2025 | [[2508.15568\|ADAPT]] | Failure Modes · Name it then Fix it | Improves VLM robustness to distribution shifts through adaptive prompting |
+| 2025 | [[2510.23603\|PixelRefer]] | Grounded MLLM · Coordinates as Tokens | PixelRefer presents a unified framework for fine-grained spatiotemporal object understanding in images and videos, achieving state-of-the-art performance across multiple benchmarks |
+| 2026 | [[2603.03944\|SCP-Bench]] | Spatial · Probe then Ground | Spatial causal prediction benchmark revealing a 23% gap between best MLLMs and humans on unseen spatio-temporal reasoning |
+| 2026 | [[2603.15386\|RieMind]] | Spatial · Probe then Ground | Geometry-grounded agentic framework decoupling perception from spatial reasoning |
+| 2026 | [[2604.18867\|HyperRobust-VLM]] | Failure Modes · Name it then Fix it | Hyperbolic hierarchy-aware adversarial fine-tuning; defends against superclass attacks that transfer to base classes, extends to medical imaging |
 
 ---
 

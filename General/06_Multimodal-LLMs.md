@@ -17,91 +17,158 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Foundational Vision-Language Alignment
+1. Alignment Objective   (how image meets text)
+· objective design
+                   +bootstrapped      +both objectives    softmax → sigmoid
+                   captions           at once             loss
+╔═════════════╗    ┌─────────────┐    ┌──────────────┐    ┌─────────────────┐
+║ CLIP (2021) ║───►│ BLIP (2022) │───►│ CoCa (2022)  │───►│ SigLIP-2 (2025) │
+╚══════┬══════╝    └─────────────┘    └──────────────┘    └─────────────────┘
+       │    2 modalities → 6
+       │    ┌──────────────────┐
+       ├───►│ ImageBind (2023) │
+       │    └──────────────────┘
+       │    +worldwide data
+       │    curation
+       │    ┌────────────────────┐
+       └───►│ Meta-CLIP-2 (2025) │
+            └────────────────────┘
 
-╔════════════════╗
-║ CLIP (2021)    ║──┬──► BLIP (2022)
-╚════════════════╝  ├──► CoCa (2022)
-                    └──► InstructBLIP (2023)  [Early MLLMs]
+2. Early Grounded MLLMs   (say where, not just what)
+· coordinates as output
+                       +referential         boxes → pixel
+                       dialogue             masks
+┌─────────────────┐    ┌───────────────┐    ┌─────────────┐
+│ KOSMOS-2 (2023) │───►│ Shikra (2023) │───►│ LISA (2023) │
+└────────┬────────┘    └───────────────┘    └─────────────┘
+         │    +instruction-aware
+         │    features
+         │    ┌─────────────────────┐
+         ├───►│ InstructBLIP (2023) │
+         │    └─────────────────────┘
+         │    +set-of-mark
+         │    prompting
+         │    ┌────────────┐
+         └───►│ SoM (2023) │
+              └────────────┘
 
-┌────────────────┐
-│ BLIP (2022)    │──┬──► InstructBLIP (2023)   [Early MLLMs]
-└────────────────┘  └──► PaliGemma (2024)      [Instruction-Tuned MLLMs]
+3. Instruction-Tuned Production   (make it usable)
+· supervision to preference
+                        +open data,         +preference              +production-scale
+                        pointing            optimization             recipe
+┌──────────────────┐    ┌──────────────┐    ┌───────────────────┐    ┌───────────────┐
+│ PaliGemma (2024) │───►│ Molmo (2024) │───►│ LLaVA-MORE (2025) │───►│ PlaM (2026)   │
+└──────────────────┘    └──────────────┘    └───────────────────┘    └───────────────┘
 
-┌────────────────┐
-│ CoCa (2022)    │─────► InstructBLIP (2023)   [Early MLLMs]
-└────────────────┘
+4. Native Multimodal   (one model, not an encoder bolted on)
+· unified pretraining
+                                            encoder →          +unified corpus
+                        +MoT interleaved    vision-as-LoRA     scaling
+┌──────────────────┐    ┌──────────────┐    ┌─────────────┐    ┌────────────────┐
+│ InternVL3 (2025) │───►│ BAGEL (2025) │───►│ VoRA (2025) │───►│ UniCorn (2026) │
+└──────────────────┘    └──────────────┘    └─────────────┘    └────────────────┘
 
+5. Visual Encoding   (what the LLM actually receives)
+· feature quality
+                    +high-res hierarchical     +contrastive-free encoder        +feature upsampling
+┌──────────────┐    ┌─────────────────────┐    ┌───────────────────────────┐    ┌──────────────────┐
+│ AIMV2 (2024) │───►│ LLaVA-UHD-v2 (2024) │───►│ Perception-Encoder (2025) │───►│ FeatSharp (2025) │
+└───────┬──────┘    └─────────────────────┘    └───────────────────────────┘    └──────────────────┘
+        │    +cross-modal position
+        │    ┌────────────────────┐
+        ├───►│ Circle-RoPE (2025) │
+        │    └────────────────────┘
+        │    +ray-based 3D
+        │    position
+        │    ┌────────────────┐
+        └───►│ RayRoPE (2026) │
+             └────────────────┘
 
-2. Early MLLMs
+6. Efficiency   (shrink it without losing it)
+· parameter budget
+                                          +knowledge
+                    +sub-3B               distillation
+┌──────────────┐    ┌────────────────┐    ┌────────────────┐
+│ NVILA (2024) │───►│ SmolVLM (2025) │───►│ TinyVLM (2026) │
+└───────┬──────┘    └────────────────┘    └────────────────┘
+        │    smaller model →
+        │    fewer tokens
+        │    ┌──────────────┐
+        ├───►│ VScan (2025) │
+        │    └──────────────┘
+        │    +conditional-diversity
+        │    pruning
+        │    ┌────────────────────┐
+        └───►│ CDPruner (2025)    │
+             └────────────────────┘
 
-╔═════════════════════════╗
-║ InstructBLIP (2023)     ║──┬──► LLaVA-MORE (2025)  [Instruction-Tuned MLLMs]
-╚═════════════════════════╝  └──► Molmo (2024)       [Instruction-Tuned MLLMs]
+7. Hallucination Mitigation   (stop it inventing what it sees)
+· name it, then patch it
+                                        +contrastive                               +cross-modal
+                                        decoding           +post-hoc alignment     consistency
+┌──────────────────────────────────┐    ┌─────────────┐    ┌──────────────────┐    ┌──────────────┐
+│ LVLM-Hallucination-Survey (2024) │───►│ CODE (2024) │───►│ PostAlign (2025) │───►│ CRoPS (2026) │
+└──────────────────────────────────┘    └──────┬──────┘    └──────────────────┘    └──────────────┘
+                                               │    +adaptive visual
+                                               │    preference
+                                               │    ┌───────────────┐
+                                               └───►│ AdaViP (2025) │
+                                                    └───────────────┘
 
-┌─────────────────┐
-│ KOSMOS-2 (2023) │─────► Shikra (2023)   (leaf)
-└─────────────────┘
-
-
-3. Instruction-Tuned MLLMs
-
-┌────────────────────┐
-│ LLaVA-MORE (2025)  │─────► InternVL3 (2025)  [Unified & Native Multimodal]
-└────────────────────┘
-
-┌────────────────┐
-│ Molmo (2024)   │─────► InternVL3 (2025)      [Unified & Native Multimodal]
-└────────────────┘
-
-┌────────────────────┐
-│ PaliGemma (2024)   │   (leaf, no outgoing edges)
-└────────────────────┘
-
-
-4. Unified & Native Multimodal
-
-╔════════════════════╗
-║ InternVL3 (2025)   ║─────► BAGEL (2025)
-╚════════════════════╝
-
-┌────────────────┐
-│ SAIL (2025)    │─────► BAGEL (2025)
-└────────────────┘
-
-┌────────────────┐
-│ BAGEL (2025)   │   (leaf; receives from InternVL3 + SAIL above)
-└────────────────┘
-
-
-5. Efficient MLLMs                              (disconnected sub-graph, no edges to/from groups above)
-
-┌────────────────┐     ╔═══════════════════╗     ┌─────────────────┐
-│ NVILA (2024)   │────►║ SmolVLM (2025)    ║────►│ TinyVLM (2026)  │
-└────────────────┘     ╚═══════════════════╝     └─────────────────┘
+8. Trustworthiness and Continual Use   (what happens after deployment)
+· keep it reliable over time
+                                                                                           +uncertainty
+                                      +trust estimation      +safety benchmark             quantification
+┌────────────────────────────────┐    ┌─────────────────┐    ┌────────────────────────┐    ┌─────────────┐
+│ MLLM-Continual-Learning (2024) │───►│ TrustVLM (2025) │───►│ MIR-SafetyBench (2026) │───►│ VAUQ (2026) │
+└────────────────────────────────┘    └─────────────────┘    └────────────────────────┘    └─────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through four phases: **foundational alignment** (2021-2022) where CLIP, BLIP, and CoCa established vision-language pretraining paradigms; **early MLLMs** (2023) where InstructBLIP, KOSMOS-2, and Shikra connected visual encoders to LLMs with instruction tuning and grounding; **instruction-tuned MLLMs** (2024-2025) where LLaVA-MORE, Molmo, and PaliGemma refined the recipe for general-purpose multimodal understanding; and **unified native multimodal + efficient deployment** (2024-2026) where InternVL3 and BAGEL achieved native multi-task generation while SmolVLM and TinyVLM pushed sub-3B parameter efficiency.
+The eight lanes divide on **which property of the MLLM is being pushed**. **Alignment objective** settles how image meets text, CLIP contrastive, BLIP bootstrapping captions, CoCa carrying both losses, SigLIP-2 swapping softmax for sigmoid, with ImageBind and Meta-CLIP-2 branching to more modalities and worldwide curation. **Early grounded MLLMs** make the model say where, KOSMOS-2 to Shikra to LISA as output moves from boxes to masks, with InstructBLIP and SoM branching to instruction-aware features and set-of-mark prompting. **Instruction-tuned production** makes it usable, PaliGemma to Molmo to LLaVA-MORE to PlaM as the signal moves from supervision to preference. **Native multimodal** stops bolting an encoder on, InternVL3 to BAGEL to VoRA to UniCorn. **Visual encoding** attacks what the language model actually receives, AIMV2 to LLaVA-UHD-v2 to Perception-Encoder to FeatSharp, with Circle-RoPE and RayRoPE branching on how position is encoded across modalities. **Efficiency** shrinks it, NVILA to SmolVLM to TinyVLM, while VScan and CDPruner branch to cutting tokens rather than parameters. **Hallucination mitigation** starts from the survey that named the failure, CODE decoding against it, PostAlign patching after the fact, CRoPS enforcing cross-modal consistency, with AdaViP branching to adaptive visual preference. **Trustworthiness and continual use** covers what happens after deployment, MLLM-Continual-Learning to TrustVLM to MIR-SafetyBench to VAUQ.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2021 | [[2103.00020\|CLIP]] | Contrastive pretraining on 400M image-text pairs; enabled zero-shot visual recognition via natural language |
-| 2022 | [[2201.12086\|BLIP]] | Unified vision-language understanding and generation with bootstrapped caption filtering for noisy web data |
-| 2022 | [[2205.01917\|CoCa]] | Combined contrastive and generative objectives in a single model with decoupled text decoder |
-| 2023 | [[2305.06500\|InstructBLIP]] | Applied instruction tuning to VLMs with instruction-aware visual features; SOTA zero-shot on unseen tasks |
-| 2023 | [[2306.14824\|KOSMOS-2]] | Grounded MLLM that perceives and generates bounding boxes as location tokens in natural language |
-| 2023 | [[2306.15195\|Shikra]] | Enabled referential dialogue by processing and generating spatial coordinates directly in text output |
-| 2024 | [[2407.07726\|PaliGemma]] | Open-source 3B VLM matching larger models across 40 tasks; democratized VLM research |
-| 2024 | [[2409.17146\|Molmo]] | Family of open-source MLLMs with state-of-the-art pointing capabilities and transparent training pipeline |
-| 2024 | [[2412.04468\|NVILA]] | NVIDIA's efficient MLLM achieving strong performance via visual token compression and structured pruning |
-| 2025 | [[2503.15621\|LLaVA-MORE]] | Extended LLaVA with RL-based preference optimization; improved reasoning without sacrificing perception |
-| 2025 | [[2504.10479\|InternVL3]] | Native multimodal pre-training with tool-augmented generation; unified understanding and reasoning at scale |
-| 2025 | [[2505.14683\|BAGEL]] | Unified multimodal model for interleaved image-text understanding and generation with 7B parameters |
-| 2025 | [[2504.10462\|SAIL]] | Search-Augmented Instruction Learning for grounded multimodal reasoning with web knowledge retrieval |
-| 2025 | [[2504.05299\|SmolVLM]] | Sub-3B parameter efficient MLLM achieving competitive performance through aggressive architectural optimization |
-| 2026 | [[2603.00136\|TinyVLM]] | Ultra-compact MLLM pushing efficiency further with knowledge distillation from larger multimodal models |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2021 | [[2103.00020\|CLIP]] | Alignment · Objective Design | Contrastive pretraining on 400M image-text pairs; enabled zero-shot visual recognition via natural language |
+| 2022 | [[2201.12086\|BLIP]] | Alignment · Objective Design | Unified vision-language understanding and generation with bootstrapped caption filtering for noisy web data |
+| 2022 | [[2205.01917\|CoCa]] | Alignment · Objective Design | Combined contrastive and generative objectives in a single model with decoupled text decoder |
+| 2023 | [[2305.05665\|ImageBind]] | Alignment · Objective Design | Extended alignment to six modalities (image, text, audio, depth, thermal, IMU) via a single embedding space |
+| 2023 | [[2305.06500\|InstructBLIP]] | Grounding · Coordinates as Output | Applied instruction tuning to VLMs with instruction-aware visual features; SOTA zero-shot on unseen tasks |
+| 2023 | [[2306.14824\|KOSMOS-2]] | Grounding · Coordinates as Output | Grounded MLLM that perceives and generates bounding boxes as location tokens in natural language |
+| 2023 | [[2306.15195\|Shikra]] | Grounding · Coordinates as Output | Enabled referential dialogue by processing and generating spatial coordinates directly in text output |
+| 2023 | [[2308.00692\|LISA]] | Grounding · Coordinates as Output | Introduced reasoning segmentation, enabling MLLMs to generate precise segmentation masks from complex language queries |
+| 2023 | [[2310.11441\|SoM]] | Grounding · Coordinates as Output | Set-of-Mark visual prompting: overlays alphanumeric markers on images to unlock GPT-4V's fine-grained grounding |
+| 2024 | [[2402.00253\|LVLM-Hallucination-Survey]] | Hallucination · Name it then Patch it | Comprehensive taxonomy of hallucination types in large vision-language models |
+| 2024 | [[2406.01920\|CODE]] | Hallucination · Name it then Patch it | Training-free decoding method reducing hallucination through contrastive output distributions |
+| 2024 | [[2407.07726\|PaliGemma]] | Instruction · Supervision to Preference | Open-source 3B VLM matching larger models across 40 tasks; democratized VLM research |
+| 2024 | [[2409.17146\|Molmo]] | Instruction · Supervision to Preference | Family of open-source MLLMs with state-of-the-art pointing capabilities and transparent training pipeline |
+| 2024 | [[2410.19925\|MLLM-Continual-Learning]] | Trust · Reliable over Time | Systematic quantification of linguistic forgetting in continually trained MLLMs |
+| 2024 | [[2411.14402\|AIMV2]] | Visual Encoding · Feature Quality | Apple's autoregressive + contrastive pre-training for vision encoders; strong zero-shot transfer |
+| 2024 | [[2412.04468\|NVILA]] | Efficiency · Parameter Budget | NVIDIA's efficient MLLM achieving strong performance via visual token compression and structured pruning |
+| 2024 | [[2412.13871\|LLaVA-UHD-v2]] | Visual Encoding · Feature Quality | Hierarchical Window Transformer for native high-resolution MLLM input processing |
+| 2025 | [[2502.14786\|SigLIP-2]] | Alignment · Objective Design | Multilingual vision-language encoders integrating decoder-based pretraining with sigmoid loss; advances over original SigLIP |
+| 2025 | [[2502.16025\|FeatSharp]] | Visual Encoding · Feature Quality | Generates sharper high-resolution features from low-resolution vision encoders without retraining |
+| 2025 | [[2503.15621\|LLaVA-MORE]] | Instruction · Supervision to Preference | Extended LLaVA with RL-based preference optimization; improved reasoning without sacrificing perception |
+| 2025 | [[2503.20680\|VoRA]] | Native · Unified Pretraining | Encoder-free MLLM treating visual features as LoRA parameters; eliminates the separate vision encoder entirely |
+| 2025 | [[2504.05299\|SmolVLM]] | Efficiency · Parameter Budget | Sub-3B parameter efficient MLLM achieving competitive performance through aggressive architectural optimization |
+| 2025 | [[2504.10479\|InternVL3]] | Native · Unified Pretraining | Native multimodal pre-training with tool-augmented generation; unified understanding and reasoning at scale |
+| 2025 | [[2504.13181\|Perception-Encoder]] | Visual Encoding · Feature Quality | Family of vision models achieving SOTA across diverse tasks; designed as universal perception backbone |
+| 2025 | [[2504.15619\|AdaViP]] | Hallucination · Name it then Patch it | Adaptive visual preference optimization reducing hallucination through contrastive visual grounding |
+| 2025 | [[2505.14683\|BAGEL]] | Native · Unified Pretraining | Unified multimodal model for interleaved image-text understanding and generation with 7B parameters |
+| 2025 | [[2505.16416\|Circle-RoPE]] | Visual Encoding · Feature Quality | Decoupled rotary position encoding for visual and textual tokens; resolves position conflicts in MLLMs |
+| 2025 | [[2505.22654\|VScan]] | Efficiency · Parameter Budget | Two-stage framework achieving up to 90% visual token reduction with minimal quality loss |
+| 2025 | [[2505.23745\|TrustVLM]] | Trust · Reliable over Time | Framework estimating prediction trustworthiness by combining internal and external confidence signals |
+| 2025 | [[2506.10967\|CDPruner]] | Efficiency · Parameter Budget | Training-free token pruning leveraging content-dependency analysis |
+| 2025 | [[2506.17901\|PostAlign]] | Hallucination · Name it then Patch it | Post-training alignment framework improving visual fidelity without catastrophic forgetting |
+| 2025 | [[2507.22062\|Meta-CLIP-2]] | Alignment · Objective Design | Transparent, open-sourced methodology for training CLIP on native worldwide web data at scale |
+| 2026 | [[2601.00659\|CRoPS]] | Hallucination · Name it then Patch it | Dynamic cropping strategy forcing models to attend to relevant image regions |
+| 2026 | [[2601.03193\|UniCorn]] | Native · Unified Pretraining | Autonomously bridges comprehension and generation capabilities within a single model |
+| 2026 | [[2601.07645\|PlaM]] | Instruction · Supervision to Preference | Training-free model merging preserving complementary knowledge from multiple fine-tuned models |
+| 2026 | [[2601.14127\|MIR-SafetyBench]] | Trust · Reliable over Time | First benchmark for evaluating safety risks from multi-image reasoning in MLLMs |
+| 2026 | [[2601.15275\|RayRoPE]] | Visual Encoding · Feature Quality | Projective ray positional encoding for multi-view transformers using 3D geometric priors |
+| 2026 | [[2602.21054\|VAUQ]] | Trust · Reliable over Time | Training-free self-evaluation framework quantifying visual vs. textual reliance in MLLM predictions |
+| 2026 | [[2603.00136\|TinyVLM]] | Efficiency · Parameter Budget | Ultra-compact MLLM pushing efficiency further with knowledge distillation from larger multimodal models |
 
 ---
 

@@ -36,14 +36,15 @@ aliases:
 
 2. Physics-Informed Video   (make generated motion obey mechanics)
 · physical plausibility
-                   +physics alignment    +force control         +Newtonian dynamics
-┌─────────────┐    ┌────────────────┐    ╔═════════════════╗    ╔══════════════════╗
-│ PIDM (2024) │───►│ PISA (2025)    │───►║ PhysCtrl (2025) ║───►║ NewtonGen (2025) ║
-└─────────────┘    └────────────────┘    ╚════════┬════════╝    ╚══════════════════╝
-                                                  │    +RL physics reward
-                                                  │    ┌───────────────────┐
-                                                  └───►│ PhysMaster (2025) │
-                                                       └───────────────────┘
+                   +physics
+                   alignment          +force control         +Newtonian dynamics
+┌─────────────┐    ┌─────────────┐    ╔═════════════════╗    ╔══════════════════╗
+│ PIDM (2024) │───►│ PISA (2025) │───►║ PhysCtrl (2025) ║───►║ NewtonGen (2025) ║
+└─────────────┘    └─────────────┘    ╚════════┬════════╝    ╚══════════════════╝
+                                               │    +RL physics reward
+                                               │    ┌───────────────────┐
+                                               └───►│ PhysMaster (2025) │
+                                                    └───────────────────┘
 
 3. Real2Sim Physical Twins   (measure the real world's physics)
 · differentiable twins

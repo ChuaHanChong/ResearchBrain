@@ -47,17 +47,19 @@ aliases:
                                            │    ╔═════════════════╗    ┌─────────────────┐
                                            ├───►║ DeXtreme (2022) ║───►│ DrEureka (2024) │
                                            │    ╚═════════════════╝    └─────────────────┘
-                                           │    +robust policy opt
-                                           │    ┌────────────────┐
-                                           └───►│ DR-RPO (2025)  │
-                                                └────────────────┘
+                                           │    +robust policy
+                                           │    opt
+                                           │    ┌───────────────┐
+                                           └───►│ DR-RPO (2025) │
+                                                └───────────────┘
 
 3. Online Adaptation   (close the gap after deployment)
 · adapt to the real robot
-                       +rapid adaptation    +transformer       +visual backbone    +hierarchical adapt
-┌─────────────────┐    ╔═══════════════╗    ┌─────────────┐    ┌──────────────┐    ┌─────────────────┐
-│ Sim2Real (2019) │───►║ RMA (2021)    ║───►│ TERT (2022) │───►│ VBC (2024)   │───►│ HiPAN (2026)    │
-└─────────────────┘    ╚═══════════════╝    └─────────────┘    └──────────────┘    └─────────────────┘
+                       +rapid                               +visual           +hierarchical
+                       adaptation        +transformer       backbone          adapt
+┌─────────────────┐    ╔════════════╗    ┌─────────────┐    ┌────────────┐    ┌──────────────┐
+│ Sim2Real (2019) │───►║ RMA (2021) ║───►│ TERT (2022) │───►│ VBC (2024) │───►│ HiPAN (2026) │
+└─────────────────┘    ╚════════════╝    └─────────────┘    └────────────┘    └──────────────┘
 
 4. Teacher-Student Distillation   (privileged sim to blind real)
 · privileged distillation

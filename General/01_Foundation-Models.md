@@ -18,102 +18,197 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Vision Transformers
+1. Backbone Architecture   (what encodes the image)
+· pure-transformer vision
+                  +shifted windows, high-res        +22B dense scaling
+╔════════════╗    ┌────────────────────────────┐    ┌────────────────┐
+║ ViT (2020) ║───►│ Swin-Transformer-V2 (2021) │───►│ ViT-22B (2023) │
+╚══════┬═════╝    └────────────────────────────┘    └────────────────┘
+       │    +dense prediction on
+       │    plain ViT
+       │    ┌────────────────────┐
+       └───►│ ViT-Adapter (2022) │
+            └────────────────────┘
 
-╔════════════════════╗
-║    ViT (2020)      ║──────► DINO (2021)   [Self-Supervised Learning, below]
-╚═════════╤══════════╝──────► MAE (2021)    [Self-Supervised Learning, below]
-          │
-          ▼
-┌────────────────────┐
-│   Swin V2 (2021)   │
-└─────────┬──────────┘
-          │
-          ▼
-┌────────────────────┐
-│   ViT-22B (2023)   │
-└────────────────────┘
+2. Attention Redesign   (replace the quadratic core)
+· sparsify the attention
+                   +differentiable    sparse tokens →
+                   dynamic mask       sparse depth
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│ MoSA (2025) │───►│ DMA (2025)  │───►│ MoDA (2026) │
+└──────┬──────┘    └─────────────┘    └─────────────┘
+       │    +attention-sink
+       │    removal
+       │    ┌─────────────────┐
+       └───►│ Softpick (2025) │
+            └─────────────────┘
 
+· give it memory instead
+                     +recursion for     +nested
+                     parameter reuse    learning levels
+┌───────────────┐    ┌─────────────┐    ┌─────────────┐
+│ Titans (2025) │───►│ MoR (2025)  │───►│ Hope (2025) │
+└───────┬───────┘    └─────────────┘    └─────────────┘
+        │    +hybrid
+        │    Transformer-Mamba
+        │    ┌──────────────────┐
+        └───►│ Falcon-H1 (2025) │
+             └──────────────────┘
 
-2. Self-Supervised Learning                              (fed by ViT above)
+3. Label-Free Pretraining   (drop the labels, keep the signal)
+· self-distillation
+                   +142M curated        +coding-rate
+                   images               regularization
+┌─────────────┐    ┌───────────────┐    ┌────────────────┐
+│ DINO (2021) │───►│ DINOv2 (2023) │───►│ SimDINO (2025) │
+└──────┬──────┘    └───────────────┘    └────────────────┘
+       │    +test-time training
+       │    ┌───────────────────┐
+       └───►│ Vision-TTT (2026) │
+            └───────────────────┘
 
-┌────────────────────┐     ┌────────────────────┐
-│    DINO (2021)     │     │     MAE (2021)     │
-└─────────┬──────────┘     └─────────┬──────────┘
-          │                          │
-          ▼                          │
-╔════════════════════╗               │
-║  DINOv2 (2023)     ║               │
-╚═════════╤══════════╝               │
-          │                          │
-          └────────────┬─────────────┘
-                       ▼
-             ┌────────────────────┐
-             │   I-JEPA (2023)    │
-             └────────────────────┘
+· reconstruction to latent prediction
+                   discrete tokens →    pixel target →
+                   raw pixels           latent target
+┌─────────────┐    ┌───────────────┐    ┌───────────────┐
+│ BEiT (2021) │───►│ MAE (2021)    │───►│ I-JEPA (2023) │─┐
+└─────────────┘    └───────────────┘    └───────────────┘ │
+                                                          │    +provable isotropic
+                                                          │    objective
+                                                          │    ┌─────────────────┐
+                                                          ├───►│ LeJEPA (2025)   │
+                                                          │    └─────────────────┘
+                                                          │    +variational bottleneck
+                                                          │    ┌────────────────────────────┐
+                                                          ├───►│ VJEPA-Probabilistic (2026) │
+                                                          │    └────────────────────────────┘
+                                                          │    +object-centric causal
+                                                          │    ┌────────────────────┐
+                                                          └───►│ Causal-JEPA (2026) │
+                                                               └────────────────────┘
 
+4. Vision-Language Alignment   (pair the image with text)
+· contrastive to generative
+                   +bootstrapped      +both objectives    +unified
+                   captions           at once             understand/generate
+╔═════════════╗    ┌─────────────┐    ┌──────────────┐    ┌─────────────────┐
+║ CLIP (2021) ║───►│ BLIP (2022) │───►│ CoCa (2022)  │───►│ BLIP3-o (2025)  │
+╚══════┬══════╝    └─────────────┘    └──────────────┘    └─────────────────┘
+       │    2 modalities → 6
+       │    ┌──────────────────┐
+       ├───►│ ImageBind (2023) │
+       │    └──────────────────┘
+       │    +fine-grained
+       │    sparse alignment
+       │    ┌──────────────┐
+       └───►│ SPARC (2024) │
+            └──────────────┘
 
-3. Vision-Language Alignment
+5. Multimodal LLMs   (put the image inside the language model)
+· interleaved to grounded
+                       +arbitrary             +bounding-box
+                       interleaving           tokens                 +open 3B, 40 tasks
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌──────────────────┐
+│ Flamingo (2022) │───►│ KOSMOS-1 (2023) │───►│ KOSMOS-2 (2023) │───►│ PaliGemma (2024) │
+└─────────────────┘    └────────┬────────┘    └─────────────────┘    └──────────────────┘
+                                │    +simple projector
+                                │    recipe
+                                │    ┌──────────────────┐
+                                ├───►│ LLaVA-1.5 (2023) │
+                                │    └──────────────────┘
+                                │    +any-to-any
+                                │    modalities
+                                │    ┌─────────────────┐
+                                └───►│ NExT-GPT (2023) │
+                                     └─────────────────┘
 
-╔════════════════════╗
-║   CLIP (2021)      ║──────► KOSMOS-2 (2023)   [Multimodal LLMs, below]
-╚═════════╤══════════╝
-          │
-          ▼
-┌────────────────────┐
-│    BLIP (2022)     │──────► InstructBLIP (2023)   [Multimodal LLMs, below]
-└────────────────────┘──────► PaliGemma (2024)      [Multimodal LLMs, below]
-                      └─────► BLIP3-o (2025)        [Multimodal LLMs, below]
+6. RL for Reasoning   (post-training, not pretraining)
+· who verifies the answer
+                          math/code →        +pretraining-scale
+                          diverse domains    data
+╔════════════════════╗    ┌─────────────┐    ┌────────────────────┐
+║ DeepSeek-R1 (2025) ║───►│ RLVR (2025) │───►│ Webscale-RL (2025) │─┐
+╚════════════════════╝    └─────────────┘    └────────────────────┘ │
+                                                                    │    +zero-data,
+                                                                    │    tool-integrated
+                                                                    │    ┌───────────────┐
+                                                                    ├───►│ Agent0 (2025) │
+                                                                    │    └───────────────┘
+                                                                    │    +zero-annotation
+                                                                    │    multimodal
+                                                                    │    ┌───────────────┐
+                                                                    └───►│ V-Zero (2026) │
+                                                                         └───────────────┘
 
-┌────────────────────┐
-│  ImageBind (2023)  │   (isolated, no edges to/from other nodes)
-└────────────────────┘
+7. Efficient Adaptation   (reuse a model you already have)
+· adapt without retraining
+                   prompts →         +multi-token
+                   generated LoRA    prediction
+┌─────────────┐    ┌────────────┐    ┌───────────────────┐
+│ CoOp (2021) │───►│ T2L (2025) │───►│ Gated-LoRA (2025) │
+└──────┬──────┘    └────────────┘    └───────────────────┘
+       │    +multi-teacher
+       │    distillation
+       │    ┌─────────────────┐
+       ├───►│ AM-RADIO (2023) │
+       │    └─────────────────┘
+       │    +checkpoint
+       │    merging
+       │    ┌────────────┐
+       └───►│ PMA (2025) │
+            └────────────┘
 
-
-4. Multimodal LLMs                              (fed by CLIP and BLIP above)
-
-╔════════════════════╗
-║  KOSMOS-1 (2023)   ║──────► KOSMOS-2 (2023)
-╚════════════════════╝
-
-┌────────────────────┐
-│ InstructBLIP (2023)│
-└─────────┬──────────┘
-          │
-          ▼
-╔════════════════════╗
-║  BLIP3-o (2025)    ║   (also fed directly by BLIP, above)
-╚════════════════════╝
-
-┌────────────────────┐
-│  KOSMOS-2 (2023)   │   (target of CLIP's edge and of KOSMOS-1, above)
-└────────────────────┘
-
-╔════════════════════╗
-║ PaliGemma (2024)   ║   (target of BLIP's edge above)
-╚════════════════════╝
-```
 Legend: ╔═╗ double border = landmark/foundational paper.
+```
 
-The field evolved through three phases: **architectural proof-of-concept** (2020-2021) where ViT, DINO, and CLIP established that Transformers and contrastive learning could replace CNNs; **self-supervised scaling** (2022-2023) where DINOv2, I-JEPA, and ViT-22B showed label-free pretraining scales to billions of parameters; and **multimodal unification** (2023-2025) where KOSMOS-1 established the foundational MLLM paradigm before InstructBLIP, PaliGemma, and BLIP3-o merged understanding and generation into single models.
+The seven lanes divide on **which layer of the stack is being built**. **Backbone architecture** settles what encodes the image, ViT to Swin-Transformer-V2 to ViT-22B as resolution and parameter count climb, with ViT-Adapter branching to make a plain ViT handle dense prediction. **Attention redesign** attacks the quadratic core two ways that do not meet: MoSA, DMA, and MoDA sparsify what attends, with Softpick removing the attention sink, while Titans, MoR, and Hope give the model memory and recursion instead, and Falcon-H1 branches to a hybrid Transformer-Mamba stack. **Label-free pretraining** drops the labels, and again splits: DINO's self-distillation scales through DINOv2 to SimDINO, with Vision-TTT branching to train at test time, while BEiT's discrete tokens give way to MAE's raw pixels and then I-JEPA's latent targets, after which LeJEPA, VJEPA-Probabilistic, and Causal-JEPA each reformulate that same objective independently. **Vision-language alignment** pairs image with text, CLIP to BLIP to CoCa to BLIP3-o as the objective turns generative, with ImageBind and SPARC branching to more modalities and finer-grained alignment. **Multimodal LLMs** put the image inside the language model, Flamingo to KOSMOS-1 to KOSMOS-2 to PaliGemma, with LLaVA-1.5 and NExT-GPT branching off KOSMOS-1 toward a simpler projector and any-to-any modalities. **RL for reasoning** moves the work to post-training and turns on who verifies the answer, DeepSeek-R1 to RLVR to Webscale-RL, then Agent0 and V-Zero removing the annotation entirely. **Efficient adaptation** reuses a model you already have, CoOp to T2L to Gated-LoRA, with AM-RADIO and PMA branching to distillation and checkpoint merging.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2020 | [[2010.11929\|ViT]] | Proved a pure Transformer on image patches matches CNNs at scale, eliminating convolutional inductive biases |
-| 2021 | [[2111.09883\|Swin-Transformer-V2]] | Scaled vision Transformers to 3B parameters with stable training via residual post-norm and cosine attention |
-| 2021 | [[2104.14294\|DINO]] | Self-distillation without labels produces ViT features with emergent object segmentation in attention maps |
-| 2021 | [[2111.06377\|MAE]] | Masked 75% of patches and reconstructed pixels; made self-supervised ViT pretraining 3-4x cheaper |
-| 2021 | [[2103.00020\|CLIP]] | Contrastive image-text pretraining on 400M web pairs; enabled zero-shot visual recognition via natural language |
-| 2022 | [[2201.12086\|BLIP]] | Unified vision-language understanding and generation with bootstrapped caption filtering for noisy web data |
-| 2023 | [[2302.05442\|ViT-22B]] | Demonstrated vision models can scale to 22B parameters, achieving 89.5% ImageNet with emergent LLM-like properties |
-| 2023 | [[2304.07193\|DINOv2]] | Scaled self-supervised learning to 142M curated images; produced universal visual features competitive with CLIP without text |
-| 2023 | [[2301.08243\|I-JEPA]] | Predicted abstract representations instead of pixels; 10x cheaper pretraining with stronger semantic features |
-| 2023 | [[2305.05665\|ImageBind]] | Aligned six modalities into one embedding space using images as anchor; enabled emergent cross-modal zero-shot transfer |
-| 2023 | [[2302.14045\|KOSMOS-1]] | First MLLM with arbitrarily interleaved image-text inputs; 84.7 CIDEr on COCO, 22% on custom Raven IQ — established the foundational MLLM paradigm |
-| 2023 | [[2305.06500\|InstructBLIP]] | Applied instruction tuning to VLMs with instruction-aware visual features; SOTA zero-shot on unseen tasks |
-| 2023 | [[2306.14824\|KOSMOS-2]] | Grounded MLLMs to spatial regions via bounding box tokens in text; 78.7% R@1 on Flickr30k phrase grounding |
-| 2024 | [[2407.07726\|PaliGemma]] | Open-source 3B VLM matching larger models across 40 tasks; democratized VLM research through efficient transfer |
-| 2025 | [[2505.09568\|BLIP3-o]] | Unified image understanding and generation in a single hybrid autoregressive-diffusion architecture |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2020 | [[2010.11929\|ViT]] | Backbone · Pure-Transformer Vision | Proved a pure Transformer on image patches matches CNNs at scale, eliminating convolutional inductive biases |
+| 2021 | [[2103.00020\|CLIP]] | Alignment · Contrastive to Generative | Contrastive image-text pretraining on 400M web pairs; enabled zero-shot visual recognition via natural language |
+| 2021 | [[2104.14294\|DINO]] | Label-Free · Self-Distillation | Self-distillation without labels produces ViT features with emergent object segmentation in attention maps |
+| 2021 | [[2106.08254\|BEiT]] | Label-Free · Reconstruction to Latent | BERT-style pre-training for vision: predict discrete visual tokens from masked patches |
+| 2021 | [[2109.01134\|CoOp]] | Adaptation · Adapt without Retraining | Learnable prompts for adapting CLIP without fine-tuning; launched the prompt learning field |
+| 2021 | [[2111.06377\|MAE]] | Label-Free · Reconstruction to Latent | Masked 75% of patches and reconstructed pixels; made self-supervised ViT pretraining 3-4x cheaper |
+| 2021 | [[2111.09883\|Swin-Transformer-V2]] | Backbone · Pure-Transformer Vision | Scaled vision Transformers to 3B parameters with stable training via residual post-norm and cosine attention |
+| 2022 | [[2201.12086\|BLIP]] | Alignment · Contrastive to Generative | Unified vision-language understanding and generation with bootstrapped caption filtering for noisy web data |
+| 2022 | [[2204.14198\|Flamingo]] | MLLM · Interleaved to Grounded | DeepMind's few-shot VLM interleaving vision and language; established in-context learning for multimodal models |
+| 2022 | [[2205.01917\|CoCa]] | Alignment · Contrastive to Generative | Combined contrastive and generative objectives in a single contrastive captioner |
+| 2022 | [[2205.08534\|ViT-Adapter]] | Backbone · Pure-Transformer Vision | Foundational adapter method enabling plain ViTs to handle dense prediction tasks without architectural changes |
+| 2023 | [[2301.08243\|I-JEPA]] | Label-Free · Reconstruction to Latent | Predicted abstract representations instead of pixels; 10x cheaper pretraining with stronger semantic features |
+| 2023 | [[2302.05442\|ViT-22B]] | Backbone · Pure-Transformer Vision | Demonstrated vision models can scale to 22B parameters, achieving 89.5% ImageNet with emergent LLM-like properties |
+| 2023 | [[2302.14045\|KOSMOS-1]] | MLLM · Interleaved to Grounded | First MLLM with arbitrarily interleaved image-text inputs; 84.7 CIDEr on COCO, 22% on custom Raven IQ — established the foundational MLLM paradigm |
+| 2023 | [[2304.07193\|DINOv2]] | Label-Free · Self-Distillation | Scaled self-supervised learning to 142M curated images; produced universal visual features competitive with CLIP without text |
+| 2023 | [[2305.05665\|ImageBind]] | Alignment · Contrastive to Generative | Aligned six modalities into one embedding space using images as anchor; enabled emergent cross-modal zero-shot transfer |
+| 2023 | [[2306.14824\|KOSMOS-2]] | MLLM · Interleaved to Grounded | Grounded MLLMs to spatial regions via bounding box tokens in text; 78.7% R@1 on Flickr30k phrase grounding |
+| 2023 | [[2309.05519\|NExT-GPT]] | MLLM · Interleaved to Grounded | Any-to-any multimodal LLM handling text, image, audio, and video |
+| 2023 | [[2310.03744\|LLaVA-1.5]] | MLLM · Interleaved to Grounded | Enhanced large multimodal model achieving SOTA with simple architectural improvements |
+| 2023 | [[2312.06709\|AM-RADIO]] | Adaptation · Adapt without Retraining | Agglomerative multi-teacher distillation unifying CLIP, DINOv2, and SAM into one vision foundation model |
+| 2024 | [[2401.09865\|SPARC]] | Alignment · Contrastive to Generative | Sparse fine-grained contrastive alignment from Google DeepMind; learns region-text correspondences without dense annotations |
+| 2024 | [[2407.07726\|PaliGemma]] | MLLM · Interleaved to Grounded | Open-source 3B VLM matching larger models across 40 tasks; democratized VLM research through efficient transfer |
+| 2025 | [[2501.00663\|Titans]] | Attention · Memory Instead | Learns to memorize at test time via a dedicated neural memory module; bridges short and long-range context |
+| 2025 | [[2501.12948\|DeepSeek-R1]] | RL Post-Training · Who Verifies | RL-only training (no SFT) elicits emergent chain-of-thought reasoning; established the RL-for-reasoning paradigm the field now builds on |
+| 2025 | [[2502.10385\|SimDINO]] | Label-Free · Self-Distillation | Dramatically simplified DINO via coding rate regularization; shows what DINO really needs |
+| 2025 | [[2503.23829\|RLVR]] | RL Post-Training · Who Verifies | Extends RL with verifiable rewards beyond math/code to diverse domains |
+| 2025 | [[2504.20966\|Softpick]] | Attention · Sparsify | Rectified non-sum-to-one normalization; eliminates attention sinks and massive activations |
+| 2025 | [[2505.00315\|MoSA]] | Attention · Sparsify | Mixture of Sparse Attention with expert-choice routing; content-based learned sparsity |
+| 2025 | [[2505.09568\|BLIP3-o]] | Alignment · Contrastive to Generative | Unified image understanding and generation in a single hybrid autoregressive-diffusion architecture |
+| 2025 | [[2505.12082\|PMA]] | Adaptation · Adapt without Retraining | Pre-trained Model Average for effective merging of LLM checkpoints |
+| 2025 | [[2506.06105\|T2L]] | Adaptation · Adapt without Retraining | Text-to-LoRA: hypernetwork that dynamically generates task-specific LoRA adapters from text descriptions |
+| 2025 | [[2507.10524\|MoR]] | Attention · Memory Instead | Mixture-of-Recursions unifies parameter efficiency with adaptive per-token computation depth |
+| 2025 | [[2507.11851\|Gated-LoRA]] | Adaptation · Adapt without Retraining | Enables pretrained autoregressive LLMs to perform multi-token prediction via gated LoRA modules |
+| 2025 | [[2507.22448\|Falcon-H1]] | Attention · Memory Instead | Hybrid-head models integrating parallel Transformer and Mamba blocks; redefines the efficiency-performance frontier |
+| 2025 | [[2508.02124\|DMA]] | Attention · Sparsify | Fully differentiable dynamic mask sparse attention; hardware-optimized for practical deployment |
+| 2025 | [[2510.06499\|Webscale-RL]] | RL Post-Training · Who Verifies | Automated pipeline scaling verifiable RL training data to pretraining levels |
+| 2025 | [[2511.08544\|LeJEPA]] | Label-Free · Reconstruction to Latent | Provable and scalable self-supervised learning framework based on Euclidean latent geometry |
+| 2025 | [[2511.16043\|Agent0]] | RL Post-Training · Who Verifies | Self-evolving agents from zero data via tool-integrated reasoning; paradigm for autonomous agent improvement |
+| 2025 | [[2512.24695\|Hope]] | Attention · Memory Instead | Nested Learning reinterprets deep learning as nested multi-level optimization |
+| 2026 | [[2601.10094\|V-Zero]] | RL Post-Training · Who Verifies | Self-improving multimodal reasoning with zero annotation; proves annotation-free self-improvement is viable |
+| 2026 | [[2601.14354\|VJEPA-Probabilistic]] | Label-Free · Reconstruction to Latent | Variational/Bayesian JEPA with predictive-information-bottleneck guarantees; filters high-variance nuisance distractors, keeps **R²>0.84** under SNR=-2.2 dB |
+| 2026 | [[2602.11389\|Causal-JEPA]] | Label-Free · Reconstruction to Latent | Object-centric world model integrating JEPAs with causal reasoning via latent interventions |
+| 2026 | [[2603.00518\|Vision-TTT]] | Label-Free · Self-Distillation | Adapts Test-Time Training for efficient visual representation learning; bridges pre-training and inference |
+| 2026 | [[2603.15619\|MoDA]] | Attention · Sparsify | Mixture-of-Depths Attention dynamically allocates compute across tokens and layers |
 
 ---
 

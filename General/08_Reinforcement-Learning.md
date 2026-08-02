@@ -18,97 +18,191 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Foundations
-┌─────────────────────────────┐   ╔══════════════════════════════════╗
-│  RL Overview (Sutton 2024)  │   ║ Policy Gradient / Actor-Critic   ║
-│  (standalone reference)     │   ╚═══════════════════╦══════════════╝
-└─────────────────────────────┘                       │
-                                    ┌─────────────────┼──────────────────┐
-                                    │                 │                  │
-                                    ▼                 ▼                  ▼
-                              (Model-Based RL,   (Model-Based RL,   (RL for LLM Reasoning,
-                               below: Dreamer)    below: Diffuser)   two rows below: STaR)
+1. Model-Based RL   (learn a world, imagine inside it)
+· latent imagination
+                      +one architecture,      +scalable latent      +JEPA latent
+                      many domains            MPC                   dynamics
+╔════════════════╗    ┌──────────────────┐    ┌────────────────┐    ┌────────────────┐
+║ Dreamer (2019) ║───►│ DreamerV3 (2023) │───►│ TD-MPC2 (2023) │───►│ TD-JEPA (2025) │
+╚════════┬═══════╝    └──────────────────┘    └────────────────┘    └────────────────┘
+         │    +disagreement
+         │    exploration
+         │    ┌─────────────────────┐
+         ├───►│ Plan2Explore (2020) │
+         │    └─────────────────────┘
+         │    +real robots
+         │    ┌───────────────────┐
+         └───►│ DayDreamer (2022) │
+              └───────────────────┘
 
-2. Model-Based RL
-        ▲ from Policy Gradient / Actor-Critic                 ▲ from Policy Gradient / Actor-Critic
-        │                                                     │
-┌─────────────────┐                                    ┌─────────────────┐
-│  Dreamer (2019) │                                    │ Diffuser (2022) │
-└───────┬─────────┘                                    └─────────────────┘
-        │
-        ├──────────────┬──────────────────┬──────────────────┐
-        │              │                  │                  │
-        ▼              ▼                  ▼                  ▼
-╔══════════════╗ ┌──────────────┐  ┌─────────────────────┐ ┌────────────────┐
-║ DreamerV3    ║ │ DayDreamer   │  │ Continual-Dreamer   │ │ Plan2Explore   │
-║  (2023)      ║ │ (2022)       │  │ (2022)              │ │ (2020)         │
-╚═══════╦══════╝ └──────────────┘  └─────────────────────┘ └────────────────┘
-        │
-        └──► RAGEN (2025)   [Agentic RL, two rows below]
+2. Exploration   (what to try when reward is silent)
+· intrinsic motivation
+                            +curiosity from     +random network    novelty →
+                            prediction error    distillation       semantic interest
+┌──────────────────────┐    ┌──────────────┐    ┌─────────────┐    ┌───────────────┐
+│ Pseudo-Counts (2016) │───►│ ICM (2017)   │───►│ RND (2018)  │───►│ SENSEI (2025) │
+└──────────────────────┘    └──────────────┘    └─────────────┘    └───────────────┘
 
-3. RL for LLM Reasoning
-                    ▲ from Policy Gradient / Actor-Critic
-                    │
-             ┌─────────────────┐
-             │   STaR (2022)   │
-             └─────────┬───────┘
-                       │
-             ┌─────────┴───────────────┐
-             │                         │
-             ▼                         ▼
-      ┌──────────────┐          ┌──────────────────────┐
-      │ Quiet-STaR   │          │ Self-Rewarding LM    │
-      │ (2024)       │          │ (2024)               │
-      └──────────────┘          └─────────────┬────────┘
-                                              │
-                                              ▼
-                                    ╔═══════════════════╗
-                                    ║ DAPO (2025)       ║
-                                    ╚═════════╦═════════╝
-                                              │
-                              ┌───────────────┴───────────────────────┐
-                              │                                       │
-                              ▼                                       ▼
-                    ╔═══════════════════════╗          (Agentic RL, one row below:
-                    ║ Absolute Zero (2025)  ║           AgentGym)
-                    ╚═══════════════════════╝
+3. Policy Optimization   (how the update is computed)
+· off-policy to offline
+                  online →                +implicit         +flow
+                  conservative offline    Q-learning        Q-learning
+╔════════════╗    ┌──────────────────┐    ┌────────────┐    ┌────────────┐
+║ SAC (2018) ║───►│ CQL (2020)       │───►│ IQL (2021) │───►│ FQL (2025) │
+╚══════┬═════╝    └──────────────────┘    └────────────┘    └────────────┘
+       │    +balanced policy
+       │    optimization
+       │    ┌──────────────┐
+       └───►│ BAPO (2025)  │
+            └──────────────┘
 
-4. Agentic RL
-   ▲ from DreamerV3 (2023)                            ▲ from DAPO (2025)
-   │  [Model-Based RL, two rows above]                │  [RL for LLM Reasoning, above]
-┌─────────────────┐                          ┌──────────────────┐
-│  RAGEN (2025)   │                          │ AgentGym (2024)  │
-└─────────────────┘                          └─────────┬────────┘
-                                                       │
-                                                       ▼
-                                              ╔══════════════════════╗
-                                              ║ Complementary RL     ║
-                                              ║  (2026)              ║
-                                              ╚══════════════════════╝
-```
+4. RL for LLM Reasoning   (reward the chain of thought)
+· who scores the rationale
+                   +token-level
+                   rationales               +model judges itself            SFT then RL → RL only
+┌─────────────┐    ┌───────────────────┐    ┌──────────────────────────┐    ╔════════════════════╗
+│ STaR (2022) │───►│ Quiet-STaR (2024) │───►│ Self-Rewarding-LM (2024) │───►║ DeepSeek-R1 (2025) ║
+└─────────────┘    └───────────────────┘    └─────────────┬────────────┘    ╚════════════════════╝
+                                                          │    +decoupled clip
+                                                          │    at scale
+                                                          │    ┌─────────────┐
+                                                          ├───►│ DAPO (2025) │
+                                                          │    └─────────────┘
+                                                          │    +zero-data self-play
+                                                          │    ┌──────────────────────┐
+                                                          ├───►│ Absolute-Zero (2025) │
+                                                          │    └──────────────────────┘
+                                                          │    +open zero recipe
+                                                          │    ┌───────────────────────────┐
+                                                          └───►│ Open-Reasoner-Zero (2025) │
+                                                               └───────────────────────────┘
+
+5. Reward Modeling   (where the reward itself comes from)
+· outcome to process
+                                                                       outcome → process
+                                             +RLHF at scale            reward
+┌───────────────────────────────────────┐    ┌────────────────────┐    ┌────────────────┐
+│ Deep RL from Human Preferences (2017) │───►│ InstructGPT (2022) │───►│ PRM800K (2023) │
+└───────────────────────────────────────┘    └──────────┬─────────┘    └────────────────┘
+                                                        │    +generative
+                                                        │    verifier
+                                                        │    ┌─────────────────┐
+                                                        ├───►│ THINKPRM (2025) │
+                                                        │    └─────────────────┘
+                                                        │    +reward-hacking analysis
+                                                        │    ┌────────────────────────────┐
+                                                        └───►│ RM-Overoptimization (2022) │
+                                                             └────────────────────────────┘
+
+6. Visual and Multimodal RL   (reward over pixels)
+· perception in the loop
+                       +multimodal             +perception-aware
+                       reasoning RL            policy opt           +VLM RL at scale
+┌─────────────────┐    ┌──────────────────┐    ┌───────────────┐    ┌────────────────┐
+│ DeepEyes (2025) │───►│ MM-Eureka (2025) │───►│ PAPO (2025)   │───►│ MiMo-VL (2025) │
+└─────────────────┘    └──────────────────┘    └───────────────┘    └────────────────┘
+
+7. Agentic RL   (credit across many turns)
+· beyond one response
+                       +multi-turn
+                       agent RL            +self-play search              +agents co-evolve
+┌─────────────────┐    ┌──────────────┐    ┌─────────────────────────┐    ┌─────────────────────────┐
+│ AgentGym (2024) │───►│ RAGEN (2025) │───►│ Search-Self-play (2025) │───►│ Complementary-RL (2026) │
+└────────┬────────┘    └──────────────┘    └─────────────────────────┘    └─────────────────────────┘
+         │    +skill library as memory
+         │    ┌───────────────────────┐
+         └───►│ Memento-Skills (2026) │
+              └───────────────────────┘
+
+8. RL plus Robotics   (the reward lands on hardware)
+· sim to real hardware
+                             +domain randomization                +real legged deployment
+┌───────────────────────┐    ┌───────────────────────────────┐    ┌──────────────────────────┐
+│ Visuomotor GPS (2015) │───►│ Dynamics Randomization (2017) │───►│ ANYmal-Locomotion (2020) │
+└───────────────────────┘    └───────────────┬───────────────┘    └──────────────────────────┘
+                                             │    +agile perceptive
+                                             │    locomotion
+                                             │    ┌────────────────────────┐
+                                             ├───►│ Extreme Parkour (2023) │
+                                             │    └────────────────────────┘
+                                             │    locomotion → VLA
+                                             │    post-training
+                                             │    ┌─────────────────┐
+                                             └───►│ RIPT-VLA (2025) │
+                                                  └─────────────────┘
+
+9. Theory and Scaling   (what the recipe actually buys)
+· diagnose the recipe
+┌─────────────────────────────────────┐
+│ SFT-Memorizes-RL-Generalizes (2025) │─┐
+└─────────────────────────────────────┘ │
+                                        │    +compute-optimal recipe
+                                        │    ┌───────────────────────────────────┐
+                                        ├───►│ Compute-Optimal-RL-Scaling (2025) │
+                                        │    └───────────────────────────────────┘
+                                        │    +entropy collapse diagnosis
+                                        │    ┌───────────────────────────────┐
+                                        ├───►│ Entropy-Collapse-in-RL (2025) │
+                                        │    └───────────────────────────────┘
+                                        │    gradient →
+                                        │    evolutionary search
+                                        │    ┌─────────────────┐
+                                        └───►│ EvoRL (2025)    │
+                                             └─────────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
+```
 
-The field evolved through four threads: **model-based RL** (2019-2022) progressed from Dreamer's latent imagination through DayDreamer on real robots to Diffuser's diffusion-based planning; **RL for LLM reasoning** (2022-2025) advanced from STaR's self-taught bootstrapping through Self-Rewarding LMs and DAPO to Absolute Zero's fully zero-data self-play; **agentic RL** (2024-2026) scaled from AgentGym's multi-environment evolution through RAGEN's multi-turn training to Complementary RL's co-evolutionary framework.
+The nine lanes divide on **what the agent is learning from**. **Model-based RL** learns a world and imagines inside it, Dreamer to DreamerV3 to TD-MPC2 to TD-JEPA, with Plan2Explore and DayDreamer branching to disagreement-driven exploration and real hardware. **Exploration** covers what to try when reward is silent, Pseudo-Counts to ICM to RND, until SENSEI swaps raw novelty for semantic interest. **Policy optimization** is about how the update is computed, SAC to CQL to IQL to FQL as the setting moves off-policy then fully offline, with BAPO branching on balance. **RL for LLM reasoning** turns on who scores the rationale, STaR using correctness, Quiet-STaR going token-level, Self-Rewarding-LM making the model its own judge, after which DAPO, Absolute-Zero, and Open-Reasoner-Zero fork three ways while the main line runs to DeepSeek-R1's pure-RL recipe. **Reward modeling** asks where the reward itself comes from, Deep RL from Human Preferences to InstructGPT to PRM800K as supervision moves from outcome to process, with THINKPRM and RM-Overoptimization branching to generative verification and reward hacking. **Visual and multimodal RL** puts perception in the loop, DeepEyes to MM-Eureka to PAPO to MiMo-VL. **Agentic RL** assigns credit across many turns, AgentGym to RAGEN to Search-Self-play to Complementary-RL, with Memento-Skills branching to a skill library as memory. **RL plus robotics** lands the reward on hardware, Visuomotor GPS to Dynamics Randomization to ANYmal-Locomotion, with Extreme Parkour and RIPT-VLA branching to agile locomotion and VLA post-training. **Theory and scaling** diagnoses the recipe rather than extending it, and the four papers are independent diagnoses rather than a succession, EvoRL among them replacing gradient descent with evolutionary search. RL-Overview sits in the table as a field reference, since it descends from nothing.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| -- | (foundational concept) | Policy gradient and actor-critic methods; the theoretical backbone of all deep RL |
-| 2019 | [[1912.01603\|Dreamer]] | Learned behaviors by latent imagination; pioneered training RL policies entirely within a learned world model |
-| 2020 | [[2005.05960\|Plan2Explore]] | Self-supervised exploration via world model disagreement; zero-shot task adaptation without task-specific training |
-| 2022 | [[2206.14176\|DayDreamer]] | First deployment of Dreamer on real robots; proved sample-efficient learning from imagination works physically |
-| 2022 | [[2211.15944\|Continual-Dreamer]] | Demonstrated world models enable effective continual RL without catastrophic forgetting across sequential tasks |
-| 2022 | [[2205.09991\|Diffuser]] | First to use denoising diffusion for RL planning; treated trajectories as data to denoise |
-| 2022 | [[2203.14465\|STaR]] | Self-taught reasoner bootstrapping its own rationales; created a self-improvement flywheel for LLM reasoning |
-| 2023 | [[2301.04104\|DreamerV3]] | Mastered diverse domains with a single world model architecture; fixed-hyperparameter generalist agent |
-| 2024 | [[2412.05265\|RL-Overview]] | Kevin Murphy's comprehensive modern overview; the definitive reference for RL fundamentals |
-| 2024 | [[2403.09629\|Quiet-STaR]] | Extended STaR to think before every token via internal rationales; token-level self-improvement |
-| 2024 | [[2401.10020\|Self-Rewarding-LM]] | Single model acts as both generator and judge via iterative DPO; broke the human-feedback bottleneck |
-| 2024 | [[2406.04151\|AgentGym]] | Multi-environment agent evolution via behavioral cloning + self-evolution; generalist agent training |
-| 2025 | [[2503.14476\|DAPO]] | Open-source RL system at scale for LLM reasoning; decoupled clip-higher and dynamic sampling |
-| 2025 | [[2505.03335\|Absolute-Zero]] | Zero-data self-play RL; model proposes tasks, solves, verifies via code, and retrains with no human data |
-| 2025 | [[2504.20073\|RAGEN]] | Multi-turn RL training for LLM agents; established the paradigm for sustained agent-environment interaction |
-| 2026 | [[2603.17621\|Complementary-RL]] | Co-evolutionary RL framework where multiple agents improve each other through complementary objectives |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2015 | [[1504.00702\|Visuomotor GPS]] | Robotics · Sim to Real Hardware | foundational: first to fold trajectory optimization (linear-Gaussian iLQG, MPC's local cousin) into an RL loop training an end-to-end deep policy, establishing the guided-policy-search template this group builds on |
+| 2016 | [[1606.01868\|Pseudo-Counts]] | Exploration · Intrinsic Motivation | Unified count-based exploration with intrinsic motivation via density-model pseudo-counts; gave novelty bonuses formal information-gain grounding |
+| 2017 | [[1705.05363\|ICM]] | Exploration · Intrinsic Motivation | Defined curiosity as forward-model prediction error in a learned feature space; the most widely-cited curiosity template |
+| 2017 | [[1706.03741\|Deep RL from Human Preferences]] | Reward Modeling · Outcome to Process | the origin of the paradigm: first to show a reward model learned from pairwise human preferences can drive deep RL, cutting feedback cost ~1000x |
+| 2017 | [[1710.06537\|Dynamics Randomization]] | Robotics · Sim to Real Hardware | foundational method establishing training-time randomization of physical parameters combined with a recurrent policy as the classic recipe for zero-shot sim-to-real transfer |
+| 2018 | [[1801.01290\|SAC]] | Policy Optimization · Off-Policy to Offline | The maximum-entropy off-policy actor-critic baseline every later method in this section is compared against; combines sample efficiency with stability on continuous control |
+| 2018 | [[1810.12894\|RND]] | Exploration · Intrinsic Motivation | Random Network Distillation solved Montezuma's Revenge (22/24 rooms); resolved the "noisy-TV problem" plaguing earlier curiosity methods |
+| 2019 | [[1912.01603\|Dreamer]] | Model-Based · Latent Imagination | Learned behaviors by latent imagination; pioneered training RL policies entirely within a learned world model |
+| 2020 | [[2005.05960\|Plan2Explore]] | Model-Based · Latent Imagination | Self-supervised exploration via world model disagreement; zero-shot task adaptation without task-specific training |
+| 2020 | [[2006.04779\|CQL]] | Policy Optimization · Off-Policy to Offline | Regularizes Q-values to be conservative on out-of-distribution actions, achieving 2-5x higher returns on multi-modal D4RL benchmarks and solving previously intractable domains like AntMaze |
+| 2020 | [[2010.11251\|ANYmal-Locomotion]] | Robotics · Sim to Real Hardware | foundational teacher-student RL controller pioneering zero-shot sim-to-real proprioceptive locomotion, validated with zero failures in the DARPA Subterranean Challenge |
+| 2021 | [[2110.06169\|IQL]] | Policy Optimization · Off-Policy to Offline | Never queries out-of-distribution actions at all, using expectile regression to implicitly estimate max Q-values; excels at stitching suboptimal trajectories on long-horizon navigation |
+| 2022 | [[2203.02155\|InstructGPT]] | Reward Modeling · Outcome to Process | the canonical SFT to reward model to PPO recipe the field still cites, where a 1.3B aligned model beat a 175B unaligned one |
+| 2022 | [[2203.14465\|STaR]] | LLM Reasoning · Who Scores the Rationale | Self-taught reasoner bootstrapping its own rationales; created a self-improvement flywheel for LLM reasoning |
+| 2022 | [[2206.14176\|DayDreamer]] | Model-Based · Latent Imagination | First deployment of Dreamer on real robots; proved sample-efficient learning from imagination works physically |
+| 2022 | [[2210.10760\|RM-Overoptimization]] | Reward Modeling · Outcome to Process | derives scaling laws for Goodhart's Law in RLHF, showing exactly how optimizing against a proxy reward model degrades true performance |
+| 2023 | [[2301.04104\|DreamerV3]] | Model-Based · Latent Imagination | Mastered diverse domains with a single world model architecture; fixed-hyperparameter generalist agent |
+| 2023 | [[2305.20050\|PRM800K]] | Reward Modeling · Outcome to Process | the founding paper of process supervision itself, still the clearest case for why step-level feedback beats final-answer-only reward |
+| 2023 | [[2309.14341\|Extreme Parkour]] | Robotics · Sim to Real Hardware | landmark end-to-end vision-to-action policy (dual distillation, self-inferred heading) that pushed legged parkour to 2x-body jumps and handstands on cheap hardware, defining the paradigm most later parkour work builds on |
+| 2023 | [[2310.16828\|TD-MPC2]] | Model-Based · Latent Imagination | Scalable model-based RL: a single world model architecture masters 300+ continuous control tasks across domains |
+| 2024 | [[2401.10020\|Self-Rewarding-LM]] | LLM Reasoning · Who Scores the Rationale | Single model acts as both generator and judge via iterative DPO; broke the human-feedback bottleneck |
+| 2024 | [[2403.09629\|Quiet-STaR]] | LLM Reasoning · Who Scores the Rationale | Extended STaR to think before every token via internal rationales; token-level self-improvement |
+| 2024 | [[2406.04151\|AgentGym]] | Agentic RL · Beyond One Response | Multi-environment agent evolution via behavioral cloning + self-evolution; generalist agent training |
+| 2024 | [[2412.05265\|RL-Overview]] | Reference · Field Overview | Kevin Murphy's comprehensive modern overview; the definitive reference for RL fundamentals |
+| 2025 | [[2501.12948\|DeepSeek-R1]] | LLM Reasoning · Who Scores the Rationale | Showed reasoning emerges from pure outcome-based RL alone; established the multi-stage SFT+RL+distillation pipeline the field now builds on |
+| 2025 | [[2501.15129\|EvoRL]] | Theory · Diagnose the Recipe | JAX-based GPU-accelerated framework achieving 60x speedup for evolutionary RL |
+| 2025 | [[2501.17161\|SFT-Memorizes-RL-Generalizes]] | Theory · Diagnose the Recipe | Landmark finding: SFT makes models memorize training distributions, while RL makes them generalize to unseen problems |
+| 2025 | [[2502.02538\|FQL]] | Policy Optimization · Off-Policy to Offline | Foundational flow-matching offline RL method; one-step distillation from a BC flow policy avoids BPTT, the baseline every other paper here compares against |
+| 2025 | [[2503.01584\|SENSEI]] | Exploration · Intrinsic Motivation | Semantic exploration with epistemic uncertainty + Go-Explore for versatile world models |
+| 2025 | [[2503.07365\|MM-Eureka]] | Visual RL · Perception in the Loop | strongest reported results in the group (74.8 MathVista, 73.4 WeMath) via rule-based RL with online filtering, plus a fully open-sourced dataset/model/code release |
+| 2025 | [[2503.14476\|DAPO]] | LLM Reasoning · Who Scores the Rationale | Open-source RL system at scale for LLM reasoning; decoupled clip-higher and dynamic sampling |
+| 2025 | [[2503.24290\|Open-Reasoner-Zero]] | LLM Reasoning · Who Scores the Rationale | First comprehensive open-source reproduction of R1-Zero; reference implementation for the field |
+| 2025 | [[2504.16828\|THINKPRM]] | Reward Modeling · Outcome to Process | Generative PRM enabling LLMs to provide verbalized, step-level evaluation |
+| 2025 | [[2504.20073\|RAGEN]] | Agentic RL · Beyond One Response | Multi-turn RL training for LLM agents; established the paradigm for sustained agent-environment interaction |
+| 2025 | [[2505.03335\|Absolute-Zero]] | LLM Reasoning · Who Scores the Rationale | Zero-data self-play RL; model proposes tasks, solves, verifies via code, and retrains with no human data |
+| 2025 | [[2505.14362\|DeepEyes]] | Visual RL · Perception in the Loop | VLMs perform "thinking with images" by dynamically integrating visual re-observation into reasoning |
+| 2025 | [[2505.17016\|RIPT-VLA]] | Robotics · Sim to Real Hardware | first in this group to formalize interactive post-training as a third training stage, turning near-zero single-demonstration SFT into 80-90% success via critic-free RLOO+PPO |
+| 2025 | [[2505.22617\|Entropy-Collapse-in-RL]] | Theory · Diagnose the Recipe | Identifies universal policy entropy collapse in RL for LLMs; a key failure mode to watch for |
+| 2025 | [[2506.03569\|MiMo-VL]] | Visual RL · Perception in the Loop | Xiaomi's 7B model achieving SOTA visual reasoning; proves small models can reason |
+| 2025 | [[2507.06448\|PAPO]] | Visual RL · Perception in the Loop | traced 67% of MLLM reasoning errors to bad perception and folded a perception-aware KL loss directly into GRPO/DAPO |
+| 2025 | [[2508.14881\|Compute-Optimal-RL-Scaling]] | Theory · Diagnose the Recipe | Establishes compute-optimal power laws for value-based deep RL and identifies TD-overfitting |
+| 2025 | [[2510.00739\|TD-JEPA]] | Model-Based · Latent Imagination | Temporal-difference JEPA learns policy-conditioned multi-step latents for zero-shot RL; SOTA across 65 tasks, strong on pixel-based observations |
+| 2025 | [[2510.18821\|Search-Self-play]] | Agentic RL · Beyond One Response | +26.4 points average for Qwen2.5-7B-Base via a genuine proposer/solver co-evolution loop |
+| 2025 | [[2510.18927\|BAPO]] | Policy Optimization · Off-Policy to Offline | Adaptive clipping re-balances positive/negative gradient signals to preserve entropy under off-policy staleness, hitting SOTA 87.1 on AIME 2024 among open-source models |
+| 2026 | [[2603.17621\|Complementary-RL]] | Agentic RL · Beyond One Response | Co-evolutionary RL framework where multiple agents improve each other through complementary objectives |
+| 2026 | [[2603.18743\|Memento-Skills]] | Agentic RL · Beyond One Response | Skill library as external memory; agents evolve without parameter updates, +13.7pp on GAIA |
 
 ---
 

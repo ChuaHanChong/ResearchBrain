@@ -19,70 +19,159 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Video Architectures
+1. Video Backbones   (what encodes the clip)
+· spatiotemporal attention
+                                  +multiscale          +decomposed
+                                  pooling attention    relative position    +long-context video
+┌────────────────────────────┐    ┌───────────────┐    ┌───────────────┐    ┌──────────────────┐
+│ Something-Something (2017) │───►│ MViT (2021)   │───►│ MViTv2 (2021) │───►│ Eagle-2.5 (2025) │
+└──────────────┬─────────────┘    └───────────────┘    └───────────────┘    └──────────────────┘
+               │    third-person →
+               │    egocentric
+               │    ┌──────────────┐
+               ├───►│ Ego4D (2021) │
+               │    └──────────────┘
+               │    +detailed
+               │    captioning
+               │    ┌────────────┐
+               └───►│ DAM (2025) │
+                    └────────────┘
 
-┌────────────────┐     ╔═══════════════════╗     ┌───────────────────┐
-│  MViT (2021)   │────►║ V-JEPA 2 (2025)   ║────►│ V-JEPA 2.1 (2026) │
-└────────────────┘     ╚═════════╤═════════╝     └───────────────────┘
-                                 │
-                                 └───────────────► *Video-R1 (2025)   [Video Reasoning, below]
+2. Video Generation as Simulator   (roll the world forward)
+· generation as policy
+                    +interactive         +driving world       +offline, no
+                    simulator            model                environment access
+┌──────────────┐    ┌───────────────┐    ┌───────────────┐    ┌──────────────────┐
+│ UniPi (2023) │───►│ UniSim (2023) │───►│ GAIA-1 (2023) │───►│ Dreamer-4 (2025) │
+└───────┬──────┘    └───────────────┘    └───────────────┘    └──────────────────┘
+        │    +context-invariant
+        │    latent actions
+        │    ┌─────────────────┐
+        └───►│ AdaWorld (2025) │
+             └─────────────────┘
 
+3. Controllable Generation   (steer what happens next)
+· condition the rollout
+                                                +motion-guided     trajectory → physical
+                         +trajectory control    DiT                force
+┌───────────────────┐    ┌─────────────────┐    ┌─────────────┐    ┌────────────────────────┐
+│ ControlNet (2023) │───►│ DragNUWA (2023) │───►│ Tora (2024) │───►│ Force-Prompting (2025) │
+└───────────────────┘    └─────────────────┘    └─────────────┘    └────────────────────────┘
 
-2. Video Generation as World Models
+4. Physical Plausibility   (does the rollout obey physics)
+· probe the physics
+                      +text-to-video         +simulator-grade            +intuitive physics
+                      physics eval           evaluation                  violations
+┌────────────────┐    ┌─────────────────┐    ┌──────────────────────┐    ┌──────────────────┐
+│ Physion (2021) │───►│ VideoPhy (2024) │───►│ WorldSimBench (2024) │───►│ IntPhys-2 (2025) │
+└────────┬───────┘    └─────────────────┘    └──────────────────────┘    └──────────────────┘
+         │    +implicit physics
+         │    probe
+         │    ┌───────────────────┐
+         └───►│ Physics-IQ (2025) │
+              └───────────────────┘
 
-┌────────────────┐     ╔══════════════════╗     ┌─────────────────────────┐
-│  UniPi (2023)  │────►║ UniSim (2023)    ║────►│ DriveDreamer-2 (2024)   │
-└───────┬────────┘     ╚════════╤═════════╝     └─────────────────────────┘
-        │                       │
-        ▼                       ▼
-┌────────────────┐     ┌───────────────────┐
-│ AdaWorld (2025)│     │  Dreamer 4 (2025) │
-└────────────────┘     └───────────────────┘
+5. Physics-Grounded Generation   (bake mechanics in)
+· simulate, then render
+                                                                       +expert constitutive
+                        +Newtonian dynamics     +real-to-sim twins     models
+┌──────────────────┐    ┌──────────────────┐    ┌─────────────────┐    ┌───────────────────┐
+│ Physics3D (2024) │───►│ NewtonGen (2025) │───►│ PhysTwin (2025) │───►│ OmniPhysGS (2025) │
+└──────────────────┘    └──────────────────┘    └─────────────────┘    └───────────────────┘
 
+6. Video Reasoning   (RL on temporal understanding)
+· verifiable temporal reward
+                       +semantic-consistency    +frame-aware      +synthetic temporal
+                       reward                   grounding         primitives
+┌─────────────────┐    ┌───────────────────┐    ┌────────────┐    ┌─────────────────┐
+│ Video-R1 (2025) │───►│ VIDEORFT (2025)   │───►│ CoF (2025) │───►│ SynRL (2026)    │
+└────────┬────────┘    └───────────────────┘    └────────────┘    └─────────────────┘
+         │    +multi-agent
+         │    spatial search
+         │    ┌─────────────┐
+         ├───►│ MASS (2025) │
+         │    └─────────────┘
+         │    +explicit step chain
+         │    ┌───────────────────────────────────────┐
+         └───►│ Video-Reasoning-Chain-of-Steps (2026) │
+              └───────────────────────────────────────┘
 
-3. Video Reasoning
+7. Latent World Models   (predict representations, not pixels)
+· latent prediction
+                       +dense predictive
+                       loss
+╔═════════════════╗    ┌───────────────────┐
+║ V-JEPA-2 (2025) ║───►│ V-JEPA-2.1 (2026) │
+╚════════┬════════╝    └───────────────────┘
+         │    +DINO features as
+         │    world model
+         │    ┌───────────────────┐
+         ├───►│ DINO-world (2025) │
+         │    └───────────────────┘
+         │    prediction → action
+         │    ┌─────────────────┐
+         ├───►│ JEPA-VLA (2026) │
+         │    └─────────────────┘
+         │    +JEPA inside the
+         │    reasoning chain
+         │    ┌──────────────────┐
+         └───►│ ThinkJEPA (2026) │
+              └──────────────────┘
 
-        (in from Video Architectures, above: *V-JEPA 2)
-                       │
-                       ▼
-╔═══════════════════╗     ┌─────────────────┐
-║ Video-R1 (2025)   ║────►│ VIDEORFT (2025) │
-╚═════════╤═════════╝     └─────────────────┘
-          │
-          ▼
-┌────────────┐     ┌──────────────┐
-│ CoF (2025) │────►│ SynRL (2026) │
-└────────────┘     └──────────────┘
-
-
-4. Motion Generation
-
-┌──────────────┐     ╔═════════════╗     ┌───────────────┐
-│ ARFM (2025)  │────►║ UMO (2026)  ║────►│ MoTok (2026)  │
-└──────────────┘     ╚═════════════╝     └───────────────┘
+8. Motion Generation   (bodies, not scenes)
+· motion as tokens
+                   +flow from dreamed       +unified             +discrete motion
+                   video                    in-context motion    tokenizer
+┌─────────────┐    ┌───────────────────┐    ┌───────────────┐    ┌──────────────┐
+│ ARFM (2025) │───►│ Dream2Flow (2025) │───►│ UMO (2026)    │───►│ MoTok (2026) │
+└─────────────┘    └───────────────────┘    └───────────────┘    └──────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through four parallel tracks: **video architectures** (2021-2026) progressed from hand-designed multiscale pooling (MViT) to self-supervised world models (V-JEPA 2/2.1); **video-as-world-model** (2023-2025) moved from proving the concept (UniPi, UniSim) to scalable latent-action imagination (Dreamer 4, AdaWorld); **video reasoning** (2025-2026) unlocked temporal understanding via RL post-training (Video-R1, VIDEORFT) and frame-aware CoT (CoF, SynRL); and **motion generation** (2025-2026) converged on unified diffusion architectures for diverse motion tasks (UMO, MoTok).
+The eight lanes divide on **what the video model is for**. **Video backbones** settle what encodes the clip, Something-Something posing temporal recognition before MViT and MViTv2 build multiscale attention and Eagle-2.5 stretches the context, with Ego4D and DAM branching to egocentric capture and dense captioning. **Video generation as simulator** treats the rollout as the policy, UniPi to UniSim to GAIA-1 to Dreamer-4, with AdaWorld branching to context-invariant latent actions. **Controllable generation** steers what happens next, ControlNet to DragNUWA to Tora, until Force-Prompting conditions on physical force rather than a drawn trajectory. **Physical plausibility** asks whether any of it obeys physics, Physion to VideoPhy to WorldSimBench to IntPhys-2, with Physics-IQ branching to probe what a model encodes implicitly. **Physics-grounded generation** bakes the mechanics in instead of testing for them, Physics3D to NewtonGen to PhysTwin to OmniPhysGS. **Video reasoning** attaches verifiable reward to temporal understanding, Video-R1 to VIDEORFT to CoF to SynRL, with MASS and Video-Reasoning-Chain-of-Steps branching to multi-agent search and explicit step chains. **Latent world models** predict representations rather than pixels, V-JEPA-2 into V-JEPA-2.1, with DINO-world, JEPA-VLA, and ThinkJEPA branching as independent transplants of the same objective into features, action, and reasoning. **Motion generation** targets bodies rather than scenes, ARFM to Dream2Flow to UMO to MoTok.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2021 | [[2104.11227\|MViT]] | Introduced multiscale pooling attention for spatiotemporal Transformers; 6.8x fewer FLOPs than ViViT-L at parity |
-| 2023 | [[2302.00111\|UniPi]] | First to use text-guided video generation as a universal policy; bridged video generation and robot control |
-| 2023 | [[2310.06114\|UniSim]] | Learned interactive real-world simulator from heterogeneous video data; enabled zero-shot sim-to-real transfer |
-| 2024 | [[2403.06845\|DriveDreamer-2]] | LLM-controlled driving video world model; synthetic data improves 3D detection and tracking |
-| 2025 | [[2506.09985\|V-JEPA-2]] | Self-supervised world model from 1M+ hours of video; enables zero-shot robotic control via MPC |
-| 2025 | [[2503.18938\|AdaWorld]] | Context-invariant latent actions for adaptable world models; 70.5% human success rate on LIBERO |
-| 2025 | [[2509.24527\|Dreamer-4]] | First offline diamond acquisition in Minecraft; scalable world model with 21 fps real-time inference |
-| 2025 | [[2503.21776\|Video-R1]] | First rule-based RL framework for video temporal reasoning; 37.1% on VSI-Bench surpassing GPT-4o |
-| 2025 | [[2505.12434\|VIDEORFT]] | Reinforced fine-tuning with semantic-consistency rewards; outperforms GPT-4o on video reasoning |
-| 2025 | [[2506.00318\|CoF]] | Frame-aware reasoning traces with explicit temporal grounding; SOTA on VSI-Bench and Video-MME |
-| 2025 | [[2512.22688\|ARFM]] | Autoregressive flow matching as a generalized framework for probabilistic motion prediction across domains |
-| 2026 | [[2603.14482\|V-JEPA-2.1]] | Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation |
-| 2026 | [[2603.17693\|SynRL]] | Synthetic video post-training teaches temporal primitives; 21x data efficiency over model-generated data |
-| 2026 | [[2603.15975\|UMO]] | Unified in-context learning for diverse motion tasks via pretrained DiT; emergent multi-person interaction |
-| 2026 | [[2603.19227\|MoTok]] | Diffusion-based discrete motion tokenizer decoupling semantics from kinematics; FID reduced to 0.025 |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2017 | [[1706.04261\|Something-Something]] | Backbones · Spatiotemporal Attention | 108,499 clips across 174 fine-grained action classes; pioneered contrastive action templates to force models to learn physical common sense rather than superficial cues |
+| 2021 | [[2104.11227\|MViT]] | Backbones · Spatiotemporal Attention | Introduced multiscale pooling attention for spatiotemporal Transformers; 6.8x fewer FLOPs than ViViT-L at parity |
+| 2021 | [[2106.08261\|Physion]] | Plausibility · Probe the Physics | Foundational benchmark that defined the model-vs-human physical-prediction gap; basis for Physion++ and many follow-ups |
+| 2021 | [[2110.07058\|Ego4D]] | Backbones · Spatiotemporal Attention | 3,670 hours of egocentric video from 931 wearers across 9 countries; foundational dataset for first-person perception and the basis for Being-H0/EgoScale-style VLA pretraining |
+| 2021 | [[2112.01526\|MViTv2]] | Backbones · Spatiotemporal Attention | Refined pooling mechanism and added decomposed relative position embeddings; strong on both classification and detection |
+| 2023 | [[2302.00111\|UniPi]] | Simulator · Generation as Policy | First to use text-guided video generation as a universal policy; bridged video generation and robot control |
+| 2023 | [[2302.05543\|ControlNet]] | Controllable · Condition the Rollout | Foundational conditional control framework for diffusion (image-level), the architectural ancestor of every controllable video method above |
+| 2023 | [[2308.08089\|DragNUWA]] | Controllable · Condition the Rollout | Trajectory-controllable video generation via drag-style point trajectories; defined the user-interaction pattern many later T2V tools adopted |
+| 2023 | [[2309.17080\|GAIA-1]] | Simulator · Generation as Policy | Wayve's 9B autoregressive driving world model; foundational result that internet-scale video pretraining yields a useful driving world simulator |
+| 2023 | [[2310.06114\|UniSim]] | Simulator · Generation as Policy | Learned interactive real-world simulator from heterogeneous video data; enabled zero-shot sim-to-real transfer |
+| 2024 | [[2406.03520\|VideoPhy]] | Plausibility · Probe the Physics | First benchmark explicitly evaluating physical commonsense in T2V models; revealed even SOTA generators score far below human accuracy |
+| 2024 | [[2406.04338\|Physics3D]] | Physics-Grounded · Simulate then Render | Distills physical properties (Young's modulus, viscosity, plasticity) into 3D Gaussians via video diffusion priors; canonical recipe for material-from-pixels |
+| 2024 | [[2407.21705\|Tora]] | Controllable · Condition the Rollout | First trajectory-oriented Diffusion Transformer (DiT) for video generation; brought DiT-scale architectures to controllable T2V |
+| 2024 | [[2410.18072\|WorldSimBench]] | Plausibility · Probe the Physics | First benchmark explicitly framing video generators as world simulators; introduced explicit/implicit evaluation pipeline |
+| 2025 | [[2501.09038\|Physics-IQ]] | Plausibility · Probe the Physics | Definitive evaluation of whether generative video models learn physical principles; showed visual realism does not imply physics understanding |
+| 2025 | [[2501.18982\|OmniPhysGS]] | Physics-Grounded · Simulate then Render | General physics-based dynamics for 3D Gaussians via learnable constitutive models; ensemble of 12 expert constitutive networks + custom PyTorch MPM solver |
+| 2025 | [[2503.17973\|PhysTwin]] | Physics-Grounded · Simulate then Render | Single-image-to-physical-twin pipeline; estimates material parameters and rigging that re-simulate under arbitrary forces |
+| 2025 | [[2503.18938\|AdaWorld]] | Simulator · Generation as Policy | Context-invariant latent actions for adaptable world models; 70.5% human success rate on LIBERO |
+| 2025 | [[2503.21776\|Video-R1]] | Reasoning · Verifiable Temporal Reward | First rule-based RL framework for video temporal reasoning; 37.1% on VSI-Bench surpassing GPT-4o |
+| 2025 | [[2504.15271\|Eagle-2.5]] | Backbones · Spatiotemporal Attention | Efficient 8B model processing 512 video frames; achieves 72.4% on Video-MME, rivaling 72B+ models |
+| 2025 | [[2504.16072\|DAM]] | Backbones · Spatiotemporal Attention | Region-level video captioning via focal prompts; SOTA across 7 benchmarks |
+| 2025 | [[2505.12434\|VIDEORFT]] | Reasoning · Verifiable Temporal Reward | Reinforced fine-tuning with semantic-consistency rewards; outperforms GPT-4o on video reasoning |
+| 2025 | [[2505.19386\|Force-Prompting]] | Controllable · Condition the Rollout | Force vectors as a controllable generation prompt; first to enable physics-driven I2V where users specify push/drag interactions |
+| 2025 | [[2506.00318\|CoF]] | Reasoning · Verifiable Temporal Reward | Frame-aware reasoning traces with explicit temporal grounding; SOTA on VSI-Bench and Video-MME |
+| 2025 | [[2506.09849\|IntPhys-2]] | Plausibility · Probe the Physics | Updated version of the influential intuitive-physics benchmark; richer scenarios for testing object permanence, continuity, and solidity |
+| 2025 | [[2506.09985\|V-JEPA-2]] | World Models · Latent Prediction | Self-supervised world model from 1M+ hours of video; enables zero-shot robotic control via MPC |
+| 2025 | [[2507.19468\|DINO-world]] | World Models · Latent Prediction | Meta FAIR's DINO-world introduces an efficient generalist video world model by leveraging a frozen DINOv2 encoder to predict future states in a semantic latent space, outperforming pixel-based models in dense feature forecasting and enabling effective action-conditioned planning from uncurated video data |
+| 2025 | [[2509.21309\|NewtonGen]] | Physics-Grounded · Simulate then Render | Neural Newtonian Dynamics (physics-informed neural ODEs) integrated into T2V; explicit Newtonian motion control with **0.98** Physical Invariance Score vs Sora's **0.65** |
+| 2025 | [[2509.24527\|Dreamer-4]] | Simulator · Generation as Policy | First offline diamond acquisition in Minecraft; scalable world model with 21 fps real-time inference |
+| 2025 | [[2511.18373\|MASS]] | Reasoning · Verifiable Temporal Reward | Motion-aware spatial-temporal grounding for physics reasoning; +8.7% over prior SOTA on physics tasks |
+| 2025 | [[2512.22688\|ARFM]] | Motion · Motion as Tokens | Autoregressive flow matching as a generalized framework for probabilistic motion prediction across domains |
+| 2025 | [[2512.24766\|Dream2Flow]] | Motion · Motion as Tokens | Bridges video generation and 3D object flow; enables open-world manipulation with up to 8/10 success rate |
+| 2026 | [[2602.11832\|JEPA-VLA]] | World Models · Latent Prediction | JEPA-VLA integrates video-based predictive embeddings, specifically V-JEPA 2, into Vision-Language-Action (VLA) models to enhance their sample efficiency and generalization in robotic manipulation |
+| 2026 | [[2603.14482\|V-JEPA-2.1]] | World Models · Latent Prediction | Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation |
+| 2026 | [[2603.15975\|UMO]] | Motion · Motion as Tokens | Unified in-context learning for diverse motion tasks via pretrained DiT; emergent multi-person interaction |
+| 2026 | [[2603.16870\|Video-Reasoning-Chain-of-Steps]] | Reasoning · Verifiable Temporal Reward | Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames |
+| 2026 | [[2603.17693\|SynRL]] | Reasoning · Verifiable Temporal Reward | Synthetic video post-training teaches temporal primitives; 21x data efficiency over model-generated data |
+| 2026 | [[2603.19227\|MoTok]] | Motion · Motion as Tokens | Diffusion-based discrete motion tokenizer decoupling semantics from kinematics; FID reduced to 0.025 |
+| 2026 | [[2603.22281\|ThinkJEPA]] | World Models · Latent Prediction | ThinkJEPA integrates a Vision-Language Model to semantically guide a JEPA-style latent world model, improving representation quality and achieving up to 14% lower Average Displacement Error (ADE) and 15% lower Final Displacement Error (FDE) in hand-manipulation trajectory prediction compared to V-JEPA baselines |
 
 ---
 

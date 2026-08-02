@@ -17,70 +17,167 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Self-Training Origins
-                 ╔══════════════╗
-                 ║ STaR (2022)  ║
-                 ╚══════╦═══════╝
-                        │
-                  ┌─────┴──────┐
-                  │            │
-                  ▼            ▼
-2. Reward & Reasoning
-┌──────────────────────────┐   ┌───────────────────┐        ┌────────────────┐
-│ Self-Rewarding LM (2024) │   │ Quiet-STaR (2024) │───────►│ STILL-2 (2024) │
-└──────────┬────────┬──────┘   └───────────────────┘        └─────────┬──────┘
-           │        │                                                 │
-           │        └──────────► SSR (2025)   [Self-Evolving Agents, below]
-           ▼                                                          │
-Zero-Data & Self-Play                                                 ▼
-╔═══════════════════════╗          ┌─────────────┐      ┌────────────────┐
-║ Absolute Zero (2025)  ║          │ TTRL (2025) │─────►│ EVOL-RL (2025) │
-╚═══════════╦═══════════╝          └─────────────┘      └────────────────┘
-            │
-      ┌─────┴──────┐
-      │            │
-      ▼            ▼
-┌──────────────────────┐   ┌────────────────────┐
-│ Socratic-Zero (2025) │   │ Vision-Zero (2025) │
-└──────────────────────┘   └────────────────────┘
+1. Self-Training on Own Outputs   (bootstrap from what you got right)
+· rationale bootstrapping
+                   +token-level             +slow-thinking        +latent thought
+                   rationales               distillation          bootstrapping
+╔═════════════╗    ┌───────────────────┐    ┌────────────────┐    ┌─────────────┐
+║ STaR (2022) ║───►│ Quiet-STaR (2024) │───►│ STILL-2 (2024) │───►│ BoLT (2025) │
+╚══════┬══════╝    └───────────────────┘    └────────────────┘    └─────────────┘
+       │    correct-filter → learned
+       │    judge
+       │    ┌──────────────────────────┐
+       ├───►│ Self-Rewarding-LM (2024) │
+       │    └──────────────────────────┘
+       │    +step-level reward
+       │    ┌─────────────────────────────────────┐
+       └───►│ Process-based-Self-Rewarding (2025) │
+            └─────────────────────────────────────┘
 
-3. Self-Evolving Agents
-┌─────────────────┐        ┌────────────────┐
-│ AgentGym (2024) │───────►│ EVOLVER (2025) │────┐
-└─────────────────┘        └────────────────┘    │
-                                                 ▼
-┌────────────┐                            ╔══════════════╗
-│ SSR (2025) │───────────────────────────►║ ECHO (2026)  ║
-└────────────┘                            ╚══════════════╝
+2. Zero-Data Self-Play   (who supplies reward when nobody does)
+· label-free reward
+                   +entropy-collapse
+                   guard                 unlabeled data → no data
+┌─────────────┐    ┌────────────────┐    ╔══════════════════════╗
+│ TTRL (2025) │───►│ EVOL-RL (2025) │───►║ Absolute-Zero (2025) ║─┐
+└─────────────┘    └────────────────┘    ╚══════════════════════╝ │
+                                                                  │    +self-debate, no
+                                                                  │    environment
+                                                                  │    ┌──────────────────────┐
+                                                                  ├───►│ Socratic-Zero (2025) │
+                                                                  │    └──────────────────────┘
+                                                                  │    +VLM gamified
+                                                                  │    self-play
+                                                                  │    ┌────────────────────┐
+                                                                  ├───►│ Vision-Zero (2025) │
+                                                                  │    └────────────────────┘
+                                                                  │    +abstraction
+                                                                  │    discovery
+                                                                  │    ┌─────────────┐
+                                                                  └───►│ RLAD (2025) │
+                                                                       └─────────────┘
 
-4. Continual & Experiential
-┌────────────┐      ┌────────────┐      ╔════════════════╗
-│ ELL (2025) │─────►│ OEL (2026) │─────►║ XSkill (2026)  ║
-└────────────┘      └────────────┘      ╚════════════════╝
+3. Curriculum and Adaptive Training   (order the tasks)
+· shape the difficulty
+                     +curriculum as    +verifiable            +self-evolving
+                     tasks             environment scaling    curriculum
+┌───────────────┐    ┌────────────┐    ┌─────────────────┐    ┌────────────┐
+│ ADARFT (2025) │───►│ CaT (2025) │───►│ RLVE (2025)     │───►│ SEC (2025) │
+└───────────────┘    └────────────┘    └─────────────────┘    └────────────┘
+
+4. Self-Evolving Agents   (multi-step behavior, not single answers)
+· experience into policy
+                       +trajectory →         +real-codebase    +environment
+                       principle             experience        co-evolves
+┌─────────────────┐    ┌────────────────┐    ┌────────────┐    ╔═════════════╗
+│ AgentGym (2024) │───►│ EVOLVER (2025) │───►│ SSR (2025) │───►║ ECHO (2026) ║
+└─────────────────┘    └────────┬───────┘    └────────────┘    ╚═════════════╝
+                                │    +self-improving
+                                │    oversight
+                                │    ┌─────────────┐
+                                ├───►│ SOAR (2025) │
+                                │    └─────────────┘
+                                │    +agent-world co-design
+                                │    ┌────────────────────┐
+                                └───►│ Agent-World (2026) │
+                                     └────────────────────┘
+
+5. Self-Evolving Embodied   (close the loop on a robot)
+· policy and model co-improve
+                     +continual world       +VLA                 +embodied R1          +closed-loop
+                     model                  self-evolution       recipe                long-horizon
+┌───────────────┐    ┌─────────────────┐    ┌───────────────┐    ┌────────────────┐    ┌───────────────┐
+│ RoboMD (2024) │───►│ EvoAgent (2025) │───►│ EvoVLA (2025) │───►│ SEEA-R1 (2025) │───►│ SPIRAL (2026) │
+└───────────────┘    └─────────────────┘    └───────────────┘    └────────────────┘    └───────────────┘
+
+6. Meta-Learning   (learn how to adapt)
+· adapt the adaptation
+                                    +detection
+                                    meta-learning
+┌──────────────────────────────┐    ┌───────────────────┐
+│ Prototypical-Networks (2017) │───►│ Meta-R-CNN (2019) │─┐
+└──────────────────────────────┘    └───────────────────┘ │
+                                                          │    +in-context meta-optimization
+                                                          │    ┌───────────────────────────────────────┐
+                                                          ├───►│ Mesa-Optimization-Transformers (2023) │
+                                                          │    └───────────────────────────────────────┘
+                                                          │    +self-adapting
+                                                          │    weights
+                                                          │    ┌─────────────┐
+                                                          └───►│ SEAL (2025) │
+                                                               └─────────────┘
+
+7. VLM Self-Improvement   (the multimodal case)
+· self-check the vision
+                     +self-reflection loop             +consistency signal
+┌───────────────┐    ┌────────────────────────────┐    ┌───────────────────────────────┐
+│ M-STAR (2024) │───►│ Self-Reflection-VLM (2025) │───►│ Triangular-Consistency (2025) │
+└───────┬───────┘    └────────────────────────────┘    └───────────────────────────────┘
+        │    +field map
+        │    ┌─────────────────────────────────────┐
+        └───►│ MLLM-Self-Improvement-Survey (2025) │
+             └─────────────────────────────────────┘
+
+8. Continual and Experiential   (persistence across deployment)
+· lifelong memory
+                            +reusable reasoning         +deployment-time,    +visually-grounded
+                            memory                      no forgetting        transfer
+┌──────────────────────┐    ┌──────────────────────┐    ┌───────────────┐    ╔════════════════╗
+│ ELL-Framework (2025) │───►│ ReasoningBank (2025) │───►│ OEL (2026)    │───►║ XSkill (2026)  ║
+└───────────┬──────────┘    └──────────────────────┘    └───────────────┘    ╚════════════════╝
+            │    +when self-evolution
+            │    fails
+            │    ┌─────────────────────┐
+            └───►│ Misevolution (2025) │
+                 └─────────────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through five threads: **self-training origins** (2022) where STaR established iterative rationale bootstrapping; **reward and reasoning** (2024) where Self-Rewarding LM, Quiet-STaR, and STILL-2 added self-judging and slow-thinking; **zero-data and self-play** (2025) where Absolute Zero, TTRL, EVOL-RL, Socratic-Zero, and Vision-Zero eliminated human data entirely; **self-evolving agents** (2024-2026) where AgentGym, EVOLVER, SSR, and ECHO scaled self-improvement to multi-step agent behavior; and **continual experiential learning** (2025-2026) where ELL, OEL, and XSkill added persistent memory for lifelong improvement.
+The eight lanes divide on **what supervises the self-improvement** once a human stops labelling. **Self-training on own outputs** bootstraps from what the model already got right, STaR to Quiet-STaR to STILL-2 to BoLT, with Self-Rewarding-LM and Process-based-Self-Rewarding branching to replace the correctness filter with a learned judge. **Zero-data self-play** removes the label entirely, TTRL scoring unlabelled test data, EVOL-RL guarding the entropy collapse, Absolute-Zero dropping the data itself, after which Socratic-Zero, Vision-Zero, and RLAD transplant the recipe into dialogue, vision, and abstraction independently. **Curriculum and adaptive training** orders the tasks instead, ADARFT to CaT to RLVE to SEC. **Self-evolving agents** move the unit of improvement from an answer to a trajectory, AgentGym to EVOLVER to SSR to ECHO, with SOAR and Agent-World branching on oversight and co-design. **Self-evolving embodied** closes the loop on a robot, RoboMD to EvoAgent to EvoVLA to SEEA-R1 to SPIRAL. **Meta-learning** adapts the adaptation itself, Prototypical-Networks to Meta-R-CNN, with Mesa-Optimization-Transformers and SEAL branching to in-context and weight-level self-adaptation. **VLM self-improvement** handles the multimodal case, M-STAR to Self-Reflection-VLM to Triangular-Consistency, with MLLM-Self-Improvement-Survey branching off as the field map. **Continual and experiential** keeps the gains across deployment, ELL-Framework to ReasoningBank to OEL to XSkill, with Misevolution branching to document how the loop fails.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2022 | [[2203.14465\|STaR]] | Pioneered iterative self-improvement: generate rationales, keep correct ones, retrain; the self-training flywheel |
-| 2024 | [[2401.10020\|Self-Rewarding-LM]] | Single model acts as both generator and judge via iterative DPO; broke the human-feedback bottleneck |
-| 2024 | [[2403.09629\|Quiet-STaR]] | Extended STaR to think before every token via internal rationales; generalized to token-level self-training |
-| 2024 | [[2412.09413\|STILL-2]] | Open-source framework reproducing o1-like slow-thinking; distillation + RL pipeline for chain-of-thought |
-| 2024 | [[2406.04151\|AgentGym]] | Multi-environment agent evolution via behavioral cloning + self-evolution for generalist agents |
-| 2025 | [[2505.03335\|Absolute-Zero]] | Zero-data self-play: model proposes tasks, solves, verifies via code, and retrains with no human data |
-| 2025 | [[2504.16084\|TTRL]] | Proved LLMs can self-improve on unlabeled test data via majority-vote rewards; 211% on AIME 2024 |
-| 2025 | [[2509.15194\|EVOL-RL]] | Evolutionary RL preventing entropy collapse in label-free self-improvement; balances selection and novelty |
-| 2025 | [[2509.24726\|Socratic-Zero]] | Data-free Socratic dialogue where the model debates itself to improve reasoning without any environment |
-| 2025 | [[2509.25541\|Vision-Zero]] | Extended the zero-data self-play paradigm to Vision-Language Models via gamified self-play |
-| 2025 | [[2510.16079\|EVOLVER]] | Agents distill raw interaction trajectories into strategic principles; experience-driven lifecycle |
-| 2025 | [[2512.18552\|SSR]] | Meta's Self-play SWE-RL: agents generate learning experiences from real codebases; +10.4 on SWE-bench |
-| 2025 | [[2508.19005\|ELL-Framework]] | Experience-driven Lifelong Learning framework and StuLife benchmark for continual self-improvement |
-| 2026 | [[2601.06794\|ECHO]] | Policy and environment co-evolve: harder challenges as policy improves, and vice versa |
-| 2026 | [[2603.16856\|OEL]] | Microsoft's Online Experiential Learning: LLMs continuously learn from deployment without forgetting |
-| 2026 | [[2603.12056\|XSkill]] | Dual-stream framework for continual learning from visually-grounded experience; cross-task skill transfer |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2017 | [[1703.05175\|Prototypical-Networks]] | Meta-Learning · Adapt the Adaptation | Simple mean-based class prototypes in embedding space; established episodic training as the few-shot learning standard |
+| 2019 | [[1909.13032\|Meta-R-CNN]] | Meta-Learning · Adapt the Adaptation | General meta-learning framework for few-shot detection; class-attentive vectors modulate features per novel category |
+| 2022 | [[2203.14465\|STaR]] | Self-Training · Rationale Bootstrapping | Pioneered iterative self-improvement: generate rationales, keep correct ones, retrain; the self-training flywheel |
+| 2023 | [[2309.05858\|Mesa-Optimization-Transformers]] | Meta-Learning · Adapt the Adaptation | Mechanistic explanation of how Transformers implicitly learn optimization algorithms (mesa-optimization) in-context |
+| 2024 | [[2401.10020\|Self-Rewarding-LM]] | Self-Training · Rationale Bootstrapping | Single model acts as both generator and judge via iterative DPO; broke the human-feedback bottleneck |
+| 2024 | [[2403.09629\|Quiet-STaR]] | Self-Training · Rationale Bootstrapping | Extended STaR to think before every token via internal rationales; generalized to token-level self-training |
+| 2024 | [[2406.04151\|AgentGym]] | Agents · Experience into Policy | Multi-environment agent evolution via behavioral cloning + self-evolution for generalist agents |
+| 2024 | [[2412.02818\|RoboMD]] | Embodied · Policy and Model Co-Improve | RL adversary that actively discovers policy failure modes; finds what the agent can't do |
+| 2024 | [[2412.09413\|STILL-2]] | Self-Training · Rationale Bootstrapping | Open-source framework reproducing o1-like slow-thinking; distillation + RL pipeline for chain-of-thought |
+| 2024 | [[2412.17451\|M-STAR]] | VLM · Self-Check the Vision | Self-evolving training framework for large multimodal models; iterative self-improvement across vision-language benchmarks |
+| 2025 | [[2502.05907\|EvoAgent]] | Embodied · Policy and Model Co-Improve | Self-evolving agent with continual world model; self-planning + self-control + self-reflection achieves +105% improvement on long-horizon tasks |
+| 2025 | [[2503.03746\|Process-based-Self-Rewarding]] | Self-Training · Rationale Bootstrapping | Extends self-rewarding from outcome-level to step-level process rewards; finer-grained self-supervision |
+| 2025 | [[2503.18866\|BoLT]] | Self-Training · Rationale Bootstrapping | "Reasoning to Learn": models use test-time reasoning chains as training signal, closing the loop between inference and learning |
+| 2025 | [[2504.05520\|ADARFT]] | Curriculum · Shape the Difficulty | Adaptive curriculum for RLVR that selects training problems matching the model's current capability frontier |
+| 2025 | [[2504.16084\|TTRL]] | Zero-Data · Label-Free Reward | Proved LLMs can self-improve on unlabeled test data via majority-vote rewards; 211% on AIME 2024 |
+| 2025 | [[2505.03335\|Absolute-Zero]] | Zero-Data · Label-Free Reward | Zero-data self-play: model proposes tasks, solves, verifies via code, and retrains with no human data |
+| 2025 | [[2505.14970\|SEC]] | Curriculum · Shape the Difficulty | Self-Evolving Curriculum: the training data distribution co-evolves with the model, ensuring the curriculum never becomes stale |
+| 2025 | [[2506.10943\|SEAL]] | Meta-Learning · Adapt the Adaptation | Models autonomously generate optimized fine-tuning data and adaptation strategies; outperforms GPT-4.1-generated synthetic data |
+| 2025 | [[2506.21669\|SEEA-R1]] | Embodied · Policy and Model Co-Improve | Tree-structured RL for self-evolving embodied agents; +24% via MCTS + generative reward |
+| 2025 | [[2507.14172\|SOAR]] | Agents · Experience into Policy | Self-improving operators for automated program refinement; LLMs iteratively improve their own code transformations |
+| 2025 | [[2508.19005\|ELL-Framework]] | Continual · Lifelong Memory | Experience-driven Lifelong Learning framework and StuLife benchmark for continual self-improvement |
+| 2025 | [[2509.14234\|CaT]] | Curriculum · Shape the Difficulty | Compute as Teacher: uses more capable model runs to generate supervision for less capable configurations; compute itself becomes the curriculum |
+| 2025 | [[2509.15194\|EVOL-RL]] | Zero-Data · Label-Free Reward | Evolutionary RL preventing entropy collapse in label-free self-improvement; balances selection and novelty |
+| 2025 | [[2509.23236\|Self-Reflection-VLM]] | VLM · Self-Check the Vision | Uses binary self-consistency signals to reduce hallucinations without external supervision |
+| 2025 | [[2509.24726\|Socratic-Zero]] | Zero-Data · Label-Free Reward | Data-free Socratic dialogue where the model debates itself to improve reasoning without any environment |
+| 2025 | [[2509.25140\|ReasoningBank]] | Continual · Lifelong Memory | Memory-aware test-time scaling: stores and retrieves reasoning patterns for efficient reuse across problems |
+| 2025 | [[2509.25541\|Vision-Zero]] | Zero-Data · Label-Free Reward | Extended the zero-data self-play paradigm to Vision-Language Models via gamified self-play |
+| 2025 | [[2509.26354\|Misevolution]] | Continual · Lifelong Memory | Identifies "misevolution" as a novel safety risk: self-evolving models can drift from intended values during autonomous improvement |
+| 2025 | [[2510.02263\|RLAD]] | Zero-Data · Label-Free Reward | Models self-discover high-level reasoning abstractions and learn to apply them; meta-cognitive self-improvement |
+| 2025 | [[2510.02665\|MLLM-Self-Improvement-Survey]] | VLM · Self-Check the Vision | First comprehensive survey of self-improvement methods for multimodal LLMs; maps the taxonomy and open challenges |
+| 2025 | [[2510.10487\|Triangular-Consistency]] | VLM · Self-Check the Vision | Cross-checks visual, textual, and reasoning outputs for mutual consistency; self-refinement through multi-modal agreement |
+| 2025 | [[2510.16079\|EVOLVER]] | Agents · Experience into Policy | Agents distill raw interaction trajectories into strategic principles; experience-driven lifecycle |
+| 2025 | [[2511.07317\|RLVE]] | Curriculum · Shape the Difficulty | Procedurally generates an unbounded supply of verifiable environments; the challenges grow as the model grows |
+| 2025 | [[2511.16166\|EvoVLA]] | Embodied · Policy and Model Co-Improve | Self-evolving VLA framework that overcomes stage hallucination and fragile memory; the first end-to-end self-evolving VLA |
+| 2025 | [[2512.18552\|SSR]] | Agents · Experience into Policy | Meta's Self-play SWE-RL: agents generate learning experiences from real codebases; +10.4 on SWE-bench |
+| 2026 | [[2601.06794\|ECHO]] | Agents · Experience into Policy | Policy and environment co-evolve: harder challenges as policy improves, and vice versa |
+| 2026 | [[2603.08403\|SPIRAL]] | Embodied · Policy and Model Co-Improve | Closed-loop self-improvement for action world models via reflective planning; the system critiques its own failures and adapts |
+| 2026 | [[2603.12056\|XSkill]] | Continual · Lifelong Memory | Dual-stream framework for continual learning from visually-grounded experience; cross-task skill transfer |
+| 2026 | [[2603.16856\|OEL]] | Continual · Lifelong Memory | Microsoft's Online Experiential Learning: LLMs continuously learn from deployment without forgetting |
+| 2026 | [[2604.18292\|Agent-World]] | Agents · Experience into Policy | ByteDance/Renmin's framework unifying real-world environment synthesis with continuous self-evolution; 14B agent evaluated on 23 benchmarks, with average tool-use scores more than doubling as environment diversity scales from 0 to 1,978 |
 
 ---
 

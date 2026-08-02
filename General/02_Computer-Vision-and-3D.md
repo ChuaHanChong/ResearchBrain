@@ -22,92 +22,196 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Self-Supervised Foundations
+1. Backbone Architecture   (what encodes the image)
+· transformer variants
+                                                    fixed grid →         +adaptive
+                  +shifted windows, 3B              native resolution    patch budget
+╔════════════╗    ┌────────────────────────────┐    ┌───────────────┐    ┌────────────┐
+║ ViT (2020) ║───►│ Swin-Transformer-V2 (2021) │───►│ NaViT (2023)  │───►│ APT (2025) │
+╚══════┬═════╝    └────────────────────────────┘    └───────────────┘    └────────────┘
+       │    attention → focal
+       │    modulation
+       │    ┌─────────────────┐
+       ├───►│ FocalNet (2022) │
+       │    └─────────────────┘
+       │    +plain ViT for
+       │    detection
+       │    ┌───────────────┐
+       ├───►│ ViTDet (2022) │
+       │    └───────────────┘
+       │    +hierarchical hybrid
+       │    ┌──────────────────┐
+       └───►│ FasterViT (2023) │
+            └──────────────────┘
 
-┌──────────────┐     ┌──────────────┐
-│ DINO (2021)  │     │ MAE (2021)   │
-└──────┬───────┘     └──────┬───────┘
-       ├───────────► GLIP (2021)      [Object Detection, below]
-       ├───────────► DINOv (2023)     [Segmentation, below]
-       │                    │
-       └─────────┬──────────┘
-                 ▼
-          ╔═════════════════╗
-          ║ DINOv2 (2023)   ║
-          ╚════════╤════════╝
-                   ├───────────► RieMind (2026)    [3D Understanding, below]
-                   └───────────► VEGA-3D (2026)    [3D Understanding, below]
+2. Label-Free Representation   (drop the labels, keep the signal)
+· self-distillation
+                   +142M curated
+                   images               one teacher → many
+┌─────────────┐    ┌───────────────┐    ┌─────────────────┐
+│ DINO (2021) │───►│ DINOv2 (2023) │───►│ AM-RADIO (2023) │
+└──────┬──────┘    └───────────────┘    └─────────────────┘
+       │    +test-time domain
+       │    adaptation
+       │    ┌───────────────┐
+       └───►│ VESSA (2025)  │
+            └───────────────┘
 
-2. Vision Architectures
+· reconstruction to latent prediction
+                   discrete tokens →    pixel target →       +autoregressive
+                   raw pixels           latent target        scaling
+┌─────────────┐    ┌───────────────┐    ┌───────────────┐    ┌─────────────┐
+│ BEiT (2021) │───►│ MAE (2021)    │───►│ I-JEPA (2023) │───►│ AIM (2024)  │
+└─────────────┘    └───────────────┘    └───────────────┘    └─────────────┘
 
-╔══════════════╗
-║ ViT (2020)   ║
-╚══════╤═══════╝
-       ├───────────► DINO (2021)   [Self-Supervised Foundations, above]
-       ├───────────► MAE (2021)    [Self-Supervised Foundations, above]
-       │
-       ▼
-┌────────────────┐
-│ Swin V2 (2021) │
-└────┬───────┬───┘
-     │       │
-     ▼       ▼
-┌──────────┐ ┌──────────┐
-│ FocalNet │ │ MaxViT   │
-│ (2022)   │ │ (2022)   │
-└──────────┘ └──────────┘
+3. Object Detection   (find it, then name it with language)
+· open-vocabulary boxes
+                  +phrase            +deep language-vision        detection →
+                  grounding          fusion                       open-vocab tagging
+┌────────────┐    ┌─────────────┐    ┌───────────────────────┐    ┌────────────────┐
+│ FPN (2016) │───►│ GLIP (2021) │───►│ Grounding-DINO (2023) │───►│ RAM (2023)     │
+└────────────┘    └─────────────┘    └───────────┬───────────┘    └────────────────┘
+                                                 │    +detection
+                                                 │    chain-of-thought
+                                                 │    ┌─────────────────────┐
+                                                 ├───►│ DetToolChain (2024) │
+                                                 │    └─────────────────────┘
+                                                 │    supervision →
+                                                 │    verifiable reward
+                                                 │    ┌───────────────────┐
+                                                 └───►│ Visual-RFT (2025) │
+                                                      └───────────────────┘
 
-3. Object Detection
+4. Segmentation   (pixels, not boxes)
+· promptable to reasoning
+                  +streaming video
+                  memory
+╔════════════╗    ┌──────────────┐
+║ SAM (2023) ║───►│ SAM 2 (2024) │
+╚══════┬═════╝    └──────────────┘
+       │    prompt → referring
+       │    reasoning
+       │    ┌────────────────┐
+       ├───►│ LISA (2023)    │
+       │    └────────────────┘
+       │    +visual in-context
+       │    prompting
+       │    ┌────────────────┐
+       ├───►│ DINOv (2023)   │
+       │    └────────────────┘
+       │    +cognitive RL chain
+       │    ┌─────────────────┐
+       └───►│ Seg-Zero (2025) │
+            └─────────────────┘
 
-┌──────────────┐    ┌──────────────┐
-│ FPN (2016)   │    │ GLIP (2021)  │
-└──────┬───────┘    └──────┬───────┘
-       └─────────┬─────────┘
-                 ▼
-          ╔═══════════════════╗
-          ║ Grounding DINO    ║
-          ║ (2023)            ║
-          ╚═════════╤═════════╝
-                    ├───────────► LISA (2023)
-                    └───────────► RAM (2023)
+5. 3D Scene Representation   (geometry you can render)
+· radiance fields to splats
+                          SDS optimization → explicit                                  +open 3D world
+                          splats                              +4D deformable           foundation
+┌────────────────────┐    ╔══════════════════════════════╗    ┌───────────────────┐    ┌─────────────────────┐
+│ DreamFusion (2022) │───►║ 3D Gaussian Splatting (2023) ║───►│ Diff4Splat (2025) │───►│ HY-World-2.0 (2026) │
+└────────────────────┘    ╚══════════════════════════════╝    └───────────────────┘    └─────────────────────┘
 
-4. Segmentation
+· feed-forward geometry
+                        matching → direct    +streaming 3D             +articulated
+                        pointmaps            foundation                objects
+┌──────────────────┐    ┌───────────────┐    ┌────────────────────┐    ┌────────────────┐
+│ LightGlue (2023) │───►│ DUSt3R (2023) │───►│ LingBot-Map (2026) │───►│ MonoArt (2026) │
+└──────────────────┘    └───────────────┘    └────────────────────┘    └────────────────┘
 
-┌──────────────┐   ┌──────────────┐   ┌──────────────┐
-│ LISA (2023)  │   │ RAM (2023)   │   │ DINOv (2023) │
-└──────┬───────┘   └──────────────┘   └──────────────┘
-       │
-       └───────────► VIEW2SPACE (2026)   [3D Understanding, below]
+6. Physics-Grounded 3D   (make the geometry obey mechanics)
+· recover material properties
+                       NeRF → Gaussian            +Young's modulus,       +12 expert
+                       continuum                  viscosity               constitutive models
+┌─────────────────┐    ┌─────────────────────┐    ┌──────────────────┐    ┌───────────────────┐
+│ PAC-NeRF (2023) │───►│ PhysGaussian (2023) │───►│ Physics3D (2024) │───►│ OmniPhysGS (2025) │
+└─────────────────┘    └──────────┬──────────┘    └──────────────────┘    └───────────────────┘
+                                  │    +VLM material priors
+                                  │    ┌─────────────────────────┐
+                                  └───►│ GaussianProperty (2024) │
+                                       └─────────────────────────┘
 
-5. 3D Understanding
+7. Transfer and Merging   (reuse a model across domains)
+· adapt, or combine weights
+                  +frozen DINOv2     +extended PEFT
+                  features           pretraining
+┌────────────┐    ┌─────────────┐    ┌────────────────┐
+│ TVT (2021) │───►│ EUDA (2024) │───►│ ExPLoRA (2024) │
+└──────┬─────┘    └─────────────┘    └────────────────┘
+       │    adaptation → weight
+       │    merging
+       │    ┌─────────────────────┐
+       ├───►│ TIES-Merging (2023) │
+       │    └─────────────────────┘
+       │    +practical merging
+       │    toolkit
+       │    ┌─────────────────┐
+       └───►│ MergeKit (2024) │
+            └─────────────────┘
 
-╔═════════════════╗    ┌──────────────────┐   ┌───────────────────┐
-║ RieMind (2026)  ║    │ VEGA-3D (2026)   │   │ VIEW2SPACE (2026) │
-╚═════════════════╝    └──────────────────┘   └───────────────────┘
+8. Spatial Reasoning Agents   (reason about the scene, not just see it)
+· geometry-grounded reasoning
+                            +perception/reasoning    +video-diffusion      +sparse multi-view
+                            split                    geometric priors      benchmark
+┌──────────────────────┐    ┌───────────────────┐    ┌────────────────┐    ┌───────────────────┐
+│ WorldComposer (2026) │───►│ RieMind (2026)    │───►│ VEGA-3D (2026) │───►│ VIEW2SPACE (2026) │
+└──────────────────────┘    └───────────────────┘    └────────────────┘    └───────────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through four phases: **backbone design** (2016-2022) where ViT, Swin V2, FocalNet, and FPN established the architectural vocabulary; **self-supervised feature learning** (2021-2023) where DINO, MAE, and DINOv2 eliminated label dependence; **open-vocabulary perception** (2021-2023) where GLIP, Grounding DINO, LISA, and RAM made detection and segmentation language-driven; and **3D spatial reasoning** (2023-2026) where RieMind, VEGA-3D, and VIEW2SPACE pushed models from 2D recognition into metric 3D understanding.
+The eight lanes divide on **what the model is asked to output**. **Backbone architecture** settles what encodes the image, ViT to Swin-Transformer-V2 to NaViT to APT as resolution stops being a fixed grid, with FocalNet, ViTDet, and FasterViT branching as three separate departures from plain isotropic attention. **Label-free representation** drops the labels twice over: DINO's self-distillation scales into DINOv2 and then AM-RADIO's many-teacher agglomeration, with VESSA branching to adapt at test time, while BEiT's discrete tokens give way to MAE's raw pixels, I-JEPA's latent targets, and AIM's autoregressive scaling. **Object detection** lets language name the box, FPN to GLIP to Grounding-DINO to RAM, with DetToolChain and Visual-RFT branching toward chain-of-thought and verifiable reward. **Segmentation** asks for pixels, SAM then SAM 2 for video, with LISA, DINOv, and Seg-Zero branching to three different things you can condition a mask on. **3D scene representation** splits by how geometry is obtained: DreamFusion's distillation gives way to explicit Gaussian splats, Diff4Splat, and HY-World-2.0, while LightGlue's matching gives way to DUSt3R's direct pointmaps, LingBot-Map's streaming foundation, and MonoArt's articulated objects, all feed-forward with no optimization at all. **Physics-grounded 3D** makes that geometry obey mechanics, PAC-NeRF to PhysGaussian to Physics3D to OmniPhysGS, with GaussianProperty branching to take its material priors from a VLM instead. **Transfer and merging** reuses a trained model, TVT to EUDA to ExPLoRA, with TIES-Merging and MergeKit branching from adaptation into weight-space merging. **Spatial reasoning agents** stop treating the scene as pixels, WorldComposer to RieMind to VEGA-3D to VIEW2SPACE.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2016 | [[1612.03144\|FPN]] | Top-down feature pyramid with lateral connections; foundational multi-scale architecture for object detection |
-| 2020 | [[2010.11929\|ViT]] | Proved pure Transformers on image patches match CNNs; foundational backbone for all downstream architectures |
-| 2021 | [[2104.14294\|DINO]] | Self-distillation without labels; ViT attention maps emerge as object segmenters |
-| 2021 | [[2111.06377\|MAE]] | Masked 75% of image patches and reconstructed pixels; scalable self-supervised pretraining at 3-4x lower cost |
-| 2021 | [[2111.09883\|Swin-Transformer-V2]] | Scaled window attention to 3B parameters with stable training; solved the low-to-high resolution transfer gap |
-| 2021 | [[2112.03857\|GLIP]] | Unified detection and phrase grounding; learned object-level language-aware representations for open-vocabulary transfer |
-| 2022 | [[2203.11926\|FocalNet]] | Attention-free focal modulation for efficient long-range interactions; SOTA on detection and segmentation with lower cost |
-| 2022 | [[2204.01697\|MaxViT]] | Multi-axis attention combining blocked local and dilated global interactions with linear complexity |
-| 2023 | [[2304.07193\|DINOv2]] | Scaled self-supervised learning to 142M images; universal visual features rivaling CLIP without text supervision |
-| 2023 | [[2303.05499\|Grounding-DINO]] | Deep language-vision fusion in DINO detector; 52.5 AP zero-shot on COCO for open-set detection |
-| 2023 | [[2308.00692\|LISA]] | Reasoning segmentation via LLM; generates pixel masks from implicit natural language queries |
-| 2023 | [[2306.03514\|RAM]] | Open-vocabulary image tagging foundation model trained on annotation-free web data; 86.0 mAP on OpenImages |
-| 2023 | [[2311.13601\|DINOv]] | Visual in-context prompting for unified segmentation; open-set generalization via purely visual cues |
-| 2026 | [[2603.15386\|RieMind]] | Geometry-grounded agent decoupling perception from reasoning via 3D Scene Graph tools; +16% on VSI-Bench |
-| 2026 | [[2603.19235\|VEGA-3D]] | Integrates video diffusion priors for dense geometric cues; improves MLLM spatial reasoning without 3D supervision |
-| 2026 | [[2603.16506\|VIEW2SPACE]] | Benchmark for multi-view reasoning from sparse observations; grounded CoT with visual evidence training |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2016 | [[1612.03144\|FPN]] | Detection · Open-Vocabulary Boxes | Top-down feature pyramid with lateral connections; foundational multi-scale architecture for object detection |
+| 2020 | [[2010.11929\|ViT]] | Backbone · Transformer Variants | Proved pure Transformers on image patches match CNNs; foundational backbone for all downstream architectures |
+| 2021 | [[2104.14294\|DINO]] | Label-Free · Self-Distillation and Masking | Self-distillation without labels; ViT attention maps emerge as object segmenters |
+| 2021 | [[2106.08254\|BEiT]] | Label-Free · Reconstruction to Latent | Predicts discrete visual tokens instead of pixels; bridged BERT-style pre-training to vision |
+| 2021 | [[2108.05988\|TVT]] | Transfer · Adapt or Merge | Transferable Vision Transformer: pioneered attention-based domain alignment for ViTs |
+| 2021 | [[2111.06377\|MAE]] | Label-Free · Reconstruction to Latent | Masked 75% of image patches and reconstructed pixels; scalable self-supervised pretraining at 3-4x lower cost |
+| 2021 | [[2111.09883\|Swin-Transformer-V2]] | Backbone · Transformer Variants | Scaled window attention to 3B parameters with stable training; solved the low-to-high resolution transfer gap |
+| 2021 | [[2112.03857\|GLIP]] | Detection · Open-Vocabulary Boxes | Unified detection and phrase grounding; learned object-level language-aware representations for open-vocabulary transfer |
+| 2022 | [[2203.11926\|FocalNet]] | Backbone · Transformer Variants | Attention-free focal modulation for efficient long-range interactions; SOTA on detection and segmentation with lower cost |
+| 2022 | [[2203.16527\|ViTDet]] | Backbone · Transformer Variants | Proved plain non-hierarchical ViTs can rival specialized architectures on detection when paired with simple FPN |
+| 2022 | [[2209.14988\|DreamFusion]] | 3D · Radiance Fields to Splats | Introduced Score Distillation Sampling to optimize a NeRF against a frozen 2D text-to-image diffusion model; launched the entire text-to-3D generation subfield |
+| 2023 | [[2301.08243\|I-JEPA]] | Label-Free · Reconstruction to Latent | Joint-Embedding Predictive Architecture; learns semantic features by predicting representations, not pixel reconstructions |
+| 2023 | [[2303.05499\|Grounding-DINO]] | Detection · Open-Vocabulary Boxes | Deep language-vision fusion in DINO detector; 52.5 AP zero-shot on COCO for open-set detection |
+| 2023 | [[2303.05512\|PAC-NeRF]] | Physics-3D · Material Properties | Physics-Augmented Continuum NeRF; jointly recovers geometry and material parameters (Young's modulus, density, plasticity) from video — the canonical material-from-pixels reference |
+| 2023 | [[2304.02643\|SAM]] | Segmentation · Promptable to Reasoning | Segment Anything: promptable, zero-shot segmentation foundation model trained on 1B+ masks; the backbone underlying SAM 2, SAM-CLIP, and the entire promptable-segmentation ecosystem |
+| 2023 | [[2304.07193\|DINOv2]] | Label-Free · Self-Distillation and Masking | Scaled self-supervised learning to 142M images; universal visual features rivaling CLIP without text supervision |
+| 2023 | [[2306.01708\|TIES-Merging]] | Transfer · Adapt or Merge | Three-step approach to resolve sign conflicts and redundancy when merging fine-tuned model parameters |
+| 2023 | [[2306.03514\|RAM]] | Detection · Open-Vocabulary Boxes | Open-vocabulary image tagging foundation model trained on annotation-free web data; 86.0 mAP on OpenImages |
+| 2023 | [[2306.06189\|FasterViT]] | Backbone · Transformer Variants | NVIDIA's hybrid design with hierarchical attention; Pareto-optimal across speed and accuracy |
+| 2023 | [[2306.13643\|LightGlue]] | 3D · Feed-Forward Geometry | Adaptive deep feature matching that prunes easy pairs early; fast and accurate for real-time SLAM |
+| 2023 | [[2307.06304\|NaViT]] | Backbone · Transformer Variants | Processes images at native resolution and aspect ratio; eliminates distortion from forced resizing |
+| 2023 | [[2308.00692\|LISA]] | Segmentation · Promptable to Reasoning | Reasoning segmentation via LLM; generates pixel masks from implicit natural language queries |
+| 2023 | [[2308.04079\|3D Gaussian Splatting]] | 3D · Radiance Fields to Splats | Real-time explicit radiance field via differentiable 3D Gaussians; became the standard scene representation underlying GaussianProperty, PhysGaussian, and dozens of downstream reconstruction/physics methods |
+| 2023 | [[2311.12198\|PhysGaussian]] | Physics-3D · Material Properties | Couples 3D Gaussian Splatting with continuum mechanics MPM solver; the foundational result that made 3DGS scenes physically interactive |
+| 2023 | [[2311.13601\|DINOv]] | Segmentation · Promptable to Reasoning | Visual in-context prompting for unified segmentation; open-set generalization via purely visual cues |
+| 2023 | [[2312.06709\|AM-RADIO]] | Label-Free · Self-Distillation and Masking | Unifies CLIP, DINOv2, and SAM into one student model; best of all worlds in a single forward pass |
+| 2023 | [[2312.14132\|DUSt3R]] | 3D · Feed-Forward Geometry | Feed-forward pairwise pointmap regression with no camera calibration; the foundational architecture behind Pi3, Depth-Anything-3, and Speed3R |
+| 2024 | [[2401.08541\|AIM]] | Label-Free · Reconstruction to Latent | Apple's autoregressive image model; proved autoregressive pre-training scales for vision just as for language |
+| 2024 | [[2403.12488\|DetToolChain]] | Detection · Open-Vocabulary Boxes | Detection-specific chain-of-thought with a visual toolkit; enables zero-shot detection via prompting alone |
+| 2024 | [[2403.13257\|MergeKit]] | Transfer · Adapt or Merge | Open-source toolkit that made model merging practical and accessible |
+| 2024 | [[2406.04338\|Physics3D]] | Physics-3D · Material Properties | Distills Young's modulus, viscosity, and plasticity into 3D Gaussians via SDS from video diffusion priors |
+| 2024 | [[2406.10973\|ExPLoRA]] | Transfer · Adapt or Merge | Parameter-efficient extended pre-training that adapts ViTs to new visual domains with minimal data |
+| 2024 | [[2407.21311\|EUDA]] | Transfer · Adapt or Merge | Uses frozen DINOv2 features for efficient unsupervised domain adaptation; no fine-tuning needed |
+| 2024 | [[2408.00714\|SAM 2]] | Segmentation · Promptable to Reasoning | Extends SAM to video with a streaming memory mechanism; the standard backbone underlying SAM2Act, SAM2Auto, and RobotSeg |
+| 2024 | [[2412.11258\|GaussianProperty]] | Physics-3D · Material Properties | Distills VLM priors into 3D Gaussians to predict per-Gaussian material properties; bridges VLMs and physical simulation |
+| 2025 | [[2501.18982\|OmniPhysGS]] | Physics-3D · Material Properties | Constitutive Gaussians with ensemble of 12 expert constitutive networks (elastic/viscoelastic/plastic/fluid); custom PyTorch MPM solver cuts memory **75%** vs Warp-based baselines |
+| 2025 | [[2503.01785\|Visual-RFT]] | Detection · Open-Vocabulary Boxes | Adapts RL fine-tuning to vision tasks with verifiable rewards; +24.3% on fine-grained classification, +21.9 mAP on few-shot detection |
+| 2025 | [[2503.06520\|Seg-Zero]] | Segmentation · Promptable to Reasoning | Reasoning-chain guided segmentation via cognitive RL; combines chain-of-thought with pixel predictions |
+| 2025 | [[2510.18091\|APT]] | Backbone · Transformer Variants | Adaptive Patch Transformers that dynamically reduce spatial tokens; accelerates ViTs without retraining |
+| 2025 | [[2510.20994\|VESSA]] | Label-Free · Self-Distillation and Masking | Self-supervised adaptation to new visual domains without any labels; practical for medical/industrial deployment |
+| 2025 | [[2511.00503\|Diff4Splat]] | 3D · Radiance Fields to Splats | Feed-forward 4D scene generation as deformable 3D Gaussian fields with explicit camera control; **60x** faster than per-scene optimization |
+| 2026 | [[2603.15386\|RieMind]] | Spatial · Geometry-Grounded Reasoning | Geometry-grounded agent decoupling perception from reasoning via 3D Scene Graph tools; +16% on VSI-Bench |
+| 2026 | [[2603.16506\|VIEW2SPACE]] | Spatial · Geometry-Grounded Reasoning | Benchmark for multi-view reasoning from sparse observations; grounded CoT with visual evidence training |
+| 2026 | [[2603.19231\|MonoArt]] | 3D · Feed-Forward Geometry | End-to-end monocular articulated object reconstruction; handles non-rigid objects |
+| 2026 | [[2603.19235\|VEGA-3D]] | Spatial · Geometry-Grounded Reasoning | Integrates video diffusion priors for dense geometric cues; improves MLLM spatial reasoning without 3D supervision |
+| 2026 | [[2604.14141\|LingBot-Map]] | 3D · Feed-Forward Geometry | Feed-forward streaming 3D foundation model with Geometric Context Transformer; 20 FPS for sequences up to 10K frames with nearly constant memory |
+| 2026 | [[2604.14268\|HY-World-2.0]] | 3D · Radiance Fields to Splats | Tencent Hunyuan's open-source multi-modal 3D world framework unifying reconstruction + generation; high-fidelity 3DGS worlds in ~10 min |
+| 2026 | [[2604.15805\|WorldComposer]] | Spatial · Geometry-Grounded Reasoning | Generates "Digital Cousins" from single panoramas; 0.91 Pearson correlation between sim and real-world policy success |
 
 ---
 

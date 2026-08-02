@@ -20,57 +20,208 @@ aliases:
 ## Evolution Graph
 
 ```text
-1. Foundations
-╔══════════════╗   ┌─────────────────────────┐
-║ RT-1 (2022)  ║   │ Diffusion Policy (2023) │──────► π0 (2024)   [VLAs, below]
-╚══════╤═══════╝   └─────────────────────────┘
-       │
-       ▼
-2. VLAs
-┌─────────────┐    ┌───────────────────┐    ┌────────────────┐    ╔═════════════╗
-│ RT-2 (2023) │───►│ OXE / RT-X (2023) │───►│ OpenVLA (2024) │───►║ π0 (2024)   ║─┬──► π0.7 (2026)
-└─────────────┘    └───────────────────┘    └────────────────┘    ╚═════════════╝ ├──► DreamZero (2026)   [WAMs, below]
-                                                                                  ├──► VLAW (2026)         [WAMs, below]
-                                                                                  ├──► VLA-JEPA (2026)     [WAMs, below]
-                                                                                  └──► EvoAgent (2025)     [Self-Evolving, below]
+1. Manipulation Policy Foundations   (how an action is represented)
+· action representation
+                                                                                 explicit →
+                     +spatial action maps               +language-conditioned    implicit energy
+┌───────────────┐    ┌─────────────────────────────┐    ┌───────────────────┐    ┌─────────────┐
+│ QT-Opt (2018) │───►│ Transporter Networks (2020) │───►│ CLIPort (2021)    │───►│ IBC (2021)  │
+└───────┬───────┘    └─────────────────────────────┘    └───────────────────┘    └─────────────┘
+        │    +residual on a
+        │    controller
+        │    ┌────────────────────┐
+        └───►│ Residual RL (2018) │
+             └────────────────────┘
 
-┌─────────────┐    ┌─────────────┐
-│ GR-1 (2023) │───►│ GR-2 (2024) │──────► VLAW (2026)   [WAMs, below]
-└─────────────┘    └─────────────┘
+2. Imitation Learning   (learn from the demonstrator)
+· demonstration signal
+                   +standardized           +language, 100     +internet-video
+                   offline IL              tasks              latent actions
+┌─────────────┐    ┌──────────────────┐    ┌─────────────┐    ┌─────────────┐
+│ ILPO (2018) │───►│ Robomimic (2021) │───►│ BC-Z (2022) │───►│ CoMo (2025) │
+└─────────────┘    └─────────┬────────┘    └─────────────┘    └─────────────┘
+                             │    policy → sequence model
+                             │    ┌─────────────────────────────┐
+                             ├───►│ Decision Transformer (2021) │
+                             │    └─────────────────────────────┘
+                             │    +RL past the
+                             │    demo ceiling
+                             │    ┌──────────────┐
+                             └───►│ ResiP (2024) │
+                                  └──────────────┘
 
-3. WAMs
-╔═══════════════════╗    ┌─────────────┐    ┌─────────────────┐
-║ DreamZero (2026)  ║    │ VLAW (2026) │    │ VLA-JEPA (2026) │
-╚═══════════╤═══════╝    └─────────────┘    └─────────────────┘
-            │
-            └──────────────► SPIRAL (2026)   [Self-Evolving, below]
+3. VLA Generalists   (borrow the internet, pool the robots)
+· backbone and corpus
+                   +internet-scale    one lab → 22      +open generalist
+                   VLM backbone       embodiments       transformer
+╔═════════════╗    ┌─────────────┐    ┌────────────┐    ┌──────────────┐
+║ RT-1 (2022) ║───►│ RT-2 (2023) │───►│ OXE (2023) │───►│ Octo (2024)  │
+╚═════════════╝    └─────────────┘    └──────┬─────┘    └──────────────┘
+                                             │    +heterogeneous
+                                             │    pretraining
+                                             │    ┌────────────┐
+                                             ├───►│ HPT (2024) │
+                                             │    └────────────┘
+                                             │    +action
+                                             │    hierarchy
+                                             │    ┌─────────────┐
+                                             └───►│ RT-H (2024) │
+                                                  └─────────────┘
 
-4. Self-Evolving
-╔══════════════════╗    ┌───────────────┐
-║ EvoAgent (2025)  ║───►│ SPIRAL (2026) │
-╚══════════════════╝    └───────────────┘
+4. Language-Grounded Planning   (turn an instruction into a plan)
+· instruction to plan
+                                                             +formal planner     +embodied
+                               +closed-loop feedback         in the loop         chain-of-thought
+┌─────────────────────────┐    ┌────────────────────────┐    ┌──────────────┐    ┌──────────────┐
+│ Code-as-Policies (2022) │───►│ Inner-Monologue (2022) │───►│ LLM+P (2023) │───►│ ECoT (2024)  │
+└─────────────────────────┘    └────────────┬───────────┘    └──────────────┘    └──────────────┘
+                                            │    +failure
+                                            │    explanation
+                                            │    ┌────────────────┐
+                                            ├───►│ REFLECT (2023) │
+                                            │    └────────────────┘
+                                            │    2D → 3D grounding
+                                            │    ┌───────────────┐
+                                            └───►│ 3D-VLA (2024) │
+                                                 └───────────────┘
+
+5. World Action Models   (predict the world, then act)
+· video prediction as policy
+                   +learned video       +interactive         +world foundation    +14B joint
+                   model                real-world sim       model                video-action
+┌─────────────┐    ┌───────────────┐    ┌───────────────┐    ┌───────────────┐    ┌──────────────────┐
+│ PETS (2018) │───►│ SimPLe (2019) │───►│ UniSim (2023) │───►│ Cosmos (2025) │───►│ DreamZero (2026) │
+└─────────────┘    └───────────────┘    └───────┬───────┘    └───────────────┘    └──────────────────┘
+                                                │    +driving world
+                                                │    model
+                                                │    ┌───────────────┐
+                                                ├───►│ GAIA-1 (2023) │
+                                                │    └───────────────┘
+                                                │    +diffusion world
+                                                │    model
+                                                │    ┌────────────────┐
+                                                └───►│ DIAMOND (2024) │
+                                                     └────────────────┘
+
+6. Latent Action Pretraining   (learn actions from unlabelled video)
+· actions without action labels
+                   +navigation       +video prediction    +unified
+                   world model       policy               action-video model
+┌─────────────┐    ┌────────────┐    ┌───────────────┐    ┌────────────────┐
+│ LAPO (2023) │───►│ NWM (2024) │───►│ VPP (2024)    │───►│ UWM (2025)     │
+└─────────────┘    └────────────┘    └───────────────┘    └────────────────┘
+
+7. Physics-Grounded Embodied   (make the representation obey mechanics)
+· physics in the representation
+                                 +physics-informed
+                                 representation       +Newtonian dynamics     +physical world agent
+┌───────────────────────────┐    ┌───────────────┐    ┌──────────────────┐    ┌───────────────────────┐
+│ Embodied-Gaussians (2024) │───►│ PIN (2025)    │───►│ NewtonGen (2025) │───►│ ABot-PhysWorld (2026) │
+└───────────────────────────┘    └───────────────┘    └──────────────────┘    └───────────────────────┘
+
+8. Self-Evolving   (close the loop after deployment)
+· policy and model co-improve
+                       +VLA                 +closed-loop
+                       self-evolution       long-horizon
+╔═════════════════╗    ┌───────────────┐    ┌───────────────┐
+║ EvoAgent (2025) ║───►│ EvoVLA (2025) │───►│ SPIRAL (2026) │
+╚════════┬════════╝    └───────────────┘    └───────────────┘
+         │    +meta-adaptation
+         │    ┌────────────────┐
+         ├───►│ MetaVLA (2025) │
+         │    └────────────────┘
+         │    policy → world
+         │    model evolves
+         │    ┌─────────────┐
+         └───►│ EWAM (2026) │
+              └─────────────┘
+
+9. Navigation   (move, do not just manipulate)
+· map to policy
+                     +cognitive                                  +autonomous
+                     navigation           +morphology-aware      foundation model
+┌───────────────┐    ┌───────────────┐    ┌─────────────────┐    ┌──────────────┐
+│ VLMaps (2022) │───►│ CogNav (2024) │───►│ NavMorph (2025) │───►│ AFM (2026)   │
+└───────────────┘    └───────────────┘    └─────────────────┘    └──────────────┘
+
+10. Datasets and Benchmarks   (what everyone is measured on)
+· corpus and evaluation
+                    +lifelong task       +16 institutions,    +distributed
+                    suite                in the wild          evaluation
+┌──────────────┐    ┌───────────────┐    ┌───────────────┐    ┌──────────────────┐
+│ Ego4D (2021) │───►│ LIBERO (2023) │───►│ DROID (2024)  │───►│ RoboArena (2025) │
+└──────────────┘    └───────┬───────┘    └───────────────┘    └──────────────────┘
+                            │    +real-sim
+                            │    correlation
+                            │    ┌────────────────┐
+                            ├───►│ SIMPLER (2024) │
+                            │    └────────────────┘
+                            │    +detail-oriented
+                            │    tasks
+                            │    ┌───────────────┐
+                            └───►│ GM-100 (2026) │
+                                 └───────────────┘
 
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-The field evolved through four phases: **foundations** (2022-2023) where RT-1 and Diffusion Policy proved Transformers and diffusion work for robot control; **VLAs** (2023-2026) where RT-2, OXE, OpenVLA, pi0, and pi0.7 scaled vision-language-action models from proof-of-concept to generalist cross-embodiment policies; **WAMs** (2026) where DreamZero, VLAW, and VLA-JEPA added world modeling for physics-aware control; and **self-evolving** (2025-2026) where EvoAgent and SPIRAL enabled autonomous improvement loops.
+The ten lanes divide on **which part of the robot stack is being scaled**. **Manipulation policy foundations** settle how an action is represented, QT-Opt to Transporter Networks to CLIPort to IBC as the policy turns from explicit regression to an implicit energy, with Residual RL branching to correct a controller rather than replace it. **Imitation learning** takes the demonstrator's signal, ILPO to Robomimic to BC-Z to CoMo, with Decision Transformer recasting the policy as a sequence model and ResiP pushing past the demonstration ceiling. **VLA generalists** borrow the internet and pool the robots, RT-1 to RT-2 to OXE to Octo, with HPT and RT-H branching on heterogeneous pretraining and action hierarchy. **Language-grounded planning** turns an instruction into a plan, Code-as-Policies to Inner-Monologue to LLM+P to ECoT, with REFLECT and 3D-VLA branching to failure explanation and 3D grounding. **World action models** predict the world before acting, PETS to SimPLe to UniSim to Cosmos to DreamZero, with GAIA-1 and DIAMOND branching into driving and diffusion world models. **Latent action pretraining** learns actions from video that carries no action labels, LAPO to NWM to VPP to UWM. **Physics-grounded embodied** puts mechanics in the representation, Embodied-Gaussians to PIN to NewtonGen to ABot-PhysWorld. **Self-evolving** closes the loop after deployment, EvoAgent to EvoVLA to SPIRAL, with MetaVLA and EWAM branching to meta-adaptation and to evolving the world model rather than the policy. **Navigation** moves rather than manipulates, VLMaps to CogNav to NavMorph to AFM. **Datasets and benchmarks** decide what everyone is measured on, Ego4D to LIBERO to DROID to RoboArena, with SIMPLER and GM-100 branching to real-sim correlation and detail-oriented tasks.
 
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2022 | [[2212.06817\|RT-1]] | Transformer policy on 130K real demos; proved Transformers work for robot control at scale |
-| 2023 | [[2303.04137\|Diffusion-Policy]] | Pioneered action diffusion for robotics; proved denoising beats regression for multimodal action distributions |
-| 2023 | [[2307.15818\|RT-2]] | Scaled to PaLI-X/PaLM-E backbones; first to show internet-scale VLM knowledge transfers to robot control |
-| 2023 | [[2310.08864\|OXE]] | Open X-Embodiment: 1M+ trajectories from 22 embodiments; the ImageNet moment for robotics data |
-| 2023 | [[2312.13139\|GR-1]] | GPT-style generative robot model unifying language, video prediction, and action in a single Transformer |
-| 2024 | [[2406.09246\|OpenVLA]] | Open-source 7B VLA; democratized VLA research with competitive performance |
-| 2024 | [[2410.24164\|pi0]] | Flow matching action expert + VLM for dexterous manipulation; current SOTA generalist robot control |
-| 2024 | [[2410.06158\|GR-2]] | Scaled GR-1 to larger video generation backbone; improved long-horizon multi-task humanoid control |
-| 2025 | [[2502.05907\|EvoAgent]] | Self-evolving agent with continual world model; +105% improvement via self-planning and self-reflection |
-| 2026 | [[2602.15922\|DreamZero]] | 14B parameter WAM from NVIDIA; zero-shot robot policies via joint video+action prediction |
-| 2026 | [[2604.15483\|π0.7]] | 5B steerable generalist VLA with subgoal-image + episode-metadata prompting; cross-embodiment transfer matching human experts |
-| 2026 | [[2602.12063\|VLAW]] | Iterative co-improvement loop between VLA policy and world model; each bootstraps the other |
-| 2026 | [[2602.10098\|VLA-JEPA]] | JEPA-style latent prediction for leakage-free future state modeling in robot control |
-| 2026 | [[2603.08403\|SPIRAL]] | Closed-loop self-improving framework for controllable, long-horizon video generation and WAMs |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2018 | [[1805.07914\|ILPO]] | Imitation · Demonstration Signal | Foundational method establishing the latent-action paradigm for imitation from observation, decoupling abstract behavior from action grounding |
+| 2018 | [[1805.12114\|PETS]] | WAM · Video Prediction as Policy | canonical probabilistic-ensemble MBRL paper; matched SAC/PPO asymptotic performance with **8x/125x** fewer samples |
+| 2018 | [[1806.10293\|QT-Opt]] | Manipulation · Action Representation | foundational closed-loop RL system for real-world grasping: trained on 580k real grasp attempts, it reaches **96%** success on previously unseen objects while learning emergent behaviors (singulation, regrasping) from monocular RGB alone |
+| 2018 | [[1812.03201\|Residual RL]] | Manipulation · Action Representation | the clearest exposition of combining classical controllers with learned correction, letting a robot master contact-rich block assembly in just **3 hours** (8,000 samples) of real-world training |
+| 2019 | [[1903.00374\|SimPLe]] | WAM · Video Prediction as Policy | first learned stochastic world model to beat model-free RL from raw pixels on Atari under a 100k-step budget; up to **10x** sample-efficiency gain |
+| 2020 | [[2010.14406\|Transporter Networks]] | Manipulation · Action Representation | foundational, most-cited method reframing manipulation as spatial-displacement inference via feature "transport," reaching **>90%** success with only **100** demonstrations and **98.9%**/**98.3%** on real-world kit assembly and sweeping |
+| 2021 | [[2106.01345\|Decision Transformer]] | Imitation · Demonstration Signal | the paradigm-shifting reframing of RL as sequence modeling on returns-to-go, bypassing bootstrapping and discounting entirely while matching or beating TD-learning baselines in sparse and delayed-reward settings |
+| 2021 | [[2108.03298\|Robomimic]] | Imitation · Demonstration Signal | the foundational, most-cited empirical study in this group, systematically showing that history-dependent BC-RNN policies beat plain behavior cloning by 10-100% on human demonstrations and that offline RL algorithms tuned on machine-generated data fail on human data, establishing the open-source benchmark the field still builds on |
+| 2021 | [[2109.00137\|IBC]] | Manipulation · Action Representation | foundational and paradigm-shifting: introduced energy-based implicit policies as an alternative to explicit regression, proving they can represent discontinuous, multi-valued action distributions where explicit models collapse |
+| 2021 | [[2109.12098\|CLIPort]] | Manipulation · Action Representation | foundational two-stream "what/where" architecture combining CLIP's semantic grounding with Transporter Networks' spatial precision, reaching over **80%** success with only **100** demonstrations and still the most-cited reference baseline in this space |
+| 2021 | [[2110.07058\|Ego4D]] | Benchmarks · Corpus and Evaluation | 3,670 hours of egocentric video from 931 wearers across 9 countries; foundational resource for first-person perception and Being-H0/EgoScale-style VLA pretraining |
+| 2022 | [[2202.02005\|BC-Z]] | Imitation · Demonstration Signal | Foundational zero-shot task generalization result: multi-task imitation on 100 tasks lets a robot attempt entirely unseen manipulation tasks with no task-specific demos |
+| 2022 | [[2207.05608\|Inner-Monologue]] | Planning · Instruction to Plan | the foundational closed-loop paradigm showing that feeding real-time environment feedback back into an LLM planner's prompt enables robust self-correction, a pattern nearly every later paper in this group inherits |
+| 2022 | [[2209.07753\|Code-as-Policies]] | Planning · Instruction to Plan | Foundational precursor establishing LLM-generated code as a direct robot-policy interface |
+| 2022 | [[2210.05714\|VLMaps]] | Navigation · Map to Policy | foundational language-grounded navigation paper, first to fuse VLM pixel embeddings into a persistent 3D map so an LLM can turn open-vocabulary spatial commands into executable navigation code |
+| 2022 | [[2212.06817\|RT-1]] | VLA · Backbone and Corpus | Transformer policy on 130K real demos; proved Transformers work for robot control at scale |
+| 2023 | [[2304.11477\|LLM+P]] | Planning · Instruction to Plan | the clearest illustration of the core hybrid idea: let the LLM translate natural language to PDDL and back, but delegate actual planning to a classical optimal solver, decisively beating direct LLM planning |
+| 2023 | [[2306.03310\|LIBERO]] | Benchmarks · Corpus and Evaluation | Lifelong robot learning benchmark; tests continual learning and long-horizon capability |
+| 2023 | [[2306.15724\|REFLECT]] | Planning · Instruction to Plan | foundational hierarchical LLM-based failure explanation and correction framework; established the RoboFail benchmark still used as a baseline today |
+| 2023 | [[2307.15818\|RT-2]] | VLA · Backbone and Corpus | Scaled to PaLI-X/PaLM-E backbones; first to show internet-scale VLM knowledge transfers to robot control |
+| 2023 | [[2309.17080\|GAIA-1]] | WAM · Video Prediction as Policy | Wayve's 9B autoregressive driving world model; foundational result that internet-scale video pretraining yields a useful driving world simulator |
+| 2023 | [[2310.06114\|UniSim]] | WAM · Video Prediction as Policy | foundational "universal simulator" paper (conditional video generation over heterogeneous data); proved zero-shot sim-to-real transfer years before the 2026 WAM wave |
+| 2023 | [[2310.08864\|OXE]] | VLA · Backbone and Corpus | Open X-Embodiment: 1M+ trajectories from 22 embodiments; the ImageNet moment for robotics data |
+| 2023 | [[2312.10812\|LAPO]] | Latent Action · Actions without Labels | canonical continuous-latent-action-from-video method (IDM+FDM+VQ bottleneck); action-free video pretraining matched or exceeded expert performance in 9/16 Procgen tasks |
+| 2024 | [[2403.01823\|RT-H]] | VLA · Backbone and Corpus | introduces an intermediate language-motion layer between task and action, the paradigm-defining example of using language itself as the hierarchy that enables data sharing and human correction |
+| 2024 | [[2403.09631\|3D-VLA]] | Planning · Instruction to Plan | foundational paper that coined the "3D Vision-Language-Action" paradigm, introducing a 3D-grounded generative world model |
+| 2024 | [[2403.12945\|DROID]] | Benchmarks · Corpus and Evaluation | In-the-wild data across 16 institutions; proved diverse data beats curated data |
+| 2024 | [[2405.05941\|SIMPLER]] | Benchmarks · Corpus and Evaluation | Bridges sim and real; evaluates whether simulation performance predicts real-world success |
+| 2024 | [[2405.12213\|Octo]] | VLA · Backbone and Corpus | open-source generalist policy pretrained on **800K** Open-X trajectories, beating RT-1-X by **29%** and matching the 600x larger RT-2-X, while finetuning to new embodiments in under 5 GPU-hours |
+| 2024 | [[2405.12399\|DIAMOND]] | WAM · Video Prediction as Policy | foundational diffusion-imagination world model (EDM formulation) that later diffusion/denoising variants in this group are benchmarked against |
+| 2024 | [[2406.10788\|Embodied-Gaussians]] | Physics · Physics in the Representation | earliest paper in the cluster, establishing the real-time hybrid Gaussian(vision)+PBD-particle(physics) correction loop later papers reprise |
+| 2024 | [[2407.08693\|ECoT]] | Planning · Instruction to Plan | foundational: first paper to train VLAs on visually-grounded embodied CoT, boosting OpenVLA's success rate by 28% and establishing the synthetic-data annotation pipeline later reasoning-VLA papers build on |
+| 2024 | [[2407.16677\|ResiP]] | Imitation · Demonstration Signal | Paradigm-shifting fix for BC's precision ceiling: a small residual RL policy adds real-time closed-loop correction on top of a frozen chunked BC planner, taking peg-in-hole from 5% to 99% |
+| 2024 | [[2409.20537\|HPT]] | VLA · Backbone and Corpus | the clearest empirical demonstration of scaling laws in robot pretraining (data, model size, compute all improve transfer), establishing proprioceptive-visual pretraining as a viable foundation-model recipe |
+| 2024 | [[2412.03572\|NWM]] | Latent Action · Actions without Labels | foundational Navigation World Model that the rest of the group is measured against (NavWAM, 3D-Persistent-Embodied-WM, WAM-Nav all baseline against it) |
+| 2024 | [[2412.10439\|CogNav]] | Navigation · Map to Policy | Models human-like cognitive processes for navigation; outperforms reactive policies on complex layouts |
+| 2024 | [[2412.14803\|VPP]] | Latent Action · Actions without Labels | Extracts visual representations from video diffusion in a single forward pass (no iterative denoising at test time) |
+| 2025 | [[2501.03575\|Cosmos]] | WAM · Video Prediction as Policy | NVIDIA's open foundation video world model platform for Physical AI; covered separately above as a video-policy backbone |
+| 2025 | [[2502.05907\|EvoAgent]] | Self-Evolving · Policy and Model Co-Improve | Self-evolving agent with continual world model; +105% improvement via self-planning and self-reflection |
+| 2025 | [[2504.02792\|UWM]] | Latent Action · Actions without Labels | Unified World Models: a single architecture handling action-conditioned, action-free, and video prediction tasks |
+| 2025 | [[2504.16693\|PIN]] | Physics · Physics in the Representation | most rigorous real2sim2real instantiation (differentiable LCP rigid-body solver + differentiable Gaussian-splat rendering); **97%/83%** sim and **75%/65%** real push/flip success |
+| 2025 | [[2505.17006\|CoMo]] | Imitation · Demonstration Signal | Clearest core idea: temporal-difference plus contrastive learning let continuous, non-quantized latent motion be learned from internet video without shortcut collapse to background |
+| 2025 | [[2506.18123\|RoboArena]] | Benchmarks · Corpus and Evaluation | Distributed real-world VLA eval via crowd-sourced pairwise comparisons; 0.98 Pearson correlation with oracle, paradigm shift from sim-only benchmarking |
+| 2025 | [[2506.23468\|NavMorph]] | Navigation · Map to Policy | Self-evolving world model for navigation; Contextual Evolution Memory updates latent representations online |
+| 2025 | [[2509.21309\|NewtonGen]] | Physics · Physics in the Representation | Embeds physics-informed neural ODEs (linear ODEs + residual MLP) into T2V; explicit Newtonian motion with **0.98** Physical Invariance Score on 12 motion types from only 100 physics-clean clips |
+| 2025 | [[2510.05580\|MetaVLA]] | Self-Evolving · Policy and Model Co-Improve | Researchers from Carnegie Mellon University and Meta Reality Labs developed MetaVLA, a unified meta co-training framework that efficiently adapts Vision-Language-Action (VLA) models |
+| 2025 | [[2511.16166\|EvoVLA]] | Self-Evolving · Policy and Model Co-Improve | EvoVLA is a self-evolving vision-language-action framework designed to overcome stage hallucination and fragile memory in long-horizon robotic manipulation tasks |
+| 2026 | [[2601.11421\|GM-100]] | Benchmarks · Corpus and Evaluation | 100 detail-oriented tasks; current VLAs achieve very low success rates, exposing real capability gaps |
+| 2026 | [[2602.15922\|DreamZero]] | WAM · Video Prediction as Policy | 14B parameter WAM from NVIDIA; zero-shot robot policies via joint video+action prediction |
+| 2026 | [[2603.08403\|SPIRAL]] | Self-Evolving · Policy and Model Co-Improve | Closed-loop self-improving framework for controllable, long-horizon video generation and WAMs |
+| 2026 | [[2603.23376\|ABot-PhysWorld]] | Physics · Physics in the Representation | SOTA on both PBench (**0.8491**) and its own EZSbench (**0.8030**) via Diffusion-DPO physical-preference alignment |
+| 2026 | [[2605.00880\|AFM]] | Navigation · Map to Policy | Adversarial flow matching produces imperceptible 1-NFE perturbations causing 88% attack success on Transformer-backbone end-to-end driving stacks |
+| 2026 | [[2606.12690\|EWAM]] | Self-Evolving · Policy and Model Co-Improve | EWAM introduces a closed-loop online adaptation architecture that enhances the execution quality and robustness of pre-trained World Action Models (WAMs) in zero-shot deployments |
 
 ---
 
