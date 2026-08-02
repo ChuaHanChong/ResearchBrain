@@ -19,17 +19,17 @@ aliases:
 ## Evolution Graph
 
 ```text
-Foundations
+1. Foundations
 
 ╔════════════════════╗          ┌───────────────────────────┐
-║ *Diffuser (2022)   ║ ───────► │ Diffusion Policy (2023)   │
+║ Diffuser (2022)    ║ ───────► │ Diffusion Policy (2023)   │
 ╚════════════════════╝          └───────────────────────────┘
 
 
-Unified Multimodal
+2. Unified Multimodal
 
                     ╔═══════════════════════╗
-                    ║ *Transfusion (2024)   ║
+                    ║ Transfusion (2024)    ║
                     ╚═══════════╤═══════════╝
                      ┌──────────┴──────────┐
                      ▼                     ▼
@@ -43,10 +43,10 @@ Unified Multimodal
           └────────────────────┘          └────────────────────┘
 
 
-Discrete Diffusion LLMs
+3. Discrete Diffusion LLMs
 
                      ╔═══════════════════╗
-                     ║ *LLaDA (2025)     ║
+                     ║ LLaDA (2025)      ║
                      ╚═════════╤═════════╝
               ┌────────────────┼────────────────┐
               ▼                ▼                ▼
@@ -55,10 +55,10 @@ Discrete Diffusion LLMs
    └────────────────────┘ └────────────────┘ └────────────────┘
 
 
-RL Alignment
+4. RL Alignment
 
               ╔═══════════════════════╗
-              ║ *Flow-GRPO (2025)     ║
+              ║ Flow-GRPO (2025)      ║
               ╚═══════════╤═══════════╝
                ┌──────────┴──────────┐
                ▼                     ▼
@@ -67,7 +67,7 @@ RL Alignment
     └─────────────────────┘  └─────────────────────┘
 
 
-CoT Generation
+5. CoT Generation
 
            ┌─────────────────────────────┐
            │ CoT Image Gen (2025)        │
@@ -78,7 +78,7 @@ CoT Generation
      │ T2I-R1 (2025)      │  │ GoT (2025)         │
      └────────────────────┘  └────────────────────┘
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field evolved through five threads: **foundations** (2022-2023) where Diffuser and Diffusion Policy bridged diffusion from image synthesis to RL planning and robot control; **unified multimodal** (2024-2025) where Transfusion, Show-o, Chameleon, Show-o2, and Ovis-U1 merged understanding and generation in single architectures; **discrete diffusion LLMs** (2025) where LLaDA, LLaDA 1.5, MMaDA, and d1 proved diffusion can rival autoregression for language; **RL alignment** (2025) where Flow-GRPO, BranchGRPO, and UniRL applied policy optimization to generative models; and **CoT generation** (2025) where CoT Image Gen, T2I-R1, and GoT taught generators to reason before drawing.

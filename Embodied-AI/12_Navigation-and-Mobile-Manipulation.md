@@ -19,98 +19,153 @@ aliases:
 
 ## Evolution Graph
 
+```text
+1. Spatial Memory & Maps   (what the agent remembers about space)
+· explicit semantic maps
+                      +language map
+┌────────────────┐    ╔═══════════════╗
+│ MultiON (2020) │───►║ VLMaps (2022) ║─┐
+└────────────────┘    ╚═══════════════╝ │
+                                        │    +memory snapshots    +scene graph
+                                        │    ┌───────────────┐    ┌───────────────┐
+                                        ├───►│ 3D-Mem (2024) │───►│ CogNav (2024) │
+                                        │    └───────────────┘    └───────────────┘
+                                        │    +belief voxels
+                                        │    ┌─────────────────────┐
+                                        └───►│ BeliefMapNav (2025) │
+                                             └─────────────────────┘
+
+· working & episodic memory
+                                    +working memory       +scene-graph palace       +long-term bench
+┌──────────────────────────────┐    ┌────────────────┐    ┌────────────────────┐    ┌──────────────┐
+│ MemAug-Image-Goal-Nav (2021) │───►│ MemoNav (2024) │───►│ Mind-Palace (2025) │───►│ LMEE (2026)  │
+└──────────────────────────────┘    └────────────────┘    └────────────────────┘    └──────────────┘
+
+· retrieval & dynamic memory
+                           +purge moved objects
+┌─────────────────────┐    ╔══════════════════╗
+│ Embodied-RAG (2024) │───►║ DynaMem (2024)   ║─┐
+└─────────────────────┘    ╚══════════════════╝ │
+                                                │    +world-model memory
+                                                │    ┌─────────────────┐
+                                                ├───►│ Memoir (2025)   │
+                                                │    └─────────────────┘
+                                                │    +3DGS memory
+                                                │    ┌──────────────┐
+                                                └───►│ GSMem (2026) │
+                                                     └──────────────┘
+
+2. Vision-Language Navigation   (following instructions in the world)
+· instruction grounding
+                      +topological map
+┌────────────────┐    ╔═══════════════╗
+│ RCM+SIL (2018) │───►║ ETPNav (2023) ║─┐
+└────────────────┘    ╚═══════════════╝ │
+                                        │    +video VLM
+                                        │    ┌──────────────┐
+                                        ├───►│ NaVid (2024) │
+                                        │    └──────────────┘
+                                        │    +annotated maps      +layered 3D tokens
+                                        │    ┌───────────────┐    ┌────────────────┐
+                                        └───►│ MapNav (2025) │───►│ Dynam3D (2025) │
+                                             └───────────────┘    └────────────────┘
+
+· anticipatory navigation
+                   +closed-loop imagination    +trajectory imagining    +latent anticipation
+┌─────────────┐    ┌──────────────────────┐    ┌───────────────────┐    ┌────────────────────┐
+│ SALI (2024) │───►│ VISTA (2025)         │───►│ DreamNav (2025)   │───►│ LatentPilot (2026) │
+└─────────────┘    └──────────────────────┘    └───────────────────┘    └────────────────────┘
+
+3. World-Model Planning   (predict before you move)
+· navigation world models
+                  +VLM in the loop
+╔════════════╗    ┌──────────────┐
+║ NWM (2024) ║───►│ WMNav (2025) │─┐
+╚════════════╝    └──────────────┘ │
+                                   │    +diffusion WM     +JEPA planner
+                                   │    ┌────────────┐    ┌───────────────┐
+                                   ├───►│ MWM (2026) │───►│ PiJEPA (2026) │
+                                   │    └────────────┘    └───────────────┘
+                                   │    +action model
+                                   │    ┌───────────────┐
+                                   └───►│ NavWAM (2026) │
+                                        └───────────────┘
+
+4. Self-Evolving & Continual   (improving after deployment)
+· continual adaptation
+                    +anti-forgetting    +lifecycle loop
+┌──────────────┐    ┌──────────────┐    ┌────────────────┐
+│ VLNCL (2024) │───►│ C-Nav (2025) │───►│ Arcadia (2025) │─┐
+└──────────────┘    └──────────────┘    └────────────────┘ │
+                                                           │    +agentic replan
+                                                           │    ┌─────────────┐
+                                                           ├───►│ ASER (2026) │
+                                                           │    └─────────────┘
+                                                           │    +imagine-then-verify
+                                                           │    ┌────────────────────┐
+                                                           └───►│ Robo-Cortex (2026) │
+                                                                └────────────────────┘
+
+5. Navigation Foundation Models   (one policy, many embodiments)
+· cross-embodiment scaling
+                   +goal masking
+╔═════════════╗    ┌──────────────┐
+║ ViNT (2023) ║───►│ NoMaD (2023) │─┐
+╚═════════════╝    └───────┬──────┘ │
+                           └──► NWM (2024)  [World-Model Planning, above]  +nav world model
+                                    │    +legged VLA
+                                    │    ┌───────────────┐
+                                    ├───►│ NaVILA (2024) │
+                                    │    └───────────────┘
+                                    │    +diffusion policy    +omni-modal
+                                    │    ┌───────────────┐    ┌────────────────┐
+                                    └───►│ NavDP (2025)  │───►│ OmniVLA (2025) │
+                                         └───────────────┘    └────────────────┘
+
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
-(L1 = 2020-2022 lane, L2 = 2023-2024 lane, L3 = 2025-2026 lane)
 
-[2020-2022 : Maps & Memory]
+Five lanes. Spatial memory carries three parallel answers to what a robot should remember — explicit semantic maps forking at [[2210.05714|VLMaps]], episodic memory, and retrieval. Vision-language navigation separates instruction grounding from anticipation. World-model planning predicts before moving and is fed from the foundation-model lane by [[2310.07896|NoMaD]]. Self-evolving covers what happens after deployment, and navigation foundation models ask for one policy across embodiments.
 
-+--------------------------------+     +----------------------------------+
-| A1 MultiON (2020): sem-map mem | --> | A4 VLMaps (2022): open-vocab map |
-+--------------------------------+     +----------------------------------+
-                                                         |
-                                                         v
-                                                         (-> L2: B5 3D-Mem)
-
-+------------------------------------+    +-------------------------------------------+
-| A2 MemAug-ImgGoal (2021): episodic |    | A3 Blind-Nav-Agents (2022): emergent maps |
-+------------------------------------+    +-------------------------------------------+
-                   |
-                   v
-                   (-> L2: B3 MemoNav)
-                                                                |
-                                                                v
-                                                                (-> L2: B2 TDB)
-
-+-----------------------------------+
-| A5 GGCS (2022): geodesic planning |
-+-----------------------------------+
-                  |
-                  v
-                  (-> L2: B6 DynaMem)
-
-[2023-2024 : LLM Nav & Cognitive Maps]
-
-+--------------------------------+     +------------------------------------+
-| B3 MemoNav (2023): working mem | --> | B4 CogNav (2024): cognitive states |
-+--------------------------------+     +------------------------------------+
-                                                          |
-                                                          v
-                                                          (-> L3: C2 LatentPilot/SAGE)
-
-+--------------------------+    +----------------------------------+
-| B1 LLM-Nav-Survey (2023) |    | B2 TDB (2023): discrete cog-maps |
-+--------------------------+    +----------------------------------+
-              |
-              v
-              (-> L3: C1 SE-VLN/C-Nav)
-
-+--------------------------------+    +--------------------------------------+
-| B5 3D-Mem (2024): snapshot mem |    | B6 DynaMem (2024): dynamic mob-manip |
-+--------------------------------+    +--------------------------------------+
-                 |
-                 v
-                 (-> L3: C3 MWM/PiJEPA)
-                                                          |
-                                                          v
-                                                          (-> L3: C5 SigLoMa/TAGA/MIF)
-
-+-------------------------------+    +------------------------------------+
-| B7 FLaRe (2024): RL fine-tune |    | B8 Embodied-RAG (2024): sem forest |
-+-------------------------------+    +------------------------------------+
-                |
-                v
-                (-> L3: C6 VIA/ConformalCrowd)
-                                                        |
-                                                        v
-                                                        (-> L3: C2 LatentPilot/SAGE)
-
-[2025-2026 : World-Model & Self-Evolving Nav]
-
-+-----------------------------------------+     +-----------------------------+
-| C2 LatentPilot/SAGE (2026): latent imag | --> | C4 GN0 (2026): 3DGS nav fdn |
-+-----------------------------------------+     +-----------------------------+
-
-+-----------------------------------------+    +---------------------------------------+
-| C1 SE-VLN/C-Nav (2025): self-evolve VLN |    | C3 MWM/PiJEPA (2026): WM-in-loop plan |
-+-----------------------------------------+    +---------------------------------------+
-
-+--------------------------------------------+    +----------------------------------------+
-| C5 SigLoMa/TAGA/MIF (2026): loco-mob-manip |    | C6 VIA/ConformalCrowd (2026): safe nav |
-+--------------------------------------------+    +----------------------------------------+
-```
-
-Navigation research bifurcated early into two threads that this graph colours separately: the **explicit-representation thread** (blue — semantic maps, cognitive maps, scene graphs) that prizes interpretability and verifiable planning, and the **end-to-end-policy thread** (green — RL/IL agents whose spatial knowledge lives in latent state). The 2023–2024 LLM wave grafted language onto both — cognitive-map navigators that prompt an LLM over a scene graph, and RAG-style episodic memory for embodied Q&A. The 2025–2026 frontier (the bottom subgraph) is convergence: world models supply *imagined* rollouts to plan over, latent "pilot tokens" internalize anticipation inside a VLM backbone, and **mobile manipulation** (orange) closes the loop where the navigator must also act on what it reaches.
-
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2020 | [[2012.03912\|MultiON]] | Benchmarked explicit semantic-map memory vs implicit memory for multi-object navigation |
-| 2021 | [[2101.05181\|MemAug-Image-Goal-Nav]] | Attention-based episodic memory + augmentation for RGB-only image-goal nav |
-| 2022 | [[2301.13261\|Blind-Nav-Agents]] | Showed metric maps emerge spontaneously in a blind RL agent's recurrent memory |
-| 2022 | [[2210.05714\|VLMaps]] | Fused VLM features into a spatial map for zero-shot open-vocabulary goal navigation |
-| 2024 | [[2412.10439\|CogNav]] | LLM-driven cognitive-state machine over a heterogeneous cognitive map for ObjectNav |
-| 2024 | [[2411.04999\|DynaMem]] | Online dynamic spatio-semantic voxel memory for open-world mobile manipulation |
-| 2026 | [[2603.29165\|LatentPilot]] | Internalized action-conditioned anticipation as a latent "Pilot Token" in a VLN VLM |
-| 2026 | [[2606.03682\|GN0]] | Unified 3DGS data + simulation + foundation policy for VLN with sim-to-real transfer |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2018 | [[1811.10092\|RCM+SIL]] | VLN · Grounding | Pairs a Reinforced Cross-Modal Matching reasoning navigator with a matching critic giving an intrinsic cycle-reconstruction |
+| 2020 | [[2012.03912\|MultiON]] | Maps · Semantic | A benchmark of map-memory for sequential multi-object navigation |
+| 2021 | [[2101.05181\|MemAug-Image-Goal-Nav]] | Maps · Episodic | An RGB-only RL policy augmented with an attention-based episodic memory over a self-supervised state-embedding network |
+| 2022 | [[2210.05714\|VLMaps]] | Maps · Semantic | A navigator fusing pixel-level visual-language embeddings (LSeg) into a dense top-down grid from point cloud data |
+| 2023 | [[2304.03047\|ETPNav]] | VLN · Grounding | A hierarchical VLN-CE agent building an online topological map from depth-only waypoint prediction |
+| 2023 | [[2306.14846\|ViNT]] | Foundation Model | A 31M-param Transformer foundation model pretrained on image-goal navigation across 8 robot platforms via normalized |
+| 2023 | [[2310.07896\|NoMaD]] | Foundation Model | A unified nav + exploration policy extending ViNT with a goal-masked conditional diffusion decoder |
+| 2024 | [[2402.15852\|NaVid]] | VLN · Grounding | An end-to-end video-based VLM for VLN-CE operating solely on monocular RGB video and language |
+| 2024 | [[2402.19161\|MemoNav]] | Maps · Episodic | A biologically-inspired working memory (STM + LTM + dynamically-built WM) with a selective forgetting module that prunes |
+| 2024 | [[2409.02561\|VLNCL]] | Self-Evolving | The VLN with Continual Learning paradigm where an agent learns task domains sequentially |
+| 2024 | [[2409.18313\|Embodied-RAG]] | Maps · Dynamic | A system building a semantic forest |
+| 2024 | [[2411.04999\|DynaMem]] | Maps · Dynamic | A dynamic 3D voxel memory that ray-casts to detect and purge moved/removed objects |
+| 2024 | [[2411.17735\|3D-Mem]] | Maps · Semantic | A scene memory representing space as multi-view Memory Snapshots (explored) + Frontier Snapshots (unexplored) built |
+| 2024 | [[2412.01857\|SALI]] | VLN · Anticipatory | A Space-Aware Long-term Imaginer for VLN pairing a reality-imagination hybrid memory over a topological map |
+| 2024 | [[2412.03572\|NWM]] | World Model | A controllable video world model predicting future egocentric observations conditioned on actions and a time-shift parameter |
+| 2024 | [[2412.04453\|NaVILA]] | Foundation Model | A legged-robot navigation VLA decoupling a high-level VLA reasoner (VILA, mid-level language commands) from a low-level RL |
+| 2024 | [[2412.10439\|CogNav]] | Maps · Semantic | An ObjectNav agent building a heterogeneous cognitive map (scene graph + occupancy + landmark graph) and running an LLM |
+| 2025 | [[2502.13451\|MapNav]] | VLN · Grounding | A VLN memory replacing history frames with Annotated Semantic Maps |
+| 2025 | [[2503.02247\|WMNav]] | World Model | An ObjectNav framework integrating a VLM into a world model to predict action outcomes without acting |
+| 2025 | [[2505.07868\|VISTA]] | VLN · Anticipatory | A closed-loop VLN framework pairing a Visual Imagination Module with a Perceptual Alignment Filter and Navigational |
+| 2025 | [[2505.08712\|NavDP]] | Foundation Model | A sim-to-real navigation diffusion policy trained on 200K+ trajectories from a DataEngine |
+| 2025 | [[2505.11383\|Dynam3D]] | VLN · Grounding | A Dynamic layered 3D tokens representation with online instance encoding giving a VLM a structured |
+| 2025 | [[2506.06487\|BeliefMapNav]] | Maps · Semantic | A zero-shot ObjectNav system building a 3D voxel belief map that fuses multi-scale visual semantics with LLM commonsense |
+| 2025 | [[2507.12846\|Mind-Palace]] | Maps · Episodic | A hierarchical scene-graph "Robotic Mind Palace" over multi-episode history |
+| 2025 | [[2509.11197\|DreamNav]] | VLN · Anticipatory | A trajectory-based imaginative zero-shot VLN-CE framework with an EgoView Corrector, a diffusion trajectory predictor |
+| 2025 | [[2509.19480\|OmniVLA]] | Foundation Model | An omni-modal navigation VLA extending a 7B OpenVLA backbone to fuse language, 2D-pose |
+| 2025 | [[2510.08553\|Memoir]] | Maps · Dynamic | A memory-persistent VLN agent using a language-conditioned world model to imagine future states as retrieval queries over |
+| 2025 | [[2510.20685\|C-Nav]] | Self-Evolving | A continual ObjectNav method with a Dual-Path Anti-Forgetting mechanism and Adaptive Experience Selection |
+| 2025 | [[2512.00076\|Arcadia]] | Self-Evolving | A full-lifecycle embodied lifelong-learning framework pairing self-evolving frontier exploration |
+| 2026 | [[2601.10744\|LMEE]] | Maps · Episodic | A Long-term Memory Embodied Exploration paradigm + LMEE-Bench unifying multi-goal nav with memory-based QA |
+| 2026 | [[2603.02772\|ASER]] | Self-Evolving | An Agentic Self-Evolutionary Replanning method adapting the action model via In-context Learning with Auto-Differentiation |
+| 2026 | [[2603.07799\|MWM]] | World Model | A Mobile World Model training a diffusion world model with Structure-First |
+| 2026 | [[2603.19137\|GSMem]] | Maps · Dynamic | A persistent 3D Gaussian Splatting spatial memory re-rendering explored areas for VLM re-observation |
+| 2026 | [[2603.25981\|PiJEPA]] | World Model | A planner integrating a finetuned Octo policy (an informed action prior) with MPPI planning over a JEPA latent world model |
+| 2026 | [[2603.29165\|LatentPilot]] | VLN · Anticipatory | A VLN agent internalizing anticipatory reasoning as a continuous Pilot Token propagated across steps |
+| 2026 | [[2605.18729\|Robo-Cortex]] | Self-Evolving | A self-evolving nav agent combining an Imagine-then-Verify world-model planning loop with Dual-Grain Cognitive Memory |
+| 2026 | [[2606.13494\|NavWAM]] | World Model | A navigation world action model fusing visual foresight, goal-progress estimation |
 
 ## Part A — Foundations
 
@@ -214,16 +269,16 @@ Coordinating many robots' trajectories in shared, obstacle-dense space -- whethe
 | RGB-only generalization with no map | [[2301.13261\|Blind-Nav-Agents]], [[2101.05181\|MemAug-Image-Goal-Nav]] |
 | Large outdoor / mapless long-range | [[2506.05997\|SRU]] (**+105%** SR over GTRL) |
 | Compute-bound VLN deployment | [[2604.24391\|FreqCache]] (**1.59×** speedup) |
-| Survey of LLM navigation landscape | [[2311.00530\|LLM-Embodied-Navigation-Survey]] |
+| Survey of LLM navigation landscape | [[2311.00530\|LLM-Embodied-Navigation-Survey]] | ^dm-1
 
 > [!star] Key Papers — Design-Space Exemplars
 > - [[2301.13261|Blind-Nav-Agents]] — The landmark result that metric maps emerge spontaneously in an end-to-end agent's memory, dissolving the explicit-vs-implicit dichotomy.
 > - [[2401.05946|TDB]] — Established the discrete-bottleneck cognitive map as the interpretable middle ground between explicit maps and black-box policies.
 > - [[2506.05997|SRU]] — The reference architecture for spatially-aware recurrence in mapless long-range navigation.
-> - [[2311.00530|LLM-Embodied-Navigation-Survey]] — The canonical taxonomy of how language models slot into the navigation stack.
+> - [[2311.00530|LLM-Embodied-Navigation-Survey]] — The canonical taxonomy of how language models slot into the navigation stack. ^key-papers-1
 
 > [!tip] The Map Never Disappears — It Just Moves
-> The recurring lesson across this section is that *every* navigator carries a spatial representation; the only design choice is whether it lives in an inspectable data structure or in a recurrent/latent state. Blind agents grow occupancy maps in an LSTM; TDB makes the latent map discrete and plannable; SRU bakes spatial alignment into the recurrence. Reach for explicit maps when you need to *verify* a path or debug a failure; reach for learned latent memory when you need sim-to-real robustness and generalization. The 2026 trend (see [[12_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies]]) is to keep both — a learned policy that plans over an *imagined* latent world. For the latent-world-model substrate underneath, see [[07_Latent-World-Models#1. The JEPA Principle]].
+> The recurring lesson across this section is that *every* navigator carries a spatial representation; the only design choice is whether it lives in an inspectable data structure or in a recurrent/latent state. Blind agents grow occupancy maps in an LSTM; TDB makes the latent map discrete and plannable; SRU bakes spatial alignment into the recurrence. Reach for explicit maps when you need to *verify* a path or debug a failure; reach for learned latent memory when you need sim-to-real robustness and generalization. The 2026 trend (see [[12_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies]]) is to keep both — a learned policy that plans over an *imagined* latent world. For the latent-world-model substrate underneath, see [[07_Latent-World-Models#1. The JEPA Principle]]. ^insight-1
 
 ### 2. Vision-Language Navigation
 
@@ -355,16 +410,16 @@ The environments and platforms that stress-test instruction-following.
 | Sim-to-real photorealistic VLN foundation | [[2606.03682\|GN0]] (**67.7%** SR, G1 transfer) |
 | Anticipatory VLN at low latency | [[2603.29165\|LatentPilot]] (**130ms**/action) |
 | Training-free self-improving VLN | [[2507.13152\|SE-VLN]] (**+23.9%** SR) |
-| Realistic / aerial / humanoid benchmark | [[2405.07060\|Memory-Maze]], [[2408.15511\|AeroVerse]], [[2604.08509\|Visually-grounded-Humanoid-Agents]] |
+| Realistic / aerial / humanoid benchmark | [[2405.07060\|Memory-Maze]], [[2408.15511\|AeroVerse]], [[2604.08509\|Visually-grounded-Humanoid-Agents]] | ^dm-2
 
 > [!star] Key Papers
 > - [[2210.05714|VLMaps]] — The canonical open-vocabulary semantic-map navigator; established language-indexed spatial maps as a VLN primitive.
 > - [[2603.29165|LatentPilot]] — First to internalize action-conditioned anticipation inside the VLM backbone, replacing bolt-on world models.
 > - [[2606.03682|GN0]] — The reference 3DGS-grounded VLN foundation model with demonstrated zero-shot sim-to-real transfer.
-> - [[2405.07060|Memory-Maze]] — The benchmark that exposed how badly VLN handles realistic, memory-imperfect human instructions.
+> - [[2405.07060|Memory-Maze]] — The benchmark that exposed how badly VLN handles realistic, memory-imperfect human instructions. ^key-papers-2
 
 > [!tip] Anticipation Beats External World Models — When It's Internalized
-> The 2026 VLN surprise is that *imagining the future* helps, but the win comes from internalizing it cheaply, not from a separate module. [[2603.29165|LatentPilot]] folds action-conditioned anticipation into a single Pilot Token and beats external world models on *both* accuracy and latency (**130ms**/action); the heavy bolt-on planner is a legacy of treating perception and prediction as separate stages. Compose this with self-evolution ([[2507.13152|SE-VLN]]) for training-free improvement and frozen-VLM grounding ([[2506.15757|WPCL]]) for cheap open-vocabulary perception. For the VLA-side treatment of reasoning-augmented action models, see [[04_VLA#4. Reasoning & Planning-Augmented VLAs]]; for the egocentric pretraining that gives these agents their visual priors, see [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]].
+> The 2026 VLN surprise is that *imagining the future* helps, but the win comes from internalizing it cheaply, not from a separate module. [[2603.29165|LatentPilot]] folds action-conditioned anticipation into a single Pilot Token and beats external world models on *both* accuracy and latency (**130ms**/action); the heavy bolt-on planner is a legacy of treating perception and prediction as separate stages. Compose this with self-evolution ([[2507.13152|SE-VLN]]) for training-free improvement and frozen-VLM grounding ([[2506.15757|WPCL]]) for cheap open-vocabulary perception. For the VLA-side treatment of reasoning-augmented action models, see [[04_VLA#4. Reasoning & Planning-Augmented VLAs]]; for the egocentric pretraining that gives these agents their visual priors, see [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]]. ^insight-2
 
 ## Part B — Methods
 
@@ -470,16 +525,16 @@ The metric state-estimation backbone underneath robot navigation: recovering pos
 | Multi-episode lifelong memory | [[2507.12846\|Mind-Palace]] (6-month, 1,000 m²) |
 | Language-queryable retrieval memory | [[2409.18313\|Embodied-RAG]], [[2511.14004\|STAR-Memory-Action]] |
 | Dynamic / changing environments | [[2411.04999\|DynaMem]] (**70%** SR, dynamic objects) |
-| Persistent neural-field exploration memory | [[2605.22814\|Remember-to-be-Curious]] (3DGS) |
+| Persistent neural-field exploration memory | [[2605.22814\|Remember-to-be-Curious]] (3DGS) | ^dm-3
 
 > [!star] Key Papers
 > - [[2012.03912|MultiON]] — The foundational benchmark proving explicit semantic memory outperforms implicit memory, and established the multi-object navigation task.
 > - [[2411.04999|DynaMem]] — The reference architecture for dynamic spatio-semantic memory that survives object motion — the link between navigation memory and mobile manipulation.
 > - [[2409.18313|Embodied-RAG]] — Established retrieval-augmented generation as a scalable, language-queryable embodied memory paradigm.
-> - [[2402.19161|MemoNav]] — Made *selective forgetting* a first-class navigation mechanism rather than an afterthought.
+> - [[2402.19161|MemoNav]] — Made *selective forgetting* a first-class navigation mechanism rather than an afterthought. ^key-papers-3
 
 > [!tip] Forgetting Is the Hard Part, Not Remembering
-> Across every memory architecture here, the binding constraint is not storage capacity but *retrieval cost and staleness* — and the systems that win make forgetting an active decision. MemoNav prunes low-attention nodes; DynaMem ray-casts to purge moved objects; C-Nav (see [[12_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies]]) keeps only outlier keyframes. The composition recipe: pick a representation by your *persistence* need (working memory for a task, semantic forest for lifelong retrieval, dynamic voxels for changing scenes), then layer a forgetting/pruning mechanism so retrieval stays cheap. For the latent-prediction view of spatial memory as a learned world model, see [[07_Latent-World-Models#3. Broader Latent Prediction Landscape]]; for how manipulation handles non-Markovian long-horizon memory, see [[09_Manipulation-Skill-Learning#4. Memory & Long-Horizon Non-Markovian Control]].
+> Across every memory architecture here, the binding constraint is not storage capacity but *retrieval cost and staleness* — and the systems that win make forgetting an active decision. MemoNav prunes low-attention nodes; DynaMem ray-casts to purge moved objects; C-Nav (see [[12_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies]]) keeps only outlier keyframes. The composition recipe: pick a representation by your *persistence* need (working memory for a task, semantic forest for lifelong retrieval, dynamic voxels for changing scenes), then layer a forgetting/pruning mechanism so retrieval stays cheap. For the latent-prediction view of spatial memory as a learned world model, see [[07_Latent-World-Models#3. Broader Latent Prediction Landscape]]; for how manipulation handles non-Markovian long-horizon memory, see [[09_Manipulation-Skill-Learning#4. Memory & Long-Horizon Non-Markovian Control]]. ^insight-3
 
 ### 4. Learning-Based Navigation Policies
 
@@ -603,17 +658,17 @@ Policies that read human intent and social norms to move through crowds, shared 
 | High-DoF / deformable local navigation | [[2605.12689\|3D-RL-DWA]] (**<2 ms**) |
 | Socially-compliant nav in human spaces | [[2511.21135\|SocialNav]] (**86.1%** SR, **82.5%** compliance) |
 | One local policy across many embodiments | [[2509.23203\|CE-Nav]] (5 robots, **8×** less training) |
-| Scale a generalist nav policy with offline video + RL | [[2507.22028\|S2E]] (**+21%** SR over BC-only) |
+| Scale a generalist nav policy with offline video + RL | [[2507.22028\|S2E]] (**+21%** SR over BC-only) | ^dm-4
 
 > [!star] Key Papers
 > - [[2605.10118|SAGE]] — Showed that physics-grounded sandbox imagination plus GRPO-style optimization yields navigation that beats GPT-4o and transfers to hardware.
 > - [[2605.14174|VIA]] — The reference for formally verifiable navigation: CVaR-constrained RL whose safety margins survive reachability analysis and sim-to-real.
 > - [[2510.20685|C-Nav]] — Established continual object navigation as a task and the dual-path anti-forgetting recipe for open-world skill accumulation.
 > - [[2507.22028|S2E]] — Showed RL on large-scale video pretraining ("seeing → experiencing") is what makes a navigation foundation model interactive and cross-embodiment, with the NavBench-GS benchmark.
-> - [[2509.23203|CE-Nav]] — The reference cross-embodiment recipe: an offline geometric-expert prior plus online RL transfers one local-nav policy across quadruped, biped, and aerial platforms at 8× lower cost.
+> - [[2509.23203|CE-Nav]] — The reference cross-embodiment recipe: an offline geometric-expert prior plus online RL transfers one local-nav policy across quadruped, biped, and aerial platforms at 8× lower cost. ^key-papers-4
 
 > [!tip] Safety Becomes a Constraint, Generalists Become Cross-Embodiment
-> Two strategic shifts converge in 2025–2026 policy learning. **Safety** is no longer a reward penalty but a *constraint the policy is trained and certified against*: [[2605.14174|VIA]] couples CVaR-constrained RL with reachability verification for a provable safety rate, and [[2508.05634|Conformal-Crowd-Navigation]] turns prediction uncertainty into a constraint — trading efficiency for collision guarantees that survive OOD and sim-to-real. **Generalization** mirrors the VLA pretraining story: a broad offline prior (video for [[2507.22028|S2E]], a geometric expert for [[2509.23203|CE-Nav]], human-walking norms for [[2511.21135|SocialNav]]) supplies the inductive bias, and a thin online-RL stage adds reactivity and embodiment-specific competence — yielding cross-embodiment transfer without per-platform retraining (CE-Nav runs one policy across five robots). Compose the two: plan *around* the constrained safe set with world-model imagination ([[2603.07799|MWM]]) atop a broadly-pretrained generalist. For the RL-for-embodiment methodology underneath, see [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]]; for the egocentric pretraining that supplies these priors, see [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]]; for sim-to-real transfer, see [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]].
+> Two strategic shifts converge in 2025–2026 policy learning. **Safety** is no longer a reward penalty but a *constraint the policy is trained and certified against*: [[2605.14174|VIA]] couples CVaR-constrained RL with reachability verification for a provable safety rate, and [[2508.05634|Conformal-Crowd-Navigation]] turns prediction uncertainty into a constraint — trading efficiency for collision guarantees that survive OOD and sim-to-real. **Generalization** mirrors the VLA pretraining story: a broad offline prior (video for [[2507.22028|S2E]], a geometric expert for [[2509.23203|CE-Nav]], human-walking norms for [[2511.21135|SocialNav]]) supplies the inductive bias, and a thin online-RL stage adds reactivity and embodiment-specific competence — yielding cross-embodiment transfer without per-platform retraining (CE-Nav runs one policy across five robots). Compose the two: plan *around* the constrained safe set with world-model imagination ([[2603.07799|MWM]]) atop a broadly-pretrained generalist. For the RL-for-embodiment methodology underneath, see [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]]; for the egocentric pretraining that supplies these priors, see [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]]; for sim-to-real transfer, see [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]]. ^insight-4
 
 ### 5. Mobile Manipulation & Loco-Navigation
 
@@ -679,16 +734,16 @@ Coordinating gaze, gait, and perception for humanoid locomotion in dynamic scene
 | Quadruped loco-manipulation from ego vision | [[2605.03846\|SigLoMa]] (**83–87%** grasp) |
 | Agile humanoid locomotion over gaps | [[2606.05880\|TAGA]] (**120 cm** gap, **+50%**) |
 | Humanoid interaction-pose safety | [[2605.21935\|MIF]] (**94%** IPS, **0%** collision) |
-| Aerial social navigation among humans | [[2605.25685\|HumanFlow]] (**100%** collision-free) |
+| Aerial social navigation among humans | [[2605.25685\|HumanFlow]] (**100%** collision-free) | ^dm-5
 
 > [!star] Key Papers
 > - [[2409.16578|FLaRe]] — The reference recipe for scaling RL fine-tuning to mobile manipulation, with the largest real-robot generalization gains in the class.
 > - [[2411.04999|DynaMem]] — The bridge paper connecting navigation memory to manipulation: dynamic spatio-semantic memory is what makes open-world mobile manipulation possible.
 > - [[2605.03846|SigLoMa]] — Established the ego-centric Kalman-filter recipe for treating quadruped locomotion and manipulation as one floating-base control problem.
-> - [[2606.05880|TAGA]] — First to show emergent active gaze for agile humanoid locomotion, extending perceptive locomotion past prior gap-traversal limits.
+> - [[2606.05880|TAGA]] — First to show emergent active gaze for agile humanoid locomotion, extending perceptive locomotion past prior gap-traversal limits. ^key-papers-5
 
 > [!tip] Mobile Manipulation Is Navigation Memory + Floating-Base Control, Fused
-> The unifying insight across embodiments is that mobile manipulation cannot be solved by stacking a navigation module on a manipulation module — the floating base couples them. SigLoMa and TAGA both invest in ego-motion compensation (Kalman filter, active gaze) precisely because the manipulation target's frame and the locomotion frame are the same moving frame; MIF verifies *interaction* poses, not just paths, because where the humanoid stops determines whether it can act. The composition recipe: take the dynamic memory of [[2411.04999|DynaMem]] (knows where the object is *now*), add floating-base control, and verify the interaction pose. For the manipulation-policy side of the coupling — grasping, dexterity, contact-rich skills — see [[09_Manipulation-Skill-Learning#1. Generative Policy Architectures]]; for the force-aware sensing that whole-body interaction needs, see [[11_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination]].
+> The unifying insight across embodiments is that mobile manipulation cannot be solved by stacking a navigation module on a manipulation module — the floating base couples them. SigLoMa and TAGA both invest in ego-motion compensation (Kalman filter, active gaze) precisely because the manipulation target's frame and the locomotion frame are the same moving frame; MIF verifies *interaction* poses, not just paths, because where the humanoid stops determines whether it can act. The composition recipe: take the dynamic memory of [[2411.04999|DynaMem]] (knows where the object is *now*), add floating-base control, and verify the interaction pose. For the manipulation-policy side of the coupling — grasping, dexterity, contact-rich skills — see [[09_Manipulation-Skill-Learning#1. Generative Policy Architectures]]; for the force-aware sensing that whole-body interaction needs, see [[11_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination]]. ^insight-5
 
 ## Part C — Frontier
 
@@ -723,16 +778,16 @@ The meta-pattern is that navigation's hardest problems are *systemic*, not modul
 | Catastrophic forgetting | Dual-path anti-forgetting + outlier keyframes ([[2510.20685\|C-Nav]]) |
 | Unprovable safety | CVaR + reachability verification ([[2605.14174\|VIA]]) |
 | Imagination divergence | Consistency distillation / physics sandbox ([[2603.07799\|MWM]], [[2605.10118\|SAGE]]) |
-| Privacy leakage during perception | Life-cycle privacy as a control signal ([[2605.05017\|SPINE]]) |
+| Privacy leakage during perception | Life-cycle privacy as a control signal ([[2605.05017\|SPINE]]) | ^dm-6
 
 > [!star] Key Papers — Navigation Failure Frontier
 > - [[2605.05017|SPINE]] — Reframed embodied privacy as a navigation-pipeline architectural constraint and quantified the non-linear privacy-utility trade-off.
 > - [[2605.14174|VIA]] — The frontier of provable navigation safety: the first to make CVaR-constrained policies survive formal reachability verification and sim-to-real.
 > - [[2405.07060|Memory-Maze]] — Exposed that VLN's grounding problem is far from solved once instructions become realistically imperfect.
-> - [[2510.20685|C-Nav]] — Surfaced continual object navigation as an open problem and the stability-plasticity wall that worsens with scale.
+> - [[2510.20685|C-Nav]] — Surfaced continual object navigation as an open problem and the stability-plasticity wall that worsens with scale. ^key-papers-6
 
 > [!tip] Every Navigation Failure Is a Representation That Lied
-> The common root beneath all these failure modes is a spatial representation that diverged from the world — stale maps, forgotten goals, divergent imagined rollouts, mis-grounded instructions, privacy-blind perception. The strategic implication is that the next gains come not from better policies over fixed representations, but from representations that *know when they are wrong* — dynamic memory that purges itself, world models that flag divergence, policies that verify their own safety, and perception pipelines that treat privacy as state. This is the same systemic-failure pattern that haunts world models generally: see [[06_WAM#9. Open Problems & Failure Modes]] for the imagination-divergence failure frontier, and [[14_Sim-to-Real-Transfer#7. Open Problems]] for the sim-to-real representation-mismatch failures that navigation shares.
+> The common root beneath all these failure modes is a spatial representation that diverged from the world — stale maps, forgotten goals, divergent imagined rollouts, mis-grounded instructions, privacy-blind perception. The strategic implication is that the next gains come not from better policies over fixed representations, but from representations that *know when they are wrong* — dynamic memory that purges itself, world models that flag divergence, policies that verify their own safety, and perception pipelines that treat privacy as state. This is the same systemic-failure pattern that haunts world models generally: see [[06_WAM#9. Open Problems & Failure Modes]] for the imagination-divergence failure frontier, and [[14_Sim-to-Real-Transfer#7. Open Problems]] for the sim-to-real representation-mismatch failures that navigation shares. ^insight-6
 
 ## Quick-Reference Matrix
 

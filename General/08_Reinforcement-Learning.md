@@ -18,9 +18,9 @@ aliases:
 ## Evolution Graph
 
 ```text
-Foundations
+1. Foundations
 ┌─────────────────────────────┐   ╔══════════════════════════════════╗
-│  RL Overview (Sutton 2024)  │   ║ *Policy Gradient / Actor-Critic  ║
+│  RL Overview (Sutton 2024)  │   ║ Policy Gradient / Actor-Critic   ║
 │  (standalone reference)     │   ╚═══════════════════╦══════════════╝
 └─────────────────────────────┘                       │
                                     ┌─────────────────┼──────────────────┐
@@ -29,7 +29,7 @@ Foundations
                               (Model-Based RL,   (Model-Based RL,   (RL for LLM Reasoning,
                                below: Dreamer)    below: Diffuser)   two rows below: STaR)
 
-Model-Based RL
+2. Model-Based RL
         ▲ from Policy Gradient / Actor-Critic                 ▲ from Policy Gradient / Actor-Critic
         │                                                     │
 ┌─────────────────┐                                    ┌─────────────────┐
@@ -40,13 +40,13 @@ Model-Based RL
         │              │                  │                  │
         ▼              ▼                  ▼                  ▼
 ╔══════════════╗ ┌──────────────┐  ┌─────────────────────┐ ┌────────────────┐
-║ *DreamerV3   ║ │ DayDreamer   │  │ Continual-Dreamer   │ │ Plan2Explore   │
+║ DreamerV3    ║ │ DayDreamer   │  │ Continual-Dreamer   │ │ Plan2Explore   │
 ║  (2023)      ║ │ (2022)       │  │ (2022)              │ │ (2020)         │
 ╚═══════╦══════╝ └──────────────┘  └─────────────────────┘ └────────────────┘
         │
         └──► RAGEN (2025)   [Agentic RL, two rows below]
 
-RL for LLM Reasoning
+3. RL for LLM Reasoning
                     ▲ from Policy Gradient / Actor-Critic
                     │
              ┌─────────────────┐
@@ -63,17 +63,17 @@ RL for LLM Reasoning
                                               │
                                               ▼
                                     ╔═══════════════════╗
-                                    ║ *DAPO (2025)      ║
+                                    ║ DAPO (2025)       ║
                                     ╚═════════╦═════════╝
                                               │
                               ┌───────────────┴───────────────────────┐
                               │                                       │
                               ▼                                       ▼
                     ╔═══════════════════════╗          (Agentic RL, one row below:
-                    ║ *Absolute Zero (2025) ║           AgentGym)
+                    ║ Absolute Zero (2025)  ║           AgentGym)
                     ╚═══════════════════════╝
 
-Agentic RL
+4. Agentic RL
    ▲ from DreamerV3 (2023)                            ▲ from DAPO (2025)
    │  [Model-Based RL, two rows above]                │  [RL for LLM Reasoning, above]
 ┌─────────────────┐                          ┌──────────────────┐
@@ -82,12 +82,12 @@ Agentic RL
                                                        │
                                                        ▼
                                               ╔══════════════════════╗
-                                              ║ *Complementary RL    ║
+                                              ║ Complementary RL     ║
                                               ║  (2026)              ║
                                               ╚══════════════════════╝
 ```
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 
 The field evolved through four threads: **model-based RL** (2019-2022) progressed from Dreamer's latent imagination through DayDreamer on real robots to Diffuser's diffusion-based planning; **RL for LLM reasoning** (2022-2025) advanced from STaR's self-taught bootstrapping through Self-Rewarding LMs and DAPO to Absolute Zero's fully zero-data self-play; **agentic RL** (2024-2026) scaled from AgentGym's multi-environment evolution through RAGEN's multi-turn training to Complementary RL's co-evolutionary framework.
 

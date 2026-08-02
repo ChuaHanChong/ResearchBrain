@@ -18,10 +18,10 @@ aliases:
 ## Evolution Graph
 
 ```text
-Contrastive Alignment
+1. Contrastive Alignment
 
 ╔══════════════╗
-║ *CLIP (2021) ║───────► OWL-ViT (2022)             [Open-Vocabulary Detection]
+║ CLIP (2021)  ║───────► OWL-ViT (2022)             [Open-Vocabulary Detection]
 ╚══════════════╝
        │
        ├───────► KOSMOS-2 (2023)                    [Grounded VLMs]
@@ -33,21 +33,21 @@ Contrastive Alignment
 └─────────────┘
 
 
-Open-Vocabulary Detection
+2. Open-Vocabulary Detection
 
 ┌────────────────┐
 │ OWL-ViT (2022) │
 └────────────────┘
 
 ╔════════════════════════╗
-║ *Grounding DINO (2023) ║
+║ Grounding DINO (2023)  ║
 ╚════════════════════════╝
 
 
-Grounded VLMs
+3. Grounded VLMs
 
 ╔══════════════════╗
-║ *KOSMOS-2 (2023) ║
+║ KOSMOS-2 (2023)  ║
 ╚══════════════════╝
         │
         ▼
@@ -61,7 +61,7 @@ Grounded VLMs
 └─────────────┘
 
 
-Visual Reasoning
+4. Visual Reasoning
 
 ┌────────────────┐          ┌───────────────────────┐
 │ VISPROG (2022) │          │ Multimodal-CoT (2023) │
@@ -74,20 +74,20 @@ Visual Reasoning
              └─────────────────┘
 
 
-MLLM Architectures & Scaling
+5. MLLM Architectures & Scaling
 
 ╔═══════════════╗
-║ *LLaVA (2023) ║
+║ LLaVA (2023)  ║
 ╚═══════════════╝
 
 
-RL-Trained Visual Reasoning
+6. RL-Trained Visual Reasoning
 
 ╔════════════════════╗
-║ *Visual-RFT (2025) ║
+║ Visual-RFT (2025)  ║
 ╚════════════════════╝
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field progressed from **contrastive alignment** (2021) where CLIP proved image-text pairing at web scale, through **open-vocabulary grounding** (2022-2023) where GLIP, Grounding DINO, and OWL-ViT brought language-driven detection to arbitrary categories, to **grounded reasoning** (2023) where models like LISA and ViperGPT combined spatial understanding with multi-step inference, then scaled into **instruction-tuned MLLMs** (2023, LLaVA) and, most recently, **RL-trained visual reasoning** (2025) where Visual-RFT showed verifiable rewards beat imitation for grounding-heavy tasks.

@@ -17,15 +17,15 @@ aliases:
 ## Evolution Graph
 
 ```text
-Self-Training Origins
+1. Self-Training Origins
                  ╔══════════════╗
-                 ║ *STaR (2022) ║
+                 ║ STaR (2022)  ║
                  ╚══════╦═══════╝
                         │
                   ┌─────┴──────┐
                   │            │
                   ▼            ▼
-Reward & Reasoning
+2. Reward & Reasoning
 ┌──────────────────────────┐   ┌───────────────────┐        ┌────────────────┐
 │ Self-Rewarding LM (2024) │   │ Quiet-STaR (2024) │───────►│ STILL-2 (2024) │
 └──────────┬────────┬──────┘   └───────────────────┘        └─────────┬──────┘
@@ -34,7 +34,7 @@ Reward & Reasoning
            ▼                                                          │
 Zero-Data & Self-Play                                                 ▼
 ╔═══════════════════════╗          ┌─────────────┐      ┌────────────────┐
-║ *Absolute Zero (2025) ║          │ TTRL (2025) │─────►│ EVOL-RL (2025) │
+║ Absolute Zero (2025)  ║          │ TTRL (2025) │─────►│ EVOL-RL (2025) │
 ╚═══════════╦═══════════╝          └─────────────┘      └────────────────┘
             │
       ┌─────┴──────┐
@@ -44,21 +44,21 @@ Zero-Data & Self-Play                                                 ▼
 │ Socratic-Zero (2025) │   │ Vision-Zero (2025) │
 └──────────────────────┘   └────────────────────┘
 
-Self-Evolving Agents
+3. Self-Evolving Agents
 ┌─────────────────┐        ┌────────────────┐
 │ AgentGym (2024) │───────►│ EVOLVER (2025) │────┐
 └─────────────────┘        └────────────────┘    │
                                                  ▼
 ┌────────────┐                            ╔══════════════╗
-│ SSR (2025) │───────────────────────────►║ *ECHO (2026) ║
+│ SSR (2025) │───────────────────────────►║ ECHO (2026)  ║
 └────────────┘                            ╚══════════════╝
 
-Continual & Experiential
+4. Continual & Experiential
 ┌────────────┐      ┌────────────┐      ╔════════════════╗
-│ ELL (2025) │─────►│ OEL (2026) │─────►║ *XSkill (2026) ║
+│ ELL (2025) │─────►│ OEL (2026) │─────►║ XSkill (2026)  ║
 └────────────┘      └────────────┘      ╚════════════════╝
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field evolved through five threads: **self-training origins** (2022) where STaR established iterative rationale bootstrapping; **reward and reasoning** (2024) where Self-Rewarding LM, Quiet-STaR, and STILL-2 added self-judging and slow-thinking; **zero-data and self-play** (2025) where Absolute Zero, TTRL, EVOL-RL, Socratic-Zero, and Vision-Zero eliminated human data entirely; **self-evolving agents** (2024-2026) where AgentGym, EVOLVER, SSR, and ECHO scaled self-improvement to multi-step agent behavior; and **continual experiential learning** (2025-2026) where ELL, OEL, and XSkill added persistent memory for lifelong improvement.

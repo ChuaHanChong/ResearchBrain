@@ -23,60 +23,108 @@ Embodied AI gives intelligent systems physical presence — robots that manipula
 
 The embodied-AI field evolved through four phases — from single-task imitation foundations, to generalist VLAs, to world-model-augmented systems, to self-evolving agents.
 
+```text
+1. Learning Foundations   (the RL and control ideas underneath)
+· model-free to model-based RL
+╔════════════╗
+║ DQN (2013) ║─┐
+╚════════════╝ │
+               │    +stable policy gradient    +max entropy
+               │    ┌─────────────────────┐    ┌────────────┐
+               ├───►│ PPO (2017)          │───►│ SAC (2018) │
+               │    └─────────────────────┘    └────────────┘
+               │    +learned model     +latent imagination
+               │    ┌─────────────┐    ┌─────────────────┐
+               └───►│ MBPO (2019) │───►│ Dreamer (2019)  │
+                    └─────────────┘    └─────────────────┘
+
+2. Vision-Language-Action   (one model from pixels to motors)
+· the VLA line
+                   +web knowledge
+╔═════════════╗    ┌─────────────┐
+║ RT-1 (2022) ║───►│ RT-2 (2023) │─┐
+╚═════════════╝    └─────────────┘ │
+                                   │    +open weights
+                                   │    ┌────────────────┐
+                                   ├───►│ OpenVLA (2024) │
+                                   │    └────────────────┘
+                                   │    +flow matching    +open-world
+                                   │    ┌────────────┐    ┌─────────────┐
+                                   └───►│ π0 (2024)  │───►│ π0.5 (2025) │
+                                        └────────────┘    └─────────────┘
+
+· action representation
+╔═════════════════════════╗
+║ Diffusion-Policy (2023) ║─┐
+╚═════════════════════════╝ │
+                            │    +generalist transformer
+                            │    ┌─────────────────────┐
+                            ├───►│ Octo (2024)         │
+                            │    └─────────────────────┘
+                            │    +action tokenizer    +atomic skills
+                            │    ┌───────────────┐    ┌──────────────────┐
+                            └───►│ FAST (2025)   │───►│ AtomicVLA (2026) │
+                                 └───────────────┘    └──────────────────┘
+
+3. World Models   (learning to predict what happens next)
+· predictive backbones
+╔═══════════════╗
+║ Cosmos (2025) ║─┐
+╚═══════════════╝ │
+                  │    +zero-shot dreams       +real-time WAM
+                  │    ┌──────────────────┐    ┌─────────────────┐
+                  ├───►│ DreamZero (2026) │───►│ Fast-WAM (2026) │
+                  │    └──────────────────┘    └─────────────────┘
+                  │    +latent prediction
+                  │    ╔═════════════════╗
+                  └───►║ V-JEPA-2 (2025) ║
+                       ╚═════════════════╝
+
+4. Self-Evolving   (improving after deployment)
+· lifelong improvement
+                       +semantic curiosity    +self-play           +continual VLA
+╔═════════════════╗    ┌─────────────────┐    ┌───────────────┐    ┌───────────────────────────────┐
+║ EvoAgent (2025) ║───►│ SENSEI (2025)   │───►│ SPIRAL (2025) │───►│ VLA-Continual-Learning (2026) │
+╚═════════════════╝    └─────────────────┘    └───────────────┘    └───────────────────────────────┘
+
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
-[Foundations (2022-2023)]
 
-+-------------+
-| RT-1 (2022) |
-+-------------+
-       |
-+------+----------------------+
-|                             |
-v                             v
-+-------------------------+   +-------------+
-| Diffusion Policy (2023) |   | RT-2 (2023) |
-+-------------------------+   +-------------+
+Four lanes, read in order. **Learning Foundations** shows the fork that still organises everything: [[1312.5602|DQN]] split into model-free policy gradients ([[1707.06347|PPO]], [[1801.01290|SAC]]) and learning a model to plan inside ([[1906.08253|MBPO]], [[1912.01603|Dreamer]]). **Vision-Language-Action** carries two threads — the backbone line from [[2212.06817|RT-1]] to [[2504.16054|π0.5]], and how an action is represented at all, from [[2303.04137|Diffusion-Policy]] to [[2603.07648|AtomicVLA]]. **World Models** is what a robot predicts before acting; **Self-Evolving** is what it does after deployment.
 
-                                     |
-                                     v
-(RT-2 feeds into Generalist VLAs lane: OpenVLA)
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2013 | [[1312.5602\|DQN]] | RL Foundations | Introduced the Deep Q-Network (DQN), which approximates the Q-function using a deep convolutional neural network that takes |
+| 2017 | [[1707.06347\|PPO]] | RL Foundations | PPO introduces a family of policy gradient methods that reuse collected data through multiple optimization steps |
+| 2018 | [[1801.01290\|SAC]] | RL Foundations | Develops an off-policy actor-critic algorithm that incorporates the maximum entropy objective |
+| 2019 | [[1906.08253\|MBPO]] | RL Foundations | A method using branched short-horizon rollouts (k-step) from real replay states with a probabilistic dynamics ensemble |
+| 2019 | [[1912.01603\|Dreamer]] | RL Foundations | A latent-imagination agent via RSSM: an actor-critic trained purely in imagination by propagating analytic gradients |
+| 2022 | [[2212.06817\|RT-1]] | VLA | The **Robotics Transformer 1 (RT-1)** is a 35M parameter Transformer-based policy that takes image sequences and natural |
+| 2023 | [[2303.04137\|Diffusion-Policy]] | Action Representation | The framework formulates visuomotor policies as conditional denoising diffusion probabilistic models (DDPMs) that learn |
+| 2023 | [[2307.15818\|RT-2]] | VLA | Google DeepMind's **RT-2** introduces Vision-Language-Action (VLA) models |
+| 2024 | [[2405.12213\|Octo]] | Action Representation | **Octo** employs a modular, transformer-first architecture with a conditional denoising diffusion process for action |
+| 2024 | [[2406.09246\|OpenVLA]] | VLA | Develops and releases **OpenVLA**, a 7B-parameter |
+| 2024 | [[2410.24164\|π0]] | VLA | Developed **π0**, integrating a pre-trained PaliGemma VLM backbone with a novel action expert based on conditional flow |
+| 2025 | [[2501.03575\|Cosmos]] | World Model | An open-source World Foundation Model Platform from NVIDIA that curates **20M hr** raw video → **100M** clips and pre-trains |
+| 2025 | [[2501.09747\|FAST]] | Action Representation | A DCT+Huffman action tokenization scheme exploiting that adjacent action timesteps are highly correlated |
+| 2025 | [[2502.05907\|EvoAgent]] | Self-Evolving | A method that builds a self-planning + self-control + self-reflection loop on DreamerV3 |
+| 2025 | [[2503.01584\|SENSEI]] | Self-Evolving | A Semantic uncertainty + Go-Explore method targeting the agent's hardest states via VLM-derived novelty signals |
+| 2025 | [[2504.16054\|π0.5]] | VLA | **π0.5** employs a co-training framework that leverages multiple data types including mobile manipulator data |
+| 2025 | [[2506.09985\|V-JEPA-2]] | World Model | A video-scale JEPA that scales I-JEPA to **1M+ hours** of video with a mask-denoising objective |
+| 2025 | [[2506.24119\|SPIRAL]] | Self-Evolving | The SPIRAL framework implements a fully online, multi-turn |
+| 2026 | [[2602.15922\|DreamZero]] | World Model | The canonical pixel-space generative WM whose autoregressive diffusion transformer spends most of its capacity on visual |
+| 2026 | [[2603.03818\|VLA-Continual-Learning]] | Self-Evolving | A study proving pretrained VLAs are *naturally* resistant to forgetting |
+| 2026 | [[2603.07648\|AtomicVLA]] | Action Representation | A think/act mode-switching method with a Skill-Guided MoE (SG-MoE) routing over atomic skill abstractions |
+| 2026 | [[2603.16666\|Fast-WAM]] | World Model | A Mixture-of-Transformer that decouples video co-training (train) from future-imagination (inference) |
 
-[Generalist VLAs (2024-2025)]
-
-+----------------+     +-----------+     +-------------+
-| OpenVLA (2024) | --> | π0 (2024) | --> | π0.5 (2025) |
-+----------------+     +-----------+     +-------------+
-
-                             |
-                             v
-(π0 feeds into Self-Evolving lane: EvoAgent)
-
-                                                |
-                                                v
-(π0.5 feeds into World-Model-Augmented lane: DreamZero, VLA-JEPA)
-
-[World-Model-Augmented (2026)]
-
-+------------------+   +-----------------+
-| DreamZero (2026) |   | VLA-JEPA (2026) |
-+------------------+   +-----------------+
-
-[Self-Evolving (2025-2026)]
-
-+-----------------+     +---------------+
-| EvoAgent (2025) | --> | SPIRAL (2026) |
-+-----------------+     +---------------+
-```
-
-The field progressed through: **Foundations** ([[2212.06817|RT-1]], [[2303.04137|Diffusion-Policy]], [[2307.15818|RT-2]]) — proving Transformers and VLMs work for robot control; **Generalist VLAs** ([[2406.09246|OpenVLA]], [[2410.24164|π0]], [[2504.16054|π0.5]]) — open-source weights, flow-matching action heads, cross-embodiment transfer; **World-Model-Augmented** ([[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]]) — adding video/latent prediction for physics grounding; **Self-Evolving** ([[2502.05907|EvoAgent]], [[2506.24119|SPIRAL]]) — agents that improve autonomously through imagination loops and curiosity.
-
-> [!star] Canonical Papers — Start Here
+> [!star] Start Here — Suggested Reading Order
+> A path into the field, not the lineage's landmarks — the Evolution Graph above marks those with a double border (`╔═╗`), and the two lists differ on purpose.
 > - [[2212.06817|RT-1]] — Proof that Transformers work for robot control; the foundational VLA
 > - [[2307.15818|RT-2]] — Web-scale VLM knowledge transfers to robots; defined the modern VLA paradigm
+> - [[2406.09246|OpenVLA]] — Open-source 7B VLA that democratized VLA research; the easiest one to actually run
 > - [[2410.24164|π0]] — Flow-matching action expert + VLM; the dominant continuous-action recipe
-> - [[2406.09246|OpenVLA]] — Open-source 7B VLA that democratized VLA research
 > - [[2602.15922|DreamZero]] — Joint video + action prediction (14B WAM); zero-shot robot policies
-> - [[2602.10098|VLA-JEPA]] — JEPA-based latent world model attached to a VLA; the bridge between VLA and WAM
+> - [[2506.09985|V-JEPA-2]] — Video-scale latent prediction; the bridge from world models into policies
 
 ---
 
@@ -245,7 +293,7 @@ Researcher → Data → Training → Simulation → Deployment
 
 #### Building a VLA (Quick Recipe)
 
-1. **Pick a VLM backbone** — [[2407.07726\|PaliGemma]] or [[2306.14824\|KOSMOS-2]] (best vision-language alignment)
+1. **Pick a VLM backbone** — [[2407.07726|PaliGemma]] or [[2306.14824|KOSMOS-2]] (best vision-language alignment)
 2. **Add an action head** — Policy Head with continuous actions via ==Flow Matching==
 3. **Pre-train on [[2310.08864|OXE]]** — cross-embodiment data for broad priors
 4. **Post-train on in-domain data** — fine-tune on your specific robot + tasks

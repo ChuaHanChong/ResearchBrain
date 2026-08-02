@@ -17,9 +17,9 @@ aliases:
 ## Evolution Graph
 
 ```text
-Simulation (2019-2021)
+1. Simulation (2019-2021)
 ╔═════════════════╗
-║ *RLBench (2019) ║
+║ RLBench (2019)  ║
 ╚═════════┬═══════╝
           │
           ▼
@@ -30,9 +30,9 @@ Simulation (2019-2021)
            └──────► GM-100 (2025)        [Diagnostics, below]
 
 
-Surveys (2020-2024)
+2. Surveys (2020-2024)
 ╔════════════════════════════════╗
-║ *Efficient Transformers (2020) ║
+║ Efficient Transformers (2020)  ║
 ╚════════════════┬═══════════════╝
                  │
                  ▼
@@ -51,9 +51,9 @@ Surveys (2020-2024)
     └─────────────────────────────┘
 
 
-Datasets (2023-2025)
+3. Datasets (2023-2025)
 ╔══════════════╗
-║ *OXE (2023)  ║
+║ OXE (2023)   ║
 ╚═══════┬══════╝
         │
         ▼
@@ -67,12 +67,12 @@ Datasets (2023-2025)
    └─────────────────────┘
 
 
-Diagnostics (2025-2026)
+4. Diagnostics (2025-2026)
 ┌─────────────────────┐   ╔═════════════════╗   ╔══════════════════════════╗
-│ LIBERO-Plus (2025)  │   ║ *GM-100 (2025)  ║   ║ *Omni-WorldBench (2026)  ║
+│ LIBERO-Plus (2025)  │   ║ GM-100 (2025)   ║   ║ Omni-WorldBench (2026)   ║
 └─────────────────────┘   ╚═════════════════╝   ╚══════════════════════════╝
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field evolved through four tracks: **simulation infrastructure** (2019-2021) where RLBench and CALVIN established standardized evaluation; **survey literature** (2020-2024) where comprehensive taxonomies mapped each subfield; **large-scale datasets** (2023-2025) where OXE, DROID, and AgiBot World enabled cross-embodiment training; and **diagnostic benchmarks** (2025-2026) where LIBERO-Plus, GM-100, and Omni-WorldBench shifted focus from performance to robustness.

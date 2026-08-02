@@ -17,105 +17,181 @@ aliases:
 
 ## Evolution Graph
 
+```text
+1. Demonstration Signal   (cheap, capped by the demonstrator)
+· policy & supply
+                        +language, 100 tasks    +sim mixture                           +data selection
+┌──────────────────┐    ┌──────────────────┐    ┌─────────────────────────────────┐    ┌────────────────┐
+│ Robomimic (2021) │───►│ BC-Z (2022)      │───►│ Sim-and-Real-Co-Training (2025) │───►│ DataMIL (2025) │
+└──────────────────┘    └─────────┬────────┘    └─────────────────────────────────┘    └────────────────┘
+                                  ├──► HumanEgo (2026)  [latent actions, below]  +human video, no teleop
+                                  └──► ResiP (2024)     [IL→RL Bridge, below]    +RL past the demo ceiling
+
+· latent actions from observation
+                   +internet video
+╔═════════════╗    ┌─────────────┐
+║ ILPO (2018) ║───►│ CoMo (2025) │─┐
+╚═════════════╝    └─────────────┘ │
+                                   │    +cross-embodiment
+                                   │    ┌───────────────┐
+                                   ├───►│ PHASOR (2026) │
+                                   │    └───────────────┘
+                                   │    +flow-matching      few-shot → zero-shot
+                                   │    ┌──────────────┐    ┌──────────────────┐
+                                   └───►│ H-RDT (2025) │───►│ HumanEgo (2026)  │
+                                        └──────────────┘    └──────────────────┘
+
+2. Reward Signal   (scalable, mis-specifiable)
+· learn the reward
+                  +ranked progress
+┌────────────┐    ┌──────────────────────────────┐
+│ LIV (2023) │───►│ Video-Language-Critic (2024) │─┐
+└────────────┘    └──────────────────────────────┘ │
+                                                   │    +trajectory comparison
+                                                   │    ╔════════════════════╗
+                                                   ├───►║ Robometer (2026)   ║
+                                                   │    ╚════════════════════╝
+                                                   │    reward → sole signal
+                                                   │    ┌──────────────────┐
+                                                   └───►│ SOLE-R1 (2026)   │
+                                                        └──────────────────┘
+
+· infer the reward
+                   +dynamics-free     +adaptive reward
+┌─────────────┐    ┌─────────────┐    ┌──────────────┐
+│ XIRL (2021) │───►│ DARL (2022) │───►│ RILe (2024)  │─┐
+└─────────────┘    └─────────────┘    └──────────────┘ │
+                                                       │    +language masks
+                                                       │    ┌───────────────────┐
+                                                       ├───►│ Masked-IRL (2025) │
+                                                       │    └───────────────────┘
+                                                       │    +trust-region stability
+                                                       │    ┌─────────────────────┐
+                                                       └───►│ TRIRL (2026)        │
+                                                            └─────────────────────┘
+
+· avoid the reward
+┌────────────────────────┐
+│ Single-Goal-CRL (2024) │─┐
+└────────────────────────┘ │
+                           │    +depth scaling
+                           │    ┌────────────┐
+                           ├───►│ CRL (2025) │
+                           │    └────────────┘
+                           │    +subgoal bootstrap    +divide-and-conquer
+                           │    ┌────────────────┐    ┌─────────────────┐
+                           └───►│ SAW (2025)     │───►│ TRL (2025)      │
+                                └────────────────┘    └─────────────────┘
+
+3. Interaction Signal   (unbounded, unsafe)
+· throughput
+                  +normalization        +large batch          TD3 → SAC stability
+┌────────────┐    ┌────────────────┐    ╔════════════════╗    ┌─────────────────┐
+│ BRO (2024) │───►│ SimbaV2 (2025) │───►║ FastTD3 (2025) ║───►│ FlashSAC (2026) │
+└────────────┘    └────────────────┘    ╚════════════════╝    └─────────────────┘
+
+· morphology & terrain
+                              +concurrent teacher
+┌────────────────────────┐    ┌─────────────────┐
+│ LocoTransformer (2021) │───►│ CTS (2024)      │─┐
+└────────────────────────┘    └─────────────────┘ │
+                                                  │    +long-context memory
+                                                  │    ┌───────────────────┐
+                                                  ├───►│ LocoFormer (2025) │
+                                                  │    └───────────────────┘
+                                                  │    +perceptive parkour
+                                                  │    ┌─────────────────┐
+                                                  └───►│ PHP (2026)      │
+                                                       └─────────────────┘
+
+· skill & model abstraction
+                    +skill dynamics     +latent motion      +task inference        +promptable
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│ SPiRL (2020) │───►│ SkiMo (2022) │───►│ PULSE (2023) │───►│ OpTI-BFM (2025) │───►│ BFM-Zero (2026) │
+└──────────────┘    └───────┬──────┘    └──────────────┘    └─────────────────┘    └─────────────────┘
+                            │    +policy-driven WM fidelity
+                            │    ┌────────────────────────────────────┐
+                            └───►│ Policy-Driven-WM-Adaptation (2025) │
+                                 └────────────────────────────────────┘
+
+· cost of interaction
+                          +proactive reset    +policy-agnostic                    +safe-prior blend
+┌────────────────────┐    ┌──────────────┐    ┌──────────────────────────────┐    ┌─────────────────┐
+│ Recovery-RL (2020) │───►│ PAINT (2022) │───►│ Latent-Safety-Filters (2025) │───►│ AutoSafe (2026) │
+└────────────────────┘    └──────────────┘    └──────────────────────────────┘    └─────────────────┘
+
+· fine-tuning theory
+┌───────────────────┐
+│ RL's-Razor (2025) │
+└─────────┬─────────┘
+          └──► ScoRe-Flow (2026)  [IL→RL Bridge, below]  SFT → on-policy RL
+
+4. IL→RL Bridge   (where the three signals combine)
+· compose all three
+┌───────────────┐
+│ Uni-O4 (2023) │─┐
+└───────────────┘ │
+                  │    +residual on BC
+                  │    ╔══════════════╗
+                  ├───►║ ResiP (2024) ║
+                  │    ╚══════════════╝
+                  │    +diffusion RL      +closed-form score
+                  │    ┌─────────────┐    ┌───────────────────┐
+                  └───►│ DPPO (2024) │───►│ ScoRe-Flow (2026) │
+                       └─────────────┘    └───────────────────┘
+
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
-[Lane 1: Demonstrations & Offline Foundations, 2018-2021]
 
-+-------------+   +--------------+   +--------------------+
-| ILPO (2018) |   | SPiRL (2020) |   | Recovery-RL (2020) |
-+-------------+   +--------------+   +--------------------+
-       |
-       v
-     (feeds Lane 2: Single-Goal-CRL)
-       |
-       v
-     (feeds Lane 3: CoMo)
-                          |
-                          v
-                        (feeds Lane 2: SkiMo)
-                                                |
-                                                v
-                                              (feeds Lane 2: PAINT)
-
-+------------------+     +-------------+   +------------------------+
-| Robomimic (2021) | --> | BC-Z (2022) |   | LocoTransformer (2021) |
-+------------------+     +-------------+   +------------------------+
-                                |
-                                v
-                              (feeds Lane 3: H-RDT)
-                                |
-                                v
-                              (feeds Lane 3: HumanEgo)
-                                                        |
-                                                        v
-                                                      (feeds Lane 3: FastTD3)
-
-[Lane 2: Reward Learning & Hybrid IL+RL, 2022-2024]
-
-+--------------+   +--------------+
-| SkiMo (2022) |   | PAINT (2022) |
-+--------------+   +--------------+
-        |
-        v
-      (feeds Lane 3: BFM-Zero)
-
-+---------------+     +--------------+   +------------------------+
-| Uni-O4 (2023) | --> | ResiP (2024) |   | Single-Goal-CRL (2024) |
-+---------------+     +--------------+   +------------------------+
-                              |
-                              v
-                            (feeds Lane 3: ScoRe-Flow)
-                                                      |
-                                                      v
-                                                    (feeds Lane 3: FastTD3)
-
-[Lane 3: Scaling, Flow Policies & Learned Rewards, 2025-2026]
-
-+----------------+     +-----------------+
-| FastTD3 (2025) | --> | FlashSAC (2026) |
-+----------------+     +-----------------+
-
-+-------------+     +--------------+
-| CoMo (2025) | --> | H-RDT (2025) |
-+-------------+     +--------------+
-
-+-------------------+     +-------------------+
-| RL's-Razor (2025) | --> | ScoRe-Flow (2026) |
-+-------------------+     +-------------------+
-
-+------------------+     +----------------+
-| Robometer (2026) | --> | SOLE-R1 (2026) |
-+------------------+     +----------------+
-
-+-----------------+   +-----------------+
-| HumanEgo (2026) |   | BFM-Zero (2026) |
-+-----------------+   +-----------------+
-```
-
-The field evolved along the signal-cost spectrum. **Demonstration foundations** (2018→2022) established that history matters ([[2108.03298|Robomimic]]'s BC-RNN), that diverse multi-task demos enable zero-shot generalization ([[2202.02005|BC-Z]]), and that latent actions can be learned from observation alone ([[1805.07914|ILPO]]). **Reward learning & hybrid IL+RL** (2022→2024) attacked the demo ceiling — residual RL refines a frozen BC base ([[2407.16677|ResiP]]), offline-to-online unifies both phases under one objective ([[2311.03351|Uni-O4]]), and contrastive critics learn skills with a *single* goal and no reward ([[2408.05804|Single-Goal-CRL]]). **Scaling, flow policies & learned rewards** (2025→2026) is the current frontier — off-policy RL trains humanoids in hours ([[2505.22642|FastTD3]], [[2604.04539|FlashSAC]]), flow/diffusion policies finally admit policy-gradient fine-tuning ([[2604.10962|ScoRe-Flow]], [[2602.02481|FPO++]]), and VLM-based reward models supply dense progress signals that make from-scratch on-robot RL viable ([[2603.02115|Robometer]], [[2603.28730|SOLE-R1]]).
+Lanes are *where the learning signal comes from*, so each row is one technique thread read left to right, and the last lane is where the threads meet. **Demonstration signal** runs three threads: policy representation and supply ([[2108.03298|Robomimic]]'s BC-RNN, then [[2202.02005|BC-Z]]'s 100-task shared autonomy, then [[2503.24361|Sim-and-Real-Co-Training]]'s weighted real-plus-sim mixture), latent actions recovered from observation alone ([[1805.07914|ILPO]]'s offline latent-action discovery, [[2505.17006|CoMo]]'s continuous pseudo-actions from internet video, [[2606.01851|PHASOR]]'s phase-anchored universal representation), and the policies those actions pretrain ([[2507.23523|H-RDT]] few-shot, then [[2605.24934|HumanEgo]] zero-shot from 30 minutes of human video). **Reward signal** splits the three ways section 3 does: learn the reward ([[2603.02115|Robometer]]'s trajectory comparisons, then [[2603.28730|SOLE-R1]] pushing a learned reward far enough to carry on-robot RL from random init), infer it ([[2511.14565|Masked-IRL]]), or avoid it ([[2408.05804|Single-Goal-CRL]], then [[2510.22512|TRL]]'s divide-and-conquer value learning). **Interaction signal** is the work of making the unbounded signal affordable and survivable, on four axes: wall-clock ([[2107.03996|LocoTransformer]], [[2505.22642|FastTD3]], [[2604.04539|FlashSAC]]), morphology ([[2509.23745|LocoFormer]], [[2602.15827|PHP]]), abstraction ([[2010.11944|SPiRL]], [[2207.07560|SkiMo]], [[2511.04131|BFM-Zero]], [[2505.13709|Policy-Driven-WM-Adaptation]]), and safety ([[2010.15920|Recovery-RL]], [[2210.10765|PAINT]]). The **IL→RL bridge** is the payload of the diagram: [[2311.03351|Uni-O4]], [[2407.16677|ResiP]], and [[2604.10962|ScoRe-Flow]] do not choose one signal, they compose a demo-cloned base with a thin interaction budget under one objective, which is why the demonstration and interaction lanes both point into it.
 
 | Year | Paper | Track | Contribution |
 |------|-------|-------|--------------|
-| 2018 | [[1805.07914\|ILPO]] | Demonstrations | Latent policies from observation; offline latent-action discovery + minimal online grounding |
-| 2020 | [[2010.11944\|SPiRL]] | Skill-based | Continuous skill embedding + state-conditioned skill prior for hierarchical RL |
-| 2020 | [[2010.15920\|Recovery-RL]] | Safety | Dual task/recovery policy + safety critic from offline constraint data |
-| 2021 | [[2108.03298\|Robomimic]] | Demonstrations | Empirical study; BC-RNN beats BC, validation loss ≠ task success |
-| 2021 | [[2107.03996\|LocoTransformer]] | Locomotion | Transformer cross-modal fusion of depth + proprioception for legged locomotion |
-| 2022 | [[2202.02005\|BC-Z]] | Demonstrations | 100-task shared-autonomy IL; 44% zero-shot on 24 unseen tasks |
-| 2022 | [[2207.07560\|SkiMo]] | Model-based | Joint skill repertoire + skill-dynamics model for long-horizon MPC |
-| 2022 | [[2210.10765\|PAINT]] | Safety | Proactive human-reset requests via learned reversibility classifier |
-| 2023 | [[2311.03351\|Uni-O4]] | Hybrid IL+RL | Unified on-policy PPO across offline + online; SOTA on 14/20 D4RL |
-| 2024 | [[2407.16677\|ResiP]] | Hybrid IL+RL | Residual PPO on a frozen BC base; assembly 12%→94% |
-| 2024 | [[2408.05804\|Single-Goal-CRL]] | Reward-free | Skills emerge from contrastive RL with one goal, no rewards/demos |
-| 2025 | [[2505.22642\|FastTD3]] | Efficient RL | Parallel TD3 + large batch + distributional critic; HumanoidBench in <3h |
-| 2025 | [[2505.17006\|CoMo]] | Egocentric | Continuous latent motion from internet video as pseudo actions; LIBERO +4.2pp |
-| 2025 | [[2507.23523\|H-RDT]] | Egocentric | Human-data-pretrained flow-matching DiT; few-shot 41.6% vs RDT 16.0% |
-| 2025 | [[2509.04259\|RL's-Razor]] | Efficiency | On-policy RL forgets less than SFT; forward-KL predicts forgetting |
-| 2026 | [[2604.10962\|ScoRe-Flow]] | Flow policy | Closed-form score from flow velocity field for RL fine-tuning; 22× wall-clock speedup |
-| 2026 | [[2603.02115\|Robometer]] | Reward model | Trajectory-comparison reward model; 1M trajectories, 21 embodiments |
-| 2026 | [[2603.28730\|SOLE-R1]] | Reward model | Video-language reasoning as the sole on-robot RL reward; 24 unseen tasks |
-| 2026 | [[2605.24934\|HumanEgo]] | Egocentric | Zero-shot from 30 min of human egocentric video; 92.5% real bimanual |
-| 2026 | [[2511.04131\|BFM-Zero]] | Whole-body | Promptable behavioral foundation model via unsupervised RL on G1 |
-| 2026 | [[2604.04539\|FlashSAC]] | Efficient RL | Off-policy SAC with stability stack; ~10× faster than PPO sim-to-real |
+| 2018 | [[1805.07914\|ILPO]] | Demonstration · Latent Actions | An Imitating Latent Policies from Observation method that learns a latent forward-dynamics model + latent policy offline |
+| 2020 | [[2010.11944\|SPiRL]] | Interaction · Abstraction | A skill-based method that learns a continuous skill embedding + a state-conditioned skill prior offline from unstructured |
+| 2020 | [[2010.15920\|Recovery-RL]] | Interaction · Safety | A Dual task/recovery policy with a safety critic pre-trained on offline constraint-violation data defining recovery zones |
+| 2021 | [[2108.03298\|Robomimic]] | Demonstration · Policy & Supply | A systematic empirical study of offline IL + offline RL |
+| 2021 | [[2106.03911\|XIRL]] | Reward · Inferred | A self-supervised cross-embodiment inverse RL method learning an embodiment-invariant task-progress encoder via Temporal |
+| 2021 | [[2107.03996\|LocoTransformer]] | Interaction · Efficient RL | An end-to-end vision-guided quadrupedal-locomotion method with a Transformer fusing depth + proprioception via cross-modal |
+| 2022 | [[2206.00238\|DARL]] | Reward · Inferred | A dynamics-agnostic adversarial imitation learning method minimizing mutual information between latent state-action |
+| 2022 | [[2202.02005\|BC-Z]] | Demonstration · Policy & Supply | A large-scale interactive imitation learning system via shared-autonomy teleoperation over **100** tasks |
+| 2022 | [[2207.07560\|SkiMo]] | Interaction · Abstraction | A model-based method that jointly learns a skill repertoire + a skill-dynamics model predicting the H-step outcome |
+| 2022 | [[2210.10765\|PAINT]] | Interaction · Safety | A proactive-intervention method for autonomous RL that penalizes irreversible states via a learned reversibility classifier |
+| 2023 | [[2310.04582\|PULSE]] | Interaction · Abstraction | Distills a robust PHC+ motion imitator into a probabilistic latent space with a proprioception-conditioned prior |
+| 2023 | [[2306.00958\|LIV]] | Reward · Learned | Extends Value-Implicit Pre-training with a combined VIP-image + VIP-language objective |
+| 2023 | [[2311.03351\|Uni-O4]] | IL→RL Bridge | A unified RL method that joins offline + online learning under one on-policy PPO objective (no added conservatism) |
+| 2024 | [[2406.08472\|RILe]] | Reward · Inferred | A reinforced imitation-learning framework with a cooperative trainer-student system concurrently learning an adaptive |
+| 2024 | [[2405.16158\|BRO]] | Interaction · Efficient RL | Scales a SAC critic to **5M** params via the BroNet architecture |
+| 2024 | [[2405.10830\|CTS]] | Interaction · Morphology | Trains teacher (privileged) and student (proprioceptive) policies *concurrently* under a shared asymmetric actor-critic |
+| 2024 | [[2409.00588\|DPPO]] | IL→RL Bridge | The foundational RL fine-tuning method for diffusion policies treating the multi-step denoising process as an embedded MDP |
+| 2024 | [[2405.19988\|Video-Language-Critic]] | Reward · Learned | A language-conditioned reward model trained on diverse video with a contrastive alignment + sequential ranking objective |
+| 2024 | [[2407.16677\|ResiP]] | IL→RL Bridge | A residual-RL method for precise assembly: a frozen BC base provides coarse plans while a lightweight residual Gaussian PPO |
+| 2024 | [[2408.05804\|Single-Goal-CRL]] | Reward · Reward-Free | A reward-free method in which skills and exploration emerge from contrastive RL conditioned on a *single target goal* |
+| 2025 | [[2502.15280\|SimbaV2]] | Interaction · Efficient RL | A scalable deep-RL architecture adding hyperspherical feature + weight normalization |
+| 2025 | [[2505.14975\|SAW]] | Reward · Reward-Free | A Subgoal Advantage-Weighted policy bootstrapping method built on a *flat* goal-conditioned objective that drops |
+| 2025 | [[2505.09603\|DataMIL]] | Demonstration · Policy & Supply | A data-selection framework for imitation learning adapting datamodels to estimate each data point's influence on target-task |
+| 2025 | [[2510.20264\|OpTI-BFM]] | Interaction · Abstraction | Online task-inference for pretrained Behavior Foundation Models extending Successor Features zero-shot transfer: estimates |
+| 2025 | [[2503.14858\|CRL]] | Reward · Reward-Free | A scaling study taking self-supervised contrastive RL to **1024-layer** actor/critic networks with residual connections |
+| 2025 | [[2502.00935\|Latent-Safety-Filters]] | Interaction · Safety | A policy-agnostic safety filter learning a generative world-model latent space |
+| 2025 | [[2503.24361\|Sim-and-Real-Co-Training]] | Demonstration · Policy & Supply | A simple recipe: BC co-training on a weighted mixture of real + task-agnostic "Prior" sim and task-aware "Digital Cousin" |
+| 2025 | [[2505.22642\|FastTD3]] | Interaction · Efficient RL | A parallel TD3 method with **32,768** batch size + a distributional C51 critic |
+| 2025 | [[2505.17006\|CoMo]] | Demonstration · Latent Actions | A method that learns continuous latent motion from internet video via an inverse-dynamics model with temporal-difference |
+| 2025 | [[2507.23523\|H-RDT]] | Demonstration · Human-Video Policies | A model that pre-trains a Diffusion-Transformer with flow matching on **338K+** EgoDex human trajectories using a 48-D hand |
+| 2025 | [[2509.04259\|RL's-Razor]] | Interaction · Fine-Tuning Theory | A study showing on-policy RL forgets less than SFT because policy gradients converge to the KL-minimal solution |
+| 2025 | [[2509.23745\|LocoFormer]] | Interaction · Morphology | A generalist-locomotion method via massive-scale RL on procedurally-generated robots + aggressive DR |
+| 2025 | [[2510.22512\|TRL]] | Reward · Reward-Free | A Transitive RL method for offline goal-conditioned learning via a divide-and-conquer Bellman update with soft expectile |
+| 2025 | [[2511.14565\|Masked-IRL]] | Reward · Inferred | An IRL method that uses LLMs to disambiguate ambiguous language instructions and generate binary state-relevance masks |
+| 2025 | [[2505.13709\|Policy-Driven-WM-Adaptation]] | Interaction · Abstraction | A method reformulating offline MBRL as a maximin over (world model, policy) solved via Stackelberg dynamics |
+| 2026 | [[2606.31320\|AutoSafe]] | Interaction · Safety | Blends a stochastic SAC action with a deterministic safe-prior action via a state-dependent exponential-ramp mixing weight |
+| 2026 | [[2604.10962\|ScoRe-Flow]] | IL→RL Bridge | A method that derives a closed-form score function from a pre-trained flow-matching velocity field |
+| 2026 | [[2603.02115\|Robometer]] | Reward · Learned | A general-purpose reward model from trajectory comparisons: a VLM backbone trained with absolute progress + relative |
+| 2026 | [[2603.28730\|SOLE-R1]] | Reward · Learned | A reward method using video-language reasoning *as the sole reward*: a VLM emits per-timestep spatiotemporal |
+| 2026 | [[2605.24934\|HumanEgo]] | Demonstration · Human-Video Policies | A zero-shot robot-learning method from minutes of human egocentric video |
+| 2026 | [[2606.01851\|PHASOR]] | Demonstration · Latent Actions | A Phase-anchored universal action representation built from per-body-part phase parameters via a differentiable FFT |
+| 2026 | [[2511.04131\|BFM-Zero]] | Interaction · Abstraction | A promptable behavioral foundation model for humanoid control via unsupervised RL extending FB-CPR |
+| 2026 | [[2604.04539\|FlashSAC]] | Interaction · Efficient RL | A fast-and-stable off-policy SAC with an inverted-residual backbone, pre-activation BatchNorm, cross-batch value prediction |
+| 2026 | [[2605.11020\|TRIRL]] | Reward · Inferred | A Trust-Region Inverse RL algorithm that reformulates MCE-IRL as explicit dual ascent in reward space with local policy |
+| 2026 | [[2602.15827\|PHP]] | Interaction · Morphology | A perceptive humanoid-parkour method chaining dynamic skills via motion matching for kinematic composition + a hybrid DAgger |
 
 ---
 

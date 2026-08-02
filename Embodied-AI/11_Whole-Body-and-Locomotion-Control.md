@@ -20,71 +20,115 @@ aliases:
 
 The whole-body thread mirrors the touch thread's arc one scale up: task-specific gait controllers gave way to unified policies that regulate the locomotion–manipulation coupling, then to reward-free pretraining (motion tracking, unsupervised behavior) playing the role touch-SSL played for tactile, and finally to *manufactured* skill data (retargeting, generative priors) attacking the same data-scarcity bottleneck that throttles force-instrumented manipulation.
 
+```text
+1. Motion Imitation & Behavioral FMs   (reward-free pretraining of whole-body skill)
+· physics-based motion imitation
+                        +adversarial prior
+╔══════════════════╗    ┌────────────────┐
+║ DeepMimic (2018) ║───►│ AMP (2021)     │─┐
+╚══════════════════╝    └────────────────┘ │
+                                           │    +latent skills
+                                           │    ┌────────────┐
+                                           ├───►│ ASE (2022) │
+                                           │    └────────────┘
+                                           │    +conditional       +masked control
+                                           │    ┌─────────────┐    ┌────────────────────┐
+                                           └───►│ CALM (2023) │───►│ MaskedMimic (2024) │
+                                                └─────────────┘    └────────────────────┘
+
+· humanoid behavior foundation models
+                    +expressive tracking
+┌──────────────┐    ┌──────────────────┐
+│ HOVER (2024) │───►│ ExBody2 (2024)   │─┐
+└──────────────┘    └──────────────────┘ │
+                                         │    +behavioral FM
+                                         │    ╔════════════════════╗
+                                         ├───►║ Meta-Motivo (2025) ║
+                                         │    ╚════════════════════╝
+                                         │    +general tracking
+                                         │    ┌───────────────┐
+                                         ├───►│ GMT (2025)    │
+                                         │    └───────────────┘
+                                         │    +scaled tracking
+                                         │    ┌──────────────┐
+                                         └───►│ SONIC (2025) │
+                                              └──────────────┘
+
+2. Legged Locomotion Control   (making the body move at all)
+· gait learning
+                  +RL over model                  +massive parallel              +implicit estimator
+┌────────────┐    ╔══════════════════════════╗    ┌─────────────────────────┐    ┌─────────────────┐
+│ ARS (2018) │───►║ ANYmal Locomotion (2020) ║───►│ Rapid Locomotion (2022) │───►│ DreamWaQ (2023) │
+└────────────┘    ╚══════════════════════════╝    └─────────────────────────┘    └─────────────────┘
+
+· terrain & parkour
+┌────────────────────────┐
+│ Extreme Parkour (2023) │─┐
+└────────────────────────┘ │
+                           │    +bipedal                       +sparse footholds
+                           │    ┌─────────────────────────┐    ┌─────────────────┐
+                           ├───►│ Humanoid-Parkour (2024) │───►│ BeamDojo (2025) │
+                           │    └─────────────────────────┘    └─────────────────┘
+                           │    +terrain-aware agile
+                           │    ┌──────────────────┐
+                           └───►│ TAGA (2026)      │
+                                └──────────────────┘
+
+3. Unified Whole-Body Control   (loco and manip in one policy)
+· loco-manipulation coupling
+                       +skill primitives          +unified controller    +hierarchical
+┌─────────────────┐    ┌─────────────────────┐    ╔═════════════════╗    ┌──────────────┐
+│ RoboDuet (2024) │───►│ SkillBlender (2025) │───►║ ULC (2025)      ║───►│ HiWET (2026) │
+└─────────────────┘    └─────────────────────┘    ╚═════════════════╝    └──────────────┘
+
+4. Cross-Embodiment & Skill Data   (one controller, many bodies)
+· cross-embodiment transfer
+╔═══════════════════════╗
+║ Human-Humanoid (2024) ║─┐
+╚═══════════════════════╝ │
+                          │    +unified legs         +retargeting
+                          │    ┌────────────────┐    ┌─────────────┐
+                          ├───►│ UniLegs (2025) │───►│ HuBE (2025) │
+                          │    └────────────────┘    └─────────────┘
+                          │    +unified WBC          +PEFT transfer
+                          │    ┌────────────────┐    ┌──────────────┐
+                          └───►│ XHugWBC (2026) │───►│ VENOM (2026) │
+                               └────────────────┘    └──────────────┘
+
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
-[Behavioral & Motion-Tracking FMs, 2025]
-+--------------------+     +--------------+
-| Meta Motivo (2025) | --> | SONIC (2025) |
-+--------------------+     +--------------+
-                                   |
-                                   v
-             (feeds Unified & Hierarchical WBC lane: ULC,
-               and Retargeting & Skill Data lane: GRAIL)
 
-[Balance / Load-Aware, 2026]
-+---------------------+     +-------------+
-| SplitAdapter (2026) |     | Thor (2026) |
-+---------------------+     +-------------+
-           |
-           v
-(feeds Unified & Hierarchical WBC lane: HiWET)
-
-[Retargeting & Skill Data, 2026]
-+------------+
-| NMR (2026) |
-+------------+
-       |
-       v
-(feeds Unified & Hierarchical WBC lane: HiWET)
-
-+--------------+     +-------------------------+
-| GRAIL (2026) | --> | HumanoidMimicGen (2026) |
-+--------------+     +-------------------------+
-
-[Unified & Hierarchical WBC, 2024-2026]
-                            (fed by SONIC)
-                                   v
-                                          (fed by SplitAdapter, NMR)
-                                                       v
-+---------------------+     +------------+     +--------------+
-| SkillBlender (2025) | --> | ULC (2026) | --> | HiWET (2026) |
-+---------------------+     +------------+     +--------------+
-                                   |
-                                   v
-                  (feeds Agile Locomotion lane: TAGA)
-
-[Agile Locomotion, 2026]
-+-------------+     +--------------+     +--------------------+
-| TAGA (2026) | --> | SMASH (2026) | --> | MotionDisco (2026) |
-+-------------+     +--------------+     +--------------------+
-```
-
-Unsupervised behavioral foundation models ([[2504.11054|Meta-Motivo]]) and skill-blending hierarchies ([[2506.09366|SkillBlender]]) established that a *single* policy could absorb many whole-body tasks; unified fine-grained controllers ([[2507.06905|ULC]]) and world-frame end-effector tracking ([[2602.06341|HiWET]]) then sharpened precision under the locomotion–manipulation coupling. By 2026 the thread mirrors the fingertip lesson exactly: massive motion-tracking pretraining ([[2511.07820|SONIC]], **100M** frames) plays the role tactile-SSL played for touch, factorized load-context ([[2606.03297|SplitAdapter]]) plays the role of phase-aware force experts, and generative skill data ([[2606.05160|GRAIL]], [[2605.27724|HumanoidMimicGen]]) attacks the same data-scarcity bottleneck that throttles force-instrumented manipulation.
+Four lanes. Motion imitation is the oldest: [[1804.02717|DeepMimic]] forks at [[2104.02180|AMP]] into latent skills ([[2205.01906|ASE]]) and conditional control ([[2305.02195|CALM]], [[2409.14393|MaskedMimic]]), while the behavior-foundation-model thread is newer and fans three ways at [[2412.13196|ExBody2]]. Legged locomotion holds a gait ladder from [[1803.07055|ARS]] to [[2301.10602|DreamWaQ]] and a terrain line from [[2309.14341|Extreme Parkour]]. Unified whole-body control couples locomotion and manipulation in one policy; cross-embodiment transfer asks whether one controller can drive many bodies.
 
 | Year | Paper | Track | Contribution |
 |------|-------|-------|--------------|
-| 2024 | [[2408.00342\|MuJoCo-MPC-HumanoidBench]] | Whole-body control | Dense-cost MPC beats SOTA RL on HumanoidBench; surfaces long-horizon balance instabilities |
-| 2025 | [[2504.11054\|Meta-Motivo]] | Whole-body control | Behavioral foundation model; ==FB-CPR== unsupervised RL → zero-shot human-like whole-body control |
-| 2025 | [[2506.09366\|SkillBlender]] | Whole-body control | Hierarchical RL blends frozen primitives via per-joint softmax weights; **8** loco-manip tasks |
-| 2025 | [[2511.07820\|SONIC]] | Behavioral / motion-tracking FM | Supersized motion tracking (**100M** frames, **32k** GPU-hr); **99.6%** OOD-motion tracking |
-| 2026 | [[2507.06905\|ULC]] | Whole-body control | Single unified policy: locomotion + 3-DoF torso + dual-arm; widest operational workspace |
-| 2026 | [[2602.06341\|HiWET]] | Whole-body control | Hierarchical world-frame EE tracking; **12.4 mm** sim error compensating base disturbance |
-| 2026 | [[2606.03297\|SplitAdapter]] | Balance / load-aware | Factorized load + dynamics contexts; **26/27** real tasks under OOD loads vs **16/27** base |
-| 2026 | [[2606.05880\|TAGA]] | Agile locomotion | Emergent active gaze; **120 cm** gap (**+50%** over prior perceptive humanoids) |
-| 2026 | [[2604.01158\|SMASH]] | Agile locomotion | Onboard-vision humanoid table tennis; **93.7%** contact rate over 642 launches |
-| 2026 | [[2606.06139\|MotionDisco]] | Skill discovery | LLM-guided evolutionary contact search; solves **8** extreme long-horizon scenarios zero-shot |
-| 2026 | [[2603.22201\|NMR]] | Motion retargeting | Transformer neural retargeting; zero joint jumps, **54%** fewer self-collisions |
-| 2026 | [[2606.05160\|GRAIL]] | Skill data | 4D HOI from 3D assets + video priors; **20K+** sequences → **90%** real stair-climbing |
-| 2026 | [[2605.27724\|HumanoidMimicGen]] | Skill data | MimicGen-for-humanoids; **0.89** PSR across **9** tasks from a few seed demos |
+| 2018 | [[1803.07055\|ARS]] | Locomotion · Gait | Augmented Random Search, derivative-free linear-policy optimizer adding reward scaling, state normalization |
+| 2018 | [[1804.02717\|DeepMimic]] | Motion Imitation | The foundational example-guided DRL physics-based character framework training PPO policies with a composite imitation |
+| 2020 | [[2010.11251\|ANYmal Locomotion]] | Locomotion · Gait | A teacher-student privileged-learning framework distilling a terrain-privileged teacher into a proprioceptive Temporal |
+| 2021 | [[2104.02180\|AMP]] | Motion Imitation | The Adversarial Motion Priors framework for stylized physics-based character control: a task reward plus a learned |
+| 2022 | [[2205.01906\|ASE]] | Motion Imitation | A reusable adversarial skill embedding for simulated characters: a skill-conditioned low-level policy pretrained |
+| 2022 | [[2205.02824\|Rapid Locomotion]] | Locomotion · Gait | An end-to-end RL quadruped controller combining teacher-student online system identification with a novel Grid Adaptive |
+| 2023 | [[2301.10602\|DreamWaQ]] | Locomotion · Gait | An asymmetric actor-critic RL framework for robust quadrupedal locomotion with a Context-Aided Estimator Network jointly |
+| 2023 | [[2305.02195\|CALM]] | Motion Imitation | Jointly trains a motion encoder + adversarial low-level policy into a unit-hypersphere latent space |
+| 2023 | [[2309.14341\|Extreme Parkour]] | Locomotion · Terrain | An end-to-end depth-to-action RL policy with dual distillation |
+| 2024 | [[2403.17367\|RoboDuet]] | Unified WBC | A cooperative two-policy legged loco-manipulation framework where a Loco Policy and an Arm Policy jointly train so the arm |
+| 2024 | [[2406.10759\|Humanoid-Parkour]] | Locomotion · Terrain | A three-stage parkour RL framework (forward parkour → oracle auto-curriculum → visual distillation) driven by fractal terrain noise |
+| 2024 | [[2409.14393\|MaskedMimic]] | Motion Imitation | A unified physics-based character controller recasting control as motion inpainting: a full-constraint RL tracker is |
+| 2024 | [[2410.21229\|HOVER]] | Behavioral FM | A versatile neural whole-body controller distilling an oracle full-body motion imitator into a single policy over an atomic |
+| 2024 | [[2412.13196\|ExBody2]] | Behavioral FM | An expressive whole-body controller pairing a Feasibility–Diversity motion-curation pipeline |
+| 2024 | [[2412.15166\|Human-Humanoid]] | Cross-Embodiment | A four-stage cross-embodiment behavior-skill transfer framework retargeting human demos to a Unified Digital Human prototype |
+| 2025 | [[2502.10363\|BeamDojo]] | Locomotion · Terrain | An agile humanoid locomotion framework for sparse footholds introducing a continuous sampling-based foothold reward |
+| 2025 | [[2504.11054\|Meta-Motivo]] | Behavioral FM | A Behavioral foundation model via FB-CPR (Forward-Backward reps + Conditional Policy Regularization) |
+| 2025 | [[2506.09366\|SkillBlender]] | Unified WBC | A two-stage hierarchical RL controller that pre-trains goal-conditioned primitive skills (walk, reach, squat, step) |
+| 2025 | [[2506.14770\|GMT]] | Behavioral FM | A general motion tracking two-stage teacher-student framework with a soft Mixture-of-Experts policy + Adaptive Sampling |
+| 2025 | [[2507.06905\|ULC]] | Unified WBC | A Single unified policy trained with parallel PPO, integrating locomotion, full 3-DoF torso |
+| 2025 | [[2507.22653\|UniLegs]] | Cross-Embodiment | A two-stage teacher-student policy distillation framework: PPO experts per morphology distilled into one Transformer student |
+| 2025 | [[2508.19002\|HuBE]] | Cross-Embodiment | A bi-level closed-loop cross-embodiment human-like behavior framework integrating context + robot constraints |
+| 2025 | [[2511.07820\|SONIC]] | Behavioral FM | A motion-tracking foundation model supersizing motion tracking as a foundational task: dense supervision from **100M** frames |
+| 2026 | [[2602.05791\|XHugWBC]] | Cross-Embodiment | A cross-humanoid whole-body controller using physics-consistent morphological randomization over inertial/joint spaces |
+| 2026 | [[2602.06341\|HiWET]] | Unified WBC | A Hierarchical world-frame end-effector tracking controller: a high-level Commander reasons in the world frame |
+| 2026 | [[2606.05880\|TAGA]] | Locomotion · Terrain | A locomotion policy fusing egocentric depth, height scans |
+| 2026 | [[2606.16696\|VENOM]] | Cross-Embodiment | A versatile omni-bodied motion-tracking network trained by supervised learning on a **7705-hour** five-robot dataset |
 
 > [!tip] The Body-Scale Echo of Force-as-First-Class-Modality
 > The whole-body thread re-derives the fingertip cluster's central lesson at body scale: contact-relevant signals demand *dedicated* parameters, not a shared average. [[2606.03297|SplitAdapter]] factorizes load-context from dynamics-context exactly as a force-aware MoE splits force-expert from visual-expert; [[2602.06341|HiWET]]'s commander/tracker split mirrors the controller-vs-action-head fork; [[2511.07820|SONIC]]'s motion-tracking pretraining plays the role touch-SSL plays for tactile. See [[10_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]] for the fingertip-scale original of this pattern and [[04_VLA#8. Humanoid & Bimanual VLAs]] for how it fits the broader VLA design space.
@@ -422,16 +466,16 @@ The mechanism-design lens of §1.10 taken to whole platforms: open-source agile 
 | Zero-shot language → loco-manipulation without training | [[2504.09532\|Humanoid-COA]] (Chain-of-Action over foundation models) |
 | Robustness to OOD payloads / dynamic mismatch | [[2606.03297\|SplitAdapter]] (factorized load + dynamics contexts) |
 | Stable classical baseline + long-horizon stability audit | [[2408.00342\|MuJoCo-MPC-HumanoidBench]] (dense-cost MPC) |
-| Reward-free generalist whole-body controller | [[2511.07820\|SONIC]] (motion-tracking FM) or [[2504.11054\|Meta-Motivo]] (behavioral FM) |
+| Reward-free generalist whole-body controller | [[2511.07820\|SONIC]] (motion-tracking FM) or [[2504.11054\|Meta-Motivo]] (behavioral FM) | ^dm-1
 
 > [!star] Key Papers
 > - [[2504.11054|Meta-Motivo]] — The behavioral-foundation-model landmark: first to show unsupervised RL on unlabeled MoCap yields a zero-shot, human-natural whole-body controller — the whole-body analog of self-supervised pretraining
 > - [[2511.07820|SONIC]] — Established that motion tracking is the scalable, reward-free pretraining task for humanoid control; the 100M-frame scaling result is the field's clearest "foundation-model recipe works for whole-body" proof
 > - [[2507.06905|ULC]] — The reference unified controller: a single policy covering the full locomotion + torso + dual-arm command space, ending the decoupled-controller era for fine-grained loco-manipulation
-> - [[2606.03297|SplitAdapter]] — The cleanest demonstration that *factorizing* contact-relevant context (load vs dynamics) beats a unified latent — the whole-body echo of "force needs its own expert"
+> - [[2606.03297|SplitAdapter]] — The cleanest demonstration that *factorizing* contact-relevant context (load vs dynamics) beats a unified latent — the whole-body echo of "force needs its own expert" ^key-papers-1
 
 > [!tip] The Coupling Is the Substrate — Factorize It, Don't Average It
-> The whole-body thread re-derives the fingertip thread's central lesson at body scale: contact-relevant signals demand *dedicated* parameters, not a shared average. [[2606.03297|SplitAdapter]] splits load-context from dynamics-context exactly as [[2505.22159|ForceVLA]]'s FVLMoE splits force-expert from visual-expert; [[2602.06341|HiWET]]'s commander/tracker split mirrors the controller-vs-action-head fork of [[10_Contact-Rich-and-Tactile-Control#3.1 Force-Aware Action Heads|§3.1]]. And the scaling escape hatch is identical — [[2511.07820|SONIC]]'s motion-tracking pretraining plays the role [[2410.24090|Sparsh]]'s touch-SSL plays for tactile. The surprise is *how exactly* the two scales rhyme: whenever you are tempted to fuse a contact signal into a shared representation, the body-scale evidence says factorize. Cross-reference [[04_VLA#8. Humanoid & Bimanual VLAs]] for the VLA-side of whole-body action generation and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for the domain-randomization these controllers depend on to survive deployment.
+> The whole-body thread re-derives the fingertip thread's central lesson at body scale: contact-relevant signals demand *dedicated* parameters, not a shared average. [[2606.03297|SplitAdapter]] splits load-context from dynamics-context exactly as [[2505.22159|ForceVLA]]'s FVLMoE splits force-expert from visual-expert; [[2602.06341|HiWET]]'s commander/tracker split mirrors the controller-vs-action-head fork of [[10_Contact-Rich-and-Tactile-Control#3.1 Force-Aware Action Heads|§3.1]]. And the scaling escape hatch is identical — [[2511.07820|SONIC]]'s motion-tracking pretraining plays the role [[2410.24090|Sparsh]]'s touch-SSL plays for tactile. The surprise is *how exactly* the two scales rhyme: whenever you are tempted to fuse a contact signal into a shared representation, the body-scale evidence says factorize. Cross-reference [[04_VLA#8. Humanoid & Bimanual VLAs]] for the VLA-side of whole-body action generation and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for the domain-randomization these controllers depend on to survive deployment. ^insight-1
 
 ---
 
@@ -784,15 +828,15 @@ The simulated-character ancestor of nearly every real-robot controller in §1 an
 | Dynamic striking / sports skill from onboard vision | [[2604.01158\|SMASH]] (Motion-VAE augmentation + egocentric perception) |
 | Anticipatory, streaming language-conditioned motion | [[2605.14417\|DAJI]] (64D joint-intent latent + flow-matching) |
 | Discover novel long-horizon contact plans without demos | [[2606.06139\|MotionDisco]] (LLM-guided evolutionary contact search) |
-| Scalable skill acquisition via generative motion priors | [[2604.00202\|DreamControl-v2]] (guided diffusion in robot motion space) |
+| Scalable skill acquisition via generative motion priors | [[2604.00202\|DreamControl-v2]] (guided diffusion in robot motion space) | ^dm-2
 
 > [!star] Key Papers
 > - [[2606.06139|MotionDisco]] — First to discover extreme loco-manipulation skills autonomously by coupling LLM-guided evolutionary search with kinodynamic planning — removing the human demonstrator from contact-rich skill acquisition
 > - [[2606.05880|TAGA]] — Showed an anticipatory active-gaze policy can *emerge* from RL without supervision, setting the perceptive-humanoid agility frontier
-> - [[2604.01158|SMASH]] — The egocentric-vision agility landmark: first consecutive humanoid table tennis from onboard sensing alone, proving generative motion augmentation scales dynamic skills
+> - [[2604.01158|SMASH]] — The egocentric-vision agility landmark: first consecutive humanoid table tennis from onboard sensing alone, proving generative motion augmentation scales dynamic skills ^key-papers-2
 
 > [!tip] Anticipation Beats Reaction at the Dynamic Edge
-> Across this section the winning move is the same: *anticipate the contact before it happens.* [[2606.05880|TAGA]]'s gaze predicts where to look for the next foothold; [[2605.14417|DAJI]]'s 64D latent encodes the future physical transition before the body moves; [[2606.06139|MotionDisco]]'s search reasons over the whole contact-mode sequence rather than the next step. Reactive control suffices for quasi-static loco-manipulation (§1), but at the dynamic limit the latency of "sense → decide → act" is fatal — the maneuver is over before reaction completes. This is the locomotion echo of [[10_Contact-Rich-and-Tactile-Control#5.3 Deployment & Failure Recovery|§5.3]]'s millisecond-contact problem: when contact transitions outrun the reasoning loop, you must predict, not react. Cross-reference [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]] for the RL-method machinery and [[06_WAM#2. VideoGen WAMs]] for the imagination substrate that anticipatory control increasingly relies on.
+> Across this section the winning move is the same: *anticipate the contact before it happens.* [[2606.05880|TAGA]]'s gaze predicts where to look for the next foothold; [[2605.14417|DAJI]]'s 64D latent encodes the future physical transition before the body moves; [[2606.06139|MotionDisco]]'s search reasons over the whole contact-mode sequence rather than the next step. Reactive control suffices for quasi-static loco-manipulation (§1), but at the dynamic limit the latency of "sense → decide → act" is fatal — the maneuver is over before reaction completes. This is the locomotion echo of [[10_Contact-Rich-and-Tactile-Control#5.3 Deployment & Failure Recovery|§5.3]]'s millisecond-contact problem: when contact transitions outrun the reasoning loop, you must predict, not react. Cross-reference [[03_Imitation-Learning-and-RL#6. RL for Locomotion, Navigation & Whole-Body Control]] for the RL-method machinery and [[06_WAM#2. VideoGen WAMs]] for the imagination substrate that anticipatory control increasingly relies on. ^insight-2
 
 ---
 
@@ -925,16 +969,16 @@ Manufactured data and learned controllers need verdicts: how human-like is the m
 | Scale sparse demos into thousands of loco-manip trajectories | [[2605.27724\|HumanoidMimicGen]] (whole-body planning + randomization) |
 | Video-generation-as-control without retargeting | [[2604.27711\|ExoActor]] (exocentric video → motion estimation) |
 | Language-annotated whole-body motion data | [[2604.11251\|CLAW]] (composable primitives + template annotation) |
-| Standardized verify→train→eval→deploy loco-manip workflow | [[2603.20147\|AGILE]] (config-driven Isaac Lab pipeline) |
+| Standardized verify→train→eval→deploy loco-manip workflow | [[2603.20147\|AGILE]] (config-driven Isaac Lab pipeline) | ^dm-3
 
 > [!star] Key Papers
 > - [[2606.05160|GRAIL]] — The strongest proof that fully-synthetic 4D HOI data transfers: egocentric policies trained *only* on generated trajectories reach 90% real-world success, attacking the whole-body data bottleneck head-on
 > - [[2603.22201|NMR]] — Reframed retargeting from brittle optimization to a learned distribution-mapping, producing policy-ready references that downstream whole-body controllers can actually track
 > - [[2605.27724|HumanoidMimicGen]] — The MimicGen analog for humanoids: whole-body planning over a hybrid action space turns a handful of demos into a robust loco-manipulation corpus
-> - [[2603.20147|AGILE]] — The reference workflow that makes the rest of the cluster deployable — standardizing the verify→train→eval→deploy loop that ad-hoc pipelines kept re-inventing
+> - [[2603.20147|AGILE]] — The reference workflow that makes the rest of the cluster deployable — standardizing the verify→train→eval→deploy loop that ad-hoc pipelines kept re-inventing ^key-papers-3
 
 > [!tip] Data Scarcity Is the Real Whole-Body Bottleneck — and It Is Manufacturable
-> The whole-body cluster's binding constraint mirrors the fingertip cluster's exactly ([[10_Contact-Rich-and-Tactile-Control#5.1 Data & Calibration|§5.1]]): there is no OXE-scale corpus for humanoid loco-manipulation, and teleoperating a balancing high-DoF robot is the most expensive data-collection regime in robotics. The 2026 answer is *manufacture the data* — retarget it ([[2603.22201|NMR]]), generate it from video priors ([[2606.05160|GRAIL]], [[2604.27711|ExoActor]]), or plan it from a seed set ([[2605.27724|HumanoidMimicGen]]) — exactly as [[2605.13083|TouchAnything]] manufactures tactile supervision from egocentric RGB. The lesson is that the bottleneck is *manufacturable*: synthetic 4D HOI now transfers at 90% real-world SR, which would have been implausible a year earlier. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the scaling-law evidence underwriting the manufacture-the-data strategy and [[02_Dataset-Benchmark-Environment#8. Bimanual & Humanoid Evaluation]] for the humanoid-evaluation side. EgoVLA-style human-video VLAs ([[2507.12440|EgoVLA]]) sit at the boundary — see [[04_VLA#8. Humanoid & Bimanual VLAs]] and [[13_Egocentric-Pretraining-and-Human-Video]].
+> The whole-body cluster's binding constraint mirrors the fingertip cluster's exactly ([[10_Contact-Rich-and-Tactile-Control#5.1 Data & Calibration|§5.1]]): there is no OXE-scale corpus for humanoid loco-manipulation, and teleoperating a balancing high-DoF robot is the most expensive data-collection regime in robotics. The 2026 answer is *manufacture the data* — retarget it ([[2603.22201|NMR]]), generate it from video priors ([[2606.05160|GRAIL]], [[2604.27711|ExoActor]]), or plan it from a seed set ([[2605.27724|HumanoidMimicGen]]) — exactly as [[2605.13083|TouchAnything]] manufactures tactile supervision from egocentric RGB. The lesson is that the bottleneck is *manufacturable*: synthetic 4D HOI now transfers at 90% real-world SR, which would have been implausible a year earlier. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the scaling-law evidence underwriting the manufacture-the-data strategy and [[02_Dataset-Benchmark-Environment#8. Bimanual & Humanoid Evaluation]] for the humanoid-evaluation side. EgoVLA-style human-video VLAs ([[2507.12440|EgoVLA]]) sit at the boundary — see [[04_VLA#8. Humanoid & Bimanual VLAs]] and [[13_Egocentric-Pretraining-and-Human-Video]]. ^insight-3
 
 ---
 
@@ -981,15 +1025,15 @@ Whole-body deployment demands fall safety, formal guarantees, and a sim-to-real 
 | Narrow disturbance envelope | Force-adaptive RL — [[2510.26280\|Thor]], [[2603.08961\|FAME]]; cross-disturbance transfer unsolved |
 | Open-set fall recovery | Unified fall-safety policy — [[2602.16511\|VIGOR]], [[2511.07407\|Fall-Safety-Policy]]; novel scenarios still fail |
 | Provable safety vs learned performance | Safety filter over learned residual — [[2505.11494\|SHIELD-Humanoid]], [[2603.22703\|Safe-Stoppability-Monitor]] |
-| Balance-dominated sim-to-real gap | Long-horizon audit + DR — [[2408.00342\|MuJoCo-MPC-HumanoidBench]]; dynamics-gap closure still open |
+| Balance-dominated sim-to-real gap | Long-horizon audit + DR — [[2408.00342\|MuJoCo-MPC-HumanoidBench]]; dynamics-gap closure still open | ^dm-4
 
 > [!star] Key Papers — Whole-Body Failure Frontier
 > - [[2606.05160|GRAIL]] — The clearest evidence the data bottleneck is *manufacturable*: synthetic-only 4D HOI transfers at 90% real-world SR — but fidelity remains uneven across tasks, exposing the synthetic-to-real gap as the residual frontier
 > - [[2606.03297|SplitAdapter]] — Proved factorizing contact context beats a unified latent, yet *which* signals deserve dedicated parameters is still decided case-by-case — the open principled-factorization question
-> - [[2408.00342|MuJoCo-MPC-HumanoidBench]] — The load-bearing demonstration that short-episode benchmarks *mask* long-horizon balance instability; the evidence that the whole-body sim-to-real gap is balance-dominated, not visual
+> - [[2408.00342|MuJoCo-MPC-HumanoidBench]] — The load-bearing demonstration that short-episode benchmarks *mask* long-horizon balance instability; the evidence that the whole-body sim-to-real gap is balance-dominated, not visual ^key-papers-4
 
 > [!tip] Whole-Body Bottlenecks Are Data-Scale + Coupling-Regulation
-> Two roots explain most of the failures above. **(1) Data scale** — there is no humanoid-loco-manip analog of [[2310.08864|OXE]], because teleoperating a balancing high-DoF robot is the costliest data regime in robotics; the field's answer is to *manufacture* the data (§3), but synthetic-to-real fidelity and cross-embodiment transfer both plateau below specialist. **(2) Coupling regulation** — the shared contact budget (ground-reaction force, CoM, angular momentum) is the substrate, and current controllers regulate it only within their trained disturbance envelopes and reaction-latency budgets. Both roots rhyme with the fingertip cluster's data-scale + integration-scale bottlenecks — see [[10_Contact-Rich-and-Tactile-Control#5. Open Problems & Failure Modes]] for the contact-sensing counterpart, and [[14_Sim-to-Real-Transfer#7. Open Problems]] for the balance-dominated sim-to-real gap from the transfer side.
+> Two roots explain most of the failures above. **(1) Data scale** — there is no humanoid-loco-manip analog of [[2310.08864|OXE]], because teleoperating a balancing high-DoF robot is the costliest data regime in robotics; the field's answer is to *manufacture* the data (§3), but synthetic-to-real fidelity and cross-embodiment transfer both plateau below specialist. **(2) Coupling regulation** — the shared contact budget (ground-reaction force, CoM, angular momentum) is the substrate, and current controllers regulate it only within their trained disturbance envelopes and reaction-latency budgets. Both roots rhyme with the fingertip cluster's data-scale + integration-scale bottlenecks — see [[10_Contact-Rich-and-Tactile-Control#5. Open Problems & Failure Modes]] for the contact-sensing counterpart, and [[14_Sim-to-Real-Transfer#7. Open Problems]] for the balance-dominated sim-to-real gap from the transfer side. ^insight-4
 
 ---
 

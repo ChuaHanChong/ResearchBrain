@@ -53,7 +53,7 @@ Plain-text Unicode box diagrams in a fenced `text` block — not mermaid (all 12
 Phase Name
 
 ╔══════════════════╗
-║ *Landmark (2022) ║───────► Follow-on (2023)
+║ Landmark (2022)  ║───────► Follow-on (2023)
 ╚═════════╤════════╝
           │
           ▼
@@ -68,16 +68,17 @@ Other Phase
 │ Cross-Phase Target (2024) │
 └───────────────────────────┘
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 ````
 
-- Plain Title-Case phase headers (`Contrastive Alignment`, `WAMs`) — no brackets, ALL-CAPS, `==wrapping==`, or letter-codes on nodes.
+- Plain Title-Case phase headers, numbered from 1 (`1. Contrastive Alignment`, `2. WAMs`) so the group count reads at a glance — no brackets, ALL-CAPS, `==wrapping==`, or letter-codes on nodes.
 - Unicode box-drawing only (`┌─┐│└┘├┬┴╔═╗║╚╝`) — never ASCII `+---+`.
 - Node text is `Name (Year)`, plain text — no wikilinks (those live in the reference table below).
-- Double border + leading `*` marks the one landmark/foundational node per phase, sparingly — not every phase or paper needs one.
+- Double border marks the one landmark/foundational node per phase, sparingly — not every phase or paper needs one.
 - Cross-phase arrow gets a bracket hint: `───────► Target (Year)   [Phase Name, below]`.
-- One legend line only: `Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.` No colors, hex codes, or mermaid backstory.
+- One legend line only: `Legend: ╔═╗ double border = landmark/foundational paper.` No colors, hex codes, or mermaid backstory.
+- **Edge deltas** (optional): a short "what changed" label may sit on its own line above a box-top row, starting at a real box edge — `+X` when the successor adds X, `X → Y` when the axis moves from X to Y, a bare claim when the edge carries a finding. Source it from the paper's own summary, never invent it. Full rules in `.claude/commands/deepdive-sync.md` → *Evolution Graph diagram spec*, rule 9. Never strip existing deltas during a restyle.
 - Add a node only when it's genuinely phase-defining, not just the newest by date. A diagram trailing the body by a year or so is normal curation lag, not a defect — only fix it if an undiagrammed body section is an actual missed phase.
 
 ### Evolution Reference Table

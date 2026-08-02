@@ -22,7 +22,7 @@ aliases:
 ## Evolution Graph
 
 ```text
-Self-Supervised Foundations
+1. Self-Supervised Foundations
 
 ┌──────────────┐     ┌──────────────┐
 │ DINO (2021)  │     │ MAE (2021)   │
@@ -33,15 +33,15 @@ Self-Supervised Foundations
        └─────────┬──────────┘
                  ▼
           ╔═════════════════╗
-          ║ *DINOv2 (2023)  ║
+          ║ DINOv2 (2023)   ║
           ╚════════╤════════╝
                    ├───────────► RieMind (2026)    [3D Understanding, below]
                    └───────────► VEGA-3D (2026)    [3D Understanding, below]
 
-Vision Architectures
+2. Vision Architectures
 
 ╔══════════════╗
-║ *ViT (2020)  ║
+║ ViT (2020)   ║
 ╚══════╤═══════╝
        ├───────────► DINO (2021)   [Self-Supervised Foundations, above]
        ├───────────► MAE (2021)    [Self-Supervised Foundations, above]
@@ -57,7 +57,7 @@ Vision Architectures
 │ (2022)   │ │ (2022)   │
 └──────────┘ └──────────┘
 
-Object Detection
+3. Object Detection
 
 ┌──────────────┐    ┌──────────────┐
 │ FPN (2016)   │    │ GLIP (2021)  │
@@ -65,13 +65,13 @@ Object Detection
        └─────────┬─────────┘
                  ▼
           ╔═══════════════════╗
-          ║ *Grounding DINO   ║
+          ║ Grounding DINO    ║
           ║ (2023)            ║
           ╚═════════╤═════════╝
                     ├───────────► LISA (2023)
                     └───────────► RAM (2023)
 
-Segmentation
+4. Segmentation
 
 ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
 │ LISA (2023)  │   │ RAM (2023)   │   │ DINOv (2023) │
@@ -79,13 +79,13 @@ Segmentation
        │
        └───────────► VIEW2SPACE (2026)   [3D Understanding, below]
 
-3D Understanding
+5. 3D Understanding
 
 ╔═════════════════╗    ┌──────────────────┐   ┌───────────────────┐
-║ *RieMind (2026) ║    │ VEGA-3D (2026)   │   │ VIEW2SPACE (2026) │
+║ RieMind (2026)  ║    │ VEGA-3D (2026)   │   │ VIEW2SPACE (2026) │
 ╚═════════════════╝    └──────────────────┘   └───────────────────┘
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field evolved through four phases: **backbone design** (2016-2022) where ViT, Swin V2, FocalNet, and FPN established the architectural vocabulary; **self-supervised feature learning** (2021-2023) where DINO, MAE, and DINOv2 eliminated label dependence; **open-vocabulary perception** (2021-2023) where GLIP, Grounding DINO, LISA, and RAM made detection and segmentation language-driven; and **3D spatial reasoning** (2023-2026) where RieMind, VEGA-3D, and VIEW2SPACE pushed models from 2D recognition into metric 3D understanding.

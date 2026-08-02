@@ -18,10 +18,10 @@ aliases:
 ## Evolution Graph
 
 ```text
-Vision Transformers
+1. Vision Transformers
 
 ╔════════════════════╗
-║    *ViT (2020)     ║──────► DINO (2021)   [Self-Supervised Learning, below]
+║    ViT (2020)      ║──────► DINO (2021)   [Self-Supervised Learning, below]
 ╚═════════╤══════════╝──────► MAE (2021)    [Self-Supervised Learning, below]
           │
           ▼
@@ -35,7 +35,7 @@ Vision Transformers
 └────────────────────┘
 
 
-Self-Supervised Learning                              (fed by ViT above)
+2. Self-Supervised Learning                              (fed by ViT above)
 
 ┌────────────────────┐     ┌────────────────────┐
 │    DINO (2021)     │     │     MAE (2021)     │
@@ -43,7 +43,7 @@ Self-Supervised Learning                              (fed by ViT above)
           │                          │
           ▼                          │
 ╔════════════════════╗               │
-║  *DINOv2 (2023)    ║               │
+║  DINOv2 (2023)     ║               │
 ╚═════════╤══════════╝               │
           │                          │
           └────────────┬─────────────┘
@@ -53,10 +53,10 @@ Self-Supervised Learning                              (fed by ViT above)
              └────────────────────┘
 
 
-Vision-Language Alignment
+3. Vision-Language Alignment
 
 ╔════════════════════╗
-║   *CLIP (2021)     ║──────► KOSMOS-2 (2023)   [Multimodal LLMs, below]
+║   CLIP (2021)      ║──────► KOSMOS-2 (2023)   [Multimodal LLMs, below]
 ╚═════════╤══════════╝
           │
           ▼
@@ -70,10 +70,10 @@ Vision-Language Alignment
 └────────────────────┘
 
 
-Multimodal LLMs                              (fed by CLIP and BLIP above)
+4. Multimodal LLMs                              (fed by CLIP and BLIP above)
 
 ╔════════════════════╗
-║  *KOSMOS-1 (2023)  ║──────► KOSMOS-2 (2023)
+║  KOSMOS-1 (2023)   ║──────► KOSMOS-2 (2023)
 ╚════════════════════╝
 
 ┌────────────────────┐
@@ -82,7 +82,7 @@ Multimodal LLMs                              (fed by CLIP and BLIP above)
           │
           ▼
 ╔════════════════════╗
-║  *BLIP3-o (2025)   ║   (also fed directly by BLIP, above)
+║  BLIP3-o (2025)    ║   (also fed directly by BLIP, above)
 ╚════════════════════╝
 
 ┌────────────────────┐
@@ -90,10 +90,10 @@ Multimodal LLMs                              (fed by CLIP and BLIP above)
 └────────────────────┘
 
 ╔════════════════════╗
-║ *PaliGemma (2024)  ║   (target of BLIP's edge above)
+║ PaliGemma (2024)   ║   (target of BLIP's edge above)
 ╚════════════════════╝
 ```
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 
 The field evolved through three phases: **architectural proof-of-concept** (2020-2021) where ViT, DINO, and CLIP established that Transformers and contrastive learning could replace CNNs; **self-supervised scaling** (2022-2023) where DINOv2, I-JEPA, and ViT-22B showed label-free pretraining scales to billions of parameters; and **multimodal unification** (2023-2025) where KOSMOS-1 established the foundational MLLM paradigm before InstructBLIP, PaliGemma, and BLIP3-o merged understanding and generation into single models.
 

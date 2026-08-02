@@ -20,15 +20,15 @@ aliases:
 ## Evolution Graph
 
 ```text
-Foundations
+1. Foundations
 ╔══════════════╗   ┌─────────────────────────┐
-║ *RT-1 (2022) ║   │ Diffusion Policy (2023) │──────► π0 (2024)   [VLAs, below]
+║ RT-1 (2022)  ║   │ Diffusion Policy (2023) │──────► π0 (2024)   [VLAs, below]
 ╚══════╤═══════╝   └─────────────────────────┘
        │
        ▼
-VLAs
+2. VLAs
 ┌─────────────┐    ┌───────────────────┐    ┌────────────────┐    ╔═════════════╗
-│ RT-2 (2023) │───►│ OXE / RT-X (2023) │───►│ OpenVLA (2024) │───►║ *π0 (2024)  ║─┬──► π0.7 (2026)
+│ RT-2 (2023) │───►│ OXE / RT-X (2023) │───►│ OpenVLA (2024) │───►║ π0 (2024)   ║─┬──► π0.7 (2026)
 └─────────────┘    └───────────────────┘    └────────────────┘    ╚═════════════╝ ├──► DreamZero (2026)   [WAMs, below]
                                                                                   ├──► VLAW (2026)         [WAMs, below]
                                                                                   ├──► VLA-JEPA (2026)     [WAMs, below]
@@ -38,19 +38,19 @@ VLAs
 │ GR-1 (2023) │───►│ GR-2 (2024) │──────► VLAW (2026)   [WAMs, below]
 └─────────────┘    └─────────────┘
 
-WAMs
+3. WAMs
 ╔═══════════════════╗    ┌─────────────┐    ┌─────────────────┐
-║ *DreamZero (2026) ║    │ VLAW (2026) │    │ VLA-JEPA (2026) │
+║ DreamZero (2026)  ║    │ VLAW (2026) │    │ VLA-JEPA (2026) │
 ╚═══════════╤═══════╝    └─────────────┘    └─────────────────┘
             │
             └──────────────► SPIRAL (2026)   [Self-Evolving, below]
 
-Self-Evolving
+4. Self-Evolving
 ╔══════════════════╗    ┌───────────────┐
-║ *EvoAgent (2025) ║───►│ SPIRAL (2026) │
+║ EvoAgent (2025)  ║───►│ SPIRAL (2026) │
 ╚══════════════════╝    └───────────────┘
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field evolved through four phases: **foundations** (2022-2023) where RT-1 and Diffusion Policy proved Transformers and diffusion work for robot control; **VLAs** (2023-2026) where RT-2, OXE, OpenVLA, pi0, and pi0.7 scaled vision-language-action models from proof-of-concept to generalist cross-embodiment policies; **WAMs** (2026) where DreamZero, VLAW, and VLA-JEPA added world modeling for physics-aware control; and **self-evolving** (2025-2026) where EvoAgent and SPIRAL enabled autonomous improvement loops.

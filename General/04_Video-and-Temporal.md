@@ -19,19 +19,19 @@ aliases:
 ## Evolution Graph
 
 ```text
-Video Architectures
+1. Video Architectures
 
 ┌────────────────┐     ╔═══════════════════╗     ┌───────────────────┐
-│  MViT (2021)   │────►║ *V-JEPA 2 (2025)  ║────►│ V-JEPA 2.1 (2026) │
+│  MViT (2021)   │────►║ V-JEPA 2 (2025)   ║────►│ V-JEPA 2.1 (2026) │
 └────────────────┘     ╚═════════╤═════════╝     └───────────────────┘
                                  │
                                  └───────────────► *Video-R1 (2025)   [Video Reasoning, below]
 
 
-Video Generation as World Models
+2. Video Generation as World Models
 
 ┌────────────────┐     ╔══════════════════╗     ┌─────────────────────────┐
-│  UniPi (2023)  │────►║ *UniSim (2023)   ║────►│ DriveDreamer-2 (2024)   │
+│  UniPi (2023)  │────►║ UniSim (2023)    ║────►│ DriveDreamer-2 (2024)   │
 └───────┬────────┘     ╚════════╤═════════╝     └─────────────────────────┘
         │                       │
         ▼                       ▼
@@ -40,13 +40,13 @@ Video Generation as World Models
 └────────────────┘     └───────────────────┘
 
 
-Video Reasoning
+3. Video Reasoning
 
         (in from Video Architectures, above: *V-JEPA 2)
                        │
                        ▼
 ╔═══════════════════╗     ┌─────────────────┐
-║ *Video-R1 (2025)  ║────►│ VIDEORFT (2025) │
+║ Video-R1 (2025)   ║────►│ VIDEORFT (2025) │
 ╚═════════╤═════════╝     └─────────────────┘
           │
           ▼
@@ -55,13 +55,13 @@ Video Reasoning
 └────────────┘     └──────────────┘
 
 
-Motion Generation
+4. Motion Generation
 
 ┌──────────────┐     ╔═════════════╗     ┌───────────────┐
-│ ARFM (2025)  │────►║ *UMO (2026) ║────►│ MoTok (2026)  │
+│ ARFM (2025)  │────►║ UMO (2026)  ║────►│ MoTok (2026)  │
 └──────────────┘     ╚═════════════╝     └───────────────┘
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field evolved through four parallel tracks: **video architectures** (2021-2026) progressed from hand-designed multiscale pooling (MViT) to self-supervised world models (V-JEPA 2/2.1); **video-as-world-model** (2023-2025) moved from proving the concept (UniPi, UniSim) to scalable latent-action imagination (Dreamer 4, AdaWorld); **video reasoning** (2025-2026) unlocked temporal understanding via RL post-training (Video-R1, VIDEORFT) and frame-aware CoT (CoF, SynRL); and **motion generation** (2025-2026) converged on unified diffusion architectures for diverse motion tasks (UMO, MoTok).

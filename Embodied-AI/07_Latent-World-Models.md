@@ -19,72 +19,81 @@ aliases:
 
 ## Evolution Graph
 
+```text
+1. JEPA Foundations   (predict in representation space)
+· the JEPA line
+                     +video               +robot transfer        +refined
+╔═══════════════╗    ┌───────────────┐    ╔═════════════════╗    ┌───────────────────┐
+║ I-JEPA (2023) ║───►│ V-JEPA (2025) │───►║ V-JEPA-2 (2025) ║───►│ V-JEPA-2.1 (2026) │
+╚═══════════════╝    └───────────────┘    ╚═════════════════╝    └───────────────────┘
+
+· self-supervised objectives
+┌────────────┐
+│ IWM (2024) │─┐
+└────────────┘ │
+               │    +sequential
+               │    ┌─────────────────┐
+               ├───►│ seq-JEPA (2025) │
+               │    └─────────────────┘
+               │    +language              +provable            +kernel view
+               │    ┌─────────────────┐    ┌───────────────┐    ┌────────────────┐
+               └───►│ LLM-JEPA (2025) │───►│ LeJEPA (2025) │───►│ KerJEPA (2025) │
+                    └─────────────────┘    └───────────────┘    └────────────────┘
+
+2. JEPA for Control   (latent prediction that drives a policy)
+· latent prediction for RL
+┌────────────────────┐
+│ JEPA-for-RL (2025) │─┐
+└────────────────────┘ │
+                       │    +temporal difference    +action grounding
+                       │    ┌──────────────────┐    ╔═════════════════╗
+                       ├───►│ TD-JEPA (2025)   │───►║ VLA-JEPA (2026) ║
+                       │    └──────────────────┘    ╚═════════════════╝
+                       │    +reasoning
+                       │    ┌──────────────────┐
+                       └───►│ ThinkJEPA (2026) │
+                            └──────────────────┘
+
+3. Latent World Models   (roll the future forward in latent)
+· latent dynamics for policy
+                       +frozen features
+┌─────────────────┐    ╔════════════════╗
+│ OccWorld (2023) │───►║ DINO-WM (2024) ║─┐
+└─────────────────┘    ╚════════════════╝ │
+                                          │    +adaptable
+                                          │    ┌─────────────────┐
+                                          ├───►│ AdaWorld (2025) │
+                                          │    └─────────────────┘
+                                          │    +diffusion latent     +motion latent
+                                          │    ┌────────────────┐    ┌──────────────┐
+                                          └───►│ LaDi-WM (2025) │───►│ Motus (2025) │
+                                               └────────────────┘    └──────────────┘
+
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
-[JEPA Family, 2023-2026]
 
-+-----------------+     +-------------------+
-|  I-JEPA (2023)  | --> |  V-JEPA 2 (2025)  |
-+-----------------+     +-------------------+
-                                   |
-           +-----------------------+---------------------+
-           v                       v                     v
-+---------------------+  +------------------+  +-------------------+
-|  V-JEPA 2.1 (2026)  |  |  VL-JEPA (2025)  |  |  VLA-JEPA (2026)  |
-+---------------------+  +------------------+  +-------------------+
-                                                         |
-                                                       +-+-+
-                                                       v   v  (crosses to Latent Reasoning lane: ThinkJEPA)
-                                                       |
-                                                       |
-                                +----------------------+-----------------------+
-                                v                      v                       v
-                      +-------------------+  +------------------+  +----------------------+
-                      |  JEPA-VLA (2026)  |  |  TD-JEPA (2026)  |  |  Percept-WAM (2026)  |
-                      +-------------------+  +------------------+  +----------------------+
+Three lanes. The JEPA line is a version chain — [[2301.08243|I-JEPA]] to [[2603.14482|V-JEPA-2.1]], each release superseding the last — while the objectives thread forks at [[2403.00504|IWM]] into one short offshoot and a three-paper theory line ending at [[2512.19605|KerJEPA]]. JEPA for control grounds the idea in actions ([[2602.10098|VLA-JEPA]]) or in reasoning ([[2603.22281|ThinkJEPA]]). Latent world models roll the future forward for a policy, forking at [[2411.04983|DINO-WM]] into adaptable and generative latents.
 
-[Other Latent Models, 2024-2025]
-
-+------------------+     +--------------+
-|  DINO-WM (2024)  | --> |  UWM (2025)  |
-+------------------+     +--------------+
-
-+----------------+
-|  Motus (2025)  |
-+----------------+
-   (standalone -- no outgoing/incoming edges)
-
-[Latent Reasoning, 2026]
-
-   ^
-   |  (incoming, from JEPA Family lane: VLA-JEPA)
-+--------------------+     +-----------------------+
-|  ThinkJEPA (2026)  | --> |  Abstract-CoT (2026)  |
-+--------------------+     +-----------------------+
-
-+---------------------+
-|  ATP-Latent (2026)  |
-+---------------------+
-   (standalone -- no outgoing/incoming edges)
-```
-
-The field evolved through three threads: **JEPA** (2023-2026) where [[2301.08243|I-JEPA]] established latent prediction and [[2506.09985|V-JEPA-2]] scaled it to 1M+ hours of video; **alternative latent models** (2024-2025) where [[2411.04983|DINO-WM]] and [[2504.02792|UWM]] showed other self-supervised features work too; and **latent reasoning** (2026) where [[2603.22281|ThinkJEPA]] and [[2601.21598|ATP-Latent]] brought reasoning into latent planning for embodied agents.
-
-| Year | Paper | Contribution |
-|------|-------|-------------|
-| 2023 | [[2301.08243\|I-JEPA]] | Establishes latent prediction via context/predictor/EMA-target-encoder split, blocking representational collapse without negative pairs |
-| 2024 | [[2411.04983\|DINO-WM]] | Shows frozen DINOv2 features are rich enough for zero-shot planning without training a new encoder |
-| 2025 | [[2506.09985\|V-JEPA-2]] | Scales JEPA to 1M+ hours of video; **80%** pick-and-place from only 62 hours of unlabeled robot video |
-| 2025 | [[2512.10942\|VL-JEPA]] | Extends JEPA to vision-language via InfoNCE, cutting operations **~2.85×** for discriminative video-language tasks |
-| 2025 | [[2504.02792\|UWM]] | Unifies action-conditioned, action-free, and video-prediction modes via independent diffusion timesteps in one transformer |
-| 2025 | [[2512.13030\|Motus]] | Unifies VLM understanding, video generation, and action via Tri-model Joint Attention with optical-flow latent actions |
-| 2026 | [[2603.14482\|V-JEPA-2.1]] | Restores local detail via dense predictive loss + deep self-supervision, hitting SOTA depth (**RMSE 0.307** NYUv2) |
-| 2026 | [[2602.10098\|VLA-JEPA]] | Turns the JEPA principle into a full VLA controller: **97.2%** LIBERO, **79.5%** LIBERO-Plus OOD, **65.2%** real robot |
-| 2026 | [[2602.11832\|JEPA-VLA]] | Demonstrates action-conditioned video predictive embedding is necessary for VLA models via V-JEPA-2 feature fusion |
-| 2026 | [[2510.00739\|TD-JEPA]] | Adapts JEPA to a temporal-difference framework for zero-shot policy value learning across 65 tasks / 13 datasets |
-| 2026 | [[2511.19221\|Percept-WAM]] | Embeds explicit 2D/3D metric world states into a VLM backbone for end-to-end autonomous driving |
-| 2026 | [[2603.22281\|ThinkJEPA]] | Pairs a VLM-thinker with a JEPA latent WM for stable recursive rollouts up to H=32 |
-| 2026 | [[2601.21598\|ATP-Latent]] | Plans in a VAE latent space via GRPO with unsupervised coherence reward, beating imitation-based latent CoT |
-| 2026 | [[2604.22709\|Abstract-CoT]] | Replaces verbalized rationales with discrete abstract tokens, cutting reasoning tokens up to **12×** |
+| Year | Paper | Track | Contribution |
+|------|-------|-------|--------------|
+| 2023 | [[2301.08243\|I-JEPA]] | JEPA · Foundations | The foundational JEPA architecture predicting masked image-patch embeddings from visible-patch context via a context encoder |
+| 2023 | [[2311.16038\|OccWorld]] | Latent World Model | The autonomous-driving 3D occupancy world model origin of the recipe RoboOccWorld adapts indoors: a sel |
+| 2024 | [[2403.00504\|IWM]] | JEPA · Objectives | A LeCun-coauthored JEPA extension predicting photometric transformations in latent space via an encoder + EMA target |
+| 2024 | [[2411.04983\|DINO-WM]] | Latent World Model | A task-agnostic latent dynamics model on frozen DINOv2 features via latent consistency loss, where MPC+ |
+| 2025 | [[2502.11831\|V-JEPA]] | JEPA · Foundations | The original video JEPA predicting masked video regions in abstract representation space |
+| 2025 | [[2503.18938\|AdaWorld]] | Latent World Model | A Latent Action Autoencoder that extracts context-invariant latent actions from action-free videos via beta-VAE information |
+| 2025 | [[2504.16591\|JEPA-for-RL]] | JEPA · Control | A JEPA adapted for image-based RL: separate context/target ViT encoders combined with actor-critic gradient back-propagation |
+| 2025 | [[2505.03176\|seq-JEPA]] | JEPA · Objectives | An Action-conditioned sequence JEPA with a transformer sequence aggregator whose aggregate output is invariant |
+| 2025 | [[2505.11528\|LaDi-WM]] | Latent World Model | A latent WM combining DINOv2+SigLIP features with imagination-guided iterative action refinement |
+| 2025 | [[2506.09985\|V-JEPA-2]] | JEPA · Foundations | A video-scale JEPA that scales I-JEPA to **1M+ hours** of video with a mask-denoising objective |
+| 2025 | [[2509.14252\|LLM-JEPA]] | JEPA · Objectives | An LLM JEPA adding a JEPA loss on multi-view text-code pairs alongside autoregressive LM loss |
+| 2025 | [[2510.00739\|TD-JEPA]] | JEPA · Control | A JEPA adapted to a temporal-difference framework for multi-step policy-conditioned latent dynamics with asymmetric state |
+| 2025 | [[2511.08544\|LeJEPA]] | JEPA · Objectives | A Provable and scalable SSL framework based on Euclidean latent geometry and SIGReg |
+| 2025 | [[2512.13030\|Motus]] | Latent World Model | A Mixture-of-Transformer unifying VLM understanding + video generation + an Action Expert via Tri-model Joint Attention |
+| 2025 | [[2512.19605\|KerJEPA]] | JEPA · Objectives | A kernel-discrepancy JEPA generalizing LeJEPA's regularization to kernel discrepancies (MMD + Kernel St |
+| 2026 | [[2602.10098\|VLA-JEPA]] | JEPA · Control | A full Vision-Language-Action stack pairing the JEPA principle with a flow-matching action head |
+| 2026 | [[2603.14482\|V-JEPA-2.1]] | JEPA · Foundations | A dense-feature JEPA re-acquiring local detail via dense predictive loss (masked + unmasked tokens) |
+| 2026 | [[2603.22281\|ThinkJEPA]] | JEPA · Control | A VLM-thinker + JEPA latent WM with dual-temporal perception + hierarchical pyramid feature injection |
 
 ---
 
@@ -134,15 +143,15 @@ The three families correspond to three different bets on *what is worth predicti
 | Real-time robot control (MPC at 10–20 Hz) | JEPA | [[2602.10098\|VLA-JEPA]] (**~10 ms/step** vs **~150 ms** for pixel-space) |
 | Cross-embodiment video priors | Generative | [[2602.15922\|DreamZero]] (**+42%** cross-embodiment, see [[06_WAM#2. VideoGen WAMs]]) |
 | Compose with VLM for reasoning | JEPA (+VLM) | [[2603.22281\|ThinkJEPA]] (see §4) |
-| Learn from limited robot data | JEPA | [[2506.09985\|V-JEPA-2]] (**62 hr** unlabeled → **80%** pick-and-place) |
+| Learn from limited robot data | JEPA | [[2506.09985\|V-JEPA-2]] (**62 hr** unlabeled → **80%** pick-and-place) | ^dm-1
 
 > [!star] Key Papers
 > - [[2301.08243|I-JEPA]] — Foundational masked-embedding-prediction architecture; the EMA target trick that blocks collapse without negative pairs and inspires every downstream JEPA variant
 > - [[2506.09985|V-JEPA-2]] — Scales JEPA to **1M+ hours** video; **80%** pick-and-place with only **62 hours** of unlabeled robot data — proves latent prediction captures manipulation-relevant structure end-to-end
-> - [[2602.10098|VLA-JEPA]] — Full VLA + JEPA stack: **97.2%** [[2306.03310|LIBERO]], **79.5%** [[2510.13626|LIBERO-Plus]] OOD, **65.2%** real robot — turns the JEPA principle into a deployable controller
+> - [[2602.10098|VLA-JEPA]] — Full VLA + JEPA stack: **97.2%** [[2306.03310|LIBERO]], **79.5%** [[2510.13626|LIBERO-Plus]] OOD, **65.2%** real robot — turns the JEPA principle into a deployable controller ^key-papers-1
 
 > [!tip] Why JEPA Wins for Robots
-> Generative world models ([[2602.15922|DreamZero]], Cosmos) produce inspectable video but spend ~150 ms/forward modeling textures and shadows that the policy never uses for action selection. JEPA's latent prediction filters those out at ~10 ms/step ([[2602.10098|VLA-JEPA]]) — fast enough for real-time MPC. The choice is between *interpretable but slow* (generative — see [[06_WAM#2. VideoGen WAMs]] for the VideoGen lineage and [[06_WAM#5. VLM-Integrated WAMs]] for VLM-integrated hybrids) and *opaque but fast* (JEPA — used as backbone for the WAM-augmented VLA stack in [[04_VLA#5. World-Model-Augmented VLAs]] and for reasoning insertion in [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]]). For physics-aware deployment ([[08_Physics-Aware-Embodied-AI#5. Physics-Aware Reasoning]]), the latent opacity becomes a verification problem covered in §6.
+> Generative world models ([[2602.15922|DreamZero]], Cosmos) produce inspectable video but spend ~150 ms/forward modeling textures and shadows that the policy never uses for action selection. JEPA's latent prediction filters those out at ~10 ms/step ([[2602.10098|VLA-JEPA]]) — fast enough for real-time MPC. The choice is between *interpretable but slow* (generative — see [[06_WAM#2. VideoGen WAMs]] for the VideoGen lineage and [[06_WAM#5. VLM-Integrated WAMs]] for VLM-integrated hybrids) and *opaque but fast* (JEPA — used as backbone for the WAM-augmented VLA stack in [[04_VLA#5. World-Model-Augmented VLAs]] and for reasoning insertion in [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]]). For physics-aware deployment ([[08_Physics-Aware-Embodied-AI#5. Physics-Aware Reasoning]]), the latent opacity becomes a verification problem covered in §6. ^insight-1
 
 ---
 
@@ -187,15 +196,15 @@ The progression is also a story of *what JEPA loses and re-acquires*: V-JEPA 2's
 | Real-time discriminative vision-language (retrieval, streaming) | [[2512.10942\|VL-JEPA]] | InfoNCE objective; **~2.85x** operation reduction vs autoregressive VLMs |
 | Cannot give up open-ended text generation | Skip JEPA → use generative VLM | [[2512.10942\|VL-JEPA]] is discriminative-only by design |
 | Full robot control with language conditioning | [[2602.10098\|VLA-JEPA]] | Adds flow-matching action head on Qwen3-VL; SOTA across [[2306.03310\|LIBERO]] + OOD + real robot |
-| Few-step in-domain fine-tune from a strong starting point | [[2506.09985\|V-JEPA-2]] → action head | Skip rungs 2.2-2.4 if dense features and language are not needed |
+| Few-step in-domain fine-tune from a strong starting point | [[2506.09985\|V-JEPA-2]] → action head | Skip rungs 2.2-2.4 if dense features and language are not needed | ^dm-2
 
 > [!star] Key Papers
 > - [[2506.09985|V-JEPA-2]] — **1M+ hours** video pretraining; **80%** pick-and-place with only **62 hours** unlabeled robot video — anchors the scale tier of the JEPA family
 > - [[2603.14482|V-JEPA-2.1]] — Dense predictive loss + deep self-supervision; unlocks depth (**RMSE 0.307** NYUv2), grasping (**+20%**), navigation planning (**10x faster**)
-> - [[2602.10098|VLA-JEPA]] — Full VLA + JEPA stack: **97.2%** [[2306.03310|LIBERO]], **79.5%** [[2510.13626|LIBERO-Plus]] OOD, **65.2%** SimplerEnv — closes the loop from understanding to control
+> - [[2602.10098|VLA-JEPA]] — Full VLA + JEPA stack: **97.2%** [[2306.03310|LIBERO]], **79.5%** [[2510.13626|LIBERO-Plus]] OOD, **65.2%** SimplerEnv — closes the loop from understanding to control ^key-papers-2
 
 > [!tip] Each Rung Pays For One Capability
-> The ladder is composable: pick the lowest rung that meets your deployment constraint. [[2506.09985|V-JEPA-2]] alone is enough for zero-shot MPC ([[06_WAM#3.1 JEPA Family]]); [[2603.14482|V-JEPA-2.1]] is the right pick when you need dense features for depth/segmentation; [[2512.10942|VL-JEPA]] adds language only at the price of losing generation; [[2602.10098|VLA-JEPA]] is the full controller. The lineage also pairs naturally with the WAM-augmented VLA stack in [[04_VLA#5. World-Model-Augmented VLAs]] and with the latent reasoning insertion patterns in [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] — both use the JEPA encoder as the latent substrate. For the broader non-JEPA latent landscape (DINO-WM, UWM, Motus), see §3.
+> The ladder is composable: pick the lowest rung that meets your deployment constraint. [[2506.09985|V-JEPA-2]] alone is enough for zero-shot MPC ([[06_WAM#3.1 JEPA Family]]); [[2603.14482|V-JEPA-2.1]] is the right pick when you need dense features for depth/segmentation; [[2512.10942|VL-JEPA]] adds language only at the price of losing generation; [[2602.10098|VLA-JEPA]] is the full controller. The lineage also pairs naturally with the WAM-augmented VLA stack in [[04_VLA#5. World-Model-Augmented VLAs]] and with the latent reasoning insertion patterns in [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] — both use the JEPA encoder as the latent substrate. For the broader non-JEPA latent landscape (DINO-WM, UWM, Motus), see §3. ^insight-2
 
 ---
 
@@ -287,19 +296,17 @@ Field-defining surveys that taxonomize the latent-prediction landscape — one a
 
 Beyond the JEPA lineage, a parallel thread builds latent world models on different SSL substrates. The threads converge on the same insight (predict in latent space) via different routes.
 
-```
-+------------------------------+     +------------------+     +--------------+
-|  DINOv2 (Frozen visual SSL)  | --> |  DINO-WM (2024)  | --> |  UWM (2025)  |
-+------------------------------+     +------------------+     +--------------+
-                                               ^                        ^
-                                               |                        |
-                                    +---------------------+ | +-------------------+
-                                    |  DINO-world (2025)  | | |  AdaWorld (2025)  |
-                                    +---------------------+ | +-------------------+
-                                                            v
-                                                   +----------------+     +------------------+
-                                                   |  Motus (2025)  | --> |  LaDi-WM (2025)  |
-                                                   +----------------+     +------------------+
+```text
+╔═════════════════════════════╗    ╔═════════════════╗    ┌────────────┐    ╔═══════════════╗    ╔═════════════════╗
+║ DINOv2 (Frozen visual SSL)  ║───►║ DINO-WM (2024)  ║───►│ UWM (2025) │───►║ Motus (2025)  ║───►║ LaDi-WM (2025)  ║
+╚═════════════════════════════╝    ╚═════════════════╝    └────────────┘    ╚═══════════════╝    ╚═════════════════╝
+                                            ▲                    ▲
+                                            │                    │
+                                  ┌───────────────────┐  ┌─────────────────┐
+                                  │ DINO-world (2025) │  │ AdaWorld (2025) │
+                                  └───────────────────┘  └─────────────────┘
+
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The thread walks four convergent steps — each substituting a different missing capability into the same latent-prediction skeleton.
@@ -334,17 +341,17 @@ JEPA-family models trade off three axes: encoder freezing, modality count, and a
 | [[2510.00739\|TD-JEPA]] | Trainable | Vision + Reward | Yes (zero-shot RL) | Value learning in latent space |
 | [[2511.19221\|Percept-WAM]] | Trainable | Vision (multi-cam) + Action | Yes | End-to-end autonomous driving |
 | [[2411.04983\|DINO-WM]] | Frozen ([[2304.07193\|DINOv2]]) | Vision + Action | Yes | Zero-shot planning, transfer |
-| [[2602.11389\|Causal-JEPA]] | Trainable | Object-centric | Yes | Counterfactual reasoning |
+| [[2602.11389\|Causal-JEPA]] | Trainable | Object-centric | Yes | Counterfactual reasoning | ^dm-3
 
 > [!star] Key Papers
 > - [[2602.11832|JEPA-VLA]] — Closes the JEPA → VLA loop; demonstrates action-conditioned video predictive embedding is *necessary* for VLA models
 > - [[2411.04983|DINO-WM]] — The frozen-[[2304.07193|DINOv2]] baseline; proves a lightweight dynamics module on frozen features enables zero-shot planning without retraining
 > - [[2605.00078|Being-H0.7]] — Dual-branch latent world-action model; deployable prior aligned to a future-informed posterior; **99.2%** [[2306.03310|LIBERO]] at 3–4 ms/step
 > - [[2504.02792|UWM]] — Unified diffusion transformer spanning action-conditioned / action-free / video prediction in one backbone
-> - [[2605.00080|WM-Robot-Learning-Survey]] — The field map: documents the shift from decoupled "predict-then-act" to unified latent-space backbones
+> - [[2605.00080|WM-Robot-Learning-Survey]] — The field map: documents the shift from decoupled "predict-then-act" to unified latent-space backbones ^key-papers-3
 
 > [!tip] Frozen Features Are Powerful — and the Variant Choice Follows Your Constraint
-> [[2411.04983|DINO-WM]] showed you don't even need to train a new encoder — frozen [[2304.07193|DINOv2]] features are rich enough for world modeling, with the dynamics model operating entirely in frozen feature space for zero-shot planning. From there the variant choice is constraint-driven: need **action conditioning** → [[2602.10098|VLA-JEPA]] / [[2602.11832|JEPA-VLA]] / [[2411.04983|DINO-WM]]; need **zero-shot transfer** → freeze the encoder ([[2411.04983|DINO-WM]]); need **dense local features** → [[2603.14482|V-JEPA-2.1]]; need **multi-camera driving** → [[2511.19221|Percept-WAM]]; need **value learning** → [[2510.00739|TD-JEPA]]. The non-JEPA thread ([[2504.02792|UWM]] → [[2512.13030|Motus]] → [[2505.11528|LaDi-WM]]) reaches the same latent-prediction insight by a different route. This same frozen-vs-trainable-encoder choice reappears on the WAM deployment side in [[06_WAM#3.1 JEPA Family]], which catalogues the same JEPA variants as backbone options for world-action models.
+> [[2411.04983|DINO-WM]] showed you don't even need to train a new encoder — frozen [[2304.07193|DINOv2]] features are rich enough for world modeling, with the dynamics model operating entirely in frozen feature space for zero-shot planning. From there the variant choice is constraint-driven: need **action conditioning** → [[2602.10098|VLA-JEPA]] / [[2602.11832|JEPA-VLA]] / [[2411.04983|DINO-WM]]; need **zero-shot transfer** → freeze the encoder ([[2411.04983|DINO-WM]]); need **dense local features** → [[2603.14482|V-JEPA-2.1]]; need **multi-camera driving** → [[2511.19221|Percept-WAM]]; need **value learning** → [[2510.00739|TD-JEPA]]. The non-JEPA thread ([[2504.02792|UWM]] → [[2512.13030|Motus]] → [[2505.11528|LaDi-WM]]) reaches the same latent-prediction insight by a different route. This same frozen-vs-trainable-encoder choice reappears on the WAM deployment side in [[06_WAM#3.1 JEPA Family]], which catalogues the same JEPA variants as backbone options for world-action models. ^insight-3
 
 ---
 
@@ -396,17 +403,17 @@ The space splits along *where the reasoning happens*: in the planning loop (subs
 | Visual reasoning without text bottleneck | Continuous visual tokens | [[2511.19418\|COVT]] (**+5.5%** CV-Bench) |
 | Multimodal CoT inside diffusion policy | Discrete unified diffusion + CoT | [[2509.25681\|dVLA]] (**96.4%** LIBERO, **+12.5 pp** real) |
 | Self-supervised step-level reasoning reward | Cross-rollout agreement | [[2601.05877\|iReasoner]] (**+1.32 / +1.64** avg) |
-| Physics-grounded embodied reasoning | SFT + RL with verifiable rewards | [[2503.15558\|Cosmos-Reason1]] (**81.5%** intuitive physics, 7B) |
+| Physics-grounded embodied reasoning | SFT + RL with verifiable rewards | [[2503.15558\|Cosmos-Reason1]] (**81.5%** intuitive physics, 7B) | ^dm-4
 
 > [!star] Key Papers
 > - [[2605.08732|GC-IDM]] — Amortized goal-conditioned inverse dynamics in a frozen latent world model; **100–130×** faster planning than CEM at matched/superior SR — proves search is amortizable in well-organized latent spaces
 > - [[2605.00078|Being-H0.7]] — Future-informed dual-branch latent reasoning: privileged-future supervision at training, implicit prediction at deployment; SOTA on [[2306.03310|LIBERO]]/[[2406.02523|RoboCasa]] at **3–4 ms/step**
 > - [[2601.11442|Map2Thought]] — Unifies discrete symbolic grids with continuous metric-scale data for explicit 3D latent reasoning; metric cognitive maps yield verifiable inference traces (**61.0%** VSI-Bench)
 > - [[2604.22709|Abstract-CoT]] — Token-free latent CoT in abstract embedding space; eliminates the discrete-token bottleneck (**12×** token reduction) while preserving reasoning quality
-> - [[2511.19418|COVT]] — Chain-of-Visual-Thought: continuous visual tokens let VLMs reason about vision without the text bottleneck (**+5.5%** CV-Bench)
+> - [[2511.19418|COVT]] — Chain-of-Visual-Thought: continuous visual tokens let VLMs reason about vision without the text bottleneck (**+5.5%** CV-Bench) ^key-papers-4
 
 > [!tip] Why Latent Reasoning Matters for Robots
-> Pixel-level reasoning is expensive: [[2602.15922|DreamZero]]'s 14B Video DiT takes ~150 ms per forward pass. Latent reasoning removes the generation bottleneck — plan in embedding space, act in real-time. [[2602.10098|VLA-JEPA]]'s MPC uses [[2506.09985|V-JEPA-2]]'s latent predictor in a single forward pass; [[2605.08732|GC-IDM]] amortizes the search loop itself (**100–130×** faster than CEM); [[2605.00078|Being-H0.7]] eliminates the pixel-WAM tax entirely with **3–4 ms/step**. Each row above swaps one form of expensive computation for a learned latent shortcut — the constraint determines which shortcut to use. Cross-reference [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the full reasoning-insertion taxonomy these papers exemplify, [[04_VLA#5. World-Model-Augmented VLAs]] for how latent reasoning composes with WAM-augmented VLAs, and [[15_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how amortized planning enables self-evolution loops in latent space.
+> Pixel-level reasoning is expensive: [[2602.15922|DreamZero]]'s 14B Video DiT takes ~150 ms per forward pass. Latent reasoning removes the generation bottleneck — plan in embedding space, act in real-time. [[2602.10098|VLA-JEPA]]'s MPC uses [[2506.09985|V-JEPA-2]]'s latent predictor in a single forward pass; [[2605.08732|GC-IDM]] amortizes the search loop itself (**100–130×** faster than CEM); [[2605.00078|Being-H0.7]] eliminates the pixel-WAM tax entirely with **3–4 ms/step**. Each row above swaps one form of expensive computation for a learned latent shortcut — the constraint determines which shortcut to use. Cross-reference [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the full reasoning-insertion taxonomy these papers exemplify, [[04_VLA#5. World-Model-Augmented VLAs]] for how latent reasoning composes with WAM-augmented VLAs, and [[15_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how amortized planning enables self-evolution loops in latent space. ^insight-4
 
 ---
 
@@ -458,7 +465,7 @@ Do latent (JEPA) or pixel (diffusion) world models actually encode physics, or j
 | **Fine-Grained Detail** | Moderate ([[2603.14482\|V-JEPA-2.1]] adds dense loss to recover local structure) | High (pixel-level by construction) | **Pixel** for dense tasks (depth from pixels, fine geometry); **Latent + dense loss** for compressed alternative |
 | **Cross-Embodiment** | Limited (latent space tied to encoder) | Strong (video priors transfer across robot platforms, **+42%** in [[2602.15922\|DreamZero]]) | **Pixel** when targeting new embodiments not in robot pretraining data |
 | **Deployment Cost** | Single forward pass; fits real-time MPC | Iterative denoising; needs distillation or test-time skipping ([[2603.16666\|Fast-WAM]]) | **Latent** for production deployment; **Pixel** for offline planning |
-| **Reasoning Insertion** | Continuous-thought CoT in embedding stream ([[2604.22709\|Abstract-CoT]], [[2511.19418\|COVT]]) | VLM-guided pixel critic ([[2603.08403\|SPIRAL]] in [[06_WAM#7. Self-Evolving WAMs]]) | **Latent** for tight VLA reasoning loops; **Pixel** for plan-then-critique |
+| **Reasoning Insertion** | Continuous-thought CoT in embedding stream ([[2604.22709\|Abstract-CoT]], [[2511.19418\|COVT]]) | VLM-guided pixel critic ([[2603.08403\|SPIRAL]] in [[06_WAM#7. Self-Evolving WAMs]]) | **Latent** for tight VLA reasoning loops; **Pixel** for plan-then-critique | ^dm-5
 
 > [!star] Key Papers
 > - [[2602.10098|VLA-JEPA]] — Latent-side anchor; **97.2%** [[2306.03310|LIBERO]] at **~10 ms/step** defines the speed-quality Pareto frontier — proves latent rivals pixel SR at orders-of-magnitude lower latency
@@ -466,10 +473,10 @@ Do latent (JEPA) or pixel (diffusion) world models actually encode physics, or j
 > - [[2411.04983|DINO-WM]] — Latent-side zero-shot baseline; frozen [[2304.07193|DINOv2]] + lightweight dynamics enables planning in new environments without retraining
 > - [[2602.15922|DreamZero]] — Pixel-side anchor; **14B** joint video+action defines the robustness ceiling; **39.5%** unseen tasks, **42%** cross-embodiment, **7 Hz** real-time at deployment cost
 > - [[2601.16163|Cosmos-Policy]] — Pixel-side proof point; **98.5%** [[2306.03310|LIBERO]] from fine-tuned video diffusion shows pretrained pixel models transfer cleanly to control
-> - [[2603.16666|Fast-WAM]] — The hybridization recipe — train with video objectives, deploy without test-time imagination — that resolves the binary by ==training pixel, deploying latent==
+> - [[2603.16666|Fast-WAM]] — The hybridization recipe — train with video objectives, deploy without test-time imagination — that resolves the binary by ==training pixel, deploying latent== ^key-papers-5
 
 > [!tip] The 2026 Consensus — Train Pixel, Deploy Latent
-> The binary collapses at deployment but not at training. You need video generation at **training time** (to absorb spatiotemporal priors and physics fidelity that internet video provides) but NOT at **test time** (where it adds **~150 ms/forward** of latency that breaks real-time control). [[2603.16666|Fast-WAM]] proved this works: train with video objectives, deploy with a slim action expert. [[2602.10098|VLA-JEPA]] takes the same insight further — operate entirely in latent space at deployment while still benefiting from video-SSL pretraining targets. The 2026 frontier is no longer "latent vs pixel" but "*which* pixel objective stays at training and *which* latent shortcut runs at deployment". Cross-reference [[06_WAM#6. Efficient & Action-Centered WAMs]] for the broader train-with-video, deploy-without-video recipe, [[06_WAM#8. Cross-Paradigm Comparison]] for the five-paradigm framing that places latent and pixel as two of the five, [[04_VLA#6. RL Post-Training for VLAs]] for how the train-pixel-deploy-latent split shapes the WAM-augmented VLA stack, and [[08_Physics-Aware-Embodied-AI#5. Physics-Aware Reasoning]] for the physics-fidelity dimension that pixel training is uniquely positioned to absorb.
+> The binary collapses at deployment but not at training. You need video generation at **training time** (to absorb spatiotemporal priors and physics fidelity that internet video provides) but NOT at **test time** (where it adds **~150 ms/forward** of latency that breaks real-time control). [[2603.16666|Fast-WAM]] proved this works: train with video objectives, deploy with a slim action expert. [[2602.10098|VLA-JEPA]] takes the same insight further — operate entirely in latent space at deployment while still benefiting from video-SSL pretraining targets. The 2026 frontier is no longer "latent vs pixel" but "*which* pixel objective stays at training and *which* latent shortcut runs at deployment". Cross-reference [[06_WAM#6. Efficient & Action-Centered WAMs]] for the broader train-with-video, deploy-without-video recipe, [[06_WAM#8. Cross-Paradigm Comparison]] for the five-paradigm framing that places latent and pixel as two of the five, [[04_VLA#6. RL Post-Training for VLAs]] for how the train-pixel-deploy-latent split shapes the WAM-augmented VLA stack, and [[08_Physics-Aware-Embodied-AI#5. Physics-Aware Reasoning]] for the physics-fidelity dimension that pixel training is uniquely positioned to absorb. ^insight-5
 
 ---
 
@@ -490,15 +497,15 @@ Latent world models are powerful but face fundamental limitations that remain un
 | Novel-object / novel-material generalization | [[2411.04983\|DINO-WM]] (frozen DINO for geometry); material properties still open |
 | Need to inspect latent rollouts for plausibility | [[2603.22281\|ThinkJEPA]] (VLM grounds latent state in language) |
 | Need calibrated uncertainty on latent predictions | No clean solution — closest is [[2603.22281\|ThinkJEPA]] + a latent-space [[2410.05363\|PhyGenBench]] equivalent (research gap) |
-| Want a higher-level latent reasoning substrate | See [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the reasoning-side companion |
+| Want a higher-level latent reasoning substrate | See [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the reasoning-side companion | ^dm-6
 
 > [!star] Key Papers — Latent Failure Frontier
 > - [[2603.22281|ThinkJEPA]] — First system to ground latent rollouts in natural language via VLM; the canonical interpretability bridge for opaque JEPA dynamics
 > - [[2411.04983|DINO-WM]] — Demonstrates that *frozen* pretrained features (DINO) can substitute for learned latent dynamics on novel-object geometry; the strongest evidence that the JEPA-style latent space generalizes when the encoder is held fixed
-> - [[2602.10098|VLA-JEPA]] — Production JEPA-based VLA that exposes the contact-physics gap concretely (excels at trajectory, weakens on insertion); the load-bearing benchmark for "does latent prediction work for robots?"
+> - [[2602.10098|VLA-JEPA]] — Production JEPA-based VLA that exposes the contact-physics gap concretely (excels at trajectory, weakens on insertion); the load-bearing benchmark for "does latent prediction work for robots?" ^key-papers-6
 
 > [!tip] The Common Root Is Opacity — Not Compression
-> Three of the four problems (contact physics, interpretability, latent-pixel alignment) trace to the same root: latent prediction *compresses away* the very details — contact transients, material textures, fine geometry — that humans use to verify "is this physically plausible?". The fix is *not* reverting to pixel space (too expensive) but building learned evaluators that operate in latent space and report calibrated uncertainty. [[2603.22281|ThinkJEPA]] is the first step; the harder problem is a latent-space [[2410.05363|PhyGenBench]] equivalent — currently absent from the literature. Cross-reference [[06_WAM#9. Open Problems & Failure Modes]] (the pixel-space companion failure modes — same calibration root, different surface) and [[05_VLA-Reasoning-and-CoT#7. Open Problems]] (latent reasoning faithfulness, which has identical opacity-to-the-human-inspector dynamics).
+> Three of the four problems (contact physics, interpretability, latent-pixel alignment) trace to the same root: latent prediction *compresses away* the very details — contact transients, material textures, fine geometry — that humans use to verify "is this physically plausible?". The fix is *not* reverting to pixel space (too expensive) but building learned evaluators that operate in latent space and report calibrated uncertainty. [[2603.22281|ThinkJEPA]] is the first step; the harder problem is a latent-space [[2410.05363|PhyGenBench]] equivalent — currently absent from the literature. Cross-reference [[06_WAM#9. Open Problems & Failure Modes]] (the pixel-space companion failure modes — same calibration root, different surface) and [[05_VLA-Reasoning-and-CoT#7. Open Problems]] (latent reasoning faithfulness, which has identical opacity-to-the-human-inspector dynamics). ^insight-6
 
 ---
 

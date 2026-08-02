@@ -17,10 +17,10 @@ aliases:
 ## Evolution Graph
 
 ```text
-Foundational Vision-Language Alignment
+1. Foundational Vision-Language Alignment
 
 ╔════════════════╗
-║ *CLIP (2021)   ║──┬──► BLIP (2022)
+║ CLIP (2021)    ║──┬──► BLIP (2022)
 ╚════════════════╝  ├──► CoCa (2022)
                     └──► InstructBLIP (2023)  [Early MLLMs]
 
@@ -33,10 +33,10 @@ Foundational Vision-Language Alignment
 └────────────────┘
 
 
-Early MLLMs
+2. Early MLLMs
 
 ╔═════════════════════════╗
-║ *InstructBLIP (2023)    ║──┬──► LLaVA-MORE (2025)  [Instruction-Tuned MLLMs]
+║ InstructBLIP (2023)     ║──┬──► LLaVA-MORE (2025)  [Instruction-Tuned MLLMs]
 ╚═════════════════════════╝  └──► Molmo (2024)       [Instruction-Tuned MLLMs]
 
 ┌─────────────────┐
@@ -44,7 +44,7 @@ Early MLLMs
 └─────────────────┘
 
 
-Instruction-Tuned MLLMs
+3. Instruction-Tuned MLLMs
 
 ┌────────────────────┐
 │ LLaVA-MORE (2025)  │─────► InternVL3 (2025)  [Unified & Native Multimodal]
@@ -59,10 +59,10 @@ Instruction-Tuned MLLMs
 └────────────────────┘
 
 
-Unified & Native Multimodal
+4. Unified & Native Multimodal
 
 ╔════════════════════╗
-║ *InternVL3 (2025)  ║─────► BAGEL (2025)
+║ InternVL3 (2025)   ║─────► BAGEL (2025)
 ╚════════════════════╝
 
 ┌────────────────┐
@@ -74,13 +74,13 @@ Unified & Native Multimodal
 └────────────────┘
 
 
-Efficient MLLMs                              (disconnected sub-graph, no edges to/from groups above)
+5. Efficient MLLMs                              (disconnected sub-graph, no edges to/from groups above)
 
 ┌────────────────┐     ╔═══════════════════╗     ┌─────────────────┐
-│ NVILA (2024)   │────►║ *SmolVLM (2025)   ║────►│ TinyVLM (2026)  │
+│ NVILA (2024)   │────►║ SmolVLM (2025)    ║────►│ TinyVLM (2026)  │
 └────────────────┘     ╚═══════════════════╝     └─────────────────┘
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field evolved through four phases: **foundational alignment** (2021-2022) where CLIP, BLIP, and CoCa established vision-language pretraining paradigms; **early MLLMs** (2023) where InstructBLIP, KOSMOS-2, and Shikra connected visual encoders to LLMs with instruction tuning and grounding; **instruction-tuned MLLMs** (2024-2025) where LLaVA-MORE, Molmo, and PaliGemma refined the recipe for general-purpose multimodal understanding; and **unified native multimodal + efficient deployment** (2024-2026) where InternVL3 and BAGEL achieved native multi-task generation while SmolVLM and TinyVLM pushed sub-3B parameter efficiency.

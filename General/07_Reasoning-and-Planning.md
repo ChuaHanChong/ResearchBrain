@@ -18,10 +18,10 @@ aliases:
 ## Evolution Graph
 
 ```text
-Chain-of-Thought
+1. Chain-of-Thought
 
 ╔══════════════════════════╗
-║ *Chain-of-Thought (2022) ║
+║ Chain-of-Thought (2022)  ║
 ╚═══════════════╤══════════╝
                 ├──► ReAct (2022)        [Agentic Reasoning]
                 ├──► PAL (2022)          [Program-Aided]
@@ -46,10 +46,10 @@ Chain-of-Thought
                         └────────────────────────────────────┘
 
 
-Agentic Reasoning
+2. Agentic Reasoning
 
 ╔══════════════════╗
-║ *ReAct (2022)    ║
+║ ReAct (2022)     ║
 ╚═══════╤══════════╝
      ┌──┴───────────────────┐
      ▼                      ▼
@@ -62,7 +62,7 @@ Agentic Reasoning
  (no further children)            └──────────────────┘
 
 
-Program-Aided
+3. Program-Aided
 
 ┌────────────────┐
 │ PAL (2022)     │
@@ -73,10 +73,10 @@ Program-Aided
 └────────────────────┘
 
 
-Latent Reasoning
+4. Latent Reasoning
 
 ╔═══════════════════════╗
-║ *Coconut (2024)       ║
+║ Coconut (2024)        ║
 ╚═════════════╤═════════╝
       ┌───────┴───────────┐
       ▼                   ▼
@@ -85,7 +85,7 @@ Latent Reasoning
 └──────────────────┘  └────────────────────┘
 
 
-Visual Reasoning
+5. Visual Reasoning
 
 ┌────────────────────┐
 │ VisCoT (2024)      │
@@ -96,11 +96,11 @@ Visual Reasoning
 └──────────┬─────────┘
            ▼
 ╔════════════════════════╗
-║ *Vision-R1 (2025)      ║
+║ Vision-R1 (2025)       ║
 ╚════════════════════════╝
 
 
-Test-Time Scaling
+6. Test-Time Scaling
 
 ┌─────────────────────────┐
 │ TTS Survey (2025)       │   (receives LATS → TTS Survey from Agentic Reasoning)
@@ -110,7 +110,7 @@ Test-Time Scaling
 │ LRM Survey (2025)       │   (receives Quiet-STaR → LRM Survey from Chain-of-Thought)
 └─────────────────────────┘
 
-Legend: ╔═╗ double border + "*" prefix = landmark/foundational paper.
+Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
 The field evolved through six phases: **explicit CoT prompting** (2022) where chain-of-thought and STaR established step-by-step reasoning; **agentic reasoning** (2022-2023) where ReAct, RAP, and LATS added environment interaction and tree search; **program-aided reasoning** (2022-2023) where PAL and ViperGPT delegated computation to code; **latent reasoning** (2024-2025) where Coconut, CODI, and Huginn moved reasoning into continuous latent space; **visual reasoning** (2024-2025) where VisCoT, VoT, and Vision-R1 grounded CoT in visual perception; and **test-time scaling** (2025) where surveys codified how to allocate more compute at inference for better answers.
@@ -154,39 +154,39 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 - [[2606.03784|ERVLA]], [[2605.29198|GCPO]], [[2605.28421|DenoiseRL]], [[2605.21467|DelTA]], [[2605.16787|RLVR-Unlearnability]], [[2605.07396|ROPD]], [[2605.06234|RobotEQ]], [[2603.07079|EOPD]], [[2505.16854|TON]]
 
 > [!star] Key Papers
-> - [[2501.19393\|s1]] — Stanford/UW open-source 32B model achieves SOTA reasoning by training on just 1,000 curated examples with budget forcing
-> - [[2506.14641\|Zero-shot-vs-Few-shot-CoT]] — Demonstrates that for recent powerful LLMs, zero-shot CoT often outperforms few-shot, challenging the canonical prompting wisdom
+> - [[2501.19393|s1]] — Stanford/UW open-source 32B model achieves SOTA reasoning by training on just 1,000 curated examples with budget forcing
+> - [[2506.14641|Zero-shot-vs-Few-shot-CoT]] — Demonstrates that for recent powerful LLMs, zero-shot CoT often outperforms few-shot, challenging the canonical prompting wisdom
 
 **Self-Taught & Bootstrapped Reasoning** — LLMs that iteratively improve their own rationales through self-training loops, learning to reason without human-written chains.
-- [[2507.23751\|CoT-Self-Instruct]], [[2505.11614\|RL-for-Human-Decision-Explanation]], [[2504.14945\|LUFFY]], [[2504.11343\|RAFT++]], [[2503.03746\|Process-based-Self-Rewarding]], [[2502.03387\|LIMO]], [[2501.12948\|DeepSeek-R1]], [[2501.12599\|Kimi-k1.5]], [[2405.14838\|Stepwise-Internalization]], [[2403.09629\|Quiet-STaR]], [[2401.08190\|MARIO]], [[2312.06585\|ReST-EM]], [[2312.04684\|LaRS]], [[2203.14465\|STaR]]
+- [[2507.23751|CoT-Self-Instruct]], [[2505.11614|RL-for-Human-Decision-Explanation]], [[2504.14945|LUFFY]], [[2504.11343|RAFT++]], [[2503.03746|Process-based-Self-Rewarding]], [[2502.03387|LIMO]], [[2501.12948|DeepSeek-R1]], [[2501.12599|Kimi-k1.5]], [[2405.14838|Stepwise-Internalization]], [[2403.09629|Quiet-STaR]], [[2401.08190|MARIO]], [[2312.06585|ReST-EM]], [[2312.04684|LaRS]], [[2203.14465|STaR]]
 
 **Self-Improving Pretraining & Data Bootstrapping** — Pretraining-scale self-improvement loops and data curation/distillation pipelines that bootstrap reasoning ability before RL fine-tuning.
-- [[2605.14539|CIPO]], [[2605.11609|AntiSD]], [[2604.20209\|SGS]], [[2604.17654\|Poly-EPO]], [[2604.06628\|Reasoning-SFT-Analysis]], [[2604.03993\|Noisy-Supervision-Reasoning]], [[2604.03128\|Self-Distilled-RLVR]], [[2604.03098\|Self-Guide]], [[2603.24422\|OneSearch-V2]], [[2602.20574|GATES]], [[2602.08167|R&B-EnCoRe]], [[2602.03143\|SAGE]], [[2601.21725\|Procedural-Pretraining]], [[2601.21343\|Self-Improving-Pretraining]], [[2512.03442\|PretrainZero]], [[2508.03682\|SQLM]]
+- [[2605.14539|CIPO]], [[2605.11609|AntiSD]], [[2604.20209|SGS]], [[2604.17654|Poly-EPO]], [[2604.06628|Reasoning-SFT-Analysis]], [[2604.03993|Noisy-Supervision-Reasoning]], [[2604.03128|Self-Distilled-RLVR]], [[2604.03098|Self-Guide]], [[2603.24422|OneSearch-V2]], [[2602.20574|GATES]], [[2602.08167|R&B-EnCoRe]], [[2602.03143|SAGE]], [[2601.21725|Procedural-Pretraining]], [[2601.21343|Self-Improving-Pretraining]], [[2512.03442|PretrainZero]], [[2508.03682|SQLM]]
 
 **Self-Evolving Embodied & Agentic Bootstrapping** — Self-training loops applied to VLA, navigation, and video-agent reasoning rather than pure text.
 - [[2607.16097|Pretraining-RL Scaling Law]], [[2607.05339|TREK]], [[2606.29082|EFT]], [[2606.05979|WLA]], [[2605.22816|AwareVLN]], [[2605.21931|EvoVid]], [[2605.20914|RISE-Self-Evolving-VLM]]
 
 > [!star] Key Papers
-> - [[2203.14465\|STaR]] — Self-taught reasoner: LLM bootstraps its own rationales iteratively, creating a flywheel for reasoning improvement
-> - [[2403.09629\|Quiet-STaR]] — Learns to think before every token via internal rationales, generalizing STaR to the token level
-> - [[2405.14838\|Stepwise-Internalization]] — Progressively internalizes explicit CoT into implicit reasoning, step by step
+> - [[2203.14465|STaR]] — Self-taught reasoner: LLM bootstraps its own rationales iteratively, creating a flywheel for reasoning improvement
+> - [[2403.09629|Quiet-STaR]] — Learns to think before every token via internal rationales, generalizing STaR to the token level
+> - [[2405.14838|Stepwise-Internalization]] — Progressively internalizes explicit CoT into implicit reasoning, step by step
 
 **Math & Logical Reasoning** — Specialized reasoning chains for mathematical problem-solving, symbolic logic, and structured deduction.
-- [[2605.02073\|Search-Driven-Reward-RL]], [[2603.18886\|PrincipiaBench]], [[2512.24119\|GeoBench]], [[2511.05849|EGG-SR]], [[2507.00432\|Math-Reasoning-Transferability]], [[2506.21215\|G2-Reasoner]], [[2506.07751\|AbstRaL]], [[2506.02126\|Knowledge-vs-Reasoning-LLM-Eval]], [[2505.15134\|Entropy-Minimization-LLM-Reasoning]], [[2505.10557\|MathCoder-VL]], [[2505.07956\|LLM-LEx]], [[2504.21801\|DeepSeek-Prover-V2]], [[2504.11354\|Kimina-Prover]], [[2502.07640\|Goedel-Prover]], [[2406.09308\|TransNAR]], [[2403.14624\|MathVerse]], [[2110.14168|GSM8K]], [[2109.00110|miniF2F]]
+- [[2605.02073|Search-Driven-Reward-RL]], [[2603.18886|PrincipiaBench]], [[2512.24119|GeoBench]], [[2511.05849|EGG-SR]], [[2507.00432|Math-Reasoning-Transferability]], [[2506.21215|G2-Reasoner]], [[2506.07751|AbstRaL]], [[2506.02126|Knowledge-vs-Reasoning-LLM-Eval]], [[2505.15134|Entropy-Minimization-LLM-Reasoning]], [[2505.10557|MathCoder-VL]], [[2505.07956|LLM-LEx]], [[2504.21801|DeepSeek-Prover-V2]], [[2504.11354|Kimina-Prover]], [[2502.07640|Goedel-Prover]], [[2406.09308|TransNAR]], [[2403.14624|MathVerse]], [[2110.14168|GSM8K]], [[2109.00110|miniF2F]]
 
 > [!star] Key Papers
-> - [[2406.09308\|TransNAR]] — Google DeepMind integrates Transformers with GNN-based neural algorithmic reasoners for compositional generalization
-> - [[2512.24119\|GeoBench]] — Hierarchical benchmark with formally verified synthetic data for diagnosing geometry reasoning
+> - [[2406.09308|TransNAR]] — Google DeepMind integrates Transformers with GNN-based neural algorithmic reasoners for compositional generalization
+> - [[2512.24119|GeoBench]] — Hierarchical benchmark with formally verified synthetic data for diagnosing geometry reasoning
 
 **Search & Process-Supervised Verification** — MCTS/tree-search-based verifiers and process/outcome reward models that guide reasoning search.
-- [[2506.09026\|e3]], [[2506.03295\|CFT]], [[2505.23585\|OPO]], [[2505.21493\|VeriFree]], [[2505.14674\|RRM]], [[2505.03318\|UNIFIEDREWARD-THINK]], [[2505.02387\|RM-R1]], [[2504.20595\|ReasonIR]], [[2504.16828\|THINKPRM]], [[2503.04412\|AB-MCTS]], [[2501.05366\|Search-o1]], [[2501.01478\|MCTS-Process-Supervision]], [[2412.18319\|Mulberry]], [[2412.14835\|AR-MCTS]], [[2305.20050|Process Supervision]]
+- [[2506.09026|e3]], [[2506.03295|CFT]], [[2505.23585|OPO]], [[2505.21493|VeriFree]], [[2505.14674|RRM]], [[2505.03318|UNIFIEDREWARD-THINK]], [[2505.02387|RM-R1]], [[2504.20595|ReasonIR]], [[2504.16828|THINKPRM]], [[2503.04412|AB-MCTS]], [[2501.05366|Search-o1]], [[2501.01478|MCTS-Process-Supervision]], [[2412.18319|Mulberry]], [[2412.14835|AR-MCTS]], [[2305.20050|Process Supervision]]
 
 **Self-Consistency, Sampling & Confidence Calibration** — Reliability via multiple sampling, majority voting, and calibrated confidence estimation.
-- [[2604.22074\|CIR/SR-Reasoning]], [[2604.20733\|NPO]], [[2604.02288\|SRPO]], [[2603.30036\|CoT-Monitorability]], [[2603.23355\|ReVal]], [[2511.10648\|SCS]], [[2511.09158\|CRM]], [[2510.23596\|BR-RM]], [[2510.17472\|Certified-Self-Consistency]], [[2510.14901\|Power-Sampling]], [[2510.12157|Self-Verifying-Reflection]], [[2509.23250\|VL-PRM]], [[2508.15260\|DeepConf]], [[2506.14245\|CoT-Pass@K]], [[2502.06233\|CISC]]
+- [[2604.22074|CIR/SR-Reasoning]], [[2604.20733|NPO]], [[2604.02288|SRPO]], [[2603.30036|CoT-Monitorability]], [[2603.23355|ReVal]], [[2511.10648|SCS]], [[2511.09158|CRM]], [[2510.23596|BR-RM]], [[2510.17472|Certified-Self-Consistency]], [[2510.14901|Power-Sampling]], [[2510.12157|Self-Verifying-Reflection]], [[2509.23250|VL-PRM]], [[2508.15260|DeepConf]], [[2506.14245|CoT-Pass@K]], [[2502.06233|CISC]]
 
 > [!star] Key Papers
-> - [[2412.14835\|AR-MCTS]] — Active reward-guided MCTS enhances multi-step multimodal reasoning without additional training
-> - [[2509.23250\|VL-PRM]] — Vision-language process reward models trained via hybrid data synthesis for step-level verification
+> - [[2412.14835|AR-MCTS]] — Active reward-guided MCTS enhances multi-step multimodal reasoning without additional training
+> - [[2509.23250|VL-PRM]] — Vision-language process reward models trained via hybrid data synthesis for step-level verification
 
 **Overthink Suppression & OPD-Family RL Methods** — RL post-training methods (OPD/OPD-derivative family, entropy/fork suppression) that directly train models to stop overthinking.
 - [[2607.05804|TurnOPD]], [[2607.05394|Direct-OPD]], [[2607.05184|Fork-Suppression]], [[2607.04763|ReOPD]], [[2607.04751|TOP-D]], [[2607.01518|Overthink-Triggered-Slowdown-Attack]], [[2606.03937|VEPO]], [[2605.29438|ElegantVLA]], [[2605.12227|dGRPO]], [[2605.11739|EffOPD]], [[2604.21764|TRS]], [[2604.05355|ETR]]
@@ -198,16 +198,16 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 - [[2508.02120|Efficient-R1-style-Reasoning-Survey]], [[2507.09662|Concise-Adaptive-Thinking-Survey]], [[2504.10903|Efficient-Reasoning-Models-Survey]], [[2503.23077|LRM-Efficient-Inference-Survey]], [[2503.21614|Efficient-Reasoning-Survey]], [[2503.16419|Stop-Overthinking-Survey]], [[2503.09567|Long-CoT-Survey]]
 
 > [!star] Key Papers
-> - [[2503.09567\|Long-CoT-Survey]] — First systematic survey of long chain-of-thought reasoning, covering generation, optimization, and evaluation
-> - [[2503.16419\|Stop-Overthinking-Survey]] — Structured survey on efficient reasoning that maps waste-reduction techniques
-> - [[2511.08577\|TaH]] — Think-at-Hard framework selectively activates deep reasoning only at genuinely difficult steps
+> - [[2503.09567|Long-CoT-Survey]] — First systematic survey of long chain-of-thought reasoning, covering generation, optimization, and evaluation
+> - [[2503.16419|Stop-Overthinking-Survey]] — Structured survey on efficient reasoning that maps waste-reduction techniques
+> - [[2511.08577|TaH]] — Think-at-Hard framework selectively activates deep reasoning only at genuinely difficult steps
 
 **Additional Methods** — Miscellaneous papers (a manipulation-reasoning benchmark, a general LLM survey) that don't share a theme with any other Section 1 group.
 - [[2603.28545|ManipArena]], [[2303.18223|LLM Survey]]
 
 > [!star] Key Papers
-> - [[2503.12605\|MCoT-Survey]] — First comprehensive survey of multimodal chain-of-thought, analyzing evolution from text-only to vision-language CoT
-> - [[2507.06203\|Latent-Reasoning-Survey]] — Comprehensive multi-institutional survey examining latent reasoning in LLMs across all major approaches
+> - [[2503.12605|MCoT-Survey]] — First comprehensive survey of multimodal chain-of-thought, analyzing evolution from text-only to vision-language CoT
+> - [[2507.06203|Latent-Reasoning-Survey]] — Comprehensive multi-institutional survey examining latent reasoning in LLMs across all major approaches
 
 > [!tip] The CoT Paradox
 > Classic CoT unlocked reasoning but at a cost: longer chains do not always mean better answers and can introduce "overthinking." The field is now splitting into two directions — latent/implicit reasoning that removes the chain entirely, and efficient reasoning that keeps the chain but prunes it adaptively.
@@ -222,45 +222,45 @@ Extending CoT to jointly reason over vision and language, producing interleaved 
 - [[2502.09621|MME-CoT]], [[2502.02339|AStar]], [[2410.01345|GemBench]], [[2405.16473|M3CoT]], [[2304.08485|LLaVA]], [[1812.01717|FVD]], [[1709.07871|FiLM]], [[1511.02799|NMN]]
 
 > [!star] Key Papers
-> - [[2302.00923\|Multimodal-CoT]] — Extended CoT to vision + language jointly; foundational work for multimodal reasoning chains
-> - [[2411.10440\|LLaVA-CoT]] — VLM with structured four-stage reasoning (summary, caption, reasoning, conclusion) that outperforms larger models
-> - [[2411.11930\|AtomThink]] — Self-structured CoT annotations for MLLMs using atomic step decomposition
+> - [[2302.00923|Multimodal-CoT]] — Extended CoT to vision + language jointly; foundational work for multimodal reasoning chains
+> - [[2411.10440|LLaVA-CoT]] — VLM with structured four-stage reasoning (summary, caption, reasoning, conclusion) that outperforms larger models
+> - [[2411.11930|AtomThink]] — Self-structured CoT annotations for MLLMs using atomic step decomposition
 
 **Visual CoT & Visualization-of-Thought** — Methods that produce visual reasoning artifacts (sketches, attention maps, spatial visualizations) as intermediate steps.
-- [[2511.02779\|MIRA]], [[2507.11932\|Hyperphantasia]], [[2507.09876\|ViTCoT]], [[2506.03596\|ControlThinker]], [[2505.15879\|GRIT]], [[2505.15510\|Visual-Thoughts]], [[2503.16434\|Interactive-Sketchpad]], [[2501.10074\|SpatialCoT]], [[2501.07542\|MVoT]], [[2411.19488\|ICoT]], [[2406.09403\|VisualSketchPad]], [[2405.13872\|IoT]], [[2404.03622\|VoT]], [[2403.16999\|VisCoT]]
+- [[2511.02779|MIRA]], [[2507.11932|Hyperphantasia]], [[2507.09876|ViTCoT]], [[2506.03596|ControlThinker]], [[2505.15879|GRIT]], [[2505.15510|Visual-Thoughts]], [[2503.16434|Interactive-Sketchpad]], [[2501.10074|SpatialCoT]], [[2501.07542|MVoT]], [[2411.19488|ICoT]], [[2406.09403|VisualSketchPad]], [[2405.13872|IoT]], [[2404.03622|VoT]], [[2403.16999|VisCoT]]
 
 > [!star] Key Papers
-> - [[2404.03622\|VoT]] — Visualization-of-Thought prompting: spatial reasoning via mental imagery in LLMs
-> - [[2406.09403\|VisualSketchPad]] — Equips multimodal LMs with intermediate visual sketch generation for reasoning
-> - [[2501.07542\|MVoT]] — Multimodal VoT enables MLLMs to generate interleaved visual reasoning traces
+> - [[2404.03622|VoT]] — Visualization-of-Thought prompting: spatial reasoning via mental imagery in LLMs
+> - [[2406.09403|VisualSketchPad]] — Equips multimodal LMs with intermediate visual sketch generation for reasoning
+> - [[2501.07542|MVoT]] — Multimodal VoT enables MLLMs to generate interleaved visual reasoning traces
 
 **Video & Temporal Interleaved Reasoning** — Interleaved vision-text reasoning specialized for video frames and temporal dynamics.
-- [[2603.16870\|Video-Reasoning-Chain-of-Steps]], [[2601.21037\|Thinking-in-Frames]], [[2601.19686\|Video-KTR]], [[2511.19261\|LAST]], [[2511.11113\|VIDEOP2R]], [[2506.03525\|VIDEO-SKOT]], [[2506.00318\|CoF]], [[2505.12434\|VIDEORFT]]
+- [[2603.16870|Video-Reasoning-Chain-of-Steps]], [[2601.21037|Thinking-in-Frames]], [[2601.19686|Video-KTR]], [[2511.19261|LAST]], [[2511.11113|VIDEOP2R]], [[2506.03525|VIDEO-SKOT]], [[2506.00318|CoF]], [[2505.12434|VIDEORFT]]
 
 **Image-Level Interleaved Vision-Text Reasoning** — Architectures that alternate between visual perception and textual reasoning within a single forward pass over static images.
-- [[2607.08024|APIVOT]], [[2604.02097\|LatentUM]], [[2603.29165\|LatentPilot]], [[2603.27967\|XVR]], [[2602.04413\|H-GIVR]], [[2602.02453\|TwC]], [[2601.02771\|AbductiveMLLM]], [[2601.02422\|CoCoT]], [[2511.19418\|COVT]], [[2511.15703\|VLSR]], [[2505.23766\|Argus]], [[2505.20753\|Griffon-R]], [[2505.18842\|v1]], [[2505.15809\|MMaDA]], [[2504.20199\|FCVC]], [[2412.03548\|AURORA]], [[2411.12591\|VIC]]
+- [[2607.08024|APIVOT]], [[2604.02097|LatentUM]], [[2603.29165|LatentPilot]], [[2603.27967|XVR]], [[2602.04413|H-GIVR]], [[2602.02453|TwC]], [[2601.02771|AbductiveMLLM]], [[2601.02422|CoCoT]], [[2511.19418|COVT]], [[2511.15703|VLSR]], [[2505.23766|Argus]], [[2505.20753|Griffon-R]], [[2505.18842|v1]], [[2505.15809|MMaDA]], [[2504.20199|FCVC]], [[2412.03548|AURORA]], [[2411.12591|VIC]]
 
 > [!star] Key Papers
-> - [[2411.12591\|VIC]] — Visual Inference Chain: a "thinking before looking" paradigm for MLLMs
-> - [[2412.03548\|AURORA]] — Introduces perception tokens to enable efficient interleaved visual-textual reasoning
-> - [[2505.18842\|v1]] — MLLM that natively produces interleaved multimodal chain-of-thought reasoning
+> - [[2411.12591|VIC]] — Visual Inference Chain: a "thinking before looking" paradigm for MLLMs
+> - [[2412.03548|AURORA]] — Introduces perception tokens to enable efficient interleaved visual-textual reasoning
+> - [[2505.18842|v1]] — MLLM that natively produces interleaved multimodal chain-of-thought reasoning
 
 **RL-Trained Grounded CoT** — Reinforcement-learning-trained methods that ground chain-of-thought reasoning in image regions or bounding boxes.
-- [[2607.02490|VRRL]], [[2604.21396\|VG-CoT]], [[2601.21634\|RSGround-R1]], [[2507.00748\|Multi-Image-Grounding-RL]], [[2506.11991\|VGR]], [[2506.09965\|VILASR]], [[2506.04277\|RSVP]], [[2505.14362\|DeepEyes]], [[2505.14231\|UniVG-R1]], [[2503.12799\|GCoT]], [[2503.06520\|Seg-Zero]]
+- [[2607.02490|VRRL]], [[2604.21396|VG-CoT]], [[2601.21634|RSGround-R1]], [[2507.00748|Multi-Image-Grounding-RL]], [[2506.11991|VGR]], [[2506.09965|VILASR]], [[2506.04277|RSVP]], [[2505.14362|DeepEyes]], [[2505.14231|UniVG-R1]], [[2503.12799|GCoT]], [[2503.06520|Seg-Zero]]
 
 **Tool-Augmented & Region-Search Grounding** — Training-free or tool-augmented methods that ground reasoning via zoom, detection, segmentation, or region-search modules.
-- [[2604.03016\|Agentic-MME]], [[2604.02812\|Neuro-Symbolic-Robot-Policies]], [[2603.22815\|PinPoint]], [[2603.17729\|SARE]], [[2602.02004\|ClueTracer]], [[2512.24297\|FIGR]], [[2512.15160\|EagleVision]], [[2506.07235\|VTS-V]], [[2501.05452\|ReFocus]], [[2411.16044\|ZoomEye]], [[2410.16400\|VipAct]], [[2403.12966\|CoS]], [[2403.12488\|DetToolChain]], [[2402.04236\|CogCoM]]
+- [[2604.03016|Agentic-MME]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2603.22815|PinPoint]], [[2603.17729|SARE]], [[2602.02004|ClueTracer]], [[2512.24297|FIGR]], [[2512.15160|EagleVision]], [[2506.07235|VTS-V]], [[2501.05452|ReFocus]], [[2411.16044|ZoomEye]], [[2410.16400|VipAct]], [[2403.12966|CoS]], [[2403.12488|DetToolChain]], [[2402.04236|CogCoM]]
 
 > [!star] Key Papers
-> - [[2403.12966\|CoS]] — Chain-of-Spot: interactive reasoning that attends to relevant image regions at each step
-> - [[2503.12799\|GCoT]] — Grounded CoT integrates explicit visual grounding with chain-of-thought for interpretable reasoning
+> - [[2403.12966|CoS]] — Chain-of-Spot: interactive reasoning that attends to relevant image regions at each step
+> - [[2503.12799|GCoT]] — Grounded CoT integrates explicit visual grounding with chain-of-thought for interpretable reasoning
 
 **Visual Perception-Reasoning Analysis** — Studies dissecting the relationship between perception and reasoning in VLMs.
-- [[2604.02190\|UniDriveVLA]], [[2603.22179\|MARCUS]], [[2601.13562\|Reasoning-as-Modality]], [[2509.25373\|VLM-Perception-Cognition-Survey]], [[2506.07936\|MM-ICL-Mimicking-vs-Reasoning]], [[2505.14970\|SEC]], [[2504.18397\|UV-CoT]], [[2502.16707\|ReflectVLM]], [[2501.13620\|VLM-Perception-Reasoning-Probe]], [[2407.19666\|Two-Stage-Visual-Reasoning]], [[2406.19934\|VIREO]], [[2404.19205\|TableVQA-Bench]], [[2312.14135\|V*]], [[2301.05226\|IPVR]], [[2204.03162|Winoground]], [[2203.10244|ChartQA]], [[2106.09141|SVO-Probes]], [[1811.10830|VCR]], [[1811.00491|NLVR2]], [[1612.00837|VQA v2.0]]
+- [[2604.02190|UniDriveVLA]], [[2603.22179|MARCUS]], [[2601.13562|Reasoning-as-Modality]], [[2509.25373|VLM-Perception-Cognition-Survey]], [[2506.07936|MM-ICL-Mimicking-vs-Reasoning]], [[2505.14970|SEC]], [[2504.18397|UV-CoT]], [[2502.16707|ReflectVLM]], [[2501.13620|VLM-Perception-Reasoning-Probe]], [[2407.19666|Two-Stage-Visual-Reasoning]], [[2406.19934|VIREO]], [[2404.19205|TableVQA-Bench]], [[2312.14135|V*]], [[2301.05226|IPVR]], [[2204.03162|Winoground]], [[2203.10244|ChartQA]], [[2106.09141|SVO-Probes]], [[1811.10830|VCR]], [[1811.00491|NLVR2]], [[1612.00837|VQA v2.0]]
 
 > [!star] Key Papers
-> - [[2501.13620\|VLM-Perception-Reasoning-Probe]] — Cognitively-inspired framework revealing how perception failures cascade into reasoning failures in VLMs
-> - [[2312.14135\|V*]] — LLM-guided visual search that addresses the visual information bottleneck in MLLMs
+> - [[2501.13620|VLM-Perception-Reasoning-Probe]] — Cognitively-inspired framework revealing how perception failures cascade into reasoning failures in VLMs
+> - [[2312.14135|V*]] — LLM-guided visual search that addresses the visual information bottleneck in MLLMs
 
 > [!tip] The Multimodal CoT Frontier
 > The progression from text-only CoT to multimodal CoT reveals a key insight: vision and language are complementary reasoning modalities. Models that interleave visual tokens (sketches, attention crops, region highlights) with textual reasoning consistently outperform text-only chains on spatial and compositional tasks.
@@ -278,32 +278,32 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 - [[2606.16222|LTF]], [[2605.12466|Attractor-Models]], [[2604.22709|Abstract-CoT]], [[2603.04948|Nabla-Reasoner]], [[2602.10520|RLTT]], [[2505.13308|LATENTSEEK]], [[2505.12514|COCONUT]], [[2505.11484|SoftCoT++]], [[2502.21074|CODI]], [[2502.03275|Token-Assorted]], [[2412.13171|CCoT]], [[2412.06769|Coconut]], [[2311.01460|Implicit CoT]]
 
 > [!star] Key Papers
-> - [[2412.06769\|Coconut]] — Meta FAIR's Chain of Continuous Thought: LLM reasons in continuous latent space, outperforming token-based CoT on multi-step problems
-> - [[2505.12514\|COCONUT]] — Theoretical proof that continuous-thought enables LLMs to solve problems intractable for discrete CoT
-> - [[2505.11484\|SoftCoT++]] — First framework for scalable test-time reasoning in continuous latent space with speculative decoding
+> - [[2412.06769|Coconut]] — Meta FAIR's Chain of Continuous Thought: LLM reasons in continuous latent space, outperforming token-based CoT on multi-step problems
+> - [[2505.12514|COCONUT]] — Theoretical proof that continuous-thought enables LLMs to solve problems intractable for discrete CoT
+> - [[2505.11484|SoftCoT++]] — First framework for scalable test-time reasoning in continuous latent space with speculative decoding
 
 **Depth-Recurrent & Looped Architectures** — Models that increase reasoning depth through weight-sharing loops or recurrence, decoupling compute from parameter count.
 - [[2607.16051|Loopie]], [[2606.18206|Fixed-Point-Reasoners]], [[2604.11791|Looped-Reasoning-Mechanistic-Analysis]], [[2604.07822|Recurrent-Depth-Reasoning]], [[2602.07845|RD-VLA]], [[2602.02156|LoopViT]], [[2511.16886|DIS]], [[2510.25741|Ouro]], [[2510.04871|TRM]], [[2510.00219|Thoughtbubbles]], [[2507.02199|Huginn-Latent-CoT]], [[2505.05522|CTM]], [[2502.17416|Looped-Transformers]], [[2502.05171|Huginn]]
 
 > [!star] Key Papers
-> - [[2502.05171\|Huginn]] — Depth-recurrent Transformer that matches larger models through adaptive compute via loop iterations
-> - [[2502.17416\|Looped-Transformers]] — Google Research shows parameter-efficient looped architectures can match or exceed standard deep Transformers
-> - [[2510.25741\|Ouro]] — Looped Language Models with iterative computation embedded directly in pre-training
-> - [[2604.11791\|Looped-Reasoning-Mechanistic-Analysis]] — Reveals that looped models spontaneously organize into cyclic fixed points + feedforward-style "stages of inference"; grounds looped design choices empirically
+> - [[2502.05171|Huginn]] — Depth-recurrent Transformer that matches larger models through adaptive compute via loop iterations
+> - [[2502.17416|Looped-Transformers]] — Google Research shows parameter-efficient looped architectures can match or exceed standard deep Transformers
+> - [[2510.25741|Ouro]] — Looped Language Models with iterative computation embedded directly in pre-training
+> - [[2604.11791|Looped-Reasoning-Mechanistic-Analysis]] — Reveals that looped models spontaneously organize into cyclic fixed points + feedforward-style "stages of inference"; grounds looped design choices empirically
 
 **Implicit Reasoning Mechanics** — Understanding how Transformers internalize and execute reasoning without explicit chains.
-- [[2601.10679\|Augmented-HRM]], [[2510.09312\|CRV]], [[2510.05069\|SwiReasoning]], [[2509.14252\|LLM-JEPA]], [[2506.08552\|Latent-Reasoning-Refinement]], [[2505.23653\|Transformer-Implicit-Reasoning-Mechanics]], [[2505.17697|Activation-Control-CoT]], [[2505.15257|Language-Reasoning-Disentanglement]], [[2310.15213|Function Vectors]]
+- [[2601.10679|Augmented-HRM]], [[2510.09312|CRV]], [[2510.05069|SwiReasoning]], [[2509.14252|LLM-JEPA]], [[2506.08552|Latent-Reasoning-Refinement]], [[2505.23653|Transformer-Implicit-Reasoning-Mechanics]], [[2505.17697|Activation-Control-CoT]], [[2505.15257|Language-Reasoning-Disentanglement]], [[2310.15213|Function Vectors]]
 
 > [!star] Key Papers
-> - [[2505.23653\|Transformer-Implicit-Reasoning-Mechanics]] — Reveals how Transformers acquire implicit multi-step reasoning through compression of explicit chains
-> - [[2510.09312\|CRV]] — Circuit-based Reasoning Verification interprets internal reasoning circuits in LLMs
+> - [[2505.23653|Transformer-Implicit-Reasoning-Mechanics]] — Reveals how Transformers acquire implicit multi-step reasoning through compression of explicit chains
+> - [[2510.09312|CRV]] — Circuit-based Reasoning Verification interprets internal reasoning circuits in LLMs
 
 **Hierarchical & Mixture-of-Experts Reasoning** — Architectures that decompose reasoning into hierarchical levels or route through specialized expert modules.
-- [[2601.10825\|Societies-of-Thought]], [[2507.02092\|EBT]], [[2506.23120\|R2S]], [[2506.21734\|HRM]], [[2506.18945\|Chain-of-Experts]], [[2506.15211\|ProtoReasoning]], [[2506.13331\|MICRO]]
+- [[2601.10825|Societies-of-Thought]], [[2507.02092|EBT]], [[2506.23120|R2S]], [[2506.21734|HRM]], [[2506.18945|Chain-of-Experts]], [[2506.15211|ProtoReasoning]], [[2506.13331|MICRO]]
 
 > [!star] Key Papers
-> - [[2506.21734\|HRM]] — Hierarchical Reasoning Model structures multi-step reasoning into decomposable hierarchical levels
-> - [[2506.13331\|MICRO]] — Mixture of Cognitive Reasoners: modular LLM architecture with specialized reasoning heads
+> - [[2506.21734|HRM]] — Hierarchical Reasoning Model structures multi-step reasoning into decomposable hierarchical levels
+> - [[2506.13331|MICRO]] — Mixture of Cognitive Reasoners: modular LLM architecture with specialized reasoning heads
 
 > [!tip] Latent Reasoning vs Explicit CoT
 > Latent reasoning removes the token-generation bottleneck: Coconut and Huginn show that "thinking" in embedding space can be faster and more powerful than text-based CoT. The trade-off is interpretability -- latent thoughts cannot be inspected. The emerging compromise (SwiReasoning, SoftCoT++) dynamically switches between latent and explicit modes.
@@ -315,21 +315,21 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 LLMs as agents that interleave reasoning with actions -- the bridge to embodied AI. These methods combine deliberation with environment interaction.
 
 **Embodied & Robot Agentic Reasoning-Acting** — Think-act-observe loops applied to robot manipulation, VLA policies, and embodied question answering.
-- [[2607.27881|RoboBRIDGE]], [[2607.19633|LENS-Clutter]], [[2607.18060|RoboHarness]], [[2607.08448|Harness-VLA]], [[2607.06256|Semantic-Handoff-Diagnosis]], [[2607.05377|Cortex]], [[2607.04162|ACE]], [[2606.31723|UniTacVLA]], [[2606.31167|MIRTH]], [[2606.30613|SPARK]], [[2606.30111|AgentCanvas]], [[2605.25813|EQA-Decision]], [[2605.13119\|VLAs-as-Tools]], [[2602.22010\|WoG]], [[2507.16815|ThinkAct]], [[2507.12846|Mind-Palace]], [[2505.13948|Memory-Centric-EQA]], [[2307.00329|DoReMi]], [[2204.01691|SayCan]], [[2201.07207\|LLM-Zero-Shot-Planners]]
+- [[2607.27881|RoboBRIDGE]], [[2607.19633|LENS-Clutter]], [[2607.18060|RoboHarness]], [[2607.08448|Harness-VLA]], [[2607.06256|Semantic-Handoff-Diagnosis]], [[2607.05377|Cortex]], [[2607.04162|ACE]], [[2606.31723|UniTacVLA]], [[2606.31167|MIRTH]], [[2606.30613|SPARK]], [[2606.30111|AgentCanvas]], [[2605.25813|EQA-Decision]], [[2605.13119|VLAs-as-Tools]], [[2602.22010|WoG]], [[2507.16815|ThinkAct]], [[2507.12846|Mind-Palace]], [[2505.13948|Memory-Centric-EQA]], [[2307.00329|DoReMi]], [[2204.01691|SayCan]], [[2201.07207|LLM-Zero-Shot-Planners]]
 
 **General & Web-Agentic Reasoning-Acting** — The foundational ReAct lineage and its descendants for web, search, tool-use, and multi-agent orchestration.
-- [[2607.21461|AREX]], [[2607.04508|Agentic-Self-Driving-Lab]], [[2605.22138|SR2AM]], [[2605.15188\|FutureSim]], [[2605.06614\|SkillOS]], [[2602.20133\|AdaEvolve]], [[2602.13949\|ERL]], [[2601.12538\|Agentic-Reasoning-Survey]], [[2601.09295\|MACRO-LLM]], [[2512.23167\|SPIRAL]], [[2510.22832\|HRM-Agent]], [[2508.07976\|ASearcher]], [[2508.03923\|CoAct-1]], [[2507.08664\|INoT]], [[2507.05707\|Agentic-R1]], [[2507.01701\|LbMAS]], [[2506.12508\|AgentOrchestra]], [[2505.16938\|InternAgent]], [[2504.21776\|WebThinker]], [[2504.14920\|DyFo]], [[2504.09130\|VisuoThink]], [[2503.19263\|DWIM]], [[2410.08328\|Talker-Reasoner]], [[2310.12823|AgentLM]], [[2307.13854|WebArena]], [[2305.14992\|RAP]], [[2210.03629\|ReAct]]
+- [[2607.21461|AREX]], [[2607.04508|Agentic-Self-Driving-Lab]], [[2605.22138|SR2AM]], [[2605.15188|FutureSim]], [[2605.06614|SkillOS]], [[2602.20133|AdaEvolve]], [[2602.13949|ERL]], [[2601.12538|Agentic-Reasoning-Survey]], [[2601.09295|MACRO-LLM]], [[2512.23167|SPIRAL]], [[2510.22832|HRM-Agent]], [[2508.07976|ASearcher]], [[2508.03923|CoAct-1]], [[2507.08664|INoT]], [[2507.05707|Agentic-R1]], [[2507.01701|LbMAS]], [[2506.12508|AgentOrchestra]], [[2505.16938|InternAgent]], [[2504.21776|WebThinker]], [[2504.14920|DyFo]], [[2504.09130|VisuoThink]], [[2503.19263|DWIM]], [[2410.08328|Talker-Reasoner]], [[2310.12823|AgentLM]], [[2307.13854|WebArena]], [[2305.14992|RAP]], [[2210.03629|ReAct]]
 
 > [!star] Key Papers
-> - [[2210.03629\|ReAct]] — Synergizing reasoning and acting: think, act, observe, think -- the foundation of all agentic reasoning
-> - [[2305.14992\|RAP]] — Reasoning as planning: treats the LLM itself as a world model for lookahead search
+> - [[2210.03629|ReAct]] — Synergizing reasoning and acting: think, act, observe, think -- the foundation of all agentic reasoning
+> - [[2305.14992|RAP]] — Reasoning as planning: treats the LLM itself as a world model for lookahead search
 
 **Tree Search & MCTS for Reasoning** — Structured search methods that explore reasoning paths as trees, combining breadth and depth.
 - [[2607.18517|Target Interception in Crowds (TIC)]], [[2607.03751|SVA]], [[2605.06840|Myopic-Planning]], [[2407.05530|This&That]], [[2305.10601|Tree of Thoughts]]
 
 > [!star] Key Papers
-> - [[2310.04406\|LATS]] — Language Agent Tree Search: unifies reasoning, acting, and planning via MCTS
-> - [[2407.14414\|System-1.x]] — Balances fast System-1 and slow System-2 reasoning adaptively
+> - [[2310.04406|LATS]] — Language Agent Tree Search: unifies reasoning, acting, and planning via MCTS
+> - [[2407.14414|System-1.x]] — Balances fast System-1 and slow System-2 reasoning adaptively
 
 **World-Model Architectures for Robot Control** — Novel world-model architectures (JEPA-style, diffusion, discrete-token, hierarchical) built for embodied prediction and control.
 - [[2607.27924|ODEWorld]], [[2607.27599|WAP]], [[2607.26056|INTACT]], [[2607.25337|Temporal-Distance-JEPA]], [[2607.25236|VisualPatchWorld]], [[2607.20743|Bio-Inspired Self-Supervised Trajectory Planner]], [[2607.19919|DR]], [[2607.19343|MVA]], [[2607.14187|RxBrain]], [[2607.12547|Hi-LeWM]], [[2607.10630|AWM]], [[2607.08724|LMP]], [[2607.06925|PrismWM]], [[2607.06501|HUME]], [[2607.04978|Qantara]], [[2607.03941|WSA1]], [[2607.02403|ACID]], [[2607.00673|PVWM]], [[2606.05645|Discrete-WAM]], [[2605.15153|Pelican-Unified]], [[2605.01772|Anticipation-VLA]]
@@ -344,51 +344,51 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 - [[2607.28415|QQWorld]], [[2607.26712|ActSWM]], [[2607.15278|HDR]], [[2606.24597|Qwen-AgentWorld]], [[2606.18208|LoopWM]], [[2605.28293|ProRL-Recommendation]], [[2605.12090|WAM-Survey]], [[2605.09131|MCP-Cosmos]], [[2605.08732|GC-IDM]], [[2605.03413|NEO-Theorizer]], [[2602.05842|RWML]], [[2512.23541|Act2Goal]], [[2106.02039|Trajectory Transformer]]
 
 > [!star] Key Papers
-> - [[2411.04983\|DINO-WM]] — Task-agnostic world model leveraging frozen DINOv2 for visual planning
-> - [[2507.19468\|DINO-world]] — Efficient generalist video world model from Meta FAIR using frozen DINOv2 encoder
+> - [[2411.04983|DINO-WM]] — Task-agnostic world model leveraging frozen DINOv2 for visual planning
+> - [[2507.19468|DINO-world]] — Efficient generalist video world model from Meta FAIR using frozen DINOv2 encoder
 
 **Multi-Agent & Theory of Mind** — Systems where multiple reasoning agents collaborate, and models that reason about other agents' beliefs.
-- [[2607.25327|BAIT]], [[2607.25047|XR Mediation Layer]], [[2607.20289|Courteous Anticipatory Planning]], [[2607.06990|Closed-Loop-Multi-Robot-Manipulation-Framework]], [[2607.05705|IMR]], [[2604.24881|Latent-Agents]], [[2603.00142\|ToM-Multi-Agent-Eval]], [[2602.20687\|NativeEmbodied]], [[2602.08236\|AVIC]], [[2602.08234\|SkillRL]], [[2507.07969\|Q-chunking]], [[2505.22954\|DGM]], [[2409.10106\|Industry-6.0]]
+- [[2607.25327|BAIT]], [[2607.25047|XR Mediation Layer]], [[2607.20289|Courteous Anticipatory Planning]], [[2607.06990|Closed-Loop-Multi-Robot-Manipulation-Framework]], [[2607.05705|IMR]], [[2604.24881|Latent-Agents]], [[2603.00142|ToM-Multi-Agent-Eval]], [[2602.20687|NativeEmbodied]], [[2602.08236|AVIC]], [[2602.08234|SkillRL]], [[2507.07969|Q-chunking]], [[2505.22954|DGM]], [[2409.10106|Industry-6.0]]
 
 > [!star] Key Papers
-> - [[2603.00142\|ToM-Multi-Agent-Eval]] — Evaluation of multi-agent systems augmented with Theory of Mind, verified by symbolic logic
+> - [[2603.00142|ToM-Multi-Agent-Eval]] — Evaluation of multi-agent systems augmented with Theory of Mind, verified by symbolic logic
 
 **Formal Verification & Temporal-Logic Planning** — Planning with formal correctness guarantees: signal/timed temporal logic, MILP synthesis, and verification-gated control.
-- [[2607.26770|Vision-TL-Action]], [[2607.23040|Actuator-Aware STT Synthesis]], [[2607.18731|STL-BT Synthesis]], [[2607.18580|STeP]], [[2607.14826|Interventional Causal Circuits]], [[2607.06724|EvoPlan]], [[2606.31339|Verification-Gated-Mission-Governance]], [[2606.31260|SymPlan]], [[2606.30820|TWTL-MILP-Synthesis]], [[2606.06041|iCEM+TL]], [[2606.03296|SC-Diff-Planning]], [[2601.11322\|VLM-Logic-Situational-Awareness]]
+- [[2607.26770|Vision-TL-Action]], [[2607.23040|Actuator-Aware STT Synthesis]], [[2607.18731|STL-BT Synthesis]], [[2607.18580|STeP]], [[2607.14826|Interventional Causal Circuits]], [[2607.06724|EvoPlan]], [[2606.31339|Verification-Gated-Mission-Governance]], [[2606.31260|SymPlan]], [[2606.30820|TWTL-MILP-Synthesis]], [[2606.06041|iCEM+TL]], [[2606.03296|SC-Diff-Planning]], [[2601.11322|VLM-Logic-Situational-Awareness]]
 
 **LLM/VLM Symbolic Task Planning** — LLMs and VLMs generating symbolic plans, PDDL, or executable code for task planning.
-- [[2607.23515|LEACL]], [[2607.18062|UniETP]], [[2511.10279\|PROPA]], [[2511.04357|GraSP-VLA]], [[2509.14760\|ALIGN3]], [[2509.13351\|PDDL-INSTRUCT]], [[2403.08248|CoPa]], [[2402.15487|RoboEXP]], [[2209.07753|Code-as-Policies]]
+- [[2607.23515|LEACL]], [[2607.18062|UniETP]], [[2511.10279|PROPA]], [[2511.04357|GraSP-VLA]], [[2509.14760|ALIGN3]], [[2509.13351|PDDL-INSTRUCT]], [[2403.08248|CoPa]], [[2402.15487|RoboEXP]], [[2209.07753|Code-as-Policies]]
 
 **Task & Motion Planning (TAMP) for Manipulation** — Integrated task-and-motion planning, affordance grounding, and skill composition for robot manipulation.
-- [[2607.26337|Thread-Assisted Needle Retrieval]], [[2607.26047|S2A2]], [[2607.25731|TriManPolicy]], [[2607.25397|DR-LfD]], [[2607.11004|Real-to-Sim Affordance Planning]], [[2606.26423|CoStream]], [[2606.06139|MotionDisco]], [[2606.03385|GTP-FA]], [[2606.02745|SeeTraceAct]], [[2605.29563|ViewSuite]], [[2605.21061|Driving-VLA-IK]], [[2605.09387\|NEXUS]], [[2508.01415|RoboMemory]], [[2409.00215|Intent-Aware-Co-Manipulation]], [[2311.12244|muLV-Rep]], [[2311.11893|CBP]], [[2310.16014|HITL-TAMP]], [[2305.06341|GGCS]], [[2302.12422|MimicPlay]], [[2203.02468|Predicate-State-Estimation]], [[2111.07447|Self-Replay]], [[2006.06444|Compositional Skill Models for TAMP]], [[1806.07011|VirtualHome]]
+- [[2607.26337|Thread-Assisted Needle Retrieval]], [[2607.26047|S2A2]], [[2607.25731|TriManPolicy]], [[2607.25397|DR-LfD]], [[2607.11004|Real-to-Sim Affordance Planning]], [[2606.26423|CoStream]], [[2606.06139|MotionDisco]], [[2606.03385|GTP-FA]], [[2606.02745|SeeTraceAct]], [[2605.29563|ViewSuite]], [[2605.21061|Driving-VLA-IK]], [[2605.09387|NEXUS]], [[2508.01415|RoboMemory]], [[2409.00215|Intent-Aware-Co-Manipulation]], [[2311.12244|muLV-Rep]], [[2311.11893|CBP]], [[2310.16014|HITL-TAMP]], [[2305.06341|GGCS]], [[2302.12422|MimicPlay]], [[2203.02468|Predicate-State-Estimation]], [[2111.07447|Self-Replay]], [[2006.06444|Compositional Skill Models for TAMP]], [[1806.07011|VirtualHome]]
 
 > [!star] Key Papers
-> - [[2509.13351\|PDDL-INSTRUCT]] — Instruction tuning framework that enhances LLMs' symbolic planning with PDDL
+> - [[2509.13351|PDDL-INSTRUCT]] — Instruction tuning framework that enhances LLMs' symbolic planning with PDDL
 
 **Vision-Language Navigation Agents** — Agents whose spatial reasoning is specifically about navigating to a goal (object-nav, VLN, exploration).
-- [[2607.25448|RPV-V2]], [[2607.23743|Traversability-Aware Global Planner]], [[2607.21025|ZONDA]], [[2607.13072|HRO]], [[2607.11029|Decomposed Visual Navigation]], [[2607.10437|Inter-POMDP]], [[2607.10383|ABot-N1]], [[2607.08359|FSD-VLN]], [[2607.07357|HUMAIN]], [[2607.06537|UniLM-Nav]], [[2607.01287|Adaptive-Companionship]], [[2606.31654|DynFly]], [[2606.30696|ViTL]], [[2605.12689\|3D-RL-DWA]], [[2412.10439\|CogNav]], [[2410.08500\|STMR]], [[2410.06237\|BUMBLE]], [[2404.10220\|COME-robot]], [[2311.00530\|LLM-Embodied-Navigation-Survey]], [[2304.03047|ETPNav]], [[2301.11575|ARiADNE]], [[2202.11271|ViKiNG]], [[2202.03735|ObjectNav Distance Prediction]], [[2105.06453|E.T. (Episodic Transformer)]]
+- [[2607.25448|RPV-V2]], [[2607.23743|Traversability-Aware Global Planner]], [[2607.21025|ZONDA]], [[2607.13072|HRO]], [[2607.11029|Decomposed Visual Navigation]], [[2607.10437|Inter-POMDP]], [[2607.10383|ABot-N1]], [[2607.08359|FSD-VLN]], [[2607.07357|HUMAIN]], [[2607.06537|UniLM-Nav]], [[2607.01287|Adaptive-Companionship]], [[2606.31654|DynFly]], [[2606.30696|ViTL]], [[2605.12689|3D-RL-DWA]], [[2412.10439|CogNav]], [[2410.08500|STMR]], [[2410.06237|BUMBLE]], [[2404.10220|COME-robot]], [[2311.00530|LLM-Embodied-Navigation-Survey]], [[2304.03047|ETPNav]], [[2301.11575|ARiADNE]], [[2202.11271|ViKiNG]], [[2202.03735|ObjectNav Distance Prediction]], [[2105.06453|E.T. (Episodic Transformer)]]
 
 **General Embodied Spatial Agent Frameworks** — Embodied-agent spatial reasoning that is not navigation-specific: memory, cognitive maps, and manipulation-oriented embodied CoT.
-- [[2607.23797|VLMM]], [[2607.14252|MEMORA]], [[2606.31144|Modular-VLA-Framework]], [[2606.30552|ZR-0]], [[2606.03374|eMEM]], [[2604.11135|AIM]], [[2601.21998\|LingBot-VA]], [[2509.25852\|REVER]], [[2506.17629\|CLiViS]], [[2410.02742\|GLIMO]], [[2409.01652\|ReKep]], [[2407.08693|ECoT]], [[2403.09631\|3D-VLA]], [[2403.08321\|ManiGaussian]], [[2401.05946\|TDB]], [[2309.15129\|CogEval]], [[2011.01975|Rearrangement Challenge]]
+- [[2607.23797|VLMM]], [[2607.14252|MEMORA]], [[2606.31144|Modular-VLA-Framework]], [[2606.30552|ZR-0]], [[2606.03374|eMEM]], [[2604.11135|AIM]], [[2601.21998|LingBot-VA]], [[2509.25852|REVER]], [[2506.17629|CLiViS]], [[2410.02742|GLIMO]], [[2409.01652|ReKep]], [[2407.08693|ECoT]], [[2403.09631|3D-VLA]], [[2403.08321|ManiGaussian]], [[2401.05946|TDB]], [[2309.15129|CogEval]], [[2011.01975|Rearrangement Challenge]]
 
 **3D & Geometric Agent Reasoning** — Agent spatial reasoning grounded in 3D/geometry.
-- [[2607.26513|EKG-VLA]], [[2607.18016|POT-VLA]], [[2607.07101|GeoProp]], [[2607.05396|CamVLA]], [[2606.31329|3D-HAMSTER]], [[2603.00905\|pySpatial]], [[2506.03642\|SpatialMind]]
+- [[2607.26513|EKG-VLA]], [[2607.18016|POT-VLA]], [[2607.07101|GeoProp]], [[2607.05396|CamVLA]], [[2606.31329|3D-HAMSTER]], [[2603.00905|pySpatial]], [[2506.03642|SpatialMind]]
 
 **Embodied Foundation Models & Brain-Style Planning Agents** — Unified "brain"/foundation-model agents for embodied and autonomous-driving planning.
-- [[2607.23899|Embodied GPT-5.1]], [[2607.18536|MAGE-MacroPlacement]], [[2607.17977|RynnBrain 1.1]], [[2607.04880|PRISM]], [[2607.04426|ACE-Brain-0.5]], [[2607.00283|Planning-Critical-Occlusion-VLM]], [[2606.31830|PriorEye]], [[2606.31106|AD-Internal-Prediction-Probing]], [[2606.06076|MGSD]], [[2604.11751|GWM-MPC]], [[2603.08403\|SPIRAL]], [[2601.11404\|ACoT-VLA]], [[2506.22992\|MARBLE]], [[2505.17685\|FSDrive]], [[2502.13130\|Magma]], [[2412.13810\|CAD-Assistant]]
+- [[2607.23899|Embodied GPT-5.1]], [[2607.18536|MAGE-MacroPlacement]], [[2607.17977|RynnBrain 1.1]], [[2607.04880|PRISM]], [[2607.04426|ACE-Brain-0.5]], [[2607.00283|Planning-Critical-Occlusion-VLM]], [[2606.31830|PriorEye]], [[2606.31106|AD-Internal-Prediction-Probing]], [[2606.06076|MGSD]], [[2604.11751|GWM-MPC]], [[2603.08403|SPIRAL]], [[2601.11404|ACoT-VLA]], [[2506.22992|MARBLE]], [[2505.17685|FSDrive]], [[2502.13130|Magma]], [[2412.13810|CAD-Assistant]]
 
 **RL & Latent-Space Planning Agent Methods** — RL-trained or latent-space planning agents with specific architectural tricks (memory, latent tokens, sub-goal decomposition).
-- [[2607.23726|HRL-SAC]], [[2603.02511\|Unveiler]], [[2603.02203\|T3RL]], [[2602.23320\|ParamMem]], [[2602.21158\|SELAUR]], [[2602.20739\|PyVision-RL]], [[2602.18374\|ZS-IP]], [[2602.14697\|E-SPL]], [[2602.09463\|SpotAgent]], [[2602.04837\|GEA]], [[2602.02488\|RLAnything]], [[2602.00475\|GRASP]], [[2601.21598\|ATP-Latent]], [[2601.16973\|VisGym]], [[2509.22643\|VLA-Reasoner]], [[2505.11409\|VPRL]]
+- [[2607.23726|HRL-SAC]], [[2603.02511|Unveiler]], [[2603.02203|T3RL]], [[2602.23320|ParamMem]], [[2602.21158|SELAUR]], [[2602.20739|PyVision-RL]], [[2602.18374|ZS-IP]], [[2602.14697|E-SPL]], [[2602.09463|SpotAgent]], [[2602.04837|GEA]], [[2602.02488|RLAnything]], [[2602.00475|GRASP]], [[2601.21598|ATP-Latent]], [[2601.16973|VisGym]], [[2509.22643|VLA-Reasoner]], [[2505.11409|VPRL]]
 
 **RL Theory, Process-Reward & Agent Surveys** — RL-theoretic planning methods, process-reward formulations, and surveys of the agent/foundation-model landscape.
-- [[2607.23930|FAOC]], [[2512.20605\|Internal-RL]], [[2511.16043\|Agent0]], [[2510.22512\|TRL]], [[2505.13138\|NESYDMS]], [[2505.10468\|AI-Agents-vs-Agentic-AI]], [[2505.03181\|AFSFT]], [[2505.01441\|ARTIST]], [[2504.20073\|RAGEN]], [[2504.15369\|Inverse-Probabilistic-Adaptation]], [[2504.01990\|Foundation-Agents-Survey]], [[2502.02133\|MPC-RL-Survey]], [[2412.05265\|RL-Overview]], [[2411.14251\|NLRL]], [[2406.06592\|OmegaPRM]], [[2406.03816\|ReST-MCTS*]]
+- [[2607.23930|FAOC]], [[2512.20605|Internal-RL]], [[2511.16043|Agent0]], [[2510.22512|TRL]], [[2505.13138|NESYDMS]], [[2505.10468|AI-Agents-vs-Agentic-AI]], [[2505.03181|AFSFT]], [[2505.01441|ARTIST]], [[2504.20073|RAGEN]], [[2504.15369|Inverse-Probabilistic-Adaptation]], [[2504.01990|Foundation-Agents-Survey]], [[2502.02133|MPC-RL-Survey]], [[2412.05265|RL-Overview]], [[2411.14251|NLRL]], [[2406.06592|OmegaPRM]], [[2406.03816|ReST-MCTS*]]
 
 **Classical Decision-Theoretic & Diffusion-Based Planning** — Foundational offline-RL, diffusion-planning, and world-model-driven decision-making methods.
-- [[2502.14819\|PLDM]], [[2310.10625\|VLP]], [[2302.01877\|AdaptDiffuser]], [[2302.00111\|UniPi]], [[2210.15629|LCD]], [[2206.02072\|VSRL]], [[2205.09991\|Diffuser]], [[2110.06169|IQL]], [[1912.01603\|Dreamer]], [[1911.10601\|Scaling-Active-Inference]], [[1810.08678|MolDQN]]
+- [[2502.14819|PLDM]], [[2310.10625|VLP]], [[2302.01877|AdaptDiffuser]], [[2302.00111|UniPi]], [[2210.15629|LCD]], [[2206.02072|VSRL]], [[2205.09991|Diffuser]], [[2110.06169|IQL]], [[1912.01603|Dreamer]], [[1911.10601|Scaling-Active-Inference]], [[1810.08678|MolDQN]]
 
 > [!star] Key Papers
-> - [[2603.00905\|pySpatial]] — Equips MLLMs with explicit 3D spatial reasoning by generating Python programs for geometric computation
-> - [[2506.22992\|MARBLE]] — Multi-step multimodal spatial reasoning benchmark from EPFL and ETH Zurich
+> - [[2603.00905|pySpatial]] — Equips MLLMs with explicit 3D spatial reasoning by generating Python programs for geometric computation
+> - [[2506.22992|MARBLE]] — Multi-step multimodal spatial reasoning benchmark from EPFL and ETH Zurich
 
 **Multi-Robot & Multi-Agent Coordination Planning** — Trajectory planning and coordination across teams of robots: conflict-based search, swarm coordination, and multi-agent motion planning.
 - [[2607.27627|Arm2Air]], [[2607.20992|DMBD]], [[2607.20772|Socially Consistent Multi-Robot Navigation]], [[2607.14781|Simultaneous Arrival Control]], [[2607.13403|E-PDT]], [[2607.12423|MDOC]], [[2607.01029|AMBUSH]], [[2607.00591|SCALE]], [[2607.00444|ST-GCS]], [[2607.00156|DIVE]], [[2606.30893|CIMORL]], [[2606.30694|DSIP]], [[2606.29372|SPACE]]
@@ -412,19 +412,19 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 Instead of reasoning in natural language alone, these methods generate executable code or invoke external tools to perform computation, visual analysis, and grounded reasoning.
 
 **Code-as-Reasoning** — Generating Python programs to offload computation from the language model to an interpreter.
-- [[2607.24051|HELIOS]], [[2604.16004\|AgentV-RL]], [[2604.11805|Sim2Reason]], [[2512.12623\|DMLR]], [[2512.11061|VDAWorld]], [[2512.08511\|SubagentVL]], [[2507.00417\|ASTRO]], [[2505.20164\|VAT]], [[2505.19255\|VTool-R1]], [[2505.00024\|Nemotron-Research-Tool-N1]], [[2504.13958\|ToolRL]], [[2504.11536\|ReTool]], [[2311.05437\|LLaVA-Plus]], [[2303.08128\|ViperGPT]], [[2211.12588\|PoT]], [[2211.11559\|VISPROG]], [[2211.10435\|PAL]], [[2206.01714|Composed Diffusion]], [[1705.03633|IEP]], [[1704.05526|N2NMN]]
+- [[2607.24051|HELIOS]], [[2604.16004|AgentV-RL]], [[2604.11805|Sim2Reason]], [[2512.12623|DMLR]], [[2512.11061|VDAWorld]], [[2512.08511|SubagentVL]], [[2507.00417|ASTRO]], [[2505.20164|VAT]], [[2505.19255|VTool-R1]], [[2505.00024|Nemotron-Research-Tool-N1]], [[2504.13958|ToolRL]], [[2504.11536|ReTool]], [[2311.05437|LLaVA-Plus]], [[2303.08128|ViperGPT]], [[2211.12588|PoT]], [[2211.11559|VISPROG]], [[2211.10435|PAL]], [[2206.01714|Composed Diffusion]], [[1705.03633|IEP]], [[1704.05526|N2NMN]]
 
 > [!star] Key Papers
-> - [[2211.10435\|PAL]] — Program-aided language models: offload computation to a Python interpreter, separating reasoning from calculation
-> - [[2303.08128\|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without training
-> - [[2211.11559\|VISPROG]] — Visual programming: compose vision-and-language modules into executable programs, training-free
+> - [[2211.10435|PAL]] — Program-aided language models: offload computation to a Python interpreter, separating reasoning from calculation
+> - [[2303.08128|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without training
+> - [[2211.11559|VISPROG]] — Visual programming: compose vision-and-language modules into executable programs, training-free
 
 **Training-Free Visual Reasoning Frameworks** — Methods that enhance VLM reasoning without additional training through structured prompting or modular composition.
-- [[2602.02465\|MentisOculi]], [[2601.21187\|FRISM]], [[2601.14514\|JIT]], [[2601.05172\|CoV]], [[2509.23285|Tool-Light]], [[2506.19807|KnowRL]], [[2505.20289\|VisTA]], [[2505.20046\|REARANK]], [[2505.16151\|FRANK]]
+- [[2602.02465|MentisOculi]], [[2601.21187|FRISM]], [[2601.14514|JIT]], [[2601.05172|CoV]], [[2509.23285|Tool-Light]], [[2506.19807|KnowRL]], [[2505.20289|VisTA]], [[2505.20046|REARANK]], [[2505.16151|FRANK]]
 
 > [!star] Key Papers
-> - [[2505.16151\|FRANK]] — Training-free integration of reasoning and reflection capabilities into any VLM
-> - [[2601.14514\|JIT]] — MIT/UBC "Just-in-Time" framework showing humans construct simplified mental models for reasoning
+> - [[2505.16151|FRANK]] — Training-free integration of reasoning and reflection capabilities into any VLM
+> - [[2601.14514|JIT]] — MIT/UBC "Just-in-Time" framework showing humans construct simplified mental models for reasoning
 
 > [!tip] Code Beats Language for Computation
 > PAL and PoT proved that language models should not do arithmetic -- they should write code that does arithmetic. ViperGPT extended this to vision: compose perception modules via programs. The pattern holds: whenever reasoning involves precise computation or systematic search, delegate to code.
@@ -436,55 +436,55 @@ Instead of reasoning in natural language alone, these methods generate executabl
 RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal models. See [[08_Reinforcement-Learning]] for the RL methods themselves.
 
 **Video Reasoning Methods** — RL/architecture methods for video-grounded chain-of-thought reasoning.
-- [[2605.21973|Foresee-to-Ground]], [[2602.20159\|VBVR]], [[2602.10675\|TwiFF]], [[2510.27363\|ToolScope]], [[2510.23569\|EgoThinker]], [[2510.23473\|Video-Thinker]], [[2508.18269\|FlowVLA]], [[2508.17692\|Agentic-Reasoning-Framework-Survey]], [[2508.09736\|M3-Agent]], [[2508.04416\|VITAL]], [[2508.03100\|AVATAR]], [[2507.01949\|Kwai-Keye-VL]], [[2505.19877|Vad-R1]], [[2505.19000\|VerIPO]], [[2504.08672\|Genius]], [[2503.21776\|Video-R1]]
+- [[2605.21973|Foresee-to-Ground]], [[2602.20159|VBVR]], [[2602.10675|TwiFF]], [[2510.27363|ToolScope]], [[2510.23569|EgoThinker]], [[2510.23473|Video-Thinker]], [[2508.18269|FlowVLA]], [[2508.17692|Agentic-Reasoning-Framework-Survey]], [[2508.09736|M3-Agent]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2507.01949|Kwai-Keye-VL]], [[2505.19877|Vad-R1]], [[2505.19000|VerIPO]], [[2504.08672|Genius]], [[2503.21776|Video-R1]]
 
 **Video Reasoning Benchmarks** — Benchmarks for evaluating multi-step video and temporal reasoning.
-- [[2507.18342\|EgoExoBench]], [[2311.17005\|MVBench]], [[2311.01620|ACQUIRED]], [[2305.13786|Perception Test]], [[1910.01442|CLEVRER]]
+- [[2507.18342|EgoExoBench]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2305.13786|Perception Test]], [[1910.01442|CLEVRER]]
 
 **RL-Trained Spatial & Embodied Reasoning** — RLVR/RFT-trained methods for spatial and embodied reasoning.
-- [[2507.20673\|GMPO]], [[2507.13362\|VLM-Spatial-Reasoning-RL]], [[2507.05920\|MGPO]], [[2506.22434\|MiCo]], [[2506.08011\|ViGaL]], [[2505.23678\|ViGoRL]], [[2505.23590\|Jigsaw-R1]], [[2505.22019\|VRAG-RL]], [[2505.19702\|Point-RFT]], [[2505.15804\|STAR-R1]], [[2503.20752\|Reason-RFT]]
+- [[2507.20673|GMPO]], [[2507.13362|VLM-Spatial-Reasoning-RL]], [[2507.05920|MGPO]], [[2506.22434|MiCo]], [[2506.08011|ViGaL]], [[2505.23678|ViGoRL]], [[2505.23590|Jigsaw-R1]], [[2505.22019|VRAG-RL]], [[2505.19702|Point-RFT]], [[2505.15804|STAR-R1]], [[2503.20752|Reason-RFT]]
 
 **Spatial & Embodied Reasoning Benchmarks** — Benchmarks for spatial cognition and embodied reasoning-and-action.
-- [[2607.27180\|HumanCLAW]], [[2603.03241\|UniG2U-Bench]], [[2507.10548\|EmbRACE-3K]], [[2506.14512\|SIRI-Bench]], [[2506.04633\|STARE]], [[2502.16435\|VISFACTOR]]
+- [[2607.27180|HumanCLAW]], [[2603.03241|UniG2U-Bench]], [[2507.10548|EmbRACE-3K]], [[2506.14512|SIRI-Bench]], [[2506.04633|STARE]], [[2502.16435|VISFACTOR]]
 
 **General Spatial & Embodied Reasoning Methods** — Non-RL architectures and prompting methods for spatial, 3D, and embodied reasoning.
-- [[2607.04681|Pinocchio]], [[2607.04610|RoboVista]], [[2607.01658|DriveTeach-VLA]], [[2603.25629\|LanteRn]], [[2603.16253\|EVPV]], [[2601.04777\|GeM-VG]], [[2512.24125\|GenieReasoner]], [[2512.04563\|COOPER]], [[2509.25794|Point-It-Out]], [[2508.11737\|Ovis2.5]], [[2508.06259\|SIFThinker]], [[2507.08306\|M2-Reasoning]], [[2507.01544\|MARVIS]], [[2506.17218\|Mirage]], [[2505.05800\|3D-CAVLA]], [[2503.12797\|DeepPerception]], [[2503.09527\|CombatVLA]], [[2411.17673\|SketchAgent]], [[2307.03601\|GPT4RoI]], [[2306.15195\|Shikra]], [[2203.07669\|PE2E]]
+- [[2607.04681|Pinocchio]], [[2607.04610|RoboVista]], [[2607.01658|DriveTeach-VLA]], [[2603.25629|LanteRn]], [[2603.16253|EVPV]], [[2601.04777|GeM-VG]], [[2512.24125|GenieReasoner]], [[2512.04563|COOPER]], [[2509.25794|Point-It-Out]], [[2508.11737|Ovis2.5]], [[2508.06259|SIFThinker]], [[2507.08306|M2-Reasoning]], [[2507.01544|MARVIS]], [[2506.17218|Mirage]], [[2505.05800|3D-CAVLA]], [[2503.12797|DeepPerception]], [[2503.09527|CombatVLA]], [[2411.17673|SketchAgent]], [[2307.03601|GPT4RoI]], [[2306.15195|Shikra]], [[2203.07669|PE2E]]
 
 **Search & RAG-Trained Reasoning Agents** — RL-trained agents that reason by iteratively searching or retrieving.
-- [[2601.13942\|GoG]], [[2601.07055\|Dr.-Zero]], [[2510.09733\|EVisRAG]], [[2509.25454\|DeepSearch]], [[2509.25140\|ReasoningBank]], [[2505.04588\|ZeroSearch]], [[2503.19470\|ReSearch]], [[2503.09516\|Search-R1]], [[2503.05592\|R1-Searcher]]
+- [[2601.13942|GoG]], [[2601.07055|Dr.-Zero]], [[2510.09733|EVisRAG]], [[2509.25454|DeepSearch]], [[2509.25140|ReasoningBank]], [[2505.04588|ZeroSearch]], [[2503.19470|ReSearch]], [[2503.09516|Search-R1]], [[2503.05592|R1-Searcher]]
 
 **Tool-Use & Code-Execution Agent RL** — RL-trained agents that reason by invoking external tools, code interpreters, or model routers.
-- [[2601.03872\|ATLAS]], [[2512.17312\|CodeDance]], [[2510.23038\|TIR-Judge]], [[2509.02479\|SimpleTIR]], [[2508.12109\|Simple-o3]], [[2508.11630|Thyme]], [[2507.20766|RRVF]], [[2507.07998\|PyVision]], [[2506.09033\|Router-R1]], [[2505.08617\|OpenThinkIMG]], [[2504.04736\|SWiRL]], [[2503.23383\|ToRL]], [[2403.12884\|HYDRA]], [[2303.04671\|Visual-ChatGPT]]
+- [[2601.03872|ATLAS]], [[2512.17312|CodeDance]], [[2510.23038|TIR-Judge]], [[2509.02479|SimpleTIR]], [[2508.12109|Simple-o3]], [[2508.11630|Thyme]], [[2507.20766|RRVF]], [[2507.07998|PyVision]], [[2506.09033|Router-R1]], [[2505.08617|OpenThinkIMG]], [[2504.04736|SWiRL]], [[2503.23383|ToRL]], [[2403.12884|HYDRA]], [[2303.04671|Visual-ChatGPT]]
 
 **Self-Evolving & Self-Play Agentic RL** — Agents that bootstrap their own training signal via self-play, self-critique, or recursive self-improvement.
-- [[2607.22529|Skill-SP]], [[2512.24601\|RLMs]], [[2512.23167\|SPIRAL]], [[2512.15687\|G2RL]], [[2512.02472\|R-FEW]], [[2510.23595\|MAE]], [[2509.24726\|Socratic-Zero]], [[2509.07969\|Mini-o3]], [[2509.01656\|ReV-PT]], [[2508.20722\|rStar2-Agent]], [[2508.14313\|AIRL-S]], [[2508.10874\|SSRL]], [[2508.02085\|SE-Agent]], [[2506.24119\|SPIRAL]], [[2505.22954\|DGM]], [[2505.15436\|Adaptive-CoF]]
+- [[2607.22529|Skill-SP]], [[2512.24601|RLMs]], [[2512.23167|SPIRAL]], [[2512.15687|G2RL]], [[2512.02472|R-FEW]], [[2510.23595|MAE]], [[2509.24726|Socratic-Zero]], [[2509.07969|Mini-o3]], [[2509.01656|ReV-PT]], [[2508.20722|rStar2-Agent]], [[2508.14313|AIRL-S]], [[2508.10874|SSRL]], [[2508.02085|SE-Agent]], [[2506.24119|SPIRAL]], [[2505.22954|DGM]], [[2505.15436|Adaptive-CoF]]
 
 **Multi-Agent & Policy-Optimization Agent RL** — GRPO-family and multi-agent-coordination RL training methods for agentic reasoning.
-- [[2607.07508|SAO]], [[2601.19204\|MATA]], [[2601.09667\|MATTRL]], [[2509.15172\|MACA]], [[2509.09284\|Tree-OPO]], [[2507.21848\|EDGE-GRPO]], [[2507.19849\|ARPO]], [[2507.19457\|GEPA]], [[2507.06261\|Gemini-2.5]], [[2507.05255\|OVR]], [[2506.13923\|Guide-GRPO]], [[2504.16129\|MARFT]], [[2504.07934\|ThinkLite-VL]], [[2410.17517\|Maynard-Cross-Learning]], [[2406.18505\|LLM-Xavier]]
+- [[2607.07508|SAO]], [[2601.19204|MATA]], [[2601.09667|MATTRL]], [[2509.15172|MACA]], [[2509.09284|Tree-OPO]], [[2507.21848|EDGE-GRPO]], [[2507.19849|ARPO]], [[2507.19457|GEPA]], [[2507.06261|Gemini-2.5]], [[2507.05255|OVR]], [[2506.13923|Guide-GRPO]], [[2504.16129|MARFT]], [[2504.07934|ThinkLite-VL]], [[2410.17517|Maynard-Cross-Learning]], [[2406.18505|LLM-Xavier]]
 
 **Math, Code & Science Reasoning** — Reasoning specialized for math, code, and science.
-- [[2602.03806\|COBALT]], [[2507.14172\|SOAR]], [[2506.13284\|AceReason-Nemotron]], [[2505.10557\|MathCoder-VL]], [[2504.21233\|Phi-4-Mini-Reasoning]]
+- [[2602.03806|COBALT]], [[2507.14172|SOAR]], [[2506.13284|AceReason-Nemotron]], [[2505.10557|MathCoder-VL]], [[2504.21233|Phi-4-Mini-Reasoning]]
 
 **Token/Compute-Efficient Reasoning Methods** — Methods that directly reduce token usage or reasoning compute while preserving accuracy.
-- [[2603.22847\|PEPO]], [[2602.04145\|BIS]], [[2602.03120\|QES]], [[2512.23165\|PEFT-for-RLVR]], [[2512.06104\|CompressARC]], [[2511.19820\|CropVLM]], [[2510.03222\|Lp-Reg]], [[2510.02752\|Self-Aware-RL-for-LLMs]], [[2509.01321\|DEPO]], [[2508.17445\|TreePO]], [[2508.12587\|MCOUT]], [[2507.13348\|VisionThink]], [[2506.08388\|RLTs]], [[2506.05316\|DOTS]], [[2506.01939\|High-Entropy-Token-RLVR]], [[2505.17746\|Fast-Quiet-STaR]], [[2505.15966\|Pixel-Reasoner]], [[2505.00703\|T2I-R1]], [[2504.16084\|TTRL]], [[2504.13818\|PODS]]
+- [[2603.22847|PEPO]], [[2602.04145|BIS]], [[2602.03120|QES]], [[2512.23165|PEFT-for-RLVR]], [[2512.06104|CompressARC]], [[2511.19820|CropVLM]], [[2510.03222|Lp-Reg]], [[2510.02752|Self-Aware-RL-for-LLMs]], [[2509.01321|DEPO]], [[2508.17445|TreePO]], [[2508.12587|MCOUT]], [[2507.13348|VisionThink]], [[2506.08388|RLTs]], [[2506.05316|DOTS]], [[2506.01939|High-Entropy-Token-RLVR]], [[2505.17746|Fast-Quiet-STaR]], [[2505.15966|Pixel-Reasoner]], [[2505.00703|T2I-R1]], [[2504.16084|TTRL]], [[2504.13818|PODS]]
 
 **GRPO/PPO-Variant Efficiency Methods** — Policy-optimization-algorithm variants engineered specifically for reasoning efficiency.
-- [[2511.06411\|SofT-GRPO]], [[2510.02245\|ExGRPO]], [[2509.25849\|Knapsack-GRPO]], [[2508.09726\|GFPO]], [[2506.15050\|T-PPO]], [[2506.13351\|DRO]], [[2504.05520\|ADARFT]], [[2504.05118\|VAPO]], [[2504.02495\|DeepSeek-GRM]], [[2502.05234\|TURN]], [[2408.15240\|GenRM]]
+- [[2511.06411|SofT-GRPO]], [[2510.02245|ExGRPO]], [[2509.25849|Knapsack-GRPO]], [[2508.09726|GFPO]], [[2506.15050|T-PPO]], [[2506.13351|DRO]], [[2504.05520|ADARFT]], [[2504.05118|VAPO]], [[2504.02495|DeepSeek-GRM]], [[2502.05234|TURN]], [[2408.15240|GenRM]]
 
 **Efficient Reasoning Model Releases & Technical Reports** — Released model families and technical reports centered on efficient reasoning.
-- [[2507.12507\|Nemotron]], [[2506.13585\|MiniMax-M1]], [[2505.07291\|INTELLECT-2]], [[2505.00949\|Llama-Nemotron]], [[2504.21318\|Phi-4-reasoning]], [[2504.15777\|Tina]], [[2504.05299\|SmolVLM]], [[2503.10460\|Light-R1]]
+- [[2507.12507|Nemotron]], [[2506.13585|MiniMax-M1]], [[2505.07291|INTELLECT-2]], [[2505.00949|Llama-Nemotron]], [[2504.21318|Phi-4-reasoning]], [[2504.15777|Tina]], [[2504.05299|SmolVLM]], [[2503.10460|Light-R1]]
 
 **GRPO & Group-Relative Methods** — GRPO and group-relative policy optimization variants.
-- [[2602.05547\|MT-GRPO]], [[2506.16141\|GRPO-CARE]], [[2505.22257\|Off-Policy-GRPO]], [[2505.16673\|R1-ShareVL]], [[2503.23905\|Hint-GRPO]], [[2503.14476\|DAPO]], [[2402.03300\|DeepSeekMath]]
+- [[2602.05547|MT-GRPO]], [[2506.16141|GRPO-CARE]], [[2505.22257|Off-Policy-GRPO]], [[2505.16673|R1-ShareVL]], [[2503.23905|Hint-GRPO]], [[2503.14476|DAPO]], [[2402.03300|DeepSeekMath]]
 
 **Reward & Process-Verifier Design** — Methods that design or train reward models and process/outcome verifiers for RLVR.
-- [[2601.05242\|GDPO]], [[2512.22545\|SR-MCR]], [[2510.15242\|DWRL]], [[2510.08696\|LENS]], [[2510.07242\|HERO]], [[2509.24981\|ROVER]], [[2508.12790|Rubicon]], [[2507.17746\|RaR]], [[2507.16806\|RLCR]], [[2506.18254\|RLPR]], [[2506.07218\|Perception-R1]], [[2505.17018\|SophiaVL-R1]], [[2503.10291\|VisualPRM]], [[2411.04109|SCPO]], [[2410.08146\|PAV]], [[2410.01735\|LASeR]]
+- [[2601.05242|GDPO]], [[2512.22545|SR-MCR]], [[2510.15242|DWRL]], [[2510.08696|LENS]], [[2510.07242|HERO]], [[2509.24981|ROVER]], [[2508.12790|Rubicon]], [[2507.17746|RaR]], [[2507.16806|RLCR]], [[2506.18254|RLPR]], [[2506.07218|Perception-R1]], [[2505.17018|SophiaVL-R1]], [[2503.10291|VisualPRM]], [[2411.04109|SCPO]], [[2410.08146|PAV]], [[2410.01735|LASeR]]
 
 **Reward Hacking, Robustness & Verification-Free RL** — Analysis of reward exploitation/spurious rewards and RL methods that reduce or remove dependence on explicit verifiers.
-- [[2511.17473\|MR-RLVR]], [[2511.07317\|RLVE]], [[2508.14460\|DuPO]], [[2508.05629\|DFT]], [[2506.10947\|Spurious-Rewards-RLVR]], [[2506.02096\|SynthRL]], [[2505.24726\|Reflect-Retry-Reward]], [[2505.19590\|INTUITOR]], [[2504.12328\|Reward-Model-Survey]], [[2503.20783\|Dr.-GRPO]], [[2503.13551\|HRM]], [[2410.12735\|CREAM]]
+- [[2511.17473|MR-RLVR]], [[2511.07317|RLVE]], [[2508.14460|DuPO]], [[2508.05629|DFT]], [[2506.10947|Spurious-Rewards-RLVR]], [[2506.02096|SynthRL]], [[2505.24726|Reflect-Retry-Reward]], [[2505.19590|INTUITOR]], [[2504.12328|Reward-Model-Survey]], [[2503.20783|Dr.-GRPO]], [[2503.13551|HRM]], [[2410.12735|CREAM]]
 
 **Exploration, Entropy & Training Stability** — Entropy, exploration, collapse, and RL training dynamics.
-- [[2607.16850|GECPO]], [[2607.10169|RIPO]], [[2602.02150\|ECHO]], [[2602.00170|Blessing-of-Dimensionality-LLM]], [[2510.18927\|BAPO]], [[2510.00855\|DyVA]], [[2509.25133\|SIREN]], [[2509.02333\|DCPO]], [[2508.13755\|DARS-Breadth]], [[2506.23061\|DyME]], [[2506.06499\|SPARQ]], [[2505.22617\|Entropy-Collapse-in-RL]], [[2505.20561\|BARL]], [[2505.15660\|AGNOSTOS]], [[2504.19599|GVPO]], [[2504.10479\|InternVL3]], [[2504.07615\|VLM-R1]], [[2503.07365\|MM-Eureka]], [[2407.10490\|LLM-Finetuning-Dynamics]]
+- [[2607.16850|GECPO]], [[2607.10169|RIPO]], [[2602.02150|ECHO]], [[2602.00170|Blessing-of-Dimensionality-LLM]], [[2510.18927|BAPO]], [[2510.00855|DyVA]], [[2509.25133|SIREN]], [[2509.02333|DCPO]], [[2508.13755|DARS-Breadth]], [[2506.23061|DyME]], [[2506.06499|SPARQ]], [[2505.22617|Entropy-Collapse-in-RL]], [[2505.20561|BARL]], [[2505.15660|AGNOSTOS]], [[2504.19599|GVPO]], [[2504.10479|InternVL3]], [[2504.07615|VLM-R1]], [[2503.07365|MM-Eureka]], [[2407.10490|LLM-Finetuning-Dynamics]]
 
 **Efficient & Off-Policy RLVR** — Efficient / off-policy RLVR.
 - [[2607.18722|Staleness-Adaptive Trust Region]], [[2607.15161|OPD^2]], [[2606.18967|EfficientRollout]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]], [[2507.16814|SOPHIA]], [[2410.18252|Asynchronous-RLHF]]
@@ -511,13 +511,13 @@ RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal m
 - [[2507.18391|IBRO]], [[2507.10532|RandomCalculation]], [[2507.08838|wd1]], [[2507.01679|Prefix-RFT]], [[2506.17219|RLIF-No-Free-Lunch]], [[2506.14965|GURU]], [[2506.08989|SwS]], [[2506.08007|RPT]], [[2506.03569|MiMo-VL]], [[2505.21444|SRT]], [[2505.15045|DIFFEMBED]], [[2505.03981|X-Reasoner]], [[2504.20571|1-shot-RLVR]], [[2504.12216|d1]], [[2504.07491|Kimi-VL]], [[2503.16219|Open-RS]], [[2502.09992|LLaDA]], [[2501.11223|RLM-Blueprint]], [[2309.05858|Mesa-Optimization-Transformers]], [[2205.10268|B-cos-Networks]]
 
 > [!star] Key Papers
-> - [[2503.06749\|Vision-R1]] — First R1-style RL training for VLMs, demonstrating visual reasoning improvement through reinforcement
-> - [[2504.07615\|VLM-R1]] — Stable, generalizable R1 training for VLMs across diverse visual tasks
-> - [[2603.14117\|SIEVE]] — Self-revisiting visual evidence via RL, +7.85% on V*Bench
+> - [[2503.06749|Vision-R1]] — First R1-style RL training for VLMs, demonstrating visual reasoning improvement through reinforcement
+> - [[2504.07615|VLM-R1]] — Stable, generalizable R1 training for VLMs across diverse visual tasks
+> - [[2603.14117|SIEVE]] — Self-revisiting visual evidence via RL, +7.85% on V*Bench
 
 > [!star] Key Papers
-> - [[2510.12225\|HoneyBee]] — Meta FAIR's systematic investigation into constructing high-quality visual CoT training data
-> - [[2507.12508\|MindJourney]] — Enhances VLMs in spatial reasoning by enabling interactive exploration of visual spaces
+> - [[2510.12225|HoneyBee]] — Meta FAIR's systematic investigation into constructing high-quality visual CoT training data
+> - [[2507.12508|MindJourney]] — Enhances VLMs in spatial reasoning by enabling interactive exploration of visual spaces
 
 > [!success] R1-Style Visual Reasoning Recipe
 > ==SFT for format compliance== → ==GRPO with verifiable rewards== (code execution, math verification) → ==Synthetic CoT data at scale== (systematic data curation). The text RL recipe transfers directly to VLMs across visual grounding, spatial reasoning, and image generation tasks.
@@ -532,45 +532,45 @@ RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal m
 Understanding and reasoning about spatial relationships, 3D geometry, and physical space -- a capability critical for embodied AI and robotics.
 
 **Multi-View, Dynamic & 4D Spatial Benchmarks** — Benchmarks for cross-view, omnidirectional, and temporally-dynamic spatial reasoning.
-- [[2603.16506\|VIEW2SPACE]], [[2601.15275\|RayRoPE]], [[2601.14339\|CityCube]], [[2601.00092\|Spatial4D-Bench]], [[2512.23365\|SpatialMosaic]], [[2511.16160\|Video2Layout]], [[2510.18873\|DSI-Bench]], [[2510.11549\|ODI-Bench]], [[2507.21045\|4D-Spatial-Intelligence-Survey]], [[2504.15280\|All-Angles-Bench]]
+- [[2603.16506|VIEW2SPACE]], [[2601.15275|RayRoPE]], [[2601.14339|CityCube]], [[2601.00092|Spatial4D-Bench]], [[2512.23365|SpatialMosaic]], [[2511.16160|Video2Layout]], [[2510.18873|DSI-Bench]], [[2510.11549|ODI-Bench]], [[2507.21045|4D-Spatial-Intelligence-Survey]], [[2504.15280|All-Angles-Bench]]
 
 **General 3D & Metric Spatial Benchmarks** — Static-scene benchmarks for 3D/metric spatial reasoning and embodied spatial intelligence.
-- [[2605.29074|Embodied3DBench]], [[2605.27367|SpatialBench-SFM]], [[2605.06758|R3L]], [[2601.13304\|CausalSpatial]], [[2601.11729\|SpaRRTa]], [[2512.24385\|Spatial-Intelligence-Roadmap]], [[2512.19683\|OpenBench]], [[2507.20174\|LRR-Bench]], [[2507.07781|SURPRISE3D]], [[2507.07610\|SpatialViz-Bench]], [[2506.07966\|SpaCE-10]], [[2505.17012\|SpatialScore]], [[2504.01805\|SpaceR]], [[2503.22976|SPAR-7M]], [[2503.13111|MM-Spatial]], [[2502.11859\|VLM-Spatial-Abilities-Benchmark]], [[2412.10908\|Do-VLMs-Understand-3D-Shapes]], [[2412.07825\|3DSRBench]], [[2411.17735|3D-Mem]], [[2408.16662\|Space3D-Bench]], [[2404.12390\|BLINK]]
+- [[2605.29074|Embodied3DBench]], [[2605.27367|SpatialBench-SFM]], [[2605.06758|R3L]], [[2601.13304|CausalSpatial]], [[2601.11729|SpaRRTa]], [[2512.24385|Spatial-Intelligence-Roadmap]], [[2512.19683|OpenBench]], [[2507.20174|LRR-Bench]], [[2507.07781|SURPRISE3D]], [[2507.07610|SpatialViz-Bench]], [[2506.07966|SpaCE-10]], [[2505.17012|SpatialScore]], [[2504.01805|SpaceR]], [[2503.22976|SPAR-7M]], [[2503.13111|MM-Spatial]], [[2502.11859|VLM-Spatial-Abilities-Benchmark]], [[2412.10908|Do-VLMs-Understand-3D-Shapes]], [[2412.07825|3DSRBench]], [[2411.17735|3D-Mem]], [[2408.16662|Space3D-Bench]], [[2404.12390|BLINK]]
 
 **Embodied & Navigation Spatial Benchmarks** — Spatial benchmarks for embodied/navigation.
-- [[2607.14543|SafeRelBench]], [[2605.18746|ESI-Bench]], [[2603.18892\|MultihopSpatial]], [[2506.05997|SRU]], [[2504.09848\|LLM-Spatial-Intelligence-Survey]], [[2012.03912|MultiON]]
+- [[2607.14543|SafeRelBench]], [[2605.18746|ESI-Bench]], [[2603.18892|MultihopSpatial]], [[2506.05997|SRU]], [[2504.09848|LLM-Spatial-Intelligence-Survey]], [[2012.03912|MultiON]]
 
 **VLM Spatial Reasoning Methods (Mis-shelved)** — Training methods for spatial reasoning that ended up filed alongside spatial benchmarks.
-- [[2606.04436|3DThinkVLA]], [[2606.03988|Imaginative-Perception-Tokens]], [[2606.03240|GeoAlign]], [[2605.09963|Spatial-Prediction-SP]], [[2510.27606\|Spatial-SSRL]]
+- [[2606.04436|3DThinkVLA]], [[2606.03988|Imaginative-Perception-Tokens]], [[2606.03240|GeoAlign]], [[2605.09963|Spatial-Prediction-SP]], [[2510.27606|Spatial-SSRL]]
 
 **General & Compositional VLM Spatial Benchmarks** — General-purpose and compositional spatial-reasoning benchmarks for VLMs.
-- [[2607.21072|ProVisE]], [[2603.03944\|SCP-Bench]], [[2602.20901\|SpatiaLQA]], [[2602.03916\|SpatiaLab]], [[2601.20354\|SpatialGenEval]], [[2601.16520\|TangramPuzzle]], [[2601.06521\|BabyVision]], [[2512.20617\|SpatialTree]], [[2512.19526|QuantiPhy]], [[2511.21471\|SpatialBench]], [[2510.09606\|SpaceVista]], [[2505.05456\|SITE]], [[2503.19707\|VLM-Spatial-Reasoning-Benchmark]], [[2406.14852\|SpatialEval]], [[2205.00363\|VSR]]
+- [[2607.21072|ProVisE]], [[2603.03944|SCP-Bench]], [[2602.20901|SpatiaLQA]], [[2602.03916|SpatiaLab]], [[2601.20354|SpatialGenEval]], [[2601.16520|TangramPuzzle]], [[2601.06521|BabyVision]], [[2512.20617|SpatialTree]], [[2512.19526|QuantiPhy]], [[2511.21471|SpatialBench]], [[2510.09606|SpaceVista]], [[2505.05456|SITE]], [[2503.19707|VLM-Spatial-Reasoning-Benchmark]], [[2406.14852|SpatialEval]], [[2205.00363|VSR]]
 
 **Specialized-Domain & Multimodal-Format Spatial Benchmarks** — Spatial benchmarks for specific domains or formats: video, 4D, Earth/aerial imagery, and OCR-mediated reasoning.
-- [[2605.30557|SpatialUncertain]], [[2605.22570|VGenST-Bench]], [[2605.22536|SpaceDG]], [[2605.22283|SOMA]], [[2602.15950\|VLM-Spatial-Reasoning-OCR]], [[2602.15918\|EarthSpatialBench]], [[2601.19099\|m2sv]], [[2512.10863\|MMSI-Video-Bench]], [[2508.13142\|EASI]], [[2508.02095\|VLM4D]], [[2505.23764\|MMSI-Bench]], [[2503.23765\|STI-Bench]], [[2410.17385\|COMFORT]], [[2406.02537\|TopViewRS]]
+- [[2605.30557|SpatialUncertain]], [[2605.22570|VGenST-Bench]], [[2605.22536|SpaceDG]], [[2605.22283|SOMA]], [[2602.15950|VLM-Spatial-Reasoning-OCR]], [[2602.15918|EarthSpatialBench]], [[2601.19099|m2sv]], [[2512.10863|MMSI-Video-Bench]], [[2508.13142|EASI]], [[2508.02095|VLM4D]], [[2505.23764|MMSI-Bench]], [[2503.23765|STI-Bench]], [[2410.17385|COMFORT]], [[2406.02537|TopViewRS]]
 
 > [!star] Key Papers
-> - [[2505.17012\|SpatialScore]] — Comprehensive benchmark for spatial reasoning covering distances, directions, and layouts
-> - [[2601.13304\|CausalSpatial]] — Diagnostic benchmark for causal spatial reasoning in MLLMs
-> - [[2601.00092\|Spatial4D-Bench]] — Large-scale multi-task benchmark for 4D spatial reasoning
+> - [[2505.17012|SpatialScore]] — Comprehensive benchmark for spatial reasoning covering distances, directions, and layouts
+> - [[2601.13304|CausalSpatial]] — Diagnostic benchmark for causal spatial reasoning in MLLMs
+> - [[2601.00092|Spatial4D-Bench]] — Large-scale multi-task benchmark for 4D spatial reasoning
 
 **Autonomous-Driving & Monocular 3D Reconstruction** — 3D/geometric reasoning specialized for driving scenes and monocular reconstruction/grounding.
-- [[2607.21281|HGeo-TopoMap]], [[2512.24331\|LVLDrive]], [[2603.27287\|Uni-World-VLA]], [[2603.19231\|MonoArt]], [[2511.06908\|Mono3DVG-EnSD]]
+- [[2607.21281|HGeo-TopoMap]], [[2512.24331|LVLDrive]], [[2603.27287|Uni-World-VLA]], [[2603.19231|MonoArt]], [[2511.06908|Mono3DVG-EnSD]]
 
 **3D-Aware VLM Architectures & Self-Evolving Spatial Reasoning** — Architectures that build 3D/geometric awareness directly into VLMs, including self-evolving and geometry-consistency training.
-- [[2607.21595|VLM-IE3D]], [[2605.30561|VLM3]], [[2605.18162|SAGE-Spatial-VLM]], [[2604.14144\|SpatialEvo]], [[2603.23404\|TRACE]], [[2603.22057|SpatialBoost]], [[2603.19235\|VEGA-3D]], [[2603.15619\|MoDA]], [[2603.15386\|RieMind]], [[2603.15031\|AttnRes]], [[2603.03026\|URGT]], [[2602.15029\|Language-Symmetry-Representations]], [[2602.06037|GeoThinker]], [[2601.22231\|PE-Spatial-Reasoning-Analysis]]
+- [[2607.21595|VLM-IE3D]], [[2605.30561|VLM3]], [[2605.18162|SAGE-Spatial-VLM]], [[2604.14144|SpatialEvo]], [[2603.23404|TRACE]], [[2603.22057|SpatialBoost]], [[2603.19235|VEGA-3D]], [[2603.15619|MoDA]], [[2603.15386|RieMind]], [[2603.15031|AttnRes]], [[2603.03026|URGT]], [[2602.15029|Language-Symmetry-Representations]], [[2602.06037|GeoThinker]], [[2601.22231|PE-Spatial-Reasoning-Analysis]]
 
 **3D-Grounded Multimodal Reasoning Methods & Benchmarks** — Methods and benchmarks for 3D-grounded multimodal reasoning, including classical geometric matching.
-- [[2603.25411\|HiSpatial]], [[2511.01618\|Actial]], [[2510.08673\|Puffin]], [[2506.04220\|Struct2D]], [[2505.23747\|Spatial-MLLM]], [[2505.21500\|MVSM]], [[2505.20802\|Leaner-Transformers]], [[2505.20279\|VLM-3R]], [[2505.17015\|Multi-SpatialMLLM]], [[2505.12448\|SSR]], [[2505.11907\|OSR-Bench]], [[2505.00788|SpatialLLM]], [[2504.20024|SpatialReasoner]], [[1911.11763|SuperGlue]]
+- [[2603.25411|HiSpatial]], [[2511.01618|Actial]], [[2510.08673|Puffin]], [[2506.04220|Struct2D]], [[2505.23747|Spatial-MLLM]], [[2505.21500|MVSM]], [[2505.20802|Leaner-Transformers]], [[2505.20279|VLM-3R]], [[2505.17015|Multi-SpatialMLLM]], [[2505.12448|SSR]], [[2505.11907|OSR-Bench]], [[2505.00788|SpatialLLM]], [[2504.20024|SpatialReasoner]], [[1911.11763|SuperGlue]]
 
 **Embodied & Navigation Spatial Reasoning** — Spatial reasoning for embodied agents and navigation.
-- [[2607.06165|EAGOR]], [[2607.02322|The-Moving-Eye]], [[2605.24203|Afford-VLA]], [[2604.03208\|HWM]], [[2604.02965\|SV-VLA]], [[2604.02829\|STRNet]], [[2604.02408\|F2F-AP]], [[2603.29090\|HCLSM]], [[2603.25887\|WR-Arena]], [[2512.13660\|RoboTracer]], [[2511.19221\|Percept-WAM]], [[2511.05491\|VST]], [[2505.21465\|ID-Align]], [[2504.12680\|Embodied-R]], [[2503.18769|AlphaSpace]], [[2503.11089\|EmbodiedVSR]], [[2406.01584\|SpatialRGPT]], [[2401.12168\|SpatialVLM]]
+- [[2607.06165|EAGOR]], [[2607.02322|The-Moving-Eye]], [[2605.24203|Afford-VLA]], [[2604.03208|HWM]], [[2604.02965|SV-VLA]], [[2604.02829|STRNet]], [[2604.02408|F2F-AP]], [[2603.29090|HCLSM]], [[2603.25887|WR-Arena]], [[2512.13660|RoboTracer]], [[2511.19221|Percept-WAM]], [[2511.05491|VST]], [[2505.21465|ID-Align]], [[2504.12680|Embodied-R]], [[2503.18769|AlphaSpace]], [[2503.11089|EmbodiedVSR]], [[2406.01584|SpatialRGPT]], [[2401.12168|SpatialVLM]]
 
 **Spatial Representation Probing & Analysis Studies** — Studies that probe or analyze how spatial representations emerge or fail in VLMs, rather than proposing new benchmarks.
-- [[2607.14228|SeeSE3]], [[2605.30161|Why-Far-Looks-Up]], [[2603.03857\|DeepScan]], [[2602.21619\|VSR-Information-Injection-Analysis]], [[2601.11644\|Trust-Spatial]], [[2507.01955\|GPT-4o-Vision-Evaluation]], [[2505.05626\|PERCEPTLLM]]
+- [[2607.14228|SeeSE3]], [[2605.30161|Why-Far-Looks-Up]], [[2603.03857|DeepScan]], [[2602.21619|VSR-Information-Injection-Analysis]], [[2601.11644|Trust-Spatial]], [[2507.01955|GPT-4o-Vision-Evaluation]], [[2505.05626|PERCEPTLLM]]
 
 **Spatial Reasoning Benchmarks, Datasets & Methods** — New benchmarks, datasets, and reasoning methods for spatial ability.
-- [[2604.07592\|FESTS]], [[2603.26499\|AIRA2]], [[2603.15975\|UMO]], [[2603.14609\|GroundSet]], [[2602.11144\|GENIUS]], [[2602.03733\|RegionReasoner]], [[2511.20814\|SPHINX]], [[2511.18373\|MASS]], [[2506.21458\|MINDCUBE]], [[2506.18385\|InternSpatial]], [[2506.06279\|CoMemo]], [[2506.03135\|OmniSpatial]], [[2506.02557\|KUEA]], [[2506.01663\|Zoom-Refine]], [[2505.21497\|PosterAgent]], [[2505.20444\|HoPE]], [[2505.07062\|Seed1.5-VL]], [[2504.20648\|SpaRE]], [[2503.19355\|ST-VLM]]
+- [[2604.07592|FESTS]], [[2603.26499|AIRA2]], [[2603.15975|UMO]], [[2603.14609|GroundSet]], [[2602.11144|GENIUS]], [[2602.03733|RegionReasoner]], [[2511.20814|SPHINX]], [[2511.18373|MASS]], [[2506.21458|MINDCUBE]], [[2506.18385|InternSpatial]], [[2506.06279|CoMemo]], [[2506.03135|OmniSpatial]], [[2506.02557|KUEA]], [[2506.01663|Zoom-Refine]], [[2505.21497|PosterAgent]], [[2505.20444|HoPE]], [[2505.07062|Seed1.5-VL]], [[2504.20648|SpaRE]], [[2503.19355|ST-VLM]]
 
 **Spatial & Temporal Reasoning-Specific VLM Methods** — Methods explicitly targeting spatial or spatiotemporal reasoning ability.
 - [[2607.15054|ViPS]], [[2605.04128|JoyAI-Image]], [[2603.28116|AutoDrive-P3]], [[2603.17541|Temporal-Trap-Analysis]], [[2603.12255|Spatial-TTT]], [[2603.00518|Vision-TTT]], [[2512.10359|STAR]], [[2512.07733|SpatialDreamer]], [[2506.21656|SpatialReasoner-R1]]
@@ -582,17 +582,17 @@ Understanding and reasoning about spatial relationships, 3D geometry, and physic
 - [[2506.15679|Dense-SAE-Latents]], [[2506.15564|Show-o2]], [[2506.13925|HVL]], [[2506.11136|JAFAR]], [[2506.07138|STF]], [[2506.04209|LIFT]], [[2506.02138|PA-LRP]], [[2505.23769|TextRegion]], [[2505.22195|S2AFormer]], [[2505.19985|Structured-ViT-Initialization]], [[2505.16993|SeNaTra]], [[2505.16416|Circle-RoPE]], [[2505.04601|OpenVision]], [[2504.19475|Prisma]], [[2503.20680|VoRA]], [[2503.01773|ADAPTVIS]]
 
 > [!star] Key Papers
-> - [[2401.12168\|SpatialVLM]] — Google DeepMind equips VLMs with quantitative spatial reasoning via large-scale spatial data
-> - [[2406.01584\|SpatialRGPT]] — NVIDIA/UCSD enhance VLMs with grounded spatial reasoning through region-aware representations
-> - [[2505.17015\|Multi-SpatialMLLM]] — Meta AI/CUHK create 1.2M multi-frame spatial instruction dataset for cross-view reasoning
+> - [[2401.12168|SpatialVLM]] — Google DeepMind equips VLMs with quantitative spatial reasoning via large-scale spatial data
+> - [[2406.01584|SpatialRGPT]] — NVIDIA/UCSD enhance VLMs with grounded spatial reasoning through region-aware representations
+> - [[2505.17015|Multi-SpatialMLLM]] — Meta AI/CUHK create 1.2M multi-frame spatial instruction dataset for cross-view reasoning
 
 **3D Visual Grounding & Scene Understanding** — Connecting language to 3D space through grounding, reconstruction, and scene-level reasoning.
 - [[2607.13245|JITOMA]], [[2607.10879|BRO Scene Graph Prediction]], [[2606.29786|OP3DSG]], [[2605.05126|ConsisVLA-4D]], [[2501.04693|FuSe]], [[2307.12981|3D-LLM]]
 
 > [!star] Key Papers
-> - [[2504.05786\|3D-Spatial-Reasoning-in-LLM-Survey]] — Comprehensive survey of methods for 3D spatial reasoning in LLMs
-> - [[2510.16714\|SceneCOT]] — Step-by-step grounded CoT reasoning within 3D scenes
-> - [[2511.21688\|G2VLM]] — Integrates 3D reconstruction and spatial reasoning within a single VLM
+> - [[2504.05786|3D-Spatial-Reasoning-in-LLM-Survey]] — Comprehensive survey of methods for 3D spatial reasoning in LLMs
+> - [[2510.16714|SceneCOT]] — Step-by-step grounded CoT reasoning within 3D scenes
+> - [[2511.21688|G2VLM]] — Integrates 3D reconstruction and spatial reasoning within a single VLM
 
 > [!tip] The Spatial Reasoning Gap
 > Despite enormous progress, benchmarks consistently show VLMs struggle with quantitative spatial reasoning (distances, angles, relative positions). SpatialVLM and SpatialRGPT showed that the fix is data, not architecture: train on millions of spatial QA pairs grounded in 3D reconstructions. The frontier is dynamic 4D reasoning (Spatial4D-Bench, VLM4D).
@@ -604,19 +604,19 @@ Understanding and reasoning about spatial relationships, 3D geometry, and physic
 The emerging paradigm: spend more compute at inference time to improve reasoning, or learn when to skip reasoning entirely.
 
 **Test-Time Scaling Methods** — Surveys and techniques for allocating additional compute at inference to boost reasoning quality.
-- [[2605.19376|GRAM]], [[2605.09537|CAPS-Power-Sampling]], [[2604.16029\|STOP]], [[2604.10333\|ZWM]], [[2604.07725\|Squeeze-Evolve]], [[2603.29557\|FlowPIE]], [[2603.00461\|ReMoT]], [[2602.01984\|Delimiter-Token-Scaling]], [[2601.22628\|TTCS]], [[2601.18795|Reuse-FLOPs]], [[2601.18067\|EvolVE]], [[2601.16175\|TTT-Discover]], [[2511.14178\|VLA-Pilot]], [[2504.13828\|Cognition-Engineering]], [[2504.10449\|M1]], [[2503.24235\|Test-Time-Scaling-Survey]], [[2503.07572\|MRT]], [[2501.09686\|Large-Reasoning-Models-Survey]], [[2408.03314\|Test-Time-Compute-Scaling]]
+- [[2605.19376|GRAM]], [[2605.09537|CAPS-Power-Sampling]], [[2604.16029|STOP]], [[2604.10333|ZWM]], [[2604.07725|Squeeze-Evolve]], [[2603.29557|FlowPIE]], [[2603.00461|ReMoT]], [[2602.01984|Delimiter-Token-Scaling]], [[2601.22628|TTCS]], [[2601.18795|Reuse-FLOPs]], [[2601.18067|EvolVE]], [[2601.16175|TTT-Discover]], [[2511.14178|VLA-Pilot]], [[2504.13828|Cognition-Engineering]], [[2504.10449|M1]], [[2503.24235|Test-Time-Scaling-Survey]], [[2503.07572|MRT]], [[2501.09686|Large-Reasoning-Models-Survey]], [[2408.03314|Test-Time-Compute-Scaling]]
 
 > [!star] Key Papers
-> - [[2503.24235\|Test-Time-Scaling-Survey]] — Comprehensive survey with unified four-axis taxonomy for TTS methods
-> - [[2501.09686\|Large-Reasoning-Models-Survey]] — Survey of RL-based reasoning; maps the post-DeepSeek-R1 landscape
-> - [[2604.16029\|STOP]] — Super-Token path pruning for parallel reasoning; +6pp accuracy while cutting token consumption by >70%
+> - [[2503.24235|Test-Time-Scaling-Survey]] — Comprehensive survey with unified four-axis taxonomy for TTS methods
+> - [[2501.09686|Large-Reasoning-Models-Survey]] — Survey of RL-based reasoning; maps the post-DeepSeek-R1 landscape
+> - [[2604.16029|STOP]] — Super-Token path pruning for parallel reasoning; +6pp accuracy while cutting token consumption by >70%
 
 **Adaptive Thinking & Selective Reasoning** — Models that learn when to engage deep reasoning versus when to respond quickly.
-- [[2604.13016|OPD-Distillation-Study]], [[2604.11297|MEDS]], [[2604.08865|SPPO]], [[2604.08706|RL-Experience-Replay-for-LLMs]], [[2604.03023\|Behavior-Constrained-RL]], [[2604.02035\|RL-Speculative-Trading]], [[2604.02021\|Discrete-Continuous-Planning-Bridge]], [[2604.01658\|CORAL]], [[2604.01434\|VOIMCP]], [[2604.00061\|R2X-Multi-Robot-MLLM-Survey]], [[2603.30022\|Hybrid-LLM-RL-Manipulation]], [[2603.28204\|ERPO]], [[2603.19835\|FIPO]], [[2603.18336\|ManiDreams]], [[2602.06556\|LIBERO-X]], [[2602.01166\|LaRA-VLA]], [[2601.18631\|AdaReasoner]], [[2601.07060\|PALM]], [[2601.00969\|V-VLAPS]], [[2601.00561\|AEGIS]], [[2512.09929\|OWM]], [[2511.15613|Uncertainty-Guided-Lookback]], [[2511.00758\|ATM]], [[2510.20607\|Compositional-Energy-Minimization]], [[2510.03827\|LIBERO-PRO]], [[2508.12211\|VLAPS]], [[2505.20258\|ARM]], [[2505.14631\|LHRM]], [[2505.13379\|Thinkless]], [[2504.18471\|AFM]], [[2503.04697\|L1]], [[2501.10100\|RWM]], [[2410.21676\|Critical-Batch-Size-Scaling]], [[2410.02355\|AlphaEdit]], [[2203.03485\|Self-directed-Exploratory-Planning]]
+- [[2604.13016|OPD-Distillation-Study]], [[2604.11297|MEDS]], [[2604.08865|SPPO]], [[2604.08706|RL-Experience-Replay-for-LLMs]], [[2604.03023|Behavior-Constrained-RL]], [[2604.02035|RL-Speculative-Trading]], [[2604.02021|Discrete-Continuous-Planning-Bridge]], [[2604.01658|CORAL]], [[2604.01434|VOIMCP]], [[2604.00061|R2X-Multi-Robot-MLLM-Survey]], [[2603.30022|Hybrid-LLM-RL-Manipulation]], [[2603.28204|ERPO]], [[2603.19835|FIPO]], [[2603.18336|ManiDreams]], [[2602.06556|LIBERO-X]], [[2602.01166|LaRA-VLA]], [[2601.18631|AdaReasoner]], [[2601.07060|PALM]], [[2601.00969|V-VLAPS]], [[2601.00561|AEGIS]], [[2512.09929|OWM]], [[2511.15613|Uncertainty-Guided-Lookback]], [[2511.00758|ATM]], [[2510.20607|Compositional-Energy-Minimization]], [[2510.03827|LIBERO-PRO]], [[2508.12211|VLAPS]], [[2505.20258|ARM]], [[2505.14631|LHRM]], [[2505.13379|Thinkless]], [[2504.18471|AFM]], [[2503.04697|L1]], [[2501.10100|RWM]], [[2410.21676|Critical-Batch-Size-Scaling]], [[2410.02355|AlphaEdit]], [[2203.03485|Self-directed-Exploratory-Planning]]
 
 > [!star] Key Papers
-> - [[2505.13379\|Thinkless]] — LLM learns when to think versus skip reasoning, saving compute without accuracy loss
-> - [[2505.14631\|LHRM]] — Hybrid reasoning models that activate deep thinking only when needed
+> - [[2505.13379|Thinkless]] — LLM learns when to think versus skip reasoning, saving compute without accuracy loss
+> - [[2505.14631|LHRM]] — Hybrid reasoning models that activate deep thinking only when needed
 
 > [!tip] Think Only When Necessary
 > Thinkless and LHRM represent an important insight: most queries do not need multi-step reasoning. The best systems learn a routing policy -- fast System-1 responses for easy inputs, deep System-2 reasoning for hard ones. This mirrors human cognition and dramatically reduces inference cost.
