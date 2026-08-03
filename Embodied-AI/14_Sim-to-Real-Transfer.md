@@ -257,7 +257,7 @@ Generate diverse, action-consistent training demonstrations — via video diffus
 ^key-papers-2
 
 > [!tip] Sim-Side Trade-Off
-> Learned video simulators ([[2310.06114|UniSim]], [[2501.03575|Cosmos]]) scale to internet video and capture visual diversity but blur on contact dynamics. Procedural physics simulators ([[2603.16861|MolmoBot]]) handle contact accurately but require massive procedural-asset effort to cover the visual long tail. Hybrid 3DGS-augmented physics ([[2511.23369|SimScale]], [[2604.11674|AffordSim]], [[2604.11138|ViserDex]]) is the emerging sweet spot.
+> Learned video simulators ([[2310.06114|UniSim]], [[2501.03575|Cosmos]]) scale to internet video and capture visual diversity but blur on contact dynamics. Procedural physics simulators ([[2603.16861|MolmoBot]]) handle contact accurately but require massive procedural-asset effort to cover the visual long tail. Hybrid 3DGS-augmented physics ([[2511.23369|SimScale]], [[2604.11674|AffordSim]], [[2604.11138|ViserDex]]) is the emerging sweet spot. Cross-reference [[02_Dataset-Benchmark-Environment#3. Simulation Environments]] for the simulator roster this trade-off ranges over and [[02_Dataset-Benchmark-Environment#4. Physics Engines as Research Substrate]] for the contact-solver layer underneath.
 
 ^insight-2
 
@@ -347,6 +347,7 @@ Bake physics priors *into* the policy via curriculum, reward shaping, or motion 
 Close the *visual* gap explicitly via neural rendering, teacher-student distillation, or controller-aware system-id.
 
 - **[[2607.14635|Action QFormer]]** — A ==query-based action-facing interface== mediating how action-loss gradients reshape a VLA's inherited representations via 16 ==instruction-conditioned learnable queries== that abstract control-relevant visual info; **0%** OOD instruction generation (vs up to 100%), **37.5-62.5%** zero-shot sim-to-real navigation SR vs **0-25%** baseline.
+- **[[2607.11004|Real-to-Sim Affordance Planning]]** — Inverts the usual direction: an ==Image Conversion Module== restyles real ==RGBD== into sim-consistent images so a sim-trained affordance planner transfers, with ==object mask channels== and ==virtual camera motion== tracking occluded objects; **92%** GRASP accuracy, plans on **9/10** sim tasks, **5/5** trials on **6/10** real tasks.
 - **[[2607.00148|3DPWM]]** — A ==Point Transformer V3==-based action-conditioned 3D world model trained on complete simulated point clouds, paired with a ==point cloud completion== module bridging real partial RGB-D observations at deployment; Chamfer L1 **0.080 → 0.009** on PickCube, MPPI closed-loop SR **35% → 85%**, zero-shot real-Franka picking without fine-tuning.
 - **[[2512.01061|Sim-to-Real-Door]]** — A DoorMan ==teacher-student-bootstrap== recipe in NVIDIA Isaac Lab with PPO teacher + ==staged-reset exploration== + DAgger student + ==GRPO== partial-observability fine-tune; **83%** SR on diverse real doors (matches **80%** human teleoperator), **23.8%** faster than human experts.
 - **[[2511.15200|VIRAL]]** — A visual sim-to-real framework at scale for humanoid loco-manipulation built on ==two-phase teacher-student== learning — a privileged RL teacher distilled into a vision student via DAgger + BC with **64-GPU** ==tiled rendering==; **54/59** cycles on real Unitree G1, matching expert teleop; ablating ==Reference State Initialization== drops success **95% → <10%**.
@@ -477,7 +478,7 @@ Blend a classical or foundation-model teacher transiently during early training,
 ^key-papers-3
 
 > [!tip] Domain Randomization is the Default — But Has Limits
-> Every paper in this section uses DR, but [[2604.11674|AffordSim]] showed DR alone only lifts real-world success from **17%** to **27%** on affordance-demanding tasks — fine-grained semantic transfer still fails. DR works for *dynamics* gaps ([[2210.13702|DeXtreme]], [[2506.12851|KungfuBot]]) but is *brittle* for *semantic* gaps (manipulating novel categories). Combine DR with neural rendering ([[2604.11138|ViserDex]]) or learned simulators ([[2310.06114|UniSim]]) when the visual gap dominates.
+> Every paper in this section uses DR, but [[2604.11674|AffordSim]] showed DR alone only lifts real-world success from **17%** to **27%** on affordance-demanding tasks — fine-grained semantic transfer still fails. DR works for *dynamics* gaps ([[2210.13702|DeXtreme]], [[2506.12851|KungfuBot]]) but is *brittle* for *semantic* gaps (manipulating novel categories). Combine DR with neural rendering ([[2604.11138|ViserDex]]) or learned simulators ([[2310.06114|UniSim]]) when the visual gap dominates. Cross-reference [[11_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination]] for where DR-on-dynamics carries whole-body transfer outright. The RL-side view of the same robustness machinery — what the policy optimizer can and cannot absorb — is [[03_Imitation-Learning-and-RL#4. RL Algorithms, Efficiency & Policy Representations]].
 
 ^insight-3
 
@@ -569,6 +570,8 @@ Use sim as a safety filter, not a training source.
 
 Calibrate the simulator to real dynamics *without* differentiable physics — via learned dynamics models, Bayesian parameter inference, or iterative sim-param refinement.
 
+- **[[2607.24079|Renormalization for Robotics]]** — Borrows renormalization from field theory: stop chasing physical accuracy, fit ==effective parameters== absorbing omitted physics and finite sim resolution via a ==four-step procedure==; simulated derivative gain and inertia must rise by **δt·K_P** and **δt·K_D**, and **5** hydrodynamic coefficients fit from **2** trajectories.
+- **[[2607.23268|Sling2Sim2Real]]** — ==One-shot elastic system identification== from a single non-destructive ==visuo-haptic== probe (sling point cloud + end-effector force), fitting five elasticity parameters by ==Differential Evolution== global search then ==multi-start CMA-ES==; zero-shot landing error **7.17 cm** soft / **19.00 cm** stiff bands, calibration loss **−72.5%** vs best baseline.
 - **[[2607.11734|NeuralActuator]]** — A ==Transformer==-based actuator model learning history-dependent mappings from telemetry to simulator-equivalent ==generalized-effort surrogates== and external forces, trained end-to-end in a differentiable simulator via pose-based supervision; **5.5×** better force estimation than classical current-to-torque baselines, **+10pp** real lift-and-hold success.
 - **[[2606.30268|ConCent]]** — A real-to-sim-to-real framework optimizing simulated ==contact geometry== (evolutionary search) to match a single demo's local contact dynamics, extracting a ==contact event sequence== as an automatic RL reward, plus a ==Virtual Collision Penalty== for scalable parallel training; **80.0%** real tight-clearance insertion (vs **20%** without geometry optimization).
 - **[[2605.22597|MoSA-Continuum]]** — A real-to-sim continuum-dynamics calibrator augmenting an ==isotropic constitutive prior== with learned ==bounded residual stress== + an ==implicit heterogeneity field==, supervised by ==motion-constrained== higher-order losses from dynamic ==3DGS==; lowest Chamfer **13.5**, **31.35** real PSNR, lifting elastic-object manipulation **42% → 68%**.
@@ -612,7 +615,7 @@ Calibrate the simulator to real dynamics *without* differentiable physics — vi
 ^key-papers-4
 
 > [!tip] When Real2Sim2Real Wins
-> Digital twins win when your *deployment scene matters most* — a specific robot, a specific workspace, a specific deformable target. They lose when you need *broad generalization across scenes*, where learned simulators ([[2310.06114|UniSim]], [[2501.03575|Cosmos]]) or large-scale procedural generation ([[2603.16861|MolmoBot]]) scale better. The decision: how variable is your deployment environment?
+> Digital twins win when your *deployment scene matters most* — a specific robot, a specific workspace, a specific deformable target. They lose when you need *broad generalization across scenes*, where learned simulators ([[2310.06114|UniSim]], [[2501.03575|Cosmos]]) or large-scale procedural generation ([[2603.16861|MolmoBot]]) scale better. The decision: how variable is your deployment environment? Cross-reference [[09_Manipulation-Skill-Learning#7. Demonstration, Data-Generation & Cross-Embodiment Transfer]] for how twin-generated demonstrations feed manipulation policies downstream.
 
 ^insight-4
 
@@ -695,7 +698,7 @@ Reframe sim-to-real as variance reduction across a portfolio of biased simulator
 ^key-papers-5
 
 > [!tip] The Evaluation Stack
-> ==[[2405.05941|SimplerEnv]]== (does sim correlate with real?) → ==[[2605.06311|VISER]]== (which visual cues drive correlation?) → ==[[2604.10856|BridgeSim]]== (where does OL-CL diverge?) → ==[[2604.24018|Sim2Real-Betting]]== (how to combine multiple imperfect sims?). Use the stack — single-metric evaluation now reads as inadequate.
+> ==[[2405.05941|SimplerEnv]]== (does sim correlate with real?) → ==[[2605.06311|VISER]]== (which visual cues drive correlation?) → ==[[2604.10856|BridgeSim]]== (where does OL-CL diverge?) → ==[[2604.24018|Sim2Real-Betting]]== (how to combine multiple imperfect sims?). Use the stack — single-metric evaluation now reads as inadequate. Cross-reference [[02_Dataset-Benchmark-Environment#12. Sim-to-Real Transfer Evaluation]] for the benchmark-side view of the same stack and [[02_Dataset-Benchmark-Environment#13. Real-World Evaluation Infrastructure]] for the real-robot harnesses it terminates in. For the policy-side evaluation methodology this stack feeds, see [[04_VLA#16. VLA Evaluation & Benchmarking Methodology]].
 
 ^insight-5
 
@@ -824,7 +827,7 @@ These three problems sit orthogonal to the mainstream "transfer actions across t
 ^key-papers-7
 
 > [!tip] The Common Root Is Mis-Specified Targets
-> Six of the seven problems above (correlation collapse, fragmented eval, DR ceiling, learned-sim contact blur, controller-gain interaction, and the implicit assumption that *actions* are what should transfer) trace to the same root: **sim-to-real research has been targeting the wrong proxies**. Sysid error ≠ transfer quality ([[2604.02523|Tune-to-Learn]]); DR coverage ≠ semantic generalization ([[2604.11674|AffordSim]]); visual realism ≠ contact fidelity (UniSim/Cosmos); in-distribution correlation ≠ OOD correlation (SimplerEnv/VISER under perturbation). The methodological reframings ([[2604.23702|QuietWalk]] reward-side, [[2604.24018|Sim2Real-Betting]] statistical) suggest the next decade's progress will come from changing what we measure, not pushing harder on current metrics. Cross-reference [[06_WAM#9. Open Problems & Failure Modes]] (WAMs deployed as simulators inherit the same correlation-under-perturbation failures) and [[08_Physics-Aware-Embodied-AI#8. Open Problems]] (the benchmark-vs-deployment gap is the same problem from the physics-fidelity angle — verifiability gap upstream of the sim-real gap).
+> Six of the seven problems above (correlation collapse, fragmented eval, DR ceiling, learned-sim contact blur, controller-gain interaction, and the implicit assumption that *actions* are what should transfer) trace to the same root: **sim-to-real research has been targeting the wrong proxies**. Sysid error ≠ transfer quality ([[2604.02523|Tune-to-Learn]]); DR coverage ≠ semantic generalization ([[2604.11674|AffordSim]]); visual realism ≠ contact fidelity (UniSim/Cosmos); in-distribution correlation ≠ OOD correlation (SimplerEnv/VISER under perturbation). The methodological reframings ([[2604.23702|QuietWalk]] reward-side, [[2604.24018|Sim2Real-Betting]] statistical) suggest the next decade's progress will come from changing what we measure, not pushing harder on current metrics. Cross-reference [[06_WAM#9. Open Problems & Failure Modes]] (WAMs deployed as simulators inherit the same correlation-under-perturbation failures) and [[08_Physics-Aware-Embodied-AI#8. Open Problems]] (the benchmark-vs-deployment gap is the same problem from the physics-fidelity angle — verifiability gap upstream of the sim-real gap). The navigation domain hits the same mis-specified-target root from its own direction — see [[12_Navigation-and-Mobile-Manipulation#6. Open Problems & Failure Modes]].
 
 ^insight-7
 

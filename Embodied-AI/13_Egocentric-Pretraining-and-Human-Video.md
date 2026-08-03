@@ -186,7 +186,7 @@ Egocentric pretraining obeys a *log-linear* scaling curve, making it the first r
 ^key-papers-1
 
 > [!tip] Egocentric Is the New Pretraining Substrate
-> The economic shift is the load-bearing claim: teleoperation produces minutes-per-dollar, egocentric video produces hours-per-dollar, and [[2602.16710|EgoScale]]'s log-linear curve guarantees that the additional hours actually compound into capability. This is why every 2026 generalist VLA includes egocentric pretraining as a default stage — not as a niche augmentation. Cross-reference [[04_VLA#6. RL Post-Training for VLAs]] for how egocentric pretraining + RL post-training compose, [[06_WAM#2. VideoGen WAMs]] for the WAM-side reuse of the same corpora as video-prediction substrate, and [[10_Contact-Rich-and-Tactile-Control#4.1 Vision-to-Tactile Prediction — Closing the Supervision Bottleneck]] for the tactile axis being added on top via [[2605.13083|TouchAnything]].
+> The economic shift is the load-bearing claim: teleoperation produces minutes-per-dollar, egocentric video produces hours-per-dollar, and [[2602.16710|EgoScale]]'s log-linear curve guarantees that the additional hours actually compound into capability. This is why every 2026 generalist VLA includes egocentric pretraining as a default stage — not as a niche augmentation. Cross-reference [[04_VLA#6. RL Post-Training for VLAs]] for how egocentric pretraining + RL post-training compose, [[06_WAM#2. VideoGen WAMs]] for the WAM-side reuse of the same corpora as video-prediction substrate, and [[10_Contact-Rich-and-Tactile-Control#4.1 Vision-to-Tactile Prediction — Closing the Supervision Bottleneck]] for the tactile axis being added on top via [[2605.13083|TouchAnything]]. The same first-person stream also carries the spatial-memory signal navigation policies learn from — see [[12_Navigation-and-Mobile-Manipulation#1.1 Emergent vs Explicit Spatial Memory]].
 
 ^insight-1
 
@@ -220,6 +220,7 @@ Large, diverse first-person video corpora that anchor the *scale* tier of egocen
 
 Specialist egocentric datasets that target fine motor / dexterous-hand action priors rather than general activity.
 
+- **[[2607.14183|Open-AoE]]** — **~2,000 hours** of commodity-smartphone egocentric manipulation from **500+** contributors (**400+** scenes, **8,000+** tasks), processed cloud-side into ==MANO hand poses==, ==camera trajectories== and ==atomic action labels== with a ==4D HOI reconstruction== + retargeting toolchain; Effective Rank **97.43** (beating OpenEgo/EgoDex), **99.99%** temporal coverage.
 - **[[2606.17054|HUG]]** — A multi-fingered grasping model trained on 1M-HUGS, a **1-million-frame** egocentric human-grasp dataset (RGB-D + 3D hand poses via smart glasses), using ==flow-matching== RGB+point-cloud fusion to predict 99-D ==MANO grasp poses==; **66.7%** real SR on HUG-BENCH (**+23pp** over Dex1B), **62.0%** zero-shot in-the-wild.
 - **[[2505.11709|EgoDex]]** — An ==Apple Vision Pro== egocentric dataset of **829 hr** / **338,000** demos across **194** tabletop tasks, annotated at **30 Hz** with ==SE(3) poses== for head, arms, and **25** hand joints via ARKit, that benchmarks ==dexterous trajectory prediction==. Flow-matching + diffusion beat BC when K>1; visual goal-conditioning gives **22%** average-distance reduction.
 - **UniHand** (curated dataset in **[[2507.15597|Being-H0]]**) — **150M** human-hand motion-instruction pairs in ==standardized MANO parameters== with ==LLM-generated task descriptions==. Purpose-built for VLA training; turns raw egocentric video into trainable action priors.
@@ -257,6 +258,13 @@ Egocentric human-interaction corpora aimed at *interactive assistants* — mista
 - **[[2511.19684|IndEgo]]** — A multimodal *industrial* egocentric+exocentric dataset (**197.1 hr** ego, **96.8 hr** exo via Project Aria) of collaborative, long-horizon work — RGB, ==eye gaze, hand pose, point clouds, audio==, ~34K actions; SOTA VLMs are weak (mistake detection **23.3–40.9%** F1, reasoning QA **57.6–64.1%** vs **90%** human) — the industrial long-tail §7 flags as scarce.
 - **[[2309.17024|HoloAssist]]** — A **166-hour** egocentric *human-human assistance* dataset from **350** instructor-performer pairs over **20** manipulation tasks, with ==seven synchronized modalities== (RGB, depth, head/hand pose, gaze, audio, IMU) and mistake/intervention labels; hands-only hits **40.19** F-score for mistake detection, hands+gaze gives **48.31%** intervention precision.
 
+#### 2.8 Egocentric Object Tracking & Interaction Grounding
+
+The object-level counterpart to §2.6's body-level perception: models that turn raw first-person video into the persistent object identities and grounded interaction regions that memory-augmented and affordance-grounded policies consume.
+
+- **[[2607.08537|Whareformer]]** — Solves *Out of Sight, Not out of Mind* 3D tracking by scoring learned track-assignment likelihoods over ==DINOv2 appearance== (==DenStream==) plus a 3D-location buffer in a ==transformer encoder==, an explicit ==New-Track token== replacing heuristic thresholds; **+19.2%** mPCL / **+14.0%** IDF1 on EPIC-KITCHENS-100, **+27.1%** mPCL zero-shot on IT3DEgo.
+- **[[2605.14742|EARL]]** — Unifies egocentric interaction reasoning with pixel grounding in a coarse-to-fine pass: a holistic interaction descriptor feeds an ==Analysis-guided Feature Synthesizer== conditioning query answering and mask prediction, both optimized by ==GRPO== under a format/answer/grounding reward; **65.48%** cIoU on Ego-IRGBench (**+8.37%**), **38.21%** OOD cIoU on EgoHOS.
+
 **Dataset — Decision Matrix**
 
 | Need | Dataset |
@@ -280,7 +288,7 @@ Egocentric human-interaction corpora aimed at *interactive assistants* — mista
 ^key-papers-2
 
 > [!tip] Dataset Choice Drives Recipe Choice
-> Choosing between [[2110.07058|Ego4D]]'s scale and [[2505.11709|EgoDex]]'s dexterity isn't just a data decision — it constrains the *downstream recipe*. Internet-scale corpora support frozen-feature pretraining and broad VLA generalization; dexterity-focused corpora (UniHand, EgoDex) support action-decoder training; tactile-augmented corpora ([[2605.13083|TouchAnything]]) open a separate force-aware track. Cross-reference [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]] for the broader cross-embodiment landscape (Ego4D alongside [[2310.08864|OXE]], DROID, AgiBot), and [[04_VLA#1. Design-Space Principles]] for how dataset choice constrains backbone selection per the [[2412.14058|RoboVLMs]] 600-experiment study.
+> Choosing between [[2110.07058|Ego4D]]'s scale and [[2505.11709|EgoDex]]'s dexterity isn't just a data decision — it constrains the *downstream recipe*. Internet-scale corpora support frozen-feature pretraining and broad VLA generalization; dexterity-focused corpora (UniHand, EgoDex) support action-decoder training; tactile-augmented corpora ([[2605.13083|TouchAnything]]) open a separate force-aware track. Cross-reference [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]] for the broader cross-embodiment landscape (Ego4D alongside [[2310.08864|OXE]], DROID, AgiBot), and [[04_VLA#1. Design-Space Principles]] for how dataset choice constrains backbone selection per the [[2412.14058|RoboVLMs]] 600-experiment study. For the whole-body consumer of these corpora — retargeting human motion onto humanoid joints — see [[11_Whole-Body-and-Locomotion-Control#3.1 Motion Retargeting & Human-to-Humanoid Transfer]].
 
 ^insight-2
 
@@ -405,7 +413,7 @@ The 2026 frontier. Pretrain the entire VLA — vision, language, *and* action �
 ^key-papers-4
 
 > [!tip] Co-Train, Don't Align
-> The 2026 surprise: explicit kinematic alignment between human and robot hands is *not necessary*. [[2512.22414|π0.5+ego]]'s "treat humans as another embodiment" recipe — feeding human videos into the training mixture with the same loss as robot data — achieves better transfer than aligned approaches. The VLA's diverse pretraining produces embodiment-agnostic representations on its own. Cross-reference [[04_VLA#11.1 Embodiment-Agnostic Action Spaces]] for the parallel bet on the action-space side — a shared representation absorbing embodiment variation instead of per-robot retargeting.
+> The 2026 surprise: explicit kinematic alignment between human and robot hands is *not necessary*. [[2512.22414|π0.5+ego]]'s "treat humans as another embodiment" recipe — feeding human videos into the training mixture with the same loss as robot data — achieves better transfer than aligned approaches. The VLA's diverse pretraining produces embodiment-agnostic representations on its own. Cross-reference [[04_VLA#11.1 Embodiment-Agnostic Action Spaces]] for the parallel bet on the action-space side — a shared representation absorbing embodiment variation instead of per-robot retargeting. The imitation-learning framing of the same mixture — human video as a demonstration source — is [[03_Imitation-Learning-and-RL#2.1 Human & Egocentric Video]].
 
 ^insight-4
 
@@ -510,7 +518,7 @@ Treat the human→robot hop as a conditional video-generation problem: a generat
 ^key-papers-5
 
 > [!tip] Three Strategies, One Insight
-> All transfer mechanisms ultimately do the same thing: project the high-DoF human hand into a representation the robot policy can consume. Whether the projection is explicit (MANO, keypoints, 3D reconstruction) or learned (treat-as-embodiment), the *amount* of data matters more than the *form* of the projection. [[2602.16710|EgoScale]]'s log-linear law holds across multiple projection schemes — the data axis dominates the architectural one. Cross-reference [[04_VLA#1. Design-Space Principles]] for the data-recipe design space ([[2412.14058|RoboVLMs]] 600-experiment findings) and [[15_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how transfer mechanisms compose with self-evolution loops.
+> All transfer mechanisms ultimately do the same thing: project the high-DoF human hand into a representation the robot policy can consume. Whether the projection is explicit (MANO, keypoints, 3D reconstruction) or learned (treat-as-embodiment), the *amount* of data matters more than the *form* of the projection. [[2602.16710|EgoScale]]'s log-linear law holds across multiple projection schemes — the data axis dominates the architectural one. Cross-reference [[04_VLA#1. Design-Space Principles]] for the data-recipe design space ([[2412.14058|RoboVLMs]] 600-experiment findings) and [[15_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for how transfer mechanisms compose with self-evolution loops. For how these projections land in manipulation policies specifically, see [[09_Manipulation-Skill-Learning#7.3 Cross-Embodiment & Human-Video Transfer]].
 
 ^insight-5
 

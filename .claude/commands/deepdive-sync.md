@@ -77,7 +77,9 @@ The agent does not ask the user which papers to add — both discovery and place
 
 ### 1b. Sparse-bullet drift
 
-For each file's L3 bullets, count `==highlight==` markers and `**bold**` markers per bullet. Compute the file's median. Bullets below `max(1, median-2)` on either axis are *sparse* — candidates for depth enrichment from KH.
+For each file's L3 bullets, count `==highlight==` markers and `**bold**` markers per bullet. A bullet is *sparse* only when it carries **zero highlights AND zero metrics** — nothing on either axis.
+
+Do **not** use a median-relative threshold here. Section medians run 1–2, so a formula like `max(1, median-2)` collapses to 1 and flags every bullet with a zero on *either* axis — orders of magnitude more than are genuinely empty. That is a false-positive generator, not a signal. A bullet with 3 metrics and no `==highlight==` is dense, not sparse.
 
 ### 1c. Anti-pattern + structural drift (regex sweep)
 
@@ -109,6 +111,15 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
 
   # Anti-pattern G: bracket-wrapped L4 Decision Matrix header (`**[X — Decision Matrix]**`); paragon = no brackets
   grep -nE '^\*\*\[[^]]+— Decision Matrix\]\*\*' "$F"
+
+  # Anti-pattern I: L6 [!tip] with NO cross-vault link at all. F catches a link of the wrong
+  # SHAPE; I catches its ABSENCE — the L6 spec requires >=1 section-anchored cross-vault link.
+  awk '
+    /^> \[!tip\]/ { if (intip && !seen) printf "L6 MISSING CROSS-LINK: %s\n", hdr; intip=1; seen=0; hdr=$0; next }
+    intip && /^>/  { if ($0 ~ /\[\[[0-9]{2}_[A-Za-z]/) seen=1; next }
+    intip          { if (!seen) printf "L6 MISSING CROSS-LINK: %s\n", hdr; intip=0 }
+    END            { if (intip && !seen) printf "L6 MISSING CROSS-LINK: %s\n", hdr }
+  ' "$F"
 
   # Anti-pattern H: over-long L3 bullet — absolute (>400 chars) OR relative (>1.8× section median)
   # NOTE: forced LC_ALL=C + charlen() strips UTF-8 continuation bytes (0x80-0xBF) before counting —
@@ -276,11 +287,13 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
   AP_E=$(grep -c 'metrics not yet reported' "$F")
   AP_G=$(grep -cE '^\*\*\[[^]]+— Decision Matrix\]\*\*' "$F")
   # Anti-pattern H: over-long bullets (>400ch absolute OR >1.8× section median)
-  AP_H=$(awk '
+  # charlen() must match Phase 1c's — see the NOTE there for why length($0) is wrong.
+  AP_H=$(LC_ALL=C awk '
+    function charlen(s,   t){t=s;gsub(/[\200-\277]/,"",t);return length(t)}
     function fs(){for(i in B){if(B[i]>400||(med>0&&B[i]>1.8*med))k++}}
     function md(){c=0;for(i in B)V[c++]=B[i];for(a=0;a<c;a++)for(b=a+1;b<c;b++)if(V[b]<V[a]){t=V[a];V[a]=V[b];V[b]=t};med=(c?V[int(c/2)]:0)}
     /^### [0-9]+\./{md();fs();delete B;delete V;n=0;next}
-    /^- \*\*\[\[/{B[n++]=length($0)}
+    /^- \*\*\[\[/{B[n++]=charlen($0)}
     END{md();fs();print k+0}
   ' "$F")
   echo "  anti-patterns: A=$AP_A B=$AP_B C=$AP_C D=$AP_D E=$AP_E G=$AP_G H=$AP_H"
@@ -317,6 +330,25 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
     while read id; do [ -f "_KnowledgeHub_/${id}.md" ] || echo "MISSING: $id in $F"; done
 done
 
+# Heading-anchor resolution: every [[NN_File#N. Section]] must point at a heading that EXISTS.
+# A wrong anchor renders as a live link that silently lands at the top of the file, so it is
+# invisible to both the reader and every other check here. Catches cross-vault links left
+# pointing at a section that was later renamed or renumbered.
+for F in Embodied-AI/[0-9][0-9]_*.md; do
+  [[ "$(basename "$F")" == 01_* ]] && continue
+  grep -oE '\[\[[0-9]{2}_[A-Za-z0-9-]+#[^]|]+' "$F" | sed 's/\[\[//' | sort -u | \
+  while IFS='#' read -r stem anchor; do
+    T="Embodied-AI/${stem}.md"; [ -f "$T" ] || T="General/${stem}.md"
+    [ -f "$T" ] || { echo "BAD ANCHOR: $stem does not exist (in $F)"; continue; }
+    # match against heading TEXT (strip leading #'s and one space); block IDs (^id) handled separately
+    case "$anchor" in
+      \^*) grep -qxF "${anchor}" "$T" || echo "BAD ANCHOR: $stem#$anchor (block id not found, in $F)" ;;
+      *)   grep -E '^#{2,6} ' "$T" | sed -E 's/^#{2,6} //' | grep -qxF "$anchor" \
+             || echo "BAD ANCHOR: $stem#$anchor (no such heading, in $F)" ;;
+    esac
+  done
+done
+
 # paper-curate cross-check: every cited arxiv ID in deep-dives should also appear in General/
 # (Soft warning — paper-curate is /kh-sync's responsibility, not deepdive-sync's, but uncurated
 # citations indicate vault drift that should be surfaced.)
@@ -343,7 +375,7 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
   T_D=$((T_D + $(grep -cE '^- \[\[[0-9]{4}\.[0-9]+\|[^]]+\]\]\s+—' "$F")))
   T_E=$((T_E + $(grep -c 'metrics not yet reported' "$F")))
   T_G=$((T_G + $(grep -cE '^\*\*\[[^]]+— Decision Matrix\]\*\*' "$F")))
-  T_H=$((T_H + $(awk 'function fs(){for(i in B){if(B[i]>400||(med>0&&B[i]>1.8*med))k++}} function md(){c=0;for(i in B)V[c++]=B[i];for(a=0;a<c;a++)for(b=a+1;b<c;b++)if(V[b]<V[a]){t=V[a];V[a]=V[b];V[b]=t};med=(c?V[int(c/2)]:0)} /^### [0-9]+\./{md();fs();delete B;delete V;n=0;next} /^- \*\*\[\[/{B[n++]=length($0)} END{md();fs();print k+0}' "$F")))
+  T_H=$((T_H + $(LC_ALL=C awk 'function charlen(s,   t){t=s;gsub(/[\200-\277]/,"",t);return length(t)} function fs(){for(i in B){if(B[i]>400||(med>0&&B[i]>1.8*med))k++}} function md(){c=0;for(i in B)V[c++]=B[i];for(a=0;a<c;a++)for(b=a+1;b<c;b++)if(V[b]<V[a]){t=V[a];V[a]=V[b];V[b]=t};med=(c?V[int(c/2)]:0)} /^### [0-9]+\./{md();fs();delete B;delete V;n=0;next} /^- \*\*\[\[/{B[n++]=charlen($0)} END{md();fs();print k+0}' "$F")))
   T_MISSING=$((T_MISSING + $(grep -oE '\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u | sed 's/\[\[//' | \
     while read id; do [ -f "_KnowledgeHub_/${id}.md" ] || echo X; done | wc -l | tr -d ' ')))
 done
@@ -356,6 +388,29 @@ done
 [ "$T_G" -eq 0 ]       && echo "✓ Anti-pattern G (bracket-wrapped L4 headers): 0"     || echo "✗ Anti-pattern G: $T_G instances"
 [ "$T_H" -eq 0 ]       && echo "✓ Anti-pattern H (over-long bullets): 0"              || echo "✗ Anti-pattern H: $T_H over-long bullets (>400ch or >1.8× section median)"
 [ "$T_MISSING" -eq 0 ] && echo "✓ All KH wikilinks resolve"                           || echo "✗ $T_MISSING broken KH wikilinks"
+
+# Anti-pattern I + heading-anchor resolution — recomputed here so both land in the verdict
+# contract rather than only printing inline above.
+T_I=0; T_ANCHOR=0
+for F in Embodied-AI/[0-9][0-9]_*.md; do
+  [[ "$(basename "$F")" == 01_* ]] && continue
+  T_I=$((T_I + $(awk '
+    /^> \[!tip\]/ { if (intip && !seen) k++; intip=1; seen=0; next }
+    intip && /^>/ { if ($0 ~ /\[\[[0-9]{2}_[A-Za-z]/) seen=1; next }
+    intip         { if (!seen) k++; intip=0 }
+    END           { if (intip && !seen) k++; print k+0 }' "$F")))
+  T_ANCHOR=$((T_ANCHOR + $(grep -oE '\[\[[0-9]{2}_[A-Za-z0-9-]+#[^]|]+' "$F" | sed 's/\[\[//' | sort -u | \
+    while IFS='#' read -r stem anchor; do
+      T="Embodied-AI/${stem}.md"; [ -f "$T" ] || T="General/${stem}.md"
+      [ -f "$T" ] || { echo X; continue; }
+      case "$anchor" in
+        \^*) grep -qxF "${anchor}" "$T" || echo X ;;
+        *)   grep -E '^#{2,6} ' "$T" | sed -E 's/^#{2,6} //' | grep -qxF "$anchor" || echo X ;;
+      esac
+    done | wc -l | tr -d ' ')))
+done
+[ "$T_I" -eq 0 ]       && echo "✓ Anti-pattern I (L6 with no cross-vault link): 0"    || echo "✗ Anti-pattern I: $T_I L6 callouts link nowhere"
+[ "$T_ANCHOR" -eq 0 ]  && echo "✓ All heading anchors resolve"                        || echo "✗ $T_ANCHOR unresolvable heading anchors"
 
 # Multi-citation info (soft, never a fail): multi-home bullets are allowed; counts shown so drift
 # in duplicated copies can be spot-reviewed for metric consistency (sync text, never delete a copy)
@@ -548,6 +603,7 @@ Each anti-pattern below has a matching regex in Phase 1c above and a matching re
 | **F** | Whole-file L6 cross-vault link (`[[NN_File]]` in `[!tip]`) | Retrofit to section-anchored `[[NN_File#N. Section]]` |
 | **G** | Bracket-wrapped L4 header (`**[X — Decision Matrix]**`) | Strip outer brackets → `**X — Decision Matrix**` (paragon convention) |
 | **H** | Over-long L3 bullet (>400 chars, or >1.8× the section median — towers over neighbors) | KH-verify retained metrics/methods, then compress prose to ≤400ch and ≤~1.5× section median; keep all `**metrics**` + `[[links]]` + lead `==method==` (see L3 rule 5) |
+| **I** | L6 `[!tip]` with **no** cross-vault link at all (F catches the wrong *shape*; I catches *absence*) | Add ≥1 section-anchored `[[NN_File#N. Section]]` to a target a reader finishing this section would want next |
 | **Seq** | `### N.` numbering with dupes or gaps (consecutive duplicate numbers from a section merge, or non-monotonic gaps from a deleted section) | Renumber downstream; update reciprocal `[[NN_File#N. …]]` anchors |
 
 A deep-dive that triggers *any* of A–H or Seq is not yet at canonical state — Phase 4 must repair before Phase 6 declares pass.
