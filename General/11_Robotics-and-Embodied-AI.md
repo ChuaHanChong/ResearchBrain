@@ -478,7 +478,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2403.03954|DP3]] — Extended to 3D point clouds, enabling sim-to-real transfer without camera calibration
 
 **Fast Inference: Distillation & Caching** — Accelerating diffusion-policy inference via distillation, caching, pruning, partial denoising, or adaptive real-time chunking for control.
-- [[2606.31132|ELASTIC]], [[2606.10825|MODIP]], [[2605.25537|Soft-RTC]], [[2601.12894|ActionGen]], [[2508.05396|Real-Time]], [[2506.13456|BAC]], [[2503.00339|Falcon]], [[2502.12724|Responsive-Noise-Relaying-Diffusion-Policy]], [[2410.21257|One-Step-Diffusion-Policy]], [[2410.12557|Shortcut Models]], [[2406.04806|Streaming-Diffusion-Policy]]
+- [[2606.31132|ELASTIC]], [[2606.10825|MODIP]], [[2605.25537|Soft-RTC]], [[2605.09999|Muninn]], [[2601.12894|ActionGen]], [[2508.05396|Real-Time]], [[2506.13456|BAC]], [[2503.00339|Falcon]], [[2502.12724|Responsive-Noise-Relaying-Diffusion-Policy]], [[2410.21257|One-Step-Diffusion-Policy]], [[2410.12557|Shortcut Models]], [[2406.04806|Streaming-Diffusion-Policy]]
 
 > [!star] Key Papers
 > - [[2410.21257|One-Step-Diffusion-Policy]] — foundational KL-divergence distillation into a single-step generator, delivering a **42x** real-world speedup (**62.5 Hz**) while matching or beating the multi-step teacher
@@ -652,7 +652,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2412.04445|Moto]] — most paradigm-shifting recent entry, distilling latent motion tokens as a hardware-agnostic "language of motion" from unlabeled video, reaching **52.5%** success on CALVIN with just **1%** of action-labeled data where the baseline gets **0%**.
 
 **Grasping & Pick-and-Place** — Grasping, insertion, pick-and-place.
-- [[2607.07897|StiffNET]], [[2607.00530|Multimodal HRI User Study]], [[2606.30474|GOMP]], [[2606.03385|GTP-FA]], [[2605.03363|Hierarchical-RL-QP-Grasp]], [[2505.11858|Tight-Insertion-Sim2Real]], [[2010.14406|Transporter Networks]], [[1803.09956|VPG]]
+- [[2607.07897|StiffNET]], [[2607.00530|Multimodal HRI User Study]], [[2606.30474|GOMP]], [[2606.03385|GTP-FA]], [[2605.03363|Hierarchical-RL-QP-Grasp]], [[2603.09882|DAPL]], [[2505.11858|Tight-Insertion-Sim2Real]], [[2010.14406|Transporter Networks]], [[1803.09956|VPG]]
 
 > [!star] Key Papers
 > - [[2010.14406|Transporter Networks]] — foundational, most-cited method reframing manipulation as spatial-displacement inference via feature "transport," reaching **>90%** success with only **100** demonstrations and **98.9%**/**98.3%** on real-world kit assembly and sweeping.
@@ -2359,7 +2359,7 @@ The data and evaluation infrastructure that makes all the above research possibl
 > - [[2512.24653|RoboMIND-2.0]] — Extended to bimanual mobile manipulation; the most comprehensive multi-modal robotics dataset
 
 **Egocentric Human-Video Datasets** — Large-scale first-person video corpora with pose/hand annotations used to pretrain VLAs and learn dexterous priors from humans.
-- [[2607.14183|Open-AoE]], [[2606.17385|EgoInfinity]], [[2606.12604|EgoEngine]], [[2606.06627|TriHands]], [[2605.07943|TAVIS]], [[2605.06747|HumanNet]], [[2605.05945|MobileEgo-Anywhere]], [[2603.15847|FEEL]], [[2509.19480|OmniVLA]], [[2505.11709|EgoDex]], [[2503.23094|FRAME]], [[2503.01439|AVR]], [[2502.16587|Human2Robot]], [[2502.04144|HD-EPIC]], [[2412.14172|Massive-Human-Videos-Universal]], [[2411.19167|HOT3D]], [[2402.13349|Aria-Everyday-Activities]], [[2203.14712|Assembly101]], [[2110.07058|Ego4D]], [[2006.00626|EGTEA-Gaze+]]
+- [[2607.28625|ACE-Data-0]], [[2607.14183|Open-AoE]], [[2606.17385|EgoInfinity]], [[2606.12604|EgoEngine]], [[2606.06627|TriHands]], [[2605.07943|TAVIS]], [[2605.06747|HumanNet]], [[2605.05945|MobileEgo-Anywhere]], [[2603.15847|FEEL]], [[2509.19480|OmniVLA]], [[2505.11709|EgoDex]], [[2503.23094|FRAME]], [[2503.01439|AVR]], [[2502.16587|Human2Robot]], [[2502.04144|HD-EPIC]], [[2412.14172|Massive-Human-Videos-Universal]], [[2411.19167|HOT3D]], [[2402.13349|Aria-Everyday-Activities]], [[2203.14712|Assembly101]], [[2110.07058|Ego4D]], [[2006.00626|EGTEA-Gaze+]]
 
 > [!star] Key Papers
 > - [[2605.06747|HumanNet]] — 1M-hour human-centric video; egocentric + exocentric viewpoints; 1,000 hr pretrain matches/surpasses 100 hr real-robot pretrain
