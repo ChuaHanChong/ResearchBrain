@@ -8027,14 +8027,14 @@ papers = [
     "https://arxiv.org/abs/2607.09185",  # Causally Debiased Latent Action Model for Embodied Action Conditioned World Models
     "https://arxiv.org/abs/2607.28596",  # FA-RDP: A Frequency-Adaptive Reactive Diffusion Policy for Contact-Rich Manipulation
     "https://arxiv.org/abs/2607.28560",  # X-NavDP: Generalizing Navigation Diffusion Policy to Novel Behavior and Embodiments with Group Q-score Reweighted Matching
-    "https://arxiv.org/abs/2607.28451",
-    "https://arxiv.org/abs/2607.28443",
-    "https://arxiv.org/abs/2607.28416",
+    "https://arxiv.org/abs/2607.28451",  # Machines that know they are aging: a framework for hardware-aware autonomous intelligence
+    "https://arxiv.org/abs/2607.28443",  # One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA
+    "https://arxiv.org/abs/2607.28416",  # FasTac: A Curved Multispectral Vision-Based Tactile Sensor for High-Speed High-Precision 3D Shape and Force Perception
     "https://arxiv.org/abs/2607.28415",  # QQWorld: Quantile-Quantile Matching for World Model Regularization
     "https://arxiv.org/abs/2607.28391",  # TacWAM: Anchor-Guided World Action Model with Mechanics-Aware Tactile Prediction
     "https://arxiv.org/abs/2607.28382",  # SemAnCorr: Semantic Anchored Correspondence for Zero-Shot Manipulation Skill Transfer
-    "https://arxiv.org/abs/2607.28293",
-    "https://arxiv.org/abs/2607.28256",
+    "https://arxiv.org/abs/2607.28293",  # Filling the Pareto-Optimal Front for Affordance Segmentation on Embedded Devices Using RGB-D Cameras
+    "https://arxiv.org/abs/2607.28256",  # When Robots Exchange Meaning: A Demo of Goal-Oriented Semantic Communications for Collaborative Robotics
     "https://arxiv.org/abs/2607.28198",  # UniCross: Unified Cross-Skill Dexterous Manipulation Synthesis
     "https://arxiv.org/abs/2607.27924",  # ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow
     "https://arxiv.org/abs/2607.27890",  # Static In, Dynamic Out: Counterfactual Action Augmentation for Moving Object Manipulation
@@ -8155,4 +8155,64 @@ papers = [
     "https://arxiv.org/abs/2607.28624",  # PhiZero: A World Model Built Around Physical Language
     "https://arxiv.org/abs/2607.21366",  # Hilbert Operator for Progressive Encoding (HOPE): A Mathematical Framework for Deconstructing Learned Representations in Deep Networks
     "https://arxiv.org/abs/2602.21625",  # Tacmap: Bridging the Tactile Sim-to-Real Gap via Geometry-Consistent Penetration Depth Map
+    "https://arxiv.org/abs/2607.28568",  # Frontis-MA1: Training an AI4AI Model towards Recursive Self-Improvement in Machine Learning Engineering
+    "https://arxiv.org/abs/2607.28625",  # ACE-Data-0: Human-Centric Ambient Capture as Embodied Data Engine
+    "https://arxiv.org/abs/2212.10621",  # Full-Body Articulated Human-Object Interaction
+    "https://arxiv.org/abs/2106.10270",  # How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers
+    "https://arxiv.org/abs/2105.10497",  # Intriguing Properties of Vision Transformers
+    "https://arxiv.org/abs/2203.09795",  # Three things everyone should know about Vision Transformers
+    "https://arxiv.org/abs/2106.01548",  # When Vision Transformers Outperform ResNets without Pre-training or Strong Data Augmentations
+    "https://arxiv.org/abs/2309.16588",  # Vision Transformers Need Registers
+    "https://arxiv.org/abs/2112.05814",  # Deep ViT Features as Dense Visual Descriptors
+    "https://arxiv.org/abs/1812.01187",  # Bag of Tricks for Image Classification with Convolutional Neural Networks
+    "https://arxiv.org/abs/2006.09882",  # Unsupervised Learning of Visual Features by Contrasting Cluster Assignments
+    "https://arxiv.org/abs/2111.07832",  # iBOT: Image BERT Pre-Training with Online Tokenizer
+    "https://arxiv.org/abs/2202.10261",  # A Self-Supervised Descriptor for Image Copy Detection
+    "https://arxiv.org/abs/2401.08860",  # Cross-Level Multi-Instance Distillation for Self-Supervised Fine-Grained Visual Categorization
+    "https://arxiv.org/abs/2412.00134",  # PP-SSL : Priority-Perception Self-Supervised Learning for Fine-Grained Recognition
+    "https://arxiv.org/abs/2407.14676",  # On Learning Discriminative Features from Synthesized Data for Self-Supervised Fine-Grained Visual Recognition
+    "https://arxiv.org/abs/2403.04066",  # LoDisc: Learning Global-Local Discriminative Features for Self-Supervised Fine-Grained Visual Recognition
+    "https://arxiv.org/abs/2303.01669",  # Learning Common Rationale to Improve Self-Supervised Representation for Fine-Grained Visual Recognition Problems
+    "https://arxiv.org/abs/2405.15613",  # Automatic Data Curation for Self-Supervised Learning: A Clustering-Based Approach
+    "https://arxiv.org/abs/1910.03560",  # When Does Self-supervision Improve Few-shot Learning?
+    "https://arxiv.org/abs/2110.09327",  # Self-Supervised Representation Learning: Introduction, Advances and Challenges
+    "https://arxiv.org/abs/2402.02382",  # Revisiting the Power of Prompt for Visual Tuning
+    "https://arxiv.org/abs/2306.05067",  # Improving Visual Prompt Tuning for Self-supervised Vision Transformers
+    "https://arxiv.org/abs/2202.03822",  # A Novel Plug-in Module for Fine-Grained Visual Classification
+    "https://arxiv.org/abs/2312.06647",  # 4M: Massively Multimodal Masked Modeling
+    "https://arxiv.org/abs/2406.09406",  # 4M-21: An Any-to-Any Vision Model for Tens of Tasks and Modalities
+    "https://arxiv.org/abs/2212.10403",  # Towards Reasoning in Large Language Models: A Survey
+    "https://arxiv.org/abs/2401.08967",  # ReFT: Reasoning with Reinforced Fine-Tuning
+    "https://arxiv.org/abs/2404.02905",  # Visual Autoregressive Modeling: Scalable Image Generation via Next-Scale Prediction
+    "https://arxiv.org/abs/2412.09871",  # Byte Latent Transformer: Patches Scale Better Than Tokens
+    "https://arxiv.org/abs/2412.08821",  # Large Concept Models: Language Modeling in a Sentence Representation Space
+    "https://arxiv.org/abs/1912.02413",  # BBN: Bilateral-Branch Network with Cumulative Learning for Long-Tailed Visual Recognition
+    "https://arxiv.org/abs/1904.05160",  # Large-Scale Long-Tailed Recognition in an Open World
+    "https://arxiv.org/abs/2010.01809",  # Long-tailed Recognition by Routing Diverse Distribution-Aware Experts
+    "https://arxiv.org/abs/2006.09214",  # FCOS: A simple and strong anchor-free object detector
+    "https://arxiv.org/abs/1904.01355",  # FCOS: Fully Convolutional One-Stage Object Detection
+    "https://arxiv.org/abs/2511.16719",  # SAM 3: Segment Anything with Concepts
+    "https://arxiv.org/abs/2405.10300",  # Grounding DINO 1.5: Advance the "Edge" of Open-Set Object Detection
+    "https://arxiv.org/abs/2311.06242",  # Florence-2: Advancing a Unified Representation for a Variety of Vision Tasks
+    "https://arxiv.org/abs/2208.00617",  # Improving Fine-Grained Visual Recognition in Low Data Regimes via Self-Boosting Attention Mechanism
+    "https://arxiv.org/abs/2111.06119",  # Fine-Grained Image Analysis with Deep Learning: A Survey
+    "https://arxiv.org/abs/2309.10019",  # Long-Tail Learning with Foundation Model: Heavy Fine-Tuning Hurts
+    "https://arxiv.org/abs/1901.05555",  # Class-Balanced Loss Based on Effective Number of Samples
+    "https://arxiv.org/abs/2110.04596",  # Deep Long-Tailed Learning: A Survey
+    "https://arxiv.org/abs/2204.07118",  # DeiT III: Revenge of the ViT
+    "https://arxiv.org/abs/2010.13938",  # Neural Unsigned Distance Fields for Implicit Function Learning
+    "https://arxiv.org/abs/2003.01456",  # Implicit Functions in Feature Space for 3D Shape Reconstruction and Completion
+    "https://arxiv.org/abs/1901.05103",  # DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation
+    "https://arxiv.org/abs/2502.08769",  # Cluster and Predict Latent Patches for Improved Masked Image Modeling
+    "https://arxiv.org/abs/2106.03746",  # Efficient Training of Visual Transformers with Small Datasets
+    "https://arxiv.org/abs/2201.10728",  # Training Vision Transformers with Only 2040 Images
+    "https://arxiv.org/abs/2407.10964",  # No Train, all Gain: Self-Supervised Gradients Improve Deep Frozen Representations
+    "https://arxiv.org/abs/1909.13231",  # Test-Time Training with Self-Supervision for Generalization under Distribution Shifts
+    "https://arxiv.org/abs/2303.06442",  # Fine-grained Visual Classification with High-temperature Refinement and Background Suppression
+    "https://arxiv.org/abs/2106.10587",  # Exploring Vision Transformers for Fine-grained Classification
+    "https://arxiv.org/abs/2407.12891",  # Global-Local Similarity for Efficient Fine-Grained Image Recognition with Vision Transformers
+    "https://arxiv.org/abs/2107.02341",  # Feature Fusion Vision Transformer for Fine-Grained Visual Categorization
+    "https://arxiv.org/abs/2112.13492",  # Vision Transformer for Small-Size Datasets
+    "https://arxiv.org/abs/2605.09999",  # Muninn: Your Trajectory Diffusion Model But Faster
+    "https://arxiv.org/abs/2603.09882",  # Emerging Extrinsic Dexterity in Cluttered Scenes via Dynamics-aware Policy Learning
 ]

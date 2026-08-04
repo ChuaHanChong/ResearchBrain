@@ -498,7 +498,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2503.06669|AgiBot-World]] — Large-scale manipulation platform with diverse environments and embodiments
 
 **Egocentric Human-Video Datasets** — Large-scale first-person video corpora used to pretrain VLAs and learn dexterous priors from human demonstrations.
-- [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]], [[2606.17385|EgoInfinity]], [[2606.17054|HUG]], [[2605.07943|TAVIS]], [[2605.06747|HumanNet]], [[2605.05945|MobileEgo-Anywhere]], [[2509.19480|OmniVLA]], [[2505.11709|EgoDex]], [[2503.23094|FRAME]], [[2503.01439|AVR]], [[2502.16587|Human2Robot]], [[2412.14172|Massive-Human-Videos-Universal]], [[2312.05251|HaMeR]], [[2311.18259|Ego-Exo4D]], [[2308.13561|Project-Aria]], [[2110.07058|Ego4D]], [[2006.00626|EGTEA-Gaze+]], [[2005.00343|EPIC-KITCHENS]]
+- [[2607.28625|ACE-Data-0]], [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]], [[2606.17385|EgoInfinity]], [[2606.17054|HUG]], [[2605.07943|TAVIS]], [[2605.06747|HumanNet]], [[2605.05945|MobileEgo-Anywhere]], [[2509.19480|OmniVLA]], [[2505.11709|EgoDex]], [[2503.23094|FRAME]], [[2503.01439|AVR]], [[2502.16587|Human2Robot]], [[2412.14172|Massive-Human-Videos-Universal]], [[2312.05251|HaMeR]], [[2311.18259|Ego-Exo4D]], [[2308.13561|Project-Aria]], [[2110.07058|Ego4D]], [[2006.00626|EGTEA-Gaze+]], [[2005.00343|EPIC-KITCHENS]]
 
 > [!star] Key Papers
 > - [[2605.06747|HumanNet]] — 1M-hour human-centric video; egocentric + exocentric viewpoints with interaction-centric annotations; 1,000 hr pretrain matches/surpasses 100 hr robot-data pretrain

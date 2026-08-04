@@ -278,7 +278,7 @@ When self-improvement meets agentic AI: systems that autonomously explore enviro
 > - [[2506.01716|SCA]] — Self-Challenging Agent: generates its own hard problems to practice on, driving continuous capability growth
 
 **Skill, Memory & Environment Curation** — Frameworks that build their self-evolution around an explicit external artifact — a skill library, episodic memory store, evolving harness/scaffold, or synthetic environment/benchmark — that accumulates across rounds and feeds back into the agent, including self-play on real software repositories.
-- [[2607.00272|ASPIRE]], [[2606.09498|Self-Harness]], [[2606.08671|SkillHone]], [[2605.15188|FutureSim]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.18292|Agent-World]], [[2601.03192|MemRL]], [[2512.18552|SSR]], [[2510.16079|EVOLVER]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2507.14172|SOAR]], [[2409.00872|SAGE]], [[2305.16291|Voyager]]
+- [[2607.28568|Frontis-MA1]], [[2607.00272|ASPIRE]], [[2606.09498|Self-Harness]], [[2606.08671|SkillHone]], [[2605.15188|FutureSim]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.18292|Agent-World]], [[2601.03192|MemRL]], [[2512.18552|SSR]], [[2510.16079|EVOLVER]], [[2510.04618|ACE]], [[2509.19349|ShinkaEvolve]], [[2507.14172|SOAR]], [[2409.00872|SAGE]], [[2305.16291|Voyager]]
 
 > [!star] Key Papers
 > - [[2604.18292|Agent-World]] — ByteDance/Renmin's framework unifying real-world environment synthesis with continuous self-evolution; 14B agent evaluated on 23 benchmarks, with average tool-use scores more than doubling as environment diversity scales from 0 to 1,978

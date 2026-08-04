@@ -266,7 +266,7 @@ The architectural revolution that brought attention mechanisms to computer visio
 New attention patterns, normalization strategies, and structural modifications that improve Transformer efficiency, stability, and expressiveness.
 
 **Sparse & Efficient Attention** — Reducing the quadratic cost of self-attention through sparsity, routing, and learned masking.
-- [[2603.15619|MoDA]], [[2603.08055|Speed3R]], [[2508.02124|DMA]], [[2507.16577|Sparse-State-Expansion]], [[2505.17083|Scale-invariant-Attention]], [[2505.06708|Gated-Attention]], [[2505.01996|Token-Graying]], [[2505.00315|MoSA]], [[2312.06635|GLA]], [[2009.06732|Efficient-Transformers-Survey]]
+- [[2603.15619|MoDA]], [[2603.08055|Speed3R]], [[2508.02124|DMA]], [[2507.16577|Sparse-State-Expansion]], [[2505.17083|Scale-invariant-Attention]], [[2505.06708|Gated-Attention]], [[2505.01996|Token-Graying]], [[2505.00315|MoSA]], [[2412.09871|BLT]], [[2312.06635|GLA]], [[2009.06732|Efficient-Transformers-Survey]]
 
 > [!star] Key Papers
 > - [[2505.00315|MoSA]] — Mixture of Sparse Attention with expert-choice routing; content-based learned sparsity
@@ -684,7 +684,7 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 - [[2604.20733|NPO]], [[2604.17654|Poly-EPO]], [[2604.02288|SRPO]], [[2509.26074|LENS]], [[2508.18588|RhymeRL]], [[2508.14460|DuPO]], [[2506.08388|RLTs]], [[2503.23829|RLVR]], [[2402.03300|DeepSeekMath]], [[2210.10760|RM Overoptimization]]
 
 **Reasoning Models** — LLMs explicitly trained for multi-step reasoning with RL.
-- [[2603.02556|VC-STaR]], [[2512.12623|DMLR]], [[2510.00219|Thoughtbubbles]], [[2508.03613|Goedel-Prover-V2]], [[2507.18071|GSPO]], [[2506.10910|Magistral]], [[2505.16993|SeNaTra]], [[2505.11484|SoftCoT++]], [[2505.10320|J1]], [[2503.16219|Open-RS]], [[2503.14858|CRL]], [[2501.12948|DeepSeek-R1]], [[2408.03314|Test-Time Compute Scaling]], [[2403.09629|Quiet-STaR]], [[2203.14465|STaR]]
+- [[2603.02556|VC-STaR]], [[2512.12623|DMLR]], [[2510.00219|Thoughtbubbles]], [[2508.03613|Goedel-Prover-V2]], [[2507.18071|GSPO]], [[2506.10910|Magistral]], [[2505.16993|SeNaTra]], [[2505.11484|SoftCoT++]], [[2505.10320|J1]], [[2503.16219|Open-RS]], [[2503.14858|CRL]], [[2501.12948|DeepSeek-R1]], [[2408.03314|Test-Time Compute Scaling]], [[2403.09629|Quiet-STaR]], [[2401.08967|ReFT]], [[2203.14465|STaR]]
 
 > [!star] Key Papers
 > - [[2501.12948|DeepSeek-R1]] — RL-only training (no SFT) elicits emergent chain-of-thought reasoning; established the RL-for-reasoning paradigm the field now builds on

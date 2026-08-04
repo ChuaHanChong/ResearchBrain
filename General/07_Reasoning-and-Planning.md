@@ -230,7 +230,7 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2511.08577|TaH]] — Think-at-Hard framework selectively activates deep reasoning only at genuinely difficult steps
 
 **Additional Methods** — Miscellaneous papers (a manipulation-reasoning benchmark, a general LLM survey) that don't share a theme with any other Section 1 group.
-- [[2603.28545|ManipArena]], [[2303.18223|LLM Survey]]
+- [[2603.28545|ManipArena]], [[2303.18223|LLM Survey]], [[2212.10403|LLM Reasoning Survey]]
 
 > [!star] Key Papers
 > - [[2503.12605|MCoT-Survey]] — First comprehensive survey of multimodal chain-of-thought, analyzing evolution from text-only to vision-language CoT
@@ -302,7 +302,7 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 - [[2605.02735|Silenced-Visual-Latents]], [[2604.18486|OneVL]], [[2602.05359|HIVE]], [[2601.10129|LaViT]], [[2601.09708|Fast-ThinkAct]], [[2601.06803|Laser]], [[2601.05877|iReasoner]], [[2601.05248|LaST0]], [[2512.21218|LIVR]], [[2512.16584|SkiLa]], [[2510.23925|LaCoT]], [[2510.12603|IVT-LR]], [[2509.24251|LVR]]
 
 **Text Latent Reasoning** — Continuous latent-space reasoning for text-only LLMs, decoupled from visual perception.
-- [[2606.16222|LTF]], [[2605.12466|Attractor-Models]], [[2604.22709|Abstract-CoT]], [[2603.04948|Nabla-Reasoner]], [[2602.10520|RLTT]], [[2505.13308|LATENTSEEK]], [[2505.12514|COCONUT]], [[2505.11484|SoftCoT++]], [[2502.21074|CODI]], [[2502.03275|Token-Assorted]], [[2412.13171|CCoT]], [[2412.06769|Coconut]], [[2311.01460|Implicit CoT]]
+- [[2606.16222|LTF]], [[2605.12466|Attractor-Models]], [[2604.22709|Abstract-CoT]], [[2603.04948|Nabla-Reasoner]], [[2602.10520|RLTT]], [[2505.13308|LATENTSEEK]], [[2505.12514|COCONUT]], [[2505.11484|SoftCoT++]], [[2502.21074|CODI]], [[2502.03275|Token-Assorted]], [[2412.13171|CCoT]], [[2412.08821|LCM]], [[2412.06769|Coconut]], [[2311.01460|Implicit CoT]]
 
 > [!star] Key Papers
 > - [[2412.06769|Coconut]] — Meta FAIR's Chain of Continuous Thought: LLM reasons in continuous latent space, outperforming token-based CoT on multi-step problems

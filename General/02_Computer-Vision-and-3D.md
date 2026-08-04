@@ -241,12 +241,18 @@ The backbone revolution: Vision Transformers replaced CNNs as the default archit
 > - [[2203.11926|FocalNet]] — Attention-free focal modulation; achieves strong results without self-attention, proving attention is not the only path
 
 **Efficient & Scalable ViTs** — Architectures optimized for throughput, memory, deployment on resource-constrained hardware, and flexible handling of arbitrary resolutions or aspect ratios at inference time.
-- [[2603.22570|CanViT]], [[2510.18091|APT]], [[2505.20802|Leaner-Transformers]], [[2403.18361|ViTAR]], [[2403.13298|RoPE-Mixed]], [[2307.09120|LW-PLG-ViT]], [[2307.06304|NaViT]], [[2306.06189|FasterViT]], [[2212.08013|FlexiViT]], [[2205.14756|EfficientViT]], [[2205.03436|EdgeViTs]], [[2107.02239|ViX]], [[2103.15358|ViL]]
+- [[2603.22570|CanViT]], [[2510.18091|APT]], [[2505.20802|Leaner-Transformers]], [[2403.18361|ViTAR]], [[2403.13298|RoPE-Mixed]], [[2307.09120|LW-PLG-ViT]], [[2307.06304|NaViT]], [[2306.06189|FasterViT]], [[2212.08013|FlexiViT]], [[2205.14756|EfficientViT]], [[2205.03436|EdgeViTs]], [[2203.09795|Three Things About Vision Transformers]], [[2107.02239|ViX]], [[2103.15358|ViL]]
 
 > [!star] Key Papers
 > - [[2306.06189|FasterViT]] — NVIDIA's hybrid design with hierarchical attention; Pareto-optimal across speed and accuracy
 > - [[2510.18091|APT]] — Adaptive Patch Transformers that dynamically reduce spatial tokens; accelerates ViTs without retraining
 > - [[2307.06304|NaViT]] — Processes images at native resolution and aspect ratio; eliminates distortion from forced resizing
+
+**Data-Efficient ViT Training** — Training recipes and auxiliary objectives that let ViTs match or beat CNNs from scratch on small-to-mid-size datasets, without massive external pre-training.
+- [[2204.07118|DeiT III]], [[2201.10728|IDMM]], [[2112.13492|SL-ViT]], [[2106.10270|AugReg]], [[2106.03746|DRLoc]], [[2106.01548|ViT-SAM]]
+
+> [!star] Key Papers
+> - [[2106.10270|AugReg]] — Systematic study of data, augmentation, and regularization recipes for ViT pre-training; became the standard training recipe reference
 
 **Dense Prediction Adaptation** — Adapters and modifications that turn plain ViTs into strong backbones for detection, segmentation, and depth estimation without pre-training changes.
 - [[2603.15031|AttnRes]], [[2502.01962|META]], [[2412.18090|MPI-Tuning]], [[2205.08534|ViT-Adapter]], [[2203.16527|ViTDet]], [[2203.13116|EgoPAT3D]]
@@ -255,7 +261,7 @@ The backbone revolution: Vision Transformers replaced CNNs as the default archit
 > - [[2203.16527|ViTDet]] — Proved plain non-hierarchical ViTs can rival specialized architectures on detection when paired with simple FPN
 
 **Positional Encoding & Internal Representations** — Studies on how ViTs encode position, semantics, and hierarchy internally.
-- [[2607.14228|SeeSE3]], [[2602.10551|C2RoPE]], [[2601.15275|RayRoPE]], [[2601.05328|BFD]], [[2510.08638|Minkowski-Representation-Hypothesis]], [[2310.18969|ViT-Class-Embedding-Analysis]]
+- [[2607.14228|SeeSE3]], [[2602.10551|C2RoPE]], [[2601.15275|RayRoPE]], [[2601.05328|BFD]], [[2510.08638|Minkowski-Representation-Hypothesis]], [[2310.18969|ViT-Class-Embedding-Analysis]], [[2309.16588|Register Tokens]], [[2112.05814|DINO-ViT Dense Descriptors]]
 
 > [!star] Key Papers
 > - [[2510.08638|Minkowski-Representation-Hypothesis]] — Showed DINOv2 internally represents visual concepts in a Minkowski-like geometric structure
@@ -270,7 +276,7 @@ The backbone revolution: Vision Transformers replaced CNNs as the default archit
 Learning powerful visual features without labels. Self-supervised pre-training now produces features that surpass ImageNet-supervised representations across nearly all downstream tasks, and forms the backbone for open-vocabulary detection, segmentation, and 3D understanding.
 
 **Self-Distillation & Foundation Unification (DINO family)** — Learn representations by training a student network to match an exponential moving-average teacher, producing features with emergent segmentation properties; includes distilling or merging multiple such foundation encoders into one.
-- [[2607.05247|LingBot-Vision]], [[2605.30350|DynaFLIP]], [[2605.22814|Remember-to-be-Curious]], [[2605.22629|H-Flow]], [[2605.21258|Structural-Latent-Points]], [[2604.26488|LILA]], [[2511.17309|MuM]], [[2412.07679|RADIOv2.5]], [[2312.06709|AM-RADIO]], [[2304.07193|DINOv2]], [[2106.09785|EsViT]], [[2104.14294|DINO]], [[2104.03602|SiT]]
+- [[2607.05247|LingBot-Vision]], [[2605.30350|DynaFLIP]], [[2605.22814|Remember-to-be-Curious]], [[2605.22629|H-Flow]], [[2605.21258|Structural-Latent-Points]], [[2604.26488|LILA]], [[2511.17309|MuM]], [[2412.07679|RADIOv2.5]], [[2312.06709|AM-RADIO]], [[2304.07193|DINOv2]], [[2111.07832|iBOT]], [[2106.09785|EsViT]], [[2104.14294|DINO]], [[2104.03602|SiT]]
 
 > [!star] Key Papers
 > - [[2104.14294|DINO]] — Self-distillation with no labels; attention maps spontaneously segment objects
@@ -278,7 +284,7 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 > - [[2312.06709|AM-RADIO]] — Unifies CLIP, DINOv2, and SAM into one student model; best of all worlds in a single forward pass
 
 **Masked & Predictive Pre-training (MIM + JEPA)** — Reconstruct masked patches (pixels or tokens) or predict abstract representations of masked regions, forcing the model to learn high-level semantics over low-level texture.
-- [[2607.02404|Object-centric LeJEPA]], [[2607.00784|LeVLJEPA]], [[2606.32026|AdaJEPA]], [[2602.23058|GeoWorld]], [[2512.16922|NEPA]], [[2304.03977|EMP-SSL]], [[2301.08243|I-JEPA]], [[2111.09886|SimMIM]], [[2111.06377|MAE]], [[2106.08254|BEiT]]
+- [[2607.02404|Object-centric LeJEPA]], [[2607.00784|LeVLJEPA]], [[2606.32026|AdaJEPA]], [[2602.23058|GeoWorld]], [[2512.16922|NEPA]], [[2502.08769|CAPI]], [[2406.09406|4M-21]], [[2312.06647|4M]], [[2304.03977|EMP-SSL]], [[2301.08243|I-JEPA]], [[2111.09886|SimMIM]], [[2111.06377|MAE]], [[2106.08254|BEiT]]
 
 > [!star] Key Papers
 > - [[2111.06377|MAE]] — Elegantly simple: mask 75% of patches, reconstruct pixels; scales effortlessly
@@ -286,7 +292,7 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 > - [[2301.08243|I-JEPA]] — Joint-Embedding Predictive Architecture; learns semantic features by predicting representations, not pixel reconstructions
 
 **Generative & Autoregressive Pre-training** — Pre-training via autoregressive prediction of visual tokens, multi-crop contrastive learning at scale, or repurposing large-scale generative diffusion backbones as the visual pre-training objective.
-- [[2607.09024|GenCeption]], [[2607.06553|ReChannel]], [[2510.08568|NovaFlow]], [[2401.08541|AIM]], [[2312.02116|GIVT]], [[2303.11331|EVA-02]], [[2302.05442|ViT-22B]]
+- [[2607.09024|GenCeption]], [[2607.06553|ReChannel]], [[2510.08568|NovaFlow]], [[2404.02905|VAR]], [[2401.08541|AIM]], [[2312.02116|GIVT]], [[2303.11331|EVA-02]], [[2302.05442|ViT-22B]]
 
 > [!star] Key Papers
 > - [[2607.09024|GenCeption]] — DeepMind's single-step repurposing of a text-to-video diffusion model into a generalist perception backbone; beats V-JEPA and VideoMAE V2 pre-training on depth
@@ -301,7 +307,7 @@ Learning powerful visual features without labels. Self-supervised pre-training n
 > - [[2510.20994|VESSA]] — Self-supervised adaptation to new visual domains without any labels; practical for medical/industrial deployment
 
 **Additional methods** — Contrastive and momentum-based self-supervised methods, plus training-recipe studies (initialization, learning-rate schedules), not covered by the sub-topics above.
-- [[2602.00937|CLAMP]], [[2507.17634|WSM]], [[2505.19985|Structured-ViT-Initialization]], [[2006.07733|BYOL]], [[1911.05722|MoCo]]
+- [[2602.00937|CLAMP]], [[2507.17634|WSM]], [[2505.19985|Structured-ViT-Initialization]], [[2407.10964|FUNGI]], [[2202.10261|SSCD]], [[2110.09327|SSRL Survey]], [[2006.09882|SwAV]], [[2006.07733|BYOL]], [[1911.05722|MoCo]]
 
 > [!star] Key Papers
 > - [[2505.19985|Structured-ViT-Initialization]] — Embeds convolutional inductive biases into ViT attention at init; bridges the CNN-ViT gap on small datasets
@@ -324,7 +330,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 > - [[2112.03857|GLIP]] — Grounded language-image pre-training; unified detection and phrase grounding
 
 **LLM-Era, Benchmark & Emerging Open-Vocabulary Detection** — Later-generation open-vocabulary detectors driven by LLMs, autoregressive decoding, and application-specific adaptation, alongside the benchmarks and surveys charting the field's transition from closed-set to open-world (2023-2026).
-- [[2604.02759|OMNI-PoseX]], [[2604.01179|Florence-2-ROS-2-Wrapper]], [[2603.14609|GroundSet]], [[2602.23759|Selfment]], [[2510.12798|Rex-Omni]], [[2506.23785|VisTex-OVLM]], [[2503.07465|YOLOE]], [[2501.18954|LLMDet]], [[2412.16334|dino.txt]], [[2410.13842|D-FINE]], [[2410.08021|OneRef]], [[2408.10787|UniProj-Det]], [[2404.13013|Groma]], [[2404.09216|DetCLIPv3]], [[2404.07664|PROWL]], [[2403.10191|GenerateU]], [[2312.10439|SIC-CADS]], [[2307.12813|DOD]], [[2307.09220|OVD/OVS-Survey]], [[2306.15880|Open-Vocabulary-Learning-Survey]], [[2304.11463|OmniLabel]], [[2303.02489|CapDet]]
+- [[2604.02759|OMNI-PoseX]], [[2604.01179|Florence-2-ROS-2-Wrapper]], [[2603.14609|GroundSet]], [[2602.23759|Selfment]], [[2510.12798|Rex-Omni]], [[2506.23785|VisTex-OVLM]], [[2503.07465|YOLOE]], [[2501.18954|LLMDet]], [[2412.16334|dino.txt]], [[2410.13842|D-FINE]], [[2410.08021|OneRef]], [[2408.10787|UniProj-Det]], [[2405.10300|Grounding DINO 1.5]], [[2404.13013|Groma]], [[2404.09216|DetCLIPv3]], [[2404.07664|PROWL]], [[2403.10191|GenerateU]], [[2312.10439|SIC-CADS]], [[2307.12813|DOD]], [[2307.09220|OVD/OVS-Survey]], [[2306.15880|Open-Vocabulary-Learning-Survey]], [[2304.11463|OmniLabel]], [[2303.02489|CapDet]]
 
 > [!star] Key Papers
 > - [[2306.15880|Open-Vocabulary-Learning-Survey]] — Comprehensive survey of open-vocabulary methods across detection, segmentation, and recognition
@@ -356,14 +362,14 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 > - [[2302.08242|Reward-Tuning-CV]] — Google's framework for directly optimizing non-differentiable vision metrics via RL; +15.1% mAP on detection
 
 **LLM-Assisted Detection & Automation** — Leveraging LLMs for detection chain-of-thought, auto-labeling, and specialized visual understanding tasks.
-- [[2605.20284|JUDO]], [[2603.27179|ReAL]], [[2510.21311|FineRS]], [[2506.07850|SAM2Auto]], [[2506.02359|Auto-Labeling]], [[2503.23508|Real-LOD]], [[2412.18273|SBV]], [[2411.19331|Talk2DINO]], [[2405.17104|LLM-Optic]], [[2405.08593|NRAA]], [[2403.12488|DetToolChain]], [[2401.17981|MLLM-Detection-Infusion]], [[2401.07629|FPD]], [[2305.18565|PaLI-X]], [[2305.11175|VisionLLM]], [[2203.14712|Assembly101]]
+- [[2605.20284|JUDO]], [[2603.27179|ReAL]], [[2510.21311|FineRS]], [[2506.07850|SAM2Auto]], [[2506.02359|Auto-Labeling]], [[2503.23508|Real-LOD]], [[2412.18273|SBV]], [[2411.19331|Talk2DINO]], [[2405.17104|LLM-Optic]], [[2405.08593|NRAA]], [[2403.12488|DetToolChain]], [[2401.17981|MLLM-Detection-Infusion]], [[2401.07629|FPD]], [[2311.06242|Florence-2]], [[2305.18565|PaLI-X]], [[2305.11175|VisionLLM]], [[2203.14712|Assembly101]]
 
 > [!star] Key Papers
 > - [[2403.12488|DetToolChain]] — Detection-specific chain-of-thought with a visual toolkit; enables zero-shot detection via prompting alone
 > - [[2510.21311|FineRS]] — Coarse-to-fine pipeline with RL for ultra-small object reasoning and segmentation in 4K images
 
 **Additional methods** — Detection-adjacent methods not covered by the sub-topics above, including classic multi-scale feature-pyramid detectors and weakly-supervised detection.
-- [[2607.08402|Pedestrian Privacy Pipeline]], [[2607.08391|MURAL]], [[2607.06600|MiLSD]], [[2607.00191|HydraCollab]], [[2406.03459|LW-DETR]], [[2304.08069|RT-DETR]], [[2109.10852|Pix2Seq]], [[2104.11181|H2O]], [[2103.14259|OTA]], [[2102.12252|LD]], [[2010.04159|Deformable DETR]], [[2007.07986|Progressive-Knowledge-Transfer-WSOD]], [[2005.12872|DETR]], [[2002.07421|EHSOD]], [[1811.11168|DCNv2]], [[1803.01534|PANet]], [[1612.03144|FPN]], [[1607.03476|End-to-End mAP Training]], [[1512.02325|SSD]], [[1511.02853|WSDDN]], [[1511.02283|Google Refexp]]
+- [[2607.08402|Pedestrian Privacy Pipeline]], [[2607.08391|MURAL]], [[2607.06600|MiLSD]], [[2607.00191|HydraCollab]], [[2406.03459|LW-DETR]], [[2304.08069|RT-DETR]], [[2109.10852|Pix2Seq]], [[2104.11181|H2O]], [[2103.14259|OTA]], [[2102.12252|LD]], [[2010.04159|Deformable DETR]], [[2007.07986|Progressive-Knowledge-Transfer-WSOD]], [[2006.09214|FCOS]], [[2005.12872|DETR]], [[2002.07421|EHSOD]], [[1904.01355|FCOS]], [[1811.11168|DCNv2]], [[1803.01534|PANet]], [[1612.03144|FPN]], [[1607.03476|End-to-End mAP Training]], [[1512.02325|SSD]], [[1511.02853|WSDDN]], [[1511.02283|Google Refexp]]
 
 > [!star] Key Papers
 > - [[1612.03144|FPN]] — Feature Pyramid Networks: the multi-scale backbone that underlies nearly all modern detectors
@@ -379,7 +385,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 From class-specific masks to open-world, language-guided segmentation. Modern segmentation leverages VLM reasoning to handle arbitrary queries ("the object the person is pointing at") rather than fixed category lists.
 
 **Language-Guided Segmentation** — Segment objects described by natural language queries, combining VLM reasoning with pixel-level prediction; rooted in the class-agnostic, promptable (point/box/mask) foundation backbone extended by SAM 2, SAM-3D, and SAM-CLIP.
-- [[2607.06560|SenseNova-Vision]], [[2605.00891|X2SAM]], [[2603.04002|DPAD]], [[2602.23339|Retrieve-and-Segment]], [[2602.17134|B3-Seg]], [[2601.10477|SocioSeg]], [[2601.05244|GREx]], [[2511.16624|SAM-3D]], [[2508.10104|DINOv3]], [[2506.22880|DeSa2VA]], [[2506.22624|Seg-R1]], [[2506.04277|RSVP]], [[2505.22596|SAM-R1]], [[2505.12081|VisionReasoner]], [[2503.06520|Seg-Zero]], [[2310.11441|SoM]], [[2308.00692|LISA]], [[2306.04356|FGVP]], [[2304.02643|SAM]], [[2203.16265|SeqTR]]
+- [[2607.06560|SenseNova-Vision]], [[2605.00891|X2SAM]], [[2603.04002|DPAD]], [[2602.23339|Retrieve-and-Segment]], [[2602.17134|B3-Seg]], [[2601.10477|SocioSeg]], [[2601.05244|GREx]], [[2511.16719|SAM 3]], [[2511.16624|SAM-3D]], [[2508.10104|DINOv3]], [[2506.22880|DeSa2VA]], [[2506.22624|Seg-R1]], [[2506.04277|RSVP]], [[2505.22596|SAM-R1]], [[2505.12081|VisionReasoner]], [[2503.06520|Seg-Zero]], [[2310.11441|SoM]], [[2308.00692|LISA]], [[2306.04356|FGVP]], [[2304.02643|SAM]], [[2203.16265|SeqTR]]
 
 > [!star] Key Papers
 > - [[2308.00692|LISA]] — Reasoning segmentation: handles complex referring expressions that require multi-step inference
@@ -392,6 +398,12 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 > [!star] Key Papers
 > - [[2306.03514|RAM]] — Recognize Anything Model: strong multi-label image tagging at scale
 > - [[2311.13601|DINOv]] — Extends in-context prompting to generic segmentation using pure visual exemplars
+
+**Fine-Grained Visual Classification/Recognition** — Distinguish visually similar subordinate categories (species, models, breeds) by localizing and fusing discriminative parts; Vision Transformers' patch-level attention offers a natural part-localization mechanism for this.
+- [[2412.00134|PP-SSL]], [[2407.14676|Synthesized-Feature Discriminative SSL for FGVR]], [[2407.12891|GLSim]], [[2403.04066|LoDisc]], [[2401.08860|CMD]], [[2303.06442|HERBS]], [[2303.01669|GFB]], [[2208.00617|SAM (fine-grained)]], [[2202.03822|PIM]], [[2111.06119|FGIA]], [[2107.02341|FFVT]], [[2106.10587|Multi-Stage ViT for FGVC]]
+
+> [!star] Key Papers
+> - [[2111.06119|FGIA]] — Comprehensive survey of fine-grained image analysis; unifies recognition, retrieval, detection, and segmentation under one taxonomy
 
 **High-Resolution & Efficient Segmentation** — Architectures designed for segmentation at high spatial resolution without excessive compute, maintaining fine boundary detail.
 - [[2607.28293|RGB-D-Affordance-HW-NAS]], [[2605.25495|RepSAM]], [[2505.16993|SeNaTra]], [[2504.18158|E-InMeMo]], [[2503.19108|EoMT]], [[2111.01236|HRViT]], [[2110.09408|HRFormer]], [[1908.07919|HRNet]]
@@ -466,6 +478,12 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2603.15386|RieMind]] — 3D Scene Graph + agentic framework; decouples perception from reasoning, achieving 89.5% on VSI-Bench
 > - [[2603.16506|VIEW2SPACE]] — Benchmark for sparse multi-view spatial reasoning; +77% accuracy with grounded chain-of-thought
 
+**Implicit Neural Shape Representations** — Encode a 3D shape as a continuous function (signed/unsigned distance, or feature-space occupancy) over space rather than a discrete voxel/point/mesh, enabling arbitrary resolution and shape completion from partial input.
+- [[2010.13938|NDF]], [[2003.01456|IF-Nets]], [[1901.05103|DeepSDF]]
+
+> [!star] Key Papers
+> - [[1901.05103|DeepSDF]] — Learns a continuous signed distance function via an auto-decoder; launched implicit neural shape representation
+
 **Gaussian-Splatting SLAM & Robotic Mapping** — Real-time visual/inertial SLAM and mapping built on 3D Gaussian Splatting representations.
 - [[2607.07452|GeoGS-SLAM]], [[2607.06222|APVI-SLAM]], [[2607.02005|OCD SLAM]], [[2607.01860|DL-SLAM]], [[2606.30809|GaussLite]], [[2606.29237|MoPe]], [[2606.28720|CubifyGS]], [[2604.12942|RMGS-SLAM]], [[2604.12837|GGD-SLAM]], [[2604.11992|ReefMapGS]], [[2604.02696|VBGS-SLAM]], [[2601.13132|GaussExplorer]], [[2510.08575|ReSplat]], [[2308.04079|3D Gaussian Splatting]]
 
@@ -486,7 +504,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2308.04079|3D Gaussian Splatting]] — Real-time explicit radiance field via differentiable 3D Gaussians; became the standard scene representation underlying GaussianProperty, PhysGaussian, and dozens of downstream reconstruction/physics methods
 
 **Human Body & Motion Reconstruction** — Recover 3D human pose, shape, hands, and motion from images, video, or other sensors (e.g. LiDAR), often world-grounded or diffusion-based for robustness to occlusion and noisy input.
-- [[2607.21309|ST-Block]], [[2401.08570|RoHM]], [[2312.07531|WHAM]], [[2312.05251|HaMeR]], [[2308.12969|ROAM]], [[2012.00924|CPF]], [[2008.11200|GRAB]], [[1904.05767|ObMan]], [[1904.03278|AMASS]]
+- [[2607.21309|ST-Block]], [[2401.08570|RoHM]], [[2312.07531|WHAM]], [[2312.05251|HaMeR]], [[2308.12969|ROAM]], [[2212.10621|CHAIRS]], [[2012.00924|CPF]], [[2008.11200|GRAB]], [[1904.05767|ObMan]], [[1904.03278|AMASS]]
 
 > [!star] Key Papers
 > - [[2312.07531|WHAM]] — Reconstructs world-grounded human motion from video with accurate global trajectory, not just root-relative pose
@@ -595,7 +613,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 - [[2607.18154|World Translation]], [[2607.13319|OptCar]], [[2607.02037|Cross-Platform ASV RL]], [[2607.01410|BIFROST]], [[2606.31043|Warp RL]], [[2606.28476|FADA]], [[2603.22039|RAFL]], [[2507.23445|Physics-Guided-Gain-Regularization]], [[2503.20839|TAR]], [[2003.02471|BayRn]], [[1703.06907|Domain Randomization]], [[1702.02453|UP-OSI]]
 
 **Source-Free & Low-Data Adaptation** — Adapt to a target domain when source data is unavailable due to privacy or storage constraints.
-- [[2603.24322|HeuSCM]], [[2507.09961|TDCRL]], [[2507.00462|MS-TTA]], [[2506.00513|SSAM]], [[2406.10973|ExPLoRA]], [[2403.14410|GLC++]], [[2403.03421|LEAD]], [[2303.07110|GLC]], [[2303.01906|DPCL]], [[2211.03876|CoNMix]], [[2210.17067|UniOT]], [[2104.03344|OVANet]], [[2006.10726|Tent]]
+- [[2603.24322|HeuSCM]], [[2507.09961|TDCRL]], [[2507.00462|MS-TTA]], [[2506.00513|SSAM]], [[2406.10973|ExPLoRA]], [[2403.14410|GLC++]], [[2403.03421|LEAD]], [[2303.07110|GLC]], [[2303.01906|DPCL]], [[2211.03876|CoNMix]], [[2210.17067|UniOT]], [[2104.03344|OVANet]], [[2006.10726|Tent]], [[1909.13231|TTT]]
 
 > [!star] Key Papers
 > - [[2406.10973|ExPLoRA]] — Parameter-efficient extended pre-training that adapts ViTs to new visual domains with minimal data
@@ -608,7 +626,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 > - [[2403.13257|MergeKit]] — Open-source toolkit that made model merging practical and accessible
 
 **OOD Generalization & Robustness** — Predicting and improving model performance on out-of-distribution data.
-- [[2607.27261|CFNBC]], [[2607.18540|Recti-Q]], [[2605.05328|Query2Uncertainty]], [[2604.02260|Time-Varying-MBRL]], [[2603.21191|BST-Scaling-Rule]], [[2602.02140|GAPEVAL]], [[2511.13787|TC2]], [[2506.10133|Offline-Domain-Randomization]], [[2504.13292|GrokTransfer]], [[2502.16736|AdaConG]], [[2410.02735|OOD-Chameleon]], [[2404.04452|ViT-Domain-Robustness-Survey]], [[2305.18712|Transfer-Score]]
+- [[2607.27261|CFNBC]], [[2607.18540|Recti-Q]], [[2605.05328|Query2Uncertainty]], [[2604.02260|Time-Varying-MBRL]], [[2603.21191|BST-Scaling-Rule]], [[2602.02140|GAPEVAL]], [[2511.13787|TC2]], [[2506.10133|Offline-Domain-Randomization]], [[2504.13292|GrokTransfer]], [[2502.16736|AdaConG]], [[2410.02735|OOD-Chameleon]], [[2404.04452|ViT-Domain-Robustness-Survey]], [[2305.18712|Transfer-Score]], [[2105.10497|ViT Robustness Study]]
 
 > [!star] Key Papers
 > - [[2410.02735|OOD-Chameleon]] — Meta-learning framework that automatically selects the best OOD generalization strategy for a given distribution shift
@@ -646,8 +664,16 @@ Learning from minimal examples or no examples at all. These methods enable visua
 > - [[2401.13987|ADAPTER]] — Adaptive Transformer Networks for cross-domain few-shot; integrates domain alignment into the few-shot pipeline
 > - [[2603.17655|CC-CDFSL]] — Self-supervised regularization framework achieving strong cross-domain few-shot transfer
 
+**Long-Tailed & Imbalanced Recognition** — Recognize categories under natural, heavily skewed class-frequency distributions, where head classes have abundant data and tail classes are effectively few-shot; covers re-weighting/re-sampling losses, decoupled/bilateral-branch training, and mixture-of-experts routing.
+- [[2309.10019|LIFT-LongTail]], [[2110.04596|Long-Tailed Learning Survey]], [[2010.01809|RIDE]], [[1912.02413|BBN]], [[1904.05160|OLTR]], [[1901.05555|Class-Balanced Loss]]
+
+> [!star] Key Papers
+> - [[1904.05160|OLTR]] — Formalized open long-tailed recognition, unifying head, tail, and open classes in one framework
+> - [[2010.01809|RIDE]] — Routes inputs through diverse distribution-aware experts; state-of-the-art long-tailed accuracy without extra inference cost
+> - [[2110.04596|Long-Tailed Learning Survey]] — Comprehensive survey organizing long-tailed methods into class re-balancing, information augmentation, and module improvement
+
 **Additional methods** — Efficient few-shot tuning, auxiliary-data augmentation, generalized category discovery, and semantic augmentation methods not covered by the sub-topics above.
-- [[2603.21138|Generative-ZSL-RL]], [[2601.08499|EfficientFSL]], [[2506.23822|LaZSL]], [[2506.04713|VEST]], [[2504.09828|FATE]], [[2408.05674|PS-TTL]], [[2302.00674|FLAD]], [[2301.02419|eTT]], [[2201.02609|GCD]], [[2004.02684|Attribute-Mix]]
+- [[2603.21138|Generative-ZSL-RL]], [[2601.08499|EfficientFSL]], [[2506.23822|LaZSL]], [[2506.04713|VEST]], [[2504.09828|FATE]], [[2408.05674|PS-TTL]], [[2302.00674|FLAD]], [[2301.02419|eTT]], [[2201.02609|GCD]], [[2004.02684|Attribute-Mix]], [[1910.03560|SSL for Few-Shot Learning]]
 
 > [!star] Key Papers
 > - [[2601.08499|EfficientFSL]] — Provides a principled framework for few-shot learning efficiency across backbone sizes and shot counts
@@ -683,7 +709,7 @@ Understanding what vision models learn, explaining their decisions, and providin
 Practical methods for training vision models efficiently: dataset pruning, continual learning, knowledge distillation, and parameter-efficient fine-tuning. These techniques determine whether a method is publishable versus deployable.
 
 **Model Compression, PEFT & Robustness** — Knowledge distillation, parameter-efficient fine-tuning, and adversarial robustness for deployable vision models.
-- [[2607.10762|TOLiD]], [[2604.11138|ViserDex]], [[2604.10856|BridgeSim]], [[2509.18891|Point-Prompt-Defender]], [[2506.21046|dSVA]], [[2505.21501|PH-Reg]], [[2402.02242|V-PEFT-Bench]], [[2306.08543|MiniLLM]], [[2306.01872|Video Adapter]]
+- [[2607.10762|TOLiD]], [[2604.11138|ViserDex]], [[2604.10856|BridgeSim]], [[2509.18891|Point-Prompt-Defender]], [[2506.21046|dSVA]], [[2505.21501|PH-Reg]], [[2402.02382|SPT]], [[2402.02242|V-PEFT-Bench]], [[2306.08543|MiniLLM]], [[2306.05067|Gated Prompt Tuning]], [[2306.01872|Video Adapter]]
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] — Reverse KL divergence + on-policy optimization for LLM distillation; produces higher-precision student models
@@ -691,7 +717,7 @@ Practical methods for training vision models efficiently: dataset pruning, conti
 > - [[2506.21046|dSVA]] — Exploits self-supervised ViT features for adversarial attacks; outperforms prior methods by 13.7% on average transferability
 
 **Data Curation & Training Efficiency** — Dataset pruning, weakly-supervised pre-training, continual learning, and high-resolution efficiency techniques.
-- [[2604.11674|AffordSim]], [[2604.11386|ComSim]], [[2604.08626|WildDet3D]], [[2402.13349|Aria-Everyday-Activities]], [[2305.13622|SER]], [[2207.13050|Efficient-High-Resolution-Survey]], [[2205.09329|Dataset-Pruning]]
+- [[2604.11674|AffordSim]], [[2604.11386|ComSim]], [[2604.08626|WildDet3D]], [[2405.15613|Automatic Data Curation for Self-Supervised Learning]], [[2402.13349|Aria-Everyday-Activities]], [[2305.13622|SER]], [[2207.13050|Efficient-High-Resolution-Survey]], [[2205.09329|Dataset-Pruning]], [[1812.01187|Bag of Tricks]]
 
 > [!star] Key Papers
 > - [[2205.09329|Dataset-Pruning]] — Optimization-based pruning using influence functions; reduces training data while maintaining accuracy
