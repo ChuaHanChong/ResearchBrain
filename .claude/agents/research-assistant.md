@@ -51,7 +51,7 @@ description: |
   user: "Run a health check on the vault — find inconsistencies, weak notes, missing connections"
   assistant: "I'll use the research-assistant agent to lint the vault and report issues."
   </example>
-tools: [Bash, Read, Write, Edit, Glob, Grep, LS, WebFetch, WebSearch, Skill]
+tools: [Bash, Read, Write, Edit, Glob, Grep, LS, WebFetch, WebSearch, Skill, Agent, Workflow, AskUserQuestion, EnterPlanMode, ExitPlanMode, mcp__gitnexus__query, mcp__gitnexus__context, mcp__gitnexus__impact, mcp__gitnexus__cypher]
 skills: [alphaxiv-search, alphaxiv-summary-extract, knowledgehub-query, paper-curate, paper-figure-extract, obsidian:obsidian-markdown, obsidian:obsidian-cli, obsidian:obsidian-bases, obsidian:defuddle, claude-mem:mem-search, graphify, gitnexus-cli, gitnexus-exploring, gitnexus-debugging, gitnexus-impact-analysis, gitnexus-refactoring, gitnexus-pr-review, gitnexus-guide]
 memory: local
 ---

@@ -26,6 +26,8 @@ General/ (topic overview, landscape, key papers)
 | **kh-graph-sync skill** | `.claude/skills/kh-graph-sync/` | Additively adds new KH notes to `graphify-out/graph.json` (delta → subagent extract → additive merge + `tag_*` wiring); `enrich` subcommand adds TF-IDF similarity + `concept_*` hub edges. Bypasses graphify's broken native `--update` |
 | **alphaxiv MCP** | External service | 6 tools: semantic search, full-text search, agentic retrieval, paper content, PDF Q&A, GitHub reader |
 
+`.claude/settings.json` names **research-assistant** as the vault's main agent, so every session opens in it. The ml-optimizer submodule serves it: `/optimize` runs the optimization pipeline, and its Phase 5 routes research back to research-assistant so proposals come from the curated vault rather than a cold web search.
+
 ### Slash Commands
 
 | Command | Purpose |
@@ -44,6 +46,7 @@ General/ (topic overview, landscape, key papers)
 | `_Projects_/` | Active project `00_ResearchProposal/`; retired projects (`01_FirstPublication*`, `02_BenchmarkPipeline-WAM`) live in `__archive__/`. `Research-Directions/` holds the synthesis docs: `Embodied-AI.md` umbrella + `Focus-Direction.md`, plus `Mechanism/` & `Capability/` axes (3 docs each) with `__ELI5__/` + `__TLDR__/` Chinese derived versions |
 | `data/papers/` | Local PDF files for papers (downloaded on demand with version suffix, e.g., `2602.15922v2.pdf`) |
 | `data/.repositories/` | Local code repositories for referenced papers (cloned on demand; hidden folder so Obsidian ignores it) |
+| `ml-optimizer/` | Git submodule — the ML-optimization plugin, registered as a local-scope marketplace so edits are live. Excluded from Obsidian's file index. Entry point `/optimize`; see its `.claude/CLAUDE.md` |
 | `graphify-out/` | Graphify pilot artifacts: `graph.json`, `GRAPH_REPORT.md`, viz cache (gitignored except the report) |
 | `docs/` | Long-form notes that don't belong in `_KnowledgeHub_/`, `General/`, or `Embodied-AI/` |
 
