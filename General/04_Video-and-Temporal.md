@@ -203,7 +203,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2504.15271|Eagle-2.5]] — Efficient 8B model processing 512 video frames; achieves 72.4% on Video-MME, rivaling 72B+ models
 
 **Efficient & Grounded Video-Language Understanding** — Token-compression, streaming-efficiency, and region/pixel-grounded video-language methods.
-- [[2606.03920|VSTAT]], [[2604.02317|SIMPLESTREAM]], [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2512.17012|4D-RGPT]], [[2507.04590|VLM2Vec-V2]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2405.13800|Dense Connector]]
+- [[2606.03920|VSTAT]], [[2604.02317|SIMPLESTREAM]], [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2512.17012|4D-RGPT]], [[2507.04590|VLM2Vec-V2]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2412.06224|Uni-NaVid]], [[2405.13800|Dense Connector]]
 
 > [!star] Key Papers
 > - [[2504.16072|DAM]] — Region-level video captioning via focal prompts; SOTA across 7 benchmarks
@@ -219,7 +219,7 @@ From video classification to self-supervised video representation learning. The 
 - [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]], [[2603.15847|FEEL]], [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2411.19167|HOT3D]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]], [[2308.13561|Project Aria]], [[2203.01577|HOI4D]], [[2104.11181|H2O]]
 
 **Egocentric-to-Robot VLA Pretraining Datasets** — Egocentric human-video datasets built explicitly to pretrain or transfer to robot manipulation VLA policies.
-- [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]], [[2503.13441|PH2D]], [[2410.24221|EgoMimic]]
+- [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]], [[2503.13441|PH2D]], [[2410.24221|EgoMimic]]
 
 **Video-Based Camera Geometry & Registration** — Methods that exploit video's temporal structure for camera pose/registration and cross-view visual consistency, from homography-based frame matching to global Structure-from-Motion.
 - [[2607.27194|VidMap]], [[2607.26985|SymmGrid]], [[2607.25389|HOME]]
@@ -260,7 +260,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.16870|Video-Reasoning-Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Video Segmentation & Point Tracking** — SAM-family and tracking-based architectures for pixel-precise video segmentation and point tracking.
-- [[2605.00891|X2SAM]], [[2602.20630|TraqPoint]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2408.00714|SAM 2]]
+- [[2605.00891|X2SAM]], [[2602.23204|Motion-aware Event Suppression]], [[2602.20630|TraqPoint]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2408.00714|SAM 2]]
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
@@ -319,6 +319,9 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > [!star] Key Papers
 > - [[2602.01960|GVP-WM]] — Converts physically inconsistent video plans into feasible action sequences via latent-space trajectory optimization
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improving framework for controllable, long-horizon video generation
+
+**Video Diffusion as Reward Signal** — Uses conditional video diffusion or prediction models trained on expert demonstrations to derive dense reinforcement-learning reward signals, replacing manual reward engineering for robotic manipulation.
+- [[2312.14134|Diffusion Reward]]
 
 **Additional Methods** — Early open-source diffusion architectures that established the base recipe for high-quality text-to-video generation, later extended by controllable and physics-aware variants.
 - [[2408.06072|CogVideoX]], [[2310.20700|SEINE]], [[2308.06571|ModelScopeT2V]], [[2210.02303|Imagen Video]]
@@ -440,7 +443,7 @@ Synthesizing human and robot motion — bridging video understanding with physic
 > - [[2603.19227|MoTok]] — Diffusion-based discrete motion tokenizer decoupling semantics from kinematics; FID from 0.061 to 0.029
 
 **Motion Prediction & Flow** — Autoregressive and flow-based methods for predicting future motion trajectories and bridging video generation with 3D object manipulation.
-- [[2607.24493|KAI]], [[2512.24766|Dream2Flow]], [[2512.22688|ARFM]], [[2409.19499|FastUMI]], [[2409.16283|Gen2Act]], [[2312.07531|WHAM]], [[2304.08488|VRB]], [[2204.13662|ARCTIC]]
+- [[2607.24493|KAI]], [[2604.00416|EgoNav]], [[2512.24766|Dream2Flow]], [[2512.22688|ARFM]], [[2409.19499|FastUMI]], [[2409.16283|Gen2Act]], [[2312.07531|WHAM]], [[2304.08488|VRB]], [[2204.13662|ARCTIC]]
 
 > [!star] Key Papers
 > - [[2512.22688|ARFM]] — Autoregressive flow matching as a generalized framework for probabilistic motion prediction

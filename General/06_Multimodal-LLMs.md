@@ -253,7 +253,7 @@ The maturation of MLLMs through systematic instruction tuning, scaling to produc
 > - [[2503.15621|LLaVA-MORE]] — Systematic comparative study of MLLM design choices across LLM backbones and training strategies
 
 **Instruction Data & Training Pipelines** — Methods for creating high-quality multimodal instruction data and optimizing training procedures.
-- [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2506.08429|SCALE]], [[2505.19030|RECAST]], [[2505.17316|Patch-Aligned-Training]], [[2505.08971|PRIOR]], [[2504.21850|COMPACT]], [[2504.15619|AdaViP]], [[2412.07012|ProVision]], [[2410.02742|GLIMO]], [[2403.13187|EvoLLM-JP]], [[2306.08543|MiniLLM]], [[2302.00674|FLAD]], [[2105.09938|APPS]]
+- [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2602.10388|FAC Synthesis]], [[2506.08429|SCALE]], [[2505.19030|RECAST]], [[2505.17316|Patch-Aligned-Training]], [[2505.08971|PRIOR]], [[2504.21850|COMPACT]], [[2504.15619|AdaViP]], [[2412.07012|ProVision]], [[2410.02742|GLIMO]], [[2403.13187|EvoLLM-JP]], [[2306.08543|MiniLLM]], [[2302.00674|FLAD]], [[2105.09938|APPS]]
 
 > [!star] Key Papers
 > - [[2412.07012|ProVision]] — Programmatic system for generating diverse vision-language instruction data at scale
@@ -261,7 +261,7 @@ The maturation of MLLMs through systematic instruction tuning, scaling to produc
 > - [[2506.08429|SCALE]] — Automated pipeline curating high-quality multimodal instruction datasets with LLM-based filtering
 
 **Parameter-Efficient Fine-Tuning & Adaptation** — Adapters, LoRA variants, and representation-efficient methods for adapting MLLMs to new domains without full retraining.
-- [[2603.12248|EBFT]], [[2603.01097|LoRA-Knowledge-Memory]], [[2602.04118|TinyLoRA]], [[2507.11851|Gated-LoRA]], [[2506.05191|MokA]], [[2505.10088|MMRL++]], [[2505.00315|MoSA]], [[2503.08497|MMRL]], [[2501.13787|PEFT-for-Foundation-Models]], [[2412.01282|Align-KD]], [[2403.14608|PEFT-Comprehensive-Survey]], [[2312.12148|PEFT-Critical-Review]], [[2110.04366|MAM Adapter]], [[2106.09685|LoRA]], [[2104.08691|Prompt Tuning]], [[1902.00751|Adapters]]
+- [[2603.12248|EBFT]], [[2603.01097|LoRA-Knowledge-Memory]], [[2602.04118|TinyLoRA]], [[2507.11851|Gated-LoRA]], [[2506.05191|MokA]], [[2505.10088|MMRL++]], [[2505.00315|MoSA]], [[2503.08497|MMRL]], [[2501.13787|PEFT-for-Foundation-Models]], [[2412.01282|Align-KD]], [[2403.14608|PEFT-Comprehensive-Survey]], [[2312.12148|PEFT-Critical-Review]], [[2310.20587|LaMo]], [[2110.04366|MAM Adapter]], [[2106.09685|LoRA]], [[2104.08691|Prompt Tuning]], [[1902.00751|Adapters]]
 
 **Model Merging** — Combining multiple fine-tuned models into one without full retraining.
 - [[2604.07725|Squeeze-Evolve]], [[2601.07645|PlaM]], [[2502.17159|RobustMerge]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]], [[2311.03099|DARE]], [[2306.01708|TIES-Merging]]
@@ -545,7 +545,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2601.21725|Procedural-Pretraining]], [[2506.23061|DyME]], [[2506.07751|AbstRaL]], [[2506.06105|T2L]], [[2505.24726|Reflect-Retry-Reward]], [[2505.23725|MuLoCo]], [[2505.12514|COCONUT]], [[2505.00147|AdaptMI]], [[2412.06769|Coconut]], [[2412.00420|TAROT]], [[2405.14838|Stepwise-Internalization]], [[2403.09629|Quiet-STaR]], [[2311.12424|Looped-Transformers]], [[2311.01460|Implicit CoT]], [[2305.04091|Plan-and-Solve]], [[2211.01910|APE]], [[2210.03493|Auto-CoT]], [[2205.10625|Least-to-Most]], [[2201.11903|Chain-of-Thought Prompting]], [[2109.00110|miniF2F]]
 
 **On-Policy Distillation (OPD) Family** — On-policy knowledge-distillation variants for LLM reasoning.
-- [[2607.15161|OPD^2]], [[2607.05804|TurnOPD]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.05184|Fork Suppression]], [[2607.04763|ReOPD]], [[2607.04751|TOP-D]], [[2606.30626|DOPD]], [[2605.12483|Teacher-First-OPD]], [[2605.11609|AntiSD]], [[2605.07465|SEIF]], [[2604.13016|OPD-Distillation-Study]], [[2604.13010|Lightning-OPD]]
+- [[2608.01735|DAPD]], [[2607.15161|OPD^2]], [[2607.05804|TurnOPD]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.05184|Fork Suppression]], [[2607.04763|ReOPD]], [[2607.04751|TOP-D]], [[2606.30626|DOPD]], [[2605.12483|Teacher-First-OPD]], [[2605.11609|AntiSD]], [[2605.07465|SEIF]], [[2604.13016|OPD-Distillation-Study]], [[2604.13010|Lightning-OPD]]
 
 **Self-Training & Continual Improvement (STaR Lineage)** — Self-generated-data bootstrapping and continual reasoning improvement without a fixed teacher.
 - [[2604.02288|SRPO]], [[2604.01193|SSD-Code-Generation]], [[2602.23413|EvoX]], [[2511.01191|Self-Harmony]], [[2510.21223|FDA]], [[2510.02263|RLAD]], [[2509.26626|RSA]], [[2509.15194|EVOL-RL]], [[2509.14234|CaT]], [[2508.16204|M2N2]], [[2507.17634|WSM]], [[2506.15710|RAST]], [[2506.10943|SEAL]], [[2506.08989|SwS]], [[2502.08922|SCIR]], [[2412.01951|Sharpening-Mechanism]], [[2312.06585|ReST-EM]], [[2203.14465|STaR]]
@@ -563,16 +563,16 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2607.10169|RIPO]], [[2509.02534|Darling]], [[2508.13755|DARS-Breadth]], [[2505.22617|Entropy-Collapse-in-RL]], [[2505.20561|BARL]], [[2505.15660|AGNOSTOS]], [[2503.23631|Intrinsic-Motivation-Human-Agent-Study]]
 
 **Search & Tool-Integrated RL** — RL and prompting methods that interleave search or external tool calls into the reasoning trajectory.
-- [[2510.03259|MASA]], [[2509.09284|Tree-OPO]], [[2509.06870|AggLM]], [[2507.19849|ARPO]], [[2507.16815|ThinkAct]], [[2505.04588|ZeroSearch]], [[2503.23383|ToRL]], [[2503.19470|ReSearch]], [[2503.09516|Search-R1]], [[2503.05592|R1-Searcher]], [[2401.08190|MARIO]], [[2310.04406|LATS]], [[2305.14992|RAP]], [[2303.08128|ViperGPT]], [[2211.12588|PoT]], [[2211.11559|VISPROG]], [[2211.10435|PAL]], [[2210.03629|ReAct]]
+- [[2510.03259|MASA]], [[2509.09284|Tree-OPO]], [[2509.06870|AggLM]], [[2507.19849|ARPO]], [[2507.16815|ThinkAct]], [[2505.04588|ZeroSearch]], [[2503.23383|ToRL]], [[2503.19470|ReSearch]], [[2503.09516|Search-R1]], [[2503.05592|R1-Searcher]], [[2402.01030|CodeAct]], [[2401.08190|MARIO]], [[2310.04406|LATS]], [[2305.14992|RAP]], [[2303.08128|ViperGPT]], [[2211.12588|PoT]], [[2211.11559|VISPROG]], [[2211.10435|PAL]], [[2210.03629|ReAct]]
 
 **GRPO-Lineage & Group-Relative Variants** — Group-relative policy-optimization algorithm variants descending from GRPO.
-- [[2607.16850|GECPO]], [[2601.19280|GDRO]], [[2509.02333|DCPO]], [[2508.02298|CAPO]], [[2507.20673|GMPO]], [[2506.13923|Guide-GRPO]], [[2505.20686|A*-PO]], [[2505.20258|ARM]], [[2505.18454|HRPO]], [[2505.17508|RPG]], [[2504.19599|GVPO]], [[2503.19612|AGRO]], [[2503.12811|MPL]]
+- [[2608.01418|PNPO]], [[2607.16850|GECPO]], [[2601.19280|GDRO]], [[2509.02333|DCPO]], [[2508.02298|CAPO]], [[2507.20673|GMPO]], [[2506.13923|Guide-GRPO]], [[2505.20686|A*-PO]], [[2505.20258|ARM]], [[2505.18454|HRPO]], [[2505.17508|RPG]], [[2504.19599|GVPO]], [[2503.19612|AGRO]], [[2503.12811|MPL]]
 
 **PPO-Lineage & Other Policy-Gradient Variants** — Non-group-relative policy-gradient algorithm variants for LLM/VLM RL.
 - [[2607.19331|ISO]], [[2607.18722|Staleness-Adaptive Trust Region]], [[2607.07508|SAO]], [[2605.28421|DenoiseRL]], [[2605.06139|LPO]], [[2604.08865|SPPO]], [[2603.10160|ReMix]], [[2602.10675|TwiFF]], [[2602.05842|RWML]], [[2602.04879|DPPO]], [[2602.03806|COBALT]], [[2602.02710|MaxRL]], [[2602.01058|PEAR]], [[2510.18927|BAPO]], [[2510.09001|DARO]], [[2510.01265|RLP]], [[2508.08221|Lite-PPO]], [[2507.18391|IBRO]], [[2507.01679|Prefix-RFT]], [[2506.21495|Offline-Online-RL-for-LLMs]], [[2505.24864|ProRL]]
 
 **Self-Play, Self-Correction & Zero-Supervision RL** — RL methods that bootstrap from self-generated data or self-play without external supervision.
-- [[2607.12395|Ring-Zero]], [[2604.09258|Nexus]], [[2512.02389|Synthetic-Error-Self-Correct]], [[2508.05004|R-Zero]], [[2508.02150|Self-Supervised-RL-IF]], [[2507.23751|CoT-Self-Instruct]], [[2506.10139|ICM]], [[2505.22954|DGM]], [[2505.21444|SRT]], [[2505.17746|Fast-Quiet-STaR]], [[2505.03335|Absolute-Zero]], [[2503.24290|Open-Reasoner-Zero]]
+- [[2607.23802|SpyRL]], [[2607.12395|Ring-Zero]], [[2604.09258|Nexus]], [[2512.02389|Synthetic-Error-Self-Correct]], [[2508.05004|R-Zero]], [[2508.02150|Self-Supervised-RL-IF]], [[2507.23751|CoT-Self-Instruct]], [[2506.10139|ICM]], [[2505.22954|DGM]], [[2505.21444|SRT]], [[2505.17746|Fast-Quiet-STaR]], [[2505.03335|Absolute-Zero]], [[2503.24290|Open-Reasoner-Zero]]
 
 **RLVR Training Dynamics & Theory** — Empirical and theoretical study of what happens during RL-with-verifiable-reward training.
 - [[2604.03993|Noisy-Supervision-Reasoning]], [[2603.23355|ReVal]], [[2603.22117|RLVR-Direction]], [[2603.02188|MLRA]], [[2602.00170|Blessing-of-Dimensionality-LLM]], [[2510.08189|R-Horizon]], [[2509.22637|Variational-Reasoning]], [[2509.04259|RL's-Razor]], [[2507.10532|RandomCalculation]], [[2507.06187|Delta-Learning-Hypothesis]], [[2507.00432|Math-Reasoning-Transferability]], [[2506.09477|KL-Divergence-Gradient-Pitfalls]], [[2505.02406|TCPA]], [[2504.20571|1-shot-RLVR]], [[2501.17161|SFT-Memorizes-RL-Generalizes]], [[2309.14322|Transformer-Training-Instabilities]], [[2309.05858|Mesa-Optimization-Transformers]]
@@ -584,7 +584,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2512.24601|RLMs]], [[2512.14693|URM]], [[2512.02472|R-FEW]], [[2509.20357|RLMT]], [[2509.14760|ALIGN3]], [[2509.14252|LLM-JEPA]], [[2509.06806|MachineLearningLM]], [[2508.12790|Rubicon]], [[2506.15211|ProtoReasoning]], [[2504.20595|ReasonIR]], [[2504.19254|uqlm]], [[2503.16219|Open-RS]], [[2411.14251|NLRL]], [[2309.15129|CogEval]]
 
 **Agent Memory & Skill-Library Evolution** — Agents that accumulate and reuse skills or memories across episodes.
-- [[2607.23784|ARCHITECT]], [[2607.22529|Skill-SP]], [[2606.08671|SkillHone]], [[2605.06614|SkillOS]], [[2603.18743|Memento-Skills]], [[2603.12056|XSkill]], [[2511.00758|ATM]], [[2509.25140|ReasoningBank]], [[2509.15172|MACA]], [[2509.07414|LSP]], [[2508.19005|ELL-Framework]], [[2406.04151|AgentGym]], [[2305.16291|Voyager]]
+- [[2607.23784|ARCHITECT]], [[2607.22529|Skill-SP]], [[2606.08671|SkillHone]], [[2605.06614|SkillOS]], [[2603.18743|Memento-Skills]], [[2603.12056|XSkill]], [[2511.00758|ATM]], [[2509.25140|ReasoningBank]], [[2509.15172|MACA]], [[2509.07414|LSP]], [[2508.19005|ELL-Framework]], [[2406.04151|AgentGym]], [[2311.10678|DROC]], [[2305.16291|Voyager]]
 
 **Curriculum & Experience-Driven Agent Evolution** — Agents that evolve through structured curricula or accumulated environment experience.
 - [[2607.23515|LEACL]], [[2607.21461|AREX]], [[2605.15188|FutureSim]], [[2605.09387|NEXUS]], [[2604.01658|CORAL]], [[2603.16856|OEL]], [[2601.06794|ECHO]], [[2510.24684|SPICE]], [[2510.23595|MAE]], [[2510.15047|SPA]], [[2510.08558|Early-Experience]], [[2510.04618|ACE]], [[2506.01716|SCA]], [[2504.21024|WebEvolver]], [[2409.00872|SAGE]]
@@ -611,7 +611,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2607.23899|Embodied GPT-5.1]], [[2510.13054|VLA-0]], [[2506.21539|WorldVLA]], [[2503.22020|CoT-VLA]], [[2503.18769|AlphaSpace]], [[2406.09246|OpenVLA]], [[2403.06845|DriveDreamer-2]], [[2312.06571|Alter3]], [[2311.01378|RoboFlamingo]], [[2307.15818|RT-2]], [[2307.00329|DoReMi]], [[2210.15629|LCD]], [[2204.01691|SayCan]]
 
 **Robot Planning, Navigation & HRI Systems** — Cross-domain planning, navigation, teleoperation, and human-robot interaction foundations.
-- [[2607.24190|Kim Episodic Memory]], [[2607.24113|Kim]], [[2607.13072|HRO]], [[2607.12630|MTEFR]], [[2607.12050|EFLUX]], [[2607.10437|Inter-POMDP]], [[2607.07430|VR-LLM Humanoid Teleoperation]], [[2607.06990|Closed-Loop Multi-Robot Manipulation Framework]], [[2607.06724|EvoPlan]], [[2607.01044|CommNav]], [[2606.31260|SymPlan]], [[2606.29774|ACM]], [[2606.29460|LLM Intervention Explanations in HRI]], [[2604.20348|BiCICLe]], [[2604.02911|DreamTIP]], [[2511.14565|Masked-IRL]]
+- [[2607.24190|Kim Episodic Memory]], [[2607.24113|Kim]], [[2607.13072|HRO]], [[2607.12630|MTEFR]], [[2607.12050|EFLUX]], [[2607.10437|Inter-POMDP]], [[2607.07430|VR-LLM Humanoid Teleoperation]], [[2607.06990|Closed-Loop Multi-Robot Manipulation Framework]], [[2607.06724|EvoPlan]], [[2607.01044|CommNav]], [[2606.31260|SymPlan]], [[2606.29774|ACM]], [[2606.29460|LLM Intervention Explanations in HRI]], [[2606.28592|E2-CARE]], [[2605.22986|ASQ]], [[2605.19501|CANINE]], [[2604.20348|BiCICLe]], [[2604.02911|DreamTIP]], [[2511.17855|QuickLAP]], [[2511.14565|Masked-IRL]], [[2504.13898|SHREC]], [[2306.08647|L2R]]
 
 **Embodied AI & VLA Surveys** — Survey and position papers framing the embodied-AI/VLA research landscape.
 - [[2509.20021|Embodied-AI-LLM-WM-Survey]], [[2505.04769|VLA-Concepts-Survey]], [[2409.10106|Industry 6.0]], [[2405.14093|VLA-for-Embodied-AI-Survey]]

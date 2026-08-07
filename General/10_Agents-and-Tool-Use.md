@@ -266,7 +266,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 > - [[2503.23383|ToRL]] — Scaling tool-integrated RL: trains LLMs to autonomously learn when and how to use tools
 
 **Agentic Tool Integration Frameworks** — Unified frameworks that combine reasoning, tool invocation, and multi-step planning into coherent agent architectures.
-- [[2605.28828|Micro-Macro-Retrieval]], [[2603.23483|SpecEyes]], [[2602.22225|SmartChunk]], [[2512.20745|AgentMath]], [[2512.17312|CodeDance]], [[2511.07328|Q-RAG]], [[2510.27566|Interact-RAG]], [[2510.06217|TaTToo]], [[2510.05592|AgentFlow]], [[2509.07969|Mini-o3]], [[2508.12109|Simple-o3]], [[2507.05707|Agentic-R1]], [[2506.15692|MLE-STAR]], [[2506.14728|AgentDistill]], [[2506.12115|Cognitive-Tools]], [[2505.07233|DynamicRAG]], [[2505.05177|MARK]], [[2505.01441|ARTIST]], [[2504.21776|WebThinker]]
+- [[2605.28828|Micro-Macro-Retrieval]], [[2603.23483|SpecEyes]], [[2602.22225|SmartChunk]], [[2512.20745|AgentMath]], [[2512.17312|CodeDance]], [[2511.07328|Q-RAG]], [[2510.27566|Interact-RAG]], [[2510.06217|TaTToo]], [[2510.05592|AgentFlow]], [[2509.07969|Mini-o3]], [[2508.12109|Simple-o3]], [[2507.05707|Agentic-R1]], [[2506.15692|MLE-STAR]], [[2506.14728|AgentDistill]], [[2506.12115|Cognitive-Tools]], [[2505.07233|DynamicRAG]], [[2505.05177|MARK]], [[2505.01441|ARTIST]], [[2504.21776|WebThinker]], [[2402.01030|CodeAct]]
 
 > [!star] Key Papers
 > - [[2505.01441|ARTIST]] — Microsoft Research unifies agentic reasoning, dynamic tool integration, and RL training in a single framework
@@ -429,7 +429,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Physical Robot Agent Architectures & Manipulation** — Integrated architectures combining vision-language understanding with agent capabilities for real-world robot manipulation and interaction.
-- [[2607.26148|Agentic Embodied Control]], [[2607.23784|ARCHITECT]], [[2607.18060|RoboHarness]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2607.10350|ABot-AgentOS]], [[2607.05377|Cortex]], [[2607.04426|ACE-Brain-0.5]], [[2606.30632|GROW²]], [[2606.16295|VisualClaw]], [[2606.05395|VASO]], [[2604.20348|BiCICLe]], [[2510.21817|VITA-E]]
+- [[2608.03924|ETA]], [[2607.26148|Agentic Embodied Control]], [[2607.23784|ARCHITECT]], [[2607.18060|RoboHarness]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2607.11119|VIA]], [[2607.10350|ABot-AgentOS]], [[2607.05377|Cortex]], [[2607.04426|ACE-Brain-0.5]], [[2606.30632|GROW²]], [[2606.16295|VisualClaw]], [[2606.05395|VASO]], [[2604.20348|BiCICLe]], [[2510.21817|VITA-E]]
 
 **Embodied Simulation, World Engines & Foundational Benchmarks** — Simulated worlds, 3D scene engines, and benchmark environments underpinning embodied multimodal agent research.
 - [[2607.11377|PHILIA]], [[2607.07534|LingBot-World-Infinity]], [[2607.07459|EmbodiedGen V2]], [[2410.06237|BUMBLE]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]], [[1806.07011|VirtualHome]]
