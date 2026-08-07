@@ -202,17 +202,17 @@ tags:
 
 ### C3: Natively-4D Geometry as a World-Representation Substrate
 > [!abstract] The bet
-> C3: Two pillars decide whether native online 4D earns its keep over a train-time helper; neither is run, including by PointWorld. (i) Backbone fixed, X-WAM's interleaved depth branch beats a pixel substrate plus an add-on depth estimator on geometry-bound RoboCasa (Chamfer 0.0049 native vs two-stage 0.0680), isolating native-over-recovered. (ii) Generalizing Asynchronous Noise Sampling (a few-step denoising trick), the action schedule step-distills to 1–4 steps, extending X-WAM's 5-step 15 Hz run (4665 ms to 1033 ms) without degrading read-out geometry, the latency-fidelity frontier PointWorld's point-flow MPC never charted.
+> C3: The broad "native 4D beats recovered 4D" claim is now near-consensus, not open: X-WAM already ran the native-vs-recovered Chamfer ablation (0.0049 native vs 0.0401/0.0680 two-stage) and PointWorld already took the "explicit-4D-online beats latent, and transfers across embodiments" claim. What neither paper charted, and what C3 actually bets on: (i) generalizing Asynchronous Noise Sampling (a few-step denoising trick), does the action schedule step-distill to 1–4 steps, extending X-WAM's 5-step 15 Hz run (4665 ms to 1033 ms), without degrading read-out geometry, the latency-fidelity frontier PointWorld's point-flow MPC never charted; and (ii) does a native-4D RGB-D-video substrate, with its appearance channel intact, transfer world-model-to-policy at least as well as PointWorld's geometry-only point-flow, or is appearance the noise the doc's thesis says it is.
 
 **Why**: Most deployed models imagine in 2D pixels, recovering geometry only implicitly, which X-WAM says yields physically implausible predictions. For contact-rich tasks the action is a function of geometry, and a pixel substrate re-infers it every step. X-WAM shows the two-stage path is both worse geometrically *and* slower than a unified 4D model with few-step (async) denoising. PointWorld owns the online-explicit + transfer claim, so C3 narrows to the two pillars.
 
 **First-principles**
 - *Principle:* the action's geometry lives in the task, not the rendering choice, so a native-4D substrate carries it directly.
-- *Challenged:* the "4D too expensive, recover it two-stage" assumption (broken by X-WAM); PointWorld already owns the broad online-explicit + transfer claim.
-- *Wager:* native-4D beats lift-after-pixel at no deployment penalty, with the action schedule distillable to 1–4 steps.
+- *Challenged:* the "4D too expensive, recover it two-stage" assumption is now settled false by X-WAM's own ablation, not just challenged; PointWorld separately already owns the broad online-explicit-beats-latent-and-transfers claim. Neither is what's left open.
+- *Wager:* the action schedule step-distills to 1–4 steps without degrading read-out geometry, and the RGB-D appearance channel transfers world-model-to-policy at least as well as PointWorld's geometry-only point-flow, the two things neither X-WAM nor PointWorld charted.
 
 **Sharpest questions**
-1. Backbone fixed, does X-WAM's interleaved depth branch beat a pixel substrate + depth estimator on geometry-bound RoboCasa?
+1. Does X-WAM's self-reported native-vs-recovered Chamfer gap (0.0049 vs 0.0401) replicate on a third-party standardized fidelity protocol (Phys4D), not just X-WAM's own ablation?
 2. Can the few-step (async) action schedule shrink to 1–4 steps without degrading read-out geometry? Plot Chamfer vs steps.
 3. Does a native-4D RGB-D-video substrate carry from world model to policy head with appearance intact, matching PointWorld's point-flow transfer?
 4. Does an explicit 3D channel lower contact-mode prediction error vs a latent?
@@ -221,7 +221,7 @@ tags:
 > [!warning] Risks
 > - 4D supervision needs depth/3D ground truth most datasets lack. Fix: X-WAM's end-effector camera poses plus off-the-shelf depth estimators; bound to recoverable geometry.
 > - 4D only pays on geometry-bound tasks. Fix: score on contact/spatial tasks (RoboCasa insertion, stacking), not headline LIBERO.
-> - Real-time 4D is shown twice (X-WAM, PointWorld). Fix: the native-vs-recovered Chamfer ablation and the latency-fidelity frontier are the go/no-go; concede PointWorld owns broad transfer.
+> - Real-time 4D is now shown by two results (X-WAM native-RGB-D, PointWorld point-flow), and X-WAM already ran the native-vs-recovered Chamfer ablation, so the open question is no longer whether native beats recovered. Fix: treat the 1–4-step latency-fidelity frontier and the RGB-D world-model-to-policy transfer test as the go/no-go; concede X-WAM owns native-vs-recovered and PointWorld owns the broad transfer claim.
 
 ### C4: Persistent Geometric Memory as a Substrate-Agnostic Persistence Layer
 > [!abstract] The bet

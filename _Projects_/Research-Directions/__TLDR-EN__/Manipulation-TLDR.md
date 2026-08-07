@@ -238,20 +238,22 @@ tags:
 
 ### D4: Force-Safety-Constrained Dexterous Control
 > [!abstract] The bet
-> Put a hard gentle-force filter on top of a learned dexterous policy. It clamps contact force below DexSkin's 1.53 kPa / Multi-Sensory Sparse Experts' ~10 N, with *zero* force violations.
-> It also beats the soft-penalty approach (Stress-Guided RL, 36.5% stress cut) at *matched* SR, keeps Hierarchical RL-QP Grasp's 81.4% (vs 13.2% unconstrained), and stays steerable zero-shot.
-> Falsifier: if a soft-penalty policy (Stress-Guided RL-class) matches the hard filter on *both* SR and force-violation rate at matched fragile-object integrity, the hard filter buys nothing over a penalty.
+> Put a hard gentle-force filter, a CBF/QP feasible-set projection, on top of a learned dexterous policy. FORGE-plus already gets a decoupled hard clamp to 100% SR / 0% breakage on fragile objects, but at its own oracle force ceiling that same clamp still breaks 49.8% of objects under closed-loop impedance overshoot.
+> The bet: a continuous CBF/QP projection over the same learned-policy class holds breakage at ≤10% under that same stress test. It should also beat the soft-penalty approach (Stress-Guided RL, 36.5% stress cut) on fragile-object integrity at matched SR, scored on SoGraB's standardized deformation metric, while keeping Hierarchical RL-QP Grasp's 81.4% (vs 13.2% unconstrained) and staying steerable zero-shot.
+> Falsifier: if the CBF/QP projection breaks fragile objects at a rate statistically indistinguishable from FORGE-plus's 49.8% oracle-bound clamp breakage (≥30%), the clamp-vs-projection distinction is architectural noise, not a real mechanism difference, and the projection buys nothing over a clamp.
 
-**Why**: Safety is a hard constraint on contact-force that must hold *every* step; a learned policy only softly penalizes violations, a physics-based filter guarantees them. The *generic* hard-filter-beats-soft-penalty claim is settled (Safe Steerable Geometric Policy hard-enforces force-*closure*), but existing filters enforce closure and collision, never a force-magnitude *ceiling* for fragile objects.
+**Why**: Safety is a hard constraint on contact-force that must hold *every* step; a learned policy only softly penalizes violations, a physics-based filter guarantees them. The *generic* hard-filter-beats-soft-penalty claim is settled (Safe Steerable Geometric Policy hard-enforces force-*closure*). FORGE-plus now closes most of the SR/breakage gap on a fragile-force ceiling over a *learned* policy, narrowing the open bet to what a continuous projection buys that a decoupled hard clamp does not: avoiding the impedance-overshoot breakage that shows up even at FORGE-plus's own oracle bound.
 
-**First-principles**: *Principle:* a gentle-force constraint (force ≤ a fragile tolerance, ~1.53 kPa / ~10 N) is an *upper* bound, the opposite of force-*closure*. *Challenged:* the consensus filters enforce closure; the fragile ceiling stays soft-penalized (Stress-Guided RL). *Wager:* an upper bound holds only by hard projection.
+**First-principles**: *Principle:* a gentle-force constraint (force ≤ a fragile tolerance, ~1.53 kPa / ~10 N) is an *upper* bound, the opposite of force-*closure*. *Challenged:* the consensus filters enforce closure; the fragile ceiling stays soft-penalized (Stress-Guided RL) or, now, only a decoupled clamp (FORGE-plus) rather than a continuous projection. *Wager:* an upper bound that must hold under closed-loop overshoot needs a feasible-set projection, not a one-shot clamp.
 
-**Sharpest questions**: 1) Does a hard force-magnitude projection drive force-violation to zero on fragile objects *while matching* the soft-penalty SR? 2) Does projecting onto a force-bounded set (1.53 kPa) preserve fragile-object integrity better than penalty-training at matched SR? 3) Can the QP/force-bound filter make D3's emergent or D1's transferred policies deployable without retraining?
+**Sharpest questions**: 1) Does a CBF/QP feasible-set projection over a learned policy avoid the impedance-overshoot breakage a decoupled hard clamp does not, holding fragile-object breakage at ≤10% where FORGE-plus's clamp broke 49.8%? 2) Does projecting onto a force-bounded set (1.53 kPa) preserve fragile-object integrity better than penalty-training at matched SR? 3) Can the QP/force-bound filter make D3's emergent or D1's transferred policies deployable without retraining?
 
 > [!warning] Risks
 > - QP clamping can hurt task SR → report the safety-vs-SR trade-off; clamp rarely.
 > - Force tolerances are object-specific (1.53 kPa for berries ≠ rigid assembly) → make the bound per-object (A1/A3); no global limit.
 > - Hard constraints may over-restrict emergent behavior (transient high forces may be needed) → test over emergent policies; allow needed force, block damage.
+> - Force-observability tax: a ceiling assumes per-fingertip force is measurable at control rate, not free on a 23-DoF hand → report the projection's behavior when force is *estimated*, not measured; a ceiling the policy can't observe can't be guaranteed.
+> - One-shot bound, not closed-loop regulation: every result scores a per-step force magnitude, never reactive regulation over the post-contact horizon → instrument where the projected force diverges under closed-loop feedback (contact-onset vs settled-hold vs re-grasp), not just worst-case single-step violation.
 
 ## E: Tactile Foundations & Data Substrates
 *The foundation layer beneath force-aware manipulation, needing no runtime tactile hardware, getting force-awareness to deployment with the sensor dropped, and a cross-sensor representation that makes any such policy portable across sensors.*
