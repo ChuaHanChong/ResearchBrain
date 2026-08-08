@@ -29,6 +29,18 @@ A robot is a **path across the capability docs**, not a doc of its own. The huma
 
 Each `Capability/` doc carries this callout in its own Cross-References section.
 
+## Focus-Direction (applied output)
+
+Where the survey docs above narrow into one pitchable proposal:
+
+| File | Holds |
+|---|---|
+| `Focus-Direction.md` | the thesis — single integrated bet, drawn from across Mechanism/Capability |
+| `Focus-Direction-Research-Plan.md` | lean plan — one pass, no branching |
+| `Focus-Direction-Research-Plan-detailed.md` | detailed plan — same 12-section spine, full derivations |
+| `Focus-Direction-Brief.canvas` | professor-facing pitch — problem, discovery funnel, method foils vs solution refs, mind-map |
+| `Focus-Direction-Paper-Code-Index.md` | reference appendix — every cited paper's repo/PDF/clone/index status |
+
 ## Conventions
 
 - **Links resolve by basename** (Obsidian shortest-path) — `[[WAM]]`, `[[Manipulation]]`, `[[Embodied-AI]]` — so the folder a doc lives in doesn't matter for linking.
@@ -39,10 +51,10 @@ Each `Capability/` doc carries this callout in its own Cross-References section.
 
 | Doc | Axis | Directions | Clusters |
 |---|---|---|---|
-| [[Embodied-AI]] | umbrella | 9 | 3 |
+| [[Embodied-AI]] | umbrella | 11 | 5 |
 | [[WAM]] | Mechanism | 7 | 2 |
 | [[Spatial-4D]] | Mechanism | 11 | 4 |
 | [[Sim2Real]] | Mechanism | 15 | 5 |
 | [[Manipulation]] | Capability | 14 | 5 |
-| [[Locomotion]] | Capability | 8 | 2 |
+| [[Locomotion]] | Capability | 9 | 2 |
 | [[Whole-Body]] | Capability | 13 | 4 |
