@@ -25,12 +25,10 @@ ResearchBrain/
 ├── docs/                     # Long-form notes outside the three note folders
 ├── graphify-out/             # Graphify artifacts (gitignored except report)
 ├── ml-optimizer/             # Submodule: ML-optimization plugin (/optimize)
-└── .claude/                  # Agent, skills, commands, hooks, config
-    ├── settings.json         # Main agent + the plan-visual hook
+└── .claude/                  # Agent, skills, commands, config
+    ├── settings.json         # Names research-assistant the vault's main agent
     ├── agents/
     │   └── research-assistant.md
-    ├── hooks/
-    │   └── plan-visual-gate.sh
     ├── commands/
     │   ├── kh-sync.md
     │   ├── deepdive-sync.md
