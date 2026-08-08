@@ -71,6 +71,7 @@ General/ (topic overview, landscape, key papers)
 - General/ formatting rules (wikilinks, sorting, callouts) are in the `paper-curate` skill
 - Use Edit tool + obsidian-markdown skill for KH enrichment, not custom Python scripts
 - Download arxiv PDFs with `curl -fLJO --create-dirs --output-dir data/papers "https://arxiv.org/pdf/{ID}"` — the version suffix comes from arxiv's `Content-Disposition` filename (e.g., `2412.02818v4.pdf`); one file per paper. Selenium (`alphaxiv-summary-extract/scripts/extract_summaries.py`) scrapes alphaxiv overview pages, not PDFs.
+- Right after `ExitPlanMode` is approved, render the plan file to `docs/visuals/plan-{slug}.html`, slug from its H1, with the **visualize** skill, Implementation-plan form: phases collapsed, click to expand, one inline SVG of the phase sequence; gated by `.claude/hooks/plan-visual-gate.sh`.
 
 ## Deep-Dive Format (`Embodied-AI/`)
 
