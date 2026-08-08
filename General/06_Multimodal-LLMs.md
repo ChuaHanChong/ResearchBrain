@@ -291,7 +291,7 @@ A new generation of models trained end-to-end on interleaved multimodal data rat
 > - [[2503.20680|VoRA]] — Encoder-free MLLM treating visual features as LoRA parameters; eliminates the separate vision encoder entirely
 
 **Multimodal Scaling Laws & Pre-Training** — Understanding how to scale native multimodal models and what training recipes work best.
-- [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2509.26625|LLM-Visual-Priors]], [[2507.15857|Diffusion-vs-AR]], [[2507.00994|MLM-vs-CLM-Pretraining]], [[2506.03295|CFT]], [[2505.07291|INTELLECT-2]], [[2504.07951|NMM-Scaling-Laws]], [[2503.19903|PS3]], [[2502.03275|Token-Assorted]], [[2412.18619|Multimodal-NTP-Survey]], [[2006.12467|Depth-to-Width Interplay]], [[2001.08361|Neural Scaling Laws]]
+- [[2608.05806|HiLP]], [[2608.05000|PhysMMPT]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2509.26625|LLM-Visual-Priors]], [[2507.15857|Diffusion-vs-AR]], [[2507.00994|MLM-vs-CLM-Pretraining]], [[2506.03295|CFT]], [[2505.07291|INTELLECT-2]], [[2504.07951|NMM-Scaling-Laws]], [[2503.19903|PS3]], [[2502.03275|Token-Assorted]], [[2412.18619|Multimodal-NTP-Survey]], [[2006.12467|Depth-to-Width Interplay]], [[2001.08361|Neural Scaling Laws]]
 
 > [!star] Key Papers
 > - [[2504.07951|NMM-Scaling-Laws]] — First comprehensive study of scaling laws for native multimodal models; shows joint training outperforms modular approaches
@@ -392,7 +392,7 @@ Addressing the fundamental challenge of MLLMs generating text that contradicts v
 > - [[2512.23453|CoFi-Dec]] — Coarse-to-fine decoding leveraging geometric consistency for grounded generation
 
 **Visual Attention & Token Intervention** — Steering the model's visual attention to reduce over-reliance on language priors.
-- [[2605.02735|Silenced-Visual-Latents]], [[2605.00814|PVM]], [[2604.15809|AIF]], [[2603.14117|SIEVE]], [[2603.00207|VisRef]], [[2602.24041|AIR]], [[2602.21497|ECRD]], [[2602.08241|SAYO]], [[2602.02004|ClueTracer]], [[2509.12132|Reflection-V]], [[2508.02419|TVAI]], [[2507.22003|ViHallu]], [[2506.12609|VisFlow]], [[2505.17812|VaLSe]], [[2505.05177|MARK]], [[2411.12591|VIC]]
+- [[2608.02124|HAFI-VLM]], [[2605.02735|Silenced-Visual-Latents]], [[2605.00814|PVM]], [[2604.15809|AIF]], [[2603.14117|SIEVE]], [[2603.00207|VisRef]], [[2602.24041|AIR]], [[2602.21497|ECRD]], [[2602.08241|SAYO]], [[2602.02004|ClueTracer]], [[2509.12132|Reflection-V]], [[2508.02419|TVAI]], [[2507.22003|ViHallu]], [[2506.12609|VisFlow]], [[2505.17812|VaLSe]], [[2505.05177|MARK]], [[2411.12591|VIC]]
 
 > [!star] Key Papers
 > - [[2506.12609|VisFlow]] — Dual-level attention intervention redirecting model focus toward relevant visual tokens

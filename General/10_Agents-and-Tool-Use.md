@@ -187,7 +187,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 - [[2606.03374|eMEM]], [[2605.15128|MemEye]], [[2602.16313|MemoryArena]], [[2602.11964|Gaia2]], [[2511.14004|STAR-Memory-Action]], [[2509.22391|SeekBench]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2505.15146|lmgame-Bench]], [[2504.15965|AI-Memory-Survey]], [[2403.19622|RH20T-P]]
 
 **RL Training & Planning Frameworks for Agentic Reasoning** — Reinforcement-learning algorithms and world-model-augmented planning methods that train or structure agentic reasoning.
-- [[2607.21653|Molt]], [[2607.06935|Mathematical Methods of RL]], [[2606.03963|AgenticRL]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20246|GROW]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]]
+- [[2608.06197|EnvACE]], [[2607.21653|Molt]], [[2607.06935|Mathematical Methods of RL]], [[2606.03963|AgenticRL]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20246|GROW]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]]
 
 > [!star] Key Papers
 > - [[2505.10468|AI-Agents-vs-Agentic-AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
@@ -258,7 +258,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 - [[2509.02479|SimpleTIR]], [[2509.01055|VerlTool]], [[2505.07773|ZeroTIR]], [[2505.00024|Nemotron-Research-Tool-N1]], [[2504.13958|ToolRL]], [[2504.11536|ReTool]], [[2504.04736|SWiRL]], [[2503.23383|ToRL]]
 
 **Embodied & Robotic Tool Use** — Tool-use RL and functional-tool-grounding methods applied to embodied and robotic agents.
-- [[2607.05780|FORGE]], [[2605.26637|Embodied-Tool-Protocol]], [[2603.22293|TIPS-RL]], [[2603.13348|AutoTool]], [[2510.07794|HiPRAG]], [[2509.21826|ResT-RL]], [[2509.17325|CodeGym]]
+- [[2608.05738|VLA-Talker]], [[2607.05780|FORGE]], [[2605.26637|Embodied-Tool-Protocol]], [[2603.22293|TIPS-RL]], [[2603.13348|AutoTool]], [[2510.07794|HiPRAG]], [[2509.21826|ResT-RL]], [[2509.17325|CodeGym]]
 
 > [!star] Key Papers
 > - [[2504.11536|ReTool]] — ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning
@@ -295,7 +295,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 Agents trained via reinforcement learning for multi-turn interactions with environments, moving beyond single-call tool use to sustained, stateful task execution across many steps.
 
 **Multi-Turn Policy-Optimization Algorithms (GRPO Variants & Credit Assignment)** — GRPO-family and related algorithmic variants that tackle credit assignment and turn-level optimization in multi-turn agent RL.
-- [[2607.07508|SAO]], [[2607.05804|TurnOPD]], [[2607.05339|TREK]], [[2607.04763|ReOPD]], [[2605.10899|RubricEM]], [[2602.22817|HGPO]], [[2512.16848|LAMER]], [[2510.20150|Rank-GRPO]], [[2510.14967|IGPO-Info-Gain]], [[2509.21240|Tree-GRPO]], [[2505.10978|GiGPO]]
+- [[2608.05987|AgentOPSD]], [[2607.07508|SAO]], [[2607.05804|TurnOPD]], [[2607.05339|TREK]], [[2607.04763|ReOPD]], [[2605.10899|RubricEM]], [[2602.22817|HGPO]], [[2512.16848|LAMER]], [[2510.20150|Rank-GRPO]], [[2510.14967|IGPO-Info-Gain]], [[2509.21240|Tree-GRPO]], [[2505.10978|GiGPO]]
 
 **Reward Design, Exploration, Environments & Evaluation for Multi-Turn Agents** — Reward shaping, exploration strategies, training environments, and diagnostic evaluation for sustained multi-turn agent-environment interaction.
 - [[2602.02196|TIDE]], [[2511.07327|IterResearch]], [[2510.10197|Environment-Tuning]], [[2509.19199|iStar]], [[2509.08755|AgentGym-RL]], [[2507.17842|Shop-R1]], [[2506.00539|ARIA]], [[2504.20997|LLM-PSRL]], [[2504.16078|LLM-Greedy-Agents]], [[2504.03206|CURIO]], [[2408.10899|ARIO]]
@@ -313,7 +313,7 @@ Agents trained via reinforcement learning for multi-turn interactions with envir
 > - [[2510.23038|TIR-Judge]] — LLM judge framework integrating tool-invoked reasoning for reliable multi-step evaluation
 
 **Dynamic Planning & Adaptive Agents** — Agents that dynamically revise plans during execution, adapting to unexpected observations rather than following fixed scripts.
-- [[2607.04162|ACE]], [[2602.21728|Explore-on-Graph]], [[2512.24601|RLMs]], [[2512.09706|CrossHA]], [[2510.09577|Dyna-Mind]], [[2509.01920|DSP-Speculative]], [[2508.20722|rStar2-Agent]], [[2507.19457|GEPA]], [[2507.11988|Aime]], [[2507.11060|ExRec]], [[2507.08664|INoT]], [[2505.16994|R2ec]], [[2203.03485|Self-directed-Exploratory-Planning]]
+- [[2608.01964|LongHorizon-Harness]], [[2607.04162|ACE]], [[2602.21728|Explore-on-Graph]], [[2512.24601|RLMs]], [[2512.09706|CrossHA]], [[2510.09577|Dyna-Mind]], [[2509.01920|DSP-Speculative]], [[2508.20722|rStar2-Agent]], [[2507.19457|GEPA]], [[2507.11988|Aime]], [[2507.11060|ExRec]], [[2507.08664|INoT]], [[2505.16994|R2ec]], [[2203.03485|Self-directed-Exploratory-Planning]]
 
 > [!star] Key Papers
 > - [[2507.11988|Aime]] — ByteDance multi-agent framework overcoming static planning limitations with dynamic plan revision
@@ -432,7 +432,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 - [[2608.03924|ETA]], [[2607.26148|Agentic Embodied Control]], [[2607.23784|ARCHITECT]], [[2607.18060|RoboHarness]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2607.11119|VIA]], [[2607.10350|ABot-AgentOS]], [[2607.05377|Cortex]], [[2607.04426|ACE-Brain-0.5]], [[2606.30632|GROW²]], [[2606.16295|VisualClaw]], [[2606.05395|VASO]], [[2604.20348|BiCICLe]], [[2510.21817|VITA-E]]
 
 **Embodied Simulation, World Engines & Foundational Benchmarks** — Simulated worlds, 3D scene engines, and benchmark environments underpinning embodied multimodal agent research.
-- [[2607.11377|PHILIA]], [[2607.07534|LingBot-World-Infinity]], [[2607.07459|EmbodiedGen V2]], [[2410.06237|BUMBLE]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]], [[1806.07011|VirtualHome]]
+- [[2608.05248|WorldClaw]], [[2607.11377|PHILIA]], [[2607.07534|LingBot-World-Infinity]], [[2607.07459|EmbodiedGen V2]], [[2410.06237|BUMBLE]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]], [[1806.07011|VirtualHome]]
 
 **General Multimodal Vision-Agent Architectures** — Vision-language agents for non-embodiment tasks: image/video understanding, generalized visual search, and domain-specialized reasoning.
 - [[2607.15314|Cura 1T]], [[2602.17558|RetouchIQ]], [[2512.18745|InSight-o3]], [[2512.05111|ARM-Thinker]], [[2511.19524|VideoChat-M1]], [[2511.05271|DeepEyesV2]], [[2505.19486|VLMLight]]

@@ -247,7 +247,7 @@ The architectural revolution that brought attention mechanisms to computer visio
 - [[2603.25744|MuRF]], [[2603.22815|PinPoint]], [[2603.22387|EUPE]], [[2602.08683|OneVision-Encoder]], [[2512.01738|MSPT]], [[2510.23479|MergeMix]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2507.07995|KARL-Eff]], [[2505.23769|TextRegion]], [[2504.03118|NuWa-Eff]], [[2307.09120|LW-PLG-ViT]], [[2205.03436|EdgeViTs]], [[2107.02239|ViX]], [[2104.05704|CCT]]
 
 **Domain Adaptation, Transfer & Interpretability** — Adapting pretrained ViTs to new domains via adapters and prompts, and analyzing what the adapted representations capture.
-- [[2603.22570|CanViT]], [[2601.08499|EfficientFSL]], [[2505.21501|PH-Reg]], [[2505.19985|Structured-ViT-Initialization]], [[2505.17316|Patch-Aligned-Training]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2108.05988|TVT]]
+- [[2608.02124|HAFI-VLM]], [[2603.22570|CanViT]], [[2601.08499|EfficientFSL]], [[2505.21501|PH-Reg]], [[2505.19985|Structured-ViT-Initialization]], [[2505.17316|Patch-Aligned-Training]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2108.05988|TVT]]
 
 > [!star] Key Papers
 > - [[2205.08534|ViT-Adapter]] — Foundational adapter method enabling plain ViTs to handle dense prediction tasks without architectural changes
@@ -288,7 +288,7 @@ New attention patterns, normalization strategies, and structural modifications t
 > - [[2512.24695|Hope]] — Nested Learning reinterprets deep learning as nested multi-level optimization
 
 **Hybrid Architectures** — Combining Transformers with state-space models, recurrence, or looped computation for improved efficiency.
-- [[2607.16051|Loopie]], [[2605.11689|MoE-Configuration-Study]], [[2604.21254|Hyperloop-Transformers]], [[2603.11691|STAIRS-Former]], [[2601.15275|RayRoPE]], [[2512.20856|Nemotron-3]], [[2507.22448|Falcon-H1]], [[2507.12898|Vidar]], [[2507.03285|Memory-Mosaics-v2]], [[2505.16416|Circle-RoPE]], [[2505.05522|CTM]], [[2503.24067|TransMamba]], [[2501.00663|Titans]], [[2405.21060|Mamba-2]], [[2311.12424|Looped-Transformers]]
+- [[2608.05416|SpectraLDS]], [[2607.16051|Loopie]], [[2605.11689|MoE-Configuration-Study]], [[2604.21254|Hyperloop-Transformers]], [[2603.11691|STAIRS-Former]], [[2601.15275|RayRoPE]], [[2512.20856|Nemotron-3]], [[2507.22448|Falcon-H1]], [[2507.12898|Vidar]], [[2507.03285|Memory-Mosaics-v2]], [[2505.16416|Circle-RoPE]], [[2505.05522|CTM]], [[2503.24067|TransMamba]], [[2501.00663|Titans]], [[2405.21060|Mamba-2]], [[2311.12424|Looped-Transformers]]
 
 > [!star] Key Papers
 > - [[2507.22448|Falcon-H1]] — Hybrid-head models integrating parallel Transformer and Mamba blocks; redefines the efficiency-performance frontier
@@ -327,7 +327,7 @@ Learning visual representations without labels — the foundation for data-effic
 - [[2607.05247|LingBot-Vision]], [[2606.04718|CoRe-MoE]], [[2605.29564|VE2VF]], [[2604.09445|AsymLoc]], [[2603.12217|Verifier-Point-Tracking]], [[2602.00937|CLAMP]], [[2506.14754|Sparsh-X]], [[2506.10359|Multi-Suction Pick Success]], [[2502.19374|VFM-LiDAR Registration]], [[2410.24090|Sparsh]]
 
 **General Self-Supervised Learning Theory** — Theoretical and empirical studies of what makes contrastive/self-distillation objectives work and how they scale.
-- [[2605.03517|LDM-SSL]], [[2603.26799|GJE]], [[2603.15553|Bootleg]], [[2506.10159|VCL]], [[2410.10817|Human-Aligned Vision Representations]], [[2406.09294|JEA-Scaling-Study]]
+- [[2608.06174|SO-OPF]], [[2605.03517|LDM-SSL]], [[2603.26799|GJE]], [[2603.15553|Bootleg]], [[2506.10159|VCL]], [[2410.10817|Human-Aligned Vision Representations]], [[2406.09294|JEA-Scaling-Study]]
 
 **Masked Image Modeling** — Self-supervised methods that mask patches of an image and train the model to reconstruct or predict the missing content, learning rich visual representations without labels.
 - [[2603.22953|ClusterSTM]], [[2505.11129|PhiNet-v2]], [[2402.10093|MIM-Refiner]], [[2303.16727|VideoMAE V2]], [[2205.14949|HiViT]], [[2111.09886|SimMIM]], [[2111.06377|MAE]], [[2106.08254|BEiT]]
@@ -470,7 +470,7 @@ Connecting visual and textual representations in a shared embedding space, enabl
 LLMs augmented with visual perception — the backbone for modern VLMs and VLAs. These models bridge language understanding with visual grounding, generation, and action.
 
 **Unified Understanding & Generation VLMs** — Single models that jointly handle multimodal understanding and image/action generation rather than understanding alone.
-- [[2603.25406|MMaDA-VLA]], [[2505.14683|BAGEL]], [[2505.09568|BLIP3-o]]
+- [[2608.05000|PhysMMPT]], [[2603.25406|MMaDA-VLA]], [[2505.14683|BAGEL]], [[2505.09568|BLIP3-o]]
 
 **Instruction-Tuned VLMs** — General-purpose multimodal models trained to follow instructions across vision-language tasks.
 - [[2504.10479|InternVL3]], [[2504.00595|Open-Qwen2VL]], [[2407.07726|PaliGemma]], [[2405.13800|Dense Connector]], [[2404.16821|InternVL 1.5]], [[2403.05525|DeepSeek-VL]], [[2311.07575|SPHINX (Multi-modal Weight Mixing)]], [[2310.03744|LLaVA-1.5]], [[2305.18565|PaLI-X]], [[2305.06500|InstructBLIP]], [[2303.08774|GPT-4]], [[2302.14045|KOSMOS-1]], [[2301.12597|BLIP-2]], [[2210.03347|Pix2Struct]], [[2209.06794|PaLI]], [[2204.14198|Flamingo]], [[2102.02779|VL-T5]]
@@ -584,7 +584,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2502.02013|Layer-by-Layer-Representations]] — Intermediate layers often provide superior downstream representations compared to final layers
 
 **Additional methods** — Papers referenced in this section that don't fit the categories above.
-- [[2507.18074|ASI-ARCH]], [[2507.02092|EBT]], [[2505.09343|DeepSeek-V3]], [[1907.04307|Multilingual USE]], [[1905.11946|EfficientNet]]
+- [[2608.05806|HiLP]], [[2507.18074|ASI-ARCH]], [[2507.02092|EBT]], [[2505.09343|DeepSeek-V3]], [[1907.04307|Multilingual USE]], [[1905.11946|EfficientNet]]
 
 > [!star] Key Papers
 > - [[2507.18074|ASI-ARCH]] — Autonomous system that discovers novel transformer architectures via automated search

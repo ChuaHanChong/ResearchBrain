@@ -220,7 +220,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2501.09686|Large-Reasoning-Models-Survey]] — First systematic survey of RL-based reasoning in LLMs; maps the post-DeepSeek-R1 landscape
 
 **Multimodal, Robotics & Foundational RL Surveys** — Surveys spanning multimodal reasoning, robot learning, and core RL theory/tooling.
-- [[2607.06935|Mathematical Methods of RL]], [[2607.06706|VLA for UAVs and Bimanual Manipulation Review]], [[2603.24517|AVO]], [[2510.12403|Robot-Learning-Tutorial]], [[2510.02665|MLLM-Self-Improvement-Survey]], [[2508.08189|RL-for-Large-Models-Survey]], [[2506.06981|ForageWorld]], [[2505.04921|LMRM-Survey]], [[2504.21277|Reinforced-MLLM-Survey]], [[2504.03151|Multimodal-Reasoning-Survey]], [[2503.14576|SocialJax]], [[2502.08938|exp-a-spiel]], [[2501.02189|VLM-SOTA-Survey]], [[2412.06531|RL-Memory-Taxonomy]], [[2412.05265|RL-Overview]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]]
+- [[2608.02433|SAC-MRAC]], [[2607.06935|Mathematical Methods of RL]], [[2607.06706|VLA for UAVs and Bimanual Manipulation Review]], [[2603.24517|AVO]], [[2510.12403|Robot-Learning-Tutorial]], [[2510.02665|MLLM-Self-Improvement-Survey]], [[2508.08189|RL-for-Large-Models-Survey]], [[2506.06981|ForageWorld]], [[2505.04921|LMRM-Survey]], [[2504.21277|Reinforced-MLLM-Survey]], [[2504.03151|Multimodal-Reasoning-Survey]], [[2503.14576|SocialJax]], [[2502.08938|exp-a-spiel]], [[2501.02189|VLM-SOTA-Survey]], [[2412.06531|RL-Memory-Taxonomy]], [[2412.05265|RL-Overview]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]]
 
 > [!star] Key Papers
 > - [[2412.05265|RL-Overview]] — Sutton's comprehensive modern overview; the definitive reference for RL fundamentals
@@ -371,7 +371,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2605.25313|UWM-JEPA]] — Most novel joint-embedding architecture, replacing vector latents with a density-matrix belief state and a unitary predictor for uncertainty-preserving imagination
 
 **World Model Theory, Control & Sample-Efficient Planning** — Formal generalization results, free-energy/active-inference grounding, and planning algorithms built on world models.
-- [[2605.06732|Training-in-Imagination]], [[2605.01694|Latent-State-Design-WM]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2510.21232|Confusing-World-Models]], [[2510.18135|World-in-World]], [[2506.01622|General-Agents-World-Models]], [[2501.10100|RWM]], [[2310.16828|TD-MPC2]], [[2206.02072|VSRL]], [[2203.04955|TD-MPC]], [[2112.01506|REVI]], [[2106.02039|Trajectory-Transformer]], [[2103.10369|RH-UCRL]], [[1911.10601|Scaling-Active-Inference]], [[1805.12114|PETS]]
+- [[2608.02993|InK]], [[2605.06732|Training-in-Imagination]], [[2605.01694|Latent-State-Design-WM]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2510.21232|Confusing-World-Models]], [[2510.18135|World-in-World]], [[2506.01622|General-Agents-World-Models]], [[2501.10100|RWM]], [[2310.16828|TD-MPC2]], [[2206.02072|VSRL]], [[2203.04955|TD-MPC]], [[2112.01506|REVI]], [[2106.02039|Trajectory-Transformer]], [[2103.10369|RH-UCRL]], [[1911.10601|Scaling-Active-Inference]], [[1805.12114|PETS]]
 
 > [!star] Key Papers
 > - [[2506.01622|General-Agents-World-Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
@@ -474,7 +474,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2506.21495|Offline-Online-RL-for-LLMs]] — Shows DPO adapted to online or hybrid settings matches full RL performance at lower cost
 
 **LLM/RLHF-Oriented Value & Advantage Methods** — Value and advantage estimation designed specifically for LLM RL post-training and reasoning.
-- [[2606.20008|VIMPO]], [[2604.28005|KAE]], [[2604.22074|CIR/SR-Reasoning]], [[2604.14265|VGF]], [[2507.20673|GMPO]], [[2505.20686|A*-PO]], [[2505.15311|TBRM]], [[2504.19599|GVPO]], [[2504.05118|VAPO]], [[2502.20548|Q-sharp]], [[2502.16944|DVPO]]
+- [[2608.03068|CVPO]], [[2606.20008|VIMPO]], [[2604.28005|KAE]], [[2604.22074|CIR/SR-Reasoning]], [[2604.14265|VGF]], [[2507.20673|GMPO]], [[2505.20686|A*-PO]], [[2505.15311|TBRM]], [[2504.19599|GVPO]], [[2504.05118|VAPO]], [[2502.20548|Q-sharp]], [[2502.16944|DVPO]]
 
 > [!star] Key Papers
 > - [[2504.19599|GVPO]] — Zero-sum-weight gradient design gives a provable unique convergence guarantee; scores 20.72 on AIME2024 versus GRPO's 14.79 with strong hyperparameter robustness
@@ -536,7 +536,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2505.11081|ShiQ]] — Modified Bellman equations bring token-wise off-policy Q-learning back to LLM fine-tuning, matching on-policy performance on UltraFeedback and BFCL-V3 without new sampling
 
 **VLA & Robotics-Applied Off-Policy Methods** — Off-policy and sample-efficient RL applied to vision-language-action and embodied control.
-- [[2606.05555|MR.Q]], [[2606.02313|VLA-Aerial-Nav-GRPO]], [[2605.28527|VLA-Value-Probing]], [[2605.19282|Pion]], [[2605.14779|CPQL]], [[2605.12236|TMRL]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2605.00159|E²DT]], [[2603.16860|DreamPlan]], [[2603.12087|QAvatar]], [[2510.06710|RLinf-VLA]]
+- [[2608.05989|OG-SPR]], [[2606.05555|MR.Q]], [[2606.02313|VLA-Aerial-Nav-GRPO]], [[2605.28527|VLA-Value-Probing]], [[2605.19282|Pion]], [[2605.14779|CPQL]], [[2605.12236|TMRL]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2605.00159|E²DT]], [[2603.16860|DreamPlan]], [[2603.12087|QAvatar]], [[2510.06710|RLinf-VLA]]
 
 > [!star] Key Papers
 > - [[2605.03065|OGPO]] — Bi-level MDP decouples off-policy critic learning from on-policy denoising updates, full-finetuning generative control policies with roughly 10x fewer environment steps than on-policy baselines
@@ -650,7 +650,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.03335|Absolute-Zero]] — Zero-data RL: model proposes its own problems, solves them, uses verifiable answers as reward — no human data at all
 
 **Self-Distillation & On-Policy Distillation** — Distilling a model's own on-policy rollouts back into itself for self-improvement.
-- [[2605.11182|On-Policy-Distillation-Study]], [[2604.27083|CoPD]], [[2604.03128|Self-Distilled-RLVR]], [[2604.03098|Self-Guide]], [[2602.12275|OPCD]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]]
+- [[2608.06296|U-OPSD]], [[2608.04788|OCSD]], [[2605.11182|On-Policy-Distillation-Study]], [[2604.27083|CoPD]], [[2604.03128|Self-Distilled-RLVR]], [[2604.03098|Self-Guide]], [[2602.12275|OPCD]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]]
 
 > [!star] Key Papers
 > - [[2601.18734|OPSD]] — Foundational on-policy self-distillation recipe, using the same model as teacher (conditioned on ground truth) and student on its own rollouts; matches GRPO at 4-8x higher token efficiency
@@ -1245,7 +1245,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2603.18336|ManiDreams]] — World model generates diverse manipulation scenarios; dream-based RL for dexterous tasks
 
 **MPC + RL for Control** — Combining Model Predictive Control with learned RL policies for structured, physically-grounded control, including runtime safety filters and control barrier functions.
-- [[2607.23930|FAOC]], [[2607.20665|DGPPO]], [[2607.14488|Acc-CBF-QP]], [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2607.07252|Safe RL via MPC]], [[2607.02472|Quad APG]], [[2607.01281|WaveLander]], [[2607.00066|Endovascular RL-NMPC]], [[2606.31562|Stabilization Learning]], [[2606.24039|TurboMPC]], [[2604.21456|TSMC]], [[2603.14469|PIPER]], [[2510.06179|DiffMPC]], [[2507.21533|MPAIL]], [[2505.20829|Unified-Force-Position-Control]], [[2504.06662|RAMBO]], [[2502.02133|MPC-RL-Survey]], [[2310.10509|Online Admittance Residual Learning]], [[2309.15462|DTC]], [[1504.00702|Visuomotor GPS]]
+- [[2608.04732|Integrated-Safe-AC]], [[2607.23930|FAOC]], [[2607.20665|DGPPO]], [[2607.14488|Acc-CBF-QP]], [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2607.07252|Safe RL via MPC]], [[2607.02472|Quad APG]], [[2607.01281|WaveLander]], [[2607.00066|Endovascular RL-NMPC]], [[2606.31562|Stabilization Learning]], [[2606.24039|TurboMPC]], [[2604.21456|TSMC]], [[2603.14469|PIPER]], [[2510.06179|DiffMPC]], [[2507.21533|MPAIL]], [[2505.20829|Unified-Force-Position-Control]], [[2504.06662|RAMBO]], [[2502.02133|MPC-RL-Survey]], [[2310.10509|Online Admittance Residual Learning]], [[2309.15462|DTC]], [[1504.00702|Visuomotor GPS]]
 
 > [!star] Key Papers
 > - [[1504.00702|Visuomotor GPS]] — foundational: first to fold trajectory optimization (linear-Gaussian iLQG, MPC's local cousin) into an RL loop training an end-to-end deep policy, establishing the guided-policy-search template this group builds on
@@ -1304,7 +1304,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.11967|Annotation-Bootstrapping]] — Recasts visual pre-training as RL; learns annotation policies that improve downstream performance
 
 **Offline RL Algorithms & Theory** — Core offline RL algorithms addressing distribution shift, partial observability, and static-buffer learning.
-- [[2606.17551|RQL]], [[2603.22201|NMR]], [[2505.23871|ADG]], [[2505.22866|SORL]], [[2505.22151|Oryx]], [[2505.18595|MisoDICE]], [[2505.15418|GPO-Partial-Obs]], [[2505.14975|SAW]], [[2505.08078|Batch-Online-RL-Study]], [[2504.11453|Clean-Slate-Offline-RL]]
+- [[2608.01205|ReBRAC-v2]], [[2606.17551|RQL]], [[2603.22201|NMR]], [[2505.23871|ADG]], [[2505.22866|SORL]], [[2505.22151|Oryx]], [[2505.18595|MisoDICE]], [[2505.15418|GPO-Partial-Obs]], [[2505.14975|SAW]], [[2505.08078|Batch-Online-RL-Study]], [[2504.11453|Clean-Slate-Offline-RL]]
 
 > [!star] Key Papers
 > - [[2606.17551|RQL]] — foundational flow-reversal technique solving the curse-of-horizon in off-policy value learning from static buffers, highest average score across 50 OGBench tasks against 18 baselines

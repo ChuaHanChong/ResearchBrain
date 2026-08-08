@@ -276,7 +276,7 @@ Extending CoT to jointly reason over vision and language, producing interleaved 
 - [[2607.02490|VRRL]], [[2604.21396|VG-CoT]], [[2601.21634|RSGround-R1]], [[2507.00748|Multi-Image-Grounding-RL]], [[2506.11991|VGR]], [[2506.09965|VILASR]], [[2506.04277|RSVP]], [[2505.14362|DeepEyes]], [[2505.14231|UniVG-R1]], [[2503.12799|GCoT]], [[2503.06520|Seg-Zero]]
 
 **Tool-Augmented & Region-Search Grounding** — Training-free or tool-augmented methods that ground reasoning via zoom, detection, segmentation, or region-search modules.
-- [[2604.03016|Agentic-MME]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2603.22815|PinPoint]], [[2603.17729|SARE]], [[2602.02004|ClueTracer]], [[2512.24297|FIGR]], [[2512.15160|EagleVision]], [[2506.07235|VTS-V]], [[2501.05452|ReFocus]], [[2411.16044|ZoomEye]], [[2410.16400|VipAct]], [[2403.12966|CoS]], [[2403.12488|DetToolChain]], [[2402.04236|CogCoM]]
+- [[2608.04759|Trace-Verify-Correct]], [[2604.03016|Agentic-MME]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2603.22815|PinPoint]], [[2603.17729|SARE]], [[2602.02004|ClueTracer]], [[2512.24297|FIGR]], [[2512.15160|EagleVision]], [[2506.07235|VTS-V]], [[2501.05452|ReFocus]], [[2411.16044|ZoomEye]], [[2410.16400|VipAct]], [[2403.12966|CoS]], [[2403.12488|DetToolChain]], [[2402.04236|CogCoM]]
 
 > [!star] Key Papers
 > - [[2403.12966|CoS]] — Chain-of-Spot: interactive reasoning that attends to relevant image regions at each step
@@ -302,7 +302,7 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 - [[2605.02735|Silenced-Visual-Latents]], [[2604.18486|OneVL]], [[2602.05359|HIVE]], [[2601.10129|LaViT]], [[2601.09708|Fast-ThinkAct]], [[2601.06803|Laser]], [[2601.05877|iReasoner]], [[2601.05248|LaST0]], [[2512.21218|LIVR]], [[2512.16584|SkiLa]], [[2510.23925|LaCoT]], [[2510.12603|IVT-LR]], [[2509.24251|LVR]]
 
 **Text Latent Reasoning** — Continuous latent-space reasoning for text-only LLMs, decoupled from visual perception.
-- [[2606.16222|LTF]], [[2605.12466|Attractor-Models]], [[2604.22709|Abstract-CoT]], [[2603.04948|Nabla-Reasoner]], [[2602.10520|RLTT]], [[2505.13308|LATENTSEEK]], [[2505.12514|COCONUT]], [[2505.11484|SoftCoT++]], [[2502.21074|CODI]], [[2502.03275|Token-Assorted]], [[2412.13171|CCoT]], [[2412.08821|LCM]], [[2412.06769|Coconut]], [[2311.01460|Implicit CoT]]
+- [[2608.05806|HiLP]], [[2606.16222|LTF]], [[2605.12466|Attractor-Models]], [[2604.22709|Abstract-CoT]], [[2603.04948|Nabla-Reasoner]], [[2602.10520|RLTT]], [[2505.13308|LATENTSEEK]], [[2505.12514|COCONUT]], [[2505.11484|SoftCoT++]], [[2502.21074|CODI]], [[2502.03275|Token-Assorted]], [[2412.13171|CCoT]], [[2412.08821|LCM]], [[2412.06769|Coconut]], [[2311.01460|Implicit CoT]]
 
 > [!star] Key Papers
 > - [[2412.06769|Coconut]] — Meta FAIR's Chain of Continuous Thought: LLM reasons in continuous latent space, outperforming token-based CoT on multi-step problems
@@ -310,7 +310,7 @@ Moving reasoning from explicit token chains into continuous latent spaces, enabl
 > - [[2505.11484|SoftCoT++]] — First framework for scalable test-time reasoning in continuous latent space with speculative decoding
 
 **Depth-Recurrent & Looped Architectures** — Models that increase reasoning depth through weight-sharing loops or recurrence, decoupling compute from parameter count.
-- [[2607.16051|Loopie]], [[2606.18206|Fixed-Point-Reasoners]], [[2604.11791|Looped-Reasoning-Mechanistic-Analysis]], [[2604.07822|Recurrent-Depth-Reasoning]], [[2602.07845|RD-VLA]], [[2602.02156|LoopViT]], [[2511.16886|DIS]], [[2510.25741|Ouro]], [[2510.04871|TRM]], [[2510.00219|Thoughtbubbles]], [[2507.02199|Huginn-Latent-CoT]], [[2505.05522|CTM]], [[2502.17416|Looped-Transformers]], [[2502.05171|Huginn]]
+- [[2608.01534|R-Qwen]], [[2607.16051|Loopie]], [[2606.18206|Fixed-Point-Reasoners]], [[2604.11791|Looped-Reasoning-Mechanistic-Analysis]], [[2604.07822|Recurrent-Depth-Reasoning]], [[2602.07845|RD-VLA]], [[2602.02156|LoopViT]], [[2511.16886|DIS]], [[2510.25741|Ouro]], [[2510.04871|TRM]], [[2510.00219|Thoughtbubbles]], [[2507.02199|Huginn-Latent-CoT]], [[2505.05522|CTM]], [[2502.17416|Looped-Transformers]], [[2502.05171|Huginn]]
 
 > [!star] Key Papers
 > - [[2502.05171|Huginn]] — Depth-recurrent Transformer that matches larger models through adaptive compute via loop iterations
@@ -375,7 +375,7 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 > - [[2507.19468|DINO-world]] — Efficient generalist video world model from Meta FAIR using frozen DINOv2 encoder
 
 **Multi-Agent & Theory of Mind** — Systems where multiple reasoning agents collaborate, and models that reason about other agents' beliefs.
-- [[2607.25327|BAIT]], [[2607.25047|XR Mediation Layer]], [[2607.20289|Courteous Anticipatory Planning]], [[2607.06990|Closed-Loop-Multi-Robot-Manipulation-Framework]], [[2607.05705|IMR]], [[2604.24881|Latent-Agents]], [[2603.00142|ToM-Multi-Agent-Eval]], [[2602.20687|NativeEmbodied]], [[2602.08236|AVIC]], [[2602.08234|SkillRL]], [[2601.05407|HINT]], [[2507.07969|Q-chunking]], [[2505.22954|DGM]], [[2504.13898|SHREC]], [[2409.10106|Industry-6.0]]
+- [[2608.04309|Hidden-Goal-HRC]], [[2607.25327|BAIT]], [[2607.25047|XR Mediation Layer]], [[2607.20289|Courteous Anticipatory Planning]], [[2607.06990|Closed-Loop-Multi-Robot-Manipulation-Framework]], [[2607.05705|IMR]], [[2604.24881|Latent-Agents]], [[2603.00142|ToM-Multi-Agent-Eval]], [[2602.20687|NativeEmbodied]], [[2602.08236|AVIC]], [[2602.08234|SkillRL]], [[2601.05407|HINT]], [[2507.07969|Q-chunking]], [[2505.22954|DGM]], [[2504.13898|SHREC]], [[2409.10106|Industry-6.0]]
 
 > [!star] Key Papers
 > - [[2603.00142|ToM-Multi-Agent-Eval]] — Evaluation of multi-agent systems augmented with Theory of Mind, verified by symbolic logic
@@ -418,10 +418,10 @@ LLMs as agents that interleave reasoning with actions -- the bridge to embodied 
 > - [[2506.22992|MARBLE]] — Multi-step multimodal spatial reasoning benchmark from EPFL and ETH Zurich
 
 **Multi-Robot & Multi-Agent Coordination Planning** — Trajectory planning and coordination across teams of robots: conflict-based search, swarm coordination, and multi-agent motion planning.
-- [[2607.27627|Arm2Air]], [[2607.20992|DMBD]], [[2607.20772|Socially Consistent Multi-Robot Navigation]], [[2607.14781|Simultaneous Arrival Control]], [[2607.13403|E-PDT]], [[2607.12423|MDOC]], [[2607.01029|AMBUSH]], [[2607.00591|SCALE]], [[2607.00444|ST-GCS]], [[2607.00156|DIVE]], [[2606.30893|CIMORL]], [[2606.30694|DSIP]], [[2606.29372|SPACE]], [[2604.25284|UGV-UAV Cooperative Partitioning]]
+- [[2608.01636|KLGame+]], [[2607.27627|Arm2Air]], [[2607.20992|DMBD]], [[2607.20772|Socially Consistent Multi-Robot Navigation]], [[2607.14781|Simultaneous Arrival Control]], [[2607.13403|E-PDT]], [[2607.12423|MDOC]], [[2607.01029|AMBUSH]], [[2607.00591|SCALE]], [[2607.00444|ST-GCS]], [[2607.00156|DIVE]], [[2606.30893|CIMORL]], [[2606.30694|DSIP]], [[2606.29372|SPACE]], [[2604.25284|UGV-UAV Cooperative Partitioning]]
 
 **Active Perception & Next-Best-View Planning** — Viewpoint and manipulation-action selection that maximizes information gain (Shannon mutual information, POMDP belief updates) for active 3D reconstruction and mapping under occlusion or motion uncertainty.
-- [[2605.17593|Predictive NBV]], [[2504.21067|GauSS-MI]], [[2502.20606|CNABU]]
+- [[2608.02304|TRACE-Ergodic-Reconstruction]], [[2605.17593|Predictive NBV]], [[2504.21067|GauSS-MI]], [[2502.20606|CNABU]]
 
 **MPC & Trajectory Optimization** — Model-predictive control, MPPI, and optimization-based single-robot trajectory planning.
 - [[2607.26370|Self-Adaptive Learning and MPC]], [[2607.24959|IFT Contact Differentiation]], [[2607.21058|CMA-TCN-Transformer]], [[2607.18362|FARO]], [[2607.14725|BridgeFlow]], [[2607.14455|MD-COAS]], [[2607.14424|ConFlow]], [[2607.14245|ITAC]], [[2607.10842|D-SafeMPC]], [[2607.06123|MP-MPPI]], [[2607.05544|Control-Aware-Optimal-Trajectory-Planning]], [[2607.03987|PAKR]], [[2607.01574|MR-NMPC]], [[2607.01133|DONUT-NLL]], [[2607.00776|FCP-MPC]], [[2607.00215|ELMP]], [[2607.00065|Zeta*]], [[2606.31889|Tractor-Trailer-NMPC-Path-Tracking]], [[2606.31562|Stabilization-Learning]], [[2606.30940|Compressed-Latent-Motion-Planning]], [[2605.28202|NFG]], [[2605.09465|Hydraulic Excavator Grading Control]], [[2603.02642|cuNRTO]], [[2602.22088|Force Policy]], [[2602.06868|CBO]], [[2602.00923|SanD-Planner]], [[2509.22421|Bimanual-Tactile-Reactive-MPC]], [[2401.07369|CoVO-MPC]]

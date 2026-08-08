@@ -186,7 +186,7 @@ The eight lanes divide on **what diffusion is being applied to**. **Image genera
 Dedicated architectures for high-quality image synthesis, editing, and multimodal generation that bridge pre-trained language models with visual output. These systems focus on the engineering challenge of getting LLMs to produce, modify, and control visual content.
 
 **Foundational & Classic Diffusion Architectures** — Canonical latent and transformer diffusion backbones for image and video synthesis, alongside the early wave of customization and control methods that first made pretrained T2I/T2V diffusion models steerable without full retraining, plus the training-data infrastructure that scaled large-scale T2I pretraining.
-- [[2607.08770|LongE2V]], [[2408.06072|CogVideoX]], [[2406.17758|MotionBooth]], [[2406.16863|FreeTraj]], [[2312.00777|VideoBooth]], [[2311.17982|VBench]], [[2310.20700|SEINE]], [[2308.06571|ModelScopeT2V]], [[2307.04725|AnimateDiff]], [[2307.01952|SDXL]], [[2306.01872|Video Adapter]], [[2304.01186|Follow-Your-Pose]], [[2212.11565|Tune-A-Video]], [[2212.09748|DiT]], [[2210.02303|Imagen Video]], [[2112.10752|Latent Diffusion Models]], [[2111.02114|LAION-400M]]
+- [[2608.05976|Diff-VF]], [[2607.08770|LongE2V]], [[2408.06072|CogVideoX]], [[2406.17758|MotionBooth]], [[2406.16863|FreeTraj]], [[2312.00777|VideoBooth]], [[2311.17982|VBench]], [[2310.20700|SEINE]], [[2308.06571|ModelScopeT2V]], [[2307.04725|AnimateDiff]], [[2307.01952|SDXL]], [[2306.01872|Video Adapter]], [[2304.01186|Follow-Your-Pose]], [[2212.11565|Tune-A-Video]], [[2212.09748|DiT]], [[2210.02303|Imagen Video]], [[2112.10752|Latent Diffusion Models]], [[2111.02114|LAION-400M]]
 
 > [!star] Key Papers
 > - [[2112.10752|Latent Diffusion Models]] — Runs diffusion in a compressed autoencoder latent space instead of pixel space; the architecture behind Stable Diffusion and the efficiency backbone of nearly all modern T2I systems
@@ -324,7 +324,7 @@ Foundational work on how diffusion models learn representations, the theoretical
 > - [[2402.11337|Reconstruction vs Perception]] — Counterpoint showing pixel-reconstruction objectives alone yield uninformative features for perception, motivating explicit representation-alignment losses like REPA
 
 **Latent Space Design** — Principled methods for learning optimal latent representations that diffusion models operate in, controlling information content and generation quality.
-- [[2608.01306|SPAE]], [[2607.21585|EFM]], [[2607.01642|MrFlow]], [[2605.16147|Register Guidance]], [[2604.16044|DCW]], [[2602.17270|UL]], [[2602.07588|PVB]], [[2505.13447|MeanFlow]], [[2503.00653|DC-MPC]], [[2410.12557|Shortcut Models]], [[2312.08762|DPMM-CoT]]
+- [[2608.05811|EG-FM]], [[2608.01306|SPAE]], [[2607.21585|EFM]], [[2607.01642|MrFlow]], [[2605.16147|Register Guidance]], [[2604.16044|DCW]], [[2602.17270|UL]], [[2602.07588|PVB]], [[2505.13447|MeanFlow]], [[2503.00653|DC-MPC]], [[2410.12557|Shortcut Models]], [[2312.08762|DPMM-CoT]]
 
 > [!star] Key Papers
 > - [[2602.17270|UL]] — Google DeepMind's Unified Latents framework; principled regularization achieves SOTA on ImageNet-512 and Kinetics-600
@@ -621,7 +621,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2405.15056|ElastoGen]] — 4D generative elastodynamics via convolution-like local quadratic approximation + Neural Material Module; **0.98** correlation with FEM ground truth across hyperelastic materials
 
 **Material and Elastic Physics** — Recover and edit material properties (elasticity, plasticity, fluid, granular) from video or single images, then re-simulate under new forces.
-- [[2607.20653|PhysCoRe]], [[2607.13451|PGRD]], [[2603.23973|SLAT-Phys]], [[2504.18719|Vysics]], [[2503.17973|PhysTwin]], [[2411.11343|TVML]], [[2410.08257|NeuMA]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2404.13026|PhysDreamer]], [[2304.14369|NCLaw]]
+- [[2608.06164|BendTwin]], [[2607.20653|PhysCoRe]], [[2607.13451|PGRD]], [[2603.23973|SLAT-Phys]], [[2504.18719|Vysics]], [[2503.17973|PhysTwin]], [[2411.11343|TVML]], [[2410.08257|NeuMA]], [[2406.04338|Physics3D]], [[2406.01476|DreamPhysics]], [[2404.13026|PhysDreamer]], [[2304.14369|NCLaw]]
 
 > [!star] Key Papers
 > - [[2503.17973|PhysTwin]] — Single-image-to-physical-twin pipeline; estimates material parameters and rigging that re-simulate under arbitrary forces

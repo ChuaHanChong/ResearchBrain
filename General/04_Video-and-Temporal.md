@@ -187,7 +187,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2112.01526|MViTv2]] — Refined pooling mechanism and added decomposed relative position embeddings; strong on both classification and detection
 
 **JEPA & Predictive World-Model Pretraining** — Self-supervised video pretraining that learns latent, predictive representations in the JEPA lineage, aimed at world-model-style downstream control and physics understanding.
-- [[2607.08436|EgoWAM]], [[2605.22629|H-Flow]], [[2605.15618|V-JEPA-Robustness-Study]], [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA-2.1]], [[2602.11832|JEPA-VLA]], [[2507.19468|DINO-world]], [[2506.09985|V-JEPA-2]], [[2505.11129|PhiNet-v2]], [[2502.11831|V-JEPA (Intuitive Physics)]]
+- [[2608.05523|HERA]], [[2607.08436|EgoWAM]], [[2605.22629|H-Flow]], [[2605.15618|V-JEPA-Robustness-Study]], [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA-2.1]], [[2602.11832|JEPA-VLA]], [[2507.19468|DINO-world]], [[2506.09985|V-JEPA-2]], [[2505.11129|PhiNet-v2]], [[2502.11831|V-JEPA (Intuitive Physics)]]
 
 > [!star] Key Papers
 > - [[2506.09985|V-JEPA-2]] — Self-supervised model trained on 1M+ hours of video; learned world model enables zero-shot robotic control via MPC
@@ -203,7 +203,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2504.15271|Eagle-2.5]] — Efficient 8B model processing 512 video frames; achieves 72.4% on Video-MME, rivaling 72B+ models
 
 **Efficient & Grounded Video-Language Understanding** — Token-compression, streaming-efficiency, and region/pixel-grounded video-language methods.
-- [[2606.03920|VSTAT]], [[2604.02317|SIMPLESTREAM]], [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2512.17012|4D-RGPT]], [[2507.04590|VLM2Vec-V2]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2412.06224|Uni-NaVid]], [[2405.13800|Dense Connector]]
+- [[2608.03918|EcoFrame]], [[2606.03920|VSTAT]], [[2604.02317|SIMPLESTREAM]], [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]], [[2512.17012|4D-RGPT]], [[2507.04590|VLM2Vec-V2]], [[2506.22880|DeSa2VA]], [[2506.16691|LaVi]], [[2506.10967|CDPruner]], [[2505.22654|VScan]], [[2504.16072|DAM]], [[2412.06224|Uni-NaVid]], [[2405.13800|Dense Connector]]
 
 > [!star] Key Papers
 > - [[2504.16072|DAM]] — Region-level video captioning via focal prompts; SOTA across 7 benchmarks
@@ -333,7 +333,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2603.18524|3DreamBooth]] — 3D-consistent subject-driven video generation; Chamfer Distance of 0.0177
 
 **Interactive & Streaming Video Generation (Game/World Synthesis)** — Dedicated architectures for interactive, streaming, or game/world-synthesis video generation.
-- [[2607.15038|Wan-Streamer v0.3]], [[2607.04443|Wan-Streamer v0.2]], [[2605.13724|AnyFlow]], [[2605.02641|Mamoda2.5]], [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.17051|Astrolabe]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2512.06674|RunawayEvil]], [[2510.08131|Motion-Controllable-Video-Diffusion]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2502.02492|VideoJAM]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The-Matrix]], [[2407.08737|VADER]]
+- [[2608.05070|HelloWorld]], [[2607.15038|Wan-Streamer v0.3]], [[2607.04443|Wan-Streamer v0.2]], [[2605.13724|AnyFlow]], [[2605.02641|Mamoda2.5]], [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.17051|Astrolabe]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2512.06674|RunawayEvil]], [[2510.08131|Motion-Controllable-Video-Diffusion]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2502.02492|VideoJAM]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The-Matrix]], [[2407.08737|VADER]]
 
 > [!star] Key Papers
 > - [[2512.09924|ReViSE]] — Reason-informed video editing via self-reflective learning; +32% on RVE-Bench
@@ -421,7 +421,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2510.08398|VideoVerse]] — Tests "world model capability" via hidden-semantics prompts; reveals open-vs-closed-source gap on Mechanics/Interaction/Material dimensions even when basic T2V is comparable
 
 **Embodied, Multimodal & Domain-Specific Physics Benchmarks** — Embodied, multimodal (audio/tactile/hand-object), or domain-specific physics benchmarks that don't fit the generic T2V-evaluation mold.
-- [[2606.24256|TailOR]], [[2606.04811|Dream.exe]], [[2602.13294|VisPhyWorld]], [[2602.06033|VLM-Intuitive-Physics]], [[2601.15282|Embodied-World-Video-Gen-Bench]], [[2512.12756|FysicsWorld]], [[2512.06963|VideoVLA]], [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.10975|GenWorld]], [[2506.00022|PHYSICS-Dataset]], [[2505.24182|MVPBench]], [[2505.22566|Universal-Visuo-Tactile]], [[2503.23715|HOIGen-1M]]
+- [[2608.02150|PhyCheck]], [[2606.24256|TailOR]], [[2606.04811|Dream.exe]], [[2602.13294|VisPhyWorld]], [[2602.06033|VLM-Intuitive-Physics]], [[2601.15282|Embodied-World-Video-Gen-Bench]], [[2512.12756|FysicsWorld]], [[2512.06963|VideoVLA]], [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.10975|GenWorld]], [[2506.00022|PHYSICS-Dataset]], [[2505.24182|MVPBench]], [[2505.22566|Universal-Visuo-Tactile]], [[2503.23715|HOIGen-1M]]
 
 > [!star] Key Papers
 > - [[2512.12756|FysicsWorld]] — Unified full-modality benchmark for any-to-any (image+video+audio+text) understanding/generation/reasoning; CMCS strategy filters out unimodal shortcuts
@@ -443,7 +443,7 @@ Synthesizing human and robot motion — bridging video understanding with physic
 > - [[2603.19227|MoTok]] — Diffusion-based discrete motion tokenizer decoupling semantics from kinematics; FID from 0.061 to 0.029
 
 **Motion Prediction & Flow** — Autoregressive and flow-based methods for predicting future motion trajectories and bridging video generation with 3D object manipulation.
-- [[2607.24493|KAI]], [[2604.00416|EgoNav]], [[2512.24766|Dream2Flow]], [[2512.22688|ARFM]], [[2409.19499|FastUMI]], [[2409.16283|Gen2Act]], [[2312.07531|WHAM]], [[2304.08488|VRB]], [[2204.13662|ARCTIC]]
+- [[2608.03379|PRFM]], [[2607.24493|KAI]], [[2604.00416|EgoNav]], [[2512.24766|Dream2Flow]], [[2512.22688|ARFM]], [[2409.19499|FastUMI]], [[2409.16283|Gen2Act]], [[2312.07531|WHAM]], [[2304.08488|VRB]], [[2204.13662|ARCTIC]]
 
 > [!star] Key Papers
 > - [[2512.22688|ARFM]] — Autoregressive flow matching as a generalized framework for probabilistic motion prediction
