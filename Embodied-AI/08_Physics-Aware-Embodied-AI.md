@@ -385,6 +385,7 @@ The common pattern here is the simulator as the *inner loop* of an optimizer: an
 
 Reconstruct or learn the physics substrate; train policies against it. The simulator is the *destination* of learned dynamics rather than an external verifier.
 
+- **[[2608.06164|BendTwin]]** — Extends [[2503.17973|PhysTwin]]'s spring-mass digital twin with explicit ==bending stiffness + viscous bending damping== over local node triplets (not just axial springs), stabilizing reconstruction when the physical graph is sparse; **19.0%** lower Chamfer Distance on reconstruction (**26.5%** at 0.05 sampling ratio) and **16.8%** lower on future prediction.
 - **[[2607.13451|PGRD]]** — ==Physics-Guided Residual Dynamics==: an optimized ==spring-mass== backbone plus a ==PTv3==-encoded net predicting ==velocity-based residual corrections==; lowest 3D-tracking error across **6** deformable objects vs Diff. Spring-Mass/PGND, **8/10** vs **2/10** MPPI cable-rerouting success — extends [[1903.11239|TossingBot]]'s residual-physics recipe to deformable twins.
 - **[[2607.07136|PINSTT]]** — A ==physics-informed neural network (PINN)== synthesizes ==spatiotemporal tubes== for full-class STL tasks, paired with a ==two-stage approximation-free control law== respecting input constraints via ==Lipschitz-continuity== guarantees; **3.17 μsec** synthesis (omnidirectional robot), **5.42 μsec** (Franka), validated on quadrotor + multi-agent hardware.
 - **[[2607.06824|CaLiSym]]** — Embeds a robot's state + interaction ==ports== (actuation, contact) into a higher-dim ==canonical phase space== where learned dynamics stay exactly ==symplectic== (**GR-SYMPNET**/**GRB-SYMPNET**), extending geometry-preserving learning to non-conservative systems; **69.5%** OOD rollout-error cut on a double pendulum, gains on real quadrotor + ANYmal quadruped.
@@ -467,8 +468,9 @@ Sampling-based and predictive controllers (MPPI, MPC) plan against an explicit d
 
 ### 5. Physics-Aware Reasoning
 
-Physical reasoning sits one level above physical generation: the model must *talk about* physics consistently, not just produce physics-compliant pixels. This section is single-paper because [[2503.15558|Cosmos-Reason1]] is currently the only published WAM-scale physics-reasoning foundation model — the sub-section will split as the field grows.
+Physical reasoning sits one level above physical generation: the model must *talk about* physics consistently, not just produce physics-compliant pixels. Two very different mechanisms land here — a trained foundation model that internalizes physics via SFT→RL, and a training-free agent that reconstructs an explicit, executable physics simulation from the video itself.
 
+- **[[2608.04575|PhysMind]]** — Training-free: converts video into an ==executable 3D physical world== via ==analytic continuous-time system identification==, letting a VLM agent query simulated rollouts instead of reasoning from pixels; **72.55%** CLEVRER accuracy (**+38.23pp** over same-backbone CoT), largest gains on counterfactual queries (**+53.95pp**).
 - **[[2503.15558|Cosmos-Reason1]]** — A multi-modal foundation model trained jointly on ==physical commonsense== (object permanence, material properties, forces) and ==embodied reasoning== (planning under physical constraints); bridges video-WAMs and reasoning VLAs, lifting physics from pixel-level losses to language-level reasoning at WAM scale; ==SFT→RL==: **60.2%** PC / **63.7%** ER (56B).
 
 **Physics-Aware Reasoning — Decision Matrix**
@@ -476,6 +478,7 @@ Physical reasoning sits one level above physical generation: the model must *tal
 | If you need physics enforced at the level of... | Reach for... |
 |---|---|
 | Language reasoning ("the ice melts before I carry it") | [[2503.15558\|Cosmos-Reason1]] (physical commonsense + embodied reasoning) |
+| Training-free simulation-grounded reasoning | [[2608.04575\|PhysMind]] (executable world from video, no fine-tuning) |
 | Pixel / video output looking physical | Explicit physics losses (§3) |
 | Plan execution against true dynamics | Physics-reasoning-augmented planning (§7.3) |
 | Verified consequences before committing | External simulator coupling (§4) |
@@ -484,6 +487,7 @@ Physical reasoning sits one level above physical generation: the model must *tal
 
 > [!star] Key Papers
 > - [[2503.15558|Cosmos-Reason1]] — Lifts physics from pixel-level losses to language-level reasoning; physical commonsense + embodied reasoning at WAM scale
+> - [[2608.04575|PhysMind]] — The training-free counterpart: no fine-tuning, reasoning grounded in an explicit executable physics simulation reconstructed from the video itself
 
 ^key-papers-5
 
@@ -502,6 +506,7 @@ You can't optimize what you can't measure. Four benchmarks define current physic
 
 Benchmarks that test whether generated video obeys physics across a diverse set of scripted scenes. The dominant evaluation tier — most published numbers cite these.
 
+- **[[2608.02150|PhyCheck]]** — A ==fine-grained, evidence-grounded VQA== dataset of **6,399** videos and **69,825** QA pairs spanning six physical-law categories, pairing coarse compliance questions with visual-evidence-grounded probes; Video-LLMs average **~60%** accuracy, fine-tuning lifts Qwen2.5-VL to **81.00%** — exposes a bias toward judging "compliant" over "violated."
 - **[[2604.09415|PhysInOne]]** — A ==synthetic dataset== of **2M** videos across **153,810** 3D scenes and **71** phenomena (mechanics/optics/fluid/magnetism), multi-engine simulated (Chaos Physics/SPH/MPM) with full 3D/material ground truth; SFT lifts SVD's Physical Motion Fidelity **2.75→3.15**, exposing a sharp novel-viewpoint generalization gap.
 - **[[2606.24256|TailOR]]** — A benchmark of ==Regular / Unconventional / Impossible== tool-use scenarios across ==Predictive== and ==Descriptive== generation, scored on affordance rubrics; every model degrades sharply past Regular, with video models scoring **lower** than image models throughout — exposes a long-tail physical-generalization gap distinct from head-distribution benchmarks.
 - **[[2510.11512|LikePhys]]** — A training-free ==likelihood-preference== evaluator scoring video-diffusion physics understanding via ==denoising-loss ELBO surrogate== on paired valid/invalid Blender scenarios (==Plausibility Preference Error==); **τ=0.44** human-correlation beats VLM judges, disentangled from aesthetic quality (**r=-0.05**).
@@ -545,6 +550,7 @@ Benchmarks that evaluate the *agent's* physical reasoning and manipulation under
 | Action-centric physical reasoning | [[2503.06800\|VideoPhy-2]] (**32.6%** joint, **22%** hard) |
 | Probe whether models *understand* physics | [[2501.09038\|Physics-IQ]] |
 | Closest-to-deployment real-experiment match | [[2504.02918\|Morpheus]] |
+| Fine-grained Video-LLM comprehension + a fine-tuning resource | [[2608.02150\|PhyCheck]] |
 | Default evaluation suite | All four — they measure orthogonal axes |
 
 ^dm-6
@@ -554,6 +560,7 @@ Benchmarks that evaluate the *agent's* physical reasoning and manipulation under
 > - [[2503.06800|VideoPhy-2]] — Action-centric physical reasoning evaluation; bridges video generation and embodied AI evaluation
 > - [[2501.09038|Physics-IQ]] — Asks whether generative video models *understand* physics; finds visual fluency does not imply physics knowledge
 > - [[2504.02918|Morpheus]] — Real physical experiments as benchmark; closes the loop with measurable real-world physics
+> - [[2608.02150|PhyCheck]] — The only entry here that doubles as a training resource, not just an eval; fine-grained evidence-grounded supervision demonstrably teaches a Video-LLM to reason about violations (fine-tuning lifts accuracy **~60%→81.00%**)
 
 ^key-papers-6
 

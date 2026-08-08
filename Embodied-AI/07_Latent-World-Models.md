@@ -459,6 +459,7 @@ This section frames the binary so that the right paradigm gets chosen for the co
 
 ==Predict in embedding space. Single forward pass per prediction. Opaque but fast.== Wins when inference latency is the binding constraint (real-time MPC, 10–20 Hz control loops, dense planning queries).
 
+- **[[2608.05523|HERA]]** — A parameter-efficient adapter (==Register-Routed Patch Memory==, **3.00M** params) bolting a ==Structured Memory Bank== + gated Memory/Workspace Registers onto a frozen V-JEPA 2-G predictor for occlusion-robust physical prediction; **54.35%** IntPhys2 pairwise AvgSurprise (**+1.78pp** over baseline), **+17.31pp** on Immutability (Fixed Camera).
 - **[[2602.10098|VLA-JEPA]]** — A latent-side anchor defining the speed-quality Pareto frontier; **~10 ms/step** at **97.2%** [[2306.03310|LIBERO]] in-distribution, **79.5%** [[2510.13626|LIBERO-Plus]] OOD, **65.2%** real robot.
 - **[[2510.02311|IDPP]]** — Introduces **PhysVid**, a quantitative elasticity/viscosity/friction benchmark, and probes frozen V-JEPA-2 (latent) vs DynamiCrafter (generative) via lightweight visual prompting; both hit **ROC AUC 1.00** on synthetic data but trail physics-informed oracles on absolute-value prediction and real-world friction generalization.
 - **[[2506.09985|V-JEPA-2]]** — A self-supervised JEPA on **1M+ hours** internet video; **80%** pick-and-place from only **62 hours** unlabeled robot video — the sample-efficiency anchor.
