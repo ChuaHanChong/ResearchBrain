@@ -10,18 +10,18 @@ tags:
 # Focus-Direction Paper-Code Index: Papers ↔ Code Repositories
 
 > [!abstract] What this is
-> One row per paper: it links each of the **581 papers** across [[Focus-Direction]]'s 18 core directions (Whole-Body A+B, WAM·A, Sim2Real·B, Embodied-AI·B) plus Whole-Body Cluster C (Force-Adaptive Coordination Under Load), 20 directions across the 6 clusters in all, to its KnowledgeHub note, local PDF, and official code repo. **352** papers have a confirmed official repo; **347** of those are cloned-and-catalogued in `data/.repositories/` (the live folder now holds **358** directories in all, the extra being later or uncatalogued clones; the in-program figure of 358 is that live folder count). The other **229** released no public code (of which 11 are the newest additions whose code is not yet released).
+> One row per paper. Links each of **595 papers** across [[Focus-Direction]]'s 18 core directions (Whole-Body A+B, WAM·A, Sim2Real·B, Embodied-AI·B) plus Whole-Body Cluster C (Force-Adaptive Coordination Under Load) - 20 directions across 6 clusters total - to KnowledgeHub note, local PDF, official code repo. **352** papers have confirmed official repo; **347** cloned-and-catalogued in `data/.repositories/` (live folder holds **358** directories - extras = later or uncatalogued clones; in-program figure 358 = live folder count). **229** released no public code. Remaining **14** (rows 582-595, added 2026-08-08, full-corpus gap-audit batch) have local PDFs, repo/clone/index status deliberately unresolved - research judgment call, not engineering; resolve on demand if code-level work needed.
 >
-> **Indexing:** all **567** papers are indexed in a graphify concept graph at `data/papers/graphify-out/` (1,918 nodes, cross-paper semantic + citation links, community clusters); **343** of the **347** cloned repos are indexed in GitNexus code-graphs (`.gitnexus/`, queryable via the gitnexus MCP for call-graphs / impact analysis / symbol context) — the 4 exceptions are in Known gaps.
+> **Indexing:** all **567** pre-2026-08-08 papers indexed in graphify concept graph at `data/papers/graphify-out/` (1,918 nodes, cross-paper semantic + citation links, community clusters) - 14 newest rows not yet in graph. **343** of **347** cloned repos indexed in GitNexus code-graphs (`.gitnexus/`, queryable via gitnexus MCP for call-graphs / impact analysis / symbol context) - 4 exceptions in Known gaps.
 >
-> Repos were resolved per-paper (full-PDF read → web search `<title> github` → alphaxiv `read_files_from_github_repository` confirm) and read-verified as the paper's own release; dependency, baseline, third-party-reimplementation, and different-paper repos were rejected. A few authors' official repos that are still empty ("code coming soon") are kept. KnowledgeHub notes carry no code links.
+> Repos resolved per-paper (full-PDF read, then web search `<title> github`, then alphaxiv `read_files_from_github_repository` confirm), read-verified as paper's own release. Dependency, baseline, third-party-reimplementation, different-paper repos rejected. Few authors' official repos still empty ("code coming soon") kept. KnowledgeHub notes carry no code links.
 
 > [!info] Columns
-> **Cluster(s)** = which source clusters cite the paper · **KH** = KnowledgeHub note · **PDF** = local file in `data/papers/` · **Repo** = official GitHub (clickable) · **Cloned** = ✓ in `data/.repositories/` · ✗ repo found but clone failed · — no public code · **Size** = on-disk size of the full clone (complete history; Git-LFS blobs skipped) · **Indexed** = ✓ has a gitnexus code-graph index (`.gitnexus/`, queryable via the gitnexus MCP) · ✗ cloned but not indexed · **Remarks** = repo-completeness note from studying the paper + repo (blank = complete; e.g. README-only, partial, survey-list, website, data-only).
+> **Cluster(s)** = source clusters citing paper · **KH** = KnowledgeHub note · **PDF** = local file in `data/papers/` · **Repo** = official GitHub (clickable) · **Cloned** = ✓ in `data/.repositories/` · ✗ repo found, clone failed · — no public code · **Size** = on-disk size of full clone (complete history; Git-LFS blobs skipped) · **Indexed** = ✓ has gitnexus code-graph index (`.gitnexus/`, queryable via gitnexus MCP) · ✗ cloned, not indexed · **Remarks** = repo-completeness note from studying paper + repo (blank = complete; e.g. README-only, partial, survey-list, website, data-only).
 
-**Totals** — papers 581 · with repo 352 · cloned 347 · clone-failed 2 · no public code 229 · cloned size 154.6 GB · gitnexus-indexed 343. The 14 newest (rows 568-581, added 2026-07-12) are cataloged but not yet cloned or graph-indexed: 11 have no released code yet, and 3 have identified repos (MuSe, IMPACT, FAWAM) not yet cloned.
+**Totals** - papers 595 · with repo 352 · cloned 347 · clone-failed 2 · no public code 229 · cloned size 154.6 GB · gitnexus-indexed 343. Rows 568-581 (14 papers, added 2026-07-12): cataloged, not cloned or graph-indexed - 11 no released code yet, 3 identified repos (MuSe, IMPACT, FAWAM) not yet cloned. Rows 582-595 (14 papers, added 2026-08-08, full-corpus gap-audit batch): local PDFs only - repo/clone/index resolution deliberately deferred.
 
-**Repo completeness** (studied paper + repo across 347 cloned) — complete **242** · partial **41** · README-only/placeholder **33** · survey-list **15** · project-website-only **12** · benchmark-data-only **4**. Non-complete repos are flagged in the **Remarks** column.
+**Repo completeness** (studied paper + repo across 347 cloned) - complete **242** · partial **41** · README-only/placeholder **33** · survey-list **15** · project-website-only **12** · benchmark-data-only **4**. Non-complete repos flagged in **Remarks** column.
 
 | # | Cluster(s) | KH | PDF | Repo | Cloned | Size | Indexed | Remarks |
 |---:|---|---|---|---|:--:|--:|:--:|---|
@@ -606,15 +606,29 @@ tags:
 | 579 | S2R·B | [[2606.09640\|Physics-Aware-Sparse-EL]] | [[2606.09640v1.pdf]] | — *(no public code)* | — | — | — | added 2026-07-12; structure-preserving sysID ground anchor |
 | 580 | S2R·B | [[2607.06824\|CaLiSym]] | [[2607.06824v1.pdf]] | — *(no public code)* | — | — | — | added 2026-07-12; symplectic-dynamics ground foil |
 | 581 | WAM·A | [[2607.05468\|MECo-WAM]] | [[2607.05468v1.pdf]] | — *(no public code)* | — | — | — | added 2026-07-12; discardable-teacher predict precedent |
+| 582 | WB·C | [[2603.03751\|IO-WBC]] | [[2603.03751v2.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; full-corpus audit find, C1 anchor (80% vs 0%, 18 kg load) |
+| 583 | WB·C | [[2603.07095\|ACLM]] | [[2603.07095v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; full-corpus audit find, C1 anchor (multi-robot wrench) |
+| 584 | EAI·B | [[2607.15207\|BadWAM]] | [[2607.15207v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; full-corpus audit find, adversarial imagination-action decoupling |
+| 585 | S2R·B | [[2605.09954\|JODA]] | [[2605.09954v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; full-corpus audit find, completes RORA's kinematics-only gap |
+| 586 | S2R·B | [[2409.17992\|LoopSR]] | [[2409.17992v3.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; full-corpus audit find, B3 round-trajectory evidence |
+| 587 | S2R·B | [[2608.05948\|GAUGE]] | [[2608.05948v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; engine-floor-error risk (thesis risk box) |
+| 588 | EAI·B | [[2608.04653\|CoCo-WorldModel]] | [[2608.04653v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; verify-metric training-side complement (B1) |
+| 589 | WAM·A | [[2608.05903\|Robust-WAM]] | [[2608.05903v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; A3 orthogonality mirror-direction result |
+| 590 | S2R·B | [[2608.04842\|RORA]] | [[2608.04842v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; kinematic-articulation recovery (URDF joints) |
+| 591 | S2R·B | [[2608.06164\|BendTwin]] | [[2608.06164v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; deformable-model upgrade to PhysTwin |
+| 592 | WB·B | [[2608.02257\|PanoVLA]] | [[2608.02257v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; B2 passive-sensing risk note |
+| 593 | WB·A | [[2608.06375\|ω-0]] | [[2608.06375v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; benchmark comparator, WB.A4 |
+| 594 | WB·B | [[2608.04657\|MobileWAM]] | [[2608.04657v2.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; benchmark comparator, WB.B1 |
+| 595 | WB·B | [[2608.01381\|DreamTrajectory]] | [[2608.01381v1.pdf]] | — *(not yet resolved)* | — | — | — | added 2026-08-08; benchmark comparator, WB.B1 |
 
 ## Known gaps
 
-**Repo found but clone failed** — the official repo URL was confirmed, but cloning it did not complete (timeout / size / access). Re-clone manually if needed.
+**Repo found but clone failed** - official repo URL confirmed, clone did not complete (timeout / size / access). Re-clone manually if needed.
 
 - [[2606.02307]] — [`pablovalle/fate-vla`](https://github.com/pablovalle/fate-vla)
 - [[2606.03374]] — [`automatikarobotics/emem`](https://github.com/automatikarobotics/emem)
 
-**Cloned but GitNexus-index failed** — GitNexus's native parser crashes on these (`Napi::Error`) — a tool-side bug, not a clone problem; the repos are cloned and usable, just not (fully) graphed. **8 repos** across two cases:
+**Cloned but GitNexus-index failed** - GitNexus native parser crashes on these (`Napi::Error`) - tool-side bug, not clone problem; repos cloned and usable, just not (fully) graphed. **8 repos**, two cases:
 
 *No index (crashes from scratch):*
 
@@ -622,7 +636,7 @@ tags:
 - [[2204.03139]] — [`priyasundaresan/diffcloud_real2sim`](https://github.com/priyasundaresan/diffcloud_real2sim)
 - [[2407.07889]] — [`Boey-li/AdaptiGraph`](https://github.com/Boey-li/AdaptiGraph)
 
-*Stale/partial index — indexed fine originally, but re-indexing after the submodule code-pull crashes, so the graph covers only the original (non-submodule) code:*
+*Stale/partial index - indexed fine originally, re-indexing after submodule code-pull crashes, graph covers only original (non-submodule) code:*
 
 - [[2305.04866]] — [`JiahengHu/CausalMoMa`](https://github.com/JiahengHu/CausalMoMa)
 - [[2606.05160]] — [`NVlabs/GRAIL`](https://github.com/NVlabs/GRAIL)
@@ -630,7 +644,7 @@ tags:
 - [[2509.20297]] — [`nvidia-isaac/nvblox_mindmap`](https://github.com/nvidia-isaac/nvblox_mindmap)
 - [[2603.22039]] — [`generalroboticslab/RAFL`](https://github.com/generalroboticslab/RAFL)
 
-*Parse-timeout — too large/complex for the parser to finish (distinct from the crashes above; cloned and usable, just not graphed):*
+*Parse-timeout - too large/complex for parser to finish (distinct from crashes above; cloned and usable, not graphed):*
 
 - [[2511.06385]] — [`JulianBalletshofer/pacs-ros2`](https://github.com/JulianBalletshofer/pacs-ros2) — 488 MB ROS2 tree, parser idle-timeouts even at 5 min
 
