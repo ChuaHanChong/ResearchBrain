@@ -96,7 +96,7 @@ tags:
 > [!warning] Risks
 > - Metric noise from feature-space similarity → pair with A3's predicates; cross-validate against VISER's sim-real r = 0.92.
 > - Counterfactual probes may need 100+ rollouts per task → use vla-eval's 47× speedup plus X4Val variance reduction.
-> - Selection bias flattering current WAMs → include adversarial (JailWAM, VLA Patch Attack at 90.7% attack SR) and physics-violating baselines.
+> - Selection bias flattering current WAMs → include adversarial (JailWAM, VLA Patch Attack at 90.7% attack SR, BadWAM's imagination-preserving drift attack dropping closed-loop SR >50% while the imagined future stays plausible) and physics-violating baselines.
 > - Optimism in the scoring model: if an LLM/VLM reward model scores the WAM's imagined success, it can systematically over-reward suboptimal behavior → calibrate any reward-model judge with dense per-timestep failure labels before trusting its success scores, and prefer the action-counterfactual metric over an LLM-judged-success surrogate.
 
 ### B2: Long-Horizon Memory + Failure Recovery Loops for Real-World Deployment

@@ -63,7 +63,7 @@ tags:
 
 ### C — force-under-load, external wrench ([[Whole-Body|WB · C]])
 > [!abstract] The bet
-> The external-force twin of A: an unknown hand wrench does not stay at the hand, it propagates through $J_{\text{ext}}^{\top}$ to the support polygon, so force adaptation is a whole-body equilibrium problem. *Anticipate* the external wrench and the base/leg reaction it induces, rather than a stiff tracker that rejects force late. [[2505.06776|FALCON-Loco-Manipulation]] cuts upper-body tracking error to **0.37 vs 0.60** under large force (~2x over the best baseline, zero demos); [[2604.07457|CMP]] holds **86.7% extreme-OOD**.
+> The external-force twin of A: an unknown hand wrench does not stay at the hand, it propagates through $J_{\text{ext}}^{\top}$ to the support polygon, so force adaptation is a whole-body equilibrium problem. *Anticipate* the external wrench and the base/leg reaction it induces, rather than a stiff tracker that rejects force late. [[2505.06776|FALCON-Loco-Manipulation]] cuts upper-body tracking error to **0.37 vs 0.60** under large force (~2x over the best baseline, zero demos); [[2604.07457|CMP]] holds **86.7% extreme-OOD**. New calibration bar: [[2603.03751|IO-WBC]] (proprioceptive-only, no F/T sensor) carries **18 kg at 80% success vs 0%** for the strongest reactive WBC baseline; [[2603.07095|ACLM]] extends the same move to a multi-robot team, robust to **~67%** mass/inertia error. Neither is this program's own result: they set the bar C1's explicit term must clear, the role HEX plays for channel A, not proof the bet already wins.
 
 **Why**: C shares A1's *output* machinery, the same feedforward wrench the legs compensate, and the same WAM imagination-move, so the two force channels validate one wrench predictor together. What differs is the prediction *problem*: A's reaction is computable from its own commanded $\ddot q_{\text{arm}}$ (self-induced), while C's external wrench is exogenous and must be *anticipated* from context and load.
 
@@ -72,7 +72,7 @@ tags:
 **Sharpest questions**: 1) Does an anticipated-wrench head beat a stiff force-rejecting tracker on OOD load, with the gain where the wrench is largest? 2) Can one shared residual head predict both the self-induced reaction (A) and the external wrench (C)? 3) Does the anticipatory feedforward survive the ADAPT-style observer comparison (three-way: feedforward / observer / stiff)?
 
 > [!warning] Risks
-> - The same reactive *observer* (ADAPT) threatens C as it does A → the surviving wedge is anticipating the wrench *before* the load is fully felt; run the three-way ablation.
+> - The same reactive *observer* (ADAPT) threatens C as it does A, and now has a stronger sparring partner: [[2603.03751|IO-WBC]]'s **80% vs 0%** load-carry result is the new strongest reactive-humanoid baseline the anticipatory term must beat → the surviving wedge is anticipating the wrench *before* the load is fully felt; run the three-way ablation.
 > - The dominant real-hardware term may be contact or bandwidth, not the wrench (price the force sensing first); a generalist may catch up at scale (report the crossover).
 
 ### Predict — WAM·A ([[WAM|WAM · A]])
@@ -102,6 +102,7 @@ tags:
 > [!warning] Risks
 > - Without ground the explicit term is poisoned by sim physics error and collapses to the implicit baseline → keep ground in the core so each channel's term is grounded from real data.
 > - The named direction recovers *object* physics, so pointing it at the robot's own inertia/contact is a methodological-transfer bet → if sysID is not learnable cleanly on a channel, fall back to that channel's implicit baseline; you've still produced the clear ablation (publishable through VERIFY). Every branch yields a result.
+> - A second, distinct risk from a wrong URDF: [[2608.05948|GAUGE]] shows physics engines given *ground-truth-calibrated* parameters still carry order-of-magnitude error on dynamic contact/deformation (a video world model hits near-perfect trajectory fit while inferring free-fall acceleration under **1%** of gravity) → calibration passing does not mean the solver is right; A's real-hardware dominant-term check should budget for engine-floor error, not only model mis-specification.
 
 ### Verify — EAI·B1 ([[Embodied-AI|EAI · B1]])
 > [!abstract] The bet
