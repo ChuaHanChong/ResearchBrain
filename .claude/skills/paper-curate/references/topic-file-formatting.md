@@ -46,7 +46,7 @@ Rules:
 
 ### Evolution Graph Diagrams
 
-Plain-text Unicode box diagrams in a fenced `text` block — not mermaid (all 12 `General/` files were converted off it).
+Plain-text Unicode box diagrams in a fenced `text` block.
 
 ````
 ```text
@@ -81,7 +81,7 @@ Lifted verbatim from `02_Computer-Vision-and-3D.md`, and it exercises every rule
 - **Lanes are mechanisms, never eras.** Numbered Title-Case header naming the axis the lane divides on, optionally with a parenthetical framing. A year or year-range in the header chops every thread at the boundary, so no lane holds a full lineage. No brackets, ALL-CAPS, `==wrapping==`, or letter-codes.
 - **Every lane carries at least one `· thread` label**, lowercase, on its own line. Without it, parallel rows read as one chain someone forgot to connect. Several threads per lane when the mechanisms genuinely diverge, each with its own label and blank line.
 - Node text is `Name (Year)`, plain, and must match the table's alias **exactly**: a fenced `text` block renders no wikilinks, so the table is the only route to the note.
-- Unicode box-drawing only (`┌─┐│└┘├┬┴╔═╗║╚╝`), never ASCII. Double border marks the one landmark per thread, sparingly. One legend line, inside the fence, no colors or mermaid backstory. A cross-lane arrow may use a bracket hint: `───────► Target (Year)   [Lane Name, below]`.
+- Unicode box-drawing only (`┌─┐│└┘├┬┴╔═╗║╚╝`), never ASCII. Double border marks the one landmark per thread, sparingly. One legend line, inside the fence, no colors. A cross-lane arrow may use a bracket hint: `───────► Target (Year)   [Lane Name, below]`.
 
 **Edges**
 
@@ -129,5 +129,4 @@ The N lanes divide on **what the axis is**. **Lane name** does X, paper to paper
 - No papers sorted randomly — always sort by arxiv ID descending within each sub-topic
 - General/ files should be standalone — do not cross-reference deep-dive folders
 - No wikilinks inside evolution-graph diagram nodes — use plain text in nodes, put wikilinks in the reference table below
-- No mermaid — evolution graphs are plain-text Unicode box diagrams (see Evolution Graph Diagrams above), not `mermaid` code blocks
 

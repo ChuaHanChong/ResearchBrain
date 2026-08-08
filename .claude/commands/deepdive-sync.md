@@ -499,7 +499,7 @@ aliases:
 
 1. `# <Topic> — Deep Dive` — H1 matches frontmatter `title`
 2. `> [!abstract] Overview` callout — 2–4 sentence top-level summary: what the deep-dive covers, the canonical papers, the key tension, what the reader gets
-3. `## Evolution Graph` — Unicode box-drawing diagram (fenced ` ```text ` block, no `mermaid` tag; see **Evolution Graph diagram spec** below) + 1–2 paragraph narrative walking the lanes + 4-col reference table (`Year | Paper | Track | Contribution`). The narrative cites only papers that appear on the diagram, and names lanes/threads rather than eras. The table is the diagram's **link layer** — nodes are plain text and cannot be clickable inside a code fence, so this table is the only path from a node to its `_KnowledgeHub_` note; `Track` mirrors the node's lane · thread. Keep each `Contribution` one complete clause, roughly 90–130 chars: no ellipsis, no cut mid-word, no trailing preposition, balanced brackets.
+3. `## Evolution Graph` — Unicode box-drawing diagram (fenced ` ```text ` block; see **Evolution Graph diagram spec** below) + 1–2 paragraph narrative walking the lanes + 4-col reference table (`Year | Paper | Track | Contribution`). The narrative cites only papers that appear on the diagram, and names lanes/threads rather than eras. The table is the diagram's **link layer** — nodes are plain text and cannot be clickable inside a code fence, so this table is the only path from a node to its `_KnowledgeHub_` note; `Track` mirrors the node's lane · thread. Keep each `Contribution` one complete clause, roughly 90–130 chars: no ellipsis, no cut mid-word, no trailing preposition, balanced brackets.
 4. `## Part A — <Conceptual / Foundational chunk>`, `## Part B — <Methods / Architecture chunk>`, `## Part C — <Capabilities / Comparison / Open Problems chunk>` — each opens with italicized 1-line framing, then contains the per-section `### N.` blocks (next H3 below)
 5. `## Quick-Reference Matrix` — 2-col `| Question | Answer |` table; the file's "fast scan" entry point
 6. `## Cross-References` — wikilinks to sibling deep-dives with 1-line relevance note + 1-line trailing italicized "See [[X]] for Y" sentence
@@ -627,7 +627,7 @@ A deep-dive that triggers *any* of A–H or Seq is not yet at canonical state �
 
 ### Evolution Graph diagram spec
 
-Fence: ` ```text `, never `mermaid`, never a bare ` ``` `. Build from real data — the node list, the edges the file's own bullets support, and which nodes are landmark — never freehand. `General/` shares the box characters but a simpler form (no threads, deltas, or branching); treat it as a sibling convention, not a reference to copy.
+Fence: ` ```text `, never a bare ` ``` `. Build from real data — the node list, the edges the file's own bullets support, and which nodes are landmark — never freehand. `General/` shares the box characters but a simpler form (no threads, deltas, or branching); treat it as a sibling convention, not a reference to copy.
 
 1. **Boxes.** `┌─┐`/`│ Name (Year) │`/`└─┘`; double border `╔═╗` for landmark papers, at most one per thread. Top, content and bottom widths must match — a mismatch means broken alignment.
 2. **Lanes and threads.** A lane = one mechanism grouping, headed `N. Lane Name` (numbered, no brackets, no year ranges). A lane holds one or more **threads** — parallel sub-lineages — each headed `· lowercase phrase` matching its `Track` value in the reference table. Blank line between threads, never inside one. Unlabelled threads make a lane read as a chain someone forgot to connect.
