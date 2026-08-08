@@ -51,7 +51,7 @@ Where the survey docs above narrow into one pitchable proposal:
 
 | Doc | Axis | Directions | Clusters |
 |---|---|---|---|
-| [[Embodied-AI]] | umbrella | 11 | 5 |
+| [[Embodied-AI]] | umbrella | 11 | 4 |
 | [[WAM]] | Mechanism | 7 | 2 |
 | [[Spatial-4D]] | Mechanism | 11 | 4 |
 | [[Sim2Real]] | Mechanism | 15 | 5 |
