@@ -273,7 +273,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.12382|SPARROW]] — Temporal referential consistency via target-specific tracked features; +8.9 J&F on MeViS RVOS
 
 **Benchmarks & Evaluation** — Dedicated benchmarks measuring video spatial intelligence, fine-grained temporal reasoning, spatial-temporal interactions, and Video-LLM failure modes.
-- [[2605.03941|iWorld-Bench]], [[2605.03276|VEBench]], [[2604.25276|OmniVTG]], [[2604.21873|Physics-Video-Grounding-Bench]], [[2603.17541|Temporal-Trap-Analysis]], [[2603.14145|MMOU]], [[2602.18884|TPRU]], [[2601.04033|REACT-Video]], [[2512.14698|TimeLens]], [[2512.10863|MMSI-Video-Bench]], [[2511.13787|TC2]], [[2507.18342|EgoExoBench]], [[2503.23765|STI-Bench]], [[2501.11340|GenVidBench]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2305.13786|Perception Test]], [[2006.00626|EGTEA-Gaze+]]
+- [[2605.03941|iWorld-Bench]], [[2605.03276|VEBench]], [[2604.25276|OmniVTG]], [[2604.21873|Physics-Video-Grounding-Bench]], [[2603.17541|Temporal-Trap-Analysis]], [[2603.14145|MMOU]], [[2602.18884|TPRU]], [[2601.04033|REACT-Video]], [[2512.14698|TimeLens]], [[2512.10863|MMSI-Video-Bench]], [[2511.13787|TC2]], [[2510.11606|ExpVid]], [[2507.18342|EgoExoBench]], [[2503.23765|STI-Bench]], [[2501.11340|GenVidBench]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2305.13786|Perception Test]], [[2006.00626|EGTEA-Gaze+]]
 
 > [!star] Key Papers
 > - [[2503.23765|STI-Bench]] — Best model (Gemini-2.5-Pro) scores only 41.4% on precise spatial-temporal understanding

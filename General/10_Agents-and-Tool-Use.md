@@ -396,7 +396,7 @@ Agents that accumulate experience over time, build persistent memory, and autono
 > - [[2603.05218|KARL]] — Knowledge agent via off-policy RL for grounded reasoning over enterprise knowledge bases
 
 **Self-Evolving Agent Foundations, Surveys & Architectures** — Surveys, general protocols, and orchestration architectures that establish how self-evolving agents are structured.
-- [[2607.13104|Self-Improving Agents Survey]], [[2606.30111|AgentCanvas]], [[2605.28814|BES]], [[2605.27276|SIA]], [[2604.15034|Autogenesis]], [[2603.19461|HyperAgents]], [[2602.00359|A-EVOLVE]], [[2601.03872|ATLAS]], [[2511.00758|ATM]], [[2510.04618|ACE]], [[2508.02085|SE-Agent]], [[2507.19457|GEPA]]
+- [[2608.05144|Argus-Runtime]], [[2607.13104|Self-Improving Agents Survey]], [[2606.30111|AgentCanvas]], [[2605.28814|BES]], [[2605.27276|SIA]], [[2604.15034|Autogenesis]], [[2603.19461|HyperAgents]], [[2602.00359|A-EVOLVE]], [[2601.03872|ATLAS]], [[2511.00758|ATM]], [[2510.04618|ACE]], [[2508.02085|SE-Agent]], [[2507.19457|GEPA]]
 
 **Experience-Driven & Lifelong Self-Evolution** — Agents that improve by synthesizing, accumulating, or generating experience over extended interaction and environment exposure.
 - [[2607.17250|EvolvingWorld]], [[2604.18292|Agent-World]], [[2604.18131|Native-Evolution]], [[2511.03773|Experience-Synthesis-Mexp]], [[2510.16079|EVOLVER]], [[2510.08558|Early-Experience]], [[2509.25047|AutoPlay]], [[2508.19005|ELL-Framework]]
