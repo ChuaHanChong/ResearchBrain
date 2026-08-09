@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAWM Research Plan — interactive</title>
+  <style>
+    :root {
+      --ivory:    #FAF9F5;
+      --slate:    #141413;
+      --clay:     #D97757;
+      --oat:      #E3DACC;
+      --olive:    #788C5D;
+      --gray-150: #F0EEE6;
+      --gray-300: #D1CFC5;
+      --gray-500: #87867F;
+      --gray-700: #3D3D3A;
+      --white:    #FFFFFF;
+      --serif: ui-serif, Georgia, 'Times New Roman', serif;
+      --sans:  system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --mono:  ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--sans); background: var(--ivory); color: var(--gray-700); line-height: 1.5; padding: 56px 32px 120px; -webkit-font-smoothing: antialiased; }
+    .page { max-width: 1160px; margin: 0 auto; }
+
+    header.page-head { margin-bottom: 28px; max-width: 900px; }
+    .eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 10px; }
+    h1 { font-family: var(--serif); font-weight: 500; font-size: 30px; line-height: 1.25; color: var(--slate); letter-spacing: -0.01em; margin-bottom: 14px; }
+
+    .tldr { background: var(--white); border: 1.5px solid var(--gray-300); border-left: 4px solid var(--olive); border-radius: 12px; padding: 16px 20px; font-size: 15px; color: var(--gray-700); max-width: 900px; margin-bottom: 40px; }
+    .tldr .label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--olive); display: block; margin-bottom: 6px; }
+
+    .evidence-strip { background: var(--white); border: 1.5px solid var(--gray-300); border-radius: 12px; padding: 16px 20px; max-width: 900px; margin-bottom: 40px; }
+    .evidence-strip .label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--clay); display: block; margin-bottom: 10px; }
+    .evidence-strip p { font-size: 13.5px; line-height: 1.55; margin: 0; }
+    .evidence-strip p + p { margin-top: 10px; }
+
+    section { margin-bottom: 48px; }
+    .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+    .sec-head .num { font-family: var(--mono); font-size: 12px; background: var(--oat); color: var(--slate); padding: 3px 9px; border-radius: 8px; }
+    .sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 23px; color: var(--slate); }
+    .sec-intro { font-size: 13px; color: var(--gray-500); font-family: var(--mono); margin-bottom: 16px; }
+
+    .diagram { background: var(--white); border: 1.5px solid var(--gray-300); border-radius: 12px; padding: 24px; overflow-x: auto; }
+    .diagram svg { display: block; min-width: 860px; }
+    .diagram .clickable { cursor: pointer; }
+    .legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px; font-size: 12px; color: var(--gray-500); }
+    .legend .sw { display: inline-flex; align-items: center; gap: 6px; }
+
+    .detail-panel { display: none; background: var(--white); border: 1.5px solid var(--olive); border-radius: 12px; padding: 20px 24px; margin-top: 16px; font-size: 13.5px; color: var(--gray-700); }
+    .detail-panel.open { display: block; }
+    .detail-panel .close-x { float: right; cursor: pointer; color: var(--gray-500); font-family: var(--mono); font-size: 12px; }
+    .detail-panel .dt { font-family: var(--serif); font-size: 19px; color: var(--slate); margin-bottom: 12px; }
+    .dp-row { margin-bottom: 12px; }
+    .dp-row .k { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--olive); margin-bottom: 4px; }
+    .dp-row .v { font-size: 13.5px; line-height: 1.55; }
+    .v ul, .chip-row ul, table.dense td ul { margin: 8px 0; padding-left: 18px; }
+    .v li, .chip-row li, table.dense td li { margin-bottom: 4px; }
+    .v ul ul, .chip-row ul ul, table.dense td ul ul { margin: 4px 0; }
+    .v p, .chip-row p, table.dense td p { margin: 8px 0; }
+    .v > *:first-child, .chip-row > *:first-child, table.dense td > *:first-child { margin-top: 0; }
+
+    table.dense { width: 100%; border-collapse: collapse; background: var(--white); border: 1.5px solid var(--gray-300); border-radius: 12px; overflow: hidden; }
+    table.dense th, table.dense td { padding: 10px 14px; font-size: 13px; text-align: left; border-bottom: 1px solid var(--gray-300); vertical-align: top; }
+    table.dense th { background: var(--gray-150); font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gray-500); }
+    table.dense tr:last-child td { border-bottom: none; }
+    table.dense td.id { font-family: var(--mono); font-size: 12px; color: var(--gray-500); }
+
+    .chips { display: flex; flex-direction: column; gap: 8px; }
+    .chip-row { background: var(--white); border: 1.5px solid var(--gray-300); border-left: 4px solid var(--olive); border-radius: 8px; padding: 10px 16px; font-size: 13px; }
+    .chip-row code { font-family: var(--mono); font-size: 11.5px; background: var(--gray-150); padding: 1px 5px; border-radius: 4px; }
+
+    footer { font-size: 12.5px; color: var(--gray-500); border-top: 1.5px solid var(--gray-300); padding-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="page-head">
+      <div class="eyebrow">Focus-Direction-Research-Plan.md — the lean plan, interactive</div>
+      <h1>CAWM: aims, falsifiers, staging, gates</h1>
+    </header>
+
+    <div class="tldr">
+      <span class="label">the bet</span>
+      A World-Action Model whose latent explicitly and anticipatorily predicts the reaction wrench of whole-body motion (self-induced inertial reaction + external contact wrench), so the policy plans against a sensor-free coupling forecast instead of treating the three couplings as implicit residual. Trained dense, deployed latent, grounded by differentiable system-ID, verified by a causal-consistency metric. Working name <strong>CAWM</strong>.
+    </div>
+
+    <div class="evidence-strip">
+      <span class="label">first principles (the program bet) - §2</span>
+      <p><strong>First principle:</strong> the generalized mass matrix is non-block-diagonal, so every whole-body motion transmits a low-dimensional, structured cross-term (reaction wrench, or kinematic feasibility constraint) between arm, base, legs - the cross-term is a quantity to <strong>predict</strong>, not data to collect.</p>
+      <p><strong>Assumption challenged:</strong> the field decouples whole-body control into an arm controller plus a balance controller, leaving the coupling implicit or reactive.</p>
+      <p><strong>Bet:</strong> making each coupling explicit, anticipatory, grounded, and a verified world-model output beats far larger data and compute on a fixed budget, gain concentrated where the cross-term is largest; falsifies cheaply via the ε-curve.</p>
+      <p>Real-robot deployment target: G1/H1. Mechanism depth is not uniform across the three coupling channels - A is deepest (own reactive-observer + analytic-residual baselines), C rides A's shared wrench head, B is a thinner factoring-only claim with no reactive-observer comparator.</p>
+    </div>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">01</span><h2>Per-cluster aim, hypothesis, falsifier</h2></div>
+      <div class="sec-intro">click any of the 6 outer boxes for its aim, hypothesis, pre-registered gate, and sub-directions</div>
+      <div class="diagram">
+        <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowOlive" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#788C5D"/></marker>
+          </defs>
+          <g font-size="13" fill="#141413">
+            <g class="clickable" onclick="showCluster('WBA')"><rect x="40"  y="20" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="170" y="50" text-anchor="middle" font-weight="600">WB·A — arm↔leg</text><text x="170" y="70" text-anchor="middle" fill="#87867F" font-size="11">inertial</text></g>
+            <g class="clickable" onclick="showCluster('WBB')"><rect x="320" y="20" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="450" y="50" text-anchor="middle" font-weight="600">WB·B — base↔arm</text><text x="450" y="70" text-anchor="middle" fill="#87867F" font-size="11">kinematic</text></g>
+            <g class="clickable" onclick="showCluster('WBC')"><rect x="600" y="20" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="730" y="50" text-anchor="middle" font-weight="600">WB·C — force-under-load</text><text x="730" y="70" text-anchor="middle" fill="#87867F" font-size="11">external wrench</text></g>
+          </g>
+          <g font-size="12.5" fill="#FAF9F5">
+            <rect x="310" y="175" width="280" height="70" rx="10" fill="#141413" stroke="#141413"/>
+            <text x="450" y="205" text-anchor="middle" font-weight="600" font-size="13.5">CAWM</text>
+            <text x="450" y="224" text-anchor="middle" fill="#C9B98A" font-size="10.5">train-dense / deploy-latent</text>
+            <text x="450" y="238" text-anchor="middle" fill="#C9B98A" font-size="10.5">sysID-grounded, causal-verified</text>
+          </g>
+          <g font-size="13" fill="#141413">
+            <g class="clickable" onclick="showCluster('WAMA')"><rect x="40"  y="330" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="170" y="360" text-anchor="middle" font-weight="600">WAM·A — predict</text><text x="170" y="380" text-anchor="middle" fill="#87867F" font-size="11">latent conditioning</text></g>
+            <g class="clickable" onclick="showCluster('S2RB')"><rect x="320" y="330" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="450" y="360" text-anchor="middle" font-weight="600">S2R·B — ground</text><text x="450" y="380" text-anchor="middle" fill="#87867F" font-size="11">differentiable sysID</text></g>
+            <g class="clickable" onclick="showCluster('EAIB')"><rect x="600" y="330" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="730" y="360" text-anchor="middle" font-weight="600">EAI·B — verify</text><text x="730" y="380" text-anchor="middle" fill="#87867F" font-size="11">causal-consistency</text></g>
+          </g>
+          <g stroke="#788C5D" stroke-width="1.5" fill="none">
+            <path d="M170 90 C 170 140, 350 150, 400 175" marker-end="url(#arrowOlive)"/>
+            <path d="M450 90 L450 175" marker-end="url(#arrowOlive)"/>
+            <path d="M730 90 C 730 140, 550 150, 500 175" marker-end="url(#arrowOlive)"/>
+            <path d="M400 245 C 350 270, 170 280, 170 330" marker-end="url(#arrowOlive)"/>
+            <path d="M450 245 L450 330" marker-end="url(#arrowOlive)"/>
+            <path d="M500 245 C 550 270, 730 280, 730 330" marker-end="url(#arrowOlive)"/>
+          </g>
+        </svg>
+        <div class="legend"><span class="sw">click a box — second click or ✕ closes it</span></div>
+      </div>
+
+      <div class="chips" style="margin-top:16px;">
+        <div class="chip-row"><strong>Four breakthrough modifications (§4)</strong> - the seams these clusters wire:
+          <ul>
+            <li>shared reaction-wrench imagination head (WAM·A2)</li>
+            <li>coupling-conditioned latent (WAM·A3)</li>
+            <li>differentiable-sysID grounding (S2R·B2)</li>
+            <li>causal-consistency verification (EAI·B1)</li>
+          </ul>
+          Distinct from the four <em>added architecture modules</em> further down the page.
+        </div>
+      </div>
+
+      <div class="detail-panel" id="cluster-detail">
+        <span class="close-x" onclick="closeCluster()">close ✕</span>
+        <div class="dt" id="cd-title"></div>
+        <div class="dp-row"><div class="k">Aim</div><div class="v" id="cd-aim"></div></div>
+        <div class="dp-row"><div class="k">Hypothesis</div><div class="v" id="cd-hyp"></div></div>
+        <div class="dp-row"><div class="k">Falsifier + gate</div><div class="v" id="cd-gate"></div></div>
+        <div class="dp-row"><div class="k">Sub-directions</div><div class="v" id="cd-subs"></div></div>
+        <div class="dp-row" id="cd-recent-row"><div class="k">Recent evidence</div><div class="v" id="cd-recent"></div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">02</span><h2>Three fixed premises (§2)</h2></div>
+      <div class="sec-intro">literature facts, not relitigated - click a premise for what it rests on</div>
+      <div class="diagram">
+        <svg viewBox="0 0 900 110" xmlns="http://www.w3.org/2000/svg">
+          <g font-size="13" fill="#141413">
+            <g class="clickable" onclick="showPremise('p1')"><rect x="40" y="15" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="170" y="45" text-anchor="middle" font-weight="600">1 · ADAPT is reactive</text><text x="170" y="65" text-anchor="middle" fill="#87867F" font-size="11">not anticipatory</text></g>
+            <g class="clickable" onclick="showPremise('p2')"><rect x="320" y="15" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="450" y="45" text-anchor="middle" font-weight="600">2 · Honest headline</text><text x="450" y="65" text-anchor="middle" fill="#87867F" font-size="11">41 to 62 is borrowed</text></g>
+            <g class="clickable" onclick="showPremise('p3')"><rect x="600" y="15" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="730" y="45" text-anchor="middle" font-weight="600">3 · Whitespace</text><text x="730" y="65" text-anchor="middle" fill="#87867F" font-size="11">graph-verified zeros</text></g>
+          </g>
+        </svg>
+        <div class="legend"><span class="sw">click a premise - second click or ✕ closes it</span></div>
+      </div>
+      <div class="detail-panel" id="premise-detail">
+        <span class="close-x" onclick="closePremise()">close ✕</span>
+        <div class="dt" id="pr-title"></div>
+        <div class="dp-row"><div class="v" id="pr-body"></div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">03</span><h2>Background and related work (§3)</h2></div>
+      <div class="sec-intro">click to expand - ~10 more papers this program is positioned against, one line each</div>
+      <div class="chips">
+        <div class="chip-row">
+          <details>
+            <summary style="cursor:pointer; font-weight:600;">Field context: reactive force-under-load, WAM imagination, differentiable sysID</summary>
+            <p style="margin-top:8px;">For force-under-load, the field is reactive:</p>
+            <ul>
+              <li><strong>GentleHumanoid</strong> and <strong>Unified-Force-Position-Control</strong> get compliance via learned impedance.</li>
+              <li><strong>UAN</strong> supplies a high-load actuator model (113N cart, 8kg lift).</li>
+              <li><strong>HEFT</strong> handles heavy payload (24kg) via a windowed curriculum - all estimate-then-compensate from the past, except <strong>IMPACT</strong>, which predicts the arm's external wrench feedforward from torque residuals sensorlessly but stays one-directional, arm-side.</li>
+            </ul>
+            <p>World-action models imagine scene futures (<strong>DINO-WM</strong>):</p>
+            <ul>
+              <li><strong>JOPAT</strong> shows predicting an explicit structured target beats pixels.</li>
+              <li><strong>iKCE</strong> shows imagined rollouts stay kinematic, friction-invariant.</li>
+            </ul>
+            <ul>
+              <li>Differentiable system-ID recovers object physics (<strong>D-REX</strong>, <strong>gradSim</strong>).</li>
+              <li>structure-preserving sysID keeps recovered dynamics physically consistent (<strong>Physics-Aware-Sparse-EL</strong>, <strong>CaLiSym</strong>) - yet still targets object or generic systems, not the robot's own inertia.</li>
+            </ul>
+            <p>Closest force-WAM <strong>FAWAM</strong> already forecasts end-effector wrenches jointly with actions, corrects on force residual, but is sensor-bound and single-arm.</p>
+            <p>No prior work makes either cross-term an explicit, anticipatory world-model output in one coupled humanoid policy.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">04</span><h2>Architecture (§5)</h2></div>
+      <div class="sec-intro">train dense, deploy latent - the dense teacher (red, dashed) is train-time only, dropped at deploy</div>
+      <div class="chips" style="margin-bottom:16px;">
+        <div class="chip-row"><strong>The cross-term (Problem)</strong>
+          <ul>
+            <li><code>δ<sub>base</sub> = M<sub>base,arm</sub>(q) q̈<sub>arm</sub> + C<sub>base,arm</sub>(q, q̇) q̇<sub>arm</sub></code> (self-induced, channel A)</li>
+            <li><code>δ<sub>base</sub><sup>ext</sup> = J<sub>ext</sub><sup>⊤</sup>(q) F<sub>ext</sub></code> (external, channel C)</li>
+          </ul>
+          predicted anticipatorily from commanded q̈<sub>arm</sub> / estimated F<sub>ext</sub>, before either perturbs the base. The formal statement the architecture below implements.
+        </div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 900 590" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowDark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#141413"/></marker>
+          </defs>
+          <g font-size="11.5" fill="#141413">
+            <rect x="40" y="20" width="200" height="50" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="140" y="50" text-anchor="middle" font-weight="600">RGB(+depth) o_t</text>
+            <rect x="620" y="20" width="240" height="60" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="740" y="45" text-anchor="middle" font-weight="600" font-size="10.5">proprio q, q_dot + commanded</text><text x="740" y="60" text-anchor="middle" font-weight="600" font-size="10.5">q_ddot_arm + est. F_ext</text>
+            <rect x="40" y="120" width="200" height="50" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="140" y="150" text-anchor="middle" font-weight="600">Frozen DINOv2 encoder</text>
+            <rect x="620" y="120" width="240" height="50" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="740" y="150" text-anchor="middle" font-weight="600">coupling-conditioned latent</text>
+            <rect x="340" y="220" width="220" height="50" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="450" y="250" text-anchor="middle" font-weight="600">latent z_t</text>
+            <rect x="110" y="320" width="240" height="50" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="230" y="350" text-anchor="middle" font-weight="600">latent dynamics predictor</text>
+            <rect x="500" y="320" width="280" height="64" rx="10" fill="#e8fde8" stroke="#27ae60" stroke-width="1.5"/><text x="640" y="345" text-anchor="middle" font-weight="600" font-size="11">SHARED WRENCH HEAD</text><text x="640" y="362" text-anchor="middle" font-size="9.5">delta_base (self-induced A) +</text><text x="640" y="376" text-anchor="middle" font-size="9.5">J_ext^T F_ext (external C), per mode</text>
+            <rect x="110" y="430" width="240" height="50" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="230" y="460" text-anchor="middle" font-weight="600">z_t+1</text>
+            <rect x="350" y="500" width="230" height="64" rx="10" fill="#e8fde8" stroke="#27ae60" stroke-width="1.5"/><text x="465" y="525" text-anchor="middle" font-weight="600" font-size="11">action head (flow/diffusion)</text><text x="465" y="542" text-anchor="middle" font-size="9.5">base→torso→arm factoring (B)</text>
+            <rect x="620" y="500" width="230" height="64" rx="10" fill="#fdeaea" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3"/><text x="735" y="525" text-anchor="middle" font-weight="600" font-size="11">dense video/3DGS head</text><text x="735" y="542" text-anchor="middle" font-size="9.5">train-time only, dropped at deploy</text>
+          </g>
+          <g stroke="#3D3D3A" stroke-width="1.5" fill="none">
+            <path d="M140 70 L140 120" marker-end="url(#arrowDark)"/>
+            <path d="M740 80 L740 120" marker-end="url(#arrowDark)"/>
+            <path d="M220 170 C 280 195, 350 205, 410 220" marker-end="url(#arrowDark)"/>
+            <path d="M660 170 C 600 195, 550 205, 500 220" marker-end="url(#arrowDark)"/>
+            <path d="M390 270 C 340 295, 280 305, 230 320" marker-end="url(#arrowDark)"/>
+            <path d="M510 270 C 570 295, 610 305, 640 320" marker-end="url(#arrowDark)"/>
+            <path d="M230 370 L230 430" marker-end="url(#arrowDark)"/>
+            <path d="M330 480 C 360 490, 385 495, 410 500" marker-end="url(#arrowDark)"/>
+            <path d="M350 455 C 480 455, 570 480, 660 500" marker-end="url(#arrowDark)"/>
+            <path d="M640 384 C 600 440, 560 470, 520 500" marker-end="url(#arrowDark)"/>
+          </g>
+        </svg>
+        <div class="legend"><span class="sw">green = shared wrench head + action head · red dashed = train-only, dropped at deploy</span></div>
+      </div>
+      <div class="chips" style="margin-top:16px;">
+        <div class="chip-row"><strong>Coupling-conditioned latent</strong> - carries proprioception + commanded arm acceleration, not just scene appearance; an auxiliary reconstruction loss stops it collapsing to a proprioception-only regressor.</div>
+        <div class="chip-row"><strong>Shared wrench-imagination head</strong> - predicts both self-induced reaction delta_base (A) and external-wrench reaction J_ext^T F_ext (C) as a (6+n_leg)-vector per contact mode plus a mode classifier; A and C share this output head but differ in prediction problem.</div>
+        <div class="chip-row"><strong>Autoregressive action head</strong> - base-to-torso-to-arm factoring, forked from <code>brs-algo</code> (WB-VIMA, <code>whole_body_decoding_order</code>) and AC-DiT.</div>
+        <div class="chip-row"><strong>Dense teacher head</strong> - video/3DGS, train-only, dropped at deploy.</div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">05</span><h2>Benchmark suite, by cluster (§6)</h2></div>
+      <table class="dense">
+        <thead><tr><th>Axis</th><th>Cluster</th><th>Primary benchmark(s)</th></tr></thead>
+        <tbody>
+          <tr><td class="id">A</td><td>WB.A - balance / disturbance rejection</td><td>Disturbance-Rejection-Testing, HumanoidBench</td></tr>
+          <tr><td class="id">B</td><td>WB.B - mobile manipulation</td><td>BiGym (Unitree H1), BRS (Galaxea R1)</td></tr>
+          <tr><td class="id">C</td><td>WB.C - force-under-load</td><td>FALCON suite (under-force tracking 0.37 vs. 0.60), Touch-Dreaming</td></tr>
+          <tr><td class="id">D</td><td>WAM.A - WAM competence + generalization + WM-quality</td><td>HumanoidBench (27 tasks, in-dist + OOD held-out), 1X-World-Model-Challenge (WM-quality)</td></tr>
+          <tr><td class="id">E</td><td>S2R.B - deployment / sim2real reliability</td><td>real H1/G1/R1 + RAPT; no public whole-body coupling-transfer suite exists, so the sim-vs-real gap is anchored on TeleOpBench + TTT-Parkour as methodology anchors, not direct comparators</td></tr>
+          <tr><td class="id">F</td><td>EAI.B - causal verification (+ long-horizon/memory)</td><td>causal consistency on humanoid coupling tasks + real H1/G1 force-plate hardware; long-horizon/memory sub-axis on HumanoidBench long-horizon tasks</td></tr>
+        </tbody>
+      </table>
+      <div class="legend" style="margin-top:12px;"><span class="sw">A/B/C are the three core hypothesis tests; D/E/F are generality/robustness checks, not co-equal contributions.</span> <span class="sw">Kept intact, unchanged: backbone-agnostic coupling grid, 8 ablations, Metrics/statistical-rigor/budget - full detail in the companion doc.</span></div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">06</span><h2>Staging — the order things ship in</h2></div>
+      <div class="sec-intro">click a phase for its deliverable, gate, and branch outcome</div>
+      <div class="diagram">
+        <svg viewBox="0 0 900 130" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="arrowSlate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#141413"/></marker></defs>
+          <g font-size="11.5" fill="#141413">
+            <g class="clickable" onclick="showPhase('p0')"><rect x="0"   y="25" width="130" height="65" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="65" y="52" text-anchor="middle" font-weight="600">0 · de-risk</text><text x="65" y="70" text-anchor="middle" fill="#87867F" font-size="10">2 wedge-killers</text></g>
+            <g class="clickable" onclick="showPhase('p1a')"><rect x="150" y="25" width="130" height="65" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="215" y="52" text-anchor="middle" font-weight="600">1A · WB.A</text><text x="215" y="70" text-anchor="middle" fill="#87867F" font-size="10">arm-leg falsifier</text></g>
+            <g class="clickable" onclick="showPhase('p1b')"><rect x="300" y="25" width="130" height="65" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="365" y="52" text-anchor="middle" font-weight="600">1B · WB.B</text><text x="365" y="70" text-anchor="middle" fill="#87867F" font-size="10">base-arm falsifier</text></g>
+            <g class="clickable" onclick="showPhase('p1c')"><rect x="450" y="25" width="130" height="65" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="515" y="52" text-anchor="middle" font-weight="600">1C · WB.C</text><text x="515" y="70" text-anchor="middle" fill="#87867F" font-size="10">force falsifier</text></g>
+            <g class="clickable" onclick="showPhase('p2')"><rect x="600" y="25" width="130" height="65" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="665" y="52" text-anchor="middle" font-weight="600">2 · ground</text><text x="665" y="70" text-anchor="middle" fill="#87867F" font-size="10">sysID real robot</text></g>
+            <g class="clickable" onclick="showPhase('p34')"><rect x="750" y="25" width="150" height="65" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="825" y="45" text-anchor="middle" font-weight="600">3+4 · CAWM</text><text x="825" y="61" text-anchor="middle" fill="#87867F" font-size="10">deploy</text><text x="825" y="76" text-anchor="middle" fill="#87867F" font-size="10">+ verify</text></g>
+          </g>
+          <g stroke="#141413" stroke-width="1.5" fill="none">
+            <path d="M130 57 L150 57" marker-end="url(#arrowSlate)"/>
+            <path d="M280 57 L300 57" marker-end="url(#arrowSlate)"/>
+            <path d="M430 57 L450 57" marker-end="url(#arrowSlate)"/>
+            <path d="M580 57 L600 57" marker-end="url(#arrowSlate)"/>
+            <path d="M730 57 L750 57" marker-end="url(#arrowSlate)"/>
+          </g>
+        </svg>
+        <div class="legend"><span class="sw">1A / 1B / 1C run in parallel, not sequential — laid out left-to-right here only for reading order</span></div>
+      </div>
+      <div class="detail-panel" id="phase-detail">
+        <span class="close-x" onclick="closePhase()">close ✕</span>
+        <div class="dt" id="pd-title"></div>
+        <div class="dp-row"><div class="k">Deliverable</div><div class="v" id="pd-deliver"></div></div>
+        <div class="dp-row"><div class="k">Gate (pre-registered)</div><div class="v" id="pd-gate"></div></div>
+        <div class="dp-row" id="pd-branch-row"><div class="k">Branch outcome</div><div class="v" id="pd-branch"></div></div>
+      </div>
+      <div class="chips" style="margin-top:16px;">
+        <div class="chip-row"><strong>What ships (§8)</strong>
+          <ul>
+            <li>three cluster falsifiers (WB.A arm-leg + WB.C force-under-load sharing one head + WB.B base-arm)</li>
+            <li>per-cluster ε-curves</li>
+            <li>the consistency metric</li>
+          </ul>
+          run first on the lean humanoid-bench substrate (no WAM needed); CAWM then deploys and verifies all three coupling clusters with the backbone-grid centerpiece. <strong>C2</strong> (certified safe set: barrier/QP guaranteeing balance + collision-freeness under load) stays a deferred extension of WB.C, opened once coupling is predicted, grounded, verified.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">07</span><h2>Closest prior art</h2></div>
+      <table class="dense">
+        <thead><tr><th>Work</th><th>What it has</th><th>What CAWM adds</th></tr></thead>
+        <tbody>
+          <tr><td class="id">ADAPT</td><td>reactive momentum observer of external disturbance</td><td>anticipatory prediction of self-induced coupling, before it manifests</td></tr>
+          <tr><td class="id">ALMA</td><td>anticipatory, but only self-induced known wrench, fed to a separate RL locomotion policy on a quadruped</td><td>both self-induced (A) and unknown external (C) as learned WAM output in one coupled humanoid policy — de-circularized, sysID-grounded, causal-verified</td></tr>
+          <tr><td class="id">FALCON / Thor / SplitAdapter</td><td>reactive humanoid force-under-load (curriculum / reward / history-estimated load)</td><td>anticipatory forward-model of the unknown external wrench (C), as a WAM output, sharing A's head</td></tr>
+          <tr><td class="id">HEX</td><td>implicit arm-leg coupling via predictive MoE</td><td>explicit, supervised, imagined term — beats implicit on the ε-curve at high acceleration</td></tr>
+          <tr><td class="id">AC-DiT / Mobile-ALOHA</td><td>one-directional base→arm conditioning / flat base+arm concatenation</td><td>explicit base↔arm coupling (B): autoregressive base→torso→arm factoring</td></tr>
+          <tr><td class="id">UWM</td><td>drop-head dense-train / latent-deploy WAM</td><td>the head is the physics coupling wrench, sysID-grounded, causal-verified</td></tr>
+          <tr><td class="id">V-JEPA-2.1</td><td>control-relevant predictive latent</td><td>latent conditioned on commanded arm acceleration, supervised by the base reaction</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">08</span><h2>Three seams (§8)</h2></div>
+      <div class="sec-intro">the program's cross-cluster contribution - what's unwired today, and how CAWM wires it</div>
+      <table class="dense">
+        <thead><tr><th>Seam</th><th>Today (unwired)</th><th>The wiring (contribution)</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td class="id">1 represent → predict</td><td>WAM latent = scene features</td><td><ul><li>condition the latent on proprio + commanded arm acceleration</li><li>supervise the wrench head with the analytic base-reaction target</li></ul></td><td class="id">3</td></tr>
+          <tr><td class="id">2 predict → ground</td><td>sysID recovers object physics</td><td><ul><li>re-point per-link sysID at the robot's own base-arm inertia (A) and contact model (C)</li><li>the same engine grounds mobile-manipulation's object physics (B)</li></ul></td><td class="id">2</td></tr>
+          <tr><td class="id">3 deploy → verify</td><td>verify metric checks a world-model's imagination</td><td><ul><li>bind the predicted reaction (A) and predicted external wrench (C) to the measured base reaction</li><li>predicted base-arm reach-feasibility (B) to the realized reach, across all three channels</li></ul></td><td class="id">4</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">09</span><h2>Risks (§9)</h2></div>
+      <div class="chips">
+        <div class="chip-row"><strong>Explicit ≈ implicit</strong> — the three-way ablation + ε-sweep is still a definitive result per channel, even when the bet is void.</div>
+        <div class="chip-row"><strong>Wrong / unidentifiable inertia or contact model</strong> — gate Phase 2 on PR-0b; fall back to an analytic term + broad domain-randomization for the affected channel.</div>
+        <div class="chip-row"><strong>Hardware-dominant physics</strong> — instrument the residual budget first (PR-0a'); scope down if the base reaction is dominated by foot-contact / support-polygon transition (H8).</div>
+        <div class="chip-row"><strong>Engine floor error, not just a wrong model</strong> — <code>GAUGE</code>: physics engines given ground-truth-calibrated parameters still show order-of-magnitude errors on dynamic contact/deformation. Sharpens H8: its worst regime is exactly GAUGE's worst regime.</div>
+        <div class="chip-row"><strong>Base↔arm factoring buys little, or costs latency (B)</strong> — report B's margin stratified by reach-extension vs. fixed-base, not pooled; parallelize/distill the decode if latency bites.</div>
+        <div class="chip-row"><strong>WAM too slow for contact</strong> — async decoupling + quantization clear a 30&nbsp;Hz floor; report the SR-vs-Hz Pareto honestly.</div>
+        <div class="chip-row"><strong>Force-under-load first-100ms hostage to composed loop latency (C)</strong> — price the whole onboard budget; if it eats the window, move C's headline to a steady-state max-load number.</div>
+        <div class="chip-row"><strong>External wrench unidentifiable, or implicit already suffices (C)</strong> — that is the C falsifier itself; fall back to the reactive/curriculum baseline, report the definitive ablation either way.</div>
+      </div>
+    </section>
+
+    <footer>
+      <strong>Resources:</strong> <code>humanoid-bench</code> + <code>HEX</code> (falsifier) · <code>FALCON</code> (fork) + ADAPT (in-house) + ALMA (comparator) · <code>brs-algo</code> + <code>AC-DiT</code> (base-arm) · <code>D-REX</code> / <code>gradsim</code> (grounding) · <code>dino_wm</code> / <code>unified-world-model</code> / <code>vjepa2</code> (CAWM) · <code>stable-worldmodel</code> / <code>VLA-GSE</code> (verify + continual).
+      <br>Companions: Focus-Direction.html (the thesis, interactive) · Focus-Direction-Paper-Code-Index.md (papers→code) · Focus-Direction-Review (adversarial review absorbed here) · Focus-Direction-Research-Plan-detailed.md (full-rigor version, same spine).
+    </footer>
+
+  </div>
+
+  <script>
+    var CLUSTERS = {
+      WBA: {
+        title: 'WB·A — arm to leg',
+        aim: 'Make the self-induced reaction wrench (from the robot\'s own commanded arm acceleration) an explicit, anticipatory prediction.',
+        hyp: 'Explicit beats implicit (MoE) and reactive (observer), margin concentrated at high arm acceleration, surviving model error.',
+        gate: 'Three-way ablation on humanoid-bench (explicit-feedforward vs. implicit HEX-MoE vs. reactive ADAPT observer), with an input-isolation control (identical head, only the input swapped — planned acceleration vs. observer\'s measured estimate).<ul><li><strong>Gate (PR-1A):</strong><ul><li>margin ≥5pp (p&lt;0.05)</li><li>top-quartile concentration</li><li>anticipatory beats reactive by ≥5pp</li></ul></li><li><strong>De-circularization ε-curve:</strong><ul><li>significant &gt;0 at small ε (0, 0.05)</li><li>non-increasing</li></ul></li><li><strong>Fairness (pre-registered):</strong><ul><li>implicit = matched-capacity MoE on identical data/seeds</li><li>reactive = ADAPT observer at 500Hz state-poll on true dynamics</li></ul></li></ul>',
+        subsIntro: 'Four directions are the cluster\'s coordinated advances at different layers of one whole-body interface: upper-limb intent and lower-body support coupled before commands issue, so legs anticipate the arm\'s inertial demand rather than absorbing it late.',
+        subs: [
+          '<strong>WB.A1 CoReWA</strong> = HEX + SEEC + Heavy-Limbs-WBC - forecast arm latents into anticipatory base reaction wrench feeding gate and controller.',
+          '<strong>WB.A2 BlendBridge</strong> = SkillBlender + MOSAIC + HiWET - entropy-gated per-joint residual adapts a frozen skill blend across the sim-to-real gap.',
+          '<strong>WB.A3 ReachSched-WBT</strong> = HiWET + Differentiable-Reachability-Maps - schedule the base along a reachability gradient, shrinking margin with tracking residuals.',
+          '<strong>WB.A4 CoLA-WB</strong> = WholeBodyVLA + LeVERB + HALOMI - loco latent as a residual of the manip code, projected onto a feasible manifold.'
+        ]
+      },
+      WBB: {
+        title: 'WB·B — base to arm',
+        aim: 'Factor the action autoregressively (base→torso→arm) so the base is a predicted, coupled DoF, not a flat-concatenated one.',
+        hyp: 'Coupled beats decoupled-base, margin concentrated on reach-extension tasks.',
+        gate: 'Autoregressive base→torso→arm vs. flat-concatenation (a factoring claim, no reactive-observer arm here). <strong>Gate (PR-1B):</strong><ul><li>≥5pp margin (p&lt;0.05) on the BiGym (Unitree H1) reach-extension subset</li><li>near-zero |ΔSR|&lt;2pp on fixed-base reaches</li><li>a significant positive trend between the two (p&lt;0.05)</li><li>real-R1 corroboration on BRS</li></ul>',
+        subsIntro: 'Three directions build one shared artifact: a single mobile-manipulation policy denoising base, torso/arm, and perception actions in the same action chunk over one shared frame, with a co-trained DynaMem-style voxel memory introduced by B2 and B3 as the connective perception interface (B1 carries no DynaMem of its own).',
+        subs: [
+          '<strong>WB.B1 KCFlow-Strat</strong> = BRS + AC-DiT + InCoM - stratified test of when one arm-to-base feasibility edge beats unidirectional base-first.',
+          '<strong>WB.B2 LookAhead-WBC</strong> = HoMMI + SPIN + DynaMem - memory-conditioned 3D look-at co-optimized with the base in one diffusion chunk.',
+          '<strong>WB.B3 EchoPurge</strong> = EchoVLA + DynaMem + TrackVLA++ - differentiable in-policy purge gate plus cross-visit re-ID for self-correcting multi-room memory.'
+        ],
+        recent: 'PanoVLA closes a comparable gap (91.3%/73.4% vs. local-view 58.6%/30.0%) with passive 360° sensing, no gaze action at all - a caution on B2\'s learned-gaze premise specifically, not on B1\'s base-first bet; still untested head-to-head against B2.'
+      },
+      WBC: {
+        title: 'WB·C — force-under-load',
+        aim: 'Estimate the unknown external hand wrench, anticipate the reaction it induces, sharing WB.A\'s output head.',
+        hyp: 'Anticipatory beats both reactive (observer/impedance) and implicit (FALCON force-curriculum), margin in the first ~100ms after step load.',
+        gate: 'Three-way ablation under a step-applied unknown external load, stratified by load magnitude/direction. Headline: CoM-excursion advantage in the first ~100ms after onset.<ul><li><strong>Gate (PR-1C):</strong><ul><li>first-100ms CoM-excursion reduction ≥20% above the seed floor</li><li>concentrated at large load</li><li>survives the C ε-curve</li></ul></li><li><strong>Plus PR-3:</strong> sensor-free wrench MSE ≤2× the tactile-available baseline.</li><li><strong>Fairness (pre-registered):</strong><ul><li>implicit = matched-capacity MoE on identical data/seeds</li><li>reactive = ADAPT observer at 500Hz state-poll on true dynamics</li></ul></li></ul>',
+        subsIntro: 'Two recipes share ONE sensorless, proprioceptively-estimated load-mismatch signal fanned out to both the locomotion controller and the manipulation policy - PROWL produces it as a wrench lookahead, PALADIN consumes it to build a conformal disturbance bound.',
+        subs: [
+          '<strong>WB.C1 PROWL</strong> = FALCON + ALMA + ADAPT - momentum-observer residual forecasts hand wrench into FALCON\'s dual agents, legs pre-brace before loads peak; only ALMA\'s anticipatory-leaning mechanism is a transferable claim (its headline numbers are on a quadruped, not this claim).',
+          '<strong>WB.C2 PALADIN</strong> = ISSf-CBF-WBC + CMP + RAPT (cross-check) - PROWL\'s forecast conformally bounded into a disturbance that re-sizes the ISSf-CBF QP, narrows CMP\'s radius, RAPT\'s residual demoted to a runtime cross-check.'
+        ],
+        recent: '<ul><li>IO-WBC carries an 18kg load at 80% success where a SOTA reactive WBC baseline manages 0%, via proprioceptive-only anticipatory decoupling.</li><li>ACLM extends the same anticipatory-wrench move to a multi-robot team, robust to ~67% mass-model error.</li></ul><p>giving PROWL\'s OOD-load margin a calibration baseline to beat, not just ADAPT to rebut.</p>'
+      },
+      WAMA: {
+        title: 'WAM·A — predict',
+        aim: 'Carry all channels on a train-dense / deploy-latent WAM, with the latent conditioned on the dynamics state.',
+        hyp: 'The lift is positive across every tested WAM backbone; the confound-aware gradient is expected largest where the native latent is least control-relevant.',
+        gate: 'Backbone-grid plug-in test. Gate: within-backbone paired off/on lift &gt;0 at a Benjamini-Hochberg-adjusted p&lt;0.05 on the deployed backbone, above a pre-registered lift floor.',
+        subs: [
+          '<strong>WAM.A1 GROVER</strong> = GaussianDream + VLA-JEPA + FFDC-WAM - shared motion code grounds a leakage-free latent via a discardable 3D-Gaussian teacher, deploy gates on a calibrated residual.',
+          '<strong>WAM.A2 WrenchCast</strong> = TORL-VLA + ContactWorld + DexViTac - rolls the latent forward H steps, decodes a sensorless 6-DoF wrench split into self-motion and contact, conformal trust gate.',
+          '<strong>WAM.A3 DUET-WM</strong> = Semantic-LDM-WM + DC-MPC + CLAM - splits a d=96 semantic latent into a continuous flow channel plus an FSQ residual channel, per-token gated, CLAM-grounded.'
+        ],
+        recent: 'Two results now back A3\'s density-vs-semantics orthogonality claim rather than threaten it:<ul><li>Robust-WAM shows semantic tokens added atop a dense WAM raise OOD success instead of being washed out.</li><li>MuSe shows the mirror direction, a future-video auxiliary lowering force-forecast error.</li></ul>'
+      },
+      S2RB: {
+        title: 'S2R·B — ground',
+        aim: '<ul><li>Recover the base-arm inertia (A) and the contact model (C) from real interaction by differentiable system-ID.</li><li>ground the manipulated-object physics (B) via the same engine\'s native recovery.</li></ul>',
+        hyp: 'The inertia term is identifiable in a planted-perturbation sim check; real-robot grounding is validated downstream since the real true inertia is unobservable directly.',
+        gate: '<ul><li><strong>Phase-0 sim check (PR-0b):</strong> ≤15% Frobenius error at ε=0.10 recovering a planted inertia perturbation.</li><li><strong>Downstream (PR-2, downstream-only):</strong><ul><li>beats broad domain-randomization on OOD-mass success rate by ≥3pp</li><li>real-SR retention ≥80%</li><li>a PR-4 force-plate self-consistency check (R²≥0.70) as the grounding proxy</li></ul></li></ul>',
+        subs: [
+          '<strong>S2R.B1 SENSE-T</strong> = PhysTwin + Real-to-Sim-GS + D-REX - one differentiable rollout yields per-channel analytic sensitivity of sim-real divergence, replacing a discrete fidelity sweep.',
+          '<strong>S2R.B2 AMORTI-SIM</strong> = D-REX + SLAT-Phys + Dynamics-as-Prompts - a clutter-conditioned net predicts a novel object\'s full constitutive vector in one pass, zero per-object loops.',
+          '<strong>S2R.B3 FideliGate</strong> = RialTo + Real-is-Sim + CFG-ADDA - a photometric correction residual becomes a fidelity gate on fold-back demos, rounds monotonically improve real success.',
+          '<strong>S2R.B4 CLaRe</strong> = NCLaw + MASIV + RAFL - a two-head MPM splits the constitutive law from a starved residual, the split becomes a falsifiable extrapolation measurement.'
+        ],
+        recent: 'The pipeline\'s tools keep sharpening, not its claim:<ul><li>RORA recovers the kinematic articulation (URDF joints) the contact model needs.</li><li>BendTwin upgrades the deformable-contact model past axial-only spring-mass.</li><li>JODA completes RORA\'s own stated gap (joint-level dynamics, friction, damping).</li><li>LoopSR is the closest existing evidence for the round-over-round grounding loop itself - a real-hardware reward-vs-loop-round curve shows continual improvement, not drift.</li></ul>'
+      },
+      EAIB: {
+        title: 'EAI·B — verify',
+        aim: 'Certify predicted-vs-realized coupling on existing harnesses plus real hardware.',
+        hyp: 'The causal-consistency metric is well-defined and discriminative, computed per channel (A/B/C) with a three-way (prediction / grounding / execution) error decomposition; no public benchmark today binds predicted-to-realized coupling.',
+        gate: '<ul><li><strong>PR-4:</strong> predicted-vs-realized R²≥0.70 on held-out hardware (paired-bootstrap 95% CI excludes zero, head-vs-analytic error ≤ analytic-vs-measured).</li><li><strong>PR-4-continual:</strong><ul><li>no-backward-transfer loss ≥−2pp</li><li>post-update top-quartile lift ≥5pp (p&lt;0.05)</li></ul></li></ul>',
+        subs: [
+          '<strong>B1 CIC</strong> = PiL-World + SC3-Eval + MiraBench - self-certifying action-counterfactual metric, U_cf-gated, ρ=0.94/0.984 references.',
+          '<strong>B2 CALM</strong> = GTP-FA + SEEA-R1 + MemoryVLA - cause-attributed failure memory, channel-routed supervised correction, subspace-protected.',
+          '<strong>B3 ElastiVote</strong> = VOTE + ElasticFlow + ElegantVLA - one-NFE policy, span+backbone knobs, gated recompute at ≥30 Hz.',
+          '<strong>B4 GSE-Null</strong> = Learning-in-the-Null-Space + Subspace-Geometry-Forgetting + VLA-GSE - two-space continual fine-tuning, null-space-protected wrench head, no forgetting.'
+        ],
+        recent: 'Two 2608-batch results sharpen what B1 must resist and can borrow:<ul><li>BadWAM is the adversarial case - imperceptible perturbations desynchronize the imagined future from the executed action, dropping closed-loop success over 50%, exactly what the causal-consistency metric exists to catch.</li><li>CoCo-WorldModel is free machinery toward building one: trains action-counterfactual consistency via inverse/zero-action rollout branches, ships an ARC/DE metric pair B1\'s forward-inverse recovery could reuse.</li></ul>'
+      }
+    };
+
+    var activeCluster = null;
+    function showCluster(key) {
+      var d = CLUSTERS[key];
+      if (!d) return;
+      if (activeCluster === key) { closeCluster(); return; }
+      activeCluster = key;
+      document.getElementById('cd-title').textContent = d.title;
+      document.getElementById('cd-aim').innerHTML = d.aim;
+      document.getElementById('cd-hyp').textContent = d.hyp;
+      document.getElementById('cd-gate').innerHTML = d.gate;
+      var subsHtml = d.subsIntro ? '<div style="margin-bottom:8px; font-style:italic; color:#87867F;">' + d.subsIntro + '</div>' : '';
+      document.getElementById('cd-subs').innerHTML = subsHtml + d.subs.map(function(s) { return '<div style="margin-bottom:6px;">' + s + '</div>'; }).join('');
+      var recentRow = document.getElementById('cd-recent-row');
+      if (d.recent) { recentRow.style.display = ''; document.getElementById('cd-recent').innerHTML = d.recent; }
+      else { recentRow.style.display = 'none'; }
+      var panel = document.getElementById('cluster-detail');
+      panel.classList.add('open');
+      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+    function closeCluster() { activeCluster = null; document.getElementById('cluster-detail').classList.remove('open'); }
+
+    var PREMISES = {
+      p1: {
+        title: '1 · ADAPT is reactive, not anticipatory',
+        body: '<ul><li>ADAPT is a reactive, estimate-then-react momentum disturbance-observer of external disturbance - the mandatory baseline foil for both force channels (self-induced A, external-wrench C).</li><li>Closest anticipatory neighbor is ALMA: an MPC-predicted, self-applied end-effector wrench (the arm\'s own manipulation force, known) fed as a disturbance to a separate RL locomotion policy on a quadruped - a decoupled handoff.</li><li>ALMA anticipates only that self-induced known wrench, model-based; it does not anticipate an unknown external wrench.</li><li>Because ALMA\'s self-applied wrench is analytically known, the surviving learned-anticipation wedge is sharpest on C.</li><li>Surviving wedge: anticipatory feedforward of each cross-term as a learned WAM output in one coupled humanoid policy - self-induced inertial cross-term (A), unknown external wrench (C) - that ALMA\'s self-induced-only scope excludes.</li></ul><p>ADAPT is the mandatory baseline on both force channels; ALMA is the decoupled-anticipatory comparator.</p>'
+      },
+      p2: {
+        title: '2 · Honest headline',
+        body: '<p>The 41 to 62 figure is borrowed: HEX (implicit) beating monolithic generalist VLAs (pi0.5 44.3 / GR00T N1.5 41.0) on unseen-scene generalization - the field\'s proof-of-life, not this program\'s own explicit-vs-implicit claim.</p><p>The program\'s actual claim is two narrower wedges, tested per channel:</p><ul><li>explicit-vs-implicit (concentrated where the cross-term is largest - high arm-acceleration for A, first ~100ms after step load for C)</li><li>explicit-vs-reactive (anticipatory feedforward beats a reactive observer on both force channels A and C, isolated by the input-isolation control in ablation #1)</li></ul>'
+      },
+      p3: {
+        title: '3 · Whitespace (re-verified against the actual graph)',
+        body: '<p>In graphify-out/graph.json (~30331 nodes at writing), genuine zeros:</p><ul><li>"reaction wrench" as a compound (0)</li><li>"causal-consistency as a verification metric" (~0 - the one "causal consistency" hit is a reward term, not a metric)</li></ul><p>Coupling/observer concepts do exist:</p><ul><li>~80 coupling-substring nodes (~24 standalone coupling + ~56 decoupling)</li><li>3 exact "disturbance-observer"-compound nodes (2 ADAPT\'s own, 1 MetaTune\'s)</li><li>but an anticipatory-wrench node now exists too (ALMA\'s "anticipatory predicted-wrench observations")</li></ul><p>These load-bearing zeros are what the program rests on.</p>'
+      }
+    };
+
+    var activePremise = null;
+    function showPremise(key) {
+      var d = PREMISES[key];
+      if (!d) return;
+      if (activePremise === key) { closePremise(); return; }
+      activePremise = key;
+      document.getElementById('pr-title').textContent = d.title;
+      document.getElementById('pr-body').innerHTML = d.body;
+      var panel = document.getElementById('premise-detail');
+      panel.classList.add('open');
+      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+    function closePremise() { activePremise = null; document.getElementById('premise-detail').classList.remove('open'); }
+
+    var PHASES = {
+      p0: { title: '0 · De-risk (before any Phase-1 training)', deliver: 'Two wedge-killer experiments, both in sim, at M0:<ul><li>(a) observer-latency vs. reaction rise-time against analytic ground truth.</li><li>(b) inertia identifiability — recover a planted perturbation via a differentiable-sysID loop.</li></ul><p>Same two wedge-killers also apply to channel C\'s contact model.</p>', gate: '<ul><li><strong>(a) PR-0a:</strong> wedge viable only if rise-time ≥31ms at top-quartile acceleration, else drop the anticipatory framing.</li><li><strong>(b) PR-0b:</strong> ≤15% Frobenius error, else drop the sysID seam and use an analytic term + broad domain-randomization instead.</li></ul>', branch: 'Four pre-committed outcomes, no post-hoc reinterpretation:<ul><li><strong>pass/pass</strong> → full program ships.</li><li><strong>pass/fail</strong> → anticipatory claim stands, sysID seam dropped.</li><li><strong>fail/pass</strong> → anticipatory framing dropped, keep the grounded explicit-vs-implicit term.</li><li><strong>fail/fail</strong> → de-circularized ε-curve only, no real-deploy build.</li></ul>' },
+      p1a: { title: '1A · WB.A cluster falsifier (arm-leg)', deliver: 'Three-way ablation on humanoid-bench + the A-channel ε-curve.', gate: '<ul><li>Margin ≥5pp (p&lt;0.05)</li><li>top-quartile concentration</li><li>anticipatory beats reactive</li></ul>', branch: '' },
+      p1b: { title: '1B · WB.B cluster falsifier (base-arm)', deliver: 'Autoregressive vs. flat base→torso→arm on BiGym (Unitree H1).', gate: '<ul><li>Autoregressive beats flat by ≥5pp (p&lt;0.05) on reach-extension sub-tasks</li><li>near-zero margin (&lt;2pp) on fixed-base reaches</li><li>a significant positive trend between the two</li></ul>', branch: '' },
+      p1c: { title: '1C · WB.C cluster falsifier (force-under-load)', deliver: 'Three-way ablation on humanoid-bench under a step-applied unknown load.', gate: '<ul><li>Anticipatory beats reactive by the pre-registered first-100ms CoM-excursion reduction (≥20% target, p&lt;0.05)</li><li>concentrated at large/multi-directional load</li><li>survives contact-model error (PR-1C)</li></ul>', branch: '' },
+      p2: { title: '2 · Ground', deliver: '<ul><li>Differentiable system-ID of the base-arm inertia (A) and the contact model (C) on the real robot.</li><li>channel B\'s mobile-manipulation object physics rides the same engine\'s native recovery, no separate gate.</li></ul>', gate: 'Downstream-only (no direct real-robot ground truth — the 15% Frobenius test lives only in PR-0b\'s sim check):<ul><li>beats broad domain-randomization on OOD-mass success rate by ≥3pp</li><li>real-SR retention ≥80%</li><li>the PR-4 force-plate self-consistency check as a grounding proxy</li></ul>', branch: '' },
+      p34: { title: '3+4 · CAWM deploy + verify', deliver: '<ul><li><strong>Phase 3 (CAWM):</strong> the shared wrench head\'s sensor-free forecast of both the self-induced reaction (A) and the external wrench (C).</li><li><strong>Phase 4 (verify + continual):</strong> the causal-consistency metric across all three channels, on existing harnesses plus real hardware.</li></ul>', gate: '<ul><li><strong>Phase 3:</strong> sensor-free wrench MSE ≤2× the tactile-available baseline on a held-out contact-rich split.</li><li><strong>Phase 4 — PR-4:</strong> predicted-vs-realized R²≥0.70 on held-out hardware (bootstrap CI excludes zero).</li><li><strong>PR-4-continual:</strong><ul><li>no-backward-transfer loss ≥−2pp</li><li>post-update top-quartile lift ≥5pp (p&lt;0.05)</li></ul></li></ul>', branch: '' }
+    };
+
+    var activePhase = null;
+    function showPhase(key) {
+      var d = PHASES[key];
+      if (!d) return;
+      if (activePhase === key) { closePhase(); return; }
+      activePhase = key;
+      document.getElementById('pd-title').textContent = d.title;
+      document.getElementById('pd-deliver').innerHTML = d.deliver;
+      document.getElementById('pd-gate').innerHTML = d.gate;
+      var branchRow = document.getElementById('pd-branch-row');
+      if (d.branch) { branchRow.style.display = ''; document.getElementById('pd-branch').innerHTML = d.branch; }
+      else { branchRow.style.display = 'none'; }
+      var panel = document.getElementById('phase-detail');
+      panel.classList.add('open');
+      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+    function closePhase() { activePhase = null; document.getElementById('phase-detail').classList.remove('open'); }
+  </script>
+</body>
+</html>

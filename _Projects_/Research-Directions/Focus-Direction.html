@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Direction — the explicit-coupling thesis, interactive</title>
+  <style>
+    :root {
+      --ivory:    #FAF9F5;
+      --slate:    #141413;
+      --clay:     #D97757;
+      --oat:      #E3DACC;
+      --olive:    #788C5D;
+      --gray-150: #F0EEE6;
+      --gray-300: #D1CFC5;
+      --gray-500: #87867F;
+      --gray-700: #3D3D3A;
+      --white:    #FFFFFF;
+      --serif: ui-serif, Georgia, 'Times New Roman', serif;
+      --sans:  system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --mono:  ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--sans); background: var(--ivory); color: var(--gray-700); line-height: 1.5; padding: 56px 32px 120px; -webkit-font-smoothing: antialiased; }
+    .page { max-width: 1160px; margin: 0 auto; }
+
+    header.page-head { margin-bottom: 28px; max-width: 900px; }
+    .eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 10px; }
+    h1 { font-family: var(--serif); font-weight: 500; font-size: 30px; line-height: 1.25; color: var(--slate); letter-spacing: -0.01em; margin-bottom: 14px; }
+
+    .tldr { background: var(--white); border: 1.5px solid var(--gray-300); border-left: 4px solid var(--clay); border-radius: 12px; padding: 16px 20px; font-size: 15px; color: var(--gray-700); max-width: 900px; margin-bottom: 40px; }
+    .tldr .label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--clay); display: block; margin-bottom: 6px; }
+
+    section { margin-bottom: 48px; }
+    .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+    .sec-head .num { font-family: var(--mono); font-size: 12px; background: var(--oat); color: var(--slate); padding: 3px 9px; border-radius: 8px; }
+    .sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: 23px; color: var(--slate); }
+    .sec-intro { font-size: 13px; color: var(--gray-500); font-family: var(--mono); margin-bottom: 16px; }
+
+    .diagram { background: var(--white); border: 1.5px solid var(--gray-300); border-radius: 12px; padding: 24px; overflow-x: auto; }
+    .diagram svg { display: block; min-width: 860px; }
+    .diagram .clickable { cursor: pointer; }
+    .legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px; font-size: 12px; color: var(--gray-500); }
+    .legend .sw { display: inline-flex; align-items: center; gap: 6px; }
+    .legend .sw .chip { width: 18px; height: 3px; display: inline-block; }
+    .legend .sw .chip.solid { background: #141413; }
+    .legend .sw .chip.dashed { background: repeating-linear-gradient(90deg, #D97757 0 5px, transparent 5px 8px); }
+
+    .detail-panel { display: none; background: var(--white); border: 1.5px solid var(--clay); border-radius: 12px; padding: 20px 24px; margin-top: 16px; font-size: 13.5px; color: var(--gray-700); }
+    .detail-panel.open { display: block; }
+    .detail-panel .close-x { float: right; cursor: pointer; color: var(--gray-500); font-family: var(--mono); font-size: 12px; }
+    .detail-panel .dt { font-family: var(--serif); font-size: 19px; color: var(--slate); margin-bottom: 12px; }
+    .dp-row { margin-bottom: 12px; }
+    .dp-row .k { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--clay); margin-bottom: 4px; }
+    .dp-row .v { font-size: 13.5px; line-height: 1.55; }
+    .dp-risks { padding-left: 18px; margin: 0; }
+    .dp-risks li { margin-bottom: 5px; }
+    .inline-list { padding-left: 18px; margin: 6px 0; }
+    .inline-list li { margin-bottom: 4px; }
+
+    table.dense { width: 100%; border-collapse: collapse; background: var(--white); border: 1.5px solid var(--gray-300); border-radius: 12px; overflow: hidden; margin-top: 16px; }
+    table.dense th, table.dense td { padding: 10px 14px; font-size: 13px; text-align: left; border-bottom: 1px solid var(--gray-300); vertical-align: top; }
+    table.dense th { background: var(--gray-150); font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gray-500); }
+    table.dense tr:last-child td { border-bottom: none; }
+    table.dense td.strong { font-weight: 600; color: var(--slate); }
+
+    .chips { display: flex; flex-direction: column; gap: 8px; }
+    .chip-row { background: var(--white); border: 1.5px solid var(--gray-300); border-left: 4px solid var(--olive); border-radius: 8px; padding: 10px 16px; font-size: 13px; }
+    .chip-row code { font-family: var(--mono); font-size: 11.5px; background: var(--gray-150); padding: 1px 5px; border-radius: 4px; }
+    .chip-row strong { color: var(--slate); }
+    .chips.chips-spaced { margin-top: 16px; }
+
+    .evidence-strip { background: var(--white); border: 1.5px solid var(--gray-300); border-radius: 12px; padding: 16px 20px; max-width: 900px; margin-bottom: 40px; }
+    .evidence-strip .label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--clay); display: block; margin-bottom: 10px; }
+    .stat-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .stat-tile { background: var(--gray-150); border-radius: 8px; padding: 8px 14px; text-align: center; }
+    .stat-tile.hi { background: #FBEDE5; }
+    .stat-tile.th { background: #EEF1E8; }
+    .stat-num { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--slate); line-height: 1.1; }
+    .stat-tile.hi .stat-num { color: var(--clay); }
+    .stat-tile.th .stat-num { color: var(--olive); }
+    .stat-lbl { font-family: var(--mono); font-size: 9.5px; color: var(--gray-500); margin-top: 3px; }
+    .stat-sep { font-size: 18px; color: var(--gray-500); }
+    .evidence-strip p { font-size: 13.5px; line-height: 1.55; margin: 0; }
+    .evidence-strip ul { font-size: 13.5px; line-height: 1.55; }
+
+    footer { font-size: 12.5px; color: var(--gray-500); border-top: 1.5px solid var(--gray-300); padding-top: 16px; }
+    footer ul { padding-left: 18px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="page-head">
+      <div class="eyebrow">Focus-Direction.md — the thesis, interactive</div>
+      <h1>The explicit-coupling thesis: six clusters, one bet</h1>
+    </header>
+
+    <div class="tldr">
+      <span class="label">the reduced direction</span>
+      Of ~77 directions across the umbrella and six mechanism/capability docs, six clusters reduce to one thesis: when two physically coupled subsystems are controlled together, their joint value doesn't factor — the cross-term is a low-dimensional, structured quantity to <strong>predict</strong>, not data to collect. Three coupling anchors carry it, three mechanism roles compose it. The target is maximal idea-boundedness &times; humanoid-distinguishing weight — what a solo team betting ideas, not capital, should hunt for.
+    </div>
+
+    <div class="evidence-strip">
+      <span class="label">headline evidence - precedent, not this program's claim</span>
+      <div class="stat-row">
+        <div class="stat-tile"><div class="stat-num">~41%</div><div class="stat-lbl">GR00T N1.5</div></div>
+        <div class="stat-tile"><div class="stat-num">44%</div><div class="stat-lbl">pi0.5</div></div>
+        <div class="stat-sep">&rarr;</div>
+        <div class="stat-tile hi"><div class="stat-num">~62%</div><div class="stat-lbl">HEX, implicit MoE-coupled (OOD)</div></div>
+        <div class="stat-tile hi"><div class="stat-num">79.8%</div><div class="stat-lbl">HEX, same 7 tasks (in-distribution)</div></div>
+        <div class="stat-tile th"><div class="stat-num">&ge;5pp</div><div class="stat-lbl">&delta;&#8321;A - this program's own bar</div></div>
+      </div>
+      <p>Monolithic generalist VLAs - GR00T N1.5 (~41%) and pi0.5 (44%) - mark the only channel with a published number: arm&harr;leg out-of-distribution margin. HEX's implicit MoE-coupled policy already widens that to ~62% OOD (79.8% on the same seven tasks in-distribution), but on the field's scene-generalization axis, not the disturbance/coupling-OOD axis this program targets: precedent, not this program's own claim. The bet is the next increment - an explicit predicted term must add further margin over implicit, pre-registered to count only at &ge;5pp (&delta;&#8321;A), concentrated where the cross-term is largest. Co-equal across all three channels in that bet, not in mechanism depth:</p>
+      <ul class="inline-list">
+        <li>A is deepest (own reactive-observer + analytic-residual baselines).</li>
+        <li>C rides A's shared wrench head.</li>
+        <li>B is a thinner factoring-only claim with no reactive-observer comparator.</li>
+      </ul>
+      <p>Honest deliverable: the crossover boundary, not a declared winner.</p>
+    </div>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">01</span><h2>The loop</h2></div>
+      <div class="sec-intro">click any of the 6 outer boxes for its bet, why, and risk</div>
+      <div class="diagram">
+        <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowClay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#D97757"/>
+            </marker>
+          </defs>
+          <g font-size="13" fill="#141413">
+            <g class="clickable" onclick="showCluster('WBA')">
+              <rect x="40"  y="20" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="170" y="50" text-anchor="middle" font-weight="600">WB·A — arm↔leg</text>
+              <text x="170" y="70" text-anchor="middle" fill="#87867F" font-size="11">inertial, self-induced</text>
+            </g>
+            <g class="clickable" onclick="showCluster('WBB')">
+              <rect x="320" y="20" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="450" y="50" text-anchor="middle" font-weight="600">WB·B — base↔arm</text>
+              <text x="450" y="70" text-anchor="middle" fill="#87867F" font-size="11">kinematic</text>
+            </g>
+            <g class="clickable" onclick="showCluster('WBC')">
+              <rect x="600" y="20" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="730" y="50" text-anchor="middle" font-weight="600">WB·C — force-under-load</text>
+              <text x="730" y="70" text-anchor="middle" fill="#87867F" font-size="11">external wrench</text>
+            </g>
+          </g>
+          <g font-size="12.5" fill="#FAF9F5">
+            <rect x="310" y="175" width="280" height="70" rx="10" fill="#141413" stroke="#141413"/>
+            <text x="450" y="205" text-anchor="middle" font-weight="600" font-size="13.5">the explicit-coupling thesis</text>
+            <text x="450" y="224" text-anchor="middle" fill="#C9B98A" font-size="10.5">predict the cross-wrench (A/C), factor the action (B)</text>
+            <text x="450" y="238" text-anchor="middle" fill="#C9B98A" font-size="10.5">not data to collect</text>
+          </g>
+          <g font-size="13" fill="#141413">
+            <g class="clickable" onclick="showCluster('WAMA')">
+              <rect x="40"  y="330" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="170" y="360" text-anchor="middle" font-weight="600">WAM·A — predict</text>
+              <text x="170" y="380" text-anchor="middle" fill="#87867F" font-size="11">imagine the wrench</text>
+            </g>
+            <g class="clickable" onclick="showCluster('S2RB')">
+              <rect x="320" y="330" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="450" y="360" text-anchor="middle" font-weight="600">S2R·B — ground</text>
+              <text x="450" y="380" text-anchor="middle" fill="#87867F" font-size="11">calibrate the physics</text>
+            </g>
+            <g class="clickable" onclick="showCluster('EAIB')">
+              <rect x="600" y="330" width="260" height="70" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="730" y="360" text-anchor="middle" font-weight="600">EAI·B — verify</text>
+              <text x="730" y="380" text-anchor="middle" fill="#87867F" font-size="11">imagination ↔ realized</text>
+            </g>
+          </g>
+          <g stroke="#D97757" stroke-width="1.5" fill="none">
+            <path d="M170 90 C 170 140, 350 150, 400 175" marker-end="url(#arrowClay)"/>
+            <path d="M450 90 L450 175" marker-end="url(#arrowClay)"/>
+            <path d="M730 90 C 730 140, 550 150, 500 175" marker-end="url(#arrowClay)"/>
+          </g>
+          <g stroke="#141413" stroke-width="1.5" fill="none">
+            <path d="M400 245 C 350 270, 170 280, 170 330" marker-end="url(#arrowClay)"/>
+            <path d="M450 245 L450 330" marker-end="url(#arrowClay)"/>
+            <path d="M500 245 C 550 270, 730 280, 730 330" marker-end="url(#arrowClay)"/>
+          </g>
+        </svg>
+        <div class="legend"><span class="sw">click a box — second click or ✕ closes it</span></div>
+      </div>
+
+      <div class="detail-panel" id="cluster-detail">
+        <span class="close-x" onclick="closeCluster()">close ✕</span>
+        <div class="dt" id="cd-title"></div>
+        <div class="dp-row"><div class="k">The bet</div><div class="v" id="cd-bet"></div></div>
+        <div class="dp-row"><div class="k">Why</div><div class="v" id="cd-why"></div></div>
+        <div class="dp-row"><div class="k">Why this cluster, not fewer</div><div class="v" id="cd-necessity"></div></div>
+        <div class="dp-row"><div class="k">Risk</div><ul class="dp-risks" id="cd-risks"></ul></div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">02</span><h2>The falsifier - one per cluster, run three in parallel, first</h2></div>
+      <div class="sec-intro">click a cluster for its explicit-vs-implicit ablation - same cheap sim test, zero new data</div>
+      <div class="diagram">
+        <svg viewBox="0 0 900 130" xmlns="http://www.w3.org/2000/svg">
+          <g font-size="13" fill="#141413">
+            <g class="clickable" onclick="showFalsifier('WBA')">
+              <rect x="40"  y="20" width="260" height="85" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="170" y="48" text-anchor="middle" font-weight="600">WB·A — arm↔leg</text>
+              <text x="170" y="66" text-anchor="middle" fill="#87867F" font-size="11">explicit reaction vs residual</text>
+              <text x="170" y="83" text-anchor="middle" fill="#D97757" font-size="10">+ reactive-observer third arm</text>
+            </g>
+            <g class="clickable" onclick="showFalsifier('WBB')">
+              <rect x="320" y="20" width="260" height="85" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="450" y="48" text-anchor="middle" font-weight="600">WB·B — base↔arm</text>
+              <text x="450" y="66" text-anchor="middle" fill="#87867F" font-size="11">autoregressive vs flat</text>
+              <text x="450" y="83" text-anchor="middle" fill="#87867F" font-size="10">two-arm ablation only</text>
+            </g>
+            <g class="clickable" onclick="showFalsifier('WBC')">
+              <rect x="600" y="20" width="260" height="85" rx="10" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/>
+              <text x="730" y="48" text-anchor="middle" font-weight="600">WB·C — force-under-load</text>
+              <text x="730" y="66" text-anchor="middle" fill="#87867F" font-size="11">anticipated vs stiff-reject</text>
+              <text x="730" y="83" text-anchor="middle" fill="#D97757" font-size="10">+ reactive-observer third arm</text>
+            </g>
+          </g>
+        </svg>
+        <div class="legend"><span class="sw">click a cluster - same cheap sim ablation, zero new data</span></div>
+      </div>
+      <div class="detail-panel" id="falsifier-detail">
+        <span class="close-x" onclick="closeFalsifier()">close ✕</span>
+        <div class="dt" id="fd-title"></div>
+        <div class="dp-row"><div class="k">The ablation</div><div class="v" id="fd-ablation"></div></div>
+        <div class="dp-row" id="fd-thirdarm-row"><div class="k">Third arm</div><div class="v" id="fd-thirdarm"></div></div>
+        <div class="dp-row"><div class="k">Where the gain must concentrate</div><div class="v" id="fd-concentration"></div></div>
+      </div>
+
+      <div class="chips chips-spaced">
+        <div class="chip-row"><strong>De-circularizing the test:</strong> each target would otherwise be defined by the very model the policy also learns, which makes the ablation circular. Fix: define each target from a deliberately perturbed model, then report the explicit-over-implicit margin as a function of model error. Those margin-vs-error curves are themselves the verify-harness deliverable.</div>
+        <div class="chip-row"><strong>Null result is a result:</strong> if explicit is roughly equal to implicit on a cluster (no OOD margin widening, no gain concentration where that cluster's cross-term is largest), that cluster's contribution is void, learned three ways at once. All three falsifiers cheaply proving themselves wrong up front is what makes them good problems, not just attractive ones.</div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">03</span><h2>How the clusters compose</h2></div>
+      <div class="sec-intro">click a stage — solid = card-wired today, dashed = the seam is the research (unwired)</div>
+      <div class="diagram">
+        <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowSolid" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#141413"/></marker>
+            <marker id="arrowDash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D97757"/></marker>
+          </defs>
+          <g font-size="11" fill="#141413">
+            <g class="clickable" onclick="showStage('s1')"><rect x="25"  y="40" width="130" height="65" rx="9" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="90" y="65" text-anchor="middle" font-weight="600">① REPRESENT</text><text x="90" y="82" text-anchor="middle" fill="#87867F" font-size="9.5">WAM backbone</text></g>
+            <g class="clickable" onclick="showStage('s2')"><rect x="169" y="40" width="130" height="65" rx="9" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="234" y="60" text-anchor="middle" font-weight="600" font-size="10.5">② MAKE</text><text x="234" y="73" text-anchor="middle" font-weight="600" font-size="10.5">EXPLICIT</text><text x="234" y="90" text-anchor="middle" fill="#87867F" font-size="9.5">predict + factor</text></g>
+            <g class="clickable" onclick="showStage('s3')"><rect x="313" y="40" width="130" height="65" rx="9" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="378" y="60" text-anchor="middle" font-weight="600" font-size="10.5">③ COMPOSE</text><text x="378" y="73" text-anchor="middle" font-weight="600" font-size="10.5">&amp; ACT</text><text x="378" y="90" text-anchor="middle" fill="#87867F" font-size="9.5">critical path</text></g>
+            <g class="clickable" onclick="showStage('s4')"><rect x="457" y="40" width="130" height="65" rx="9" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="522" y="65" text-anchor="middle" font-weight="600">④ GROUND</text><text x="522" y="82" text-anchor="middle" fill="#87867F" font-size="9.5">Sim2Real·B</text></g>
+            <g class="clickable" onclick="showStage('s5')"><rect x="601" y="40" width="130" height="65" rx="9" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="666" y="60" text-anchor="middle" font-weight="600" font-size="10.5">⑤ DEPLOY</text><text x="666" y="73" text-anchor="middle" font-weight="600" font-size="10.5">&amp; ADAPT</text><text x="666" y="90" text-anchor="middle" fill="#87867F" font-size="9.5">Embodied-AI</text></g>
+            <g class="clickable" onclick="showStage('s6')"><rect x="745" y="40" width="130" height="65" rx="9" fill="#FFFFFF" stroke="#D1CFC5" stroke-width="1.5"/><text x="810" y="65" text-anchor="middle" font-weight="600">⑥ VERIFY</text><text x="810" y="82" text-anchor="middle" fill="#87867F" font-size="9.5">causal-consistency</text></g>
+          </g>
+          <g stroke-width="2" fill="none">
+            <path d="M155 72 L169 72" stroke="#D97757" stroke-dasharray="4 3" marker-end="url(#arrowDash)"/>
+            <path d="M299 72 L313 72" stroke="#141413" marker-end="url(#arrowSolid)"/>
+            <path d="M443 72 L457 72" stroke="#D97757" stroke-dasharray="4 3" marker-end="url(#arrowDash)"/>
+            <path d="M587 72 L601 72" stroke="#D97757" stroke-dasharray="4 3" marker-end="url(#arrowDash)"/>
+            <path d="M731 72 L745 72" stroke="#D97757" stroke-dasharray="4 3" marker-end="url(#arrowDash)"/>
+          </g>
+        </svg>
+        <div class="legend">
+          <span class="sw"><span class="chip solid"></span>solid = card-wired today</span>
+          <span class="sw"><span class="chip dashed"></span>dashed = the seam is the research, unwired</span>
+          <span class="sw">no loop-back ⑥→① — verify stays local (S2R·B3→own twin, EAI·B4→EAI·B2), not wired to the start</span>
+        </div>
+      </div>
+      <div class="detail-panel" id="stage-detail">
+        <span class="close-x" onclick="closeStage()">close ✕</span>
+        <div class="dt" id="sd-title"></div>
+        <div class="dp-row"><div class="k">Card-wired content</div><div class="v" id="sd-content"></div></div>
+        <div class="dp-row" id="sd-seam-row"><div class="k">Outgoing seam (the research)</div><div class="v" id="sd-seam"></div></div>
+      </div>
+
+      <table class="dense">
+        <thead><tr><th>Build once</th><th>Discharges</th><th>Span</th><th>Strength</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Whole-body wrench predictor</td><td>WB·A1 + A3 + B2 + C1</td><td>cross-cluster</td><td>strong</td></tr>
+          <tr><td class="strong">Differentiable real-to-sim inversion engine</td><td>Sim2Real·B1 + B2 + B3 + B4</td><td>within Sim2Real·B</td><td>strong</td></tr>
+          <tr><td class="strong">Dense-train / latent-deploy WAM backbone</td><td>WAM·A1 + A2 + A3</td><td>within WAM·A</td><td>strong</td></tr>
+          <tr><td class="strong">Joint loco+manip action head</td><td>WB·A4 + B1</td><td>cross-cluster</td><td>moderate</td></tr>
+          <tr><td class="strong">Failure-memory + subspace-protected continual update</td><td>Embodied-AI·B2 + B4</td><td>within Embodied-AI·B</td><td>moderate</td></tr>
+        </tbody>
+      </table>
+
+      <div class="chips chips-spaced">
+        <div class="chip-row"><strong>Wrench predictor is highest-leverage first build:</strong> one residual head, two input-conditioning paths, emits both the self-induced inertial reaction (A, from the commanded arm acceleration) and the anticipated external wrench (C, from context/load) — sharing feedforward output and leg-compensation while the inputs differ in kind — so one during-vs-between phase-stratified study validates the shared output across A1, A3, B2's balance-compensation slice, and C1 at once. (B stays the kinematic head, a separate base→torso→arm factoring.) <ul class="inline-list"><li>The one moderate bundle worth tightening: the joint action head, fusing base→torso→arm autoregression (B1) with the loco/manip latent split (A4) into one head.</li><li>The B2 + B4 bundle stays honest-moderate.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+
+    <section>
+      <div class="sec-head"><span class="num">04</span><h2>The one risk the direction absorbs</h2></div>
+
+      <div class="sec-intro">what to build - same table styling as the co-solvable builds above</div>
+      <table class="dense">
+        <thead><tr><th>Build</th><th>Deliverable</th><th>Gate</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="strong">Three cluster falsifiers in parallel</td>
+            <td>One per coupling cluster, each testing the shared claim all its directions build on: <ul class="inline-list"><li>WB·A inertial reaction (A1-A4).</li><li>WB·B autoregressive-vs-flat (B1 backbone, B2/B3 ride it).</li><li>WB·C anticipated-vs-stiff wrench (C1 forecast, C2 certifies).</li></ul> Force clusters A/C add a reactive-observer third arm. Plot OOD success and balance recovery vs. where each cross-term is largest.</td>
+            <td>Per-cluster go/no-go: cluster fails independently, pass advances the whole cluster.</td>
+          </tr>
+          <tr>
+            <td class="strong">Ground the terms</td>
+            <td><ul class="inline-list"><li>Differentiable system-ID of base-arm inertia (A), contact model (C), manipulated-object physics for mobile-manipulation (B) from a few real demos.</li><li>Beat domain randomization on OOD mass/load.</li><li>Show calibrated terms transfer sim to real.</li></ul></td>
+            <td>Explicit terms work on a real humanoid.</td>
+          </tr>
+          <tr>
+            <td class="strong">Reframe as a WAM</td>
+            <td>Coupling heads as a wrench-imagining world model: sensor-free reaction and external-wrench forecast.</td>
+            <td>Forecasts survive without force sensors.</td>
+          </tr>
+          <tr>
+            <td class="strong">Verify harness</td>
+            <td>One causal-consistency metric scoring all three channels. Ships as the missing 3-channel coupling benchmark.</td>
+            <td>Bet is measured, not asserted.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="chips chips-spaced">
+        <div class="chip-row"><strong>Wrong physics model</strong> — <ul class="inline-list"><li>A wrong URDF or contact model poisons the coupling heads; explicit collapses to implicit and that channel's bet is void.</li><li>Exactly why <strong>Sim2Real·B (ground)</strong> is core, not extension.</li><li>If system-ID can't be learned cleanly on a channel, the fallback is that channel's implicit baseline — still produces the definitive explicit-vs-implicit ablation, which <strong>Embodied-AI·B (verify)</strong> makes publishable either way.</li></ul></div>
+        <div class="chip-row"><strong>Engine floor error, not just a wrong model</strong> — <code>GAUGE</code>: <ul class="inline-list"><li>Physics engines given ground-truth-calibrated parameters still show order-of-magnitude errors on dynamic contact/deformation.</li><li>Video world models hit near-perfect trajectory fit while inferring free-fall acceleration under 1% of gravity.</li></ul> Even a channel that clears the grounding gate can still forward-simulate wrong. Sharpens the H8 pre-gate — GAUGE's worst regime (dynamic contact) is exactly H8's target.</div>
+      </div>
+    </section>
+
+    <footer>
+      <strong>Extensions, deferred until the core loop closes:</strong>
+      <ul>
+        <li>WB · C2 — certify the coupling (barrier/QP, provably keeps balance + collision-freeness under load)</li>
+        <li>Embodied-AI · C2 — port the calibrated coupling across humanoids without re-learning</li>
+        <li>Sim2Real · A3 — co-optimize the low-level controller with the coupling dynamics</li>
+        <li>WAM · B3 — know when to trust the coupling forecast</li>
+        <li>Embodied-AI · A1 — single-loop co-evolution that jointly improves the coupling and its predictor</li>
+      </ul>
+      <strong>Cross-references, from the source doc:</strong>
+      <ul>
+        <li><strong>Source clusters</strong> (6 clusters / 20 directions): Whole-Body A (A1–A4) + B (B1–B3) + C (C1–C2) · WAM A (A1–A3) · Sim2Real B (B1–B4) · Embodied-AI B (B1–B4)</li>
+        <li><strong>Geometric substrate:</strong> Spatial-4D — the coupling term is itself geometric, a representation layer the explicit-coupling head can stand on</li>
+        <li><strong>Set aside</strong> (same thesis, weaker fit): Manipulation bimanual coordination (two-arm scale, corroborating precedent, less humanoid-distinguishing); Locomotion feasibility-corrected motion imitation (excellent, narrower)</li>
+        <li><strong>README</strong> — folder guide + the full direction index this reduces from</li>
+      </ul>
+      <br>Companions: Focus-Direction-Research-Plan.html (the execution plan, interactive) · Focus-Direction-Paper-Code-Index.md (papers→code) · Focus-Direction-Brief.canvas (pitch).
+    </footer>
+
+  </div>
+
+  <script>
+    var CLUSTERS = {
+      WBA: {
+        title: 'WB·A — arm↔leg (inertial, self-induced)',
+        bet: 'Make the arm→leg coupling an explicit predicted term, not a residual the legs absorb.',
+        why: 'A part-wise policy discards a term the physics actually has: the inertia matrix is non-block-diagonal, so an arm acceleration is a base/leg disturbance — the cross-term to predict, not collect. Gravity/CoM is folded into the grounded model; the arm-velocity-induced Coriolis cross-term is predicted inside channel A, not a separate channel.',
+        necessity: 'Drop WB·A: no self-induced inertial coupling in the loop at all.',
+        risks: ['A reactive momentum-observer (ADAPT) may already capture the broad "coupling generalizes OOD" claim — the surviving wedge is anticipating before the reaction is felt, not after.',
+                'IO-WBC and ACLM are anticipatory-mechanism papers, not reactive — they corroborate the bet\'s mechanism rather than pre-empt it, and now set the calibration bar channel C must clear.',
+                'On real hardware the dominant unmodeled term may be foot-contact or actuator-bandwidth, not inertial — <ul class="inline-list"><li>The H8 pre-gate decomposes the measured base reaction at the worst instant, the moment of maximum CoM excursion, into inertial vs. foot-contact/support-polygon-transition shares.</li><li>If the contact share dominates there, channel A reframes as a contact-constrained hybrid-dynamics prediction — price the force sensing the target assumes, and rank the dominant terms first — see the cross-cutting engine-floor-error risk below.</li></ul>',
+                'The explicit-structure advantage may hold only in the low-data, idea-bounded regime, while a fine-tuned generalist catches up at scale — the honest deliverable is the crossover boundary, not a declared winner.']
+      },
+      WBB: {
+        title: 'WB·B — base↔arm (kinematic)',
+        bet: 'Make the base a manipulation DoF, factored base→torso→arm rather than flat-concatenated.',
+        why: 'The base velocity moves the reachable workspace, so the right arm action is conditional on the base motion — the field\'s navigate-then-fixed-base default freezes the base before the arm acts, discarding that lever.',
+        necessity: 'Drop WB·B: the thesis misses the kinematic channel entirely.',
+        risks: ['One caution on B2 specifically, not on B1\'s core bet: PanoVLA closes a comparable gap (91.3%/73.4% vs. local-view 58.6%/30.0%) with passive 360° sensing and no gaze action at all — a genuine alternative to B2\'s learned-gaze premise, still untested head-to-head against it.']
+      },
+      WBC: {
+        title: 'WB·C — force-under-load (external wrench)',
+        bet: 'Anticipate the external hand wrench and the base/leg reaction it induces, not stiff-reject it.',
+        why: 'An external hand wrench doesn\'t stay at the hand — it propagates through the contact Jacobian to every joint, including the support legs that keep the center of mass over the feet.',
+        necessity: 'Drop WB·C: misses the external-wrench channel, the second dominant force pathway.',
+        risks: ['The same reactive-observer threat as channel A (ADAPT) applies here too — the surviving wedge is anticipating before the load is fully felt.',
+                'IO-WBC and ACLM are C1\'s first real positive anchors (not this program\'s own result): <ul class="inline-list"><li>IO-WBC carries an 18kg load at 80% success where a SOTA reactive baseline manages 0%.</li><li>ACLM extends the same move to a multi-robot team under ~67% mass-model error.</li></ul> They set the new bar, they don\'t prove the bet already wins.',
+                'C2 (certified safe set under load) stays a confirmed field-level gap — deferred to the extension layer.']
+      },
+      WAMA: {
+        title: 'WAM·A — predict',
+        bet: 'Imagine the cross-term wrench as a modeled output, sensor-free at deploy.',
+        why: 'The coupling term is a predicted wrench: the policy plans against a coupling forecast even when force sensors are absent at deployment — the external wrench (channel C) is the most literal instance of this.',
+        necessity: 'Drop WAM·A (predict): coupling becomes a dumb regression head, not a forecast rolled forward.',
+        risks: ['Two results now back the density-vs-semantics orthogonality claim rather than threatening it: <ul class="inline-list"><li>Robust-WAM shows semantic tokens raise OOD success rather than being washed out.</li><li>MuSe shows the mirror direction, a future-video auxiliary lowering force-forecast error.</li></ul> The substrate can carry both without competing for capacity.']
+      },
+      S2RB: {
+        title: 'S2R·B — ground',
+        bet: 'Recover the real physics by differentiable system-ID so the term is grounded, not guessed.',
+        why: 'The explicit term has zero advantage if the physics model is wrong — recovering the inertia and contact physics from real data is exactly why this cluster is core, not an extension layer.',
+        necessity: 'Drop Sim2Real·B (ground): a wrong physics model collapses the explicit term to the implicit baseline.',
+        risks: ['The pipeline\'s tools keep sharpening, not the claim: <ul class="inline-list"><li>RORA recovers kinematic articulation.</li><li>BendTwin upgrades the deformable-contact model.</li><li>JODA completes RORA\'s own stated dynamics gap.</li><li>LoopSR is the closest evidence for the round-over-round grounding loop itself, not drifting.</li></ul>',
+                'See the cross-cutting risks below — this is where the wrong-model risk and the GAUGE engine-floor-error risk both land.']
+      },
+      EAIB: {
+        title: 'EAI·B — verify',
+        bet: 'Extend the causal-consistency metric (today imagination↔action) to bind predicted↔realized coupling across all three channels.',
+        why: 'B1 certifies that predicted coupling equals realized coupling with a metric that jointly binds world-model quality and policy success — separately, either alone is gameable.',
+        necessity: 'Drop Embodied-AI·B (verify): can\'t certify the bet, imagination drifts from action.',
+        risks: ['BadWAM is the adversarial case for why visual plausibility can\'t be the metric: imperceptible perturbations desynchronize a still-plausible imagined future from the executed action, dropping closed-loop success over 50%.',
+                'CoCo-WorldModel is free machinery toward building the metric: it trains action-counterfactual consistency and ships an ARC/DE metric pair this cluster\'s own instrument could reuse.']
+      }
+    };
+
+    var FALSIFIERS = {
+      WBA: {
+        title: 'WB·A — arm↔leg falsifier',
+        ablation: 'Add the explicit predicted base-reaction δ̂_base = M̂_base,arm · q̈_arm as a policy input plus an auxiliary loss, versus leaving it a residual the legs absorb. Same data, same backbone, same tasks, sim, zero new data. The anticipatory interface A1-A4 all build on this.',
+        thirdArm: 'Force cluster: add a reactive observer (ADAPT-style) as a third arm. Explicit-vs-implicit alone can\'t separate anticipation from reaction.',
+        concentration: 'Gain must concentrate on fast reaches, where reaction torque is largest.'
+      },
+      WBB: {
+        title: 'WB·B — base↔arm falsifier',
+        ablation: 'Autoregressive base→torso→arm factoring — p(a_arm | a_base) — versus flat-concatenation. Same data, same backbone, same tasks, sim, zero new data. Base-first backbone B1 contributes, B2/B3 compound on it.',
+        thirdArm: '',
+        concentration: 'Gain must concentrate on mid-grasp base travel.'
+      },
+      WBC: {
+        title: 'WB·C — force-under-load falsifier',
+        ablation: 'Anticipated external wrench versus a stiff force-rejecting tracker. Same data, same backbone, same tasks, sim, zero new data. Load forecast C1 produces, C2 certifies.',
+        thirdArm: 'Force cluster: add a reactive observer (ADAPT-style) as a third arm. Explicit-vs-implicit alone can\'t separate anticipation from reaction.',
+        concentration: 'Gain must concentrate on multi-directional load.'
+      }
+    };
+
+    var STAGES = {
+      s1: { title: '① REPRESENT', content: 'WAM·A1 (density) · A3 (encoding) · A2 (wrench-head) — one WAM backbone, the predict substrate.', seam: 'A WAM latent is not the whole-body dynamics state.' },
+      s2: { title: '② MAKE EXPLICIT', content: 'Predict the wrench: WB·A1 → δ_base · WB·C1 → F_ext. Factor the action: WB·B1 → base→torso→arm.', seam: '' },
+      s3: { title: '③ COMPOSE & ACT (critical path)', content: '<ul class="inline-list"><li>WB·A4 emits joint command</li><li>→ A1 grounds it in coupled dynamics</li><li>→ A3 holds world-frame precision</li><li>→ B2 active gaze, balance-compensated by A1</li><li>→ B3 writes to large-workspace memory.</li></ul> WB·C1 extends the mesh on the external-load side.', seam: 'S2R·B2 recovers OBJECT physics, not the robot\'s own base-arm inertia or contact Jacobian.' },
+      s4: { title: '④ GROUND', content: 'S2R·B4 learns the constitutive law → B1 does the joint real-to-sim inversion ← B3 folds back the deployment data, gated on B1\'s fidelity; B2\'s amortized sysID shares the same engine.', seam: 'No card links S2R grounding to EAI deployment.' },
+      s5: { title: '⑤ DEPLOY & ADAPT', content: 'EAI·B2 (cross-episode failure memory) ↔ B4 (subspace-protected continual write); B3 sets the real-time stability floor.', seam: 'EAI·B1 verifies a WAM\'s imagination, not the realized mechanical coupling.' },
+      s6: { title: '⑥ VERIFY', content: 'EAI·B1\'s causal-consistency metric, now scoring all three channels.', seam: '' }
+    };
+
+    var activeCluster = null;
+    function showCluster(key) {
+      var d = CLUSTERS[key];
+      if (!d) return;
+      if (activeCluster === key) { closeCluster(); return; }
+      activeCluster = key;
+      document.getElementById('cd-title').textContent = d.title;
+      document.getElementById('cd-bet').textContent = d.bet;
+      document.getElementById('cd-why').textContent = d.why;
+      document.getElementById('cd-necessity').textContent = d.necessity;
+      var r = document.getElementById('cd-risks'); r.innerHTML = '';
+      d.risks.forEach(function(x){ var li = document.createElement('li'); li.innerHTML = x; r.appendChild(li); });
+      var panel = document.getElementById('cluster-detail');
+      panel.classList.add('open');
+      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+    function closeCluster() { activeCluster = null; document.getElementById('cluster-detail').classList.remove('open'); }
+
+    var activeStage = null;
+    function showStage(key) {
+      var d = STAGES[key];
+      if (!d) return;
+      if (activeStage === key) { closeStage(); return; }
+      activeStage = key;
+      document.getElementById('sd-title').textContent = d.title;
+      document.getElementById('sd-content').innerHTML = d.content;
+      var row = document.getElementById('sd-seam-row');
+      if (d.seam) { row.style.display = ''; document.getElementById('sd-seam').textContent = d.seam; }
+      else { row.style.display = 'none'; }
+      var panel = document.getElementById('stage-detail');
+      panel.classList.add('open');
+      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+    function closeStage() { activeStage = null; document.getElementById('stage-detail').classList.remove('open'); }
+
+    var activeFalsifier = null;
+    function showFalsifier(key) {
+      var d = FALSIFIERS[key];
+      if (!d) return;
+      if (activeFalsifier === key) { closeFalsifier(); return; }
+      activeFalsifier = key;
+      document.getElementById('fd-title').textContent = d.title;
+      document.getElementById('fd-ablation').textContent = d.ablation;
+      var row = document.getElementById('fd-thirdarm-row');
+      if (d.thirdArm) { row.style.display = ''; document.getElementById('fd-thirdarm').textContent = d.thirdArm; }
+      else { row.style.display = 'none'; }
+      document.getElementById('fd-concentration').textContent = d.concentration;
+      var panel = document.getElementById('falsifier-detail');
+      panel.classList.add('open');
+      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+    function closeFalsifier() { activeFalsifier = null; document.getElementById('falsifier-detail').classList.remove('open'); }
+  </script>
+</body>
+</html>
