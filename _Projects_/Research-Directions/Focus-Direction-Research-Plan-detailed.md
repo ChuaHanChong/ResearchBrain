@@ -132,21 +132,30 @@ Why **world-action model** (not just MLP): target $\delta_{\text{base}}=M_{\text
 
 ### Architecture
 
-```mermaid
-graph TD
-    O["RGB(+depth) o_t"] --> E["Frozen DINOv2 encoder<br/>(dino_wm DinoV2Encoder)"]
-    P["proprioception q, q_dot<br/>+ commanded q_ddot_arm + est. F_ext"] --> C["coupling-conditioned<br/>latent fusion"]
-    E --> Z["latent z_t"]
-    C --> Z
-    Z --> D["latent dynamics<br/>(VWorldModel predictor)"]
-    D --> Zp["predicted latent z_t+1"]
-    Z --> W["SHARED WRENCH HEAD<br/>delta_base (self-induced A) + J_ext^T F_ext (external C)<br/>in R^(6+n_leg), per mode"]
-    Zp --> A["action head<br/>(flow-matching / diffusion)<br/>base→torso→arm factoring (B)"]
-    Zp --> V["dense video/3DGS head<br/>(TEACHER, dropped at deploy)"]
-    W --> A
-    style W fill:#e8fde8,stroke:#27ae60
-    style A fill:#e8fde8,stroke:#27ae60
-    style V fill:#fdeaea,stroke:#c0392b,stroke-dasharray: 4 3
+```
+     RGB(+depth) o_t                 proprio q,q̇ + cmd q̈_arm + est. F_ext
+            │                                          │
+            ▼                                          ▼
+  Frozen DINOv2 encoder               coupling-conditioned latent fusion
+ (dino_wm DinoV2Encoder)              (separate_emb() latent assembly)
+            │                                          │
+            └────────────────────┬─────────────────────┘
+                                 ▼
+                            latent z_t
+               ┌─────────────────┴─────────────────┐
+               ▼                                   ▼
+        latent dynamics                   SHARED WRENCH HEAD
+    (VWorldModel predictor)               δ_base (self-induced, A)
+               │                          + J_ext^T·F_ext (external, C)
+               ▼                          in R^(6+n_leg), per contact mode
+    predicted latent z_t+1                         │
+         ┌─────┴────────────┐                      │
+         ▼                  ▼                      │
+ dense video/3DGS      action head ◄───────────────┘
+ head (TEACHER,        (flow-matching/
+ TRAIN-TIME ONLY),     diffusion)
+ dropped at deploy     base→torso→arm
+                       factoring (B)
 ```
 
 **Backbone: coupling head = plug-in, shown across WAM grid (not tied to one backbone).** Two coupling modules (wrench-imagination head + coupling-conditioned latent) bolt onto any WAM; backbone grid proves lift holds across families, no single-backbone commitment. Roles in grid:
@@ -951,24 +960,16 @@ Six-cluster program reduces to five builds, each mapped to forkable repo in `dat
 
 ### Staging
 
-```mermaid
-graph TD
-    P0["Phase 0: de-risk gates"] --> P1A["Phase 1A: WB.A cluster falsifier<br/>(arm-leg)"]
-    P0 --> P1B["Phase 1B: WB.B cluster falsifier<br/>(base-arm)"]
-    P0 --> P1C["Phase 1C: WB.C cluster falsifier<br/>(force-under-load)"]
-    P1A --> P2["Phase 2: ground the term<br/>real humanoid, Seam 2"]
-    P1C --> P2
-    P1A --> P3["Phase 3: CAWM coupling heads<br/>wrench head (A, C) + base→arm action head (B)"]
-    P1B --> P3
-    P1C --> P3
-    P2 -.->|real-grounded target| P3
-    P1A --> P4["Phase 4: verify metric + continual<br/>on existing harnesses, Seam 3"]
-    P1B --> P4
-    P1C --> P4
-    style P1A fill:#e8fde8,stroke:#27ae60
-    style P1B fill:#e8fde8,stroke:#27ae60
-    style P1C fill:#e8fde8,stroke:#27ae60
-    style P0 fill:#fdf3e8,stroke:#e67e22
+```
+Phase 0: de-risk gates
+    │
+    ├──► Phase 1A: WB.A cluster falsifier (arm-leg)        ──┐
+    ├──► Phase 1B: WB.B cluster falsifier (base-arm)         ├──► Phase 3: CAWM coupling heads
+    └──► Phase 1C: WB.C cluster falsifier (force-under-load) ┘     wrench head (A,C) + base→arm action head (B)
+
+Phase 1A + Phase 1C ──► Phase 2: ground the term (real humanoid, Seam 2) ╌╌► Phase 3 (real-grounded target, dashed)
+
+Phase 1A + Phase 1B + Phase 1C ──► Phase 4: verify metric + continual (existing harnesses, Seam 3)
 ```
 
 | Build | Deliverable | Gate |

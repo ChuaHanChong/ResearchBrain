@@ -57,22 +57,29 @@ $$ \delta_{\text{base}} \;=\; M_{\text{base,arm}}(q)\,\ddot q_{\text{arm}} + C_{
 Predict $\delta_{\text{base}}$ **anticipatorily** from *commanded* $\ddot q_{\text{arm}}$ (before it perturbs base); forward-model external reaction $\delta^{\text{ext}}_{\text{base}}$ from estimate of *unknown* $F_{\text{ext}}$ (before load fully felt). Both feed **one shared output wrench head** (legs compensate downstream), but **different prediction problems**: A computable from commanded $\ddot q_{\text{arm}}$ + inertia, C's exogenous wrench must be anticipated from context, load, contact state. Wedge is on timescales: reaction rises over ~20 to 60 ms, momentum observer lags ~6 ms plus one policy step, so anticipation wins only where rise-time long enough (pre-registered $\ge$ 31 ms, PR-0a). In MuJoCo exact target is `mj_fullM`, reachable through `humanoid-bench`'s `MjDataWrapper.__getattr__` passthrough (`env.data.qM` works directly); but `humanoid-bench` ships **zero** existing `mj_fullM`/`qM` usage, so authoring and confirming dense-densify-then-slice extraction on **H1 and G1 models is new Phase-0 task (to-be-confirmed at M0)**, not ready dependency. For falsifier, target comes from *perturbed* $\tilde M$.
 
 ### Architecture
-```mermaid
-graph TD
-    O["RGB(+depth) o_t"] --> E["Frozen DINOv2 encoder"]
-    P["proprio q, q_dot + commanded q_ddot_arm + est. F_ext"] --> C["coupling-conditioned latent"]
-    E --> Z["latent z_t"]
-    C --> Z
-    Z --> D["latent dynamics predictor"] --> Zp["z_t+1"]
-    Z --> W["SHARED WRENCH HEAD<br/>delta_base (self-induced A) + J_ext^T F_ext (external C), per mode"]
-    Zp --> A["action head (flow/diffusion)<br/>base→torso→arm factoring (B)"]
-    Zp --> V["dense video/3DGS head<br/>dense teacher: train-time only, dropped at deploy"]
-    W --> A
-    style W fill:#e8fde8,stroke:#27ae60
-    style A fill:#e8fde8,stroke:#27ae60
-    style V fill:#fdeaea,stroke:#c0392b,stroke-dasharray: 4 3
 ```
-*Dense teacher (red, dashed) is train-time-only node; deploy-time mermaids in [[Focus-Direction-Brief]] and canvas omit it by design — dropped at deploy.*
+     RGB(+depth) o_t                 proprio q,q̇ + cmd q̈_arm + est. F_ext
+            │                                          │
+            ▼                                          ▼
+  Frozen DINOv2 encoder                   coupling-conditioned latent
+            │                                          │
+            └────────────────────┬─────────────────────┘
+                                 ▼
+                            latent z_t
+               ┌─────────────────┴─────────────────┐
+               ▼                                   ▼
+   latent dynamics predictor              SHARED WRENCH HEAD
+               │                          δ_base (self-induced, A)
+               ▼                          + J_ext^T·F_ext (external, C)
+             z_t+1                        per contact mode
+         ┌─────┴────────────┐                      │
+         ▼                  ▼                      │
+ dense video/3DGS     action head ◄────────────────┘
+ head — TRAIN-TIME    (flow/diffusion)
+ ONLY, dropped at     base→torso→
+ deploy               arm (B)
+```
+*Dense teacher (train-time-only node) is dropped at deploy; deploy-time diagrams in [[Focus-Direction-Brief]] and canvas omit it by design.*
 
 Coupling head is plug-in on any WAM backbone (backbone grid proves lift is the term, not backbone). Four added modules:
 - **Coupling-conditioned latent:** carries proprioception + commanded $\ddot q_{\text{arm}}$, not just scene appearance. So latent cannot ignore acceleration input and collapse wrench head to proprioception-only regressor, explicit conditioning auxiliary loss $\mathcal L_{\text{cond}}$ supervises latent to *reconstruct* proprioception + commanded $\ddot q_{\text{arm}}$ from $z_t$ (Seam 1's learning mechanism); ablation #3 measures wrench-head error, conditioning on vs off.
