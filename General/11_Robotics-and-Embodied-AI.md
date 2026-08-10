@@ -1005,7 +1005,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2606.19333|Do-as-I-Do]] — most comprehensive and technically rigorous pipeline, reconstructing full 4D hand-object interactions from everyday monocular video and retargeting them to a dexterous bimanual robot; achieved state-of-the-art reconstruction and a **71%** retargeting success rate (vs **25%** baseline) with real-world deployment across 10 tasks.
 
 **Real2Sim & Simulation-Based Data Generation** — Reconstructs scenes into simulation (Gaussian splatting, physics engines, digital twins) to synthesize demonstrations at scale.
-- [[2607.19190|Agentic Real2Sim]], [[2607.13154|WANDA]], [[2607.06699|RoboSnap]], [[2607.04880|PRISM]], [[2606.10645|ManiSplat]], [[2606.01458|LEGS]], [[2603.25725|SoftMimicGen]], [[2601.18629|ExoGS]], [[2510.10637|High]], [[2507.21981|DISCOVERSE]], [[2507.02864|MultiGen]], [[2505.13441|GraspMolmo]], [[2504.13175|Novel-Demonstration-Generation-Gaussian]], [[2503.09040|MBGS]]
+- [[2607.19190|Agentic Real2Sim]], [[2607.13154|WANDA]], [[2607.06699|RoboSnap]], [[2607.04880|PRISM]], [[2606.10645|ManiSplat]], [[2606.01458|LEGS]], [[2603.25725|SoftMimicGen]], [[2601.18629|ExoGS]], [[2510.10637|High]], [[2507.21981|DISCOVERSE]], [[2507.05198|EmbodieDreamer]], [[2507.02864|MultiGen]], [[2505.13441|GraspMolmo]], [[2504.13175|Novel-Demonstration-Generation-Gaussian]], [[2503.14526|ReBot]], [[2503.09040|MBGS]]
 
 > [!star] Key Papers
 > - [[2504.13175|Novel-Demonstration-Generation-Gaussian]] — foundational method establishing 3D Gaussian Splatting as a scene-editing substrate for one-shot demonstration generation, a technique later reused across this cluster's Real2Sim pipelines; achieved **87.8%** one-shot success (vs **57.2%** for prior 2D augmentation) while generating data **29x** faster than manual collection.
@@ -1029,7 +1029,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2607.06442|SIEVE]] — clearest exposition of the group's core idea: bridges the "granularity mismatch" between trajectory-level and state-level selection by discovering reusable visuo-motor primitives, letting a policy trained on only **50%** of the data (56.3%) beat full-dataset training (51.8%) with half the compute.
 
 **3D Scene Reconstruction & Real2Sim** — Reconstructs graphics-ready or Gaussian-splat scenes and closes the real-to-sim-to-real loop for manipulation and generalist policies.
-- [[2607.24538|NEO]], [[2607.04144|Semantic-Guided Object Removal]], [[2604.05621|FunRec]], [[2603.16871|WorldCam]], [[2602.20150|SPARCS]], [[2602.08058|Picasso]], [[2601.03200|A-High-Fidelity-Digital-Twin-f]], [[2510.05560|HoloScene]], [[2507.02861|LiteReality]], [[2506.04120|Splatting-Physical-Scenes]], [[2502.17894|FetchBot]], [[2502.08645|Re3Sim]], [[2409.20291|RL-GSBridge]]
+- [[2607.24538|NEO]], [[2607.04144|Semantic-Guided Object Removal]], [[2604.05621|FunRec]], [[2603.16871|WorldCam]], [[2602.20150|SPARCS]], [[2602.08058|Picasso]], [[2601.03200|A-High-Fidelity-Digital-Twin-f]], [[2512.19390|TwinAligner]], [[2510.05560|HoloScene]], [[2507.02861|LiteReality]], [[2506.04120|Splatting-Physical-Scenes]], [[2502.17894|FetchBot]], [[2502.08645|Re3Sim]], [[2409.20291|RL-GSBridge]]
 
 > [!star] Key Papers
 > - [[2409.20291|RL-GSBridge]] — earliest and foundational paper in the group, establishing the 3DGS-based real2sim2real recipe for RL with a novel soft mesh binding: cut the sim-to-real success-rate drop to just **6.6%** versus an **80%** drop for a standard mesh-rendered RL baseline.
@@ -1808,7 +1808,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2512.14666|EVOLVE-VLA]] — Continuous adaptation from environmental feedback; addresses the deploy-and-forget problem
 
 **Few-Shot & Fast Skill Adaptation** — Rapidly acquiring or composing new skills from limited demonstrations or task descriptions.
-- [[2607.00666|Domain Arithmetic]], [[2606.15685|SCE]], [[2605.22671|BehaviorVLA]], [[2605.10903|CapVector]], [[2602.01811|VLA-SCT]], [[2511.02239|LACY]], [[2509.22195|Actions-as-Language]], [[2509.21986|Ego-VLA-Pretrain]], [[2508.15021|ICPI]], [[2508.02062|RICL]], [[2504.15517|Few-Shot-VLA]]
+- [[2607.00666|Domain Arithmetic]], [[2606.15685|SCE]], [[2605.22671|BehaviorVLA]], [[2605.10903|CapVector]], [[2603.11558|RoboClaw]], [[2602.01811|VLA-SCT]], [[2511.02239|LACY]], [[2509.22195|Actions-as-Language]], [[2509.21986|Ego-VLA-Pretrain]], [[2508.15021|ICPI]], [[2508.02062|RICL]], [[2504.15517|Few-Shot-VLA]]
 
 **Humanoid Whole-Body Loco-Manipulation** — Whole-body policies combining locomotion and manipulation on humanoid platforms.
 - [[2607.20345|DEED]], [[2606.10340|OMG]], [[2606.05880|TAGA]], [[2606.05873|LadderMan]], [[2605.27724|HumanoidMimicGen]], [[2605.14417|DAJI]], [[2604.24916|asRoBallet]], [[2604.19734|UniT]], [[2604.17807|Re2MoGen]], [[2604.17335|G1-WBC-Gen+Track]], [[2604.07993|HEX]], [[2604.07457|CMP]], [[2604.07430|HY-Embodied-0.5]], [[2604.01158|SMASH]], [[2603.12263|Psi0]], [[2603.00732|UniHM]], [[2512.11047|WholeBodyVLA]], [[2508.16943|LHM-Humanoid]], [[2506.13751|LeVERB]], [[2504.09532|Humanoid-COA]], [[2503.14734|GR00T-N1]], [[2502.14795|Humanoid-VLA]], [[2411.06782|QuadWBG]], [[2403.17367|RoboDuet]], [[2403.16967|VBC]]
@@ -2114,7 +2114,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 > - [[2602.08236|AVIC]] — Adaptive: decides when and how much to imagine based on task difficulty; 17x fewer world-model calls
 
 **Self-Evolving WAMs** — WAMs designed to continuously improve through experience-driven loops, curiosity, and reflective planning.
-- [[2607.06988|WAM-TTT]], [[2606.22449|Self-Evolving-Cognitive-Framework]], [[2606.17906|WAM-RL]], [[2606.12690|EWAM]], [[2607.04265|HALO-WA]], [[2604.07392|ERA]], [[2603.15381|Autonomous-Learning-Framework]], [[2602.04411|Self-evolving-Embodied-AI]], [[2510.09577|Dyna-Mind]], [[2509.15155|Self-Improving-EFM]], [[2507.09177|Online-Agent-OA]], [[2504.21024|WebEvolver]]
+- [[2607.06988|WAM-TTT]], [[2607.04265|HALO-WA]], [[2607.02431|WorldSample]], [[2606.22449|Self-Evolving-Cognitive-Framework]], [[2606.17906|WAM-RL]], [[2606.12690|EWAM]], [[2604.07392|ERA]], [[2603.15381|Autonomous-Learning-Framework]], [[2602.04411|Self-evolving-Embodied-AI]], [[2510.09577|Dyna-Mind]], [[2509.15155|Self-Improving-EFM]], [[2507.09177|Online-Agent-OA]], [[2504.21024|WebEvolver]]
 
 > [!star] Key Papers
 > - [[2602.04411|Self-evolving-Embodied-AI]] — Defines the paradigm: agents that autonomously acquire, refine, and transfer skills across environments
@@ -2197,7 +2197,7 @@ The frontier of embodied AI: robots that improve themselves through experience w
 Both navigation and driving reduce to the same core problem: perceive the environment, predict its future state, and plan a trajectory. Navigation operates at room/building scale with discrete goals; driving operates at city scale with continuous safety constraints.
 
 **Language-Grounded Nav: VLM/LLM-Driven Agents** — Agents that use VLM/LLM reasoning directly to map language instructions to navigation actions.
-- [[2607.13624|VLM Semantic Navigation]], [[2602.12385|ZLIK]], [[2512.08186|Ground-Slow,-Move-Fast]], [[2509.21189|ReasonNav]], [[2508.10416|CorrectNav]], [[2507.18033|OpenNav]], [[2503.24065|COSMO]], [[2503.13966|FlexVLN]], [[2503.12533|Being-0]], [[2503.10069|SmartWay]], [[2503.09820|ViLAM]], [[2502.19024|Ground-level]], [[2502.07306|TRAVEL]], [[2412.04453|NaVILA]], [[2410.02730|DivScene]], [[2402.15852|NaVid]]
+- [[2607.13624|VLM Semantic Navigation]], [[2602.12385|ZLIK]], [[2512.08186|Ground-Slow,-Move-Fast]], [[2509.21189|ReasonNav]], [[2509.10884|Nav-R1]], [[2508.10416|CorrectNav]], [[2507.18033|OpenNav]], [[2503.24065|COSMO]], [[2503.13966|FlexVLN]], [[2503.12533|Being-0]], [[2503.10069|SmartWay]], [[2503.09820|ViLAM]], [[2502.19024|Ground-level]], [[2502.07306|TRAVEL]], [[2412.04453|NaVILA]], [[2410.02730|DivScene]], [[2402.15852|NaVid]]
 
 **Language-Grounded Nav: World-Model & Memory-Based** — Imagination, dreaming, world-model, and semantic-map approaches to language-grounded navigation, plus evaluation studies.
 - [[2607.12630|MTEFR]], [[2603.29165|LatentPilot]], [[2603.25937|VNM Real-World Evaluation 2026]], [[2512.01550|NavForesee]], [[2511.18845|UNeMo]], [[2510.08553|Dream-to-Recall]], [[2509.11197|DreamNav]], [[2506.06862|Multimodal-Spatial-Language-Maps]], [[2506.01600|WoMAP]], [[2505.07868|VISTA-navigation]], [[2504.02477|Multimodal-Fusion-&-VLM-Survey]], [[2503.02247|WMNav]], [[2502.13451|MapNav]], [[2412.01857|SALI]]
@@ -2222,7 +2222,7 @@ Both navigation and driving reduce to the same core problem: perceive the enviro
 > - [[2311.00530|LLM-Embodied-Navigation-Survey]] — First survey connecting LLM advances to embodied navigation; maps the integration landscape
 
 **Legged & Humanoid Locomotion-Navigation (RL)** — RL-trained navigation coupled with legged/humanoid locomotion control.
-- [[2607.12965|MAMMOTH]], [[2605.03846|SigLoMa]], [[2604.26504|HiPAN]], [[2603.18979|PRIOR-Loco]], [[2512.07464|Gait]], [[2508.03068|Hand-Eye-Autonomous-Delivery]], [[2505.06218|Let-Humanoids-Hike-Integrative]], [[2502.01536|VR-Robo]], [[2405.01792|Wheeled-Legged-NavLoco]], [[2312.11460|HIM]], [[2301.10602|DreamWaQ]]
+- [[2607.12965|MAMMOTH]], [[2605.03846|SigLoMa]], [[2604.26504|HiPAN]], [[2603.18979|PRIOR-Loco]], [[2512.07464|Gait]], [[2508.03068|Hand-Eye-Autonomous-Delivery]], [[2505.06218|Let-Humanoids-Hike-Integrative]], [[2502.01536|VR-Robo]], [[2405.01792|Wheeled-Legged-NavLoco]], [[2312.11460|HIM]], [[2301.10602|DreamWaQ]], [[2210.04932|NeRF2Real]]
 
 **Memory & World-Model RL Navigation** — Episodic memory, cognitive maps, and world-model-based spatial representations for RL navigation.
 - [[2606.29222|CORE Planner]], [[2605.22814|Remember-to-be-Curious]], [[2605.10118|SAGE]], [[2511.11011|Efficient-Image-Goal-Navigatio]], [[2510.09951|Hippocampus-Actor-Critic]], [[2412.14401|One-RING-Robotic-Indoor]], [[2401.05946|TDB]], [[2308.05602|Recursive-Implicit-Maps-Nav]], [[2301.13261|Blind-Nav-Agents]]
