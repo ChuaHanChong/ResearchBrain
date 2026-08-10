@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "eval_name": "paper-to-code-exploration",
+  "prompt": "get me the training loop code from the LoRA (low-rank adaptation) paper's official repo - I want to see how they apply the low-rank update during the forward pass",
+  "assertions": [
+    "Identifies the correct GitHub repo (microsoft/LoRA or equivalent official repo)",
+    "Calls mcp__alphaxiv__read_files_from_github_repository with path=\"/\" at least once before drilling into a specific file",
+    "Eventually reads a specific source file relevant to the low-rank forward pass, not just the repo root",
+    "No tool-call error surfaces to the final answer"
+  ]
+}

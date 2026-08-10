@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "skill_name": "alphaxiv-search",
+    "skill_path": "/Users/chuahanchong/Documents/Projects/ResearchBrain/.claude/skills/alphaxiv-search",
+    "executor_model": "inherited-session-model",
+    "analyzer_model": "inline (graded by orchestrating agent, not a separate grader subagent)",
+    "timestamp": "2026-08-10T11:30:00+08:00",
+    "evals_run": [0, 1, 2],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "discover-papers-literature-query",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 5, "failed": 0, "total": 5, "time_seconds": 116.0, "tokens": 72279, "tool_calls": 2, "errors": 0},
+      "expectations": [
+        {"text": "Calls mcp__alphaxiv__discover_papers, not a retired tool name", "passed": true, "evidence": "Both calls use mcp__alphaxiv__discover_papers."},
+        {"text": "keywords array (3-4 terms)", "passed": true, "evidence": "3-term arrays both calls."},
+        {"text": "question string", "passed": true, "evidence": "Present both calls."},
+        {"text": "difficulty number", "passed": true, "evidence": "6 then 7."},
+        {"text": "No error surfaces to final answer", "passed": true, "evidence": "No errors returned."}
+      ],
+      "notes": ["Does not discriminate from baseline - see run_summary delta."]
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "discover-papers-literature-query",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 5, "failed": 0, "total": 5, "time_seconds": 83.1, "tokens": 62107, "tool_calls": 2, "errors": 0},
+      "expectations": [
+        {"text": "Calls mcp__alphaxiv__discover_papers, not a retired tool name", "passed": true, "evidence": "Both calls use mcp__alphaxiv__discover_papers with zero skill guidance."},
+        {"text": "keywords array (3-4 terms)", "passed": true, "evidence": "4-5 term arrays."},
+        {"text": "question string", "passed": true, "evidence": "Present both calls."},
+        {"text": "difficulty number", "passed": true, "evidence": "6 both calls."},
+        {"text": "No error surfaces to final answer", "passed": true, "evidence": "No errors."}
+      ],
+      "notes": ["Model already knows the live discover_papers schema unaided."]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "answer-pdf-batched-questions",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 5, "failed": 0, "total": 5, "time_seconds": 47.0, "tokens": 77236, "tool_calls": 1, "errors": 0},
+      "expectations": [
+        {"text": "param 'paper' not 'url'", "passed": true, "evidence": "\"paper\": \"2604.04539\""},
+        {"text": "param 'queries' as array", "passed": true, "evidence": "3-element array"},
+        {"text": "batched into one call", "passed": true, "evidence": "Single tool call, cites skill's batching guidance"},
+        {"text": "states batch size 2048", "passed": true, "evidence": "\"Batch size: 2048\""},
+        {"text": "states entropy target ~0.15", "passed": true, "evidence": "\"sigma_tgt = 0.15\""}
+      ],
+      "notes": ["Confirms the historical url/query param-name bug stays fixed."]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "answer-pdf-batched-questions",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 5, "failed": 0, "total": 5, "time_seconds": 42.6, "tokens": 71488, "tool_calls": 1, "errors": 0},
+      "expectations": [
+        {"text": "param 'paper' not 'url'", "passed": true, "evidence": "\"paper\": \"2604.04539\", zero skill guidance"},
+        {"text": "param 'queries' as array", "passed": true, "evidence": "3-element array"},
+        {"text": "batched into one call", "passed": true, "evidence": "Single call, batched unaided"},
+        {"text": "states batch size 2048", "passed": true, "evidence": "\"Batch size: 2048\""},
+        {"text": "states entropy target ~0.15", "passed": true, "evidence": "\"Entropy target: sigma_tgt = 0.15\""}
+      ],
+      "notes": ["Live tool schema alone is enough to avoid the old bug."]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "paper-to-code-exploration",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 4, "failed": 0, "total": 4, "time_seconds": 157.4, "tokens": 106111, "tool_calls": 5, "errors": 1},
+      "expectations": [
+        {"text": "identifies correct repo", "passed": true, "evidence": "microsoft/LoRA confirmed via README"},
+        {"text": "path=\"/\" before drilling in", "passed": true, "evidence": "Call 3 path=\"/\""},
+        {"text": "reads specific relevant source file", "passed": true, "evidence": "loralib/layers.py Linear.forward() quoted"},
+        {"text": "no error surfaces to final answer", "passed": true, "evidence": "Call 5 errored but was recovered from"}
+      ],
+      "notes": ["Skill's 'Code Analysis' step 1 (discover_papers first) misfired on this well-known named paper - wasted a call, cost ~34% more time and ~24% more tokens than baseline for the identical correct outcome. See eval_feedback in with_skill/grading.json."]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "paper-to-code-exploration",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {"pass_rate": 1.0, "passed": 4, "failed": 0, "total": 4, "time_seconds": 93.5, "tokens": 85737, "tool_calls": 5, "errors": 1},
+      "expectations": [
+        {"text": "identifies correct repo", "passed": true, "evidence": "microsoft/LoRA, used from own knowledge then confirmed"},
+        {"text": "path=\"/\" before drilling in", "passed": true, "evidence": "Call 2 path=\"/\""},
+        {"text": "reads specific relevant source file", "passed": true, "evidence": "loralib/layers.py read directly, Linear.forward() quoted"},
+        {"text": "no error surfaces to final answer", "passed": true, "evidence": "Call 4 errored, recovered by re-targeting the needed file directly (more efficient recovery than with_skill)"}
+      ],
+      "notes": ["Skipped discover_papers entirely for a paper it already knew by name/ID - reached the same correct answer faster and cheaper."]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 106.8, "stddev": 45.5, "min": 47.0, "max": 157.4},
+      "tokens": {"mean": 85209, "stddev": 14918, "min": 72279, "max": 106111}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 73.1, "stddev": 22.0, "min": 42.6, "max": 93.5},
+      "tokens": {"mean": 73111, "stddev": 9715, "min": 62107, "max": 85737}
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+33.7",
+      "tokens": "+12098"
+    }
+  },
+  "notes": [
+    "Correctness is identical between with_skill and without_skill across all 3 evals and 14 total assertions (pass_rate 1.0 in both configurations) - none of the current assertions discriminate skill value.",
+    "The live alphaxiv MCP tool schemas (discover_papers keywords/question/difficulty, answer_pdf_queries paper/queries) are apparently self-descriptive enough that a fresh agent constructs correct calls with zero skill guidance - the skill's main proven value this session was fixing a stale url/query signature that's no longer present in the current SKILL.md, so eval 1 is now a regression check rather than a differentiator.",
+    "The one place the skill measurably changed behavior (eval 2) made it WORSE: following the 'Code Analysis' Common Use Case's step 1 ('Use discover_papers to find the paper of interest') sent the with_skill run down a dead-end call before it fell back to naming the paper directly, costing +34% time and +24% tokens for an identical final answer. This wording is copied verbatim from the official alphaxiv docs page's own 'Common use cases' section, so the docs themselves give this advice - but it doesn't hold for the very common case where the user already names a well-known paper.",
+    "Recommended fix for iteration 2: qualify the 'Code Analysis' step 1 - skip discover_papers when the user already names a specific paper (title or arXiv ID); reserve it for open-ended discovery.",
+    "Sample size is 1 run per configuration per eval (not the usual 3) - stddev/min/max within a configuration are computed across the 3 different evals, not across repeated runs of the same eval, so they reflect eval-to-eval variance, not run-to-run noise."
+  ]
+}

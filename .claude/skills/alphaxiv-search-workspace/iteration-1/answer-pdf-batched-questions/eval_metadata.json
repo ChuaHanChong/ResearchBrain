@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "answer-pdf-batched-questions",
+  "prompt": "can you check the FlashSAC paper (arxiv 2604.04539) and tell me what update-to-data ratio and batch size it uses, plus what the entropy target is",
+  "assertions": [
+    "Calls mcp__alphaxiv__answer_pdf_queries with param name 'paper' (not 'url')",
+    "Calls mcp__alphaxiv__answer_pdf_queries with param name 'queries' as an array (not a single 'query' string)",
+    "All three questions are batched into one answer_pdf_queries call, not three separate calls",
+    "Final answer states batch size 2048",
+    "Final answer states entropy target / sigma_tgt around 0.15"
+  ]
+}

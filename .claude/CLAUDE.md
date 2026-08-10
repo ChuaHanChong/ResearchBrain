@@ -18,13 +18,13 @@ General/ (topic overview, landscape, key papers)
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | **research-assistant agent** | `.claude/agents/research-assistant.md` | Full-stack research: discovery, idea formulation, math verification, synthesis, documentation, vault maintenance |
-| **alphaxiv-search skill** | `.claude/skills/alphaxiv-search/` | Search guide for 6 alphaxiv MCP tools with query patterns and strategies |
+| **alphaxiv-search skill** | `.claude/skills/alphaxiv-search/` | Search guide for 4 alphaxiv MCP research tools with query patterns and strategies |
 | **alphaxiv-summary-extract skill** | `.claude/skills/alphaxiv-summary-extract/` | Batch scraping via Selenium → `_KnowledgeHub_/` notes, enrichment rules, tag taxonomy |
 | **knowledgehub-query skill** | `.claude/skills/knowledgehub-query/` | Reads KnowledgeHub notes by arxiv ID and answers questions from their content |
 | **paper-curate skill** | `.claude/skills/paper-curate/` | Assigns papers to General/ topics, audits coverage, formatting rules |
 | **paper-figure-extract skill** | `.claude/skills/paper-figure-extract/` | Extracts a paper's pipeline figure from its **alphaxiv overview** (alphaxiv alt-label + caption), or its **arxiv HTML render** as a fallback, requires a visual check that it is the real diagram, and embeds it (caption verbatim) under the KH note's `## Method` section |
 | **kh-graph-sync skill** | `.claude/skills/kh-graph-sync/` | Additively adds new KH notes to `graphify-out/graph.json` (delta → subagent extract → additive merge + `tag_*` wiring); `enrich` subcommand adds TF-IDF similarity + `concept_*` hub edges. Bypasses graphify's broken native `--update` |
-| **alphaxiv MCP** | External service | 6 tools: semantic search, full-text search, agentic retrieval, paper content, PDF Q&A, GitHub reader |
+| **alphaxiv MCP** | External service | 4 research tools: `discover_papers` (unified keyword+embedding+multi-round search), paper content, PDF Q&A, GitHub reader. Plus 6 library-management tools (out of scope here) |
 
 `.claude/settings.json` names **research-assistant** as the vault's main agent, so every session opens in it. The ml-optimizer submodule serves it: `/optimize` runs the optimization pipeline, and its Phase 5 routes research back to research-assistant so proposals come from the curated vault rather than a cold web search.
 
@@ -55,7 +55,7 @@ General/ (topic overview, landscape, key papers)
 - Overview page: `https://www.alphaxiv.org/overview/{PAPER_ID}` — JS-rendered HTML, scraped via Selenium + BeautifulSoup in `alphaxiv-summary-extract/scripts/extract_summaries.py`
 - Domain redirects from `alphaxiv.org` → `www.alphaxiv.org` (use `-L` if probing with curl)
 - The `.md` suffix endpoint exists (machine-readable render) but is **not used** — static render misses JS-loaded sections this vault needs
-- MCP tools (preferred over scraping when possible): `embedding_similarity_search`, `full_text_papers_search`, `agentic_paper_retrieval`, `get_paper_content`, `answer_pdf_queries`, `read_files_from_github_repository`
+- MCP tools (preferred over scraping when possible): `discover_papers`, `get_paper_content`, `answer_pdf_queries`, `read_files_from_github_repository`
 
 ## Environment
 

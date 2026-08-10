@@ -1,0 +1,21 @@
+{
+  "expectations": [
+    {"text": "Calls mcp__alphaxiv__discover_papers, not embedding_similarity_search/full_text_papers_search/agentic_paper_retrieval", "passed": true, "evidence": "Both calls use `mcp__alphaxiv__discover_papers`; no retired tool name appears anywhere in the transcript."},
+    {"text": "discover_papers call includes a keywords array (3-4 terms)", "passed": true, "evidence": "Call 1: [\"GRPO\", \"vision-language-action\", \"reinforcement learning\"]; Call 2: [\"VLA\", \"GRPO\", \"robot manipulation\"]."},
+    {"text": "discover_papers call includes a question string (semantic description)", "passed": true, "evidence": "Both calls include a multi-clause `question` field describing the research area."},
+    {"text": "discover_papers call includes a difficulty number", "passed": true, "evidence": "Call 1 difficulty=6, Call 2 difficulty=7."},
+    {"text": "No tool-call error surfaces to the final answer", "passed": true, "evidence": "\"No errors were returned by either call.\""}
+  ],
+  "summary": {"passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 2, "errors_encountered": 0},
+  "timing": {"executor_duration_seconds": 116.0},
+  "claims": [
+    {"claim": "Recommends a follow-up read of ambiguous candidates before citing them as GRPO-confirmed", "type": "quality", "verified": true, "evidence": "Final answer caveat explicitly flags this as unverified from abstract snippets alone - good calibration."}
+  ],
+  "eval_feedback": {
+    "suggestions": [
+      {"reason": "This eval doesn't discriminate skill value: the baseline (no skill) constructed an equally correct discover_papers call with no guidance at all. The live MCP tool schema appears self-descriptive enough that keywords/question/difficulty are obvious without the skill. Consider a harder eval that specifically tests a parameter the schema doesn't make obvious (e.g. prioritize/published_after usage, or recovering from a misleading first result)."}
+    ],
+    "overall": "Assertions pass but do not distinguish with_skill from without_skill on this prompt - see paper-to-code-exploration for a case that does discriminate."
+  }
+}

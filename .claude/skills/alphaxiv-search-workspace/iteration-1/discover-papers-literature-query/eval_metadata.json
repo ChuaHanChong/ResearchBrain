@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "discover-papers-literature-query",
+  "prompt": "search alphaxiv for recent papers on using GRPO-style reinforcement learning to fine-tune vision-language-action models for robotics",
+  "assertions": [
+    "Calls mcp__alphaxiv__discover_papers, not a retired tool name (embedding_similarity_search/full_text_papers_search/agentic_paper_retrieval)",
+    "discover_papers call includes a keywords array (3-4 terms)",
+    "discover_papers call includes a question string (semantic description)",
+    "discover_papers call includes a difficulty number",
+    "No tool-call error surfaces to the final answer"
+  ]
+}

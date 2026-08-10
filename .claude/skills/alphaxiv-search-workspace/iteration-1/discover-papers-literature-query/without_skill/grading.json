@@ -1,0 +1,16 @@
+{
+  "expectations": [
+    {"text": "Calls mcp__alphaxiv__discover_papers, not embedding_similarity_search/full_text_papers_search/agentic_paper_retrieval", "passed": true, "evidence": "Both calls use `mcp__alphaxiv__discover_papers`; no retired tool name appears."},
+    {"text": "discover_papers call includes a keywords array (3-4 terms)", "passed": true, "evidence": "Call 1: 4 terms [\"GRPO\", \"vision-language-action\", \"reinforcement learning\", \"robotics\"]; Call 2: 5 terms."},
+    {"text": "discover_papers call includes a question string (semantic description)", "passed": true, "evidence": "Both calls include a `question` field."},
+    {"text": "discover_papers call includes a difficulty number", "passed": true, "evidence": "difficulty=6 both calls."},
+    {"text": "No tool-call error surfaces to the final answer", "passed": true, "evidence": "\"No tool call errored.\""}
+  ],
+  "summary": {"passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0},
+  "execution_metrics": {"total_tool_calls": 2, "errors_encountered": 0},
+  "timing": {"executor_duration_seconds": 83.1},
+  "claims": [
+    {"claim": "Model already knew the current discover_papers schema (keywords/question/difficulty/prioritize) with zero skill guidance", "type": "process", "verified": true, "evidence": "Both baseline calls used the exact current parameter names with no errors, despite being told not to read any skill docs."}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": [], "workarounds": []}
+}
