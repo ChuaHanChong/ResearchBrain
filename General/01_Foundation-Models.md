@@ -247,7 +247,7 @@ The architectural revolution that brought attention mechanisms to computer visio
 - [[2603.25744|MuRF]], [[2603.22815|PinPoint]], [[2603.22387|EUPE]], [[2602.08683|OneVision-Encoder]], [[2512.01738|MSPT]], [[2510.23479|MergeMix]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2507.07995|KARL-Eff]], [[2505.23769|TextRegion]], [[2504.03118|NuWa-Eff]], [[2307.09120|LW-PLG-ViT]], [[2205.03436|EdgeViTs]], [[2107.02239|ViX]], [[2104.05704|CCT]]
 
 **Domain Adaptation, Transfer & Interpretability** — Adapting pretrained ViTs to new domains via adapters and prompts, and analyzing what the adapted representations capture.
-- [[2608.02124|HAFI-VLM]], [[2603.22570|CanViT]], [[2601.08499|EfficientFSL]], [[2505.21501|PH-Reg]], [[2505.19985|Structured-ViT-Initialization]], [[2505.17316|Patch-Aligned-Training]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2108.05988|TVT]]
+- [[2608.02124|HAFI-VLM]], [[2603.22570|CanViT]], [[2601.08499|EfficientFSL]], [[2505.21501|PH-Reg]], [[2505.19985|Structured-ViT-Initialization]], [[2505.18364|ImLPR]], [[2505.17316|Patch-Aligned-Training]], [[2502.01962|META]], [[2501.09333|Prompt-CAM]], [[2412.04073|TransAdapter]], [[2303.13434|PMTrans]], [[2205.08534|ViT-Adapter]], [[2108.05988|TVT]]
 
 > [!star] Key Papers
 > - [[2205.08534|ViT-Adapter]] — Foundational adapter method enabling plain ViTs to handle dense prediction tasks without architectural changes
@@ -324,7 +324,7 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2502.10385|SimDINO]] — Dramatically simplified DINO via coding rate regularization; shows what DINO really needs
 
 **Robotics-Applied Contrastive & Tactile Perception** — Contrastive and self-supervised representation learning applied to robot manipulation, locomotion, localization, and touch sensing.
-- [[2607.05247|LingBot-Vision]], [[2606.04718|CoRe-MoE]], [[2605.29564|VE2VF]], [[2604.09445|AsymLoc]], [[2603.12217|Verifier-Point-Tracking]], [[2602.00937|CLAMP]], [[2506.14754|Sparsh-X]], [[2506.10359|Multi-Suction Pick Success]], [[2502.19374|VFM-LiDAR Registration]], [[2410.24090|Sparsh]]
+- [[2607.05247|LingBot-Vision]], [[2606.04718|CoRe-MoE]], [[2605.29564|VE2VF]], [[2604.09445|AsymLoc]], [[2603.12217|Verifier-Point-Tracking]], [[2602.00937|CLAMP]], [[2506.14754|Sparsh-X]], [[2506.10359|Multi-Suction Pick Success]], [[2505.11420|Sparsh-skin]], [[2502.19374|VFM-LiDAR Registration]], [[2410.24090|Sparsh]]
 
 **General Self-Supervised Learning Theory** — Theoretical and empirical studies of what makes contrastive/self-distillation objectives work and how they scale.
 - [[2608.06174|SO-OPF]], [[2605.03517|LDM-SSL]], [[2603.26799|GJE]], [[2603.15553|Bootleg]], [[2506.10159|VCL]], [[2410.10817|Human-Aligned Vision Representations]], [[2406.09294|JEA-Scaling-Study]]
@@ -361,7 +361,7 @@ Learning visual representations without labels — the foundation for data-effic
 > I-JEPA started a family: [[2511.08544|LeJEPA]] (provable foundations) and [[2512.19605|KerJEPA]] (kernel methods) extend the theory, while [[2602.11389|Causal-JEPA]] adds causal reasoning. For the full robotics-oriented lineage (V-JEPA 2 → VL-JEPA → VLA-JEPA), see the JEPA notes in the vault.
 
 **Tactile & Multi-Sensory Representation Learning** — Self-supervised and contrastive methods for learning transferable tactile representations across heterogeneous sensors and modalities.
-- [[2607.20683|FELT]], [[2607.13522|Kepler-Encoder]], [[2607.01067|TTP]], [[2606.31694|RCT]], [[2606.31236|TactX]], [[2606.29948|HTT]], [[2606.29173|TacGen]], [[2606.14344|LESS]], [[2603.15847|FEEL]], [[2601.20239|TouchGuide]]
+- [[2607.20683|FELT]], [[2607.13522|Kepler-Encoder]], [[2607.01067|TTP]], [[2606.31694|RCT]], [[2606.31236|TactX]], [[2606.29948|HTT]], [[2606.29173|TacGen]], [[2606.14344|LESS]], [[2603.15847|FEEL]], [[2601.20239|TouchGuide]], [[2509.14688|exUMI]]
 
 > [!star] Key Papers
 > - [[2606.31236|TactX]] — Learns shared representations across heterogeneous tactile sensor families; transfers without hardware-specific retraining
@@ -378,7 +378,7 @@ Learning visual representations without labels — the foundation for data-effic
 - [[2606.03940|SEAOTTER]], [[2606.02767|HAKF]], [[2605.29548|Capacity-Interference-Retention]], [[2605.27734|Latent-Sample-Complexity]], [[2605.22629|H-Flow]], [[2605.09963|Spatial-Prediction-SP]], [[2604.18267|MARCO]], [[2603.06693|SER]], [[2512.01342|InternVideo-Next]], [[2511.17309|MuM]], [[2509.15965|RLinf]], [[2410.21676|Critical-Batch-Size-Scaling]], [[2409.14401|In-Class-Data-Imbalance]], [[2101.12195|CADDY]]
 
 **Robotics Imitation, Play & Offline Representation Learning** — Self-supervised and imitation-learning methods for robot manipulation and navigation from demonstrations, play, and offline interaction data.
-- [[2605.24934|HumanEgo]], [[2605.20811|Demo-JEPA]], [[2509.21986|Ego-VLA-Pretrain]], [[2507.23523|H-RDT]], [[2505.17006|CoMo]], [[2504.18904|RoboVerse]], [[2412.04445|Moto]], [[2406.17768|EXTRACT]], [[2312.10812|LAPO]], [[2311.16098|Dobb-E]], [[2306.00958|LIV]], [[2111.09793|Robotic-Interestingness]], [[2111.07447|Self-Replay]], [[2101.05181|MemAug-Image-Goal-Nav]], [[1909.06933|DD Policy]], [[1903.11239|TossingBot]], [[1903.01973|Play-LMP]], [[1806.09655|CLASP-Action-Space]], [[1805.07914|ILPO]]
+- [[2605.24934|HumanEgo]], [[2605.20811|Demo-JEPA]], [[2509.21986|Ego-VLA-Pretrain]], [[2508.19391|LaVA-Man]], [[2507.23523|H-RDT]], [[2506.05064|DemoSpeedup]], [[2505.17006|CoMo]], [[2504.18904|RoboVerse]], [[2412.04445|Moto]], [[2406.17768|EXTRACT]], [[2312.10812|LAPO]], [[2311.16098|Dobb-E]], [[2306.00958|LIV]], [[2111.09793|Robotic-Interestingness]], [[2111.07447|Self-Replay]], [[2101.05181|MemAug-Image-Goal-Nav]], [[1909.06933|DD Policy]], [[1903.11239|TossingBot]], [[1903.01973|Play-LMP]], [[1806.09655|CLASP-Action-Space]], [[1805.07914|ILPO]]
 
 **Robot World Models, Latent Actions & RL Representation** — World models, latent-action representations, and RL-theoretic representation learning for robot control.
 - [[2607.08341|AnyDexRT]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.03985|Humanoid-GPT]], [[2606.03476|Human2Humanoid]], [[2605.30350|DynaFLIP]], [[2605.26379|LeJEPA-World-Model]], [[2605.25313|UWM-JEPA]], [[2605.22671|BehaviorVLA]], [[2605.21258|Structural-Latent-Points]], [[2605.15725|DiLA]], [[2604.16391|DeFI]], [[2512.00961|GenReward]], [[2511.04131|BFM-Zero]], [[2505.00500|INR-DOM]], [[2410.08208|SPA (3D Spatial-Awareness Representation)]], [[2407.20230|SAPG]], [[2311.12244|muLV-Rep]], [[2310.01404|H-InDex]], [[2212.05749|LfS (+aug) Baseline]], [[2210.07241|Self-Supervised 3D RL]], [[2103.07945|Forward-Backward Representation]], [[2103.06326|S4RL]]
@@ -542,7 +542,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2505.23725|MuLoCo]] — Muon as inner optimizer for DiLoCo distributed training; significant speedup over AdamW
 
 **Scaling Laws, Compute-Optimality & Foundational Releases** — Theoretical scaling laws and the landmark large-scale pretrained language models whose training runs put those laws into practice.
-- [[2607.22043|Native Multimodal Scaling Laws]], [[2607.16097|Pretraining-RL Scaling Law]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2510.06954|Condensation-Rank-Collapse]], [[2506.12932|Complexity-Scaling-Laws]], [[2505.10559|Neural-Thermodynamic-Laws]], [[2505.10465|Superposition-Scaling]], [[2503.12811|MPL]], [[2502.21269|Generalization-Overfitting-Decoupling]], [[2405.18392|Compute-Optimal-Scaling-Laws]], [[2302.13971|LLaMA]], [[2204.02311|PaLM (Pathways Language Model)]], [[2006.12467|Depth-to-Width Interplay]], [[2005.14165|GPT-3]], [[2001.08361|Neural Scaling Laws]]
+- [[2607.22043|Native Multimodal Scaling Laws]], [[2607.16097|Pretraining-RL Scaling Law]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2510.06954|Condensation-Rank-Collapse]], [[2509.02754|LLM Modules for AD]], [[2506.12932|Complexity-Scaling-Laws]], [[2505.10559|Neural-Thermodynamic-Laws]], [[2505.10465|Superposition-Scaling]], [[2503.12811|MPL]], [[2502.21269|Generalization-Overfitting-Decoupling]], [[2405.18392|Compute-Optimal-Scaling-Laws]], [[2302.13971|LLaMA]], [[2204.02311|PaLM (Pathways Language Model)]], [[2006.12467|Depth-to-Width Interplay]], [[2005.14165|GPT-3]], [[2001.08361|Neural Scaling Laws]]
 
 > [!star] Key Papers
 > - [[2503.12811|MPL]] — Multi-Power Law accurately predicts training loss across learning rate schedules
@@ -553,7 +553,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 - [[2607.21653|Molt]], [[2607.05155|EdgeBench]], [[2605.22297|Layerwise-LR]], [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2602.10556|LAP]], [[2512.16913|DAP]], [[2508.18672|MoE-Sparsity-Reasoning]], [[2507.12507|Nemotron]], [[2506.16029|EvoLM]], [[2505.22323|MoE-Expert-Specialization]], [[2405.16158|BRO]], [[2310.18969|ViT-Class-Embedding-Analysis]], [[2309.14322|Transformer-Training-Instabilities]], [[2109.08203|Seed-3407]], [[2107.02027|packedBERT]]
 
 **Batch Size, Distributed Training & Large-Scale RL Systems** — Studies of batch size effects and the distributed/parallel training systems that enable large-scale learning, including early large-scale RL infrastructure.
-- [[2507.07101|Small-Batch-LLM-Training]], [[2308.12952|BridgeData-V2]], [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch-Training]], [[1811.03600|Data Parallelism Study]], [[1807.11205|Jizhi]], [[1803.00933|Ape-X]], [[1706.02677|ImageNet in 1 Hour]], [[1507.04296|Gorila]]
+- [[2507.07101|Small-Batch-LLM-Training]], [[2504.17838|CaRL]], [[2308.12952|BridgeData-V2]], [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch-Training]], [[1811.03600|Data Parallelism Study]], [[1807.11205|Jizhi]], [[1803.00933|Ape-X]], [[1706.02677|ImageNet in 1 Hour]], [[1507.04296|Gorila]]
 
 > [!star] Key Papers
 > - [[2507.07101|Small-Batch-LLM-Training]] — Small batch sizes (even batch=1) can stably train LLMs; challenges the large-batch orthodoxy
@@ -627,10 +627,10 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 - [[2607.07357|HUMAIN]], [[2607.02332|HEFT]], [[2607.02037|Cross-Platform ASV RL]], [[2606.30474|GOMP]], [[2605.03821|RoboAlign-R1]], [[2603.08763|SPREAD]], [[2601.05407|HINT]], [[2310.04582|PULSE]], [[2309.14341|Extreme Parkour]], [[2309.05665|Robot Parkour]], [[2211.07638|Egocentric Legged Locomotion]]
 
 **Vision, Multimodal & Domain-Adaptive Distillation** — General-purpose vision, multimodal, and domain-adaptive teacher-student and multi-teacher distillation methods.
-- [[2607.21556|VCSD]], [[2607.10762|TOLiD]], [[2607.10082|Event-Image Dual-Stage Distillation]], [[2607.06957|Flow-ERD]], [[2606.08432|Trajectory-Refined-Distillation]], [[2602.05449|DisCa]], [[2512.22238|Mask-Teacher-Distill]], [[2508.04816|CoMAD]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2503.11339|CSD]], [[2502.02538|FQL]], [[2312.06709|AM-RADIO]]
+- [[2607.21556|VCSD]], [[2607.10762|TOLiD]], [[2607.10082|Event-Image Dual-Stage Distillation]], [[2607.06957|Flow-ERD]], [[2606.08432|Trajectory-Refined-Distillation]], [[2602.05449|DisCa]], [[2512.22238|Mask-Teacher-Distill]], [[2508.04816|CoMAD]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2503.11339|CSD]], [[2502.02538|FQL]], [[2412.14446|VLM-AD]], [[2312.06709|AM-RADIO]]
 
 **Reasoning, Agent & Language Distillation** — Distilling reasoning, chain-of-thought, and agentic capability from larger models into smaller or more efficient ones.
-- [[2604.01193|SSD-Code-Generation]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2508.13167|CoA]], [[2507.05707|Agentic-R1]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2502.21074|CODI]], [[2311.01460|Implicit CoT]], [[2306.08543|MiniLLM]]
+- [[2604.01193|SSD-Code-Generation]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2508.13167|CoA]], [[2507.05707|Agentic-R1]], [[2506.17486|PRISM-SLM]], [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2502.21074|CODI]], [[2311.01460|Implicit CoT]], [[2306.08543|MiniLLM]]
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] — Foundational KD method for LLMs using reverse KL divergence; set the standard for language model compression
@@ -752,7 +752,7 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 - [[2607.23743|Traversability-Aware Global Planner]], [[2607.20679|CAT-Nav]], [[2602.18803|LoTIS]], [[2509.11480|VLA-Cross-Platform-Scaling]], [[2503.03921|CREStE]], [[2307.15644|ScaleVLN]], [[2306.14846|ViNT]], [[2105.06453|E.T. (Episodic Transformer)]]
 
 **Foundational Latent-Action & Video-Action Learning** — Core methods for learning action representations and goal-conditioned control from video and interaction data without explicit action labels.
-- [[2606.11525|IWR]], [[2410.11758|LAPA]], [[2410.06158|GR-2]], [[2402.15391|Genie]], [[2310.08576|AVDC]], [[2306.10007|RPT]], [[2305.02195|CALM]], [[2203.12601|R3M]], [[2112.01511|VINN]]
+- [[2606.11525|IWR]], [[2509.19958|MotoVLA]], [[2410.11758|LAPA]], [[2410.06158|GR-2]], [[2402.15391|Genie]], [[2310.08576|AVDC]], [[2306.10007|RPT]], [[2305.02195|CALM]], [[2203.12601|R3M]], [[2112.01511|VINN]]
 
 > [!star] Key Papers
 > - [[2410.11758|LAPA]] — Latent Action Pretraining from videos; learns action representations without action labels
@@ -790,7 +790,7 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 - [[2607.24031|UnSPC]], [[2607.24023|SSCDL]]
 
 **Robot State Estimation & Geometric Perception** — Learned-geometry and state-estimation methods for robot localization, odometry, and large-scale reconstruction.
-- [[2605.10456|POLI]], [[2504.09495|Hierarchical IMU Debiasing]], [[2502.04640|XM]]
+- [[2605.10456|POLI]], [[2509.10405|LED-State Pose Estimation]], [[2506.02587|BEVCALIB]], [[2504.09495|Hierarchical IMU Debiasing]], [[2502.04640|XM]], [[2311.04320|DRIFT (Dead Reckoning)]]
 
 **Additional methods** — Papers referenced in this section that don't fit the categories above.
 - [[2607.24959|IFT Contact Differentiation]], [[2607.24538|NEO]], [[2607.23108|Curse of Precision]], [[2606.05555|MR.Q]], [[2603.28713|DreamLite]], [[2512.19693|Prism-Hypothesis]], [[2512.10950|E-RayZer]], [[2512.05665|ILVR]], [[2511.21395|Monet]], [[2511.20639|LatentMAS]], [[2507.01643|SAILViT]], [[2506.11136|JAFAR]], [[2209.08959|TACO-RL]], [[1803.09956|VPG]]

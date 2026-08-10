@@ -300,7 +300,7 @@ Adapting pre-trained VLMs to downstream tasks without full fine-tuning — throu
 > - [[2506.00513|SSAM]] — Self-supervised test-time adaptation for VLMs using dynamic memory alignment
 
 **Domain Adaptation, Generalization & Model Merging** — Transferring, merging, or evolving VLM knowledge across domains and models without full retraining.
-- [[2603.17655|CC-CDFSL]], [[2601.10497|MERGETUNE]], [[2509.11417|VLA-Pretrain-Preserve]], [[2508.01558|EvoVLMA]], [[2506.13723|OTFusion]], [[2504.06389|SemiDAViL]], [[2502.17159|RobustMerge]], [[2407.15173|CLIP-Domain-Adaptation]], [[2403.13187|EvoLLM-JP]], [[2303.01906|DPCL]]
+- [[2603.17655|CC-CDFSL]], [[2601.10497|MERGETUNE]], [[2509.11417|VLA-Pretrain-Preserve]], [[2508.01558|EvoVLMA]], [[2506.13723|OTFusion]], [[2506.12678|ABA]], [[2504.06389|SemiDAViL]], [[2502.17159|RobustMerge]], [[2407.15173|CLIP-Domain-Adaptation]], [[2403.13187|EvoLLM-JP]], [[2303.01906|DPCL]]
 
 > [!star] Key Papers
 > - [[2504.06389|SemiDAViL]] — First language-guided semi-supervised domain adaptation framework for VLMs
@@ -345,7 +345,7 @@ In-context learning, few-shot detection, and meta-learning methods applied to vi
 - [[2606.04269|Instant-Fold]], [[2604.26488|LILA]], [[2603.15975|UMO]], [[2602.23339|Retrieve-and-Segment]], [[2602.00795|DVLA-RL]], [[2512.24766|Dream2Flow]], [[2506.06105|T2L]], [[2302.00674|FLAD]], [[2301.02419|eTT]], [[2203.09093|SaFT]]
 
 **Robotic Tool Use & Manipulation via ICL** — In-context and few-shot approaches for robot manipulation, multi-robot control, and embodied task planning.
-- [[2607.23784|ARCHITECT]], [[2606.30457|Behavior Prompting Policy]], [[2604.20348|BiCICLe]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X-Multi-Robot-MLLM-Survey]], [[2603.28301|LIBERO-Para]], [[2602.13193|Steerable Policies]], [[2512.11061|VDAWorld]], [[2511.19684|IndEgo]], [[2501.04693|FuSe]], [[2311.10678|DROC]]
+- [[2607.23784|ARCHITECT]], [[2606.30457|Behavior Prompting Policy]], [[2604.20348|BiCICLe]], [[2604.02812|Neuro-Symbolic-Robot-Policies]], [[2604.02268|SKILL0]], [[2604.00061|R2X-Multi-Robot-MLLM-Survey]], [[2603.28301|LIBERO-Para]], [[2602.13193|Steerable Policies]], [[2512.11061|VDAWorld]], [[2511.19684|IndEgo]], [[2508.15021|ICPI]], [[2508.02062|RICL]], [[2501.04693|FuSe]], [[2311.10678|DROC]]
 
 **VLM Reasoning & Tool Use via ICL** — In-context approaches for generic visual reasoning, tool use, and task planning.
 - [[2606.04433|Stateful-Visual-Encoders]], [[2606.03937|VEPO]], [[2604.08539|OpenVLThinkerV2]], [[2603.01667|Chain-of-Context-Learning]], [[2602.07605|Fine-R1]], [[2601.08499|EfficientFSL]], [[2601.07298|CINEMA]], [[2508.03102|CCA]], [[2505.10088|MMRL++]], [[2504.20571|1-shot-RLVR]], [[2504.09828|FATE]], [[2504.06608|Cross-Domain-FSL-with-DKM]], [[2503.01785|Visual-RFT]], [[2408.05674|PS-TTL]], [[2405.17104|LLM-Optic]], [[2404.07664|PROWL]], [[2403.12488|DetToolChain]], [[2403.10191|GenerateU]], [[2205.01917|CoCa]], [[2204.00598|Socratic-Models]]
@@ -390,19 +390,22 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 > - [[2401.09865|SPARC]] — Sparse fine-grained contrastive alignment for dense region-level VLM features
 
 **Referring Expression & Segmentation** — Referring expression comprehension and segmentation.
-- [[2607.06553|ReChannel]], [[2603.12382|SPARROW]], [[2601.05244|GREx]], [[2510.23603|PixelRefer]], [[2510.21311|FineRS]], [[2506.22624|Seg-R1]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2310.11441|SoM]], [[2306.04356|FGVP]], [[2203.16265|SeqTR]], [[1511.02283|Google Refexp]]
+- [[2607.06553|ReChannel]], [[2603.12382|SPARROW]], [[2601.05244|GREx]], [[2510.23603|PixelRefer]], [[2510.21311|FineRS]], [[2508.21102|GENNAV]], [[2506.22624|Seg-R1]], [[2410.08021|OneRef]], [[2405.19783|IVM]], [[2310.11441|SoM]], [[2306.04356|FGVP]], [[2203.16265|SeqTR]], [[1511.02283|Google Refexp]]
 
 **Open-Vocabulary Detection & Grounding** — Open-vocabulary detection and phrase grounding.
 - [[2605.27365|LocateAnything]], [[2603.14609|GroundSet]], [[2510.12798|Rex-Omni]], [[2506.18448|GraspMAS]], [[2506.02359|Auto-Labeling]], [[2307.12813|DOD]]
 
 **Embodied Navigation & Visual Tracking Grounding** — Grounding natural-language instructions into navigation actions, waypoints, and embodied visual tracking.
-- [[2607.26148|Agentic Embodied Control]], [[2607.25448|RPV-V2]], [[2607.23797|VLMM]], [[2607.21571|Sequential-EQA]], [[2607.21400|VoLN]], [[2607.20785|Robostral Navigate]], [[2607.20679|CAT-Nav]], [[2607.20061|ReferTrack]], [[2607.19850|SOPD-SocialNav]], [[2607.14586|SoftNav]], [[2607.13624|VLM Semantic Navigation]], [[2607.13461|JOP-VLN]], [[2607.10383|ABot-N1]], [[2607.08359|FSD-VLN]], [[2607.06882|GemNav]], [[2607.06537|UniLM-Nav]], [[2607.03792|REALM]], [[2607.01043|DART-VLN]], [[2606.31919|MVP-Nav]], [[2606.31654|DynFly]], [[2606.30696|ViTL]], [[2603.05377|OpenFrontier]], [[2210.03087|IVLN]], [[2203.02764|Candidate Waypoints Predictor]], [[1811.10092|RCM+SIL]]
+- [[2607.26148|Agentic Embodied Control]], [[2607.25448|RPV-V2]], [[2607.23797|VLMM]], [[2607.21571|Sequential-EQA]], [[2607.21400|VoLN]], [[2607.20785|Robostral Navigate]], [[2607.20679|CAT-Nav]], [[2607.20061|ReferTrack]], [[2607.19850|SOPD-SocialNav]], [[2607.14586|SoftNav]], [[2607.13624|VLM Semantic Navigation]], [[2607.13461|JOP-VLN]], [[2607.10383|ABot-N1]], [[2607.08359|FSD-VLN]], [[2607.06882|GemNav]], [[2607.06537|UniLM-Nav]], [[2607.03792|REALM]], [[2607.01043|DART-VLN]], [[2606.31919|MVP-Nav]], [[2606.31654|DynFly]], [[2606.30696|ViTL]], [[2603.05377|OpenFrontier]], [[2509.22653|SPF]], [[2509.21189|ReasonNav]], [[2509.09594|ObjectReact]], [[2210.03087|IVLN]], [[2203.02764|Candidate Waypoints Predictor]], [[1811.10092|RCM+SIL]]
 
 **Robotic Manipulation, Grasping & Affordance Grounding** — Grounding language and visual affordances into manipulation, grasping, and action-execution policies.
 - [[2608.04533|EgoAfford]], [[2608.00502|SpatialAfford]], [[2607.28382|SemAnCorr]], [[2607.26567|Speech2Grasp]], [[2607.24538|NEO]], [[2607.07897|StiffNET]], [[2606.30632|GROW²]], [[2606.30613|SPARK (Anchored Robotic Keypoints)]], [[2606.06761|AxisGuide]], [[2606.02277|RoboSemanticBench]], [[2605.24203|Afford-VLA]], [[2605.14712|IntentVLA]], [[2605.12369|GuidedVLA]], [[2605.02881|MolmoAct2]], [[2604.05697|GraspSense]], [[2603.16860|DreamPlan]], [[2602.22474|UPS]], [[2602.09017|CAP]], [[2601.08246|FSAG]], [[2511.13327|ZeroDexGrasp]], [[2511.01571|PixelVLA]], [[2510.11689|Phys2Real]], [[2506.16652|CodeDiffuser]], [[2506.05576|TD-TOG]], [[2503.15202|VLM-BT-Failure-Handling]], [[2502.01828|FOREWARN]], [[2501.14400|SKIL]], [[2407.04689|RAM (Retrieval Affordance Transfer)]], [[2309.16118|D3Fields]], [[2308.16891|GNFactor]]
 
+**Object & Tool Affordance Grounding** — One-shot and cross-object affordance representations (grasp points, function frames, placement/docking keypoints) that ground VLM reasoning into manipulation targets, split out as its own bucket once the grasping bucket above hit its cap.
+- [[2509.06233|O3Afford]], [[2509.01658|MoTo-Navigation]], [[2509.00310|TReF-6]], [[2508.13534|MimicFunc]], [[2506.02353|SAVOR]], [[2505.20424|ApBot]], [[2502.04531|AnyPlace]], [[2410.12124|OAF]]
+
 **Spatial & Scene Grounding** — Grounding VLM reasoning in 3D scene geometry and physical space.
-- [[2605.05163|PhysForge]], [[2605.04128|JoyAI-Image]], [[2603.25411|HiSpatial]], [[2602.22703|GEODPO]], [[2512.24119|GeoBench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]]
+- [[2605.05163|PhysForge]], [[2605.04128|JoyAI-Image]], [[2603.25411|HiSpatial]], [[2602.22703|GEODPO]], [[2512.24119|GeoBench]], [[2510.16714|SceneCOT]], [[2510.13800|GS-Reasoner]], [[2412.14480|GraphEQA]]
 
 **Visual Grounding, Referring & Retrieval Methods** — Localizing, verifying, and retrieving specific visual-textual references.
 - [[2603.16253|EVPV]], [[2601.07645|PlaM]], [[2512.23169|REVEALER]], [[2510.21501|GranViT]], [[2507.05920|MGPO]], [[2507.00748|Multi-Image-Grounding-RL]], [[2506.11991|VGR]], [[2505.02278|GCLIP]], [[2411.09691|TinyGroundingGPT]], [[2403.16999|VisCoT]], [[2403.12966|CoS]], [[2402.04236|CogCoM]], [[2312.14135|V*]], [[2301.05226|IPVR]]
@@ -429,7 +432,7 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 > - [[2410.16512|TIPS]] — Unified image-text and self-supervised objectives for general-purpose vision representations
 
 **Segmentation with VLMs** — Leveraging VLM alignment for open-vocabulary or self-supervised semantic segmentation.
-- [[2605.00891|X2SAM]], [[2604.28115|FreeOcc]], [[2602.23759|Selfment]], [[2506.22624|Seg-R1]], [[2311.16241|SemiVL]], [[2303.01906|DPCL]], [[2206.08522|VLMbench]], [[2112.01071|MaskCLIP (Dense CLIP Labels)]]
+- [[2605.00891|X2SAM]], [[2604.28115|FreeOcc]], [[2602.23759|Selfment]], [[2506.22624|Seg-R1]], [[2502.02590|Articulate AnyMesh]], [[2311.16241|SemiVL]], [[2303.01906|DPCL]], [[2206.08522|VLMbench]], [[2112.01071|MaskCLIP (Dense CLIP Labels)]]
 
 > [!star] Key Papers
 > - [[2602.23759|Selfment]] — Fully self-supervised framework achieving accurate object segmentation without any labels
@@ -542,7 +545,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2505.19094|SATORI]] — Glance-Focus-Think paradigm anchoring RL training in explicit visual grounding; 76.2% on MathVista surpassing GPT-4o
 
 **VLM-Based Reward & Preference Modeling for Robot RL** — Using VLMs to score subgoals, generate preference labels, or shape dense rewards that supervise robot RL and policy adaptation.
-- [[2607.13033|DenseReward]], [[2607.01721|CoRe]], [[2607.00483|VLM-AR3L]], [[2606.32027|FPL]], [[2606.31958|SARL]], [[2606.31377|STDR]], [[2606.30698|VL-PR]], [[2603.16065|LRM]], [[2509.19524|StepEval]]
+- [[2607.13033|DenseReward]], [[2607.01721|CoRe]], [[2607.00483|VLM-AR3L]], [[2606.32027|FPL]], [[2606.31958|SARL]], [[2606.31377|STDR]], [[2606.30698|VL-PR]], [[2603.16065|LRM]], [[2509.19524|StepEval]], [[2410.11571|SDS]]
 
 **VLM Chain-of-Thought & Thinking** — Methods for step-by-step visual reasoning in multimodal models.
 - [[2605.03782|GLANCE]], [[2605.02735|Silenced-Visual-Latents]], [[2605.02730|PFlowNet]], [[2604.21396|VG-CoT]], [[2604.02073|PLUME]], [[2603.29165|LatentPilot]], [[2603.23483|SpecEyes]], [[2603.23404|TRACE]], [[2603.22281|ThinkJEPA]], [[2512.08228|MM-CoT]], [[2511.19221|Percept-WAM]], [[2511.17487|EXTRACT+THINK]], [[2509.19003|Chain-of-Step]], [[2506.08011|ViGaL]], [[2505.18129|V-Triune]], [[2504.18397|UV-CoT]], [[2503.16188|Think-or-Not-Think]], [[2412.07215|RoboData]], [[2411.19488|ICoT]], [[2411.10440|LLaVA-CoT]]
@@ -555,7 +558,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 - [[2604.24300|ReVSI]], [[2603.03944|SCP-Bench]], [[2601.16520|TangramPuzzle]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2502.09621|MME-CoT]], [[2405.16473|M3CoT]], [[2403.14624|MathVerse]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2204.03162|Winoground]]
 
 **General Capability, Embodied & Domain-Specific Benchmarks** — Broad-coverage MLLM capability benchmarks alongside embodied, robotics, and domain-specific evaluation suites.
-- [[2607.27180|HumanCLAW]], [[2607.18062|UniETP]], [[2607.04610|RoboVista]], [[2605.29360|MiraBench]], [[2604.22884|SOUBench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.12585|MLLM-Visualization-Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2505.21652|PartInstruct]], [[2504.13898|SHREC]], [[2502.05086|REASSEMBLE]], [[2406.18925|VisArgs]], [[2404.19205|TableVQA-Bench]], [[2401.07781|T2VScore]], [[2307.06281|MMBench]], [[2306.13394|MME]], [[2305.13786|Perception Test]], [[2210.02506|GameBugDescriptions]], [[2203.10244|ChartQA]]
+- [[2607.27180|HumanCLAW]], [[2607.18062|UniETP]], [[2607.04610|RoboVista]], [[2605.29360|MiraBench]], [[2604.22884|SOUBench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.12585|MLLM-Visualization-Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2509.08757|SocialNav-SUB]], [[2505.21652|PartInstruct]], [[2504.13898|SHREC]], [[2502.05086|REASSEMBLE]], [[2406.18925|VisArgs]], [[2404.19205|TableVQA-Bench]], [[2401.07781|T2VScore]], [[2307.06281|MMBench]], [[2306.13394|MME]], [[2305.13786|Perception Test]], [[2210.02506|GameBugDescriptions]], [[2203.10244|ChartQA]]
 
 > [!star] Key Papers
 > - [[2603.03944|SCP-Bench]] — Spatial causal prediction benchmark revealing a 23% gap between best MLLMs and humans on unseen spatio-temporal reasoning
@@ -569,7 +572,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2512.12822|LEMON]] — Efficient incremental learning for MLLMs via lightweight memory-optimized adaptation
 
 **VLM Alignment & Post-Training** — Aligning VLMs with preferences, safety, or task-specific objectives.
-- [[2607.05910|PolicyShiftGuard]], [[2510.09201|MPO]], [[2509.03113|GACD]], [[2506.17901|PostAlign]], [[2506.08391|SECOND]], [[2506.04277|RSVP]], [[2505.20444|HoPE]], [[2505.20164|VAT]], [[2505.16411|SPIN]], [[2505.07956|LLM-LEx]], [[2504.14200|KeCO]]
+- [[2607.05910|PolicyShiftGuard]], [[2510.09201|MPO]], [[2509.03113|GACD]], [[2506.17901|PostAlign]], [[2506.08391|SECOND]], [[2506.04277|RSVP]], [[2505.20444|HoPE]], [[2505.20164|VAT]], [[2505.16411|SPIN]], [[2505.07956|LLM-LEx]], [[2504.14200|KeCO]], [[2503.08663|ASIMOVBenchmark]]
 
 > [!star] Key Papers
 > - [[2510.09201|MPO]] — Multimodal prompt optimization jointly tuning textual and non-textual prompts; outperforms text-only methods by 5+ points with 70% less evaluation budget
@@ -597,13 +600,16 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2507.04590|VLM2Vec-V2]] — Unified embedding model for videos, images, and documents achieving top scores on the 78-task MMEB-V2 benchmark
 
 **Additional Multimodal & Embodied Methods** — Cross-cutting embodied navigation and other methods that don't fit the section's other buckets.
-- [[2607.12630|MTEFR]], [[2607.10991|HUMA]], [[2607.10744|Traj-VLN]], [[2410.08262|ROMAN]]
+- [[2607.12630|MTEFR]], [[2607.10991|HUMA]], [[2607.10744|Traj-VLN]], [[2508.19391|LaVA-Man]], [[2506.07876|ReLIC]], [[2410.08262|ROMAN]]
 
 **Robotic Manipulation & Dexterous Control VLMs** — VLMs and VLAs adapted for grasping, dexterous manipulation, and arm/hand control.
 - [[2607.26770|Vision-TL-Action]], [[2607.20207|SeededGrasp]], [[2607.18709|RoboInter1.5]], [[2607.13926|S2-VLA]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.06186|Calf-Integrated Quadruped Manipulator]], [[2607.05883|DexTele]], [[2607.04988|InternVLA-A1.5]], [[2607.04057|PreSIST]], [[2607.00302|Splash]], [[2607.00283|Planning-Critical Occlusion VLM]], [[2606.31909|CoDex]], [[2606.31451|UniTac]], [[2606.31144|Modular VLA Framework]], [[2606.29028|Keypose Exploration]], [[2605.23477|SMoDP]], [[2603.22003|VP-VLA]], [[2603.13825|Explicit-WM-Manipulation]], [[2602.19710|Pose-VLA]], [[2602.08602|MINT]], [[2507.09985|Octopi-1.5]], [[2506.13761|PWTF]], [[2505.23705|Knowledge-Insulation-VLA]], [[2502.10090|Manual2Skill]], [[2404.10220|COME-robot]], [[2403.08248|CoPa]], [[2401.12202|OK-Robot]], [[2307.00329|DoReMi]], [[2303.00905|MOO]], [[2204.06252|HULC]]
 
+**Additional VLA Manipulation Methods** — Safety-aware, spatially-augmented, and dual-loop VLM+VLA approaches for dexterous manipulation, split out once the core grasping/control bucket above hit its cap.
+- [[2509.08820|RoboChemist]], [[2508.18268|SafeBimanual]], [[2508.08113|AimBot]]
+
 **Embodied Navigation, Driving, World-Models & HRI** — VLMs adapted for autonomous driving, social/HRI robotics, and robot world-model planning.
-- [[2608.04130|Radar4D-VLM]], [[2608.01535|STAR-VLM]], [[2607.27599|WAP]], [[2607.19190|Agentic Real2Sim]], [[2607.02417|LIME]], [[2607.01658|DriveTeach-VLA]], [[2607.01287|Adaptive Companionship for Group-Following Robots]], [[2607.00530|Multimodal HRI User Study]], [[2606.30809|GaussLite]], [[2606.28760|VLM Social Robot Navigation Survey]], [[2605.19501|CANINE]], [[2604.02190|UniDriveVLA]], [[2603.28116|AutoDrive-P3]], [[2603.14497|WorldVLM]], [[2603.10052|OmniGuide]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.20119|NovaPlan]], [[2505.19017|WorldEval]], [[2504.09997|GenTe]], [[2503.01584|SENSEI]], [[2410.06237|BUMBLE]]
+- [[2608.04130|Radar4D-VLM]], [[2608.01535|STAR-VLM]], [[2607.27599|WAP]], [[2607.19190|Agentic Real2Sim]], [[2607.02417|LIME]], [[2607.01658|DriveTeach-VLA]], [[2607.01287|Adaptive Companionship for Group-Following Robots]], [[2607.00530|Multimodal HRI User Study]], [[2606.30809|GaussLite]], [[2606.28760|VLM Social Robot Navigation Survey]], [[2605.19501|CANINE]], [[2604.02190|UniDriveVLA]], [[2603.28116|AutoDrive-P3]], [[2603.14497|WorldVLM]], [[2603.10052|OmniGuide]], [[2603.09030|PlayWorld]], [[2603.00461|ReMoT]], [[2602.20119|NovaPlan]], [[2506.01600|WoMAP]], [[2505.20537|CoRI]], [[2505.20024|ReasonPlan]], [[2505.19017|WorldEval]], [[2505.10547|FORTRESS]], [[2504.09997|GenTe]], [[2503.01584|SENSEI]], [[2412.14446|VLM-AD]], [[2410.06237|BUMBLE]]
 
 **Reasoning, Hallucination Mitigation & Efficient Training Methods** — Non-embodied VLM methods for visual reasoning, hallucination suppression, and efficient training/inference.
 - [[2608.05131|OPD-V]], [[2608.01263|FP-OPD]], [[2607.28590|VAD]], [[2603.14117|SIEVE]], [[2602.24041|AIR]], [[2602.15727|LoRWeB]], [[2602.04884|RAL]], [[2602.02453|TwC]], [[2602.02004|ClueTracer]], [[2601.21187|FRISM]], [[2507.10203|ARL]], [[2507.10202|ECP]], [[2506.17218|Mirage]], [[2506.16112|AutoV]], [[2504.13055|NoisyRollout]], [[2504.10462|SAIL]], [[2503.01773|ADAPTVIS]]

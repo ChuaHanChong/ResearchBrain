@@ -216,10 +216,10 @@ From video classification to self-supervised video representation learning. The 
 > - [[1706.04261|Something-Something]] — 108,499 clips across 174 fine-grained action classes; pioneered contrastive action templates to force models to learn physical common sense rather than superficial cues
 
 **Hand-Object Interaction & Capture Datasets** — Multi-sensor capture platforms and hand/object-interaction datasets for fine-grained pose and contact understanding.
-- [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]], [[2603.15847|FEEL]], [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2411.19167|HOT3D]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]], [[2308.13561|Project Aria]], [[2203.01577|HOI4D]], [[2104.11181|H2O]]
+- [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]], [[2603.15847|FEEL]], [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2509.01708|ArtiPoint]], [[2411.19167|HOT3D]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]], [[2308.13561|Project Aria]], [[2203.01577|HOI4D]], [[2104.11181|H2O]]
 
 **Egocentric-to-Robot VLA Pretraining Datasets** — Egocentric human-video datasets built explicitly to pretrain or transfer to robot manipulation VLA policies.
-- [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]], [[2503.13441|PH2D]], [[2410.24221|EgoMimic]]
+- [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]], [[2503.13441|PH2D]], [[2502.03729|RAD (Action-Free Reasoning)]], [[2410.24221|EgoMimic]]
 
 **Video-Based Camera Geometry & Registration** — Methods that exploit video's temporal structure for camera pose/registration and cross-view visual consistency, from homography-based frame matching to global Structure-from-Motion.
 - [[2607.27194|VidMap]], [[2607.26985|SymmGrid]], [[2607.25389|HOME]]
@@ -314,7 +314,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2503.18938|AdaWorld]] — Context-invariant latent actions for adaptable world models; FVD of 767.0
 
 **Video Generation for Planning & Grounding** — Methods that use generated video as a planning medium, grounding visual plans in physically feasible actions.
-- [[2607.13017|FlowWAM]], [[2607.12800|UniVR]], [[2607.06558|RynnWorld-Teleop]], [[2607.06018|RoboTALES]], [[2606.29908|SWAM]], [[2605.18233|MIGA]], [[2604.09330|VAG]], [[2604.06168|Action-Images]], [[2604.03181|MV-VDP]], [[2603.08403|SPIRAL]], [[2603.03195|CoWVLA]], [[2602.20119|NovaPlan]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]], [[2512.06628|MIND-V]], [[2511.16669|VANS]], [[2506.22007|RoboEnvision]], [[2506.00613|WorldGym]], [[2407.05530|This&That]]
+- [[2607.13017|FlowWAM]], [[2607.12800|UniVR]], [[2607.06558|RynnWorld-Teleop]], [[2607.06018|RoboTALES]], [[2606.29908|SWAM]], [[2605.18233|MIGA]], [[2604.09330|VAG]], [[2604.06168|Action-Images]], [[2604.03181|MV-VDP]], [[2603.08403|SPIRAL]], [[2603.03195|CoWVLA]], [[2602.20119|NovaPlan]], [[2602.01960|GVP-WM]], [[2512.24766|Dream2Flow]], [[2512.06628|MIND-V]], [[2511.16669|VANS]], [[2506.22007|RoboEnvision]], [[2506.00613|WorldGym]], [[2505.08444|Vis2Plan]], [[2407.05530|This&That]]
 
 > [!star] Key Papers
 > - [[2602.01960|GVP-WM]] — Converts physically inconsistent video plans into feasible action sequences via latent-space trajectory optimization
