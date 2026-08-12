@@ -17,22 +17,22 @@ tags:
 > A quick TL;DR of [[Whole-Body|Whole-Body Coordination]]. Each direction gives **the bet**, the reasoning, the sharpest questions, and risks. Full detail (related-work, hypotheses, benchmarks) is in the source. Plain-language version: [[__ELI5-EN__/Whole-Body-ELI5|ELI5]].
 
 > [!abstract] Overview
-> A humanoid that manipulates *while it moves* faces one fact: arm and legs are mechanically linked. An arm reach pushes back as a torque on the base. Whole-body skill is not "an arm controller plus a leg controller." The bet across 13 directions and 4 clusters: **the link is structure to *predict*, not data to *collect*.** Make it explicit (A). Coordinate it with a moving base (B). Hold it under outside force (C). Get the demo data to learn it (D). Directions that model the link win on a fixed data budget.
+> A humanoid that manipulates *while it moves* faces one fact: arm and legs are mechanically linked. An arm reach pushes back as a torque on the base. Whole-body skill is not "an arm controller plus a leg controller." The bet across 12 directions and 4 clusters: **the link is structure to *predict*, not data to *collect*.** Make it explicit (A). Coordinate it with a moving base (B). Hold it under outside force (C). Get the demo data to learn it (D). Directions that model the link win on a fixed data budget.
 
 ## Cluster map
 | Cluster | Directions | Shared bottleneck |
 |---|---|---|
 | A: Whole-Body Loco-Manipulation | A1–A4 | Arm and legs cannot be split. An arm reach is a balance push the legs must expect. Flat RL fails on the linked high-DoF action space |
-| B: Mobile Manipulation (Nav↔Manip Coupling) | B1–B3 | Base velocity is a manipulation DoF. Nav-then-manipulate throws away the in-task repositioning that grows the workspace |
-| C: Force-Adaptive Coordination Under Load | C1–C2 | An outside hand wrench travels through the chain to the support polygon. The legs make up for what the arms feel, and the task reward leaves out the force |
-| D: Whole-Body Teleoperation & Human-Motion Retargeting | D1–D4 | The data wall. Demos of *coupled* loco-manipulation are scarce, embodiment-mismatched, and per-platform |
+| B: Mobile Manipulation (Nav↔Manip Coupling) | B1–B2 | A moving base keeps changing what's visible and reachable. The target can leave the frame, and out-of-view state must be remembered, not just factored into the action |
+| C: Force-Adaptive Coordination Under Load | C1–C3 | An outside hand wrench travels through the chain to the support polygon. The legs make up for what the arms feel, and the task reward leaves out the force |
+| D: Whole-Body Teleoperation & Human-Motion Retargeting | D1, D2–D3 | The data wall. Demos of *coupled* loco-manipulation are scarce, embodiment-mismatched, and per-platform |
 
 ## A: Whole-Body Loco-Manipulation
 *Linked arm–leg dynamics on a single floating base. Model the coupling term itself (A1). Combine feasible primitives so the action never leaves the feasible set (A2). Close the precision loop in the world frame, base as active transport (A3). Send joint loco+manip commands through one latent interface (A4).*
 
 ### A1: Coupled-Dynamics Whole-Body Action Models
 > [!abstract] The bet
-> Predict the base reaction *explicitly*: $\hat\delta_{\text{base}}=\hat M_{\text{base,arm}}\ddot q_{\text{arm}}$, analytic term plus learned residual, fed as an auxiliary-loss target. Beats HEX's implicit MoE *on the same fixed dataset*, widening the 41.0→61.8 OOD margin by ≥ +3 pp into the mid-60s, most in the top arm-acceleration quartile where SEEC's "arms-are-light" assumption is wrong. Two gates first. *Frontier gate:* check whether the destabilizing arm→base coupling is really *inertial* ($M_{\text{base,arm}}$, which this predicts) or *contact-wrench / support-polygon* (single↔double support, impending slip, which it ignores), by instrumenting contact-state before committing the inertial predictor; if the contact share dominates at the worst instant the term must be reframed as contact-constrained hybrid dynamics. *De-risk gate:* run the arm-acceleration-stratified explicit-vs-implicit ablation on a controllable baseline (FALCON's emergent-coupling policy, or a self-trained MoE) *before* the possibly-closed HEX backbone. Falsifiable: if explicit ≤ 61.8% at matched latency, leave the coupling to the MoE. Regime caveat (mirrors D3): explicit structure likely wins only in the low-data tail, the fine-tuned generalist may win at scale, so publish the crossover boundary rather than claim structure always wins.
+> Predict the base reaction *explicitly*: $\hat\delta_{\text{base}}=\hat M_{\text{base,arm}}\ddot q_{\text{arm}}$, analytic term plus learned residual, fed as an auxiliary-loss target. Beats HEX's implicit MoE *on the same fixed dataset*, widening the 41.0→61.8 OOD margin by ≥ +3 pp into the mid-60s, most in the top arm-acceleration quartile where SEEC's "arms-are-light" assumption is wrong. Two gates first. *Frontier gate:* check whether the destabilizing arm→base coupling is really *inertial* ($M_{\text{base,arm}}$, which this predicts) or *contact-wrench / support-polygon* (single↔double support, impending slip, which it ignores), by instrumenting contact-state before committing the inertial predictor; if the contact share dominates at the worst instant the term must be reframed as contact-constrained hybrid dynamics. *De-risk gate:* run the arm-acceleration-stratified explicit-vs-implicit ablation on a controllable baseline (FALCON's emergent-coupling policy, or a self-trained MoE) *before* the possibly-closed HEX backbone. Falsifiable: if explicit ≤ 61.8% at matched latency, leave the coupling to the MoE. Regime caveat (mirrors D2): explicit structure likely wins only in the low-data tail, the fine-tuned generalist may win at scale, so publish the crossover boundary rather than claim structure always wins.
 
 **Why**: Separate arm/leg control drops the arm-reach base reaction. We challenge SEEC's "arm→base coupling negligible."
 
@@ -93,33 +93,17 @@ tags:
 > - Latent vocabularies can collapse → separate codebooks + LeVERB's kinematic-reconstruction regularizer; report codebook utilization.
 
 ## B: Mobile Manipulation (Nav↔Manip Coupling)
-*A moving base and an arm together, where base velocity is a manipulation DoF. The moving base shows up as three couplings: how base and arm actions are factored (B1), what the moving camera keeps in view (B2), what scene state lasts once the base turns away (B3).*
+*A moving base and an arm together, where base velocity is a manipulation DoF. The moving base shows up as two couplings now: what the moving camera keeps in view (B1), what scene state lasts once the base turns away (B2), both riding on BRS's autoregressive base→torso→arm decoding as established infrastructure.*
 
-### B1: Joint Base-Arm Action vs Sequential Decomposition
+### B1: Active-Perception Coupling in Mobile Manipulation
 > [!abstract] The bet
-> The coordination-structure margin (unidirectional AC-DiT / bidirectional InCoM / flat Mobile ALOHA) is *concentrated on reach-extension tasks where the base moves mid-grasp* and near-zero on fixed-base reaches; bidirectional beats unidirectional *only* when the arm action feeds back to constrain the base. Prediction: the structure gap tracks in-task base-travel demand, holds BRS's 88%/58% and 13×/21× on reach-extension tasks, matches InCoM's 83.8% ManiSkill-HAB, collapses to ≤ flat-concat on fixed-base tasks. Falsifiable: the structure margin is flat across in-task base motion, or bidirectional never beats unidirectional.
-
-**Why**: The reflex pipeline drives to a pose and *then* runs a fixed-base policy, but a mobile manipulator grasps *while* repositioning. We challenge not the factoring but *which* structure wins, *when*.
-
-**First-principles**: *Principle:* base velocity is a manipulation DoF, so the right arm action depends on the base action chosen for that instant ($p(a_{\text{base}})\,p(a_{\text{torso}}\mid a_{\text{base}})\,p(a_{\text{arm}}\mid a_{\text{base}},a_{\text{torso}})$). *Challenged:* which structure wins when; BRS's autoregressive-vs-naive-joint swap collapses its 13×/21× margin. *Wager:* the structure margin tracks in-task base-travel demand.
-
-**Sharpest questions**: 1) Does bidirectional beat unidirectional *only* where optimal arm motion forces a base correction? 2) Does the structured-over-flat margin concentrate on reach-extension and vanish on fixed-base reaches? 3) Is autoregressive factoring, not a safety filter, what suppresses OOD whole-body states (BRS's near-zero violations)?
-
-> [!warning] Risks
-> - Autoregressive decoding adds latency → bound to control-loop budget at BRS's chunk size; fall back to a flat head with a coupling-aware loss.
-> - Conditioning order may be task-dependent → stratify by in-task base motion; let it adapt.
-> - Perception is often the real bottleneck (HomeRobot 5–15%→0.4–0.6% with a real detector) → couple to B2; report SR with GT vs real perception.
-> - Co-training transfer may not hold across morphologies → report the arm-skill-vs-base-coupling split.
-
-### B2: Active-Perception Coupling in Mobile Manipulation
-> [!abstract] The bet
-> Use a *learned* active-gaze policy that predicts a look-at point *conditioned on B1's chosen base trajectory*. It recovers the perception slice of HomeRobot's 5–15%→0.4–0.6% collapse, gain largest when the base is moving, near-zero when stationary. Matches Visibility-Aware Mobile Grasping's +18.0%-over-decoupled while beating its planner on demo tasks, and recovers dynamic-object relocations to DynaMem's 70% (vs 30% static, locate-failure 53.3%→6.7%) for in-view relocations where gaze beats re-driving. Falsifiable: a fixed forward camera matches learned gaze on moving-base tasks, or independently-predicted gaze matches base-coupled gaze.
+> Use a *learned* active-gaze policy that predicts a look-at point *conditioned on the base trajectory BRS's autoregressive base→torso→arm policy chooses*. It recovers the perception slice of HomeRobot's 5–15%→0.4–0.6% collapse, gain largest when the base is moving, near-zero when stationary. Matches Visibility-Aware Mobile Grasping's +18.0%-over-decoupled while beating its planner on demo tasks, and recovers dynamic-object relocations to DynaMem's 70% (vs 30% static, locate-failure 53.3%→6.7%) for in-view relocations where gaze beats re-driving. Falsifiable: a fixed forward camera matches learned gaze on moving-base tasks, or independently-predicted gaze matches base-coupled gaze.
 
 **Why**: A moving base keeps changing what is visible. "Active gaze beats fixed camera" is consensus; contested between planners and learned gaze. We challenge the un-run combination: a *learned* look-at policy *conditioned on the base trajectory*.
 
 **First-principles**: *Principle:* observability is a controllable function of the base+head action; an unobserved state cannot be recovered from the current frame by any capacity. *Challenged:* planners couple gaze to base as receding-horizon search with a see-for-safety objective, never a learned demo policy, and never split gaze-vs-exploration. *Wager:* HoMMI's relaxed "3D look-at point" makes gaze an explicit DoF (copying human 6-DoF head poses is kinematically infeasible).
 
-**Sharpest questions**: 1) Does a learned base-coupled gaze policy beat the gaze-as-planner baseline, the gap opening during base motion? 2) Does gaze-driven re-observation beat exploration-driven re-observation for objects that move *within* the viewpoint? 3) Is the perception coupling separable and *additive* relative to B1's action coupling (a 2×3 grid)?
+**Sharpest questions**: 1) Does a learned base-coupled gaze policy beat the gaze-as-planner baseline, the gap opening during base motion? 2) Does gaze-driven re-observation beat exploration-driven re-observation for objects that move *within* the viewpoint? 3) Is the perception coupling separable and *additive* relative to BRS's action coupling (a 2×3 grid)?
 
 > [!warning] Risks
 > - Active gaze can destabilize manipulation → report precision during vs between active-looks; couple to A1.
@@ -127,7 +111,7 @@ tags:
 > - Active perception may not pay off → bound gaze frequency to the perception need; let the decomposition say which tasks earn it.
 > - Gain may be a re-observation artifact, not gaze (DynaMem re-drives) → separate gaze-driven from exploration-driven.
 
-### B3: Large-Workspace Memory for Mobile Manipulation
+### B2: Large-Workspace Memory for Mobile Manipulation
 > [!abstract] The bet
 > Build an *in-policy* memory that fuses persistent scene + episodic task-history *and* purges dynamic relocated objects. Beats *both* static-scene-memory policies (3D Latent Mapping 0.31, mindmap 76%) *and* modular dynamic maps (DynaMem 70% relocated, DovSG 35% long-term) on *multi-room relocated-object* tasks. The margin scales with the number of out-of-view returns, near-zero single-room, maximal multi-room; dynamic purging is required where the object moves between visits. Falsifiable: a static-scene-memory policy holds on relocated objects, or a memoryless long-window policy matches in-policy memory on multi-room tasks.
 
@@ -144,7 +128,7 @@ tags:
 > - A long window may be cheaper → sweep window length against declarative memory; the claim holds only if a window stays below memory.
 
 ## C: Force-Adaptive Coordination Under Load
-*Whole-body control under outside wrench, payload, and contact. A hand force travels through the chain to the support polygon, and the task reward leaves it out. Two halves: perform under a force you must model and anticipate (C1), and certify you cannot fall or collide when the load drifts OOD (C2).*
+*Whole-body control under outside wrench, payload, and contact. A hand force travels through the chain to the support polygon, and the task reward leaves it out. Three parts: perform under a force you must model and anticipate (C1), certify you cannot fall or collide when the load drifts OOD (C2), and let the policy choose how compliant to be, region by region, instead of setting it from outside (C3).*
 
 ### C1: Force-Adaptive Whole-Body Control Under Unknown Wrench
 > [!abstract] The bet
@@ -178,42 +162,42 @@ tags:
 > - A barrier needs an accurate model → ISSf-CBF tolerates 20% mass mismatch; report the mismatch survived.
 > - Latency can break the loop → bound to 2.99 ms (CMP) / 1.63 ms (RAPT); the latency-vs-coverage sweep is the gate.
 
+### C3: Compliance Allocation as an Explicit Policy Action
+> [!abstract] The bet
+> Make joint-region impedance a policy output, not a value set from outside. A policy that emits per-region impedance (shoulder/elbow group vs hip/ankle group) alongside the reach reference should dominate TOP's global arm-speed cap on the CoM-excursion-vs-tracking-error Pareto, at matched completion time. Not a free lunch: softening a joint changes how far it deviates under load, not the commanded $M_{\text{base,arm}}\ddot q_{\text{arm}}$ term itself, so this is a different instrument on the same axis as a speed cap, with its own trade-off. Falsifiable: the impedance-allocation curve sits on or below TOP's curve.
+
+**Why**: Every humanoid compliance system (GentleHumanoid's τ_safe, SoftMimic's K_cmd, CHIP's 1/k, CoTaP's specified compliance) treats stiffness as an input the policy conditions on, never an output it chooses. The one system that makes stiffness a policy output at all is a quadruped with no arm (arXiv:2502.09436): its RL policy autonomously stiffens the legs opposite a push and relaxes the legs toward it, with no reward term written for that asymmetry. We challenge the field's shared assumption that compliance is a dial to tune.
+
+**First-principles**: *Principle:* impedance is a free parameter of a rigid-actuator control law, not fixed by the dynamics, so a compliance channel fits the action space without contradicting $\ddot q = M(q)^{-1}(\tau - C\dot q - g + J_{\text{ext}}^\top F_{\text{ext}})$. *Challenged:* that compliance is a human-set hyperparameter, held by GentleHumanoid, SoftMimic, CHIP, CoTaP, and Unified-Force-Position-Control alike. *Wager:* region-differentiated softening is a different instrument than a global speed cap, not a strictly better one.
+
+**Sharpest questions**: 1) Does per-region impedance allocation dominate TOP's global speed cap on the CoM-excursion-vs-tracking-error Pareto? 2) Does the quadruped's per-leg stiffening mechanism transfer to a humanoid's arm-base coupling? 3) Do existing certified safety layers (ISSf-CBF WBC, CMP) already have enough margin for a variable-impedance policy, or does the safe set need re-deriving?
+
+> [!warning] Risks
+> - Softening doesn't shrink the commanded coupling term, only how far the joint deviates → report the full excursion trajectory, not just the peak.
+> - A certified layer built for fixed gains may not cover a variable-impedance policy → test whether existing margins have slack before re-deriving.
+> - The only precedent is a quadruped with no arm → test the leg-only-to-arm-base transfer directly before scaling up the humanoid instantiation.
+
 ## D: Whole-Body Teleoperation & Human-Motion Retargeting
-*The whole-body data wall, coupled demos are scarce, mismatched, per-platform. Four verbs: retarget existing human motion so its contact survives the morphology gap (D1), capture new coupled demos with a human in the loop (D2), transfer a trained policy onto a new body without retraining (D3), synthesize coupled demos with the human removed from the loop (D4). Sharpest line: D2 vs D4, capture vs synthesis.*
+*The whole-body data wall, coupled demos are scarce, mismatched, per-platform. Three verbs: retarget existing human motion so its contact survives the morphology gap, or capture new coupled demos directly with a human in the loop (both D1), transfer a trained policy onto a new body without retraining (D2), synthesize coupled demos with the human removed from the loop (D3). Sharpest line: D1 vs D3, capture/retarget vs synthesis.*
 
 ### D1: Interaction-Preserving Whole-Body Retargeting
 > [!abstract] The bet
-> Look across retargeting methods (OmniRetarget, Human2Humanoid, NMR, DynaRetarget, ULTRA). The penetration/foot-skating → downstream-RL-SR regression is *monotone with a measurable slope and R²* on a shared task suite, so contact-fidelity is a *designed-against quantitative predictor*, not just a correlate. The per-contact-term ablation (object-only vs object+scene at *fixed* joint accuracy) shows a measurable SR delta. Falsifiable: SR is flat or non-monotone in contact violation, or a pose-matching retarget of equal joint accuracy reaches the same downstream SR, then the contact graph is decorative.
+> Stack NMR's learned-feasibility-manifold regularizer *under* OmniRetarget's interaction-mesh objective as one joint retargeting loss, a composite no system currently trains. NMR's own data pipeline already filters candidate motions for gross foot-ground contact defects and self-intersection, so the two systems are not cleanly split by "which failure mode each owns" the way the naive framing suggests: the real difference is mechanism. NMR's contact handling is a discard-then-learn gate baked into a fixed, morphology-specific training corpus, generalizing only statistically to new motions; OmniRetarget's constraint is re-solved fresh for every new demonstration and scene, with no training-distribution dependence. The causal wager: NMR's residual self-collision (0.87% of frames) concentrates on motions unlike its training clusters, a learned-generalization-gap failure that OmniRetarget's per-query hard constraint is structurally positioned to close, since it doesn't degrade on novel inputs the way a learned mapping does. Since neither paper reports OmniRetarget's own self-collision rate on a shared benchmark, "beats 0.87%" is a mechanism-level prediction, not an extrapolated number, first measurement is OmniRetarget's own baseline. On a *legged* platform, the card also ports the controlled isolation no system paper runs there: whole-body-captured demos (Mobile ALOHA / HMI / HumanoidExo) beat fixed-base-arm-demos + a separate locomotion controller on the balance-critical stratum, porting EMMA's wheeled +30 pp result to legs, where balance coupling exists to isolate. Falsifiable: OmniRetarget alone already matches or beats the joint loss's self-collision number, an unweighted sum of both losses reaches the same frontier with no cross-term, or the capture-isolation margin on the balance-critical stratum is ~0 (EMMA's wheeled result is a ceiling, not a floor).
 
-**Why**: A human's loco-manipulation is defined by its *interactions*: hand on object, foot on floor, body against scene. A joint-accurate retargeter can be contact-broken, and the policy inherits it. Interaction-preservation is consensus (OmniRetarget, Human2Humanoid, MeshMimic); we challenge that contact-fidelity merely *correlates* with trainability rather than *predicting* it monotonically, and that all contacts are equally load-bearing.
+**Why**: A human's loco-manipulation is defined by its *interactions*: hand on object, foot on floor, body against scene. A joint-accurate retargeter can be contact-broken, and the policy inherits it. Interaction-preservation is consensus (OmniRetarget, Human2Humanoid, MeshMimic); we challenge that feasibility-regularization (NMR) and interaction-preservation (OmniRetarget) are separate techniques a retargeter picks *one* of, rather than a joint objective, and note that they already touch overlapping ground (both check foot-ground contact) through different mechanisms.
 
-**First-principles**: *Principle:* the information in a reference is the contact graph, which surfaces touch and with what geometry, not the absolute joint angles. *Challenged:* OmniRetarget/MeshMimic preserve interaction but never test whether fidelity *predicts* trainability or *which* term matters; OmniRetarget's interaction-mesh objective enables 82.20–94.73% downstream RL. *Wager:* a joint-accurate-but-contact-broken reference trains worse than a joint-loose-but-contact-true one, monotonically.
+**First-principles**: *Principle:* the information in a reference is the contact graph, which surfaces touch and with what geometry, not the absolute joint angles. *Challenged:* not that the two split failure modes cleanly (NMR's own pipeline filters foot-ground contact and self-collision too), but that a discard-then-learn gate over a fixed training corpus and a per-query hard-constrained optimization are the same kind of mechanism; nobody trains both as one loss. *Wager:* the two are complementary because they fail differently, NMR degrades on out-of-distribution motions, OmniRetarget doesn't, so stacking should close specifically NMR's OOD residual violations; separately, whether an explicit retarget is even needed once the coupling is captured directly (EMMA) is un-tested on legs.
 
-**Sharpest questions**: 1) At equal joint accuracy, does interaction-preservation beat pose-matching on object-transport/climbing? 2) Is the penetration/foot-skating → downstream-SR curve monotone across methods (slope + R²)? 3) Is scene-contact preservation needed beyond object-contact for body-against-scene tasks (climbing while carrying), near-zero on tabletop?
+**Sharpest questions**: 1) Does stacking NMR's feasibility manifold under OmniRetarget's interaction objective cut self-collisions below NMR's solo 0.87%, and below OmniRetarget's own (currently unmeasured) solo rate, while holding OmniRetarget's contact fidelity? 2) Is the penetration/foot-skating → downstream-SR curve monotone across methods (slope + R²), a supporting measurement, not the headline? 3) Do whole-body-captured demos beat fixed-base demos + a controller on the balance-critical stratum of a *legged* platform, porting EMMA's wheeled +30 pp isolation?
 
 > [!warning] Risks
 > - Needs the contact graph specified → OmniRetarget infers contact from human–object–scene data; report quality vs annotation quality.
 > - The morphology gap can exceed any retarget → Human2Humanoid's physics-aware constraints bound infeasible targets; report the range covered.
 > - Contact-fidelity need not equal task success → tie fidelity to downstream RL SR.
 > - An RL-in-the-loop retargeter is costly (per-reference RL like ReActor) → prefer optimization-based preservation (OmniRetarget); report cost-per-ref.
+> - The capture isolation may not transfer to legs → EMMA's wheeled +30 pp may be a ceiling, not a floor; run the subtraction on a bipedal platform directly.
 
-### D2: Whole-Body Teleoperation Interfaces & Robot-Free Demonstration
-> [!abstract] The bet
-> Run the controlled isolation no system paper runs. Whole-body-captured demos (Mobile ALOHA / HMI) beat fixed-base-arm-demos + a separate locomotion controller on coupled tasks; the gap is near-zero on fixed-base tasks where no coupling is demonstrated either way. On TeleOpBench's 4 modalities, MoCap/exoskeleton capture *locomotion* coupling better while VR/vision capture *manipulation* dexterity better, no single interface dominates. Prediction: the head-to-head reproduces EgoHumanoid's +51 pp generalization (82% vs 31%) and HumanoidExo's 5%→80% only on the coupled stratum, scaling like SUGAR's 32.7%→76.0% in human demos. Falsifiable: fixed-base + controller matches whole-body-captured demos on coupled tasks, or one modality dominates both halves.
-
-**Why**: Whole-body loco-manipulation is "bottlenecked by the scarcity of diverse, large-scale demonstration data." Fixed-base arm teleoperation cannot produce a loco-manip demo, the operator never commands base and arms together. We challenge that simultaneous capture supplies coupling decoupled data cannot, each modality a *different half*.
-
-**First-principles**: *Principle:* the coupling exists only in a joint trajectory where locomotion and manipulation are commanded together; the *interface* decides whether the coupling is in the data, independent of policy capacity. *Challenged:* the rigs assume the coupling lands in the data but none isolates it by subtraction; EgoHumanoid's +51 pp shows the coupling lives in the data. *Wager:* two levers are un-run, the fixed-base-vs-whole-body head-to-head, and the per-modality decomposition.
-
-**Sharpest questions**: 1) Do whole-body-captured demos beat fixed-base demos + a controller on coupled tasks, near-zero on fixed-base? 2) Does teleop modality change which half is captured well (MoCap/exo for loco, VR/vision for manip)? 3) Does generalization scale with *human* demos while in-domain SR saturates on *robot* demos?
-
-> [!warning] Risks
-> - The embodiment gap can break alignment → EgoHumanoid's alignment + co-training bridges it; report in-domain vs generalization by alignment quality.
-> - Whole-body teleop taxes the operator → novices reach expert level in ~5 trials; the throughput ceiling is what D4 removes.
-> - Human demos lack proprioception/force → co-train with robot data; report which tasks need robot refinement.
-> - Capture is bounded by human hours → demos-per-human-hour (capture) vs demos-per-seed (synthesis, D4).
-
-### D3: Cross-Embodiment Whole-Body Policy Transfer
+### D2: Cross-Embodiment Whole-Body Policy Transfer
 > [!abstract] The bet
 > On *whole-body loco-MANIPULATION* (not locomotion), a cross-embodiment adapter transfers a pretrained policy at Any2Any's ~1% of from-scratch compute/data. It works across 4 humanoids via a PHASOR-class phase-anchored representation (90.3% R@1, 1.62 mm next-frame). Front-line falsifier: it *beats a one-time-trained generalist* (XHugWBC ~85% of specialists / Embodiment-Aware Distillation) on cost below a measurable crossover, with the transferable structure *localized* to the dynamics-sensitive pathway. Falsifiable: joint-space transfer at equal budget matches the phase-anchored representation, or a one-time generalist beats cheap transfer at equal cost on loco-manipulation.
 
@@ -224,16 +208,16 @@ tags:
 **Sharpest questions**: 1) Does phase-anchored transfer beat joint-space transfer at equal budget on a held-out humanoid? 2) Is the transferable structure localized to the dynamics-sensitive pathway (PEFT placement matters)? 3) Does cheap localized transfer beat a one-time generalist below a crossover on loco-manipulation?
 
 > [!warning] Risks
-> - Morphology distance bounds transfer → sweep distance vs cost; locate the cliff where ~1% transfer breaks.
+> - Morphology distance bounds transfer, and kinematic distance alone mis-ranks it → sweep kinematic *and* inertial distance vs cost; test the rank inversion; locate where ~1% transfer breaks on each axis.
 > - Phase anchoring may not capture manipulation → route non-periodic skills through a shared token space (UniT).
 > - Transfer can underperform a scaled universal model → locate the crossover; transfer is the efficient regime below it.
 > - A discrete shared codebook can under-utilize on a distant body → report utilization vs morphology distance; prefer a continuous phase manifold (PHASOR).
 
-### D4: Whole-Body Synthetic Data Generation
+### D3: Whole-Body Synthetic Data Generation
 > [!abstract] The bet
 > Two claims. (i) From-scratch generation (GRAIL 81.4% SR, synthetic-only 90% real) breaks the *diversity ceiling* a single-seed route (HumanoidMimicGen 0.89 PSR, DemoHLM) hits: sweep seed/asset breadth and generalization rises then plateaus for the seed route while from-scratch keeps climbing. (ii) Enforced synthesized contact-fidelity → downstream-SR is *monotone* (GRAIL's 0.90% penetration / 88.9% tracking), so feasibility-enforcement during generation is a quantitative trainability predictor. Co-training lifts real SR 0.51→0.71 (+20%). Falsifiable: the seed route's diversity does not plateau below from-scratch, or downstream SR is flat in synthesized feasibility.
 
-**Why**: The data wall has two exits. D2 captures coupled demos faster, but every demo still costs a human, so capture cannot reach VLA-scale. The second exit removes the human and *synthesizes* the trajectory. We challenge the un-measured questions: does a fixed seed cap synthesized diversity? does enforced contact-fidelity predict trainability monotonically?
+**Why**: The data wall has two exits. D1 captures or retargets coupled demos with a human still in the loop, but every demo still costs a human, so that route cannot reach VLA-scale. The second exit removes the human and *synthesizes* the trajectory. We challenge the un-measured questions: does a fixed seed cap synthesized diversity? does enforced contact-fidelity predict trainability monotonically?
 
 **First-principles**: *Principle:* a demonstration is just a physically-feasible coupled trajectory. Feasibility (dynamic stability + contact, no penetration) is a checkable property of the trajectory, not of who made it, so a generator that enforces it produces training-valid demos. *Challenged:* the diversity-ceiling and feasibility→trainability questions left un-measured; HumanoidMimicGen's manipulation-only 0.33 (vs 0.89) shows feasibility must be enforced *as whole-body dynamics*. *Wager:* from-scratch breaks the seed's diversity ceiling, and enforced contact-fidelity is a monotone predictor.
 

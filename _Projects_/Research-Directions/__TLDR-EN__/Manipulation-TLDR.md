@@ -24,8 +24,8 @@ tags:
 |---|---|---|
 | A: Grasping & Grasp Synthesis | A1–A3 | Making *task-relevant, feasible* grasps that transfer across objects and morphologies |
 | B: Contact-Rich Assembly & Precision | B1–B2 | Sub-millimeter contact where vision is blind and the policy is open-loop |
-| C: Bimanual & Dual-Arm Coordination | C1–C3 | Two-arm coupling cannot be split apart, and bimanual data is scarce |
-| D: Dexterous & In-Hand Control | D1–D4 | Multi-fingered contact is high-DoF, jumpy, and breaks under sim-to-real |
+| C: Bimanual & Dual-Arm Coordination | C1–C2 | Two-arm coupling cannot be split apart, and bimanual data is scarce |
+| D: Dexterous & In-Hand Control | D1–D5 | Multi-fingered contact is high-DoF, jumpy, and breaks under sim-to-real |
 | E: Tactile Foundations & Data Substrates | E1–E2 | Contact-rich, multi-modal data is scarce (4-order gap vs OXE), the substrate A–D pull tactile *from* |
 
 ## A: Grasping & Grasp Synthesis
@@ -39,7 +39,7 @@ tags:
 
 **Why**: The grasp that *holds* an object is not the one that *uses* it. Affordance-as-conditioning is settled (AffordDexGrasp, AffordGrasp, Grasp-as-You-Say); unproven is what it buys over geometry.
 
-**First-principles**: *Principle:* the task fixes correctness, hand-independently. *Challenged:* the crowd treats affordance as selection, never the invariant or a separable $Q$. *Wager:* it transfers and factors out label-free.
+**First-principles**: *Principle:* the task fixes correctness, hand-independently. *Challenged:* GraspVLA/SynGrasp-1B is the real "just scale" holder (billion-frame synthetic pretrain, zero affordance term, its own clean scaling law) — but AffordSim's 15%→79% hard-tier jump shows that recipe collapses exactly where task, not object, decides correctness; the deeper live assumption is that affordance's gain is selection, never the invariant or a separable $Q$. *Wager:* it transfers and factors out label-free.
 
 **Sharpest questions**: 1) Does the product score recover ≥93% of annotation with zero per-object labels? 2) Does the generator transfer parallel-jaw→dexterous with less drop than geometry? 3) Can language reasoning (GraspMAS/PALM) supply the affordance map as well as a trained VoxAfford?
 
@@ -55,7 +55,7 @@ tags:
 
 **Why**: Function-space transfer is settled (Cross-Embodiment DexGrasp's eigengrasps, DexGrasp-Zero's 85%/82% zero-shot, DexUMI's 86%), so "discrete beats continuous" is a single inequality the Historian predicts loses. Sparse Taxonomy Grasp built a discrete taxonomy for controllability only, never as a cross-hand transfer carrier, and no continuous anchor runs the hybrid arm.
 
-**First-principles**: *Principle:* a grasp is which surfaces press at what force, not joint angles; *type* is the low-dim invariant, but the force detail is continuous and hand-specific, so neither pure pole is obviously the carrier. *Challenged:* not "function-space transfers" (consensus) but the idea that discrete-vs-continuous has one winner, the eigengrasp/taxonomy debate has oscillated 30 years. *Wager:* the matched-data shoot-out is the contribution, and the hybrid is the live resolution.
+**First-principles**: *Principle:* a grasp is which surfaces press at what force, not joint angles; *type* is the low-dim invariant, but the force detail is continuous and hand-specific, so neither pure pole is obviously the carrier. *Challenged:* not "function-space transfers" (consensus). No paper defends discrete-taxonomy for *cross-hand* transfer specifically — Sparse Taxonomy Grasp's own taxonomy win is single-hand, novel-*object* generalization only — so this is a genuine first-measurement gap, not an inequality to overturn; the eigengrasp/taxonomy debate has oscillated 30 years without this exact test. *Wager:* the matched-data shoot-out is the contribution, and the hybrid is the live resolution.
 
 **Sharpest questions**: 1) On one fixed protocol, does the hybrid (discrete prior + continuous force residual) beat *both* pure-discrete and pure-continuous FAAS zero-shot to a held-out hand (Oymotion/Wuji) at matched data? 2) Does re-parameterizing DexJoCo in function-space turn the 50.4%→20.0% degradation positive? 3) Do exoskeleton-normalized demos (DexUMI) beat kinematic retargeting for cross-hand SR at matched volume?
 
@@ -99,7 +99,7 @@ tags:
 
 **Why**: Reactive feedback arrives only *after* contact, by then the misalignment already happened. Predict-then-act is co-discovered consensus (VT-WM, VTAM, the 2019 Deep Tactile MPC root), but no paper isolates whether the gain concentrates at onset, or whether imagined tactile replaces the sensor.
 
-**First-principles**: *Principle:* next-step tactile is a forecastable consequence of the action given the contact state. *Challenged:* the WM crowd plans toward goal tactile states but never runs the reactive-vs-predictive delta by onset. *Wager:* predicting force picks the better outcome *before* committing.
+**First-principles**: *Principle:* next-step tactile is a forecastable consequence of the action given the contact state. *Challenged:* RDP is the real reactive-suffices holder — a high-frequency reactive fast-policy with no forecast at all, backed by +35% over Diffusion Policy and 0.8 vs 0.15 disturbance-recovery — but it was never run against a matched predictor on its own tasks; the WM crowd plans toward goal tactile states but still never runs that reactive-vs-predictive delta by onset. *Wager:* predicting force picks the better outcome *before* committing.
 
 **Sharpest questions**: 1) Is the +22.3% world-model gain concentrated at contact-onset steps rather than flat? 2) Does a policy trained with tactile but deployed using *imagined* tactile recover most of sensor-on SR (couples to E1)? 3) Does forecasting a sensor-agnostic latent (TaF-VLA / Sparsh-X) keep the delta across deployment sensors?
 
@@ -131,48 +131,34 @@ tags:
 
 ### C1: Coordination-Native Bimanual Policies
 > [!abstract] The bet
-> The two-arm coupling has real structure, and its failure can be pinned down where a single big policy cannot. Three sub-claims, all at composition's data cost (TwinVLA 76% / ~25 H100-days):
+> The two-arm coupling has real structure, and its failure can be pinned down where a single big policy cannot — and the same structure-over-volume logic holds one level up, in the data that trains it. Four sub-claims, the first three at composition's data cost (TwinVLA 76% / ~25 H100-days):
 > - The coupling needs little data, near TwinVLA's ~50 episodes, even on BiCoord's 4×-harder tightly-coupled tasks.
 > - A typed coupling (async / sync / ordered, from DexMimicGen) beats one Joint-Attention layer on tightly-coupled subtasks.
 > - BiCoord's late-stage failures come from the *coupling*, not the single-arm skill (which stays strong).
+> - Stripping DexMimicGen's coordination structure from generated training data, at matched trajectory volume, drops its 90%-from-40-demos result by ≥30 pp.
 >
-> Falsifier: if the coupling's data need rises sharply on harder tasks *and* a typed coupling only ties one layer, the coupling has no structure and the story ends at the settled headline.
+> Falsifier, on either leg: if the coupling's data need rises sharply on harder tasks *and* a typed coupling only ties one layer, the *policy*-side coupling has no structure and the story ends at the settled headline; if raw-replay at matched volume holds DexMimicGen's result, the *data*-side structure claim fails on its own — one leg can fall without the other.
 
 **Why**: Each arm's *skill* is a transferable single-arm prior. Composition-beats-monolith is settled (TwinVLA's attention, EnergyAction's energy functions, SkillVLA's skill-recompose; Decoupled Bimanual ran the falsifier, +23.5% / 1/6 size).
 
-**First-principles**: *Principle:* the whole splits into a transferable single-arm skill and a coupling; only the coupling needs two-arm data. *Challenged:* the consensus shows it works but never tested the coupling's data-floor, type, or failure mode. *Wager:* it has all three.
+**First-principles**: *Principle:* the whole splits into a transferable single-arm skill and a coupling; only the coupling needs two-arm data. *Challenged:* RDT-1B is the real monolithic-scale holder — 1.2B params, 46-dataset/1M-trajectory pretrain, +56% over SOTA, and its own size ablation (166M vs 1.2B) shows scale itself is load-bearing — but Decoupled-Bimanual already refutes it at matched data (+23.5% at 1/6 the size); the remaining consensus shows composition works but never tested the coupling's data-floor, type, or failure mode. *Wager:* it has all three.
 
-**Sharpest questions**: 1) Does the coupling reach TwinVLA's ~50-episode result even on BiCoord's 4×-harder tightly-coupled tasks? 2) Does conditioning the coupling on DexMimicGen's async/sync/ordered subtask type beat one Joint-Attention layer? 3) Does BiCoord's later-stage degradation localize to the coupling (freeze single-arm priors, vary only the coupling)?
+**Sharpest questions**: 1) Does the coupling reach TwinVLA's ~50-episode result even on BiCoord's 4×-harder tightly-coupled tasks? 2) Does conditioning the coupling on DexMimicGen's async/sync/ordered subtask type beat one Joint-Attention layer? 3) Does BiCoord's later-stage degradation localize to the coupling (freeze single-arm priors, vary only the coupling)? 4) On the data-generation side, does stripping DexMimicGen's coordination structure (raw SE(3) replay) at matched trajectory volume drop its 90%-from-40-demos result by ≥30 pp, cleanest on a differentiable generator (CRAFT, whose own Canny-conditioning ablation already shows 21.6% vs 10.3%)?
 
 > [!warning] Risks
 > - Composition may cap the coordination ceiling (handover + force balance may exceed composed priors) → keep to loosely-to-moderately-coupled tasks; report tightness-vs-SR.
 > - Joint Attention is one design (TwinVLA's causal-masked attention) → the typed-coupling ablation tests it.
 > - Single-arm priors must be strong → validate base SR first; assumes π0/RDT.
+> - Generated data may miss tight coupling (parallel-but-not-coordinated) → the structure-vs-volume ablation (question 4) is the gate; couple generation to this direction's coupling-aware training.
 
-### C2: Scalable Bimanual Data Generation with Coordination Structure
-> [!abstract] The bet
-> Strip the coordination structure but keep the data volume the same, and the result should collapse, a front-line *prediction*, not a reported number. The claim: raw SE(3) replay at the same trajectory count drops DexMimicGen's 90%-from-40 by ≥30 pp. Cleanest test is on a *differentiable* generator (D-CODA / CRAFT); CRAFT's Canny-conditioning ablation already shows 21.6% vs 10.3%. Structured generation otherwise reaches RoboTwin 2.0's +24.4% few-shot.
-> Falsifier: if raw SE(3) replay at matched volume still keeps the 90%-from-40, structure adds nothing volume could not, the consensus result would be a volume effect mislabeled as structure.
-
-**Why**: RoboTwin 2.0 names the dual-arm data wall; structure-aware generation is settled (MoMaGen subsumes the X-Gen family; DexMimicGen, BiDemoSyn, CRAFT instantiate it). But no generator isolates whether the gain is *structure* or *volume*.
-
-**First-principles**: *Principle:* bimanual generalization comes from coordination structure (per-arm subtasks with sync/ordering), not volume. *Challenged:* MoMaGen and the X-Gen family assert it but never strip structure at matched volume. *Wager:* if so, matched-volume SE(3) replay collapses.
-
-**Sharpest questions**: 1) Does stripping sync/ordering (raw SE(3) replay) at matched volume drop the 90%-from-40 by ≥30 pp, cleanest on a differentiable generator? 2) Does MLLM expert-code (RoboTwin 2.0) capture *coordinated* trajectories better than demo-replay on tightly-coupled tasks? 3) Does physics-grounded generation (PGDG) beat kinematic replay where contact validity matters?
-
-> [!warning] Risks
-> - Generated data may miss tight coupling (parallel-but-not-coordinated) → the BiCoord late-degradation test gates it; couple to C1.
-> - Sim-to-Real Cliff (RoCo Challenge: sim policies brittle) → use RoboTwin 2.0's 5-axis randomization plus TAMEn filtering.
-> - MLLM code-gen reliability (RoboTwin 2.0's 71.3% auto-code, ~29% needs refinement) → human-in-the-loop; report generation-yield.
-
-### C3: Tactile-Coupled Bimanual Cooperation
+### C2: Tactile-Coupled Bimanual Cooperation
 > [!abstract] The bet
 > Two claims about two-arm touch. First, a *shared* force channel between the arms beats per-arm fusion (VT-Refine / TAMEn-class), winning holding-while-manipulating by ≥10 pp SR. Second, lifting Symmetry-Aware VT Fusion's force-*balance* loss from two fingers to two *arms* beats tactile-as-input on a force-balanced handover. This reaches TAMEn's 75% contact-rich SR, using VTouch++'s synchronized data.
 > Falsifier: if per-arm fusion ties the shared channel on holding-while-manipulating *and* the balance loss ties tactile-as-input on handover, neither sharing nor balance is the missing piece.
 
 **Why**: Force-balanced cooperation needs inter-arm force observability vision lacks. Tactile beats vision on contact-coupled bimanual (VT-Refine, 2 mm-clearance assembly), but VT-Refine's coordination is emergent with no shared channel, and Symmetry-Aware's balance loss is for two fingers, not two arms.
 
-**First-principles**: *Principle:* when one arm holds and the other manipulates, cooperation is the force *each transmits through the object*, one shared quantity. *Challenged:* per-arm fusion observes each arm in isolation. *Wager:* only a shared representation captures the coupling; only an explicit balance objective optimizes it.
+**First-principles**: *Principle:* when one arm holds and the other manipulates, cooperation is the force *each transmits through the object*, one shared quantity. *Challenged:* Coordinated-Bimanual-State-Diffusion is the real vision-only holder — zero force/tactile sensing, 15/15 vs 0/15 on Laundry-Cleanup's second pillow — but VT-Refine refutes it only on contact-*coupled*, tight-tolerance tasks; on those, per-arm fusion still observes each arm in isolation. *Wager:* only a shared representation captures the coupling; only an explicit balance objective optimizes it.
 
 **Sharpest questions**: 1) Does a *shared* inter-arm tactile representation beat per-arm fusion by ≥10 pp on holding-while-manipulating? 2) Does lifting the two-finger force-symmetry loss to a two-*arm* balance objective beat tactile-as-input on handover? 3) Does adding the shared tactile channel to C1's TwinVLA beat vision-only Joint Attention?
 
@@ -182,7 +168,7 @@ tags:
 > - Force-balance reward can over-constrain (may block asymmetric grasps) → make it tunable; show the trade-off.
 
 ## D: Dexterous & In-Hand Control
-*Multi-fingered hands doing high-DoF, contact-jumpy, sim-to-real-fragile work, making intent hand-agnostic, bridging tactile sim-to-real without a tactile simulator, unlocking emergent dexterity through exploration, and bounding contact force with a hard constraint.*
+*Multi-fingered hands doing high-DoF, contact-jumpy, sim-to-real-fragile work, making intent hand-agnostic, bridging tactile sim-to-real without a tactile simulator, unlocking emergent dexterity through exploration, bounding contact force with a hard constraint, and asking whether that per-instant bound is even the right constraint class for damage that accumulates across repeated contact.*
 
 ### D1: Universal Cross-Morphology Hand Control
 > [!abstract] The bet
@@ -193,7 +179,7 @@ tags:
 
 **Why**: Single-weight policies already transfer across morphologies (GET zero-shots to 10 hand configs, DexFormer controls 32 variants), DexFormer via implicit history-conditioning, GET via graph-joint-space. (D1: the cycle; A2: the grasp.)
 
-**First-principles**: *Principle:* control intent is a plan independent of the hand; the torques are not. *Challenged:* the consensus leaves open which parameterization carries the cycle, especially at reorientation. *Wager:* it may vary by phase; none unifies the cycle across hands.
+**First-principles**: *Principle:* control intent is a plan independent of the hand; the torques are not. *Challenged:* GET is the real holder of the opposing case, and says so explicitly — its paper calls unified action spaces "often not sufficient" for precise joint control and, for varying-finger hands, says forming one "is not possible" at all, so it routes around intent representations entirely and gets 99% of expert performance plus +20% zero-shot from graph-structure alone; which parameterization (intent, history, or graph) carries the full cycle is still open, especially at reorientation. *Wager:* it may vary by phase; none unifies the cycle across hands.
 
 **Sharpest questions**: 1) Does intent-space transfer the full reach/grasp/place cycle on a held-out *distinct* hand where GET's graph-joint-space does not? 2) Do explicit-intent, implicit-history, and graph-structure parameterizations differ measurably *at reorientation*? 3) Does intent for the plan plus a per-hand joint-residual for fine actuation beat either alone?
 
@@ -208,9 +194,9 @@ tags:
 > Targets: PTLD's +182% rotation and +57% goals, DeXtreme's 27.8-vs-14.8, holding up under ViserDex's harsh lighting (~25).
 > Falsifiers: if contact features tie pose-and-shape, the cheaper target wins; if simulating the sensor matches either, the simulator was never the bottleneck.
 
-**Why**: Tactile is only an interface to the privileged state it encodes, so a *real* privileged sensor can replace a *simulated* one as the distillation target. Sim-to-real avoiding the sensor sim is settled (AnyRotate, CoRL'24, no tactile sim); PTLD's object-pose-state interface is a distinct, untested alternative. (D2 is E1's Route-2 specialized to reorientation.)
+**Why**: Tactile is only an interface to the privileged state it encodes, so a *real* privileged sensor can replace a *simulated* one as the distillation target. Avoiding the sensor sim is demonstrated but not settled (AnyRotate, CoRL'24, no tactile sim — but Force-Based Sim2Real, 2026, still builds one and gets 25.1 vs 1.1 rotations); PTLD's object-pose-state interface is a distinct, untested third alternative. (D2 is E1's Route-2 specialized to reorientation.)
 
-**First-principles**: *Principle:* tactile is only an interface, the policy needs the privileged *state* it encodes. *Challenged:* AnyRotate refuted "needs accurate tactile sim" in 2024; the wrong assumption is contact-features are the only no-sim route. *Wager:* object-pose-state is task-complete; contact-features are lossy.
+**First-principles**: *Principle:* tactile is only an interface, the policy needs the privileged *state* it encodes. *Challenged:* Force-Based Sim2Real (2026) is the real, still-live "needs a tactile sim" holder (25.1 vs 1.1 rotations with vs without) — even though AnyRotate showed it avoidable back in 2024, the field hasn't converged; and among the no-sim routes, contact-features (AnyRotate) is not the only option. *Wager:* object-pose-state is task-complete; contact-features are lossy.
 
 **Sharpest questions**: 1) Does object-pose-state beat contact-feature *and* tactile-sim three-way on the same reorientation task under matched perturbations? 2) Under perturbation, does tactile hold better under slip while vision holds better under lighting (a modality-vs-perturbation split)? 3) Does DexSkin's cross-sensor calibration generalize the PTLD estimator across tactile hardware without re-collecting privileged pairs?
 
@@ -219,21 +205,22 @@ tags:
 > - Privileged-real distillation may not generalize beyond training objects → keep to distribution; H3 tests cross-hardware.
 > - Tactile vs visual may be task-dependent → report the modality-vs-perturbation split (slip favors tactile, lighting vision).
 
-### D3: Exploration-Driven Emergent Dexterity
+### D3: Operationalizing Emergent Multi-Phase Dexterity
 > [!abstract] The bet
-> For high-DoF hands, RL with diverse start states, no demos, no task-specific reward, produces *emergent multi-phase* dexterity, not a curriculum aimed at one goal. It transfers zero-shot at OmniReset's 25% real (vs 4% for demo-DP).
-> Also split the action into task-space and joint-space (Hierarchical RL-QP Grasp / Hierarchical Reactive Grasping), reaching 81.4% in sim (vs 13.2% for a monolithic policy), with 22/26 unseen objects in the real world.
-> Falsifier: if a fixed-reset policy with the same compute and a shaped reward matches the diverse-reset *emergence at high DoF*, the real lever is reward and compute, not reset diversity.
+> Papers in this cluster call a behavior "emergent" by eyeballing a rollout — no shared definition, no common yardstick across exploration levers (reset-diversity, reward-shaping, intrinsic-coverage). The bet: state-conditioned exploration coverage and task-agnostic reward structure are the causal drivers behind emergence's two conditions (cross-task reuse, phase-count) — not exploration volume or scale. ContactExplorer's own ablation already shows state-conditioning prevents saturation and lets contact patterns reuse across different object configurations (100% vs 18% on its Box-Push diagnostic); the bet extends that to cross-task reuse. Given both mechanisms hold, a metric built on them, tested in one fixed-task, fixed-compute study that sweeps only the lever, ranks OmniReset (diverse-reset), Retrieval-Dexterity (potential-shaping), ContactExplorer (intrinsic-coverage), and SBRL (planner-generated reset) in the same order as their own zero-shot SR, at rank correlation ρ ≥ 0.7.
+> OmniReset's own 85.37%-vs-~2% reset-diversity margin over a demo-cloning baseline (real peg insertion vs aggregate DP baseline) stays as settled background, not the bet.
+> Falsifier: if state-conditioning doesn't predict the reuse sub-score, if reward structure doesn't predict phase-count, or if the ranking scrambles relative to SR (ρ < 0.7) despite both mechanisms holding, the mechanisms don't compose into a valid metric.
 
-**Why**: Long-horizon exploration is gated by *initial-state diversity*, not reward shaping; a behavior is discoverable only if its precursor states are visited. The reset-as-lever principle is old (Reverse Curriculum Generation, 2017). Undone: demonstration-free, task-agnostic, *high-DoF* multi-phase dexterity at scale, where OmniReset names the wall (saturation despite more compute).
+**Why**: "Emergent" is asserted by video, not measured — OmniReset, Retrieval-Dexterity, and VLM-Dexterous-Scaffolding each call their own lever's output "emergent" on a different task, with no shared instrument to compare the claims.
 
-**First-principles**: *Principle (credit the lineage):* exploration coverage is set by the initial-state distribution, not reward shaping, the 2017 Reverse Curriculum / RFCL / Example-based Resets principle. *Challenged:* the assumption that it only yields curriculum-to-single-goal. *Wager:* the novelty is the instantiation at high DoF.
+**First-principles**: *Principle:* a behavior recombines across tasks only if the exploration process stores what it discovers in a form indexed by context, not by the task's own reward; it has a discoverable phase count only if the reward doesn't pre-commit to a fixed sequence of stages. *Challenged:* not "reset diversity beats reward shaping" (OmniReset already shows that against a fixed baseline) — the wrong assumption is that emergence is a byproduct of exploration volume or scale rather than of these two identifiable design properties, and that eyeballing a rollout substitutes for measuring them. *Wager:* the two mechanisms are real and compose into a valid, discriminating metric, not a bookkeeping label.
 
-**Sharpest questions**: 1) Does task-agnostic reset diversity produce *emergent multi-phase* behavior the goal-directed curriculum lineage does not, at matched compute? 2) Does task-RL + joint-QP decomposition recover the 81.4%-vs-13.2% gap and transfer better to unseen objects? 3) Can a VLM scaffold (keypoint/wrist priors) replace reset-design *and* reward-design (81% over 8 tasks)?
+**Sharpest questions**: 1) Does the metric rank OmniReset, Retrieval-Dexterity, ContactExplorer, and SBRL in the same order as their own zero-shot SR (ρ ≥ 0.7)? 2) Do two SR-matched levers still register a phase-count gap ≥1? 3) Does state-conditioned exploration coverage, not exploration volume alone, drive the cross-task-reuse sub-score (extending ContactExplorer's 100%-vs-18% configuration-level ablation)? 4) Does task-agnostic reward structure, not curriculum orchestration, drive phase-count — OmniReset's single reward vs Reset's task-graph curriculum-to-goal? 5) Is the ranking stable across different phase-detection thresholds (Kendall's τ ≥ 0.7)?
 
 > [!warning] Risks
-> - Reset diversity may need task knowledge (defining "near-object/near-goal") → test whether generic diversity suffices; report reset-vs-reward design.
-> - Sim-to-real for emergent policies is fragile (OmniReset's 25% real) → frame as a zero-shot floor; couple to DRIS/DeXtreme and Q2RL refinement.
+> - Reset-diversity-vs-reward-shaping is not this direction's open question (OmniReset already settles it against a fixed baseline) → keep the bet on the metric's validity and the mechanism behind it, not on re-litigating which lever wins.
+> - The metric's two conditions (un-rewarded + cross-task reuse) are themselves a design choice → the threshold-robustness question directly tests this.
+> - Sim-to-real for emergent policies is task-dependent, not uniformly fragile (OmniReset's real SR spans 85.37% Peg down to 15.38% Drawer) → run the correlation across the full task spread, not just Peg; couple to DRIS/DeXtreme randomization to lift the floor on weaker tasks.
 > - Emergent behaviors may be unsafe (exploration can damage contacts) → bound with D4's QP/force-safety; report contact-force statistics.
 
 ### D4: Force-Safety-Constrained Dexterous Control
@@ -244,9 +231,9 @@ tags:
 
 **Why**: Safety is a hard constraint on contact-force that must hold *every* step; a learned policy only softly penalizes violations, a physics-based filter guarantees them. The *generic* hard-filter-beats-soft-penalty claim is settled (Safe Steerable Geometric Policy hard-enforces force-*closure*). FORGE-plus now closes most of the SR/breakage gap on a fragile-force ceiling over a *learned* policy, narrowing the open bet to what a continuous projection buys that a decoupled hard clamp does not: avoiding the impedance-overshoot breakage that shows up even at FORGE-plus's own oracle bound.
 
-**First-principles**: *Principle:* a gentle-force constraint (force ≤ a fragile tolerance, ~1.53 kPa / ~10 N) is an *upper* bound, the opposite of force-*closure*. *Challenged:* the consensus filters enforce closure; the fragile ceiling stays soft-penalized (Stress-Guided RL) or, now, only a decoupled clamp (FORGE-plus) rather than a continuous projection. *Wager:* an upper bound that must hold under closed-loop overshoot needs a feasible-set projection, not a one-shot clamp.
+**First-principles**: *Principle:* a gentle-force constraint (force ≤ a fragile tolerance, e.g. DexSkin's 1.53 kPa or Multi-Sensory-Sparse-Experts' ~10 N) is an *upper* bound, the opposite of force-*closure*. Refinement, not a retraction: fragile-object damage is really a *stress* phenomenon (force per contact area) — DOBCBF-Grasping's own hard force-ceiling (Eq. 11) bounds raw Newtons with no area term anywhere, so a CBF that copies its form inherits the same wrong variable; the mechanism (hard bound beats soft penalty) still holds, what it bounds needs correcting from force to stress. *Challenged:* the consensus filters enforce closure; the fragile ceiling stays soft-penalized (Stress-Guided RL) or, now, only a decoupled clamp (FORGE-plus) rather than a continuous projection. *Wager:* an upper bound that must hold under closed-loop overshoot needs a feasible-set projection over the correct variable, not a one-shot force-only clamp.
 
-**Sharpest questions**: 1) Does a CBF/QP feasible-set projection over a learned policy avoid the impedance-overshoot breakage a decoupled hard clamp does not, holding fragile-object breakage at ≤10% where FORGE-plus's clamp broke 49.8%? 2) Does projecting onto a force-bounded set (1.53 kPa) preserve fragile-object integrity better than penalty-training at matched SR? 3) Can the QP/force-bound filter make D3's emergent or D1's transferred policies deployable without retraining?
+**Sharpest questions**: 1) Does a CBF/QP feasible-set projection over a learned policy avoid the impedance-overshoot breakage a decoupled hard clamp does not, holding fragile-object breakage at ≤10% where FORGE-plus's clamp broke 49.8%? 2) Does projecting onto an *area-converted* force-bound set (DexSkin's 1.53 kPa pressure threshold times an estimated contact-patch area, not the kPa value dropped directly into a Newton-valued CBF) preserve fragile-object integrity better than penalty-training at matched SR — and, re-running FORGE-plus's oracle-bound stress test with contact-area logged, does breakage actually concentrate in the lowest-area quartile at roughly double the highest-area quartile's rate, or does force alone already explain it? 3) Can the QP/force-bound filter make D3's emergent or D1's transferred policies deployable without retraining?
 
 > [!warning] Risks
 > - QP clamping can hurt task SR → report the safety-vs-SR trade-off; clamp rarely.
@@ -254,6 +241,23 @@ tags:
 > - Hard constraints may over-restrict emergent behavior (transient high forces may be needed) → test over emergent policies; allow needed force, block damage.
 > - Force-observability tax: a ceiling assumes per-fingertip force is measurable at control rate, not free on a 23-DoF hand → report the projection's behavior when force is *estimated*, not measured; a ceiling the policy can't observe can't be guaranteed.
 > - One-shot bound, not closed-loop regulation: every result scores a per-step force magnitude, never reactive regulation over the post-contact horizon → instrument where the projected force diverges under closed-loop feedback (contact-onset vs settled-hold vs re-grasp), not just worst-case single-step violation.
+
+### D5: Cumulative-Damage-Constrained Repeated-Contact Control
+> [!abstract] The bet
+> Re-run FORGE-plus's exact fragile-object task and oracle-$F_\text{max}$ setup as a 10-regrasp stress test on the *same* object instance, scoring SoGraB's deformation metric cumulatively after each regrasp. Cumulative deformation should cross a real damage threshold (≥0.1 points on SoGraB's 0.517→0.940 scale) within those 10 regrasps in at least half of fragile-object trials, even when *every* individual regrasp clears FORGE-plus's own oracle force bound (0% per-step violations) — the same bound whose one-shot breakage rate is 49.8% under impedance overshoot.
+> Falsifier: if fewer than half of the trials where every regrasp clears the per-step bound cross that threshold, path-dependence is not load-bearing, and the per-step framing was fine all along.
+
+**Why**: Every safety filter in this cluster — Safe Steerable Geometric Policy's force-closure CBF, DOBCBF-Grasping's min/max ceiling, FORGE-plus's own clamp — bounds force at the current instant only; none carries a state for prior load. Real contact is not like that: friction has static/kinetic hysteresis, viscoelastic materials relax and creep, and repeated sub-yield loading accumulates damage below any single-instant threshold, the same mechanism that snaps a paperclip from many gentle bends none of which alone would break it.
+
+**First-principles**: *Principle:* damage from repeated loading is an integral over the load history, $\int D(f(\tau))\,d\tau$, not a function of the current instant. *Challenged:* every hard-filter paper in this cluster treats a tight-enough per-step bound as a damage guarantee; none augments its barrier function with an accumulated-load state. *Wager:* the integral crosses a real threshold before any per-step bound is ever violated.
+
+**Sharpest questions**: 1) Does cumulative SoGraB deformation cross threshold within 10 regrasps while every individual regrasp clears FORGE-plus's oracle bound? 2) Does a damage-state-augmented CBF beat a simply-tightened static bound at matched cumulative-damage flatness, or is a smaller per-step number all that was needed? 3) Does the within-episode force-divergence signal this cluster's own risk notes already call for actually predict the cross-episode damage slope, or is it a different, uninformative quantity?
+
+> [!warning] Risks
+> - Re-deriving CBFs may be unnecessary complexity if a tighter static bound works just as well → gate the full re-derivation on the matched-flatness test.
+> - The 10-regrasp protocol assumes the object survives to trial 10 → pre-screen for a fragility band that survives repeated regrasps, per FORGE-plus's own object choice (ABS gears/bottles).
+> - If this holds, every tactile-forecasting world model in this doc (B1) is trained on the wrong prediction target for repeated handling → scope the initial claim to the safety layer before generalizing to world-model retraining.
+> - The imported 49.8% breakage figure this direction leans on may itself be a contact-area artifact, not pure force → D4's new test checks whether breakage concentrates by contact-area quartile; if it does, this direction's damage integral should run on stress (force/area), not raw force.
 
 ## E: Tactile Foundations & Data Substrates
 *The foundation layer beneath force-aware manipulation, needing no runtime tactile hardware, getting force-awareness to deployment with the sensor dropped, and a cross-sensor representation that makes any such policy portable across sensors.*
@@ -283,7 +287,7 @@ tags:
 
 **Why**: A force-grounded encoder (UniForce) now exists, transferring zero-shot across vision-based and magnetic sensors, so the question is not "can it transfer?" but the *scaling law*: every prior result trains with the test sensor *seen*, or reports perception accuracy, never an encoder-held-out N−1 sweep against policy-SR.
 
-**First-principles**: *Principle:* force is a physical quantity, so a force-grounded encoder is invariant by construction (UniForce confirms it, z5↔Fz r=−0.74). *Challenged:* invariance is settled, but every prior result tests with the sensor seen or reports perception accuracy. *Wager:* unknown is whether it *scales* with added sensors.
+**First-principles**: *Principle:* force is a physical quantity, so a force-grounded encoder is invariant by construction (UniForce confirms it, z5↔Fz r=−0.74). *Challenged:* no paper argues perception invariance should certify policy transfer — RCT calls it a field-wide methodological blind spot, not a defended position — but every prior result (UniForce, SITR, T3) still tests with the sensor seen or reports perception accuracy, never a strict held-out policy-SR sweep. *Wager:* unknown is whether it *scales* with added sensors.
 
 **Sharpest questions**: 1) Does held-out-policy-SR retention rise monotonically with training-sensor diversity under a strict N−1 sweep, clearing ≥80% by a small N? 2) Is policy-SR the load-bearing metric (does a sensor clearing 81.94% inter-sensor *classification* still lose deployable policy-SR)? 3) Does a single force-invariant latent (UniForce) beat a per-sensor-encoder trunk (Transferable Tactile Transformer) on the held-out sensor?
 

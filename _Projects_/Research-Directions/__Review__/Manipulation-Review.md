@@ -7,6 +7,9 @@
 > **P3** synthesis briefing (for a researcher deciding whether to *commit* to the bet) · **P4** independent peer review (confidence 1-10 + Stanford-prof grade).
 > Every novelty verdict was stress-tested against the live literature via the alphaxiv MCP. Cited paper ids are real (vault KH notes or alphaxiv hits).
 
+> [!warning] Known stale figure (2026-08-12)
+> This review's D3 (Exploration-Driven Emergent Dexterity) discussion repeatedly cites [[2603.15789|OmniReset]]'s real-world result as "25% zero-shot Peg Insertion vs 4% demo-DP" (e.g. finding #2, scored 9/10 as "directly verified"). That figure was a mis-scraped KH note — OmniReset's actual reported number is **85.37% zero-shot real Peg Insertion** (task-dependent: 56.36% Leg Twisting, 15.38% Drawer Insertion) vs a diffusion-policy baseline at **~2%** aggregated across tasks. The KH note and the live `Manipulation.md` D3 card were corrected on this date; this review transcript is left unedited as a historical record of the session it documents — treat every 25%/4% reference below as superseded.
+
 
 ## Verdict summary
 
