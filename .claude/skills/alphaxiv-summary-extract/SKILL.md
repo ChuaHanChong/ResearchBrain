@@ -1,11 +1,11 @@
 ---
 name: alphaxiv-summary-extract
-description: "Scrape alphaxiv.org paper summaries into enriched Obsidian KnowledgeHub notes ({arxiv_ID}.md), single paper or full knowledge.py batch. Use whenever the user wants to ingest, add, or save arxiv papers into the knowledge hub, or shares an arxiv URL/ID to save (e.g. 'update knowledge hub', 'add these papers'). Also use it to rescue failed scrapes by auto-generating missing alphaxiv overview pages via a cmux browser (e.g. 'generate the overviews for the failed papers', 'rescue the pending scrapes'). Covers enrichment, tagging, and note-formatting rules too."
+description: "Generate enriched Obsidian KnowledgeHub notes ({arxiv_ID}.md) from arxiv papers, single paper or full knowledge.py batch. Use whenever the user wants to ingest, add, or save arxiv papers into the knowledge hub, or shares an arxiv URL/ID to save (e.g. 'update knowledge hub', 'add these papers'). Also use it to rescue notes missing a Detailed Report by auto-generating the alphaxiv overview via a cmux browser (e.g. 'backfill the missing detailed reports', 'generate overviews for these papers'). Covers content generation (via mcp__alphaxiv__get_paper_content), enrichment, tagging, and note-formatting rules."
 ---
 
 # AlphaXiv Summary Extract
 
-Scrape paper summaries from alphaxiv.org and write Obsidian markdown notes (`{ID}.md`) — works for a single paper or a full batch from `knowledge.py`. Each note carries the structured summary (Summary / Problem / Method / Results / Takeaways), a hidden BibTeX block, and a `## Detailed Report` pulled from alphaxiv's machine-readable render and cleaned by `format_reports.py`.
+Generate Obsidian markdown notes (`{ID}.md`) for arxiv papers — works for a single paper or a full batch from `knowledge.py`. Each note carries a structured summary (Summary / Problem / Method / Results / Takeaways), a hidden BibTeX block, and a `## Detailed Report`. The five structured fields are synthesized by `extract_summaries.py` itself — it shells out to a headless `claude -p` subagent per paper, which reads the paper's own full text via `mcp__alphaxiv__get_paper_content(fullText=true)`. The `## Detailed Report` is fetched from alphaxiv's machine-readable `.md` render (`overview/{ID}.md`).
 
 ## When to Use
 
@@ -14,44 +14,41 @@ Scrape paper summaries from alphaxiv.org and write Obsidian markdown notes (`{ID
 
 ## Prerequisites
 
-- **Chrome** installed. ChromeDriver need **not** be on PATH — Selenium 4's built-in Manager auto-fetches a matching driver.
-- The vault's **`.venv`** (managed by `uv`) with `selenium`, `requests`, `beautifulsoup4`, `tqdm`. Run every `python …` command below with that interpreter — `.venv/bin/python …` (or `uv run python …`); the system `python3` won't have `selenium`. Install if missing: `uv sync` (or `.venv/bin/python -m pip install selenium requests beautifulsoup4 tqdm`).
+- The vault's **`.venv`** (managed by `uv`) with `requests`, `beautifulsoup4`, `tqdm`. Run every `python …` command below with that interpreter — `.venv/bin/python …` (or `uv run python …`). Install if missing: `uv sync` (or `.venv/bin/python -m pip install requests beautifulsoup4 tqdm`).
+- `claude` CLI on PATH, reachable non-interactively as `claude -p ... --allowedTools "mcp__alphaxiv__get_paper_content" --permission-mode acceptEdits --output-format json`, including from inside a Python `subprocess.run()` call.
+- `cmux` on PATH — only needed for the Detailed Report rescue (`generate_overviews.py`), not for normal ingest.
 
 ## Workflow
 
-Two entry modes (single paper / batch) feed identical post-processing.
+One script call does the whole thing, single paper or batch — `extract_summaries.py` generates each paper's five fields itself (via `generate_summary()`, a `claude -p` subprocess), then fetches title, BibTeX, and Detailed Report, then writes the note. No external `Agent`-tool dispatch, no stdin, no intermediate file.
+
+The five fields — `Summary` (one paragraph, 40-70 words) and `Problem`/`Method`/`Results`/`Takeaways` (exactly 3 bullets each, 15-35 words/bullet) — have their content rules and limits defined in exactly one place: `retrieve.py`'s `GENERATION_PROMPT` constant, which the subprocess runs verbatim. Read that constant for the exact wording rather than a second copy here. Enforced by the prompt only, not re-checked in Python — no separate limit-warning pass.
+
+**Why a script at all, and not just a bare `claude -p` call?** `render_note()` must be the only thing that writes a KH note. 8,700+ existing notes share exact structure (frontmatter key order, the `%%`-wrapped BibTeX block, `> [!summary]`/`> [!tip]` callout syntax) that `validate_reports.py`, `paper-curate`, and `kh-graph-sync` all parse — a bare subagent hand-writing markdown drifts on some fraction of a large batch, silently, in fields nothing checks. `generate_summary()`'s subprocess only ever returns a JSON string in memory; nothing touches disk until `render_note()` writes the final `.md`.
 
 ### Mode A: Single paper
 
-When `$ARGUMENTS` contains an arxiv ID or URL:
+When the user shares an arxiv URL/ID:
 
 ```bash
-python .claude/skills/alphaxiv-summary-extract/scripts/extract_summaries.py \
-  --ids $ARGUMENTS \
-  --out _KnowledgeHub_
+.venv/bin/python .claude/skills/alphaxiv-summary-extract/scripts/extract_summaries.py \
+  --ids 2608.13474 --out _KnowledgeHub_
 ```
 
-Multiple IDs or URLs in `$ARGUMENTS` are passed directly — they all work:
-
-```
-2602.15922
-2602.15922 2601.16163
-https://arxiv.org/abs/2602.15922
-```
+Multiple IDs/URLs work too (`--ids 2607.08857 2606.12995 ...`); `--force` overwrites an existing note.
 
 ### Mode B: Batch (update knowledge hub)
 
-Defaults (relative to vault root):
-- Paper list: `.claude/skills/alphaxiv-summary-extract/scripts/knowledge.py`
-- Output directory: `_KnowledgeHub_`
-
 ```bash
-python .claude/skills/alphaxiv-summary-extract/scripts/extract_summaries.py \
-  --input .claude/skills/alphaxiv-summary-extract/scripts/knowledge.py \
-  --out _KnowledgeHub_
+.venv/bin/python .claude/skills/alphaxiv-summary-extract/scripts/extract_summaries.py \
+  --input .claude/skills/alphaxiv-summary-extract/scripts/knowledge.py --out _KnowledgeHub_
 ```
 
-Add `--limit 3` for a small test run; `--force` to overwrite existing notes.
+Add `--limit N` for a small test run. The script computes pending (`{knowledge.py IDs} − {existing KH stems}`) itself and processes each one, printing a live `tqdm` bar and a final Processed/Skipped/Failed report — one process, no orchestrator loop needed.
+
+**Cost/time note:** each paper's `generate_summary()` call costs roughly ~140k-180k tokens and ~25-130s (measured) — the `claude -p` subprocess does a full `fullText` fetch + synthesis per paper, unavoidable regardless of batching. For a large pending backlog, run with `--limit` first, confirm `validate_reports.py` passes, then run the rest — don't silently fan out hundreds in one call.
+
+**Failure handling:** a paper that fails `generate_summary()` (timeout, malformed JSON, MCP error) is caught per-paper and folded into the Failed list — the loop continues to the next paper, nothing else is lost. Re-run with `--ids <failed-id>` to retry just that one.
 
 ### Post-processing (both modes)
 
@@ -72,7 +69,7 @@ Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each
 
 > Do NOT add highlights or bold to Summary, Problem, or Takeaways sections.
 
-> The **`## Detailed Report`** section is fetched from alphaxiv's `.md` render and auto-formatted at ingest by `format_reports.py` (see **"Detailed Report — auto-formatted, then read a sample"** below). Don't add highlights or hand-tune its prose; after a batch, run the validator and read a sample.
+> The **`## Detailed Report`** section is fetched from alphaxiv's `.md` render and normalized at assembly by `format_reports.py` (see **"Validate & format-QA the Detailed Reports"** below). Don't add highlights or hand-tune its prose; after a batch, run the validator and read a sample.
 
 ##### Canonical Tag Taxonomy (64 tags)
 
@@ -156,16 +153,16 @@ Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 
 #### Validate & format-QA the Detailed Reports
 
-The ingest-time `format_reports.py` cleans most reports, but the raw alphaxiv render is inconsistent enough that some slip through — so validate + repair on **every** ingest (single or batch), scoped to the notes just written.
+`extract_summaries.py` auto-formats every new report via `format_reports.py::format_report` (heading hierarchy + numbering, boilerplate/figure/`[N]`-citation removal, in-KH citation wikilinks, mangled-math rejoin, punctuation — see that file's docstrings for the full pipeline). It deliberately does **not** force canonical section titles, merge near-duplicate sections, or touch `**bold**`/`*italic*` emphasis. Still, the raw alphaxiv render is inconsistent enough that some cases slip through — so validate + repair on **every** ingest (single or batch), scoped to the notes just written.
 
 1. **Deterministic validate** — the single source of truth for the format rules:
    ```bash
-   python .claude/skills/alphaxiv-summary-extract/scripts/validate_reports.py
+   .venv/bin/python .claude/skills/alphaxiv-summary-extract/scripts/validate_reports.py
    ```
    A clean run is `FAIL 0`; it lists each failing note + reason (`check()` is self-documenting).
-2. **Validate-driven repair** — for flagged notes, drive headless `claude -p --permission-mode acceptEdits` subagents (≈8–12 notes/batch, `sonnet`; escalate to `opus` only if quotes reveal hallucinated fixes) to READ and fix, each flag **quoting the exact offending line verbatim**. Also wikilink any in-KH citations flagged as unlinked. **Never blanket-join consecutive lines** (legit label→paragraph / equation-on-its-own-line get corrupted); `git checkout -- <file>` restores if a bulk edit goes wrong. See the standalone **"Detailed Report — auto-formatted, then read a sample"** section for the full rationale.
+2. **Validate-driven repair** — for flagged notes, drive headless `claude -p --permission-mode acceptEdits` subagents (≈8–12 notes/batch, `sonnet`; escalate to `opus` only if quotes reveal hallucinated fixes) to READ and fix, each flag **quoting the exact offending line verbatim**. Also wikilink any in-KH citations flagged as unlinked. **Never blanket-join consecutive lines** (legit label→paragraph / equation-on-its-own-line get corrupted); `git checkout -- <file>` restores if a bulk edit goes wrong.
 3. **Semantic format-QA** — dispatch `claude -p --model sonnet` subagents over the new notes for what the regex validator can't catch: sub-sections mis-leveled as `### N` instead of `#### N.M`, non-sequential numbering, a whole report nested under a title wrapper, glued words (`model.The`). Fix **formatting only**; never reword content.
-4. **Re-validate** — confirm `FAIL 0` (the safety net that repairs didn't break structure — this is how a fix that drops a heading's blank line gets caught).
+4. **Re-validate** — confirm `FAIL 0`. Necessary but not sufficient: also read a random sample. Regex under-counts judgement cases (truncated source, a subtly-wrong title, odd-reading prose) — every "check again" pass this vault went through surfaced a pattern only reading caught.
 
 #### Report results
 
@@ -186,33 +183,41 @@ If extraction wrote at least one new note, invoke `Skill(skill="kh-graph-sync")`
 To update BibTeX blocks in existing notes with the latest data from arXiv:
 
 ```bash
-python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
+.venv/bin/python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
   --notes-dir _KnowledgeHub_
 ```
 
 To refresh specific papers only:
 
 ```bash
-python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
+.venv/bin/python .claude/skills/alphaxiv-summary-extract/scripts/refresh_bibtex.py \
   --notes-dir _KnowledgeHub_ \
   --ids 2602.15922 2601.16163
 ```
 
-## Papers with no pre-generated alphaxiv overview (rescue)
+## Papers with no full text reachable (rare failures)
 
-Persistent failures (chromedriver stack traces surviving `extract_summaries.py`'s auto-retry) are papers with **no pre-generated overview** — `alphaxiv.org/overview/{ID}` shows a *"Generate Overview"* button the headless scraper can't click. This is **not** transient or rate-limiting; re-running alone won't fix it. Generation is **server-side and per-paper** (not per-browser): once an overview exists, any later scrape — even the headless one — can read it. So the rescue is to trigger generation once, wait for it, then `extract_summaries.py --force` the still-missing IDs.
+Generation fails a paper only when `mcp__alphaxiv__get_paper_content` genuinely can't return text for that ID (withdrawn paper, bad ID) — it reads straight from arxiv's own PDF/HTML, not from any alphaxiv-side generated state, so **the five short fields never need a rescue mode**. A withdrawn paper (arxiv itself 404s) should be skipped, not retried — see Mode B's "Failure handling" above for what `generate_summary()` failures look like and how to retry.
 
-### Preferred: auto-generate via cmux browser (hands-free)
+Every note's five short fields must be sourced from the paper's own full text: do **not** fabricate content when the fetch fails. If `get_paper_content` can't return text, leave the paper **un-ingested** — a missing note beats a fabricated one.
 
-`scripts/generate_overviews.py` drives a cmux browser surface (Chrome DevTools Protocol — no extension, no Chrome setting to toggle) to reach each overview by **clicking through from `/abs/{ID}`** (the direct `/overview/` SSR route is per-IP rate-limited — the same workaround `retrieve.py` uses), click *"Generate Overview"*, and **wait for the overview to fully render before advancing**:
+**The Detailed Report is a separate, real gap, non-fatal to the note** (written without that section) — see the rescue section right after this one.
+
+## Papers with no pre-generated alphaxiv overview (rescue for the Detailed Report only)
+
+Persistent Detailed Report fetch failures (`fetch_research_report` returns `""`, note ends up missing `## Detailed Report`) mean that specific paper has **no pre-generated overview** on alphaxiv — `alphaxiv.org/overview/{ID}` shows a *"Generate Overview"* button. This is **not** transient or rate-limiting; re-fetching alone won't fix it. Generation is **server-side and per-paper** (not per-browser): once an overview exists, any later fetch — including a plain unauthenticated `curl` to the `.md` endpoint — can read it. So the rescue is to trigger generation once, then patch the Detailed Report into the existing note (no note regeneration, no re-running the five-field synthesis).
+
+### `generate_overviews.py --missing-reports` (primary use case now)
+
+Targets every KH note currently lacking `## Detailed Report` — exactly `validate_reports.py`'s "NO '## Detailed Report' section" failure signature — drives a cmux browser surface through each one, clicks *"Generate Overview"*, waits for it to fully render, then **patches the Detailed Report directly into the existing note** (`patch_detailed_report`, appends after existing content — never touches the five fields already there):
 
 ```bash
-python .claude/skills/alphaxiv-summary-extract/scripts/generate_overviews.py --ids-file failed.json
-# or target everything still missing a KH note:
-python .claude/skills/alphaxiv-summary-extract/scripts/generate_overviews.py --pending
+.venv/bin/python .claude/skills/alphaxiv-summary-extract/scripts/generate_overviews.py --missing-reports
 ```
 
-It opens a **visible** surface by default (`--focus true`) so a human can watch it work, reuses that one surface (navigating in place), retries the probe on warm-up, detects withdrawn/404 pages, and caps each paper at `--timeout` seconds so one stuck page can't hang the loop. When it finishes, recompute pending and re-scrape with `extract_summaries.py --force`.
+Also supports `--ids`/`--ids-file` (explicit targets) and `--pending` (every `knowledge.py` ID with no KH note at all — a pre-warming pass, though most fresh papers already succeed on first fetch without it).
+
+It opens a **visible** surface by default (`--focus true`, via `--no-visible` to suppress) so a human can watch it work, reuses that one surface (navigating in place), retries the probe on warm-up, detects withdrawn/404 pages, and caps each paper at `--timeout` seconds so one stuck page can't hang the loop.
 
 Four gotchas the script encodes — they cost real debugging time, so respect them when invoking or adapting it:
 
@@ -221,33 +226,14 @@ Four gotchas the script encodes — they cost real debugging time, so respect th
 - **The first probe after navigation is often empty** (browser warm-up); one empty read is not a failure, so the script retries before giving up.
 - **Each paper takes ~30–120 s** to generate, so a large failed batch runs for a while — that's inherent (you're waiting on alphaxiv's server), not a bug.
 
-### Fallback: open the pages for a human to generate
-
-Only if the automated eval-clicking above can't run (e.g. cmux `eval` can't reach the Generate button): fall back to opening the failed `/abs/` pages **in small batches** — *not* all at once (a large burst swamps the machine and hits the per-IP rate-limit; the abstract page soft-navigates to the overview safely) — for the user to click through and hit *"Generate Overview"* manually on their own schedule, then retry — don't block on it:
-
-```bash
-cmux new-surface --type browser --url "https://www.alphaxiv.org/abs/<ID>" --focus false
-```
-
-Tell them how many surfaces opened and list the pending IDs in the run's **Failed** line. On retry, recompute pending (the still-missing `{ID}.md`) and re-scrape with `--force`.
-
-Every note must be sourced from the alphaxiv overview: do **not** fabricate one from the arxiv abstract/HTML/PDF as a substitute. If an overview still cannot be generated, leave the paper **un-ingested** (a missing note beats a fabricated one). A `404` on `/abs/{ID}.md` (or an `err` page in the generator) means the paper is withdrawn — skip it.
-
-## Detailed Report — auto-formatted, then read a sample
-
-The `## Detailed Report` comes from alphaxiv's `.md` render, whose raw format is inconsistent, so **note generation formats it automatically**: `extract_summaries.py` calls `retrieve.fetch_research_report(id, kh_ids)`, which runs the raw `.md` through `scripts/format_reports.py::format_report`. New notes are clean from the start, so you don't hand-clean reports as routine work. What the formatter does (heading hierarchy + numbering, boilerplate/figure/`[N]`-citation removal, in-KH citation wikilinks, mangled-math rejoin, punctuation) and *why* is documented in `format_reports.py` itself; read its function docstrings rather than duplicating them here. It deliberately does **not** force canonical section titles, merge near-duplicate sections, or edit `**bold**`/`*italic*` emphasis (bluntly applied, those did more harm than good).
-
-The operational procedure is the **"Validate & format-QA the Detailed Reports"** post-processing step above. The rationale behind it:
-
-- **`FAIL 0` is necessary but not sufficient — also read a random sample.** `validate_reports.py`'s `check()` is the single source of truth for the mechanical rules (a clean run is `FAIL 0`), but regex under-counts judgement cases (truncated source, a subtly-wrong title, prose that reads oddly), and every "check again" this vault went through surfaced a pattern only reading caught.
-- **Repair subagents must quote the exact offending line verbatim** (so hallucinations self-expose), and **never blanket-join consecutive lines** to "fix" broken content — most reports have legit consecutive lines (a label then its paragraph, an equation on its own line) and gluing them corrupts the note. `sonnet` suffices; escalate to `opus` only if a batch's quotes reveal hallucinated fixes. If a bulk edit goes wrong, `git checkout -- <file>` restores the staged version.
+Same rule as the five fields, applied to this one section: never fabricate a Detailed Report from the arxiv abstract/HTML/PDF as a substitute. If an overview still cannot be generated, leave that note without one. A `404` on `/abs/{ID}.md` (or an `err` page in the generator) means the paper is withdrawn — skip it.
 
 ## Notes
 
 - The script skips papers whose `{ID}.md` already exists — safe to interrupt and resume
-- Scraped text is auto-sanitized at extraction (`scripts/sanitize.py`, applied inside `retrieve.py`): KaTeX math corruption (triple-render like `π0.5\pi_{0.5}π0.5`, leaked LaTeX, control chars, mangled `±`) is repaired, while inline `$…$`, `` `code` ``, and bibtex blocks are preserved verbatim
+- Title is fetched from arxiv's own abstract page (`retrieve.extract_title`) — independent of alphaxiv, unaffected by any of its redesigns
 - BibTeX is fetched from `https://arxiv.org/bibtex/{ID}` during note generation
-- A **`## Detailed Report`** section is appended from alphaxiv's machine-readable render (`https://www.alphaxiv.org/overview/{ID}.md`, via `retrieve.fetch_research_report`), cleaned at ingest by `format_reports.py::format_report`. The raw `.md` is inconsistent enough that some cases still slip through, so every note also gets the **"Validate & format-QA the Detailed Reports"** post-processing pass above. The section sits **outside** the `%%` BibTeX block so it renders in preview. If the `.md` fetch fails (rate-limit / withdrawn), the note is written without it — a missing report beats a fabricated one
+- The **`## Detailed Report`** section sits **outside** the `%%` BibTeX block so it renders in preview — see "Validate & format-QA the Detailed Reports" above for how it's fetched, formatted, and checked
 - `authors`, `tags`, and `aliases` in frontmatter start empty (`[]`) — the post-processing enrichment step fills them in
 - `authors` must never contain `- ...` as a placeholder — use real names only, or omit the field
 - `aliases` must never remain `[]` — always derive at least one alias from the title or paper content

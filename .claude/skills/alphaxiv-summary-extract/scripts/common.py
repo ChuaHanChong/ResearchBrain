@@ -1,16 +1,15 @@
 """Shared constants and helpers for the alphaxiv-summary-extract scripts.
 
-fetch_bibtex imports `requests` lazily, so light entry points (e.g. generate_overviews.py) can use
-the constants and arxiv-ID parsers without pulling it in.
+fetch_bibtex imports `requests` lazily, so light entry points can use the constants and arxiv-ID
+parsers without pulling it in.
 """
 
 import re
 
 KH_DIR = "_KnowledgeHub_"                              # default KH notes dir (vault-relative)
 ARXIV_ID_RE = r"\d{4}\.\d{4,5}"                        # arxiv ID, e.g. 2602.15922
-OVERVIEW_URL = "https://www.alphaxiv.org/overview/{}"  # alphaxiv overview page
-ABS_URL = "https://www.alphaxiv.org/abs/{}"            # arxiv abstract page — soft-nav entry; the direct /overview/ SSR route is rate-limited
-REPORT_URL = "https://www.alphaxiv.org/overview/{}.md" # machine-readable render — the detailed analysis rendered as the note's ## Detailed Report
+ABS_URL = "https://www.alphaxiv.org/abs/{}"            # note's `link:` frontmatter; /overview/ 302s here too
+REPORT_URL = "https://www.alphaxiv.org/overview/{}.md" # machine-readable render — source of the note's ## Detailed Report
 
 
 def parse_arxiv_id(url_or_id: str) -> str:

@@ -139,11 +139,14 @@ def _rank_and_number(lines: list[str], kh_ids: Set[str]) -> str:
             continue
         l = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', l)
         if in_cit:
-            l = re.sub(r'\[([^\]]+)\]\((?:https?://)?(?:www\.)?(?:alphaxiv|arxiv)\.org/abs/([0-9]+\.[0-9]+)\)', lk, l)
             l = re.sub(r'\s*\[Online\]\.\s*Available:\s*https?://\S+', '', l)
             l = re.sub(r'^\s*\[\d+\]\s*', '', l)
         else:
             l = re.sub(r'[ \t]?\[\d+(?:\s*[,\-]\s*\d+)*\](?!\])', '', l)
+        # wikilink in-KH citations wherever they appear, not just inside a References section — an
+        # LLM-generated report (unlike alphaxiv's old scrape) usually cites inline in prose, no
+        # dedicated citations section guaranteed.
+        l = re.sub(r'\[([^\]]+)\]\((?:https?://)?(?:www\.)?(?:alphaxiv|arxiv)\.org/abs/([0-9]+\.[0-9]+)\)', lk, l)
         l = re.sub(r'^(\s*)[*+](\s+)', r'\1- ', l)
         l = re.sub(r'^(\s*)-\s+', r'\1- ', l)
         out.append(l.rstrip())

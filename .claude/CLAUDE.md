@@ -19,7 +19,7 @@ General/ (topic overview, landscape, key papers)
 |-----------|----------|---------|
 | **research-assistant agent** | `.claude/agents/research-assistant.md` | Full-stack research: discovery, idea formulation, math verification, synthesis, documentation, vault maintenance |
 | **alphaxiv-search skill** | `.claude/skills/alphaxiv-search/` | Search guide for 4 alphaxiv MCP research tools with query patterns and strategies |
-| **alphaxiv-summary-extract skill** | `.claude/skills/alphaxiv-summary-extract/` | Batch scraping via Selenium → `_KnowledgeHub_/` notes, enrichment rules, tag taxonomy |
+| **alphaxiv-summary-extract skill** | `.claude/skills/alphaxiv-summary-extract/` | `extract_summaries.py` self-generates Summary/Problem/Method/Results/Takeaways (shells out to `claude -p` per paper → MCP `get_paper_content(fullText=true)`) + alphaxiv-scraped Detailed Report → `_KnowledgeHub_/` notes, enrichment rules, tag taxonomy |
 | **knowledgehub-query skill** | `.claude/skills/knowledgehub-query/` | Reads KnowledgeHub notes by arxiv ID and answers questions from their content |
 | **paper-curate skill** | `.claude/skills/paper-curate/` | Assigns papers to General/ topics, audits coverage, formatting rules |
 | **paper-figure-extract skill** | `.claude/skills/paper-figure-extract/` | Extracts a paper's pipeline figure from its **alphaxiv overview** (alphaxiv alt-label + caption), or its **arxiv HTML render** as a fallback, requires a visual check that it is the real diagram, and embeds it (caption verbatim) under the KH note's `## Method` section |
@@ -32,7 +32,7 @@ General/ (topic overview, landscape, key papers)
 
 | Command | Purpose |
 |---------|---------|
-| `/kh-sync` | Sync `_KnowledgeHub_/` + `General/` with `knowledge.py` — scrape, enrich, validate + subagent format-QA the Detailed Reports, rescue chromedriver failures via cmux, curate, then refresh the concept graph via the **kh-graph-sync skill** |
+| `/kh-sync` | Sync `_KnowledgeHub_/` + `General/` with `knowledge.py` — one `extract_summaries.py` call generates the five short fields (self-contained, `claude -p` per paper) and assembles notes (Detailed Report still alphaxiv-scraped), rescue any missing Detailed Reports via cmux, enrich, validate + subagent format-QA the Detailed Reports, curate, then refresh the concept graph via the **kh-graph-sync skill** |
 | `/deepdive-sync` | Sync `Embodied-AI/NN_*.md` deep dives with current KH state (embeds Deep-Dive Format spec) |
 | `/research-directions` | Generate or refresh a research-direction doc under `_Projects_/Research-Directions/` (embeds Format spec) |
 
@@ -52,16 +52,16 @@ General/ (topic overview, landscape, key papers)
 
 ### alphaxiv API Notes
 
-- Overview page: `https://www.alphaxiv.org/overview/{PAPER_ID}` — JS-rendered HTML, scraped via Selenium + BeautifulSoup in `alphaxiv-summary-extract/scripts/extract_summaries.py`
+- The five short fields (Summary/Problem/Method/Results/Takeaways) are synthesized by `extract_summaries.py` itself, which shells out to a headless `claude -p` subprocess per paper to call `mcp__alphaxiv__get_paper_content(fullText=true)` — the paper's own full text. See the `alphaxiv-summary-extract` skill.
+- Overview page: `https://www.alphaxiv.org/overview/{PAPER_ID}` — the `.md` suffix (machine-readable render) is still fetched directly for the note's `## Detailed Report`, unaffected by the tab-UI redesign above
 - Domain redirects from `alphaxiv.org` → `www.alphaxiv.org` (use `-L` if probing with curl)
-- The `.md` suffix endpoint exists (machine-readable render) but is **not used** — static render misses JS-loaded sections this vault needs
-- MCP tools (preferred over scraping when possible): `discover_papers`, `get_paper_content`, `answer_pdf_queries`, `read_files_from_github_repository`
+- MCP tools: `discover_papers`, `get_paper_content`, `answer_pdf_queries`, `read_files_from_github_repository`
 
 ## Environment
 
 - **Python**: 3.13+ (managed via `uv`)
 - **Package manager**: `uv` (Rust-based, see `uv.lock`)
-- **Key deps**: `selenium`, `beautifulsoup4`, `requests`, `anthropic`, `tqdm`
+- **Key deps**: `beautifulsoup4`, `requests`, `anthropic`, `tqdm`, `claude` CLI on PATH (for `extract_summaries.py`'s `claude -p` subprocess)
 - **Virtual env**: `.venv/` (gitignored)
 
 ## Conventions
@@ -70,7 +70,7 @@ General/ (topic overview, landscape, key papers)
 - KH enrichment rules (authors, tags, aliases, formatting) are in the `alphaxiv-summary-extract` skill
 - General/ formatting rules (wikilinks, sorting, callouts) are in the `paper-curate` skill
 - Use Edit tool + obsidian-markdown skill for KH enrichment, not custom Python scripts
-- Download arxiv PDFs with `curl -fLJO --create-dirs --output-dir data/papers "https://arxiv.org/pdf/{ID}"` — the version suffix comes from arxiv's `Content-Disposition` filename (e.g., `2412.02818v4.pdf`); one file per paper. Selenium (`alphaxiv-summary-extract/scripts/extract_summaries.py`) scrapes alphaxiv overview pages, not PDFs.
+- Download arxiv PDFs with `curl -fLJO --create-dirs --output-dir data/papers "https://arxiv.org/pdf/{ID}"` — the version suffix comes from arxiv's `Content-Disposition` filename (e.g., `2412.02818v4.pdf`); one file per paper.
 - Right after `ExitPlanMode` is approved, render the plan file to `docs/visuals/plan-{YYYY-MM-DD}-{slug}.html`, date = today, slug from its H1, with the **visualize** skill, Implementation-plan form: phases collapsed, click to expand, one inline SVG of the phase sequence.
 
 ## Deep-Dive Format (`Embodied-AI/`)

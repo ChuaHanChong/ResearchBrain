@@ -1,20 +1,48 @@
-"""Helpers to pull a paper's title, its Problem/Method/Results/Takeaways (Selenium), and its Detailed Report (`.md`, formatted by format_reports) from the alphaxiv overview."""
-import re
-import time
+"""Fetch a paper's title, five short fields, and Detailed Report; validate a summary payload's shape.
+
+Title and the Detailed Report come straight from arxiv/alphaxiv. The five short fields are generated
+by generate_summary(), which shells out to a headless `claude -p` subagent.
+"""
+import json
+import subprocess
 from collections.abc import Set
 from typing import Optional
 
 import requests
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 
-from common import ABS_URL, REPORT_URL, overview_link_selector
+from common import REPORT_URL
 from format_reports import format_report
-from sanitize import sanitize
+
+SUMMARY_KEYS = ("Summary", "Problem", "Method", "Results", "Takeaways")
+
+# Canonical prompt — mirrored in SKILL.md Step 1; keep both in sync.
+GENERATION_PROMPT = """\
+Call mcp__alphaxiv__get_paper_content with url="https://arxiv.org/abs/{arxiv_id}" and fullText=true.
+
+From that raw text, synthesize five short fields, each with a content rule and a strict limit:
+
+- Summary: what the method IS, its core mechanism(s) plus the headline outcome, plain terms like a
+  strong abstract. One paragraph, 40-70 words.
+- Problem: the gap or limitation in PRIOR WORK that motivates this paper, not what this paper does, not
+  background survey. Exactly 3 bullets, each 15-30 words.
+- Method: this paper's OWN NAMED components/mechanisms, what it introduces or builds, not a restatement
+  of Problem. Name the technique (architecture, loss, algorithm, data pipeline) each bullet describes.
+  Exactly 3 bullets, each 15-35 words.
+- Results: EMPIRICAL EVIDENCE, benchmark numbers, comparisons to baselines, ablation confirmations.
+  Every bullet should carry a concrete number where the paper has one; don't restate Method. Exactly 3
+  bullets, each 15-35 words.
+- Takeaways: the GENERALIZABLE INSIGHT for a reader, what transfers beyond this paper's exact setup or
+  numbers (a design principle, a surprising finding, a caution), not a re-summary of Results. Exactly 3
+  bullets, each 15-30 words.
+
+No [N]-style citation markers or bare arxiv IDs in any field.
+
+Reply with ONLY this JSON object, no other text, no markdown code fence:
+{{"Summary": "...", "Problem": ["...", "...", "..."], "Method": ["...", "...", "..."], "Results": ["...", "...", "..."], "Takeaways": ["...", "...", "..."]}}
+"""
+
+GENERATE_TIMEOUT = 300  # measured ~90-130s/paper; margin
 
 
 def extract_title(url: str) -> Optional[str]:
@@ -47,57 +75,44 @@ def fetch_research_report(arxiv_id: str, kh_ids: Set[str] = frozenset()) -> str:
     return format_report(resp.text, kh_ids)
 
 
-def _js_text(driver: webdriver.Chrome, element: object) -> str:
-    """Extract an element's text via JS textContent and repair KaTeX/LaTeX/control-char corruption."""
-    # textContent works even when CSS hides the element from Selenium's .text.
-    raw = driver.execute_script("return arguments[0].textContent;", element)
-    # collapse spurious newlines (each call is one paragraph/<li>; KaTeX math else explodes per token)
-    raw = re.sub(r'\s*\n\s*', ' ', raw).strip()
-    return sanitize(raw)
+def generate_summary(arxiv_id: str) -> dict:
+    """Shell out to a headless claude -p subagent to synthesize the five short fields for one paper."""
+    prompt = GENERATION_PROMPT.format(arxiv_id=arxiv_id)
+    try:
+        result = subprocess.run(
+            [
+                "claude", "-p", prompt,
+                "--allowedTools", "mcp__alphaxiv__get_paper_content",
+                "--permission-mode", "acceptEdits",
+                "--output-format", "json",
+            ],
+            capture_output=True, text=True, timeout=GENERATE_TIMEOUT,
+        )
+    except subprocess.TimeoutExpired:
+        raise RuntimeError(f"claude -p timed out after {GENERATE_TIMEOUT}s")
+    if result.returncode != 0:
+        raise RuntimeError(f"claude -p exited {result.returncode}: {result.stderr[:300]}")
+    outer = json.loads(result.stdout)
+    if outer.get("is_error"):
+        raise RuntimeError(f"claude -p reported error: {str(outer.get('result'))[:300]}")
+    text = outer.get("result", "")
+    # the agent's final message should be pure JSON, but tolerate stray prose/fences around it
+    start, end = text.find("{"), text.rfind("}")
+    if start == -1 or end == -1:
+        raise RuntimeError(f"no JSON object in claude -p result: {text[:300]!r}")
+    payload = json.loads(text[start:end + 1])
+    return validate_summary(payload)
 
 
-def _click_through_to_overview(driver: webdriver.Chrome, arxiv_id: str) -> None:
-    """Navigate to the paper's overview by clicking through from its /abs/ page."""
-    # Click through from /abs/ rather than hitting /overview/ directly — the direct SSR route is
-    # per-IP rate-limited (HTTP 500).
-    driver.get(ABS_URL.format(arxiv_id))
-    time.sleep(5)
-    # Click the in-app anchor (not driver.get) so the SPA router soft-navigates.
-    link = WebDriverWait(driver, 15).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, overview_link_selector(arxiv_id)))
-    )
-    driver.execute_script("arguments[0].click();", link)
-
-
-def _panel_for(driver: webdriver.Chrome, tab: str) -> WebElement:
-    """Return the ARIA tabpanel element that the tab button labeled `tab` controls."""
-    # The overview renders each section as a role=tabpanel whose id the tab button points to via
-    # aria-controls (the id prefix is a dynamic React useId, so resolve it per-page). Inactive panels
-    # are hidden but already in the DOM with their content, so no click is needed — textContent reads them.
-    btn = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, f"//button[normalize-space()='{tab}']"))
-    )
-    return driver.find_element(By.ID, btn.get_attribute("aria-controls"))
-
-
-def extract_summary(driver: webdriver.Chrome, arxiv_id: str) -> dict[str, object]:
-    """Scrape the alphaxiv overview and return Summary/Problem/Method/Results/Takeaways."""
-    _click_through_to_overview(driver, arxiv_id)
-    time.sleep(1)
-
-    # Click the Human/Machine toggle only if present (2026-06 UI dropped it).
-    machine = driver.find_elements(By.XPATH, "//button[normalize-space()='Machine']")
-    if machine:
-        driver.execute_script("arguments[0].click();", machine[0])
-        time.sleep(1)
-
-    info = {}
-
-    # Summary is a paragraph panel; Problem/Method/Results/Takeaways each render a <ul><li> list. Read
-    # each from its own aria-controls panel (earlier ancestor-hop grabbed a shared wrapper of all tabs).
-    info["Summary"] = _js_text(driver, _panel_for(driver, "Summary"))
-    for tab in ["Problem", "Method", "Results", "Takeaways"]:
-        items = _panel_for(driver, tab).find_elements(By.XPATH, ".//li")
-        info[tab] = [t for t in (_js_text(driver, li) for li in items) if t]
-
-    return info
+def validate_summary(payload: dict) -> dict[str, object]:
+    """Validate a paper's generated summary payload has the five expected keys and shapes."""
+    # Raises ValueError so a malformed payload is a clear Failed reason, not a bad note.
+    missing = [k for k in SUMMARY_KEYS if k not in payload]
+    if missing:
+        raise ValueError(f"summary payload missing keys: {missing}")
+    if not isinstance(payload["Summary"], str):
+        raise ValueError("Summary must be a string")
+    for k in ("Problem", "Method", "Results", "Takeaways"):
+        if not isinstance(payload[k], list) or not all(isinstance(x, str) for x in payload[k]):
+            raise ValueError(f"{k} must be a list of strings")
+    return payload

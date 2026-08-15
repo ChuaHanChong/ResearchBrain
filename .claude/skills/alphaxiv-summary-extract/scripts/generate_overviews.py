@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Drive a cmux browser to generate the alphaxiv overview pages for papers
-that failed to scrape (those with no pre-generated overview), so `extract_summaries.py --force` can then ingest
-them. Run it in the foreground or a harness-managed background — nohup breaks cmux's socket eval.
-See the SKILL.md "rescue" section for the why and the gotchas; the inline comments cover the
-completion-detection logic.
+"""Drive a cmux browser to generate alphaxiv overviews for papers whose Detailed Report is missing.
+
+`retrieve.fetch_research_report` 404s until alphaxiv generates that paper's overview — this only
+affects the Detailed Report, not the five short fields. Patches the report into the existing KH note
+in place once generated, no note regeneration. Run in the foreground or a harness-managed background —
+nohup breaks cmux's socket eval.
 
 Usage:
+    python generate_overviews.py --missing-reports        # every KH note lacking ## Detailed Report
     python generate_overviews.py --ids 2606.18426 2603.11980
-    python generate_overviews.py --ids-file failed.json   # json array or newline-delimited txt
-    python generate_overviews.py --pending                # every knowledge.py ID with no KH note
+    python generate_overviews.py --ids-file failed.json    # json array or newline-delimited txt
+    python generate_overviews.py --pending                 # every knowledge.py ID with no KH note at all
     python generate_overviews.py --ids 2606.18426 --surface surface:51
 """
 
@@ -21,7 +23,8 @@ import time
 from pathlib import Path
 from typing import Optional
 
-from common import ABS_URL, ARXIV_ID_RE, KH_DIR, OVERVIEW_URL, overview_link_selector
+from common import ABS_URL, ARXIV_ID_RE, KH_DIR, overview_link_selector
+from retrieve import fetch_research_report
 
 # Probe the page state: is the Generate button present, and is the overview fully rendered?
 PROBE_JS = r"""(() => {
@@ -97,9 +100,9 @@ def is_done(state: Optional[dict]) -> bool:
 
 
 def open_overview(surface: str, paper_id: str) -> str:
-    """Reach /overview/<id> by clicking through from /abs/. Returns ok/navfail."""
+    """Load /abs/<id> and click through to reveal the overview. Returns ok/navfail."""
     # The direct /overview/ SSR route is per-IP rate-limited (HTTP 500); the in-app soft-nav from
-    # /abs/ is not.
+    # /abs/ is not — and alphaxiv embeds the overview on /abs/ itself anyway.
     if cmux(surface, "goto", ABS_URL.format(paper_id)).startswith("__ERR__"):
         return "navfail"
     cmux(surface, "wait", "--load-state", "complete", "--timeout", "25")
@@ -107,8 +110,7 @@ def open_overview(surface: str, paper_id: str) -> str:
     sel = overview_link_selector(paper_id)
     link_js = (f'(() => {{ const a = document.querySelector("{sel}"); '
                'if (!a) return "no-link"; a.click(); return "clicked"; })()')
-    if "clicked" not in cmux(surface, "eval", link_js):
-        cmux(surface, "goto", OVERVIEW_URL.format(paper_id))  # link not rendered — fall back to direct nav
+    cmux(surface, "eval", link_js)  # best-effort; /overview/ 302s to /abs/ anyway, so no fallback nav needed
     cmux(surface, "wait", "--load-state", "complete", "--timeout", "25")
     return "ok"
 
@@ -155,7 +157,7 @@ def generate_one(surface: str, paper_id: str, per_timeout: int, poll: int = 7) -
 
 
 def load_ids(args: argparse.Namespace) -> list:
-    """Resolve the target arxiv IDs from --ids, --ids-file, or --pending."""
+    """Resolve the target arxiv IDs from --ids, --ids-file, --pending, or --missing-reports."""
     if args.ids:
         return list(dict.fromkeys(args.ids))
     if args.ids_file:
@@ -169,15 +171,49 @@ def load_ids(args: argparse.Namespace) -> list:
         kp = set(re.findall(rf"arxiv\.org/abs/({ARXIV_ID_RE})", knowledge))
         kh = {p.stem for p in Path(args.kh_dir).glob("*.md") if re.match(rf"^{ARXIV_ID_RE}$", p.stem)}
         return sorted(kp - kh, key=lambda i: (int(i.split(".")[0]), int(i.split(".")[1])))
-    sys.exit("provide --ids, --ids-file, or --pending")
+    if args.missing_reports:
+        notes = Path(args.kh_dir).glob("*.md")
+        return sorted(
+            (p.stem for p in notes if re.match(rf"^{ARXIV_ID_RE}$", p.stem)
+             and "## Detailed Report" not in p.read_text(encoding="utf-8")),
+            key=lambda i: (int(i.split(".")[0]), int(i.split(".")[1])),
+        )
+    sys.exit("provide --ids, --ids-file, --pending, or --missing-reports")
+
+
+def patch_detailed_report(kh_dir: str, paper_id: str) -> str:
+    """Fetch a paper's now-generated Detailed Report and append it to its existing KH note in place."""
+    # Only for notes that already exist and already have their five fields — this never regenerates
+    # a note, it only backfills the one section that depends on alphaxiv having an overview.
+    note_path = Path(kh_dir) / f"{paper_id}.md"
+    if not note_path.exists():
+        return "note-missing"
+    text = note_path.read_text(encoding="utf-8")
+    if "## Detailed Report" in text:
+        return "already-has-report"
+    kh_ids = {p.stem for p in Path(kh_dir).glob("*.md")}
+    # cmux just confirmed the overview is rendered server-side, but the `.md` endpoint is a separate
+    # request and can lag briefly behind — retry rather than treat a fresh generation as a dead end.
+    report = ""
+    for attempt in range(3):
+        report = fetch_research_report(paper_id, kh_ids)
+        if report.strip():
+            break
+        if attempt < 2:
+            time.sleep(5)
+    if not report.strip():
+        return "fetch-failed"
+    note_path.write_text(text.rstrip("\n") + f"\n\n## Detailed Report\n\n{report}\n", encoding="utf-8")
+    return "patched"
 
 
 def main() -> None:
-    """Parse args, open a cmux surface, and generate the overview for each target paper, reporting outcomes."""
+    """Parse args, open a cmux surface, generate each target paper's overview, and report outcomes."""
     parser = argparse.ArgumentParser(description="Auto-generate alphaxiv overviews via cmux browser.")
     parser.add_argument("--ids", nargs="*", help="explicit arxiv IDs")
     parser.add_argument("--ids-file", help="JSON array or newline-delimited file of IDs")
     parser.add_argument("--pending", action="store_true", help="target every knowledge.py ID with no KH note")
+    parser.add_argument("--missing-reports", action="store_true", help="target every KH note lacking ## Detailed Report")
     parser.add_argument("--knowledge", default=".claude/skills/alphaxiv-summary-extract/scripts/knowledge.py")
     parser.add_argument("--kh-dir", default=KH_DIR)
     parser.add_argument("--surface", help="reuse an existing cmux surface (e.g. surface:51)")
@@ -186,9 +222,9 @@ def main() -> None:
     args = parser.parse_args()
 
     ids = load_ids(args)
-    if args.kh_dir and Path(args.kh_dir).is_dir():
+    if args.pending and args.kh_dir and Path(args.kh_dir).is_dir():
         have = {p.stem for p in Path(args.kh_dir).glob("*.md")}
-        ids = [i for i in ids if i not in have]  # skip papers already ingested
+        ids = [i for i in ids if i not in have]  # --pending only: skip papers already ingested
     if not ids:
         print("nothing to generate (0 papers)")
         return
@@ -201,10 +237,16 @@ def main() -> None:
     for n, paper_id in enumerate(ids, 1):
         start = time.time()
         outcome = generate_one(surface, paper_id, args.timeout)
+        # A note that already exists (--missing-reports, or a --pending id ingested meanwhile) gets
+        # its Detailed Report backfilled in place — no note regeneration, no re-running content synthesis.
+        if outcome in ("generated", "already"):
+            patch_outcome = patch_detailed_report(args.kh_dir, paper_id)
+            outcome = f"{outcome}+{patch_outcome}"
         stats[outcome] = stats.get(outcome, 0) + 1
         print(f"[{n:>3}/{len(ids)}] {paper_id}  {outcome}  ({int(time.time() - start)}s)", flush=True)
     print(f"\nDONE  {json.dumps(stats)}")
-    print("Next: re-run extract_summaries.py --force on the still-missing IDs to ingest the newly-generated overviews.")
+    print("Existing notes patched in place (+patched). For any ID with no KH note yet, run")
+    print("extract_summaries.py now — its Detailed Report fetch will succeed immediately.")
 
 
 if __name__ == "__main__":

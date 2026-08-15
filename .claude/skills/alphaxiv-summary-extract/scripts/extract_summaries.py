@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
-"""Batch-extract paper summaries from alphaxiv and write Obsidian markdown notes.
+"""Generate and write KnowledgeHub notes for arxiv papers, single or batch.
+
+For each paper, fetches title, the generated five short fields, BibTeX, and the Detailed Report
+(all via `retrieve.py`) and writes the note (`render_note`). One script call does everything — no
+external Agent-tool dispatch needed.
 
 Usage:
     python extract_summaries.py --input scripts/knowledge.py --out _KnowledgeHub_
     python extract_summaries.py --input scripts/knowledge.py --out _KnowledgeHub_ --limit 3
-    python extract_summaries.py --input scripts/knowledge.py --out _KnowledgeHub_ --force
+    python extract_summaries.py --ids 2608.13474 2608.13489 --out _KnowledgeHub_
+    python extract_summaries.py --ids 2608.13474 --out _KnowledgeHub_ --force
 """
 
 import argparse
 import importlib.util
-import sys
 from pathlib import Path
 
 from tqdm import tqdm
-from selenium import webdriver
 
-from common import KH_DIR, OVERVIEW_URL, fetch_bibtex, parse_arxiv_id
-from retrieve import extract_title, extract_summary, fetch_research_report
+from common import ABS_URL, KH_DIR, fetch_bibtex, parse_arxiv_id
+from retrieve import extract_title, fetch_research_report, generate_summary
 
 
 def load_papers(input_path: str) -> list:
@@ -27,16 +30,6 @@ def load_papers(input_path: str) -> list:
     return module.papers
 
 
-def init_driver() -> webdriver.Chrome:
-    """Build and return a headless Chrome webdriver configured for scraping."""
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--window-size=1920,1080")
-    return webdriver.Chrome(options=options)
-
-
 def render_note(
     arxiv_id: str,
     title: str,
@@ -45,7 +38,7 @@ def render_note(
     research_report: str = "",
 ) -> str:
     """Render the full Obsidian KH note markdown from a paper's summary, BibTeX, and optional Detailed Report."""
-    link = OVERVIEW_URL.format(arxiv_id)
+    link = ABS_URL.format(arxiv_id)
 
     def bullets(items: list) -> str:
         """Render items as a markdown bullet list, or a placeholder bullet when empty."""
@@ -95,17 +88,9 @@ aliases: []
 """
 
 
-def warn_sparse_sections(summary: dict, url: str) -> None:
-    """Warn when any summary section has fewer than three extracted items."""
-    for section in ["Problem", "Method", "Results", "Takeaways"]:
-        items = summary.get(section, [])
-        if isinstance(items, list) and len(items) < 3:
-            print(f"  Warning: {section} has only {len(items)} items for {url}")
-
-
 def main() -> None:
-    """Parse args, scrape each paper, and write its Obsidian KH note, reporting a summary."""
-    parser = argparse.ArgumentParser(description="Scrape alphaxiv and write Obsidian notes")
+    """Parse args, generate + assemble each paper's note, reporting a Processed/Skipped/Failed summary."""
+    parser = argparse.ArgumentParser(description="Generate summaries via claude -p and write Obsidian notes")
     parser.add_argument("--input", default=None, help="Path to knowledge.py with papers list (batch mode)")
     parser.add_argument("--ids", nargs="+", help="One or more arxiv IDs or URLs to process directly")
     parser.add_argument("--out", default=KH_DIR, help="Output directory for .md notes")
@@ -115,10 +100,6 @@ def main() -> None:
 
     if not args.input and not args.ids:
         parser.error("Provide either --input (batch) or --ids (single/few papers)")
-
-    scripts_dir = str(Path(__file__).parent)
-    if scripts_dir not in sys.path:
-        sys.path.insert(0, scripts_dir)
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -160,31 +141,27 @@ def main() -> None:
     # in-vault arxiv IDs, so the Detailed Report can wikilink citations to existing KH notes
     kh_ids = {p.stem for p in out_dir.glob("*.md")}
 
-    driver = init_driver()
     processed = 0
     failed = []
 
-    try:
-        for url in tqdm(to_process, desc="Extracting"):
-            arxiv_id = parse_arxiv_id(url)
-            try:
-                title = extract_title(url)
+    for url in tqdm(to_process, desc="Extracting"):
+        arxiv_id = parse_arxiv_id(url)
+        try:
+            title = extract_title(url)
 
-                summary = extract_summary(driver, arxiv_id)
-                warn_sparse_sections(summary, url)
+            summary = generate_summary(arxiv_id)
 
-                bibtex = fetch_bibtex(arxiv_id)
-                research_report = fetch_research_report(arxiv_id, kh_ids)
+            bibtex = fetch_bibtex(arxiv_id)
+            research_report = fetch_research_report(arxiv_id, kh_ids)
 
-                note = render_note(arxiv_id, title or arxiv_id, summary, bibtex, research_report)
-                (out_dir / f"{arxiv_id}.md").write_text(note, encoding="utf-8")
-                processed += 1
+            note = render_note(arxiv_id, title or arxiv_id, summary, bibtex, research_report)
+            (out_dir / f"{arxiv_id}.md").write_text(note, encoding="utf-8")
+            kh_ids.add(arxiv_id)
+            processed += 1
 
-            except Exception as e:
-                print(f"\n  Failed: {url}\n    {e}")
-                failed.append(url)
-    finally:
-        driver.quit()
+        except Exception as e:
+            print(f"\n  Failed: {url}\n    {e}")
+            failed.append(url)
 
     print(f"\n{'=' * 40}")
     print(f"Processed : {processed}")
