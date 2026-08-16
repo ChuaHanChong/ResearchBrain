@@ -16,7 +16,7 @@ tags:
 > A skimmable TL;DR of [[Spatial-4D|3D/4D Spatial & Geometric Representation]]. For each direction: **the bet**, the reasoning, the sharpest open questions, and the risks. Full detail stays in the source. Plain-language version: [[__ELI5-EN__/Spatial-4D-ELI5|ELI5]].
 
 > [!abstract] Overview
-> Geometry is what a task keeps fixed; appearance is the noise on top. A gripper, an object, and their contacts sit at metric 3D positions that don't move when lighting, texture, or camera changes. The non-consensus bet: the geometric channel carries the action signal, not appearance, and the gap to RGB *widens* exactly where geometry holds but pixels move (cross-embodiment, viewpoint shift, occlusion, long horizons). The field treats explicit 3D as overhead. These 10 directions build the loss around 3D.
+> Geometry is what a task keeps fixed; appearance is the noise on top. A gripper, an object, and their contacts sit at metric 3D positions that don't move when lighting, texture, or camera changes. The non-consensus bet: the geometric channel carries the action signal, not appearance, and the gap to RGB *widens* exactly where geometry holds but pixels move (cross-embodiment, viewpoint shift, occlusion, long horizons). The field treats explicit 3D as overhead. These 11 directions build the loss around 3D.
 
 ## Cluster map
 | Cluster | Directions | Shared bottleneck |
@@ -24,7 +24,7 @@ tags:
 | A: Geometry-Native Policies | A1–A3 | The action head reads/predicts RGB tokens, leaving metric 3D implicit and paying an embodiment-specific data tax |
 | B: 3D-Grounded Cognition | B1–B2 | Reasoning isn't grounded in metric geometry: language CoT over RGB hallucinates spatial relations and dynamics |
 | C: Geometry-Native World Models & Memory | C1, C2, C3 | World models imagine in pixels; geometry is recovered after the fact, not externally usable, not natively 4D, not kept over long horizons |
-| D: Reconstruction for Embodied Perception | D1–D2 | Reconstruction optimizes radiance, not interaction-readiness; assets aren't physics- or kinematics-ready |
+| D: Reconstruction for Embodied Perception | D1–D3 | Reconstruction optimizes radiance, not interaction-readiness; assets aren't physics- or kinematics-ready — and even where they are, readiness is scored once and never re-checked as the asset accrues use |
 
 ## A: Geometry-Native Policies
 *Conditioning state is metric geometry, not RGB tokens. The three span the cost/benefit frontier: a full point-cloud head, an occupancy forward model, and a cheap depth-token side-channel.*
@@ -226,7 +226,7 @@ tags:
 > - Memory adds footprint. Fix: the patch-level-vs-O(1)-TTT trade-off is the go/no-go; memory earns its place only if coherence gain beats cost.
 
 ## D: Reconstruction for Embodied Perception
-*Reconstruction built for interaction-readiness: geometry carrying physics and kinematic structure, not radiance. Split by unit, D1 is a whole scene an agent acts in; D2 is the reusable single object that populates it.*
+*Reconstruction built for interaction-readiness: geometry carrying physics and kinematic structure, not radiance, that stays valid as the asset is used. Split by unit, D1 is a whole scene an agent acts in; D2 is the reusable single object that populates it; D3 asks whether either one's readiness score survives the asset's operational lifetime, not just the moment it's generated.*
 
 ### D1: Interaction-Ready Scene Reconstruction: Whole Environments You Can Act In
 > [!abstract] The bet
@@ -275,3 +275,28 @@ tags:
 > - No shared cross-category leaderboard (PhysX-Bench leans rigid/articulated; PhysTwin, PhysHanDI are deformable-specific). Fix: adopt the survey's four criteria; report pass/fail per class.
 > - Physical parameters from single video or sparse RGB-D may be under-determined. Fix: energy/momentum consistency constraints regularize them; bound to where they're pinned.
 > - Boundary with D1 can blur. Fix: pin D2 to the single-object unit, D1 to whole-scene. A D2 object in a D1 scene is the intended composition.
+
+### D3: Readiness Re-Certification: Does a Physics-Generated Asset Stay Ready After It's Used?
+> [!abstract] The bet
+> D3: after roughly 50 damage-consistent interaction cycles, a policy certified against the freshly-scored (undamaged) asset takes a ≥15% real-task success-rate hit on the same object, even though the static readiness checklist still reads "pass" and the readiness score barely moves — while a matched-magnitude parameter-jitter control with no accumulated-use history shows a much smaller drop (<5%). Both numbers are this direction's own; the jitter control is what proves the cause is accumulated damage, not ordinary parameter sensitivity.
+
+**Why**: D1's readiness checklist and D2's physics generators all score an asset exactly once, at generation. BoxTwin already proves the underlying mechanism, an object's friction, joint slack, and material stiffness drift with cumulative use, fitting a per-hinge damage law from video that tracks real wear and hysteresis. But BoxTwin validates that only as tracking fidelity of its own digital twin, never as a readiness signal, and never against downstream task success. Nobody has wired the drift mechanism to a re-scoring gate.
+
+**First-principles**
+- *Principle:* physical parameters are path-dependent functions of cumulative use, not one-time-measurable constants; BoxTwin's own damage variable is defined as a function of the object's accumulated history, not a fixed number a single measurement recovers.
+- *Challenged:* D1's four-criteria checklist and D2's joint generators all treat "physical parameterization" as a threshold crossed once, at generation; none defines a re-scoring trigger or a usage-cycle counter. BoxTwin itself never closes that loop either, by its own admission its long-horizon claims rest on visual overlays, with no error metrics tying the damage law to a readiness outcome.
+- *Wager:* readiness, measured once, does not stay predictive of task success once the asset accrues real use — and that failure is specifically about accumulation, not generic sensitivity to parameter changes.
+
+**Sharpest questions**
+1. Does the readiness score's correlation with downstream success collapse under damage accumulation, while a matched-magnitude jitter with no accumulation history leaves it intact?
+2. Does the static readiness checklist stay at ~100% "pass" across the same cycles even as that correlation collapses — proving the checklist is structurally blind to accumulated drift, not just insensitive?
+3. Does re-scoring physical parameters from fresh video of the worn asset recover most of the lost correlation?
+4. Is the collapse a sharp knee at the object's own yield-then-damage transition, rather than a smooth decay from the first use?
+5. Is the driver specifically the physical/kinematic channel — does a matched appearance-only perturbation leave success and the score-vs-success correlation intact by comparison?
+6. Does the same collapse recur one level down, in a fit-once actuator model, once the actuator itself accrues comparable wear?
+
+> [!warning] Risks
+> - No existing benchmark re-measures readiness over time; every readiness suite in this corpus is a single-timestamp snapshot. Fix: repeat an existing snapshot scorer at cycle 0 and cycle N rather than inventing a new benchmark.
+> - BoxTwin's damage law is validated only against visual overlays, not quantitative error. Fix: treat it as a generative prior for plausible drift, not ground truth to match exactly.
+> - The success-rate drop could be ordinary parameter sensitivity, not accumulation. Fix: the jitter-control arm is the load-bearing safeguard; always report the damage-vs-jitter contrast, not the damage arm alone.
+> - Boundary with D1/D2's single-shot criteria, and with Sim2Real-C3's cross-unit population question, can blur. Fix: pin D3 to one asset's own usage history over time; D1/D2 own the single generation-time score, Sim2Real-C3 owns different physical units, not one unit aging.
