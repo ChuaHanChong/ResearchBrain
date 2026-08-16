@@ -119,7 +119,7 @@ tags:
 
 > [!warning] Risks
 > - Sparse inverse model misses subtle dynamics. → Fix: bound the claim to where action-relevant features are recoverable; pair with B1's discrete contact modes.
-> - Uncertainty gating too conservative. → Fix: tune the penalty on a held-out real-robot calibration set, not sim alone; report the exploration cost.
+> - Uncertainty gating too conservative, or, per a new diagnostic (Biased Dreams), unreliably optimistic instead: ensemble-disagreement uncertainty computed purely inside closed-loop imagination converges to in-distribution levels even as real error keeps growing. → Fix: tune the penalty on a held-out real-robot calibration set, not sim alone; report the exploration cost.
 > - Calibration ≠ correctness, a WM can be well-calibrated about being wrong. → Fix: validate against B2's imagined-vs-real ρ AND the joint causal-binding metric.
 
 ### B4: WAM-as-Data-Engine
