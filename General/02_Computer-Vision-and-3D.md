@@ -624,7 +624,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 - [[2607.27627|Arm2Air]], [[2607.27549|BARs]], [[2607.25593|Cross-Configuration Transfer Threshold]], [[2606.06041|iCEM+TL]], [[2606.03297|SplitAdapter]], [[2606.02280|LDG]], [[2606.02027|World-Task-Factorization]], [[2606.01851|PHASOR]], [[2605.28812|CoP-Tactile]], [[2605.26638|HyperSim]], [[2605.23733|Any2Any]], [[2605.21688|Microfiber-Shape-Control]], [[2604.02911|DreamTIP]], [[2603.15759|SimDist]], [[2505.12672|TransferTraj]], [[2504.18792|STDArm]], [[2502.10894|UAN]], [[2502.01143|ASAP]], [[2501.16389|Sim2Real-Encoder-Eval]]
 
 **Classic CNN & Segmentation Domain Adaptation** — Pre-transformer and segmentation-focused unsupervised domain adaptation for urban-scene and classification benchmarks.
-- [[2207.11860|Trans4PASS+]], [[2204.13132|HRDA]], [[2204.00822|SAN-SAW]], [[2107.04034|RMA]], [[2103.15597|RobustNet]], [[2002.07953|DANCE]], [[1909.00889|DRPC]], [[1812.01754|M3SDA]], [[1811.10200|IDD]], [[1807.09441|IBN-Net]], [[1608.02192|Playing for Data]]
+- [[2207.11860|Trans4PASS+]], [[2204.13132|HRDA]], [[2204.00822|SAN-SAW]], [[2107.04034|RMA]], [[2103.15597|RobustNet]], [[2002.07953|DANCE]], [[2001.01046|ALDA]], [[1909.00889|DRPC]], [[1812.01754|M3SDA]], [[1811.10200|IDD]], [[1807.09441|IBN-Net]], [[1705.10667|CDAN]], [[1608.02192|Playing for Data]]
 
 **Transformer & Foundation-Model Domain Adaptation** — ViT-, CLIP-, and DINOv2-based attention alignment techniques for unsupervised domain adaptation.
 - [[2508.04987|UniMoS++]], [[2412.04073|TransAdapter]], [[2407.21311|EUDA]], [[2405.02797|VDPG]], [[2404.15817|VT-ADA]], [[2402.14976|Foundation-Latent-UDA]], [[2312.07871|MLNet]], [[2308.15855|IIDM]], [[2308.05659|AD-CLIP]], [[2303.13434|PMTrans]], [[2212.07740|TERT]], [[2204.07683|SSRT]], [[2111.12941|WinTR]], [[2110.03374|HCL]], [[2109.06165|CDTrans]], [[2108.05988|TVT]]
@@ -667,7 +667,7 @@ Transferring visual models across domains, merging multiple fine-tuned models, a
 - [[2607.24031|UnSPC]], [[2607.24023|SSCDL]]
 
 **Additional methods** — Foundational transfer-learning studies, cross-spectral image translation, heterogeneous collaborative-perception alignment, and surveys of domain adaptation/VLM generalization not covered by the sub-topics above.
-- [[2607.26283|HeteroPROMPT]], [[2607.05665|Morphological Similarity Transfer Learning]], [[2508.05547|VLM-Unsupervised-Adaptation-Survey]], [[2506.18504|VLM-Generalization-Survey]], [[2506.02843|REAP]], [[2503.19012|DiffV2IR]], [[1706.07522|DAH]], [[1411.1792|Transferable Features]]
+- [[2607.26283|HeteroPROMPT]], [[2607.05665|Morphological Similarity Transfer Learning]], [[2508.05547|VLM-Unsupervised-Adaptation-Survey]], [[2506.18504|VLM-Generalization-Survey]], [[2506.02843|REAP]], [[2503.19012|DiffV2IR]], [[2010.03978|Domain Adaptation Survey]], [[1706.07522|DAH]], [[1411.1792|Transferable Features]]
 
 > [!star] Key Papers
 > - [[2506.18504|VLM-Generalization-Survey]] — Comprehensive survey of VLM generalization and adaptation methods; maps the taxonomy of domain shift strategies

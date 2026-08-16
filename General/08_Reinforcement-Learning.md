@@ -220,7 +220,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2501.09686|Large-Reasoning-Models-Survey]] — First systematic survey of RL-based reasoning in LLMs; maps the post-DeepSeek-R1 landscape
 
 **Multimodal, Robotics & Foundational RL Surveys** — Surveys spanning multimodal reasoning, robot learning, and core RL theory/tooling.
-- [[2608.02433|SAC-MRAC]], [[2607.06935|Mathematical Methods of RL]], [[2607.06706|VLA for UAVs and Bimanual Manipulation Review]], [[2603.24517|AVO]], [[2510.12403|Robot-Learning-Tutorial]], [[2510.02665|MLLM-Self-Improvement-Survey]], [[2508.08189|RL-for-Large-Models-Survey]], [[2506.06981|ForageWorld]], [[2505.04921|LMRM-Survey]], [[2504.21277|Reinforced-MLLM-Survey]], [[2504.03151|Multimodal-Reasoning-Survey]], [[2503.14576|SocialJax]], [[2502.08938|exp-a-spiel]], [[2501.02189|VLM-SOTA-Survey]], [[2412.06531|RL-Memory-Taxonomy]], [[2412.05265|RL-Overview]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]]
+- [[2608.02433|SAC-MRAC]], [[2607.06935|Mathematical Methods of RL]], [[2607.06706|VLA for UAVs and Bimanual Manipulation Review]], [[2603.24517|AVO]], [[2510.12403|Robot-Learning-Tutorial]], [[2510.02665|MLLM-Self-Improvement-Survey]], [[2508.08189|RL-for-Large-Models-Survey]], [[2506.06981|ForageWorld]], [[2505.04921|LMRM-Survey]], [[2504.21277|Reinforced-MLLM-Survey]], [[2504.03151|Multimodal-Reasoning-Survey]], [[2503.14576|SocialJax]], [[2502.08938|exp-a-spiel]], [[2501.02189|VLM-SOTA-Survey]], [[2412.06531|RL-Memory-Taxonomy]], [[2412.05265|RL-Overview]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]], [[1904.12901|Real-World RL Challenge Taxonomy]]
 
 > [!star] Key Papers
 > - [[2412.05265|RL-Overview]] — Sutton's comprehensive modern overview; the definitive reference for RL fundamentals
@@ -240,7 +240,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2506.21872|Continual-RL-Survey]] — First comprehensive survey dedicated to continual RL; defines the taxonomy and open problems
 
 **Classic & Foundational Meta-RL** — Gradient-based fast adaptation, task representations, and successor-feature methods for learning-to-learn.
-- [[2509.01297|DMCM]], [[2506.10085|VITA-Value]], [[2505.00787|Option-Keyboard-Basis]], [[2305.17250|RaMP]], [[2301.08028|Meta-RL-Tutorial]], [[2103.07945|Forward-Backward-Representation]], [[1910.10897|Meta-World]], [[1903.08254|PEARL (Probabilistic Context Meta-RL)]], [[1803.11347|GrBAL]], [[1703.03400|MAML]], [[1606.05312|Successor Features]]
+- [[2509.01297|DMCM]], [[2506.10085|VITA-Value]], [[2505.00787|Option-Keyboard-Basis]], [[2305.17250|RaMP]], [[2301.08028|Meta-RL-Tutorial]], [[2103.07945|Forward-Backward-Representation]], [[1910.10897|Meta-World]], [[1903.08254|PEARL (Probabilistic Context Meta-RL)]], [[1803.11347|GrBAL]], [[1710.03641|RoboSumo]], [[1703.03400|MAML]], [[1606.05312|Successor Features]]
 
 > [!star] Key Papers
 > - [[1703.03400|MAML]] — Foundational gradient-based meta-learning algorithm; learns an initialization that adapts to new tasks in 1-3 gradient steps
@@ -302,7 +302,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2602.13040|TCRL]] — Temporal-coupled adversarial training for constrained RL; reduces safety costs by orders of magnitude under worst-case attacks
 
 **Adversarial Robustness, Attacks & Domain Generalization** — Attacks, backdoors, targeted perturbations, and cross-domain/cross-dynamics generalization for RL policies.
-- [[2510.15382|Robust-Zero-Shot-RL]], [[2510.14246|DR-RPO]], [[2510.11824|MARL-Robustness-Study]], [[2509.24130|Sharpness-Aware-Prompt]], [[2509.23846|AD-RRL]], [[2509.16950|Multi-Vehicle-Backdoor]], [[2507.07348|Context-Generalization-RL]], [[2506.16590|EBTL]], [[2506.12815|TrojanTO]], [[2506.12622|DR-SAC]], [[2412.18781|Offline-RL-Action-Perturbation-Eval]], [[2412.10713|RAT]], [[2409.18330|DMC-VB]], [[2406.09976|RMBPO]], [[2406.03862|Behavior-Imitation-Attack]], [[2312.17116|SAM-G]], [[2307.10224|RL-ViGen]], [[2307.00972|MoVie]], [[2206.00238|DARL]], [[2204.12581|RAMBO-RL]]
+- [[2510.15382|Robust-Zero-Shot-RL]], [[2510.14246|DR-RPO]], [[2510.11824|MARL-Robustness-Study]], [[2509.24130|Sharpness-Aware-Prompt]], [[2509.23846|AD-RRL]], [[2509.16950|Multi-Vehicle-Backdoor]], [[2507.07348|Context-Generalization-RL]], [[2506.16590|EBTL]], [[2506.12815|TrojanTO]], [[2506.12622|DR-SAC]], [[2412.18781|Offline-RL-Action-Perturbation-Eval]], [[2412.10713|RAT]], [[2409.18330|DMC-VB]], [[2406.09976|RMBPO]], [[2406.08406|RRLS]], [[2406.03862|Behavior-Imitation-Attack]], [[2312.17116|SAM-G]], [[2307.10224|RL-ViGen]], [[2307.07666|ARRLC]], [[2307.00972|MoVie]], [[2206.00238|DARL]], [[2204.12581|RAMBO-RL]]
 
 > [!star] Key Papers
 > - [[2412.10713|RAT]] — Preference-based targeted attacks on DRL; bi-level intention-policy + adversary + state-weighting; doubles as adversarial-training tool
@@ -496,7 +496,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2506.20904|Avg-Reward-Sample-Complexity]] — First fully single-policy sample-complexity guarantee for average-reward offline RL, proven statistically optimal and requiring no unlearnable environment parameters
 
 **Q-Learning, Offline & MDP-Structured Value Methods** — Applied Q-learning variants, offline value estimation, and structured-MDP value methods.
-- [[2605.11479|Discounted Liveness OPE]], [[2605.05812|LQL]], [[2604.20627|Occupancy-Reward-Shaping]], [[2603.00716|Frozen-Policy-Iteration]], [[2602.17062|S2Q]], [[2602.02710|MaxRL]], [[2601.14234|QAM]], [[2512.15405|EUBRL]], [[2511.07730|MQE]], [[2510.06649|ARQ]], [[2510.06540|Superstate-MDP-RL]], [[2510.02590|MINTO]], [[2509.23962|CANON]], [[2509.22611|QAE]], [[2509.19800|ALP-MDP]], [[2506.04398|iS-QL]], [[2505.21119|UVU]], [[2503.03660|Transformer-Critic-SAC]]
+- [[2605.11479|Discounted Liveness OPE]], [[2605.05812|LQL]], [[2604.20627|Occupancy-Reward-Shaping]], [[2603.00716|Frozen-Policy-Iteration]], [[2602.17062|S2Q]], [[2602.02710|MaxRL]], [[2601.14234|QAM]], [[2512.15405|EUBRL]], [[2511.07730|MQE]], [[2510.06649|ARQ]], [[2510.06540|Superstate-MDP-RL]], [[2510.02590|MINTO]], [[2509.23962|CANON]], [[2509.22611|QAE]], [[2509.19800|ALP-MDP]], [[2506.04398|iS-QL]], [[2505.21119|UVU]], [[2503.03660|Transformer-Critic-SAC]], [[2108.07555|DRDQN]]
 
 
 **Tree Search & MCTS** — Monte Carlo Tree Search integrated with RL for structured exploration during training and inference.
@@ -627,7 +627,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.24207|Humanline]] — Explains why online RL outperforms offline methods from a human cognitive science perspective
 
 **Applied, Hierarchical & Domain-Specific Policy Methods** — Domain-specific and hierarchical policy-optimization applications outside the mainstream algorithm families.
-- [[2608.09628|PPO Satellite Collision Avoidance]], [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]], [[2602.03086|Neural-Predictor-Corrector]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric-Action-Control]], [[2511.05005|MAC-Flow]], [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]], [[1312.5602|DQN]]
+- [[2608.09628|PPO Satellite Collision Avoidance]], [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]], [[2602.03086|Neural-Predictor-Corrector]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric-Action-Control]], [[2511.05005|MAC-Flow]], [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]], [[1910.04054|MVFST-RL]], [[1312.5602|DQN]]
 
 > [!success] The Post-R1 RL Recipe
 > ==SFT warm-up== (instruction following + format compliance) → ==GRPO with verifiable rewards== (math/code execution as signal) → ==Distillation== to smaller models. Stable large-scale GRPO training with decoupled clip-higher and dynamic sampling. Even 1.5B models gain reasoning; zero-data bootstrapping works via self-play RL.
@@ -1054,7 +1054,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2306.05685|MT-Bench]] — Established LLM-as-a-judge as a valid proxy for human preference, now a standard reward-quality benchmark
 
 **General & Text Outcome Reward Models** — Reward models that evaluate full reasoning chains and final outcomes for text-based tasks, including reward-free/verifier-free alternatives.
-- [[2607.24900|PARED]], [[2509.21319|RLBFF]], [[2507.18624|RLCF]], [[2507.07375|SMORM]], [[2507.03112|RLVER]], [[2507.01352|Skywork-Reward-V2]], [[2506.18254|RLPR]], [[2506.10128|ViCrit]], [[2506.03637|RewardAnything]], [[2505.22338|Text2Grad]], [[2505.21493|VeriFree]], [[2505.15801|VerifyBench]], [[2505.15034|RL-Tango]], [[2505.14674|RRM]], [[2505.03318|UNIFIEDREWARD-THINK]], [[2503.17338|Reward-Features-Model]], [[2502.00814|Rc-BT]], [[2408.10858|CenRA]]
+- [[2607.24900|PARED]], [[2509.21319|RLBFF]], [[2507.18624|RLCF]], [[2507.07375|SMORM]], [[2507.03112|RLVER]], [[2507.01352|Skywork-Reward-V2]], [[2506.18254|RLPR]], [[2506.10128|ViCrit]], [[2506.03637|RewardAnything]], [[2505.22338|Text2Grad]], [[2505.21493|VeriFree]], [[2505.15801|VerifyBench]], [[2505.15034|RL-Tango]], [[2505.14674|RRM]], [[2505.03318|UNIFIEDREWARD-THINK]], [[2503.17338|Reward-Features-Model]], [[2502.00814|Rc-BT]], [[2408.10858|CenRA]], [[2303.00001|LLM Reward Design]]
 
 > [!star] Key Papers
 > - [[2507.01352|Skywork-Reward-V2]] — an 8B model trained on 40M curated preference pairs beats a 70B model by 14.8 points across seven RM benchmarks
@@ -1431,7 +1431,7 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 > - [[2502.21321|LLM-Post-Training-Survey]] — Comprehensive survey of post-training for LLMs; maps the full SFT-to-RL pipeline
 
 **RL for Structured Prediction** — RL applied to ranking, retrieval, and other structured output tasks.
-- [[2604.08545|Metis]], [[2604.02035|RL-Speculative-Trading]], [[2603.07020|RESCHED]], [[2602.11057|PRAM]], [[2512.23333|CME-CAD]], [[2510.11121|RFTHGS]], [[2510.10509|MARS-Sep]], [[2510.04080|PoLi-RL]], [[2510.03257|Triple-BERT]], [[2509.22558|StepORLM]], [[2509.15927|AIGB-Pearl]], [[2508.14313|AIRL-S]], [[2506.16931|MMFL]], [[2506.08898|POCCO]], [[2506.04195|MACS]], [[2505.23131|DOPPLER]], [[2505.20046|REARANK]], [[2505.19053|Structured-RL-CO]], [[2505.13445|RISE]]
+- [[2604.08545|Metis]], [[2604.02035|RL-Speculative-Trading]], [[2603.07020|RESCHED]], [[2602.11057|PRAM]], [[2512.23333|CME-CAD]], [[2510.11121|RFTHGS]], [[2510.10509|MARS-Sep]], [[2510.04080|PoLi-RL]], [[2510.03257|Triple-BERT]], [[2509.22558|StepORLM]], [[2509.15927|AIGB-Pearl]], [[2508.14313|AIRL-S]], [[2506.16931|MMFL]], [[2506.08898|POCCO]], [[2506.04195|MACS]], [[2505.23131|DOPPLER]], [[2505.20046|REARANK]], [[2505.19053|Structured-RL-CO]], [[2505.13445|RISE]], [[2110.11073|RL4RS]], [[1909.04847|RecSim]], [[1905.12767|SLATEQ]]
 
 
 **Safe RL & Constrained Control Theory** — Formal safety constraints, temporal-logic specifications, and robustness theory for RL.

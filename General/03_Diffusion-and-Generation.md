@@ -535,7 +535,7 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2603.19235|VEGA-3D]] — Extracts implicit 3D geometric cues from video diffusion for spatial understanding in MLLMs
 
 **3D Object & Asset Generation** — Diffusion and Gaussian-splatting/NeRF methods that generate or reconstruct individual 3D objects and assets, plus benchmarks for 3D generation quality.
-- [[2607.16805|2607.16805]], [[2607.05373|PixWorld]], [[2607.01803|PixGS]], [[2603.22275|GLD]], [[2603.18524|3DreamBooth]], [[2602.15727|LoRWeB]], [[2510.08575|ReSplat]], [[2503.21745|3DGen-Bench]], [[2503.14489|SEVA]], [[2501.12202|Hunyuan3D]], [[2406.04316|Omni6DPose]], [[2209.14988|DreamFusion]]
+- [[2607.16805|Scene-SAM3D]], [[2607.05373|PixWorld]], [[2607.01803|PixGS]], [[2603.22275|GLD]], [[2603.18524|3DreamBooth]], [[2602.15727|LoRWeB]], [[2510.08575|ReSplat]], [[2503.21745|3DGen-Bench]], [[2503.14489|SEVA]], [[2501.12202|Hunyuan3D]], [[2406.04316|Omni6DPose]], [[2209.14988|DreamFusion]]
 
 > [!tip] Diffusion Beyond Images
 > The same denoising framework that generates images also generates robot actions (Diffusion Policy), plans trajectories (Diffuser), and simulates physics (DexWM). If your problem involves generating structured sequences with multimodal distributions, diffusion is likely the right tool.
