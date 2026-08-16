@@ -432,7 +432,7 @@ Detecting and localizing objects described by arbitrary text — not limited to 
 > - [[2410.16512|TIPS]] — Unified image-text and self-supervised objectives for general-purpose vision representations
 
 **Segmentation with VLMs** — Leveraging VLM alignment for open-vocabulary or self-supervised semantic segmentation.
-- [[2605.00891|X2SAM]], [[2604.28115|FreeOcc]], [[2602.23759|Selfment]], [[2506.22624|Seg-R1]], [[2502.02590|Articulate AnyMesh]], [[2311.16241|SemiVL]], [[2303.01906|DPCL]], [[2206.08522|VLMbench]], [[2112.01071|MaskCLIP (Dense CLIP Labels)]]
+- [[2605.00891|X2SAM]], [[2604.28115|FreeOcc]], [[2602.23759|Selfment]], [[2506.22624|Seg-R1]], [[2502.02590|Articulate AnyMesh]], [[2311.16241|SemiVL]], [[2310.16383|OpenNeRF]], [[2303.01906|DPCL]], [[2206.08522|VLMbench]], [[2112.01071|MaskCLIP (Dense CLIP Labels)]]
 
 > [!star] Key Papers
 > - [[2602.23759|Selfment]] — Fully self-supervised framework achieving accurate object segmentation without any labels
@@ -558,7 +558,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 - [[2604.24300|ReVSI]], [[2603.03944|SCP-Bench]], [[2601.16520|TangramPuzzle]], [[2508.02095|VLM4D]], [[2507.20174|LRR-Bench]], [[2507.18342|EgoExoBench]], [[2506.14512|SIRI-Bench]], [[2505.23764|MMSI-Bench]], [[2502.09621|MME-CoT]], [[2405.16473|M3CoT]], [[2403.14624|MathVerse]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2204.03162|Winoground]]
 
 **General Capability, Embodied & Domain-Specific Benchmarks** — Broad-coverage MLLM capability benchmarks alongside embodied, robotics, and domain-specific evaluation suites.
-- [[2607.27180|HumanCLAW]], [[2607.18062|UniETP]], [[2607.04610|RoboVista]], [[2605.29360|MiraBench]], [[2604.22884|SOUBench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.12585|MLLM-Visualization-Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2509.08757|SocialNav-SUB]], [[2505.21652|PartInstruct]], [[2504.13898|SHREC]], [[2502.05086|REASSEMBLE]], [[2406.18925|VisArgs]], [[2404.19205|TableVQA-Bench]], [[2401.07781|T2VScore]], [[2307.06281|MMBench]], [[2306.13394|MME]], [[2305.13786|Perception Test]], [[2210.02506|GameBugDescriptions]], [[2203.10244|ChartQA]]
+- [[2608.12515|Proxemic Danger Benchmark]], [[2607.27180|HumanCLAW]], [[2607.18062|UniETP]], [[2607.04610|RoboVista]], [[2605.29360|MiraBench]], [[2604.22884|SOUBench]], [[2603.03241|UniG2U-Bench]], [[2602.02140|GAPEVAL]], [[2602.01816|VIA-Bench]], [[2601.12585|MLLM-Visualization-Literacy]], [[2510.12693|ERA]], [[2510.12603|IVT-LR]], [[2509.08757|SocialNav-SUB]], [[2505.21652|PartInstruct]], [[2504.13898|SHREC]], [[2502.05086|REASSEMBLE]], [[2406.18925|VisArgs]], [[2404.19205|TableVQA-Bench]], [[2401.07781|T2VScore]], [[2307.06281|MMBench]], [[2306.13394|MME]], [[2305.13786|Perception Test]], [[2210.02506|GameBugDescriptions]], [[2203.10244|ChartQA]]
 
 > [!star] Key Papers
 > - [[2603.03944|SCP-Bench]] — Spatial causal prediction benchmark revealing a 23% gap between best MLLMs and humans on unseen spatio-temporal reasoning

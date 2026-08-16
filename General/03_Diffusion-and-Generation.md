@@ -529,13 +529,13 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2504.15369|Inverse-Probabilistic-Adaptation]] — Adapts internet video models to robot tasks; 3x improvement over unadapted models
 
 **Scene & World Spatial Reconstruction** — Diffusion models that reconstruct or generate 3D-consistent scenes and leverage implicit 3D priors for embodied spatial understanding.
-- [[2607.10879|BRO Scene Graph Prediction]], [[2607.04144|Semantic-Guided Object Removal]], [[2607.01962|NeoMap]], [[2605.05163|PhysForge]], [[2605.01799|Embody4D]], [[2605.00781|Map2World]], [[2604.26341|SpatialFusion]], [[2604.15805|WorldComposer]], [[2604.14268|HY-World-2.0]], [[2604.13036|Lyra-2.0]], [[2604.02329|Generative-World-Renderer]], [[2603.29089|WorldFlow3D]], [[2603.19235|VEGA-3D]], [[2512.13683|I-Scene]], [[2505.04831|Steerable Scene Generation]]
+- [[2608.07012|Executable Scene Programs]], [[2607.10879|BRO Scene Graph Prediction]], [[2607.04144|Semantic-Guided Object Removal]], [[2607.01962|NeoMap]], [[2605.05163|PhysForge]], [[2605.01799|Embody4D]], [[2605.00781|Map2World]], [[2604.26341|SpatialFusion]], [[2604.15805|WorldComposer]], [[2604.14268|HY-World-2.0]], [[2604.13036|Lyra-2.0]], [[2604.02329|Generative-World-Renderer]], [[2603.29089|WorldFlow3D]], [[2603.19235|VEGA-3D]], [[2512.13683|I-Scene]], [[2505.04831|Steerable Scene Generation]]
 
 > [!star] Key Papers
 > - [[2603.19235|VEGA-3D]] — Extracts implicit 3D geometric cues from video diffusion for spatial understanding in MLLMs
 
 **3D Object & Asset Generation** — Diffusion and Gaussian-splatting/NeRF methods that generate or reconstruct individual 3D objects and assets, plus benchmarks for 3D generation quality.
-- [[2607.05373|PixWorld]], [[2607.01803|PixGS]], [[2603.22275|GLD]], [[2603.18524|3DreamBooth]], [[2602.15727|LoRWeB]], [[2510.08575|ReSplat]], [[2503.21745|3DGen-Bench]], [[2503.14489|SEVA]], [[2501.12202|Hunyuan3D]], [[2406.04316|Omni6DPose]], [[2209.14988|DreamFusion]]
+- [[2607.16805|2607.16805]], [[2607.05373|PixWorld]], [[2607.01803|PixGS]], [[2603.22275|GLD]], [[2603.18524|3DreamBooth]], [[2602.15727|LoRWeB]], [[2510.08575|ReSplat]], [[2503.21745|3DGen-Bench]], [[2503.14489|SEVA]], [[2501.12202|Hunyuan3D]], [[2406.04316|Omni6DPose]], [[2209.14988|DreamFusion]]
 
 > [!tip] Diffusion Beyond Images
 > The same denoising framework that generates images also generates robot actions (Diffusion Policy), plans trajectories (Diffuser), and simulates physics (DexWM). If your problem involves generating structured sequences with multimodal distributions, diffusion is likely the right tool.
@@ -547,7 +547,7 @@ Diffusion models applied to physical action generation rather than image synthes
 A focused thread on injecting physical laws into generative pipelines. Standard diffusion and flow models learn from pixels alone, so they reliably violate gravity, conservation, and rigid-body constraints — limiting their use as world simulators for robotics, scientific computing, and embodied AI. Methods in this section span four mechanisms: (1) **physics-grounded training data** with synthetic simulators, (2) **physics-conditioned architectures** that consume material/force inputs, (3) **physics losses** (PDE residuals, kinematic residuals, mass conservation) backpropagated during fine-tuning, and (4) **inference-time physics rewards** from latent world models or rule-based proxies.
 
 **3D & Material Physics-Conditioned Generation** — Generative models that consume explicit physical inputs (material properties, forces, rigid-body parameters) grounded in an explicit 3D or point-trajectory representation.
-- [[2605.20290|TelePhysics]], [[2605.09216|TDCR Flow Matching]], [[2605.08279|LaWM]], [[2603.13770|PhysAlign]], [[2510.22975|VoMP]], [[2509.21541|ControlHair]], [[2509.20358|PhysCtrl]], [[2507.04192|JAX-MPM]], [[2503.21442|RainyGS]]
+- [[2607.13586|UniPhysGen]], [[2605.20290|TelePhysics]], [[2605.09216|TDCR Flow Matching]], [[2605.08279|LaWM]], [[2603.13770|PhysAlign]], [[2603.09668|DiffWind]], [[2510.22975|VoMP]], [[2509.21541|ControlHair]], [[2509.20358|PhysCtrl]], [[2509.07920|ScoreHOI]], [[2507.04192|JAX-MPM]], [[2503.21442|RainyGS]]
 
 **Video/Image Physics-Conditioned Generation** — Generative models that consume physical inputs or reconstruct physical scenes directly in pixel/video space, without an explicit 3D intermediate representation.
 - [[2607.20683|FELT]], [[2606.29173|TacGen]], [[2605.30341|GPIC]], [[2604.28169|PhyCo]], [[2603.26285|PhysVid]], [[2602.18690|Motor-Gated Neural Fields]], [[2602.16086|LGQ]], [[2511.20280|VLM-Refine-Physics-Video]], [[2509.21309|NewtonGen]], [[2504.00342|Constraint-Aligned-Diffusion]], [[2503.23368|VLIPP]], [[2502.02492|VideoJAM]], [[2409.18964|PhysGen]], [[2211.14680|PIDM-Flow-Reconstruction]], [[1801.03924|LPIPS]]
@@ -573,7 +573,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2511.07416|PhysWorld]] — Reconstructs a physically interactable digital twin from generated task-conditioned videos; object-centric residual RL achieves 82% real-world success and reduces grasping failures from 18% to 3%
 
 **Physics-Constrained Scene Reconstruction for Simulation-Ready Twins (Non-Generative)** — Retrofits existing object pose and shape estimators with non-penetration, stability, and contact constraints so multi-object scene reconstructions survive rollout in a physics simulator, producing simulation-ready digital twins rather than generating new pixels or 3D content.
-- [[2602.20150|SPARCS]], [[2602.08058|Picasso]]
+- [[2604.19923|UniCon3R]], [[2602.20150|SPARCS]], [[2602.08058|Picasso]], [[2510.15342|SHARE]]
 
 **Physics Cognition Limits & Surveys** — Diagnostic studies and surveys analyzing whether scaling alone yields physical understanding, and taxonomies of physics cognition tiers in video generators.
 - [[2607.27017|POKEWORLD]], [[2607.05966|iKCE]], [[2602.06033|VLM-Intuitive-Physics]], [[2510.06251|Physics-Frontier-Diagnostic]], [[2503.21765|Physics-Cognition-Survey]], [[2503.21668|Object-Understanding-Cog-Eval]], [[2503.04641|Multimodal-Generative-Models-Survey]], [[2502.11831|V-JEPA (Intuitive Physics)]], [[2502.07007|Grounding-Creativity-in-Physics]], [[2411.02385|PhyWorld]]
@@ -586,7 +586,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 - [[2411.13609|VAMP]], [[2406.18522|ChronoMagic-Bench]], [[2311.10111|VideoCon]], [[2305.13786|Perception Test]], [[2106.08261|Physion]], [[2012.04293|CRAFT]], [[1910.01442|CLEVRER]], [[1803.07616|IntPhys]]
 
 **Generative Video Physics-Fidelity Benchmarks** — Evaluation suites that systematically measure whether generated videos obey gravity, optics, thermodynamics, and material properties.
-- [[2606.28757|CrashTwin]], [[2606.24256|TailOR]], [[2606.04811|Dream.exe]], [[2605.29360|MiraBench]], [[2603.15847|FEEL]], [[2512.12756|FysicsWorld]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.02311|IDPP]], [[2507.15824|PhysVidBench]], [[2506.00022|PHYSICS-Dataset]], [[2505.15929|PhyX]], [[2504.02918|Morpheus]], [[2503.06800|VideoPhy-2]], [[2410.05363|PhyGenBench]]
+- [[2608.09873|Sci-VBench]], [[2606.28757|CrashTwin]], [[2606.24256|TailOR]], [[2606.04811|Dream.exe]], [[2605.29360|MiraBench]], [[2603.15847|FEEL]], [[2512.12756|FysicsWorld]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.02311|IDPP]], [[2507.15824|PhysVidBench]], [[2506.00022|PHYSICS-Dataset]], [[2505.15929|PhyX]], [[2504.02918|Morpheus]], [[2503.06800|VideoPhy-2]], [[2410.05363|PhyGenBench]]
 
 > [!star] Key Papers
 > - [[2504.02918|Morpheus]] — 130 real-world Newtonian mechanics videos with hierarchical Discard/Dynamical/Invariance scoring; even SOTA generators (WAN-2.1, COSMOS-predict2) score only 0.52–0.55 vs. real-world's 0.98+
@@ -609,7 +609,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 - [[2505.16971|UniPhy]], [[2505.16456|MAGIC]], [[2505.13437|FinePhys]], [[2503.20822|Synthetic-Video-Physical-Fidelity]], [[2411.17189|PhysMotion]], [[2411.14423|PhysFlow]], [[2409.07179|Phy124]], [[2406.04338|Physics3D]], [[2406.04155|Lagrangian-Particle-Optimization]], [[2406.01476|DreamPhysics]], [[2405.13557|MotionCraft]], [[2401.16663|VR-GS]]
 
 **Physics-Grounded Gaussians and NeRFs** — Couples explicit 3D Gaussian / NeRF representations with physical simulators (MPM, FEM, PBD) so that each Gaussian carries material properties and obeys conservation laws under deformation. The dominant pattern for 4D dynamics: scene reconstruction first, then simulator-driven evolution.
-- [[2607.12265|DiffRadar]], [[2503.21442|RainyGS]], [[2503.04720|FluidNexus]], [[2501.18982|OmniPhysGS]], [[2412.17804|GausSim]], [[2412.11258|GaussianProperty]], [[2411.14423|PhysFlow]], [[2410.08257|NeuMA]], [[2409.07179|Phy124]], [[2406.04338|Physics3D]], [[2404.01223|Feature-Splatting]], [[2401.15318|Gaussian-Splashing]], [[2312.00583|DeformGS]], [[2311.13099|PIE-NeRF]], [[2311.12198|PhysGaussian]], [[2308.09713|Dynamic-3D-Gaussians]], [[2304.14369|NCLaw]], [[2303.05512|PAC-NeRF]]
+- [[2607.12265|DiffRadar]], [[2606.21753|RAF]], [[2606.03479|PersistGS]], [[2605.25909|R5DGS]], [[2605.11266|PG-3DGS]], [[2603.21356|FluidGaussian]], [[2602.18886|PhysConvex]], [[2503.21442|RainyGS]], [[2503.04720|FluidNexus]], [[2501.18982|OmniPhysGS]], [[2412.17804|GausSim]], [[2412.11258|GaussianProperty]], [[2411.14423|PhysFlow]], [[2410.08257|NeuMA]], [[2409.07179|Phy124]], [[2406.04338|Physics3D]], [[2404.01223|Feature-Splatting]], [[2401.15318|Gaussian-Splashing]], [[2312.00583|DeformGS]], [[2311.13099|PIE-NeRF]], [[2311.12198|PhysGaussian]], [[2308.09713|Dynamic-3D-Gaussians]], [[2304.14369|NCLaw]], [[2303.05512|PAC-NeRF]]
 
 > [!star] Key Papers
 > - [[2311.12198|PhysGaussian]] — Couples 3D Gaussian Splatting with continuum mechanics MPM solver; first to make 3DGS scenes physically interactive without rebuilding meshes
@@ -619,7 +619,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2406.04338|Physics3D]] — Distills physical properties (Young's modulus, viscosity, plasticity) into 3D Gaussians via video diffusion priors; the canonical Score-Distillation-from-video-prior recipe for material inference
 
 **Articulated and 4D Physics** — Methods specialized for articulated objects (joints, kinematic chains) and 4D dynamics where geometry, motion, and physics co-evolve over time.
-- [[2606.27364|PhysiFormer]], [[2603.03485|Phys4D]], [[2504.01204|Articulated-Kinematics-Distillation]], [[2411.16800|Phys4DGen]], [[2410.07155|Trans4D]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2403.17920|TC4D]]
+- [[2606.31388|OVOW]], [[2606.27364|PhysiFormer]], [[2603.03485|Phys4D]], [[2504.01204|Articulated-Kinematics-Distillation]], [[2411.16800|Phys4DGen]], [[2410.07155|Trans4D]], [[2405.16849|Sync4D]], [[2405.15056|ElastoGen]], [[2403.17920|TC4D]]
 
 > [!star] Key Papers
 > - [[2504.01204|Articulated-Kinematics-Distillation]] — Distills articulated kinematics from video diffusion priors into rigged-skeleton 3D models; bridges generative video and physically-driven character animation
@@ -635,14 +635,14 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2406.01476|DreamPhysics]] — Physics-based 3D dynamics learned from video diffusion priors via score distillation; among the first to make image/video diffusion supervise material parameter inference
 
 **Simulator-in-the-Loop Generation** — Use a physics renderer/engine (Blender, MPM, MuJoCo) inside the generation loop, either to provide ground-truth scaffolding or to fix violations after diffusion sampling.
-- [[2607.21522|GS-Agent]], [[2606.08688|PhysAgent]], [[2411.12789|Sim-GS]], [[2411.02394|AutoVFX]], [[2408.10453|Kubrick]], [[2404.09833|Video2Game]], [[2311.12631|GPT4Motion]]
+- [[2607.21522|GS-Agent]], [[2607.01766|SimWorlds]], [[2606.08688|PhysAgent]], [[2411.12789|Sim-GS]], [[2411.02394|AutoVFX]], [[2408.10453|Kubrick]], [[2404.09833|Video2Game]], [[2311.12631|GPT4Motion]]
 
 > [!star] Key Papers
 > - [[2411.02394|AutoVFX]] — End-to-end automatic VFX pipeline using LLMs to script Blender simulations driven by visual context; bridges generative AI and traditional rendering
 > - [[2311.12631|GPT4Motion]] — GPT-4 plans Blender scenes that drive ControlNet-guided text-to-video; one of the earliest LLM+simulator+diffusion stacks for physically-grounded video
 
 **LLM-Driven Physics Reasoning** — LLMs acting as reasoning engines to derive physical equations, force fields, or simulation parameters that drive downstream generators.
-- [[2603.09094|CoECT]], [[2601.05848|Goal-Force]], [[2512.04221|MoReGen]], [[2507.06830|Physics-Grounded-Motion-Forecasting]], [[2505.05469|LegoGPT]], [[2503.20654|AccidentSim]], [[2502.19868|C-Drag]], [[2411.08027|LLMPhy]], [[2309.17444|LVD]]
+- [[2608.09296|CADEngBench]], [[2608.08053|Structured Physical CoT]], [[2603.09094|CoECT]], [[2601.05848|Goal-Force]], [[2512.04221|MoReGen]], [[2507.06830|Physics-Grounded-Motion-Forecasting]], [[2505.05469|LegoGPT]], [[2503.20654|AccidentSim]], [[2502.19868|C-Drag]], [[2411.08027|LLMPhy]], [[2309.17444|LVD]]
 
 > [!star] Key Papers
 > - [[2505.05469|LegoGPT]] — LLM-driven physically-stable LEGO assembly generation; the LLM proposes brick layouts that are then verified for structural physics
@@ -651,10 +651,10 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2502.19868|C-Drag]] — Training-free chain-of-thought motion controller using VLM reasoning over object physics; bridges multimodal LLM perception and trajectory-based video generation
 
 **Manipulation, Grasping & Soft-Robot Contact Control (Non-Generative)** — Data-driven and differentiable control methods for contact-rich manipulation, tactile grasping, and soft/continuum robot bodies, modeling physical dynamics directly rather than generating pixels or 3D content.
-- [[2607.25071|Continuum Robot Input Shaping]], [[2607.24959|IFT Contact Differentiation]], [[2607.24493|KAI]], [[2607.24029|MHE-NMPC Soft Manipulator Control]], [[2607.23473|PRISM-Motor]], [[2607.19714|Morphing MILR]], [[2607.18660|MVP-Tac]], [[2607.18527|DASH]], [[2607.12105|Physics-Priors In-Hand Rotation]], [[2607.05665|Morphological Similarity Transfer Learning]], [[2607.03987|PAKR]], [[2606.30900|CTAM Soft Tail]], [[2606.30290|X-Morph]], [[2606.30268|ConCent]], [[2606.29825|KGD]], [[2606.29731|Soft Arm IK/IC Controller]], [[2606.29165|Continuum Robot Force Estimation]], [[2604.21456|TSMC]], [[2604.05697|GraspSense]], [[2602.09368|Smoothing-Error Reachable Tubes]], [[2505.20404|Soft Gripper Co-Design]], [[2305.17110|IndustReal]], [[1903.11239|TossingBot]]
+- [[2608.11461|Koopman Haptic Rendering]], [[2607.25071|Continuum Robot Input Shaping]], [[2607.24959|IFT Contact Differentiation]], [[2607.24493|KAI]], [[2607.24029|MHE-NMPC Soft Manipulator Control]], [[2607.23473|PRISM-Motor]], [[2607.19714|Morphing MILR]], [[2607.18660|MVP-Tac]], [[2607.18527|DASH]], [[2607.12105|Physics-Priors In-Hand Rotation]], [[2607.05665|Morphological Similarity Transfer Learning]], [[2607.03987|PAKR]], [[2606.30900|CTAM Soft Tail]], [[2606.30290|X-Morph]], [[2606.30268|ConCent]], [[2606.29825|KGD]], [[2606.29731|Soft Arm IK/IC Controller]], [[2606.29165|Continuum Robot Force Estimation]], [[2604.21456|TSMC]], [[2604.05697|GraspSense]], [[2602.09368|Smoothing-Error Reachable Tubes]], [[2505.20404|Soft Gripper Co-Design]], [[2305.17110|IndustReal]], [[1903.11239|TossingBot]]
 
 **Locomotion, Aerial & System-Identification Control (Non-Generative)** — RL-based and differentiable-physics control methods for legged/aerial locomotion and system identification, modeling physical dynamics directly rather than generating pixels or 3D content.
-- [[2607.25985|Physics-Aware DRL Quadcopter Control]], [[2607.24317|SE(3) Rigid Body Time-Stepping]], [[2607.24079|Renormalization for Robotics]], [[2607.20743|Bio-Inspired Self-Supervised Trajectory Planner]], [[2607.18760|Koopman DCM]], [[2607.07830|HumoSlope]], [[2607.07136|PINSTT]], [[2607.06824|CaLiSym]], [[2607.02472|Quad APG]], [[2606.31199|RBF-FBL Quadrotor Control]], [[2605.17681|PRIME]], [[2603.22039|RAFL]], [[2603.14469|PIPER]], [[2602.23832|OmniTrack]], [[2508.15755|NeRD]], [[2508.06181|HyperPM]], [[2507.23445|Physics-Guided-Gain-Regularization]], [[2506.14278|Heavy-Limbs-WBC]], [[2506.09383|HBC]], [[2502.20382|Physics-Driven-Data-Gen]], [[2404.02887|Differentiable Locomotion Control]], [[2211.16657|Task-Driven-Hybrid-Model-Reduction]], [[1910.00935|DiffTaichi]]
+- [[2608.08886|Attitude-Only Inertia Estimation]], [[2607.25985|Physics-Aware DRL Quadcopter Control]], [[2607.24317|SE(3) Rigid Body Time-Stepping]], [[2607.24079|Renormalization for Robotics]], [[2607.20743|Bio-Inspired Self-Supervised Trajectory Planner]], [[2607.18760|Koopman DCM]], [[2607.07830|HumoSlope]], [[2607.07136|PINSTT]], [[2607.06824|CaLiSym]], [[2607.02472|Quad APG]], [[2606.31199|RBF-FBL Quadrotor Control]], [[2605.17681|PRIME]], [[2603.22039|RAFL]], [[2603.14469|PIPER]], [[2602.23832|OmniTrack]], [[2508.15755|NeRD]], [[2508.06181|HyperPM]], [[2507.23445|Physics-Guided-Gain-Regularization]], [[2506.14278|Heavy-Limbs-WBC]], [[2506.09383|HBC]], [[2502.20382|Physics-Driven-Data-Gen]], [[2404.02887|Differentiable Locomotion Control]], [[2211.16657|Task-Driven-Hybrid-Model-Reduction]], [[1910.00935|DiffTaichi]]
 
 **Navigation & State-Estimation Robustness (Non-Generative)** — Non-generative sensor-fusion and calibration methods that model sensing physics directly (IMU motion-induced acceleration, radar Doppler evidence, map-write safety) to keep localization and mapping robust under drift and ambiguous sensing, the non-generative counterpoint to the physics-aware generative methods above.
 - [[2607.27713|Map-Reference-Aware Conservative Fusion]], [[2607.26980|DSW]], [[2607.25784|Equipment-Free IMU Motion Compensation]]

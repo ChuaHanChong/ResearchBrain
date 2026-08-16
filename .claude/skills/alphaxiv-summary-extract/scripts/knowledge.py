@@ -1761,6 +1761,7 @@ papers = [
     "https://arxiv.org/abs/2412.00259",  # One-Shot Real-to-Sim via End-to-End Differentiable Simulation and Rendering
     "https://arxiv.org/abs/2412.00396",  # ARMOR: Egocentric Perception for Humanoid Robot Collision Avoidance and Motion Planning
     "https://arxiv.org/abs/2412.00420",  # TAROT: Targeted Data Selection via Optimal Transport
+    "https://arxiv.org/abs/2412.00538",  # Prognostic Framework for Robotic Manipulators Operating Under Dynamic Task Severities
     "https://arxiv.org/abs/2412.00596",  # PhyT2V: LLM-Guided Iterative Self-Refinement for Physics-Grounded Text-to-Video Generation
     "https://arxiv.org/abs/2412.00661",  # Mean-Field Sampling for Cooperative Multi-Agent Reinforcement Learning
     "https://arxiv.org/abs/2412.00798",  # Combinatorial Rising Bandits
@@ -2550,6 +2551,7 @@ papers = [
     "https://arxiv.org/abs/2504.07934",  # SoTA with Less: MCTS-Guided Sample Selection for Data-Efficient Visual Reasoning Self-Improvement
     "https://arxiv.org/abs/2504.07951",  # Scaling Laws for Native Multimodal Models
     "https://arxiv.org/abs/2504.07954",  # Perception-R1: Pioneering Perception Policy with Reinforcement Learning
+    "https://arxiv.org/abs/2504.08238",  # CATCH-FORM-3D: Compliance-Aware Tactile Control and Hybrid Deformation Regulation for 3D Viscoelastic Object Manipulation
     "https://arxiv.org/abs/2504.08246",  # Spectral Normalization for Lipschitz-Constrained Policies on Learning Humanoid Locomotion
     "https://arxiv.org/abs/2504.08438",  # Diffusion Models for Robotic Manipulation: A Survey
     "https://arxiv.org/abs/2504.08600",  # SQL-R1: Training Natural Language to SQL Reasoning Model By Reinforcement Learning
@@ -3314,6 +3316,7 @@ papers = [
     "https://arxiv.org/abs/2506.01850",  # MoDA: Modulation Adapter for Fine-Grained Visual Grounding in Instructional MLLMs
     "https://arxiv.org/abs/2506.01939",  # Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective Reinforcement Learning for LLM Reasoning
     "https://arxiv.org/abs/2506.01941",  # FreeTacMan: Robot-free Visuo-Tactile Data Collection System for Contact-rich Manipulation
+    "https://arxiv.org/abs/2506.01944",  # Feel the Force: Contact-Driven Learning from Humans
     "https://arxiv.org/abs/2506.01953",  # Fast-in-Slow: A Dual-System Foundation Model Unifying Fast Manipulation within Slow Reasoning
     "https://arxiv.org/abs/2506.02095",  # Cycle Consistency as Reward: Learning Image-Text Alignment without Human Preferences
     "https://arxiv.org/abs/2506.02096",  # SynthRL: Scaling Visual Reasoning with Verifiable Data Synthesis
@@ -5872,6 +5875,7 @@ papers = [
     "https://arxiv.org/abs/2602.08346",  # What, Whether and How? Unveiling Process Reward Models for Thinking with Images Reasoning
     "https://arxiv.org/abs/2602.08370",  # Learning Human-Like Badminton Skills for Humanoid Robots
     "https://arxiv.org/abs/2602.08518",  # Characteristics, Management, and Utilization of Muscles in Musculoskeletal Humanoids: Empirical Study on Kengoro and Musashi
+    "https://arxiv.org/abs/2602.08557",  # Combined Constrained Sampling and Reinforcement Learning for Robotic Manipulation
     "https://arxiv.org/abs/2602.08594",  # MOSAIC: Bridging the Sim-to-Real Gap in Generalist Humanoid Motion Tracking and Teleoperation with Rapid Residual Adaptation
     "https://arxiv.org/abs/2602.08602",  # Mimic Intent, Not Just Trajectories
     "https://arxiv.org/abs/2602.08683",  # OneVision-Encoder: Codec-Aligned Sparsity as a Foundational Principle for Multimodal Intelligence
@@ -6992,6 +6996,7 @@ papers = [
     "https://arxiv.org/abs/2604.25276",  # OmniVTG: A Large-Scale Dataset and Training Paradigm for Open-World Video Temporal Grounding
     "https://arxiv.org/abs/2604.25284",  # Optimal UGV–UAV Cooperative Partitioning and Inspection of Shortest Paths
     "https://arxiv.org/abs/2604.25329",  # ProDrive: Proactive Planning for Autonomous Driving via Ego-Environment Co-Evolution
+    "https://arxiv.org/abs/2604.25416",  # Biased Dreams: Limitations to Epistemic Uncertainty Quantification in Latent Dynamics Models
     "https://arxiv.org/abs/2604.25459",  # GS-Playground: A High-Throughput Photorealistic Simulator for Vision-Informed Robot Learning
     "https://arxiv.org/abs/2604.25636",  # Refinement via Regeneration: Enlarging Modification Space Boosts Image Refinement in Unified Multimodal Models
     "https://arxiv.org/abs/2604.25788",  # KinDER: A Physical Reasoning Benchmark for Robot Learning and Planning
@@ -8133,6 +8138,7 @@ papers = [
     "https://arxiv.org/abs/2607.00776",  # From Prediction Uncertainty to Conformalized Distance Fields for Safe Motion Planning
     "https://arxiv.org/abs/2607.00784",  # LeVLJEPA: End-to-End Vision-Language Pretraining Without Negatives
     "https://arxiv.org/abs/2607.00836",  # From World Models to World Action Models: A Concise Tutorial for Robotics
+    "https://arxiv.org/abs/2607.00889",  # DeWorldSG: Depth-Aware 3D Semantic Scene Graph Generation via World-Model Priors
     "https://arxiv.org/abs/2607.00978",  # Privacy-Preserving Depth-Only Open-Vocabulary 3D Semantic Segmentation Via Uncertainty-Guided Test-Time Optimization
     "https://arxiv.org/abs/2607.01029",  # AMBUSH: Collaborative Capture in Complex Environments with Neural Acceleration
     "https://arxiv.org/abs/2607.01043",  # DART-VLN: Test-Time Memory Decay and Anti-Loop Regularization for Discrete Vision-Language Navigation
@@ -8586,6 +8592,7 @@ papers = [
     "https://arxiv.org/abs/2607.19714",  # Morphing MILR: Design and control of a cable-driven limbless robot with rolling joints for maneuvering in complex environments
     "https://arxiv.org/abs/2607.19719",  # Koopman Dreamer: Spectrally Constrained Latent Dynamics for Stable World-Model Imagination
     "https://arxiv.org/abs/2607.19745",  # EgoRecovery: Acquiring Failure Recovery Ability Through Human Recovery Demonstration
+    "https://arxiv.org/abs/2607.19804",  # V2F: Vision-Informed Grasp Force Prediction for Damage-Aware Robotic Handling of Date Fruits
     "https://arxiv.org/abs/2607.19850",  # SOPD-SocialNav: Selective On-Policy Distillation for Vision-Language Social Navigation
     "https://arxiv.org/abs/2607.19876",  # KineBench: Benchmarking Embodied World Models via IDM-Free Kinematic Grounding
     "https://arxiv.org/abs/2607.19880",  # EA-Nav: Learning Safe Visual Navigation Policies with Embodiment Awareness
@@ -8954,6 +8961,7 @@ papers = [
     "https://arxiv.org/abs/2608.07012",  # Scenix: Sparse-View 3D Scene Reconstruction via Executable Scene Programs
     "https://arxiv.org/abs/2608.07409",  # UniJEPA: A Unified Joint-Embedding Predictive Architecture for Task-Agnostic Visual World Modeling
     "https://arxiv.org/abs/2608.07468",  # SimWAM: A Simple World Action Model for End-to-End Autonomous Driving
+    "https://arxiv.org/abs/2608.07545",  # DarwinX: Evolving Agent Harnesses Through Natural Selection
     "https://arxiv.org/abs/2608.07645",  # Mendel Godel Machine: Recursive Self-Improving Coding Agents via Comparative Evolution
     "https://arxiv.org/abs/2608.07895",  # Auditing Instruction-Trajectory Mismatches in Multimodal Robot Demonstrations
     "https://arxiv.org/abs/2608.07905",  # GraphThink: Graph-Enhanced LLM Thinking for Long-Horizon Embodied Task Planning
@@ -8996,6 +9004,7 @@ papers = [
     "https://arxiv.org/abs/2608.09816",  # Hierarchical Fast-Slow ReAct Agent for Zero-Shot Object-Goal Navigation
     "https://arxiv.org/abs/2608.09853",  # RynnValue: Scaling Robotic Value Foundation Models with Temporal Distance
     "https://arxiv.org/abs/2608.09860",  # Entanglement-Free Trajectory Planning for Tethered Mobile Robots with a Slack Tether
+    "https://arxiv.org/abs/2608.09873",  # Sci-VBench: Evaluating Knowledge- and Reasoning-Intensive Video Generation in Science Domains
     "https://arxiv.org/abs/2608.09876",  # Energy-Structured Latent World Models with Neural Time Fields for Physically Constistent Open-World Motion Planning
     "https://arxiv.org/abs/2608.09892",  # XPolicyLab: A Unified Standard and Open Ecosystem for Robot Policy Evaluation and Deployment
     "https://arxiv.org/abs/2608.10023",  # Protection Levels for Vision-Based Pose Estimation
@@ -9022,9 +9031,12 @@ papers = [
     "https://arxiv.org/abs/2608.11731",  # ContactIPM: A Structure-Exploiting Interior-Point Solver for Contact-Implicit Trajectory Optimization
     "https://arxiv.org/abs/2608.11739",  # G0.5: One Autoregressive Stream for Robot Reasoning and Action
     "https://arxiv.org/abs/2608.11769",  # Policy-Induced Hand Priors in Humanoid Dual-Arm Manipulation: Diagnosing and Mitigating Initial-Pose Dependence
+    "https://arxiv.org/abs/2608.11859",  # Small-Scale Experiments: Are We There Yet?
     "https://arxiv.org/abs/2608.11870",  # Enhancing Visual Domain Robustness in Behaviour Cloning via Saliency-Guided Augmentation
     "https://arxiv.org/abs/2608.11876",  # D3D-GEN: Robot-Aware Domain-Grounded Interactive 3D World Generation for Social Robotics
     "https://arxiv.org/abs/2608.11901",  # DaViNCi: A Dataset Towards Outdoor Vision-and-Language Navigation with Continuous Actions and Dynamic Elements
+    "https://arxiv.org/abs/2608.11924",  # Spark-to-Paper: End-to-End Research Paper Generation as a Composable Skill
+    "https://arxiv.org/abs/2608.12036",  # Mechanist: AI as a Scientific Instrument for Discovering the Mechanisms of Intelligence
     "https://arxiv.org/abs/2608.12063",  # Learning Loco-Manipulation From SMPC Demonstrations With Sparse Offline-to-Online RL
     "https://arxiv.org/abs/2608.12122",  # HandEdit: A Unified Benchmark for Egocentric Human-to-Robot Dexterous Hand Image Editing
     "https://arxiv.org/abs/2608.12416",  # RoboSynChallenge: Mastering Real-World Dexterity via Generalizing Synthesized Manipulation Skills
@@ -9041,9 +9053,12 @@ papers = [
     "https://arxiv.org/abs/2608.13014",  # EgoPHI: Estimating Contact and Force from Egocentric Vision
     "https://arxiv.org/abs/2608.13026",  # Temporal GRPO: Beyond Trajectory-Level Credit in Vision-Language-Action Reinforcement Learning
     "https://arxiv.org/abs/2608.13028",  # RGB-D Video Generation for Improving Human-to-Robot Object Handover Prediction
+    "https://arxiv.org/abs/2608.13040",  # Latent On-Policy Self-Distillation
     "https://arxiv.org/abs/2608.13049",  # H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation in World Models
     "https://arxiv.org/abs/2608.13095",  # Semantic Radiance Fields as Simulators for Spatial Reasoning in Real-World Scenes
+    "https://arxiv.org/abs/2608.13183",  # A Controlled Study of Self-Supervised Image and Video Pretraining under Limited Resources
     "https://arxiv.org/abs/2608.13284",  # Predictive Relative-Velocity Steering for Safe Robotic Manipulator Teleoperation in Dynamic Environments
+    "https://arxiv.org/abs/2608.13331",  # Training AI Scientists to Replicate Research
     "https://arxiv.org/abs/2608.13362",  # NestDex: Nested Policy Learning with Copilot Assisted Teleoperation for Dexterous Manipulation
     "https://arxiv.org/abs/2608.13395",  # FIRE-VLA: Failure-Informed Self-Evolution for Vision-Language-Action Models in Autonomous Driving
     "https://arxiv.org/abs/2608.13415",  # Deliberate Practice: Learning Robot Skills under a Budget
@@ -9052,5 +9067,7 @@ papers = [
     "https://arxiv.org/abs/2608.13448",  # Mind the Context: Continual Learning of Socially Appropriate Robot Actions via Environmental-Social Disentanglement
     "https://arxiv.org/abs/2608.13474",  # Decoding Task Progress from VLA Representations
     "https://arxiv.org/abs/2608.13489",  # DreamX-Phi 1.0: Action-Conditioned Video World Model for Robotic Manipulation
+    "https://arxiv.org/abs/2608.13552",  # PlayWorld: Benchmarking World Models with Agent Players over Long-Horizon Objectives
     "https://arxiv.org/abs/2608.13555",  # HumanTracker: Towards Comprehensive and Human-Aligned Motion Tracking Benchmark
+    "https://arxiv.org/abs/2608.13556",  # V-RAE: Rethinking Video Latent Spaces for Generation
 ]

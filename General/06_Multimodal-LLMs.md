@@ -291,7 +291,7 @@ A new generation of models trained end-to-end on interleaved multimodal data rat
 > - [[2503.20680|VoRA]] — Encoder-free MLLM treating visual features as LoRA parameters; eliminates the separate vision encoder entirely
 
 **Multimodal Scaling Laws & Pre-Training** — Understanding how to scale native multimodal models and what training recipes work best.
-- [[2608.05806|HiLP]], [[2608.05000|PhysMMPT]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2509.26625|LLM-Visual-Priors]], [[2507.15857|Diffusion-vs-AR]], [[2507.00994|MLM-vs-CLM-Pretraining]], [[2506.03295|CFT]], [[2505.07291|INTELLECT-2]], [[2504.07951|NMM-Scaling-Laws]], [[2503.19903|PS3]], [[2502.03275|Token-Assorted]], [[2412.18619|Multimodal-NTP-Survey]], [[2006.12467|Depth-to-Width Interplay]], [[2001.08361|Neural Scaling Laws]]
+- [[2608.11859|Small-Scale Scaling Laws]], [[2608.05806|HiLP]], [[2608.05000|PhysMMPT]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2509.26625|LLM-Visual-Priors]], [[2507.15857|Diffusion-vs-AR]], [[2507.00994|MLM-vs-CLM-Pretraining]], [[2506.03295|CFT]], [[2505.07291|INTELLECT-2]], [[2504.07951|NMM-Scaling-Laws]], [[2503.19903|PS3]], [[2502.03275|Token-Assorted]], [[2412.18619|Multimodal-NTP-Survey]], [[2006.12467|Depth-to-Width Interplay]], [[2001.08361|Neural Scaling Laws]]
 
 > [!star] Key Papers
 > - [[2504.07951|NMM-Scaling-Laws]] — First comprehensive study of scaling laws for native multimodal models; shows joint training outperforms modular approaches
@@ -584,16 +584,16 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2512.24601|RLMs]], [[2512.14693|URM]], [[2512.02472|R-FEW]], [[2509.20357|RLMT]], [[2509.14760|ALIGN3]], [[2509.14252|LLM-JEPA]], [[2509.06806|MachineLearningLM]], [[2508.12790|Rubicon]], [[2506.15211|ProtoReasoning]], [[2504.20595|ReasonIR]], [[2504.19254|uqlm]], [[2503.16219|Open-RS]], [[2411.14251|NLRL]], [[2309.15129|CogEval]]
 
 **Agent Memory & Skill-Library Evolution** — Agents that accumulate and reuse skills or memories across episodes.
-- [[2607.23784|ARCHITECT]], [[2607.22529|Skill-SP]], [[2606.08671|SkillHone]], [[2605.06614|SkillOS]], [[2603.18743|Memento-Skills]], [[2603.12056|XSkill]], [[2511.00758|ATM]], [[2509.25140|ReasoningBank]], [[2509.15172|MACA]], [[2509.07414|LSP]], [[2508.19005|ELL-Framework]], [[2406.04151|AgentGym]], [[2311.10678|DROC]], [[2305.16291|Voyager]]
+- [[2608.07545|DarwinX]], [[2607.23784|ARCHITECT]], [[2607.22529|Skill-SP]], [[2606.08671|SkillHone]], [[2605.06614|SkillOS]], [[2603.18743|Memento-Skills]], [[2603.12056|XSkill]], [[2511.00758|ATM]], [[2509.25140|ReasoningBank]], [[2509.15172|MACA]], [[2509.07414|LSP]], [[2508.19005|ELL-Framework]], [[2406.04151|AgentGym]], [[2311.10678|DROC]], [[2305.16291|Voyager]]
 
 **Curriculum & Experience-Driven Agent Evolution** — Agents that evolve through structured curricula or accumulated environment experience.
 - [[2607.23515|LEACL]], [[2607.21461|AREX]], [[2605.15188|FutureSim]], [[2605.09387|NEXUS]], [[2604.01658|CORAL]], [[2603.16856|OEL]], [[2601.06794|ECHO]], [[2510.24684|SPICE]], [[2510.23595|MAE]], [[2510.15047|SPA]], [[2510.08558|Early-Experience]], [[2510.04618|ACE]], [[2506.01716|SCA]], [[2504.21024|WebEvolver]], [[2409.00872|SAGE]]
 
 **Self-Play & Adversarial Agent Evolution** — Agents that self-improve through self-play, self-generated curricula, or adversarial red-teaming.
-- [[2606.29082|EFT]], [[2603.17621|Complementary-RL]], [[2602.00359|A-EVOLVE]], [[2510.16079|EVOLVER]], [[2509.24726|Socratic-Zero]], [[2509.19349|ShinkaEvolve]], [[2507.14172|SOAR]], [[2506.24119|SPIRAL]], [[2506.07468|SELF-REDTEAM]], [[2506.06499|SPARQ]]
+- [[2608.07645|MGM]], [[2606.29082|EFT]], [[2603.17621|Complementary-RL]], [[2602.00359|A-EVOLVE]], [[2510.16079|EVOLVER]], [[2509.24726|Socratic-Zero]], [[2509.19349|ShinkaEvolve]], [[2507.14172|SOAR]], [[2506.24119|SPIRAL]], [[2506.07468|SELF-REDTEAM]], [[2506.06499|SPARQ]]
 
 **Self-Evolving Agent Surveys & Benchmarks** — Survey and benchmark work framing the self-evolving-agent landscape.
-- [[2607.13104|Self-Improving Agents Survey]], [[2607.05155|EdgeBench]], [[2508.07407|Self-Evolving-AI-Agents-Survey]], [[2507.21046|Self-Evolving-Agents-Survey]]
+- [[2607.13104|Self-Improving Agents Survey]], [[2607.05155|EdgeBench]], [[2602.06052|Agent Memory Survey]], [[2508.07407|Self-Evolving-AI-Agents-Survey]], [[2507.21046|Self-Evolving-Agents-Survey]]
 
 **Agentic RL Training Methods** — RL and RL-adjacent training methods for tool-use and multi-turn agentic reasoning.
 - [[2607.21653|Molt]], [[2604.03098|Self-Guide]], [[2603.30022|Hybrid-LLM-RL-Manipulation]], [[2603.24639|ERL]], [[2603.21383|PivotRL]], [[2602.06130|SWIRL]], [[2510.23038|TIR-Judge]], [[2510.01132|Multi-turn-Agentic-RL-Guide]], [[2509.02479|SimpleTIR]], [[2509.01055|VerlTool]], [[2508.20722|rStar2-Agent]], [[2508.07976|ASearcher]], [[2508.03680|Agent-Lightning]], [[2507.22844|RLVMR]], [[2507.19457|GEPA]], [[2507.05707|Agentic-R1]], [[2506.13131|AlphaEvolve]], [[2506.09033|Router-R1]], [[2506.06122|ROLL]], [[2505.04588|ZeroSearch]]
@@ -602,7 +602,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2607.15079|BrainPilot]], [[2607.04439|IdeaSpark]], [[2606.29538|Resource2Skill]], [[2604.02268|SKILL0]], [[2604.01687|EvoSkills]], [[2603.29620|Unify-Agent]], [[2603.29557|FlowPIE]], [[2603.29493|MemFactory]], [[2603.25111|SEVerA]], [[2603.05218|KARL]], [[2601.19204|MATA]], [[2511.20639|LatentMAS]], [[2511.16043|Agent0]], [[2511.10395|AgentEvolver]], [[2508.13167|CoA]], [[2508.03923|CoAct-1]], [[2508.02085|SE-Agent]], [[2507.23773|SimuRA]], [[2507.01701|LbMAS]]
 
 **Tool-Use Applications & Benchmarks** — Domain-specific agent/tool-use applications and evaluation suites, including secure code generation as a specialized benchmark track.
-- [[2607.24051|HELIOS]], [[2607.17250|EvolvingWorld]], [[2603.20278|OpenResearcher]], [[2603.00142|ToM-Multi-Agent-Eval]], [[2511.02824|Kosmos-AI-Scientist]], [[2509.13351|PDDL-INSTRUCT]], [[2507.20534|Kimi-K2]], [[2506.02153|SLMs-for-Agentic-AI]], [[2503.19263|DWIM]], [[2412.18072|MMFactory]], [[2412.13810|CAD-Assistant]], [[2411.17673|SketchAgent]], [[2410.11096|SeCodePLT]], [[2410.08328|Talker-Reasoner]], [[2405.00218|CODEGUARD+]], [[2403.13257|MergeKit]], [[2402.09497|SafeCoder]], [[2310.12823|AgentLM]], [[2307.13854|WebArena]]
+- [[2608.11924|ts-paper]], [[2607.24051|HELIOS]], [[2607.17250|EvolvingWorld]], [[2603.20278|OpenResearcher]], [[2603.00142|ToM-Multi-Agent-Eval]], [[2511.02824|Kosmos-AI-Scientist]], [[2509.13351|PDDL-INSTRUCT]], [[2507.20534|Kimi-K2]], [[2506.02153|SLMs-for-Agentic-AI]], [[2503.19263|DWIM]], [[2412.18072|MMFactory]], [[2412.13810|CAD-Assistant]], [[2411.17673|SketchAgent]], [[2410.11096|SeCodePLT]], [[2410.08328|Talker-Reasoner]], [[2405.00218|CODEGUARD+]], [[2403.13257|MergeKit]], [[2402.09497|SafeCoder]], [[2310.12823|AgentLM]], [[2307.13854|WebArena]]
 
 **Agentic Surveys & Landscape** — Survey work mapping the agentic-AI and agentic-RL research landscape.
 - [[2512.13564|AI-Agent-Memory-Survey]], [[2511.18538|Code-Intelligence-Survey]], [[2509.02547|Agentic-RL-Landscape-Survey]], [[2508.17692|Agentic-Reasoning-Framework-Survey]], [[2507.23276|AI-Scientist-Survey]]
@@ -633,7 +633,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 Understanding what MLLMs learn internally — which visual features matter, how cross-modal representations are structured, and why models produce specific outputs.
 
 **Mechanistic Analysis & Circuit-Level Tools** — General mechanistic-interpretability primitives (circuits, sparse features, task representations) applied to transformers.
-- [[2604.11791|Looped-Reasoning-Mechanistic-Analysis]], [[2603.17063|Transformers-as-Bayesian-Networks]], [[2506.15679|Dense-SAE-Latents]], [[2501.09333|Prompt-CAM]], [[2310.15916|Task Vectors]], [[2310.15213|Function Vectors]], [[2309.08600|Sparse Autoencoders]], [[2209.11895|Induction Heads]]
+- [[2608.12036|Mechanist]], [[2604.11791|Looped-Reasoning-Mechanistic-Analysis]], [[2603.17063|Transformers-as-Bayesian-Networks]], [[2506.15679|Dense-SAE-Latents]], [[2501.09333|Prompt-CAM]], [[2310.15916|Task Vectors]], [[2310.15213|Function Vectors]], [[2309.08600|Sparse Autoencoders]], [[2209.11895|Induction Heads]]
 
 **Visual Representation & Cross-Modal Probing** — Tools and analyses specific to probing what MLLMs encode visually and cross-modally.
 - [[2607.03973|MANCE]], [[2603.07335|VisualScratchpad]], [[2602.15029|Language-Symmetry-Representations]], [[2602.11217|Magic-Correlations]], [[2602.11144|GENIUS]], [[2602.02140|GAPEVAL]], [[2602.00462|LatentLens]], [[2510.02292|VLM-Lens]], [[2506.11976|VLM-Visual-Language-Alignment]], [[2506.07326|Reward-Model-Interpretability]], [[2504.19627|VCM]], [[2502.02013|Layer-by-Layer-Representations]]

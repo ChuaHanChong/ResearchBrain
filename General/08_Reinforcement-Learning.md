@@ -276,7 +276,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2508.16546|SFT-vs-RL-Spectral-Analysis]] — Reveals that SFT causes OOD generalization issues that RL avoids, via spectral lens
 
 **SFT vs RL Generalization** — Why RL generalizes where supervised fine-tuning memorizes — a central question for post-training.
-- [[2605.11739|EffOPD]], [[2602.10815|RL-vs-SFT-VLM-Study]], [[2512.17636|TRAPO]], [[2512.12690|SFT-vs-RL-VLM-Study]], [[2501.17161|SFT-Memorizes-RL-Generalizes]]
+- [[2608.03573|Parallel-RL]], [[2605.11739|EffOPD]], [[2602.10815|RL-vs-SFT-VLM-Study]], [[2512.17636|TRAPO]], [[2512.12690|SFT-vs-RL-VLM-Study]], [[2501.17161|SFT-Memorizes-RL-Generalizes]]
 
 > [!star] Key Papers
 > - [[2501.17161|SFT-Memorizes-RL-Generalizes]] — Landmark finding: SFT makes models memorize training distributions, while RL makes them generalize to unseen problems
@@ -627,7 +627,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.24207|Humanline]] — Explains why online RL outperforms offline methods from a human cognitive science perspective
 
 **Applied, Hierarchical & Domain-Specific Policy Methods** — Domain-specific and hierarchical policy-optimization applications outside the mainstream algorithm families.
-- [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]], [[2602.03086|Neural-Predictor-Corrector]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric-Action-Control]], [[2511.05005|MAC-Flow]], [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]], [[1312.5602|DQN]]
+- [[2608.09628|PPO Satellite Collision Avoidance]], [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]], [[2602.03086|Neural-Predictor-Corrector]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric-Action-Control]], [[2511.05005|MAC-Flow]], [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]], [[1312.5602|DQN]]
 
 > [!success] The Post-R1 RL Recipe
 > ==SFT warm-up== (instruction following + format compliance) → ==GRPO with verifiable rewards== (math/code execution as signal) → ==Distillation== to smaller models. Stable large-scale GRPO training with decoupled clip-higher and dynamic sampling. Even 1.5B models gain reasoning; zero-data bootstrapping works via self-play RL.
@@ -650,7 +650,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.03335|Absolute-Zero]] — Zero-data RL: model proposes its own problems, solves them, uses verifiable answers as reward — no human data at all
 
 **Self-Distillation & On-Policy Distillation** — Distilling a model's own on-policy rollouts back into itself for self-improvement.
-- [[2608.06296|U-OPSD]], [[2608.04788|OCSD]], [[2605.11182|On-Policy-Distillation-Study]], [[2604.27083|CoPD]], [[2604.03128|Self-Distilled-RLVR]], [[2604.03098|Self-Guide]], [[2602.12275|OPCD]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]]
+- [[2608.13040|LOPD]], [[2608.06296|U-OPSD]], [[2608.04788|OCSD]], [[2605.11182|On-Policy-Distillation-Study]], [[2604.27083|CoPD]], [[2604.03128|Self-Distilled-RLVR]], [[2604.03098|Self-Guide]], [[2602.12275|OPCD]], [[2601.20802|SDPO]], [[2601.19897|SDFT]], [[2601.18734|OPSD]]
 
 > [!star] Key Papers
 > - [[2601.18734|OPSD]] — Foundational on-policy self-distillation recipe, using the same model as teacher (conditioned on ground truth) and student on its own rollouts; matches GRPO at 4-8x higher token efficiency
@@ -1118,7 +1118,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 RL for multi-turn, tool-using, and self-evolving agents — the bridge between reasoning models and autonomous systems. These agents don't just answer questions; they take actions, observe results, and adapt.
 
 **Multi-Turn Training Foundations & Coordination** — Core multi-turn RL training frameworks, environments, and multi-agent coordination/memory mechanisms.
-- [[2604.06268|RAGEN-2]], [[2603.17621|Complementary-RL]], [[2603.05218|KARL]], [[2602.23008|EMPO-squared]], [[2602.17930|MIRA-RL]], [[2602.14926|MAC-AMP]], [[2512.20092|Memory-T1]], [[2512.09706|CrossHA]], [[2512.04388|Conductor]], [[2511.22235|CES-Scheduler]], [[2511.07327|IterResearch]], [[2510.10197|Environment-Tuning]], [[2509.08755|AgentGym-RL]], [[2507.21046|Self-Evolving-Agents-Survey]], [[2504.20997|LLM-PSRL]], [[2504.20073|RAGEN]], [[2504.16078|LLM-Greedy-Agents]], [[2406.04151|AgentGym]]
+- [[2608.10299|Agentic Co-Evolution Survey]], [[2604.06268|RAGEN-2]], [[2603.17621|Complementary-RL]], [[2603.05218|KARL]], [[2602.23008|EMPO-squared]], [[2602.17930|MIRA-RL]], [[2602.14926|MAC-AMP]], [[2512.20092|Memory-T1]], [[2512.09706|CrossHA]], [[2512.04388|Conductor]], [[2511.22235|CES-Scheduler]], [[2511.07327|IterResearch]], [[2510.10197|Environment-Tuning]], [[2509.08755|AgentGym-RL]], [[2507.21046|Self-Evolving-Agents-Survey]], [[2504.20997|LLM-PSRL]], [[2504.20073|RAGEN]], [[2504.16078|LLM-Greedy-Agents]], [[2406.04151|AgentGym]]
 
 > [!star] Key Papers
 > - [[2504.20073|RAGEN]] — introduces StarPO and identifies the "Echo Trap" instability that motivated most later multi-turn RL work, including RAGEN-2 in this same list
@@ -1182,7 +1182,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2504.08600|SQL-R1]] — strongest reward-engineering recipe for code-adjacent generation; a four-component progressive reward pushes a 7B model to 88.7% Spider-Test / 66.6% BIRD-Dev, beating larger closed-source baselines
 
 **Code Agent Tools, Interpreters & Tool-Use RL** — RL for tool-calling, code-interpreter use, and applied coding-agent workflows.
-- [[2603.13348|AutoTool]], [[2512.08511|SubagentVL]], [[2512.04563|COOPER]], [[2511.01618|Actial]], [[2510.14635|ATGen]], [[2510.01832|SCRIBES]], [[2509.22824|Critique-Coder]], [[2509.22644|WebGen-Agent]], [[2509.17325|CodeGym]], [[2509.01684|ML-Engineering-RL-Agents]], [[2508.21107|UTRL]], [[2508.05433|MLES]], [[2508.04865|Agnostics]], [[2506.09820|CoRT]], [[2505.23387|Afterburner]], [[2505.21668|R1-Code-Interpreter]], [[2505.16053|RLAF]], [[2505.12723|OORL]], [[2505.12285|CALM-Heuristic-Design]], [[2505.07773|ZeroTIR]]
+- [[2608.13331|Faraday]], [[2603.13348|AutoTool]], [[2512.08511|SubagentVL]], [[2512.04563|COOPER]], [[2511.01618|Actial]], [[2510.14635|ATGen]], [[2510.01832|SCRIBES]], [[2509.22824|Critique-Coder]], [[2509.22644|WebGen-Agent]], [[2509.17325|CodeGym]], [[2509.01684|ML-Engineering-RL-Agents]], [[2508.21107|UTRL]], [[2508.05433|MLES]], [[2508.04865|Agnostics]], [[2506.09820|CoRT]], [[2505.23387|Afterburner]], [[2505.21668|R1-Code-Interpreter]], [[2505.16053|RLAF]], [[2505.12723|OORL]], [[2505.12285|CALM-Heuristic-Design]], [[2505.07773|ZeroTIR]]
 
 
 **Additional Methods** — Cognitive-modeling and other agentic RL methods that cross section boundaries — human decision explanation, EEG-based reward, and policy-to-language translation.

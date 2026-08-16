@@ -194,7 +194,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2603.14482|V-JEPA-2.1]] — Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation
 
 **Self-Supervised Video Representation Learning** — Broader unlabeled-video pretraining for downstream perception: masked video modeling, egocentric manipulation representations, and video segmentation/tracking backbones.
-- [[2607.21576|SDM]], [[2607.09024|GenCeption]], [[2607.06856|Gen4U]], [[2606.02058|TIDES]], [[2605.02134|PV-VAE]], [[2604.26488|LILA]], [[2603.12217|Verifier-Point-Tracking]], [[2512.11782|MatAnyone-2]], [[2512.01342|InternVideo-Next]], [[2511.20886|V2-SAM]], [[2507.14793|FERNN]], [[2505.17006|CoMo]], [[2303.16727|VideoMAE V2]], [[2203.12601|R3M]], [[1504.08023|Visual Representation Anticipation]]
+- [[2608.13183|Controlled SSL Pretraining Study]], [[2607.21576|SDM]], [[2607.09024|GenCeption]], [[2607.06856|Gen4U]], [[2606.02058|TIDES]], [[2605.02134|PV-VAE]], [[2604.26488|LILA]], [[2603.12217|Verifier-Point-Tracking]], [[2512.11782|MatAnyone-2]], [[2512.01342|InternVideo-Next]], [[2511.20886|V2-SAM]], [[2507.14793|FERNN]], [[2505.17006|CoMo]], [[2303.16727|VideoMAE V2]], [[2203.12601|R3M]], [[1504.08023|Visual Representation Anticipation]]
 
 **Foundation Video-Language Models** — General-purpose large multimodal models that jointly process video and language, plus the training data behind them.
 - [[2602.08683|OneVision-Encoder]], [[2601.17868|VidLaDA]], [[2507.01949|Kwai-Keye-VL]], [[2504.15271|Eagle-2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]], [[2408.03326|LLaVA-OneVision]], [[2407.07895|LLaVA-NeXT-Interleave]], [[2406.07476|VideoLLaMA 2]], [[2406.04325|ShareGPT4Video]], [[2204.14198|Flamingo]]
