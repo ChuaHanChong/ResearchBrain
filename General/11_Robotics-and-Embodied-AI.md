@@ -330,7 +330,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 - [[2608.11063|Field Recomposition Framework]], [[2608.01428|BRACE]], [[2607.28451|AAAI-Framework]], [[2607.13653|REAL]], [[2607.08620|HL Index]], [[2607.07390|Morphological Information Bottleneck]], [[2607.04443|Wan-Streamer v0.2]], [[2606.31562|Stabilization Learning]], [[2606.30293|CSAR]], [[2606.30111|AgentCanvas]], [[2606.29460|LLM Intervention Explanations in HRI]], [[2606.13049|Y-BotFrame]], [[2605.26637|Embodied-Tool-Protocol]], [[2604.15475|NeuroMesh]], [[2604.01179|Florence-2-ROS-2-Wrapper]], [[2601.10744|LMEE]], [[2506.00138|Virtual-Zebrafish-RL]], [[2503.05316|CoinRobot]], [[2409.18313|Embodied-RAG]], [[2402.15116|LMA-Survey]]
 
 **Human-Robot Interaction & Trust** — Communicating robot internal states (uncertainty, confidence) through motion and proactively managing human trust in robot teammates.
-- [[2608.12650|Attune]], [[2608.04309|Hidden-Goal-HRC]], [[2608.02780|Semantic-Haptics]], [[2607.25327|BAIT]], [[2607.25047|XR Mediation Layer]], [[2607.24190|Kim Episodic Memory]], [[2607.24113|Kim]], [[2607.19534|LfH]], [[2607.13696|Anatomy of Uncertainty]], [[2607.13595|Active Trust Management Framework]], [[2607.11690|VR Social Touch Design]], [[2607.11570|ERR@HRI 3.0]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.10372|Robotic Contextual Awareness Thesis]], [[2605.19501|CANINE]], [[2505.20537|CoRI]], [[2502.02772|Force-Language Dual Autoencoder]]
+- [[2608.12650|Attune]], [[2608.04309|Hidden-Goal-HRC]], [[2608.02780|Semantic-Haptics]], [[2607.25327|BAIT]], [[2607.25047|XR Mediation Layer]], [[2607.24190|Kim Episodic Memory]], [[2607.24113|Kim]], [[2607.19534|LfH]], [[2607.13696|Anatomy of Uncertainty]], [[2607.13595|Active Trust Management Framework]], [[2607.11690|VR Social Touch Design]], [[2607.11570|ERR@HRI 3.0]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.10372|Robotic Contextual Awareness Thesis]], [[2605.19501|CANINE]], [[2505.20537|CoRI]], [[2502.02772|Force-Language Dual Autoencoder]], [[1604.03692|Social Affordance Learning]]
 
 > [!star] Key Papers
 > - [[2607.13696|Anatomy of Uncertainty]] — introduces a validated Commitment-Vigilance framework mapping robot motion to human-recognizable uncertainty states, confirmed via human-subject studies with large effect sizes.
@@ -756,7 +756,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2405.12213|Octo]] — Open-source generalist policy with strong zero-shot transfer across robot morphologies
 
 **Optimal Control & Trajectory Planning** — Sampling-based and control-aware optimal-control planners/optimizers for robot manipulators.
-- [[2608.01172|Fiber-Decomposition]], [[2607.19284|SMO-SST]], [[2607.18731|STL-BT Synthesis]], [[2607.14455|MD-COAS]], [[2607.10842|D-SafeMPC]], [[2607.06123|MP-MPPI]], [[2607.05544|Control-Aware Optimal Trajectory Planning]], [[2607.03987|PAKR]], [[2605.28202|NFG]], [[2605.25770|Implicit Null-Space Manifold]], [[2605.11618|FTL Continuum Robot Planner]], [[2604.21456|TSMC]], [[2603.02642|cuNRTO]], [[2509.06953|Deep Reactive Policy]], [[2509.04645|SPOT (Point Cloud Rearrangement)]], [[2509.00499|NeuralSVCD]], [[2508.21375|Super-Nominal Payload Diffusion]], [[2412.01324|SH-NLP]], [[2410.03909|MPMC Motion Planning]]
+- [[2608.01172|Fiber-Decomposition]], [[2607.19284|SMO-SST]], [[2607.18731|STL-BT Synthesis]], [[2607.14455|MD-COAS]], [[2607.10842|D-SafeMPC]], [[2607.06123|MP-MPPI]], [[2607.05544|Control-Aware Optimal Trajectory Planning]], [[2607.03987|PAKR]], [[2605.28202|NFG]], [[2605.25770|Implicit Null-Space Manifold]], [[2605.11618|FTL Continuum Robot Planner]], [[2604.21456|TSMC]], [[2603.02642|cuNRTO]], [[2509.06953|Deep Reactive Policy]], [[2509.04645|SPOT (Point Cloud Rearrangement)]], [[2509.00499|NeuralSVCD]], [[2508.21375|Super-Nominal Payload Diffusion]], [[2412.01324|SH-NLP]], [[2410.03909|MPMC Motion Planning]], [[1707.07383|GPMP2]], [[1105.1186|RRT*]]
 
 > [!star] Key Papers
 > - [[2607.03987|PAKR]] — most paradigm-shifting for accessibility: fuses parallel kinodynamic RRT with the AO-x meta-algorithm in JAX/XLA, finding initial solutions in **1.3ms** vs **254ms** for CPU-based planners while preserving asymptotic optimality.
@@ -1003,7 +1003,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2505.08787|UniSkill]] — strongest and most recent extension of this line, learning fully unaligned, in-the-wild human-to-robot skill transfer via Inverse/Forward Skill Dynamics with no scene or task alignment required; large-scale human video data boosted performance by an additional **15%**.
 
 **Human & Egocentric Video Demonstration Transfer** — Retargets manipulation skill from human or egocentric video into robot demonstrations without teleoperation.
-- [[2608.04196|SiMDex]], [[2608.02580|Ego2Robot]], [[2607.26903|Pegasus]], [[2607.19745|EgoRecovery]], [[2607.08857|AgenticFocus]], [[2606.28813|Human2Any]], [[2606.19333|Do-as-I-Do]], [[2606.14665|EgoGuide]], [[2602.10105|DexImit]], [[2509.22578|EgoDemoGen]], [[2509.04443|EMMA]], [[2505.11920|H2R]], [[2412.10631|ARMADA-manipulation]], [[2405.20321|ORION]]
+- [[2608.04196|SiMDex]], [[2608.02580|Ego2Robot]], [[2607.26903|Pegasus]], [[2607.19745|EgoRecovery]], [[2607.08857|AgenticFocus]], [[2606.28813|Human2Any]], [[2606.19333|Do-as-I-Do]], [[2606.14665|EgoGuide]], [[2602.10105|DexImit]], [[2509.22578|EgoDemoGen]], [[2509.04443|EMMA]], [[2505.11920|H2R]], [[2412.10631|ARMADA-manipulation]], [[2405.20321|ORION]], [[1703.01040|Convolutional Future Regression]]
 
 > [!star] Key Papers
 > - [[2405.20321|ORION]] — earliest and foundational object-centric approach to single-video imitation, introducing Open-world Object Graphs to generalize from one actionless human video; achieved **74.4%** average success (**85.3%** with RGB-only input), decisively outperforming direct hand-motion imitation.
@@ -1301,7 +1301,7 @@ The training paradigm question: pure imitation learning (behavior cloning) is si
 > - [[2605.14810|CaMeRL]] — Strongest reported results: collision-aware and memory-enhanced perception nearly triples UAV success in ultra-small-obstacle environments (0.29 to 0.77) over the prior best baseline
 
 **Generative & Observation-Only Imitation** — Learn policies from video-generative priors or observation-only demonstrations, without paired action labels or real robot data.
-- [[2608.03387|RoboReact]], [[2606.12995|GenHOI]], [[2605.20811|Demo-JEPA]], [[2605.10063|EFGCL]], [[2601.19452|APC-RL]], [[2512.05094|GenMimic]], [[2509.12026|RDM-RL]], [[2507.21533|MPAIL]], [[2503.10626|NIL]], [[2312.14134|Diffusion Reward]], [[2212.02500|PhysDiff]], [[1805.07914|ILPO]]
+- [[2608.03387|RoboReact]], [[2606.12995|GenHOI]], [[2605.20811|Demo-JEPA]], [[2605.10063|EFGCL]], [[2601.19452|APC-RL]], [[2512.05094|GenMimic]], [[2509.12026|RDM-RL]], [[2507.21533|MPAIL]], [[2503.10626|NIL]], [[2312.14134|Diffusion Reward]], [[2212.02500|PhysDiff]], [[1805.07914|ILPO]], [[1707.03374|Context Translation]]
 
 > [!star] Key Papers
 > - [[1805.07914|ILPO]] — Foundational method establishing the latent-action paradigm for imitation from observation, decoupling abstract behavior from action grounding
@@ -1331,7 +1331,7 @@ The training paradigm question: pure imitation learning (behavior cloning) is si
 > - [[2605.24934|HumanEgo]] — Strongest reported results: zero-shot bimanual manipulation from just 30 minutes of human egocentric video, beating baselines by up to 90 points and even matched-time robot teleoperation
 
 **Humanoid & Legged Locomotion Learning** — RL and sim-to-real recipes purpose-built for humanoid and quadrupedal locomotion, from foundation models to classic terrain adaptation.
-- [[2606.04718|CoRe-MoE]], [[2605.27046|Thermal-Aware-Residual]], [[2603.12612|FastDSAC-DEM]], [[2512.01996|Humanoid-Loco-15min]], [[2511.04131|BFM-Zero]], [[2509.23745|LocoFormer]], [[2505.22642|FastTD3]], [[2502.01143|ASAP]], [[2212.07740|TERT]], [[2107.04034|RMA]], [[2107.03996|LocoTransformer]], [[2003.01239|Evolutionary-Meta-Learning-Legged]]
+- [[2606.04718|CoRe-MoE]], [[2605.27046|Thermal-Aware-Residual]], [[2603.12612|FastDSAC-DEM]], [[2512.01996|Humanoid-Loco-15min]], [[2511.04131|BFM-Zero]], [[2509.23745|LocoFormer]], [[2505.22642|FastTD3]], [[2502.01143|ASAP]], [[2212.07740|TERT]], [[2107.04034|RMA]], [[2107.03996|LocoTransformer]], [[2003.01239|Evolutionary-Meta-Learning-Legged]], [[1707.02286|Distributed PPO]]
 
 > [!star] Key Papers
 > - [[2107.04034|RMA]] — the foundational adaptation-module paradigm (a base policy conditioned on a privileged extrinsics vector, later inferred online by an adaptation module from proprioceptive history alone) that every later locomotion paper in this group benchmarks against, letting a Unitree A1 traverse sand, mud, and 12kg payloads with zero real-world fine-tuning.
@@ -1347,7 +1347,7 @@ The training paradigm question: pure imitation learning (behavior cloning) is si
 > - [[2605.12771|PASTA]] — the strongest reported real-world results for robust multi-objective control, dynamically annealing a Smooth-Tchebycheff scalarization based on live gradient conflict to recover non-convex Pareto-optimal trade-offs, yielding a 45.5% Hypervolume gain and a 100% win rate on a real stealth-search ground robot.
 
 **Memory, Benchmarks & Data-Efficient Learning** — Supporting infrastructure for reward and imitation research: memory-augmented policies, benchmark suites, and data-generation/curation tools.
-- [[2605.21710|PGDG]], [[2601.16973|VisGym]], [[2502.10550|MIKASA]], [[2501.10395|t-DGR]], [[2111.09793|Robotic-Interestingness]], [[2108.03298|Robomimic]], [[2104.10218|Episodic-Memory-Manipulation]]
+- [[2605.21710|PGDG]], [[2601.16973|VisGym]], [[2502.10550|MIKASA]], [[2501.10395|t-DGR]], [[2111.09793|Robotic-Interestingness]], [[2108.03298|Robomimic]], [[2104.10218|Episodic-Memory-Manipulation]], [[1801.04134|Deep Episodic Memory]]
 
 > [!star] Key Papers
 > - [[2108.03298|Robomimic]] — the foundational, most-cited empirical study in this group, systematically showing that history-dependent BC-RNN policies beat plain behavior cloning by 10-100% on human demonstrations and that offline RL algorithms tuned on machine-generated data fail on human data, establishing the open-source benchmark the field still builds on.

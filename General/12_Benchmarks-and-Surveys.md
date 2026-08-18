@@ -600,7 +600,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2603.17851|DexViTac]] — Portable visuo-tactile-kinematic capture rig at 248 demos/hr; kinematics-grounded tactile pretraining unlocks 85.8% avg success on contact-rich tasks
 
 **Hand-Object Interaction & Motion Capture Datasets** — Datasets capturing hand-object grasping, contact, and whole-body motion for learning dexterous manipulation priors.
-- [[2608.12122|HandEdit]], [[2607.04554|HUGS]], [[2501.09782|SMPLest-X]], [[2309.17448|SMPLer-X]], [[2104.04631|DexYCB]], [[2008.11200|GRAB]], [[2007.09545|ContactPose]], [[1904.05767|ObMan]], [[1904.03278|AMASS]]
+- [[2608.12122|HandEdit]], [[2607.04554|HUGS]], [[2501.09782|SMPLest-X]], [[2309.17448|SMPLer-X]], [[2104.04631|DexYCB]], [[2008.11200|GRAB]], [[2007.09545|ContactPose]], [[1904.05767|ObMan]], [[1904.03278|AMASS]], [[1803.08319|JTA]], [[1712.03453|MuPoTS-3D]], [[1704.02463|FPHA]], [[1612.03153|Panoptic Studio]]
 
 > [!tip] Benchmark Selection
 > Start with LIBERO or CALVIN for standardized simulation evaluation. Use OXE for cross-embodiment pretraining. SIMPLER tells you whether your sim results will hold up in the real world. For generalist policy comparisons on real hardware, RoboArena is the emerging gold standard. For contact-rich tasks, VTouch++ / DexViTac provide the largest visuo-tactile corpora.
@@ -649,7 +649,7 @@ Benchmarks for video-level reasoning that require understanding temporal dynamic
 > - [[2503.23765|STI-Bench]] — Evaluates spatio-temporal world understanding; goes beyond frame-level perception
 
 **Foundational Video Datasets** — Large-scale action and video datasets that shaped video understanding research and continue to serve as training and evaluation resources.
-- [[2604.25276|OmniVTG]], [[2506.13040|MAMMA]], [[2501.11340|GenVidBench]], [[2408.00714|SAM 2]], [[2406.04325|ShareGPT4Video]], [[1706.04261|Something-Something]]
+- [[2604.25276|OmniVTG]], [[2506.13040|MAMMA]], [[2501.11340|GenVidBench]], [[2408.00714|SAM 2]], [[2406.04325|ShareGPT4Video]], [[1712.02310|VLOG]], [[1706.04261|Something-Something]], [[1703.09788|YouCook2]], [[1604.01753|Charades]]
 
 > [!star] Key Papers
 > - [[1706.04261|Something-Something]] — 108,499 clips across 174 fine-grained action classes with contrastive action templates; pioneered the use of caption-template crowd acting to force models to learn physical common sense

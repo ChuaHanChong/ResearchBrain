@@ -510,7 +510,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2308.04079|3D Gaussian Splatting]] — Real-time explicit radiance field via differentiable 3D Gaussians; became the standard scene representation underlying GaussianProperty, PhysGaussian, and dozens of downstream reconstruction/physics methods
 
 **Human Body & Motion Reconstruction** — Recover 3D human pose, shape, hands, and motion from images, video, or other sensors (e.g. LiDAR), often world-grounded or diffusion-based for robustness to occlusion and noisy input.
-- [[2607.21309|ST-Block]], [[2603.17355|OnlineHMR]], [[2501.09782|SMPLest-X]], [[2401.08570|RoHM]], [[2312.07531|WHAM]], [[2312.05251|HaMeR]], [[2309.17448|SMPLer-X]], [[2308.12969|ROAM]], [[2212.10621|CHAIRS]], [[2012.00924|CPF]], [[2008.11200|GRAB]], [[1904.05767|ObMan]], [[1904.03278|AMASS]]
+- [[2607.21309|ST-Block]], [[2603.17355|OnlineHMR]], [[2501.09782|SMPLest-X]], [[2401.08570|RoHM]], [[2312.07531|WHAM]], [[2312.05251|HaMeR]], [[2309.17448|SMPLer-X]], [[2308.12969|ROAM]], [[2212.10621|CHAIRS]], [[2012.00924|CPF]], [[2008.11200|GRAB]], [[1904.05767|ObMan]], [[1904.03278|AMASS]], [[1806.07889|iMapper]], [[1803.08319|THOPA-net]], [[1712.03453|MuPoTS-3D]]
 
 > [!star] Key Papers
 > - [[2312.07531|WHAM]] — Reconstructs world-grounded human motion from video with accurate global trajectory, not just root-relative pose
