@@ -17,6 +17,7 @@ study
 # Personal scratch
 TODO.md
 PROMPT.md
+NOTE*.md
 
 # Graphify-out: commit the graph data, exclude per-machine pointers + transients
 .graphifyignore
