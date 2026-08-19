@@ -235,4 +235,4 @@ tags:
 - 通俗版：[[__ELI5-ZH__/Whole-Body-ELI5|ELI5]]
 - 同级能力轴：[[Locomotion]]、[[Manipulation]]
 - 底座交叉引用：[[WAM]]、[[Sim2Real]]
-- 总纲：[[Embodied-AI]] · [[Focus-Direction]]
+- 总纲：[[Embodied-AI]]

@@ -583,24 +583,29 @@ Diagnostics that target the *low-level skill* and *high-level reasoning* axes �
 - **[[2409.18330|DMC-VB]]** — A large-scale ==offline-RL visual-distractor benchmark== (locomotion + 3D navigation) testing whether pretrained representations survive static/dynamic distractors; off-the-shelf pretraining does **not** help, though it helps when expert data is scarce (**1%**), revealing a persistent pixel-vs-state gap.
 - **[[2307.10224|RL-ViGen]]** — A visual-RL ==generalization benchmark== of **5** task categories × **5** OOD axes (appearance, lighting, camera, scene structure, cross-embodiment) over 8 algorithms; all collapse on novel scene structures, PIE-G (ImageNet priors) leads on appearance/lighting and SGQN on camera-view — exposes which OOD axis each algorithm fails.
 
-#### 5.2 Capability-Disentangling & Memory Probes
+#### 5.2 Capability-Disentangling Diagnostics
 
-Diagnostics that decompose a single "success rate" into ==capability axes== (planning vs perception vs memory) — answer the question *which* part of the policy stack is failing.
+Diagnostics that decompose a single "success rate" into ==capability axes== (planning vs perception vs failure-handling) — answer the question *which* part of the policy stack is failing.
 
 - **[[2608.08036|RoboGraph]]** — **RoboGraphBench**: **84** auto-generated tabletop/indoor scenes scored by a ==task-state horizon== (maintenance/exploration/update) metric suite over executable scene-graph compilers with ==event-driven exogenous change==; GPT-5.5 leads at **78.4%/82.5%** SR while open models collapse (Qwen3-VL-32B **9.3%**, RoboBrain2.0-7B **0%**).
 - **[[2607.11570|ERR@HRI 3.0]]** — A multimodal HRI-error benchmark shipping two crowdsourced webcam-video datasets, ==Bystander Affect Detection (BAD)== for reactive and ==Bad Idea== for anticipatory prediction; BadNet CNN baseline reaches **0.502** Macro F1 (Track 1), fine-tuned ResNet-34 **0.564** AUC-ROC (Track 2), all 3 competing teams beat both baselines.
 - **[[2607.04610|RoboVista]]** — An expert-annotated ==Robot Question Answering (RQA)== benchmark decomposing VLM decisions into perception/planning/motion/failure-recovery layers across **39** robot tasks / **6** domains; best VLM (Gemini 2.5 Pro) hits **56.5%** accuracy, correlating with real-robot task success (Pearson **r=-0.70 to -0.93**).
 - **[[2606.29937|REPAIR-Bench]]** — An HRI benchmark on the RFM-HRI dataset decomposing robot-failure handling into detection / multi-class classification / recovery-strategy prediction; hierarchical HRNN hits **0.80** F1 detection, QLoRA-tuned Mistral-7B reaches **0.76** Hit@5 recovery.
 - **[[2510.08759|Embodied-Skill-Eval]]** — A skill-level diagnostic benchmark (==BEAR==) of **4,469** image-video-text entries across ==14 atomic skills / 6 categories== with horizontal/vertical/cross-skill failure attribution; most MLLMs score **20–40%** and GPT-5 only **52%** (vs **89.4%** human), **54.8%** of errors perceptual; ==BEAR-AGENT== lifts GPT-5 **+9.12%**, real grasping **+23.4%**.
+- **[[2602.22663|CEBench]]** — A ==cross-embodiment practicality benchmark== (single-arm / bimanual / mobile-bimanual, sim + real, ==domain randomization==) + ==LLaVA-VLA== (0.5B, pre-training-free, ==hybrid direction+value action space==); LLaVA-VLA **50.6%** on CALVIN 5/5 beating OpenVLA-7B, **30.7%** real DR bimanual, first end-to-end VLA at real mobile manipulation.
+- **[[2502.09560|EmbodiedBench]]** — A benchmark of **1,128 tasks** across **4** environments (ALFRED, [Habitat](https://aihabitat.org), Nav, Manipulation) × **6** capabilities (commonsense, instructions, spatial, perception, planning, basic); GPT-4o scores **>60%** on high-level planning but only **28.9%** on low-level manipulation, and removing vision drops Nav **57.7% → 17.4%**.
+
+#### 5.3 Memory-Specific Benchmarks
+
+Diagnostics purpose-built to isolate *memory* as the failure axis — non-Markovian tasks where the policy must recall, retrieve, or track state no longer in view, scored against memory-free or full-history baselines to prove the axis is real.
+
 - **[[2605.10921|RoboMemArena]]** — The first comprehensive robotic-memory benchmark; **26 sim + 5 real** tasks where **68.9%** of subtasks require historical information; ==PrediMem== (predictive-coding VLA with hierarchical memory) hits **38.5%** TSR vs MemER's **27.3%** — the dedicated memory-failure-axis diagnostic.
 - **[[2603.09513|VQ-Memory]]** — A ==RuleSafe== non-Markovian long-horizon articulated-unlocking benchmark (LLM-aided SAPIEN) + a model-agnostic ==VQ-VAE memory== over proprioceptive history with K-means codebook clustering; lifts avg SR across 20 tasks **25.0% → 56.3%** (**+31.3%**), DP3 **5.0% → 45.0%**, π0 **0.0% → 45.0%** on rule 020.
 - **[[2603.04639|RoboMME]]** — A ==cognitively-motivated memory benchmark== over **16** long-horizon tasks split into ==temporal / spatial / object / procedural memory==; **1,600** demos / **770K** timesteps on ManiSkill, **14** memory-augmented π0.5 variants — perceptual memory wins at **44.51%** SR, oracle-symbolic **84.08%** vs **90.5%** human; decomposes which memory each lacks.
 - **[[2603.01229|RMBench]]** — A memory-dependent dual-arm benchmark of **9** tasks graded by a ==Task Memory Complexity== metric + the ==Mem-0== modular memory policy (key/anchor/sliding memory); Mem-0 reaches **52.8%** on M(1) (**+38.4%**) and **28.5%** on M(n) (**+21.2%**), real-world **22.50%** vs ACT **0.0%** / Pi0.5 **5.83%**.
-- **[[2602.22663|CEBench]]** — A ==cross-embodiment practicality benchmark== (single-arm / bimanual / mobile-bimanual, sim + real, ==domain randomization==) + ==LLaVA-VLA== (0.5B, pre-training-free, ==hybrid direction+value action space==); LLaVA-VLA **50.6%** on CALVIN 5/5 beating OpenVLA-7B, **30.7%** real DR bimanual, first end-to-end VLA at real mobile manipulation.
 - **[[2502.10550|MIKASA]]** — A memory-RL benchmark unifying Object/Spatial/Sequential/Capacity tasks: ==MIKASA-Robo== adds **32** memory-intensive ManiSkill3 tasks; PPO-MLP with full state hits **100%** but PPO-LSTM/SAC/TD-MPC2 collapse to near-zero on 5–9-item memory tasks, and a real π0.5 gets **10%** on long-horizon occlusion — isolating memory as the limiting factor.
-- **[[2502.09560|EmbodiedBench]]** — A benchmark of **1,128 tasks** across **4** environments (ALFRED, [Habitat](https://aihabitat.org), Nav, Manipulation) × **6** capabilities (commonsense, instructions, spatial, perception, planning, basic); GPT-4o scores **>60%** on high-level planning but only **28.9%** on low-level manipulation, and removing vision drops Nav **57.7% → 17.4%**.
 
-#### 5.3 LIBERO-Family Robustness Suite
+#### 5.4 LIBERO-Family Robustness Suite
 
 The same parent benchmark ([[2306.03310|LIBERO]]) re-released along distinct perturbation axes — each child exposes a *different* over-fit / brittleness mode that the standard suite hides.
 
@@ -609,7 +614,7 @@ The same parent benchmark ([[2306.03310|LIBERO]]) re-released along distinct per
 - **[[2602.06556|LIBERO-X]]** — A benchmark of **600** tasks / **100** scenes with a ==5-level protocol== perturbing layout / object properties / instruction semantics; VLAs hit only **39.4%** at Level 1 and decline **31.2%** by Level 5 (near-zero on 3+ step tasks) — massive unsolved cross-task gap.
 - **[[2603.28301|LIBERO-Para]]** — A meaning-preserving paraphrase suite on LIBERO-Goal scored by the ==PRIDE== difficulty-aware metric; across **7** VLA configs (0.6B–7.5B) SR drops **22.8–51.9pp**, PRIDE runs **8.4–22.0%** below raw SR, and **79.5–95.5%** of failures are planning-level — models overfit to exact instruction phrasing.
 
-#### 5.4 VLA Robustness & Adversarial Benchmarks
+#### 5.5 VLA Robustness & Adversarial Benchmarks
 
 Distinct from the LIBERO-family's *passive* perturbation children, this tier *actively* searches for failures — adversarial/backdoor attacks, metamorphic relations, optimized worst-case physical variations, and automated test-and-evaluation infrastructure. The shared finding: VLAs that pass standard suites harbor exploitable failure surfaces that only adversarial search reveals.
 
@@ -622,7 +627,7 @@ Distinct from the LIBERO-family's *passive* perturbation children, this tier *ac
 - **[[2509.18953|Eva-VLA]]** — A ==gradient-free black-box robustness search== (CMA-ES over ==3D rotations==, ==point-light illumination==, ==natural adversarial patches==) with a cosine-action-similarity objective; drives OpenVLA/UniVLA failure rates **4.0–23.5% → >80%**, adversarial examples retrain π0.5 to **85.8% → 56.8%** 3D-transform failure.
 - **[[2503.08663|ASIMOVBenchmark]]** — A multimodal ==semantic safety== benchmark built from text/image generation + real injury data, paired with an automated ==robot constitution== generation + ==auto-amending== refinement framework; foundation models show strong base capability but large alignment gaps, auto-amending sharply lifts alignment rate and adversarial resistance.
 
-#### 5.5 Open-Ended Game-Agent Evaluation
+#### 5.6 Open-Ended Game-Agent Evaluation
 
 Open-ended game worlds (Minecraft) are an embodied substrate with no single success signal — these evaluate *generalist* agents over thousands of configurable tasks, pairing large vision-speech-action data collection with scalable VLM-based scoring.
 
@@ -630,7 +635,7 @@ Open-ended game worlds (Minecraft) are an embodied substrate with no single succ
 - **[[2505.12707|PLAICraft]]** — A large-scale time-aligned ==vision-speech-action== dataset + AWS collection platform recording **>10,000** players in a persistent multiplayer Minecraft world, capturing **5** modalities (video, two audio, mouse, keyboard) at millisecond precision over **>10,000 hours**; ships a ==Cattell-Horn-Carroll== suite probing reasoning, memory, and communication.
 - **[[2310.08367|MCU]]** — A Minecraft evaluation framework of **3,452** atomic tasks across **11** categories ==LLM-configured== for intra/inter-task diversity, with ==AutoEval== a ==VLM-based multi-dimensional== judge over video trajectories; AutoEval hits **84.0%** F1 / **91.5%** human agreement at **8.1×** lower cost, exposing foundation-agent collapse on compositional tasks.
 
-#### 5.6 IL-Diversity, Safe-RL & Control-Robustness Suites
+#### 5.7 IL-Diversity, Safe-RL & Control-Robustness Suites
 
 Classic control-theoretic evaluation suites — orthogonal to the VLA-centric diagnostics above. These probe *behavioral-diversity capture* in imitation learning, *constraint satisfaction* in safe RL, and *disturbance-rejection margins* in adaptive control, each on a MuJoCo / Gymnasium / RotorPy substrate with its own quantitative metric beyond binary success rate.
 
@@ -639,7 +644,7 @@ Classic control-theoretic evaluation suites — orthogonal to the VLA-centric di
 - **[[2402.14606|Diverse-Behaviors-Benchmark-Imitation]]** — A behavioral-diversity imitation-learning benchmark of **5** MuJoCo manipulation tasks with multiple human demonstrators, scored by novel ==Behavior Entropy== + Conditional Behavior Entropy metrics; transformer-diffusion policies (DDPM-GPT **+21%** over DDPM-MLP, BESO **43%** SR at **10%** data) best capture multi-modal behavior.
 - **[[2310.12567|Safety-Gymnasium]]** — A unified safe-reinforcement-learning benchmark suite on ==Gymnasium + MuJoCo== (single-agent, multi-agent, vision-only, Isaac Gym tasks) with explicit safety constraints, shipping the ==SafePO== library of **16** SafeRL baselines; PPO-Lag achieves **98%** cost reduction on velocity tasks, exposing the reward-vs-safety trade-off.
 
-#### 5.7 Agentic & Tool-Use Capability Benchmarks
+#### 5.8 Agentic & Tool-Use Capability Benchmarks
 
 MLLM-agent benchmarks that decompose *embodied agentic competence* — tool-need recognition/selection/execution, proactive trigger/task/step detection — into sub-capability axes and expose which rung of the decision hierarchy fails, distinct from the policy-level diagnostics above.
 

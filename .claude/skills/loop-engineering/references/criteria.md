@@ -114,9 +114,9 @@ const passed = median(scores) >= criterion.bar
 
 This walks the loop over one deliverable to show the *shape* of each stage. It is not an answer key. When you run the loop on this same plan, derive the criteria from the artifact as it stands that day, since the plan and the literature move; do not lift the set below.
 
-The ask: "make the Focus-Direction research plan and methodology solid."
+The ask: "make this research plan's methodology solid."
 
-**Discover.** The plan lives in two files, a lean `Focus-Direction-Research-Plan.md` and a `-detailed.md`, and its section 7 already carries pre-registered quantitative gates (margins in percentage points, named statistical tests, void conditions). Its abstract records that one adversarial review was already folded in. So the bar is not "add rigor from nothing", it is "does every part of the methodology meet the standard the strongest parts already set". That reading only comes from opening the files, which is why Discover precedes Plan.
+**Discover.** The plan lives in two files, a lean plan and a detailed plan, and its section 7 already carries pre-registered quantitative gates (margins in percentage points, named statistical tests, void conditions). Its abstract records that one adversarial review was already folded in. So the bar is not "add rigor from nothing", it is "does every part of the methodology meet the standard the strongest parts already set". That reading only comes from opening the files, which is why Discover precedes Plan.
 
 **Plan.** A strict criteria set for "solid methodology", each single-claim and stranger-checkable:
 

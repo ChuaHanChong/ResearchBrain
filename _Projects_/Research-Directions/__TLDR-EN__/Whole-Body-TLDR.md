@@ -234,4 +234,4 @@ tags:
 - Plain-language: [[__ELI5-EN__/Whole-Body-ELI5|ELI5]]
 - Sibling capability axes: [[Locomotion]], [[Manipulation]]
 - Substrate cross-refs: [[WAM]], [[Sim2Real]]
-- Umbrella: [[Embodied-AI]] · [[Focus-Direction]]
+- Umbrella: [[Embodied-AI]]

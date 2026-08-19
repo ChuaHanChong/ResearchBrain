@@ -29,18 +29,6 @@ A robot is a **path across the capability docs**, not a doc of its own. The huma
 
 Each `Capability/` doc carries this callout in its own Cross-References section.
 
-## Focus-Direction (applied output)
-
-Where the survey docs above narrow into one pitchable proposal:
-
-| File | Holds |
-|---|---|
-| `Focus-Direction.md` | the thesis — single integrated bet, drawn from across Mechanism/Capability |
-| `Focus-Direction-Research-Plan.md` | lean plan — one pass, no branching |
-| `Focus-Direction-Research-Plan-detailed.md` | detailed plan — same 12-section spine, full derivations |
-| `Focus-Direction-Brief.canvas` | professor-facing pitch — problem, discovery funnel, method foils vs solution refs, mind-map |
-| `Focus-Direction-Paper-Code-Index.md` | reference appendix — every cited paper's repo/PDF/clone/index status |
-
 ## Conventions
 
 - **Links resolve by basename** (Obsidian shortest-path) — `[[WAM]]`, `[[Manipulation]]`, `[[Embodied-AI]]` — so the folder a doc lives in doesn't matter for linking.

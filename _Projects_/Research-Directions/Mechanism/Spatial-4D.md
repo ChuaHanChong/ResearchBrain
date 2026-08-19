@@ -1145,15 +1145,11 @@ The central object is an **explicit geometric state** $G_t$ — a representation
 
 ## Cross-References
 
-> [!tip] Focus-Direction tie-in
-> The coupling term $M_{\text{base,arm}}$ in [[Focus-Direction|Focus-Direction]] is irreducibly geometric. **A1 (point-cloud-native action heads) plugs into [[Focus-Direction|Focus-Direction]] under WB-A1's representation layer, and is the policy-side twin of WAM-A2's wrench imagination** — an explicit-geometry representation enabler under the anchor, not a 5th corner. A1 supplies the metric-3D state on which the explicit coupling head operates; the direction's four corners (WB-A1 anchor / WAM-A2 predict / Sim2Real-B2 ground / EAI-B1 verify) are unchanged.
-
 **Sibling research-direction docs:**
 - [[WAM|WAM]] — the WAM-machinery sibling. WAM owns the machinery (latent/architecture substrate, training, grounding); [[2604.26694|X-WAM]]'s natively-4D imagination (folded into C1 as its latent-4D comparator) and C3 ([[2603.17117|MosaicMem]], [[2603.24576|Chameleon-Episodic-Memory]] geometric memory) are the *representations* any policy reuses. Cluster C's explicit-vs-latent split sits *inside C1's card*, not across the WAM boundary.
 - [[Sim2Real|Sim2Real]] — A1/B1 ([[2604.25459|GS-Playground]] 90% real SR, [[2511.04665|Real-to-Sim-GS]] r=0.915) own the *transfer-gap* face of 3DGS reconstruction; this doc's D1 owns the *interaction-readiness* face. Cross-reference, never re-own.
 - [[Embodied-AI|Embodied-AI]] — the umbrella; cross-cutting joint-evaluation and cross-embodiment directions live there.
-- [[Whole-Body|Whole-Body]] — WB-A1's coupled-dynamics action model consumes A1's geometric representation (see Focus-Direction tie-in).
-- [[Focus-Direction|Focus-Direction]] — the four-corner focused direction A1 plugs into under WB-A1's representation layer.
+- [[Whole-Body|Whole-Body]] — WB-A1's coupled-dynamics action model consumes A1's geometric representation.
 
 **Deep-dives:**
 - [[../Embodied-AI/07_Latent-World-Models|07_Latent-World-Models]] — the latent-vs-explicit substrate debate Cluster C extends to the explicit-geometry side.

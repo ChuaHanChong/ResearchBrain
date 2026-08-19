@@ -72,12 +72,13 @@ aliases:
 - **[[02_Dataset-Benchmark-Environment#Part D — Benchmarks|Part D — Benchmarks]]**
   - [[02_Dataset-Benchmark-Environment#5. Diagnostic & Evaluation Datasets|5. Diagnostic & Evaluation Datasets]]  *([[02_Dataset-Benchmark-Environment#^dm-5|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-5|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-5|Insight]])*
     - [[02_Dataset-Benchmark-Environment#5.1 Precision & Reasoning Probes|5.1 Precision & Reasoning Probes]]
-    - [[02_Dataset-Benchmark-Environment#5.2 Capability-Disentangling & Memory Probes|5.2 Capability-Disentangling & Memory Probes]]
-    - [[02_Dataset-Benchmark-Environment#5.3 LIBERO-Family Robustness Suite|5.3 LIBERO-Family Robustness Suite]]
-    - [[02_Dataset-Benchmark-Environment#5.4 VLA Robustness & Adversarial Benchmarks|5.4 VLA Robustness & Adversarial Benchmarks]]
-    - [[02_Dataset-Benchmark-Environment#5.5 Open-Ended Game-Agent Evaluation|5.5 Open-Ended Game-Agent Evaluation]]
-    - [[02_Dataset-Benchmark-Environment#5.6 IL-Diversity, Safe-RL & Control-Robustness Suites|5.6 IL-Diversity, Safe-RL & Control-Robustness Suites]]
-    - [[02_Dataset-Benchmark-Environment#5.7 Agentic & Tool-Use Capability Benchmarks|5.7 Agentic & Tool-Use Capability Benchmarks]]
+    - [[02_Dataset-Benchmark-Environment#5.2 Capability-Disentangling Diagnostics|5.2 Capability-Disentangling Diagnostics]]
+    - [[02_Dataset-Benchmark-Environment#5.3 Memory-Specific Benchmarks|5.3 Memory-Specific Benchmarks]]
+    - [[02_Dataset-Benchmark-Environment#5.4 LIBERO-Family Robustness Suite|5.4 LIBERO-Family Robustness Suite]]
+    - [[02_Dataset-Benchmark-Environment#5.5 VLA Robustness & Adversarial Benchmarks|5.5 VLA Robustness & Adversarial Benchmarks]]
+    - [[02_Dataset-Benchmark-Environment#5.6 Open-Ended Game-Agent Evaluation|5.6 Open-Ended Game-Agent Evaluation]]
+    - [[02_Dataset-Benchmark-Environment#5.7 IL-Diversity, Safe-RL & Control-Robustness Suites|5.7 IL-Diversity, Safe-RL & Control-Robustness Suites]]
+    - [[02_Dataset-Benchmark-Environment#5.8 Agentic & Tool-Use Capability Benchmarks|5.8 Agentic & Tool-Use Capability Benchmarks]]
   - [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks|6. Tactile & Contact-Rich Benchmarks]]  *([[02_Dataset-Benchmark-Environment#^dm-6|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-6|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-6|Insight]])*
     - [[02_Dataset-Benchmark-Environment#6.1 Tactile Representation Benchmarks|6.1 Tactile Representation Benchmarks]]
     - [[02_Dataset-Benchmark-Environment#6.2 Tactile-Augmented Policy Benchmarks|6.2 Tactile-Augmented Policy Benchmarks]]
