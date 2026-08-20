@@ -186,7 +186,7 @@ The eight lanes divide on **what diffusion is being applied to**. **Image genera
 Dedicated architectures for high-quality image synthesis, editing, and multimodal generation that bridge pre-trained language models with visual output. These systems focus on the engineering challenge of getting LLMs to produce, modify, and control visual content.
 
 **Foundational & Classic Diffusion Architectures** — Canonical latent and transformer diffusion backbones for image and video synthesis, alongside the early wave of customization and control methods that first made pretrained T2I/T2V diffusion models steerable without full retraining, plus the training-data infrastructure that scaled large-scale T2I pretraining.
-- [[2608.05976|Diff-VF]], [[2607.08770|LongE2V]], [[2408.06072|CogVideoX]], [[2406.17758|MotionBooth]], [[2406.16863|FreeTraj]], [[2312.00777|VideoBooth]], [[2311.17982|VBench]], [[2310.20700|SEINE]], [[2308.06571|ModelScopeT2V]], [[2307.04725|AnimateDiff]], [[2307.01952|SDXL]], [[2306.01872|Video Adapter]], [[2304.01186|Follow-Your-Pose]], [[2212.11565|Tune-A-Video]], [[2212.09748|DiT]], [[2210.02303|Imagen Video]], [[2112.10752|Latent Diffusion Models]], [[2111.02114|LAION-400M]]
+- [[2608.05976|Diff-VF]], [[2607.08770|LongE2V]], [[2412.07730|STIV]], [[2408.06072|CogVideoX]], [[2406.17758|MotionBooth]], [[2406.16863|FreeTraj]], [[2312.00777|VideoBooth]], [[2311.17982|VBench]], [[2310.20700|SEINE]], [[2308.06571|ModelScopeT2V]], [[2307.04725|AnimateDiff]], [[2307.01952|SDXL]], [[2306.01872|Video Adapter]], [[2304.01186|Follow-Your-Pose]], [[2212.11565|Tune-A-Video]], [[2212.09748|DiT]], [[2210.02303|Imagen Video]], [[2112.10752|Latent Diffusion Models]], [[2111.02114|LAION-400M]]
 
 > [!star] Key Papers
 > - [[2112.10752|Latent Diffusion Models]] — Runs diffusion in a compressed autoencoder latent space instead of pixel space; the architecture behind Stable Diffusion and the efficiency backbone of nearly all modern T2I systems
@@ -206,11 +206,18 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 - [[2607.15038|Wan-Streamer v0.3]], [[2607.04443|Wan-Streamer v0.2]], [[2605.04128|JoyAI-Image]], [[2602.21435|AD-Loop]], [[2602.12205|DeepGen-1.0]], [[2602.05449|DisCa]], [[2510.26583|Emu3.5]], [[2510.08673|Puffin]], [[2503.20314|Wan]], [[2503.13436|UniFluid]], [[2501.08316|APT]], [[2412.14164|MetaMorph]], [[2409.04429|VILA-U]], [[2407.06135|ANOLE]], [[2404.14396|SEED-X]], [[2312.13286|Emu2]], [[2309.05519|NExT-GPT]]
 
 **Text-to-Motion Generation** — Diffusion and contrastive methods for synthesizing and retrieving 3D human motions from natural language, including LLM-planned + physics-aware refinement pipelines.
-- [[2607.08741|ARDY]], [[2607.05938|Prior-First, Condition-Second]], [[2606.26981|ICMPG]], [[2606.18243|MOCHI]], [[2604.24833|MotionBricks]], [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.19305|PhyGile]], [[2603.15546|Kimodo]], [[2510.14427|Compositional-Phase-Diffusion]], [[2401.08570|RoHM]], [[2306.00416|A-MDM]], [[2305.00976|TMR]], [[2209.14916|MDM]]
+- [[2607.08741|ARDY]], [[2607.05938|Prior-First, Condition-Second]], [[2606.26981|ICMPG]], [[2606.18243|MOCHI]], [[2605.30969|OmniME]], [[2604.24833|MotionBricks]], [[2604.17807|Re2MoGen]], [[2604.10836|HO-Flow]], [[2603.19305|PhyGile]], [[2603.15546|Kimodo]], [[2510.14427|Compositional-Phase-Diffusion]], [[2509.03883|HMVG Survey]], [[2507.05419|Motion Generation Survey 2025]], [[2506.03191|AR-LLM Motion Generation Survey]], [[2505.09379|Text-driven Motion Generation Survey]], [[2410.10790|Sitcom-Crafter]], [[2408.17135|TIMotion]], [[2405.18700|MCLD]], [[2405.18483|Open-Domain Multi-Person Motion Synthesis]], [[2405.18438|GHOST]], [[2405.15763|FreeMotion]], [[2405.07784|Scene-Aware Text-to-Motion]], [[2404.09988|in2IN]], [[2404.04890|S2Fusion]], [[2401.08570|RoHM]], [[2306.00416|A-MDM]], [[2305.00976|TMR]], [[2209.14916|MDM]]
 
 > [!star] Key Papers
 > - [[2604.17807|Re2MoGen]] — MCTS-enhanced LLM keyframe planning + diffusion completion + PPO physics refinement; SOTA open-vocabulary T2M with 2.46 mm float error
 > - [[2401.08570|RoHM]] — Denoising-diffusion robust human motion reconstruction that jointly fills occlusion gaps and denoises noisy pose estimates
+
+**Human Interaction & Multi-Person Motion Generation** — Generative and survey work specifically on human-human, human-object, and human-scene interaction, from social group motion to dyadic dance and interaction-aware video synthesis.
+- [[2512.19692|Interact2Ar]], [[2512.09646|VHOI]], [[2506.18680|DuetGen]], [[2503.22906|SocialGen]], [[2503.16289|SceneMI]], [[2503.13120|3D Human Interaction Generation Survey]], [[2503.12763|Human Interaction Motion Generation Survey]]
+
+> [!star] Key Papers
+> - [[2512.19692|Interact2Ar]] — First end-to-end text-conditioned autoregressive diffusion model for full-body human-human interaction, generating hand motion jointly with body via a cooperative multi-head denoiser
+> - [[2503.12763|Human Interaction Motion Generation Survey]] — First comprehensive review unifying human-human, human-object, human-scene, and human-mix interaction under one taxonomy across 110+ methods and 68 datasets
 
 **Physics-Based & RL Character Control** — RL-driven physically-simulated character control via distilled universal motion priors, adversarial latent skill embeddings, or language-directed control; the pre-diffusion generation of generative character-animation methods that A-MDM and RoHM later extended with denoising diffusion.
 - [[2310.04582|PULSE]], [[2308.12969|ROAM]], [[2305.02195|CALM]], [[2302.00883|Physical Character-Scene Interactions]], [[2301.13868|PADL]]
@@ -227,7 +234,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 - [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04746|Think-in-Strokes]], [[2604.00849|DisCo-Image]], [[2604.00530|AceTone]], [[2505.18600|CoZ]], [[2403.19103|PRISM]]
 
 **Diffusion-Based Image/Video Editing, Control & Benchmarks** — Diffusion-native editing, spatial-control, and privacy/domain-transfer methods for image and video content, plus benchmarks for spatial and compositional generation.
-- [[2607.10873|X-GuideAR]], [[2607.08402|Pedestrian Privacy Pipeline]], [[2606.00351|UniVerse]], [[2605.07429|MagicBokeh]], [[2605.02757|VideoTransfer-VLA]], [[2604.04911|SpatialEdit]], [[2604.02296|VOID]], [[2602.19083|ChordEdit]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2512.01236|PSR-Image-Gen]], [[2509.21953|MultiCrafter]], [[2508.20561|SimShear]], [[2503.19012|DiffV2IR]], [[2408.06506|TacSL]], [[2206.01714|Composed Diffusion]]
+- [[2607.10873|X-GuideAR]], [[2607.08402|Pedestrian Privacy Pipeline]], [[2606.00351|UniVerse]], [[2605.07429|MagicBokeh]], [[2605.02757|VideoTransfer-VLA]], [[2604.04911|SpatialEdit]], [[2604.02296|VOID]], [[2602.19083|ChordEdit]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2512.01236|PSR-Image-Gen]], [[2509.21953|MultiCrafter]], [[2508.20561|SimShear]], [[2503.19012|DiffV2IR]], [[2410.13911|GraspDiffusion]], [[2408.06506|TacSL]], [[2206.01714|Composed Diffusion]]
 
 > [!star] Key Papers
 > - [[2601.02356|Talk2Move]] — RL-based text-instructed geometric transformations with spatially grounded rewards
@@ -424,7 +431,7 @@ A new paradigm: generative models that "think before they draw." Instead of gene
 > - [[2503.10639|GoT]] — Integrates MLLM reasoning into visual generation and editing via a unified framework
 
 **Visual Reasoning with Generated Images** — Use generated images as intermediate reasoning artifacts, enabling models to "think" in visual space rather than text.
-- [[2607.21072|ProVisE]], [[2607.15278|HDR]], [[2607.14187|RxBrain]], [[2607.12800|UniVR]], [[2603.16870|Video-Reasoning-Chain-of-Steps]], [[2602.10675|TwiFF]], [[2601.21037|Thinking-in-Frames]], [[2505.22525|TwGI]], [[2505.19094|SATORI]]
+- [[2607.21072|ProVisE]], [[2607.15278|HDR]], [[2607.14187|RxBrain]], [[2607.12800|UniVR]], [[2603.16870|Video-Reasoning-Chain-of-Steps]], [[2602.10675|TwiFF]], [[2601.21037|Thinking-in-Frames]], [[2509.20328|Chain-of-Frames]], [[2505.22525|TwGI]], [[2505.19094|SATORI]]
 
 > [!star] Key Papers
 > - [[2505.22525|TwGI]] — Models generate images as intermediate reasoning steps; proves visual thinking complements textual CoT
@@ -535,7 +542,7 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2603.19235|VEGA-3D]] — Extracts implicit 3D geometric cues from video diffusion for spatial understanding in MLLMs
 
 **3D Object & Asset Generation** — Diffusion and Gaussian-splatting/NeRF methods that generate or reconstruct individual 3D objects and assets, plus benchmarks for 3D generation quality.
-- [[2607.16805|Scene-SAM3D]], [[2607.05373|PixWorld]], [[2607.01803|PixGS]], [[2603.22275|GLD]], [[2603.18524|3DreamBooth]], [[2602.15727|LoRWeB]], [[2510.08575|ReSplat]], [[2503.21745|3DGen-Bench]], [[2503.14489|SEVA]], [[2501.12202|Hunyuan3D]], [[2406.04316|Omni6DPose]], [[2209.14988|DreamFusion]]
+- [[2607.16805|Scene-SAM3D]], [[2607.05373|PixWorld]], [[2607.01803|PixGS]], [[2603.22275|GLD]], [[2603.18524|3DreamBooth]], [[2602.15727|LoRWeB]], [[2510.08575|ReSplat]], [[2503.21745|3DGen-Bench]], [[2503.14489|SEVA]], [[2501.12202|Hunyuan3D]], [[2412.01506|TRELLIS]], [[2406.04316|Omni6DPose]], [[2404.07191|InstantMesh]], [[2209.14988|DreamFusion]]
 
 > [!tip] Diffusion Beyond Images
 > The same denoising framework that generates images also generates robot actions (Diffusion Policy), plans trajectories (Diffuser), and simulates physics (DexWM). If your problem involves generating structured sequences with multimodal distributions, diffusion is likely the right tool.
@@ -642,7 +649,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 > - [[2311.12631|GPT4Motion]] — GPT-4 plans Blender scenes that drive ControlNet-guided text-to-video; one of the earliest LLM+simulator+diffusion stacks for physically-grounded video
 
 **LLM-Driven Physics Reasoning** — LLMs acting as reasoning engines to derive physical equations, force fields, or simulation parameters that drive downstream generators.
-- [[2608.09296|CADEngBench]], [[2608.08053|Structured Physical CoT]], [[2603.09094|CoECT]], [[2601.05848|Goal-Force]], [[2512.04221|MoReGen]], [[2507.06830|Physics-Grounded-Motion-Forecasting]], [[2505.05469|LegoGPT]], [[2503.20654|AccidentSim]], [[2502.19868|C-Drag]], [[2411.08027|LLMPhy]], [[2309.17444|LVD]]
+- [[2608.09296|CADEngBench]], [[2608.08053|Structured Physical CoT]], [[2605.18396|NEWTON]], [[2603.09094|CoECT]], [[2601.05848|Goal-Force]], [[2512.04221|MoReGen]], [[2507.06830|Physics-Grounded-Motion-Forecasting]], [[2505.05469|LegoGPT]], [[2503.20654|AccidentSim]], [[2502.19868|C-Drag]], [[2411.08027|LLMPhy]], [[2309.17444|LVD]]
 
 > [!star] Key Papers
 > - [[2505.05469|LegoGPT]] — LLM-driven physically-stable LEGO assembly generation; the LLM proposes brick layouts that are then verified for structural physics

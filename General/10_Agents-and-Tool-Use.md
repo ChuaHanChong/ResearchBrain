@@ -266,7 +266,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 > - [[2503.23383|ToRL]] — Scaling tool-integrated RL: trains LLMs to autonomously learn when and how to use tools
 
 **Agentic Tool Integration Frameworks** — Unified frameworks that combine reasoning, tool invocation, and multi-step planning into coherent agent architectures.
-- [[2605.28828|Micro-Macro-Retrieval]], [[2603.23483|SpecEyes]], [[2602.22225|SmartChunk]], [[2512.20745|AgentMath]], [[2512.17312|CodeDance]], [[2511.07328|Q-RAG]], [[2510.27566|Interact-RAG]], [[2510.06217|TaTToo]], [[2510.05592|AgentFlow]], [[2509.07969|Mini-o3]], [[2508.12109|Simple-o3]], [[2507.05707|Agentic-R1]], [[2506.15692|MLE-STAR]], [[2506.14728|AgentDistill]], [[2506.12115|Cognitive-Tools]], [[2505.07233|DynamicRAG]], [[2505.05177|MARK]], [[2505.01441|ARTIST]], [[2504.21776|WebThinker]], [[2402.01030|CodeAct]]
+- [[2608.13560|AutoDesign]], [[2605.28828|Micro-Macro-Retrieval]], [[2603.23483|SpecEyes]], [[2602.22225|SmartChunk]], [[2512.20745|AgentMath]], [[2512.17312|CodeDance]], [[2511.07328|Q-RAG]], [[2510.27566|Interact-RAG]], [[2510.06217|TaTToo]], [[2510.05592|AgentFlow]], [[2509.07969|Mini-o3]], [[2508.12109|Simple-o3]], [[2507.05707|Agentic-R1]], [[2506.15692|MLE-STAR]], [[2506.14728|AgentDistill]], [[2506.12115|Cognitive-Tools]], [[2505.07233|DynamicRAG]], [[2505.05177|MARK]], [[2505.01441|ARTIST]], [[2504.21776|WebThinker]], [[2402.01030|CodeAct]]
 
 > [!star] Key Papers
 > - [[2505.01441|ARTIST]] — Microsoft Research unifies agentic reasoning, dynamic tool integration, and RL training in a single framework
@@ -295,7 +295,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 Agents trained via reinforcement learning for multi-turn interactions with environments, moving beyond single-call tool use to sustained, stateful task execution across many steps.
 
 **Multi-Turn Policy-Optimization Algorithms (GRPO Variants & Credit Assignment)** — GRPO-family and related algorithmic variants that tackle credit assignment and turn-level optimization in multi-turn agent RL.
-- [[2608.05987|AgentOPSD]], [[2607.07508|SAO]], [[2607.05804|TurnOPD]], [[2607.05339|TREK]], [[2607.04763|ReOPD]], [[2605.10899|RubricEM]], [[2602.22817|HGPO]], [[2512.16848|LAMER]], [[2510.20150|Rank-GRPO]], [[2510.14967|IGPO-Info-Gain]], [[2509.21240|Tree-GRPO]], [[2505.10978|GiGPO]]
+- [[2608.16072|SA-MRPO]], [[2608.05987|AgentOPSD]], [[2607.07508|SAO]], [[2607.05804|TurnOPD]], [[2607.05339|TREK]], [[2607.04763|ReOPD]], [[2605.10899|RubricEM]], [[2602.22817|HGPO]], [[2512.16848|LAMER]], [[2510.20150|Rank-GRPO]], [[2510.14967|IGPO-Info-Gain]], [[2509.21240|Tree-GRPO]], [[2505.10978|GiGPO]]
 
 **Reward Design, Exploration, Environments & Evaluation for Multi-Turn Agents** — Reward shaping, exploration strategies, training environments, and diagnostic evaluation for sustained multi-turn agent-environment interaction.
 - [[2602.02196|TIDE]], [[2511.07327|IterResearch]], [[2510.10197|Environment-Tuning]], [[2509.19199|iStar]], [[2509.08755|AgentGym-RL]], [[2507.17842|Shop-R1]], [[2506.00539|ARIA]], [[2504.20997|LLM-PSRL]], [[2504.16078|LLM-Greedy-Agents]], [[2504.03206|CURIO]], [[2408.10899|ARIO]]
@@ -383,7 +383,7 @@ Systems where multiple LLM agents collaborate, specialize, or compete. Multi-age
 Agents that accumulate experience over time, build persistent memory, and autonomously improve their own capabilities. This represents the frontier where agents become self-evolving systems.
 
 **Agent Memory Architectures & Systems** — Persistent episodic, semantic, and working-memory systems that let agents recall and reuse information across long or lifelong interactions.
-- [[2607.09759|ReflectWorld-MM]], [[2607.01988|Identity-Stable Consolidation]], [[2604.04503|MIA]], [[2604.01007|Omni-SimpleMem]], [[2603.29493|MemFactory]], [[2603.05218|KARL]], [[2512.20092|Memory-T1]], [[2512.13564|AI-Agent-Memory-Survey]], [[2509.23040|ReMemR1]], [[2506.15841|MEM1]]
+- [[2608.06663|Horizon Gap]], [[2607.09759|ReflectWorld-MM]], [[2607.01988|Identity-Stable Consolidation]], [[2604.04503|MIA]], [[2604.01007|Omni-SimpleMem]], [[2603.29493|MemFactory]], [[2603.05218|KARL]], [[2512.23343|Agent Memory Survey 2025]], [[2512.20092|Memory-T1]], [[2512.13564|AI-Agent-Memory-Survey]], [[2509.23040|ReMemR1]], [[2506.15841|MEM1]]
 
 **Skill Libraries, Discovery & Internalization** — Agents that maintain persistent, reusable skill repositories and discover or internalize new skills without retraining.
 - [[2607.08448|Harness VLA]], [[2607.00272|ASPIRE]], [[2606.29538|Resource2Skill]], [[2606.08671|SkillHone]], [[2604.02268|SKILL0]], [[2603.25723|Natural-Language-Agent-Harnesses]], [[2603.18743|Memento-Skills]], [[2603.12056|XSkill]], [[2305.16291|Voyager]]
@@ -432,7 +432,7 @@ Agents that process visual, spatial, and multi-sensory inputs alongside language
 - [[2608.03924|ETA]], [[2607.26148|Agentic Embodied Control]], [[2607.23784|ARCHITECT]], [[2607.18060|RoboHarness]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2607.11119|VIA]], [[2607.10350|ABot-AgentOS]], [[2607.05377|Cortex]], [[2607.04426|ACE-Brain-0.5]], [[2606.30632|GROW²]], [[2606.16295|VisualClaw]], [[2606.05395|VASO]], [[2604.20348|BiCICLe]], [[2510.21817|VITA-E]], [[2505.20424|ApBot]]
 
 **Embodied Simulation, World Engines & Foundational Benchmarks** — Simulated worlds, 3D scene engines, and benchmark environments underpinning embodied multimodal agent research.
-- [[2608.05248|WorldClaw]], [[2607.11377|PHILIA]], [[2607.07534|LingBot-World-Infinity]], [[2607.07459|EmbodiedGen V2]], [[2410.06237|BUMBLE]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]], [[1806.07011|VirtualHome]]
+- [[2608.15265|VibeWorlding]], [[2608.05248|WorldClaw]], [[2607.11377|PHILIA]], [[2607.07534|LingBot-World-Infinity]], [[2607.07459|EmbodiedGen V2]], [[2410.06237|BUMBLE]], [[2304.04321|ARNOLD]], [[2210.03094|VIMA]], [[1806.07011|VirtualHome]]
 
 **General Multimodal Vision-Agent Architectures** — Vision-language agents for non-embodiment tasks: image/video understanding, generalized visual search, and domain-specialized reasoning.
 - [[2607.15314|Cura 1T]], [[2602.17558|RetouchIQ]], [[2512.18745|InSight-o3]], [[2512.05111|ARM-Thinker]], [[2511.19524|VideoChat-M1]], [[2511.05271|DeepEyesV2]], [[2505.19486|VLMLight]]

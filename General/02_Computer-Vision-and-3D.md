@@ -448,7 +448,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 - [[2607.25448|RPV-V2]], [[2607.23743|Traversability-Aware Global Planner]], [[2607.21281|HGeo-TopoMap]], [[2607.13245|JITOMA]], [[2607.10879|BRO Scene Graph Prediction]], [[2607.08537|Whareformer]], [[2607.07885|TTC Obstacle Avoidance]], [[2607.05543|GEM-Occ]], [[2606.31919|MVP-Nav]], [[2606.30598|HOPformer]], [[2606.29786|OP3DSG]], [[2606.28592|E2-CARE]], [[2606.02551|AFUN]], [[2606.00637|GLAD]], [[2604.11302|3D-ALP]], [[2512.14692|O-Voxel]], [[2509.09594|ObjectReact]], [[2502.20606|CNABU]], [[2412.14480|GraphEQA]], [[2411.17735|3D-Mem]], [[2402.15487|RoboEXP]]
 
 **VLM-Grounded 3D Reasoning, Body Pose & Benchmarks** — Agentic/VLM-based spatial reasoning over 3D scenes, human/object 3D pose estimation, and dedicated benchmarks or datasets for 3D scene understanding.
-- [[2605.29563|ViewSuite]], [[2603.15386|RieMind]], [[2602.20363|3D-Aesthetic-Field]], [[2602.15989|SAM-3D-Body]], [[2602.12087|MetricMM]], [[2602.06037|GeoThinker]], [[2601.22231|PE-Spatial-Reasoning-Analysis]], [[2512.16811|GeoPredict]], [[2510.16714|SceneCOT]], [[2509.21420|QuadGPT]], [[2507.07781|SURPRISE3D]], [[2505.20279|VLM-3R]], [[2505.12448|SSR]], [[2410.08208|SPA]], [[1709.06158|Matterport3D]]
+- [[2605.29563|ViewSuite]], [[2603.15386|RieMind]], [[2602.20363|3D-Aesthetic-Field]], [[2602.15989|SAM-3D-Body]], [[2602.12087|MetricMM]], [[2602.06037|GeoThinker]], [[2601.22231|PE-Spatial-Reasoning-Analysis]], [[2512.16811|GeoPredict]], [[2510.16714|SceneCOT]], [[2509.21420|QuadGPT]], [[2507.07781|SURPRISE3D]], [[2505.20279|VLM-3R]], [[2505.12448|SSR]], [[2410.08208|SPA]], [[2407.12435|F-HOI]], [[1709.06158|Matterport3D]]
 
 **Multi-View, Cross-Frame & Omnidirectional Spatial Benchmarks** — Evaluate viewpoint- and perspective-taking spatial reasoning across multiple views, frames, or 360-degree observations.
 - [[2603.16506|VIEW2SPACE]], [[2601.14339|CityCube]], [[2512.23365|SpatialMosaic]], [[2510.11549|ODI-Bench]], [[2505.24257|DISJOINT-3DQA]], [[2505.21500|MVSM]], [[2505.17015|Multi-SpatialMLLM]], [[2505.11907|OSR-Bench]]
@@ -479,7 +479,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2603.16506|VIEW2SPACE]] — Benchmark for sparse multi-view spatial reasoning; +77% accuracy with grounded chain-of-thought
 
 **Implicit Neural Shape Representations** — Encode a 3D shape as a continuous function (signed/unsigned distance, or feature-space occupancy) over space rather than a discrete voxel/point/mesh, enabling arbitrary resolution and shape completion from partial input.
-- [[2509.00499|NeuralSVCD]], [[2010.13938|NDF]], [[2003.01456|IF-Nets]], [[1901.05103|DeepSDF]]
+- [[2509.00499|NeuralSVCD]], [[2010.13938|NDF]], [[2003.04618|ConvONet]], [[2003.01456|IF-Nets]], [[1901.05103|DeepSDF]]
 
 > [!star] Key Papers
 > - [[1901.05103|DeepSDF]] — Learns a continuous signed distance function via an auto-decoder; launched implicit neural shape representation
@@ -510,7 +510,7 @@ The frontier of perception: giving AI models true 3D spatial awareness. This cap
 > - [[2308.04079|3D Gaussian Splatting]] — Real-time explicit radiance field via differentiable 3D Gaussians; became the standard scene representation underlying GaussianProperty, PhysGaussian, and dozens of downstream reconstruction/physics methods
 
 **Human Body & Motion Reconstruction** — Recover 3D human pose, shape, hands, and motion from images, video, or other sensors (e.g. LiDAR), often world-grounded or diffusion-based for robustness to occlusion and noisy input.
-- [[2607.21309|ST-Block]], [[2603.17355|OnlineHMR]], [[2501.09782|SMPLest-X]], [[2401.08570|RoHM]], [[2312.07531|WHAM]], [[2312.05251|HaMeR]], [[2309.17448|SMPLer-X]], [[2308.12969|ROAM]], [[2212.10621|CHAIRS]], [[2012.00924|CPF]], [[2008.11200|GRAB]], [[1904.05767|ObMan]], [[1904.03278|AMASS]], [[1806.07889|iMapper]], [[1803.08319|THOPA-net]], [[1712.03453|MuPoTS-3D]]
+- [[2607.21309|ST-Block]], [[2607.15868|EgoExoMoCap]], [[2603.17355|OnlineHMR]], [[2501.09782|SMPLest-X]], [[2501.02973|HaWoR]], [[2409.12259|WiLoR]], [[2401.08570|RoHM]], [[2312.07531|WHAM]], [[2312.05251|HaMeR]], [[2309.17448|SMPLer-X]], [[2308.12969|ROAM]], [[2212.10621|CHAIRS]], [[2204.06950|BEHAVE]], [[2201.02610|MANO]], [[2111.12073|Multi-Range Transformers]], [[2012.00924|CPF]], [[2008.11200|GRAB]], [[1904.05866|SMPL-X]], [[1904.05767|ObMan]], [[1904.03278|AMASS]], [[1806.07889|iMapper]], [[1803.08319|THOPA-net]], [[1712.03453|MuPoTS-3D]]
 
 > [!star] Key Papers
 > - [[2312.07531|WHAM]] — Reconstructs world-grounded human motion from video with accurate global trajectory, not just root-relative pose

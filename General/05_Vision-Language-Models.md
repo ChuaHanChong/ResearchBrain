@@ -248,7 +248,7 @@ The foundational approach: learning shared vision-language embeddings from web-s
 Learning visual representations without labels through contrastive, masked, or joint-embedding objectives — the foundation for data-efficient downstream VLM tasks.
 
 **Contrastive & Joint-Embedding SSL** — Methods that align representations across augmented views or modalities without reconstruction.
-- [[2607.00784|LeVLJEPA]], [[2606.02735|S2-VLA]], [[2605.23895|BrainCause]], [[2604.18267|MARCO]], [[2602.11241|Active-Zero]], [[2602.02381|AdaSSL]], [[2507.09961|TDCRL]], [[2506.23156|Multi-Label-Contrastive-SSL]], [[2506.07413|VarCon]], [[2506.04411|DCL-Neural-Collapse-Theory]], [[2505.22196|Aug-Aware-SSL-Theory]], [[2505.21533|SOP]], [[2505.11815|UniMoCo]], [[2504.16929|I-Con]], [[2502.02202|MLCL]], [[2406.17768|EXTRACT]], [[2405.07060|Memory-Maze]], [[2105.04553|MoBY]], [[2104.02057|MoCo-v3]]
+- [[2607.00784|LeVLJEPA]], [[2606.02735|S2]], [[2605.23895|BrainCause]], [[2604.18267|MARCO]], [[2602.11241|Active-Zero]], [[2602.02381|AdaSSL]], [[2507.09961|TDCRL]], [[2506.23156|Multi-Label-Contrastive-SSL]], [[2506.07413|VarCon]], [[2506.04411|DCL-Neural-Collapse-Theory]], [[2505.22196|Aug-Aware-SSL-Theory]], [[2505.21533|SOP]], [[2505.11815|UniMoCo]], [[2504.16929|I-Con]], [[2502.02202|MLCL]], [[2406.17768|EXTRACT]], [[2405.07060|Memory-Maze]], [[2105.04553|MoBY]], [[2104.02057|MoCo-v3]]
 
 > [!star] Key Papers
 > - [[2104.02057|MoCo-v3]] — Established robust self-supervised training recipes for Vision Transformers; bridged the gap from CNNs to ViTs

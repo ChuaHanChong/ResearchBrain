@@ -1027,6 +1027,8 @@ The same parent benchmark re-released along distinct *language-conditioned long-
 | Need | Benchmark |
 |---|---|
 | Multi-step assembly (the hardest published) | [[2305.12821\|FurnitureBench]] |
+| Household long-horizon composite tasks | [[2603.04356\|RoboCasa365]] (**300** composite), [[2406.02523\|RoboCasa]] (**75** LLM-composed) *(§3.2)* |
+| Everyday-activity long-horizon RL floor | [[2403.09227\|BEHAVIOR-1K]] (RL near-zero on full realism) *(§3.2)* |
 | ~6× longer than CALVIN/LIBERO trajectories | [[2506.06677\|RoboCerebra]] (**2,972.4** avg steps) |
 | Trace-conditioned plan-fidelity eval | [[2604.21924\|LoHo-Manip]] |
 | Subgoal-prediction eval (planning vs interpolation) | [[2605.01772\|Anticipation-VLA]] |

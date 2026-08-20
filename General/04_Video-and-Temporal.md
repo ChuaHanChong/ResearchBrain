@@ -260,11 +260,13 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.16870|Video-Reasoning-Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Video Segmentation & Point Tracking** — SAM-family and tracking-based architectures for pixel-precise video segmentation and point tracking.
-- [[2605.00891|X2SAM]], [[2602.23204|Motion-aware Event Suppression]], [[2602.20630|TraqPoint]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2408.00714|SAM 2]]
+- [[2605.00891|X2SAM]], [[2602.23204|Motion-aware Event Suppression]], [[2602.20630|TraqPoint]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2507.12462|SpatialTrackerV2]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2410.11831|CoTracker3]], [[2408.00714|SAM 2]], [[2407.15420|LocoTrack]], [[2307.07635|CoTracker]], [[2211.03726|TAP-Vid]]
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
 > - [[2511.18373|MASS]] — Motion-aware spatial-temporal grounding for physics reasoning; +8.7% over prior SOTA on physics tasks
+> - [[2307.07635|CoTracker]] — Joint transformer point tracking that exploits inter-track dependencies; foundational architecture for the CoTracker lineage
+> - [[2410.11831|CoTracker3]] — Simplified tracker trained via multi-teacher pseudo-labelling; beats BootsTAPIR with 1,000x less real training data
 
 **Spatiotemporal Video Grounding & Referring Expression** — Architectures for temporal video grounding and pixel-grounded referring-expression understanding.
 - [[2607.08537|Whareformer]], [[2604.12148|ViLL-E]], [[2604.02829|STRNet]], [[2603.23404|TRACE]], [[2603.12382|SPARROW]], [[2603.12254|AutoGaze]], [[2602.11730|STVG-R1]], [[2512.10359|STAR]], [[2511.19261|LAST]], [[2508.09736|M3-Agent]], [[2508.07388|Invert4TVG]], [[2508.06317|URPA]], [[2507.10302|DisCo]], [[2507.05258|REA]], [[2504.07745|SF2T]], [[2503.19355|ST-VLM]]
@@ -273,13 +275,16 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.12382|SPARROW]] — Temporal referential consistency via target-specific tracked features; +8.9 J&F on MeViS RVOS
 
 **Benchmarks & Evaluation** — Dedicated benchmarks measuring video spatial intelligence, fine-grained temporal reasoning, spatial-temporal interactions, and Video-LLM failure modes.
-- [[2605.03941|iWorld-Bench]], [[2605.03276|VEBench]], [[2604.25276|OmniVTG]], [[2604.21873|Physics-Video-Grounding-Bench]], [[2603.17541|Temporal-Trap-Analysis]], [[2603.14145|MMOU]], [[2602.18884|TPRU]], [[2601.04033|REACT-Video]], [[2512.14698|TimeLens]], [[2512.10863|MMSI-Video-Bench]], [[2511.13787|TC2]], [[2510.11606|ExpVid]], [[2507.18342|EgoExoBench]], [[2503.23765|STI-Bench]], [[2501.11340|GenVidBench]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2305.13786|Perception Test]], [[2006.00626|EGTEA-Gaze+]]
+- [[2605.03941|iWorld-Bench]], [[2605.03276|VEBench]], [[2604.25276|OmniVTG]], [[2604.21873|Physics-Video-Grounding-Bench]], [[2603.17541|Temporal-Trap-Analysis]], [[2603.14145|MMOU]], [[2602.18884|TPRU]], [[2601.10592|Action100M]], [[2601.04033|REACT-Video]], [[2512.14698|TimeLens]], [[2512.10863|MMSI-Video-Bench]], [[2511.13787|TC2]], [[2510.11606|ExpVid]], [[2507.18342|EgoExoBench]], [[2503.23765|STI-Bench]], [[2501.11340|GenVidBench]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2305.13786|Perception Test]], [[2006.00626|EGTEA-Gaze+]]
 
 > [!star] Key Papers
 > - [[2503.23765|STI-Bench]] — Best model (Gemini-2.5-Pro) scores only 41.4% on precise spatial-temporal understanding
 > - [[2512.10863|MMSI-Video-Bench]] — MLLMs achieve 38.0% vs. 96.4% human accuracy on video spatial intelligence
 > - [[2603.17541|Temporal-Trap-Analysis]] — Revealed that Video-SFT degrades image understanding despite improving video metrics; proposed Hybrid-Frame Strategy
 > - [[2603.14145|MMOU]] — Joint audio-visual reasoning benchmark; best model (64.2%) far below human (84.3%)
+
+**Social & Affective Interaction Understanding** — Datasets, workshops, and surveys probing whether video models can reason about social dynamics and affect (group interaction, emotion, deepfakes) rather than just spatiotemporal content.
+- [[2504.02244|SocialGesture]], [[2409.15316|Social AI Survey]], [[2409.07256|MRAC Workshop 2024]], [[2404.04458|JRDB-Social]]
 
 > [!tip] RL is the Unlock for Video Reasoning
 > The pattern across Video-R1, VIDEORFT, ViSS-R1, and SynRL is clear: RL post-training consistently boosts temporal reasoning where SFT alone plateaus. Combine with frame-aware CoT (CoF, ViTCoT) for grounded reasoning traces. Watch for the temporal trap -- naive Video-SFT can hurt image understanding.
