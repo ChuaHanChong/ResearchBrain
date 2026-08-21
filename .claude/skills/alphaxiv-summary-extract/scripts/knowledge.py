@@ -1762,6 +1762,7 @@ papers = [
     "https://arxiv.org/abs/2407.10490",  # Learning Dynamics of LLM Finetuning
     "https://arxiv.org/abs/2407.10943",  # GRUtopia: Dream General Robots in a City at Scale
     "https://arxiv.org/abs/2407.10964",  # No Train, all Gain: Self-Supervised Gradients Improve Deep Frozen Representations
+    "https://arxiv.org/abs/2407.10973",  # Make-An-Agent: A Generalizable Policy Network Generator with Behavior-Prompted Diffusion
     "https://arxiv.org/abs/2407.11298",  # ThinkGrasp: A Vision-Language System for Strategic Part Grasping in Clutter
     "https://arxiv.org/abs/2407.11464",  # Crowd-SAM: SAM as a Smart Annotator for Object Detection in Crowded Scenes
     "https://arxiv.org/abs/2407.11673",  # Safe Learning of Locomotion Skills from MPC
@@ -9519,6 +9520,7 @@ papers = [
     "https://arxiv.org/abs/2608.09516",  # HarnessWAM: Bridging Prediction and Deliberation in World Action Models
     "https://arxiv.org/abs/2608.09528",  # Robotic Fabric Alignment System for Sewing Using Global Local Weighted ICP
     "https://arxiv.org/abs/2608.09628",  # Satellite Trajectory Optimization via Proximal Policy Optimization for Space Debris Avoidance
+    "https://arxiv.org/abs/2608.09703",  # Matryoshka Language Model Suites
     "https://arxiv.org/abs/2608.09731",  # TAMS: Task-Aware Multi-View Adaptive Streaming for Wireless Telerobotic Manipulation
     "https://arxiv.org/abs/2608.09762",  # Efficient Real-World Online Reinforcement Learning for Robot Manipulation via Centralized Training and Critic Decomposition
     "https://arxiv.org/abs/2608.09771",  # SLIM-0.5B: Learning Action-Grounded Predictive Latents for Robot Manipulation
@@ -9607,4 +9609,5 @@ papers = [
     "https://arxiv.org/abs/2608.16885",  # tau_0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation
     "https://arxiv.org/abs/2608.17981",  # Recirculation
     "https://arxiv.org/abs/2608.18077",  # Hydra-0: Action Flow for Generalist World Modeling and Control
+    "https://arxiv.org/abs/2608.19182",  # ADEPT: Accelerating Dexterity via Pre-Training and Post-Training using Reinforcement Learning
 ]

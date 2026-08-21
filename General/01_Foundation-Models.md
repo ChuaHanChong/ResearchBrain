@@ -559,7 +559,7 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2507.07101|Small-Batch-LLM-Training]] — Small batch sizes (even batch=1) can stably train LLMs; challenges the large-batch orthodoxy
 
 **Inference Acceleration** — Techniques for faster inference through early exit, speculative decoding, and layer skipping.
-- [[2605.31124|QVGGT]], [[2602.05179|Parallel-DP-GPU]], [[2511.15190|GSIM]], [[2510.01143|Bridge-Parallel-Scaling]], [[2507.10069|ElasticMM]], [[2507.00754|LUViT]], [[2505.23416|KVzip]], [[2505.11820|CoLM]], [[2505.08022|RobustDLRT]], [[2404.16710|LayerSkip]], [[1703.09844|MSDNet]]
+- [[2608.09703|Matryoshka LM Suites]], [[2605.31124|QVGGT]], [[2602.05179|Parallel-DP-GPU]], [[2511.15190|GSIM]], [[2510.01143|Bridge-Parallel-Scaling]], [[2507.10069|ElasticMM]], [[2507.00754|LUViT]], [[2505.23416|KVzip]], [[2505.11820|CoLM]], [[2505.08022|RobustDLRT]], [[2404.16710|LayerSkip]], [[1703.09844|MSDNet]]
 
 > [!star] Key Papers
 > - [[2404.16710|LayerSkip]] — Enables accurate early exit and self-speculative decoding for faster LLM inference

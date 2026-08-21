@@ -827,7 +827,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2607.04554|HUGS]] — learns object-conditioned human contact-mode and wrist-pose priors from a compact 1.8K-grasp dataset to synthesize **3.2 million** robot grasps across 157k scenes spanning objects from 2-30cm.
 
 **Diffusion & Generative Grasp/Manipulation Models** — Diffusion, flow-matching, and other generative models for grasp and manipulation synthesis, including generative dynamics, handover systems, and diffusion-augmented imitation learning.
-- [[2608.13028|PassGen]], [[2608.03295|GraspMeanFlow]], [[2603.16151|EFF-Grasp]], [[2509.01819|ManiFlow]], [[2506.02489|Grasp2Grasp]], [[2503.11999|Diffusion-Dynamics-Models-Generative]], [[2503.08257|DexGrasp Anything]], [[2503.04123|GAGrasp]], [[2503.03579|Generative-System-Robot-to-Human-Handovers]], [[2503.00508|HGDiffuser]], [[2502.04531|AnyPlace]], [[2407.17348|DexGANGrasp]], [[2402.17768|Diffusion-DAgger]]
+- [[2608.13028|PassGen]], [[2608.03295|GraspMeanFlow]], [[2603.16151|EFF-Grasp]], [[2509.01819|ManiFlow]], [[2506.02489|Grasp2Grasp]], [[2503.11999|Diffusion-Dynamics-Models-Generative]], [[2503.08257|DexGrasp Anything]], [[2503.04123|GAGrasp]], [[2503.03579|Generative-System-Robot-to-Human-Handovers]], [[2503.00508|HGDiffuser]], [[2502.04531|AnyPlace]], [[2407.17348|DexGANGrasp]], [[2407.10973|Make-An-Agent]], [[2402.17768|Diffusion-DAgger]]
 
 > [!star] Key Papers
 > - [[2509.01819|ManiFlow]] — consistency-flow training collapses inference to **1-2 steps** while delivering a **98.3%** relative real-world improvement over 3D Diffusion Policy across single-arm, bimanual, and humanoid robots.
@@ -843,7 +843,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2607.06323|LAMP-(Dexterous-Hand-Manipulation)]] — a latent motion-prior interface unifying imitation and residual RL, lifting real-robot success from **56.25%** (IL alone) to **98.75%** after online RL across four contact-rich manipulation tasks.
 
 **Sim-to-Real Transfer & Large-Scale Pretraining** — Closing the reality gap for dexterous policies via sim-to-real transfer, differentiable/real-to-sim engines, and large-scale grasp/play pretraining.
-- [[2608.15917|SPD]], [[2606.30749|G2D-Pretrain]], [[2606.26428|Play2Perfect]], [[2605.05241|DexSim2Real]], [[2603.01151|D-REX]], [[2602.15828|Dex4D]], [[2510.08556|DexNDM]], [[2506.14317|ClutterDexGrasp]], [[2505.00991|DexCtrl]], [[2504.12609|HUMAN2SIM2ROBOT]], [[2503.03045|ArticuBot]], [[2502.04307|DexterityGen]], [[2412.01791|DextrAH]], [[2409.06613|DemoStart]], [[2407.02274|DextrAH-G]], [[2309.07350|Curriculum-Sensing-Sim2Real]], [[2211.09423|DexPoint]], [[1910.07113|ADR-Rubiks-Cube]]
+- [[2608.19182|ADEPT]], [[2608.15917|SPD]], [[2606.30749|G2D-Pretrain]], [[2606.26428|Play2Perfect]], [[2605.05241|DexSim2Real]], [[2603.01151|D-REX]], [[2602.15828|Dex4D]], [[2510.08556|DexNDM]], [[2506.14317|ClutterDexGrasp]], [[2505.00991|DexCtrl]], [[2504.12609|HUMAN2SIM2ROBOT]], [[2503.03045|ArticuBot]], [[2502.04307|DexterityGen]], [[2412.01791|DextrAH]], [[2409.06613|DemoStart]], [[2407.02274|DextrAH-G]], [[2309.07350|Curriculum-Sensing-Sim2Real]], [[2211.09423|DexPoint]], [[1910.07113|ADR-Rubiks-Cube]]
 
 > [!star] Key Papers
 > - [[2407.02274|DextrAH-G]] — the foundational geometric-fabrics + RL + distillation recipe this group builds on (later extended to RGB-only DextrAH-RGB): pixels-to-action grasping with an **87%** success rate and **6.56** consecutive picks in real bin-packing, with zero hardware damage.
