@@ -313,7 +313,7 @@ Agents trained via reinforcement learning for multi-turn interactions with envir
 > - [[2510.23038|TIR-Judge]] — LLM judge framework integrating tool-invoked reasoning for reliable multi-step evaluation
 
 **Dynamic Planning & Adaptive Agents** — Agents that dynamically revise plans during execution, adapting to unexpected observations rather than following fixed scripts.
-- [[2608.01964|LongHorizon-Harness]], [[2607.04162|ACE]], [[2602.21728|Explore-on-Graph]], [[2512.24601|RLMs]], [[2512.09706|CrossHA]], [[2510.09577|Dyna-Mind]], [[2509.01920|DSP-Speculative]], [[2508.20722|rStar2-Agent]], [[2507.19457|GEPA]], [[2507.11988|Aime]], [[2507.11060|ExRec]], [[2507.08664|INoT]], [[2505.16994|R2ec]], [[2203.03485|Self-directed-Exploratory-Planning]]
+- [[2608.01964|LongHorizon-Harness]], [[2607.04162|ACE-Manipulation]], [[2602.21728|Explore-on-Graph]], [[2512.24601|RLMs]], [[2512.09706|CrossHA]], [[2510.09577|Dyna-Mind]], [[2509.01920|DSP-Speculative]], [[2508.20722|rStar2-Agent]], [[2507.19457|GEPA]], [[2507.11988|Aime]], [[2507.11060|ExRec]], [[2507.08664|INoT]], [[2505.16994|R2ec]], [[2203.03485|Self-directed-Exploratory-Planning]]
 
 > [!star] Key Papers
 > - [[2507.11988|Aime]] — ByteDance multi-agent framework overcoming static planning limitations with dynamic plan revision

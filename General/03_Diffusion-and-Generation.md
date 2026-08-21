@@ -231,14 +231,14 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 > - [[2503.13436|UniFluid]] — Google DeepMind's unified AR framework using continuous and discrete tokens for seamless visual generation and understanding
 
 **VLM-Guided Image Editing & Refinement** — VLM-in-the-loop methods that use a vision-language model to plan, critique, or verify instruction-guided image edits and refinements.
-- [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04746|Think-in-Strokes]], [[2604.00849|DisCo-Image]], [[2604.00530|AceTone]], [[2505.18600|CoZ]], [[2403.19103|PRISM]]
+- [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04746|Think-in-Strokes]], [[2604.00849|DisCo-Image]], [[2604.00530|AceTone]], [[2505.18600|CoZ]], [[2403.19103|PRISM-T2I]]
 
 **Diffusion-Based Image/Video Editing, Control & Benchmarks** — Diffusion-native editing, spatial-control, and privacy/domain-transfer methods for image and video content, plus benchmarks for spatial and compositional generation.
 - [[2607.10873|X-GuideAR]], [[2607.08402|Pedestrian Privacy Pipeline]], [[2606.00351|UniVerse]], [[2605.07429|MagicBokeh]], [[2605.02757|VideoTransfer-VLA]], [[2604.04911|SpatialEdit]], [[2604.02296|VOID]], [[2602.19083|ChordEdit]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2512.01236|PSR-Image-Gen]], [[2509.21953|MultiCrafter]], [[2508.20561|SimShear]], [[2503.19012|DiffV2IR]], [[2410.13911|GraspDiffusion]], [[2408.06506|TacSL]], [[2206.01714|Composed Diffusion]]
 
 > [!star] Key Papers
 > - [[2601.02356|Talk2Move]] — RL-based text-instructed geometric transformations with spatially grounded rewards
-> - [[2403.19103|PRISM]] — Automated black-box prompt engineering for T2I models; produces human-interpretable transferable prompts
+> - [[2403.19103|PRISM-T2I]] — Automated black-box prompt engineering for T2I models; produces human-interpretable transferable prompts
 
 > [!tip] Choosing an Architecture
 > For research prototyping, connect a frozen LLM to a diffusion decoder (GILL, MetaQueries). For production unified models, train end-to-end (Emu3.5, UniFluid). For controllable editing, use reward-guided methods (Talk2Move, EditReward).
@@ -375,7 +375,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2309.17400|DRaFT]] — Direct backpropagation of differentiable rewards through the entire sampling chain via LoRA + gradient checkpointing; >200× more sample-efficient than DDPO and the foundation for modern reward-gradient methods
 
 **Flow Matching + RL for Robot Policies** — Apply policy optimization to flow-matching robot-control models (VLA, manipulation, navigation), treating the denoising trajectory as a sequential decision process.
-- [[2607.26460|RLMM-Flow]], [[2607.14643|NavCMPO]], [[2607.10892|ESM]], [[2607.10369|VINE]], [[2607.06262|OTQL]], [[2606.31846|Z-1]], [[2606.29934|RoamFlow]], [[2606.17551|RQL]], [[2606.03834|SFMDS]], [[2605.12236|TMRL]], [[2603.11470|NFPO]], [[2603.05296|LPS]], [[2511.01718|UD-VLA]], [[2510.08568|NovaFlow]], [[2509.04063|ARFM]], [[2507.21053|FPO]], [[2502.02538|FQL]], [[2411.18179|PAD]], [[2407.15208|Im2Flow2Act]]
+- [[2607.26460|RLMM-Flow]], [[2607.14643|NavCMPO]], [[2607.10892|ESM]], [[2607.10369|VINE]], [[2607.06262|OTQL]], [[2606.31846|Z-1]], [[2606.29934|RoamFlow]], [[2606.17551|RQL]], [[2606.03834|SFMDS]], [[2605.12236|TMRL]], [[2603.11470|NFPO]], [[2603.05296|LPS-Flow]], [[2511.01718|UD-VLA]], [[2510.08568|NovaFlow]], [[2509.04063|ARFM]], [[2507.21053|FPO]], [[2502.02538|FQL]], [[2411.18179|PAD]], [[2407.15208|Im2Flow2Act]]
 
 **Flow Matching + RL for Image/Video Generation** — Apply GRPO-style policy optimization to flow-matching and continuous diffusion models for text-to-image/video alignment, treating the denoising trajectory as a sequential decision process.
 - [[2606.11025|Flow-DPPO]], [[2605.26535|RecFM]], [[2605.15055|DiffusionOPD]], [[2605.10759|RAM]], [[2605.01663|FAN]], [[2604.24764|World-R1]], [[2604.23380|V-GRPO]], [[2604.15311|LeapAlign]], [[2604.01421|EgoFlow]], [[2603.27866|Wan-R1]], [[2603.26599|VGGRPO]], [[2603.23500|UniGRPO]], [[2603.04333|floq]], [[2602.05755|FMPose3D]], [[2509.06040|BranchGRPO]], [[2505.05470|Flow-GRPO]]
@@ -393,7 +393,7 @@ Reinforcement learning is transforming how diffusion and flow-matching models ar
 > - [[2408.08252|SVDD]] — Foundational derivative-free inference-time guidance via soft-value MDP formulation; the reference baseline that DSearch and later beam-search methods build on
 
 **Self-Improving World Models & Embodied Policies** — Self-improvement loops for world/simulation models and embodied robot policies via generated rollouts, multi-agent interaction, or self-distillation, without fresh human annotation.
-- [[2606.03536|Bionic-Whole-Body-Control]], [[2606.03159|OmniDreams]], [[2606.02800|Cosmos-3]], [[2605.30347|NeuROK]], [[2605.28816|Gamma-World]], [[2603.19370|VAMPO]], [[2502.02316|DIME]], [[2203.01914|Playable-Environments]], [[2101.12195|CADDY]]
+- [[2606.03536|Bionic-Whole-Body-Control]], [[2606.03159|OmniDreams]], [[2606.02800|Cosmos-3]], [[2605.30347|NeuROK]], [[2605.28816|Gamma-World]], [[2603.19370|VAMPO]], [[2502.02316|DIME-RL]], [[2203.01914|Playable-Environments]], [[2101.12195|CADDY]]
 
 **Self-Improving Generation & 3D Reconstruction** — Self-improvement of image/video generation quality and 3D reconstruction/segmentation models via reward feedback, cycle-consistency, or model merging, without fresh human annotation.
 - [[2605.21572|PhysX-Omni]], [[2605.19376|GRAM]], [[2604.28190|FD-loss]], [[2604.27106|RecGen]], [[2603.17051|Astrolabe]], [[2602.15989|SAM-3D-Body]], [[2512.08269|EgoX]], [[2511.16624|SAM-3D]], [[2511.13720|JiT-Denoise-Transformer]], [[2508.16204|M2N2]], [[2506.02095|CycleReward]], [[2505.23380|UniRL]]
@@ -508,7 +508,7 @@ Diffusion models applied to physical action generation rather than image synthes
 > - [[2509.04996|FLOWER]] — Generalist flow-based VLA policy enabling broad robot skill transfer across embodiments
 
 **Specialized & Task-Variant Flow VLA Policies** — Flow-matching VLA policies specialized for a particular embodiment, sensing modality, safety property, or task variant (dexterous grasping, tactile/soft-robot control, humanoid, pose estimation, world-model augmentation).
-- [[2607.20207|SeededGrasp]], [[2607.15275|RoboTTT]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.08283|TFP]], [[2607.06655|Pelican-VLA 0.5]], [[2607.04988|InternVLA-A1.5]], [[2607.04927|DSWAM]], [[2607.04816|CAC-VLA]], [[2607.04171|XS-VLA]], [[2607.02503|VT-WAM]], [[2607.02417|LIME]], [[2607.01804|VLA-Corrector]], [[2607.01586|VLAFlow]], [[2607.01378|Neuro-Symbolic VLA Safety]], [[2606.12366|APT]], [[2605.14417|DAJI]], [[2605.13403|RotVLA]], [[2604.07084|FMP]], [[2604.04646|FDS]], [[2604.02759|OMNI-PoseX]], [[2603.29844|DIAL]], [[2603.26320|DFM-VLA]], [[2603.01549|Pri4R]], [[2512.21970|StereoVLA]], [[2511.14148|AsyncVLA]], [[2511.07732|ViPRA]]
+- [[2607.20207|SeededGrasp]], [[2607.15275|RoboTTT]], [[2607.11018|Soft-Trunk Flow Matching]], [[2607.08283|TFP]], [[2607.06655|Pelican-VLA 0.5]], [[2607.04988|InternVLA-A1.5]], [[2607.04927|DSWAM]], [[2607.04816|CAC-VLA]], [[2607.04171|XS-VLA]], [[2607.02503|VT-WAM]], [[2607.02417|LIME]], [[2607.01804|VLA-Corrector]], [[2607.01586|VLAFlow]], [[2607.01378|Neuro-Symbolic VLA Safety]], [[2606.12366|APT-VLA]], [[2605.14417|DAJI]], [[2605.13403|RotVLA]], [[2604.07084|FMP]], [[2604.04646|FDS]], [[2604.02759|OMNI-PoseX]], [[2603.29844|DIAL]], [[2603.26320|DFM-VLA]], [[2603.01549|Pri4R]], [[2512.21970|StereoVLA]], [[2511.14148|AsyncVLA]], [[2511.07732|ViPRA]]
 
 **Manipulation-Focused Robot World Models** — Video-diffusion world models adapted specifically to manipulation tasks, using generated future video as a physics simulator for grasping and tabletop manipulation.
 - [[2607.27511|FoMo-FD]], [[2607.26579|ContactFlow]], [[2607.24159|DeVA]], [[2607.23909|WorldDiT]], [[2607.15065|DriftWorld]], [[2607.13017|FlowWAM]], [[2607.08639|LingBot-VA 2.0]], [[2607.06018|RoboTALES]], [[2607.04652|KAM-WM]], [[2606.32028|DVG-WM]], [[2606.29501|A2World]], [[2605.06388|Semantic-LDM-WM]], [[2605.06192|EA-WM]], [[2602.20057|AdaWorldPolicy]], [[2601.21998|LingBot-VA]], [[2601.16163|Cosmos-Policy]], [[2512.15692|mimic-video]], [[2510.10125|CTRL-WORLD]], [[2508.00795|Video-Policy]], [[2507.12898|Vidar]], [[2504.02792|UWM]], [[2503.00200|UVA]], [[2502.00622|GPC]], [[2412.14803|VPP]], [[2406.13301|ARDuP]]
@@ -520,7 +520,7 @@ Diffusion models applied to physical action generation rather than image synthes
 - [[2607.25236|VisualPatchWorld]]
 
 **General-Purpose & Interactive Robot World-Model Simulators** — Robot-oriented video world models used as general-purpose interactive simulators or imagination engines, not tied to a specific manipulation policy.
-- [[2607.19191|ABot-World-0]], [[2607.14997|AeroAct]], [[2607.11643|Xiaomi-Robotics-U0]], [[2607.04978|Qantara]], [[2606.28804|ViPSim]], [[2606.29908|SWAM]], [[2606.16533|Kairos]], [[2605.22123|FLORA]], [[2604.18564|MultiWorld]], [[2510.19430|GigaBrain-0]], [[2507.13340|LPS]], [[2504.15369|Inverse-Probabilistic-Adaptation]], [[2502.01784|VILP]], [[2501.03575|Cosmos]], [[2310.06114|UniSim]]
+- [[2607.19191|ABot-World-0]], [[2607.14997|AeroAct]], [[2607.11643|Xiaomi-Robotics-U0]], [[2607.04978|Qantara]], [[2606.28804|ViPSim]], [[2606.29908|SWAM]], [[2606.16533|Kairos-WM]], [[2605.22123|FLORA]], [[2604.18564|MultiWorld]], [[2510.19430|GigaBrain-0]], [[2507.13340|LPS-WM]], [[2504.15369|Inverse-Probabilistic-Adaptation]], [[2502.01784|VILP]], [[2501.03575|Cosmos]], [[2310.06114|UniSim]]
 
 **Policy-Integrated & Persistent Robot World Models** — Robot world models designed to feed directly into a control policy or to maintain persistent, long-horizon scene memory across rollouts.
 - [[2607.23969|LeapBot-WA]], [[2606.27677|DiM-WAM]], [[2604.09330|VAG]], [[2603.25685|Persistent-Robot-World-Models]], [[2603.23376|ABot-PhysWorld]], [[2603.17240|GigaWorld-Policy]], [[2603.12639|RoboStereo]], [[2603.10448|DiT4DiT]], [[2603.07799|MWM]], [[2602.15922|DreamZero]], [[2602.10098|VLA-JEPA]], [[2602.06949|DreamDojo]], [[2601.20540|LingBot-World]], [[2512.13644|DexWM]], [[2512.10675|Veo-Robotics]]

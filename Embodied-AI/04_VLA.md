@@ -160,7 +160,7 @@ Six lanes, each a different pressure on the same object. Generalist backbones ru
 | 2026 | [[2602.10098\|VLA-JEPA]] | World Model | A full Vision-Language-Action stack pairing the JEPA principle with a flow-matching action head |
 
 > [!tip] Three Evolutionary Phases
-> **Phase 1 — Proof of concept** (2022-2023): [[2212.06817|RT-1]] proved Transformers work, [[2307.15818|RT-2]] showed VLM knowledge transfers, [[2310.08864|OXE]] built the cross-embodiment data foundation. **Phase 2 — Democratization** (2024): [[2406.09246|OpenVLA]] and [[2405.12213|Octo]] opened weights/code, [[2410.24164|π0]] introduced flow matching for continuous control. **Phase 3 — Specialization** (2025+): The field split — generalists scaled up ([[2504.16054|π0.5]] → [[2604.15483|π0.7]], Gemini, [[2604.20100|JoyAI-RA]]), efficient variants scaled down ([[2501.09747|FAST]], [[2506.01844|SmolVLA]]), WAMs added world prediction ([[2602.15922|DreamZero]]), and egocentric pretraining emerged as a fourth branch ([[2507.15597|Being-H0]], [[2602.16710|EgoScale]], [[2504.16054|π0.5]]+ego). See [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the egocentric scaling story and [[05_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for reasoning-augmented variants.
+> **Phase 1 — Proof of concept** (2022-2023): [[2212.06817|RT-1]] proved Transformers work, [[2307.15818|RT-2]] showed VLM knowledge transfers, [[2310.08864|OXE]] built the cross-embodiment data foundation. **Phase 2 — Democratization** (2024): [[2406.09246|OpenVLA]] and [[2405.12213|Octo]] opened weights/code, [[2410.24164|π0]] introduced flow matching for continuous control. **Phase 3 — Specialization** (2025+): The field split — generalists scaled up ([[2504.16054|π0.5]] → [[2604.15483|π0.7]], Gemini, [[2604.20100|JoyAI-RA]]), efficient variants scaled down ([[2501.09747|FAST]], [[2506.01844|SmolVLA]]), WAMs added world prediction ([[2602.15922|DreamZero]]), and egocentric pretraining emerged as a fourth branch ([[2507.15597|Being-H0]], [[2602.16710|EgoScale]], [[2504.16054|π0.5]]+ego). See [[14_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the egocentric scaling story and [[05_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for reasoning-augmented variants.
 
 ---
 
@@ -884,7 +884,7 @@ The newest RL frontier is *systems*: distributed/asynchronous infrastructure tha
 ^key-papers-6
 
 > [!tip] Why RL Works for VLAs
-> VLAs pre-trained on diverse data already have good representations — RL doesn't need to learn from scratch. It just needs to *calibrate* the policy to the deployment environment. LoRA makes this cheap, and VLAs don't catastrophically forget ([[2603.03818|VLA-Continual-Learning]]). Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]] for how egocentric pretraining + RL post-training compose, and [[06_WAM#5. VLM-Integrated WAMs]] for how VLM-integrated WAMs handle the same backbone-preservation problem. The algorithm-side treatment of the same optimizers — off-policy efficiency, flow-policy optimization — is [[03_Imitation-Learning-and-RL#4. RL Algorithms, Efficiency & Policy Representations]].
+> VLAs pre-trained on diverse data already have good representations — RL doesn't need to learn from scratch. It just needs to *calibrate* the policy to the deployment environment. LoRA makes this cheap, and VLAs don't catastrophically forget ([[2603.03818|VLA-Continual-Learning]]). Cross-reference [[14_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]] for how egocentric pretraining + RL post-training compose, and [[06_WAM#5. VLM-Integrated WAMs]] for how VLM-integrated WAMs handle the same backbone-preservation problem. The algorithm-side treatment of the same optimizers — off-policy efficiency, flow-policy optimization — is [[03_Imitation-Learning-and-RL#4. RL Algorithms, Efficiency & Policy Representations]].
 
 ^insight-6
 
@@ -894,7 +894,7 @@ The newest RL frontier is *systems*: distributed/asynchronous infrastructure tha
 
 Vision-only policies fail on contact-rich tasks (insertion, assembly, surface following) because cameras cannot see force — visual feedback is delayed and ambiguous during contact. The architectural insight that emerged across this cluster is that **force should be treated as a first-class modality routed through dedicated experts**, not concatenated naively with visual tokens. Late-fusion of force after VLM encoding outperforms early concatenation by **10-20pp** on contact-rich benchmarks because the pretrained VLM representations are preserved rather than diluted with raw F/T noise. The cluster splits into two architectural strategies: force routed through dedicated MoE experts (first-class modality), or tactile signals fused into the visual stream (augmented vision).
 
-> See [[10_Contact-Rich-and-Tactile-Control#1. Design-Space Principles]] for the full deep-dive — covering tactile sensor hardware ([[2509.18830|DexSkin]], [[2604.28156|FlexiTac]], [[2604.20689|FingerEye]]), the three landmark force-conditioned VLA architectures, force-as-generation-conditioning ([[2505.19386|Force-Prompting]]), contact-rich benchmarks, and open problems.
+> See [[11_Contact-Rich-and-Tactile-Control#1. Design-Space Principles]] for the full deep-dive — covering tactile sensor hardware ([[2509.18830|DexSkin]], [[2604.28156|FlexiTac]], [[2604.20689|FingerEye]]), the three landmark force-conditioned VLA architectures, force-as-generation-conditioning ([[2505.19386|Force-Prompting]]), contact-rich benchmarks, and open problems.
 
 #### 7.1 Force as First-Class Modality
 
@@ -926,7 +926,7 @@ Treat tactile / proprioceptive history as long-horizon perceptual memory; fuse i
 | Foundational force-MoE baseline | [[2505.22159\|ForceVLA]] (Force-aware MoE) |
 | Force in augmented action space + CoT recovery | [[2507.09160\|Tactile-VLA]] |
 | Long-horizon perceptual memory | [[2508.19236\|MemoryVLA]] |
-| Tactile hardware deep-dive | See [[10_Contact-Rich-and-Tactile-Control#2. Tactile Sensors as a Sensing Modality]] |
+| Tactile hardware deep-dive | See [[11_Contact-Rich-and-Tactile-Control#2. Tactile Sensors as a Sensing Modality]] |
 
 ^dm-7
 
@@ -938,7 +938,7 @@ Treat tactile / proprioceptive history as long-horizon perceptual memory; fuse i
 ^key-papers-7
 
 > [!tip] Late-Fusion Wins
-> The cluster's design lesson: force must be late-fused after VLM encoding (not concatenated as another token), and routed through dedicated experts (not blended into the main attention stack). Cross-reference [[10_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]] for the full tactile hardware + force-conditioned VLA deep-dive, and [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the contact-rich benchmark landscape (insertion, assembly, wiping).
+> The cluster's design lesson: force must be late-fused after VLM encoding (not concatenated as another token), and routed through dedicated experts (not blended into the main attention stack). Cross-reference [[11_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]] for the full tactile hardware + force-conditioned VLA deep-dive, and [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks]] for the contact-rich benchmark landscape (insertion, assembly, wiping).
 
 ^insight-7
 
@@ -1013,7 +1013,7 @@ Multi-finger dexterous hands are the highest-DoF embodiment, and the hardware va
 ^key-papers-8
 
 > [!tip] Bimanual Scaling
-> [[2511.05275|TwinVLA]] shows you can compose two pre-trained single-arm VLAs rather than training a bimanual model from scratch — data-efficient and surprisingly effective. The key insight: coordination can be learned as a thin layer on top of individual skill. For humanoids, the dual-process pattern ([[2506.13751|LeVERB]]'s 10Hz reasoning + 50Hz reactive WBC) is the canonical resolution of the high-DoF / balance-constraint tension. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]] for egocentric humanoid loco-manipulation transfer (kinematic alignment) and [[02_Dataset-Benchmark-Environment#8. Bimanual & Humanoid Evaluation]] for the humanoid benchmark landscape. The controller layer these humanoid VLAs sit on top of is [[11_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination]].
+> [[2511.05275|TwinVLA]] shows you can compose two pre-trained single-arm VLAs rather than training a bimanual model from scratch — data-efficient and surprisingly effective. The key insight: coordination can be learned as a thin layer on top of individual skill. For humanoids, the dual-process pattern ([[2506.13751|LeVERB]]'s 10Hz reasoning + 50Hz reactive WBC) is the canonical resolution of the high-DoF / balance-constraint tension. Cross-reference [[14_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]] for egocentric humanoid loco-manipulation transfer (kinematic alignment) and [[02_Dataset-Benchmark-Environment#8. Bimanual & Humanoid Evaluation]] for the humanoid benchmark landscape. The controller layer these humanoid VLAs sit on top of is [[12_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination]].
 
 ^insight-8
 
@@ -1021,7 +1021,7 @@ Multi-finger dexterous hands are the highest-DoF embodiment, and the hardware va
 
 ### 9. Self-Evolving & Continual VLAs
 
-VLAs that autonomously improve through self-play, continual learning, or evolutionary strategies. The cluster organizes around the *source* of the improvement signal — sequential task fine-tuning (continual learning), error detection and recovery mid-task (self-correction), or evolutionary / counterfactual exploration of policy variants. The 2026 result that unites the cluster: pre-trained VLAs on diverse cross-embodiment data are *naturally* resistant to catastrophic forgetting — the opposite of the NLP literature. See [[15_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the full deep-dive comparing self-evolving VLAs, WAMs, and agents.
+VLAs that autonomously improve through self-play, continual learning, or evolutionary strategies. The cluster organizes around the *source* of the improvement signal — sequential task fine-tuning (continual learning), error detection and recovery mid-task (self-correction), or evolutionary / counterfactual exploration of policy variants. The 2026 result that unites the cluster: pre-trained VLAs on diverse cross-embodiment data are *naturally* resistant to catastrophic forgetting — the opposite of the NLP literature. See [[16_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the full deep-dive comparing self-evolving VLAs, WAMs, and agents.
 
 #### 9.1 Continual Learning Across Tasks
 
@@ -1087,7 +1087,7 @@ Explore policy variants via evolutionary strategies or counterfactual reasoning 
 ^key-papers-9
 
 > [!tip] The Continual Learning Surprise
-> Two independent studies ([[2603.11653|VLA-RL-Continual-Learning]], [[2603.03818|VLA-Continual-Learning]]) found the same result: VLAs pre-trained on diverse data are *naturally* resistant to catastrophic forgetting. You don't need complex continual learning algorithms — simple sequential fine-tuning works. This is the opposite of what the NLP literature suggests. ==LoRA=='s low-rank constraint further stabilizes this: updates are confined to a low-dimensional subspace, preserving the vast majority of pre-trained parameters. Cross-reference [[15_Self-Evolving-VLA-WAM#6. Self-Evolving VLAs]] for the full self-evolution deep-dive across VLAs / WAMs / agents, and [[06_WAM#7. Self-Evolving WAMs]] for the WAM-side self-evolution mechanisms (reflective planning, self-play, RL co-evolution).
+> Two independent studies ([[2603.11653|VLA-RL-Continual-Learning]], [[2603.03818|VLA-Continual-Learning]]) found the same result: VLAs pre-trained on diverse data are *naturally* resistant to catastrophic forgetting. You don't need complex continual learning algorithms — simple sequential fine-tuning works. This is the opposite of what the NLP literature suggests. ==LoRA=='s low-rank constraint further stabilizes this: updates are confined to a low-dimensional subspace, preserving the vast majority of pre-trained parameters. Cross-reference [[16_Self-Evolving-VLA-WAM#6. Self-Evolving VLAs]] for the full self-evolution deep-dive across VLAs / WAMs / agents, and [[06_WAM#7. Self-Evolving WAMs]] for the WAM-side self-evolution mechanisms (reflective planning, self-play, RL co-evolution).
 
 ^insight-9
 
@@ -1151,7 +1151,7 @@ Track *task progress* explicitly — a scalar or structured estimate of how far 
 ^key-papers-10
 
 > [!tip] Memory Is the Cure for Markovian Myopia
-> Every paper here starts from the same observation: the single-frame assumption silently caps long-horizon performance, and naively stacking raw frames is too expensive. The winning move is a *compressed, attendable* memory — a 3D voxel map ([[2605.22283|SOMA]]), an episodic keyframe store ([[2604.18791|HELM]]), learned moment tokens ([[2510.00695|HAMLET]]), or codec motion vectors ([[2512.09928|HiF-VLA]]) — diagnosed by [[2511.11478|LIBERO-Mem]]. Cross-reference [[07_Latent-World-Models#3. Broader Latent Prediction Landscape]] for the latent-world-model side of long-horizon memory and [[02_Dataset-Benchmark-Environment#10. Long-Horizon Task Benchmarks]] for the benchmarks that test these claims.
+> Every paper here starts from the same observation: the single-frame assumption silently caps long-horizon performance, and naively stacking raw frames is too expensive. The winning move is a *compressed, attendable* memory — a 3D voxel map ([[2605.22283|SOMA]]), an episodic keyframe store ([[2604.18791|HELM]]), learned moment tokens ([[2510.00695|HAMLET]]), or codec motion vectors ([[2512.09928|HiF-VLA]]) — diagnosed by [[2511.11478|LIBERO-Mem]]. Cross-reference [[07_Latent-World-Models#3. Broader Latent Prediction Landscape]] for the latent-world-model side of long-horizon memory and [[02_Dataset-Benchmark-Environment#10. Long-Horizon Task Benchmarks]] for the benchmarks that test these claims. See [[09_Robot-Memory#3.2 Memory Baked into the VLA Backbone]] and [[09_Robot-Memory#4. Progress-Aware & Hindsight Control]] for the full cross-domain memory deep-dive this section's §10.1/§10.2 feed.
 
 ^insight-10
 
@@ -1206,7 +1206,7 @@ Close the appearance/physics gap so policies learned in simulation or from video
 ^key-papers-11
 
 > [!tip] Heterogeneity Is the Real Bottleneck
-> Whether the gap is *action-space* (gripper vs dexterous hand) or *domain* (sim vs real, video vs robot), the winning recipe is the same: absorb the variation into a shared representation rather than relearning per embodiment. Soft prompts ([[2510.10274|X-VLA]]), unified diffusion heads ([[2605.25044|X-DiffVLA]]), and physics conditioning ([[2510.11689|Phys2Real]]) all instantiate this. Cross-reference [[14_Sim-to-Real-Transfer#1. Design-Space Principles]] for the full sim-to-real deep-dive and [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]] for human-video-to-robot kinematic transfer.
+> Whether the gap is *action-space* (gripper vs dexterous hand) or *domain* (sim vs real, video vs robot), the winning recipe is the same: absorb the variation into a shared representation rather than relearning per embodiment. Soft prompts ([[2510.10274|X-VLA]]), unified diffusion heads ([[2605.25044|X-DiffVLA]]), and physics conditioning ([[2510.11689|Phys2Real]]) all instantiate this. Cross-reference [[15_Sim-to-Real-Transfer#1. Design-Space Principles]] for the full sim-to-real deep-dive and [[14_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]] for human-video-to-robot kinematic transfer.
 
 ^insight-11
 
@@ -1291,7 +1291,7 @@ A complementary runtime axis: the *instruction* itself changes mid-task or arriv
 ^key-papers-12
 
 > [!tip] Frozen Weights, Better Behavior
-> Two philosophies coexist: update online from sparse reward (test-time RL — [[2601.06748|TT-VLA]], [[2510.26406|Hi-ORS]]) or leave weights frozen and reshape sampling (steering — [[2510.05681|MG-Select]], [[2603.24584|TAG]], [[2502.01828|FOREWARN]]). Steering is cheaper and composable; test-time RL adapts further but risks the same instability §6 fights. Reach for steering first; escalate to test-time RL when the distribution gap is large. Cross-reference [[15_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for the self-evolving view and [[06_WAM#5. VLM-Integrated WAMs]] for WAM-verified steering at the dynamics level.
+> Two philosophies coexist: update online from sparse reward (test-time RL — [[2601.06748|TT-VLA]], [[2510.26406|Hi-ORS]]) or leave weights frozen and reshape sampling (steering — [[2510.05681|MG-Select]], [[2603.24584|TAG]], [[2502.01828|FOREWARN]]). Steering is cheaper and composable; test-time RL adapts further but risks the same instability §6 fights. Reach for steering first; escalate to test-time RL when the distribution gap is large. Cross-reference [[16_Self-Evolving-VLA-WAM#3. Core Mechanisms of Self-Evolution]] for the self-evolving view and [[06_WAM#5. VLM-Integrated WAMs]] for WAM-verified steering at the dynamics level.
 
 ^insight-12
 
@@ -1402,7 +1402,7 @@ Defend by *monitoring* — detect when the policy is failing or about to fail an
 ^key-papers-13
 
 > [!tip] Offense, Robustness, and Monitoring Are One Problem
-> The three sub-sections are a single defense-in-depth story: red-teaming ([[2411.13587|VLA-Adversarial-Vulnerabilities]], [[2411.18676|ERT]]) maps the attack surface, robustness methods ([[2503.03480|SafeVLA]], [[2605.10925|PriorVLA]]) shrink it, and runtime monitors ([[2605.30834|Hide-and-Seek]], [[2601.07821|FARL]]) catch what slips through. No single layer suffices — an attacked-and-robustified policy still needs a monitor, and a monitored policy still needs robustness so the monitor isn't constantly firing. Cross-reference [[04_VLA#18. Open Problems & Failure Modes]] below for the orthogonal *intrinsic* failure modes (spatial overfitting, embodiment tax) and [[15_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for the self-evolving recovery view.
+> The three sub-sections are a single defense-in-depth story: red-teaming ([[2411.13587|VLA-Adversarial-Vulnerabilities]], [[2411.18676|ERT]]) maps the attack surface, robustness methods ([[2503.03480|SafeVLA]], [[2605.10925|PriorVLA]]) shrink it, and runtime monitors ([[2605.30834|Hide-and-Seek]], [[2601.07821|FARL]]) catch what slips through. No single layer suffices — an attacked-and-robustified policy still needs a monitor, and a monitored policy still needs robustness so the monitor isn't constantly firing. Cross-reference [[04_VLA#18. Open Problems & Failure Modes]] below for the orthogonal *intrinsic* failure modes (spatial overfitting, embodiment tax) and [[16_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for the self-evolving recovery view.
 
 ^insight-13
 
@@ -1767,7 +1767,7 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 ^key-papers-18
 
 > [!tip] The Robustness Hierarchy
-> From most to least robust: (1) WAMs with video pretraining, (2) VLAs with diverse cross-embodiment training ([[2504.16054|π0.5]]), (3) VLAs with in-domain-only training. If robustness matters more than speed, consider WAM augmentation. If speed matters, use knowledge insulation + diverse training. Cross-reference [[12_Navigation-and-Mobile-Manipulation#2. Vision-Language Navigation]] for how the same hierarchy re-derives itself once the embodiment moves, and [[14_Sim-to-Real-Transfer#4. Real2Sim2Real Loops & Digital Twins]] for the transfer-side lever on tier (3).
+> From most to least robust: (1) WAMs with video pretraining, (2) VLAs with diverse cross-embodiment training ([[2504.16054|π0.5]]), (3) VLAs with in-domain-only training. If robustness matters more than speed, consider WAM augmentation. If speed matters, use knowledge insulation + diverse training. Cross-reference [[13_Navigation-and-Mobile-Manipulation#2. Vision-Language Navigation]] for how the same hierarchy re-derives itself once the embodiment moves, and [[15_Sim-to-Real-Transfer#4. Real2Sim2Real Loops & Digital Twins]] for the transfer-side lever on tier (3).
 
 ^insight-18
 
@@ -1780,7 +1780,7 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 | Why VLAs? | Strong robustness in real scenarios via VLM pre-training |
 | Which backbone? | KosMos, [[2407.07726\|PaliGemma]] (extensive multi-modal pre-training) |
 | Current generalist SOTA? | [[2604.15483\|π0.7]] (steerable open-world) and [[2604.20100\|JoyAI-RA]] (multi-embodiment) |
-| Egocentric pretraining? | [[2507.15597\|Being-H0]], [[2602.16710\|EgoScale]], [[2512.22414\|π0.5-+-ego]] — see [[13_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]] |
+| Egocentric pretraining? | [[2507.15597\|Being-H0]], [[2602.16710\|EgoScale]], [[2512.22414\|π0.5-+-ego]] — see [[14_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]] |
 | How to formulate? | ==Continuous actions== + ==Policy Head== for history fusion |
 | How to train? | Flow Matching ≈ MSE; ==MoE== for zero-shot generalization |
 | Data strategy? | ==Post-training==: cross-embodiment pre-train → in-domain fine-tune |
@@ -1808,12 +1808,12 @@ How does a deployed VLA know when it is failing? Multiple complementary approach
 - [[01_Embodied-AI-101]] — VLA vs WAM basics and four learning strategies
 - [[06_WAM]] — Full WAM taxonomy (VideoGen, VLM-based, From Scratch)
 - [[07_Latent-World-Models]] — JEPA evolution lineage ([[2506.09985|V-JEPA-2]] → [[2602.10098|VLA-JEPA]])
-- [[15_Self-Evolving-VLA-WAM]] — Self-evolving VLAs, failure detection, and continual learning
+- [[16_Self-Evolving-VLA-WAM]] — Self-evolving VLAs, failure detection, and continual learning
 - [[08_Physics-Aware-Embodied-AI]] — Physics priors for embodied AI; physics-coupled VLA pipelines
 - [[05_VLA-Reasoning-and-CoT]] — Full taxonomy of where to insert reasoning into VLA pipelines
-- [[13_Egocentric-Pretraining-and-Human-Video]] — Egocentric scaling laws and human→robot transfer
-- [[10_Contact-Rich-and-Tactile-Control]] — Force/tactile policies deep-dive; expands §7 Multi-Sensor & Force-Aware
-- [[14_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; complements VLA evaluation and deployment
+- [[14_Egocentric-Pretraining-and-Human-Video]] — Egocentric scaling laws and human→robot transfer
+- [[11_Contact-Rich-and-Tactile-Control]] — Force/tactile policies deep-dive; expands §7 Multi-Sensor & Force-Aware
+- [[15_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; complements VLA evaluation and deployment
 - [[02_Dataset-Benchmark-Environment]] — Datasets, benchmarks, and simulation platforms
 
 ---

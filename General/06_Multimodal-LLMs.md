@@ -392,7 +392,7 @@ Addressing the fundamental challenge of MLLMs generating text that contradicts v
 > - [[2512.23453|CoFi-Dec]] — Coarse-to-fine decoding leveraging geometric consistency for grounded generation
 
 **Visual Attention & Token Intervention** — Steering the model's visual attention to reduce over-reliance on language priors.
-- [[2608.02124|HAFI-VLM]], [[2605.02735|Silenced-Visual-Latents]], [[2605.00814|PVM]], [[2604.15809|AIF]], [[2603.14117|SIEVE]], [[2603.00207|VisRef]], [[2602.24041|AIR]], [[2602.21497|ECRD]], [[2602.08241|SAYO]], [[2602.02004|ClueTracer]], [[2509.12132|Reflection-V]], [[2508.02419|TVAI]], [[2507.22003|ViHallu]], [[2506.12609|VisFlow]], [[2505.17812|VaLSe]], [[2505.05177|MARK]], [[2411.12591|VIC]]
+- [[2608.02124|HAFI-VLM]], [[2605.02735|Silenced-Visual-Latents]], [[2605.00814|PVM]], [[2604.15809|AIF]], [[2603.14117|SIEVE-VLM]], [[2603.00207|VisRef]], [[2602.24041|AIR]], [[2602.21497|ECRD]], [[2602.08241|SAYO]], [[2602.02004|ClueTracer]], [[2509.12132|Reflection-V]], [[2508.02419|TVAI]], [[2507.22003|ViHallu]], [[2506.12609|VisFlow]], [[2505.17812|VaLSe]], [[2505.05177|MARK]], [[2411.12591|VIC]]
 
 > [!star] Key Papers
 > - [[2506.12609|VisFlow]] — Dual-level attention intervention redirecting model focus toward relevant visual tokens
@@ -554,7 +554,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2602.05547|MT-GRPO]], [[2507.21848|EDGE-GRPO]], [[2506.08440|TGRPO]], [[2505.22257|Off-Policy-GRPO]], [[2402.03300|DeepSeekMath]]
 
 **Reward Model & Verifier Design** — Constructing and training reward models and verifiers for RL and alignment.
-- [[2607.05391|LLM-as-a-Verifier]], [[2605.12474|Rubric-RL-Diagnostic]], [[2605.10899|RubricEM]], [[2510.08696|LENS]], [[2510.07242|HERO]], [[2509.26074|LENS]], [[2509.22638|FCP]], [[2508.14460|DuPO]], [[2507.17746|RaR]], [[2507.16806|RLCR]], [[2506.23235|EndoRM]], [[2506.03637|RewardAnything]], [[2505.21493|VeriFree]], [[2505.19000|VerIPO]], [[2407.13399|χPO]], [[2405.16436|RPO]], [[2405.14734|SimPO]], [[2401.10020|Self-Rewarding-LM]], [[2305.20050|Process Supervision]], [[2204.05862|HH-RLHF]], [[2203.02155|InstructGPT]]
+- [[2607.05391|LLM-as-a-Verifier]], [[2605.12474|Rubric-RL-Diagnostic]], [[2605.10899|RubricEM]], [[2510.08696|LENS]], [[2510.07242|HERO]], [[2509.26074|LENS-Reward]], [[2509.22638|FCP]], [[2508.14460|DuPO]], [[2507.17746|RaR]], [[2507.16806|RLCR]], [[2506.23235|EndoRM]], [[2506.03637|RewardAnything]], [[2505.21493|VeriFree]], [[2505.19000|VerIPO]], [[2407.13399|χPO]], [[2405.16436|RPO]], [[2405.14734|SimPO]], [[2401.10020|Self-Rewarding-LM]], [[2305.20050|Process Supervision]], [[2204.05862|HH-RLHF]], [[2203.02155|InstructGPT]]
 
 **RLVR Training Dynamics & Reward Benchmarks** — Empirical study of reward signals and RLVR training behavior, plus benchmark suites.
 - [[2604.11297|MEDS]], [[2603.18886|RLLM]], [[2511.07317|RLVE]], [[2511.01758|RLAC]], [[2510.03222|Lp-Reg]], [[2509.11452|Multi-Objective-RL-Alignment]], [[2508.05629|DFT]], [[2507.08068|QRPO]], [[2506.18254|RLPR]], [[2506.10947|Spurious-Rewards-RLVR]], [[2505.24760|REASONING-GYM]], [[2505.23585|OPO]], [[2503.13551|HRM]], [[2412.09544|POWER-DL]], [[2306.05685|MT-Bench]], [[2110.14168|GSM8K]]
@@ -670,7 +670,7 @@ Applying MLLMs and VLMs to downstream tasks including fine-grained recognition, 
 - [[2607.15314|Cura 1T]], [[2607.08374|JAM]], [[2606.31209|RosettaSim]], [[2606.31131|Crash-to-Scenario LLM Pipeline]], [[2604.13074|PersonaVLM]], [[2512.24880|mHC]], [[2511.11007|VisMem]], [[2505.21497|PosterAgent]], [[2505.11820|CoLM]], [[2505.01812|New-News]], [[2312.04684|LaRS]], [[2301.05226|IPVR]], [[2210.02506|GameBugDescriptions]]
 
 **Evaluation, Testing & Deployment Applications** — Evaluating and stress-testing MLLM applications for real-world deployment.
-- [[2601.12585|MLLM-Visualization-Literacy]], [[2601.00561|AEGIS]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2509.24207|Humanline]], [[2508.13142|EASI]], [[2507.01955|GPT-4o-Vision-Evaluation]], [[2506.22395|Test-Time-VLM-Consistency]], [[2505.24189|SLM-vs-LLM-Low-Code-Workflows]], [[2403.19103|PRISM]], [[2310.10625|VLP]], [[2305.00104|MMViT]]
+- [[2601.12585|MLLM-Visualization-Literacy]], [[2601.00561|AEGIS]], [[2511.20836|DSPy+HELM]], [[2511.20814|SPHINX]], [[2509.24207|Humanline]], [[2508.13142|EASI]], [[2507.01955|GPT-4o-Vision-Evaluation]], [[2506.22395|Test-Time-VLM-Consistency]], [[2505.24189|SLM-vs-LLM-Low-Code-Workflows]], [[2403.19103|PRISM-T2I]], [[2310.10625|VLP]], [[2305.00104|MMViT]]
 
 > [!star] Key Papers
 > - [[2505.21497|PosterAgent]] — Automated academic poster generation from papers; demonstrates creative MLLM applications

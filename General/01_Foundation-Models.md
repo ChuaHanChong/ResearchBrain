@@ -681,7 +681,7 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 > - [[2512.16649|JustRL]] — Simplified RL recipe effectively scales a 1.5B model for mathematical reasoning
 
 **Policy Optimization, Reward Modeling & Verification** — Policy-optimization algorithm variants, reward-model scaling, and self-verification methods for RL with verifiable rewards.
-- [[2604.20733|NPO]], [[2604.17654|Poly-EPO]], [[2604.02288|SRPO]], [[2509.26074|LENS]], [[2508.18588|RhymeRL]], [[2508.14460|DuPO]], [[2506.08388|RLTs]], [[2503.23829|RLVR]], [[2402.03300|DeepSeekMath]], [[2210.10760|RM Overoptimization]]
+- [[2604.20733|NPO]], [[2604.17654|Poly-EPO]], [[2604.02288|SRPO]], [[2509.26074|LENS-Reward]], [[2508.18588|RhymeRL]], [[2508.14460|DuPO]], [[2506.08388|RLTs]], [[2503.23829|RLVR]], [[2402.03300|DeepSeekMath]], [[2210.10760|RM Overoptimization]]
 
 **Reasoning Models** — LLMs explicitly trained for multi-step reasoning with RL.
 - [[2603.02556|VC-STaR]], [[2512.12623|DMLR]], [[2510.00219|Thoughtbubbles]], [[2508.03613|Goedel-Prover-V2]], [[2507.18071|GSPO]], [[2506.10910|Magistral]], [[2505.16993|SeNaTra]], [[2505.11484|SoftCoT++]], [[2505.10320|J1]], [[2503.16219|Open-RS]], [[2503.14858|CRL]], [[2501.12948|DeepSeek-R1]], [[2408.03314|Test-Time Compute Scaling]], [[2403.09629|Quiet-STaR]], [[2401.08967|ReFT]], [[2203.14465|STaR]]
@@ -762,7 +762,7 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 - [[2607.25895|HiFi-UMI]], [[2503.06669|AgiBot-World]], [[2310.08864|OXE]], [[2307.00595|RH20T]], [[2306.03310|LIBERO]]
 
 **Recent Action-Representation & World-Guided Pretraining Methods** — Newer methods for pretraining action representations, including world-model-guided, outcome-regularity, and task-agnostic approaches.
-- [[2607.18236|Patch Policy]], [[2607.15163|Humanoid Transformer]], [[2607.11427|EDAR]], [[2607.04714|GeoMoLa]], [[2607.02466|TAP]], [[2606.30749|G2D-Pretrain]], [[2606.29834|STEAM]], [[2606.29517|CORE (Outcome Regularities)]], [[2606.28320|WARP-RM]], [[2606.12366|APT]], [[2602.22010|WoG]], [[2601.02427|NitroGen]], [[2512.13030|Motus]], [[2512.07203|MMRPT]], [[2511.21428|LAPS]], [[2511.16407|LAOF]], [[2508.17230|FVP]]
+- [[2607.18236|Patch Policy]], [[2607.15163|Humanoid Transformer]], [[2607.11427|EDAR]], [[2607.04714|GeoMoLa]], [[2607.02466|TAP]], [[2606.30749|G2D-Pretrain]], [[2606.29834|STEAM]], [[2606.29517|CORE (Outcome Regularities)]], [[2606.28320|WARP-RM]], [[2606.12366|APT-VLA]], [[2602.22010|WoG]], [[2601.02427|NitroGen]], [[2512.13030|Motus]], [[2512.07203|MMRPT]], [[2511.21428|LAPS]], [[2511.16407|LAOF]], [[2508.17230|FVP]]
 
 **Foundational World Models & Model-Based RL** — The classic lineage of learned world models and model-based RL methods for planning.
 - [[2607.26712|ActSWM]], [[2410.00564|JOWA]], [[2310.16828|TD-MPC2]], [[2005.05960|Plan2Explore]], [[1809.01999|World Models]], [[1507.00814|Predictive Exploration Bonus]]

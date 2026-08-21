@@ -17,7 +17,7 @@ aliases:
 Embodied AI gives intelligent systems physical presence — robots that manipulate objects, navigate environments, drive vehicles, and interact with the real world. The two core model families are **Vision-Language-Action (VLA)** models that learn from demonstrations, and **World Action Models (WAM)** that learn to predict the future. This note covers both paradigms and how they fit together.
 
 > [!abstract] One-Line Summary
-> **VLAs** copy what they've seen. **WAMs** imagine what will happen next. **Self-evolving systems** improve from experience. See [[04_VLA]], [[06_WAM]], and [[15_Self-Evolving-VLA-WAM]] for deep dives.
+> **VLAs** copy what they've seen. **WAMs** imagine what will happen next. **Self-evolving systems** improve from experience. See [[04_VLA]], [[06_WAM]], and [[16_Self-Evolving-VLA-WAM]] for deep dives.
 
 ## Evolution Graph
 
@@ -334,7 +334,7 @@ Both VLAs and WAMs can be made self-evolving — autonomously discovering failur
 2. **Imagination Loops** (WAM path): The world model generates synthetic "dream" rollouts. The policy trains on dreams, improving without real-world interaction. [[2506.24119|SPIRAL]] and [[2502.05907|EvoAgent]] show this creates positive feedback loops. Best for: safe exploration, data-scarce settings.
 3. **Curiosity-Driven Exploration**: The agent actively seeks states where its world model is uncertain ([[2503.01584|SENSEI]]) or where an adversary finds failures ([[2412.02818|RoboMD]]). This creates a self-directed curriculum that focuses practice on the agent's weaknesses.
 
-The critical prerequisite for all three paths: **the agent must first detect that it IS failing**. See [[15_Self-Evolving-VLA-WAM]] for how failure detection, self-correction, and active probing enable the self-evolution loop.
+The critical prerequisite for all three paths: **the agent must first detect that it IS failing**. See [[16_Self-Evolving-VLA-WAM]] for how failure detection, self-correction, and active probing enable the self-evolution loop.
 
 ---
 
@@ -356,11 +356,11 @@ The critical prerequisite for all three paths: **the agent must first detect tha
 
 > [!tip] Use This as a Reading Compass
 > Each challenge points to the deep-dive note that treats it:
-> sim-to-real → [[14_Sim-to-Real-Transfer]];
-> data scarcity → [[02_Dataset-Benchmark-Environment]] + [[13_Egocentric-Pretraining-and-Human-Video]];
+> sim-to-real → [[15_Sim-to-Real-Transfer]];
+> data scarcity → [[02_Dataset-Benchmark-Environment]] + [[14_Egocentric-Pretraining-and-Human-Video]];
 > real-time control → [[04_VLA]] §2 (efficient VLAs) + [[06_WAM]] §6 (efficient WAMs);
-> safety → [[15_Self-Evolving-VLA-WAM]] §4 (failure detection);
-> generalization → [[15_Self-Evolving-VLA-WAM]] §5–7 (self-evolving systems).
+> safety → [[16_Self-Evolving-VLA-WAM]] §4 (failure detection);
+> generalization → [[16_Self-Evolving-VLA-WAM]] §5–7 (self-evolving systems).
 
 ^insight-7
 
@@ -434,18 +434,18 @@ The Embodied-AI deep-dives are organized in five blocks: substrate (02–03), mo
 - [[08_Physics-Aware-Embodied-AI]] — Physics priors for embodied AI; PINN integration, contact dynamics, physics-coupled pipelines
 
 **Physical capabilities: the body**
-- [[09_Manipulation-Skill-Learning]] — Manipulation policies; diffusion/flow backbones, 3D representations, dexterous grasping, planning, demo data
-- [[10_Contact-Rich-and-Tactile-Control]] — Multi-sensor and force-aware control; tactile hardware, force-conditioned architectures, dexterous hands
-- [[11_Whole-Body-and-Locomotion-Control]] — Humanoid whole-body control, legged locomotion, agile skills, motion retargeting, physics-based character motion
-- [[12_Navigation-and-Mobile-Manipulation]] — Vision-language navigation, object-goal search, exploration, mobile manipulation
+- [[10_Manipulation-Skill-Learning]] — Manipulation policies; diffusion/flow backbones, 3D representations, dexterous grasping, planning, demo data
+- [[11_Contact-Rich-and-Tactile-Control]] — Multi-sensor and force-aware control; tactile hardware, force-conditioned architectures, dexterous hands
+- [[12_Whole-Body-and-Locomotion-Control]] — Humanoid whole-body control, legged locomotion, agile skills, motion retargeting, physics-based character motion
+- [[13_Navigation-and-Mobile-Manipulation]] — Vision-language navigation, object-goal search, exploration, mobile manipulation
 
 **Scaling data**
-- [[13_Egocentric-Pretraining-and-Human-Video]] — Egocentric data → robot policy; scaling laws, hand→gripper transfer
+- [[14_Egocentric-Pretraining-and-Human-Video]] — Egocentric data → robot policy; scaling laws, hand→gripper transfer
 
 **Deployment lifecycle**
-- [[14_Sim-to-Real-Transfer]] — The reality gap; learned simulators, robust policies, digital twins, evaluation benchmarks
-- [[15_Self-Evolving-VLA-WAM]] — Self-evolving systems; failure detection, RL post-training, imagination loops, persistent memory
+- [[15_Sim-to-Real-Transfer]] — The reality gap; learned simulators, robust policies, digital twins, evaluation benchmarks
+- [[16_Self-Evolving-VLA-WAM]] — Self-evolving systems; failure detection, RL post-training, imagination loops, persistent memory
 
 ---
 
-*For a deep dive into VLA design, see [[04_VLA]]. For WAM papers by category, see [[06_WAM]]. For latent world models, see [[07_Latent-World-Models]]. For datasets and benchmarks, see [[02_Dataset-Benchmark-Environment]]. For self-evolving systems, see [[15_Self-Evolving-VLA-WAM]]. For physics-aware embodied AI, see [[08_Physics-Aware-Embodied-AI]]. For VLA reasoning and CoT, see [[05_VLA-Reasoning-and-CoT]]. For egocentric pretraining, see [[13_Egocentric-Pretraining-and-Human-Video]].*
+*For a deep dive into VLA design, see [[04_VLA]]. For WAM papers by category, see [[06_WAM]]. For latent world models, see [[07_Latent-World-Models]]. For datasets and benchmarks, see [[02_Dataset-Benchmark-Environment]]. For self-evolving systems, see [[16_Self-Evolving-VLA-WAM]]. For physics-aware embodied AI, see [[08_Physics-Aware-Embodied-AI]]. For VLA reasoning and CoT, see [[05_VLA-Reasoning-and-CoT]]. For egocentric pretraining, see [[14_Egocentric-Pretraining-and-Human-Video]].*

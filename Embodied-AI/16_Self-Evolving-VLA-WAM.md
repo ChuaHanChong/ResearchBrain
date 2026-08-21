@@ -299,7 +299,7 @@ After SFT on demonstrations, RL optimizes for task success. ==GRPO== (no critic 
 ^key-papers-3
 
 > [!tip] The Five Levers
-> Self-evolution combines all five mechanisms: the world model **imagines** scenarios, curiosity **targets** the hardest ones, RL **optimizes** the policy, self-critique **filters** bad solutions, and co-evolution **compounds** the gains. Each lever alone helps; together they create positive feedback loops. Cross-reference [[03_Imitation-Learning-and-RL#4. RL Algorithms, Efficiency & Policy Representations]] for the algorithmic substrate behind the RL-optimization lever — GRPO and flow/diffusion policy-gradient methods that make RL post-training practical at scale. The manipulation-side instantiation of the RL lever — correcting a frozen policy rather than retraining it — is [[09_Manipulation-Skill-Learning#6. RL & Policy-Steering for Manipulation]].
+> Self-evolution combines all five mechanisms: the world model **imagines** scenarios, curiosity **targets** the hardest ones, RL **optimizes** the policy, self-critique **filters** bad solutions, and co-evolution **compounds** the gains. Each lever alone helps; together they create positive feedback loops. Cross-reference [[03_Imitation-Learning-and-RL#4. RL Algorithms, Efficiency & Policy Representations]] for the algorithmic substrate behind the RL-optimization lever — GRPO and flow/diffusion policy-gradient methods that make RL post-training practical at scale. The manipulation-side instantiation of the RL lever — correcting a frozen policy rather than retraining it — is [[10_Manipulation-Skill-Learning#6. RL & Policy-Steering for Manipulation]].
 
 ^insight-3
 
@@ -567,7 +567,7 @@ Add persistent memory and failure-driven data collection on top of the VLA backb
 ^key-papers-6
 
 > [!tip] The Continual Learning Surprise (and How to Compose It)
-> Two independent studies ([[2603.03818|VLA-CL]], [[2603.11653|VLA-RL-CL]]) found the same result: VLAs pretrained on diverse data are *naturally* resistant to catastrophic forgetting. You don't need complex continual-learning algorithms — simple sequential RL fine-tuning with ==LoRA== works. This is the opposite of what the NLP literature suggests, and makes VLA self-evolution much more practical than expected. Compose it with [[2605.08879|ConSFT]] for the SFT side and [[2605.10993|ECHO-VLA]] for memory; the three together cover the loop without rebuilding the VLA backbone. Cross-reference [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA-side continual recipes in depth, [[06_WAM#7. Self-Evolving WAMs]] for the WAM-side dynamics-evolution counterparts, and [[13_Egocentric-Pretraining-and-Human-Video#1. Why Egocentric Pretraining Now]] for the egocentric pretraining that produces the broad parameter basin in the first place. The reasoning-trace supervision these self-improvement loops recycle is covered in [[05_VLA-Reasoning-and-CoT#5. Reasoning-Traced Training]].
+> Two independent studies ([[2603.03818|VLA-CL]], [[2603.11653|VLA-RL-CL]]) found the same result: VLAs pretrained on diverse data are *naturally* resistant to catastrophic forgetting. You don't need complex continual-learning algorithms — simple sequential RL fine-tuning with ==LoRA== works. This is the opposite of what the NLP literature suggests, and makes VLA self-evolution much more practical than expected. Compose it with [[2605.08879|ConSFT]] for the SFT side and [[2605.10993|ECHO-VLA]] for memory; the three together cover the loop without rebuilding the VLA backbone. Cross-reference [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA-side continual recipes in depth, [[06_WAM#7. Self-Evolving WAMs]] for the WAM-side dynamics-evolution counterparts, and [[14_Egocentric-Pretraining-and-Human-Video#1. Why Egocentric Pretraining Now]] for the egocentric pretraining that produces the broad parameter basin in the first place. The reasoning-trace supervision these self-improvement loops recycle is covered in [[05_VLA-Reasoning-and-CoT#5. Reasoning-Traced Training]]. This §6.3 failure-driven memory cluster is unified with §7.1's experience-distillation memory in [[09_Robot-Memory#6.1 Memory-Augmented & Failure-Driven Evolution]] (its §6.2 sibling).
 
 ^insight-6
 
@@ -646,7 +646,7 @@ Evolve the *training process itself* — tree-search RL, curriculum-guided explo
 ^key-papers-7
 
 > [!tip] From Weight Updates to Behavior Evolution
-> Self-improving models optimize weights; self-evolving agents optimize *behavior*. The key difference is persistent experience: [[2510.16079|EVOLVER]] and [[2601.06794|ECHO]] show that distilling interaction history into reusable principles is what turns a self-improving model into a self-evolving agent. [[2603.18743|Memento-Skills]] and [[2603.05218|KARL]] extend this with external skill/knowledge storage; [[2604.18292|Agent-World]] proves the substrate scales with environment count, not just model size; [[2604.18131|Native-Evolution]] removes the reward-signal requirement entirely. The 2026 arc: from "RL self-improvement" to "world-knowledge-driven evolution" — and the bridge is *memory*, not gradient. Cross-reference [[09_Self-Evolving-AI#4. Self-Evolving Agents]] for the broader self-evolving landscape beyond embodied agents, [[06_WAM#7. Self-Evolving WAMs]] for WAM-driven self-evolution, and [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA continual-learning counterpart.
+> Self-improving models optimize weights; self-evolving agents optimize *behavior*. The key difference is persistent experience: [[2510.16079|EVOLVER]] and [[2601.06794|ECHO]] show that distilling interaction history into reusable principles is what turns a self-improving model into a self-evolving agent. [[2603.18743|Memento-Skills]] and [[2603.05218|KARL]] extend this with external skill/knowledge storage; [[2604.18292|Agent-World]] proves the substrate scales with environment count, not just model size; [[2604.18131|Native-Evolution]] removes the reward-signal requirement entirely. The 2026 arc: from "RL self-improvement" to "world-knowledge-driven evolution" — and the bridge is *memory*, not gradient. Cross-reference [[09_Self-Evolving-AI#4. Self-Evolving Agents]] for the broader self-evolving landscape beyond embodied agents, [[06_WAM#7. Self-Evolving WAMs]] for WAM-driven self-evolution, and [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA continual-learning counterpart. The full memory-as-substrate treatment, unifying this section with §6.3's failure-driven memory, is [[09_Robot-Memory#6.2 Experience Distillation & Memory-Driven Evolution]].
 
 ^insight-7
 
@@ -742,9 +742,9 @@ The world model the agent trains on predicts physically impossible futures; the 
 - [[07_Latent-World-Models]] — JEPA evolution lineage; latent world models as self-evolution substrate
 - [[08_Physics-Aware-Embodied-AI]] — Physics priors as a stabilizer for self-evolving WAM dreams
 - [[05_VLA-Reasoning-and-CoT]] — Reasoning insertion patterns relevant to self-critique and self-correction
-- [[13_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining provides robust priors that resist forgetting
-- [[10_Contact-Rich-and-Tactile-Control]] — Force/tactile policies deep-dive; complements failure recovery via force feedback
-- [[14_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; covers continual adaptation methods
+- [[14_Egocentric-Pretraining-and-Human-Video]] — Egocentric pretraining provides robust priors that resist forgetting
+- [[11_Contact-Rich-and-Tactile-Control]] — Force/tactile policies deep-dive; complements failure recovery via force feedback
+- [[15_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; covers continual adaptation methods
 - [[02_Dataset-Benchmark-Environment]] — Benchmarks for evaluating self-evolution
 
 ---

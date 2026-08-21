@@ -172,7 +172,7 @@ Smaller in trajectory count but engineered for *skill diversity* — many task f
 ^key-papers-1
 
 > [!tip] Data Scale vs Quality
-> [[2310.08864|OXE]] proved cross-embodiment transfer works. [[2403.12945|DROID]] proved diversity beats curation. [[2503.06669|AgiBot-World]] proved a single lab can match collaborative scale. The pattern: more robots, more scenes, more tasks → better generalization. The corollary appears in §2 ([[2509.00576|G0]]): when your deployment robot is fixed, single-embodiment depth beats heterogeneous breadth — *whose* scaling law applies depends on whether the test-time embodiment is open or closed. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the egocentric-data scaling-law analogue and [[04_VLA#1. Design-Space Principles]] for backbone-choice implications. What downstream learners actually do with that scale — and where the demonstration substrate is heading — is [[03_Imitation-Learning-and-RL#2. Scaling Demonstrations]].
+> [[2310.08864|OXE]] proved cross-embodiment transfer works. [[2403.12945|DROID]] proved diversity beats curation. [[2503.06669|AgiBot-World]] proved a single lab can match collaborative scale. The pattern: more robots, more scenes, more tasks → better generalization. The corollary appears in §2 ([[2509.00576|G0]]): when your deployment robot is fixed, single-embodiment depth beats heterogeneous breadth — *whose* scaling law applies depends on whether the test-time embodiment is open or closed. Cross-reference [[14_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining]] for the egocentric-data scaling-law analogue and [[04_VLA#1. Design-Space Principles]] for backbone-choice implications. What downstream learners actually do with that scale — and where the demonstration substrate is heading — is [[03_Imitation-Learning-and-RL#2. Scaling Demonstrations]].
 
 ^insight-1
 
@@ -317,7 +317,7 @@ VLM+physics-verified pipelines that scale grasp *and* broader skill-conditioned 
 ^key-papers-2
 
 > [!tip] When Scale Doesn't Help
-> [[2509.00576|G0]] showed single-embodiment in-domain data quality can outperform heterogeneous cross-embodiment scale. If your deployment robot is fixed, invest in diverse *scenes* not diverse *robots*. The corollary from [[2602.16710|EgoScale]]: if your deployment robot has *fingers*, invest in diverse *human hand* data — VLA-scale RGB does not cover the finger-control space. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]] for how that human-hand data actually transfers to a gripper.
+> [[2509.00576|G0]] showed single-embodiment in-domain data quality can outperform heterogeneous cross-embodiment scale. If your deployment robot is fixed, invest in diverse *scenes* not diverse *robots*. The corollary from [[2602.16710|EgoScale]]: if your deployment robot has *fingers*, invest in diverse *human hand* data — VLA-scale RGB does not cover the finger-control space. Cross-reference [[14_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]] for how that human-hand data actually transfers to a gripper.
 
 ^insight-2
 
@@ -493,7 +493,7 @@ Simulator choice has profound implications for what you can test — articulatio
 ^key-papers-3
 
 > [!tip] Sim Engine Choice
-> [PhysX](https://developer.nvidia.com/physx-sdk) dominates GPU-parallel training (throughput). [MuJoCo](https://mujoco.org) is gold standard for contact-rich manipulation accuracy. [PyBullet](https://pybullet.org) enabled rapid prototyping but is increasingly replaced. For production: [PhysX](https://developer.nvidia.com/physx-sdk) if GPU-parallel, [MuJoCo](https://mujoco.org) if contact accuracy matters. Cross-reference [[14_Sim-to-Real-Transfer#2. Sim-Side: Learned & Procedural Simulators]] for how this engine choice interacts with the learned-vs-procedural simulator trade-off.
+> [PhysX](https://developer.nvidia.com/physx-sdk) dominates GPU-parallel training (throughput). [MuJoCo](https://mujoco.org) is gold standard for contact-rich manipulation accuracy. [PyBullet](https://pybullet.org) enabled rapid prototyping but is increasingly replaced. For production: [PhysX](https://developer.nvidia.com/physx-sdk) if GPU-parallel, [MuJoCo](https://mujoco.org) if contact accuracy matters. Cross-reference [[15_Sim-to-Real-Transfer#2. Sim-Side: Learned & Procedural Simulators]] for how this engine choice interacts with the learned-vs-procedural simulator trade-off.
 
 ^insight-3
 
@@ -554,7 +554,7 @@ Trade contact accuracy for thousands-of-environment parallelism, enabling RL dat
 ^key-papers-4
 
 > [!tip] Engine Choice is a Policy Decision
-> Choosing an engine constrains what experiments you can run. If you commit to [MuJoCo](https://mujoco.org), you can't easily train at 4,096-env parallelism. If you commit to Isaac, you give up the cleanest contact dynamics. Modern projects ([[2406.02523|RoboCasa]], [[2506.18088|RoboTwin-2.0]], [Genesis](https://genesis-world.readthedocs.io/)) increasingly use *multiple* engines — one for fast policy training, one for accurate evaluation. Cross-reference [[14_Sim-to-Real-Transfer#1. Design-Space Principles]] for how engine choice interacts with the sim-real gap.
+> Choosing an engine constrains what experiments you can run. If you commit to [MuJoCo](https://mujoco.org), you can't easily train at 4,096-env parallelism. If you commit to Isaac, you give up the cleanest contact dynamics. Modern projects ([[2406.02523|RoboCasa]], [[2506.18088|RoboTwin-2.0]], [Genesis](https://genesis-world.readthedocs.io/)) increasingly use *multiple* engines — one for fast policy training, one for accurate evaluation. Cross-reference [[15_Sim-to-Real-Transfer#1. Design-Space Principles]] for how engine choice interacts with the sim-real gap.
 
 ^insight-4
 
@@ -680,7 +680,7 @@ MLLM-agent benchmarks that decompose *embodied agentic competence* — tool-need
 ^key-papers-5
 
 > [!tip] Use the Diagnostic Stack
-> Each benchmark stresses one failure axis. A model can score >90% on [[2306.03310|LIBERO]] yet collapse on [[2510.13626|LIBERO-Plus]] (visual), [[2603.28301|LIBERO-Para]] (language), [[2510.03827|LIBERO-PRO]] (minor perturbations), or [[2601.11421|GM-100]] (precision). Always evaluate across the full diagnostic stack before claiming generalization. The [[2510.03827|LIBERO-PRO]] collapse from >90% to near 0% under *small* changes is the most damning data point in recent VLA evaluation literature. Cross-reference [[04_VLA#1. Design-Space Principles]] for architectural responses to these failure modes, [[07_Latent-World-Models#5. Latent vs Pixel Comparison]] for the WAM-vs-VLA robustness gap, and [[14_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for policy-side robustness recipes.
+> Each benchmark stresses one failure axis. A model can score >90% on [[2306.03310|LIBERO]] yet collapse on [[2510.13626|LIBERO-Plus]] (visual), [[2603.28301|LIBERO-Para]] (language), [[2510.03827|LIBERO-PRO]] (minor perturbations), or [[2601.11421|GM-100]] (precision). Always evaluate across the full diagnostic stack before claiming generalization. The [[2510.03827|LIBERO-PRO]] collapse from >90% to near 0% under *small* changes is the most damning data point in recent VLA evaluation literature. Cross-reference [[04_VLA#1. Design-Space Principles]] for architectural responses to these failure modes, [[07_Latent-World-Models#5. Latent vs Pixel Comparison]] for the WAM-vs-VLA robustness gap, [[15_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization]] for policy-side robustness recipes, and [[09_Robot-Memory#8. Memory Benchmarks & Diagnostics]] for the memory-mechanism deep-dive these five §5.3 suites diagnose.
 
 ^insight-5
 
@@ -747,7 +747,7 @@ The *policy* axis: full robot policies (not just representations) evaluated unde
 ^key-papers-6
 
 > [!tip] Cross-Reference
-> See [[10_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]] for the full deep-dive on how [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] representations feed into VLAs ([[2509.07962|TA-VLA]], [[2510.13324|FARM]], [[2603.05687|CGP]]). The benchmarks here measure *what* you're getting from touch; the policies in 10 measure *how to use it*. The tactile axis also overlaps with §2.1 bimanual data ([[2604.20444|VTouch++]], [[2604.07335|TAMEn]]) where collection and evaluation use the same hardware.
+> See [[11_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]] for the full deep-dive on how [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] representations feed into VLAs ([[2509.07962|TA-VLA]], [[2510.13324|FARM]], [[2603.05687|CGP]]). The benchmarks here measure *what* you're getting from touch; the policies in 10 measure *how to use it*. The tactile axis also overlaps with §2.1 bimanual data ([[2604.20444|VTouch++]], [[2604.07335|TAMEn]]) where collection and evaluation use the same hardware.
 
 ^insight-6
 
@@ -800,7 +800,7 @@ Ground-truth scene flow for highly-deformable manipulation; the metric layer und
 ^key-papers-7
 
 > [!tip] Cross-Reference
-> See [[14_Sim-to-Real-Transfer#4. Real2Sim2Real Loops & Digital Twins]] for the broader real-to-sim story (rigid + soft). The papers in this section are the soft-body *evaluation* tier — they answer "did my policy work on the towel?", not "how do I cross the sim-to-real gap?". The two literatures meet at Gaussian-splat digital twins ([[2511.04665|Real-to-Sim-GS]] is the bridge paper). Cross-reference [[08_Physics-Aware-Embodied-AI#1. Design-Space Principles]] for the physics-prior side and [[06_WAM#2.4 Physics-Aligned Video Generation]] for the physics-aligned video-generation track that complements deformable simulation.
+> See [[15_Sim-to-Real-Transfer#4. Real2Sim2Real Loops & Digital Twins]] for the broader real-to-sim story (rigid + soft). The papers in this section are the soft-body *evaluation* tier — they answer "did my policy work on the towel?", not "how do I cross the sim-to-real gap?". The two literatures meet at Gaussian-splat digital twins ([[2511.04665|Real-to-Sim-GS]] is the bridge paper). Cross-reference [[08_Physics-Aware-Embodied-AI#1. Design-Space Principles]] for the physics-prior side and [[06_WAM#2.4 Physics-Aligned Video Generation]] for the physics-aligned video-generation track that complements deformable simulation.
 
 ^insight-7
 
@@ -880,7 +880,7 @@ Two-arm coordination evaluation — tests *timing*, *handover*, and *contact-ric
 ^key-papers-8
 
 > [!tip] Bimanual ≠ "Two LIBEROs"
-> Two-arm benchmarks are not the union of two single-arm benchmarks. The novel failure modes are *coordination* (timing between arms), *bilateral handover*, and *whole-body balance* under coupled arm motion. [[2506.18088|RoboTwin-2.0]] and [[2512.24653|RoboMIND-2.0]] explicitly stress these modes; running [[2306.03310|LIBERO]] twice does not. Cross-reference [[10_Contact-Rich-and-Tactile-Control#4. Contact-Rich Manipulation Benchmarks and Visuotactile Policies]] for the tactile-policy side of bimanual contact-rich tasks, [[14_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for the "Sim-to-Real Cliff" diagnostic surfaced by [[2603.15469|RoCo-Challenge]], and §2.1 above for the bimanual *data* side. For the whole-body metrics side of this problem, including human-likeness scoring, see [[11_Whole-Body-and-Locomotion-Control#3.5 Evaluation, Benchmarks & Human-Likeness Metrics]].
+> Two-arm benchmarks are not the union of two single-arm benchmarks. The novel failure modes are *coordination* (timing between arms), *bilateral handover*, and *whole-body balance* under coupled arm motion. [[2506.18088|RoboTwin-2.0]] and [[2512.24653|RoboMIND-2.0]] explicitly stress these modes; running [[2306.03310|LIBERO]] twice does not. Cross-reference [[11_Contact-Rich-and-Tactile-Control#4. Contact-Rich Manipulation Benchmarks and Visuotactile Policies]] for the tactile-policy side of bimanual contact-rich tasks, [[15_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for the "Sim-to-Real Cliff" diagnostic surfaced by [[2603.15469|RoCo-Challenge]], and §2.1 above for the bimanual *data* side. For the whole-body metrics side of this problem, including human-likeness scoring, see [[12_Whole-Body-and-Locomotion-Control#3.5 Evaluation, Benchmarks & Human-Likeness Metrics]].
 
 ^insight-8
 
@@ -1053,7 +1053,7 @@ The same parent benchmark re-released along distinct *language-conditioned long-
 ^key-papers-10
 
 > [!tip] Long-Horizon Failure Modes
-> Long-horizon policies fail through three distinct routes: **(a) skill drift** — the model executes the wrong skill at step N+1 even though step N succeeded; **(b) state confusion** — the model loses track of which subgoal is active; **(c) terminal collapse** — early successful steps consume the model's context budget and the final step is executed by a "forgetful" policy. Different benchmarks stress different routes — [[2604.21924|LoHo-Manip]] stresses (b), [[2605.01772|Anticipation-VLA]] stresses (c), [[2305.12821|FurnitureBench]] stresses (a). Pair them. The orthogonal failure axis is *language brittleness* — [[2510.13626|LIBERO-Plus]] and [[2510.03827|LIBERO-PRO]] show that models scoring >90% on standard [[2306.03310|LIBERO]] fail badly under perturbations, so always pair standard benchmarks with diagnostic ones. Cross-reference [[04_VLA#6. RL Post-Training for VLAs]] for the RL-post-training response to long-horizon failures, [[05_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the planning-level reasoning recipes, and [[15_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for failure-detection.
+> Long-horizon policies fail through three distinct routes: **(a) skill drift** — the model executes the wrong skill at step N+1 even though step N succeeded; **(b) state confusion** — the model loses track of which subgoal is active; **(c) terminal collapse** — early successful steps consume the model's context budget and the final step is executed by a "forgetful" policy. Different benchmarks stress different routes — [[2604.21924|LoHo-Manip]] stresses (b), [[2605.01772|Anticipation-VLA]] stresses (c), [[2305.12821|FurnitureBench]] stresses (a). Pair them. The orthogonal failure axis is *language brittleness* — [[2510.13626|LIBERO-Plus]] and [[2510.03827|LIBERO-PRO]] show that models scoring >90% on standard [[2306.03310|LIBERO]] fail badly under perturbations, so always pair standard benchmarks with diagnostic ones. Cross-reference [[04_VLA#6. RL Post-Training for VLAs]] for the RL-post-training response to long-horizon failures, [[05_VLA-Reasoning-and-CoT#1. The Four Reasoning Insertion Slots]] for the planning-level reasoning recipes, and [[16_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] for failure-detection.
 
 ^insight-10
 
@@ -1158,7 +1158,7 @@ World model evaluation has shifted from passive video quality metrics (FVD, SSIM
 Bridging the reality gap: does simulation performance predict real-world success?
 
 > [!info] Full Deep-Dive
-> This section gives the evaluation-focused subset of the sim-to-real story. **See [[14_Sim-to-Real-Transfer]] for the full deep-dive** covering learned simulators, policy-side robustness (DR, robust RL), real2sim2real digital twins, integration patterns, and open problems.
+> This section gives the evaluation-focused subset of the sim-to-real story. **See [[15_Sim-to-Real-Transfer]] for the full deep-dive** covering learned simulators, policy-side robustness (DR, robust RL), real2sim2real digital twins, integration patterns, and open problems.
 
 - **[[2607.14439|Active Robot Policy Evaluation]]** — Frames policy evaluation as ==sequential experimental design==: ==Bayesian active testing== with ==surrogate models== (Deep Ensembles, GPs) + ==acquisition functions== (BALD, PSD) pick the most informative configs to test next; matches random-testing RMSE with **20–40%** fewer trials (of 100) and best log-likelihood in **50–65** fewer trials.
 - **[[2606.05159|X4Val]]** — A variance-reduced policy-validation method from *non-paired* auxiliary data: a ==neural surrogate== feeds an unbiased ==control-variate estimator== with cross-fitting; **15–20%** variance reduction in new driving regions, **38.4%** for iterative development — removes the explicit-pairing requirement of classic control variates.
@@ -1193,7 +1193,7 @@ The sim-to-real evaluation problem has two components: the *visual* gap (rendere
 ^key-papers-12
 
 > [!tip] Correlation Is the Currency
-> Sim-to-real *evaluation* converges on one number: how predictive is sim-success of real-success (Pearson r)? The frontier pushes r toward 1.0 by closing specific visual failure modes — [[2605.06311|VISER]] (r=0.92) isolates specular highlights and contact shadows as load-bearing, while [[2604.24018|Sim2Real-Betting]] attacks the orthogonal problem of *how few* real rollouts you need for a confident comparison. The residual ~8% gap is where deployment surprises live (see §17 Open Problems). Cross-reference [[14_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for the full reality-gap measurement deep-dive.
+> Sim-to-real *evaluation* converges on one number: how predictive is sim-success of real-success (Pearson r)? The frontier pushes r toward 1.0 by closing specific visual failure modes — [[2605.06311|VISER]] (r=0.92) isolates specular highlights and contact shadows as load-bearing, while [[2604.24018|Sim2Real-Betting]] attacks the orthogonal problem of *how few* real rollouts you need for a confident comparison. The residual ~8% gap is where deployment surprises live (see §17 Open Problems). Cross-reference [[15_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for the full reality-gap measurement deep-dive.
 
 ^insight-12
 
@@ -1232,7 +1232,7 @@ Sim benchmarks predict sim performance. The 2025-2026 wave introduced *standardi
 ^key-papers-13
 
 > [!tip] Real-World Evaluation is a Coordination Problem
-> Real robots break, fall over, and need humans to reset them. The bottleneck for real-world benchmarking has always been the *scheduling* and *coordination* of multi-lab evaluation, not the algorithms. [[2506.18123|RoboArena]] and [[2510.17950|RoboChallenge]] address this by treating evaluation as distributed infrastructure rather than per-paper effort. Cross-reference [[14_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for how sim-side correlation benchmarks try to reduce how often that real-robot coordination is even needed.
+> Real robots break, fall over, and need humans to reset them. The bottleneck for real-world benchmarking has always been the *scheduling* and *coordination* of multi-lab evaluation, not the algorithms. [[2506.18123|RoboArena]] and [[2510.17950|RoboChallenge]] address this by treating evaluation as distributed infrastructure rather than per-paper effort. Cross-reference [[15_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for how sim-side correlation benchmarks try to reduce how often that real-robot coordination is even needed.
 
 ^insight-13
 
@@ -1377,7 +1377,7 @@ Use this progression to evaluate robot policies at increasing levels of rigor.
 ^key-papers-16
 
 > [!tip] The Three Axes Are Coupled, Not Independent
-> The recurring mistake is treating data, environment, and benchmark as separable purchases — picking a great dataset, then a great sim, then a great benchmark in isolation. The validated stacks above are *triples* because the axes constrain each other: a bimanual dataset needs a bimanual sim and a bimanual benchmark, and [[2506.18088|RoboTwin-2.0]] ships all three precisely so they cannot drift apart. Start from your project archetype, take the whole triple, and only swap a component when you can name what it breaks downstream. Cross-reference [[14_Sim-to-Real-Transfer#6. Integration Patterns]] for how these stacks compose with the sim-to-real loop.
+> The recurring mistake is treating data, environment, and benchmark as separable purchases — picking a great dataset, then a great sim, then a great benchmark in isolation. The validated stacks above are *triples* because the axes constrain each other: a bimanual dataset needs a bimanual sim and a bimanual benchmark, and [[2506.18088|RoboTwin-2.0]] ships all three precisely so they cannot drift apart. Start from your project archetype, take the whole triple, and only swap a component when you can name what it breaks downstream. Cross-reference [[15_Sim-to-Real-Transfer#6. Integration Patterns]] for how these stacks compose with the sim-to-real loop.
 
 ^insight-16
 
@@ -1417,7 +1417,7 @@ The evaluation stack is mature enough to expose first-order failures, but six st
 ^key-papers-17
 
 > [!tip] Reading Compass
-> Open problems on the sim-real axis → [[14_Sim-to-Real-Transfer#7. Open Problems]]; world-model evaluation gaps → [[06_WAM#9. Open Problems & Failure Modes]]; failure-aware evaluation → [[15_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] + [[10_Contact-Rich-and-Tactile-Control#5. Open Problems & Failure Modes]]; tactile scaling → [[10_Contact-Rich-and-Tactile-Control#2. Tactile Sensors as a Sensing Modality]].
+> Open problems on the sim-real axis → [[15_Sim-to-Real-Transfer#7. Open Problems]]; world-model evaluation gaps → [[06_WAM#9. Open Problems & Failure Modes]]; failure-aware evaluation → [[16_Self-Evolving-VLA-WAM#4. Failure Detection, Diagnosis & Recovery]] + [[11_Contact-Rich-and-Tactile-Control#5. Open Problems & Failure Modes]]; tactile scaling → [[11_Contact-Rich-and-Tactile-Control#2. Tactile Sensors as a Sensing Modality]].
 
 ^insight-17
 
@@ -1452,14 +1452,14 @@ The evaluation stack is mature enough to expose first-order failures, but six st
 - [[04_VLA]] — VLA deep-dive (Section 2 uses [[2412.14058|RoboVLMs]] findings)
 - [[06_WAM]] — WAM deep-dive (Section 8 covers failure modes found by benchmarks)
 - [[07_Latent-World-Models]] — Latent world models (JEPA benchmarks, latent vs pixel comparison)
-- [[15_Self-Evolving-VLA-WAM]] — Self-evolving systems (evaluation of self-improvement methods)
+- [[16_Self-Evolving-VLA-WAM]] — Self-evolving systems (evaluation of self-improvement methods)
 - [[08_Physics-Aware-Embodied-AI]] — Physics commonsense benchmarks ([[2410.05363|PhyGenBench]], [[2503.06800|VideoPhy-2]], [[2501.09038|Physics-IQ]], [[2504.02918|Morpheus]]); soft-body physics-aware data generation overlaps with §7 here
 - [[05_VLA-Reasoning-and-CoT]] — VLA reasoning architectures deep-dive; complements §9 Spatial Reasoning benchmarks
-- [[13_Egocentric-Pretraining-and-Human-Video]] — Egocentric datasets ([[2110.07058|Ego4D]], [[2505.11709|EgoDex]], [[1706.04261|Something-Something]], [[2602.16710|EgoScale]])
-- [[10_Contact-Rich-and-Tactile-Control]] — Tactile policies ([[2410.24090|Sparsh]], [[2506.14754|Sparsh-X]], [[2510.13324|FARM]], [[2603.05687|CGP]], [[2509.07962|TA-VLA]]); §6 here is the evaluation side, 10 is the policy side
-- [[14_Sim-to-Real-Transfer]] — Full sim-to-real deep-dive: learned simulators, robust RL, digital twins, evaluation
+- [[14_Egocentric-Pretraining-and-Human-Video]] — Egocentric datasets ([[2110.07058|Ego4D]], [[2505.11709|EgoDex]], [[1706.04261|Something-Something]], [[2602.16710|EgoScale]])
+- [[11_Contact-Rich-and-Tactile-Control]] — Tactile policies ([[2410.24090|Sparsh]], [[2506.14754|Sparsh-X]], [[2510.13324|FARM]], [[2603.05687|CGP]], [[2509.07962|TA-VLA]]); §6 here is the evaluation side, 10 is the policy side
+- [[15_Sim-to-Real-Transfer]] — Full sim-to-real deep-dive: learned simulators, robust RL, digital twins, evaluation
 - [[01_Embodied-AI-101]] — VLA vs WAM basics
 
 ---
 
-*See [[04_VLA]] for VLA design principles informed by these benchmarks, [[06_WAM]] for world model evaluation, or [[10_Contact-Rich-and-Tactile-Control]] for the policy side of tactile.*
+*See [[04_VLA]] for VLA design principles informed by these benchmarks, [[06_WAM]] for world model evaluation, or [[11_Contact-Rich-and-Tactile-Control]] for the policy side of tactile.*

@@ -466,11 +466,9 @@ Deferred (need user review — short list, substantive only):
   - Unplaced (long-tail): [arxiv_ids] — flag if you expected coverage
 ```
 
-Suggest `/kh-graph-sync` as the natural follow-up if N+ new papers were placed (graph should re-extract to include them).
-
 ## Exemplars
 
-Defer to these for style after the Format reference: `Embodied-AI/02_Dataset-Benchmark-Environment.md` §4 (the original paragon), `Embodied-AI/14_Sim-to-Real-Transfer.md` §2–§5 (full 6-layer pattern with non-trivial Decision Matrices).
+Defer to these for style after the Format reference: `Embodied-AI/02_Dataset-Benchmark-Environment.md` §4 (the original paragon), `Embodied-AI/15_Sim-to-Real-Transfer.md` §2–§5 (full 6-layer pattern with non-trivial Decision Matrices).
 
 ---
 

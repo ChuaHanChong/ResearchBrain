@@ -227,7 +227,7 @@ Benchmarks that probe the *capabilities* a WAM must have — memory consistency 
 ^key-papers-1
 
 > [!tip] The Core Trade-off
-> VideoGen WAMs are the most robust (spatiotemporal priors from internet video) but the slowest. Latent prediction WAMs are fast and sample-efficient. [[2603.16666|Fast-WAM]] shows you can bridge this gap: train with video generation objectives but deploy without test-time imagination. Cross-reference [[07_Latent-World-Models#5. Latent vs Pixel Comparison]] for the full latent-vs-pixel decision matrix this trade-off maps onto. The benchmarks that make this trade-off measurable are in [[02_Dataset-Benchmark-Environment#11. World Model Benchmarks]].
+> VideoGen WAMs are the most robust (spatiotemporal priors from internet video) but the slowest. Latent prediction WAMs are fast and sample-efficient. [[2603.16666|Fast-WAM]] shows you can bridge this gap: train with video generation objectives but deploy without test-time imagination. Cross-reference [[07_Latent-World-Models#5. Latent vs Pixel Comparison]] for the full latent-vs-pixel decision matrix this trade-off maps onto. The benchmarks that make this trade-off measurable are in [[02_Dataset-Benchmark-Environment#11. World Model Benchmarks]]. [[2606.09803|Echo-Memory]] and [[2602.08025|MIND-Bench]] isolate memory specifically as a design axis within this landscape — see [[09_Robot-Memory#7.3 Diagnostic Studies & Benchmarks]] for the memory-consistency landmarks curated from this file.
 
 ^insight-1
 
@@ -464,7 +464,7 @@ Video models that don't just predict a robot's next observation but fully substi
 ^key-papers-2
 
 > [!tip] Video Generation = Physics Engine
-> Video diffusion models trained on internet data implicitly learn physics. [[2602.15922|DreamZero]] proved joint video+action generation provides spatiotemporal priors that pure VLAs lack. But test-time video generation is expensive — consider [[2603.16666|Fast-WAM]]'s training-only approach. For an explicit physics-priors view, see [[08_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation]]; for the egocentric pretraining substrate these models reuse, see [[13_Egocentric-Pretraining-and-Human-Video#6. Egocentric Pretraining Meets WAMs]]. For the manipulation-side instantiation — video-as-policy and world-action models driving arms — see [[09_Manipulation-Skill-Learning#3. World-Model & Video-as-Policy]].
+> Video diffusion models trained on internet data implicitly learn physics. [[2602.15922|DreamZero]] proved joint video+action generation provides spatiotemporal priors that pure VLAs lack. But test-time video generation is expensive — consider [[2603.16666|Fast-WAM]]'s training-only approach. For an explicit physics-priors view, see [[08_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation]]; for the egocentric pretraining substrate these models reuse, see [[14_Egocentric-Pretraining-and-Human-Video#6. Egocentric Pretraining Meets WAMs]]. For the manipulation-side instantiation — video-as-policy and world-action models driving arms — see [[10_Manipulation-Skill-Learning#3. World-Model & Video-as-Policy]]. Six of this section's papers — [[2505.05495|3D-Persistent-Embodied-WM]], [[2512.04040|RELIC]], [[2504.12369|WorldMem]] (single-mechanism designs) and [[2506.05284|Long-Term-Spatial-Memory-WM]], [[2605.18813|CoME]], [[2603.25716|HyDRA]] (composed multi-component architectures) — are memory-consistency landmarks curated in [[09_Robot-Memory#7.1 Single-Mechanism Memory Representations]] and [[09_Robot-Memory#7.2 Composed & Multi-Component Memory Architectures]], a genuinely different memory problem (rollout fidelity, not decision-making) from the rest of that file.
 
 ^insight-2
 
@@ -596,7 +596,7 @@ The data axis that makes latent WAMs scalable: when video carries no action labe
 ^key-papers-3
 
 > [!tip] Latent > Pixel for Efficiency
-> Latent prediction avoids the expensive pixel-level reconstruction of VideoGen WAMs. [[2506.09985|V-JEPA-2]] achieves competitive manipulation performance using self-supervised video pre-training alone. The JEPA family shows that predicting in embedding space produces more semantically meaningful features — you don't waste capacity modeling textures and shadows. [[2605.06388|Semantic-LDM-WM]] formalizes this: in a controlled study within a single LDM framework, semantic-aligned latents ([[2603.14482|V-JEPA-2.1]], [[2502.14786|SigLIP-2]]) beat reconstruction VAEs by **+9.8 pp** closed-loop and **+13.6 pp** OOD — visual fidelity is *not* the right objective for control. Cross-reference [[07_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA lineage in full and [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the latent-reasoning frontier built on top. The same predict-the-future-embedding idea applied to touch rather than vision is [[10_Contact-Rich-and-Tactile-Control#4.4 Tactile World Models — Forecasting Future Contact State]].
+> Latent prediction avoids the expensive pixel-level reconstruction of VideoGen WAMs. [[2506.09985|V-JEPA-2]] achieves competitive manipulation performance using self-supervised video pre-training alone. The JEPA family shows that predicting in embedding space produces more semantically meaningful features — you don't waste capacity modeling textures and shadows. [[2605.06388|Semantic-LDM-WM]] formalizes this: in a controlled study within a single LDM framework, semantic-aligned latents ([[2603.14482|V-JEPA-2.1]], [[2502.14786|SigLIP-2]]) beat reconstruction VAEs by **+9.8 pp** closed-loop and **+13.6 pp** OOD — visual fidelity is *not* the right objective for control. Cross-reference [[07_Latent-World-Models#2. JEPA Evolution: Visual-Only → Dense → Vision-Language → Vision-Language-Action]] for the JEPA lineage in full and [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT]] for the latent-reasoning frontier built on top. The same predict-the-future-embedding idea applied to touch rather than vision is [[11_Contact-Rich-and-Tactile-Control#4.4 Tactile World Models — Forecasting Future Contact State]]. [[2606.10363|HiMem-WAM]]'s boundary-aware memory-gated module lives in [[09_Robot-Memory#1.3 Episodic & Compression Memory for Manipulation]] alongside the other robot-control WAM memory designs.
 
 ^insight-3
 
@@ -777,7 +777,7 @@ Model-based RL as a policy-training algorithm rather than a decision-time planne
 ^key-papers-4
 
 > [!tip] Why [[1912.01603|Dreamer]] Still Matters
-> [[1912.01603|Dreamer]] models are lean (no VLM backbone needed), sample-efficient ([[2206.14176|DayDreamer]] learned quadruped locomotion in 1 hour), and domain-agnostic ([[2301.04104|DreamerV3]]'s fixed hyperparameters). When you don't have a pretrained VLM or internet video, the [[1912.01603|Dreamer]] approach remains the strongest option. Cross-reference [[13_Egocentric-Pretraining-and-Human-Video#1. Why Egocentric Pretraining Now]] for the internet-scale video pretraining substrate other WAM paradigms depend on that the Dreamer lineage sidesteps entirely. For the navigation instantiation of decision-time model rollouts, see [[12_Navigation-and-Mobile-Manipulation#4.1 World-Model-in-the-Loop Planning]].
+> [[1912.01603|Dreamer]] models are lean (no VLM backbone needed), sample-efficient ([[2206.14176|DayDreamer]] learned quadruped locomotion in 1 hour), and domain-agnostic ([[2301.04104|DreamerV3]]'s fixed hyperparameters). When you don't have a pretrained VLM or internet video, the [[1912.01603|Dreamer]] approach remains the strongest option. Cross-reference [[14_Egocentric-Pretraining-and-Human-Video#1. Why Egocentric Pretraining Now]] for the internet-scale video pretraining substrate other WAM paradigms depend on that the Dreamer lineage sidesteps entirely. For the navigation instantiation of decision-time model rollouts, see [[13_Navigation-and-Mobile-Manipulation#4.1 World-Model-in-the-Loop Planning]].
 
 ^insight-4
 
@@ -909,7 +909,7 @@ Predict condensed motion signals (optical flow, motion tokens) instead of full v
 ^key-papers-5
 
 > [!tip] The Co-Improvement Insight
-> [[2602.12063|VLAW]] showed that VLA and world model don't just coexist — they actively improve each other through iterative training. The world model generates better synthetic data for the VLA, and the VLA's improving actions give the world model harder scenarios to learn from. Cross-reference [[04_VLA#5. World-Model-Augmented VLAs]] for the VLA-side framing of the same architectures and [[05_VLA-Reasoning-and-CoT#2. Visual Chain-of-Thought]] for how visual chain-of-thought composes with WAM-integrated VLAs.
+> [[2602.12063|VLAW]] showed that VLA and world model don't just coexist — they actively improve each other through iterative training. The world model generates better synthetic data for the VLA, and the VLA's improving actions give the world model harder scenarios to learn from. Cross-reference [[04_VLA#5. World-Model-Augmented VLAs]] for the VLA-side framing of the same architectures and [[05_VLA-Reasoning-and-CoT#2. Visual Chain-of-Thought]] for how visual chain-of-thought composes with WAM-integrated VLAs. [[2606.27677|DiM-WAM]]'s Diverse Historical Event Memory lives in [[09_Robot-Memory#1.3 Episodic & Compression Memory for Manipulation]] alongside the other robot-control WAM memory designs.
 
 ^insight-5
 
@@ -1013,7 +1013,7 @@ Introspection layers so the agent knows when to *distrust* its own predictions �
 > ==Train with video objectives== (to get spatiotemporal priors) → ==Deploy without video generation== (no test-time imagination). [[2603.16666|Fast-WAM]] proved this works: you get most of the robustness benefit without the latency penalty.
 
 > [!tip] Training-Time vs Test-Time Video
-> The critical insight from 2026: you need video generation at **training time** (to learn physics) but NOT at **test time** (where it causes latency). This decouples the benefit of VideoGen WAMs from their computational cost. Cross-reference [[04_VLA#2. Efficient & Lightweight VLAs]] for the efficient-VLA design space (parameter-light models that pair well with these efficient WAMs) and [[14_Sim-to-Real-Transfer#6. Integration Patterns]] for the learned-sim deployment recipe. The whole-body analog — where the predicted future is contact rather than pixels — is [[11_Whole-Body-and-Locomotion-Control#2.5 Whole-Body Contact World Models]].
+> The critical insight from 2026: you need video generation at **training time** (to learn physics) but NOT at **test time** (where it causes latency). This decouples the benefit of VideoGen WAMs from their computational cost. Cross-reference [[04_VLA#2. Efficient & Lightweight VLAs]] for the efficient-VLA design space (parameter-light models that pair well with these efficient WAMs) and [[15_Sim-to-Real-Transfer#6. Integration Patterns]] for the learned-sim deployment recipe. The whole-body analog — where the predicted future is contact rather than pixels — is [[12_Whole-Body-and-Locomotion-Control#2.5 Whole-Body Contact World Models]].
 
 ^insight-6
 
@@ -1025,7 +1025,7 @@ Introspection layers so the agent knows when to *distrust* its own predictions �
 
 ### 7. Self-Evolving WAMs
 
-WAMs that autonomously improve through experience, self-play, or co-evolution. See [[15_Self-Evolving-VLA-WAM#5. Self-Evolving WAMs]] for the full deep-dive on self-evolving mechanisms, VLA vs WAM comparison, failure modes, and research directions.
+WAMs that autonomously improve through experience, self-play, or co-evolution. See [[16_Self-Evolving-VLA-WAM#5. Self-Evolving WAMs]] for the full deep-dive on self-evolving mechanisms, VLA vs WAM comparison, failure modes, and research directions.
 
 #### 7.1 Reflective Planning Loops
 
@@ -1089,7 +1089,7 @@ Continual RL on world-model dynamics; agent and environment co-evolve. The world
 ^key-papers-7
 
 > [!tip] Why WAMs Enable Self-Evolution
-> WAMs already have a learned dynamics model that generates synthetic experience — the agent can "rehearse" in imagination, discover failure modes, and improve without costly real-world interaction. See [[15_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the comprehensive comparison of self-evolving VLAs, WAMs, and embodied agents, and [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA-side continual-learning landscape that pairs with these WAM mechanisms.
+> WAMs already have a learned dynamics model that generates synthetic experience — the agent can "rehearse" in imagination, discover failure modes, and improve without costly real-world interaction. See [[16_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the comprehensive comparison of self-evolving VLAs, WAMs, and embodied agents, and [[04_VLA#9. Self-Evolving & Continual VLAs]] for the VLA-side continual-learning landscape that pairs with these WAM mechanisms.
 
 ^insight-7
 
@@ -1143,7 +1143,7 @@ Maximize what's learnable from *limited* data without VLM priors. The frontier w
 ^key-papers-8
 
 > [!tip] No Single Winner — Match Paradigm to Constraint
-> Each paradigm dominates one axis: **VideoGen** maximizes robustness at the cost of speed (~7Hz); **Latent** ([[2602.10098|VLA-JEPA]]) maximizes speed and sample efficiency; **[[1912.01603|Dreamer]]** lineage maximizes sample efficiency for limited-data regimes; **VLM-Integrated** maximizes semantic transfer for complex tasks; **Efficient** ([[2603.16666|Fast-WAM]]) wins for production deployment. The 2026 frontier hybridizes — train with VideoGen objectives, deploy without test-time imagination ([[2603.16666|Fast-WAM]], [[2602.10098|VLA-JEPA]]) — extracting robustness without paying the latency cost. Cross-reference [[07_Latent-World-Models#1. The JEPA Principle]] for the JEPA design space in depth, [[15_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the agent-VLA-WAM comparison axis, and [[14_Sim-to-Real-Transfer#6. Integration Patterns]] for deployment-pattern selection.
+> Each paradigm dominates one axis: **VideoGen** maximizes robustness at the cost of speed (~7Hz); **Latent** ([[2602.10098|VLA-JEPA]]) maximizes speed and sample efficiency; **[[1912.01603|Dreamer]]** lineage maximizes sample efficiency for limited-data regimes; **VLM-Integrated** maximizes semantic transfer for complex tasks; **Efficient** ([[2603.16666|Fast-WAM]]) wins for production deployment. The 2026 frontier hybridizes — train with VideoGen objectives, deploy without test-time imagination ([[2603.16666|Fast-WAM]], [[2602.10098|VLA-JEPA]]) — extracting robustness without paying the latency cost. Cross-reference [[07_Latent-World-Models#1. The JEPA Principle]] for the JEPA design space in depth, [[16_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM]] for the agent-VLA-WAM comparison axis, and [[15_Sim-to-Real-Transfer#6. Integration Patterns]] for deployment-pattern selection.
 
 ^insight-8
 
@@ -1237,12 +1237,12 @@ The attack surface unique to WAMs: because policies train on or read from world-
 
 - [[04_VLA]] — VLA deep-dive (Section 6 covers WAM-augmented VLAs)
 - [[07_Latent-World-Models]] — Detailed JEPA evolution ([[2506.09985|V-JEPA-2]] → 2.1 → [[2512.10942|VL-JEPA]] → [[2602.10098|VLA-JEPA]] → [[2602.11832|JEPA-VLA]] → [[2510.00739|TD-JEPA]] → [[2511.19221|Percept-WAM]])
-- [[15_Self-Evolving-VLA-WAM]] — Self-evolving VLAs & WAMs deep dive
+- [[16_Self-Evolving-VLA-WAM]] — Self-evolving VLAs & WAMs deep dive
 - [[08_Physics-Aware-Embodied-AI]] — Physics-aware video generation, physics priors, and physics-coupled training
 - [[05_VLA-Reasoning-and-CoT]] — Reasoning insertion patterns in WAM-augmented VLAs
-- [[13_Egocentric-Pretraining-and-Human-Video]] — Egocentric video as a pretraining substrate for WAMs
-- [[10_Contact-Rich-and-Tactile-Control]] — Force/tactile policies deep-dive; complements WAM action conditioning
-- [[14_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; covers learned simulators as objects of study
+- [[14_Egocentric-Pretraining-and-Human-Video]] — Egocentric video as a pretraining substrate for WAMs
+- [[11_Contact-Rich-and-Tactile-Control]] — Force/tactile policies deep-dive; complements WAM action conditioning
+- [[15_Sim-to-Real-Transfer]] — Sim-to-Real Transfer deep-dive; covers learned simulators as objects of study
 - [[01_Embodied-AI-101]] — VLA vs WAM basics and four learning strategies
 - [[02_Dataset-Benchmark-Environment]] — Datasets, benchmarks, and simulation platforms
 

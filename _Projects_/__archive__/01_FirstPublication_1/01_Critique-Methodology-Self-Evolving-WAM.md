@@ -376,4 +376,4 @@ Each row is a two-component interaction. The full system has ==dozens of such in
 
 ---
 
-*Critique of [[00_How-to-Build-Self-Evolving-WAM]]. Companion to [[00_Critique-Self-Evolving-WAM]]. See also: [[15_Self-Evolving-VLA-WAM]] | [[06_WAM]] | [[04_VLA]]*
+*Critique of [[00_How-to-Build-Self-Evolving-WAM]]. Companion to [[00_Critique-Self-Evolving-WAM]]. See also: [[16_Self-Evolving-VLA-WAM]] | [[06_WAM]] | [[04_VLA]]*

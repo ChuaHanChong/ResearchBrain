@@ -335,7 +335,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 - [[2607.18433|Learnable Novelty]], [[2605.22814|Remember-to-be-Curious]], [[2605.03782|GLANCE]], [[2603.28386|COvolve]], [[2603.15789|OmniReset]], [[2603.02008|C-TeC]], [[2602.01619|SUSD]], [[2601.19810|ULEE]], [[2601.19707|QFLEX]], [[2510.24482|COMBRL]], [[2510.14129|Emergent-Exploration-GCRL]], [[2509.20648|CERMIC]], [[2509.09675|CDE]], [[2509.03771|Co-Evolving-MARL]], [[2506.22401|MEX-Primal-Dual]], [[2506.16396|GoalLadder]], [[2506.05980|AMPED]], [[2506.05634|AutoQD]], [[2506.00138|Virtual-Zebrafish-RL]], [[2505.19850|DISCOVER]]
 
 **Flow-Matching Policies & Critics** — RL methods built on flow matching rather than diffusion, for policies, critics, and value functions.
-- [[2607.26460|RLMM-Flow]], [[2607.10369|VINE]], [[2606.29934|RoamFlow]], [[2605.13435|Q-Flow]], [[2603.11470|NFPO]], [[2603.05296|LPS]], [[2603.04333|floq]], [[2602.18015|Flow-Actor-Critic]], [[2602.01156|PolicyFlow]], [[2512.03973|Guided-Flow-Policy]], [[2510.07650|Value-Flows]], [[2509.25756|SAC-Flow]], [[2509.06863|floq-Flow]], [[2508.13904|OFQL]], [[2506.12811|FlowRL-Online]], [[2505.23062|COMPFLOW]], [[2502.02538|FQL]]
+- [[2607.26460|RLMM-Flow]], [[2607.10369|VINE]], [[2606.29934|RoamFlow]], [[2605.13435|Q-Flow]], [[2603.11470|NFPO]], [[2603.05296|LPS-Flow]], [[2603.04333|floq]], [[2602.18015|Flow-Actor-Critic]], [[2602.01156|PolicyFlow]], [[2512.03973|Guided-Flow-Policy]], [[2510.07650|Value-Flows]], [[2509.25756|SAC-Flow]], [[2509.06863|floq-Flow]], [[2508.13904|OFQL]], [[2506.12811|FlowRL-Online]], [[2505.23062|COMPFLOW]], [[2502.02538|FQL]]
 
 > [!star] Key Papers
 > - [[2502.02538|FQL]] — Foundational flow-matching offline RL method; one-step distillation from a BC flow policy avoids BPTT, the baseline every other paper here compares against
@@ -460,11 +460,11 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2410.23223|COMAL]] — Extends the lineage beyond the Bradley-Terry assumption; first algorithm proven to reach the exact Nash equilibrium under general preferences
 
 **Alignment Data Curation & Training Efficiency** — Data-selection, curation, and compute-efficient recipes for preference training.
-- [[2602.10388|FAC Synthesis]], [[2512.16626|SLHF]], [[2511.20629|MapReduce-LoRA]], [[2511.10985|DPO-Data-Curation-Study]], [[2510.20413|AuxDPO]], [[2510.16333|PIVOT]], [[2510.11194|CDRA]], [[2510.03269|GEB]], [[2509.26074|LENS]], [[2506.09508|Efficient-Preference-RL]], [[2506.08681|IS-DAAs]], [[2502.07193|One-Pass-RLHF]]
+- [[2602.10388|FAC Synthesis]], [[2512.16626|SLHF]], [[2511.20629|MapReduce-LoRA]], [[2511.10985|DPO-Data-Curation-Study]], [[2510.20413|AuxDPO]], [[2510.16333|PIVOT]], [[2510.11194|CDRA]], [[2510.03269|GEB]], [[2509.26074|LENS-Reward]], [[2506.09508|Efficient-Preference-RL]], [[2506.08681|IS-DAAs]], [[2502.07193|One-Pass-RLHF]]
 
 > [!star] Key Papers
 > - [[2511.10985|DPO-Data-Curation-Study]] — Systematic cross-analysis of five open-source DPO datasets that curates UltraMix, 30% smaller yet outperforming across 14 benchmarks while cutting training compute by 30%
-> - [[2509.26074|LENS]] — Synthesizes preference data directly in latent embedding space, an 18x faster alternative to text-based synthesis for reward model training under limited preference data
+> - [[2509.26074|LENS-Reward]] — Synthesizes preference data directly in latent embedding space, an 18x faster alternative to text-based synthesis for reward model training under limited preference data
 > - [[2502.07193|One-Pass-RLHF]] — Provably O(1) per-iteration compute and storage for online reward modeling via mirror descent, with a proven √κ statistical efficiency gain over MLE
 
 **Alignment Theory, Safety & Multi-Objective Optimization** — Directional, multi-objective, and safety-oriented alignment theory beyond the core DPO objective.
@@ -520,7 +520,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2505.19281|Online-RL-Data-Attribution]] — Local influence-based filtering for PPO rollout buffers cuts training rounds by 20-67% and runtime by up to 69%, with RLHF gains transferring to LLM fine-tuning
 
 **LLM Reasoning Off-Policy & Sample-Efficient RL** — Off-policy and data-reuse techniques specifically for LLM RLVR/reasoning training.
-- [[2608.01418|PNPO]], [[2605.30056|CGPO]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2602.20722|BAPO-RL]], [[2510.18927|BAPO]], [[2510.13328|TOSFIT]], [[2510.07730|DEAS]], [[2510.02245|ExGRPO]], [[2510.01161|M2PO]], [[2509.24748|RPEX]], [[2509.24067|ICQL]], [[2509.22601|SPEAR]], [[2509.15981|Uncertainty-Policy-Regularisation]], [[2509.15965|RLinf]], [[2509.01720|SoLS]], [[2509.01321|DEPO]]
+- [[2608.01418|PNPO]], [[2605.30056|CGPO]], [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2602.20722|BAPO-RL]], [[2510.18927|BAPO]], [[2510.13328|TOSFIT]], [[2510.07730|DEAS]], [[2510.02245|ExGRPO]], [[2510.01161|M2PO]], [[2509.24748|RPEX]], [[2509.24067|ICQL]], [[2509.22601|SPEAR-RL]], [[2509.15981|Uncertainty-Policy-Regularisation]], [[2509.15965|RLinf]], [[2509.01720|SoLS]], [[2509.01321|DEPO]]
 
 > [!star] Key Papers
 > - [[2510.02245|ExGRPO]] — Replay-buffer prioritization by question difficulty and trajectory entropy lifts OOD reasoning by +7.6 points and rescues weaker models from RLVR collapse (1.3 to 30.8 OOD score)
@@ -985,7 +985,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2504.15777|Tina]] — Highly cost-effective approach to visual reasoning; proves RL-distilled small models are viable
 
 **Visual Planning & Tool Use** — RL teaches VLMs to plan visually, use tools, and generate executable visual programs.
-- [[2607.12800|UniVR]], [[2604.01600|MM-ReCoder]], [[2603.14117|SIEVE]], [[2602.11073|VILAVT]], [[2511.19661|CodeV]], [[2508.13587|Chart-to-Code-RL]], [[2505.20289|VisTA]], [[2505.11409|VPRL]]
+- [[2607.12800|UniVR]], [[2604.01600|MM-ReCoder]], [[2603.14117|SIEVE-VLM]], [[2602.11073|VILAVT]], [[2511.19661|CodeV]], [[2508.13587|Chart-to-Code-RL]], [[2505.20289|VisTA]], [[2505.11409|VPRL]]
 
 > [!star] Key Papers
 > - [[2505.11409|VPRL]] — Visual Planning via RL: multi-step reasoning solely through sequences of images
@@ -1192,7 +1192,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2505.11614|RL-for-Human-Decision-Explanation]] — Novel use of RL to train LLMs as cognitive models of human decision-making; bridges AI and cognitive science
 
 **Adversarial Multi-Agent RL & Red-Teaming** — RL where agents are trained as adversaries — to mine failures, induce targeted behaviors, or stress-test other policies. Companion to robust RL; closely related to [[11_Robotics-and-Embodied-AI|adversarial robustness in VLAs]].
-- [[2607.10630|AWM]], [[2607.05939|PFSP-CTBR]], [[2604.05595|DAERT]], [[2602.06854|SEMA]], [[2602.00528|LLM-Poker-Study]], [[2510.10937|Neutral-Adversarial-Policy]], [[2510.08255|ShapeLLM-Opponent]], [[2510.02286|DialTree]], [[2510.01264|HARL-A]], [[2509.18891|Point-Prompt-Defender]], [[2508.02027|Dual-DM]], [[2503.21983|RL-Trust-Attacks]], [[2501.01830|Auto-RT]], [[1903.10654|FAILMAKER-ADVRL]]
+- [[2607.10630|AWM-Adversarial]], [[2607.05939|PFSP-CTBR]], [[2604.05595|DAERT]], [[2602.06854|SEMA]], [[2602.00528|LLM-Poker-Study]], [[2510.10937|Neutral-Adversarial-Policy]], [[2510.08255|ShapeLLM-Opponent]], [[2510.02286|DialTree]], [[2510.01264|HARL-A]], [[2509.18891|Point-Prompt-Defender]], [[2508.02027|Dual-DM]], [[2503.21983|RL-Trust-Attacks]], [[2501.01830|Auto-RT]], [[1903.10654|FAILMAKER-ADVRL]]
 
 > [!star] Key Papers
 > - [[2604.05595|DAERT]] — RL-based diversity-aware red-teaming against VLAs; bridges adversarial RL with VLA failure-mining (5.85% π0 success under attack)
@@ -1418,7 +1418,7 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 > - [[2511.09515|WMPO]] — paradigm shift for robotics post-training: on-policy RL run entirely inside a learned pixel-space world model, eliminating real-world interaction while still yielding real-robot gains
 
 **Reasoning-Efficiency, Reflection & Reward-Shaping Post-Training** — Post-training recipes that reshape rewards, add reflection, or manage reasoning-token budgets.
-- [[2512.18552|SSR]], [[2510.25889|piRL]], [[2510.25801|Metis-SPECS]], [[2510.15047|SPA]], [[2510.12710|Reflective-Self-Adaptation]], [[2508.12790|Rubicon]], [[2508.05629|DFT]], [[2508.02298|CAPO]], [[2507.17746|RaR]], [[2505.22094|ReinFlow]], [[2504.13055|NoisyRollout]], [[2504.12216|d1]], [[2504.11536|ReTool]], [[2503.23383|ToRL]], [[2503.03746|Process-based-Self-Rewarding]], [[2502.02316|DIME]]
+- [[2512.18552|SSR]], [[2510.25889|piRL]], [[2510.25801|Metis-SPECS]], [[2510.15047|SPA]], [[2510.12710|Reflective-Self-Adaptation]], [[2508.12790|Rubicon]], [[2508.05629|DFT]], [[2508.02298|CAPO]], [[2507.17746|RaR]], [[2505.22094|ReinFlow]], [[2504.13055|NoisyRollout]], [[2504.12216|d1]], [[2504.11536|ReTool]], [[2503.23383|ToRL]], [[2503.03746|Process-based-Self-Rewarding]], [[2502.02316|DIME-RL]]
 
 > [!star] Key Papers
 > - [[2508.05629|DFT]] — reframes SFT as RL with an ill-posed inverse-probability reward and rectifies it in a single line, beating PPO/GRPO by +15.66 points
@@ -1431,7 +1431,7 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 > - [[2502.21321|LLM-Post-Training-Survey]] — Comprehensive survey of post-training for LLMs; maps the full SFT-to-RL pipeline
 
 **RL for Structured Prediction** — RL applied to ranking, retrieval, and other structured output tasks.
-- [[2604.08545|Metis]], [[2604.02035|RL-Speculative-Trading]], [[2603.07020|RESCHED]], [[2602.11057|PRAM]], [[2512.23333|CME-CAD]], [[2510.11121|RFTHGS]], [[2510.10509|MARS-Sep]], [[2510.04080|PoLi-RL]], [[2510.03257|Triple-BERT]], [[2509.22558|StepORLM]], [[2509.15927|AIGB-Pearl]], [[2508.14313|AIRL-S]], [[2506.16931|MMFL]], [[2506.08898|POCCO]], [[2506.04195|MACS]], [[2505.23131|DOPPLER]], [[2505.20046|REARANK]], [[2505.19053|Structured-RL-CO]], [[2505.13445|RISE]], [[2110.11073|RL4RS]], [[1909.04847|RecSim]], [[1905.12767|SLATEQ]]
+- [[2604.08545|Metis]], [[2604.02035|RL-Speculative-Trading]], [[2603.07020|RESCHED]], [[2602.11057|PRAM]], [[2512.23333|CME-CAD]], [[2510.11121|RFTHGS]], [[2510.10509|MARS-Sep]], [[2510.04080|PoLi-RL]], [[2510.03257|Triple-BERT]], [[2509.22558|StepORLM]], [[2509.15927|AIGB-Pearl]], [[2508.14313|AIRL-S]], [[2506.16931|MMFL]], [[2506.08898|POCCO]], [[2506.04195|MACS-Crystal]], [[2505.23131|DOPPLER]], [[2505.20046|REARANK]], [[2505.19053|Structured-RL-CO]], [[2505.13445|RISE]], [[2110.11073|RL4RS]], [[1909.04847|RecSim]], [[1905.12767|SLATEQ]]
 
 
 **Safe RL & Constrained Control Theory** — Formal safety constraints, temporal-logic specifications, and robustness theory for RL.
