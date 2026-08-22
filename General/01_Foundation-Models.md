@@ -431,7 +431,7 @@ Connecting visual and textual representations in a shared embedding space, enabl
 > - [[2507.18009|GRR-CoCa]] — Integrates modern LLM architectural features into the CoCa framework for improved multimodal performance
 
 **Recent Contrastive Alignment Extensions** — Efficiency, distillation, and representation-quality improvements built on the CLIP-style contrastive alignment recipe.
-- [[2512.11141|ItemizedCLIP]], [[2509.01644|OpenVision-2]], [[2507.22062|Meta-CLIP-2]], [[2507.18009|GRR-CoCa]], [[2506.06970|MAPLE]], [[2506.03096|FuseLIP]], [[2505.21549|DCLIP]], [[2505.18983|AmorLIP]], [[2505.14204|Perceptual-Initialization]], [[2505.11192|FALCON]], [[2505.04601|OpenVision]], [[2505.04410|DeCLIP]], [[2505.03703|Modality-Gap-Reduction]], [[2504.13181|Perception-Encoder]], [[2503.15485|TULIP]], [[2503.06626|DiffCLIP]], [[2406.17639|AlignCLIP]], [[2406.06973|RWKV-CLIP]]
+- [[2608.17402|MoE-ViE]], [[2512.11141|ItemizedCLIP]], [[2509.01644|OpenVision-2]], [[2507.22062|Meta-CLIP-2]], [[2507.18009|GRR-CoCa]], [[2506.06970|MAPLE]], [[2506.03096|FuseLIP]], [[2505.21549|DCLIP]], [[2505.18983|AmorLIP]], [[2505.14204|Perceptual-Initialization]], [[2505.11192|FALCON]], [[2505.04601|OpenVision]], [[2505.04410|DeCLIP]], [[2505.03703|Modality-Gap-Reduction]], [[2504.13181|Perception-Encoder]], [[2503.15485|TULIP]], [[2503.06626|DiffCLIP]], [[2406.17639|AlignCLIP]], [[2406.06973|RWKV-CLIP]]
 
 **Additional methods** — Robot imitation-learning papers that don't fit the categories above.
 - [[2602.12215|LDA-1B]], [[2410.24221|EgoMimic]]

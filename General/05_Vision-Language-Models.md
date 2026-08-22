@@ -646,7 +646,7 @@ A growing focus area bridging VLMs toward embodied tasks — understanding where
 - [[2606.03920|VSTAT]], [[2605.30557|SpatialUncertain]], [[2605.22536|SpaceDG]], [[2605.18746|ESI-Bench]], [[2512.19526|QuantiPhy]], [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.08708|PhyBlock]], [[2505.15929|PhyX]], [[2503.21668|Object-Understanding-Cog-Eval]], [[2501.16411|PhysBench]], [[2311.10111|VideoCon]]
 
 **Physics-Grounded Reasoning, Generation & Prediction Methods** — Methods that instill or leverage physical-world priors for reasoning, video generation, and outcome prediction.
-- [[2608.04575|PhysMind]], [[2606.06076|MGSD]], [[2606.03988|Imaginative-Perception-Tokens]], [[2606.02551|AFUN]], [[2605.30561|VLM3]], [[2605.29563|ViewSuite]], [[2605.06758|R3L]], [[2602.08058|Picasso]], [[2602.06033|VLM-Intuitive-Physics]], [[2601.19834|Visual-Generation-Reasoning]], [[2512.17012|4D-RGPT]], [[2511.20280|VLM-Refine-Physics-Video]], [[2506.10778|SlotPi]], [[2502.19868|C-Drag]], [[2501.09038|Physics-IQ]], [[2311.18259|Ego-Exo4D]]
+- [[2608.19807|ATS]], [[2608.04575|PhysMind]], [[2606.06076|MGSD]], [[2606.03988|Imaginative-Perception-Tokens]], [[2606.02551|AFUN]], [[2605.30561|VLM3]], [[2605.29563|ViewSuite]], [[2605.06758|R3L]], [[2602.08058|Picasso]], [[2602.06033|VLM-Intuitive-Physics]], [[2601.19834|Visual-Generation-Reasoning]], [[2512.17012|4D-RGPT]], [[2511.20280|VLM-Refine-Physics-Video]], [[2506.10778|SlotPi]], [[2502.19868|C-Drag]], [[2501.09038|Physics-IQ]], [[2311.18259|Ego-Exo4D]]
 
 > [!star] Key Papers
 > - [[2501.09038|Physics-IQ]] — Probes whether video foundation models implicitly encode dynamic physical properties (mass, friction); a diagnostic complement to PhysGenBench

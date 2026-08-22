@@ -209,7 +209,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 - [[2510.15700|ProofOptimizer]], [[2510.01539|Executable-Counterfactuals]], [[2506.11487|DSP+]], [[2506.09820|CoRT]], [[2506.07047|Mathesis]], [[2401.08190|MARIO]], [[2211.12588|PoT]], [[2211.10435|PAL]]
 
 **Domain-Specific Code Generation & Translation** — Code agents specialized for SQL, front-end, robotics, binary, and symbolic-solver targets rather than general-purpose reasoning.
-- [[2607.24051|HELIOS]], [[2604.10929|Ro-SLM]], [[2509.25411|KeyTrace]], [[2509.22114|SK2Decompile]], [[2504.08600|SQL-R1]], [[2504.02327|LearNAT]], [[2503.01619|Flame]]
+- [[2608.18227|Agentic Push-T]], [[2607.24051|HELIOS]], [[2604.10929|Ro-SLM]], [[2509.25411|KeyTrace]], [[2509.22114|SK2Decompile]], [[2504.08600|SQL-R1]], [[2504.02327|LearNAT]], [[2503.01619|Flame]]
 
 **Code-Generation Training & Quality Optimization** — RL and feedback-driven methods that train code models for correctness, multi-language coverage, and interpreter-integrated reasoning quality.
 - [[2509.25810|RA3]], [[2508.04865|Agnostics]], [[2506.20639|DiffuCoder]], [[2505.22704|REAL-Code]], [[2505.21668|R1-Code-Interpreter]], [[2505.12723|OORL]]

@@ -332,7 +332,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2503.01584|SENSEI]] — Semantic exploration with epistemic uncertainty + Go-Explore for versatile world models
 
 **Modern Goal-Conditioned, Curriculum & Multi-Agent Exploration** — Recent goal-conditioned, curriculum, and multi-agent/social exploration methods (2025-2026).
-- [[2607.18433|Learnable Novelty]], [[2605.22814|Remember-to-be-Curious]], [[2605.03782|GLANCE]], [[2603.28386|COvolve]], [[2603.15789|OmniReset]], [[2603.02008|C-TeC]], [[2602.01619|SUSD]], [[2601.19810|ULEE]], [[2601.19707|QFLEX]], [[2510.24482|COMBRL]], [[2510.14129|Emergent-Exploration-GCRL]], [[2509.20648|CERMIC]], [[2509.09675|CDE]], [[2509.03771|Co-Evolving-MARL]], [[2506.22401|MEX-Primal-Dual]], [[2506.16396|GoalLadder]], [[2506.05980|AMPED]], [[2506.05634|AutoQD]], [[2506.00138|Virtual-Zebrafish-RL]], [[2505.19850|DISCOVER]]
+- [[2608.17596|tinyDSM]], [[2607.18433|Learnable Novelty]], [[2605.22814|Remember-to-be-Curious]], [[2605.03782|GLANCE]], [[2603.28386|COvolve]], [[2603.15789|OmniReset]], [[2603.02008|C-TeC]], [[2602.01619|SUSD]], [[2601.19810|ULEE]], [[2601.19707|QFLEX]], [[2510.24482|COMBRL]], [[2510.14129|Emergent-Exploration-GCRL]], [[2509.20648|CERMIC]], [[2509.09675|CDE]], [[2509.03771|Co-Evolving-MARL]], [[2506.22401|MEX-Primal-Dual]], [[2506.16396|GoalLadder]], [[2506.05980|AMPED]], [[2506.05634|AutoQD]], [[2506.00138|Virtual-Zebrafish-RL]], [[2505.19850|DISCOVER]]
 
 **Flow-Matching Policies & Critics** — RL methods built on flow matching rather than diffusion, for policies, critics, and value functions.
 - [[2607.26460|RLMM-Flow]], [[2607.10369|VINE]], [[2606.29934|RoamFlow]], [[2605.13435|Q-Flow]], [[2603.11470|NFPO]], [[2603.05296|LPS-Flow]], [[2603.04333|floq]], [[2602.18015|Flow-Actor-Critic]], [[2602.01156|PolicyFlow]], [[2512.03973|Guided-Flow-Policy]], [[2510.07650|Value-Flows]], [[2509.25756|SAC-Flow]], [[2509.06863|floq-Flow]], [[2508.13904|OFQL]], [[2506.12811|FlowRL-Online]], [[2505.23062|COMPFLOW]], [[2502.02538|FQL]]
@@ -488,7 +488,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.05193|k-Shifted-Successor]] — Shows low-rank structure emerges naturally in temporally-shifted successor measures, with the first finite-sample guarantees for their entry-wise estimation
 
 **Theoretical Value-Function & Sample-Complexity Analysis** — Formal analysis of value estimation, regret bounds, and distributional/average-reward theory.
-- [[2607.01880|DySEL]], [[2604.23056|K-Score]], [[2601.20071|Distributional-Sobolev-RL]], [[2510.06647|Gap-Dependent-Q-Regret]], [[2507.13181|Spectral-Bellman-Method]], [[2506.20904|Avg-Reward-Sample-Complexity]], [[2506.20048|Fitted-Distributional-Evaluation]], [[2505.23150|Categorical-Q-Learning]], [[2505.21391|Linear-TD-Finite-Sample]], [[2505.16548|TC-lambda]], [[2505.15544|differential-TD]], [[2505.10007|DR-Avg-Reward-Complexity]], [[2502.14172|Linear-CTD]], [[2105.05347|Return-based Scaling]], [[1706.05374|EPG]], [[1707.06887|C51]]
+- [[2607.01880|DySEL]], [[2604.23056|K-Score]], [[2601.20071|Distributional-Sobolev-RL]], [[2510.06647|Gap-Dependent-Q-Regret]], [[2507.13181|Spectral-Bellman-Method]], [[2506.20904|Avg-Reward-Sample-Complexity]], [[2506.20048|Fitted-Distributional-Evaluation]], [[2505.23150|Categorical-Q-Learning]], [[2505.21391|Linear-TD-Finite-Sample]], [[2505.16548|TC-lambda]], [[2505.15544|differential-TD]], [[2505.10007|DR-Avg-Reward-Complexity]], [[2502.14172|Linear-CTD]], [[2105.05347|Return-based Scaling]], [[1707.06887|C51]], [[1706.05374|EPG]]
 
 > [!star] Key Papers
 > - [[1707.06887|C51]] — DeepMind's foundational distributional Bellman equation, learning full return distributions instead of expectations; Categorical DQN scores 701% mean human-normalized on 57 Atari games
@@ -627,7 +627,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.24207|Humanline]] — Explains why online RL outperforms offline methods from a human cognitive science perspective
 
 **Applied, Hierarchical & Domain-Specific Policy Methods** — Domain-specific and hierarchical policy-optimization applications outside the mainstream algorithm families.
-- [[2608.09628|PPO Satellite Collision Avoidance]], [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]], [[2602.03086|Neural-Predictor-Corrector]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric-Action-Control]], [[2511.05005|MAC-Flow]], [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]], [[1910.04054|MVFST-RL]], [[1312.5602|DQN]]
+- [[2608.18770|CurriPO]], [[2608.09628|PPO Satellite Collision Avoidance]], [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]], [[2602.03086|Neural-Predictor-Corrector]], [[2601.19452|APC-RL]], [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]], [[2511.17367|R2PS]], [[2511.08234|Geometric-Action-Control]], [[2511.05005|MAC-Flow]], [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]], [[1910.04054|MVFST-RL]], [[1312.5602|DQN]]
 
 > [!success] The Post-R1 RL Recipe
 > ==SFT warm-up== (instruction following + format compliance) → ==GRPO with verifiable rewards== (math/code execution as signal) → ==Distillation== to smaller models. Stable large-scale GRPO training with decoupled clip-higher and dynamic sampling. Even 1.5B models gain reasoning; zero-data bootstrapping works via self-play RL.
@@ -1220,7 +1220,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.08440|TGRPO]] — Trajectory-wise GRPO adapted for VLA fine-tuning; bridges LLM RL and robot RL
 
 **Flow/Chunk-Based & Action-Representation VLA RL** — RL over flow-matching, action-chunking, and structured action representations for VLAs.
-- [[2607.27782|RedFlow]], [[2607.26991|RL2-VLA]], [[2607.12992|ChunkFlow]], [[2607.12931|ExToken]], [[2607.10383|ABot-N1]], [[2607.04681|Pinocchio]], [[2607.04591|S2C]], [[2607.02092|Guided Action Flow]], [[2605.13276|D-VLA]], [[2605.13105|PAIR-VLA]], [[2605.09410|RePO-VLA]], [[2604.05614|GPLA]], [[2508.18269|FlowVLA]]
+- [[2608.17423|Prism-GRPO]], [[2607.27782|RedFlow]], [[2607.26991|RL2-VLA]], [[2607.12992|ChunkFlow]], [[2607.12931|ExToken]], [[2607.10383|ABot-N1]], [[2607.04681|Pinocchio]], [[2607.04591|S2C]], [[2607.02092|Guided Action Flow]], [[2605.13276|D-VLA]], [[2605.13105|PAIR-VLA]], [[2605.09410|RePO-VLA]], [[2604.05614|GPLA]], [[2508.18269|FlowVLA]]
 
 > [!star] Key Papers
 > - [[2607.12992|ChunkFlow]] — foundational unified framework baking seam-aware continuity losses directly into AWAC-based RL fine-tuning for chunked VLA policies, the best success-smoothness trade-off (93.4% LIBERO-Long, lowest jitter) at no extra inference latency
@@ -1261,7 +1261,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2302.04659|ManiSkill2]] — foundational benchmark/simulation infrastructure paper, establishing real-time two-way rigid-soft coupling and ~2000 FPS visual RL that later manipulation benchmarks build on
 
 **LLM/VLM-Guided Reward & Task Specification** — Using LLM/VLM reasoning to specify rewards, tasks, and goals for robot RL.
-- [[2605.22986|ASQ]], [[2602.01166|LaRA-VLA]], [[2512.01996|Humanoid-Loco-15min]], [[2512.00961|GenReward]], [[2511.17855|QuickLAP]], [[2506.08052|ReCogDrive]], [[2502.13130|Magma]], [[2502.10894|UAN]], [[2403.13358|QUARD-Auto]], [[2309.00709|TrafficRLHF]], [[2306.08647|L2R]]
+- [[2608.18254|GAPL]], [[2605.22986|ASQ]], [[2602.01166|LaRA-VLA]], [[2512.01996|Humanoid-Loco-15min]], [[2512.00961|GenReward]], [[2511.17855|QuickLAP]], [[2506.08052|ReCogDrive]], [[2502.13130|Magma]], [[2502.10894|UAN]], [[2403.13358|QUARD-Auto]], [[2309.00709|TrafficRLHF]], [[2306.08647|L2R]]
 
 > [!star] Key Papers
 > - [[2512.00961|GenReward]] — clearest instantiation of the group's core idea: a pretrained video diffusion model generates goal videos whose alignment with the agent's trajectory becomes the RL reward, delivering the group's strongest measured gains

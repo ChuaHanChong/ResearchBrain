@@ -355,7 +355,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 > - [[2504.13469|HMPE]] — HeatMap Embedding for small object detection; dynamically allocates attention to tiny targets
 
 **Reward & RL-Tuned Detection** — Methods applying reinforcement learning or reward-based optimization to improve detection and visual grounding.
-- [[2605.15951|Group-Revision]], [[2602.20630|TraqPoint]], [[2504.07615|VLM-R1]], [[2503.01785|Visual-RFT]], [[2302.08242|Reward-Tuning-CV]]
+- [[2608.18881|Falcon Perception-HD]], [[2605.15951|Group-Revision]], [[2602.20630|TraqPoint]], [[2504.07615|VLM-R1]], [[2503.01785|Visual-RFT]], [[2302.08242|Reward-Tuning-CV]]
 
 > [!star] Key Papers
 > - [[2503.01785|Visual-RFT]] — Adapts RL fine-tuning to vision tasks with verifiable rewards; +24.3% on fine-grained classification, +21.9 mAP on few-shot detection
@@ -445,7 +445,7 @@ From class-specific masks to open-world, language-guided segmentation. Modern se
 The frontier of perception: giving AI models true 3D spatial awareness. This capability is critical for embodied AI, where robots must reason about object positions, spatial relationships, and scene geometry from limited viewpoints.
 
 **3D Scene Graphs, Occupancy & Spatial Memory** — Persistent, structured 3D scene representations (topological maps, scene graphs, occupancy/voxel memory) supporting long-horizon embodied navigation and exploration.
-- [[2607.25448|RPV-V2]], [[2607.23743|Traversability-Aware Global Planner]], [[2607.21281|HGeo-TopoMap]], [[2607.13245|JITOMA]], [[2607.10879|BRO Scene Graph Prediction]], [[2607.08537|Whareformer]], [[2607.07885|TTC Obstacle Avoidance]], [[2607.05543|GEM-Occ]], [[2606.31919|MVP-Nav]], [[2606.30598|HOPformer]], [[2606.29786|OP3DSG]], [[2606.28592|E2-CARE]], [[2606.02551|AFUN]], [[2606.00637|GLAD]], [[2604.11302|3D-ALP]], [[2512.14692|O-Voxel]], [[2509.09594|ObjectReact]], [[2502.20606|CNABU]], [[2412.14480|GraphEQA]], [[2411.17735|3D-Mem]], [[2402.15487|RoboEXP]]
+- [[2608.17633|OVIP-SG]], [[2607.25448|RPV-V2]], [[2607.23743|Traversability-Aware Global Planner]], [[2607.21281|HGeo-TopoMap]], [[2607.13245|JITOMA]], [[2607.10879|BRO Scene Graph Prediction]], [[2607.08537|Whareformer]], [[2607.07885|TTC Obstacle Avoidance]], [[2607.05543|GEM-Occ]], [[2606.31919|MVP-Nav]], [[2606.30598|HOPformer]], [[2606.29786|OP3DSG]], [[2606.28592|E2-CARE]], [[2606.02551|AFUN]], [[2606.00637|GLAD]], [[2604.11302|3D-ALP]], [[2512.14692|O-Voxel]], [[2509.09594|ObjectReact]], [[2502.20606|CNABU]], [[2412.14480|GraphEQA]], [[2411.17735|3D-Mem]], [[2402.15487|RoboEXP]]
 
 **VLM-Grounded 3D Reasoning, Body Pose & Benchmarks** — Agentic/VLM-based spatial reasoning over 3D scenes, human/object 3D pose estimation, and dedicated benchmarks or datasets for 3D scene understanding.
 - [[2605.29563|ViewSuite]], [[2603.15386|RieMind]], [[2602.20363|3D-Aesthetic-Field]], [[2602.15989|SAM-3D-Body]], [[2602.12087|MetricMM]], [[2602.06037|GeoThinker]], [[2601.22231|PE-Spatial-Reasoning-Analysis]], [[2512.16811|GeoPredict]], [[2510.16714|SceneCOT]], [[2509.21420|QuadGPT]], [[2507.07781|SURPRISE3D]], [[2505.20279|VLM-3R]], [[2505.12448|SSR]], [[2410.08208|SPA]], [[2407.12435|F-HOI]], [[1709.06158|Matterport3D]]
