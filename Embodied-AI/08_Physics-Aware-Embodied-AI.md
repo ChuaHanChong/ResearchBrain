@@ -111,13 +111,13 @@ Four lanes, four different shapes. [[2311.12198|PhysGaussian]] split into a mate
 Three orthogonal axes define every physics-aware embodied AI system. Each axis is a distinct design lever — *where* the physics signal enters the model, *what* it constrains, and *when* it acts — and any system can be located by its triple. The triple frames every downstream choice in sections 2–7.
 
 > [!success] The Three Axes
-> - **Where physics lives**: implicit (in features) / explicit (in loss) / external (in solver)
+> - **Where physics lives**: implicit (in features) / explicit (in loss) / external (in solver) / symbolic (in program)
 > - **What is physical**: appearance (3D Gaussians + MPM) / dynamics (video next-frame) / reward (RL)
 > - **When it intervenes**: at generation / at training / at inference
 
 #### 1.1 Where Physics Lives
 
-Pick the slot in the stack that carries the physics signal — features, loss, or solver.
+Pick the slot in the stack that carries the physics signal — features, loss, solver, or program (symbolic/analytic representations).
 
 - **[[2606.09806|TNO]]** — Represents physical quantities as k-cochains on cell complexes and bakes ==Discrete Exterior Calculus== operators into the architecture so conservation laws hold by construction, not by loss; **HTNO** hits **2.41%** L1 error on EmmiWing 3D-surface PDEs at **~6x** faster convergence than RIGNO-18 — physics-in-architecture generalized to PDE operator learning.
 - **[[2311.12198|PhysGaussian]]** — Implicit: each scene element ==carries physical attributes== so a ==custom MPM== integrates Gaussian particles directly, with deformation-gradient rotation evolving the spherical harmonics; higher PSNR than NeRF-deformation baselines — representative of the in-features axis.
@@ -190,8 +190,6 @@ The dominant implicit-physics paradigm fuses 3D Gaussian Splatting with continuu
 
 Gaussians are differentiable, particle-like, and already compatible with rendering. ==MPM== handles arbitrary materials (elastic, plastic, granular, viscoplastic) on the same particle representation. Result: "what you see is what you simulate" — no separate mesh extraction step.
 
-- **[[2606.27364|PhysiFormer]]** — A ==Diffusion Transformer== generating whole ==3D mesh vertex trajectories== in one pass via ==factorized spatial/object/temporal attention== + coordinate ==RoPE==, using mesh vertices not Gaussians as substrate; beats autoregressive baselines on rigidity/momentum preservation, generalizes to **15** objects (trained max **10**), **5x** faster than Genesis.
-- **[[2605.30347|NeuROK]]** — Learns a compact ==k-dimensional kinematic-state parameterization== via a ==CVAE== and simulates 4D object deformation as generalized coordinates in a ==Lagrangian-mechanics== solver, no category-specific material priors needed; Chamfer **0.028** / IoU **0.764**, **83.33%** user-preferred realism — physics lives in the learned coordinate frame, not MPM particles.
 - **[[2511.06299|Physics-Informed-Deformable-GS]]** — A method unifying explicit ==3D Gaussian Splatting== with ==continuum mechanics== for physically consistent dynamic novel-view synthesis from monocular video: each Gaussian is a ==Lagrangian material particle== with a time-evolving constitutive field, regularized by the ==Cauchy momentum equation== + a ==Lagrangian flow-matching loss==.
 - **[[2505.16971|UniPhy]]** — A unified neural ==constitutive model== for inverse physics simulation that swaps two material-dependent ==MPM== functions for ==latent-conditioned networks==, then freezes them and optimizes a per-scene latent to infer material from observed trajectories; elastic reconstruction error **5.2e-6** vs **2.4e-4** (NCLaw) — material-agnostic, no preset material type.
 - **[[2410.08257|NeuMA]]** — Models material dynamics as ==residual adaptation==: an expert MPM prior (M0) plus a ==LoRA neural adaptor== (ΔMθ), rendered via ==Particle-GS== (Gaussian kernels hierarchically bound to sim particles); Chamfer **1.31** vs PAC-NeRF's **114.80** and NCLaw's **12.18**.
@@ -225,7 +223,16 @@ Gaussians are differentiable, particle-like, and already compatible with renderi
 - **[[2503.21442|RainyGS]]** — Couples a height-map ==shallow-water model== (mass-conserving upwind scheme + semi-Lagrangian solver) with ==3D Gaussian Splatting== + ==reflection-aware two-pass rasterization== (Screen-Space Reflection) to synthesize dynamic rain, puddles, ripples, and splashes in-the-wild; **30+ FPS**, **65-73%** user preference over Rain Motion / Runway-V2V / Instruct-GS2GS.
 - **[[2502.07007|Grounding-Creativity-in-Physics]]** — A survey of ==physical priors in AIGC==, taxonomizing physics-grounded 3D/4D generation by spatiotemporal granularity (static-3D / dynamic-3D / 4D) and representation (vision / NeRF / ==Gaussian Splatting==); argues differentiable engines (MPM, FEM) are essential and no single method excels across all material types.
 
-Generating *simulator-ready* 3D assets with physics metadata, rather than rendering physics-consistent scenes. The output isn't a video — it's a kinematic + material-tagged 3D mesh you drop into MuJoCo or a game engine.
+#### 2.2 Non-Gaussian Learned/Analytic Substrates
+
+Same function as §2.1 — simulate scene dynamics directly, producing a rollout rather than a tagged asset — but the particle representation isn't Gaussians and the solver isn't MPM. Mesh vertices and a learned kinematic coordinate frame stand in instead.
+
+- **[[2606.27364|PhysiFormer]]** — A ==Diffusion Transformer== generating whole ==3D mesh vertex trajectories== in one pass via ==factorized spatial/object/temporal attention== + coordinate ==RoPE==, using mesh vertices not Gaussians as substrate; beats autoregressive baselines on rigidity/momentum preservation, generalizes to **15** objects (trained max **10**), **5x** faster than Genesis.
+- **[[2605.30347|NeuROK]]** — Learns a compact ==k-dimensional kinematic-state parameterization== via a ==CVAE== and simulates 4D object deformation as generalized coordinates in a ==Lagrangian-mechanics== solver, no category-specific material priors needed; Chamfer **0.028** / IoU **0.764**, **83.33%** user-preferred realism — physics lives in the learned coordinate frame, not MPM particles.
+
+#### 2.3 Physics-Grounded 3D Asset Generation
+
+Generating simulator-ready 3D assets with physics metadata for downstream consumption, as opposed to simulating scene physics directly. The output isn't a video — it's a kinematic + material-tagged 3D mesh you drop into MuJoCo or a game engine.
 
 - **[[2607.07459|EmbodiedGen V2]]** — An agentic ==3D world engine== generating ==sim-ready assets== + ==affordance autolabeling== + task-driven interactive scenes, with **Vibe Coding** (an ==LLM-based agent==) enabling natural-language world editing under physical-feasibility constraints; **96.5%** asset acceptance, mobile-manipulation sim-to-real **21.7%→75.0%**, cube stacking **43.1%→88.9%**.
 - **[[2605.20290|TelePhysics]]** — A training-free single-image pipeline: 3D mesh reconstruction + VLM material estimation feed a ==Genesis multi-physics backend== (RBD/MPM/PBD), then ==WonderTrace== renders states photorealistically; **0.00** penetration rate, **0.90** interaction success, real-time **15 FPS** previews — avoids per-object isolation artifacts.
@@ -241,7 +248,7 @@ Generating *simulator-ready* 3D assets with physics metadata, rather than render
 - **[[2508.13911|PhysGM]]** — A transformer-based feed-forward model inferring ==3D Gaussian Splatting== + physical properties from a single image, with ==MPM== dynamics (one material point per Gaussian) refined by ==Direct Preference Optimization== over a non-differentiable simulator; 4D content in **<1 min**, **0.2748** CLIP_sim / **42.8%** UPR, beating optimization baselines.
 - **[[2503.20746|PhysGen3D]]** — A pipeline turning a single image into an interactive 3D world via GPT-4o + Grounded-==SAM== + InstantMesh reconstruction, then ==Taichi-Elements MPM== dynamics for user-controlled 'what-if' physical interactions; human evaluators preferred its physical realism + photorealism over Pika / Kling / Gen-3 — a digital twin from one image.
 
-#### 2.2 Physics-Verified Compositional Scene Reconstruction from Images
+#### 2.4 Physics-Verified Compositional Scene Reconstruction from Images
 
 Single- or multi-view images of a real scene reconstruct plausibly but not physically: objects float, interpenetrate, or lack complete occluded geometry once several objects and their occlusions are involved. This track runs a physics engine or physics-constrained optimizer *inside* the reconstruction loop — as a diagnostic probe, a pose-and-shape corrector, or a downstream MPM substrate — to produce a compositional, simulation-ready scene rather than a single simulation-ready asset.
 
@@ -393,7 +400,7 @@ Before physics entered video diffusion, it entered pose reconstruction: differen
 
 ### 4. External Simulators in the Optimization Loop
 
-The common pattern here is the simulator as the *inner loop* of an optimizer: an outer proposer (an LLM, CMA-ES, a zero-order MPC, or a policy trainer) generates candidates, and a physical simulator rolls them out to score and verify them. Coupling the two gets you the best of both — at the cost of a brittle interface between learned and analytical components. The papers below differ in *what gets handed to the simulator*: a reconstructed digital twin, a robot policy, or a retargeted human motion.
+External simulators enter the optimization loop through three distinct mechanisms. The dominant pattern is *simulator-in-the-loop*: an outer proposer (an LLM, CMA-ES, a zero-order MPC, or a policy trainer) generates candidates, and a physical simulator rolls them out to score and verify them (§4.1–§4.3). A second mechanism *replaces* the simulator with a learned surrogate — a linearized approximation (e.g. a Koopman operator) substituted directly into the same control loop for speed (§4.4). A third *wraps* a predictive controller in a statistical safety layer — Bayesian, conformal, or distribution-free — that bounds constraint-violation risk without assuming a known noise model, rather than running or replacing a simulator at all (§4.5). Coupling learned and analytical components gets you the best of both — at the cost of a brittle interface between them. The papers below differ in *what gets handed to the simulator (or its substitute)*: a reconstructed digital twin, a robot policy, a retargeted human motion, a linear dynamics surrogate, or a risk-bounded control signal.
 
 #### 4.1 Digital-Twin Reconstruction & Policy Training
 
@@ -428,13 +435,11 @@ Reconstruct or learn the physics substrate; train policies against it. The simul
 - **[[1910.00935|DiffTaichi]]** — Foundational differentiable-physics-simulator language: ==two-scale automatic differentiation== (kernel-level source-code transform + light-weight global tape) plus ==Time-of-Impact collision resolution== for correct gradients through discontinuities; **188x** faster than TensorFlow, robot controllers optimized in tens of iterations.
 - **[[1903.11239|TossingBot]]** — The original ==Residual Physics== recipe: an analytical ==ballistic model== estimate is corrected by a CNN's ==learned residual==, trained end-to-end via self-supervised trial-and-error; **514** picks/hour at **84.7%** throwing accuracy — the 2019 precedent for [[2606.09640|Physics-Aware-Sparse-EL]]'s residual-dynamics pattern above.
 
-#### 4.2 Bilevel RL Inside a Physics Simulator
+#### 4.2 LLM/VLM-Proposer + Simulator-Verifier Loops
 
-Use the simulator as the *inner loop* of a bilevel optimization, with retargeting / policy parameters learned in the outer loop. Physics consistency comes for free because retargeting happens inside the simulator.
+An LLM, VLM, or a sampling-based optimizer proposes candidate physical parameters, plans, tool geometry, or simulator code; a physics simulator rolls the candidate out and scores it, closing the loop by feeding the result back to the proposer. The simulator verifies and ranks — it does not get differentiated through.
 
 - **[[2606.08688|PhysAgent]]** — A ==simulator-in-the-loop== multi-agent framework where a Semantic Agent proposes MPM force-field configs and Refine Agents iterate against ==trajectory-grounded visual feedback==, avoiding the LLM-simulator modality gap that causes "physical hallucinations"; highest CLIPsim + user preference across drop/stretch/sway force types.
-- **[[2606.05359|RePHO]]** — A physics-based tracking policy formulates monocular human-object interaction as an ==MDP==, using ==Traverse RSI + adaptive sampling== to find reliable kinematic anchors and dual forward/backward propagation to overwrite noisy references with simulator states; success rate **17.1%→51.4%** on BEHAVE, penetration **6.64→3.91cm**.
-- **[[2605.06593|ReActor]]** — A ==Bilevel optimization== retargeter: the upper level learns retargeting parameters, the lower trains a motion-tracking policy via RL in a physics simulator, and a ==simplified gradient estimator== cuts the bilevel cost; retargeting *inside* the simulator inherits physics consistency — **zero** ground/self-penetration — cleaned data lifts RL **+15.22 pp**.
 - **[[2512.11061|VDAWorld]]** — A VLM synthesizes an executable Python ==world program==: ==grounded 2D/3D scene representation== + action dynamics + a ==physics-or-logic simulator==, refined by a ==VLM critic + code-refiner== loop; **49.7** PhysicsIQ (vs Wan2.2 **46.2**), perfect **1.000** F1 on Conway's Game of Life — generalizes [[2512.04221|MoReGen]]'s LLM-writes-simulator-code pattern.
 - **[[2512.05955|SIMPACT]]** — A ==multi-physics simulator== built from a single RGB-D image (VLM-inferred geometry + ==physical parameters==), with a ==VLM-driven planning loop== that proposes ==symbolic actions==, evaluates via ==simulated rollouts==, and refines before emitting 6-DoF trajectories; **80–90%** on 7 real tasks where π0.5 scores **0%**, **89%** sim-real agreement.
 - **[[2512.04221|MoReGen]]** — A ==multi-agent LLM== pipeline (Text-Parser, Code-Writer, Video-Render) writes executable ==physics-simulator code== (Pymunk/Blender) directly, refined by an iterative trajectory/physics evaluator; DTW **8.93** on new MoReSet vs Sora2's **11.21** — bypasses diffusion for exact Newtonian motion.
@@ -442,7 +447,14 @@ Use the simulator as the *inner loop* of a bilevel optimization, with retargetin
 - **[[2411.08027|LLMPhy]]** — An LLM-optimizer framework coupling an ==LLM== with a ==physics engine==: the LLM does ==zero-shot black-box optimization==, iteratively refining physical parameters from simulator feedback; **62.0%** mIoU on the new ==TraySim== QA (vs **32.1%** pure-LLM, **59.6–59.7%** Bayesian/CMA-ES), full trace adding **+5%** — simulator-as-inner-loop with an LLM optimizer.
 - **[[2212.00541|Predictive-Sampling]]** — A real-time MPC framework (==MuJoCo MPC / MJPC==) using the physics engine as the rollout inner loop: an asynchronous agent-planner runs derivative-free ==zero-order Predictive Sampling== over spline-parameterized controls, synthesizing 27-DoF humanoid, quadruped, and Shadow-Hand behaviors in **1–20 ms** — simulator-as-optimizer, no learned model.
 
-#### 4.3 Learned Linear Dynamics as a Control Substrate
+#### 4.3 Bilevel RL Retargeting Inside a Simulator
+
+Use the simulator as the *inner loop* of a bilevel optimization, with retargeting / policy parameters learned in the outer loop. Physics consistency comes for free because retargeting happens inside the simulator.
+
+- **[[2606.05359|RePHO]]** — A physics-based tracking policy formulates monocular human-object interaction as an ==MDP==, using ==Traverse RSI + adaptive sampling== to find reliable kinematic anchors and dual forward/backward propagation to overwrite noisy references with simulator states; success rate **17.1%→51.4%** on BEHAVE, penetration **6.64→3.91cm**.
+- **[[2605.06593|ReActor]]** — A ==Bilevel optimization== retargeter: the upper level learns retargeting parameters, the lower trains a motion-tracking policy via RL in a physics simulator, and a ==simplified gradient estimator== cuts the bilevel cost; retargeting *inside* the simulator inherits physics consistency — **zero** ground/self-penetration — cleaned data lifts RL **+15.22 pp**.
+
+#### 4.4 Learned Linear Dynamics as a Control Substrate
 
 Replace the analytical nonlinear dynamics model inside a predictive / sampling-based controller with a *learned* linear surrogate. A ==Deep Koopman Operator== lifts nonlinear state into a higher-dimensional space where dynamics are linear, so trajectory rollouts reduce to matrix multiplication — turning the learned model into a computational accelerator for the same physics-engine-in-the-loop control loop.
 
@@ -451,7 +463,7 @@ Replace the analytical nonlinear dynamics model inside a predictive / sampling-b
 - **[[2509.11567|Koopman-Continuum]]** — A data-driven ==Koopman operator== approach for multi-segment tendon-driven soft continuum robots, using a ==per-segment projection== into local coordinate frames to linearize dynamics for real-time linear MPC; cuts mean-squared shape error by an **order of magnitude**, scales to **5**-segment robots.
 - **[[2505.00354|Koopman-Soft-Robot-MPC]]** — A ==Deep Koopman==-based MPC (DK-MPC) linearizing multi-segment soft-robot dynamics via an ==auto-encoder== that learns lifting functions and the Koopman operator from state-action data, then plans inputs under MPC; **3.11 mm** average trajectory-tracking error on a physical soft robot vs **22.49 mm** for RBF-based K-MPC.
 
-#### 4.4 Probabilistic Safety Layers for Predictive Control
+#### 4.5 Probabilistic Safety Layers for Predictive Control
 
 Sampling-based and predictive controllers (MPPI, MPC) plan against an explicit dynamics model but handle hard constraints brittlely — penalty terms are fragile, and exact distributional knowledge of disturbances is rarely available. This track wraps the controller in a *statistical* safety layer (Bayesian, conformal, distribution-free) that bounds constraint-violation risk without assuming a known noise model, keeping the physics-engine-in-the-loop control loop certifiable.
 

@@ -192,16 +192,14 @@ Egocentric pretraining obeys a *log-linear* scaling curve, making it the first r
 
 ---
 
-### 2. Egocentric Datasets
+### 2. Egocentric Data & Perception Substrate
 
-The data foundation. Each dataset specializes in a different scale-modality-coverage trade-off.
+The data foundation, plus the perception layer that operates on it. **Datasets** (§2.1–2.6) — raw egocentric video corpora, each specializing in a different scale-modality-coverage trade-off. **Perception & Forecasting Primitives** (§2.7–2.9) — models that convert that raw video into structured signals (full-body pose, object tracking, hand-dynamics forecasting), the upstream layer that embodiment-alignment and retargeting pipelines (§5) consume.
 
 #### 2.1 Foundational Visual-Reasoning Datasets
 
 Common-sense action recognition substrates used as low-level verification benchmarks for egocentric pretraining.
 
-- **[[2505.24257|DISJOINT-3DQA]]** — A benchmark probing VLM egocentric spatial reasoning over objects *never co-visible* in a video, built on Aria Synthetic Environments with a ==strict disjointness constraint== (**5,399** QA pairs); GPT-4o hits **65.60%** vs **93.96%** human, but ground-truth 3D lifts it **+18% → 83.2%** — the bottleneck is 3D-representation construction, not reasoning.
-- **[[2406.05756|EmbSpatial-Bench]]** — The first benchmark for *egocentric* spatial understanding of LVLMs in 3D embodied scenes, testing ==six egocentric relations== over Matterport3D / AI2-THOR / ScanNet, plus the ==EmbSpatial-SFT== tuning set; zero-shot LVLMs are weak (**49.11%** vs **90.33%** human), SFT lifts MiniGPT-v2 to **78.10%** — the diagnostic egocentric benchmark §7 flags as missing.
 - **[[2203.13116|EgoPAT3D]]** — A foundational egocentric task forecasting *where* a future hand-object interaction lands in 3D, backed by the **1M-frame** ==RGB-D + IMU== EgoPAT3D dataset and an LSTM/GRU baseline with a ==truncated weighted regression loss==; error drops as more frames arrive, multimodal beats unimodal, and it generalizes to unseen household scenes.
 - **[[2005.00343|EPIC-KITCHENS (Collection & Baselines)]]** — The extended IJCV release of EPIC-KITCHENS: a ==multi-stage annotation pipeline== (==participant self-narrations== + crowd-sourced ==temporal action localization==) over **125** verb / **331** noun classes; ==RGB+Flow+Audio fusion== lifts action accuracy **22.44% → 26.06%**, anticipation still only **6.25%**.
 - **[[1804.02748|EPIC-KITCHENS]]** — The foundational egocentric action dataset built via ==participant-driven post-recording narration==: **55 hours** of unscripted kitchen video, **32** participants (**39.6K** action segments, **454.3K** object boxes); baselines are weak — **<40%** detection, **20.5%** recognition, **4.62%** anticipation — exposing fine-grained understanding's difficulty.
@@ -228,9 +226,8 @@ Specialist egocentric datasets that target fine motor / dexterous-hand action pr
 
 #### 2.4 Cross-Embodiment Egocentric Demonstrations
 
-Robot-free egocentric corpora collected specifically to bridge the human-robot embodiment gap.
+Robot-free egocentric corpora collected or synthesized specifically to bridge the human-robot embodiment gap.
 
-- **[[2607.13472|EgoHTR]]** — A multi-modal 4D human-terrain reconstruction pipeline (Project ==Aria== glasses + ==Rokoko== IMU MoCap + ==Leica BLK2GO== scanner) producing centimeter-precise, terrain-grounded human motion via ==SMPL-X== + temporal/spatial alignment; **73.2mm** MPJPE, and perceptive locomotion policies trained on it deploy on a real Unitree G1.
 - **[[2606.27239|HumanoidUMI]]** — A portable, *robot-free* whole-body demonstration system (PICO 4 VR mocap + UMI-style fisheye grippers) feeding a hierarchical policy: Diffusion-Policy keypoints → ==Spatial Keypoint Retargeting== (IK-constrained) → learned whole-body controller; on a Unitree G1 it runs pick-place, bimanual, and loco-manipulation at **1.8×–12.4×** TWIST2 teleop throughput.
 - **[[2606.17385|EgoInfinity]]** — A web-scale 4D hand-object-interaction data engine converting in-the-wild RGB video into agent-agnostic metric trajectories via ==cross-module calibration==, then transferring them through ==SE(3)-equivariant cross-embodiment retargeting==; **0.821** IK success / **2.86 cm** error on Unitree G1, direct cutting/pouring on a dual-arm Franka FR3.
 - **[[2606.14665|EgoGuide]]** — A robot-free demonstration-collection system giving demonstrators real-time ==visual-geometric novelty guidance== plus a ==Gated Egocentric Residual Policy== that blends a wrist-only base policy with a head-camera corrective branch via a learned gate; comparable SR with **~50%** fewer demos, **80%** SR on Pepper Sorting, gating raises ego influence under occlusion.
@@ -238,6 +235,7 @@ Robot-free egocentric corpora collected specifically to bridge the human-robot e
 - **[[2503.13441|PH2D]]** — A task-oriented egocentric demonstration dataset via *consumer-grade VR* (**~3.02M** frames / **~27k** demos), paired with the ==Human Action Transformer (HAT)== co-trained on mixed human/robot data in a **54-dim** state-action space; improves relative OOD generalization **~100%** vs robot-only and collects **~5×** faster than teleop (**4.09s** vs **19.72s** grasping).
 - **[[2409.19499|FastUMI]]** — A redesigned, ==hardware-independent Universal Manipulation Interface== with decoupled hardware + first-person-tuned software; ships **10,000+** real demos across **22** tasks. RealSense T265 hits **10.5 mm** error; a ==Depth-Enhanced Diffusion Policy== lifts depth-sensitive tasks (Open Ricecooker **20% → 93.33%**) — scalable embodiment-agnostic collection.
 - **[[2608.02580|Ego2Robot]]** — A scalable synthesis pipeline converting egocentric human manipulation video into robot-specific training data across **15** morphologies via ==action alignment==, ==visual alignment==, and ==quality curation==; **18,561 hours** synthesized from **~1,940 hours** of human video, **+2.6pp** RoboTwin (**53.5%**), **+11.2%** cross-embodiment transfer.
+- **[[2608.12122|HandEdit]]** — A **200M**-instance, 26-embodiment benchmark for egocentric human-to-robot dexterous-hand image editing via ==SAM3 segmentation==, ==ProPainter inpainting==, ==MANO-to-URDF retargeting==, and a ==Harmonizer== pseudo-GT; GPT-Image-2 leads Hand-only (**0.780** structural fidelity), but Hand-Arm ID fidelity falls **0.852 → 0.563**.
 
 #### 2.5 Domain-Vertical Post-Training Corpora
 
@@ -247,23 +245,26 @@ Domain-vertical egocentric (+ exocentric) corpora used as a post-training layer 
 - **[[2605.13083|TouchAnything]]** (EgoTouch) — The **first multi-view egocentric + bimanual dense tactile** dataset: **20 hours** of synchronized head + wrist video with bimanual 3D hand pose *and* dense tactile maps. A shared encoder fuses views with ==view dropout training==, lifting Volumetric IoU **+6.1%** over ego-only and cutting the all-view → ego-only drop **−27.20% → −5.78%**.
 - **[[2605.09613|SABER]]** — Retail post-training set: **100+ hours** grocery activity, ==egocentric==+==exocentric== cameras, 3 action streams (==[[2410.11758|LAPA]] latent actions==, Dex-Retargeting, Body Pose). Lifts [[2503.14734|GR00T-N1.6]] via ==conditional flow-matching== on [[2511.10276|RoboBenchMart]] **13.4% → 29.3%** SR (**2.19×**); `close_fridge` **100%**, `open_fridge` **12% → 82%**.
 
-#### 2.6 Egocentric Full-Body Pose Estimation
-
-Upstream perception that recovers the demonstrator's full-body motion from head-mounted sensors — the body-trajectory signal that embodiment-alignment recipes ([[2602.10106|EgoHumanoid]]) retarget to robot joints.
-
-- **[[2503.23094|FRAME]]** — An egocentric full-body motion estimator using head-mounted stereo fisheye video + on-board ==6D device pose== for a ==floor-aligned reference frame==, trained on the SELF real-world dataset; **47.53 mm** MPJPE (**28%** over prior SOTA), **100%** non-penetration, **3.47 cm/s** foot-slide, real-time ~300 FPS (**2.68 ms**) for VR/AR.
-- **[[2308.06493|EgoPoser]]** — A real-time egocentric full-body pose estimator from sparse, intermittent MR head/hand tracking via ==realistic FoV modeling== (simulating out-of-view tracking gaps), ==global motion decomposition==, and calibration-free shape estimation; stable up to **50 m** from origin, **4.08 cm** mean vertex error, over **600 fps** — robust beyond origin-centric mocap.
-
-#### 2.7 Egocentric Assistant & Collaboration Datasets
+#### 2.6 Egocentric Assistant & Collaboration Datasets
 
 Egocentric human-interaction corpora aimed at *interactive assistants* — mistake detection, intervention, and human-human collaboration — rather than robot-policy pretraining; they probe the §7 "long-tail / collaborative" gap.
 
 - **[[2511.19684|IndEgo]]** — A multimodal *industrial* egocentric+exocentric dataset (**197.1 hr** ego, **96.8 hr** exo via Project Aria) of collaborative, long-horizon work — RGB, ==eye gaze, hand pose, point clouds, audio==, ~34K actions; SOTA VLMs are weak (mistake detection **23.3–40.9%** F1, reasoning QA **57.6–64.1%** vs **90%** human) — the industrial long-tail §7 flags as scarce.
 - **[[2309.17024|HoloAssist]]** — A **166-hour** egocentric *human-human assistance* dataset from **350** instructor-performer pairs over **20** manipulation tasks, with ==seven synchronized modalities== (RGB, depth, head/hand pose, gaze, audio, IMU) and mistake/intervention labels; hands-only hits **40.19** F-score for mistake detection, hands+gaze gives **48.31%** intervention precision.
 
+*The following three sub-sections shift from raw video corpora to perception primitives — models that convert first-person video into structured body-pose, object-tracking, and hand-dynamics signals that downstream retargeting and policy-training pipelines consume.*
+
+#### 2.7 Egocentric Full-Body Pose Estimation
+
+Upstream perception that recovers the demonstrator's full-body motion from head-mounted sensors — the body-trajectory signal that embodiment-alignment recipes ([[2602.10106|EgoHumanoid]]) retarget to robot joints.
+
+- **[[2607.13472|EgoHTR]]** — A multi-modal 4D human-terrain reconstruction pipeline (Project ==Aria== glasses + ==Rokoko== IMU MoCap + ==Leica BLK2GO== scanner) producing centimeter-precise, terrain-grounded human motion via ==SMPL-X== + temporal/spatial alignment; **73.2mm** MPJPE, and perceptive locomotion policies trained on it deploy on a real Unitree G1.
+- **[[2503.23094|FRAME]]** — An egocentric full-body motion estimator using head-mounted stereo fisheye video + on-board ==6D device pose== for a ==floor-aligned reference frame==, trained on the SELF real-world dataset; **47.53 mm** MPJPE (**28%** over prior SOTA), **100%** non-penetration, **3.47 cm/s** foot-slide, real-time ~300 FPS (**2.68 ms**) for VR/AR.
+- **[[2308.06493|EgoPoser]]** — A real-time egocentric full-body pose estimator from sparse, intermittent MR head/hand tracking via ==realistic FoV modeling== (simulating out-of-view tracking gaps), ==global motion decomposition==, and calibration-free shape estimation; stable up to **50 m** from origin, **4.08 cm** mean vertex error, over **600 fps** — robust beyond origin-centric mocap.
+
 #### 2.8 Egocentric Object Tracking & Interaction Grounding
 
-The object-level counterpart to §2.6's body-level perception: models that turn raw first-person video into the persistent object identities and grounded interaction regions that memory-augmented and affordance-grounded policies consume.
+The object-level counterpart to §2.7's body-level perception: models that turn raw first-person video into the persistent object identities and grounded interaction regions that memory-augmented and affordance-grounded policies consume.
 
 - **[[2608.13014|EgoPHI]]** — Estimates dense per-vertex contact + 3D force on hands *and* manipulated objects from one egocentric RGB image via ==graph-based intra/inter-mesh attention== and ==SOFA physics-simulated== force supervision; cuts hand-force MAE **6.62 N → 4.03 N**, transfers to real instrumented objects at **0.48–1.35 N** MAE with no tactile sensing.
 - **[[2608.04533|EgoAfford]]** — A multi-step ==task-oriented affordance grounding== benchmark (**15,537** synthetic + 102 real images) pairing remaining-plan inference with part-level object/instrument/destination masks; reference model **EgoLens** (Qwen2.5-VL + role-specific decoders) reaches **0.700** gIoU, **+14.7pp** over commercial VLM+SAM2, **0.666** zero-shot real gIoU.
@@ -274,7 +275,7 @@ The object-level counterpart to §2.6's body-level perception: models that turn 
 
 #### 2.9 Predictive Hand Dynamics & Interaction Timing
 
-Forecasting *future* hand motion and localizing *when* hand-object contact happens — the temporal complement to §2.6's body-pose recovery and §2.8's spatial object-grounding, both validated directly on downstream robot-policy execution.
+Forecasting *future* hand motion and localizing *when* hand-object contact happens — the temporal complement to §2.7's body-pose recovery and §2.8's spatial object-grounding, both validated directly on downstream robot-policy execution.
 
 - **[[2511.12878|Uni-Hand]]** — A ==dual-branch diffusion== model jointly forecasting head egomotion + multi-joint hand motion (2D/3D waypoints, contact states) via a ==Mamba-Transformer== + text-conditioned ==VL-fusion==; SOTA ADE/FDE across five egocentric benchmarks, **100%/90%/80%/80%/20%** SR on Hand-ALOHA-Transfer vs S-Mamba's **40%/20%/0%/0%/0%**.
 - **[[2508.12349|EgoLoc]]** — Zero-shot hand-object contact/separation timestamp localization via ==HaMeR==-derived wrist velocity/acceleration sampling + a closed-loop ==VLM== localization-feedback loop; EgoPAT3D-DT SR(γ=5) **0.819** (vs T-PIVOT's **0.755**), and EgoLoc-labeled timestamps drive **10/10** real-robot pick-place SR vs **2/10** thresholding.
@@ -302,7 +303,7 @@ Forecasting *future* hand motion and localizing *when* hand-object contact happe
 ^key-papers-2
 
 > [!tip] Dataset Choice Drives Recipe Choice
-> Choosing between [[2110.07058|Ego4D]]'s scale and [[2505.11709|EgoDex]]'s dexterity isn't just a data decision — it constrains the *downstream recipe*. Internet-scale corpora support frozen-feature pretraining and broad VLA generalization; dexterity-focused corpora (UniHand, EgoDex) support action-decoder training; tactile-augmented corpora ([[2605.13083|TouchAnything]]) open a separate force-aware track. Cross-reference [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]] for the broader cross-embodiment landscape (Ego4D alongside [[2310.08864|OXE]], DROID, AgiBot), and [[04_VLA#1. Design-Space Principles]] for how dataset choice constrains backbone selection per the [[2412.14058|RoboVLMs]] 600-experiment study. For the whole-body consumer of these corpora — retargeting human motion onto humanoid joints — see [[12_Whole-Body-and-Locomotion-Control#3.1 Motion Retargeting & Human-to-Humanoid Transfer]].
+> Choosing between [[2110.07058|Ego4D]]'s scale and [[2505.11709|EgoDex]]'s dexterity isn't just a data decision — it constrains the *downstream recipe*. Internet-scale corpora support frozen-feature pretraining and broad VLA generalization; dexterity-focused corpora (UniHand, EgoDex) support action-decoder training; tactile-augmented corpora ([[2605.13083|TouchAnything]]) open a separate force-aware track. Cross-reference [[02_Dataset-Benchmark-Environment#1. Cross-Embodiment Scale Datasets]] for the broader cross-embodiment landscape (Ego4D alongside [[2310.08864|OXE]], DROID, AgiBot), and [[04_VLA#1. Design-Space Principles]] for how dataset choice constrains backbone selection per the [[2412.14058|RoboVLMs]] 600-experiment study. For the whole-body consumer of these corpora — retargeting human motion onto humanoid joints — see [[12_Whole-Body-and-Locomotion-Control#4.1 Motion Retargeting & Human/Cross-Source Transfer]].
 
 ^insight-2
 
@@ -365,7 +366,7 @@ Questions the [[2602.16710|EgoScale]] curve doesn't yet answer — the next rese
 
 How the recipe evolved — from frozen-feature transfer through video pretraining to full VLA-on-human-video.
 
-#### 4.1 Generation 1: Frozen-Feature Transfer (2022)
+#### 4.1 Generation 1: Frozen-Feature Transfer (2022–2024)
 
 Train a frozen visual encoder on egocentric video, then attach a separate policy head for robot tasks. Cheap and modular but loses task-relevant information — largely superseded by 2024.
 
@@ -458,16 +459,15 @@ Map human-hand outputs into gripper space via differentiable retargeting, MANO p
 - **[[2504.01959|SLeRP]]** — A slot-level placement system imitating a *single* human demo video by parsing objects + slots with ==SAM / DINOv2 / MASt3R==, detecting slots via ==Slot-Net== (image-difference prompts), then mapping to robot actions via a ==2D-to-3D transformation==; beats baselines on 2D-mask + 3D-transform accuracy, generalizing across objects/slots despite synthetic-only training.
 - **[[2410.24221|EgoMimic]]** — A unified policy co-trained on human ==egocentric video== + robot demos via normalized hand/gripper data; **2 hr** robot + **1 hr** human beats **3 hr** robot-only (ACT) on bimanual tasks, with human-data diversity driving novel-object generalization — early proof that human ego video is *more* sample-efficient than extra robot data.
 - **[[2312.05251|HaMeR]]** — A ==Vision Transformer== + transformer decoder regressing ==MANO== hand pose/shape/camera parameters from a single RGB image, trained on FreiHAND/Ego4D/VISOR plus the new **HInt** in-the-wild dataset; **6.4mm** MPJPE on FreiHAND, **2-3x** PCK@0.05 gain on HInt; the hand-pose estimator [[2505.11920|H2R]] builds on.
+- **[[2509.10952|ImMimic]]** — An embodiment-agnostic ==co-training== ==Diffusion Policy== joining human video + limited robot data via ==hand-pose retargeting== and a ==mapping-guided MixUp== (==Dynamic Time Warping== trajectory alignment + progressive interpolation) forming a continuum of intermediate domains; reaches **100%** SR on Pick-and-Place with as few as **5** robot demos.
+- **[[2509.09769|MimicDroid]]** — An ==in-context-learning humanoid manipulation== method building context-target pairs from raw human play videos by behavior retrieval, bridging the embodiment gap via ==kinematic wrist retargeting== + visual masking, trained as a ==Meta-ICL== transformer; **+18%** sim SR over task-conditioned, **0.23 vs 0.08** real GR1 on unseen objects, scaling with play data.
 
 #### 5.2 Learned Gap (Treat-as-Embodiment)
 
 No explicit projection layer; let the VLA absorb the kinematic difference through diverse pretraining. The bet is that architectural simplicity wins — emergent embodiment-agnostic representations arise from pretraining diversity when data scale is large enough.
 
 - **[[2607.15275|RoboTTT]]** — Scales visuomotor context to **8,000 timesteps** via ==Test-Time Training== fast-weight layers in a DiT action head, pretrained on mixed robot + egocentric human-video trajectories; a single unseen human-video demo drives ==one-shot in-context imitation== (**65%** completion vs **0/10** baseline) — video absorbed as an in-context prompt, no kinematic projection.
-- **[[2606.02745|SeeTraceAct]]** — A VLA using ==Visibility-aware latent planning== over cross-embodiment demo videos: a ==diffusion==-based policy derives a ==visual latent plan== supervised by a trace decoder predicting future EE 2D coordinates *and* validity, handling off-screen EE. **+4.4 pp** on cross-embodiment ROBOCASA-DC (**12.8%** vs **8.4%**), real-world unseen-task SR **37.5% → 50.0%**.
 - **[[2512.22414|π0.5-+-ego]]** — A "treat humans as another embodiment" ==co-training recipe==: egocentric human video joins the VLA's mixture with the *same* loss as robot data, via head-worn + optional wrist cameras with ==6D pose + hand-keypoint estimation==, no MANO projection or kinematic alignment; scene gen **32 → 71%**, Dresser **25 → 50%**, egg-sorting **57 → 78%**; transfer **emerges**.
-- **[[2509.10952|ImMimic]]** — An embodiment-agnostic ==co-training== ==Diffusion Policy== joining human video + limited robot data via ==hand-pose retargeting== and a ==mapping-guided MixUp== (==Dynamic Time Warping== trajectory alignment + progressive interpolation) forming a continuum of intermediate domains; reaches **100%** SR on Pick-and-Place with as few as **5** robot demos.
-- **[[2509.09769|MimicDroid]]** — An ==in-context-learning humanoid manipulation== method building context-target pairs from raw human play videos by behavior retrieval, bridging the embodiment gap via ==kinematic wrist retargeting== + visual masking, trained as a ==Meta-ICL== transformer; **+18%** sim SR over task-conditioned, **0.23 vs 0.08** real GR1 on unseen objects, scaling with play data.
 
 #### 5.3 Embodiment-Aligned Mid-Training
 
@@ -483,7 +483,6 @@ Rather than absorb the *kinematic* gap, these methods transfer the human's *acti
 - **[[2605.07943|TAVIS]]** — A ==simulation-based benchmark== (IsaacLab) for egocentric active vision + anticipatory gaze in imitation learning, with a ==paired headcam-vs-fixedcam protocol== and the novel **GALT** (Gaze-Action Lead Time) metric; headcam beats fixedcam (GR1T2 **47.1% vs 38.8%**, up to **+45pp**), and policies acquire **2–3 s** human-like gaze — the missing eval substrate for §5.4.
 - **[[2604.22615|GazeVLA]]** — A ==Vision-Language-Intention-Action== chain with an ==intention-action reasoning chain== that predicts discretized ==gaze== tokens before continuous actions, pretrained on egocentric human video; **4.71 cm** hand-keypoint error, **+22%** relative OOD on AV-ALOHA, and **doubles** real-world screw-tightening SR on ALOHA/Unitree G1.
 - **[[2602.22461|EgoAVFlow]]** — An active-vision policy framework learning manipulation + viewpoint control from human egocentric video through a shared ==3D flow== embodiment-agnostic interface, with three diffusion models predicting actions, future flow, and viewpoints under a ==visibility-aware denoising reward==; **1.8–2.5×** SR over EgoZero, up to **4×** over Human-Viewpoint Imitation.
-- **[[2602.04600|Act-Sense-Act]]** — A non-Markovian active-perception VLA (CoMe-VLA) pretrained on large-scale egocentric human data then robot-fine-tuned in a unified egocentric action space, via a ==Cognitive Auxiliary Head== + ==Dual-Track Memory==; **83.3%** mean SR over five long-horizon tasks (vs OpenVLA-OFT **12.7%**), **72.0→87.3%** as human data scales 400k→800k.
 - **[[2506.10968|EyeRobot]]** — An active-gaze robot controlling a gimbal camera via a ==BC-RL perception-action loop== (RL eye policy rewarded by BC hand-policy success) and a ==Foveal Robot Transformer==, trained in ==EyeGym== real-to-sim from 360° video; **87%** towel-search SR over a **210°** workspace at **1.8 s** avg, with emergent gaze-switching beating static/wrist cameras.
 - **[[2503.01439|AVR]]** — A bimanual active-vision system with a ==2-DoF gimbal motorized-zoom camera== and VR-projected ==head-tracked egocentric teleoperation==, feeding a ==Diffusion Policy== that jointly predicts actions, gimbal angles, and zoom; **>25%** SR gain on real precision tasks over static-view baselines, **5–17%** sim gain, with dynamic zoom critical for small-hole insertion.
 
@@ -507,12 +506,12 @@ Learn a shared intermediate (skill latent, 3D motion field, semantic action flow
 - **[[2504.04612|Tool-as-Interface]]** — Abstracts human tool-use video to a task-frame, ==tool-centric 6D action representation== invariant to camera/robot-base motion, learned via ==Grounded-SAM== masking + ==3D-aware view augmentation== (MASt3R + Gaussian splatting) feeding a ==diffusion== policy; **13/13** nail-hammering SR, **81%** faster data collection than teleoperation.
 - **[[2405.01527|Track2Act]]** — A ==diffusion== model forecasting 2D point tracks from mixed human+robot web video (Something-Something, Epic-Kitchens, RT-1, BridgeData), converted to open-loop rigid-transform actions and corrected by a closed-loop residual policy trained on **~400** demos; **70%** SR under mild generalization vs **0%** goal-conditioned BC.
 - **[[2401.11439|General-Flow-as-Foundation]]** — A scalable affordance predicting universal ==3D flow== (future point trajectories on objects) trained on cross-embodiment RGBD human video, sidestepping the sim-to-real gap; ScaleFlow reaches **3.55 cm** ADE / **4.70 cm** FDE and **81%** zero-shot human-to-robot transfer SR across 18 real tasks, with language-driven semantic control.
+- **[[2606.02745|SeeTraceAct]]** — A VLA using ==Visibility-aware latent planning== over cross-embodiment demo videos: a ==diffusion==-based policy derives a ==visual latent plan== supervised by a trace decoder predicting future EE 2D coordinates *and* validity, handling off-screen EE. **+4.4 pp** on cross-embodiment ROBOCASA-DC (**12.8%** vs **8.4%**), real-world unseen-task SR **37.5% → 50.0%**.
 
 #### 5.6 Visual Embodiment-Gap Editing
 
 Close the *visual* gap directly: estimate the human hand pose, inpaint the human arm out of the frame, and overlay a rendered robot arm/gripper that tracks the inferred action. The edited "robotized" video is then used to pretrain or co-train the policy.
 
-- **[[2608.12122|HandEdit]]** — A **200M**-instance, 26-embodiment benchmark for egocentric human-to-robot dexterous-hand image editing via ==SAM3 segmentation==, ==ProPainter inpainting==, ==MANO-to-URDF retargeting==, and a ==Harmonizer== pseudo-GT; GPT-Image-2 leads Hand-only (**0.780** structural fidelity), but Hand-Arm ID fidelity falls **0.852 → 0.563**.
 - **[[2607.08857|AgenticFocus]]** — Object-preserving mixed reality: a VLM picks the task object, ==SAM2== tracks it while masking inpainting to hand-minus-object pixels, then full-hand retargeting to Unitree G1 + BrainCo hands via camera-relative ==MuJoCo IK== and layered compositing; **-5.18** SPARC vs Masquerade **-5.56**.
 - **[[2508.09976|Masquerade]]** — A data-editing pipeline that turns uncurated in-the-wild human video into "robotized" demos (hand-pose estimation + human-arm inpainting + ==virtual bimanual robot overlay==), then co-trains a ==diffusion== policy head with an auxiliary ==2D keypoint regression== loss; **74%** OOD-scene SR across 3 bimanual kitchen tasks (**5–6×** over baselines).
 - **[[2505.11920|H2R]]** — A human-to-robot data-augmentation pipeline converting egocentric hand video to robot-centric pixels: ==HaMeR== 3D-hand estimation → robot-arm retargeting + camera alignment → ==SAM== segmentation + ==LaMa== inpainting → rendered-arm composite; **+1.3–10.2%** sim and **+3.3–23.3%** real SR across embodiments, **29.83** CLIP similarity confirming semantic preservation.
@@ -570,12 +569,12 @@ Video-WAMs designed to ingest egocentric and exocentric video as a unified input
 - **[[2604.18564|MultiWorld]]** — A multi-agent multi-view video world model built on ==action-conditioned diffusion== + ==Flow Matching==, where a ==Multi-Agent Condition Module== and ==Global State Encoder== over pretrained ==VGGT== handle variable view counts; from one checkpoint it reaches **FVD 179** vs baselines' **207–245** and **RPE 0.67** vs **0.72–0.75**.
 - **[[2506.09995|PlayerOne]]** — An ==egocentric world simulator== generating dynamic video from a single image under high-DoF human-motion control, via ==Part-disentangled Motion Injection== + ==Scene-frame Reconstruction==; **DINO-Score 67.8** (vs Cosmos-14B **51.6**), **MPJPE 127.16** / **FVD 226.12** — an egocentric-first WAM tying first-person camera motion to body control.
 - **[[2410.06158|GR-2]]** — A Generation-2 ==GPT-style video-pretraining backbone== pretrained on **38M** clips that ingests egocentric streams as part of its general video corpus, then fine-tunes with action heads + ==conditional VAE== for trajectory diversity; **97.7%** multi-task tabletop SR and **75%** with only **50 demos/task** — the architecture the co-pretraining recipe (§6.2) extends.
+- **[[2606.30534|Orca]]** — A general ==Next-State-Prediction== world model unifying ==unconscious== (dense video) and ==conscious== (language-conditioned event + VQA) learning of a shared world latent on **125,000 hr** of ego+exo+action-free-robot video; frozen backbone yields emergent action generation (**32.4** score vs V-JEPA 2.1's **17.0**) with no action labels in pretraining.
 
 #### 6.2 Co-Pretraining Recipe (Egocentric + Video-WAM)
 
 Modern generalist VLAs run *both* pretraining objectives — egocentric action priors + video-WAM spatiotemporal priors — on overlapping corpora. The objectives are orthogonal: egocentric data teaches *what humans do with their hands*; video-WAM data teaches *how the world responds*. Combining them is now the default first-stage recipe.
 
-- **[[2606.30534|Orca]]** — A general ==Next-State-Prediction== world model unifying ==unconscious== (dense video) and ==conscious== (language-conditioned event + VQA) learning of a shared world latent on **125,000 hr** of ego+exo+action-free-robot video; frozen backbone yields emergent action generation (**32.4** score vs V-JEPA 2.1's **17.0**) with no action labels in pretraining.
 - **[[2604.15483|π0.7]]** — A **5B**-backbone generalist VLA combining egocentric pretraining (action priors) + video-WAM pretraining (spatiotemporal priors), with ==multimodal context conditioning==, ==multi-view subgoal images== (WM-regenerated), and ==episode metadata== under ==Knowledge Insulation==; the two objectives compose cleanly on overlapping data — neither degrades the other.
 - **[[2604.20100|JoyAI-RA]]** — A foundation model replicating the egocentric + video-WAM co-pretraining recipe via ==multi-source pretraining== (web + ==EgoLive egocentric== + sim + real-robot), a ==unified camera-frame action space==, and three-stage ==VLM → VLA → post-training==; **90.48%** / **89.28%** RoboTwin 2.0 Easy/Hard, **63.2%** RoboCasa GR1, **0.74** real AgiBot G1 (vs π0.5 **0.62**).
 - **[[2312.13139|GR-1]]** / **[[2410.06158|GR-2]]** — A ==GPT-style video-pretraining + action-decoder== lineage: GR-1 pretrains on **800k** Ego4D clips with joint [ACT]/[OBS] tokens (**94.9%** CALVIN); GR-2 scales to **38M** clips with a ==cVAE action head== (**97.7%** multi-task tabletop SR); the architectural anchor every modern generalist VLA descends from.

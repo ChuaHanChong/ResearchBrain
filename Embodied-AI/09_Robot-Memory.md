@@ -153,6 +153,7 @@ Seven lanes, one per mechanism family, plus an eighth (Memory Benchmarks) that h
 | 2025 | [[2511.18112\|EchoVLA]] | Spatial Mem · VLA-Backbone | A biologically-inspired declarative memory: persistent voxelized Scene Memory plus time-indexed Episodic Memory |
 | 2026 | [[2606.12497\|μVLA]] | Spatial Mem · VLA-Backbone | A minimal recurrent-memory VLA inserting learnable memory tokens into an OpenVLA-OFT backbone via TBPTT |
 | 2026 | [[2607.07608\|LaMem-VLA]] | Spatial Mem · VLA-Backbone | A dual latent memory VLA weaving a short-term visual vault and long-term action-hidden-state vault into the VLM sequence |
+| 2026 | [[2608.04765\|Language-Memory VLA]] | Spatial Mem · VLA-Backbone | A hierarchical VLA whose high-level branch emits recursive language memory conditioning a low-level action branch |
 | 2025 | [[2508.19958\|Long-VLA]] | Progress-Hindsight | An end-to-end long-horizon VLA that decomposes trajectories into moving vs interaction phases via a phase identifier |
 | 2025 | [[2512.09928\|HiF-VLA]] | Progress-Hindsight | A Hindsight-Insight-Foresight bidirectional temporal reasoning over compact codec motion vectors |
 | 2026 | [[2603.09292\|See-Plan-Rewind]] | Progress-Hindsight | A See-Plan-Rewind cycle that decomposes tasks into spatially-grounded 2D subgoals with explicit error-recovery rewind |
@@ -166,7 +167,6 @@ Seven lanes, one per mechanism family, plus an eighth (Memory Benchmarks) that h
 | 2026 | [[2606.28592\|E2-CARE]] | Reasoning Mem | Unifies environment, robot embodiment, and humans in one 3D dynamic scene graph an LLM reasons over for safety constraints |
 | 2026 | [[2606.29786\|OP3DSG]] | Reasoning Mem | Builds a unified open-vocab 3D scene graph via knowledge-guided part detection and geometry-anchored multi-agent reasoning |
 | 2026 | [[2607.14252\|MEMORA]] | Reasoning Mem | An Embodied Action Memory system built from egocentric video via four typed memory stores with online revision |
-| 2026 | [[2608.04765\|Language-Memory VLA]] | Reasoning Mem | A hierarchical VLA whose high-level branch emits recursive language memory conditioning a low-level action branch |
 | 2023 | [[2305.16291\|Voyager]] | Self-Evolution | The foundational open-ended embodied agent: frozen GPT-4 drives an automatic curriculum plus a persistent skill library |
 | 2025 | [[2506.21627\|FrankenBot]] | Self-Evolution | A brain-morphic VLM-orchestration agent whose Hierarchical Incremental Memory enables cross-task skill reuse |
 | 2026 | [[2604.11306\|Hierarchical-Episodic-Memory]] | Self-Evolution | An H²-Emv system building a hierarchical episodic memory of recursively summarized nodes with decay-based forgetting |
@@ -194,11 +194,7 @@ The three sub-sections below split on *domain*, not mechanism, because the same 
 
 Biologically-inspired short-term/long-term stores and hierarchical scene-graph "palaces" over multi-episode exploration history.
 
-- **[[2608.10886|GESTO]]** — A persistent ==4D scene graph== coupled to a ==two-level activity hierarchy== (interactions grouped by an LLM into goal-driven events), built fully automatically via VLM extraction + grounding + refinement; **0.71/0.75/0.70** text/binary/time on EGG, far above the same ungrounded pipeline (**0.33/0.29/0.50**) — the event hierarchy carries temporal reasoning.
-
 - **[[2608.01456|MeMento]]** — A ==preference-conditioned multimodal memory compressor== using a ==Perceiver-style module== with learned queries to distil relevant evidence from long histories into a fixed token budget, paired with the new **DunphyBench** benchmark; **+15.74%** accuracy at **-85.38%** memory vs baselines, best-VLM still trails human (**58.3%** vs **83.3%**).
-
-- **[[2607.01043|DART-VLN]]** — A training-free test-time controller for discrete VLN pairing ==memory-slot reweighting== (recency, visit count, novelty) with an ==anti-loop next-hop penalty== on action scores, leaving the frozen backbone untouched; runtime cut **937.99s→552.27s** on R2R val-unseen with SPL **64→66** — forgetting and loop-suppression as inference-time knobs, no retraining.
 
 - **[[2402.19161|MemoNav]]** — A biologically-inspired ==working memory== (STM + LTM + dynamically-built WM) with a ==selective forgetting== module that prunes low-attention nodes; **+7.9–8.5%** SR/PR over VGM on multi-goal Gibson/MP3D tasks, with aggressive forgetting helping most on long-horizon goals — forgetting as an active navigation skill.
 
@@ -212,7 +208,7 @@ Biologically-inspired short-term/long-term stores and hierarchical scene-graph "
 
 #### 1.2 Retrieval-Augmented & Dynamic Memory (Navigation)
 
-Memory that changes shape as the world does — purging moved objects, re-ranking by recency, or persisting a 3D Gaussian scene that can be re-rendered for a fresh VLM look.
+Memory that changes shape as the world does — purging moved objects, re-ranking by recency, or persisting a 3D Gaussian scene that can be re-rendered for a fresh VLM look. Two mechanisms share this sub-section: pure retrieval on demand over an embedding, RAG, memory-slot, or editable-memory-bank store (including a frozen backbone's action scores re-weighted at inference time), and dynamic maps that actively track what moved, appeared, or vanished. One entry instead folds temporal context into a continuously-updated recurrent latent (an LSTM) rather than an explicit query step, but shares the same persist-and-update property as the rest.
 
 - **[[2608.19059|LT-Mem]]** — A multi-session Tri-Memory (Live/Delta/Meta) framework: ==five-evidence cross-session re-identification== + a ==volatility-aware Bayesian update policy== (overwrite/hold/multi-hypothesis) logs MOVE/APPEAR/DISAPPEAR events across revisits; **0.910** Event F1 (best baseline **0.790**) at order-of-magnitude lower token cost, w/o Re-ID collapses to **0.140**.
 
@@ -240,6 +236,12 @@ Memory that changes shape as the world does — purging moved objects, re-rankin
 
 - **[[2411.04999|DynaMem]]** — A dynamic ==3D voxel memory== that ray-casts to detect and purge moved/removed objects, with two-stage VLM-feature + mLLM-QA querying that reports "not found"; **70%** pick-and-drop SR on non-stationary objects (**2×** over static baselines), cutting localization failures **53.3% → 6.7%** — dynamic memory for open-world mobile manipulation.
 
+- **[[2607.01043|DART-VLN]]** — A training-free test-time controller for discrete VLN pairing ==memory-slot reweighting== (recency, visit count, novelty) with an ==anti-loop next-hop penalty== on action scores, leaving the frozen backbone untouched; runtime cut **937.99s→552.27s** on R2R val-unseen with SPL **64→66** — forgetting and loop-suppression as inference-time knobs, no retraining.
+
+- **[[2605.14810|CaMeRL]]** — A collision-aware + memory-enhanced UAV-navigation method: a ==VAE== extracts safety-relevant latents from depth (supervised by collision-aware depth maps) and an ==LSTM== integrates temporal context for partial observability, trained with PPO; **0.77** success in ultra-small-obstacle vs MAVRL's **0.29**, real dense-forest flight at **1.4 m/s**.
+
+- **[[2505.13696|ESWM]]** — An ==Episodic Spatial World Model== meta-trained to infer missing components of sparse one-step (state, action, end-state) tuples from an ==external editable memory bank==; ESWM-T explores **+16.8%** more unique states than EPN, navigates at **96.8%** SR (**+18%** vs EPN) with **99.2%** path optimality, adapts to new obstacles (**93%** vs **72%** EPN, **56%** RL).
+
 #### 1.3 Episodic & Compression Memory for Manipulation
 
 The manipulation-side answer to the same problem, plus the robot-control world-action-models that gained a memory module rather than a scene graph: compressed action histories, gist tokens, hybrid memory banks, and event-boundary anchors that let a policy disambiguate two visually-identical moments that demand different actions.
@@ -255,10 +257,6 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 - **[[2606.21188|CAMP]]** — A Compressed Action Memory Policy learning a recurrent ==behavioral memory== by self-supervised reconstruction of past actions, compressing them via ==DCT low-frequency coefficients== + a Vector Quantizer, fused into a diffusion policy; **94%** Push-T-Multi-Goals (vs memoryless DP's 56%), **64.3%** on 3D Memory-Manip-Bench, 7/10 real where memoryless baselines score 0.
 
 - **[[2606.20562|MemoryWAM]]** — A World Action Model with a hybrid ==Mixture-of-Transformers== memory: a sliding-window short-term store, persistent ==event-boundary anchor frames==, and ==gist tokens== (8/frame, 15× compression) for long-range history; **83.0%** RMBench (vs full-history LingBot-VA's 78.2%, FastWAM's 5.9%), 18/20 real Shell-Game at full-attention SR with lower latency/GPU memory.
-
-- **[[2604.15814|Continual-Hand-Eye-Calibration]]** — A ==Spatial-Aware Replay Strategy== (hybrid-distance ==Poisson disk sampling== + density-based replacement) paired with ==Structure-Preserving Dual Distillation== decomposing localization knowledge into coarse topological + fine metric components; **98.4%** accuracy / **1.6%** forgetting rate on a robotic-manipulation dataset.
-
-- **[[2509.01657|IWR]]** — Reframes few-shot-IL data retrieval as ==importance sampling==, replacing the L2-nearest-neighbor rule (shown equivalent to a degenerate zero-bandwidth KDE) with ==Gaussian KDE== ratios of target-vs-prior latent densities; **+4.4–5.8%** over Behavior/Flow Retrieval and SAILOR on Robomimic/LIBERO-10, **+30%** real Bridge V2 long-horizon SR.
 
 - **[[2510.20328|MemER]]** — A hierarchical ==VLM keyframe-nomination== high-level policy + generalist low-level policy with ==single-linkage-clustering experience retrieval==; **59/60** object retrievals and 1 wrong scoop on long-horizon tasks, on par with human-provided subtasks, at ~1 Hz/~2 Hz.
 
@@ -276,17 +274,15 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 
 - **[[2104.10218|Episodic-Memory-Manipulation]]** — An episodic-memory framework that decomposes the work cell into modular ==finite-state-machine elements== and synthesizes an Application State Machine from a *single* demonstration; built-in ==exception handling== lets the robot detect novel states and request human guidance — generalizing task logic beyond fixed coordinates.
 
-- **[[2606.12372|UniIntervene]]** — An agentic real-world ==RL== method formulating intervention as an internal ==value-risk== decision: a temporal value-risk critic detects unproductive exploration from action-conditioned value dynamics and a memory-guided ==goal-conditioned recovery== policy retrieves high-value states; **88%** success, **57%** less human intervention, **+8.6%** over HiL-SERL.
-
-- **[[2605.14810|CaMeRL]]** — A collision-aware + memory-enhanced UAV-navigation method: a ==VAE== extracts safety-relevant latents from depth (supervised by collision-aware depth maps) and an ==LSTM== integrates temporal context for partial observability, trained with PPO; **0.77** success in ultra-small-obstacle vs MAVRL's **0.29**, real dense-forest flight at **1.4 m/s**.
-
-- **[[2505.13696|ESWM]]** — An ==Episodic Spatial World Model== meta-trained to infer missing components of sparse one-step (state, action, end-state) tuples from an ==external editable memory bank==; ESWM-T explores **+16.8%** more unique states than EPN, navigates at **96.8%** SR (**+18%** vs EPN) with **99.2%** path optimality, adapts to new obstacles (**93%** vs **72%** EPN, **56%** RL).
-
 - **[[2508.04931|INTENTION]]** — A ==VLM intuitive-perceptor + memory== framework inferring humanoid motion tendencies without explicit instructions, building a ==MemoGraph== of interaction episodes as scene graphs matched at inference; **84%** planning / **72%** execution on intuitive tasks (vs 20%/15% LLM-BT), comparable on standard manipulation, real humanoid intuitive reasoning.
 
 - **[[2602.04600|Act-Sense-Act]]** — A non-Markovian active-perception VLA (CoMe-VLA) pretrained on large-scale egocentric human data then robot-fine-tuned in a unified egocentric action space, via a ==Cognitive Auxiliary Head== + ==Dual-Track Memory==; **83.3%** mean SR over five long-horizon tasks (vs OpenVLA-OFT **12.7%**), **72.0→87.3%** as human data scales 400k→800k.
 
-- **[[2607.24190|Kim Episodic Memory]]** — An ==episodic memory module== on humanoid robot head Kim storing conversational fragments as ==vector embeddings== with ==LLM-derived emotional metadata==, retrieved via ==hybrid recency + emotional-intensity scoring==; **+0.60** Cohen's d Sociability (**p<.001**) — §1.2's embedding-retrieval pattern, applied to conversational memory.
+- **[[2607.24190|Kim Episodic Memory]]** — An ==episodic memory module== on humanoid robot head Kim storing conversational fragments as ==vector embeddings== with ==LLM-derived emotional metadata==, retrieved via ==hybrid recency + emotional-intensity scoring==; **+0.60** Cohen's d Sociability (**p<.001**) — §1.2's retrieval pattern applied to conversational HRI memory, not task/control memory.
+
+- **[[2604.18791|HELM]]** — An ==Episodic Memory Module== (CLIP-retrieved keyframe key-value store) + learned ==State Verifier==; **81.5%** LIBERO-LONG (+23.1pp over OpenVLA), **54.2%** LIBERO-Recovery (vs 12.3%) — memory + verification compose.
+
+- **[[2607.18840|WorldScape Policy 2.0]]** — Combines a ==causal short-term visual memory== with a VLM-based ==event memory== for ==latent subgoal reasoning==, trained on the new ManipEvent-5M event-grounded dataset; **94.3%** avg SR across 50 bimanual sim tasks (**+14.5pp** over VLA baselines), **75%** real long-horizon autonomous planning.
 
 **Episodic & Retrieval Memory — Decision Matrix**
 
@@ -388,7 +384,7 @@ Two sub-sections split on *where the map lives*: as an explicit external structu
 
 #### 3.1 Scene-Graph & Map Representations
 
-External, queryable structures — 3D scene graphs, voxel grids, Gaussian-splat memories — built online as the agent explores, then re-consulted by a separate planner or VLM.
+External, queryable structures — 3D scene graphs, voxel grids, Gaussian-splat memories — built online as the agent explores, then re-consulted by a separate planner or VLM, or fed straight back into the same policy via dedicated encoders.
 
 - **[[2608.09816|Hierarchical Fast-Slow ReAct Agent]]** — An ==event-triggered bounded reason-retrieve-act loop== fires on four structural triggers, retrieving keyframes from a coordinate-anchored two-tier memory only when text can't decide; **68.75%** SR on HM3D at **5.00** model calls/episode — deliberating at every frontier scores *below* greedy.
 
@@ -414,6 +410,12 @@ External, queryable structures — 3D scene graphs, voxel grids, Gaussian-splat 
 
 - **[[2605.21133|Spatial-Brain-Cerebellum]]** — A hierarchical ==multi-agent== humanoid whole-body manipulation framework pairing a VLM-driven ==Active Spatial Brain== (active perception + memory + adaptive planning) with a ==Generalizable Action Cerebellum== (A* navigation + reachable-space solver + VLM grasping); **60.0%** vs 0% on Task-4-Hard, **69.6%** unseen-item SR, no task-specific data.
 
+- **[[2608.10886|GESTO]]** — A persistent ==4D scene graph== coupled to a ==two-level activity hierarchy== (interactions grouped by an LLM into goal-driven events), built fully automatically via VLM extraction + grounding + refinement; **0.71/0.75/0.70** text/binary/time on EGG, far above the same ungrounded pipeline (**0.33/0.29/0.50**) — the event hierarchy carries temporal reasoning.
+
+- **[[2605.22283|SOMA]]** — A persistent ==spatial-semantic 3D memory== built by multi-view head-camera scanning (2D detections lifted to a unified 3D frame) + dynamic refinement; **30%/25%** pick/place on "Invisible-to-Invisible" out-of-vision PnP where 2D VLAs fail.
+
+- **[[2509.20297|mindmap]]** — A 3D diffusion policy pairing a DDPM trajectory generator with a continuously-built ==metric-semantic 3D reconstruction== (frozen AM-RADIO features) processed via separate encoders so the policy attends to out-of-view objects; **76%** avg on novel spatial-memory tasks (**+56pp** over 3D Diffuser Actor), **97%** Mug-in-Drawer, extends to bimanual humanoids.
+
 #### 3.2 Memory Baked into the VLA Backbone
 
 Rather than an external map, thread memory directly through the policy's own transformer — moment tokens, declarative scene/episodic memory, recurrent memory tokens — so recall is a forward pass, not a lookup.
@@ -432,13 +434,9 @@ Rather than an external map, thread memory directly through the policy's own tra
 
 - **[[2606.12497|μVLA]]** — A minimal recurrent-memory VLA inserting learnable ==memory tokens== into an OpenVLA-OFT backbone with ==TBPTT== + an attention-mask guard, isolating recurrence for partially observable manipulation; **0.84** avg SR on MIKASA-Robo (vs **0.42** memoryless) while retaining **96.2%** on fully observable LIBERO.
 
-- **[[2605.22283|SOMA]]** — A persistent ==spatial-semantic 3D memory== built by multi-view head-camera scanning (2D detections lifted to a unified 3D frame) + dynamic refinement; **30%/25%** pick/place on "Invisible-to-Invisible" out-of-vision PnP where 2D VLAs fail.
-
 - **[[2511.18960|AVA-VLA]]** — A ==POMDP reformulation== of VLA whose ==recurrent state== drives an ==Active Visual Attention== module over task-relevant tokens; **98.0%** avg LIBERO SR (vs OpenVLA-OFT **96.8%**), **99.6%/84.1%** CALVIN 1-in-a-row/5-in-a-row, best avg on **four** real Mobile ALOHA tasks. The recurrent state accommodates *force history*; "active force attention" is unbuilt.
 
 - **[[2511.18112|EchoVLA]]** — A biologically-inspired ==declarative memory==: persistent voxelized ==Scene Memory== + time-indexed ==Episodic Memory== with coarse-to-fine retrieval; **0.31** RoboCasa mobile manip (vs π0.5 0.20), **0.44** real TidyBot++.
-
-- **[[2604.18791|HELM]]** — An ==Episodic Memory Module== (CLIP-retrieved keyframe key-value store) + learned ==State Verifier==; **81.5%** LIBERO-LONG (+23.1pp over OpenVLA), **54.2%** LIBERO-Recovery (vs 12.3%) — memory + verification compose.
 
 - **[[2510.00695|HAMLET]]** — A ==History-Aware Memory with Learned Tokens== where per-timestep "moment tokens" compress history into a fine-tunable module; **+47.2%** real history-dependent SR (66.7% vs 12.5%) at ~**1%** overhead.
 
@@ -446,7 +444,7 @@ Rather than an external map, thread memory directly through the policy's own tra
 
 - **[[2605.14712|IntentVLA]]** — A VLA modeling ==short-horizon intent== from recent visual history via a frozen ==VGGT-1B== geometry-aware encoder over past head-cam frames; **45.8%** on AliasBench (vs **9.0%** baseline), **−17.6%** inter-chunk consistency error.
 
-- **[[2509.20297|mindmap]]** — A 3D diffusion policy pairing a DDPM trajectory generator with a continuously-built ==metric-semantic 3D reconstruction== (frozen AM-RADIO features) processed via separate encoders so the policy attends to out-of-view objects; **76%** avg on novel spatial-memory tasks (**+56pp** over 3D Diffuser Actor), **97%** Mug-in-Drawer, extends to bimanual humanoids.
+- **[[2608.04765|Language-Memory VLA]]** — A hierarchical VLA whose high-level branch emits ==recursive language memory== (rolling-compression over history + near-future intent) + subtasks conditioning a low-level flow-matching action branch; BEHAVIOR-1K stage SR **30.0% → 40.0%**, Genie Sim 3.0 sorting **41.7% → 63.9%**; enables in-context failure recovery on a real XLeRobot.
 
 **Persistent Spatial Memory & Cognitive Maps — Decision Matrix**
 
@@ -472,7 +470,7 @@ Rather than an external map, thread memory directly through the policy's own tra
 ^key-papers-3
 
 > [!tip] External Map or Internal Tokens — the Field Hasn't Chosen
-> §3.1's external scene graphs are inspectable and composable with any planner, but add a construction-and-query pipeline outside the policy. §3.2's backbone-native memory tokens are faster (one forward pass, no separate map to maintain) but opaque — you can't print out what a memory token "knows." 2026 papers increasingly hedge with both ([[2606.17480|GeneralVLA-2]]'s governed KnowledgeBank feeding a still-external map). See [[04_VLA#10.1 Persistent Spatial & Object Memory]] for the VLA-backbone source and [[13_Navigation-and-Mobile-Manipulation#3.1 Semantic & Cognitive Maps]] for the full 31-paper scene-graph landscape this section curates a 10-paper memory-framed subset from.
+> §3.1's external scene graphs are inspectable and composable with any planner, but add a construction-and-query pipeline outside the policy. §3.2's backbone-native memory tokens are faster (one forward pass, no separate map to maintain) but opaque — you can't print out what a memory token "knows." 2026 papers increasingly hedge with both ([[2606.17480|GeneralVLA-2]]'s governed KnowledgeBank feeding a still-external map). See [[04_VLA#10.1 Persistent Spatial & Object Memory]] for the VLA-backbone source and [[13_Navigation-and-Mobile-Manipulation#3.1 Semantic & Cognitive Maps]] for the full 31-paper scene-graph landscape this section curates a 15-paper memory-framed subset from.
 
 ^insight-3
 
@@ -530,7 +528,7 @@ No named phases — the state is a continuous representation instead of a labele
 
 §1-§4 build memory *for a policy*. This section builds memory *for a reasoner* — an LLM or VLM sitting above the action layer that needs a persistent store to plan, answer questions, or enforce constraints across a long episode. The distinguishing feature is architectural: memory here is explicitly queried and updated by symbolic or language-model reasoning (a 'Cognitive Map,' a typed knowledge graph, a multi-store agentic loop), not implicitly threaded through action-head weights.
 
-All ten papers share the same axis — a memory store that a reasoning module explicitly reads and writes — but split on *what the memory is for*: answering questions and directing exploration, grounding planning in an explicit 3D scene graph, or running as an explicit multi-store agent architecture.
+All eight papers share the same axis — a memory store that a reasoning module explicitly reads and writes — but split on *what the memory is for*: answering questions and directing exploration, grounding planning in an explicit 3D scene graph, or running as an explicit multi-store agent architecture.
 
 #### 5.1 Embodied QA & Exploration Memory
 
@@ -556,10 +554,6 @@ Memory factored into several named, typed stores (temporal, semantic, episodic) 
 
 - **[[2608.04933|Mimir]]** — A ==neuro-symbolic== memory system separating ==World Memory== (entity/attribute graph persisting knowledge about unseen objects) from ==Task Memory== (goal status, hand state, failed hypotheses) via a ==dynamic grounding== module; **+23.0%** avg SR across 13 backbones, **68.0%/90.0%** SR on EB-ALFRED/EB-Habitat (**+16.0pp** over prior-best [[2508.01415|RoboMemory]]).
 
-- **[[2608.04765|Language-Memory VLA]]** — A hierarchical VLA whose high-level branch emits ==recursive language memory== (rolling-compression over history + near-future intent) + subtasks conditioning a low-level flow-matching action branch; BEHAVIOR-1K stage SR **30.0% → 40.0%**, Genie Sim 3.0 sorting **41.7% → 63.9%**; enables in-context failure recovery on a real XLeRobot.
-
-- **[[2607.18840|WorldScape Policy 2.0]]** — Combines a ==causal short-term visual memory== with a VLM-based ==event memory== for ==latent subgoal reasoning==, trained on the new ManipEvent-5M event-grounded dataset; **94.3%** avg SR across 50 bimanual sim tasks (**+14.5pp** over VLA baselines), **75%** real long-horizon autonomous planning.
-
 - **[[2607.14252|MEMORA]]** — An ==Embodied Action Memory (EAM)== system built from egocentric video via four ==typed memory stores== (Environment, Entity, Activity, Inferred Knowledge) with online ==Memory Editor== revision and ==offline consolidation==; **+20.5pp** memory-assessment accuracy, **+16.6%** OOD generalization planning, **~18×** fewer entity records vs append-only logs.
 
 - **[[2508.01415|RoboMemory]]** — A ==brain-inspired multi-memory== agentic framework with a Perception-Memory-Retrieval-Planning-Execution loop and Planner-Critic module, unifying four parallel stores (Temporal, Spatial ==Knowledge Graph==, Semantic, Episodic) over a LoRA-finetuned VLA; **70.5%** avg EmbodiedBench SR (Claude-3.5-Sonnet **69.5%**), real-world repeat-task SR **26.67% → 46.67%**.
@@ -573,8 +567,6 @@ Memory factored into several named, typed stores (temporal, semantic, episodic) 
 | Four-store brain-inspired agentic memory | [[2508.01415\|RoboMemory]] (Temporal/Spatial-KG/Semantic/Episodic) |
 | Best raw SR: neuro-symbolic World/Task memory split | [[2608.04933\|Mimir]] (**+16.0pp** over RoboMemory) |
 | Safety-constraint synthesis from a unified scene graph | [[2606.28592\|E2-CARE]] (Operational-Space CBF) |
-| Recursive language memory feeding a low-level action branch | [[2608.04765\|Language-Memory VLA]] |
-| VLM event memory for bimanual subgoal reasoning | [[2607.18840\|WorldScape Policy 2.0]] (**94.3%** avg SR) |
 
 ^dm-5
 
@@ -605,12 +597,6 @@ Two sub-sections split on *trigger*: memory written specifically when something 
 
 Memory that activates on failure — anomaly detection, error recovery, and incremental skill pools that grow specifically from what went wrong.
 
-- **[[2608.08749|OnEvoMemory]]** — A ==value-guided hierarchical memory== (elite/transition/short-term banks) bolted onto a frozen VLA via ==gated cross-attention==; online rollouts refine only the memory + ==action-conditioned value estimator==; LiberoLong-10 **86.2%→90.2%**, RMBench SwapBlocks **0%→14%**.
-
-- **[[2606.03598|PHASER]]** — A ==Phase-aware semantic experience replay== method for continual VLA via ==phase-centric capacity allocation== + ==multi-modal interference-aware routing== + an ==Auto-PC pipeline== that auto-discovers phase boundaries; up to **+31%** ASR over standard Experience Replay, hitting **87.8%** LIBERO-Goal / **85.8%** LIBERO-Long for OpenVLA-OFT-7B.
-
-- **[[2605.10993|ECHO-VLA]]** — A ==hierarchical hyperbolic memory (HAE)== + autonomous memory consolidation; cone-tree retrieval + virtual-memory interpolation; **+12.8pp** LIBERO-Long.
-
 - **[[2510.02298|ARMADA]]** — A ==FLOAT== (optimal-transport failure detector, **~95%** accuracy) plus ==multi-robot shared control== that routes interventions to free operators, while ==adaptive rewinding== collects high-quality corrective demos; the rewind-collected data lifts SR **+25.9%** and cuts human intervention **23.3%**.
 
 - **[[2603.09030|PlayWorld]]** — An autonomous ==VLM Task Proposer + VLA Executer== self-play loop + ==Stable-Video-Diffusion== backbone finetuned via ==curriculum learning== on diverse contact-rich play; captures failure modes (slips, missed grasps) absent in human data, **Pearson 0.8766** predicted-vs-real SR correlation, **+65%** real-world SR via in-model fine-tune.
@@ -618,6 +604,8 @@ Memory that activates on failure — anomaly detection, error recovery, and incr
 - **[[2502.07645|Action-Labels-Sets-Rethinking]]** — A ==set-valued supervision== method (CLIC) for incremental learning from interactive corrections: ==desired action sets== (polytopes / circles) tolerate noisy, partial, relative feedback via a ==policy-weighted Bayesian KL update== stable as old pointwise targets go stale; **80%** real Insert-T (vs **30%** Diffusion Policy / **10%** IBC).
 
 - **[[2410.02995|RWLA]]** — ==Retrieval-based Weighted Local Adaptation==: task-agnostic pre-deployment 'review' retrieves scenario-similar demos by image+language embedding distance, ==selectively weighting== failure-divergent frames for local fine-tuning; LIBERO **39.65%→52.42%** over vanilla ER.
+
+- **[[2606.12372|UniIntervene]]** — An agentic real-world ==RL== method formulating intervention as an internal ==value-risk== decision: a temporal value-risk critic detects unproductive exploration from action-conditioned value dynamics and a memory-guided ==goal-conditioned recovery== policy retrieves high-value states; **88%** success, **57%** less human intervention, **+8.6%** over HiL-SERL.
 
 #### 6.2 Experience Distillation & Memory-Driven Evolution
 
@@ -640,6 +628,14 @@ A broader substrate: hierarchical episodic memory, phase-aware replay, and value
 - **[[2305.16291|Voyager]]** — The foundational open-ended embodied agent: frozen blackbox GPT-4 drives an ==automatic curriculum== + persistent ==skill library== of executable JS skills + ==iterative prompting== with ==self-verification==; **3.3×** more unique items, only method to reach the diamond tier, **73%** drop when self-verification is ablated — precursor to later skill-library agents.
 
 - **[[2501.10395|t-DGR]]** — A lifelong-learning method via ==trajectory-based deep generative replay== (a ==diffusion== generator conditioned on timestep) + an ==AttentionTuner== that guides Transformer self-attention with human memory-dependency annotations; **81.9%** CW10 / **83.9%** CW20 and **99.8%** Mortar Mayhem vs **20.8%** vanilla, with **14–16×** less annotation effort.
+
+- **[[2604.15814|Continual-Hand-Eye-Calibration]]** — A ==Spatial-Aware Replay Strategy== (hybrid-distance ==Poisson disk sampling== + density-based replacement) paired with ==Structure-Preserving Dual Distillation== decomposing localization knowledge into coarse topological + fine metric components; **98.4%** accuracy / **1.6%** forgetting rate on a robotic-manipulation dataset.
+
+- **[[2608.08749|OnEvoMemory]]** — A ==value-guided hierarchical memory== (elite/transition/short-term banks) bolted onto a frozen VLA via ==gated cross-attention==; online rollouts refine only the memory + ==action-conditioned value estimator==; LiberoLong-10 **86.2%→90.2%**, RMBench SwapBlocks **0%→14%**.
+
+- **[[2606.03598|PHASER]]** — A ==Phase-aware semantic experience replay== method for continual VLA via ==phase-centric capacity allocation== + ==multi-modal interference-aware routing== + an ==Auto-PC pipeline== that auto-discovers phase boundaries; up to **+31%** ASR over standard Experience Replay, hitting **87.8%** LIBERO-Goal / **85.8%** LIBERO-Long for OpenVLA-OFT-7B.
+
+- **[[2605.10993|ECHO-VLA]]** — A ==hierarchical hyperbolic memory (HAE)== + autonomous memory consolidation; cone-tree retrieval + virtual-memory interpolation; **+12.8pp** LIBERO-Long.
 
 **Memory-Driven Self-Evolution — Decision Matrix**
 
@@ -776,14 +772,14 @@ The common design pattern across all of them: construct a task where success is 
 ## Cross-References
 
 - [[10_Manipulation-Skill-Learning]] — the manipulation-side source for §1.3's episodic/compression memory and §2's object-permanence policies.
-- [[03_Imitation-Learning-and-RL]] — cites §1.3's [[2104.10218|Episodic-Memory-Manipulation]], [[2606.12372|UniIntervene]], and [[2605.14810|CaMeRL]] as memory-guided answers to non-Markovian BC/RL, and §6.2's [[2501.10395|t-DGR]] as the generative-replay fix to model staleness.
+- [[03_Imitation-Learning-and-RL]] — cites §1.3's [[2104.10218|Episodic-Memory-Manipulation]] as a memory-guided answer to non-Markovian BC, §6.1's [[2606.12372|UniIntervene]] and §1.2's [[2605.14810|CaMeRL]] for the same non-Markovian problem in RL, and §6.2's [[2501.10395|t-DGR]] as the generative-replay fix to model staleness.
 - [[13_Navigation-and-Mobile-Manipulation]] — the navigation-side source for §1.1, §1.2, and §3.1's semantic-map subset.
 - [[11_Contact-Rich-and-Tactile-Control]] — cites §1.3's [[2508.19236|MemoryVLA]] dual-memory bank for cross-domain (force-history) memory context.
 - [[14_Egocentric-Pretraining-and-Human-Video]] — cites §1.3's [[2602.04600|Act-Sense-Act]] Dual-Track Memory as the non-Markovian complement to hand-to-gripper transfer mechanisms.
 - [[04_VLA]] — the source for §3.2's backbone-native memory and §4's progress-aware/hindsight control.
 - [[05_VLA-Reasoning-and-CoT]] — the source for §5's memory-augmented reasoning; see also its four reasoning-insertion-slot framing.
 - [[06_WAM#2.6 Neural Game Engines & Persistent Simulation]] — the full ~39-paper generative-memory landscape §7 curates eight landmarks from.
-- [[07_Latent-World-Models]] — ESWM (§1.3) and HERA (§2.1) sit at the JEPA/latent-world-model boundary of robot memory.
+- [[07_Latent-World-Models]] — ESWM (§1.2) and HERA (§2.1) sit at the JEPA/latent-world-model boundary of robot memory.
 - [[12_Whole-Body-and-Locomotion-Control]] — humanoid-specific memory (INTENTION, POT-VLA, EgoMI, Spatial-Brain-Cerebellum) scattered across §1, §2, and §3.
 - [[16_Self-Evolving-VLA-WAM]] — the source for §6's memory-driven self-evolution and the umbrella self-evolution framework §6's tip references.
 - [[02_Dataset-Benchmark-Environment]] — the canonical home for §8's memory-specific benchmarks; this file only points at them.

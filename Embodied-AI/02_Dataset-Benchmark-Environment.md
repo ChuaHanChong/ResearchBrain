@@ -191,7 +191,6 @@ Coordinated two-arm control requires specialized data with synchronized dual-arm
 - **[[2606.31682|HABIT]]** — A **10,563**-episode (**164 hours**) bimanual manipulation dataset with a co-present human across ==Collaborator/Coworker/Supervisor== task-workflow roles; π0.5 fine-tuned on HABIT lifts Coworker SR **40%→95%** (Waste Sorting) and enables sample-efficient HRI adaptation (**50** vs **200** demos).
 - **[[2604.20444|VTouch++]]** — A bimanual tactile dataset of **120,000+** episodes and **1,000+** hours (~**36M** image frames) across **380+** systematically categorized tasks, each with synchronized fingertip tactile + multi-view RGB-D + proprioception, reaching **MAE 0.022** + Expert Similarity **0.848** on real bimanual hardware; the modern bimanual tactile landmark.
 - **[[2604.07335|TAMEn]]** — A closed-loop bimanual collection system combining a ==modular gripper-adaptive wearable== + ==feasibility-aware acquisition== + ==AR teleop (tAmeR)== recovery + ==pyramid-structured data regime==; object tracking **100%** SR (vs **32–78%** marker-only), validation lifts replay to **100%** (from **12–39%**), full system **75%** avg SR on 4 contact-rich tasks.
-- **[[2603.05687|CGP]]** — A contact-grounded policy that feeds ==coupled state+tactile diffusion trajectories== into a ==contact-consistency mapping== for a compliance controller; outperforms visuomotor + visuotactile diffusion baselines on **5** dexterous tasks (jar-opening, in-hand box flipping) at real-time inference latency.
 - **[[2512.24653|RoboMIND-2.0]]** — A dual-arm dataset of **310K** trajectories from **6** heterogeneous platforms spanning **759** tasks, **129** skills, and **1,139** objects, with ==tactile feedback== and an ==Isaac Sim digital twin==; the paired ==MIND-2 hierarchical dual-system== (VLM planner + IQL-optimized VLA executor) reaches **1.0** SR on multi-robot collaborative tasks.
 - **[[2511.17441|RoboCOIN]]** — A bimanual dataset of **180,000+** demos across **15** platforms and **421** tasks, with a ==hierarchical capability pyramid== (trajectory/segment/frame annotations) and ==CoRobot RTML quality control==; RTML filtering removes **35.3%** low-quality trajectories and raises [[2503.14734|GR00T-N1]].5 SR by **+23%**.
 - **[[2412.13877|RoboMIND]]** — A multi-platform dataset of **107,000** trajectories (**305.5 hours**) over **479** tasks across Franka + UR5e + AgileX + Tien Kung humanoid, including **5,000** failure demos and **10,000** frame-level language-annotated trajectories, plus an ==Isaac Sim digital twin== (Pearson **0.83–0.91** sim-real correlation); precursor to RoboMIND 2.0.
@@ -395,12 +394,6 @@ Visually realistic 3D worlds for navigation, HRI, and vision-based policies.
 - **[[2109.08238|HM3D]]** — A large-scale photorealistic ==Habitat-Matterport 3D== substrate of **1,000** real-world building-scale scans (**112.5k m²** navigable) via Matterport Pro2 + proprietary reconstruction + 800h human curation; **1.4–3.7×** larger coverage and **34–91%** fewer reconstruction defects than MP3D/Gibson — the substrate for embodied navigation.
 - **[Habitat 3.0](https://aihabitat.org)** — Photorealistic 3D environments + humanoid avatars; the standard for navigation + HRI research.
 
-#### 3.4 Agentic 3D Scene Generation
-
-Scalable scene generation as a simulation substrate.
-
-- **[[2602.10116|SAGE]]** — An ==LLM agent + Visual + Physics critic loop== chaining ==Scene Initializer + Asset Placer + Mover/Remover== over Isaac Sim; **99.9%** stability / **1.9%** collision (vs **63.8%/22.0%** Holodeck), with physics critic alone driving collision rate **7.8% → 1.9%**; policies trained on SAGE data reach **39.1%** OOD SR (vs **13.2%** baseline).
-
 #### 3.5 Real-to-Sim Reconstruction
 
 Build sim scenes and digital twins *from real captures* (video, panoramas, RGB-D scans, even a single in-the-wild image) via learned reconstruction: Gaussian splatting, physics-aligned twins, articulation recovery. Scene authoring is replaced by perception of a specific real scene:
@@ -431,18 +424,14 @@ Engines that *generate* simulation content (3D assets, tasks, demonstrations, or
 - **[[2504.13059|RoboTwin]]** — A ==generative digital-twin== dual-arm framework synthesizing diverse 3D assets from limited real images via image-conditioned 3D generation + ==LLM task decomposition==; **300** simulated + **20** real samples match **300** real samples alone — the canonical generative-twin data-efficiency result robot policies report SR against.
 - **[[2504.12684|SOPHY]]** — An end-to-end ==diffusion generator of simulation-ready objects== jointly synthesizing geometry, texture, and ==physical material properties== (Young's modulus, yield stress for MPM) via a disentangled shape/color/material latent; ships a **3,004**-object physics-annotated dataset, **+20%** material-behavior classification and **5×** lower Sim-CD under deformation.
 - **[[2501.03575|Cosmos]]** — A platform of ==5.6B-parameter video diffusion + autoregressive WFMs== trained on **20M hours / 100M clips**; Cosmos Tokenizer is **+4 dB** PSNR + **2x–12x** faster; autoregressive WFM runs at **10 FPS** real-time at 320×512 via Medusa speculative decoding; **<7 cm** trajectory error for autonomous-driving fine-tunes.
+- **[[2310.06114|UniSim]]** — A ==5.6B-parameter video diffusion== simulator with ==dataset orchestration== over heterogeneous robotic + human + panorama + internet data + ==T5-embedded unified action space==; zero-shot sim-to-real with **3–4× better** goal reduction; captioning fine-tune CIDEr **15.2 → 46.23**.
+- **[[2503.08372|MetaFold]]** — A large-scale ==garment-folding dataset== of point-cloud trajectories + language descriptions generated in a ==differentiable simulator==, disentangling high-level trajectory generation from low-level action prediction; **0.85–0.94** rectangularity and **8/10–10/10** SR on a real xArm6 across garment types.
 
 #### 3.7 Egocentric / Interaction Simulators
 
 Generative simulators that produce egocentric video conditioned on action.
 
 - **[[2604.01001|EgoSim]]** — A ==closed-loop geometry-action-aware observation simulator== with ==training-free incremental 3D-scene state updating==; **PSNR 25.056** + Depth-ERR **8.888** on EgoDex (best of class); cross-embodiment pretraining lifts AgiBot-World PSNR **15.180 → 18.670**.
-
-#### 3.8 Teleoperation-Friendly
-
-Environments designed for collecting human demonstrations with low-friction interaction loops.
-
-- **[[2310.06114|UniSim]]** — A ==5.6B-parameter video diffusion== simulator with ==dataset orchestration== over heterogeneous robotic + human + panorama + internet data + ==T5-embedded unified action space==; zero-shot sim-to-real with **3–4× better** goal reduction; captioning fine-tune CIDEr **15.2 → 46.23**.
 
 #### 3.9 Bimanual Sim + Benchmark
 
@@ -480,7 +469,6 @@ Simulator choice has profound implications for what you can test — articulatio
 | Agentic LLM-driven scene generation | [[2602.10116\|SAGE]] |
 | Bimanual sim + benchmark (paired) | [[2506.18088\|RoboTwin-2.0]] ([MuJoCo](https://mujoco.org) via [ManiSkill](https://github.com/haosulab/ManiSkill), domain randomization) |
 | Egocentric video conditioned on action | [[2604.01001\|EgoSim]] |
-| Teleoperation-friendly demonstration collection | [[2310.06114\|UniSim]] |
 | Soft-body digital twin from real video | [[2511.04665\|Real-to-Sim-GS]] (Gaussian splat) |
 | Generative real-to-sim simulators | [[2506.06440\|Vid2Sim]], [[2510.21447\|PhysWorld-Deformable]], [[2501.03575\|NVIDIA-Cosmos]] |
 | Driving / wheeled robots | [CARLA](https://carla.org), [NVIDIA Drive Sim](https://developer.nvidia.com/drive/simulation) |
@@ -518,7 +506,7 @@ Provide gradients through dynamics, enabling system-identification, gradient-bas
 
 - **[[2604.04310|frax]]** — A JAX rigid-body kinematics/dynamics library using a ==fully-vectorized ancestor-mask formulation== with ==JIT + native autodiff==; **4.09 μs** Franka IK (kHz control), **>100M** dynamics evals/s at batch 4096, **2–5×** over Pinocchio/MuJoCo Python APIs; differentiable tooling for RL.
 - **[[2506.05012|Unified-Fluid-Robot-Multiphysics]]** — A strongly-coupled fluid-robot simulator via ==discrete variational mechanics== on one Navier-Stokes + manipulator ==Lagrangian==, with a ==weak-form immersed-boundary method== + ==implicit-function-theorem== gradients; **~75%** RMSE reduction vs SPH, eel-robot C-start transfers sim-to-real to a real **90°** turn.
-- **[[2505.03728|PyRoki]]** — A modular ==robot kinematic-optimization toolkit== composing ==Levenberg-Marquardt== cost functions over SE(3)/SO(3) Lie-group variables across CPU/GPU/TPU via JAX, for IK, trajectory optimization, and motion retargeting; faster convergence and lower error than cuRobo's IK-Beam, reproducing Dex-Retargeting with an interactive web viewer.
+- **[[2505.03728|PyRoki]]** — A modular ==robot kinematics-optimization toolkit== (IK, trajectory optimization, retargeting — not a physics/dynamics engine) composing ==Levenberg-Marquardt== cost functions over SE(3)/SO(3) Lie-group variables via JAX; faster convergence and lower error than cuRobo's IK-Beam, reproducing Dex-Retargeting with a web viewer.
 - **[MJX (MuJoCo-JAX)](https://mujoco.readthedocs.io/en/stable/mjx.html)** — JAX rewrite of [MuJoCo](https://mujoco.org); differentiable, GPU/TPU-parallel; replaces [MuJoCo](https://mujoco.org) for gradient-based RL workflows.
 - **[DiffTaichi](https://github.com/taichi-dev/difftaichi)** — Differentiable Lagrangian/MPM simulator; primary substrate for soft-body and fluid manipulation research (cloth, dough, soft tissue).
 - **[Brax](https://github.com/google/brax)** — JAX-native GPU rigid-body engine; the standard for massively-parallel RL ablations.
@@ -585,8 +573,6 @@ Diagnostics that target the *low-level skill* and *high-level reasoning* axes �
 - **[[2601.11421|GM-100]]** — A benchmark of **100** detail-oriented tasks (precise insertion, fine alignment, tool manipulation); current VLAs achieve very low SR, exposing real ==precision gaps== between "grasp the cup" and "insert the peg".
 - **[[2507.10548|EmbRACE-3K]]** — A benchmark of **3,000** multi-stage language-guided tasks across **24** Unreal Engine environments via human demos in a ==closed-loop perception-action cycle== with ==step-wise "thinking" rationales==; GPT-4o/Gemini-2.5-Pro near-zero zero-shot, Qwen2.5-VL-sft-rl reaches **42.4%** Dynamic Spatial-Semantic — high [[2306.03310|LIBERO]] ≠ embodied intelligence.
 - **[[2506.08708|PhyBlock]]** — A progressive ==3D block-assembly== benchmark in the ==Genesis== physics simulator probing VLM physical understanding + multi-step planning: **400** hierarchical tasks across **4** levels + **2,200** VQA; all **23** VLMs drop **>50%** in planning F1 from Level-1 to Level-4 (Claude 3.7 **76.78% → 41.82%**) vs **94.7%** human.
-- **[[2409.18330|DMC-VB]]** — A large-scale ==offline-RL visual-distractor benchmark== (locomotion + 3D navigation) testing whether pretrained representations survive static/dynamic distractors; off-the-shelf pretraining does **not** help, though it helps when expert data is scarce (**1%**), revealing a persistent pixel-vs-state gap.
-- **[[2307.10224|RL-ViGen]]** — A visual-RL ==generalization benchmark== of **5** task categories × **5** OOD axes (appearance, lighting, camera, scene structure, cross-embodiment) over 8 algorithms; all collapse on novel scene structures, PIE-G (ImageNet priors) leads on appearance/lighting and SGQN on camera-view — exposes which OOD axis each algorithm fails.
 
 #### 5.2 Capability-Disentangling Diagnostics
 
@@ -634,10 +620,11 @@ Distinct from the LIBERO-family's *passive* perturbation children, this tier *ac
 - **[[2511.12149|AttackVLA]]** — A ==unified adversarial + backdoor attack benchmark== across OpenVLA / SpatialVLA / π0-fast; ==BackdoorVLA== bi-modal trigger induces attacker-specified long-horizon actions at **75.35%** ASR_t in sim and **50.00%** on a physical Franka arm (untargeted UADA up to **100%** ASR_u) — the first targeted physical-robot backdoor threat model.
 - **[[2509.18953|Eva-VLA]]** — A ==gradient-free black-box robustness search== (CMA-ES over ==3D rotations==, ==point-light illumination==, ==natural adversarial patches==) with a cosine-action-similarity objective; drives OpenVLA/UniVLA failure rates **4.0–23.5% → >80%**, adversarial examples retrain π0.5 to **85.8% → 56.8%** 3D-transform failure.
 - **[[2503.08663|ASIMOVBenchmark]]** — A multimodal ==semantic safety== benchmark built from text/image generation + real injury data, paired with an automated ==robot constitution== generation + ==auto-amending== refinement framework; foundation models show strong base capability but large alignment gaps, auto-amending sharply lifts alignment rate and adversarial resistance.
+- **[[2607.14543|SafeRelBench]]** — A benchmark of **507** household tasks (**248** spatial-relation: supporting/containment/proximity) via a ==three-stage GPT-5 → Behavior-1K → BDDL== safety pipeline, scoring ==process-level safety==; VLM Safety SR collapses **0.91 → 0.16–0.40** (task SR **0.83–0.94 → 0.52–0.73**) — the gap is relational, not general difficulty.
 
-#### 5.6 Open-Ended Game-Agent Evaluation
+#### 5.6 Open-Ended & Diagnostic Interactive-Agent Evaluation
 
-Open-ended game worlds (Minecraft) are an embodied substrate with no single success signal — these evaluate *generalist* agents over thousands of configurable tasks, pairing large vision-speech-action data collection with scalable VLM-based scoring.
+Open-ended / diagnostic multi-step interactive-agent evaluation — game worlds (Minecraft) and diagnostic Gymnasium suites alike are embodied substrates with no single success signal — these evaluate *generalist* agents over thousands of configurable tasks, pairing large vision-speech-action data collection with scalable VLM-based scoring.
 
 - **[[2601.16973|VisGym]]** — A suite of **17** visually-interactive Gymnasium environments with oracle solvers for ==SFT== and a function-conditioned action space; frontier Gemini-3-Pro reaches **46.61%** easy / **26.00%** hard, ASCII observations help symbolic tasks **3–4×**, and solver-SFT roughly doubles harder-task generalization — a diagnostic substrate for multimodal agents.
 - **[[2505.12707|PLAICraft]]** — A large-scale time-aligned ==vision-speech-action== dataset + AWS collection platform recording **>10,000** players in a persistent multiplayer Minecraft world, capturing **5** modalities (video, two audio, mouse, keyboard) at millisecond precision over **>10,000 hours**; ships a ==Cattell-Horn-Carroll== suite probing reasoning, memory, and communication.
@@ -651,6 +638,8 @@ Classic control-theoretic evaluation suites — orthogonal to the VLA-centric di
 - **[[2510.03471|Quadcopter-Control-Eval-Suite]]** — A modular ==RotorPy==-based evaluation suite for robust adaptive quadcopter control, pairing non-adaptive + adaptive controllers with configurable disturbances (wind, off-center payload, rotor loss, latency) + ==automated stress testing==; all reach **100%** SR ideal (**0.030–0.074m** RMSE) but only adaptive ones survive severe perturbations.
 - **[[2402.14606|Diverse-Behaviors-Benchmark-Imitation]]** — A behavioral-diversity imitation-learning benchmark of **5** MuJoCo manipulation tasks with multiple human demonstrators, scored by novel ==Behavior Entropy== + Conditional Behavior Entropy metrics; transformer-diffusion policies (DDPM-GPT **+21%** over DDPM-MLP, BESO **43%** SR at **10%** data) best capture multi-modal behavior.
 - **[[2310.12567|Safety-Gymnasium]]** — A unified safe-reinforcement-learning benchmark suite on ==Gymnasium + MuJoCo== (single-agent, multi-agent, vision-only, Isaac Gym tasks) with explicit safety constraints, shipping the ==SafePO== library of **16** SafeRL baselines; PPO-Lag achieves **98%** cost reduction on velocity tasks, exposing the reward-vs-safety trade-off.
+- **[[2409.18330|DMC-VB]]** — A large-scale ==offline-RL visual-distractor benchmark== (locomotion + 3D navigation) testing whether pretrained representations survive static/dynamic distractors; off-the-shelf pretraining does **not** help, though it helps when expert data is scarce (**1%**), revealing a persistent pixel-vs-state gap.
+- **[[2307.10224|RL-ViGen]]** — A visual-RL ==generalization benchmark== of **5** task categories × **5** OOD axes (appearance, lighting, camera, scene structure, cross-embodiment) over 8 algorithms; all collapse on novel scene structures, PIE-G (ImageNet priors) leads on appearance/lighting and SGQN on camera-view — exposes which OOD axis each algorithm fails.
 
 #### 5.8 Agentic & Tool-Use Capability Benchmarks
 
@@ -725,6 +714,11 @@ The *policy* axis: full robot policies (not just representations) evaluated unde
 - **[[2505.18472|ManiFeel]]** — The first comprehensive visuotactile sim benchmark in IsaacGym: **13** tasks (insertion, screwing, exploration) with simulated ==GelSight R1.5== (TacRGB + TacFF); benchmarks pre-trained encoders (UniT, T3, AnyTouch) + policies (DP, Flow Matching); **+26pp** TacFF on peg-insertion, **+14pp** on real gear-assembly — the "does touch help" probe.
 - **[[2502.05086|REASSEMBLE]]** — A force-grounded assembly dataset for contact-rich assembly/disassembly on the ==NIST Task Board #1== via ==haptic teleoperation== of a Franka FR3, synchronizing RGB + proprioception + audio + ==6-axis force-torque== + event-camera streams; **4,551** demos (**781 min**, incl. **516** failures), SOTA temporal action segmentation only **44.1%** F1@50.
 - **[[2411.12503|ManiSkill-ViTac-2025]]** — A three-track ==vision-tactile manipulation challenge + benchmark== (Tactile / Tactile-Vision Fusion / Sensor Structure Design) on a ==SAPIEN + IPC + FEM== high-fidelity sim plus standardized GelSight Mini / RealSense D415 / Robotiq Hand-E hardware, with marker-flow observations + a baseline ==TD3== policy; its 2024 predecessor drew **18** global teams.
+
+#### 6.3 Tactile Simulators
+
+The *sensor-signal* axis, distinct from §6.2's policy evaluation: simulating what a tactile sensor itself would read (contact deformation, optical/marker response, force fields) rather than evaluating a downstream policy — the substrate that sim-to-real tactile data generation and system-ID depend on.
+
 - **[[2408.06506|TacSL]]** — A GPU-accelerated visuotactile sim in Isaac with ==implicit Kelvin-Voigt soft contact== + ==Asymmetric Actor-Critic Distillation==; **200×** tactile-image gen (**1631 FPS**), **428×** force-field gen (**1.5M FPS**); zero-shot sim-to-real **91.4%** peg-place / **82.7%** peg-insert; image-aug lifts real SR **27.2 → 87.7%** — de-facto tactile-sim foundation.
 - **[[2403.08716|DIFFTACTILE]]** — A physics-based ==differentiable tactile simulator== unifying ==FEM== sensor deformation + ==MLS-MPM== multi-material objects + ==Position-Based Dynamics== cables in Taichi, with an MLP optical module; gradient-based system-ID lowers Real2Sim marker MSE, optical sim beats Taxim (**7.94** vs **16.1** L1), tactile feedback cuts grasp slipping **0.18 → 0.07** m.
 - **[[2109.04027|Taxim]]** — An ==example-based optical simulation== for GelSight sensors: a polynomial look-up table maps contact geometry to per-pixel intensity, with ==linear-elastic== marker-field motion (first to combine marker + optical sim); **lowest pixel-wise intensity error** vs prior work, runs **online on CPU** — the foundational tactile simulator for sim-to-real data generation.
@@ -744,6 +738,7 @@ The *policy* axis: full robot policies (not just representations) evaluated unde
 | Full-arm skin coverage | [[2509.18830\|DexSkin]] |
 | Slow-fast visuotactile control | [[2503.02881\|Reactive-Diffusion-Policy]] |
 | Force-feedback wiping / surface task | [[2505.06451\|Adaptive-Wiping]] |
+| Tactile sensor-signal simulation (sim-to-real data gen) | [[2408.06506\|TacSL]], [[2403.08716\|DIFFTACTILE]], [[2109.04027\|Taxim]] |
 
 ^dm-6
 
@@ -773,7 +768,6 @@ Build a deformable scene's digital twin from real video / Gaussian-splat reconst
 
 - **[[2511.04665|Real-to-Sim-GS]]** — A real-to-sim policy-evaluation pipeline for soft-body interactions that builds a ==Gaussian-splat twin== of the deformable scene; the first standardized soft-body evaluation pipeline that doesn't require hand-authored deformable assets.
 - **[[2510.21447|PhysWorld-Deformable]]** — A data-side pipeline turning real videos into world models of deformable objects via ==physics-aware demonstration synthesis==; the counterpart that converts real deformable interactions into training data.
-- **[[2503.08372|MetaFold]]** — A large-scale ==garment-folding dataset== of point-cloud trajectories + language descriptions generated in a ==differentiable simulator==, disentangling high-level trajectory generation from low-level action prediction; **0.85–0.94** rectangularity and **8/10–10/10** SR on a real xArm6 across garment types.
 
 #### 7.2 Multi-Body Physics Benchmarks
 
@@ -850,7 +844,7 @@ Two-arm coordination evaluation — tests *timing*, *handover*, and *contact-ric
 - **[[2512.24653|RoboMIND-2.0]]** — A dual-arm dataset of **310K** trajectories from **6** platforms across **759** tasks, with ==tactile feedback==, an ==Isaac Sim digital twin==, and the MIND-2 dual-system (IQL-optimized VLA).
 - **[[2603.05687|CGP]]** — A contact-grounded policy using ==diffusion-predicted coupled state+tactile trajectories== + ==contact-consistency mapping== to a compliance controller; outperforms visuomotor + visuotactile baselines on **5** dexterous tasks.
 - **[[2511.17441|RoboCOIN]]** — A bimanual dataset of **180,000+** demos from **15** platforms across **421** tasks with a ==hierarchical capability pyramid==; RTML filtering yields a **+23%** [[2503.14734|GR00T-N1]].5 gain.
-- **[[2503.16408|RoboFactory]]** — A *multi-agent* embodied collaboration benchmark + auto data generator enforcing ==logical / spatial / temporal compositional constraints== via a ==RoboBrain== LLM planner + ==RoboChecker== validator, generating multi-robot data without simultaneous human operators; spatial+temporal constraints lift multi-agent SR and ablating them degrades data quality.
+- **[[2503.16408|RoboFactory]]** — A *multi-agent* embodied collaboration benchmark (multi-robot, not two-arm bimanual coordination) + auto data generator enforcing ==logical / spatial / temporal compositional constraints== via a ==RoboBrain== LLM planner + ==RoboChecker== validator; spatial+temporal constraints lift multi-agent SR, ablating them degrades data quality.
 - **[[2304.13705|ALOHA]]** — An open-source bimanual platform (**<$20K**) + ==ACT (Action Chunking with Transformers)== — Transformer CVAE + temporal ensembling; the original benchmark for fine-grained tasks.
 - **[[2401.02117|Mobile-ALOHA]]** — A **16 DoF** mobile bimanual platform with ==whole-body teleoperation== (operator's waist tethered to base) + ==behavior cloning + co-training== over static-ALOHA data; **>90%** SR on **7** real tasks (cook shrimp / wipe wine / call elevator); co-training lifts wipe-wine **20→40%** at 25 demos, **50→95%** at 50 — the mobile-bimanual reference.
 - **[[2407.07788|BiGym]]** — A ==demo-driven== **40-task** mobile bimanual benchmark with mixed scene/task complexity and ==human-teleop demonstrations==; targets the slot between static bimanual (ALOHA) and pure mobile (RoboTHOR) — closes the bimanual + mobility evaluation gap with **>200** demos per task across kitchen/living-room scenes.
@@ -890,7 +884,7 @@ Two-arm coordination evaluation — tests *timing*, *handover*, and *contact-ric
 ^key-papers-8
 
 > [!tip] Bimanual ≠ "Two LIBEROs"
-> Two-arm benchmarks are not the union of two single-arm benchmarks. The novel failure modes are *coordination* (timing between arms), *bilateral handover*, and *whole-body balance* under coupled arm motion. [[2506.18088|RoboTwin-2.0]] and [[2512.24653|RoboMIND-2.0]] explicitly stress these modes; running [[2306.03310|LIBERO]] twice does not. Cross-reference [[11_Contact-Rich-and-Tactile-Control#4. Contact-Rich Manipulation Benchmarks and Visuotactile Policies]] for the tactile-policy side of bimanual contact-rich tasks, [[15_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for the "Sim-to-Real Cliff" diagnostic surfaced by [[2603.15469|RoCo-Challenge]], and §2.1 above for the bimanual *data* side. For the whole-body metrics side of this problem, including human-likeness scoring, see [[12_Whole-Body-and-Locomotion-Control#3.5 Evaluation, Benchmarks & Human-Likeness Metrics]].
+> Two-arm benchmarks are not the union of two single-arm benchmarks. The novel failure modes are *coordination* (timing between arms), *bilateral handover*, and *whole-body balance* under coupled arm motion. [[2506.18088|RoboTwin-2.0]] and [[2512.24653|RoboMIND-2.0]] explicitly stress these modes; running [[2306.03310|LIBERO]] twice does not. Cross-reference [[11_Contact-Rich-and-Tactile-Control#4. Contact-Rich Manipulation Benchmarks and Visuotactile Policies]] for the tactile-policy side of bimanual contact-rich tasks, [[15_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] for the "Sim-to-Real Cliff" diagnostic surfaced by [[2603.15469|RoCo-Challenge]], and §2.1 above for the bimanual *data* side. For the whole-body metrics side of this problem, including human-likeness scoring, see [[12_Whole-Body-and-Locomotion-Control#4.5 Evaluation, Benchmarks & Robustness-Testing Metrics]].
 
 ^insight-8
 
@@ -911,9 +905,7 @@ Probes the *atomic* spatial relations — distance, size, containment, left-of, 
 - **[[2508.13142|EASI]]** — A holistic MLLM spatial-intelligence framework with ==unified 6-capability taxonomy== (Metric / Mental Reconstruction / Spatial Relations / Perspective-Taking / Deformation / Comprehensive) over 8 benchmarks under zero-shot CoT; GPT-5 lags human by **>30pp** on average and **>76pp** on hardest SI tasks.
 - **[[2410.06468|SPACE]]** — A ==cognitive-science-grounded== benchmark split into ==large-scale== (direction/distance, map sketching, route retracing) and ==small-scale== (==mental rotation==, ==perspective taking==, maze); frontier models score near chance (vs **80–100%** human) on large-scale and **<30%** SPL navigation — a fundamental VLM-vs-human gap.
 - **[[2505.05456|SITE]]** — A ==cognitive-science-derived== VLM spatial benchmark with ==Ego-exo View Association + Shuffled Frames Reordering== + ==Chance-Adjusted Accuracy (CAA)==; GPT-4o **37.8%** CAA (vs **67.5%** human), only **28.20%** on Ego-exo (vs **100%** human); SITE-CAA Pearson **0.902** with LIBERO-Spatial manipulation SR.
-- **[[2510.19400|MV-RoboBench]]** — A *multi-view* spatial-reasoning benchmark of **1,708** human-curated QA across **8** subtasks (3D Spatial Consistency, Cross-View Matching, Action Planning, Affordance); GPT-5 reaches **56.41%** vs **91.04%** human, dropping **−18.73%** under vertical flips; reasoning correlates with execution, yet synthetic novel views often *hurt*.
 - **[[2602.20901|SpatiaLQA]]** — A benchmark of **9,605** image–text QA pairs / **241** indoor scenes with explicit ==precondition annotations== + ==Recursive Scene Graph Assisted Reasoning (RSGAR)==; GPT-5 best at **F1 76.0** content / **47.0** preconditions (vs **97.6 / 92.5** human) — reveals causal-reasoning deficiency.
-- **[[2603.19231|MonoArt]]** — An end-to-end ==progressive structural reasoning== pipeline (geometry-aware → part-aware → motion-aware) with ==TRELLIS 3D Generator== + ==Dual-Query Motion Decoder==; **Chamfer 0.77** (vs 1.26) + **Type Accuracy 88.26%** (vs 77.12%) on PartNet-Mobility; **4.63/5** geometric, **4.37/5** kinematic on in-the-wild study at **20.5 s** per instance.
 - **[[2602.21992|PanoEnv]]** — A ==geometry-grounded panoramic (ERP) spatial benchmark== (**14.8K** QA from TartanAir 3D ground truth) + ==PanoEnv-RL== (GRPO geometry-aware rewards + two-stage curriculum); lifts Qwen2.5-VL-7B open-ended accuracy **6.39% → 14.83%** (**+132%**), transfers zero-shot to real OSR-Bench beating the 72B baseline — 360° distortion as an unsolved spatial axis.
 - **[[2412.07755|SAT]]** — A ==Spatial Aptitude Training== data engine using ==3D simulators== to procedurally generate static + **5-category dynamic** spatial QA (egocentric/object movement, allocentric, goal-aiming, action-consequence); SAT-tuning LLaVA-1.5-13B improves CVBench/BLINK **+23.9%** to **75.6%**, transfers to real images **+13.3%** — sim-generated dynamic supervision.
 - **[[2406.13642|SpatialBot]]** — A depth-augmented VLM + benchmark for precise spatial understanding, feeding ==RGB-D== with a consistent depth-encoding scheme and a ==Depth API== to query metric depth per pixel, trained on the new ==SpatialQA== / ==SpatialQA-E== datasets; **>99%** direct depth-estimation accuracy on SpatialBench, lifting general VLM benchmarks and real pick-and-place SR.
@@ -928,6 +920,7 @@ Tests *chained* spatial inference (e.g., "cup on table, table in kitchen, where 
 - **[[2603.18892|MultihopSpatial]]** — A benchmark of **4,500** manually annotated VQA samples with ==ground-truth bounding boxes== + ==Acc@50IoU== metric (answer + box IoU ≥ 0.5); best VLM hits **40.6%** Acc@50IoU, collapsing to **8.5%** on 3-hop ego-centric (GPT-5.2-Thinking); **59%** of correct answers lack proper grounding; RL post-training improves Libero by **+4.2pp**.
 - **[[2507.18342|EgoExoBench]]** — The first ==cross-view ego/exo== benchmark with **7,300+** MCQs across ==semantic alignment / view transition / temporal reasoning== (11 subtasks); Gemini 2.5 Pro **51.7%** vs **90.1%** human; perfect-human Egocentric Wearer ID exposes major cross-view ID-inference gap; CoT prompting *degrades* performance.
 - **[[2601.15224|PROGRESSLM]]** — A ==PROGRESS-BENCH== benchmark with answerability + viewpoint variants + ==two-stage episodic-retrieval + mental-simulation== reasoning; Qwen2.5-VL-3B + CoT-SFT + RL outperforms GPT-5 and Qwen2.5-VL-**72B** on NSE + PRC + unanswerable-case recognition.
+- **[[2510.19400|MV-RoboBench]]** — A *multi-view* spatial-reasoning benchmark of **1,708** human-curated QA across **8** subtasks (3D Spatial Consistency, Cross-View Matching, Action Planning, Affordance); GPT-5 reaches **56.41%** vs **91.04%** human, dropping **−18.73%** under vertical flips; reasoning correlates with execution, yet synthetic novel views often *hurt*.
 
 #### 9.3 Spatial-Temporal Reasoning in Video
 
@@ -943,7 +936,6 @@ Extends spatial reasoning from static frames to *temporal sequences* — trackin
 Static VQA tells you what a VLM *recognizes*; **interactive embodied benchmarks** tell you what it can *do* in a 3D world. This tier evaluates MLLMs as agents that observe egocentric frames, choose actions, and receive environmental feedback — closing the loop between perception and action. The entries below are the modern frontier, each targeting a different failure mode (active geo-localization, interactive referential grounding, interaction, 3D rotational geometry, EQA grounding, physics).
 
 - **[[2608.08077|EMRD]]** — A ==POMDP== safety-critical evacuation benchmark in AI2-THOR/ProcTHOR pairing coverage-weighted ==Temporal Belief Stability== with ==Ebbinghaus-decay== forgetting and ==Focal-Point Spatial Grounding==; dropping the object-inventory prompt collapses Conference-Room preference **88.6%→27.5%**, Pixtral-12B picks never-visited rooms **47.9%** vs Gemini's **5.1%**.
-- **[[2607.14543|SafeRelBench]]** — A benchmark of **507** household tasks (**248** spatial-relation: supporting/containment/proximity) via a ==three-stage GPT-5 → Behavior-1K → BDDL== safety pipeline, scoring ==process-level safety==; VLM Safety SR collapses **0.91 → 0.16–0.40** (task SR **0.83–0.94 → 0.52–0.73**) — the gap is relational, not general difficulty.
 - **[[2605.31251|ERGeoBench]]** — An interactive embodied geo-localization benchmark embedding real panoramas into a sim where MLLM agents ==actively acquire views== via yaw/pitch/zoom, scored by a unified ==Geo-localization Score (GLS)==; proprietary models exceed **60.0** GLS and gain from exploration, but spatial-awareness collapses (GPT-4o **82.78% → 43.86%**).
 - **[[2503.17406|IRef-VLA]]** — A benchmark for ==referential grounding with imperfect language== in 3D scenes (**7,635** scans, **4.7M** statements, dense ==scene graphs== of 8 spatial relations), tasking models to detect non-existent objects and suggest alternatives; a ==graph-search baseline== hits **94.4%** F1 object-existence, full-data training lifting zero-shot ReferIt3D transfer.
 - **[[2501.11858|EmbodiedEval]]** — A benchmark of **328 tasks** on the ==LEGENT platform== covering navigation, object interaction, social interaction, attribute QA, and spatial QA; best MLLM (GPT-4o) hits only **25.00%** overall vs **97.26%** non-expert human and interaction tasks collapse to **10–12%**, exposing the long-horizon and ego-centric brittleness of frontier MLLMs.
@@ -959,7 +951,6 @@ Static VQA tells you what a VLM *recognizes*; **interactive embodied benchmarks*
 | Atomic spatial cognition (distance, size, containment, counting) | [[2410.06468\|SPACE]] |
 | Comprehensive multi-axis spatial eval | [[2505.05456\|SITE]] |
 | Spatial language QA | [[2602.20901\|SpatiaLQA]] |
-| Monocular articulated-object reasoning | [[2603.19231\|MonoArt]] |
 | Compositional multi-hop spatial inference | [[2603.18892\|MultihopSpatial]] |
 | Viewpoint-invariant ego+exo reasoning | [[2507.18342\|EgoExoBench]] |
 | Progress-aware spatial reasoning | [[2601.15224\|PROGRESSLM]] |
@@ -1003,11 +994,6 @@ Multi-step manipulation evaluation — chained skills with episode-level success
 - **[[2112.03227|CALVIN]]** — A long-horizon benchmark of a **7-DOF arm** in 4 environments × **34 tasks** with **~24 hours** of teleop play + 1% language-annotated by 400+ crowd workers + ==multi-task long-horizon== + ==zero-shot generalization== protocols; MCIL baseline **53.9%** single task but only **0.08%** on 5-instruction chains, **~0%** zero-shot on chains of ≥2.
 - **[[2502.15679|BOSS]]** — A LIBERO-built benchmark isolating ==Observation Space Shift== — skill-irrelevant visual changes during skill transitions — via a ==Rule-based Automatic Modification Generator== over Single/Accumulated Predicate Shift + Skill Chaining; single shifts cut IL SR up to **67%** (hitting **68%** of tasks), accumulated shifts drop **>50%**, augmentation alone insufficient.
 - **[[2011.01975|Rearrangement Challenge]]** — Formally defined ==Rearrangement== as embodied AI's canonical end-to-end task via ==POMDP== notation, with five ==goal-specification mechanisms== (Geometric/Image/Language/Experience/Predicate) and five testbeds (SAPIEN/RLBench/AI2-THOR/Habitat); the task framework Habitat 2.0's HAB benchmark directly instantiates.
-
-#### 10.2 Mobile + Long-Horizon (Combined)
-
-Long-horizon mobile-then-manipulate composition — tests whether navigation skills and manipulation skills chain across episodes.
-
 - **[[2512.24653|RoboMIND-2.0]]** — A dataset whose **310K** trajectories include mobile-manipulation episodes covering the long-horizon ==mobile-then-manipulate== composition.
 
 #### 10.3 Language-Conditioned Long-Horizon
@@ -1023,7 +1009,7 @@ Testing the harder problem: following language instructions over extended task h
 
 #### 10.4 The LIBERO Family — Testing Different Failure Modes
 
-The same parent benchmark re-released along distinct *language-conditioned long-horizon* axes — each child exposes a different over-fit / brittleness mode that the standard suite hides. (Absorbed from former §11; the precision/perturbation diagnostics in this table are also surfaced in §5.3 from the diagnostic-stack angle — same papers, different framing.)
+The same parent benchmark re-released along distinct *language-conditioned long-horizon* axes — each child exposes a different over-fit / brittleness mode that the standard suite hides. (Absorbed from former §11; the precision/perturbation diagnostics in this table are also surfaced in §5.4 from the diagnostic-stack angle — same papers, different framing.)
 
 | Benchmark | What It Tests | Key Finding |
 |-----------|--------------|-------------|

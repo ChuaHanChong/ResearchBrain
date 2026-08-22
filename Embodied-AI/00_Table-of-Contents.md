@@ -53,16 +53,15 @@ aliases:
     - [[02_Dataset-Benchmark-Environment#2.5 Grasp-Pose Datasets|2.5 Grasp-Pose Datasets]]
     - [[02_Dataset-Benchmark-Environment#2.6 Instruction, VQA & Semantic-Grounding Datasets|2.6 Instruction, VQA & Semantic-Grounding Datasets]]
     - [[02_Dataset-Benchmark-Environment#2.7 Perception & Segmentation Datasets|2.7 Perception & Segmentation Datasets]]
+    - [[02_Dataset-Benchmark-Environment#2.8 Automated Interaction & Affordance Annotation Pipelines|2.8 Automated Interaction & Affordance Annotation Pipelines]]
 - **[[02_Dataset-Benchmark-Environment#Part B — Simulation Environments|Part B — Simulation Environments]]**
   - [[02_Dataset-Benchmark-Environment#3. Simulation Environments|3. Simulation Environments]]  *([[02_Dataset-Benchmark-Environment#^dm-3|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-3|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-3|Insight]])*
     - [[02_Dataset-Benchmark-Environment#3.1 Foundation Simulators|3.1 Foundation Simulators]]
     - [[02_Dataset-Benchmark-Environment#3.2 Household-Scale|3.2 Household-Scale]]
     - [[02_Dataset-Benchmark-Environment#3.3 Photorealistic 3D Environments|3.3 Photorealistic 3D Environments]]
-    - [[02_Dataset-Benchmark-Environment#3.4 Agentic 3D Scene Generation|3.4 Agentic 3D Scene Generation]]
     - [[02_Dataset-Benchmark-Environment#3.5 Real-to-Sim Reconstruction|3.5 Real-to-Sim Reconstruction]]
     - [[02_Dataset-Benchmark-Environment#3.6 Generative Asset / Task / Demo Engines|3.6 Generative Asset / Task / Demo Engines]]
     - [[02_Dataset-Benchmark-Environment#3.7 Egocentric / Interaction Simulators|3.7 Egocentric / Interaction Simulators]]
-    - [[02_Dataset-Benchmark-Environment#3.8 Teleoperation-Friendly|3.8 Teleoperation-Friendly]]
     - [[02_Dataset-Benchmark-Environment#3.9 Bimanual Sim + Benchmark|3.9 Bimanual Sim + Benchmark]]
     - [[02_Dataset-Benchmark-Environment#3.10 Physics Engines — Quick Reference|3.10 Physics Engines — Quick Reference]]
 - **[[02_Dataset-Benchmark-Environment#Part C — Physics Engines|Part C — Physics Engines]]**
@@ -76,12 +75,13 @@ aliases:
     - [[02_Dataset-Benchmark-Environment#5.3 Memory-Specific Benchmarks|5.3 Memory-Specific Benchmarks]]
     - [[02_Dataset-Benchmark-Environment#5.4 LIBERO-Family Robustness Suite|5.4 LIBERO-Family Robustness Suite]]
     - [[02_Dataset-Benchmark-Environment#5.5 VLA Robustness & Adversarial Benchmarks|5.5 VLA Robustness & Adversarial Benchmarks]]
-    - [[02_Dataset-Benchmark-Environment#5.6 Open-Ended Game-Agent Evaluation|5.6 Open-Ended Game-Agent Evaluation]]
+    - [[02_Dataset-Benchmark-Environment#5.6 Open-Ended & Diagnostic Interactive-Agent Evaluation|5.6 Open-Ended & Diagnostic Interactive-Agent Evaluation]]
     - [[02_Dataset-Benchmark-Environment#5.7 IL-Diversity, Safe-RL & Control-Robustness Suites|5.7 IL-Diversity, Safe-RL & Control-Robustness Suites]]
     - [[02_Dataset-Benchmark-Environment#5.8 Agentic & Tool-Use Capability Benchmarks|5.8 Agentic & Tool-Use Capability Benchmarks]]
   - [[02_Dataset-Benchmark-Environment#6. Tactile & Contact-Rich Benchmarks|6. Tactile & Contact-Rich Benchmarks]]  *([[02_Dataset-Benchmark-Environment#^dm-6|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-6|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-6|Insight]])*
     - [[02_Dataset-Benchmark-Environment#6.1 Tactile Representation Benchmarks|6.1 Tactile Representation Benchmarks]]
     - [[02_Dataset-Benchmark-Environment#6.2 Tactile-Augmented Policy Benchmarks|6.2 Tactile-Augmented Policy Benchmarks]]
+    - [[02_Dataset-Benchmark-Environment#6.3 Tactile Simulators|6.3 Tactile Simulators]]
   - [[02_Dataset-Benchmark-Environment#7. Soft-Body & Deformable Benchmarks|7. Soft-Body & Deformable Benchmarks]]  *([[02_Dataset-Benchmark-Environment#^dm-7|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-7|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-7|Insight]])*
     - [[02_Dataset-Benchmark-Environment#7.1 Real-to-Sim Soft-Body Twins|7.1 Real-to-Sim Soft-Body Twins]]
     - [[02_Dataset-Benchmark-Environment#7.2 Multi-Body Physics Benchmarks|7.2 Multi-Body Physics Benchmarks]]
@@ -96,7 +96,6 @@ aliases:
     - [[02_Dataset-Benchmark-Environment#9.4 Interactive Embodied Spatial Reasoning Benchmarks|9.4 Interactive Embodied Spatial Reasoning Benchmarks]]
   - [[02_Dataset-Benchmark-Environment#10. Long-Horizon Task Benchmarks|10. Long-Horizon Task Benchmarks]]  *([[02_Dataset-Benchmark-Environment#^dm-10|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-10|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-10|Insight]])*
     - [[02_Dataset-Benchmark-Environment#10.1 Long-Horizon Manipulation Suites|10.1 Long-Horizon Manipulation Suites]]
-    - [[02_Dataset-Benchmark-Environment#10.2 Mobile + Long-Horizon (Combined)|10.2 Mobile + Long-Horizon (Combined)]]
     - [[02_Dataset-Benchmark-Environment#10.3 Language-Conditioned Long-Horizon|10.3 Language-Conditioned Long-Horizon]]
     - [[02_Dataset-Benchmark-Environment#10.4 The LIBERO Family — Testing Different Failure Modes|10.4 The LIBERO Family — Testing Different Failure Modes]]
   - [[02_Dataset-Benchmark-Environment#11. World Model Benchmarks|11. World Model Benchmarks]]  *([[02_Dataset-Benchmark-Environment#^dm-11|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-11|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-11|Insight]])*
@@ -133,13 +132,15 @@ aliases:
     - [[03_Imitation-Learning-and-RL#3.2 Inverse RL & Preference Learning|3.2 Inverse RL & Preference Learning]]
     - [[03_Imitation-Learning-and-RL#3.3 Reward-Free & Goal-Conditioned Signals|3.3 Reward-Free & Goal-Conditioned Signals]]
   - [[03_Imitation-Learning-and-RL#4. RL Algorithms, Efficiency & Policy Representations|4. RL Algorithms, Efficiency & Policy Representations]]  *([[03_Imitation-Learning-and-RL#^dm-4|DM]] · [[03_Imitation-Learning-and-RL#^key-papers-4|Key Papers]] · [[03_Imitation-Learning-and-RL#^insight-4|Insight]])*
-    - [[03_Imitation-Learning-and-RL#4.1 Efficient & Off-Policy RL|4.1 Efficient & Off-Policy RL]]
+    - [[03_Imitation-Learning-and-RL#4.1a Throughput & Off-Policy Efficiency|4.1a Throughput & Off-Policy Efficiency]]
+    - [[03_Imitation-Learning-and-RL#4.1b Safety Filters & Constrained RL|4.1b Safety Filters & Constrained RL]]
     - [[03_Imitation-Learning-and-RL#4.2 Flow & Diffusion Policy Optimization|4.2 Flow & Diffusion Policy Optimization]]
     - [[03_Imitation-Learning-and-RL#4.3 RL & IL for Language & Multimodal Agents|4.3 RL & IL for Language & Multimodal Agents]]
     - [[03_Imitation-Learning-and-RL#4.4 Action Regularization & Geometric Control|4.4 Action Regularization & Geometric Control]]
     - [[03_Imitation-Learning-and-RL#4.5 Co-Design — Joint Morphology & Control Optimization|4.5 Co-Design — Joint Morphology & Control Optimization]]
     - [[03_Imitation-Learning-and-RL#4.6 Morphology-Agnostic Universal Control|4.6 Morphology-Agnostic Universal Control]]
     - [[03_Imitation-Learning-and-RL#4.7 Multi-Agent RL: Scaling, Architecture & Robustness|4.7 Multi-Agent RL: Scaling, Architecture & Robustness]]
+    - [[03_Imitation-Learning-and-RL#4.8 Continual RL & Plasticity Preservation|4.8 Continual RL & Plasticity Preservation]]
   - [[03_Imitation-Learning-and-RL#5. Offline, Model-Based & Skill-Based RL|5. Offline, Model-Based & Skill-Based RL]]  *([[03_Imitation-Learning-and-RL#^dm-5|DM]] · [[03_Imitation-Learning-and-RL#^key-papers-5|Key Papers]] · [[03_Imitation-Learning-and-RL#^insight-5|Insight]])*
     - [[03_Imitation-Learning-and-RL#5.1 Offline & Hybrid RL|5.1 Offline & Hybrid RL]]
     - [[03_Imitation-Learning-and-RL#5.2 Model-Based RL for Control|5.2 Model-Based RL for Control]]
@@ -183,7 +184,8 @@ aliases:
     - [[04_VLA#4.3 Draft-and-Verify|4.3 Draft-and-Verify]]
     - [[04_VLA#4.4 VLA-as-Tool Inversion|4.4 VLA-as-Tool Inversion]]
     - [[04_VLA#4.5 Latent & Efficient Reasoning|4.5 Latent & Efficient Reasoning]]
-    - [[04_VLA#4.6 Affordance & Symbolic Long-Horizon Planning|4.6 Affordance & Symbolic Long-Horizon Planning]]
+    - [[04_VLA#4.6 Affordance-Centric Prediction|4.6 Affordance-Centric Prediction]]
+    - [[04_VLA#4.7 Symbolic & Structured Long-Horizon Planning|4.7 Symbolic & Structured Long-Horizon Planning]]
   - [[04_VLA#5. World-Model-Augmented VLAs|5. World-Model-Augmented VLAs]]  *([[04_VLA#^dm-5|DM]] · [[04_VLA#^key-papers-5|Key Papers]] · [[04_VLA#^insight-5|Insight]])*
     - [[04_VLA#5.1 Iterative Co-Improvement|5.1 Iterative Co-Improvement]]
     - [[04_VLA#5.2 Latent World Model|5.2 Latent World Model]]
@@ -232,6 +234,7 @@ aliases:
     - [[04_VLA#15.2 Domain-Specialized VLAs (Game, Aerial)|15.2 Domain-Specialized VLAs (Game, Aerial)]]
     - [[04_VLA#15.3 Autonomous-Driving VLAs|15.3 Autonomous-Driving VLAs]]
     - [[04_VLA#15.4 Alternative Instruction & Supervision Interfaces|15.4 Alternative Instruction & Supervision Interfaces]]
+    - [[04_VLA#15.5 Navigation-Domain VLAs|15.5 Navigation-Domain VLAs]]
   - [[04_VLA#16. VLA Evaluation & Benchmarking Methodology|16. VLA Evaluation & Benchmarking Methodology]]  *([[04_VLA#^dm-16|DM]] · [[04_VLA#^key-papers-16|Key Papers]] · [[04_VLA#^insight-16|Insight]])*
     - [[04_VLA#16.1 Beyond-Binary & Diagnostic Evaluation|16.1 Beyond-Binary & Diagnostic Evaluation]]
     - [[04_VLA#16.2 Reproducible Real/Sim Evaluation|16.2 Reproducible Real/Sim Evaluation]]
@@ -255,9 +258,12 @@ aliases:
     - [[05_VLA-Reasoning-and-CoT#1.4 External Search|1.4 External Search]]
     - [[05_VLA-Reasoning-and-CoT#1.5 Affordance & Grasp Reasoning for Manipulation|1.5 Affordance & Grasp Reasoning for Manipulation]]
     - [[05_VLA-Reasoning-and-CoT#1.6 Memory & Cognitive-Map-Augmented Reasoning|1.6 Memory & Cognitive-Map-Augmented Reasoning]]
+    - [[05_VLA-Reasoning-and-CoT#1.7 Safety-Aware Planning|1.7 Safety-Aware Planning]]
+    - [[05_VLA-Reasoning-and-CoT#1.8 Multi-Agent / Multi-Robot Orchestration|1.8 Multi-Agent / Multi-Robot Orchestration]]
 - **[[05_VLA-Reasoning-and-CoT#Part B — Reasoning Methods|Part B — Reasoning Methods]]**
   - [[05_VLA-Reasoning-and-CoT#2. Visual Chain-of-Thought|2. Visual Chain-of-Thought]]  *([[05_VLA-Reasoning-and-CoT#^dm-2|DM]] · [[05_VLA-Reasoning-and-CoT#^key-papers-2|Key Papers]] · [[05_VLA-Reasoning-and-CoT#^insight-2|Insight]])*
-    - [[05_VLA-Reasoning-and-CoT#2.1 Stage-Based Visual Subgoal Generation|2.1 Stage-Based Visual Subgoal Generation]]
+    - [[05_VLA-Reasoning-and-CoT#2.1a Discrete Future-Frame Subgoal Prediction|2.1a Discrete Future-Frame Subgoal Prediction]]
+    - [[05_VLA-Reasoning-and-CoT#2.1b Visual Trace / Trajectory CoT|2.1b Visual Trace / Trajectory CoT]]
     - [[05_VLA-Reasoning-and-CoT#2.2 Interactive & Continuous Spatial Guidance|2.2 Interactive & Continuous Spatial Guidance]]
     - [[05_VLA-Reasoning-and-CoT#2.3 Training-Free Visual Foresight via Generative Priors|2.3 Training-Free Visual Foresight via Generative Priors]]
   - [[05_VLA-Reasoning-and-CoT#3. Latent Reasoning — Token-Free CoT|3. Latent Reasoning — Token-Free CoT]]  *([[05_VLA-Reasoning-and-CoT#^dm-3|DM]] · [[05_VLA-Reasoning-and-CoT#^key-papers-3|Key Papers]] · [[05_VLA-Reasoning-and-CoT#^insight-3|Insight]])*
@@ -324,6 +330,8 @@ aliases:
     - [[06_WAM#6.1 Training-Time Video, Test-Time Speed|6.1 Training-Time Video, Test-Time Speed]]
     - [[06_WAM#6.2 Latent Planning & Parameter-Efficient Transfer|6.2 Latent Planning & Parameter-Efficient Transfer]]
     - [[06_WAM#6.3 Uncertainty-Aware & Self-Verifying|6.3 Uncertainty-Aware & Self-Verifying]]
+    - [[06_WAM#6.4 Deployment Infrastructure & Runtime Engineering|6.4 Deployment Infrastructure & Runtime Engineering]]
+    - [[06_WAM#6.5 WM-as-Policy-Evaluator / Sim-Free Ranking|6.5 WM-as-Policy-Evaluator / Sim-Free Ranking]]
 - **[[06_WAM#Part C — Capabilities, Comparison & Open Problems|Part C — Capabilities, Comparison & Open Problems]]**
   - [[06_WAM#7. Self-Evolving WAMs|7. Self-Evolving WAMs]]  *([[06_WAM#^dm-7|DM]] · [[06_WAM#^key-papers-7|Key Papers]] · [[06_WAM#^insight-7|Insight]])*
     - [[06_WAM#7.1 Reflective Planning Loops|7.1 Reflective Planning Loops]]
@@ -356,10 +364,13 @@ aliases:
   - [[07_Latent-World-Models#3. Broader Latent Prediction Landscape|3. Broader Latent Prediction Landscape]]  *([[07_Latent-World-Models#^dm-3|DM]] · [[07_Latent-World-Models#^key-papers-3|Key Papers]] · [[07_Latent-World-Models#^insight-3|Insight]])*
     - [[07_Latent-World-Models#3.1 JEPA for Embodied Control & Robotics|3.1 JEPA for Embodied Control & Robotics]]
     - [[07_Latent-World-Models#3.2 JEPA Theory, SSL Regularizers & LLM-Side Variants|3.2 JEPA Theory, SSL Regularizers & LLM-Side Variants]]
-    - [[07_Latent-World-Models#3.3 Non-JEPA Latent Models|3.3 Non-JEPA Latent Models]]
-    - [[07_Latent-World-Models#3.4 Latent-WM Surveys|3.4 Latent-WM Surveys]]
-    - [[07_Latent-World-Models#3.5 Alternative-Latent-Models Thread|3.5 Alternative-Latent-Models Thread]]
-    - [[07_Latent-World-Models#3.6 Historical Precursors to Latent Prediction|3.6 Historical Precursors to Latent Prediction]]
+    - [[07_Latent-World-Models#3.3 Algebraic-Structured LAMs|3.3 Algebraic-Structured LAMs]]
+    - [[07_Latent-World-Models#3.4 Dual-Branch Training|3.4 Dual-Branch Training]]
+    - [[07_Latent-World-Models#3.5 Frozen-Feature Dynamics|3.5 Frozen-Feature Dynamics]]
+    - [[07_Latent-World-Models#3.6 Unified Diffusion|3.6 Unified Diffusion]]
+    - [[07_Latent-World-Models#3.7 Latent-WM Field Resources|3.7 Latent-WM Field Resources]]
+    - [[07_Latent-World-Models#3.8 Alternative-Latent-Models Thread|3.8 Alternative-Latent-Models Thread]]
+    - [[07_Latent-World-Models#3.9 Historical Precursors to Latent Prediction|3.9 Historical Precursors to Latent Prediction]]
   - [[07_Latent-World-Models#4. Latent Reasoning for Embodied AI|4. Latent Reasoning for Embodied AI]]  *([[07_Latent-World-Models#^dm-4|DM]] · [[07_Latent-World-Models#^key-papers-4|Key Papers]] · [[07_Latent-World-Models#^insight-4|Insight]])*
     - [[07_Latent-World-Models#4.1 Latent Planning|4.1 Latent Planning]]
     - [[07_Latent-World-Models#4.2 Spatial Latent Reasoning|4.2 Spatial Latent Reasoning]]
@@ -383,6 +394,9 @@ aliases:
     - [[08_Physics-Aware-Embodied-AI#1.3 When Physics Intervenes|1.3 When Physics Intervenes]]
   - [[08_Physics-Aware-Embodied-AI#2. Implicit Physics — 3D Gaussians as Simulation Substrate|2. Implicit Physics — 3D Gaussians as Simulation Substrate]]  *([[08_Physics-Aware-Embodied-AI#^dm-2|DM]] · [[08_Physics-Aware-Embodied-AI#^key-papers-2|Key Papers]] · [[08_Physics-Aware-Embodied-AI#^insight-2|Insight]])*
     - [[08_Physics-Aware-Embodied-AI#2.1 3D-Gaussian + MPM as Simulation Substrate|2.1 3D-Gaussian + MPM as Simulation Substrate]]
+    - [[08_Physics-Aware-Embodied-AI#2.2 Non-Gaussian Learned/Analytic Substrates|2.2 Non-Gaussian Learned/Analytic Substrates]]
+    - [[08_Physics-Aware-Embodied-AI#2.3 Physics-Grounded 3D Asset Generation|2.3 Physics-Grounded 3D Asset Generation]]
+    - [[08_Physics-Aware-Embodied-AI#2.4 Physics-Verified Compositional Scene Reconstruction from Images|2.4 Physics-Verified Compositional Scene Reconstruction from Images]]
   - [[08_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation|3. Explicit Physics Losses for Video Generation]]  *([[08_Physics-Aware-Embodied-AI#^dm-3|DM]] · [[08_Physics-Aware-Embodied-AI#^key-papers-3|Key Papers]] · [[08_Physics-Aware-Embodied-AI#^insight-3|Insight]])*
     - [[08_Physics-Aware-Embodied-AI#3.1 Differentiable Physics Residuals|3.1 Differentiable Physics Residuals]]
     - [[08_Physics-Aware-Embodied-AI#3.2 RL with Physics-Verifiable Rewards|3.2 RL with Physics-Verifiable Rewards]]
@@ -391,9 +405,10 @@ aliases:
     - [[08_Physics-Aware-Embodied-AI#3.5 Differentiable Contact Losses for Physically Plausible Hand-Object & Grasp Generation|3.5 Differentiable Contact Losses for Physically Plausible Hand-Object & Grasp Generation]]
   - [[08_Physics-Aware-Embodied-AI#4. External Simulators in the Optimization Loop|4. External Simulators in the Optimization Loop]]  *([[08_Physics-Aware-Embodied-AI#^dm-4|DM]] · [[08_Physics-Aware-Embodied-AI#^key-papers-4|Key Papers]] · [[08_Physics-Aware-Embodied-AI#^insight-4|Insight]])*
     - [[08_Physics-Aware-Embodied-AI#4.1 Digital-Twin Reconstruction & Policy Training|4.1 Digital-Twin Reconstruction & Policy Training]]
-    - [[08_Physics-Aware-Embodied-AI#4.2 Bilevel RL Inside a Physics Simulator|4.2 Bilevel RL Inside a Physics Simulator]]
-    - [[08_Physics-Aware-Embodied-AI#4.3 Learned Linear Dynamics as a Control Substrate|4.3 Learned Linear Dynamics as a Control Substrate]]
-    - [[08_Physics-Aware-Embodied-AI#4.4 Probabilistic Safety Layers for Predictive Control|4.4 Probabilistic Safety Layers for Predictive Control]]
+    - [[08_Physics-Aware-Embodied-AI#4.2 LLM/VLM-Proposer + Simulator-Verifier Loops|4.2 LLM/VLM-Proposer + Simulator-Verifier Loops]]
+    - [[08_Physics-Aware-Embodied-AI#4.3 Bilevel RL Retargeting Inside a Simulator|4.3 Bilevel RL Retargeting Inside a Simulator]]
+    - [[08_Physics-Aware-Embodied-AI#4.4 Learned Linear Dynamics as a Control Substrate|4.4 Learned Linear Dynamics as a Control Substrate]]
+    - [[08_Physics-Aware-Embodied-AI#4.5 Probabilistic Safety Layers for Predictive Control|4.5 Probabilistic Safety Layers for Predictive Control]]
 - **[[08_Physics-Aware-Embodied-AI#Part B — Reasoning, Benchmarks & Pipelines|Part B — Reasoning, Benchmarks & Pipelines]]**
   - [[08_Physics-Aware-Embodied-AI#5. Physics-Aware Reasoning|5. Physics-Aware Reasoning]]  *([[08_Physics-Aware-Embodied-AI#^dm-5|DM]] · [[08_Physics-Aware-Embodied-AI#^key-papers-5|Key Papers]] · [[08_Physics-Aware-Embodied-AI#^insight-5|Insight]])*
   - [[08_Physics-Aware-Embodied-AI#6. Physics Commonsense Benchmarks|6. Physics Commonsense Benchmarks]]  *([[08_Physics-Aware-Embodied-AI#^dm-6|DM]] · [[08_Physics-Aware-Embodied-AI#^key-papers-6|Key Papers]] · [[08_Physics-Aware-Embodied-AI#^insight-6|Insight]])*
@@ -458,6 +473,7 @@ aliases:
     - [[10_Manipulation-Skill-Learning#2.1 3D Policy Backbones|2.1 3D Policy Backbones]]
     - [[10_Manipulation-Skill-Learning#2.2 Spatial-Reasoning VLMs for Manipulation|2.2 Spatial-Reasoning VLMs for Manipulation]]
     - [[10_Manipulation-Skill-Learning#2.3 View-Robust & Object-Centric Encoders|2.3 View-Robust & Object-Centric Encoders]]
+    - [[10_Manipulation-Skill-Learning#2.4 Generic Grasp-Pose & Pick-Success Detection|2.4 Generic Grasp-Pose & Pick-Success Detection]]
 - **[[10_Manipulation-Skill-Learning#Part B — Reasoning & Memory|Part B — Reasoning & Memory]]**
   - [[10_Manipulation-Skill-Learning#3. World-Model & Video-as-Policy|3. World-Model & Video-as-Policy]]  *([[10_Manipulation-Skill-Learning#^dm-3|DM]] · [[10_Manipulation-Skill-Learning#^key-papers-3|Key Papers]] · [[10_Manipulation-Skill-Learning#^insight-3|Insight]])*
     - [[10_Manipulation-Skill-Learning#3.1 World-Action Models for Manipulation|3.1 World-Action Models for Manipulation]]
@@ -502,11 +518,12 @@ aliases:
     - [[11_Contact-Rich-and-Tactile-Control#2.1 Tactile Sensor Hardware — The Physical Sensing Devices|2.1 Tactile Sensor Hardware — The Physical Sensing Devices]]
     - [[11_Contact-Rich-and-Tactile-Control#2.2 Touch Foundation Models — SSL Representations on Tactile Streams|2.2 Touch Foundation Models — SSL Representations on Tactile Streams]]
     - [[11_Contact-Rich-and-Tactile-Control#2.3 Cross-Sensor Tactile Representation Transfer|2.3 Cross-Sensor Tactile Representation Transfer]]
-    - [[11_Contact-Rich-and-Tactile-Control#2.4 Tactile Data-Capture Hardware — Gloves & Teleop Rigs|2.4 Tactile Data-Capture Hardware — Gloves & Teleop Rigs]]
+    - [[11_Contact-Rich-and-Tactile-Control#2.4 Tactile Data-Capture Hardware — Rigs & Passive Capture|2.4 Tactile Data-Capture Hardware — Rigs & Passive Capture]]
     - [[11_Contact-Rich-and-Tactile-Control#2.5 Dexterous Hand Platforms — The End-Effector Hardware|2.5 Dexterous Hand Platforms — The End-Effector Hardware]]
 - **[[11_Contact-Rich-and-Tactile-Control#Part B — Force-Conditioned Policy Architectures|Part B — Force-Conditioned Policy Architectures]]**
   - [[11_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures|3. Force-Conditioned VLA Architectures]]  *([[11_Contact-Rich-and-Tactile-Control#^dm-3|DM]] · [[11_Contact-Rich-and-Tactile-Control#^key-papers-3|Key Papers]] · [[11_Contact-Rich-and-Tactile-Control#^insight-3|Insight]])*
-    - [[11_Contact-Rich-and-Tactile-Control#3.1 Force-Aware Action Heads|3.1 Force-Aware Action Heads]]
+    - [[11_Contact-Rich-and-Tactile-Control#3.1a Dedicated-Sensor Injection|3.1a Dedicated-Sensor Injection]]
+    - [[11_Contact-Rich-and-Tactile-Control#3.1b Sensorless/Proxy Force Estimation|3.1b Sensorless/Proxy Force Estimation]]
     - [[11_Contact-Rich-and-Tactile-Control#3.2 Force-Aware Mixture-of-Experts|3.2 Force-Aware Mixture-of-Experts]]
     - [[11_Contact-Rich-and-Tactile-Control#3.3 Force-Grounded Tactile Alignment|3.3 Force-Grounded Tactile Alignment]]
     - [[11_Contact-Rich-and-Tactile-Control#3.4 Force-Aware Human-Intervention & Refinement Layers|3.4 Force-Aware Human-Intervention & Refinement Layers]]
@@ -517,7 +534,8 @@ aliases:
     - [[11_Contact-Rich-and-Tactile-Control#4.2 Contact-Grounded Policies — Generative Tactile Forecasts as Policy Anchors|4.2 Contact-Grounded Policies — Generative Tactile Forecasts as Policy Anchors]]
     - [[11_Contact-Rich-and-Tactile-Control#4.3 Long-Horizon Memory — Sustained-Contact Reasoning|4.3 Long-Horizon Memory — Sustained-Contact Reasoning]]
     - [[11_Contact-Rich-and-Tactile-Control#4.4 Tactile World Models — Forecasting Future Contact State|4.4 Tactile World Models — Forecasting Future Contact State]]
-    - [[11_Contact-Rich-and-Tactile-Control#4.5 Visuotactile Policies — Arm & In-Hand|4.5 Visuotactile Policies — Arm & In-Hand]]
+    - [[11_Contact-Rich-and-Tactile-Control#4.5a In-Hand Dexterous Reorientation & Blind Grasping|4.5a In-Hand Dexterous Reorientation & Blind Grasping]]
+    - [[11_Contact-Rich-and-Tactile-Control#4.5b Arm/Bimanual Visuotactile Manipulation|4.5b Arm/Bimanual Visuotactile Manipulation]]
     - [[11_Contact-Rich-and-Tactile-Control#4.6 Contact-Safe Force Control|4.6 Contact-Safe Force Control]]
     - [[11_Contact-Rich-and-Tactile-Control#4.7 Model-Based & Sampling-Based Trajectory Optimization for Contact-Rich Manipulation|4.7 Model-Based & Sampling-Based Trajectory Optimization for Contact-Rich Manipulation]]
 - **[[11_Contact-Rich-and-Tactile-Control#Part D — Open Problems|Part D — Open Problems]]**
@@ -534,40 +552,49 @@ aliases:
 - **[[12_Whole-Body-and-Locomotion-Control#Part A — Whole-Body Control|Part A — Whole-Body Control]]**
   - [[12_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination|1. Whole-Body Control & Coordination]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-1|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-1|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-1|Insight]])*
     - [[12_Whole-Body-and-Locomotion-Control#1.1 Unified & Hierarchical Whole-Body Controllers|1.1 Unified & Hierarchical Whole-Body Controllers]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.1b Cooperative & Multi-Agent Loco-Manipulation|1.1b Cooperative & Multi-Agent Loco-Manipulation]]
     - [[12_Whole-Body-and-Locomotion-Control#1.2 Balance & Load-Aware Adaptation|1.2 Balance & Load-Aware Adaptation]]
     - [[12_Whole-Body-and-Locomotion-Control#1.3 Behavioral & Motion-Tracking Foundation Models|1.3 Behavioral & Motion-Tracking Foundation Models]]
     - [[12_Whole-Body-and-Locomotion-Control#1.4 Cross-Embodiment & Generalist Whole-Body Control|1.4 Cross-Embodiment & Generalist Whole-Body Control]]
     - [[12_Whole-Body-and-Locomotion-Control#1.5 Fall Recovery & Stand-Up|1.5 Fall Recovery & Stand-Up]]
     - [[12_Whole-Body-and-Locomotion-Control#1.6 Safe & Robust Whole-Body Control|1.6 Safe & Robust Whole-Body Control]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.6b Fault-Tolerant & Actuator-Degradation Control|1.6b Fault-Tolerant & Actuator-Degradation Control]]
     - [[12_Whole-Body-and-Locomotion-Control#1.7 Adaptive Compliance & Impedance Control|1.7 Adaptive Compliance & Impedance Control]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.7b Tendon-Driven Musculoskeletal Humanoid Control|1.7b Tendon-Driven Musculoskeletal Humanoid Control]]
     - [[12_Whole-Body-and-Locomotion-Control#1.8 Whole-Body Distributed Tactile Sensing|1.8 Whole-Body Distributed Tactile Sensing]]
-    - [[12_Whole-Body-and-Locomotion-Control#1.9 Language & Multimodal-Driven Whole-Body Control|1.9 Language & Multimodal-Driven Whole-Body Control]]
-    - [[12_Whole-Body-and-Locomotion-Control#1.10 Morphology–Control Co-Design|1.10 Morphology–Control Co-Design]]
-    - [[12_Whole-Body-and-Locomotion-Control#1.11 Humanoid Hardware Platforms & Flight|1.11 Humanoid Hardware Platforms & Flight]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.9a Generative-Motion-to-Tracker|1.9a Generative-Motion-to-Tracker]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.9b Foundation-Model Task Planners over a Skill Library|1.9b Foundation-Model Task Planners over a Skill Library]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.10a Morphology–Control Co-Design|1.10a Morphology–Control Co-Design]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.10b Control for Fixed Complex/Parallel Mechanisms|1.10b Control for Fixed Complex/Parallel Mechanisms]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.11a Open-Source Biped Hardware Platforms|1.11a Open-Source Biped Hardware Platforms]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.11b Flying-Humanoid Control|1.11b Flying-Humanoid Control]]
 - **[[12_Whole-Body-and-Locomotion-Control#Part B — Locomotion & Agile Skills|Part B — Locomotion & Agile Skills]]**
-  - [[12_Whole-Body-and-Locomotion-Control#2. Legged Locomotion & Agile Skills|2. Legged Locomotion & Agile Skills]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-2|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-2|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-2|Insight]])*
+  - [[12_Whole-Body-and-Locomotion-Control#2. Agile & Dynamic Skill Acquisition|2. Agile & Dynamic Skill Acquisition]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-2|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-2|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-2|Insight]])*
     - [[12_Whole-Body-and-Locomotion-Control#2.1 Terrain-Aware Agile Locomotion|2.1 Terrain-Aware Agile Locomotion]]
     - [[12_Whole-Body-and-Locomotion-Control#2.2 Dynamic Whole-Body Skills|2.2 Dynamic Whole-Body Skills]]
     - [[12_Whole-Body-and-Locomotion-Control#2.3 Autonomous Contact-Rich Skill Discovery|2.3 Autonomous Contact-Rich Skill Discovery]]
     - [[12_Whole-Body-and-Locomotion-Control#2.4 Constraint-Aware Locomotion — Energy, Noise & Thermal|2.4 Constraint-Aware Locomotion — Energy, Noise & Thermal]]
     - [[12_Whole-Body-and-Locomotion-Control#2.5 Whole-Body Contact World Models|2.5 Whole-Body Contact World Models]]
-    - [[12_Whole-Body-and-Locomotion-Control#2.6 Athletic & Sports Skills|2.6 Athletic & Sports Skills]]
-    - [[12_Whole-Body-and-Locomotion-Control#2.7 Proprioceptive State Estimation & Odometry|2.7 Proprioceptive State Estimation & Odometry]]
-    - [[12_Whole-Body-and-Locomotion-Control#2.8 Legged Gait Learning & Control Methods|2.8 Legged Gait Learning & Control Methods]]
-    - [[12_Whole-Body-and-Locomotion-Control#2.9 LLM & VLM-Automated Reward Design|2.9 LLM & VLM-Automated Reward Design]]
-    - [[12_Whole-Body-and-Locomotion-Control#2.10 Physics-Based Character Animation|2.10 Physics-Based Character Animation]]
+    - [[12_Whole-Body-and-Locomotion-Control#2.6 Athletic, Sports & Rhythmic Contact Skills|2.6 Athletic, Sports & Rhythmic Contact Skills]]
+  - [[12_Whole-Body-and-Locomotion-Control#3. Locomotion Substrate: Estimation, Control & Generative Ancestry|3. Locomotion Substrate: Estimation, Control & Generative Ancestry]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-3|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-3|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-3|Insight]])*
+    - [[12_Whole-Body-and-Locomotion-Control#3.1 Proprioceptive State Estimation & Odometry|3.1 Proprioceptive State Estimation & Odometry]]
+    - [[12_Whole-Body-and-Locomotion-Control#3.2 Learned RL/Imitation Gait Controllers|3.2 Learned RL/Imitation Gait Controllers]]
+    - [[12_Whole-Body-and-Locomotion-Control#3.3 Model-Based & Hybrid Control|3.3 Model-Based & Hybrid Control]]
+    - [[12_Whole-Body-and-Locomotion-Control#3.4 LLM & VLM-Automated Reward Design|3.4 LLM & VLM-Automated Reward Design]]
+    - [[12_Whole-Body-and-Locomotion-Control#3.5 Physics-Based Character Animation|3.5 Physics-Based Character Animation]]
 - **[[12_Whole-Body-and-Locomotion-Control#Part C — Humanoid Manipulation & Skill Data|Part C — Humanoid Manipulation & Skill Data]]**
-  - [[12_Whole-Body-and-Locomotion-Control#3. Humanoid Manipulation, Retargeting & Skill Data|3. Humanoid Manipulation, Retargeting & Skill Data]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-3|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-3|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-3|Insight]])*
-    - [[12_Whole-Body-and-Locomotion-Control#3.1 Motion Retargeting & Human-to-Humanoid Transfer|3.1 Motion Retargeting & Human-to-Humanoid Transfer]]
-    - [[12_Whole-Body-and-Locomotion-Control#3.2 Generative Skill Data for Whole-Body Control|3.2 Generative Skill Data for Whole-Body Control]]
-    - [[12_Whole-Body-and-Locomotion-Control#3.3 End-to-End Loco-Manipulation Learning Workflows|3.3 End-to-End Loco-Manipulation Learning Workflows]]
-    - [[12_Whole-Body-and-Locomotion-Control#3.4 Teleoperation & Whole-Body Tracking Interfaces|3.4 Teleoperation & Whole-Body Tracking Interfaces]]
-    - [[12_Whole-Body-and-Locomotion-Control#3.5 Evaluation, Benchmarks & Human-Likeness Metrics|3.5 Evaluation, Benchmarks & Human-Likeness Metrics]]
+  - [[12_Whole-Body-and-Locomotion-Control#4. Humanoid Manipulation, Retargeting & Skill Data|4. Humanoid Manipulation, Retargeting & Skill Data]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-4|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-4|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-4|Insight]])*
+    - [[12_Whole-Body-and-Locomotion-Control#4.1 Motion Retargeting & Human/Cross-Source Transfer|4.1 Motion Retargeting & Human/Cross-Source Transfer]]
+    - [[12_Whole-Body-and-Locomotion-Control#4.2 Generative Skill Data for Whole-Body Control|4.2 Generative Skill Data for Whole-Body Control]]
+    - [[12_Whole-Body-and-Locomotion-Control#4.3a Wearable/Portable Data-Collection Hardware|4.3a Wearable/Portable Data-Collection Hardware]]
+    - [[12_Whole-Body-and-Locomotion-Control#4.3b Standardized Train→Deploy Workflows|4.3b Standardized Train→Deploy Workflows]]
+    - [[12_Whole-Body-and-Locomotion-Control#4.4 Teleoperation & Whole-Body Tracking Interfaces|4.4 Teleoperation & Whole-Body Tracking Interfaces]]
+    - [[12_Whole-Body-and-Locomotion-Control#4.5 Evaluation, Benchmarks & Robustness-Testing Metrics|4.5 Evaluation, Benchmarks & Robustness-Testing Metrics]]
 - **[[12_Whole-Body-and-Locomotion-Control#Part D — Open Problems|Part D — Open Problems]]**
-  - [[12_Whole-Body-and-Locomotion-Control#4. Open Problems & Failure Modes|4. Open Problems & Failure Modes]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-4|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-4|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-4|Insight]])*
-    - [[12_Whole-Body-and-Locomotion-Control#4.1 Data & Cross-Embodiment Generalization|4.1 Data & Cross-Embodiment Generalization]]
-    - [[12_Whole-Body-and-Locomotion-Control#4.2 Coupling & Control at the Dynamic Edge|4.2 Coupling & Control at the Dynamic Edge]]
-    - [[12_Whole-Body-and-Locomotion-Control#4.3 Deployment & Safety|4.3 Deployment & Safety]]
+  - [[12_Whole-Body-and-Locomotion-Control#5. Open Problems & Failure Modes|5. Open Problems & Failure Modes]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-5|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-5|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-5|Insight]])*
+    - [[12_Whole-Body-and-Locomotion-Control#5.1 Data & Cross-Embodiment Generalization|5.1 Data & Cross-Embodiment Generalization]]
+    - [[12_Whole-Body-and-Locomotion-Control#5.2 Coupling & Control at the Dynamic Edge|5.2 Coupling & Control at the Dynamic Edge]]
+    - [[12_Whole-Body-and-Locomotion-Control#5.3 Deployment & Safety|5.3 Deployment & Safety]]
 - **[[12_Whole-Body-and-Locomotion-Control#Quick-Reference Matrix|Quick-Reference Matrix]]**
 - **[[12_Whole-Body-and-Locomotion-Control#Cross-References|Cross-References]]**
 
@@ -578,16 +605,19 @@ aliases:
   - [[13_Navigation-and-Mobile-Manipulation#1. Navigation Paradigms & Design Space|1. Navigation Paradigms & Design Space]]  *([[13_Navigation-and-Mobile-Manipulation#^dm-1|DM]] · [[13_Navigation-and-Mobile-Manipulation#^key-papers-1|Key Papers]] · [[13_Navigation-and-Mobile-Manipulation#^insight-1|Insight]])*
     - [[13_Navigation-and-Mobile-Manipulation#1.1 Emergent vs Explicit Spatial Memory|1.1 Emergent vs Explicit Spatial Memory]]
     - [[13_Navigation-and-Mobile-Manipulation#1.2 Mapless Long-Range & Efficient Navigation|1.2 Mapless Long-Range & Efficient Navigation]]
-    - [[13_Navigation-and-Mobile-Manipulation#1.3 Surveys|1.3 Surveys]]
-    - [[13_Navigation-and-Mobile-Manipulation#1.4 Agile, Perception-Driven Aerial Navigation|1.4 Agile, Perception-Driven Aerial Navigation]]
-    - [[13_Navigation-and-Mobile-Manipulation#1.5 Autonomous Frontier & Coverage Exploration|1.5 Autonomous Frontier & Coverage Exploration]]
-    - [[13_Navigation-and-Mobile-Manipulation#1.6 Multi-Robot Motion Planning & Coordination|1.6 Multi-Robot Motion Planning & Coordination]]
+    - [[13_Navigation-and-Mobile-Manipulation#1.3 Off-Road & Terrain-Aware Navigation|1.3 Off-Road & Terrain-Aware Navigation]]
+    - [[13_Navigation-and-Mobile-Manipulation#1.4 Surveys|1.4 Surveys]]
+    - [[13_Navigation-and-Mobile-Manipulation#1.5 Agile, Perception-Driven Aerial Navigation|1.5 Agile, Perception-Driven Aerial Navigation]]
+    - [[13_Navigation-and-Mobile-Manipulation#1.6 Autonomous Frontier & Coverage Exploration|1.6 Autonomous Frontier & Coverage Exploration]]
+    - [[13_Navigation-and-Mobile-Manipulation#1.7 Multi-Robot Motion Planning & Coordination|1.7 Multi-Robot Motion Planning & Coordination]]
   - [[13_Navigation-and-Mobile-Manipulation#2. Vision-Language Navigation|2. Vision-Language Navigation]]  *([[13_Navigation-and-Mobile-Manipulation#^dm-2|DM]] · [[13_Navigation-and-Mobile-Manipulation#^key-papers-2|Key Papers]] · [[13_Navigation-and-Mobile-Manipulation#^insight-2|Insight]])*
-    - [[13_Navigation-and-Mobile-Manipulation#2.1 Grounding & Map-Based VLN|2.1 Grounding & Map-Based VLN]]
+    - [[13_Navigation-and-Mobile-Manipulation#2.1a Explicit Map/Graph/Scene-Representation VLN|2.1a Explicit Map/Graph/Scene-Representation VLN]]
+    - [[13_Navigation-and-Mobile-Manipulation#2.1b Grounding Without a Persistent Map|2.1b Grounding Without a Persistent Map]]
     - [[13_Navigation-and-Mobile-Manipulation#2.2 Aerial VLN|2.2 Aerial VLN]]
     - [[13_Navigation-and-Mobile-Manipulation#2.3 VLN Data Augmentation|2.3 VLN Data Augmentation]]
     - [[13_Navigation-and-Mobile-Manipulation#2.4 Anticipatory & Self-Evolving VLN|2.4 Anticipatory & Self-Evolving VLN]]
     - [[13_Navigation-and-Mobile-Manipulation#2.5 VLN Benchmarks & Embodied Agents|2.5 VLN Benchmarks & Embodied Agents]]
+    - [[13_Navigation-and-Mobile-Manipulation#2.6 VLN Reality Gap: Physical Deployment|2.6 VLN Reality Gap: Physical Deployment]]
 - **[[13_Navigation-and-Mobile-Manipulation#Part B — Methods|Part B — Methods]]**
   - [[13_Navigation-and-Mobile-Manipulation#3. Mapping, Memory & Spatial Representation|3. Mapping, Memory & Spatial Representation]]  *([[13_Navigation-and-Mobile-Manipulation#^dm-3|DM]] · [[13_Navigation-and-Mobile-Manipulation#^key-papers-3|Key Papers]] · [[13_Navigation-and-Mobile-Manipulation#^insight-3|Insight]])*
     - [[13_Navigation-and-Mobile-Manipulation#3.1 Semantic & Cognitive Maps|3.1 Semantic & Cognitive Maps]]
@@ -623,20 +653,22 @@ aliases:
     - [[14_Egocentric-Pretraining-and-Human-Video#1.1 Data Abundance|1.1 Data Abundance]]
     - [[14_Egocentric-Pretraining-and-Human-Video#1.2 Embodiment Alignment|1.2 Embodiment Alignment]]
     - [[14_Egocentric-Pretraining-and-Human-Video#1.3 Scaling Laws Hold|1.3 Scaling Laws Hold]]
-  - [[14_Egocentric-Pretraining-and-Human-Video#2. Egocentric Datasets|2. Egocentric Datasets]]  *([[14_Egocentric-Pretraining-and-Human-Video#^dm-2|DM]] · [[14_Egocentric-Pretraining-and-Human-Video#^key-papers-2|Key Papers]] · [[14_Egocentric-Pretraining-and-Human-Video#^insight-2|Insight]])*
+  - [[14_Egocentric-Pretraining-and-Human-Video#2. Egocentric Data & Perception Substrate|2. Egocentric Data & Perception Substrate]]  *([[14_Egocentric-Pretraining-and-Human-Video#^dm-2|DM]] · [[14_Egocentric-Pretraining-and-Human-Video#^key-papers-2|Key Papers]] · [[14_Egocentric-Pretraining-and-Human-Video#^insight-2|Insight]])*
     - [[14_Egocentric-Pretraining-and-Human-Video#2.1 Foundational Visual-Reasoning Datasets|2.1 Foundational Visual-Reasoning Datasets]]
     - [[14_Egocentric-Pretraining-and-Human-Video#2.2 Internet-Scale Egocentric Video|2.2 Internet-Scale Egocentric Video]]
     - [[14_Egocentric-Pretraining-and-Human-Video#2.3 Dexterous-Manipulation-Focused Egocentric Data|2.3 Dexterous-Manipulation-Focused Egocentric Data]]
     - [[14_Egocentric-Pretraining-and-Human-Video#2.4 Cross-Embodiment Egocentric Demonstrations|2.4 Cross-Embodiment Egocentric Demonstrations]]
     - [[14_Egocentric-Pretraining-and-Human-Video#2.5 Domain-Vertical Post-Training Corpora|2.5 Domain-Vertical Post-Training Corpora]]
-    - [[14_Egocentric-Pretraining-and-Human-Video#2.6 Egocentric Full-Body Pose Estimation|2.6 Egocentric Full-Body Pose Estimation]]
-    - [[14_Egocentric-Pretraining-and-Human-Video#2.7 Egocentric Assistant & Collaboration Datasets|2.7 Egocentric Assistant & Collaboration Datasets]]
+    - [[14_Egocentric-Pretraining-and-Human-Video#2.6 Egocentric Assistant & Collaboration Datasets|2.6 Egocentric Assistant & Collaboration Datasets]]
+    - [[14_Egocentric-Pretraining-and-Human-Video#2.7 Egocentric Full-Body Pose Estimation|2.7 Egocentric Full-Body Pose Estimation]]
+    - [[14_Egocentric-Pretraining-and-Human-Video#2.8 Egocentric Object Tracking & Interaction Grounding|2.8 Egocentric Object Tracking & Interaction Grounding]]
+    - [[14_Egocentric-Pretraining-and-Human-Video#2.9 Predictive Hand Dynamics & Interaction Timing|2.9 Predictive Hand Dynamics & Interaction Timing]]
   - [[14_Egocentric-Pretraining-and-Human-Video#3. Scaling Laws for Egocentric Pretraining|3. Scaling Laws for Egocentric Pretraining]]  *([[14_Egocentric-Pretraining-and-Human-Video#^dm-3|DM]] · [[14_Egocentric-Pretraining-and-Human-Video#^key-papers-3|Key Papers]] · [[14_Egocentric-Pretraining-and-Human-Video#^insight-3|Insight]])*
     - [[14_Egocentric-Pretraining-and-Human-Video#3.1 The Established Curve|3.1 The Established Curve]]
     - [[14_Egocentric-Pretraining-and-Human-Video#3.2 Open Scaling Frontiers|3.2 Open Scaling Frontiers]]
 - **[[14_Egocentric-Pretraining-and-Human-Video#Part B — Methods & Integration|Part B — Methods & Integration]]**
   - [[14_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations|4. Pretraining Recipes — Three Generations]]  *([[14_Egocentric-Pretraining-and-Human-Video#^dm-4|DM]] · [[14_Egocentric-Pretraining-and-Human-Video#^key-papers-4|Key Papers]] · [[14_Egocentric-Pretraining-and-Human-Video#^insight-4|Insight]])*
-    - [[14_Egocentric-Pretraining-and-Human-Video#4.1 Generation 1: Frozen-Feature Transfer (2022)|4.1 Generation 1: Frozen-Feature Transfer (2022)]]
+    - [[14_Egocentric-Pretraining-and-Human-Video#4.1 Generation 1: Frozen-Feature Transfer (2022–2024)|4.1 Generation 1: Frozen-Feature Transfer (2022–2024)]]
     - [[14_Egocentric-Pretraining-and-Human-Video#4.2 Generation 2: Video Pretraining + Action Decoder (2024–2025)|4.2 Generation 2: Video Pretraining + Action Decoder (2024–2025)]]
     - [[14_Egocentric-Pretraining-and-Human-Video#4.3 Generation 3: Full VLA Pretraining on Human Videos (2025–2026)|4.3 Generation 3: Full VLA Pretraining on Human Videos (2025–2026)]]
   - [[14_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper|5. Transfer Mechanisms — Hand → Gripper]]  *([[14_Egocentric-Pretraining-and-Human-Video#^dm-5|DM]] · [[14_Egocentric-Pretraining-and-Human-Video#^key-papers-5|Key Papers]] · [[14_Egocentric-Pretraining-and-Human-Video#^insight-5|Insight]])*
@@ -667,16 +699,20 @@ aliases:
   - [[15_Sim-to-Real-Transfer#2. Sim-Side: Learned & Procedural Simulators|2. Sim-Side: Learned & Procedural Simulators]]  *([[15_Sim-to-Real-Transfer#^dm-2|DM]] · [[15_Sim-to-Real-Transfer#^key-papers-2|Key Papers]] · [[15_Sim-to-Real-Transfer#^insight-2|Insight]])*
     - [[15_Sim-to-Real-Transfer#2.1 Learned Sensory World Simulators|2.1 Learned Sensory World Simulators]]
     - [[15_Sim-to-Real-Transfer#2.2 Procedural Environment Generation|2.2 Procedural Environment Generation]]
+    - [[15_Sim-to-Real-Transfer#2.2x Event-Camera & Non-RGB Sensor Simulators|2.2x Event-Camera & Non-RGB Sensor Simulators]]
     - [[15_Sim-to-Real-Transfer#2.3 Synthetic Demonstration Generation|2.3 Synthetic Demonstration Generation]]
   - [[15_Sim-to-Real-Transfer#3. Policy-Side: Robustness & Domain Randomization|3. Policy-Side: Robustness & Domain Randomization]]  *([[15_Sim-to-Real-Transfer#^dm-3|DM]] · [[15_Sim-to-Real-Transfer#^key-papers-3|Key Papers]] · [[15_Sim-to-Real-Transfer#^insight-3|Insight]])*
     - [[15_Sim-to-Real-Transfer#3.1 Domain Randomization Foundations|3.1 Domain Randomization Foundations]]
     - [[15_Sim-to-Real-Transfer#3.2 Robust RL Foundations|3.2 Robust RL Foundations]]
     - [[15_Sim-to-Real-Transfer#3.3 Physics-Informed Policy Robustness|3.3 Physics-Informed Policy Robustness]]
     - [[15_Sim-to-Real-Transfer#3.4 Vision-Aware Sim-to-Real|3.4 Vision-Aware Sim-to-Real]]
+    - [[15_Sim-to-Real-Transfer#3.4x Controller-Gain & Parameter-Aware Adaptation|3.4x Controller-Gain & Parameter-Aware Adaptation]]
     - [[15_Sim-to-Real-Transfer#3.5 Humanoid & Legged Sim-to-Real|3.5 Humanoid & Legged Sim-to-Real]]
     - [[15_Sim-to-Real-Transfer#3.6 Domain Adaptation & Continual Transfer|3.6 Domain Adaptation & Continual Transfer]]
     - [[15_Sim-to-Real-Transfer#3.7 Gradient-Based Controller Auto-Tuning|3.7 Gradient-Based Controller Auto-Tuning]]
     - [[15_Sim-to-Real-Transfer#3.8 Jump-Start & Attenuated Teacher Guidance|3.8 Jump-Start & Attenuated Teacher Guidance]]
+    - [[15_Sim-to-Real-Transfer#3.9 Adaptive & Entropy-Based Randomization Distributions|3.9 Adaptive & Entropy-Based Randomization Distributions]]
+    - [[15_Sim-to-Real-Transfer#3.10 System-Level & Multi-Factor Alignment Frameworks|3.10 System-Level & Multi-Factor Alignment Frameworks]]
   - [[15_Sim-to-Real-Transfer#4. Real2Sim2Real Loops & Digital Twins|4. Real2Sim2Real Loops & Digital Twins]]  *([[15_Sim-to-Real-Transfer#^dm-4|DM]] · [[15_Sim-to-Real-Transfer#^key-papers-4|Key Papers]] · [[15_Sim-to-Real-Transfer#^insight-4|Insight]])*
     - [[15_Sim-to-Real-Transfer#4.1 Video/Scan → Exact-Twin Reconstruction|4.1 Video/Scan → Exact-Twin Reconstruction]]
     - [[15_Sim-to-Real-Transfer#4.2 Generative Digital Cousins & Data Engines|4.2 Generative Digital Cousins & Data Engines]]
@@ -729,7 +765,8 @@ aliases:
   - [[16_Self-Evolving-VLA-WAM#5. Self-Evolving WAMs|5. Self-Evolving WAMs]]  *([[16_Self-Evolving-VLA-WAM#^dm-5|DM]] · [[16_Self-Evolving-VLA-WAM#^key-papers-5|Key Papers]] · [[16_Self-Evolving-VLA-WAM#^insight-5|Insight]])*
     - [[16_Self-Evolving-VLA-WAM#5.1 Reflective Planning Loops|5.1 Reflective Planning Loops]]
     - [[16_Self-Evolving-VLA-WAM#5.2 RL on Dynamics & Co-Evolving Loops|5.2 RL on Dynamics & Co-Evolving Loops]]
-    - [[16_Self-Evolving-VLA-WAM#5.3 Self-Play & Continual Replay|5.3 Self-Play & Continual Replay]]
+    - [[16_Self-Evolving-VLA-WAM#5.3 Self-Play Data Engines|5.3 Self-Play Data Engines]]
+    - [[16_Self-Evolving-VLA-WAM#5.4 Continual Replay Against Forgetting|5.4 Continual Replay Against Forgetting]]
   - [[16_Self-Evolving-VLA-WAM#6. Self-Evolving VLAs|6. Self-Evolving VLAs]]  *([[16_Self-Evolving-VLA-WAM#^dm-6|DM]] · [[16_Self-Evolving-VLA-WAM#^key-papers-6|Key Papers]] · [[16_Self-Evolving-VLA-WAM#^insight-6|Insight]])*
     - [[16_Self-Evolving-VLA-WAM#6.1 Conservative SFT & Stable Fine-Tuning|6.1 Conservative SFT & Stable Fine-Tuning]]
     - [[16_Self-Evolving-VLA-WAM#6.2 Continual RL Across Task Streams|6.2 Continual RL Across Task Streams]]

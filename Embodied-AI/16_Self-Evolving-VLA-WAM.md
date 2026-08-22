@@ -114,11 +114,9 @@ The "starting point" decision splits the research landscape into three paths —
 
 #### 1.1 Self-Evolving Agent (Behavior-Level)
 
-Start from a pretrained agent with persistent experience memory; evolve *behavior* (strategies, skill libraries, prompts) rather than weights. Cheapest to bootstrap, but the agent never internalizes the improvement — it relies on external memory at deployment.
+Start from a pretrained agent; evolution is driven by persistent experience memory, often combined with lightweight RL (GRPO-family) fine-tuning on top — cheaper to bootstrap than a WAM but not necessarily weight-frozen.
 
-- **[[2510.16079|EVOLVER]]** — A method that distills raw interaction trajectories into ==strategic principles== stored in a persistent experience bank; behavior evolves without weight updates, reaching **0.382** avg EM across 7 QA benchmarks (Qwen2.5-3B).
-- **[[2601.06794|ECHO]]** — A co-evolutionary framework in which the agent's policy and its critic are jointly optimized via a ==saturation-aware reward==, the canonical agent-side closed loop; **+7.28 pts** avg over GRPO across 4 open-world benchmarks, **+42%** relative on DeepSearch.
-- **[[2203.14465|STaR]]** — The foundational self-training pattern: ==generate → filter → retrain== on successes; **89.5%** arithmetic accuracy vs **76.3%** for an answer-only baseline, and CommonsenseQA parity with a **30×** larger GPT-3.
+- **[[2510.16079|EVOLVER]]** — A method that distills raw interaction trajectories into ==strategic principles== stored in a persistent experience bank, then retrains the policy via ==GRPO==; memory does the cheap lifting, GRPO the weight update, reaching **0.382** avg EM across 7 QA benchmarks (Qwen2.5-3B).
 
 #### 1.2 Self-Evolving VLA (Policy-Level)
 
@@ -140,7 +138,7 @@ Start from a pretrained world action model; evolve via imagination loops (synthe
 
 | Need | Starting Point |
 |---|---|
-| Cheap bootstrap, no weight updates | Agent path: [[2510.16079\|EVOLVER]] (experience principles) |
+| Cheap bootstrap, memory-first + light RL | Agent path: [[2510.16079\|EVOLVER]] (experience principles + GRPO) |
 | Persistent open-ended curriculum | Agent path: [[2601.06794\|ECHO]] (policy + env co-evolve) |
 | Real-robot RL post-training (preserve VLM priors) | VLA path: [[2603.03818\|VLA-CL]] + LoRA |
 | Bound parameter disruption during SFT | VLA path: [[2605.08879\|ConSFT]] |
@@ -154,7 +152,7 @@ Start from a pretrained world action model; evolve via imagination loops (synthe
 > [!star] Key Papers
 > - [[2502.05907|EvoAgent]] — Canonical *WAM path*: continual world model + self-planning/control/reflection; **+105%** long-horizon. The clearest evidence Option 2 wins on dynamics-heavy tasks.
 > - [[2511.16166|EvoVLA]] — Canonical *VLA path*: end-to-end self-evolving VLA solving stage hallucination + fragile memory; **+10.2pp** sim SR, **+11.0pp** Sim2Real.
-> - [[2510.16079|EVOLVER]] — Canonical *agent path*: experience-distillation lifecycle; behavior evolves without weight updates — the cheapest entry to self-evolution.
+> - [[2510.16079|EVOLVER]] — Canonical *agent path*: experience-distillation lifecycle capped with a light GRPO retrain — the cheapest entry to self-evolution, not a weight-frozen one.
 
 ^key-papers-1
 
@@ -173,9 +171,9 @@ This section forces the comparison along three concrete substrates so the rest o
 
 #### 2.1 Agent-Side (Model-Free, Behavior-Level)
 
-The broadest substrate. Maps state → action via trial and error with no explicit dynamics model. Evolution operates at the *behavior* level: experience banks, skill libraries, prompts, reasoning traces — not raw weights. Domain-agnostic but lacks imagination.
+Agent-Side: no explicit dynamics model; evolves via RL post-training (GRPO/HRPO/Tree-GRPO-family) on the policy and/or critic, often layered on persistent experience memory. Domain-agnostic but lacks imagination.
 
-- **[[2510.16079|EVOLVER]]** — A lifecycle pairing ==offline experience self-distillation== + online interaction + ==GRPO== policy evolution with ==composite reward==; closes the loop without weight updates; **0.382** avg EM across 7 QA benchmarks (Qwen2.5-3B).
+- **[[2510.16079|EVOLVER]]** — A lifecycle pairing ==offline experience self-distillation== + online interaction + ==GRPO== policy evolution with ==composite reward==; memory feeds a light weight-update, not a frozen loop; **0.382** avg EM across 7 QA benchmarks (Qwen2.5-3B).
 - **[[2601.06794|ECHO]]** — A ==Cascaded Evolutionary Rollout== + ==saturation-aware reward== loop with policy and critic co-optimized; **+7.28 pts** avg over GRPO across 4 open-world benchmarks and **+42%** relative on DeepSearch.
 - **[[2506.21669|SEEA-R1]]** — A tree-structured RL method with a ==self-trained MGRM== reward model; **+24%** via MCTS; **46.27%** ALFWorld vs GPT-4o's **24%**.
 - **[[2601.07055|Dr.-Zero]]** — A self-evolving ==proposer-solver framework== whose search agents learn without human training data; ==HRPO== cuts rollout cost **~4×** vs GRPO.
@@ -259,7 +257,7 @@ Policy and world model improve each other in alternating rounds — better WMs p
 
 - **[[2203.14465|STaR]]** — The foundational ==iterative bootstrapping== algorithm fine-tuning only on ==self-generated correct-answer rationales== plus ==rationalization== from hints; the ==generate → filter → retrain== pattern behind later self-critique methods, reaching **89.5%** arithmetic accuracy (vs **76.3%** answer-only) and CommonsenseQA parity with a **30×** larger GPT-3.
 - **[[2403.09629|Quiet-STaR]]** — A method that internalizes critique by generating ==reasoning traces within the forward pass==, eliminating the separate evaluation stage; **+10.9pp** CommonsenseQA and **+5.0pp** GSM8K zero-shot gains that scale with thought length.
-- **[[2510.16079|EVOLVER]]** — A method that distills raw trajectories into ==strategic principles== persisting across episodes; weights stay frozen, behavior evolves via memory, reaching **0.382** avg EM across 7 QA benchmarks, beating external-teacher distillation (**0.370**).
+- **[[2510.16079|EVOLVER]]** — A method that distills raw trajectories into ==strategic principles== persisting across episodes, then retrains on them via ==GRPO== — memory supplies the training signal, GRPO is the retrain step; reaching **0.382** avg EM across 7 QA benchmarks, beating external-teacher distillation (**0.370**).
 
 #### 3.4 Curiosity-Driven Exploration
 
@@ -331,8 +329,9 @@ VLMs and learned classifiers detect task failure in real-time so the agent can a
 
 #### 4.2 Proactive Self-Correction
 
-Detect and correct errors mid-task — three strategies: subtask backtracking, counterfactual reasoning, speculative verification.
+Detect and correct errors mid-task without restarting from scratch — subtask backtracking, counterfactual reasoning, speculative verification, confidence-gated regeneration, or imagination-guided residual correction.
 
+- **[[2607.13818|Agentic Execution RL]]** — Learns a high-level ==agentic RL== policy regulating a frozen low-level manipulation policy at runtime, selecting `EXECUTE`/`RETRY`/`REPAIR`/`RESET` from two runtime ==execution-quality metrics==; **+5.1–13.7pp** LIBERO under standard conditions and **+25.7–39.2pp** under kinematic disturbances (OpenVLA LIBERO-Long **33.4%→67.6%**).
 - **[[2601.02295|CycleVLA]]** — A method that decomposes tasks into ==subtask cycles==; detects subtask failure and ==backtracks to last known good state== rather than restarting from scratch; **95.3%** avg LIBERO SR (vs OpenVLA's **76.5%**), with MBR decoding adding up to **+9.9%** at **~30%** runtime overhead.
 - **[[2512.24426|CF-VLA]]** — A ==Counterfactual reasoning== method: generates "what if I had done differently?" action sequences and compares predicted outcomes against the current trajectory; **9–10%** lower MinADE/MinFDE, collisions down **25–30%**, off-road violations down **15–20%**.
 - **[[2511.14148|AsyncVLA]]** — An ==Asynchronous Flow Matching (AFM)== method with a ==confidence rater== masking low-confidence tokens for regeneration; **97.4%** LIBERO avg, **70.8%** WidowX, **74.9%** Google Robot visual-matching.
@@ -341,7 +340,7 @@ Detect and correct errors mid-task — three strategies: subtask backtracking, c
 
 #### 4.3 OOD & Surprise Detection
 
-WM prediction error as a failure signal — when the world model's prediction diverges from reality, the agent is in uncharted territory. The practical challenge: distinguishing genuine surprises from noise and stochastic dynamics.
+Divergence-based OOD detection — via a learned world model's prediction residual, a formal reachability envelope, or a predicted-cost distribution — flags unfamiliar territory. The practical challenge: distinguishing genuine surprises from noise and stochastic dynamics.
 
 - **[[2603.04029|Self-Adapting-RL]]** — A method built on ==[[2301.04104|DreamerV3]]== monitoring ==Observation== + ==Reward Prediction Residuals== between predicted and observed next-states; triggers ==targeted self-adaptation== for novel regions instead of global retraining; Walker adapts to actuator damage in **10,000 steps**, F1Tenth to *both* sim-real gap *and* friction drop in **8 min**.
 - **[[2512.01119|WM-Surprise-Robustness]]** — A method that filters noisy prediction errors to distinguish ==genuine novelty== from sensor noise + stochastic dynamics; avoids false-alarm adaptation triggers, with multi-sensor rejection scaling at **O(n log n)** and lifting generation quality **~7%** on a robot-pouring task.
@@ -441,13 +440,17 @@ Apply policy-gradient RL directly to the world model's generation steps, or co-t
 - **[[2504.21024|WebEvolver]]** — A co-learning framework that trains a web agent alongside a ==world-model LLM as virtual web server==, enabling ==Multi-Step Look-Ahead (WMLA)== at inference; **+10%** over OpenWebVoyager and **51.37%** WebVoyager SR (depth-2 WMLA), Mind2Web-Live **18.86% → 24.53%**; canonical alternating co-evolution recipe in the web-agent setting.
 - **[[2602.20057|AdaWorldPolicy]]** — A ==Flow-Matching DiT== world model + action expert trained via ==Online Adaptive Learning (AdaOL)==, using ==WM prediction error== as a self-supervised LoRA signal that focuses policy updates on states where the WM is least confident; **0.96** LIBERO-10, recovers under OOD shift at **4Hz** on real robots.
 
-#### 5.3 Self-Play & Continual Replay
+#### 5.3 Self-Play Data Engines
 
-Autonomous data engines that generate their own training data via self-play, plus replay strategies that prevent catastrophic forgetting in long-running continual RL. The substrate for *long-lived* WAM training without curated data.
+Autonomous data engines that generate their own training data via self-play — capturing failure modes and long-tail scenarios curated demonstrations miss, without human labeling in the loop.
 
 - **[[2603.09030|PlayWorld]]** — A data engine that feeds autonomous self-play data collection into world-model training via a ==VLM Task Proposer + VLA Executer== loop on a ==Stable-Video-Diffusion== backbone finetuned with ==curriculum learning==; captures failure modes absent in human demos; Pearson **0.8766** sim-real correlation, **+65%** real-world SR via in-model fine-tuning.
 - **[[2506.06658|SILVR]]** — An ==iterative self-improvement loop== that fine-tunes an in-domain video model on online successes + optional internet video prior via ==Inverse Probabilistic Adaptation==; **+285%** on 12 unseen MetaWorld tasks.
-- **[[2503.01584|SENSEI]]** — A method that distills a ==VLM-derived semantic intrinsic reward== into a ==DreamerV3 world model==, combined with ==epistemic uncertainty== and ==Go-Explore== weighting; downstream tasks learned **orders of magnitude faster** than Plan2Explore on MiniHack/Robodesk.
+
+#### 5.4 Continual Replay Against Forgetting
+
+Replay strategies that prevent catastrophic forgetting during long-running continual WAM RL — the substrate for *long-lived* WAM training without curated data.
+
 - **[[2401.16650|WMAR]]** — A ==memory-efficient augmented replay== (FIFO + reservoir) on top of [[2301.04104|DreamerV3]]; forgetting **0.071 vs 0.665** baseline.
 
 **Self-Evolving WAM — Decision Matrix**
@@ -500,7 +503,7 @@ Stabilize the SFT side of the recipe to bound parameter disruption — the polic
 
 #### 6.2 Continual RL Across Task Streams
 
-Sequential RL fine-tuning across a stream of tasks without forgetting prior skills — the operational form of self-evolution for a long-lived robot.
+Sequential RL fine-tuning across a stream of tasks without forgetting prior skills — the operational form of self-evolution for a long-lived robot. A few entries here ([[2602.21919|Learning-in-the-Null-Space]], [[2505.11816|CoSO]]) are generic continual-learning techniques validated only on CIFAR-100/ImageNet-R-style benchmarks, not yet applied to a VLA — included because the low-rank/null-space mechanism transfers directly to the LoRA-based VLA recipes above.
 
 - **[[2607.14852|LifelongVLA]]** — A ==Dual-Timescale LoRA Gating== module splitting adaptation into short-term (plasticity) / long-term (stability) pathways via a shared gate, plus ==Cache-Efficient Stochastic Replay== recomputing suffixes from cached prefixes; **83.2%** avg SR / **11.4%** forgetting over 10 sequential LIBERO tasks (**+13.0pp** over ER), real xArm SR **>80%** on 5 tasks.
 - **[[2607.06740|SMPL]]** — A ==Progressive Neural Network== controller for modular soft robots that adds frozen-lateral sub-networks per new morphology, closed-loop with an ==LSTM forward-dynamics== error feedback; mitigates catastrophic forgetting across **1–5** modules, lowest tracking error vs Bi-LSTM/VAE-LSTM/MLP in sim + real.
@@ -528,6 +531,7 @@ Sequential RL fine-tuning across a stream of tasks without forgetting prior skil
 - **[[2503.07087|iManip]]** — A skill-incremental manipulation method combining a ==Temporal Replay Strategy== (keyframe + farthest-distance-entropy sampling) with an ==Extendable PerceiverIO== (skill-specific action prompts + growing weight matrices, old knowledge frozen); **45.5%** avg SR in B5-5N1, with TRS alone adding **+22.4%** by preserving demo temporal integrity.
 - **[[2407.01531|Sparse-Diffusion-Policy]]** — A ==Mixture-of-Experts== transformer diffusion policy that freezes old experts/routers and *adds* new ones per task (with an ==MI loss== for expert specialization); continual learning holds **0.94–1.00** SR on prior tasks while reaching **0.75** on new ones at only **9.2M** active params — the diffusion-policy MoE continual recipe.
 - **[[2404.04219|In-Hand]]** — A ==Continual Policy Distillation== framework consolidating multiple object-specific soft-gripper RL experts into one student via ==KL-divergence distillation== + ==Reward Prioritized Experience Replay==; **174°** avg rotation matches cumulative training (**170°**) vs naive incremental's collapse to **21°**.
+- **[[2603.24350|Emergent-Self]]** — An interpretability side-note on *why* forgetting-resistance emerges: a quadruped sequentially trained with ==Soft Actor-Critic== (walk/wiggle/bob) shows ==neuron co-activation== in a dominant first-hidden-layer subnetwork, **+16.9 pp** higher persistence (p<**0.001**) vs constant-task baselines — "self" as invariant substrate, not pathology.
 
 #### 6.3 Memory-Augmented & Failure-Driven Evolution
 
@@ -575,11 +579,11 @@ Add persistent memory and failure-driven data collection on top of the VLA backb
 
 ### 7. Self-Evolving Embodied Agents
 
-Agents that go beyond weight updates to evolve their *behavior* — distilling interaction trajectories into reusable strategies, building skill libraries, and co-evolving with their environments. The cluster organizes by *what gets evolved*: distilled experience principles (memory-only, no weight updates), policy-environment co-evolution (curriculum-driven), or curriculum-guided structural evolution (tree search, environment synthesis).
+Agents that evolve their *behavior* — distilling interaction trajectories into reusable strategies, building skill libraries, and co-evolving with their environments — often layering a light RL retrain (GRPO-family) on top of memory rather than staying weight-frozen throughout. The cluster organizes by *what gets evolved*: distilled experience principles (memory-first, sometimes paired with a GRPO retrain), policy-environment co-evolution (curriculum-driven), or curriculum-guided structural evolution (tree search, environment synthesis).
 
 #### 7.1 Experience Distillation & Memory-Driven Evolution
 
-Distill raw interaction history into reusable structures — strategic principles, experience cards, skill libraries — and condition future behavior on retrieved memory. Weights stay frozen; the agent evolves through accumulated knowledge.
+Distill raw interaction history into reusable structures — strategic principles, experience cards, skill libraries — and condition future behavior on retrieved memory. Most of this cluster keeps weights frozen and evolves through accumulated knowledge alone; [[2510.16079|EVOLVER]] is the hybrid case, capping the distillation with a GRPO retrain.
 
 - **[[2607.00272|ASPIRE]]** — A continual-learning code-as-policy agent whose ==closed-loop execution engine== emits ==per-primitive multimodal traces==, distilling repairs into a persistent ==skill library== via ==evolutionary search==; **+77%** LIBERO-Pro Object, **+42.5%** Spatial SR gains; sim-to-real token cost **61.94M → 6.58M**.
 - **[[2606.03374|eMEM]]** — A ==hybrid spatio-temporal memory system== for embodied agents built on a ==biologically-inspired tiered architecture== with a two-phase consolidation pipeline; **80.8** weighted-mean on eMEM-Bench v1, a flat retention curve at **100%** hit rate from 1 hour to 1 year, and a 30-pp drop when ablated to plain RAG.
@@ -619,7 +623,7 @@ Evolve the *training process itself* — tree-search RL, curriculum-guided explo
 
 | Need | Recommendation |
 |---|---|
-| Experience-driven lifecycle (no weight updates) | [[2510.16079\|EVOLVER]] (strategic-principle distillation) |
+| Experience-driven lifecycle (memory + light RL) | [[2510.16079\|EVOLVER]] (strategic-principle distillation + GRPO) |
 | Open-ended curriculum via env co-evolution | [[2601.06794\|ECHO]] (saturation-aware reward) |
 | Scaled environment synthesis (0 → 2K envs) | [[2604.18292\|Agent-World]] (**+~2×** score from env scaling) |
 | Reward-free self-evolution via world knowledge | [[2604.18131\|Native-Evolution]] (**+19% abs** SR, **17%** efficiency) |
@@ -637,7 +641,7 @@ Evolve the *training process itself* — tree-search RL, curriculum-guided explo
 ^dm-7
 
 > [!star] Key Papers
-> - [[2510.16079|EVOLVER]] — Canonical experience-distillation lifecycle: raw trajectories → strategic principles → behavior evolution without weight updates. The cleanest illustration of agent-side self-evolution.
+> - [[2510.16079|EVOLVER]] — Canonical experience-distillation lifecycle: raw trajectories → strategic principles → GRPO retrain. The cleanest illustration that agent-side self-evolution is memory-first, not weight-frozen.
 > - [[2601.06794|ECHO]] — Canonical environment co-evolution: ==saturation-aware reward== ramps difficulty automatically; open-ended curriculum without manual task design.
 > - [[2604.18292|Agent-World]] — Canonical scaling result: 0 → 1,978 environments lifts representative tool-use score **18.4% → 38.5%** — the data substrate for agent-level self-evolution.
 > - [[2506.21669|SEEA-R1]] — Canonical tree-RL path: MGRM + MCTS beats GPT-4o on ALFWorld (**46.27% vs 24%**); **+34.72% abs** in real-world physical experiments.
@@ -672,7 +676,6 @@ The agent's reward signal silently diverges from designer intent during autonomo
 The policy itself degenerates — either narrowing to a brittle deterministic mode (entropy collapse) or losing prior skills as new ones are learned (catastrophic forgetting). The axis: *RL pressure without counter-pressure*.
 
 - **[[2608.05799|XEWorld]]** — A ==held-out-embodiment testbed== showing few-shot adaptation to an unseen robot causes catastrophic forgetting of known ones (**69%** LPIPS regression on a previously-seen robot), while generalization tracks visual distance (**r=0.812**) over kinematic distance (**r=0.549**) — WMs remain 2D pattern matchers.
-- **[[2603.24350|Emergent-Self]]** — An analysis of a quadruped trained with ==Soft Actor-Critic== sequentially on (walk / wiggle / bob); ==neuron co-activation== reveals a dominant first-hidden-layer subnetwork with **+16.9 pp** higher mean persistence across behaviors (p < **0.001**) vs constant-task baselines — the "self" as the invariant substrate surviving behavior switches.
 - **[[2509.15194|EVOL-RL]]** — A method whose ==novelty-driven diversity== alongside performance-based selection prevents *entropy collapse* (RL convergence on a narrow high-reward mode; policy becomes deterministic and brittle to variation) during RL-based self-improvement; lifts pass@16 over TTRL by **>20pp** on AIME24 while sustaining diversity.
 - **Catastrophic forgetting** — gains from one round of self-improvement are lost in the next domain; mitigated by LoRA ([[2603.11653|VLA-RL-CL]]) and experience replay ([[2401.16650|WMAR]]: forgetting **0.071 vs 0.665** baseline). See §6 for the surprising-but-replicated VLA-side result that pretraining alone provides ==natural== forgetting resistance.
 - **[[2606.15366|Robust-Conformal-CBF/CLF]]** — An ==episodic learning== loop that iteratively updates robust conformal ==CLF/CBF== policies under *policy-induced distribution shift* via ==Adversarially Robust Conformal Prediction== + a ==closed-loop trajectory-sensitivity== budget, preserving probabilistic safety across updates; **100%** safety / **99.8%** maze coverage vs calibrate-once.
