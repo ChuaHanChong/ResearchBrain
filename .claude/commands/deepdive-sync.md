@@ -34,7 +34,7 @@ The agent owns *discovering* which KH papers are new (uncited in any in-scope fi
 
 ## Phase 0 — Scope setup
 
-- Resolve in-scope files from mode (defaults to the full set under `Embodied-AI/[0-9][0-9]_*.md` minus `01_*`)
+- Resolve in-scope files from mode (defaults to the full set under `Embodied-AI/[0-9][0-9]_*.md` minus `01_*` and `00_Table-of-Contents.md` — the latter matches the glob but isn't a deep-dive)
 - Internalize the **6-layer pattern + full template** from the `## Format reference (canonical)` section at the end of this command — that is the spec the audit and all edits must conform to
 - Pull baseline metrics for each in-scope file: `### N.` count, `#### N.N` count, L4/L5/L6 counts, line count, KH-citation count. Store for the Phase 6 delta report.
 - **Graphify freshness check**: verify `graphify-out/graph.json` is newer than the newest `_KnowledgeHub_/*.md`. If stale, abort with a directive to run `/kh-graph-sync` first — Phase 1a's concept-proximity placement signal needs current graph data, and a stale graph silently degrades placement accuracy.
@@ -87,7 +87,7 @@ Loop the checks below over the in-scope set:
 
 ```bash
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   echo "--- $F ---"
 
   # Anti-pattern A: legacy bold mini-headers (must be zero in in-scope sections)
@@ -168,7 +168,7 @@ Sequence-integrity drift looks like consecutive duplicate `### N.` headers (left
 
 ```bash
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   grep -oE '\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u | sed 's/\[\[//' | \
     while read id; do [ -f "_KnowledgeHub_/${id}.md" ] || echo "MISSING: $id in $F"; done
 done
@@ -178,7 +178,7 @@ done
 
 ```bash
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   grep -oE '^- \*\*\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u | sed "s|^|$(basename $F) |"
 done | awk '{print $2}' | sort | uniq -d | sed 's/^/MULTI-CITED ACROSS FILES (review consistency, do not remove): /'
 ```
@@ -263,11 +263,11 @@ This phase runs *only* in full-sweep mode (no args). In single-file mode, only o
 
 ## Phase 6 — Audit + report
 
-Run format compliance audit (counts derived per-file, not hardcoded). The glob excludes `01_*` automatically and includes any future `NN_*` files added under `Embodied-AI/`:
+Run format compliance audit (counts derived per-file, not hardcoded). The glob excludes `01_*` and `00_Table-of-Contents.md` (matches the glob but isn't a deep-dive) automatically and includes any future `NN_*` files added under `Embodied-AI/`:
 
 ```bash
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   echo "=== $F ==="
 
   # Structural counts
@@ -325,7 +325,7 @@ done
 
 # Wikilink integrity (loop over the same in-scope set)
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   grep -oE '\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u | sed 's/\[\[//' | \
     while read id; do [ -f "_KnowledgeHub_/${id}.md" ] || echo "MISSING: $id in $F"; done
 done
@@ -335,7 +335,7 @@ done
 # invisible to both the reader and every other check here. Catches cross-vault links left
 # pointing at a section that was later renamed or renumbered.
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   grep -oE '\[\[[0-9]{2}_[A-Za-z0-9-]+#[^]|]+' "$F" | sed 's/\[\[//' | sort -u | \
   while IFS='#' read -r stem anchor; do
     T="Embodied-AI/${stem}.md"; [ -f "$T" ] || T="General/${stem}.md"
@@ -353,7 +353,7 @@ done
 # (Soft warning — paper-curate is /kh-sync's responsibility, not deepdive-sync's, but uncurated
 # citations indicate vault drift that should be surfaced.)
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   grep -oE '\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u | sed 's/\[\[//' | \
     while read id; do
       grep -lq "\[\[${id}" General/*.md 2>/dev/null || \
@@ -368,7 +368,7 @@ echo "===== AUDIT VERDICT ====="
 T_A=0; T_B=0; T_C=0; T_D=0; T_E=0; T_G=0; T_H=0
 T_MISSING=0
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   T_A=$((T_A + $(grep -cE '^\*\*\[[A-Z][^]]+\]\*\*\s+—' "$F")))
   T_B=$((T_B + $(grep -cE '^- \[\[[^]]+\]\],\s*\[\[' "$F")))
   T_C=$((T_C + $(grep -cE '^\*\*(How [A-Z][a-z]+ works|Companion|Approach):\*\*' "$F")))
@@ -393,21 +393,27 @@ done
 # contract rather than only printing inline above.
 T_I=0; T_ANCHOR=0
 for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   T_I=$((T_I + $(awk '
     /^> \[!tip\]/ { if (intip && !seen) k++; intip=1; seen=0; next }
     intip && /^>/ { if ($0 ~ /\[\[[0-9]{2}_[A-Za-z]/) seen=1; next }
     intip         { if (!seen) k++; intip=0 }
     END           { if (intip && !seen) k++; print k+0 }' "$F")))
-  T_ANCHOR=$((T_ANCHOR + $(grep -oE '\[\[[0-9]{2}_[A-Za-z0-9-]+#[^]|]+' "$F" | sed 's/\[\[//' | sort -u | \
+  ANCHOR_N=$(grep -oE '\[\[[0-9]{2}_[A-Za-z0-9-]+#[^]|]+' "$F" | sed 's/\[\[//' | sort -u | \
     while IFS='#' read -r stem anchor; do
       T="Embodied-AI/${stem}.md"; [ -f "$T" ] || T="General/${stem}.md"
       [ -f "$T" ] || { echo X; continue; }
-      case "$anchor" in
-        \^*) grep -qxF "${anchor}" "$T" || echo X ;;
-        *)   grep -E '^#{2,6} ' "$T" | sed -E 's/^#{2,6} //' | grep -qxF "$anchor" || echo X ;;
-      esac
-    done | wc -l | tr -d ' ')))
+      if [ "${anchor#^}" != "$anchor" ]; then
+        grep -qxF "${anchor}" "$T" || echo X
+      else
+        grep -E '^#{2,6} ' "$T" | sed -E 's/^#{2,6} //' | grep -qxF "$anchor" || echo X
+      fi
+    done | wc -l | tr -d ' ')
+  # NOTE: a case/esac block nested directly inside an arithmetic command substitution
+  # crashes macOS's stock bash 3.2 (a known nested-command-substitution parser bug,
+  # reproduced standalone). The if/else form above plus this intermediate variable
+  # sidesteps it — do not revert to case/esac or re-nest into the arithmetic expression.
+  T_ANCHOR=$((T_ANCHOR + ANCHOR_N))
 done
 [ "$T_I" -eq 0 ]       && echo "✓ Anti-pattern I (L6 with no cross-vault link): 0"    || echo "✗ Anti-pattern I: $T_I L6 callouts link nowhere"
 [ "$T_ANCHOR" -eq 0 ]  && echo "✓ All heading anchors resolve"                        || echo "✗ $T_ANCHOR unresolvable heading anchors"
@@ -415,11 +421,11 @@ done
 # Multi-citation info (soft, never a fail): multi-home bullets are allowed; counts shown so drift
 # in duplicated copies can be spot-reviewed for metric consistency (sync text, never delete a copy)
 T_DUP_SAME=$(for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   grep -oE '^- \*\*\[\[[0-9]{4}\.[0-9]+' "$F" | sort | uniq -d
 done | wc -l | tr -d ' ')
 T_DUP_CROSS=$(for F in Embodied-AI/[0-9][0-9]_*.md; do
-  [[ "$(basename "$F")" == 01_* ]] && continue
+  [[ "$(basename "$F")" == 01_* || "$(basename "$F")" == 00_* ]] && continue
   grep -oE '^- \*\*\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u
 done | sort | uniq -d | wc -l | tr -d ' ')
 echo "ℹ Multi-cited papers (allowed; review copies for metric consistency): $T_DUP_SAME within-file, $T_DUP_CROSS cross-file"
