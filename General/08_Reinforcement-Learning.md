@@ -658,7 +658,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2605.11182|On-Policy-Distillation-Study]] — Clearest mechanistic account of when and why on-policy self-distillation succeeds or collapses, with concrete fixes
 
 **Self-Rewarding Signal Generation** — Models that construct their own reward or verification signal without external reward models.
-- [[2607.23802|SpyRL]], [[2509.05489|Self-Aligned-Reward]], [[2508.14460|DuPO]], [[2508.05004|R-Zero]], [[2508.00410|Co-rewarding]], [[2506.10139|ICM]], [[2506.08745|CoVo]], [[2506.07468|SELF-REDTEAM]], [[2506.01369|Self-Verify-RL]], [[2505.19590|INTUITOR]], [[2401.10020|Self-Rewarding-LM]]
+- [[2608.17253|Co-RL]], [[2607.23802|SpyRL]], [[2509.05489|Self-Aligned-Reward]], [[2508.14460|DuPO]], [[2508.05004|R-Zero]], [[2508.00410|Co-rewarding]], [[2506.10139|ICM]], [[2506.08745|CoVo]], [[2506.07468|SELF-REDTEAM]], [[2506.01369|Self-Verify-RL]], [[2505.19590|INTUITOR]], [[2401.10020|Self-Rewarding-LM]]
 
 > [!star] Key Papers
 > - [[2401.10020|Self-Rewarding-LM]] — Foundational paper establishing the self-rewarding paradigm: a single LLM acts as both generator and judge via iterative DPO, no external reward model
@@ -1132,7 +1132,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 - [[2604.23626|GraphPlanner]], [[2603.05044|WebFactory]], [[2510.18798|WebSeer]], [[2508.14040|ComputerRL]], [[2507.17842|Shop-R1]], [[2507.04103|LLM-Web-Agent-Diagnosis]], [[2505.23885|OWL-Workforce]], [[2505.22648|WebDancer]], [[2505.19591|Puppeteer-Agent]], [[2504.03206|CURIO]], [[2503.11739|CoLLMLight]]
 
 **Skill/Memory-Based & Self-Play Evolution** — Self-evolving agents that use skill libraries, external memory, or self-play to improve.
-- [[2607.22529|Skill-SP]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2603.25111|SEVerA]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2510.18821|Search-Self-play]], [[2510.13220|EvoTest]], [[2510.09577|Dyna-Mind]], [[2510.08529|CoMAS]]
+- [[2608.19197|SPADE-SelfPlay]], [[2607.22529|Skill-SP]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2603.25111|SEVerA]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2510.18821|Search-Self-play]], [[2510.13220|EvoTest]], [[2510.09577|Dyna-Mind]], [[2510.08529|CoMAS]]
 
 > [!star] Key Papers
 > - [[2605.06614|SkillOS]] — an RL-trained skill curator (not just a zero-shot LLM curator) that learns to insert/update/delete skills, giving rise to emergent "meta-strategy skills"
@@ -1239,7 +1239,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 - [[2509.23745|LocoFormer]], [[2509.19301|ResFiT]], [[2505.16517|ManipLVM-R1]], [[2505.15206|EndoVLA]], [[2505.03238|RobotxR1]], [[2504.04259|ORCA-Hand]], [[2503.16806|DyWA]], [[2502.14795|Humanoid-VLA]], [[2212.07740|TERT]], [[2107.03996|LocoTransformer]]
 
 **Model-Based Robot RL** — World-model-based approaches for sample-efficient robot learning.
-- [[2608.07468|SimWAM]], [[2607.06018|RoboTALES]], [[2607.04265|HALO-WA]], [[2607.02431|WorldSample]], [[2605.12084|QOED]], [[2604.18161|DDCG]], [[2604.02260|Time-Varying-MBRL]], [[2603.18336|ManiDreams]], [[2602.09022|WorldCompass]], [[2509.00215|DMO]], [[2509.00178|Poke and Strike]], [[2508.19172|URSA]], [[2508.15755|NeRD]], [[2505.16394|Raw2Drive]], [[2505.13925|TR-DRL]], [[2504.16680|RWM-U]], [[2502.13144|RAD]], [[2501.10100|RWM]], [[2410.00564|JOWA]], [[2207.07560|SkiMo]], [[2206.14176|DayDreamer]], [[1909.11652|PDDM]], [[1812.00568|Visual MPC]]
+- [[2608.17163|QWM]], [[2608.07468|SimWAM]], [[2607.06018|RoboTALES]], [[2607.04265|HALO-WA]], [[2607.02431|WorldSample]], [[2605.12084|QOED]], [[2604.18161|DDCG]], [[2604.02260|Time-Varying-MBRL]], [[2603.18336|ManiDreams]], [[2602.09022|WorldCompass]], [[2509.00215|DMO]], [[2509.00178|Poke and Strike]], [[2508.19172|URSA]], [[2508.15755|NeRD]], [[2505.16394|Raw2Drive]], [[2505.13925|TR-DRL]], [[2504.16680|RWM-U]], [[2502.13144|RAD]], [[2501.10100|RWM]], [[2410.00564|JOWA]], [[2207.07560|SkiMo]], [[2206.14176|DayDreamer]], [[1909.11652|PDDM]], [[1812.00568|Visual MPC]]
 
 > [!star] Key Papers
 > - [[2603.18336|ManiDreams]] — World model generates diverse manipulation scenarios; dream-based RL for dexterous tasks

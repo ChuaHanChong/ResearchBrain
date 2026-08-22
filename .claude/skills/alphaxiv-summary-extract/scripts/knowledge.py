@@ -9599,92 +9599,90 @@ papers = [
     "https://arxiv.org/abs/2608.13560",  # AutoDesign: Meta-Harness Optimization for Long-Horizon Agentic Design
     "https://arxiv.org/abs/2608.14144",  # Self-Supervised Visual On-Policy Distillation
     "https://arxiv.org/abs/2608.14530",  # Marionette: Predicting World States, Rendering Geometry, Painting Appearance
+    "https://arxiv.org/abs/2608.15024",  # MotionGS-SLAM: Event-Modulated Gaussian Splatting for Motion-Blur Robust SLAM
+    "https://arxiv.org/abs/2608.15026",  # PACE: Phase-Progress-Aware Credit for Long-Horizon Embodied Manipulation
+    "https://arxiv.org/abs/2608.15060",  # EgoTac: In-the-wild Tactile Prediction from Egocentric Vision
+    "https://arxiv.org/abs/2608.15088",  # Max-Q Selective Imitation for Human-in-the-Loop Online Robot Learning
+    "https://arxiv.org/abs/2608.15139",  # StructRL: Structured Action-Space Exploration for Flow-Based VLAs
+    "https://arxiv.org/abs/2608.15156",  # Low-Rank Dynamics-Effective Latent Carriers for Counterfactual Rollout in Learned World Models
     "https://arxiv.org/abs/2608.15265",  # VibeWorlding: Can Multimodal Agents Construct 3D Open Worlds End-to-End?
+    "https://arxiv.org/abs/2608.15269",  # Remember Smarter: Visual History Compressor and Hyperbolic Experience Space for Robotic Memory
+    "https://arxiv.org/abs/2608.15285",  # PhaseLoRA: Control-Regime-Conditioned Low-Rank Adaptation for Continuous-Action Vision-Language-Action Policies
     "https://arxiv.org/abs/2608.15560",  # ReForce: Learning Force-aware Retargeting for Dexterous Manipulation
+    "https://arxiv.org/abs/2608.15573",  # Not All History Helps: Velocity-Aware Selective Memory for Long-Horizon End-to-End Autonomous Driving
     "https://arxiv.org/abs/2608.15669",  # Large Discovery Models: Empirically-grounded Model-Based Open-Ended Search
+    "https://arxiv.org/abs/2608.15680",  # Robo-Dopamine 2.0: History-Conditioned and OOD-Aware Process Reward Modeling for Robotic Manipulation
+    "https://arxiv.org/abs/2608.15766",  # Tac4Loco: Learning Spatiotemporal Plantar Pressure Representations for Humanoid Locomotion
+    "https://arxiv.org/abs/2608.15784",  # Reliable Piezoresistive Strain Sensing Through Physical Limits and Uncertainty Monitoring
+    "https://arxiv.org/abs/2608.15816",  # ViTaR: Visuo-Tactile Residual Adaptation for Foundation VLA Manipulation
+    "https://arxiv.org/abs/2608.15863",  # Scaling Manual-Grounded Appliance Manipulation with Data Synthesis and Unified Planning
+    "https://arxiv.org/abs/2608.15897",  # Tactile Sim2Real without Tactile Simulation via Bottlenecked Latent Reconstruction
     "https://arxiv.org/abs/2608.15917",  # Pre-training Visual Dexterity in Simulation
     "https://arxiv.org/abs/2608.16072",  # Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization
+    "https://arxiv.org/abs/2608.16172",  # SparkVLA: Stop-Aware Hierarchical VLA with Adaptive Action Chunking for Long-Horizon Manipulation
+    "https://arxiv.org/abs/2608.16503",  # NebulaVLA: A Dual-Frequency Vision-Language-Action Model With Guide Action for Robotic Manipulation
+    "https://arxiv.org/abs/2608.16555",  # Co-design of Neural and Muscle Network based on Embodied Perceptron Representation
     "https://arxiv.org/abs/2608.16590",  # Zetta: An Efficient Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence
+    "https://arxiv.org/abs/2608.16715",  # MatchingPolicy: Correspondence-Aware Policy Enables Cross-Object In-Context Learning
+    "https://arxiv.org/abs/2608.16728",  # Design Optimization for Large High-Force Soft Robot Manipulators Under Gravitational Loads
+    "https://arxiv.org/abs/2608.16741",  # Semantic- and Density-Aware Planning for Accessibility-Preserving Multi-Object Placement
+    "https://arxiv.org/abs/2608.16794",  # Neurosymbolic Embodied Agents
     "https://arxiv.org/abs/2608.16837",  # HAF: Adapting Generalist VLAs to Humanoid Whole-Body Loco-manipulation via Hierarchical Action Flow and Spectral Latent RL
+    "https://arxiv.org/abs/2608.16853",  # FlexWorm: Primitive-augmented Hybrid Contact-motion Planning for Suction-based Multi-segment Deformable Robots
     "https://arxiv.org/abs/2608.16885",  # tau_0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation
+    "https://arxiv.org/abs/2608.16889",  # Don't Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask Exploration and Transition-aware Memory
+    "https://arxiv.org/abs/2608.16978",  # VLCP: Vision Language Control Policy Closed-Loop Code Replanning for Robot Manipulation
+    "https://arxiv.org/abs/2608.17146",  # PDDL-ART: Autonomous Symbolic Abstraction From Demonstration For Long-Horizon Robotic Manipulation Using Vision-Language Models
+    "https://arxiv.org/abs/2608.17163",  # Q-Learning With World Models
+    "https://arxiv.org/abs/2608.17209",  # Teach and Grow: An Agent-Centered Architecture for General Robot Learning
+    "https://arxiv.org/abs/2608.17253",  # Co-RL: Unsupervised Reasoning Emerges from Diverse Cohort in Multi-agent RL
+    "https://arxiv.org/abs/2608.17320",  # Robust Brachiation on a Life-Sized Dual-Arm Robot Using Waypoint-Guided Reinforcement Learning
+    "https://arxiv.org/abs/2608.17323",  # ORPA: Online Residual Policy Adaptation for Robot Manipulation Control with Human Feedback
+    "https://arxiv.org/abs/2608.17347",  # Repetition as Reinforcement: Enhancing Sample Efficiency via Instant Episode Repetition in Reinforcement Learning
+    "https://arxiv.org/abs/2608.17386",  # MANIGUARD: A Benchmark and Data Suite for Specification-Grounded Safety Evaluation and Improvement of Robotic Manipulation
+    "https://arxiv.org/abs/2608.17402",  # MoE-ViE: Mixture of Experts Vision Encoder for Efficient Image and Video Understanding
+    "https://arxiv.org/abs/2608.17423",  # Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups
+    "https://arxiv.org/abs/2608.17432",  # UniReflex: Plug-and-Play Force Control for Pretrained Generative Policies via Fast-Slow Reflex
+    "https://arxiv.org/abs/2608.17496",  # Calibrated Predictive Safety for Heterogeneous Robots: An Action-Conditioned JEPA Framework with Model-Based Safety Shields
+    "https://arxiv.org/abs/2608.17512",  # Embodied-Navigator: Point, Think, Memorize, and Align for Efficient Navigation
+    "https://arxiv.org/abs/2608.17584",  # HODAgent: Towards On-Demand, Responsive Humanoids for Physical World Human Interaction
+    "https://arxiv.org/abs/2608.17596",  # tinyDSM: A Framework for Skill Modeling and Development for Resource-Constrained Millirobots
+    "https://arxiv.org/abs/2608.17600",  # LIBERO-VIFO: Benchmarking the Capability and Safety of Visual Cue Following in Vision-Language-Action Models
+    "https://arxiv.org/abs/2608.17601",  # Physics-Informed Sliding-Window Particle Filtering for Tactile-Only In-Hand 6-DoF Object Pose Refinement
+    "https://arxiv.org/abs/2608.17628",  # Iterative Grasp Pose Refinement: A Deep Reinforcement Learning Approach for 2D Vision
+    "https://arxiv.org/abs/2608.17633",  # OVIP-SG: Open-Vocabulary Instance-Preserving Scene Graphs for Mapping and Retrieval of Small, Fine-Grained Objects
+    "https://arxiv.org/abs/2608.17717",  # CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation
+    "https://arxiv.org/abs/2608.17928",  # A Theoretical Framework for Parallel Lifelong MAPF Using Group Decentralized Planning
     "https://arxiv.org/abs/2608.17981",  # Recirculation
     "https://arxiv.org/abs/2608.18077",  # Hydra-0: Action Flow for Generalist World Modeling and Control
+    "https://arxiv.org/abs/2608.18227",  # Revisiting the "Push-T" Robot Manipulation Task with Agentic Robotics
+    "https://arxiv.org/abs/2608.18234",  # GigaBrain-WBC-0.5: A Behavior World Model for Robust Whole-Body Control with Environment Interaction
+    "https://arxiv.org/abs/2608.18254",  # GAPL: Grounded Action-effect Policy Learning for LLM-Based Trajectory Planning
+    "https://arxiv.org/abs/2608.18433",  # The Embodiment Gap in Robot Foundation Models
+    "https://arxiv.org/abs/2608.18569",  # The Role of Grid Cells in Reducing Spatial Aliasing in Hippocampal Place Representations
+    "https://arxiv.org/abs/2608.18672",  # Orienteering Problem with Uncertain Time-Varying Rewards: Framework and Benchmark for Everyday Service Robotics
+    "https://arxiv.org/abs/2608.18770",  # To Go Far, Go Together: Diverse Preferences Induce a Curriculum for Reward Optimization
+    "https://arxiv.org/abs/2608.18787",  # Dream2Reward: Transition-Alignment Reward Models from Positive Demonstrations for Robotic Manipulation
+    "https://arxiv.org/abs/2608.18881",  # Falcon Perception-HD: High Density Perception via Reinforcement Learning
+    "https://arxiv.org/abs/2608.18948",  # RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience
+    "https://arxiv.org/abs/2608.19059",  # LT-Mem: Volatility-Aware Spatio-Temporal Memory for Lifelong Scene Understanding
     "https://arxiv.org/abs/2608.19182",  # ADEPT: Accelerating Dexterity via Pre-Training and Post-Training using Reinforcement Learning
-    "https://arxiv.org/abs/2608.18881",
-    "https://arxiv.org/abs/2608.17402",
-    "https://arxiv.org/abs/2608.19598",
-    "https://arxiv.org/abs/2608.19669",
-    "https://arxiv.org/abs/2608.19807",
-    "https://arxiv.org/abs/2608.20114",
-    "https://arxiv.org/abs/2608.20084",
-    "https://arxiv.org/abs/2608.20043",
-    "https://arxiv.org/abs/2608.19968",
-    "https://arxiv.org/abs/2608.19955",
-    "https://arxiv.org/abs/2608.19794",
-    "https://arxiv.org/abs/2608.19759",
-    "https://arxiv.org/abs/2608.19684",
-    "https://arxiv.org/abs/2608.19613",
-    "https://arxiv.org/abs/2608.19589",
-    "https://arxiv.org/abs/2608.19574",
-    "https://arxiv.org/abs/2608.19490",
-    "https://arxiv.org/abs/2608.19443",
-    "https://arxiv.org/abs/2608.19372",
-    "https://arxiv.org/abs/2608.19182",
-    "https://arxiv.org/pdf/2608.19059",
-    "https://arxiv.org/abs/2608.18948",
-    "https://arxiv.org/abs/2608.18787",
-    "https://arxiv.org/abs/2608.18770",
-    "https://arxiv.org/abs/2608.18672",
-    "https://arxiv.org/abs/2608.18569",
-    "https://arxiv.org/abs/2608.18433",
-    "https://arxiv.org/abs/2608.18254",
-    "https://arxiv.org/abs/2608.18234",
-    "https://arxiv.org/abs/2608.18227",
-    "https://arxiv.org/abs/2608.18077",
-    "https://arxiv.org/abs/2608.17928",
-    "https://arxiv.org/abs/2608.17717",
-    "https://arxiv.org/abs/2608.17633",
-    "https://arxiv.org/abs/2608.17628",
-    "https://arxiv.org/abs/2608.17601",
-    "https://arxiv.org/abs/2608.17600",
-    "https://arxiv.org/abs/2608.17596",
-    "https://arxiv.org/abs/2608.17584",
-    "https://arxiv.org/abs/2608.17512",
-    "https://arxiv.org/abs/2608.17496",
-    "https://arxiv.org/abs/2608.17432",
-    "https://arxiv.org/abs/2608.17423",
-    "https://arxiv.org/abs/2608.17386",
-    "https://arxiv.org/abs/2608.17347",
-    "https://arxiv.org/abs/2608.17323",
-    "https://arxiv.org/abs/2608.17320",
-    "https://arxiv.org/abs/2608.17209",
-    "https://arxiv.org/abs/2608.17146",
-    "https://arxiv.org/abs/2608.15156",
-    "https://arxiv.org/abs/2608.15139",
-    "https://arxiv.org/abs/2608.15088",
-    "https://arxiv.org/abs/2608.15060",
-    "https://arxiv.org/abs/2608.15026",
-    "https://arxiv.org/abs/2608.15024",
-    "https://arxiv.org/abs/2608.15917",
-    "https://arxiv.org/abs/2608.15897",
-    "https://arxiv.org/abs/2608.15863",
-    "https://arxiv.org/abs/2608.15816",
-    "https://arxiv.org/abs/2608.15784",
-    "https://arxiv.org/abs/2608.15766",
-    "https://arxiv.org/abs/2608.15680",
-    "https://arxiv.org/abs/2608.15573",
-    "https://arxiv.org/abs/2608.15560",
-    "https://arxiv.org/abs/2608.15285",
-    "https://arxiv.org/abs/2608.15269",
-    "https://arxiv.org/abs/2608.16853",
-    "https://arxiv.org/abs/2608.16978",
-    "https://arxiv.org/abs/2608.16794",
-    "https://arxiv.org/abs/2608.16741",
-    "https://arxiv.org/abs/2608.16728",
-    "https://arxiv.org/abs/2608.16715",
-    "https://arxiv.org/abs/2608.16590",
-    "https://arxiv.org/abs/2608.16555",
-    "https://arxiv.org/abs/2608.16503",
-    "https://arxiv.org/abs/2608.16172",
-    "https://arxiv.org/pdf/2608.16889",
+    "https://arxiv.org/abs/2608.19197",  # SPADE: Self-Play in Adaptive Synthetic Executable Environments
+    "https://arxiv.org/abs/2608.19372",  # The Missing Touch: Spatially Distributed Tactile Feedback Brings Teleoperation Closer to Human Dexterity
+    "https://arxiv.org/abs/2608.19443",  # Hybrid Feedback Sampling for Sample-Efficient Model Predictive Control
+    "https://arxiv.org/abs/2608.19490",  # Fine-Tuning VLAs with Self-Demonstrated Generative Control for Multi-Task Manipulation
+    "https://arxiv.org/abs/2608.19574",  # HiTac-WAM: A Hierarchical Tactile World Action Model for Contact-Rich Robot Manipulation
+    "https://arxiv.org/abs/2608.19589",  # OrthoSkillVLA: Continual Skill Learning via Gradient-Informed Skill Subspace Adaptation
+    "https://arxiv.org/abs/2608.19598",  # PEA-DPO: Perception-Enhanced Alignment Direct Preference Optimization for MLLMs Alignment
+    "https://arxiv.org/abs/2608.19613",  # What Matters for Latent Actions in Robot Learning
+    "https://arxiv.org/abs/2608.19669",  # Scaffolding Minds: Optimizing Latent Visual Target Representations for Multimodal Reasoning
+    "https://arxiv.org/abs/2608.19684",  # Learning Hierarchical Skill Policies with Offline Quality-Diversity Reinforcement Learning
+    "https://arxiv.org/abs/2608.19759",  # GOAG: Generative and Object-Agnostic Grasp Planner for Dexterous Robotic Manipulation
+    "https://arxiv.org/abs/2608.19794",  # Towards general embodied intelligence: integrating large language models, knowledge bases, and reasoning capabilities to build the next generation of AI agents
+    "https://arxiv.org/abs/2608.19807",  # Answer-Level Trust Selection for Physical Vision-Language Reasoning
+    "https://arxiv.org/abs/2608.19955",  # MILD: Tractable Terrain Modeling for Learning Improved Bipedal Locomotion on Deformable Surfaces
+    "https://arxiv.org/abs/2608.19968",  # PVRA: A Pointwise Key-point Voting Framework for Robotic Assembly
+    "https://arxiv.org/abs/2608.20043",  # Wave-Based Bilateral Teleoperation between Nonlinear Manipulators with Direct Contact Force Feedback
+    "https://arxiv.org/abs/2608.20084",  # Evidence-Gated Task and Motion Planning with Vision-Language Models
+    "https://arxiv.org/abs/2608.20114",  # DECOWAM: Decoupled Whole-Body World-Action Model for Legged Mobile Manipulation
 ]
