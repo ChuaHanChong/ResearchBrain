@@ -233,7 +233,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2302.05209|Causal-RL-Methods-Survey]] — First comprehensive taxonomy connecting causal inference with RL
 
 **Continual & Lifelong RL** — Agents that learn across sequential tasks without catastrophic forgetting.
-- [[2607.24996|CPR]], [[2607.05609|Predictive Continual Learning]], [[2605.12484|FST]], [[2603.24350|Emergent-Self]], [[2603.00903|Continual-RL-Theory]], [[2506.21872|Continual-RL-Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2502.15922|Safe-EWC]], [[2410.19925|MLLM-Continual-Learning]], [[2410.07812|TD-VCL]], [[2105.10919|Continual-World]], [[1612.00796|EWC]]
+- [[2607.24996|CPR]], [[2607.05609|Predictive Continual Learning]], [[2605.12484|FST]], [[2603.24350|Emergent-Self]], [[2603.00903|Continual-RL-Theory]], [[2506.21872|Continual-RL-Survey]], [[2503.18684|OMLA]], [[2503.10949|SCDA]], [[2502.15922|Safe-EWC]], [[2410.19925|MLLM-Continual-Learning]], [[2410.07812|TD-VCL]], [[2408.09807|MoReFree]], [[2405.01684|RISC]], [[2105.10919|Continual-World]], [[2012.03548|LiSP]], [[1612.00796|EWC]]
 
 > [!star] Key Papers
 > - [[1612.00796|EWC]] — Foundational method for overcoming catastrophic forgetting; Elastic Weight Consolidation remains the baseline for all continual learning
@@ -1132,7 +1132,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 - [[2604.23626|GraphPlanner]], [[2603.05044|WebFactory]], [[2510.18798|WebSeer]], [[2508.14040|ComputerRL]], [[2507.17842|Shop-R1]], [[2507.04103|LLM-Web-Agent-Diagnosis]], [[2505.23885|OWL-Workforce]], [[2505.22648|WebDancer]], [[2505.19591|Puppeteer-Agent]], [[2504.03206|CURIO]], [[2503.11739|CoLLMLight]]
 
 **Skill/Memory-Based & Self-Play Evolution** — Self-evolving agents that use skill libraries, external memory, or self-play to improve.
-- [[2608.19197|SPADE-SelfPlay]], [[2607.22529|Skill-SP]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2603.25111|SEVerA]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2510.18821|Search-Self-play]], [[2510.13220|EvoTest]], [[2510.09577|Dyna-Mind]], [[2510.08529|CoMAS]]
+- [[2608.19197|SPADE-SelfPlay]], [[2608.13120|SkillEvo]], [[2607.22529|Skill-SP]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2603.25111|SEVerA]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2510.18821|Search-Self-play]], [[2510.13220|EvoTest]], [[2510.09577|Dyna-Mind]], [[2510.08529|CoMAS]]
 
 > [!star] Key Papers
 > - [[2605.06614|SkillOS]] — an RL-trained skill curator (not just a zero-shot LLM curator) that learns to insert/update/delete skills, giving rise to emergent "meta-strategy skills"

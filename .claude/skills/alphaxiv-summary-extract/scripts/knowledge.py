@@ -443,6 +443,7 @@ papers = [
     "https://arxiv.org/abs/2011.12421",  # Bi-directional domain adaptation for sim2real transfer of embodied navigation agents
     "https://arxiv.org/abs/2012.00726",  # Raft-3d: Scene flow using rigid-motion embeddings
     "https://arxiv.org/abs/2012.00924",  # CPF: Learning a Contact Potential Field to Model the Hand-Object Interaction
+    "https://arxiv.org/abs/2012.03548",  # Reset-Free Lifelong Learning with Skill-Space Planning
     "https://arxiv.org/abs/2012.03912",  # MultiON: Benchmarking Semantic Map Memory using Multi-Object Navigation
     "https://arxiv.org/abs/2012.04293",  # CRAFT: A Benchmark for Causal Reasoning About Forces and inTeractions
     "https://arxiv.org/abs/2012.05522",  # Synthesizing Long-Term 3D Human Motion and Interaction in 3D Scenes
@@ -1565,6 +1566,7 @@ papers = [
     "https://arxiv.org/abs/2405.01472",  # IntervenGen: Interventional Data Generation for Robust and Data-Efficient Robot Imitation Learning
     "https://arxiv.org/abs/2405.01527",  # Track2Act: Predicting Point Tracks from Internet Videos enables Generalizable Robot Manipulation
     "https://arxiv.org/abs/2405.01533",  # Omnidrive: A holistic llm-agent framework for autonomous driving with 3d perception, reasoning and planning
+    "https://arxiv.org/abs/2405.01684",  # Intelligent Switching for Reset-Free RL
     "https://arxiv.org/abs/2405.01792",  # Learning Robust Autonomous Navigation and Locomotion for Wheeled-Legged Robots
     "https://arxiv.org/abs/2405.02411",  # The Call for Socially Aware Language Technologies
     "https://arxiv.org/abs/2405.02797",  # Adapting to Distribution Shift by Visual Domain Prompt Generation
@@ -1816,6 +1818,7 @@ papers = [
     "https://arxiv.org/abs/2408.07605",  # Panacea+: Panoramic and Controllable Video Generation for Autonomous Driving
     "https://arxiv.org/abs/2408.07666",  # Model Merging in LLMs, MLLMs, and Beyond: Methods, Theories, Applications and Opportunities
     "https://arxiv.org/abs/2408.08252",  # Derivative-Free Guidance in Continuous and Discrete Diffusion Models with Soft Value-Based Decoding
+    "https://arxiv.org/abs/2408.09807",  # Reset-free Reinforcement Learning with World Models
     "https://arxiv.org/abs/2408.10453",  # Kubrick: Multimodal Agent Collaborations for Synthetic Video Generation
     "https://arxiv.org/abs/2408.10787",  # Lightweight Modular Parameter-Efficient Tuning for Open-Vocabulary Object Detection
     "https://arxiv.org/abs/2408.10858",  # Centralized Reward Agent for Knowledge Sharing and Transfer in Multi-Task Reinforcement Learning
@@ -9594,6 +9597,7 @@ papers = [
     "https://arxiv.org/abs/2608.13040",  # Latent On-Policy Self-Distillation
     "https://arxiv.org/abs/2608.13049",  # H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation in World Models
     "https://arxiv.org/abs/2608.13095",  # Semantic Radiance Fields as Simulators for Spatial Reasoning in Real-World Scenes
+    "https://arxiv.org/abs/2608.13120",  # SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback
     "https://arxiv.org/abs/2608.13183",  # A Controlled Study of Self-Supervised Image and Video Pretraining under Limited Resources
     "https://arxiv.org/abs/2608.13284",  # Predictive Relative-Velocity Steering for Safe Robotic Manipulator Teleoperation in Dynamic Environments
     "https://arxiv.org/abs/2608.13331",  # Training AI Scientists to Replicate Research
@@ -9646,6 +9650,7 @@ papers = [
     "https://arxiv.org/abs/2608.16885",  # tau_0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation
     "https://arxiv.org/abs/2608.16889",  # Don't Drop the BATON: Long-Horizon Robot Manipulation via Agentic Subtask Exploration and Transition-aware Memory
     "https://arxiv.org/abs/2608.16978",  # VLCP: Vision Language Control Policy Closed-Loop Code Replanning for Robot Manipulation
+    "https://arxiv.org/abs/2608.17027",  # FetchMan: Learning Visual Humanoid Loco-Manipulation Policies from Simulated Experiences
     "https://arxiv.org/abs/2608.17146",  # PDDL-ART: Autonomous Symbolic Abstraction From Demonstration For Long-Horizon Robotic Manipulation Using Vision-Language Models
     "https://arxiv.org/abs/2608.17163",  # Q-Learning With World Models
     "https://arxiv.org/abs/2608.17209",  # Teach and Grow: An Agent-Centered Architecture for General Robot Learning
@@ -9699,4 +9704,7 @@ papers = [
     "https://arxiv.org/abs/2608.20043",  # Wave-Based Bilateral Teleoperation between Nonlinear Manipulators with Direct Contact Force Feedback
     "https://arxiv.org/abs/2608.20084",  # Evidence-Gated Task and Motion Planning with Vision-Language Models
     "https://arxiv.org/abs/2608.20114",  # DECOWAM: Decoupled Whole-Body World-Action Model for Legged Mobile Manipulation
+    "https://arxiv.org/abs/2608.20169",  # Task-CoEvolve: Efficient Harness Optimization via Adaptive Validation Task Selection
+    "https://arxiv.org/abs/2608.20251",  # Video2DoorTraversal: Push Door Traversal via Simulated Door Twins
+    "https://arxiv.org/abs/2608.21031",  # PhysCaP: Grounding Code-as-Policy Agent with Physics-Informed Exploration
 ]

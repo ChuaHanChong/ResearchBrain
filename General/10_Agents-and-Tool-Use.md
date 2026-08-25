@@ -222,7 +222,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2211.12588|PoT]] — Program of Thoughts prompting: LLMs delegate numerical reasoning to code execution
 
 **Visual Programming & Compositional Code** — Composing vision-and-language modules into executable programs for visual reasoning, enabling training-free compositional problem-solving.
-- [[2607.25236|VisualPatchWorld]], [[2606.03047|ModuLoop]], [[2605.02600|CoRAL]], [[2604.01600|MM-ReCoder]], [[2603.25118|AnyDoc]], [[2603.22435|CaP-X]], [[2603.03072|TikZilla]], [[2601.05344|Im2Sim]], [[2512.03746|CodeVision]], [[2511.19661|CodeV]], [[2508.13587|Chart-to-Code-RL]], [[2508.11630|Thyme]], [[2507.20766|RRVF]], [[2505.10557|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128|ViperGPT]], [[2211.11559|VISPROG]], [[2209.07753|Code-as-Policies]]
+- [[2608.21031|PhysCaP]], [[2607.25236|VisualPatchWorld]], [[2606.03047|ModuLoop]], [[2605.02600|CoRAL]], [[2604.01600|MM-ReCoder]], [[2603.25118|AnyDoc]], [[2603.22435|CaP-X]], [[2603.03072|TikZilla]], [[2601.05344|Im2Sim]], [[2512.03746|CodeVision]], [[2511.19661|CodeV]], [[2508.13587|Chart-to-Code-RL]], [[2508.11630|Thyme]], [[2507.20766|RRVF]], [[2505.10557|MathCoder-VL]], [[2412.04455|Code-as-Monitor]], [[2303.08128|ViperGPT]], [[2211.11559|VISPROG]], [[2209.07753|Code-as-Policies]]
 
 > [!star] Key Papers
 > - [[2303.08128|ViperGPT]] — Compose vision modules via Python programs for visual reasoning without any training
@@ -236,7 +236,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 - [[2604.01193|SSD-Code-Generation]], [[2510.23272|AesCoder]], [[2510.14635|ATGen]], [[2510.01832|SCRIBES]], [[2509.22824|Critique-Coder]], [[2509.21016|RL-Grokking-DELTA]], [[2508.21107|UTRL]], [[2507.14111|CUDA-L1]], [[2507.11948|Kevin]], [[2506.15701|Compiler-R1]], [[2505.23387|Afterburner]]
 
 **SWE Coding-Agent Infrastructure, Benchmarks & Surveys** — Harnesses, reward models, foundation models, and benchmarks for autonomous software-engineering agents.
-- [[2604.25850|Agentic-Harness-Engineering]], [[2604.25067|Frontier-Coding-Agents-AlphaZero]], [[2603.16790|InCoder-32B]], [[2512.21919|SWE-RM]], [[2511.18538|Code-Intelligence-Survey]], [[2506.22419|LLM-Speedrunning-Benchmark]], [[2502.04692|STRIDE]]
+- [[2608.20169|Task-CoEvolve]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.25067|Frontier-Coding-Agents-AlphaZero]], [[2603.16790|InCoder-32B]], [[2512.21919|SWE-RM]], [[2511.18538|Code-Intelligence-Survey]], [[2506.22419|LLM-Speedrunning-Benchmark]], [[2502.04692|STRIDE]]
 
 > [!star] Key Papers
 > - [[2506.13131|AlphaEvolve]] — Google DeepMind combines LLMs with evolutionary search to autonomously discover algorithms, finding new mathematical results

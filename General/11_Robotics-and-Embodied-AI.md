@@ -1821,7 +1821,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 - [[2607.00666|Domain Arithmetic]], [[2606.15685|SCE]], [[2605.22671|BehaviorVLA]], [[2605.10903|CapVector]], [[2603.11558|RoboClaw]], [[2602.01811|VLA-SCT]], [[2511.02239|LACY]], [[2509.22195|Actions-as-Language]], [[2509.21986|Ego-VLA-Pretrain]], [[2508.15021|ICPI]], [[2508.02062|RICL]], [[2504.15517|Few-Shot-VLA]]
 
 **Humanoid Whole-Body Loco-Manipulation** — Whole-body policies combining locomotion and manipulation on humanoid platforms.
-- [[2607.20345|DEED]], [[2606.10340|OMG]], [[2606.05880|TAGA]], [[2606.05873|LadderMan]], [[2605.27724|HumanoidMimicGen]], [[2605.14417|DAJI]], [[2604.24916|asRoBallet]], [[2604.19734|UniT]], [[2604.17807|Re2MoGen]], [[2604.17335|G1-WBC-Gen+Track]], [[2604.07993|HEX]], [[2604.07457|CMP]], [[2604.07430|HY-Embodied-0.5]], [[2604.01158|SMASH]], [[2603.12263|Psi0]], [[2603.00732|UniHM]], [[2512.11047|WholeBodyVLA]], [[2508.16943|LHM-Humanoid]], [[2506.13751|LeVERB]], [[2504.09532|Humanoid-COA]], [[2503.14734|GR00T-N1]], [[2502.14795|Humanoid-VLA]], [[2411.06782|QuadWBG]], [[2403.17367|RoboDuet]], [[2403.16967|VBC]]
+- [[2608.17027|FetchMan]], [[2607.20345|DEED]], [[2606.10340|OMG]], [[2606.05880|TAGA]], [[2606.05873|LadderMan]], [[2605.27724|HumanoidMimicGen]], [[2605.14417|DAJI]], [[2604.24916|asRoBallet]], [[2604.19734|UniT]], [[2604.17807|Re2MoGen]], [[2604.17335|G1-WBC-Gen+Track]], [[2604.07993|HEX]], [[2604.07457|CMP]], [[2604.07430|HY-Embodied-0.5]], [[2604.01158|SMASH]], [[2603.12263|Psi0]], [[2603.00732|UniHM]], [[2512.11047|WholeBodyVLA]], [[2508.16943|LHM-Humanoid]], [[2506.13751|LeVERB]], [[2504.09532|Humanoid-COA]], [[2503.14734|GR00T-N1]], [[2502.14795|Humanoid-VLA]], [[2411.06782|QuadWBG]], [[2403.17367|RoboDuet]], [[2403.16967|VBC]]
 
 > [!star] Key Papers
 > - [[2503.14734|GR00T-N1]] — NVIDIA's open generalist humanoid foundation model; the dual-system VLM + diffusion-action-head architecture other papers in this group benchmark against
@@ -2555,7 +2555,7 @@ Legged and humanoid control: learning to walk, balance, and coordinate the whole
 - [[2603.14308|Load-Aware-Loco-Manipulation]], [[2603.10306|SteadyTray]], [[2512.24657|Antagonistic-Bowden-Cable-Actuation-Lightweight]], [[2510.14293|Human-Humanoid-Coordination-Collaborative-Object]], [[2310.03191|Sim-to-Real]], [[2306.09532|Hierarchical-Planning-Control-Box]]
 
 **Pushing, Pulling & Doors** — Pushing, pulling, door/valve interaction.
-- [[2602.16705|HERO-Humanoid-EE-Control]], [[2509.09364|AGILOped]], [[2504.17249|Demonstrating-Berkeley-Humanoid-Lite]], [[2502.00893|ToddlerBot]], [[2411.07104|MA-Quad-Pushing]], [[2411.03532|Behavior-Architecture-Fast-Humanoid]], [[2403.20328|Visual Quadrupedal Loco-Manipulation]]
+- [[2608.20251|Video2DoorTraversal]], [[2602.16705|HERO-Humanoid-EE-Control]], [[2509.09364|AGILOped]], [[2504.17249|Demonstrating-Berkeley-Humanoid-Lite]], [[2502.00893|ToddlerBot]], [[2411.07104|MA-Quad-Pushing]], [[2411.03532|Behavior-Architecture-Fast-Humanoid]], [[2403.20328|Visual Quadrupedal Loco-Manipulation]]
 
 **Dexterous Humanoid Manipulation** — Dexterous-hand humanoid manipulation.
 - [[2607.06438|WristMimic]], [[2606.23680|CoorDex]], [[2604.13015|Touch-Dreaming]], [[2603.12260|HumDex]], [[2602.06643|HMI]], [[2510.11258|DemoHLM]], [[2507.14538|21-DOF-Humanoid-Dexterous-Hand]], [[2506.01756|pyCub-Simulation-Exercise-Framework]], [[2505.24266|SignBot]], [[2505.19086|MaskedManipulator]], [[2505.12278|Emergent-Active-Perception-Dexterity]], [[2505.03738|AMO]]
