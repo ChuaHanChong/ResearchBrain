@@ -256,6 +256,8 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 
 - **[[2606.21188|CAMP]]** — A Compressed Action Memory Policy learning a recurrent ==behavioral memory== by self-supervised reconstruction of past actions, compressing them via ==DCT low-frequency coefficients== + a Vector Quantizer, fused into a diffusion policy; **94%** Push-T-Multi-Goals (vs memoryless DP's 56%), **64.3%** on 3D Memory-Manip-Bench, 7/10 real where memoryless baselines score 0.
 
+- **[[2601.21998|LingBot-VA]]** — An ==autoregressive diffusion== video-action world model unifying vision+action tokens via a causal ==Mixture-of-Transformers== with ==KV-cache== persistent full-history memory (no chunking); **92.9%** RoboTwin 2.0 Easy avg, **98.5%** LIBERO avg — the full-history baseline [[2606.20562|MemoryWAM]] and [[2606.27677|DiM-WAM]] compress against.
+
 - **[[2606.20562|MemoryWAM]]** — A World Action Model with a hybrid ==Mixture-of-Transformers== memory: a sliding-window short-term store, persistent ==event-boundary anchor frames==, and ==gist tokens== (8/frame, 15× compression) for long-range history; **83.0%** RMBench (vs full-history LingBot-VA's 78.2%, FastWAM's 5.9%), 18/20 real Shell-Game at full-attention SR with lower latency/GPU memory.
 
 - **[[2510.20328|MemER]]** — A hierarchical ==VLM keyframe-nomination== high-level policy + generalist low-level policy with ==single-linkage-clustering experience retrieval==; **59/60** object retrievals and 1 wrong scoop on long-horizon tasks, on par with human-provided subtasks, at ~1 Hz/~2 Hz.
@@ -294,6 +296,7 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 | Purge moved/removed objects from a dynamic scene | [[2411.04999\|DynaMem]] |
 | Compress full history into a fixed token budget | [[2608.01456\|MeMento]] (**-85.38%** memory, **+15.74%** accuracy) |
 | Robot-control WAM with a dedicated memory module | [[2606.20562\|MemoryWAM]], [[2606.10363\|HiMem-WAM]], [[2606.27677\|DiM-WAM]] |
+| Full-history KV-cache WAM, no compression / dedicated memory module | [[2601.21998\|LingBot-VA]] |
 
 ^dm-1
 
@@ -500,6 +503,8 @@ No named phases — the state is a continuous representation instead of a labele
 
 - **[[2512.09928|HiF-VLA]]** — A ==Hindsight-Insight-Foresight== bidirectional temporal reasoning over compact codec ==motion vectors== (past/current/future dynamics); **94.4%/96.4%** LIBERO-Long third/multi-view at negligible overhead.
 
+- **[[2608.16885|τ0-VLA]]** — A hierarchical VLA whose ==correctable execution memory== (perturbation-trained to repair lag/skip/misrepresented progress) feeds a ==world-model-guided beam search== over candidate subtasks before a reflective model commits; **45.0%** avg long-horizon SR (vs **27.5%** Plan-Once, **22.5%** π0.5), **74.0%** OOD subtask accuracy (vs Plan-Once's **50.0%**).
+
 **Progress-Aware & Hindsight Control — Decision Matrix**
 
 | Need | Recommendation |
@@ -509,6 +514,7 @@ No named phases — the state is a continuous representation instead of a labele
 | Explicit error-recovery rewind on subgoal failure | [[2603.09292\|See-Plan-Rewind]] |
 | Drop-in memory-weaving on a frozen VLA backbone | [[2606.17463\|WeaveLA]] |
 | Revisable execution state across replanning queries | [[2608.02326\|ChainVLA]] |
+| World-model-guided test-time search over subtask candidates | [[2608.16885\|τ0-VLA]] (**45.0%** vs **27.5%** Plan-Once) |
 
 ^dm-4
 
