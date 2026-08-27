@@ -356,7 +356,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 - [[2607.10892|ESM]], [[2607.06262|OTQL]], [[2606.21646|ECD]], [[2606.06049|L-SDPPO]], [[2604.23380|V-GRPO]], [[2604.19730|FASTER]], [[2510.01068|GPC-RL]], [[2509.21942|SIHD]], [[2509.04063|ARFM]], [[2506.21427|SSCP]], [[2506.08902|InFOM]], [[2506.07822|RACTD]], [[2506.00895|SCoTS]], [[2505.23527|NF-for-RL]], [[2505.01822|AEPO]]
 
 **JEPA & Latent Prediction for RL** — Joint-Embedding Predictive Architectures adapted for RL, predicting future states in latent space rather than pixel space.
-- [[2607.26712|ActSWM]], [[2607.26056|INTACT]], [[2606.14418|COMET]], [[2601.19336|EAWM]], [[2512.07733|SpatialDreamer]], [[2511.05963|NextLat]], [[2510.00739|TD-JEPA]], [[2508.20294|DALI]], [[2504.16591|JEPA-for-RL]], [[2502.14819|PLDM]], [[2407.01570|Ego-Foresight]]
+- [[2608.22764|LpWM]], [[2607.26712|ActSWM]], [[2607.26056|INTACT]], [[2606.14418|COMET]], [[2601.19336|EAWM]], [[2512.07733|SpatialDreamer]], [[2511.05963|NextLat]], [[2510.00739|TD-JEPA]], [[2508.20294|DALI]], [[2504.16591|JEPA-for-RL]], [[2502.14819|PLDM]], [[2407.01570|Ego-Foresight]]
 
 > [!star] Key Papers
 > - [[2502.14819|PLDM]] — Planning with Latent Dynamics Models from NYU/Meta FAIR; leveraging reconstruction-free latent dynamics for control
@@ -786,7 +786,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 Applying RL (especially GRPO) to teach VLMs to reason visually — a direct extension of the LLM reasoning paradigm to multimodal models. The largest and fastest-growing thread in RL research.
 
 **Video & Temporal Visual R1** — R1-style RL for video/temporal reasoning.
-- [[2603.26599|VGGRPO]], [[2511.13054|ViSS-R1]], [[2508.04416|VITAL]], [[2507.01949|Kwai-Keye-VL]], [[2505.13934|RLVR-World]], [[2505.12434|VIDEORFT]], [[2503.21776|Video-R1]]
+- [[2608.20492|OraRL]], [[2603.26599|VGGRPO]], [[2511.13054|ViSS-R1]], [[2508.04416|VITAL]], [[2507.01949|Kwai-Keye-VL]], [[2505.13934|RLVR-World]], [[2505.12434|VIDEORFT]], [[2503.21776|Video-R1]]
 
 > [!star] Key Papers
 > - [[2503.21776|Video-R1]] — First framework to apply rule-based R1-style RL to video, introducing T-GRPO's contrastive temporal reward as the foundation others build on

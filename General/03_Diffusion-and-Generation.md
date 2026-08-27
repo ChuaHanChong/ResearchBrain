@@ -234,7 +234,7 @@ Dedicated architectures for high-quality image synthesis, editing, and multimoda
 - [[2604.25636|RvR]], [[2604.06870|RefineAnything]], [[2604.04746|Think-in-Strokes]], [[2604.00849|DisCo-Image]], [[2604.00530|AceTone]], [[2505.18600|CoZ]], [[2403.19103|PRISM-T2I]]
 
 **Diffusion-Based Image/Video Editing, Control & Benchmarks** — Diffusion-native editing, spatial-control, and privacy/domain-transfer methods for image and video content, plus benchmarks for spatial and compositional generation.
-- [[2607.10873|X-GuideAR]], [[2607.08402|Pedestrian Privacy Pipeline]], [[2606.00351|UniVerse]], [[2605.07429|MagicBokeh]], [[2605.02757|VideoTransfer-VLA]], [[2604.04911|SpatialEdit]], [[2604.02296|VOID]], [[2602.19083|ChordEdit]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2512.01236|PSR-Image-Gen]], [[2509.21953|MultiCrafter]], [[2508.20561|SimShear]], [[2503.19012|DiffV2IR]], [[2410.13911|GraspDiffusion]], [[2408.06506|TacSL]], [[2206.01714|Composed Diffusion]]
+- [[2608.21776|SpatialDiff]], [[2608.16812|ConceptEdit]], [[2607.10873|X-GuideAR]], [[2607.08402|Pedestrian Privacy Pipeline]], [[2606.00351|UniVerse]], [[2605.07429|MagicBokeh]], [[2605.02757|VideoTransfer-VLA]], [[2604.04911|SpatialEdit]], [[2604.02296|VOID]], [[2602.19083|ChordEdit]], [[2601.20354|SpatialGenEval]], [[2601.02356|Talk2Move]], [[2512.09924|ReViSE]], [[2512.01236|PSR-Image-Gen]], [[2509.21953|MultiCrafter]], [[2508.20561|SimShear]], [[2503.19012|DiffV2IR]], [[2410.13911|GraspDiffusion]], [[2408.06506|TacSL]], [[2206.01714|Composed Diffusion]]
 
 > [!star] Key Papers
 > - [[2601.02356|Talk2Move]] — RL-based text-instructed geometric transformations with spatially grounded rewards

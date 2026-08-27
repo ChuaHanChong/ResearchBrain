@@ -236,7 +236,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 - [[2604.01193|SSD-Code-Generation]], [[2510.23272|AesCoder]], [[2510.14635|ATGen]], [[2510.01832|SCRIBES]], [[2509.22824|Critique-Coder]], [[2509.21016|RL-Grokking-DELTA]], [[2508.21107|UTRL]], [[2507.14111|CUDA-L1]], [[2507.11948|Kevin]], [[2506.15701|Compiler-R1]], [[2505.23387|Afterburner]]
 
 **SWE Coding-Agent Infrastructure, Benchmarks & Surveys** — Harnesses, reward models, foundation models, and benchmarks for autonomous software-engineering agents.
-- [[2608.20169|Task-CoEvolve]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.25067|Frontier-Coding-Agents-AlphaZero]], [[2603.16790|InCoder-32B]], [[2512.21919|SWE-RM]], [[2511.18538|Code-Intelligence-Survey]], [[2506.22419|LLM-Speedrunning-Benchmark]], [[2502.04692|STRIDE]]
+- [[2608.23552|Prime Agent]], [[2608.20169|Task-CoEvolve]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.25067|Frontier-Coding-Agents-AlphaZero]], [[2603.16790|InCoder-32B]], [[2512.21919|SWE-RM]], [[2511.18538|Code-Intelligence-Survey]], [[2506.22419|LLM-Speedrunning-Benchmark]], [[2502.04692|STRIDE]]
 
 > [!star] Key Papers
 > - [[2506.13131|AlphaEvolve]] — Google DeepMind combines LLMs with evolutionary search to autonomously discover algorithms, finding new mathematical results

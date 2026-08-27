@@ -443,7 +443,7 @@ Enabling MLLMs to localize, reference, and reason about specific objects and reg
 > - [[2510.09201|MPO]] — Multimodal Prompt Optimizer jointly optimizing textual and visual prompts
 
 **Dense Perception & Tracking** — Fine-grained visual understanding including tracking, referring, and pixel-level grounding.
-- [[2603.03857|DeepScan]], [[2512.22799|VPTracker]], [[2510.23603|PixelRefer]], [[2505.23769|TextRegion]], [[2505.20612|RF100-VL]], [[2309.08912|MP-FGVC]]
+- [[2608.24574|PhysMLLMs]], [[2603.03857|DeepScan]], [[2512.22799|VPTracker]], [[2510.23603|PixelRefer]], [[2505.23769|TextRegion]], [[2505.20612|RF100-VL]], [[2309.08912|MP-FGVC]]
 
 > [!star] Key Papers
 > - [[2510.23603|PixelRefer]] — Unified framework for fine-grained spatiotemporal object understanding in images and videos
