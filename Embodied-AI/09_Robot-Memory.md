@@ -286,6 +286,8 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 
 - **[[2607.18840|WorldScape Policy 2.0]]** — Combines a ==causal short-term visual memory== with a VLM-based ==event memory== for ==latent subgoal reasoning==, trained on the new ManipEvent-5M event-grounded dataset; **94.3%** avg SR across 50 bimanual sim tasks (**+14.5pp** over VLA baselines), **75%** real long-horizon autonomous planning.
 
+- **[[1801.04134|Deep Episodic Memory]]** — A ==composite conv-LSTM encoder-decoder== compressing an action video into one 2000-d latent, with paired ==reconstruction + future-frame decoders== forcing dynamics into the code and ==cosine-similarity== episode recall; **44.31%** ActivityNet first-match precision (vs a composite LSTM's **36.29%**), driving real humanoid manipulation.
+
 **Episodic & Retrieval Memory — Decision Matrix**
 
 | Need | Recommendation |
@@ -305,7 +307,7 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 > - [[2411.04999|DynaMem]] — the reference dynamic-memory design (ray-cast purging of moved objects); nearly every later retrieval-memory nav paper compares against it.
 > - [[2603.24576|Chameleon]] — the clearest existence proof that human-episodic-memory structure (spatiotemporal anchors, pattern separation) transfers to manipulation.
 > - [[2606.20562|MemoryWAM]] — the first world-action model to treat memory as a first-class module rather than a longer context window.
-> - [[2104.10218|Episodic-Memory-Manipulation]] — the earliest paper in this file (2021); single-demo task synthesis via finite-state-machine memory predates the current wave by four years.
+> - [[2104.10218|Episodic-Memory-Manipulation]] — single-demo task synthesis via finite-state-machine memory predates the current wave by four years.
 
 ^key-papers-1
 
@@ -343,6 +345,8 @@ Rather than tracking objects explicitly, distill the raw history into a small se
 - **[[2606.31493|ChronoFlow-Policy]]** — A diffusion visuomotor policy unifying past-current-future gripper-object interaction via a compact ==3D keypoint representation (ChronoFlow)==, jointly learning ChronoFlow prediction + actions via a ==co-training objective== to resolve non-Markovian dependencies; **72%** MetaWorld / **66%** RoboTwin 2.0, **87%** real deformable towel-folding.
 
 - **[[2606.23589|KEMO]]** — A lightweight plug-in memory augmenting a VLA with a temporally-ordered bank of ==event keyframes==, detected from deceleration cues + a visual-change filter (no labels) and fused via masked cross-attention + gated residual fusion; **+23.6pp** Task SR (27.8→51.4%) and **+34.1pp** Stage Completion (42.3→76.4%) over a memory-free baseline across 6 real dual-arm tasks.
+
+- **[[2606.03787|Surprise-Gated Episodic Memory]]** — Gates episode storage on ==Bayesian surprise== (KL between successive ==V-JEPA-2== predictive distributions) with ==MAD thresholding + non-maximum suppression==, layering sparse episodes onto a ==4D scene graph==; **+12.0%** OC-NaVQA accuracy, **0.833** Kinetics-400 GEBD F1 storing only **1.7%** of frames.
 
 - **[[2602.15010|BPP]]** — A ==Big Picture Policies== method conditioning on VLM-detected (Gemini-3-Pro) salient ==keyframes== at 1 Hz with ==latency masking==; **+70%** real bimanual SR over history-conditioned baselines, beating even the oracle on Variable-Password; robust to imperfect keyframes.
 
@@ -541,6 +545,8 @@ All eight papers share the same axis — a memory store that a reasoning module 
 Memory whose job is to guide *where to look next* and *what the answer is* — centralizing evidence across an exploration episode.
 
 - **[[2601.13132|GaussExplorer]]** — An embodied exploration + reasoning framework over ==semantic 3D Gaussian Splatting== (open-set CLIP per Gaussian), where an LLM extracts query 'evidence categories' to search-and-cluster objects and a VLM ==novel-view judge== evaluates perturbed camera poses; **57.8** LLM-Match EM-EQA (3D-Mem **54.6**), **12.87** 3D mIoU referring segmentation.
+
+- **[[2511.20644|VLM²]]** — A video VLM pairing ==adaptive 3D position injection== with a ==dual memory==: sliding-window working memory fused with a ==fixed-capacity episodic bank== pruned by cosine-similarity replacement; **68.8** VSI-Bench avg (vs VLM-3R-7B's **60.9**), memory alone **+4.0%** — bounded recall answers questions but steers no exploration.
 
 - **[[2506.17629|CLiViS]]** — A ==training-free== embodied-visual-reasoning framework orchestrating LLM↔VLM synergy: the LLM emits focused sub-instructions, the VLM perceives target video segments, and both update a =='Cognitive Map'== (Scene Navigation + Object Relation Graphs) + Evidence Memory; **55.4%** OpenEQA, **69.4%** EgoSchema (**48.4%** avg), beating Socratic models **+20.2%**.
 

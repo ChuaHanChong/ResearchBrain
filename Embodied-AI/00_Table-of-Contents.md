@@ -59,11 +59,12 @@ aliases:
     - [[02_Dataset-Benchmark-Environment#3.1 Foundation Simulators|3.1 Foundation Simulators]]
     - [[02_Dataset-Benchmark-Environment#3.2 Household-Scale|3.2 Household-Scale]]
     - [[02_Dataset-Benchmark-Environment#3.3 Photorealistic 3D Environments|3.3 Photorealistic 3D Environments]]
+    - [[02_Dataset-Benchmark-Environment#3.4 Driving & Urban Traffic Simulators|3.4 Driving & Urban Traffic Simulators]]
     - [[02_Dataset-Benchmark-Environment#3.5 Real-to-Sim Reconstruction|3.5 Real-to-Sim Reconstruction]]
     - [[02_Dataset-Benchmark-Environment#3.6 Generative Asset / Task / Demo Engines|3.6 Generative Asset / Task / Demo Engines]]
     - [[02_Dataset-Benchmark-Environment#3.7 Egocentric / Interaction Simulators|3.7 Egocentric / Interaction Simulators]]
-    - [[02_Dataset-Benchmark-Environment#3.9 Bimanual Sim + Benchmark|3.9 Bimanual Sim + Benchmark]]
-    - [[02_Dataset-Benchmark-Environment#3.10 Physics Engines — Quick Reference|3.10 Physics Engines — Quick Reference]]
+    - [[02_Dataset-Benchmark-Environment#3.8 Bimanual Sim + Benchmark|3.8 Bimanual Sim + Benchmark]]
+    - [[02_Dataset-Benchmark-Environment#3.9 Physics Engines — Quick Reference|3.9 Physics Engines — Quick Reference]]
 - **[[02_Dataset-Benchmark-Environment#Part C — Physics Engines|Part C — Physics Engines]]**
   - [[02_Dataset-Benchmark-Environment#4. Physics Engines as Research Substrate|4. Physics Engines as Research Substrate]]  *([[02_Dataset-Benchmark-Environment#^dm-4|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-4|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-4|Insight]])*
     - [[02_Dataset-Benchmark-Environment#4.1 Differentiable Physics Engines|4.1 Differentiable Physics Engines]]
@@ -231,7 +232,7 @@ aliases:
     - [[04_VLA#14.3 Serving, Scheduling & Fleet-Scale Deployment|14.3 Serving, Scheduling & Fleet-Scale Deployment]]
   - [[04_VLA#15. Embodied VLM Brains & Reasoning Foundation|15. Embodied VLM Brains & Reasoning Foundation]]  *([[04_VLA#^dm-15|DM]] · [[04_VLA#^key-papers-15|Key Papers]] · [[04_VLA#^insight-15|Insight]])*
     - [[04_VLA#15.1 Embodied VLM Foundation Models|15.1 Embodied VLM Foundation Models]]
-    - [[04_VLA#15.2 Domain-Specialized VLAs (Game, Aerial)|15.2 Domain-Specialized VLAs (Game, Aerial)]]
+    - [[04_VLA#15.2 Domain-Specialized VLAs|15.2 Domain-Specialized VLAs]]
     - [[04_VLA#15.3 Autonomous-Driving VLAs|15.3 Autonomous-Driving VLAs]]
     - [[04_VLA#15.4 Alternative Instruction & Supervision Interfaces|15.4 Alternative Instruction & Supervision Interfaces]]
     - [[04_VLA#15.5 Navigation-Domain VLAs|15.5 Navigation-Domain VLAs]]
@@ -503,6 +504,10 @@ aliases:
     - [[10_Manipulation-Skill-Learning#7.3 Cross-Embodiment & Human-Video Transfer|7.3 Cross-Embodiment & Human-Video Transfer]]
     - [[10_Manipulation-Skill-Learning#7.4 Cross-Embodiment Dexterous Grasp & Hand Generalization|7.4 Cross-Embodiment Dexterous Grasp & Hand Generalization]]
     - [[10_Manipulation-Skill-Learning#7.5 Benchmarks & Diagnostic Evaluation|7.5 Benchmarks & Diagnostic Evaluation]]
+  - [[10_Manipulation-Skill-Learning#8. Human Hand & Body-Object Interaction Priors|8. Human Hand & Body-Object Interaction Priors]]  *([[10_Manipulation-Skill-Learning#^dm-8|DM]] · [[10_Manipulation-Skill-Learning#^key-papers-8|Key Papers]] · [[10_Manipulation-Skill-Learning#^insight-8|Insight]])*
+    - [[10_Manipulation-Skill-Learning#8.1 Parametric Hand & Body Substrates|8.1 Parametric Hand & Body Substrates]]
+    - [[10_Manipulation-Skill-Learning#8.2 Staged Whole-Body Grasp-Approach Synthesis|8.2 Staged Whole-Body Grasp-Approach Synthesis]]
+    - [[10_Manipulation-Skill-Learning#8.3 Jointly-Diffused Interaction Priors|8.3 Jointly-Diffused Interaction Priors]]
 - **[[10_Manipulation-Skill-Learning#Quick-Reference Matrix|Quick-Reference Matrix]]**
 - **[[10_Manipulation-Skill-Learning#Cross-References|Cross-References]]**
 
