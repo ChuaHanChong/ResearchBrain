@@ -976,7 +976,7 @@ Forty-nine cross-embodiment systems that make a *different* intermediate invaria
 
 ---
 
-## Cluster D — Egocentric & Human-Video Pretraining
+## Cluster D — Egocentric & Human-Video Pretraining: Learning Before the Robot Body Exists
 
 *The same refusal, pushed upstream of the robot body entirely: don't factor away the kinematic structure a human hand carries across the human-to-robot hop (D1), and don't cascade the pretraining objective into two separate stages when a coupled loop might carry a synergy neither stage alone can (D2).*
 
@@ -1135,7 +1135,7 @@ Forty-nine cross-embodiment systems that make a *different* intermediate invaria
 
 *The scaling wall every direction above runs into is demonstration cost, and the field's answer is to synthesize demonstrations from a small human seed. This cluster asks what that synthesis actually produces.*
 
-### E1 — Where Does the Human's Strategy Monopoly End? Crossing Quality-Diversity Search with Demonstration Generation
+### E1 — Machine-Searchable vs. Human-Only Strategy in Demonstration Generation
 
 | | |
 |---|---|

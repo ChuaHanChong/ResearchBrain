@@ -203,7 +203,7 @@ tags:
 
 ## E: Data Generation & Demonstration Scaling: Where the Training Corpus Comes From
 
-### E1: Where Does the Human's Strategy Monopoly End? Crossing Quality-Diversity Search with Demonstration Generation
+### E1: Machine-Searchable vs. Human-Only Strategy in Demonstration Generation
 > [!abstract] The bet
 > The boundary between machine-searchable and human-only strategy is measurable, and the machine's side is larger than the field assumes. On one task under one behavior descriptor (approach direction, grasp pose, contact schedule), a Quality-Diversity archive covers a strictly larger fraction of the viable strategy space than a 10-demo human seed, with the human's exclusive residue **≤20%** — a number nobody has, because QDTraj asserts the comparison without running it. And the distillation claim that makes it matter: an IL policy trained on that archive, count-matched against a seed-anchored corpus, wins by **≥15 pp** where the seed-anchored pipeline is weakest (MimicGen Square D2 **49.3%**, Three Pc. Assembly D2 **13.3%**) while tying or losing on narrow D0 — a regime split, not a uniform win.
 
