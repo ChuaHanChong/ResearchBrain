@@ -242,6 +242,8 @@ The architectural revolution that brought attention mechanisms to computer visio
 > [!star] Key Papers
 > - [[2101.01169|Transformers-in-Vision-Survey]] — Early comprehensive survey that mapped the ViT landscape and catalyzed adoption of Transformers in computer vision
 > - [[2309.02031|Efficient-ViT-Survey]] — Systematic taxonomy of efficiency methods for vision Transformers; essential reference for practical deployment
+> - [[2012.12556|Visual-Transformer-Survey]] — One of the earliest broad surveys of Transformer architectures across vision tasks, predating the 2021 wave
+> - [[2111.06091|Visual-Transformers-Survey]] — Consolidated taxonomy of ViT variants and training recipes as the field matured past first-generation designs
 
 **Efficiency, Tokenization & Edge Deployment** — Reducing ViT compute and memory cost via patch/token-level optimization, sparsity, and lightweight designs for edge inference.
 - [[2603.25744|MuRF]], [[2603.22815|PinPoint]], [[2603.22387|EUPE]], [[2602.08683|OneVision-Encoder]], [[2512.01738|MSPT]], [[2510.23479|MergeMix]], [[2510.21501|GranViT]], [[2510.18091|APT]], [[2507.07995|KARL-Eff]], [[2505.23769|TextRegion]], [[2504.03118|NuWa-Eff]], [[2307.09120|LW-PLG-ViT]], [[2205.03436|EdgeViTs]], [[2107.02239|ViX]], [[2104.05704|CCT]]

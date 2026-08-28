@@ -405,6 +405,7 @@ An emerging survey domain covering how to optimize the information supplied to L
 > - [[2512.13564|AI-Agent-Memory-Survey]] — Introduces a "Forms-Functions-Dynamics" framework for analyzing memory in AI agents
 > - [[2507.13334|Context-Engineering-Survey]] — First to formalize "Context Engineering" as a systematic discipline beyond prompt engineering
 > - [[2510.26493|Context-Engineering-2.0]] — Redefines context engineering with dynamic, adaptive context management strategies
+> - [[2503.23037|Agentic-LLM-Survey]] — Surveys agentic LLM architectures, covering planning, tool use, and memory as core agent capabilities
 
 > [!tip] Beyond Prompt Engineering
 > Context engineering is the 2025 evolution of prompt engineering. The first survey defines the field; the 2.0 version adds dynamic adaptation. Combined with agent memory systems, these surveys define how future AI systems will manage their information flow.

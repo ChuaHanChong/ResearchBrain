@@ -328,6 +328,8 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 > [!star] Key Papers
 > - [[2303.05499|Grounding-DINO]] — Married DINO features with grounded pre-training; the go-to open-set detector
 > - [[2112.03857|GLIP]] — Grounded language-image pre-training; unified detection and phrase grounding
+> - [[2104.13921|ViLD]] — First to distill CLIP's zero-shot classification knowledge into a two-stage detector; established open-vocabulary detection as a viable paradigm
+> - [[2306.09683|OWLv2]] — Scaled OWL-ViT with self-training on web image-text pairs; strong open-vocabulary detector at inference-friendly cost
 
 **LLM-Era, Benchmark & Emerging Open-Vocabulary Detection** — Later-generation open-vocabulary detectors driven by LLMs, autoregressive decoding, and application-specific adaptation, alongside the benchmarks and surveys charting the field's transition from closed-set to open-world (2023-2026).
 - [[2604.02759|OMNI-PoseX]], [[2604.01179|Florence-2-ROS-2-Wrapper]], [[2603.14609|GroundSet]], [[2602.23759|Selfment]], [[2510.12798|Rex-Omni]], [[2506.23785|VisTex-OVLM]], [[2503.07465|YOLOE]], [[2501.18954|LLMDet]], [[2412.16334|dino.txt]], [[2410.13842|D-FINE]], [[2410.08021|OneRef]], [[2408.10787|UniProj-Det]], [[2405.10300|Grounding DINO 1.5]], [[2404.13013|Groma]], [[2404.09216|DetCLIPv3]], [[2404.07664|PROWL]], [[2403.10191|GenerateU]], [[2312.10439|SIC-CADS]], [[2307.12813|DOD]], [[2307.09220|OVD/OVS-Survey]], [[2306.15880|Open-Vocabulary-Learning-Survey]], [[2304.11463|OmniLabel]], [[2303.02489|CapDet]]
@@ -367,6 +369,7 @@ From closed-set detectors to open-vocabulary, language-grounded detection. The t
 > [!star] Key Papers
 > - [[2403.12488|DetToolChain]] — Detection-specific chain-of-thought with a visual toolkit; enables zero-shot detection via prompting alone
 > - [[2510.21311|FineRS]] — Coarse-to-fine pipeline with RL for ultra-small object reasoning and segmentation in 4K images
+> - [[2506.02359|Auto-Labeling]] — LLM-driven auto-labeling pipeline that reduces manual annotation cost for detection datasets
 
 **Additional methods** — Detection-adjacent methods not covered by the sub-topics above, including classic multi-scale feature-pyramid detectors and weakly-supervised detection.
 - [[2607.08402|Pedestrian Privacy Pipeline]], [[2607.08391|MURAL]], [[2607.06600|MiLSD]], [[2607.00191|HydraCollab]], [[2505.03694|ViSafe]], [[2406.03459|LW-DETR]], [[2304.08069|RT-DETR]], [[2109.10852|Pix2Seq]], [[2104.11181|H2O]], [[2103.14259|OTA]], [[2102.12252|LD]], [[2010.04159|Deformable DETR]], [[2007.07986|Progressive-Knowledge-Transfer-WSOD]], [[2006.09214|FCOS]], [[2005.12872|DETR]], [[2002.07421|EHSOD]], [[1904.01355|FCOS]], [[1811.11168|DCNv2]], [[1803.01534|PANet]], [[1612.03144|FPN]], [[1607.03476|End-to-End mAP Training]], [[1512.02325|SSD]], [[1511.02853|WSDDN]], [[1511.02283|Google Refexp]]

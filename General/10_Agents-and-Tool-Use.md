@@ -284,6 +284,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 > - [[2412.05479|LATTE]] — Trains open-source VLMs to integrate external tools for complex multimodal reasoning
 > - [[2512.16918|AdaTooler-V]] — MLLM that adaptively decides when external vision tools are needed; RL-trained selective tool invocation
 > - [[2505.08617|OpenThinkIMG]] — Open-source framework for interleaved visual tool use during reasoning
+> - [[2509.01656|ReV-PT]] — RL-trained visual tool-use policy for compositional reasoning across detectors, segmenters, and editors
 
 > [!tip] From Prompted to Learned Tool Use
 > Early agents used handcrafted prompts to invoke tools (ReAct, Toolformer). ReTool, ToolRL, and ToRL showed that RL can learn tool-use policies that surpass prompting. The key insight: tool invocation is a decision problem, and RL is better at decision problems than prompting.

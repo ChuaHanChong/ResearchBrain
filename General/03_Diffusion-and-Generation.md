@@ -295,6 +295,7 @@ The hottest design question in generative AI: can one model both understand and 
 > - [[2408.12528|Show-o]] — Single transformer unifying understanding and generation; later scaled to Show-o2 with native multimodal capabilities
 > - [[2409.18869|Emu3]] — Showed next-token prediction alone can handle text, image, and video generation without diffusion
 > - [[2506.13759|Discrete-Diffusion-LLM-Survey]] — Systematic overview of dLLMs and dMLLMs; covers up to 10x faster inference vs. AR models
+> - [[2501.17811|Janus-Pro]] — DeepSeek's decoupled-visual-encoding unified model; scaled data and model size to match or beat task-specific baselines
 
 **Multimodal Diffusion Architectures** — Extend diffusion beyond images to jointly handle text reasoning, image generation, and multimodal understanding in a single diffusion-native model.
 - [[2606.31451|UniTac]], [[2605.02641|Mamoda2.5]], [[2604.02097|LatentUM]], [[2511.09611|MMaDA-Parallel]], [[2506.23115|MoCa]], [[2506.05340|DiT-Grafting]], [[2505.15809|MMaDA]], [[2505.13031|MindOmni]]

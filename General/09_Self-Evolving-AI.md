@@ -307,6 +307,7 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 > [!star] Key Papers
 > - [[2511.16166|EvoVLA]] — Self-evolving VLA framework that overcomes stage hallucination and fragile memory; the first end-to-end self-evolving VLA
 > - [[2603.03818|VLA-Continual-Learning]] — Showed pre-trained VLAs are naturally resistant to catastrophic forgetting; simple sequential fine-tuning works
+> - [[2603.11653|VLA-RL-Continual-Learning]] — Combines RL post-training with continual-learning safeguards for VLAs improving over deployment
 
 **Self-Evolving WAMs** — World models that autonomously improve through imagination, self-play, or co-evolution with their policy. The world model generates synthetic experience, enabling self-improvement without costly real-world interaction.
 - [[2607.06988|WAM-TTT]], [[2606.32026|AdaJEPA]], [[2603.19370|VAMPO]], [[2603.08403|SPIRAL]], [[2602.14351|WIMLE]], [[2509.19292|SOE]], [[2506.23468|NavMorph]], [[2504.21024|WebEvolver]], [[2503.01584|SENSEI]], [[2502.05907|EvoAgent]], [[2401.16650|WMAR]]
@@ -430,6 +431,8 @@ Self-evolution over time: systems that accumulate knowledge from ongoing experie
 > [!star] Key Papers
 > - [[2509.26354|Misevolution]] — Identifies "misevolution" as a novel safety risk: self-evolving models can drift from intended values during autonomous improvement
 > - [[2506.07468|SELF-REDTEAM]] — Self-adversarial testing to catch safety regressions during evolution; the model red-teams itself after each improvement cycle
+> - [[2508.07407|Self-Evolving-AI-Agents-Survey]] — Surveys the safety and alignment challenges specific to agents that revise their own weights or policies
+> - [[2602.04411|Self-evolving-Embodied-AI]] — Extends the self-evolution safety discussion to embodied/robotic agents, where unsafe drift has physical consequences
 
 > [!tip] The Forgetting Problem
 > Self-improvement without continual learning is a leaky bucket. ELL and OEL show that persistent experience memory is essential — otherwise, gains from one round of self-improvement are lost when the model encounters a new domain.

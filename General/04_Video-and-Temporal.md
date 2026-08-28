@@ -349,6 +349,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > [!star] Key Papers
 > - [[2511.08585|Visual-World-Roadmap]] — Four-generation taxonomy from video generators to planning-capable world simulators
 > - [[2504.21853|Interactive-Generative-Video-Survey]] — Maps the emerging interactive-video-generation paradigm where users steer model rollouts in real time, bridging T2V and world-simulation
+> - [[2604.15911|Efficient-Video-Diffusion-Survey]] — Surveys efficiency techniques (distillation, caching, architecture) for making video diffusion models tractable at scale
 
 > [!tip] Video World Models Feed WAMs
 > This cluster directly feeds into World Action Models. If you can generate video of the future, you can plan by imagining outcomes. UniPi and UniSim established the pattern; Dreamer 4 and AdaWorld scale it. See [[08_Reinforcement-Learning]] for RL inside world models and [[11_Robotics-and-Embodied-AI]] for the embodied applications.
@@ -359,12 +360,15 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > [!star] Key Papers
 > - [[2308.08089|DragNUWA]] — Trajectory-controllable video generation via drag-style point trajectories; defined the user-interaction pattern many later T2V tools adopted
 > - [[2407.21705|Tora]] — First trajectory-oriented Diffusion Transformer (DiT) for video generation; brought DiT-scale architectures to controllable T2V
+> - [[2310.08465|MotionDirector]] — Decoupled appearance and motion customization for T2V, enabling motion transfer independent of visual style
+> - [[2412.02700|Motion-Prompting]] — Google DeepMind's general-purpose motion-conditioning interface via sparse or dense trajectory prompts
 
 **Identity, Lighting & Camera-Aware Control** — Controllable generation over identity, relighting, and explicit camera/3D geometry constraints.
 - [[2511.00503|Diff4Splat]], [[2507.01099|Geometry-aware-4D-Robot-Video]], [[2506.19798|CoCo4D]], [[2506.15673|UniRelight]], [[2506.03150|IllumiCraft]], [[2503.14485|Lux-Post-Facto]], [[2502.03639|3DPointReg-I2V]], [[2412.11224|GenLit]], [[2412.09551|delta-Diffusion]], [[2412.02168|Generative-Photography]], [[2411.17440|Identity-Preserving-T2V]], [[2411.10836|AnimateAnything]], [[2410.22979|LumiSculpt]], [[2409.00558|Compositional-3D-Video]], [[2406.17758|MotionBooth]], [[2406.01188|UniAnimate]], [[2405.20222|MOFA-Video]], [[2403.17920|TC4D]], [[2311.17117|Animate-Anyone]]
 
 > [!star] Key Papers
 > - [[2511.00503|Diff4Splat]] — Feed-forward 4D scene generation as deformable 3D Gaussian fields with explicit camera control; 60x faster than per-scene optimization while preserving geometric integrity
+> - [[2502.03639|3DPointReg-I2V]] — 3D-point-registration-guided I2V generation for consistent camera-aware motion synthesis
 
 **Semantic & Compositional Scene Control** — Compositional, semantic, and prompt/sketch-conditioned scene control frameworks, including the ControlNet lineage's general conditioning apparatus.
 - [[2607.01962|NeoMap]], [[2506.20703|Generative-Blocks-World]], [[2505.20287|MotionPro]], [[2504.21855|ReVision]], [[2503.24379|Any2Caption]], [[2412.11785|InterDyn]], [[2412.00148|Motion-Modes]], [[2411.16804|InTraGen]], [[2410.13830|DreamVideo-2]], [[2406.09905|Nymeria]], [[2403.15249|SMA]], [[2309.07906|Generative-Image-Dynamics]], [[2306.02018|VideoComposer]], [[2305.13840|Control-A-Video]], [[2302.05543|ControlNet]]
@@ -430,6 +434,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 
 > [!star] Key Papers
 > - [[2512.12756|FysicsWorld]] — Unified full-modality benchmark for any-to-any (image+video+audio+text) understanding/generation/reasoning; CMCS strategy filters out unimodal shortcuts
+> - [[2601.15282|Embodied-World-Video-Gen-Bench]] — Benchmark targeting embodied-specific physics and interaction fidelity in generated video, beyond generic T2V metrics
 
 > [!tip] Physics Cognition Tiers
 > Three tiers across this expansion of §3: (1) **schematic perception** — controllable video (DragNUWA, ControlNet, Tora, motion prompting) where users specify constraints; (2) **passive physics cognition** — physics-aware T2V/I2V (Force Prompting, NewtonGen, OmniPhysGS, Physics3D, PhysTwin, PhysGaussian) that learns implicit or explicit physics from data; (3) **active cognition** — full world simulators (Cosmos, GAIA-1, Genie, Physics-IQ-aligned models, PhyGenesis) that close the action loop. Most ICML/NeurIPS 2025 effort is in tier 2; the frontier is moving to tier 3 with V-JEPA reward signals, PhysWorld digital twins, and physics-informed neural ODEs (NewtonGen). Benchmarks (FysicsWorld, VideoVerse, LikePhys) are catching up faster than generators — the world-model gap is now well-quantified.

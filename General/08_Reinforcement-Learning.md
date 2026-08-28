@@ -393,6 +393,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2504.16680|RWM-U]] — Uncertainty-aware world model for real-robot offline RL; bridges sim-to-real with calibrated uncertainty
 > - [[2505.13709|Policy-Driven-WM-Adaptation]] — Joint WM-policy optimization via Stackelberg dynamics; resolves objective mismatch with state-of-the-art robustness
 > - [[2310.06253|Objective-Mismatch-MBRL-Survey]] — Unified taxonomy for decision-aware MBRL; foundational reference for the objective-mismatch problem
+> - [[1803.10122|World-Models]] — Ha & Schmidhuber's original latent world-model paper; the founding work of the entire learn-a-model-then-imagine lineage
 
 **Continual & Online World Models** — World models that update online without catastrophic forgetting, supporting lifelong learning.
 - [[2604.08958|WOMBET]], [[2603.04029|Self-Adapting-RL]], [[2602.14351|WIMLE]], [[2602.00475|GRASP]], [[2510.04507|WISDOM]], [[2507.09177|Online-Agent-OA]]
@@ -983,6 +984,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > [!star] Key Papers
 > - [[2504.07934|ThinkLite-VL]] — Visual reasoning models achieving SOTA with significantly fewer parameters via distillation
 > - [[2504.15777|Tina]] — Highly cost-effective approach to visual reasoning; proves RL-distilled small models are viable
+> - [[2505.11221|LVLM2P]] — Distills RL-trained large VLM reasoning policies into compact deployable models
 
 **Visual Planning & Tool Use** — RL teaches VLMs to plan visually, use tools, and generate executable visual programs.
 - [[2607.12800|UniVR]], [[2604.01600|MM-ReCoder]], [[2603.14117|SIEVE-VLM]], [[2602.11073|VILAVT]], [[2511.19661|CodeV]], [[2508.13587|Chart-to-Code-RL]], [[2505.20289|VisTA]], [[2505.11409|VPRL]]

@@ -502,6 +502,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 > [!star] Key Papers
 > - [[2502.07503|RINS]] — Recursive Inference Scaling from Google DeepMind; enhances MLLM performance through iterative self-refinement
 > - [[2603.02556|VC-STaR]] — Visual Contrastive Self-Taught Reasoner improving VLM reasoning through contrastive self-training
+> - [[2302.00923|Multimodal-CoT]] — First to extend chain-of-thought prompting into the multimodal setting, separating rationale generation from answer inference
 
 **Safety, Deception & Alignment Auditing** — Detecting and auditing unsafe, deceptive, or misaligned model behavior.
 - [[2603.30036|CoT-Monitorability]], [[2602.08145|Reliable-Foundation-Models-Survey]], [[2601.14127|MIR-SafetyBench]], [[2512.15926|DSO]], [[2510.06738|AWM]], [[2510.06096|Alignment-Auditor]], [[2510.01088|Safety-Instincts]], [[2509.22989|Strategic-Persuasion]], [[2509.03518|LLM-Lying]], [[2506.19823|Persona-Misalignment]], [[2506.19807|KnowRL]], [[2502.05206|Safety-at-Scale-Survey]], [[2405.02411|Socially Aware NLP]]
@@ -525,6 +526,10 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 
 **Surveys** — Literature surveys of LLM reasoning and RL.
 - [[2607.25380|LLM Memory Survey]], [[2603.25681|LLM-Self-Improvement-Survey]], [[2509.08827|RL-for-LRM-Survey]], [[2509.04501|RL-for-Model-Training-Survey]], [[2509.02350|Implicit-Reasoning-Survey]], [[2507.13334|Context-Engineering-Survey]], [[2507.09662|Concise-Adaptive-Thinking-Survey]], [[2507.06203|Latent-Reasoning-Survey]], [[2506.13018|NN-Parameter-Space-Symmetry-Survey]], [[2505.02665|Slow-Thinking-LLM-Survey]], [[2505.00551|DeepSeek-R1-Replication-Survey]], [[2503.16419|Stop-Overthinking-Survey]], [[2503.09567|Long-CoT-Survey]], [[2502.21321|LLM-Post-Training-Survey]], [[2501.09686|Large-Reasoning-Models-Survey]], [[2404.14387|LLM-Self-Evolution-Survey]]
+
+> [!star] Key Papers
+> - [[2507.06203|Latent-Reasoning-Survey]] — Surveys reasoning approaches that operate in continuous latent space rather than explicit token-level chains
+> - [[2509.08827|RL-for-LRM-Survey]] — Comprehensive survey connecting RL techniques to the training of large reasoning models
 
 **Interpretability & Empirical Analysis** — Mechanistic and empirical studies of LLM/VLM reasoning and RL training dynamics.
 - [[2608.17981|Recirculation]], [[2605.10889|OPD-Diagnostic]], [[2510.26493|Context-Engineering-2.0]], [[2510.08985|Document-Ranking-CoT-Study]], [[2510.00034|MOWI]], [[2509.24156|Reasoning-vs-Retrieval]], [[2509.21128|RL-Squeezes-SFT-Expands]], [[2509.18376|GnnXemplar]], [[2509.03646|HICRA]], [[2509.00421|Prompt-Tuning-Memory-Limits]], [[2508.16546|SFT-vs-RL-Spectral-Analysis]], [[2507.16003|ICL-Implicit-Dynamics]], [[2507.02199|Huginn-Latent-CoT]], [[2506.09501|LLM-Inference-Nondeterminism]], [[2506.04374|SLDS-LLM-Reasoning]], [[2506.02126|Knowledge-vs-Reasoning-LLM-Eval]], [[2505.10559|Neural-Thermodynamic-Laws]], [[2504.20966|Softpick]], [[2502.14010|ICL-Attention-Heads]], [[2501.11223|RLM-Blueprint]], [[2412.05265|RL-Overview]], [[2311.12022|GPQA]], [[2201.02373|Mirror-Learning]]

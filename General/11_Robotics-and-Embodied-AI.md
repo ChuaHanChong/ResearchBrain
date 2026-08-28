@@ -1885,6 +1885,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2505.22159|ForceVLA]] — first to treat force as a first-class modality via dedicated Force-aware MoE; **+23.2 pp** over its own vision-only ablation
 > - [[2509.07962|TA-VLA]] — clearest recipe for torque injection (decoder-side aggregated history token + future-torque auxiliary loss); Charger Plugging 0/20 → 17/20, generalizes cross-model and cross-embodiment
 > - [[2602.23648|FAVLA]] — Force-injected fast-slow architecture with adaptive frequency control; **80.8%** SR (+38.0 pp over vision-only)
+> - [[2605.07308|AT-VLA]] — Attention-guided torque/force conditioning for compliant VLA control on contact-rich tasks
 
 **Multi-Modal Sensor Fusion & Generalist Sensor VLAs** — VLAs fusing multiple non-visual modalities into a shared generalist policy.
 - [[2606.17598|MuseVLA]], [[2606.09337|TORL-VLA]], [[2605.14571|MTNet]], [[2602.19764|Multi-Sensory-Sparse-Experts]], [[2602.02142|FD-VLA]], [[2512.08405|Audio World Models for Manipulation]], [[2512.01358|Modality-Augmented Fine-Tuning]], [[2511.18960|AVA-VLA]], [[2511.01210|OmniVLA-VLA]], [[2508.10333|ReconVLA]], [[2502.14420|ChatVLA]]
@@ -2018,6 +2019,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 
 > [!star] Key Papers
 > - [[2206.14176|DayDreamer]] — First to deploy Dreamer on real robots; proved sample-efficient learning from imagination works physically
+> - [[1803.10122|World-Models]] — Ha & Schmidhuber's original latent world-model paper; the founding work of the entire Dreamer/TD-MPC lineage
 
 **Exploration-Driven & Classic Model-Based Planning** — Model-based RL methods centered on exploration via prediction error/uncertainty, predating the Dreamer lineage's dominance.
 - [[2510.12312|Deep-SPI]], [[2410.11234|BA-MCTS]], [[2206.02072|VSRL]], [[2007.07853|γ-Progress]], [[2005.05960|Plan2Explore]], [[1911.10601|Scaling-Active-Inference]], [[1903.00374|SimPLe]], [[1805.12114|PETS]], [[1803.11347|GrBAL]], [[1605.09674|VIME]], [[1507.00814|Predictive Exploration Bonus]]
@@ -2115,6 +2117,7 @@ WAMs go beyond VLAs by jointly predicting future states and actions — they lea
 
 > [!star] Key Papers
 > - [[2504.02792|UWM]] — Unified World Models: a single architecture handling action-conditioned, action-free, and video prediction tasks
+> - [[2505.11528|LaDi-WM]] — Latent-diffusion world model conditioned on actions for manipulation policy learning
 
 **Egocentric, Navigation & Spatial-3D Latent World Models** — JEPA-style world models specialized for egocentric human/robot video, navigation, or explicit spatial/3D structure.
 - [[2608.01221|EndoWAM]], [[2606.23444|SkyJEPA]], [[2606.20521|HumanScale]], [[2606.09215|MotionWAM]], [[2605.15477|EgoExo-WM]], [[2603.25981|PiJEPA]], [[2602.23058|GeoWorld]], [[2602.18690|Motor-Gated Neural Fields]], [[2601.03782|PointWorld]], [[2506.23468|NavMorph]], [[2505.13696|ESWM]], [[2503.18938|AdaWorld]]
