@@ -1289,7 +1289,9 @@ Twenty-two generators, curation methods, and instruments on the axis that decide
 - [[05_VLA-Reasoning-and-CoT|05_VLA-Reasoning-and-CoT]] — Reasoning insertion slots (A2)
 - [[14_Egocentric-Pretraining-and-Human-Video|14_Egocentric-Pretraining-and-Human-Video]] — Egocentric scaling + human-video-to-robot transfer; owned by D1 (bridging-mechanism bake-off) and D2 (egocentric + video-WAM co-training attribution); C1 above cites human-video papers only as cross-robot-family invariant evidence, a distinct axis from this deep-dive's bridging-mechanism focus
 - [[15_Sim-to-Real-Transfer|15_Sim-to-Real-Transfer]] — Zero-shot sim-to-real + cross-embodiment transfer (A3, C1)
-- [[02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]] — Data + sim + benchmark stacks ([[2505.14986|AnyBody]], VLN-CE, LIBERO suites)
+- [[10_Manipulation-Skill-Learning|10_Manipulation-Skill-Learning]] — §7.2 Generative & Synthetic Data Pipelines is the deep-dive home of the MimicGen → SkillMimicGen → DemoGen → MoMaGen lineage E1 reframes (E1)
+- [[03_Imitation-Learning-and-RL|03_Imitation-Learning-and-RL]] — §2.3 Synthetic & Co-Training Data Pipelines; also the RL/skill-search substrate E1's Quality-Diversity arm draws on (E1)
+- [[02_Dataset-Benchmark-Environment|02_Dataset-Benchmark-Environment]] — Data + sim + benchmark stacks ([[2505.14986|AnyBody]], VLN-CE, LIBERO suites); RoboCasa's dual human/generated provenance is E1's count-controlled substrate (E1)
 - [[11_Robotics-and-Embodied-AI|11_Robotics-and-Embodied-AI]] — Navigation, humanoid, and cross-embodiment paper index (Cluster C)
 - [[12_Benchmarks-and-Surveys|12_Benchmarks-and-Surveys]] — Canonical survey index
 - [[WAM|WAM]] — Sibling research-direction doc: the WAM-internal architecture (representation substrate, contact-mode latent, calibrated imagination) this umbrella's A1 / B1 hand off to.

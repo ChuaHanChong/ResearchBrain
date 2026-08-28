@@ -39,7 +39,7 @@ Each `Capability/` doc carries this callout in its own Cross-References section.
 
 | Doc | Axis | Directions | Clusters |
 |---|---|---|---|
-| [[Embodied-AI]] | umbrella | 11 | 4 |
+| [[Embodied-AI]] | umbrella | 11 | 5 |
 | [[WAM]] | Mechanism | 7 | 2 |
 | [[Spatial-4D]] | Mechanism | 11 | 4 |
 | [[Sim2Real]] | Mechanism | 15 | 5 |

@@ -1199,7 +1199,7 @@ Twenty-seven systems that differ on *which latent* carries the reasoning↔contr
    - *Test*: synthetic-only vs co-trained on dynamics-heavy vs contact-precision tasks; report the SR gap per task property.
    - *Row*: GRAIL (synthetic-only) vs HumanoidMimicGen (co-trained) / RoboMIND 2.0 (real anchor).
    - *Falsifier*: synthetic-only matches co-trained on contact-precision tasks → no real anchor is ever needed.
-3. **H3 — Synthesized diversity has a feasibility ceiling per seed, shared across seed-amplification systems.**
+3. **H3 — Synthesized diversity has a feasibility ceiling per seed, shared across *whole-body* seed-amplification systems.**
    - *Prediction*: sweeping [[2605.27724|HumanoidMimicGen]]'s randomization breadth (the ablation that drops 0.89→0.49 without motion noise, 0.51 without init randomization), [[2510.11258|DemoHLM]]'s object-pose randomization, and [[2606.26215|TaskNPoint]]'s randomized-target-volume sampling from one clip, generalization rises then plateaus, and pushing diversity past a measurable point breaks feasibility — a fixed seed supports only bounded synthesized variety regardless of the seed-amplification system.
    - *Test*: sweep motion-noise + init/object-pose / target-volume randomization magnitude on the seed systems; report generalization SR + feasibility-violation rate vs breadth.
    - *Row*: HumanoidMimicGen / DemoHLM / Humanoid-DART / TaskNPoint (seed-amplification).
