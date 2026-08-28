@@ -500,8 +500,11 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2310.08864|OXE]] — Open X-Embodiment: 1M+ trajectories from 22 robot types; the ImageNet moment for robotics
 > - [[2503.06669|AgiBot-World]] — Large-scale manipulation platform with diverse environments and embodiments
 
-**Egocentric Human-Video Datasets** — Large-scale first-person video corpora used to pretrain VLAs and learn dexterous priors from human demonstrations.
-- [[2608.05215|VLAff]], [[2608.02580|Ego2Robot]], [[2607.28625|ACE-Data-0]], [[2607.14183|Open-AoE]], [[2607.13472|EgoHTR]], [[2606.30598|HOPformer]], [[2606.17385|EgoInfinity]], [[2606.17054|HUG]], [[2605.07943|TAVIS]], [[2605.06747|HumanNet]], [[2605.05945|MobileEgo-Anywhere]], [[2604.23570|EgoLive]], [[2512.04537|X-Humanoid]], [[2509.19480|OmniVLA]], [[2509.01708|ArtiPoint]], [[2505.11709|EgoDex]], [[2503.23094|FRAME]], [[2503.01439|AVR]], [[2502.16587|Human2Robot]], [[2412.14172|Massive-Human-Videos-Universal]], [[2312.14556|CaptainCook4D]], [[2312.12870|AV-CONV]], [[2312.05251|HaMeR]], [[2311.18259|Ego-Exo4D]], [[2308.13561|Project-Aria]], [[2212.08279|Werewolf Among Us]], [[2112.07642|EgoBody]], [[2110.07058|Ego4D]], [[2006.13256|EPIC-KITCHENS-100]], [[2006.00626|EGTEA-Gaze+]], [[2005.00343|EPIC-KITCHENS]], [[1904.09882|You2Me]]
+**Egocentric Human-Video Datasets (2026)** — Large-scale first-person video corpora used to pretrain VLAs and learn dexterous priors from human demonstrations.
+- [[2608.05215|VLAff]], [[2608.02580|Ego2Robot]], [[2607.28625|ACE-Data-0]], [[2607.14183|Open-AoE]], [[2607.13472|EgoHTR]], [[2606.30598|HOPformer]], [[2606.17385|EgoInfinity]], [[2606.17054|HUG]], [[2605.07943|TAVIS]], [[2605.06747|HumanNet]], [[2605.05945|MobileEgo-Anywhere]], [[2604.23570|EgoLive]]
+
+**Egocentric Human-Video Datasets (2025 and earlier)** — Same scope, older and foundational egocentric corpora.
+- [[2512.04537|X-Humanoid]], [[2509.19480|OmniVLA]], [[2509.01708|ArtiPoint]], [[2505.11709|EgoDex]], [[2503.23094|FRAME]], [[2503.01439|AVR]], [[2502.16587|Human2Robot]], [[2412.14172|Massive-Human-Videos-Universal]], [[2312.14556|CaptainCook4D]], [[2312.12870|AV-CONV]], [[2312.05251|HaMeR]], [[2311.18259|Ego-Exo4D]], [[2308.13561|Project-Aria]], [[2212.08279|Werewolf Among Us]], [[2112.07642|EgoBody]], [[2110.07058|Ego4D]], [[2006.13256|EPIC-KITCHENS-100]], [[2006.00626|EGTEA-Gaze+]], [[2005.00343|EPIC-KITCHENS]], [[1904.09882|You2Me]]
 
 > [!star] Key Papers
 > - [[2605.06747|HumanNet]] — 1M-hour human-centric video; egocentric + exocentric viewpoints with interaction-centric annotations; 1,000 hr pretrain matches/surpasses 100 hr robot-data pretrain
