@@ -220,7 +220,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2501.09686|Large-Reasoning-Models-Survey]] — First systematic survey of RL-based reasoning in LLMs; maps the post-DeepSeek-R1 landscape
 
 **Multimodal, Robotics & Foundational RL Surveys** — Surveys spanning multimodal reasoning, robot learning, and core RL theory/tooling.
-- [[2608.02433|SAC-MRAC]], [[2607.06935|Mathematical Methods of RL]], [[2607.06706|VLA for UAVs and Bimanual Manipulation Review]], [[2603.24517|AVO]], [[2510.12403|Robot-Learning-Tutorial]], [[2510.02665|MLLM-Self-Improvement-Survey]], [[2508.08189|RL-for-Large-Models-Survey]], [[2506.06981|ForageWorld]], [[2505.04921|LMRM-Survey]], [[2504.21277|Reinforced-MLLM-Survey]], [[2504.03151|Multimodal-Reasoning-Survey]], [[2503.14576|SocialJax]], [[2502.08938|exp-a-spiel]], [[2501.02189|VLM-SOTA-Survey]], [[2412.06531|RL-Memory-Taxonomy]], [[2412.05265|RL-Overview]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]], [[1904.12901|Real-World RL Challenge Taxonomy]]
+- [[2608.02433|SAC-MRAC]], [[2607.06935|Mathematical Methods of RL]], [[2607.06706|VLA for UAVs and Bimanual Manipulation Review]], [[2603.24517|AVO]], [[2510.12403|Robot-Learning-Tutorial]], [[2510.02665|MLLM-Self-Improvement-Survey]], [[2508.08189|RL-for-Large-Models-Survey]], [[2506.06981|ForageWorld]], [[2505.04921|LMRM-Survey]], [[2504.21277|Reinforced-MLLM-Survey]], [[2504.03151|Multimodal-Reasoning-Survey]], [[2503.14576|SocialJax]], [[2502.08938|exp-a-spiel]], [[2501.02189|VLM-SOTA-Survey]], [[2412.06531|RL-Memory-Taxonomy]], [[2412.05265|RL-Overview]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]], [[1904.12901|Real-World RL Challenge Taxonomy]], [[1207.4708|ALE]]
 
 > [!star] Key Papers
 > - [[2412.05265|RL-Overview]] — Sutton's comprehensive modern overview; the definitive reference for RL fundamentals
@@ -314,7 +314,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 The Dreamer lineage: learning a latent world model, then "dreaming" in it to train a policy. This is the foundation for World Action Models (WAMs) in robotics.
 
 **Dreamer Lineage** — The core trajectory from latent imagination through scalable general agents to real-robot deployment.
-- [[2607.19719|Koopman Dreamer]], [[2605.04709|ELVIS]], [[2604.02911|DreamTIP]], [[2604.02260|Time-Varying-MBRL]], [[2603.18202|R2-Dreamer]], [[2509.24804|DyMoDreamer]], [[2503.21047|CBET-DreamerV3]], [[2502.00466|EDELINE]], [[2501.16443|OC-STORM]], [[2301.04104|DreamerV3]], [[2211.15944|Continual-Dreamer]], [[2206.14176|DayDreamer]], [[1912.01603|Dreamer]], [[1809.01999|World Models]]
+- [[2607.19719|Koopman Dreamer]], [[2605.04709|ELVIS]], [[2604.02911|DreamTIP]], [[2604.02260|Time-Varying-MBRL]], [[2603.18202|R2-Dreamer]], [[2509.24804|DyMoDreamer]], [[2503.21047|CBET-DreamerV3]], [[2502.00466|EDELINE]], [[2501.16443|OC-STORM]], [[2303.07109|TWM]], [[2301.04104|DreamerV3]], [[2211.15944|Continual-Dreamer]], [[2206.14176|DayDreamer]], [[2202.09481|TransDreamer]], [[1912.01603|Dreamer]], [[1809.01999|World Models]]
 
 > [!star] Key Papers
 > - [[1912.01603|Dreamer]] — Pioneered latent imagination: learn a world model in latent space, generate synthetic rollouts, train the policy entirely in imagination
@@ -371,7 +371,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2605.25313|UWM-JEPA]] — Most novel joint-embedding architecture, replacing vector latents with a density-matrix belief state and a unitary predictor for uncertainty-preserving imagination
 
 **World Model Theory, Control & Sample-Efficient Planning** — Formal generalization results, free-energy/active-inference grounding, and planning algorithms built on world models.
-- [[2608.02993|InK]], [[2605.06732|Training-in-Imagination]], [[2605.01694|Latent-State-Design-WM]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2510.21232|Confusing-World-Models]], [[2510.18135|World-in-World]], [[2506.01622|General-Agents-World-Models]], [[2501.10100|RWM]], [[2310.16828|TD-MPC2]], [[2206.02072|VSRL]], [[2203.04955|TD-MPC]], [[2112.01506|REVI]], [[2106.02039|Trajectory-Transformer]], [[2103.10369|RH-UCRL]], [[1911.10601|Scaling-Active-Inference]], [[1805.12114|PETS]]
+- [[2608.02993|InK]], [[2605.06732|Training-in-Imagination]], [[2605.01694|Latent-State-Design-WM]], [[2604.25416|Biased Dreams]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2510.21232|Confusing-World-Models]], [[2510.18135|World-in-World]], [[2506.01622|General-Agents-World-Models]], [[2501.10100|RWM]], [[2310.16828|TD-MPC2]], [[2206.02072|VSRL]], [[2203.04955|TD-MPC]], [[2112.01506|REVI]], [[2106.02039|Trajectory-Transformer]], [[2103.10369|RH-UCRL]], [[1911.10601|Scaling-Active-Inference]], [[1805.12114|PETS]]
 
 > [!star] Key Papers
 > - [[2506.01622|General-Agents-World-Models]] — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
@@ -1273,7 +1273,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 
 
 **Classic Sim-to-Real Theory & Domain Randomization** — Foundational domain-randomization and theoretical results underpinning sim-to-real transfer.
-- [[2411.14251|NLRL]], [[2307.12074|MRLM]], [[2201.02373|Mirror-Learning]], [[2003.02471|BayRn]], [[1903.11774|DR Parameter Optimization]], [[1804.10332|Minitaur Sim-to-Real]], [[1710.06537|Dynamics Randomization]], [[1702.02453|UP-OSI]]
+- [[2411.14251|NLRL]], [[2307.12074|MRLM]], [[2206.14661|ADR Benchmark]], [[2201.02373|Mirror-Learning]], [[2003.02471|BayRn]], [[1903.11774|DR Parameter Optimization]], [[1804.10332|Minitaur Sim-to-Real]], [[1710.06537|Dynamics Randomization]], [[1702.02453|UP-OSI]]
 
 > [!star] Key Papers
 > - [[1710.06537|Dynamics Randomization]] — foundational method establishing training-time randomization of physical parameters combined with a recurrent policy as the classic recipe for zero-shot sim-to-real transfer
@@ -1467,7 +1467,7 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 > - [[2510.08425|DGPO-Diffusion]] — eliminates the need for a stochastic policy altogether, hitting 97% GenEval with up to 30x faster training than Flow-GRPO
 
 **Image/Video Editing & Preference RL** — RL for image/video editing, poster/motion generation, and preference-driven creative outputs.
-- [[2604.19406|HP-Edit]], [[2509.15031|AutoEdit]], [[2508.01119|RL-Image-Editing]], [[2506.10741|PosterCraft]], [[2506.10353|Motion-R1]], [[2506.08011|ViGaL]], [[2505.21478|FlowRL-T2I-Pipeline]], [[2505.20793|Rendering-Aware-RL-SVG]], [[2505.18547|Diffusion-Blend]], [[2505.17540|RePrompt]], [[2505.17534|CoRL-Multimodal]], [[2505.17017|Image-Gen-RL-Study]], [[2407.08737|VADER]]
+- [[2604.19406|HP-Edit]], [[2509.15031|AutoEdit]], [[2508.01119|RL-Image-Editing]], [[2506.10741|PosterCraft]], [[2506.10353|Motion-R1]], [[2506.08011|ViGaL]], [[2505.21478|FlowRL-T2I-Pipeline]], [[2505.20793|Rendering-Aware-RL-SVG]], [[2505.18547|Diffusion-Blend]], [[2505.17540|RePrompt]], [[2505.17534|CoRL-Multimodal]], [[2505.17017|Image-Gen-RL-Study]], [[2407.08737|VADER]], [[2403.18811|Duolando]]
 
 > [!star] Key Papers
 > - [[2407.08737|VADER]] — first to align video diffusion models via differentiable reward gradients, founding the reward-gradient approach this group builds on

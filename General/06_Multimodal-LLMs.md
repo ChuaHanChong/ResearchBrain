@@ -270,6 +270,9 @@ The maturation of MLLMs through systematic instruction tuning, scaling to produc
 > - [[2502.17159|RobustMerge]] — Training-free, data-free, storage-free model merging specifically designed for VLMs
 > - [[2601.07645|PlaM]] — Training-free model merging preserving complementary knowledge from multiple fine-tuned models
 
+**Additional Methods** — Text-only LLM papers that do not fit any other Section 3 group (dialogue-graph relation extraction).
+- [[2109.04008|TUCORE-GCN]]
+
 > [!tip] Instruction Tuning is the Key
 > The gap between a raw VLM and a usable MLLM is instruction tuning. PaliGemma showed that a well-tuned 3B model beats poorly tuned 13B+ models. The bottleneck has shifted from model size to data quality — SCALE, ProVision, and COMPACT address this directly.
 

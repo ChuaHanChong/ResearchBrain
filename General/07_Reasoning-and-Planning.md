@@ -229,8 +229,8 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 > - [[2503.16419|Stop-Overthinking-Survey]] — Structured survey on efficient reasoning that maps waste-reduction techniques
 > - [[2511.08577|TaH]] — Think-at-Hard framework selectively activates deep reasoning only at genuinely difficult steps
 
-**Additional Methods** — Miscellaneous papers (a manipulation-reasoning benchmark, a general LLM survey) that don't share a theme with any other Section 1 group.
-- [[2603.28545|ManipArena]], [[2303.18223|LLM Survey]], [[2212.10403|LLM Reasoning Survey]]
+**Additional Methods** — Miscellaneous papers (a manipulation-reasoning benchmark, a general LLM survey, a dialogue-graph emotion-recognition model) that don't share a theme with any other Section 1 group.
+- [[2603.28545|ManipArena]], [[2303.18223|LLM Survey]], [[2212.10403|LLM Reasoning Survey]], [[1908.11540|DialogueGCN]]
 
 > [!star] Key Papers
 > - [[2503.12605|MCoT-Survey]] — First comprehensive survey of multimodal chain-of-thought, analyzing evolution from text-only to vision-language CoT

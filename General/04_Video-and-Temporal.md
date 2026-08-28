@@ -194,10 +194,10 @@ From video classification to self-supervised video representation learning. The 
 > - [[2603.14482|V-JEPA-2.1]] — Added Dense Predictive Loss for fine-grained spatial features; +35% on object interaction anticipation
 
 **Self-Supervised Video Representation Learning** — Broader unlabeled-video pretraining for downstream perception: masked video modeling, egocentric manipulation representations, and video segmentation/tracking backbones.
-- [[2608.13183|Controlled SSL Pretraining Study]], [[2607.21576|SDM]], [[2607.09024|GenCeption]], [[2607.06856|Gen4U]], [[2606.02058|TIDES]], [[2605.02134|PV-VAE]], [[2604.26488|LILA]], [[2603.12217|Verifier-Point-Tracking]], [[2512.11782|MatAnyone-2]], [[2512.01342|InternVideo-Next]], [[2511.20886|V2-SAM]], [[2507.14793|FERNN]], [[2505.17006|CoMo]], [[2303.16727|VideoMAE V2]], [[2203.12601|R3M]], [[1504.08023|Visual Representation Anticipation]]
+- [[2608.13183|Controlled SSL Pretraining Study]], [[2607.21576|SDM]], [[2607.09024|GenCeption]], [[2607.06856|Gen4U]], [[2606.02058|TIDES]], [[2605.02134|PV-VAE]], [[2604.26488|LILA]], [[2603.12217|Verifier-Point-Tracking]], [[2512.11782|MatAnyone-2]], [[2512.01342|InternVideo-Next]], [[2511.20886|V2-SAM]], [[2507.14793|FERNN]], [[2505.17006|CoMo]], [[2303.16727|VideoMAE V2]], [[2203.12601|R3M]], [[2112.09120|TSC+OHC]], [[1504.08023|Visual Representation Anticipation]]
 
 **Foundation Video-Language Models** — General-purpose large multimodal models that jointly process video and language, plus the training data behind them.
-- [[2608.17402|MoE-ViE]], [[2602.08683|OneVision-Encoder]], [[2601.17868|VidLaDA]], [[2507.01949|Kwai-Keye-VL]], [[2504.15271|Eagle-2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]], [[2408.03326|LLaVA-OneVision]], [[2407.07895|LLaVA-NeXT-Interleave]], [[2406.07476|VideoLLaMA 2]], [[2406.04325|ShareGPT4Video]], [[2204.14198|Flamingo]]
+- [[2608.17402|MoE-ViE]], [[2602.08683|OneVision-Encoder]], [[2601.17868|VidLaDA]], [[2507.01949|Kwai-Keye-VL]], [[2504.15271|Eagle-2.5]], [[2504.13180|PerceptionLM]], [[2412.04468|NVILA]], [[2408.03326|LLaVA-OneVision]], [[2407.07895|LLaVA-NeXT-Interleave]], [[2406.07476|VideoLLaMA 2]], [[2406.04325|ShareGPT4Video]], [[2402.19479|Panda-70M]], [[2204.14198|Flamingo]]
 
 > [!star] Key Papers
 > - [[2504.15271|Eagle-2.5]] — Efficient 8B model processing 512 video frames; achieves 72.4% on Video-MME, rivaling 72B+ models
@@ -209,14 +209,14 @@ From video classification to self-supervised video representation learning. The 
 > - [[2504.16072|DAM]] — Region-level video captioning via focal prompts; SOTA across 7 benchmarks
 
 **General Egocentric & Action-Recognition Datasets** — Foundational egocentric and action-recognition corpora that taught models physical common sense from raw video.
-- [[2607.24744|Data Pyramid]], [[2502.04144|HD-EPIC]], [[2411.08380|EgoVid-5M]], [[2203.14712|Assembly101]], [[2110.07058|Ego4D]], [[2107.13411|Egocentric Future Prediction Survey]], [[2005.00343|EPIC-KITCHENS (Collection & Baselines)]], [[1806.07011|VirtualHome]], [[1706.04261|Something-Something]]
+- [[2607.24744|Data Pyramid]], [[2502.04144|HD-EPIC]], [[2411.08380|EgoVid-5M]], [[2312.14556|CaptainCook4D]], [[2204.09443|GIMO]], [[2203.14712|Assembly101]], [[2112.07642|EgoBody]], [[2110.07058|Ego4D]], [[2107.13411|Egocentric Future Prediction Survey]], [[2010.10864|Kinetics-700-2020]], [[2006.13256|EPIC-KITCHENS-100]], [[2005.00343|EPIC-KITCHENS (Collection & Baselines)]], [[1905.04757|NTU RGB+D 120]], [[1806.07011|VirtualHome]], [[1706.04261|Something-Something]]
 
 > [!star] Key Papers
 > - [[2110.07058|Ego4D]] — 3,670 hours of egocentric video from 931 wearers across 9 countries; foundational dataset for first-person perception and the basis for Being-H0/EgoScale-style VLA pretraining
 > - [[1706.04261|Something-Something]] — 108,499 clips across 174 fine-grained action classes; pioneered contrastive action templates to force models to learn physical common sense rather than superficial cues
 
 **Hand-Object Interaction & Capture Datasets** — Multi-sensor capture platforms and hand/object-interaction datasets for fine-grained pose and contact understanding.
-- [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]], [[2603.15847|FEEL]], [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2509.01708|ArtiPoint]], [[2411.19167|HOT3D]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]], [[2308.13561|Project Aria]], [[2203.01577|HOI4D]], [[2104.11181|H2O]]
+- [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]], [[2603.15847|FEEL]], [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2509.01708|ArtiPoint]], [[2411.19167|HOT3D]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]], [[2308.13561|Project Aria]], [[2203.09905|Cross-View-AG]], [[2203.01577|HOI4D]], [[2104.11181|H2O]]
 
 **Egocentric-to-Robot VLA Pretraining Datasets** — Egocentric human-video datasets built explicitly to pretrain or transfer to robot manipulation VLA policies.
 - [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]], [[2503.13441|PH2D]], [[2502.03729|RAD (Action-Free Reasoning)]], [[2410.24221|EgoMimic]]
@@ -260,7 +260,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.16870|Video-Reasoning-Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Video Segmentation & Point Tracking** — SAM-family and tracking-based architectures for pixel-precise video segmentation and point tracking.
-- [[2605.00891|X2SAM]], [[2602.23204|Motion-aware Event Suppression]], [[2602.20630|TraqPoint]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2507.12462|SpatialTrackerV2]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2410.11831|CoTracker3]], [[2408.00714|SAM 2]], [[2407.15420|LocoTrack]], [[2307.07635|CoTracker]], [[2211.03726|TAP-Vid]]
+- [[2605.00891|X2SAM]], [[2602.23204|Motion-aware Event Suppression]], [[2602.20630|TraqPoint]], [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2507.12462|SpatialTrackerV2]], [[2506.07850|SAM2Auto]], [[2506.05302|PAM]], [[2410.11831|CoTracker3]], [[2408.00714|SAM 2]], [[2407.15420|LocoTrack]], [[2402.00847|BootsTAP]], [[2307.07635|CoTracker]], [[2306.08637|TAPIR]], [[2211.03726|TAP-Vid]]
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
@@ -284,7 +284,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.14145|MMOU]] — Joint audio-visual reasoning benchmark; best model (64.2%) far below human (84.3%)
 
 **Social & Affective Interaction Understanding** — Datasets, workshops, and surveys probing whether video models can reason about social dynamics and affect (group interaction, emotion, deepfakes) rather than just spatiotemporal content.
-- [[2504.02244|SocialGesture]], [[2409.15316|Social AI Survey]], [[2409.07256|MRAC Workshop 2024]], [[2404.04458|JRDB-Social]]
+- [[2504.02244|SocialGesture]], [[2409.15316|Social AI Survey]], [[2409.07256|MRAC Workshop 2024]], [[2404.04458|JRDB-Social]], [[2212.08279|Werewolf Among Us]]
 
 > [!tip] RL is the Unlock for Video Reasoning
 > The pattern across Video-R1, VIDEORFT, ViSS-R1, and SynRL is clear: RL post-training consistently boosts temporal reasoning where SFT alone plateaus. Combine with frame-aware CoT (CoF, ViTCoT) for grounded reasoning traces. Watch for the temporal trap -- naive Video-SFT can hurt image understanding.
@@ -326,7 +326,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2603.08403|SPIRAL]] — Closed-loop self-improving framework for controllable, long-horizon video generation
 
 **Video Diffusion as Reward Signal** — Uses conditional video diffusion or prediction models trained on expert demonstrations to derive dense reinforcement-learning reward signals, replacing manual reward engineering for robotic manipulation.
-- [[2312.14134|Diffusion Reward]]
+- [[2312.14134|Diffusion Reward]], [[2305.16301|Agent-Environment Factorization]]
 
 **Additional Methods** — Early open-source diffusion architectures that established the base recipe for high-quality text-to-video generation, later extended by controllable and physics-aware variants.
 - [[2408.06072|CogVideoX]], [[2310.20700|SEINE]], [[2308.06571|ModelScopeT2V]], [[2210.02303|Imagen Video]]
