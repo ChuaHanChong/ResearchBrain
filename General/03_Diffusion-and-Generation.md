@@ -593,7 +593,7 @@ A focused thread on injecting physical laws into generative pipelines. Standard 
 - [[2411.13609|VAMP]], [[2406.18522|ChronoMagic-Bench]], [[2311.10111|VideoCon]], [[2305.13786|Perception Test]], [[2106.08261|Physion]], [[2012.04293|CRAFT]], [[1910.01442|CLEVRER]], [[1803.07616|IntPhys]]
 
 **Generative Video Physics-Fidelity Benchmarks** — Evaluation suites that systematically measure whether generated videos obey gravity, optics, thermodynamics, and material properties.
-- [[2608.09873|Sci-VBench]], [[2606.28757|CrashTwin]], [[2606.24256|TailOR]], [[2606.04811|Dream.exe]], [[2605.29360|MiraBench]], [[2603.15847|FEEL]], [[2512.12756|FysicsWorld]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.02311|IDPP]], [[2507.15824|PhysVidBench]], [[2506.00022|PHYSICS-Dataset]], [[2505.15929|PhyX]], [[2504.02918|Morpheus]], [[2503.06800|VideoPhy-2]], [[2410.05363|PhyGenBench]]
+- [[2608.09873|Sci-VBench]], [[2606.28757|CrashTwin]], [[2606.24256|TailOR]], [[2606.04811|Dream.exe]], [[2605.29360|MiraBench]], [[2603.15847|FEEL]], [[2512.12756|FysicsWorld]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.02311|IDPP]], [[2507.15824|PhysVidBench]], [[2506.00022|PHYSICS-Dataset]], [[2505.15929|PhyX]], [[2504.02918|Morpheus]], [[2503.06800|VideoPhy-2]], [[2503.05333|PhysicsGen]], [[2410.05363|PhyGenBench]]
 
 > [!star] Key Papers
 > - [[2504.02918|Morpheus]] — 130 real-world Newtonian mechanics videos with hierarchical Discard/Dynamical/Invariance scoring; even SOTA generators (WAN-2.1, COSMOS-predict2) score only 0.52–0.55 vs. real-world's 0.98+

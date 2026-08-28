@@ -2651,6 +2651,7 @@ papers = [
     "https://arxiv.org/abs/2503.05189",  # Persistent Object Gaussian Splat (POGS) for Tracking Human and Robot Manipulation of Irregularly Shaped Objects
     "https://arxiv.org/abs/2503.05255",  # CMMCoT: Enhancing Complex Multi-Image Comprehension via Multi-Modal Chain-of-Thought and Memory Augmentation
     "https://arxiv.org/abs/2503.05316",  # CoinRobot: Generalized End-to-end Robotic Learning for Physical Intelligence
+    "https://arxiv.org/abs/2503.05333",  # PhysicsGen: Can Generative Models Learn from Images to Predict Complex Physical Relations?
     "https://arxiv.org/abs/2503.05453",  # Soft Policy Optimization: Online Off-Policy RL for Sequence Models
     "https://arxiv.org/abs/2503.05592",  # R1-Searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning
     "https://arxiv.org/abs/2503.05652",  # BEHAVIOR Robot Suite: Streamlining Real-World Whole-Body Manipulation for Everyday Household Activities
@@ -5098,6 +5099,7 @@ papers = [
     "https://arxiv.org/abs/2510.04354",  # Reliable and Scalable Robot Policy Evaluation with Imperfect Simulators
     "https://arxiv.org/abs/2510.04474",  # DRPO: Efficient Reasoning via Decoupled Reward Policy Optimization
     "https://arxiv.org/abs/2510.04507",  # Wavelet Predictive Representations for Non-Stationary Reinforcement Learning
+    "https://arxiv.org/abs/2510.04592",  # MobRT: A Digital Twin-Based Framework for Scalable Learning in Mobile Manipulation
     "https://arxiv.org/abs/2510.04618",  # Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models
     "https://arxiv.org/abs/2510.04871",  # Less is More: Recursive Reasoning with Tiny Networks
     "https://arxiv.org/abs/2510.04978",  # Aligning Perception, Reasoning, Modeling and Interaction: A Survey on Physical AI
@@ -7371,6 +7373,7 @@ papers = [
     "https://arxiv.org/abs/2604.14421",  # BIEVR-LIO: Robust LiDAR-Inertial Odometry through Bump-Image-Enhanced Voxel Maps
     "https://arxiv.org/abs/2604.14732",  # World-Value-Action Model: Implicit Planning for Vision-Language-Action Systems
     "https://arxiv.org/abs/2604.14944",  # HRDexDB: A Paired Human-Robot Dataset for Cross-Embodiment Dexterous Grasping
+    "https://arxiv.org/abs/2604.15023",  # DockAnywhere: Data-Efficient Visuomotor Policy Learning for Mobile Manipulation via Novel Demonstration Generation
     "https://arxiv.org/abs/2604.15034",  # Autogenesis: A Self-Evolving Agent Protocol
     "https://arxiv.org/abs/2604.15215",  # A Hierarchical Spatiotemporal Action Tokenizer for In-Context Imitation Learning in Robotics
     "https://arxiv.org/abs/2604.15281",  # R3D: Revisiting 3D Policy Learning
@@ -9347,6 +9350,7 @@ papers = [
     "https://arxiv.org/abs/2608.00547",  # Disentangling Visuo-Tactile Foresight: Oracle-Guided Interface Discovery for World Action Models
     "https://arxiv.org/abs/2608.00554",  # DexMani: Human-Derived Manipulability Guidance for Dexterous Rotation
     "https://arxiv.org/abs/2608.00561",  # Through the LENS: Local Geometric Decomposition of Vision-Language Model Representations
+    "https://arxiv.org/abs/2608.00613",  # From Failures to Supervision: DynamicEnvPlan for Robust Long-Horizon Embodied Planning
     "https://arxiv.org/abs/2608.00725",  # SelfWAM: A Self-Grounded Unified World Action Model for Fast Robot Control
     "https://arxiv.org/abs/2608.00793",  # DynamicWAM: Dual-Path Motion Conditioning for World-Action Models in Dynamic Manipulation
     "https://arxiv.org/abs/2608.00820",  # LooperMuscle: Fast and Stable Learning of Humanoid Whole-Body Tracking via Structured Mixture-of-Experts
