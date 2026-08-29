@@ -311,6 +311,7 @@ Self-evolution requires self-awareness. Before an agent can improve, it must fir
 
 VLMs and learned classifiers detect task failure in real-time so the agent can abort early. The cluster splits along the *signal type* — internal features, semantic misalignment, OOD score, density-based, multi-detector, calibration, LLM-driven, or human-shared.
 
+- **[[2608.22657|Physical Agentic AI]]** — An LLM robot-crew architecture splitting planning from actuation: typed ==skill libraries== + ==workflow contracts== bound a non-actuating **Mission Planner**, while a deterministic **Robot Orchestrator** re-authorizes every dispatch; false dispatch **23% → 0%**, **100%** fault recall; enforcement, not retrieval, gates actuation.
 - **[[2510.09459|FIPER]]** — A ==Predictive failure detection== method combining ==RND-OE== OOD score + ==Action-Chunk Entropy==, calibrated by ==conformal prediction==; catches failures *before* they happen; **0.78** overall accuracy across 5 sim/real envs.
 - **[[2506.09937|SAFE]]** — A multitask failure detector that maps a VLA's own ==internal hidden-state features== through a lightweight ==MLP/LSTM== scorer + ==functional conformal prediction==; provable false-positive guarantees, no external sensor, **<1ms** added inference.
 - **[[2410.00371|AHA]]** — An ==Instruction-tuned VLM== + ==FailGen== labeling; AHA-13B beats GPT-4o on AHA-Test (**0.446**) / RoboFail (**0.280**); feedback adds **+22.34%** RL reward synthesis, **+36.7%** TAMP, **+5%** zero-shot data-gen SR.
