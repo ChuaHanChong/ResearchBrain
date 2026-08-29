@@ -322,7 +322,7 @@ Cross-cutting research that doesn't fit neatly into manipulation, VLAs, or navig
 > - [[2207.13784|AvatarPoser]] — foundational method for full-body pose estimation from sparse VR/MR sensors (headset + hands only), still the reference SOTA baseline that later work is compared against.
 
 **VLA Efficiency, Adaptation & Model Merging** — Parameter-efficient adaptation, distillation, and merging techniques for embodied foundation models.
-- [[2608.04692|Task-Vector-Negation-Audit]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2602.06043|Shared-LoRA-Subspaces-for-almo]], [[2601.17616|Split-on-Share]], [[2601.14133|TwinBrainVLA]], [[2512.23017|Merge-before-Forget]], [[2510.21817|VITA-E]], [[2508.12189|Self-Guided]], [[2508.07033|P3]], [[2506.21250|ACTLLM]], [[2506.07639|Fast-ECoT]], [[2504.20459|SAS-Prompt]]
+- [[2608.17484|Reuse-Before-Retrieve]], [[2608.04692|Task-Vector-Negation-Audit]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2602.06043|Shared-LoRA-Subspaces-for-almo]], [[2601.17616|Split-on-Share]], [[2601.14133|TwinBrainVLA]], [[2512.23017|Merge-before-Forget]], [[2510.21817|VITA-E]], [[2508.12189|Self-Guided]], [[2508.07033|P3]], [[2506.21250|ACTLLM]], [[2506.07639|Fast-ECoT]], [[2504.20459|SAS-Prompt]]
 
 > [!star] Key Papers
 > - [[2601.14133|TwinBrainVLA]] — clearest solution to the "VLA adaptation" problem, structurally preventing catastrophic forgetting during fine-tuning with SOTA out-of-domain results on SimplerEnv/RoboCasa and real-robot validation.
@@ -1173,7 +1173,7 @@ How robots learn to act from demonstrations. The field evolved from perception-b
 > - [[2511.01107|SLAP]] — the foundational hybrid: grafts RL-learned "shortcut" skills onto a classical TAMP planning graph, cutting plan length by up to 73% while remaining 100% successful where pure RL baselines score 0%
 
 **Memory-Guided Long-Horizon Orchestration** — Agentic harnesses, hierarchical sub-goal policies, and closed-loop planners that orchestrate skills or heterogeneous policies across long-horizon manipulation tasks.
-- [[2608.22800|TTS]], [[2608.16978|VLCP]], [[2608.16889|BATON]], [[2608.16172|SparkVLA]], [[2608.08884|SHRIMP]], [[2608.03924|ETA]], [[2607.19633|LENS-Clutter]], [[2608.00613|DynamicEnvPlan]], [[2607.18060|RoboHarness]], [[2607.08448|Harness VLA]], [[2607.08024|APIVOT]], [[2607.06501|HUME]], [[2607.05377|Cortex]], [[2607.04162|ACE-Manipulation]], [[2606.10025|GHOST]], [[2606.03047|ModuLoop]], [[2605.25832|AUTO-ROBOTIST]], [[2605.02600|CoRAL]], [[2604.13942|Goal2Skill]], [[2602.21198|Reflective-Test-Time-Planning]], [[2602.20119|NovaPlan]], [[2601.15164|V-CAGE]], [[2510.14968|RDD]], [[2503.21969|DAHLIA]], [[2504.16738|MOSAIC-SkillPlan]], [[2410.22332|ManipGen]]
+- [[2608.22800|TTS]], [[2608.16978|VLCP]], [[2608.16889|BATON]], [[2608.16172|SparkVLA]], [[2608.08884|SHRIMP]], [[2608.03924|ETA]], [[2608.00613|DynamicEnvPlan]], [[2607.19633|LENS-Clutter]], [[2607.18060|RoboHarness]], [[2607.08448|Harness VLA]], [[2607.08024|APIVOT]], [[2607.06501|HUME]], [[2607.05377|Cortex]], [[2607.04162|ACE-Manipulation]], [[2606.10025|GHOST]], [[2606.03047|ModuLoop]], [[2605.25832|AUTO-ROBOTIST]], [[2605.02600|CoRAL]], [[2604.13942|Goal2Skill]], [[2603.24060|RoboHarness]], [[2602.21198|Reflective-Test-Time-Planning]], [[2602.20119|NovaPlan]], [[2601.15164|V-CAGE]], [[2510.14968|RDD]], [[2504.16738|MOSAIC-SkillPlan]], [[2503.21969|DAHLIA]], [[2410.22332|ManipGen]]
 
 > [!star] Key Papers
 > - [[2607.18060|RoboHarness]] — orchestrates heterogeneous VLA/RL/TAMP policies through a memory bridge that resolves cross-policy distribution mismatch, delivering the group's strongest and broadest empirical validation (98.7% LIBERO, 95.2% LIBERO-LoHo, 135 real-robot trials)
@@ -1951,7 +1951,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2505.12224|RoboFAC]] — Lightweight failure critic outperforming GPT-4o; improves real-world success by 29.1%
 
 **Causal & Counterfactual Failure Diagnosis** — Root-cause analysis of failures via causal or counterfactual reasoning.
-- [[2608.10232|FACT-Failure-Aware]], [[2607.14826|Interventional Causal Circuits]], [[2607.06256|Semantic Handoff Diagnosis]], [[2603.13528|Counterfactual-Failure-Synthesis]], [[2603.06987|Foundational-WM]], [[2503.15202|VLM-BT-Failure-Handling]], [[2412.04455|Code-as-Monitor]], [[2406.11548|AIC-MLLM]]
+- [[2608.10232|FACT-Failure-Aware]], [[2607.14826|Interventional Causal Circuits]], [[2607.06256|Semantic Handoff Diagnosis]], [[2603.13528|Counterfactual-Failure-Synthesis]], [[2603.06987|Foundational-WM]], [[2503.15202|VLM-BT-Failure-Handling]], [[2412.04455|Code-as-Monitor]], [[2406.11548|AIC-MLLM]], [[2011.11991|Counterfactual-Planner-Failures]]
 
 > [!star] Key Papers
 > - [[2607.14826|Interventional Causal Circuits]] — true causal-intervention framework; cuts failed attempts **37%** and speeds recovery **2.2x** under a degraded planning distribution
@@ -1959,7 +1959,7 @@ VLAs are the current mainstream approach to robot control: take a pre-trained vi
 > - [[2607.06256|Semantic Handoff Diagnosis]] — names and quantifies a causal mechanism (semantic handoff: 37 grounding / 58 control / 35 readiness failures), fixes it via tightened postconditions
 
 **Recovery & Correction Mechanisms** — Methods that recover from or correct a detected failure at runtime.
-- [[2608.14822|CoRe-Realignment]], [[2607.27881|RoboBRIDGE]], [[2607.27782|RedFlow]], [[2607.01804|VLA-Corrector]], [[2606.27146|PhysReflect-VLA]], [[2606.23085|Foresight]], [[2606.20479|GroundControl]], [[2606.09630|ReCoVLA]], [[2606.07723|VoLoAgent]], [[2605.11951|AgentChord]], [[2605.01195|TAIL-Safe]], [[2604.21232|ReCAPA]], [[2604.16677|ReconVLA]], [[2602.02895|DEFT-FailActive]], [[2410.14868|Diff-DAgger]], [[2409.03966|VLM-Failure-Recovery]], [[2407.08735|AESOP]], [[2406.15917|BGR]], [[2404.00756|Recover]], [[2310.17552|Sirius-Runtime]], [[2307.00329|DoReMi]], [[2306.15724|REFLECT]]
+- [[2608.26645|FLARE-Recovery]], [[2608.14822|CoRe-Realignment]], [[2607.27881|RoboBRIDGE]], [[2607.27782|RedFlow]], [[2607.01804|VLA-Corrector]], [[2606.27146|PhysReflect-VLA]], [[2606.23085|Foresight]], [[2606.20479|GroundControl]], [[2606.09630|ReCoVLA]], [[2606.07723|VoLoAgent]], [[2605.11951|AgentChord]], [[2605.01195|TAIL-Safe]], [[2604.21232|ReCAPA]], [[2604.16677|ReconVLA]], [[2602.02895|DEFT-FailActive]], [[2410.14868|Diff-DAgger]], [[2409.03966|VLM-Failure-Recovery]], [[2407.08735|AESOP]], [[2406.15917|BGR]], [[2404.00756|Recover]], [[2310.17552|Sirius-Runtime]], [[2307.00329|DoReMi]], [[2306.15724|REFLECT]]
 
 > [!star] Key Papers
 > - [[2306.15724|REFLECT]] — foundational hierarchical LLM-based failure explanation and correction framework; established the RoboFail benchmark still used as a baseline today

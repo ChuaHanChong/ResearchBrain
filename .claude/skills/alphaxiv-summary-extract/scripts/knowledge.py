@@ -9752,4 +9752,13 @@ papers = [
     "https://arxiv.org/abs/2608.23552",  # Prime Agent: A Self-Improving RLM Harness
     "https://arxiv.org/abs/2608.24042",  # Hierarchical Skill Retrieval for Data-Efficient Adaptation of Vision-Language-Action Models
     "https://arxiv.org/abs/2608.24574",  # PhysMLLMs: Spatial Priors for Unified Referring Segmentation and Grounded Reasoning of Images and Videos
+    "https://arxiv.org/abs/2608.21204",
+    "https://arxiv.org/abs/2608.23875",
+    "https://arxiv.org/abs/2608.27345",
+    "https://arxiv.org/abs/2608.22642",
+    "https://arxiv.org/abs/2607.09648",
+    "https://arxiv.org/abs/2608.21204",
+    "https://arxiv.org/abs/2608.27395",
+    "https://arxiv.org/abs/2608.26103",
+    "https://arxiv.org/abs/2608.27448",
 ]

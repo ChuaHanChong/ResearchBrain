@@ -329,7 +329,7 @@ Learning visual representations without labels — the foundation for data-effic
 - [[2607.05247|LingBot-Vision]], [[2606.04718|CoRe-MoE]], [[2605.29564|VE2VF]], [[2604.09445|AsymLoc]], [[2603.12217|Verifier-Point-Tracking]], [[2602.00937|CLAMP]], [[2506.14754|Sparsh-X]], [[2506.10359|Multi-Suction Pick Success]], [[2505.11420|Sparsh-skin]], [[2502.19374|VFM-LiDAR Registration]], [[2410.24090|Sparsh]]
 
 **General Self-Supervised Learning Theory** — Theoretical and empirical studies of what makes contrastive/self-distillation objectives work and how they scale.
-- [[2608.06174|SO-OPF]], [[2605.03517|LDM-SSL]], [[2603.26799|GJE]], [[2603.15553|Bootleg]], [[2506.10159|VCL]], [[2410.10817|Human-Aligned Vision Representations]], [[2406.09294|JEA-Scaling-Study]]
+- [[2608.06174|SO-OPF]], [[2605.03517|LDM-SSL]], [[2603.26799|GJE]], [[2603.15553|Bootleg]], [[2601.21584|Observation-Quotient]], [[2506.10159|VCL]], [[2410.10817|Human-Aligned Vision Representations]], [[2406.09294|JEA-Scaling-Study]]
 
 **Masked Image Modeling** — Self-supervised methods that mask patches of an image and train the model to reconstruct or predict the missing content, learning rich visual representations without labels.
 - [[2603.22953|ClusterSTM]], [[2505.11129|PhiNet-v2]], [[2402.10093|MIM-Refiner]], [[2303.16727|VideoMAE V2]], [[2205.14949|HiViT]], [[2111.09886|SimMIM]], [[2111.06377|MAE]], [[2106.08254|BEiT]]
