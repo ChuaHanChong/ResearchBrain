@@ -472,7 +472,7 @@ Instead of reasoning in natural language alone, these methods generate executabl
 RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal models. See [[08_Reinforcement-Learning]] for the RL methods themselves.
 
 **Video Reasoning Methods** — RL/architecture methods for video-grounded chain-of-thought reasoning.
-- [[2605.21973|Foresee-to-Ground]], [[2602.20159|VBVR]], [[2602.10675|TwiFF]], [[2510.27363|ToolScope]], [[2510.23569|EgoThinker]], [[2510.23473|Video-Thinker]], [[2508.18269|FlowVLA]], [[2508.17692|Agentic-Reasoning-Framework-Survey]], [[2508.09736|M3-Agent]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2507.01949|Kwai-Keye-VL]], [[2505.19877|Vad-R1]], [[2505.19000|VerIPO]], [[2504.08672|Genius]], [[2503.21776|Video-R1]]
+- [[2608.26105|VBVR-Pro]], [[2605.21973|Foresee-to-Ground]], [[2602.20159|VBVR]], [[2602.10675|TwiFF]], [[2510.27363|ToolScope]], [[2510.23569|EgoThinker]], [[2510.23473|Video-Thinker]], [[2508.18269|FlowVLA]], [[2508.17692|Agentic-Reasoning-Framework-Survey]], [[2508.09736|M3-Agent]], [[2508.04416|VITAL]], [[2508.03100|AVATAR]], [[2507.01949|Kwai-Keye-VL]], [[2505.19877|Vad-R1]], [[2505.19000|VerIPO]], [[2504.08672|Genius]], [[2503.21776|Video-R1]]
 
 **Video Reasoning Benchmarks** — Benchmarks for evaluating multi-step video and temporal reasoning.
 - [[2507.18342|EgoExoBench]], [[2311.17005|MVBench]], [[2311.01620|ACQUIRED]], [[2305.13786|Perception Test]], [[1910.01442|CLEVRER]]
