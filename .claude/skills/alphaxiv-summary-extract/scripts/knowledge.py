@@ -9586,6 +9586,7 @@ papers = [
     "https://arxiv.org/abs/2608.10232",  # FACT: Failure-Aware Causal Training for World-Action Models
     "https://arxiv.org/abs/2608.10299",  # Co-Evolution in Agentic Systems: Toward Self-Directed Evolution Beyond Human Design
     "https://arxiv.org/abs/2608.10393",  # Hidden in Plain Sight: Diffusion-Based Unrestricted Robotic Attacks on Vision-Language-Action Models
+    "https://arxiv.org/abs/2608.10413",  # DriveVLA-M0: Failure-Aware Memory Augmentation for Autonomous Driving
     "https://arxiv.org/abs/2608.10449",  # PBD-AG: Persistent Baseline-Delta Active Graphs with Uncertainty-Aware Inspection for Long-Horizon Service Robots
     "https://arxiv.org/abs/2608.10484",  # Lost in Reconstruction: Aligning Action Representations with Language in Vision-Language-Action Models
     "https://arxiv.org/abs/2608.10744",  # Beyond Pixels: From Video Priors to 4D Worlds
