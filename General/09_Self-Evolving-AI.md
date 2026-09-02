@@ -406,7 +406,7 @@ Extending self-evolution beyond text-only LLMs to multimodal models that process
 Self-evolution over time: systems that accumulate knowledge from ongoing experience without catastrophic forgetting. While sections 1-4 focus on improving within a training run, continual learning ensures improvements persist across deployment episodes and new environments.
 
 **Memory-Augmented Agent Systems** — LLM and multimodal agents that build persistent, retrievable memory banks of past experience, distilling raw interaction trajectories into reusable knowledge that improves future performance.
-- [[2607.01988|Identity-Stable-Consolidation]], [[2605.10663|Evolving-RL]], [[2604.13074|PersonaVLM]], [[2604.04503|MIA]], [[2604.01007|Omni-SimpleMem]], [[2603.16856|OEL]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2508.19005|ELL-Framework]]
+- [[2608.24876|Recuris]], [[2607.01988|Identity-Stable-Consolidation]], [[2605.10663|Evolving-RL]], [[2604.13074|PersonaVLM]], [[2604.04503|MIA]], [[2604.01007|Omni-SimpleMem]], [[2603.16856|OEL]], [[2510.04618|ACE]], [[2509.25140|ReasoningBank]], [[2508.19005|ELL-Framework]]
 
 > [!star] Key Papers
 > - [[2508.19005|ELL-Framework]] — Experience-driven Lifelong Learning: introduces the framework and StuLife benchmark for measuring continual self-improvement in realistic settings

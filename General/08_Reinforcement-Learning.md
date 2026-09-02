@@ -253,7 +253,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 - [[2605.10899|RubricEM]], [[2604.24532|MORL-FB]], [[2604.05112|Vintix-II]], [[2601.21845|Constrained-Meta-RL]], [[2512.16848|LAMER]], [[2510.20264|OpTI-BFM]], [[2509.24923|Meta-Bandit-Exploitation-Bias]], [[2509.18389|ICRL-Emergence]], [[2508.16027|Transformer-Non-Stationary-RL]], [[2506.13690|MASP]], [[2506.06303|LLM-In-Context-RL]], [[2506.05426|T2MIR]], [[2506.01299|In-Context-Q-Learning]], [[2502.04979|Bandit-Prompt-Tuning-DT]], [[2502.03752|SISL]], [[2502.02869|OmniRL]]
 
 **Evolutionary Strategies vs Deep RL** — Comparative analysis of gradient-free vs gradient-based approaches to policy optimization.
-- [[2606.29082|EFT]], [[2604.07725|Squeeze-Evolve]], [[2602.00170|Blessing-of-Dimensionality-LLM]], [[2509.26354|Misevolution]], [[2509.24372|Evolution-Strategies-at-Scale]], [[2501.15129|EvoRL]], [[2402.06912|ES-Linear-Policy]], [[2110.01411|DRL-vs-ES-Survey]], [[1803.07055|ARS]], [[1703.03864|OpenAI ES]]
+- [[2608.27351|ES vs GRPO for LLM Reasoning]], [[2608.17310|Agentic ESOpt]], [[2606.29082|EFT]], [[2604.07725|Squeeze-Evolve]], [[2602.00170|Blessing-of-Dimensionality-LLM]], [[2509.26354|Misevolution]], [[2509.24372|Evolution-Strategies-at-Scale]], [[2501.15129|EvoRL]], [[2402.06912|ES-Linear-Policy]], [[2110.01411|DRL-vs-ES-Survey]], [[1803.07055|ARS]], [[1703.03864|OpenAI ES]]
 
 > [!star] Key Papers
 > - [[2501.15129|EvoRL]] — JAX-based GPU-accelerated framework achieving 60x speedup for evolutionary RL
@@ -537,7 +537,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2505.11081|ShiQ]] — Modified Bellman equations bring token-wise off-policy Q-learning back to LLM fine-tuning, matching on-policy performance on UltraFeedback and BFCL-V3 without new sampling
 
 **VLA & Robotics-Applied Off-Policy Methods** — Off-policy and sample-efficient RL applied to vision-language-action and embodied control.
-- [[2608.05989|OG-SPR]], [[2606.05555|MR.Q]], [[2606.02313|VLA-Aerial-Nav-GRPO]], [[2605.28527|VLA-Value-Probing]], [[2605.19282|Pion]], [[2605.14779|CPQL]], [[2605.12236|TMRL]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2605.00159|E²DT]], [[2603.16860|DreamPlan]], [[2603.12087|QAvatar]], [[2510.06710|RLinf-VLA]]
+- [[2608.21204|Q-Planning]], [[2608.05989|OG-SPR]], [[2606.05555|MR.Q]], [[2606.02313|VLA-Aerial-Nav-GRPO]], [[2605.28527|VLA-Value-Probing]], [[2605.19282|Pion]], [[2605.14779|CPQL]], [[2605.12236|TMRL]], [[2605.11009|ACSAC]], [[2605.03821|RoboAlign-R1]], [[2605.03065|OGPO]], [[2605.01663|FAN]], [[2605.00416|LWD]], [[2605.00159|E²DT]], [[2603.16860|DreamPlan]], [[2603.12087|QAvatar]], [[2510.06710|RLinf-VLA]]
 
 > [!star] Key Papers
 > - [[2605.03065|OGPO]] — Bi-level MDP decouples off-policy critic learning from on-policy denoising updates, full-finetuning generative control policies with roughly 10x fewer environment steps than on-policy baselines
@@ -750,7 +750,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2410.08146|PAV]] — Process Advantage Verifiers measure step-level progress; fine-grained credit assignment
 
 **Failure Modes, Spurious Signals & Reward Hacking** — Cases where RLVR rewards mislead training or where the policy exploits shortcuts.
-- [[2604.03993|Noisy-Supervision-Reasoning]], [[2512.20760|RLCausal]], [[2512.16912|RLVR-Clipping-Entropy]], [[2510.09259|Self-Critique-Contamination]], [[2509.04259|RL's-Razor]], [[2506.17219|RLIF-No-Free-Lunch]], [[2506.10947|Spurious-Rewards-RLVR]], [[2506.01347|Negative-Reinforcement-RLVR]], [[2505.18830|GRPO-Negative-Gradient]]
+- [[2608.23875|AI Surprise Anecdotes]], [[2604.03993|Noisy-Supervision-Reasoning]], [[2512.20760|RLCausal]], [[2512.16912|RLVR-Clipping-Entropy]], [[2510.09259|Self-Critique-Contamination]], [[2509.04259|RL's-Razor]], [[2506.17219|RLIF-No-Free-Lunch]], [[2506.10947|Spurious-Rewards-RLVR]], [[2506.01347|Negative-Reinforcement-RLVR]], [[2505.18830|GRPO-Negative-Gradient]]
 
 > [!star] Key Papers
 > - [[2506.10947|Spurious-Rewards-RLVR]] — Foundational, most surprising finding: random or deliberately incorrect rewards drive Qwen-Math gains nearly matching ground-truth RLVR, revealing RLVR can amplify a pre-existing shortcut rather than teach anything new
@@ -1461,7 +1461,7 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 
 
 **Diffusion/Flow GRPO for Image & Video Generation** — GRPO and flow-matching variants adapted to diffusion-based image/video generation.
-- [[2604.10962|ScoRe-Flow]], [[2603.28718|Stepwise-Flow-GRPO]], [[2603.16769|GDPO-SR]], [[2603.01163|BeautyGRPO]], [[2512.21514|DiverseGRPO]], [[2512.18766|MaskFocus]], [[2512.08153|TreeGRPO]], [[2512.04784|PaCo-RL]], [[2511.20256|Adv-GRPO]], [[2510.13418|Mask-GRPO]], [[2510.08425|DGPO-Diffusion]], [[2510.02880|MaskGRPO]], [[2510.01982|G2RPO-Flow]], [[2510.01540|Diffusion-LPO]], [[2510.00502|Diffusion-EM-Alignment]], [[2509.22485|GCPO-RL]], [[2509.16117|DiffusionNFT]], [[2508.04324|TempFlow-GRPO]]
+- [[2608.26872|Self-OPD]], [[2604.10962|ScoRe-Flow]], [[2603.28718|Stepwise-Flow-GRPO]], [[2603.16769|GDPO-SR]], [[2603.01163|BeautyGRPO]], [[2512.21514|DiverseGRPO]], [[2512.18766|MaskFocus]], [[2512.08153|TreeGRPO]], [[2512.04784|PaCo-RL]], [[2511.20256|Adv-GRPO]], [[2510.13418|Mask-GRPO]], [[2510.08425|DGPO-Diffusion]], [[2510.02880|MaskGRPO]], [[2510.01982|G2RPO-Flow]], [[2510.01540|Diffusion-LPO]], [[2510.00502|Diffusion-EM-Alignment]], [[2509.22485|GCPO-RL]], [[2509.16117|DiffusionNFT]], [[2508.04324|TempFlow-GRPO]]
 
 > [!star] Key Papers
 > - [[2508.04324|TempFlow-GRPO]] — foundational: shows flow-GRPO's uniform per-step credit assignment is the core inefficiency, an insight later Stepwise-Flow-GRPO, G²RPO-Flow, and TreeGRPO all build on
@@ -1493,7 +1493,7 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 > - [[2506.08011|ViGaL]] — RL-based game play for learning generalizable visual reasoning; bridges generation and understanding
 
 **Continual & Test-Time RL** — RL methods that continue learning at deployment time or adapt to distribution shifts.
-- [[2607.01111|FAR]], [[2604.11768|GC-PFO]], [[2604.11138|ViserDex]], [[2603.02203|T3RL]], [[2602.21198|Reflective-Test-Time-Planning]], [[2601.16175|TTT-Discover]], [[2502.03369|PVP (Proxy Value Propagation)]]
+- [[2608.27448|TTPO]], [[2607.01111|FAR]], [[2604.11768|GC-PFO]], [[2604.11138|ViserDex]], [[2603.02203|T3RL]], [[2602.21198|Reflective-Test-Time-Planning]], [[2601.16175|TTT-Discover]], [[2502.03369|PVP (Proxy Value Propagation)]]
 
 > [!star] Key Papers
 > - [[2601.16175|TTT-Discover]] — Test-time training enabling LLMs to learn and adapt to novel patterns during inference

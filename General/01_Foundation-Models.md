@@ -345,7 +345,7 @@ Learning visual representations without labels — the foundation for data-effic
 - [[2607.26924|TC-LeWM]], [[2606.32026|AdaJEPA]], [[2605.00078|Being-H0.7]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA-2.1]], [[2602.23058|GeoWorld]], [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]], [[2512.24497|JEPA-WM]], [[2512.10942|VL-JEPA]], [[2510.00739|TD-JEPA]], [[2506.09985|V-JEPA-2]], [[2504.16591|JEPA-for-RL]], [[2502.11831|V-JEPA (Intuitive Physics)]], [[2404.08471|V-JEPA]], [[2403.00504|IWM]], [[1803.07616|IntPhys]]
 
 **Core JEPA Theory & Objectives** — Foundational and theoretical studies of the JEPA objective itself: variants, regularizers, and what makes latent prediction work.
-- [[2607.02404|Object-centric LeJEPA]], [[2606.15956|TDV]], [[2606.02572|VISReg]], [[2605.03413|NEO-Theorizer]], [[2603.20111|Var-JEPA]], [[2601.14354|VJEPA-Probabilistic]], [[2512.19605|KerJEPA]], [[2511.08544|LeJEPA]], [[2509.25449|TS-JEPA]], [[2509.12249|P-JEPA]], [[2507.15216|N-JEPA]], [[2505.03176|seq-JEPA]], [[2410.19560|C-JEPA]], [[2410.03755|D-JEPA]], [[2407.03475|JEPA-Noisy-Features]], [[2312.04000|LiDAR-Metric]], [[2307.12698|MC-JEPA]], [[2301.08243|I-JEPA]], [[2211.10831|JEPA-Slow-Features]], [[1504.08023|Visual Representation Anticipation]]
+- [[2608.27395|LeVJEPA]], [[2607.02404|Object-centric LeJEPA]], [[2606.15956|TDV]], [[2606.02572|VISReg]], [[2605.03413|NEO-Theorizer]], [[2603.20111|Var-JEPA]], [[2601.14354|VJEPA-Probabilistic]], [[2512.19605|KerJEPA]], [[2511.08544|LeJEPA]], [[2509.25449|TS-JEPA]], [[2509.12249|P-JEPA]], [[2507.15216|N-JEPA]], [[2505.03176|seq-JEPA]], [[2410.19560|C-JEPA]], [[2410.03755|D-JEPA]], [[2407.03475|JEPA-Noisy-Features]], [[2312.04000|LiDAR-Metric]], [[2307.12698|MC-JEPA]], [[2301.08243|I-JEPA]], [[2211.10831|JEPA-Slow-Features]], [[1504.08023|Visual Representation Anticipation]]
 
 > [!star] Key Papers
 > - [[2301.08243|I-JEPA]] — Predicts in latent space instead of pixel space; avoids reconstruction artifacts
@@ -354,7 +354,7 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2601.14354|VJEPA-Probabilistic]] — Variational/Bayesian JEPA with predictive-information-bottleneck guarantees; filters high-variance nuisance distractors, keeps **R²>0.84** under SNR=-2.2 dB
 
 **Domain-Specific JEPA Applications** — JEPA adapted to non-standard modalities and domains: remote sensing, 3D/point clouds, graphs, satellite imagery, recommendation, and trajectory data.
-- [[2511.18424|CrossJEPA]], [[2504.10512|JEPA4Rec]], [[2504.03169|REJEPA]], [[2412.14123|AnySat]], [[2409.15803|3D-JEPA]], [[2406.12913|T-JEPA-Trajectory]], [[2404.16432|Point-JEPA]], [[2311.15153|SAR-JEPA]], [[2309.16014|Graph-JEPA]]
+- [[2608.22642|Mol-JEPA]], [[2511.18424|CrossJEPA]], [[2504.10512|JEPA4Rec]], [[2504.03169|REJEPA]], [[2412.14123|AnySat]], [[2409.15803|3D-JEPA]], [[2406.12913|T-JEPA-Trajectory]], [[2404.16432|Point-JEPA]], [[2311.15153|SAR-JEPA]], [[2309.16014|Graph-JEPA]]
 
 **Cross-Modal & Generative JEPA Variants** — JEPA formulations for vision-language alignment, text-conditioned generation, and multimodal pretraining.
 - [[2607.00784|LeVLJEPA]], [[2605.02134|PV-VAE]], [[2510.00974|JEPA-T]], [[2509.14252|LLM-JEPA]], [[2503.06380|TI-JEPA]]

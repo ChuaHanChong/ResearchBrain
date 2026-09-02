@@ -538,7 +538,7 @@ RL-trained visual reasoning -- applying the DeepSeek-R1 paradigm to multimodal m
 - [[2607.12395|Ring-Zero]], [[2509.21128|RL-Squeezes-SFT-Expands]], [[2508.05004|R-Zero]], [[2508.02150|Self-Supervised-RL-IF]], [[2505.03335|Absolute-Zero]], [[2503.24290|Open-Reasoner-Zero]], [[2501.17161|SFT-Memorizes-RL-Generalizes]], [[2412.01951|Sharpening-Mechanism]], [[2410.15639|Self-Developing]]
 
 **PPO/GRPO Policy-Optimization Algorithm Variants** — Direct variants or successors of PPO/GRPO-style policy-optimization algorithms.
-- [[2602.04879|DPPO]], [[2602.02710|MaxRL]], [[2512.17636|TRAPO]], [[2508.08221|Lite-PPO]], [[2508.02298|CAPO]], [[2505.20686|A*-PO]], [[2505.18454|HRPO]], [[2505.17508|RPG]], [[2410.01679|VinePPO]]
+- [[2608.27351|ES vs GRPO for LLM Reasoning]], [[2602.04879|DPPO]], [[2602.02710|MaxRL]], [[2512.17636|TRAPO]], [[2508.08221|Lite-PPO]], [[2508.02298|CAPO]], [[2505.20686|A*-PO]], [[2505.18454|HRPO]], [[2505.17508|RPG]], [[2410.01679|VinePPO]]
 
 **RLVR Training Data, Rewards & Objective Design** — Data curricula, reward shaping, and objective-function design for RLVR.
 - [[2605.02881|MolmoAct2]], [[2603.22117|RLVR-Direction]], [[2603.17305|Contrastive-Reasoning-Alignment]], [[2602.04118|TinyLoRA]], [[2602.02605|ESMA]], [[2602.01058|PEAR]], [[2512.14693|URM]], [[2512.13607|Nemotron-Cascade]], [[2510.25992|SRL]], [[2510.24684|SPICE]], [[2510.09001|DARO]], [[2510.08189|R-Horizon]], [[2510.03259|MASA]], [[2510.02263|RLAD]], [[2510.01265|RLP]], [[2509.26626|RSA]], [[2509.22637|Variational-Reasoning]], [[2509.20357|RLMT]], [[2509.15194|EVOL-RL]], [[2509.08827|RL-for-LRM-Survey]], [[2509.07980|Parallel-R1]], [[2509.06870|AggLM]], [[2509.03646|HICRA]]
@@ -640,7 +640,7 @@ Understanding and reasoning about spatial relationships, 3D geometry, and physic
 The emerging paradigm: spend more compute at inference time to improve reasoning, or learn when to skip reasoning entirely.
 
 **Test-Time Scaling Methods** — Surveys and techniques for allocating additional compute at inference to boost reasoning quality.
-- [[2605.19376|GRAM]], [[2605.09537|CAPS-Power-Sampling]], [[2604.16029|STOP]], [[2604.10333|ZWM]], [[2604.07725|Squeeze-Evolve]], [[2603.29557|FlowPIE]], [[2603.00461|ReMoT]], [[2602.01984|Delimiter-Token-Scaling]], [[2601.22628|TTCS]], [[2601.18795|Reuse-FLOPs]], [[2601.18067|EvolVE]], [[2601.16175|TTT-Discover]], [[2511.14178|VLA-Pilot]], [[2504.13828|Cognition-Engineering]], [[2504.10449|M1]], [[2503.24235|Test-Time-Scaling-Survey]], [[2503.07572|MRT]], [[2501.09686|Large-Reasoning-Models-Survey]], [[2408.03314|Test-Time-Compute-Scaling]]
+- [[2608.27448|TTPO]], [[2605.19376|GRAM]], [[2605.09537|CAPS-Power-Sampling]], [[2604.16029|STOP]], [[2604.10333|ZWM]], [[2604.07725|Squeeze-Evolve]], [[2603.29557|FlowPIE]], [[2603.00461|ReMoT]], [[2602.01984|Delimiter-Token-Scaling]], [[2601.22628|TTCS]], [[2601.18795|Reuse-FLOPs]], [[2601.18067|EvolVE]], [[2601.16175|TTT-Discover]], [[2511.14178|VLA-Pilot]], [[2504.13828|Cognition-Engineering]], [[2504.10449|M1]], [[2503.24235|Test-Time-Scaling-Survey]], [[2503.07572|MRT]], [[2501.09686|Large-Reasoning-Models-Survey]], [[2408.03314|Test-Time-Compute-Scaling]]
 
 > [!star] Key Papers
 > - [[2503.24235|Test-Time-Scaling-Survey]] — Comprehensive survey with unified four-axis taxonomy for TTS methods

@@ -187,7 +187,7 @@ From video classification to self-supervised video representation learning. The 
 > - [[2112.01526|MViTv2]] — Refined pooling mechanism and added decomposed relative position embeddings; strong on both classification and detection
 
 **JEPA & Predictive World-Model Pretraining** — Self-supervised video pretraining that learns latent, predictive representations in the JEPA lineage, aimed at world-model-style downstream control and physics understanding.
-- [[2608.05523|HERA]], [[2607.08436|EgoWAM]], [[2605.22629|H-Flow]], [[2605.15618|V-JEPA-Robustness-Study]], [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA-2.1]], [[2602.11832|JEPA-VLA]], [[2507.19468|DINO-world]], [[2506.09985|V-JEPA-2]], [[2505.11129|PhiNet-v2]], [[2502.11831|V-JEPA (Intuitive Physics)]]
+- [[2608.27395|LeVJEPA]], [[2608.05523|HERA]], [[2607.08436|EgoWAM]], [[2605.22629|H-Flow]], [[2605.15618|V-JEPA-Robustness-Study]], [[2603.22281|ThinkJEPA]], [[2603.14482|V-JEPA-2.1]], [[2602.11832|JEPA-VLA]], [[2507.19468|DINO-world]], [[2506.09985|V-JEPA-2]], [[2505.11129|PhiNet-v2]], [[2502.11831|V-JEPA (Intuitive Physics)]]
 
 > [!star] Key Papers
 > - [[2506.09985|V-JEPA-2]] — Self-supervised model trained on 1M+ hours of video; learned world model enables zero-shot robotic control via MPC
@@ -338,7 +338,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2603.18524|3DreamBooth]] — 3D-consistent subject-driven video generation; Chamfer Distance of 0.0177
 
 **Interactive & Streaming Video Generation (Game/World Synthesis)** — Dedicated architectures for interactive, streaming, or game/world-synthesis video generation.
-- [[2608.05070|HelloWorld]], [[2607.15038|Wan-Streamer v0.3]], [[2607.04443|Wan-Streamer v0.2]], [[2605.13724|AnyFlow]], [[2605.02641|Mamoda2.5]], [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.17051|Astrolabe]], [[2602.05449|DisCa]], [[2512.09924|ReViSE]], [[2512.06674|RunawayEvil]], [[2510.08131|Motion-Controllable-Video-Diffusion]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2502.02492|VideoJAM]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The-Matrix]], [[2407.08737|VADER]]
+- [[2608.07408|WorldTrace]], [[2608.05070|HelloWorld]], [[2607.15038|Wan-Streamer v0.3]], [[2607.04443|Wan-Streamer v0.2]], [[2606.31734|MemLearner]], [[2605.22718|WorldKV]], [[2605.13724|AnyFlow]], [[2605.02641|Mamoda2.5]], [[2604.07348|MoRight]], [[2604.02296|VOID]], [[2603.17051|Astrolabe]], [[2602.05449|DisCa]], [[2512.14614|WorldPlay]], [[2512.09924|ReViSE]], [[2512.06674|RunawayEvil]], [[2510.08131|Motion-Controllable-Video-Diffusion]], [[2507.17744|Yume]], [[2506.18701|Matrix-Game]], [[2504.12369|WorldMem]], [[2503.20314|Wan]], [[2502.02492|VideoJAM]], [[2501.08325|GameFactory]], [[2501.08316|APT]], [[2412.03568|The-Matrix]], [[2407.08737|VADER]]
 
 > [!star] Key Papers
 > - [[2512.09924|ReViSE]] — Reason-informed video editing via self-reflective learning; +32% on RVE-Bench
@@ -423,7 +423,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2506.09849|IntPhys-2]] — Updated version of the influential intuitive-physics benchmark; richer scenarios for testing object permanence, continuity, and solidity
 
 **T2V/I2V Generation Quality & Physical-Commonsense Benchmarks** — Benchmarks and metrics assessing text/image-to-video generation quality, alignment, physical commonsense, or AI-generated-content detection.
-- [[2512.04221|MoReGen]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.07550|TRAVL]], [[2510.02311|IDPP]], [[2507.15824|PhysVidBench]], [[2505.15929|PhyX]], [[2505.00337|T2VPhysBench]], [[2505.00209|TRAJAN]], [[2503.21755|VBench-2.0]], [[2502.05503|PhyCoBench]], [[2412.01800|PhysGame]], [[2406.18522|ChronoMagic-Bench]], [[2406.11802|PhyBench]], [[2406.03520|VideoPhy]], [[2405.19707|DeMamba]], [[2401.07781|T2VScore]], [[2311.10111|VideoCon]]
+- [[2608.27345|PAWBench]], [[2512.04221|MoReGen]], [[2510.11512|LikePhys]], [[2510.08398|VideoVerse]], [[2510.07550|TRAVL]], [[2510.02311|IDPP]], [[2507.15824|PhysVidBench]], [[2505.15929|PhyX]], [[2505.00337|T2VPhysBench]], [[2505.00209|TRAJAN]], [[2503.21755|VBench-2.0]], [[2502.05503|PhyCoBench]], [[2412.01800|PhysGame]], [[2406.18522|ChronoMagic-Bench]], [[2406.11802|PhyBench]], [[2406.03520|VideoPhy]], [[2405.19707|DeMamba]], [[2401.07781|T2VScore]], [[2311.10111|VideoCon]]
 
 > [!star] Key Papers
 > - [[2406.03520|VideoPhy]] — First benchmark explicitly evaluating physical commonsense in T2V models; revealed even SOTA generators score far below human accuracy

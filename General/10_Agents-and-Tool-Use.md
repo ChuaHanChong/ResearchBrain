@@ -184,10 +184,10 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Memory Systems & Evaluation Benchmarks** — Memory architectures for agents and benchmark suites that measure agentic capability across games, robotic manipulation, and grounded tasks.
-- [[2606.03374|eMEM]], [[2605.15128|MemEye]], [[2602.16313|MemoryArena]], [[2602.11964|Gaia2]], [[2511.14004|STAR-Memory-Action]], [[2509.22391|SeekBench]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2505.15146|lmgame-Bench]], [[2504.15965|AI-Memory-Survey]], [[2403.19622|RH20T-P]]
+- [[2608.24876|Recuris]], [[2606.03374|eMEM]], [[2605.15128|MemEye]], [[2602.16313|MemoryArena]], [[2602.11964|Gaia2]], [[2511.14004|STAR-Memory-Action]], [[2509.22391|SeekBench]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]], [[2505.15146|lmgame-Bench]], [[2504.15965|AI-Memory-Survey]], [[2403.19622|RH20T-P]]
 
 **RL Training & Planning Frameworks for Agentic Reasoning** — Reinforcement-learning algorithms and world-model-augmented planning methods that train or structure agentic reasoning.
-- [[2608.06197|EnvACE]], [[2607.21653|Molt]], [[2607.06935|Mathematical Methods of RL]], [[2606.03963|AgenticRL]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20246|GROW]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]]
+- [[2608.17310|Agentic ESOpt]], [[2608.06197|EnvACE]], [[2607.21653|Molt]], [[2607.06935|Mathematical Methods of RL]], [[2606.03963|AgenticRL]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20246|GROW]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]]
 
 > [!star] Key Papers
 > - [[2505.10468|AI-Agents-vs-Agentic-AI]] — Cornell taxonomy distinguishing AI agents (autonomous entities) from agentic AI (design pattern); essential conceptual clarity
