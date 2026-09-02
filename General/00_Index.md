@@ -101,3 +101,25 @@ See [[00_Table-of-Contents]] for a click-through section index of all 12 files.
 
 - `Embodied-AI/` — VLA deep dive, WAM deep dive, latent world models (JEPA), self-evolving VLAs & WAMs
 - `_Projects_/01_FirstPublication/` — Self-evolving WAM blueprint and RL vs CL analysis
+
+---
+
+---
+
+### Venue Coverage
+
+**3820 of 9795 papers (38%)** carry a venue.
+
+| Venue | Papers | Oral | Spotlight | Highlight | Median citations |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| ICLR | 1030 | 70 | 30 | - | 13 |
+| NeurIPS | 678 | 62 | 91 | - | 27 |
+| CVPR | 503 | 27 | - | 21 | 24 |
+| CoRL | 397 | - | - | - | 26 |
+| RSS | 341 | - | - | - | 8 |
+| ICML | 270 | 20 | 27 | - | 23 |
+| IROS | 164 | - | - | - | 1 |
+| ECCV | 152 | 6 | 1 | - | 18 |
+| ICRA | 143 | - | - | - | 10 |
+| ICCV | 142 | 3 | - | 9 | 45 |
+| **Total** | **3820** | **188** | **149** | **30** | |

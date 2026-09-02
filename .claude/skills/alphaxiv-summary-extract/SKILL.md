@@ -178,6 +178,13 @@ After enrichment, verify each new alias is unique across the vault. For each new
 
 If extraction wrote at least one new note, invoke `Skill(skill="kh-graph-sync")` — it additively adds just the new notes to `graphify-out/graph.json`. **Do not run `graphify --update` on this vault:** bulk note edits invalidate its content-addressed cache (→ full multi-hour re-extract) and its generic merge corrupts existing nodes; `kh-graph-sync` bypasses both.
 
+## Venue, tier and citation fields
+
+Notes also carry `venue` / `venue_year` / `venue_type` / `venue_tier` / `citations` in frontmatter, plus
+`venue_source` and `venue_checked` in the `%%` block. This skill does **not** produce them - a fresh note
+has none - and they are added later by `Skill(skill="venue-sync")`, which owns that pipeline end to end.
+Leave them alone here; a hand edit needs `venue_source: manual` to survive the next refresh.
+
 ## Refreshing BibTeX (optional, on demand)
 
 To update BibTeX blocks in existing notes with the latest data from arXiv:

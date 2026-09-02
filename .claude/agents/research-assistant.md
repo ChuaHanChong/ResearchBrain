@@ -270,7 +270,7 @@ Live, auto-computed views — never go stale, refresh whenever Obsidian re-rende
 
 | File | What it shows |
 |---|---|
-| `_KnowledgeHub_/_KnowledgeHub_.base` | All KH papers — table + cards-by-tag + "untagged" filter view |
+| `_KnowledgeHub_/_KnowledgeHub_.base` | All KH papers — 9 views spanning tags, recency, and the `venue-sync` venue/tier/citation fields |
 | `General/_Topic-Coverage.base` | Per-topic paper counts (via `file.links.length`) — replaces hand-maintained counts in `00_Index.md` |
 | `Embodied-AI/_Deep-Dives.base` | 6 deep-dive files with paper-reference counts |
 | `_Projects_/_Project-Status.base` | Active vs archived project files with link counts and edit recency |
