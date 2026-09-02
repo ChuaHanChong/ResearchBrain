@@ -2,6 +2,8 @@ filters:
   and:
     - file.inFolder("_KnowledgeHub_")
     - file.ext == "md"
+formulas:
+  tier_icon: if(venue_tier == "oral", "🅐 Oral", if(venue_tier == "highlight", "🅑 Highlight", if(venue_tier == "spotlight", "🅒 Spotlight", if(venue_tier == "poster", "Poster", ""))))
 properties:
   file.basename:
     displayName: Arxiv ID
@@ -11,23 +13,94 @@ properties:
     displayName: Tags
   authors:
     displayName: Authors
+  venue:
+    displayName: Venue
+  venue_year:
+    displayName: Year
+  venue_type:
+    displayName: Type
+  formula.tier_icon:
+    displayName: Tier
+  citations:
+    displayName: Citations
 views:
   - type: table
     name: All Papers
     order:
       - file.basename
       - aliases
+      - venue
+      - venue_year
+      - citations
       - tags
-      - authors
       - file.mtime
+    summaries:
+      citations: Median
   - type: table
     name: Recently Added
     order:
       - file.basename
       - aliases
+      - venue
+      - venue_year
       - tags
       - file.mtime
     limit: 50
+  - type: table
+    name: Core venues
+    filters:
+      and:
+        - venue != "" && venue != null
+    order:
+      - file.basename
+      - aliases
+      - venue
+      - venue_type
+      - venue_year
+      - formula.tier_icon
+      - citations
+    summaries:
+      citations: Median
+  - type: table
+    name: Standouts
+    filters:
+      or:
+        - venue_tier == "oral"
+        - venue_tier == "highlight"
+        - venue_tier == "spotlight"
+    order:
+      - file.basename
+      - aliases
+      - venue
+      - venue_year
+      - formula.tier_icon
+      - citations
+      - tags
+    summaries:
+      citations: Median
+  - type: table
+    name: High impact, no venue
+    filters:
+      and:
+        - venue == "" || venue == null
+        - citations > 50
+    order:
+      - file.basename
+      - aliases
+      - citations
+      - tags
+    summaries:
+      citations: Max
+  - type: table
+    name: Unknown
+    filters:
+      and:
+        - venue == "" || venue == null
+    order:
+      - file.basename
+      - aliases
+      - citations
+      - tags
   - type: table
     name: Untagged
     filters:
@@ -38,6 +111,20 @@ views:
       - aliases
       - file.mtime
   - type: cards
+    name: By venue
+    filters:
+      and:
+        - venue != "" && venue != null
+    groupBy:
+      property: venue
+      direction: ASC
+    order:
+      - file.basename
+      - aliases
+      - venue_year
+      - formula.tier_icon
+      - citations
+  - type: cards
     name: By Tag
     groupBy:
       property: tags
@@ -45,3 +132,5 @@ views:
     order:
       - file.basename
       - aliases
+      - venue
+      - citations
