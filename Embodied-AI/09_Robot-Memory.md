@@ -125,7 +125,7 @@ Legend: ╔═╗ double border = landmark/foundational paper.
 
 **Read the arrows as axis-and-date ordering, not a confirmed citation chain.** None of the papers in these threads cite each other by ID in their own KH summaries — checked directly, not assumed. The delta above each box names that paper's own contribution, not a verified "built on the predecessor" claim; several of these clusters are more likely independent, convergent developments than a real lineage (this file's own §1 tip already calls one "reinvented three times," and §4's calls its cluster "converged independently... within a five-month window"). The one edge with an actual outside source — [[13_Navigation-and-Mobile-Manipulation|13_Navigation]]'s own [[2409.18313|Embodied-RAG]]→[[2411.04999|DynaMem]] fork, reused here rather than re-derived — was re-checked for this note and also has no confirmed citation between the two; treat it the same as the rest.
 
-Seven lanes, one per mechanism family, plus an eighth (Memory Benchmarks) that has no papers of its own and stays off the diagram. Episodic & retrieval memory runs two navigation threads — [[2402.19161|MemoNav]]'s working-memory line reaching [[2605.22814|Remember-to-be-Curious]], and [[2409.18313|Embodied-RAG]]'s retrieval line forking at [[2411.04999|DynaMem]] into [[2510.08553|Memoir]] and [[2603.19137|GSMem]]. Object-permanence and keyframe-history split into an identity-tracking line ([[2309.15278|Out-of-Sight-Still-in-Mind]] to [[2608.05042|BridgeVLA++]]) and a keyframe-compression line ([[2503.00193|ProDapt]] to [[2607.08283|TFP]]). Persistent spatial memory carries a scene-graph thread ([[2012.03912|MultiON]] to [[2606.23565|HoloAgent-0]]) alongside a thread of memory baked directly into the VLA backbone ([[2510.00695|HAMLET]] to [[2607.07608|LaMem-VLA]]). Progress-aware control, memory-augmented reasoning, self-evolution, and the generative-WM landmarks each run a single thread — the last one is deliberately light: [[06_WAM]] carries the other ~30 memory-in-video-diffusion papers this file does not duplicate.
+Seven lanes, one per mechanism family, plus an eighth (Memory Benchmarks) that has no papers of its own and stays off the diagram. Episodic & retrieval memory runs two navigation threads — [[2402.19161|MemoNav]] (CVPR'24 Highlight)'s working-memory line reaching [[2605.22814|Remember-to-be-Curious]], and [[2409.18313|Embodied-RAG]]'s retrieval line forking at [[2411.04999|DynaMem]] into [[2510.08553|Memoir]] and [[2603.19137|GSMem]]. Object-permanence and keyframe-history split into an identity-tracking line ([[2309.15278|Out-of-Sight-Still-in-Mind]] to [[2608.05042|BridgeVLA++]]) and a keyframe-compression line ([[2503.00193|ProDapt]] to [[2607.08283|TFP]] (RSS'26 Workshop)). Persistent spatial memory carries a scene-graph thread ([[2012.03912|MultiON]] (NeurIPS'20) to [[2606.23565|HoloAgent-0]]) alongside a thread of memory baked directly into the VLA backbone ([[2510.00695|HAMLET]] (ICLR'26) to [[2607.07608|LaMem-VLA]]). Progress-aware control, memory-augmented reasoning, self-evolution, and the generative-WM landmarks each run a single thread — the last one is deliberately light: [[06_WAM]] carries the other ~30 memory-in-video-diffusion papers this file does not duplicate.
 
 | Year | Paper | Track | Contribution |
 |------|-------|-------|--------------|
@@ -196,13 +196,13 @@ Biologically-inspired short-term/long-term stores and hierarchical scene-graph "
 
 - **[[2608.01456|MeMento]]** — A ==preference-conditioned multimodal memory compressor== using a ==Perceiver-style module== with learned queries to distil relevant evidence from long histories into a fixed token budget, paired with the new **DunphyBench** benchmark; **+15.74%** accuracy at **-85.38%** memory vs baselines, best-VLM still trails human (**58.3%** vs **83.3%**).
 
-- **[[2402.19161|MemoNav]]** — A biologically-inspired ==working memory== (STM + LTM + dynamically-built WM) with a ==selective forgetting== module that prunes low-attention nodes; **+7.9–8.5%** SR/PR over VGM on multi-goal Gibson/MP3D tasks, with aggressive forgetting helping most on long-horizon goals — forgetting as an active navigation skill.
+- **[[2402.19161|MemoNav]] (CVPR'24 Highlight)** — A biologically-inspired ==working memory== (STM + LTM + dynamically-built WM) with a ==selective forgetting== module that prunes low-attention nodes; **+7.9–8.5%** SR/PR over VGM on multi-goal Gibson/MP3D tasks, with aggressive forgetting helping most on long-horizon goals — forgetting as an active navigation skill.
 
-- **[[2507.12846|Mind-Palace]]** — A ==hierarchical scene-graph== "Robotic Mind Palace" over multi-episode history, with an LLM interleaving memory recall and active exploration via Value-of-Information early stopping; **+12–28%** answer correctness and **77%** fewer retrieved images on long-term EQA, on a legged robot over a **1,000 m²** office — multi-episodic memory for embodied Q&A.
+- **[[2507.12846|Mind-Palace]] (CoRL'25)** — A ==hierarchical scene-graph== "Robotic Mind Palace" over multi-episode history, with an LLM interleaving memory recall and active exploration via Value-of-Information early stopping; **+12–28%** answer correctness and **77%** fewer retrieved images on long-term EQA, on a legged robot over a **1,000 m²** office — multi-episodic memory for embodied Q&A.
 
 - **[[2605.22814|Remember-to-be-Curious]]** — An explorer pairing a persistent online ==3D Gaussian Splatting== forward model (curiosity reward from prediction error) with a ==long-context transformer== whose ==global linear-attention memory== holds episodic context, trained map-free via ==PPO== on RGB alone; beat active-mapping baselines on 3D scene completeness, zero-shot to AI-generated worlds.
 
-- **[[2601.10744|LMEE]]** — A ==Long-term Memory Embodied Exploration== paradigm + LMEE-Bench unifying multi-goal nav with memory-based QA, where ==MemoryExplorer== (Qwen2.5-VL-7B, RL-tuned with a multi-task reward) actively recalls episodic memory; **23.53** SR / **43.62** MLLM-Score on LMEE-Bench, **46.40** SR on GOAT-Bench, real X3 transfer — active memory for exploration.
+- **[[2601.10744|LMEE]] (CVPR'26)** — A ==Long-term Memory Embodied Exploration== paradigm + LMEE-Bench unifying multi-goal nav with memory-based QA, where ==MemoryExplorer== (Qwen2.5-VL-7B, RL-tuned with a multi-task reward) actively recalls episodic memory; **23.53** SR / **43.62** MLLM-Score on LMEE-Bench, **46.40** SR on GOAT-Bench, real X3 transfer — active memory for exploration.
 
 - **[[2111.09793|Robotic-Interestingness]]** — An unsupervised online-learning method for "interestingness" via a ==4-D visual memory== with ==FFT translation-invariant reading== that writes novel features and loses interest in repetition; **69 FPS**, **+18.9–31.9%** from online learning, beating unsupervised + weakly-supervised baselines — a reward-free novelty signal for exploration.
 
@@ -210,21 +210,21 @@ Biologically-inspired short-term/long-term stores and hierarchical scene-graph "
 
 Memory that changes shape as the world does — purging moved objects, re-ranking by recency, or persisting a 3D Gaussian scene that can be re-rendered for a fresh VLM look. Two mechanisms share this sub-section: pure retrieval on demand over an embedding, RAG, memory-slot, or editable-memory-bank store (including a frozen backbone's action scores re-weighted at inference time), and dynamic maps that actively track what moved, appeared, or vanished. One entry instead folds temporal context into a continuously-updated recurrent latent (an LSTM) rather than an explicit query step, but shares the same persist-and-update property as the rest.
 
-- **[[2608.19059|LT-Mem]]** — A multi-session Tri-Memory (Live/Delta/Meta) framework: ==five-evidence cross-session re-identification== + a ==volatility-aware Bayesian update policy== (overwrite/hold/multi-hypothesis) logs MOVE/APPEAR/DISAPPEAR events across revisits; **0.910** Event F1 (best baseline **0.790**) at order-of-magnitude lower token cost, w/o Re-ID collapses to **0.140**.
+- **[[2608.19059|LT-Mem]] (IROS'26)** — A multi-session Tri-Memory (Live/Delta/Meta) framework: ==five-evidence cross-session re-identification== + a ==volatility-aware Bayesian update policy== (overwrite/hold/multi-hypothesis) logs MOVE/APPEAR/DISAPPEAR events across revisits; **0.910** Event F1 (best baseline **0.790**) at order-of-magnitude lower token cost, w/o Re-ID collapses to **0.140**.
 
 - **[[2608.10449|PBD-AG]]** — A ==baseline-delta graph== freezes an immutable baseline via cross-batch consensus, then appends typed audit events for moved/removed objects, with ==visibility-gated existence log-odds== admitting negative evidence only when provably observable; **0.833** dynamic IDF1, **zero** identity switches.
 
 - **[[2607.04057|PreSIST]]** — Proactively predicts how long an object will remain via instance-level ==survival priors== feeding a ==probabilistic persistence filter==; ==PreSIST-Lang== infers ==persistence quantiles== zero-shot from a VLM/LLM, ==PreSIST-Vis== distills this to **~0.04s**/query, improving long-term relocalization — proactive beats reactive re-perception.
 
-- **[[2606.30404|HUMEMBR]]** — A predictive-navigation memory pairing ==face + Keypoint-Promptable-ReID clustering== for persistent multi-day human identity with a ==retrieval-augmented LLM== over five structured query functions, driving routine-conditioned navigation; **75.41%** PersonEQA (**-83%** tokens), **90-100%** real-robot SR on a Spot.
+- **[[2606.30404|HUMEMBR]] (IROS'26)** — A predictive-navigation memory pairing ==face + Keypoint-Promptable-ReID clustering== for persistent multi-day human identity with a ==retrieval-augmented LLM== over five structured query functions, driving routine-conditioned navigation; **75.41%** PersonEQA (**-83%** tokens), **90-100%** real-robot SR on a Spot.
 
-- **[[2606.28720|CubifyGS]]** — An object-centric ==3D Gaussian Splatting== map treating rearranged objects as reusable assets in a ==global asset library==, using ==ray-casted occupancy== to detect vanishing objects and ==semantic-aware asset retrieval== instead of gradient re-optimization; **+35.83%** PSNR, **40×** faster than continuous-training dynamic SLAM.
+- **[[2606.28720|CubifyGS]] (IROS'26)** — An object-centric ==3D Gaussian Splatting== map treating rearranged objects as reusable assets in a ==global asset library==, using ==ray-casted occupancy== to detect vanishing objects and ==semantic-aware asset retrieval== instead of gradient re-optimization; **+35.83%** PSNR, **40×** faster than continuous-training dynamic SLAM.
 
 - **[[2606.25206|RAVEN]]** — A training-free ==visuo-spatio-temporal memory== storing compact ==visual embeddings== (pose + timestamp) in a ==vector database==, queried by a VLM agent via text-/time-/position-based ==retrieval tools== to bypass captioning; widened the gap over caption memory to **30%** on hard queries at **>250×** compression, **97.1%** real Go1 SR — embeddings over captions.
 
 - **[[2603.19137|GSMem]]** — A persistent ==3D Gaussian Splatting spatial memory== re-rendering explored areas for VLM re-observation, via ==multi-level retrieval-rendering== (object scene graphs + an optimization-free 3D language field) and hybrid semantic-geometric exploration; **67.2%** SR / **46.9%** SPL on GOAT-Bench, SOTA on A-EQA — spatial recollection over object/view-based memory.
 
-- **[[2602.00551|APEX-Aerial]]** — A ==decoupled memory-based explorer== for aerial object-goal nav: ==dynamic 3D grid maps== (Attraction / Exploration / Obstacle) give persistent spatial-semantic memory while an ==asynchronous parallel== framework decouples VLM inference from RL control; **+4.2%** SR / **+2.8%** SPL on UAV-ON at **0.97 s** latency — async dynamic memory for aerial search.
+- **[[2602.00551|APEX-Aerial]] (CVPR'26)** — A ==decoupled memory-based explorer== for aerial object-goal nav: ==dynamic 3D grid maps== (Attraction / Exploration / Obstacle) give persistent spatial-semantic memory while an ==asynchronous parallel== framework decouples VLM inference from RL control; **+4.2%** SR / **+2.8%** SPL on UAV-ON at **0.97 s** latency — async dynamic memory for aerial search.
 
 - **[[2506.15096|DyNaVLM]]** — A zero-shot VLN system giving a ==VLM== a ==dynamic continuous action space== (spatially-sampled, safety-filtered targets from RGB-D) and a ==self-refining graph memory== of object instances + topological relations built online; **45.0%** SR on ObjectNav and best-among-VLM **25.5%** SR on GOAT-Bench, real Go2 deployment — graph memory that refines itself.
 
@@ -240,7 +240,7 @@ Memory that changes shape as the world does — purging moved objects, re-rankin
 
 - **[[2605.14810|CaMeRL]]** — A collision-aware + memory-enhanced UAV-navigation method: a ==VAE== extracts safety-relevant latents from depth (supervised by collision-aware depth maps) and an ==LSTM== integrates temporal context for partial observability, trained with PPO; **0.77** success in ultra-small-obstacle vs MAVRL's **0.29**, real dense-forest flight at **1.4 m/s**.
 
-- **[[2505.13696|ESWM]]** — An ==Episodic Spatial World Model== meta-trained to infer missing components of sparse one-step (state, action, end-state) tuples from an ==external editable memory bank==; ESWM-T explores **+16.8%** more unique states than EPN, navigates at **96.8%** SR (**+18%** vs EPN) with **99.2%** path optimality, adapts to new obstacles (**93%** vs **72%** EPN, **56%** RL).
+- **[[2505.13696|ESWM]] (ICLR'26)** — An ==Episodic Spatial World Model== meta-trained to infer missing components of sparse one-step (state, action, end-state) tuples from an ==external editable memory bank==; ESWM-T explores **+16.8%** more unique states than EPN, navigates at **96.8%** SR (**+18%** vs EPN) with **99.2%** path optimality, adapts to new obstacles (**93%** vs **72%** EPN, **56%** RL).
 
 #### 1.3 Episodic & Compression Memory for Manipulation
 
@@ -252,11 +252,11 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 
 - **[[2606.29774|ACM]]** — An ==Analytic Concept-centric Memory== framework organizing experience around structured object concepts (parts, templates, affordances, transitions, skills) with ==manipulation-aware retrieval== + precondition/effect checking; **70%** RMBench SR (vs memory-augmented VLA baselines' 28-53%), **84%** real memory tasks at **98%** retrieval accuracy.
 
-- **[[2606.25136|Long-Horizon]]** — HALO, an attention-based visuomotor policy distilling ==VLM priors== via a co-trained ==Video Question-Answering== objective to guide ==top-k sparse-attention== memory retrieval, suppressing spurious historical correlations; **41%** sim / **55%** real long-horizon SR (vs Standard Transformer's 22%/36%), cutting drift (JSD 0.07→0.06).
+- **[[2606.25136|Long-Horizon]] (RSS'26)** — HALO, an attention-based visuomotor policy distilling ==VLM priors== via a co-trained ==Video Question-Answering== objective to guide ==top-k sparse-attention== memory retrieval, suppressing spurious historical correlations; **41%** sim / **55%** real long-horizon SR (vs Standard Transformer's 22%/36%), cutting drift (JSD 0.07→0.06).
 
 - **[[2606.21188|CAMP]]** — A Compressed Action Memory Policy learning a recurrent ==behavioral memory== by self-supervised reconstruction of past actions, compressing them via ==DCT low-frequency coefficients== + a Vector Quantizer, fused into a diffusion policy; **94%** Push-T-Multi-Goals (vs memoryless DP's 56%), **64.3%** on 3D Memory-Manip-Bench, 7/10 real where memoryless baselines score 0.
 
-- **[[2601.21998|LingBot-VA]]** — An ==autoregressive diffusion== video-action world model unifying vision+action tokens via a causal ==Mixture-of-Transformers== with ==KV-cache== persistent full-history memory (no chunking); **92.9%** RoboTwin 2.0 Easy avg, **98.5%** LIBERO avg — the full-history baseline [[2606.20562|MemoryWAM]] and [[2606.27677|DiM-WAM]] compress against.
+- **[[2601.21998|LingBot-VA]] (RSS'26)** — An ==autoregressive diffusion== video-action world model unifying vision+action tokens via a causal ==Mixture-of-Transformers== with ==KV-cache== persistent full-history memory (no chunking); **92.9%** RoboTwin 2.0 Easy avg, **98.5%** LIBERO avg — the full-history baseline [[2606.20562|MemoryWAM]] and [[2606.27677|DiM-WAM]] compress against.
 
 - **[[2606.20562|MemoryWAM]]** — A World Action Model with a hybrid ==Mixture-of-Transformers== memory: a sliding-window short-term store, persistent ==event-boundary anchor frames==, and ==gist tokens== (8/frame, 15× compression) for long-range history; **83.0%** RMBench (vs full-history LingBot-VA's 78.2%, FastWAM's 5.9%), 18/20 real Shell-Game at full-attention SR with lower latency/GPU memory.
 
@@ -266,13 +266,13 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 
 - **[[2603.18494|MemoAct]]** — An ==Atkinson-Shiffrin-inspired hierarchical memory== policy pairing a lossless ==Short-Term Memory Bank== with a compressed ==Long-Term Memory Bank== via a consolidation module, decoded by conditional diffusion; **96.5%** on its MemoryRTBench vs MVMP's 72% (ACT 4.5%, DP 3%), the plug-and-play module lifting DP3 **26→76.5%**.
 
-- **[[2501.18564|SAM2Act]]** — A multi-view ==SAM2-encoder== transformer with cascaded upsampling, extended by ==SAM2Act+=='s explicit ==memory bank + attention==; **86.8%** RLBench and **94.3%** on the non-Markovian MemoryBench, smallest **4.3%** Colosseum perturbation drop.
+- **[[2501.18564|SAM2Act]] (ICML'25)** — A multi-view ==SAM2-encoder== transformer with cascaded upsampling, extended by ==SAM2Act+=='s explicit ==memory bank + attention==; **86.8%** RLBench and **94.3%** on the non-Markovian MemoryBench, smallest **4.3%** Colosseum perturbation drop.
 
 - **[[2606.10363|HiMem-WAM]]** — A Hierarchical Memory-Gated World-Action Model combining ==hierarchical latent action== learning with a boundary-aware memory-gated module that writes compact task states at skill transitions, no test-time video gen; **97.7%** LIBERO, **76.0%** LIBERO-Plus, **26.3%** RMBench memory tasks (vs ACT **10.8%**), +**25.0%** real Hard tasks.
 
 - **[[2606.27677|DiM-WAM]]** — Adds ==Diverse Historical Event Memory== (K parallel bounded memory banks with ==novelty-aware compression== + ==mass-weighted fusion== + ==task-progress-aware auxiliary loss==) to a joint video-action WAM for long-horizon temporal disambiguation; RMBench **34.8%→69.8%** full-task SR over a LingBot-VA baseline, real Franka **52.5%→90.0%**.
 
-- **[[2508.19236|MemoryVLA]]** — A ==Perceptual-Cognitive Memory Bank (PCMB)== dual-memory VLA: low-level perceptual details (recent F/T, contact events) + high-level cognitive semantics (task progress); **+26pp** over [[2503.22020|CogACT]] on real-world long-horizon temporal tasks (**83%**) at only **+3.6%** latency, **+0.8 GB** GPU; not force-specialized, but maps cleanly onto force history.
+- **[[2508.19236|MemoryVLA]] (ICLR'26)** — A ==Perceptual-Cognitive Memory Bank (PCMB)== dual-memory VLA: low-level perceptual details (recent F/T, contact events) + high-level cognitive semantics (task progress); **+26pp** over [[2503.22020|CogACT]] (CVPR'25) on real-world long-horizon temporal tasks (**83%**) at only **+3.6%** latency, **+0.8 GB** GPU; not force-specialized, but maps cleanly onto force history.
 
 - **[[2104.10218|Episodic-Memory-Manipulation]]** — An episodic-memory framework that decomposes the work cell into modular ==finite-state-machine elements== and synthesizes an Application State Machine from a *single* demonstration; built-in ==exception handling== lets the robot detect novel states and request human guidance — generalizing task logic beyond fixed coordinates.
 
@@ -303,7 +303,7 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 ^dm-1
 
 > [!star] Key Papers
-> - [[2402.19161|MemoNav]] — established the biologically-inspired STM+LTM working-memory paradigm that [[2507.12846|Mind-Palace]] and [[2601.10744|LMEE]] both build on.
+> - [[2402.19161|MemoNav]] (CVPR'24 Highlight) — established the biologically-inspired STM+LTM working-memory paradigm that [[2507.12846|Mind-Palace]] (CoRL'25) and [[2601.10744|LMEE]] (CVPR'26) both build on.
 > - [[2411.04999|DynaMem]] — the reference dynamic-memory design (ray-cast purging of moved objects); nearly every later retrieval-memory nav paper compares against it.
 > - [[2603.24576|Chameleon]] — the clearest existence proof that human-episodic-memory structure (spatiotemporal anchors, pattern separation) transfers to manipulation.
 > - [[2606.20562|MemoryWAM]] — the first world-action model to treat memory as a first-class module rather than a longer context window.
@@ -312,7 +312,7 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 ^key-papers-1
 
 > [!tip] Same Pattern, Reinvented Three Times
-> Navigation's working memory (§1.1), navigation's dynamic memory (§1.2), and manipulation's episodic memory (§1.3) converged on the same three ideas — hierarchical short/long-term stores, event-boundary compression, and retrieval-on-demand — from three separate research communities that rarely cite each other. That convergence is the strongest available evidence that episodic memory is a *domain-independent* embodied-AI primitive, not a navigation trick or a manipulation trick. See [[13_Navigation-and-Mobile-Manipulation#3.2 Working & Episodic Memory]] and [[10_Manipulation-Skill-Learning#4.1 Episodic & Retrieval Memory]] for the two source domains this section unifies.
+> Navigation's working memory (§1.1), navigation's dynamic memory (§1.2), and manipulation's episodic memory (§1.3) converged on the same three ideas — hierarchical short/long-term stores, event-boundary compression, and retrieval-on-demand — from three separate research communities that rarely cite each other. That convergence is the strongest available evidence that episodic memory is a *domain-independent* embodied-AI primitive, not a navigation trick or a manipulation trick. See [[13_Navigation-and-Mobile-Manipulation#3.2 Working & Episodic Memory]] and [[10_Manipulation-Skill-Learning#4.1 Episodic & Retrieval Memory]] for the two source domains this section unifies, and [[11_Contact-Rich-and-Tactile-Control#4.3 Long-Horizon Memory — Sustained-Contact Reasoning]] for a fourth, independent reinvention of the same pattern over force history rather than vision.
 
 ^insight-1
 
@@ -326,7 +326,7 @@ Two sub-sections split on *what persists*: an object's identity through occlusio
 
 Keep an object's identity — position, grasp state, role — alive across occlusion, handover, and exit/re-entry from the frame, without re-detecting it from scratch each time it reappears.
 
-- **[[2608.05042|BridgeVLA++]]** — Extends [[2506.07961|BridgeVLA]]'s ==2D-heatmap pre-training== + orthographic-projection 3D fine-tuning with a unified ==spatio-temporal memory== (temporal keyframes for coarse reasoning, point-cloud memory for occlusion-robust localization); **93.7%** RLBench, **96.0%** RMBench (**+13pp** over MemoryWAM), **95.4%** real Franka at **3** demos/task.
+- **[[2608.05042|BridgeVLA++]]** — Extends [[2506.07961|BridgeVLA]] (NeurIPS'25)'s ==2D-heatmap pre-training== + orthographic-projection 3D fine-tuning with a unified ==spatio-temporal memory== (temporal keyframes for coarse reasoning, point-cloud memory for occlusion-robust localization); **93.7%** RLBench, **96.0%** RMBench (**+13pp** over MemoryWAM), **95.4%** real Franka at **3** demos/task.
 
 - **[[2309.15278|Out-of-Sight-Still-in-Mind]]** — A ==DOOM/LOOM object-oriented memory== hallucinating point clouds or propagating latents for occluded objects, with a ==relational dynamics + CEM planner==; **0.976** relational F1, near-1.0 planning success, **19/20** real; +10–20% F1 over implicit memory.
 
@@ -340,7 +340,7 @@ Keep an object's identity — position, grasp state, role — alive across occlu
 
 Rather than tracking objects explicitly, distill the raw history into a small set of salient keyframes — detected by deceleration, VLM saliency, or event boundaries — and condition on those instead of the full sequence.
 
-- **[[2607.08283|TFP]]** — A memory-fusion policy augmenting a chunked VLA with an episode-local latent belief driven by ==Liquid Time-Constant networks==, modulating a ==flow-matching action decoder== via ==AdaLN== conditioning; **98.75%** LIBERO (vs π₀.₅'s 96.9%), **75.0%** on occluded ShellGameTouch, fewer real stage-memory failures on a Galaxea A1.
+- **[[2607.08283|TFP]] (RSS'26 Workshop)** — A memory-fusion policy augmenting a chunked VLA with an episode-local latent belief driven by ==Liquid Time-Constant networks==, modulating a ==flow-matching action decoder== via ==AdaLN== conditioning; **98.75%** LIBERO (vs π₀.₅'s 96.9%), **75.0%** on occluded ShellGameTouch, fewer real stage-memory failures on a Galaxea A1.
 
 - **[[2606.31493|ChronoFlow-Policy]]** — A diffusion visuomotor policy unifying past-current-future gripper-object interaction via a compact ==3D keypoint representation (ChronoFlow)==, jointly learning ChronoFlow prediction + actions via a ==co-training objective== to resolve non-Markovian dependencies; **72%** MetaWorld / **66%** RoboTwin 2.0, **87%** real deformable towel-folding.
 
@@ -401,7 +401,7 @@ External, queryable structures — 3D scene graphs, voxel grids, Gaussian-splat 
 
 - **[[2607.05543|GEM-Occ]]** — Converts transient visual geometry into persistent ==Gaussian Evidence Memory==: semantic Gaussian occupancy + explicit free-space ray evidence, updated by ==visibility/uncertainty-aware causal fusion== across rooms and buildings; **+3.85** IoU / **+2.68** mIoU online, **-40%** memory building-scale — with the new HIOcc hierarchical-indoor benchmark.
 
-- **[[2606.31144|Modular VLA Framework]]** — A ROS-based mobile framework building a real-time ==3D semantic voxel map== (OwlViT) fused with a ==VLM query-classification + context-aware-prompt== pipeline (Gemini 2.0 Flash) for numerical/reference/instruction queries; exploration time cut **50%** (8m42s→4m17s) — persistent semantic memory as the language-grounding substrate.
+- **[[2606.31144|Modular VLA Framework]] (IROS'25 Workshop)** — A ROS-based mobile framework building a real-time ==3D semantic voxel map== (OwlViT) fused with a ==VLM query-classification + context-aware-prompt== pipeline (Gemini 2.0 Flash) for numerical/reference/instruction queries; exploration time cut **50%** (8m42s→4m17s) — persistent semantic memory as the language-grounding substrate.
 
 - **[[2606.23565|HoloAgent-0]]** — A unified embodied-agent framework grounding LLM planning in a persistent ==3D Spatial Memory Layer== and a ==typed embodied-skill interface== for closed-loop feedback-driven re-planning; **97.70%** Top-1 SR in real long-horizon apartment nav and **31.58%** / **29.93%** mIoU mapping on ScanNet / Replica — memory-centric agent for nav + mobile manipulation.
 
@@ -409,19 +409,19 @@ External, queryable structures — 3D scene graphs, voxel grids, Gaussian-splat 
 
 - **[[2502.00931|VL-Nav]]** — A ==neuro-symbolic== VLN agent pairing a NeSy task planner over a ==symbolic 3D scene graph== + object-centric memory (Qwen3-VL) with a NeSy exploration system fusing neural semantic cues, geometric heuristics, and curiosity; **86.3%** real-world SR over long (483 m) multi-floor routes and **79.2%** in DARPA TIAMAT sim — symbolic memory for reasoning-based nav.
 
-- **[[2012.03912|MultiON]]** — A benchmark of map-memory for sequential multi-object navigation; explicit semantic maps held **48%** SR on 3-ON tasks vs **10%** for an RNN-only agent, and learned-map agents gained up to **+25%** SR when a goal had been seen before — the foundational evidence that *explicit* semantic memory beats implicit memory as task complexity grows.
+- **[[2012.03912|MultiON]] (NeurIPS'20)** — A benchmark of map-memory for sequential multi-object navigation; explicit semantic maps held **48%** SR on 3-ON tasks vs **10%** for an RNN-only agent, and learned-map agents gained up to **+25%** SR when a goal had been seen before — the foundational evidence that *explicit* semantic memory beats implicit memory as task complexity grows.
 
-- **[[2412.14480|GraphEQA]]** — Builds online ==3D metric-semantic scene graphs== enriched with LLM room labels and semantically-connected frontier nodes, fused with a top-K task-relevant visual memory to ground a hierarchical VLM planner; **63.5%** SR on HM-EQA (vs Explore-EQA's **51.7%**), false positives cut to **6.36%** vs **24.56%** — incremental online scene graphs beat full offline access.
+- **[[2412.14480|GraphEQA]] (CoRL'25)** — Builds online ==3D metric-semantic scene graphs== enriched with LLM room labels and semantically-connected frontier nodes, fused with a top-K task-relevant visual memory to ground a hierarchical VLM planner; **63.5%** SR on HM-EQA (vs Explore-EQA's **51.7%**), false positives cut to **6.36%** vs **24.56%** — incremental online scene graphs beat full offline access.
 
-- **[[2411.17735|3D-Mem]]** — A scene memory representing space as multi-view ==Memory Snapshots== (explored) + ==Frontier Snapshots== (unexplored) built via co-visibility clustering for VLM-guided exploration; **69.1%** SR on GOAT-Bench lifelong nav using only **10.94** snapshots from **39.76** observations (**3.26** after prefiltering) — compact, queryable 3D scene memory.
+- **[[2411.17735|3D-Mem]] (CVPR'25)** — A scene memory representing space as multi-view ==Memory Snapshots== (explored) + ==Frontier Snapshots== (unexplored) built via co-visibility clustering for VLM-guided exploration; **69.1%** SR on GOAT-Bench lifelong nav using only **10.94** snapshots from **39.76** observations (**3.26** after prefiltering) — compact, queryable 3D scene memory.
 
 - **[[2605.21133|Spatial-Brain-Cerebellum]]** — A hierarchical ==multi-agent== humanoid whole-body manipulation framework pairing a VLM-driven ==Active Spatial Brain== (active perception + memory + adaptive planning) with a ==Generalizable Action Cerebellum== (A* navigation + reachable-space solver + VLM grasping); **60.0%** vs 0% on Task-4-Hard, **69.6%** unseen-item SR, no task-specific data.
 
 - **[[2608.10886|GESTO]]** — A persistent ==4D scene graph== coupled to a ==two-level activity hierarchy== (interactions grouped by an LLM into goal-driven events), built fully automatically via VLM extraction + grounding + refinement; **0.71/0.75/0.70** text/binary/time on EGG, far above the same ungrounded pipeline (**0.33/0.29/0.50**) — the event hierarchy carries temporal reasoning.
 
-- **[[2605.22283|SOMA]]** — A persistent ==spatial-semantic 3D memory== built by multi-view head-camera scanning (2D detections lifted to a unified 3D frame) + dynamic refinement; **30%/25%** pick/place on "Invisible-to-Invisible" out-of-vision PnP where 2D VLAs fail.
+- **[[2605.22283|SOMA]] (ICML'26)** — A persistent ==spatial-semantic 3D memory== built by multi-view head-camera scanning (2D detections lifted to a unified 3D frame) + dynamic refinement; **30%/25%** pick/place on "Invisible-to-Invisible" out-of-vision PnP where 2D VLAs fail.
 
-- **[[2509.20297|mindmap]]** — A 3D diffusion policy pairing a DDPM trajectory generator with a continuously-built ==metric-semantic 3D reconstruction== (frozen AM-RADIO features) processed via separate encoders so the policy attends to out-of-view objects; **76%** avg on novel spatial-memory tasks (**+56pp** over 3D Diffuser Actor), **97%** Mug-in-Drawer, extends to bimanual humanoids.
+- **[[2509.20297|mindmap]] (CoRL'25 Workshop)** — A 3D diffusion policy pairing a DDPM trajectory generator with a continuously-built ==metric-semantic 3D reconstruction== (frozen AM-RADIO features) processed via separate encoders so the policy attends to out-of-view objects; **76%** avg on novel spatial-memory tasks (**+56pp** over 3D Diffuser Actor), **97%** Mug-in-Drawer, extends to bimanual humanoids.
 
 #### 3.2 Memory Baked into the VLA Backbone
 
@@ -429,7 +429,7 @@ Rather than an external map, thread memory directly through the policy's own tra
 
 - **[[2608.09410|HyMeS]]** — ==Flow-matching== fine-tunes motor skills in weights while a coding agent revises an executable memory-update program from rollout traces, gated by **PACE** multi-frame ==Qwen3-VL-8B== verification; **66.2%** cumulative SR on RoboMemArena (**+4.5pp**).
 
-- **[[2608.06729|AtlasVLA]]** — Threads two backbone-native stores through a diffusion action head: a ==voxel-hashed Persistent World State Memory== (wrist tokens back-projected to 3D) and an ==Ego-Working State Memory== (intent-aware queries preventing drift); **97.6%** LIBERO wrist-only (beats third-person-and-wrist OpenVLA-OFT), **94.6%** LIBERO-Long (**+7.0pp** over [[2508.19236|MemoryVLA]]).
+- **[[2608.06729|AtlasVLA]]** — Threads two backbone-native stores through a diffusion action head: a ==voxel-hashed Persistent World State Memory== (wrist tokens back-projected to 3D) and an ==Ego-Working State Memory== (intent-aware queries preventing drift); **97.6%** LIBERO wrist-only (beats third-person-and-wrist OpenVLA-OFT), **94.6%** LIBERO-Long (**+7.0pp** over [[2508.19236|MemoryVLA]] (ICLR'26)).
 
 - **[[2607.18231|FM-VLA]]** — Augments a VLA action expert with two proprioceptive memory tokens: a ==VAE==-compressed long-horizon wrench-history latent and a short-window joint-state projector, giving force-based rather than visual temporal context; **83.3%** avg SR on contact-rich memory-dependent tasks vs **27.8%** memoryless and **33.3%** visual-memory baselines.
 
@@ -441,11 +441,11 @@ Rather than an external map, thread memory directly through the policy's own tra
 
 - **[[2606.12497|μVLA]]** — A minimal recurrent-memory VLA inserting learnable ==memory tokens== into an OpenVLA-OFT backbone with ==TBPTT== + an attention-mask guard, isolating recurrence for partially observable manipulation; **0.84** avg SR on MIKASA-Robo (vs **0.42** memoryless) while retaining **96.2%** on fully observable LIBERO.
 
-- **[[2511.18960|AVA-VLA]]** — A ==POMDP reformulation== of VLA whose ==recurrent state== drives an ==Active Visual Attention== module over task-relevant tokens; **98.0%** avg LIBERO SR (vs OpenVLA-OFT **96.8%**), **99.6%/84.1%** CALVIN 1-in-a-row/5-in-a-row, best avg on **four** real Mobile ALOHA tasks. The recurrent state accommodates *force history*; "active force attention" is unbuilt.
+- **[[2511.18960|AVA-VLA]] (CVPR'26 Highlight)** — A ==POMDP reformulation== of VLA whose ==recurrent state== drives an ==Active Visual Attention== module over task-relevant tokens; **98.0%** avg LIBERO SR (vs OpenVLA-OFT **96.8%**), **99.6%/84.1%** CALVIN 1-in-a-row/5-in-a-row, best avg on **four** real Mobile ALOHA tasks. The recurrent state accommodates *force history*; "active force attention" is unbuilt.
 
 - **[[2511.18112|EchoVLA]]** — A biologically-inspired ==declarative memory==: persistent voxelized ==Scene Memory== + time-indexed ==Episodic Memory== with coarse-to-fine retrieval; **0.31** RoboCasa mobile manip (vs π0.5 0.20), **0.44** real TidyBot++.
 
-- **[[2510.00695|HAMLET]]** — A ==History-Aware Memory with Learned Tokens== where per-timestep "moment tokens" compress history into a fine-tunable module; **+47.2%** real history-dependent SR (66.7% vs 12.5%) at ~**1%** overhead.
+- **[[2510.00695|HAMLET]] (ICLR'26)** — A ==History-Aware Memory with Learned Tokens== where per-timestep "moment tokens" compress history into a fine-tunable module; **+47.2%** real history-dependent SR (66.7% vs 12.5%) at ~**1%** overhead.
 
 - **[[2511.11478|LIBERO-Mem]]** — A non-Markovian benchmark (10 tasks: object memory, temporal dependency, identity ambiguity) + ==Embodied-SlotSSM== slot-centric VLA; exposes that current VLAs hit only **14.8%** subgoal completion on memory-critical tasks.
 
@@ -469,10 +469,10 @@ Rather than an external map, thread memory directly through the policy's own tra
 ^dm-3
 
 > [!star] Key Papers
-> - [[2012.03912|MultiON]] — the original map-memory benchmark that every later semantic-map paper in this section still targets.
-> - [[2411.17735|3D-Mem]] — the reference Memory-Snapshot / Frontier-Snapshot design most 2025-2026 scene-memory papers extend.
-> - [[2412.14480|GraphEQA]] — the canonical online 3D scene-graph construction for embodied QA.
-> - [[2510.00695|HAMLET]] — the first clean demonstration that "moment tokens" baked into the backbone beat frame-stacking without an external map at all.
+> - [[2012.03912|MultiON]] (NeurIPS'20) — the original map-memory benchmark that every later semantic-map paper in this section still targets.
+> - [[2411.17735|3D-Mem]] (CVPR'25) — the reference Memory-Snapshot / Frontier-Snapshot design most 2025-2026 scene-memory papers extend.
+> - [[2412.14480|GraphEQA]] (CoRL'25) — the canonical online 3D scene-graph construction for embodied QA.
+> - [[2510.00695|HAMLET]] (ICLR'26) — the first clean demonstration that "moment tokens" baked into the backbone beat frame-stacking without an external map at all.
 
 ^key-papers-3
 
@@ -495,7 +495,7 @@ Break the task into named phases or subgoals up front, then condition behavior o
 
 - **[[2603.09292|See-Plan-Rewind]]** — A ==See-Plan-Rewind== cycle that decomposes tasks into spatially-grounded 2D subgoals with explicit ==error-recovery rewind==; **91.8%** LIBERO (+5.0 over MolmoAct), SOTA OOD robustness on LIBERO-Plus.
 
-- **[[2508.19958|Long-VLA]]** — An end-to-end long-horizon VLA that decomposes trajectories into ==moving vs interaction phases== with a phase identifier + a ==dynamic binary input-masking== that selectively attends to phase-relevant views (third-person for moving, ego for interaction); up to **+81%** rel over base on 10-step L-CALVIN (avg length **8.24**), real 8-step where baseline fails.
+- **[[2508.19958|Long-VLA]] (CoRL'25)** — An end-to-end long-horizon VLA that decomposes trajectories into ==moving vs interaction phases== with a phase identifier + a ==dynamic binary input-masking== that selectively attends to phase-relevant views (third-person for moving, ego for interaction); up to **+81%** rel over base on 10-step L-CALVIN (avg length **8.24**), real 8-step where baseline fails.
 
 #### 4.2 Continuous, Unnamed Temporal Representations
 
@@ -505,7 +505,7 @@ No named phases — the state is a continuous representation instead of a labele
 
 - **[[2606.17463|WeaveLA]]** — An event-driven action-side ==latent memory weaving== interface bolted onto a frozen VLA backbone that writes a ==Memory Weaver==-compressed task state at sub-goal completion events to condition the next action expert via memory-conditioned AdaRMS; lifts RoboMME avg SR **19.0%→24.7%** and SWINGXTIMES **0%→47.8%** on repetition tasks.
 
-- **[[2512.09928|HiF-VLA]]** — A ==Hindsight-Insight-Foresight== bidirectional temporal reasoning over compact codec ==motion vectors== (past/current/future dynamics); **94.4%/96.4%** LIBERO-Long third/multi-view at negligible overhead.
+- **[[2512.09928|HiF-VLA]] (CVPR'26)** — A ==Hindsight-Insight-Foresight== bidirectional temporal reasoning over compact codec ==motion vectors== (past/current/future dynamics); **94.4%/96.4%** LIBERO-Long third/multi-view at negligible overhead.
 
 - **[[2608.16885|τ0-VLA]]** — A hierarchical VLA whose ==correctable execution memory== (perturbation-trained to repair lag/skip/misrepresented progress) feeds a ==world-model-guided beam search== over candidate subtasks before a reflective model commits; **45.0%** avg long-horizon SR (vs **27.5%** Plan-Once, **22.5%** π0.5), **74.0%** OOD subtask accuracy (vs Plan-Once's **50.0%**).
 
@@ -523,8 +523,8 @@ No named phases — the state is a continuous representation instead of a labele
 ^dm-4
 
 > [!star] Key Papers — Temporal Self-Awareness Landmarks
-> - [[2508.19958|Long-VLA]] — the reference phase-decomposition design (moving vs interaction) that later papers in this section refine rather than replace.
-> - [[2512.09928|HiF-VLA]] — the cleanest formalization of hindsight-insight-foresight as one bidirectional reasoning module.
+> - [[2508.19958|Long-VLA]] (CoRL'25) — the reference phase-decomposition design (moving vs interaction) that later papers in this section refine rather than replace.
+> - [[2512.09928|HiF-VLA]] (CVPR'26) — the cleanest formalization of hindsight-insight-foresight as one bidirectional reasoning module.
 > - [[2608.02326|ChainVLA]] — the most recent and most general: a single revisable execution state that survives arbitrary replanning, not just a fixed phase count.
 
 ^key-papers-4
@@ -544,7 +544,7 @@ All eight papers share the same axis — a memory store that a reasoning module 
 
 Memory whose job is to guide *where to look next* and *what the answer is* — centralizing evidence across an exploration episode.
 
-- **[[2601.13132|GaussExplorer]]** — An embodied exploration + reasoning framework over ==semantic 3D Gaussian Splatting== (open-set CLIP per Gaussian), where an LLM extracts query 'evidence categories' to search-and-cluster objects and a VLM ==novel-view judge== evaluates perturbed camera poses; **57.8** LLM-Match EM-EQA (3D-Mem **54.6**), **12.87** 3D mIoU referring segmentation.
+- **[[2601.13132|GaussExplorer]] (ECCV'26)** — An embodied exploration + reasoning framework over ==semantic 3D Gaussian Splatting== (open-set CLIP per Gaussian), where an LLM extracts query 'evidence categories' to search-and-cluster objects and a VLM ==novel-view judge== evaluates perturbed camera poses; **57.8** LLM-Match EM-EQA (3D-Mem **54.6**), **12.87** 3D mIoU referring segmentation.
 
 - **[[2511.20644|VLM²]]** — A video VLM pairing ==adaptive 3D position injection== with a ==dual memory==: sliding-window working memory fused with a ==fixed-capacity episodic bank== pruned by cosine-similarity replacement; **68.8** VSI-Bench avg (vs VLM-3R-7B's **60.9**), memory alone **+4.0%** — bounded recall answers questions but steers no exploration.
 
@@ -556,9 +556,9 @@ Memory whose job is to guide *where to look next* and *what the answer is* — c
 
 Memory as an explicit 3D scene graph a downstream planner reasons over directly — one paper carries that graph as far as an enforced safety filter, the other stops at planning/navigation.
 
-- **[[2606.29786|OP3DSG]]** — Builds a unified open-vocab 3D scene graph (objects + interactive parts + spatial/functional relations + affordances) via ==knowledge-guided part detection== and ==geometry-anchored, CoT-inspired multi-agent LLM reasoning==; **+31.2pp** part-node R@3 on UniGraph3D, deployed on a Stretch3 robot for QA/planning/navigation.
+- **[[2606.29786|OP3DSG]] (ECCV'26)** — Builds a unified open-vocab 3D scene graph (objects + interactive parts + spatial/functional relations + affordances) via ==knowledge-guided part detection== and ==geometry-anchored, CoT-inspired multi-agent LLM reasoning==; **+31.2pp** part-node R@3 on UniGraph3D, deployed on a Stretch3 robot for QA/planning/navigation.
 
-- **[[2606.28592|E2-CARE]]** — Unifies environment, robot embodiment, and humans in one ==3D dynamic scene graph==, over which an ==LLM== reasons about context to synthesize safety constraints + preferences per skill, enforced by an ==Operational-Space CBF== filter; **~95%** success / **80%** constraint satisfaction across 130 environments + 5 embodiments (**+15-40pp**) at **~0.15ms** overhead.
+- **[[2606.28592|E2-CARE]] (RSS'26)** — Unifies environment, robot embodiment, and humans in one ==3D dynamic scene graph==, over which an ==LLM== reasons about context to synthesize safety constraints + preferences per skill, enforced by an ==Operational-Space CBF== filter; **~95%** success / **80%** constraint satisfaction across 130 environments + 5 embodiments (**+15-40pp**) at **~0.15ms** overhead.
 
 #### 5.3 Multi-Store Agentic Memory Architectures
 
@@ -586,7 +586,7 @@ Memory factored into several named, typed stores (temporal, semantic, episodic) 
 > - [[2505.13948|Memory-Centric-EQA]] — the reference design for centralizing memory as the hub every EQA sub-module queries, rather than a peripheral cache.
 > - [[2508.01415|RoboMemory]] — the most architecturally ambitious: four parallel typed stores (temporal, spatial-KG, semantic, episodic) unified under one Planner-Critic loop.
 > - [[2608.04933|Mimir]] — the current best raw SR in this section (**+16.0pp** over RoboMemory), via a simpler two-store World/Task split rather than four parallel stores — architectural ambition and raw performance point different directions.
-> - [[2606.29786|OP3DSG]] — establishes open-vocabulary 3D scene graphs with interactive parts and affordances as first-class memory content, not just object labels.
+> - [[2606.29786|OP3DSG]] (ECCV'26) — establishes open-vocabulary 3D scene graphs with interactive parts and affordances as first-class memory content, not just object labels.
 
 ^key-papers-5
 
@@ -629,7 +629,7 @@ A broader substrate: hierarchical episodic memory, phase-aware replay, and value
 
 - **[[2605.25832|AUTO-ROBOTIST]]** — A self-evolving agent converting ==robot-design trials into a 3-level NL skill library== (archetypes/rules/observations) with ADD/DIAGNOSE/MERGE maintenance; **1.47×** convergence speedup and +1.55 cross-scale fitness over a genetic-algorithm baseline.
 
-- **[[2510.16079|EVOLVER]]** — A method that extracts structured ==experience cards== per episode via ==offline self-distillation==, then evolves the policy with ==GRPO + composite reward==; cards accumulate in a persistent bank; **0.382** avg EM over 7 QA benchmarks scaling monotonically from **0.150** (0.5B) to **0.382** (3B), self-distillation beating external-teacher distillation (**0.370**).
+- **[[2510.16079|EVOLVER]] (ICML'26)** — A method that extracts structured ==experience cards== per episode via ==offline self-distillation==, then evolves the policy with ==GRPO + composite reward==; cards accumulate in a persistent bank; **0.382** avg EM over 7 QA benchmarks scaling monotonically from **0.150** (0.5B) to **0.382** (3B), self-distillation beating external-teacher distillation (**0.370**).
 
 - **[[2506.21627|FrankenBot]]** — A brain-morphic VLM-orchestration agent whose ==Multi-level Anomaly Handling== gives real-time error recovery and whose ==Hierarchical Incremental Memory (HIMM)== + Incremental Skill Pool enable cross-task skill reuse, typically with *one VLM call per task*; **73%** real-world SR (vs VoxPoser **46%** / ReKep **55%**) across ten tasks.
 
@@ -643,7 +643,7 @@ A broader substrate: hierarchical episodic memory, phase-aware replay, and value
 
 - **[[2604.15814|Continual-Hand-Eye-Calibration]]** — A ==Spatial-Aware Replay Strategy== (hybrid-distance ==Poisson disk sampling== + density-based replacement) paired with ==Structure-Preserving Dual Distillation== decomposing localization knowledge into coarse topological + fine metric components; **98.4%** accuracy / **1.6%** forgetting rate on a robotic-manipulation dataset.
 
-- **[[2608.08749|OnEvoMemory]]** — A ==value-guided hierarchical memory== (elite/transition/short-term banks) bolted onto a frozen VLA via ==gated cross-attention==; online rollouts refine only the memory + ==action-conditioned value estimator==; LiberoLong-10 **86.2%→90.2%**, RMBench SwapBlocks **0%→14%**.
+- **[[2608.08749|OnEvoMemory]] (ECCV'26 Workshop)** — A ==value-guided hierarchical memory== (elite/transition/short-term banks) bolted onto a frozen VLA via ==gated cross-attention==; online rollouts refine only the memory + ==action-conditioned value estimator==; LiberoLong-10 **86.2%→90.2%**, RMBench SwapBlocks **0%→14%**.
 
 - **[[2606.03598|PHASER]]** — A ==Phase-aware semantic experience replay== method for continual VLA via ==phase-centric capacity allocation== + ==multi-modal interference-aware routing== + an ==Auto-PC pipeline== that auto-discovers phase boundaries; up to **+31%** ASR over standard Experience Replay, hitting **87.8%** LIBERO-Goal / **85.8%** LIBERO-Long for OpenVLA-OFT-7B.
 
@@ -686,21 +686,21 @@ This section exists only to point readers at that fuller landscape, not to dupli
 One clearly-named memory structure carries the whole design — a 3D feature map, a token bank, a compressed cache — with no second mechanism fused in.
 
 - **[[2608.07408|WorldTrace]]** — Addressable video-WM memory via ==slot indexing== giving each summary slot a ==virtual position== ranked relative to the query, keeping slots in-distribution at any horizon; ==canonical key averaging== preserves mean pre-softmax attention (TempSSIM **0.545** vs **0.472** sliding-window), ==verbatim landmarks== lift loop-closure PAC **0.723 → 0.864**.
-- **[[2606.31734|MemLearner]]** — Learned context querying for video world models: ==query tokens== bridge context and predicted tokens, routed through the ==pretrained video DiT itself== (a scratch-trained side module failed) and confined to **5** shallow ==Query Layers==; **21.23** PSNR under occlusion vs **19.85** Context-as-Memory, revisit FID **137.87 → 101.57**.
+- **[[2606.31734|MemLearner]] (ECCV'26)** — Learned context querying for video world models: ==query tokens== bridge context and predicted tokens, routed through the ==pretrained video DiT itself== (a scratch-trained side module failed) and confined to **5** shallow ==Query Layers==; **21.23** PSNR under occlusion vs **19.85** Context-as-Memory, revisit FID **137.87 → 101.57**.
 - **[[2605.22718|WorldKV]]** — World memory as ==KV-cache retrieval==: evicted chunks indexed by camera pose or accumulated actions are reinserted natively by ==top-k view similarity== without re-encoding, plus ==anchor key-key-similarity compression== inside a ==four-region sliding window==; beats *full* KV on Matrix-Game-2.0 (LPIPS **0.462** vs **0.529**) at **16.25** vs **7.82 FPS**.
-- **[[2505.05495|3D-Persistent-Embodied-WM]]** — An action-guided RGB-D ==video diffusion== (CogVideoX) with an explicit ==DINO-Map== 3D memory injected via cross-attention experts + ==Plücker== action embeddings for pixel-wise camera control; **FVD 91.9** (vs NWM **194.0**), **81.7%** scene-revisit consistency, improved MPC + policy learning, coherent **112-frame** rollouts.
+- **[[2505.05495|3D-Persistent-Embodied-WM]] (NeurIPS'25)** — An action-guided RGB-D ==video diffusion== (CogVideoX) with an explicit ==DINO-Map== 3D memory injected via cross-attention experts + ==Plücker== action embeddings for pixel-wise camera control; **FVD 91.9** (vs NWM **194.0**), **81.7%** scene-revisit consistency, improved MPC + policy learning, coherent **112-frame** rollouts.
 
 - **[[2512.04040|RELIC]]** — An interactive video world model with long-horizon memory: a ==two-stage distillation== turns a 20-second bidirectional video-diffusion teacher into a real-time causal autoregressive student + a ==memory compression== (rolling-window cache + downsampled KV tokens); lowest RPE for action accuracy, **16 FPS** at 480×832, exploration to **20 seconds**.
 
-- **[[2504.12369|WorldMem]]** — A ==token-level memory bank== with ==state-aware memory attention== (Plücker pose + timestamp embeddings) retrieved via ==FOV-overlap confidence scoring==, letting a conditional diffusion transformer persist objects/events across hundreds of frames; **PSNR 23.98** beyond context window (vs DF's severe collapse) on Minecraft + RealEstate10K.
+- **[[2504.12369|WorldMem]] (NeurIPS'25)** — A ==token-level memory bank== with ==state-aware memory attention== (Plücker pose + timestamp embeddings) retrieved via ==FOV-overlap confidence scoring==, letting a conditional diffusion transformer persist objects/events across hundreds of frames; **PSNR 23.98** beyond context window (vs DF's severe collapse) on Minecraft + RealEstate10K.
 
 #### 7.2 Composed & Multi-Component Memory Architectures
 
 Two or more explicitly named memory sub-mechanisms fused into one system — multiple tiers, multiple experts, or a tokenizer paired with a separate retrieval mechanism.
 
-- **[[2506.05284|Long-Term-Spatial-Memory-WM]]** — A memory-augmented video WM with three tiers (working frames, geometry-grounded ==3D point-cloud spatial memory== via ==TSDF fusion==, sparse episodic keyframes) on CogVideoX-5B for infinite-length consistent rollouts; **19.10 PSNR** view-recall vs 11.71–12.16 baselines, top VBench aesthetic/motion scores.
+- **[[2506.05284|Long-Term-Spatial-Memory-WM]] (NeurIPS'25)** — A memory-augmented video WM with three tiers (working frames, geometry-grounded ==3D point-cloud spatial memory== via ==TSDF fusion==, sparse episodic keyframes) on CogVideoX-5B for infinite-length consistent rollouts; **19.10 PSNR** view-recall vs 11.71–12.16 baselines, top VBench aesthetic/motion scores.
 
-- **[[2605.18813|CoME]]** — ==Composition of Memory Experts== for diffusion world models: Short-Term/Long-Term (==LoRA test-time finetuned==)/Spatial-Long-Term memory experts fused via a ==Product of Contrastive Experts (PoCE)== that suppresses spurious modes; LPIPS **0.209→0.097** Memory Maze, RECON navigation ATE **1.13→0.96** vs NWM, at **60×** less compute than full-attention scaling.
+- **[[2605.18813|CoME]] (ICLR'26)** — ==Composition of Memory Experts== for diffusion world models: Short-Term/Long-Term (==LoRA test-time finetuned==)/Spatial-Long-Term memory experts fused via a ==Product of Contrastive Experts (PoCE)== that suppresses spurious modes; LPIPS **0.209→0.097** Memory Maze, RECON navigation ATE **1.13→0.96** vs NWM, at **60×** less compute than full-attention scaling.
 
 - **[[2603.25716|HyDRA]]** — A ==Hybrid Memory== paradigm for dynamic video world models preserving both static-background consistency and dynamic-subject identity across out-of-view exit/re-entry, via a ==3D-convolution Memory Tokenizer== + ==Dynamic Retrieval Attention==, plus the HM-World (**59,225**-clip) benchmark; **PSNR 20.357** / **DSC 0.849**, beating commercial WorldPlay zero-shot.
 
@@ -725,7 +725,7 @@ Papers whose contribution is measuring memory mechanisms in general, not proposi
 ^dm-7
 
 > [!star] Key Papers — Generative-Memory Landmarks
-> - [[2504.12369|WorldMem]] — the first token-level memory bank with state-aware attention for long-horizon diffusion-transformer persistence; the reference design nearly every later paper here compares against.
+> - [[2504.12369|WorldMem]] (NeurIPS'25) — the first token-level memory bank with state-aware attention for long-horizon diffusion-transformer persistence; the reference design nearly every later paper here compares against.
 > - [[2606.09803|Echo-Memory]] — the field's first controlled ablation isolating *which* memory mechanism (not just *that* memory helps) drives consistency gains.
 > - [[2602.08025|MIND-Bench]] — the first benchmark to separate memory consistency from action control as independently measurable axes, rather than conflating them into one success rate.
 
@@ -759,13 +759,13 @@ The common design pattern across all of them: construct a task where success is 
 
 > [!star] Key Papers — Memory-Isolation Benchmarks
 > - [[2605.10921|RoboMemArena]] — the first comprehensive robotic-memory benchmark spanning both simulation and real hardware; the closest thing this axis has to a standard suite.
-> - [[2603.04639|RoboMME]] — the only benchmark that decomposes *which kind* of memory (temporal, spatial, object, procedural) a policy is missing, rather than reporting one aggregate score.
-> - [[2502.10550|MIKASA]] — the clearest demonstration that standard RL baselines (PPO-LSTM, SAC, TD-MPC2) collapse to near-zero on memory-intensive tasks that full-state PPO solves trivially, isolating memory as the limiting factor rather than a confound.
+> - [[2603.04639|RoboMME]] (ICML'26) — the only benchmark that decomposes *which kind* of memory (temporal, spatial, object, procedural) a policy is missing, rather than reporting one aggregate score.
+> - [[2502.10550|MIKASA]] (ICLR'26) — the clearest demonstration that standard RL baselines (PPO-LSTM, SAC, TD-MPC2) collapse to near-zero on memory-intensive tasks that full-state PPO solves trivially, isolating memory as the limiting factor rather than a confound.
 
 ^key-papers-8
 
 > [!tip] A Benchmark Is Only a Memory Benchmark If Memory-Free Fails
-> The design invariant across all seven dedicated suites is the same: pair every memory-dependent task with a memory-free or full-history baseline that provably cannot solve it, so a claimed "memory" gain is not just a harder task in disguise — [[2502.10550|MIKASA]]'s PPO-MLP-vs-PPO-LSTM collapse and [[2603.01229|RMBench]]'s ACT-scores-zero real-world result are the cleanest examples of this discipline. A newer, sharper failure mode two 2026-07/08 papers isolate: even a memory-equipped policy fails if what it stored has gone *stale* rather than merely thin — [[2608.04574|SpatialSTALE]] measures this directly, and §3.1's [[2607.23797|VLMM]] treats re-observation scheduling as the fix, not just diagnosis. See [[02_Dataset-Benchmark-Environment#5.3 Memory-Specific Benchmarks]] for the full benchmark descriptions this section points at rather than duplicates.
+> The design invariant across all seven dedicated suites is the same: pair every memory-dependent task with a memory-free or full-history baseline that provably cannot solve it, so a claimed "memory" gain is not just a harder task in disguise — [[2502.10550|MIKASA]] (ICLR'26)'s PPO-MLP-vs-PPO-LSTM collapse and [[2603.01229|RMBench]]'s ACT-scores-zero real-world result are the cleanest examples of this discipline. A newer, sharper failure mode two 2026-07/08 papers isolate: even a memory-equipped policy fails if what it stored has gone *stale* rather than merely thin — [[2608.04574|SpatialSTALE]] measures this directly, and §3.1's [[2607.23797|VLMM]] treats re-observation scheduling as the fix, not just diagnosis. See [[02_Dataset-Benchmark-Environment#5.3 Memory-Specific Benchmarks]] for the full benchmark descriptions this section points at rather than duplicates.
 
 ^insight-8
 
@@ -789,7 +789,7 @@ The common design pattern across all of them: construct a task where success is 
 - [[10_Manipulation-Skill-Learning]] — the manipulation-side source for §1.3's episodic/compression memory and §2's object-permanence policies.
 - [[03_Imitation-Learning-and-RL]] — cites §1.3's [[2104.10218|Episodic-Memory-Manipulation]] as a memory-guided answer to non-Markovian BC, §6.1's [[2606.12372|UniIntervene]] and §1.2's [[2605.14810|CaMeRL]] for the same non-Markovian problem in RL, and §6.2's [[2501.10395|t-DGR]] as the generative-replay fix to model staleness.
 - [[13_Navigation-and-Mobile-Manipulation]] — the navigation-side source for §1.1, §1.2, and §3.1's semantic-map subset.
-- [[11_Contact-Rich-and-Tactile-Control]] — cites §1.3's [[2508.19236|MemoryVLA]] dual-memory bank for cross-domain (force-history) memory context.
+- [[11_Contact-Rich-and-Tactile-Control]] — cites §1.3's [[2508.19236|MemoryVLA]] (ICLR'26) dual-memory bank for cross-domain (force-history) memory context.
 - [[14_Egocentric-Pretraining-and-Human-Video]] — cites §1.3's [[2602.04600|Act-Sense-Act]] Dual-Track Memory as the non-Markovian complement to hand-to-gripper transfer mechanisms.
 - [[04_VLA]] — the source for §3.2's backbone-native memory and §4's progress-aware/hindsight control.
 - [[05_VLA-Reasoning-and-CoT]] — the source for §5's memory-augmented reasoning; see also its four reasoning-insertion-slot framing.

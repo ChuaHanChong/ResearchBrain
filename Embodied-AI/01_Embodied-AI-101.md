@@ -96,7 +96,7 @@ The embodied-AI field evolved through four phases — from single-task imitation
 Legend: ╔═╗ double border = landmark/foundational paper.
 ```
 
-Four lanes, read in order. **Learning Foundations** shows the fork that still organises everything: [[1312.5602|DQN]] split into model-free policy gradients ([[1707.06347|PPO]], [[1801.01290|SAC]]) and learning a model to plan inside ([[1906.08253|MBPO]], [[1912.01603|Dreamer]]). **Vision-Language-Action** carries two threads — the backbone line from [[2212.06817|RT-1]] to [[2504.16054|π0.5]], and how an action is represented at all, from [[2303.04137|Diffusion-Policy]] to [[2603.07648|AtomicVLA]]. **World Models** is what a robot predicts before acting; **Self-Evolving** is what it does after deployment.
+Four lanes, read in order. **Learning Foundations** shows the fork that still organises everything: [[1312.5602|DQN]] split into model-free policy gradients ([[1707.06347|PPO]], [[1801.01290|SAC]] (ICML'18)) and learning a model to plan inside ([[1906.08253|MBPO]] (NeurIPS'19), [[1912.01603|Dreamer]] (ICLR'20)). **Vision-Language-Action** carries two threads — the backbone line from [[2212.06817|RT-1]] (RSS'23) to [[2504.16054|π0.5]], and how an action is represented at all, from [[2303.04137|Diffusion-Policy]] (RSS'23) to [[2603.07648|AtomicVLA]] (CVPR'26). **World Models** is what a robot predicts before acting; **Self-Evolving** is what it does after deployment.
 
 | Year | Paper | Track | Contribution |
 |------|-------|-------|--------------|
@@ -125,10 +125,10 @@ Four lanes, read in order. **Learning Foundations** shows the fork that still or
 
 > [!star] Start Here — Suggested Reading Order
 > A path into the field, not the lineage's landmarks — the Evolution Graph above marks those with a double border (`╔═╗`), and the two lists differ on purpose.
-> - [[2212.06817|RT-1]] — Proof that Transformers work for robot control; the foundational VLA
-> - [[2307.15818|RT-2]] — Web-scale VLM knowledge transfers to robots; defined the modern VLA paradigm
-> - [[2406.09246|OpenVLA]] — Open-source 7B VLA that democratized VLA research; the easiest one to actually run
-> - [[2410.24164|π0]] — Flow-matching action expert + VLM; the dominant continuous-action recipe
+> - [[2212.06817|RT-1]] (RSS'23) — Proof that Transformers work for robot control; the foundational VLA
+> - [[2307.15818|RT-2]] (CoRL'23) — Web-scale VLM knowledge transfers to robots; defined the modern VLA paradigm
+> - [[2406.09246|OpenVLA]] (CoRL'24) — Open-source 7B VLA that democratized VLA research; the easiest one to actually run
+> - [[2410.24164|π0]] (RSS'25) — Flow-matching action expert + VLM; the dominant continuous-action recipe
 > - [[2602.15922|DreamZero]] — Joint video + action prediction (14B WAM); zero-shot robot policies
 > - [[2506.09985|V-JEPA-2]] — Video-scale latent prediction; the bridge from world models into policies
 
@@ -163,7 +163,7 @@ Because it actually understands the rules of the world (like gravity and momentu
 
 ### 2. Vision-Language-Action (VLA) Models
 
-VLAs are essentially multimodal large language models fine-tuned for robotic control. Well-known examples include [[2307.15818|RT-2]] and [[2406.09246|OpenVLA]].
+VLAs are essentially multimodal large language models fine-tuned for robotic control. Well-known examples include [[2307.15818|RT-2]] (CoRL'23) and [[2406.09246|OpenVLA]] (CoRL'24).
 
 **How They Work:** They ingest visual observations (images of the environment) and language instructions (the goal), and directly output a sequence of discrete ==action tokens== (motor commands or waypoints).
 
@@ -230,7 +230,7 @@ WAMs are an emerging class of foundation models (such as [[2602.15922|DreamZero]
 | ==WAM== | Predicts future goal-images, derives actions via inverse dynamics | Hard to learn for complex interactions (doors, deformables) |
 | ==VLA== | Pre-trained VLMs encode state, predict actions directly | High compute for history-dependent processing |
 
-**Model-Free** approaches ([[1312.5602|DQN]], [[1801.01290|SAC]], [[1707.06347|PPO]]) learn a direct mapping from observations to actions through trial and error. They are powerful for specific tasks but require millions of environment interactions and don't transfer well to new tasks. **Model-Based** approaches (MPC, [[1906.08253|MBPO]]) learn an explicit dynamics model and use it for planning. They are sample-efficient but require accurate dynamics — errors in the model compound during long-horizon planning. **WAMs** take model-based to the extreme: learn dynamics from internet-scale video, then derive actions via inverse dynamics. The video backbone provides rich physics priors but makes the model large and slow. **VLAs** bypass explicit dynamics entirely: the VLM backbone provides implicit physical understanding from web-scale pre-training, and the model directly predicts actions. This is simpler and faster, but the physical understanding is brittle — it hasn't truly 'learned' physics, just correlated visual patterns with actions.
+**Model-Free** approaches ([[1312.5602|DQN]], [[1801.01290|SAC]] (ICML'18), [[1707.06347|PPO]]) learn a direct mapping from observations to actions through trial and error. They are powerful for specific tasks but require millions of environment interactions and don't transfer well to new tasks. **Model-Based** approaches (MPC, [[1906.08253|MBPO]] (NeurIPS'19)) learn an explicit dynamics model and use it for planning. They are sample-efficient but require accurate dynamics — errors in the model compound during long-horizon planning. **WAMs** take model-based to the extreme: learn dynamics from internet-scale video, then derive actions via inverse dynamics. The video backbone provides rich physics priors but makes the model large and slow. **VLAs** bypass explicit dynamics entirely: the VLM backbone provides implicit physical understanding from web-scale pre-training, and the model directly predicts actions. This is simpler and faster, but the physical understanding is brittle — it hasn't truly 'learned' physics, just correlated visual patterns with actions.
 
 > [!tip] WAM vs VLA — The Key Differentiator
 > WAMs predict a future goal-state then calculate actions via inverse dynamics — powerful but hard to learn for complex physics. VLAs bypass explicit world-modeling by inheriting spatial reasoning from web-scale VLM pre-training, mapping observations directly to control signals.
@@ -253,12 +253,12 @@ VLA design choices break into three axes:
 - ==Discrete== — action tokens predicted auto-regressively (compounding errors over long horizons)
 - ==Continuous== — floating-point values via MSE, BCE, or ==Flow Matching== (better temporal coherence)
 
-==Flow Matching== has emerged as the dominant continuous-action recipe: [[2410.24164|π0]] established it for VLAs, [[2503.20314|Wan]] scaled it for video-conditioned generation, [[2504.18471|Action-Flow-Matching]] adapted it for continual robot learning, and [[2505.05470|Flow-GRPO]] showed RL fine-tuning works directly on flow-matching policies — closing the loop between flow-matching SFT and RL post-training.
+==Flow Matching== has emerged as the dominant continuous-action recipe: [[2410.24164|π0]] (RSS'25) established it for VLAs, [[2503.20314|Wan]] scaled it for video-conditioned generation, [[2504.18471|Action-Flow-Matching]] adapted it for continual robot learning, and [[2505.05470|Flow-GRPO]] (NeurIPS'25) showed RL fine-tuning works directly on flow-matching policies — closing the loop between flow-matching SFT and RL post-training.
 
 > [!abstract] Current SOTA Configuration (2026)
 > ==Policy Head fusion + Continuous Action Space + Flow-Matching action expert + MoE backbone== — best trade-off between reasoning capacity, throughput, and zero-shot generalization. Frontier exemplars: [[2604.15483|π0.7]] (steerable generalist), [[2602.15922|DreamZero]] (joint video+action 14B WAM), [[2602.10098|VLA-JEPA]] (latent world model + flow head), and [[2603.16666|Fast-WAM]] (training-time video, deployment-time speed).
 
-**Representative models:** [[2310.08864|RT-2-X]], [[2406.09246|OpenVLA]] (one-step/discrete) · [[2405.12213|Octo]], [[2312.13139|GR-1]] (interleaved) · [[2311.01378|RoboFlamingo]] (policy head) · [[2604.07430|HY-Embodied-0.5]] (MoT-MoE multi-embodiment)
+**Representative models:** [[2310.08864|RT-2-X]], [[2406.09246|OpenVLA]] (CoRL'24) (one-step/discrete) · [[2405.12213|Octo]] (RSS'24), [[2312.13139|GR-1]] (ICLR'24) (interleaved) · [[2311.01378|RoboFlamingo]] (ICLR'24 Spotlight) (policy head) · [[2604.07430|HY-Embodied-0.5]] (MoT-MoE multi-embodiment)
 
 #### Data Strategy
 
@@ -274,9 +274,9 @@ Three training recipes for bridging sim-to-real:
 #### Key Empirical Findings
 
 1. **Generalization** — VLAs achieved a **30.3%** improvement on 5-task chains in unseen [[2112.03227|CALVIN]] scenes
-2. **Backbone matters** — [[2306.14824|KOSMOS-2]] and [[2407.07726|PaliGemma]] outperform others due to stronger vision-language alignment from larger pre-training datasets
+2. **Backbone matters** — [[2306.14824|KOSMOS-2]] (ICLR'24) and [[2407.07726|PaliGemma]] outperform others due to stronger vision-language alignment from larger pre-training datasets
 3. **Continuous > Discrete** — continuous actions avoid compounding discretization errors; Flow Matching offers slight gains over MSE
-4. **Emergent self-correction** — top VLAs re-locate handles after a missed grasp without explicit error-recovery training; ==Mixture-of-Experts (MoE)== improves zero-shot generalization. Frontier MoE/MoT examples: [[2604.07430|HY-Embodied-0.5]] (MoT for multi-embodiment), [[2603.15169|ForceVLA2]] (Cross-Scale MoE for force fusion), [[2603.07648|AtomicVLA]] (SG-MoE for skill abstraction).
+4. **Emergent self-correction** — top VLAs re-locate handles after a missed grasp without explicit error-recovery training; ==Mixture-of-Experts (MoE)== improves zero-shot generalization. Frontier MoE/MoT examples: [[2604.07430|HY-Embodied-0.5]] (MoT for multi-embodiment), [[2603.15169|ForceVLA2]] (CVPR'26) (Cross-Scale MoE for force fusion), [[2603.07648|AtomicVLA]] (CVPR'26) (SG-MoE for skill abstraction).
 
 > [!success] Ideal VLA Design Spec
 > ==KosMos/[[2407.07726|PaliGemma]] backbone== + ==Policy Head fusion== + ==Continuous actions (Flow Matching)== + ==MoE== + ==Post-training on in-domain data==
@@ -303,18 +303,18 @@ Researcher → Data → Training → Simulation → Deployment
 
 #### Building a VLA (Quick Recipe)
 
-1. **Pick a VLM backbone** — [[2407.07726|PaliGemma]] or [[2306.14824|KOSMOS-2]] (best vision-language alignment)
+1. **Pick a VLM backbone** — [[2407.07726|PaliGemma]] or [[2306.14824|KOSMOS-2]] (ICLR'24) (best vision-language alignment)
 2. **Add an action head** — Policy Head with continuous actions via ==Flow Matching==
 3. **Pre-train on [[2310.08864|OXE]]** — cross-embodiment data for broad priors
 4. **Post-train on in-domain data** — fine-tune on your specific robot + tasks
-5. **Deploy** — use ==[[2501.09747|FAST]]== tokenization for real-time inference
+5. **Deploy** — use ==[[2501.09747|FAST]] (RSS'25)== tokenization for real-time inference
 
 > See [[04_VLA#1. Design-Space Principles]] for the full design-space analysis.
 
 #### Building a WAM (Quick Recipe)
 
 1. **Choose your prediction space** — Pixel (richest but slowest), Latent (fastest), or Action-only (most efficient)
-2. **Pick a backbone** — Video diffusion ([[2501.03575|Cosmos]] / [[2602.15922|DreamZero]]), JEPA ([[2506.09985|V-JEPA-2]]), or RSSM ([[1912.01603|Dreamer]] lineage)
+2. **Pick a backbone** — Video diffusion ([[2501.03575|Cosmos]] / [[2602.15922|DreamZero]]), JEPA ([[2506.09985|V-JEPA-2]]), or RSSM ([[1912.01603|Dreamer]] (ICLR'20) lineage)
 3. **Pre-train on video** — internet-scale video teaches physics priors
 4. **Decide test-time strategy** — Full imagination (robust but 4.8x slower) or training-only video ([[2603.16666|Fast-WAM]] approach)
 5. **Add action decoding** — Flow matching or inverse dynamics from predicted states
@@ -331,8 +331,8 @@ Researcher → Data → Training → Simulation → Deployment
 Both VLAs and WAMs can be made self-evolving — autonomously discovering failure modes and improving through experience. Three paths to self-evolution:
 
 1. **RL Fine-Tuning** (VLA path): Apply reinforcement learning after initial imitation learning. The VLA explores, receives task-success reward, and adapts its policy. Simple and effective — VLAs are naturally resistant to catastrophic forgetting ([[2603.03818|VLA-Continual-Learning]]). Best for: in-domain improvement.
-2. **Imagination Loops** (WAM path): The world model generates synthetic "dream" rollouts. The policy trains on dreams, improving without real-world interaction. [[2506.24119|SPIRAL]] and [[2502.05907|EvoAgent]] show this creates positive feedback loops. Best for: safe exploration, data-scarce settings.
-3. **Curiosity-Driven Exploration**: The agent actively seeks states where its world model is uncertain ([[2503.01584|SENSEI]]) or where an adversary finds failures ([[2412.02818|RoboMD]]). This creates a self-directed curriculum that focuses practice on the agent's weaknesses.
+2. **Imagination Loops** (WAM path): The world model generates synthetic "dream" rollouts. The policy trains on dreams, improving without real-world interaction. [[2506.24119|SPIRAL]] (ICLR'26) and [[2502.05907|EvoAgent]] show this creates positive feedback loops. Best for: safe exploration, data-scarce settings.
+3. **Curiosity-Driven Exploration**: The agent actively seeks states where its world model is uncertain ([[2503.01584|SENSEI]] (ICML'25)) or where an adversary finds failures ([[2412.02818|RoboMD]] (ICLR'26)). This creates a self-directed curriculum that focuses practice on the agent's weaknesses.
 
 The critical prerequisite for all three paths: **the agent must first detect that it IS failing**. See [[16_Self-Evolving-VLA-WAM]] for how failure detection, self-correction, and active probing enable the self-evolution loop.
 

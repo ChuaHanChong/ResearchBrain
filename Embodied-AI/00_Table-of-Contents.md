@@ -313,7 +313,7 @@ aliases:
     - [[06_WAM#3.2 Unified Latent Diffusion|3.2 Unified Latent Diffusion]]
     - [[06_WAM#3.3 Self-Supervised Latent Models|3.3 Self-Supervised Latent Models]]
     - [[06_WAM#3.4 Latent-Action Models from Unlabeled Video|3.4 Latent-Action Models from Unlabeled Video]]
-  - [[06_WAM#4. Dreamer Lineage|4. Dreamer Lineage]] ([[1912.01603|Dreamer]])  *([[06_WAM#^dm-4|DM]] · [[06_WAM#^key-papers-4|Key Papers]] · [[06_WAM#^insight-4|Insight]])*
+  - [[06_WAM#4. Dreamer Lineage|4. Dreamer Lineage]] ([[1912.01603|Dreamer]] (ICLR'20))  *([[06_WAM#^dm-4|DM]] · [[06_WAM#^key-papers-4|Key Papers]] · [[06_WAM#^insight-4|Insight]])*
     - [[06_WAM#4.1 RSSM & Latent Imagination|4.1 RSSM & Latent Imagination]]
     - [[06_WAM#4.2 Exploration & Intrinsic Motivation|4.2 Exploration & Intrinsic Motivation]]
     - [[06_WAM#4.3 Physical-Robot & Continual|4.3 Physical-Robot & Continual]]
