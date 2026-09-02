@@ -65,6 +65,17 @@ For each in-scope file, enumerate KH papers that *should* be cited but aren't:
 
 1. **Build the file's "topical fingerprint"** — collect its `tags:` (frontmatter), `### N.` section titles, `#### N.N` sub-section titles, and the union of `tags:` from every paper it already cites. This fingerprint defines "what belongs in this file."
 2. **Build the candidate pool** — `_KnowledgeHub_/*.md` minus papers already cited *anywhere* in the in-scope set. (Cross-cited papers are fine; uncited papers are the candidate pool.)
+
+   **Never scope the pool by ingest date** (`git diff --diff-filter=A <last-sweep> HEAD`, or any recency window) — each sweep's floor moves to the last sweep's HEAD, so a paper missed once is never reconsidered. Narrow by domain tag instead:
+
+   ```bash
+   DOMAIN='robotics|manipulation|VLA|embodied-AI|locomotion|navigation|humanoid|tactile|dexterous|sim-to-real|world-model'
+   # glob includes 00_/01_ on purpose: out of scope to edit, but their citations count
+   cat Embodied-AI/[0-9][0-9]_*.md | grep -oE '\[\[[0-9]{4}\.[0-9]+' | sed 's/\[\[//' | sort -u > /tmp/cited.txt
+   ls _KnowledgeHub_/*.md | sed 's|.*/||;s|\.md||' | sort -u | comm -13 /tmp/cited.txt - | \
+     while read id; do grep -qE "^  - ($DOMAIN)$" "_KnowledgeHub_/$id.md" && echo "$id"; done > /tmp/pool.txt
+   ```
+
 3. **Score candidates against fingerprints** using three signals:
    - **Tag overlap** (`obsidian:obsidian-cli` for tag/property queries): candidate ↔ file tag intersection
    - **Concept proximity** (`graphify`): candidate's graph distance to the file's cited-set centroid; God-node co-membership is a strong positive

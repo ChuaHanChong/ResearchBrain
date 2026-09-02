@@ -123,6 +123,7 @@ Start from a pretrained agent; evolution is driven by persistent experience memo
 Start from a pretrained VLA backbone; evolve weights via RL post-training, continual learning, or self-correction. The pretrained VLM priors confer ==natural resistance to catastrophic forgetting==, making the VLA path more practical than NLP literature suggested.
 
 - **[[2511.16166|EvoVLA]]** — The first end-to-end self-evolving VLA, overcoming ==stage hallucination== to gain **+10.2pp** sim, **+11.0pp** Sim2Real, and **1.5×** sample efficiency.
+- **[[2608.21204|Q-Planning]]** — Self-improvement with the ==behaviour-cloning weights frozen==: an ==off-policy Q-function== over action chunks (==Q-chunking== + ==HL-Gauss categorical regression==) reranks N ==flow-matching== candidates by ==softmax Q-weighted average==, retraining Q only on replayed rollouts; **92.1 → 97.6%** mean over 10 iterations, real stack-cups **40 → 90%**.
 - **[[2603.03818|VLA-Continual-Learning]]** — A study proving pretrained VLAs are *naturally* resistant to forgetting; **2–4×** lower NBT with only **2%** replay data.
 - **[[2605.08879|ConSFT]]** — A conservative-SFT objective that down-weights low-confidence transitions via an ==exponential conservative importance weight==, bounding parameter disruption; **34%** LIBERO / **28%** RoboTwin retention vs vanilla-SFT collapse.
 

@@ -2416,7 +2416,7 @@ The data and evaluation infrastructure that makes all the above research possibl
 > - [[2505.11709|EgoDex]] — Apple's 829-hour Vision Pro dataset with SE(3) hand/body poses; establishes scaling laws for dexterous manipulation
 
 **Dexterous & Bimanual Manipulation Sim Benchmarks** — Simulated benchmarks for dexterous hands, tactile-in-sim, and bimanual manipulation.
-- [[2608.12416|RoboSynChallenge]], [[2607.08751|DexVerse]], [[2607.05869|GraspIT]], [[2607.04234|SoftVTBench]], [[2606.18097|WireCraft]], [[2606.11901|DuoBench]], [[2604.09294|POMDAR]], [[2602.09617|AnyTouch-2]], [[2505.11032|DexGarmentLab]], [[2504.10857|ZeroGrasp]], [[2412.13211|MS-HAB]], [[2411.12503|ManiSkill-ViTac-2025]]
+- [[2608.18701|SoftVTBench]], [[2608.12416|RoboSynChallenge]], [[2607.08751|DexVerse]], [[2607.05869|GraspIT]], [[2606.18097|WireCraft]], [[2606.11901|DuoBench]], [[2604.09294|POMDAR]], [[2602.10093|UniVTAC]], [[2602.09617|AnyTouch-2]], [[2505.11032|DexGarmentLab]], [[2504.10857|ZeroGrasp]], [[2412.13211|MS-HAB]], [[2411.12503|ManiSkill-ViTac-2025]]
 
 **Mobile & Whole-Scene Manipulation Benchmarks** — Household/scene-scale and mobile manipulation benchmarks, including humanoid whole-body tasks.
 - [[2608.27371|ESRP]], [[2606.18646|BestMan]], [[2603.22760|SG-VLA]], [[2603.04356|RoboCasa365]], [[2602.11337|MolmoSpaces]], [[2602.05233|MobileManiBench]], [[2511.10276|RoboBenchMart]], [[2508.07770|AgentWorld]], [[2506.16012|DualTHOR]], [[2506.09366|SkillBlender]], [[2503.02834|MuBlE]], [[2412.05313|λ/LAMBDA]], [[2406.02523|RoboCasa]], [[2403.10506|HumanoidBench]], [[2108.03332|BEHAVIOR]], [[2106.14405|Habitat-2.0]], [[2011.01975|Rearrangement Challenge]]

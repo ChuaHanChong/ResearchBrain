@@ -597,7 +597,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 > - [[2506.18123|RoboArena]] — Distributed real-world evaluation via double-blind pairwise comparisons across 7 institutions; 0.98 Pearson correlation with oracle rankings and 1.8% Mean Max Rank Violation; paradigm shift from sim-only benchmarking
 
 **Tactile Sensing Hardware & Data Collection Datasets** — Datasets and hardware rigs for capturing tactile/visuo-tactile signals.
-- [[2608.15060|EgoTac]], [[2607.11734|NeuralActuator]], [[2607.05390|Deform360]], [[2607.05241|GelNeuro]], [[2607.04234|SoftVTBench]], [[2606.31836|RoboTacDex]], [[2606.31694|RCT]], [[2606.29948|HTT]], [[2606.19161|HT-Bench]], [[2606.04825|HapTile]], [[2605.27886|Tabero]], [[2605.13083|TouchAnything]], [[2604.20444|VTouch++]], [[2604.07335|TAMEn]], [[2507.15062|Touch-in-the-Wild]], [[2505.21495|CLAMP-Haptic]], [[2504.02318|X-Capture]], [[1904.06830|ContactDB]]
+- [[2608.29601|N0-Foundation]], [[2608.18701|SoftVTBench]], [[2608.15060|EgoTac]], [[2607.11734|NeuralActuator]], [[2607.05390|Deform360]], [[2607.05241|GelNeuro]], [[2606.31836|RoboTacDex]], [[2606.31694|RCT]], [[2606.29948|HTT]], [[2606.19161|HT-Bench]], [[2606.04825|HapTile]], [[2605.27886|Tabero]], [[2605.21976|TacO]], [[2605.13083|TouchAnything]], [[2604.20444|VTouch++]], [[2604.07335|TAMEn]], [[2507.15062|Touch-in-the-Wild]], [[2505.21495|CLAMP-Haptic]], [[2504.02318|X-Capture]], [[1904.06830|ContactDB]]
 
 **Sensor Payloads & State-Estimation Datasets** — Multi-modal sensor hardware payloads and the state-estimation/SLAM datasets they enable for mobile and legged robot navigation.
 - [[2608.02316|Adaptive-InEKF]], [[2605.21863|OCELOT]], [[2504.18500|Boxi]], [[2403.11000|VEPD]], [[2103.12768|DA4Event]]

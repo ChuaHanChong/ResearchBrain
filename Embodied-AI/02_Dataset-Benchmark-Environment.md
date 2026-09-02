@@ -267,6 +267,7 @@ Large-scale grasp-annotation corpora and graspability benchmarks — the data su
 - **[[2504.10857|ZeroGrasp]]** — A zero-shot grasping framework shipping two datasets — **ZeroGrasp-11B** (training) and **ReOcS** (reconstruction-under-occlusion benchmark) — via an ==octree-based conditional VAE== coupling 3D shape reconstruction with grasp-pose prediction; SOTA on the GraspNet-1B benchmark with near-real-time synthetic-to-real transfer to novel objects.
 - **[[2403.09841|MultiGripperGrasp]]** — A grasp dataset of **30.4M** physically-verified, fall-off-time-ranked grasps across ==11 grippers== (parallel-jaw to dexterous) on **345** objects, generated via GraspIt! + Isaac Sim with a ==fixed palm-pose convention== enabling cross-morphology ==grasp transfer==; **43.3%** held >3s, and transfer raises the H5 Hand from **24K → 598K** successful grasps.
 - **[[2210.02697|DexGraspNet]]** — A simulation-built dexterous-grasp dataset of **1.32M** validated ShadowHand grasps on **5,355** objects via improved ==differentiable grasp synthesis== (robust init + reverse-penetration energy) + Isaac Gym validation; **50×** faster (**950** GPU-hours), two orders larger than prior sets, lifting learned-grasping SR (**67.5%** DDG) and joint-angle diversity.
+- **[[1904.06830|ContactDB]]** — Grasp contact captured by ==thermal imaging==: participants hold 3D-printed objects with a stated post-grasp *intent*, then ICP-registered ==color-map optimization== textures the mesh; intent shifts contact sharply (scissors handle **100%** use vs **38%** hand-off), and ==diverse 3D prediction== cuts VoxNet error **55.37% → 11.64%** at k=10.
 
 #### 2.6 Instruction, VQA & Semantic-Grounding Datasets
 
@@ -662,6 +663,7 @@ Classic control-theoretic evaluation suites — orthogonal to the VLA-centric di
 - **[[2310.12567|Safety-Gymnasium]]** — A unified safe-reinforcement-learning benchmark suite on ==Gymnasium + MuJoCo== (single-agent, multi-agent, vision-only, Isaac Gym tasks) with explicit safety constraints, shipping the ==SafePO== library of **16** SafeRL baselines; PPO-Lag achieves **98%** cost reduction on velocity tasks, exposing the reward-vs-safety trade-off.
 - **[[2409.18330|DMC-VB]]** — A large-scale ==offline-RL visual-distractor benchmark== (locomotion + 3D navigation) testing whether pretrained representations survive static/dynamic distractors; off-the-shelf pretraining does **not** help, though it helps when expert data is scarce (**1%**), revealing a persistent pixel-vs-state gap.
 - **[[2307.10224|RL-ViGen]]** — A visual-RL ==generalization benchmark== of **5** task categories × **5** OOD axes (appearance, lighting, camera, scene structure, cross-embodiment) over 8 algorithms; all collapse on novel scene structures, PIE-G (ImageNet priors) leads on appearance/lighting and SGQN on camera-view — exposes which OOD axis each algorithm fails.
+- **[[2011.11991|Counterfactual-Planner-Failures]]** — Failure discovery by ==diverse policy selection== over RL driving policies plus a ==counterfactual avoidability check== (rewind to human reaction time, ==Optuna== search over IDM parameters) separating avoidable from unavoidable collisions; diverse policies surface **10×** more crossing-scene failures.
 
 #### 5.8 Agentic & Tool-Use Capability Benchmarks
 
@@ -716,6 +718,9 @@ Force-feedback, touch, and contact-rich manipulation form their own evaluation a
 The *representation* axis: do learned tactile features beat sensor-specific end-to-end pipelines on a fixed, multi-sensor task suite? Introduced in [[2410.24090|Sparsh]], [[2410.24090|TacBench]] is the de-facto standard.
 
 - **[[2606.31694|RCT]]** — A robot-collected touch-vision-language dataset of **122** materials preserving full ==contact sequences==, defining ==held-out evaluation protocols== that expose **17.7pp** overestimation from frame-random splits; held-out-material Recall@1 only **20.4%**.
+- **[[2606.19161|HT-Bench]]** — A full-hand tactile representation benchmark pairing ~**10M** RGB with **7.8M** synchronized tactile frames under ==egocentric vision==, defining **4** eval tasks (fine-grained retrieval, masked inpainting, vision-to-tactile synthesis, multimodal prediction) plus OOD splits; its ==HandTouch VQ encoder== baseline hits **99.27%** Hit@1, **0.010** RMSE inpainting.
+- **[[2606.13877|ContactWorld]]** — A **12-task** contact-rich benchmark isolating *which* vision-tactile representation supports planning, probed by a ==JEPA latent world model== under ==receding-horizon MPC==; point-cloud lifts avg planning SR **20.7% → 32.1%**, adding a ==tactile force-field== reaches **36.1%**, tactile gains widening at longer goal offsets (**16.0% → 20.5%** at 48 steps).
+- **[[2602.09617|AnyTouch-2]]** — A cross-sensor *dynamic* tactile representation benchmark on ==ToucHD== (**2.4M** contact samples, **5** optical sensors) organized by a ==5-tier Tactile Dynamic Pyramid== from static properties up to real-world manipulation; its encoder gains **~1.2×** on force prediction and **+15-20%** SR on Chip-Moving / USB-Insertion.
 - **[[2410.24090|Sparsh]]** / [[2410.24090|TacBench]] — A tactile-representation benchmark of **6** touch tasks (force estimation, slip detection, contact localization, fabric classification, dynamic pose tracking, bead maze) across ==DIGIT==, ==GelSight Mini==, ==OmniTact==, ==OptoTact== sensors; self-supervised reps beat sensor-specific end-to-end on **6/6** across the **95.8K-image** benchmark.
 - **[[2506.14754|Sparsh-X]]** — A ==multisensory touch== extension of [[2410.24090|Sparsh]] (image + audio + IMU + pressure) from ==Digit 360== via ==attention bottlenecks==, self-supervised on ~**1M** unlabeled contact interactions; **>3× improvement** on hardest force-and-vibration tasks and **+500%** plug-insertion SR over vision-only (to **90%**) — defines the multisensory tactile axis.
 
@@ -723,11 +728,17 @@ The *representation* axis: do learned tactile features beat sensor-specific end-
 
 The *policy* axis: full robot policies (not just representations) evaluated under contact-rich settings — does adding touch improve closed-loop SR on insertion / wiping / soft-object tasks?
 
+- **[[2608.29601|N0-Foundation]]** — A tactile-centric stack whose ==NeoData== spans **30,000+** hours and **1.4M** synchronized visuo-tactile episodes over **6** embodiments and **450+** tasks, with ==NeoForce== mapping any gel image to a dense 3-axis force field; on its paired ==NeoReal / NeoSim== benchmarks force conditioning lifts SR **26.5% → 32.5%**, best NeoSim policy only **45.8%**.
+- **[[2608.18701|SoftVTBench]]** — A deformation-aware visuo-tactile benchmark of **4,000** demos pairing policy-visible RGB + tactile with evaluator-only ==FEM nodal state==, scored by a ==Deformation-aware Success Rate== crediting a rollout only within a calibrated tolerance; the metric reverses rankings — visuo-tactile DP wins task success **40.0 vs 37.4**, loses DaSR **30.4 vs 33.6**.
 - **[[2607.14021|IDB]]** (Industrial Dexterity Benchmark) — A hardware-software benchmark with custom boards mimicking industrial tasks + ==DAG-ROS== ROS2 teleop infra, paired with **AG-iDP3**, a multimodal ==diffusion-based policy== fusing RGB, point clouds, wrist ==wrench== data; multi-view RGB reaches **78%** grasp+insert success vs **36%** single-camera, at ~**100** demos/phase.
+- **[[2607.09190|TactiDex]]** — A real-world tactile-guided dexterity benchmark: **162-taxel** glove + ==OptiTrack== mocap under ==tactile-constrained post-optimization==, **757** sequences across **49** objects, scored on tactile-aware SR *and* safety (PeakSafe / SafeTac@3N); its **TactiSkill** residual-RL baseline lifts tactile-aware success **39.35% → 64.64%**.
+- **[[2606.31836|RoboTacDex]]** — A ==Unitree G1== humanoid visual-tactile-action dataset built on ==hardware-software co-synchronization== (millisecond-consistent RGB-D + tactile + proprioception at 30 Hz); **6,000** trajectories (**25 hr**), **19** tasks, **23** skills, **22** objects, with tactile shifting rather than reducing UnscrewBottle failure modes.
 - **[[2606.04825|HapTile]]** — A ==haptic-informed vision-tactile-language-action dataset== of **1,726** demonstrations across **38** contact-rich tasks with synchronized fingertip ==visuotactile== data, collected with ==real-time haptic feedback to the operator==; adding raw tactile (V+T) lifts SR — strikingly **0% → 90%** for π0 peg insertion — though marker-tracked features can hurt.
+- **[[2605.21976|TacO]]** — A real-world benchmark evaluating **6** tactile sensors across ==resistive / magnetic / vision-based / acoustic== modalities under one ==ACT== pipeline on matched data, isolating modality contribution; plug insertion gains most (eFlesh **0.3 → 0.7**), and sensor ==material friction== outweighs spatial resolution.
 - **[[2604.07335|TAMEn]]** — A Tactile-Aware Manipulation Engine for closed-loop data collection; ==online feasibility validation== lifts demo-replay success to **100%** (from **12–39%**), and the full system with ==tactile pretraining== + AR-recovery + ==pyramid-structured data regime== reaches **75%** avg SR across 4 contact-rich bimanual tasks (see §2.1).
 - **[[2603.17851|DexViTac]]** — A portable ==visuo-tactile-kinematic== human-demo system with a ==ROS2 synchronized-acquisition framework== at **248 demos/hr** (near human speed); ==two-stage== recipe — ==kinematics-grounded tactile pretraining== → ACT policy — reaches **85.8%** avg SR on 4 contact-rich dexterous tasks, Pipetting collapsing **83.3% → 43.3%** without pretraining.
 - **[[2603.05687|CGP]]** — A contact-grounded policy using ==diffusion-predicted coupled state + tactile trajectories== + ==learned contact-consistency mapping== to a compliance controller; outperforms visuomotor + visuotactile baselines on **5** dexterous tasks (jar-opening, in-hand box flipping) at real-time inference latency.
+- **[[2602.01939|EFM-10]]** — A **10-task** bimanual active-perception benchmark formalizing ==Exploratory and Focused Manipulation==, paired with **1,850**-demo ==BAPData== (high-DoF active vision + ==6D force-torque==); force sensing lifts Light-Plug **20.0% → 36.7%** and cuts peak vertical force **29%**, yet π0 still scores **23.3%** there.
 - **[[2510.25725|HumanoidVTA]]** — The first humanoid ==visual-tactile-action dataset== for *soft-object* manipulation; teleoperated ==Inspire Hands== with **2,124** tactile sensors, evaluated via an ==ACT== baseline; t-SNE separates dense-tactile task conditions where sparse collapses, though the **MAE gap stays small** — exposing a policy-optimization bottleneck.
 - **[[2510.13324|FARM]]** — A ==Force-Aware Robotic Manipulation== diffusion policy predicting pose+grip+force from ==high-dim tactile force distributions== + ==dual-mode position/force controller==; **100%** dynamic screw-tightening, **95%** plant-insertion + grape-picking; W1 **0.7538 N** force matching to human demos.
 - **[[2509.18830|DexSkin]]** — A ==conformable capacitive parallel-plate-grid skin== of **60** taxels @ **294°** fingertip coverage at **<$10/pair**; senses to **1.7 kPa** with **6.52%** hysteresis; **19/20** perturbed pen reorientation (vs **0/20** baseline); ==pneumatic calibration== recovers transfer from **5/20 → 14/20** on swapped sensors.
@@ -741,8 +752,13 @@ The *policy* axis: full robot policies (not just representations) evaluated unde
 
 The *sensor-signal* axis, distinct from §6.2's policy evaluation: simulating what a tactile sensor itself would read (contact deformation, optical/marker response, force fields) rather than evaluating a downstream policy — the substrate that sim-to-real tactile data generation and system-ID depend on.
 
+- **[[2604.27367|DOT-Sim]]** — A ==differentiable optical tactile simulator== modeling gel deformation with the ==Material Point Method== and calibrating Young's modulus / Poisson's ratio from a few real demos, plus a neural ==residual image== for optical fidelity; **PSNR 30.48** (**+17.34%**), Chamfer **1.71 mm** vs **1.74** Taxim, zero-shot **90.48%** indenter classification.
+- **[[2604.20295|ETac]]** — A lightweight tactile simulator splitting elastomer deformation into a learnable ==decay-based propagation kernel== plus a ==PointNet residual correction== calibrated on ==FEM==; **0.058/0.116 mm** flat/curved RMSE vs **0.163-0.447 mm** for Taxim and TacSL, at **869 FPS** across **4,096** envs — the throughput tier RL training needs.
+- **[[2603.00446|HydroShear]]** — A ==hydroelastic shear simulator== decomposing marker displacement into dilation and shear via ==recursive force tracking== under Coulomb-friction constraints, with ==SDF==-tracked object motion and 4-parameter ==system identification==; beats TacSL and FOTS on every shear mode (**1.000 px** dilation RMSE), **93%** avg zero-shot sim-to-real.
+- **[[2602.10093|UniVTAC]]** — A unified visuo-tactile simulation platform on ==TacEx + Isaac Sim== modeling **3** commercial sensors behind atomic Grasp/Move/Place/Probe/Rotate APIs with a ==depth-feedback closure law== blocking non-physical penetration; **205,826** synthetic samples pretrain an encoder lifting ACT **30.9% → 48.0%** sim and **43.3% → 68.3%** real.
 - **[[2408.06506|TacSL]]** — A GPU-accelerated visuotactile sim in Isaac with ==implicit Kelvin-Voigt soft contact== + ==Asymmetric Actor-Critic Distillation==; **200×** tactile-image gen (**1631 FPS**), **428×** force-field gen (**1.5M FPS**); zero-shot sim-to-real **91.4%** peg-place / **82.7%** peg-insert; image-aug lifts real SR **27.2 → 87.7%** — de-facto tactile-sim foundation.
 - **[[2403.08716|DIFFTACTILE]]** — A physics-based ==differentiable tactile simulator== unifying ==FEM== sensor deformation + ==MLS-MPM== multi-material objects + ==Position-Based Dynamics== cables in Taichi, with an MLP optical module; gradient-based system-ID lowers Real2Sim marker MSE, optical sim beats Taxim (**7.94** vs **16.1** L1), tactile feedback cuts grasp slipping **0.18 → 0.07** m.
+- **[[2207.10763|Tactile Gym 2.0]]** — A sim-to-real tactile RL suite spanning **3** low-cost optical sensors (==DIGIT==, reduced ==TacTip==, hybrid ==DigiTac==) on a **$2.7k** Dobot MG400, bridged by ==GAN real-to-sim image translation==; SSIM **0.9818-0.9956** across sensors with comparable zero-shot pushing / edge-following on all three.
 - **[[2109.04027|Taxim]]** — An ==example-based optical simulation== for GelSight sensors: a polynomial look-up table maps contact geometry to per-pixel intensity, with ==linear-elastic== marker-field motion (first to combine marker + optical sim); **lowest pixel-wise intensity error** vs prior work, runs **online on CPU** — the foundational tactile simulator for sim-to-real data generation.
 
 **Tactile Benchmarks — Decision Matrix**
@@ -751,16 +767,27 @@ The *sensor-signal* axis, distinct from §6.2's policy evaluation: simulating wh
 |---|---|
 | Standardized tactile representation eval | [[2410.24090\|Sparsh]] / [[2410.24090\|TacBench]] (**6/6** tasks SOTA) |
 | Multisensory touch (image + audio + vibration + force) | [[2506.14754\|Sparsh-X]] (**>3×** on force-and-vibration) |
+| Full-hand tactile representation eval (egocentric) | [[2606.19161\|HT-Bench]] (**10M** RGB + **7.8M** tactile frames) |
+| Cross-sensor *dynamic* tactile representation | [[2602.09617\|AnyTouch-2]] (**2.4M** contacts, **5** sensors) |
+| Which VT representation supports planning | [[2606.13877\|ContactWorld]] (**12** tasks, **36.1%** MPC SR) |
+| Deformation-aware deformable manipulation eval | [[2608.18701\|SoftVTBench]] (DaSR reverses rankings) |
+| Which tactile *sensor modality* for which task | [[2605.21976\|TacO]] (**6** sensors, matched ACT pipeline) |
+| Hour-scale cross-embodiment tactile corpus + benchmark | [[2608.29601\|N0-Foundation]] (**30k hr**, NeoReal / NeoSim) |
+| Real-world whole-hand dexterous eval | [[2607.09190\|TactiDex]] (**757** seqs, **49** objects) |
+| Bimanual active-perception eval | [[2602.01939\|EFM-10]] (**10** tasks, **1,850** demos) |
 | Closed-loop bimanual policy SR | [[2604.07335\|TAMEn]] (**75%** avg SR) |
 | Dexterous human-demo pretrain + eval | [[2603.17851\|DexViTac]] (**248 demos/hr**, **85.8%** avg SR) |
 | Insertion / assembly contact-grounded eval | [[2603.05687\|CGP]] |
-| Soft-object humanoid manipulation | [[2510.25725\|HumanoidVTA]] (**2,124** tactile sensors) |
+| Soft-object humanoid manipulation | [[2510.25725\|HumanoidVTA]] (**2,124** tactile sensors), [[2606.31836\|RoboTacDex]] (**6,000** traj) |
 | Tactile-vs-vision contribution isolation | [[2510.13324\|FARM]] |
 | Torque-aware VLA recipe ablation | [[2509.07962\|TA-VLA]] (none / wrist-FT / per-joint grid) |
 | Full-arm skin coverage | [[2509.18830\|DexSkin]] |
 | Slow-fast visuotactile control | [[2503.02881\|Reactive-Diffusion-Policy]] |
 | Force-feedback wiping / surface task | [[2505.06451\|Adaptive-Wiping]] |
-| Tactile sensor-signal simulation (sim-to-real data gen) | [[2408.06506\|TacSL]], [[2403.08716\|DIFFTACTILE]], [[2109.04027\|Taxim]] |
+| Tactile sensor-signal simulation (foundational) | [[2408.06506\|TacSL]], [[2403.08716\|DIFFTACTILE]], [[2109.04027\|Taxim]] |
+| Higher-fidelity / faster tactile sim (beats TacSL & Taxim) | [[2604.20295\|ETac]] (**869 FPS**), [[2604.27367\|DOT-Sim]] (differentiable), [[2603.00446\|HydroShear]] (shear modes) |
+| Unified sim platform (data gen + learning + eval) | [[2602.10093\|UniVTAC]] (**3** sensors, **205,826** samples) |
+| Cross-sensor tactile sim-to-real comparison | [[2207.10763\|Tactile Gym 2.0]] (**3** sensors, SSIM **0.982-0.996**) |
 
 ^dm-6
 
@@ -769,12 +796,13 @@ The *sensor-signal* axis, distinct from §6.2's policy evaluation: simulating wh
 > - [[2506.14754|Sparsh-X]] — Extends [[2410.24090|Sparsh]] to multisensory touch (image + audio + vibration + force); **>3x improvement** on force-and-vibration tasks; defines the multisensory tactile evaluation axis
 > - [[2603.17851|DexViTac]] — The *human-demo* data engine (248 demos/hr, kinematics-grounded tactile pretrain); its **83.3% → 43.3%** Pipetting SR collapse without grounded pretrain is the most damning ablation for naïve tactile fusion
 > - [[2604.07335|TAMEn]] — The *closed-loop* data engine (online feasibility + AR recovery); pairs with [[2603.17851|DexViTac]] as the dual-pillar tactile collection pipeline (human bulk-pretrain → robot online-recovery refinement)
+> - [[2606.13877|ContactWorld]] — The *representation-choice* study for contact-rich planning; its 12-task benchmark shows spatiality (point cloud) and contact-sensitivity (force field) contribute separably, and tactile's value grows with horizon
 > - [[2509.07962|TA-VLA]] — Torque-aware VLA design study; the de-facto reference for which torque-integration recipe matters most under contact-rich evaluation
 
 ^key-papers-6
 
 > [!tip] Cross-Reference
-> See [[11_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]] for the full deep-dive on how [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] representations feed into VLAs ([[2509.07962|TA-VLA]], [[2510.13324|FARM]], [[2603.05687|CGP]]). The benchmarks here measure *what* you're getting from touch; the policies in 10 measure *how to use it*. The tactile axis also overlaps with §2.1 bimanual data ([[2604.20444|VTouch++]], [[2604.07335|TAMEn]]) where collection and evaluation use the same hardware.
+> See [[11_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures]] for the full deep-dive on how [[2410.24090|Sparsh]]/[[2506.14754|Sparsh-X]] representations feed into VLAs ([[2509.07962|TA-VLA]], [[2510.13324|FARM]], [[2603.05687|CGP]]). The benchmarks here measure *what* you're getting from touch; the policies there measure *how to use it*. The tactile axis also overlaps with §2.1 bimanual data ([[2604.20444|VTouch++]], [[2604.07335|TAMEn]]) where collection and evaluation use the same hardware.
 
 ^insight-6
 
@@ -1090,6 +1118,7 @@ Evaluating whether learned world models generate physically plausible, action-co
 
 Passive, largely non-interactive benchmarks judging whether generated/predicted video obeys physical law and supports causal inference — the founding lineage that action-conditioned WAM evals build on.
 
+- **[[2608.27345|PAWBench]]** — **50** scenarios over 8 mechanism groups split into ==PAW-Calibration== (analytic reference distributions) and ==PAW-Coverage== (enumerable outcomes), judged by a rubric-based ==PAWEval== over K=50 rollouts scoring ==total-variation distance== and support coverage; no system leads jointly, average TVD **31.2** vs a **9.22** sampling ceiling.
 - **[[2510.19788|AutumnBench]]** — Instantiates ==WorldTest==, a two-phase ==behavior-based== protocol where an agent explores a reward-free environment then answers ==environment-level queries== posed as derived challenge environments — **43** grid-worlds, **129** problems over ==Masked Frame Prediction==, ==Change Detection==, Planning; humans beat all five frontier models.
 - **[[2605.08567|ACWM-Phys]]** — An ==action-conditioned video-WM physics benchmark== of **8** envs (rigid/deformable/particle/kinematic) with InD vs OoD physical-shift protocols + the ACWM-DiT baseline; strong in-distribution (Push Rope **M-MSE 2.61** / **SSIM 0.988**) but large OoD drops (Robot Arm **ΔM-MSE +40.35**, Cloth Move **+29.99**), with model scale improving OoD robustness most.
 - **[[2603.19607|Physion-Eval]]** — A ==human-reasoning== benchmark for physical realism in generated video: **2,400+** real + **12,718** generated clips, with **90** STEM experts giving temporally-grounded diagnoses across **22** glitch types (exo + ego); experts flag glitches in **83.3%** exo / **93.5%** ego clips, the best MLLM critic only **19.1%** / **9.8%**.
