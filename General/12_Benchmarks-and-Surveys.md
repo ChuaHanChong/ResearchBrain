@@ -603,7 +603,7 @@ The data and evaluation infrastructure for embodied AI. Datasets provide trainin
 - [[2608.02316|Adaptive-InEKF]], [[2605.21863|OCELOT]], [[2504.18500|Boxi]] (RSS'25), [[2403.11000|VEPD]], [[2103.12768|DA4Event]]
 
 **Contact-Rich & Bimanual Manipulation Datasets** — Datasets for contact-rich, bimanual, and force-aware manipulation learning.
-- [[2603.17851|DexViTac]], [[2603.15847|FEEL]] (ECCV'26 Oral), [[2603.08560|CONTACT-Disassembly]] (IROS'26), [[2510.25725|HumanoidVTA]], [[2509.18865|Bi-VLA-VLA]], [[2505.18472|ManiFeel]], [[2504.17695|PICO]] (CVPR'25), [[2502.17432|FACTR]] (RSS'25), [[2502.01465|Embrace-Collisions]], [[2411.12503|ManiSkill-ViTac-2025]], [[2401.08577|MultiPLY]] (CVPR'24), [[2204.13662|ARCTIC]] (CVPR'23)
+- [[2609.01596|ManuFacet-1K]], [[2603.17851|DexViTac]], [[2603.15847|FEEL]] (ECCV'26 Oral), [[2603.08560|CONTACT-Disassembly]] (IROS'26), [[2510.25725|HumanoidVTA]], [[2509.18865|Bi-VLA-VLA]], [[2505.18472|ManiFeel]], [[2504.17695|PICO]] (CVPR'25), [[2502.17432|FACTR]] (RSS'25), [[2502.01465|Embrace-Collisions]], [[2411.12503|ManiSkill-ViTac-2025]], [[2401.08577|MultiPLY]] (CVPR'24), [[2204.13662|ARCTIC]] (CVPR'23)
 
 > [!star] Key Papers
 > - [[2604.20444|VTouch++]] — 120K episodes / 1,000+ hr / 380+ bimanual tasks with fingertip tactile + multi-view RGB-D; contrastive cross-modal retrieval outperforms baselines by 7×

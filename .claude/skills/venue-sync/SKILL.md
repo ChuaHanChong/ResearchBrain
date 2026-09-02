@@ -1,6 +1,6 @@
 ---
 name: venue-sync
-description: "Record where each KnowledgeHub paper was published - venue, year, presentation tier (oral/spotlight/highlight) and citation count - and badge them inline in General/ and Embodied-AI/. Use whenever the user asks whether papers were accepted, mentions venues, tiers, citations or paper impact, wants papers ranked or filtered by where they appeared, says 'update the venues' or 'which papers are orals', or has just ingested new notes via /kh-sync."
+description: "Record where each KnowledgeHub paper was published - venue, year, presentation tier (oral/spotlight/highlight) and citation count - and badge them inline in General/ and Embodied-AI/. Invoke only when the user explicitly asks for it: 'update the venues', 'refresh venue data', 'which papers are orals', or a direct question about a paper's venue, tier or citation count."
 ---
 
 # Venue Sync

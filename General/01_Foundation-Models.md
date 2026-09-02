@@ -290,7 +290,7 @@ New attention patterns, normalization strategies, and structural modifications t
 > - [[2512.24695|Hope]] (NeurIPS'25) — Nested Learning reinterprets deep learning as nested multi-level optimization
 
 **Hybrid Architectures** — Combining Transformers with state-space models, recurrence, or looped computation for improved efficiency.
-- [[2608.05416|SpectraLDS]], [[2607.16051|Loopie]], [[2605.11689|MoE-Configuration-Study]], [[2604.21254|Hyperloop-Transformers]], [[2603.11691|STAIRS-Former]], [[2601.15275|RayRoPE]], [[2512.20856|Nemotron-3]], [[2507.22448|Falcon-H1]], [[2507.12898|Vidar]], [[2507.03285|Memory-Mosaics-v2]] (NeurIPS'25 Oral), [[2505.16416|Circle-RoPE]] (ICML'26), [[2505.05522|CTM]] (NeurIPS'25 Spotlight), [[2503.24067|TransMamba]], [[2501.00663|Titans]] (NeurIPS'25), [[2405.21060|Mamba-2]] (ICML'24), [[2311.12424|Looped-Transformers]] (ICLR'24)
+- [[2608.27763|Falcon (Fast Weight Attention)]], [[2608.05416|SpectraLDS]], [[2607.16051|Loopie]], [[2605.11689|MoE-Configuration-Study]], [[2604.21254|Hyperloop-Transformers]], [[2603.11691|STAIRS-Former]], [[2601.15275|RayRoPE]], [[2512.20856|Nemotron-3]], [[2507.22448|Falcon-H1]], [[2507.12898|Vidar]], [[2507.03285|Memory-Mosaics-v2]] (NeurIPS'25 Oral), [[2505.16416|Circle-RoPE]] (ICML'26), [[2505.05522|CTM]] (NeurIPS'25 Spotlight), [[2503.24067|TransMamba]], [[2501.00663|Titans]] (NeurIPS'25), [[2405.21060|Mamba-2]] (ICML'24), [[2311.12424|Looped-Transformers]] (ICLR'24)
 
 > [!star] Key Papers
 > - [[2507.22448|Falcon-H1]] — Hybrid-head models integrating parallel Transformer and Mamba blocks; redefines the efficiency-performance frontier
