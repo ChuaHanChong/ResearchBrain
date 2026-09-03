@@ -344,6 +344,9 @@ Surveys mapping the robotics landscape from embodied AI simulators through VLA a
 > - [[2407.06886|ARIO]] — Comprehensive 2024 survey introducing the ARIO dataset standard for cross-study comparison
 > - [[2103.04918|Embodied-AI-Survey]] — Established the simulator-task-agent pyramid that later work builds on
 
+**Tactile, Force & Dexterous-Hand Surveys** — Reviews and taxonomies mapping the tactile/force stack: sensor transduction and materials, tactile data representation, multimodal fusion, sensorimotor control architectures, dexterous-hand platforms, and the field's own bibliometric history.
+- [[2608.07558|Tactile-Force-Learning-Survey]], [[2605.17336|Tactile-Multimodal-Fusion-Survey]], [[2605.13925|Dexterous-Hand-Intelligence-Survey]], [[2512.01106|Tactile-Robotics-Past-and-Future]], [[2510.10804|Tactile-Data-Representation-Review]], [[2508.11261|Tactile-Robotics-Outlook]], [[2504.11827|Forceful-Foundation-Models-Survey]], [[2501.09468|Tactile-Sensorimotor-Control-Review]]
+
 **Core VLA Architecture, Training & Efficiency Surveys** — Surveys on VLA model architecture, post-training, and efficiency.
 - [[2604.15395|Foundation-Models-in-Robotics-Survey]], [[2604.00061|R2X-Multi-Robot-MLLM-Survey]], [[2512.22983|Foundation-Model Manipulation Survey 2026]], [[2512.11362|Anatomy-Vision-Language-Action-Models-Modules]], [[2510.24795|Efficient-VLA-Survey]], [[2510.17111|Efficient-Vision-Language-Acti]], [[2509.19012|Pure-VLA-Survey]], [[2508.13073|Large-VLM-based-VLA-Survey]], [[2507.01925|Survey-Vision-Language-Action-Models-Action]], [[2506.20966|VLA-Post-Training-Survey]], [[2506.17561|VLA-OS]] (NeurIPS'25), [[2505.04769|VLA-Concepts-Survey]], [[2502.06851|AI-Drafted VLA Survey]], [[2405.14093|VLA-for-Embodied-AI-Survey]]
 

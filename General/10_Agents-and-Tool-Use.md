@@ -184,7 +184,7 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agentic Memory Systems & Evaluation Benchmarks** — Memory architectures for agents and benchmark suites that measure agentic capability across games, robotic manipulation, and grounded tasks.
-- [[2608.24876|Recuris]], [[2606.03374|eMEM]], [[2605.15128|MemEye]], [[2602.16313|MemoryArena]], [[2602.11964|Gaia2]] (ICLR'26 Oral), [[2511.14004|STAR-Memory-Action]], [[2509.22391|SeekBench]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]] (IROS'25), [[2505.15146|lmgame-Bench]] (ICLR'26), [[2504.15965|AI-Memory-Survey]], [[2403.19622|RH20T-P]] (NeurIPS'24 Workshop)
+- [[2608.24876|Recuris]], [[2606.03374|eMEM]], [[2605.15128|MemEye]], [[2604.01560|DeltaMem]], [[2602.16313|MemoryArena]], [[2602.11964|Gaia2]] (ICLR'26 Oral), [[2511.14004|STAR-Memory-Action]], [[2509.22391|SeekBench]], [[2508.01415|RoboMemory]], [[2506.18448|GraspMAS]] (IROS'25), [[2505.15146|lmgame-Bench]] (ICLR'26), [[2504.15965|AI-Memory-Survey]], [[2403.19622|RH20T-P]] (NeurIPS'24 Workshop)
 
 **RL Training & Planning Frameworks for Agentic Reasoning** — Reinforcement-learning algorithms and world-model-augmented planning methods that train or structure agentic reasoning.
 - [[2608.17310|Agentic ESOpt]], [[2608.06197|EnvACE]], [[2607.21653|Molt]], [[2607.06935|Mathematical Methods of RL]], [[2606.03963|AgenticRL]], [[2605.28774|AXPO]], [[2605.26494|MiniMax-M2]], [[2605.22138|SR2AM]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2605.20246|GROW]], [[2605.10663|Evolving-RL]], [[2605.09131|MCP-Cosmos]], [[2605.08083|AutoTTS]]
@@ -258,7 +258,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 - [[2509.02479|SimpleTIR]] (ICLR'26), [[2509.01055|VerlTool]], [[2505.07773|ZeroTIR]], [[2505.00024|Nemotron-Research-Tool-N1]] (ICLR'26), [[2504.13958|ToolRL]] (NeurIPS'25), [[2504.11536|ReTool]] (ICLR'26), [[2504.04736|SWiRL]], [[2503.23383|ToRL]]
 
 **Embodied & Robotic Tool Use** — Tool-use RL and functional-tool-grounding methods applied to embodied and robotic agents.
-- [[2608.05738|VLA-Talker]], [[2607.05780|FORGE]], [[2605.26637|Embodied-Tool-Protocol]], [[2603.22293|TIPS-RL]] (ICLR'26), [[2603.13348|AutoTool]] (ICLR'26), [[2510.07794|HiPRAG]] (ICLR'26), [[2509.21826|ResT-RL]] (ICLR'26), [[2509.17325|CodeGym]] (ICLR'26)
+- [[2608.05738|VLA-Talker]], [[2607.05780|FORGE]], [[2605.26637|Embodied-Tool-Protocol]], [[2603.22293|TIPS-RL]] (ICLR'26), [[2603.13348|AutoTool]] (ICLR'26), [[2602.09430|AtomBridge]], [[2510.14902|VLA2]], [[2510.07794|HiPRAG]] (ICLR'26), [[2509.21826|ResT-RL]] (ICLR'26), [[2509.17325|CodeGym]] (ICLR'26)
 
 > [!star] Key Papers
 > - [[2504.11536|ReTool]] (ICLR'26) — ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning

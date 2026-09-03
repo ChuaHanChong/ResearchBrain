@@ -9888,7 +9888,33 @@ papers = [
     "https://arxiv.org/abs/2608.27406",  # CLAP: Cross-Embodiment Video World Models are Zero-Shot Physical Simulators
     "https://arxiv.org/abs/2608.27448",  # TTPO: Test-Time Policy Optimization
     "https://arxiv.org/abs/2608.27550",  # Beyond Data Scaling: Representation-Centric Continued Pre-training for Vision-Language-Action Models
-    "https://arxiv.org/abs/2608.27763",  # Falcon (Fast Weight Attention)
-    "https://arxiv.org/abs/2608.29601",  # N0-Foundation
-    "https://arxiv.org/abs/2609.01596",  # Facet-0
+    "https://arxiv.org/abs/2608.27763",  # Fast Weight Attention for Continual Learning
+    "https://arxiv.org/abs/2608.29601",  # N0-Foundation: Towards the Age of Tactile Intelligence
+    "https://arxiv.org/abs/2609.01596",  # Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation
+    "https://arxiv.org/abs/2604.01560",  # DeltaMem: Towards Agentic Memory Management via Reinforcement Learning
+    "https://arxiv.org/abs/2506.15691",  # What Do Latent Action Models Actually Learn?
+    "https://arxiv.org/abs/2609.02886",  # SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models
+    "https://arxiv.org/abs/2608.29769",  # Learning Agile Perceptive Traversal of Sparse 3D Structures for Humanoids
+    "https://arxiv.org/abs/2609.00188",  # ZimaBlue: Evolving Generalizable World Action Models through Scalable Video Pre-training
+    "https://arxiv.org/abs/2609.00677",  # ADAPT: Agile Diffusion Action Priors for Robust and Steerable Online Text-Driven Humanoid Control
+    "https://arxiv.org/abs/2602.12532",  # CRAFT: Adapting VLA Models to Contact-rich Manipulation via Force-aware Curriculum Fine-tuning
+    "https://arxiv.org/abs/2311.00924",  # M3L: Generalizable Manipulation from Vision and Touch through Masked Multimodal Learning
+    "https://arxiv.org/abs/2410.09309",  # ACP: Adaptive Compliance Policy for Diffusion Guided Control
+    "https://arxiv.org/abs/2409.14440",  # AdmitDiff: Admittance Visuomotor Policy Learning for Contact-Rich Manipulation
+    "https://arxiv.org/abs/2411.15753",  # FoAR: Force-Aware Reactive Policy for Contact-Rich Robotic Manipulation
+    "https://arxiv.org/abs/2410.07554",  # ForceMimic: Force-Centric Imitation Learning with Force-Motion Capture
+    "https://arxiv.org/abs/2409.11047",  # TacDiffusion: Force-Domain Diffusion Policy for Precise Tactile Manipulation
+    "https://arxiv.org/abs/2509.19047",  # ManipForce: Force-Guided Policy Learning with Frequency-Aware Representation
+    "https://arxiv.org/abs/2409.17549",  # 3DTacDex: Canonical Representation and Force-Based Pretraining of 3D Tactile
+    "https://arxiv.org/abs/2406.14990",  # Comp-ACT: Learning Variable Compliance Control from a Few Demonstrations
+    "https://arxiv.org/abs/2401.17698",  # Bi-ACT: Bilateral Control-Based Imitation Learning via Action Chunking with Transformer
+    "https://arxiv.org/abs/2509.17053",  # FILIC: Dual-Loop Force-Guided Imitation Learning with Impedance Torque Control
+    "https://arxiv.org/abs/2507.10961",  # EquiContact: Hierarchical SE(3) Vision-to-Force Equivariant Policy
+    "https://arxiv.org/abs/2603.09565",  # ReTac-ACT: State-Gated Vision-Tactile Fusion Transformer for Precision Assembly
+    "https://arxiv.org/abs/2311.01248",  # MFMIL: Multimodal and Force-Matched Imitation Learning with a See-Through Visuotactile Sensor
+    "https://arxiv.org/abs/2309.12312",  # ForceSight: Text-Guided Mobile Manipulation with Visual-Force Goals
+    "https://arxiv.org/abs/2602.11643",  # ViTaS: Visual Tactile Soft Fusion Contrastive Learning for Visuomotor Learning
+    "https://arxiv.org/abs/2605.22896",  # Agentic-VLA: Efficient Online Adaptation for Vision-Language-Action Models
+    "https://arxiv.org/abs/2510.14902",  # VLA^2: Empowering Vision-Language-Action Models with an Agentic Framework for Unseen Concept Manipulation
+    "https://arxiv.org/abs/2602.09430",  # AtomBridge: Agentic VLA Inference Plugin for Long-Horizon Tasks in Scientific Experiments
 ]
