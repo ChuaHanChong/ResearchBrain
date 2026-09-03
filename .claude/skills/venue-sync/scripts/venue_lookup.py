@@ -703,7 +703,8 @@ def resolve(
 # --------------------------------------------------------------------------- apply
 
 FM_RE = re.compile(r"\A---\n(.*?\n)---\n", re.S)
-PROVENANCE_RE = re.compile(r"^(?:- venue_source:.*\n)?- venue_checked: .*\n", re.M)
+# Heading optional so apply migrates notes still on the older bare bullets.
+PROVENANCE_RE = re.compile(r"^(?:## Publication\n\n)?(?:- venue_source:.*\n)?- venue_checked: .*\n\n?", re.M)
 
 
 def render_fields(r: Resolved) -> str:
@@ -731,12 +732,13 @@ def render_provenance(r: Resolved, today: str) -> str:
 
 
 def patch_provenance(text: str, lines: str) -> str:
-    """Insert or replace the venue bookkeeping bullets at the top of the note's %% comment block."""
-    m = PROVENANCE_RE.search(text)
-    if m:
-        return text[: m.start()] + lines + text[m.end():]
-    at = text.index("%%\n") + len("%%\n")  # render_note always writes this block; absence is a bug
-    return text[:at] + lines + "\n" + text[at:]
+    """Insert or replace the note's Publication section, last in the %% block after BibTeX and any Assessment."""
+    # Always strip then re-insert at the anchor, so a note still carrying the old top-of-block bullets migrates.
+    text = PROVENANCE_RE.sub("", text)
+    opened = text.index("%%\n") + len("%%\n")
+    at = text.index("\n%%\n", opened) + 1  # the closing %% line; anchoring at the block start would race paper-rigor
+    head = text[:at].rstrip("\n") + "\n"  # collapse whatever the strip left, so a re-run is byte-identical
+    return head + "\n## Publication\n\n" + lines + text[at:]
 
 
 def patch_frontmatter(text: str, fields: str) -> str:
@@ -753,6 +755,15 @@ def note_title(text: str) -> str:
     """Extract the title value from a KnowledgeHub note's frontmatter."""
     m = re.search(r'^title:\s*"?(.*?)"?\s*$', text, re.M)
     return m.group(1) if m else ""
+
+
+FIELD_RE = re.compile(r"^(?:venue|venue_year|venue_type|venue_tier|citations): .*\n", re.M)
+
+
+def existing_fields(text: str) -> str:
+    """Return the note's current venue frontmatter lines, in file order."""
+    m = FM_RE.match(text)
+    return "".join(FIELD_RE.findall(m.group(1))) if m else ""
 
 
 def existing_checked(text: str) -> str:
@@ -800,18 +811,19 @@ def cmd_apply(args: argparse.Namespace) -> None:
             stats[f"tier:{r.tier}"] += 1
         if r.type:
             stats[f"type:{r.type}"] += 1
-        # Re-render with the existing date first: if that reproduces the note, nothing was found, so
-        # leave it rather than restamping every note daily. Only a real change earns today's date.
-        new = patch_provenance(patch_frontmatter(text, render_fields(r)), render_provenance(r, existing_checked(text) or today))
+        # Only a resolved value that actually moved earns today's date. Comparing rendered notes instead
+        # would restamp all 9,794 on any layout change, which is not an update.
+        fields = render_fields(r)
+        stamp = today if fields != existing_fields(text) or r.source != existing_source(text) else (existing_checked(text) or today)
+        new = patch_provenance(patch_frontmatter(text, fields), render_provenance(r, stamp))
         if new == text:
             continue
-        new = patch_provenance(patch_frontmatter(text, render_fields(r)), render_provenance(r, today))
         changed += 1
         if args.dry_run:
             if changed <= args.show:
                 print(f"\n--- {path.name}")
                 print(render_fields(r).rstrip())
-                print(render_provenance(r, today).rstrip())
+                print(render_provenance(r, stamp).rstrip())
         else:
             path.write_text(new)
 

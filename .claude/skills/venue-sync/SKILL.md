@@ -36,14 +36,18 @@ An unresolved paper carries **only `citations`** — venue keys are omitted, not
 vault is unpublished and Bases reads an absent property as null. `citations` always appears because 0 is a
 real count and it is the only signal an unpublished paper has.
 
-Provenance lives in the note's `%%` block, hidden by Obsidian but plain text to the scripts:
+Provenance lives under `## Publication` in the note's `%%` block, hidden by Obsidian but plain text to the scripts:
 
 ```
+## Publication
+
 - venue_source: proceedings   # proceedings | semantic-scholar | arxiv-comment | manual
 - venue_checked: 2026-09-02   # when the record was set, not when it was last looked at
 ```
 
-`venue_checked` only moves when something actually changes — otherwise every run would restamp 9,795 notes.
+The block reads BibTeX, then `## Assessment` if `paper-rigor` has run, then `## Publication`.
+
+`venue_checked` moves only when a resolved value moves, not when the layout does.
 
 ## Sources
 
