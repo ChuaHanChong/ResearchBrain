@@ -219,7 +219,7 @@ From video classification to self-supervised video representation learning. The 
 - [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]] (ECCV'26), [[2603.15847|FEEL]] (ECCV'26 Oral), [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2509.01708|ArtiPoint]] (CoRL'25), [[2411.19167|HOT3D]] (CVPR'25), [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]] (CVPR'24), [[2308.13561|Project Aria]], [[2203.09905|Cross-View-AG]] (CVPR'22), [[2203.01577|HOI4D]] (CVPR'22), [[2104.11181|H2O]]
 
 **Egocentric-to-Robot VLA Pretraining Datasets** — Egocentric human-video datasets built explicitly to pretrain or transfer to robot manipulation VLA policies.
-- [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]] (ICLR'26), [[2503.13441|PH2D]] (CoRL'25), [[2502.03729|RAD (Action-Free Reasoning)]] (CoRL'25), [[2410.24221|EgoMimic]]
+- [[2609.03199|RoboTok]], [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]] (ICLR'26), [[2503.13441|PH2D]] (CoRL'25), [[2502.03729|RAD (Action-Free Reasoning)]] (CoRL'25), [[2410.24221|EgoMimic]]
 
 **Video-Based Camera Geometry & Registration** — Methods that exploit video's temporal structure for camera pose/registration and cross-view visual consistency, from homography-based frame matching to global Structure-from-Motion.
 - [[2607.27194|VidMap]], [[2607.26985|SymmGrid]], [[2607.25389|HOME]]
@@ -303,7 +303,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2310.06114|UniSim]] (ICLR'24 Oral) — Learned interactive real-world simulator from video data; key inspiration for the WAM paradigm
 
 **Egocentric & Robotic World Models** — World models specialized for egocentric or robot-embodied prediction and planning.
-- [[2607.11643|Xiaomi-Robotics-U0]], [[2607.07675|LingBot-Video]], [[2607.07534|LingBot-World-Infinity]], [[2605.03821|RoboAlign-R1]], [[2604.07209|INSPATIO-WORLD]], [[2604.04502|Veo-Act]], [[2604.01421|EgoFlow]] (CVPR'26), [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2601.20540|LingBot-World]], [[2512.08269|EgoX]], [[2509.15536|SAMPO]] (NeurIPS'25)
+- [[2608.30237|Motus2]], [[2608.29242|AnyWorld]], [[2607.11643|Xiaomi-Robotics-U0]], [[2607.07675|LingBot-Video]], [[2607.07534|LingBot-World-Infinity]], [[2605.03821|RoboAlign-R1]], [[2604.07209|INSPATIO-WORLD]], [[2604.04502|Veo-Act]], [[2604.01421|EgoFlow]] (CVPR'26), [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2601.20540|LingBot-World]], [[2512.08269|EgoX]], [[2509.15536|SAMPO]] (NeurIPS'25)
 
 **Scalable Industrial World-Model Systems** — Large-scale, lab/industrial-branded world-model systems targeting general-purpose scaling.
 - [[2607.06291|AlayaWorld]], [[2607.06216|MoWorld]], [[2607.03964|Worldscape-MoE]], [[2607.02642|GigaWorld-1]], [[2606.32028|DVG-WM]], [[2606.28804|ViPSim]], [[2606.18610|SC3-Eval]], [[2606.04463|OSCAR]], [[2606.02800|Cosmos-3]], [[2605.28816|Gamma-World]], [[2605.25874|WBench]], [[2605.08279|LaWM]], [[2604.18564|MultiWorld]], [[2604.08995|Matrix-Game-3.0]], [[2604.04913|DeltaWorld]] (CVPR'26), [[2604.04707|OpenWorldLib]]

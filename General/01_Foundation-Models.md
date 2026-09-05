@@ -283,7 +283,7 @@ New attention patterns, normalization strategies, and structural modifications t
 > - [[2504.20966|Softpick]] — Rectified non-sum-to-one normalization; eliminates attention sinks and massive activations
 
 **Residual Connections & Depth** — Rethinking how information flows through deep networks via improved residual strategies and adaptive depth.
-- [[2603.15031|AttnRes]], [[2512.24880|mHC]], [[2512.24695|Hope]] (NeurIPS'25), [[2507.10524|MoR]] (NeurIPS'25), [[2506.09714|Auto-Compressing-Networks]] (NeurIPS'25 Oral), [[1512.03385|ResNet]] (CVPR'16)
+- [[2607.13491|DeepLoop]], [[2603.15031|AttnRes]], [[2512.24880|mHC]], [[2512.24695|Hope]] (NeurIPS'25), [[2507.10524|MoR]] (NeurIPS'25), [[2506.09714|Auto-Compressing-Networks]] (NeurIPS'25 Oral), [[1512.03385|ResNet]] (CVPR'16)
 
 > [!star] Key Papers
 > - [[2507.10524|MoR]] (NeurIPS'25) — Mixture-of-Recursions unifies parameter efficiency with adaptive per-token computation depth
@@ -623,7 +623,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2505.12082|PMA]] (NeurIPS'25) — Pre-trained Model Average for effective merging of LLM checkpoints
 
 **On-Policy Distillation for LLMs & Agents** — Self-distillation methods that train student policies on their own on-policy rollouts during LLM and agent post-training.
-- [[2608.01735|DAPD]], [[2608.01263|FP-OPD]], [[2607.28590|VAD]], [[2607.24731|PDM]], [[2607.15161|OPD^2]], [[2607.14777|SEED]], [[2607.08766|OPSD-V]], [[2607.05804|TurnOPD]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.05184|Fork Suppression]], [[2607.04763|ReOPD]], [[2607.04751|TOP-D]], [[2606.30626|DOPD]], [[2606.24143|AsyncOPD]], [[2606.07082|On-Policy-Distillation-Geometry]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.00626|On-Policy-Distillation-Survey]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2510.23497|VOLD]]
+- [[2609.04172|One-Shot OPD]], [[2608.01735|DAPD]], [[2608.01263|FP-OPD]], [[2607.28590|VAD]], [[2607.24731|PDM]], [[2607.15161|OPD^2]], [[2607.14777|SEED]], [[2607.08766|OPSD-V]], [[2607.05804|TurnOPD]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.05184|Fork Suppression]], [[2607.04763|ReOPD]], [[2607.04751|TOP-D]], [[2606.30626|DOPD]], [[2606.24143|AsyncOPD]], [[2606.07082|On-Policy-Distillation-Geometry]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.00626|On-Policy-Distillation-Survey]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2510.23497|VOLD]]
 
 **Teacher-Student Distillation for Robot Control** — RMA-style distillation that transfers a privileged, simulation-trained teacher policy into a deployable sensor-limited student controller.
 - [[2607.07357|HUMAIN]] (IROS'26), [[2607.02332|HEFT]], [[2607.02037|Cross-Platform ASV RL]], [[2606.30474|GOMP]], [[2605.03821|RoboAlign-R1]], [[2603.08763|SPREAD]], [[2601.05407|HINT]], [[2310.04582|PULSE]] (ICLR'24 Spotlight), [[2309.14341|Extreme Parkour]], [[2309.05665|Robot Parkour]] (CoRL'23), [[2211.07638|Egocentric Legged Locomotion]] (CoRL'22)
@@ -745,13 +745,13 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 - [[2607.12892|UR-VC]], [[2606.29892|T2VLA]], [[2604.19730|FASTER]], [[2603.26666|VLA-OPD]], [[2603.11653|VLA-RL-Continual-Learning]] (ICRA'26 Workshop), [[2602.01067|LBM Co-training Study]] (RSS'26)
 
 **VLA Representation, Reasoning & Alignment** — Representation-anchoring, latent-alignment, JEPA-based, and chain-of-thought reasoning methods for VLA models.
-- [[2608.03563|UVT]] (IROS'26), [[2607.25912|SAM3D-VLA]], [[2607.24485|τ]], [[2607.23969|LeapBot-WA]], [[2607.13597|Semantic Anchoring]], [[2607.13429|Anchor-Align]], [[2607.01586|VLAFlow]], [[2606.31167|MIRTH]], [[2606.30552|ZR-0]], [[2602.19710|Pose-VLA]], [[2602.11832|JEPA-VLA]], [[2602.10098|VLA-JEPA]], [[2602.08167|R&B-EnCoRe]] (RSS'26), [[2506.22242|4D-VLA]] (NeurIPS'25), [[2505.03500|TLI]]
+- [[2609.04193|GIFT-Manip]], [[2608.30643|Temporal Forcing]], [[2608.30378|PAVE]], [[2608.03563|UVT]] (IROS'26), [[2607.25912|SAM3D-VLA]], [[2607.24485|τ]], [[2607.23969|LeapBot-WA]], [[2607.13597|Semantic Anchoring]], [[2607.13429|Anchor-Align]], [[2607.01586|VLAFlow]], [[2606.31167|MIRTH]], [[2606.30552|ZR-0]], [[2602.19710|Pose-VLA]], [[2602.11832|JEPA-VLA]], [[2602.10098|VLA-JEPA]], [[2602.08167|R&B-EnCoRe]] (RSS'26), [[2506.22242|4D-VLA]] (NeurIPS'25), [[2505.03500|TLI]]
 
 **Efficient, Fast & Lightweight VLA Control** — Efficiency-focused VLA methods: fast action tokenization, lightweight distillation, and real-time control policies.
 - [[2607.27205|TurboVLA]], [[2607.26657|Enfold]], [[2607.06564|Lift3D-VLA]], [[2607.04171|XS-VLA]], [[2604.02408|F2F-AP]], [[2603.16195|S-VAM]], [[2509.04996|FLOWER]] (CoRL'25), [[2505.08971|PRIOR]], [[2501.09747|FAST]] (RSS'25)
 
 **Navigation & Cross-Platform VLA Scaling** — Foundation models and scaling pipelines for vision-and-language navigation and cross-platform VLA deployment.
-- [[2607.23743|Traversability-Aware Global Planner]], [[2607.20679|CAT-Nav]] (IROS'26), [[2602.18803|LoTIS]] (RSS'26), [[2509.11480|VLA-Cross-Platform-Scaling]], [[2503.03921|CREStE]] (RSS'25), [[2307.15644|ScaleVLN]], [[2306.14846|ViNT]] (CoRL'23), [[2105.06453|E.T. (Episodic Transformer)]]
+- [[2609.03906|TopoMacro VLN-CE]], [[2607.23743|Traversability-Aware Global Planner]], [[2607.20679|CAT-Nav]] (IROS'26), [[2602.18803|LoTIS]] (RSS'26), [[2509.11480|VLA-Cross-Platform-Scaling]], [[2503.03921|CREStE]] (RSS'25), [[2307.15644|ScaleVLN]], [[2306.14846|ViNT]] (CoRL'23), [[2105.06453|E.T. (Episodic Transformer)]]
 
 **Foundational Latent-Action & Video-Action Learning** — Core methods for learning action representations and goal-conditioned control from video and interaction data without explicit action labels.
 - [[2606.11525|IWR]], [[2509.19958|MotoVLA]] (CoRL'25), [[2410.11758|LAPA]] (ICLR'25), [[2410.06158|GR-2]], [[2402.15391|Genie]] (ICML'24 Oral), [[2310.08576|AVDC]] (ICLR'24 Spotlight), [[2306.10007|RPT]] (CoRL'23), [[2305.02195|CALM]], [[2203.12601|R3M]] (CoRL'22), [[2112.01511|VINN]]
@@ -773,7 +773,7 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 - [[2607.15898|Orbis 2]], [[2607.04541|CRISP]], [[2510.12796|DriveVLA-W0]] (ICLR'26), [[2407.21126|LOPR]] (RSS'25), [[2311.16038|OccWorld]] (ECCV'24)
 
 **Latent-Action & JEPA-Based World Models for Robotics** — World models built on latent-action and JEPA-style representations for robot planning and control.
-- [[2607.26056|INTACT]], [[2607.25337|Temporal-Distance-JEPA]], [[2607.09185|CD-LAM]], [[2607.04978|Qantara]], [[2602.11389|Causal-JEPA]] (ICML'26), [[2602.06949|DreamDojo]], [[2602.06130|SWIRL]], [[2601.05230|Latent-Action-World-Models]], [[2512.23541|Act2Goal]] (RSS'26), [[2507.19468|DINO-world]], [[2502.14819|PLDM]] (NeurIPS'25), [[2411.04983|DINO-WM]] (ICML'25)
+- [[2609.03565|Physically Grounded JEPA]], [[2607.26056|INTACT]], [[2607.25337|Temporal-Distance-JEPA]], [[2607.09185|CD-LAM]], [[2607.04978|Qantara]], [[2602.11389|Causal-JEPA]] (ICML'26), [[2602.06949|DreamDojo]], [[2602.06130|SWIRL]], [[2601.05230|Latent-Action-World-Models]], [[2512.23541|Act2Goal]] (RSS'26), [[2507.19468|DINO-world]], [[2502.14819|PLDM]] (NeurIPS'25), [[2411.04983|DINO-WM]] (ICML'25)
 
 **Recent World-Model Architectures & Physics Simulation** — Recent world-model architectures, physics-aware simulators, and self-improving dynamics models.
 - [[2607.28415|QQWorld]], [[2607.28391|TacWAM]], [[2607.27924|ODEWorld]], [[2607.27017|POKEWORLD]], [[2607.25918|DC-WAM]], [[2607.21576|SDM]], [[2607.19191|ABot-World-0]], [[2607.02195|BRIDGE-WA]], [[2606.30534|Orca]], [[2606.29501|A2World]] (ECCV'26), [[2606.27364|PhysiFormer]], [[2604.10333|ZWM]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.12231|Temporal-Straightening]] (ICML'26), [[2512.09929|OWM]], [[2511.09057|PAN]]

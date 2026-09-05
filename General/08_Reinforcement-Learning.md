@@ -1049,7 +1049,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2506.23235|EndoRM]] — Reveals powerful reward models are already latent within any LLM; no separate training needed
 
 **Reward Model Surveys & Analysis** — Understanding what reward models learn, how they fail, and how to improve them.
-- [[2604.07480|Active-RM-Inference]], [[2512.23461|DIR-Reward]] (ICLR'26), [[2510.17793|Foundational-Evaluators]] (ICLR'26), [[2510.15839|Correlated-Reward-Models]] (ICLR'26), [[2510.02850|BayesianRouter]] (ICLR'26), [[2509.21798|CARB]] (ICLR'26), [[2506.07326|Reward-Model-Interpretability]], [[2504.12328|Reward-Model-Survey]], [[2504.06020|Reward-Decomposition-RLHF]] (NeurIPS'25), [[2503.15477|Reward-Model-Teacher-Analysis]] (NeurIPS'25 Spotlight), [[2306.05685|MT-Bench]] (NeurIPS'23)
+- [[2609.04066|PreferenceEKF]], [[2604.07480|Active-RM-Inference]], [[2512.23461|DIR-Reward]] (ICLR'26), [[2510.17793|Foundational-Evaluators]] (ICLR'26), [[2510.15839|Correlated-Reward-Models]] (ICLR'26), [[2510.02850|BayesianRouter]] (ICLR'26), [[2509.21798|CARB]] (ICLR'26), [[2506.07326|Reward-Model-Interpretability]], [[2504.12328|Reward-Model-Survey]], [[2504.06020|Reward-Decomposition-RLHF]] (NeurIPS'25), [[2503.15477|Reward-Model-Teacher-Analysis]] (NeurIPS'25 Spotlight), [[2306.05685|MT-Bench]] (NeurIPS'23)
 
 > [!star] Key Papers
 > - [[2504.12328|Reward-Model-Survey]] — Comprehensive survey consolidating RM research in the LLM era; introduces unified taxonomy
@@ -1153,7 +1153,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 
 
 **Navigation & Path Planning RL** — RL for embodied navigation, vision-language navigation, and path planning.
-- [[2607.13461|JOP-VLN]] (IROS'26), [[2607.01044|CommNav]], [[2606.31260|SymPlan]], [[2604.08883|HTNav]], [[2602.12351|LongNav-R1]] (RSS'26), [[2602.00551|APEX-Aerial]] (CVPR'26), [[2510.10181|Dejavu]], [[2509.23203|CE-Nav]] (ICLR'26), [[2507.22028|S2E-Navigation]] (ICLR'26), [[2301.11575|ARiADNE]], [[1905.12255|CLS]], [[1811.10092|RCM+SIL]] (CVPR'19)
+- [[2609.03906|TopoMacro VLN-CE]], [[2609.00920|VerNav]], [[2607.13461|JOP-VLN]] (IROS'26), [[2607.01044|CommNav]], [[2606.31260|SymPlan]], [[2604.08883|HTNav]], [[2602.12351|LongNav-R1]] (RSS'26), [[2602.00551|APEX-Aerial]] (CVPR'26), [[2510.10181|Dejavu]], [[2509.23203|CE-Nav]] (ICLR'26), [[2507.22028|S2E-Navigation]] (ICLR'26), [[2301.11575|ARiADNE]], [[1905.12255|CLS]], [[1811.10092|RCM+SIL]] (CVPR'19)
 
 > [!star] Key Papers
 > - [[1811.10092|RCM+SIL]] (CVPR'19) — the foundational method: Reinforced Cross-Modal Matching + Self-Supervised Imitation Learning, the canonical RL recipe later VLN work still builds on
@@ -1168,7 +1168,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2607.18060|RoboHarness]] — strongest and most comprehensive result: an agentic framework orchestrating heterogeneous VLA/RL/TAMP policies via memory-driven handoffs to hit 98.7% on LIBERO and 95.2% on long-horizon LIBERO-LoHo, validated on 135 real-robot tasks
 
 **Perception, Memory & Multi-Sensor Embodied RL** — RL for embodied perception, memory, and multi-sensor fusion.
-- [[2607.08504|Hindsight Gating]], [[2607.06563|AcoustoBots]], [[2607.05957|Delay-Aware Active Triangulation for Counter-UAS]] (IROS'26), [[2602.23320|ParamMem]], [[2601.10744|LMEE]] (CVPR'26), [[2511.21083|Dual-Agent-VIO]] (CVPR'26), [[2510.09951|Hippocampus-Actor-Critic]] (ICLR'26), [[2506.23061|DyME]] (ICLR'26), [[2505.06182|APPLE-Active-Perception]] (ICLR'26)
+- [[2608.30673|CIG-RL]], [[2607.08504|Hindsight Gating]], [[2607.06563|AcoustoBots]], [[2607.05957|Delay-Aware Active Triangulation for Counter-UAS]] (IROS'26), [[2602.23320|ParamMem]], [[2601.10744|LMEE]] (CVPR'26), [[2511.21083|Dual-Agent-VIO]] (CVPR'26), [[2510.09951|Hippocampus-Actor-Critic]] (ICLR'26), [[2506.23061|DyME]] (ICLR'26), [[2505.06182|APPLE-Active-Perception]] (ICLR'26)
 
 
 **Agent Infrastructure & Benchmarks** — Frameworks, environments, and evaluation tools for agentic RL.
@@ -1222,7 +1222,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.08440|TGRPO]] — Trajectory-wise GRPO adapted for VLA fine-tuning; bridges LLM RL and robot RL
 
 **Flow/Chunk-Based & Action-Representation VLA RL** — RL over flow-matching, action-chunking, and structured action representations for VLAs.
-- [[2608.17423|Prism-GRPO]], [[2607.27782|RedFlow]], [[2607.26991|RL2-VLA]], [[2607.12992|ChunkFlow]], [[2607.12931|ExToken]], [[2607.10383|ABot-N1]], [[2607.04681|Pinocchio]], [[2607.04591|S2C]], [[2607.02092|Guided Action Flow]], [[2605.13276|D-VLA]], [[2605.13105|PAIR-VLA]], [[2605.09410|RePO-VLA]], [[2604.05614|GPLA]], [[2508.18269|FlowVLA]]
+- [[2608.29768|SmoothRL]], [[2608.17423|Prism-GRPO]], [[2607.27782|RedFlow]], [[2607.26991|RL2-VLA]], [[2607.12992|ChunkFlow]], [[2607.12931|ExToken]], [[2607.10383|ABot-N1]], [[2607.04681|Pinocchio]], [[2607.04591|S2C]], [[2607.02092|Guided Action Flow]], [[2605.13276|D-VLA]], [[2605.13105|PAIR-VLA]], [[2605.09410|RePO-VLA]], [[2604.05614|GPLA]], [[2508.18269|FlowVLA]]
 
 > [!star] Key Papers
 > - [[2607.12992|ChunkFlow]] — foundational unified framework baking seam-aware continuity losses directly into AWAC-based RL fine-tuning for chunked VLA policies, the best success-smoothness trade-off (93.4% LIBERO-Long, lowest jitter) at no extra inference latency
@@ -1241,13 +1241,13 @@ RL methods designed for or applied to physical robot learning — sample efficie
 - [[2509.23745|LocoFormer]] (CoRL'25), [[2509.19301|ResFiT]], [[2505.16517|ManipLVM-R1]], [[2505.15206|EndoVLA]], [[2505.03238|RobotxR1]] (CoRL'25), [[2504.04259|ORCA-Hand]] (IROS'25), [[2503.16806|DyWA]] (ICCV'25), [[2502.14795|Humanoid-VLA]], [[2212.07740|TERT]] (ICRA'23), [[2107.03996|LocoTransformer]] (ICLR'22 Spotlight)
 
 **Model-Based Robot RL** — World-model-based approaches for sample-efficient robot learning.
-- [[2608.17163|QWM]], [[2608.07468|SimWAM]], [[2607.06018|RoboTALES]] (ECCV'26), [[2607.04265|HALO-WA]], [[2607.02431|WorldSample]], [[2605.12084|QOED]] (RSS'26), [[2604.18161|DDCG]] (ICLR'26), [[2604.02260|Time-Varying-MBRL]], [[2603.18336|ManiDreams]], [[2602.09022|WorldCompass]], [[2509.00215|DMO]] (CoRL'25), [[2509.00178|Poke and Strike]] (CoRL'25), [[2508.19172|URSA]] (CoRL'25), [[2508.15755|NeRD]] (CoRL'25), [[2505.16394|Raw2Drive]] (NeurIPS'25), [[2505.13925|TR-DRL]] (NeurIPS'25), [[2504.16680|RWM-U]], [[2502.13144|RAD]] (NeurIPS'25), [[2501.10100|RWM]], [[2410.00564|JOWA]] (ICLR'25), [[2207.07560|SkiMo]] (CoRL'22), [[2206.14176|DayDreamer]] (CoRL'22), [[1909.11652|PDDM]] (CoRL'19), [[1812.00568|Visual MPC]]
+- [[2609.03681|WISE]], [[2608.30378|PAVE]], [[2608.30237|Motus2]], [[2608.17163|QWM]], [[2608.07468|SimWAM]], [[2607.06018|RoboTALES]] (ECCV'26), [[2607.04265|HALO-WA]], [[2607.02431|WorldSample]], [[2605.12084|QOED]] (RSS'26), [[2604.18161|DDCG]] (ICLR'26), [[2604.02260|Time-Varying-MBRL]], [[2603.18336|ManiDreams]], [[2602.09022|WorldCompass]], [[2509.00215|DMO]] (CoRL'25), [[2509.00178|Poke and Strike]] (CoRL'25), [[2508.19172|URSA]] (CoRL'25), [[2508.15755|NeRD]] (CoRL'25), [[2505.16394|Raw2Drive]] (NeurIPS'25), [[2505.13925|TR-DRL]] (NeurIPS'25), [[2504.16680|RWM-U]], [[2502.13144|RAD]] (NeurIPS'25), [[2501.10100|RWM]], [[2410.00564|JOWA]] (ICLR'25), [[2207.07560|SkiMo]] (CoRL'22), [[2206.14176|DayDreamer]] (CoRL'22), [[1909.11652|PDDM]] (CoRL'19), [[1812.00568|Visual MPC]]
 
 > [!star] Key Papers
 > - [[2603.18336|ManiDreams]] — World model generates diverse manipulation scenarios; dream-based RL for dexterous tasks
 
 **MPC + RL for Control** — Combining Model Predictive Control with learned RL policies for structured, physically-grounded control, including runtime safety filters and control barrier functions.
-- [[2608.04732|Integrated-Safe-AC]], [[2607.23930|FAOC]], [[2607.20665|DGPPO]], [[2607.14488|Acc-CBF-QP]] (IROS'26), [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2607.07252|Safe RL via MPC]], [[2607.02472|Quad APG]], [[2607.01281|WaveLander]], [[2607.00066|Endovascular RL-NMPC]] (IROS'26), [[2606.31562|Stabilization Learning]], [[2606.24039|TurboMPC]], [[2604.21456|TSMC]] (RSS'26), [[2603.14469|PIPER]], [[2510.06179|DiffMPC]] (ICLR'26 Oral), [[2507.21533|MPAIL]] (ICLR'26), [[2507.19151|ReCoDe]] (CoRL'25), [[2505.20829|Unified-Force-Position-Control]] (CoRL'25), [[2504.06662|RAMBO]], [[2502.02133|MPC-RL-Survey]], [[2310.10509|Online Admittance Residual Learning]] (CoRL'23), [[2309.15462|DTC]], [[1504.00702|Visuomotor GPS]]
+- [[2609.01061|SG-RL]], [[2608.04732|Integrated-Safe-AC]], [[2607.23930|FAOC]], [[2607.20665|DGPPO]], [[2607.14488|Acc-CBF-QP]] (IROS'26), [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2607.07252|Safe RL via MPC]], [[2607.02472|Quad APG]], [[2607.01281|WaveLander]], [[2607.00066|Endovascular RL-NMPC]] (IROS'26), [[2606.31562|Stabilization Learning]], [[2606.24039|TurboMPC]], [[2604.21456|TSMC]] (RSS'26), [[2603.14469|PIPER]], [[2510.06179|DiffMPC]] (ICLR'26 Oral), [[2507.21533|MPAIL]] (ICLR'26), [[2507.19151|ReCoDe]] (CoRL'25), [[2505.20829|Unified-Force-Position-Control]] (CoRL'25), [[2504.06662|RAMBO]], [[2502.02133|MPC-RL-Survey]], [[2310.10509|Online Admittance Residual Learning]] (CoRL'23), [[2309.15462|DTC]], [[1504.00702|Visuomotor GPS]]
 
 > [!star] Key Papers
 > - [[1504.00702|Visuomotor GPS]] — foundational: first to fold trajectory optimization (linear-Gaussian iLQG, MPC's local cousin) into an RL loop training an end-to-end deep policy, establishing the guided-policy-search template this group builds on
@@ -1292,7 +1292,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2508.12252|Robot-Trains-Robot]] (CoRL'25) — paradigm-shifting departure from pure sim2real: a compliant robot-arm teacher enables safe, fully automated real-world RL on a physical humanoid, doubling walking speed in 20 minutes
 
 **Benchmarks, Simulation Platforms & Applied Sim2Real Methods** — Simulation infrastructure, benchmarks, and applied sim-to-real algorithmic methods.
-- [[2607.04972|HOLA]], [[2607.02037|Cross-Platform ASV RL]], [[2607.01410|BIFROST]], [[2607.00160|Phase-Decomposed RL]] (IROS'26), [[2606.31043|Warp RL]], [[2606.30268|ConCent]], [[2606.05880|TAGA]], [[2605.19033|RLFTSim]] (CVPR'26 Highlight), [[2605.09789|DRIS]] (RSS'26), [[2604.24018|Sim2Real-Betting]] (RSS'26), [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2602.00678|RoboGauge]] (RSS'26), [[2510.18060|SPACeR-RL]] (ICLR'26), [[2509.18648|SPiDR]] (NeurIPS'25), [[2508.21065|Learning-on-the-Fly]], [[2508.10538|MLM]], [[2507.06905|ULC]], [[2505.06771|JaxRobotarium]] (CoRL'25), [[2504.18904|RoboVerse]], [[2502.17666|IC-QL]], [[2502.07380|Wheeled Lab]] (CoRL'25)
+- [[2608.29516|TR-FDF]], [[2607.04972|HOLA]], [[2607.02037|Cross-Platform ASV RL]], [[2607.01410|BIFROST]], [[2607.00160|Phase-Decomposed RL]] (IROS'26), [[2606.31043|Warp RL]], [[2606.30268|ConCent]], [[2606.05880|TAGA]], [[2605.19033|RLFTSim]] (CVPR'26 Highlight), [[2605.09789|DRIS]] (RSS'26), [[2604.24018|Sim2Real-Betting]] (RSS'26), [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2602.00678|RoboGauge]] (RSS'26), [[2510.18060|SPACeR-RL]] (ICLR'26), [[2509.18648|SPiDR]] (NeurIPS'25), [[2508.21065|Learning-on-the-Fly]], [[2508.10538|MLM]], [[2507.06905|ULC]], [[2505.06771|JaxRobotarium]] (CoRL'25), [[2504.18904|RoboVerse]], [[2502.17666|IC-QL]], [[2502.07380|Wheeled Lab]] (CoRL'25)
 
 **RL Infrastructure & Scaling** — Engineering and scaling RL systems for real-world robot deployment.
 - [[2607.26985|SymmGrid]], [[2604.08706|RL-Experience-Replay-for-LLMs]], [[2604.06943|Sustainable-Transfer-RL]], [[2604.04539|FlashSAC]] (RSS'26), [[2604.01158|SMASH]], [[2603.03279|ULTRA]], [[2602.07837|USER]] (RSS'26), [[2512.20605|Internal-RL]], [[2510.22512|TRL]] (ICLR'26), [[2510.11103|SO3-Action-Representations]] (ICLR'26), [[2505.24864|ProRL]] (NeurIPS'25), [[2412.13211|MS-HAB]] (ICLR'25), [[2108.10470|Isaac-Gym]], [[2108.03332|BEHAVIOR]] (CoRL'21), [[2106.14405|Habitat-2.0]] (NeurIPS'21 Spotlight), [[2009.12293|robosuite]]
@@ -1306,7 +1306,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.11967|Annotation-Bootstrapping]] — Recasts visual pre-training as RL; learns annotation policies that improve downstream performance
 
 **Offline RL Algorithms & Theory** — Core offline RL algorithms addressing distribution shift, partial observability, and static-buffer learning.
-- [[2608.01205|ReBRAC-v2]], [[2606.17551|RQL]], [[2603.22201|NMR]], [[2505.23871|ADG]] (NeurIPS'25), [[2505.22866|SORL]] (NeurIPS'25), [[2505.22151|Oryx]] (NeurIPS'25), [[2505.18595|MisoDICE]], [[2505.15418|GPO-Partial-Obs]] (ICLR'26), [[2505.14975|SAW]] (NeurIPS'25 Spotlight), [[2505.08078|Batch-Online-RL-Study]] (ICLR'26), [[2504.11453|Clean-Slate-Offline-RL]] (NeurIPS'25 Oral)
+- [[2609.02237|DCRL]], [[2608.29061|PathBridger]], [[2608.01205|ReBRAC-v2]], [[2606.17551|RQL]], [[2603.22201|NMR]], [[2505.23871|ADG]] (NeurIPS'25), [[2505.22866|SORL]] (NeurIPS'25), [[2505.22151|Oryx]] (NeurIPS'25), [[2505.18595|MisoDICE]], [[2505.15418|GPO-Partial-Obs]] (ICLR'26), [[2505.14975|SAW]] (NeurIPS'25 Spotlight), [[2505.08078|Batch-Online-RL-Study]] (ICLR'26), [[2504.11453|Clean-Slate-Offline-RL]] (NeurIPS'25 Oral)
 
 > [!star] Key Papers
 > - [[2606.17551|RQL]] — foundational flow-reversal technique solving the curse-of-horizon in off-policy value learning from static buffers, highest average score across 50 OGBench tasks against 18 baselines
@@ -1318,7 +1318,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 
 
 **Tactile, Contact-Rich & Teleoperation-Guided Manipulation** — Manipulation learning grounded in tactile sensing, contact signals, and teleoperated human demonstrations.
-- [[2607.23782|N0-VTLA]], [[2607.11481|TELEDEXTER]], [[2607.08742|ContactMimic]], [[2607.06438|WristMimic]] (ECCV'26), [[2607.03723|OmniTacTune]], [[2607.00033|CHORD (Contact Wrench Guidance)]], [[2603.10971|ContactExplorer]], [[2603.00446|HydroShear]] (RSS'26), [[2509.12741|FMVP]] (CoRL'25), [[2506.10968|EyeRobot]] (CoRL'25), [[2505.23175|LocoTouch]] (CoRL'25), [[2409.15095|MoMa-Teleop]], [[2310.03478|RGBManip]] (ICRA'24), [[2207.10763|Tactile-Gym-2.0]], [[2207.09450|WHIRL]], [[2105.14455|TacTip]]
+- [[2609.01938|DemoMimic]], [[2607.23782|N0-VTLA]], [[2607.11481|TELEDEXTER]], [[2607.08742|ContactMimic]], [[2607.06438|WristMimic]] (ECCV'26), [[2607.03723|OmniTacTune]], [[2607.00033|CHORD (Contact Wrench Guidance)]], [[2603.10971|ContactExplorer]], [[2603.00446|HydroShear]] (RSS'26), [[2509.12741|FMVP]] (CoRL'25), [[2506.10968|EyeRobot]] (CoRL'25), [[2505.23175|LocoTouch]] (CoRL'25), [[2409.15095|MoMa-Teleop]], [[2310.03478|RGBManip]] (ICRA'24), [[2207.10763|Tactile-Gym-2.0]], [[2207.09450|WHIRL]], [[2105.14455|TacTip]]
 
 > [!star] Key Papers
 > - [[2105.14455|TacTip]] — foundational biomimetic optical tactile sensor whose decade-long design lineage and shear-sensing principle underpin most tactile-guided manipulation work in this group
@@ -1339,7 +1339,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2502.10363|BeamDojo]] (RSS'25) — first learning-based method for fine-grained humanoid foothold control on sparse terrain, pairing a sampling-based foothold reward with double-critic RL to hit 90%+ sim success and robust zero-shot real-world transfer
 
 **Humanoid Whole-Body Control & Teleoperation** — Whole-body humanoid control, heavy-payload teleoperation, and novel gaits.
-- [[2607.24083|HMP]], [[2607.20399|VR-RL Humanoid Tele-Loco-Manipulation]], [[2607.19903|YAHMP]], [[2607.15163|Humanoid Transformer]], [[2607.11624|SKooP]], [[2607.11041|PAKE]], [[2607.07830|HumoSlope]], [[2607.07370|ABot-C0]], [[2607.04837|Athena-WBC]], [[2607.02332|HEFT]], [[2606.31807|Skating Humanoid RL]] (IROS'26), [[2606.29209|AnyBody (Whole-Body Humanoid Control)]], [[2603.02856|Rhythm]] (RSS'26), [[2602.13656|KungFuAthlete]], [[2511.01774|MOBIUS]] (RSS'26)
+- [[2608.29487|Blind Dexterity]], [[2607.24083|HMP]], [[2607.20399|VR-RL Humanoid Tele-Loco-Manipulation]], [[2607.19903|YAHMP]], [[2607.15163|Humanoid Transformer]], [[2607.11624|SKooP]], [[2607.11041|PAKE]], [[2607.07830|HumoSlope]], [[2607.07370|ABot-C0]], [[2607.04837|Athena-WBC]], [[2607.02332|HEFT]], [[2606.31807|Skating Humanoid RL]] (IROS'26), [[2606.29209|AnyBody (Whole-Body Humanoid Control)]], [[2603.02856|Rhythm]] (RSS'26), [[2602.13656|KungFuAthlete]], [[2511.01774|MOBIUS]] (RSS'26)
 
 > [!star] Key Papers
 > - [[2607.15163|Humanoid Transformer]] — strongest reported results (up to 82% MPKPE reduction), establishing a principled scaling recipe for humanoid Behavior Foundation Models
@@ -1360,7 +1360,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 - [[2607.00442|STL Gait-Aware Locomotion]], [[2606.31912|Foot-Centric Proximity Locomotion]] (IROS'26), [[2606.30290|X-Morph]], [[2603.24047|PCHC]], [[2602.23832|OmniTrack]], [[2602.20375|Multi-Task Reference-Goal RL]] (RSS'26), [[2510.02252|GMR]], [[2507.09371|ConsMimic]] (CoRL'25), [[2506.11470|Multi-Loco]] (CoRL'25), [[2102.02202|DERL]], [[2010.01856|AMORPHEUS]] (ICLR'21), [[2007.04976|SMP]] (ICML'20), [[2004.00784|Imitating Animals]]
 
 **Robot Navigation RL** — End-to-end RL navigation policies for mobile robots and autonomous agents — crowd and social navigation, unsteady-flow fields, and low-latency trajectory generation.
-- [[2607.28560|X-NavDP]], [[2607.24292|HYPER-GNC]], [[2607.20785|Robostral Navigate]], [[2607.18794|LANav]], [[2607.15036|VOP-Nav]], [[2607.14643|NavCMPO]] (IROS'26), [[2607.13553|Flow-Aware RL Navigation]], [[2607.10991|HUMA]] (CoRL'26), [[2508.03027|CogniPlan]] (CoRL'25)
+- [[2608.30935|LightNav-0]], [[2607.28560|X-NavDP]], [[2607.24292|HYPER-GNC]], [[2607.20785|Robostral Navigate]], [[2607.18794|LANav]], [[2607.15036|VOP-Nav]], [[2607.14643|NavCMPO]] (IROS'26), [[2607.13553|Flow-Aware RL Navigation]], [[2607.10991|HUMA]] (CoRL'26), [[2508.03027|CogniPlan]] (CoRL'25)
 
 > [!star] Key Papers
 > - [[2607.20785|Robostral Navigate]] — sets a new SOTA on both R2R-CE and RxR-CE using only a monocular RGB camera, showing minimal-sensor navigation can beat multi-sensor systems
@@ -1404,7 +1404,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 RL methods applied to specialized domains and cross-cutting applications that span multiple categories.
 
 **Distillation & Efficiency-Focused Post-Training** — On-policy/teacher-student distillation and compute-efficient post-training recipes.
-- [[2607.15161|OPD^2]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.04751|TOP-D]], [[2604.11297|MEDS]], [[2604.08865|SPPO]], [[2512.22238|Mask-Teacher-Distill]], [[2512.00536|Dataset-Distillation-RL]] (ICLR'26), [[2511.00091|PLD]] (ICLR'26), [[2509.26226|ThinkingFree]] (ICLR'26), [[2509.23958|RLIR]], [[2509.19292|SOE]], [[2509.16965|TVKD]] (NeurIPS'25), [[2505.16581|Distilled-Policy-Ensembles]] (NeurIPS'25)
+- [[2609.04172|One-Shot OPD]], [[2607.15161|OPD^2]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.04751|TOP-D]], [[2604.11297|MEDS]], [[2604.08865|SPPO]], [[2512.22238|Mask-Teacher-Distill]], [[2512.00536|Dataset-Distillation-RL]] (ICLR'26), [[2511.00091|PLD]] (ICLR'26), [[2509.26226|ThinkingFree]] (ICLR'26), [[2509.23958|RLIR]], [[2509.19292|SOE]], [[2509.16965|TVKD]] (NeurIPS'25), [[2505.16581|Distilled-Policy-Ensembles]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2607.04751|TOP-D]] — fixes the root-cause instability of on-policy distillation (unbounded log-ratio reward) with a theoretically-grounded trust-region fix, the largest single reported gain in the group (+25.84pp AIME24) at zero extra compute
