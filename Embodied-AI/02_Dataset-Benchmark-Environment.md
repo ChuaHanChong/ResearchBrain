@@ -226,6 +226,7 @@ Human-perspective video and motion data for cross-embodiment skill transfer. [[2
 - **[[2406.19353|CORE4D]] (CVPR'25)** — A 4D human-object-human rearrangement dataset: **1K** real hybrid inertial-optical mocap sequences + **10K** ==DeepSDF-retargeted== synthetic sequences across **3K** object shapes; the synthetic split lifts humanoid box-lifting SR **0.0%→26.5%** — retargeting substitutes for costly multi-object mocap.
 - **[[2406.06843|HO-Cap]] (NeurIPS'25)** — A markerless hand-object capture system (8 RGB-D cams + HoloLens) chaining ==BundleSDF reconstruction== + ==FoundationPose== + ==MANO/MediaPipe== fitting with no per-object training; **64** videos / **656K** frames at sub-**5px** reprojection error, directly usable as robot-manipulation demonstrations.
 - **[[2403.19417|OAKINK2]] (CVPR'24)** — A bimanual human-object manipulation dataset under a ==3-level affordance/primitive/complex task hierarchy==, spanning **627** sequences and **~4.01M** frames over **100** household objects with precise 3D hand/body/object pose, plus a ==Complex Task Completion== framework that decomposes tasks into primitives.
+- **[[2403.08629|TRUMANS]]** — A **15-hour / 100-scene** whole-body human-scene-interaction MoCap corpus with per-vertex ==SMPL-X contact== labels, scaled by digital-twin scene replication + ==clipped CCD-IK== augmentation; its ==autoregressive motion diffusion== hits contact **0.992**, and only **25.8%** of raters spot the real MoCap clip against **20%** chance.
 - **[[2402.13349|Aria-Everyday]]** — An open multimodal egocentric corpus of **7.3 hours** across **143** sequences (RGB + eye-tracking + 7-ch spatial audio + IMU), annotated with **1 kHz** ==globally-aligned 6-DoF trajectories== + ==3D eye gaze== + speech transcripts; Gaussian-splat reconstruction reaches **25.12** PSNR — the AR-glasses always-on context substrate.
 - **[[2401.08399|TACO]] (CVPR'24)** — A large-scale 4D ==bimanual tool-action-object== dataset (multi-view RGB + egocentric RGBD + ==optical MoCap==) serving as a tool-use generalization probe; **2.5K** sequences / **5.2M** frames / **131** tool-action-object triplets, with compositional-action recognition dropping **86.15%→44.00%** under compound generalization.
 - **[[2203.14712|Assembly101]]** — A **513-hour** procedural assembly/disassembly corpus (8 static + 4 egocentric cams, **101** toys) with **1M+** action segments + **18M** ==3D hand poses== + novel ==mistake/correction labels==; static beats egocentric by **16.2%**, mistake-detection recall only **46.6%** — the procedural-activity + error-detection benchmark.
@@ -289,6 +290,7 @@ Raw-sensor and pixel-level perception corpora — the *perception* substrate (mu
 
 - **[[2606.27317|OctoSense]]** — A **59-hour / 8.4 TB** time-synchronized multimodal robot-perception dataset + open-source 8-sensor platform (RGB, event, thermal, LiDAR, IMU, RTK-GPS, proprioception) + a ==late-fusion masked autoencoder==; lower depth RMSE (**4.73m** vs **6.38m** V-JEPA 2.1) + optical-flow EPE (**1.97px** vs **9.13px**), zero-shot M3ED transfer with sensor-failure reconstruction.
 - **[[2511.22950|RobotSeg]] (CVPR'26)** — A ==SAM 2==-based robot-segmentation foundation model + the **Video Robot Segmentation (VRS)** dataset (**2,812** videos / **138,707** frames, hierarchical first-frame-only annotation) via ==structure-enhanced memory== + ==autonomous prompt generation==; **85.1** J&F whole-robot (**+4.9** over RoboEngine) across **10** robot categories at **>10 FPS**.
+- **[[2504.18500|Boxi]]** — An open-source ==multi-modal sensor payload== (LiDAR + cameras + IMUs + GNSS) plus the **GrandTour** dataset over **7** environments, released as a calibration / synchronization / thermal-timing "cookbook"; ablates which payload choices actually move state estimation; high-end IMUs dominate dead-reckoning.
 - **[[2412.04380|EmbodiedOcc]] (ICCV'25)** — A ==3D semantic Gaussian== framework for online monocular 3D occupancy prediction with a ==depth-aware refinement module== + confidence-weighted ==global Gaussian memory==; **45.15%** mIoU local / **42.53%** mIoU global on the new **EmbodiedOcc-ScanNet** benchmark, beating a splicing baseline (**40.74%**).
 - **[[2406.04316|Omni6DPose]] (ECCV'24)** — A universal 6D pose benchmark spanning **149** categories / **5,000+** instances (transparent, specular materials) pairing real ==ROPE== + ==mixed-reality-synthesized SOPE== data; the paired ==GenPose++== diffusion model (DINOv2 semantics + DBSCAN clustering) hits AUC@IoU25 **39.0** vs GenPose's **6.6** — perception substrate for grasp-ready pose estimation.
 - **[[2607.23669|RRTrack]]** — A ==closed-loop 2D-6D== object-pose tracker fusing memory-based ==video object segmentation== with ==CAD-model 6D refinement==, plus a ==DINOv2 dual-bank recovery== module for autonomous re-init after occlusion; ADD AUC **31.7** / AR **55.1** beating FoundationPose/RGBTrack, **72.2%** lost-reappear recovery, **55.2 FPS** — no object-specific training.
@@ -359,6 +361,7 @@ General-purpose physics platforms for robot learning. Each picks a different poi
 - **[[1910.10897|Meta-World]] (CoRL'19)** — A ==multi-task / meta-RL== benchmark of **50** distinct ==MuJoCo== Sawyer-arm manipulation tasks with parametric + non-parametric variation and **5** evaluation protocols (ML1/MT10/MT50/ML10/ML45); SAC solves all 50 singly, but multi-task SR drops to **35–38%** at full scale and meta-RL methods reach only **30–40%** on held-out tasks.
 - **[[1909.12271|RLBench]]** — A benchmark of **100** visually-guided manipulation tasks on [CoppeliaSim](https://www.coppeliarobotics.com/) + PyRep with ==Task/Variation/Episode hierarchy== and ==waypoint motion-planned== infinite expert demos; the few-shot evaluation standard for the Franka Panda.
 - **[[1712.05474|AI2-THOR]]** — An interactive 3D environment using a ==Python API== + ==Unity 3D engine== with ==ManipulaTHOR== arm manipulation + procedurally-generated ==ProcTHOR-10K== scenes; **150+** publications, **500,000+** downloads, SOTA 0-shot ObjectNav generalization — the foundational embodied-AI interaction platform.
+- **[[1606.01540|Gym]]** — The ==common environment interface== (`reset` returns an observation, `step(action)` returns observation/reward/done/info) plus ==strict per-environment versioning== and a default ==Monitor== logger, spanning **five** families (classic control, algorithmic, Atari/ALE, board games, MuJoCo robots); the API nearly every simulator in this list still exposes.
 - **[[2009.12293|robosuite]]** — A [MuJoCo](https://mujoco.org) framework with separate ==Modeling/Simulation APIs==, **10** robot + **9** gripper models, ==variable-impedance control==, **9** single-arm/bimanual/mobile tasks; SAC solves **3/9** environments, OSC-POSE learns faster than joint-velocity — reproducibility substrate under [[2406.02523|RoboCasa]] (RSS'24) / [[2506.18088|RoboTwin-2.0]].
 - **[[2604.08258|EvoGymCM]] (IROS'26)** — An EvoGym extension adding ==continuous material stiffness== S∈[0.5, 2] as a first-class optimizable parameter via ==bi-level optimization== over morphology + material + control; **+41%** in Reactive-Material co-design on BridgeWalker (**2.10 → 2.97**) and AreaMaximizer (**0.62 → 0.74**).
 - **[Genesis](https://genesis-world.readthedocs.io/)** — GPU-native, open-source, multi-physics (rigid + soft + cloth + fluid) in one runtime; emerging community-driven research substrate.
@@ -594,9 +597,11 @@ Diagnostics that target the *low-level skill* and *high-level reasoning* axes �
 
 Diagnostics that decompose a single "success rate" into ==capability axes== (planning vs perception vs failure-handling) — answer the question *which* part of the policy stack is failing.
 
+- **[[2609.03611|FailBench-VLM]]** — A judge-reliability benchmark pooling **2,197** attempts from **14** public sources (**75%** organic failures, provider labels); the best of **13** detectors reaches only **0.77** balanced accuracy and all five specialists fall below their own base VLMs, while ==evidence-localization cropping== lifts **0.773 → 0.797**.
 - **[[2608.22990|InstructMove]]** — An ==Isaac Lab== ==text-indispensable== benchmark where cue-matched distractors leave only one instruction-consistent action, scored by stage-wise ==Reach/Lift/Place==; the best policy hits **0.82** Reach on category but **0.15** Lift on spatial grounding, and any-object Reach stays **0.99–1.00** under empty or absent instructions.
 - **[[2608.22301|Imitator Game]]** — A four-level ==L0–L3 demonstration-scene mismatch hierarchy== plus **IG-10K** (**11.7K** real + **10K** sim paired episodes) and blind A/B ==Imitator Arena== judging; real fine-tuned SR is flat near **0.42** across L0–L2 then drops to **0.29** at L3 — functional substitution, not layout shuffling, is where imitation breaks.
 - **[[2608.08036|RoboGraph]]** — **RoboGraphBench**: **84** auto-generated tabletop/indoor scenes scored by a ==task-state horizon== (maintenance/exploration/update) metric suite over executable scene-graph compilers with ==event-driven exogenous change==; GPT-5.5 leads at **78.4%/82.5%** SR while open models collapse (Qwen3-VL-32B **9.3%**, RoboBrain2.0-7B **0%**).
+- **[[2607.23704|LabRobFail]]** — A chemical-lab failure benchmark whose ==multi-level FailureGenerator== (control / physics / semantic perturbation) yields **20K+** trajectories over **11** failure types scored on six dimensions; a hybrid-tuned Qwen3-VL reaches **90.83%** detection vs GPT-5.4's **52.34%**, lifting OpenVLA/ACT by **4-16pp**.
 - **[[2607.11570|ERR@HRI 3.0]]** — A multimodal HRI-error benchmark shipping two crowdsourced webcam-video datasets, ==Bystander Affect Detection (BAD)== for reactive and ==Bad Idea== for anticipatory prediction; BadNet CNN baseline reaches **0.502** Macro F1 (Track 1), fine-tuned ResNet-34 **0.564** AUC-ROC (Track 2), all 3 competing teams beat both baselines.
 - **[[2607.04610|RoboVista]] (RSS'26)** — An expert-annotated ==Robot Question Answering (RQA)== benchmark decomposing VLM decisions into perception/planning/motion/failure-recovery layers across **39** robot tasks / **6** domains; best VLM (Gemini 2.5 Pro) hits **56.5%** accuracy, correlating with real-robot task success (Pearson **r=-0.70 to -0.93**).
 - **[[2606.29937|REPAIR-Bench]]** — An HRI benchmark on the RFM-HRI dataset decomposing robot-failure handling into detection / multi-class classification / recovery-strategy prediction; hierarchical HRNN hits **0.80** F1 detection, QLoRA-tuned Mistral-7B reaches **0.76** Hit@5 recovery.
@@ -844,6 +849,12 @@ Ground-truth scene flow for highly-deformable manipulation; the metric layer und
 
 - **[[2312.00583|DeformGS]]** — A scene-flow method for highly deformable scenes in deformable-object manipulation that provides ==ground-truth scene flow== for evaluation.
 
+#### 7.4 Physical-World Deformable Benchmarks
+
+Deformable evaluation run on real hardware rather than in a twin or a simulator, where garment dynamics, perception noise, and multi-stage episode structure all bite at once.
+
+- **[[2609.10243|FolDeX]]** — A real-robot long-horizon garment-folding benchmark of **2,000+ hours** over **20+** tasks and **10+** embodiments, split into ==recovery==, ==cross-task rigid-to-deformable==, ==cross-scene==, and ==cross-embodiment== tracks and scored by the ==FoldChallenge== platform's FoldScore; DAgger recovery data lifts multi-task SR **80.75% → 95.00%**.
+
 **Soft-Body — Decision Matrix**
 
 | Need | Benchmark |
@@ -853,6 +864,7 @@ Ground-truth scene flow for highly-deformable manipulation; the metric layer und
 | Unified deformable + rigid + fluid eval | [[2506.02794\|PhysGaia]] |
 | Fluid + rigid combination in Gaussian-splat | [[2401.15318\|Gaussian-Splashing]] |
 | Ground-truth scene flow for deformable scenes | [[2312.00583\|DeformGS]] |
+| Real-robot long-horizon deformable (garment) evaluation | [[2609.10243\|FolDeX]] (FoldScore; **2,000+ hours**) |
 
 ^dm-7
 
@@ -1460,7 +1472,7 @@ The evaluation stack is mature enough to expose first-order failures, but six st
 > - **Soft-body / deformable evaluation** — Gaussian-splat twins ([[2511.04665|Real-to-Sim-GS]], [[2510.21447|PhysWorld-Deformable]]) are <12 months old; no consensus exists yet on what a "fair" deformable benchmark looks like (which materials, what failure modes count).
 > - **Tactile data scaling** — [[2410.24090|Sparsh]] (CoRL'24) reached 460k images, [[2506.14754|Sparsh-X]] (CoRL'25) extended to multisensory; but tactile is still <1% the data scale of vision. Foundation-model effects observed in vision haven't been definitively demonstrated for touch.
 > - **Long-horizon language-conditioned eval** — [[2604.21924|LoHo-Manip]] and [[2605.01772|Anticipation-VLA]] surface skill-chaining and subgoal failures, but no standard exists for the >10-minute task horizons real deployment increasingly requires.
-> - **Failure-aware evaluation** — every benchmark above scores task *success*; none score *failure detection* or *recovery*, despite [[2510.09459|FIPER]] (NeurIPS'25) showing these are independently trainable capabilities. The eval stack measures what the policy gets right, not what it knows it's getting wrong.
+> - **Failure-aware evaluation** — the *task* suites above score only success; failure scoring sits in a separate §5.2 cluster ([[2607.23704|LabRobFail]], [[2606.29937|REPAIR-Bench]]) that no mainstream policy paper reports alongside its success numbers. The gap is now *segregation*, not absence.
 
 **Open Problems — Decision Matrix**
 
@@ -1471,7 +1483,7 @@ The evaluation stack is mature enough to expose first-order failures, but six st
 | No consensus deformable benchmark | Converge material + failure-mode definitions atop Gaussian-splat twins ([[2511.04665\|Real-to-Sim-GS]], [[2510.21447\|PhysWorld-Deformable]]) |
 | Tactile data <1% of vision scale | Scale multisensory tactile corpora ([[2506.14754\|Sparsh-X]]) toward foundation-model regime |
 | No >10-min long-horizon eval standard | Extend subgoal/skill-chaining diagnostics ([[2604.21924\|LoHo-Manip]], [[2605.01772\|Anticipation-VLA]]) to deployment horizons |
-| No failure-detection / recovery scoring | Add failure-aware sub-metrics; treat detection as a trainable axis ([[2510.09459\|FIPER]]) |
+| Failure scoring segregated from task suites | Pair a task suite with a §5.2 failure benchmark ([[2607.23704\|LabRobFail]]); treat detection as a trainable axis ([[2510.09459\|FIPER]]) |
 
 ^dm-17
 

@@ -191,6 +191,7 @@ The dominant implicit-physics paradigm fuses 3D Gaussian Splatting with continuu
 
 Gaussians are differentiable, particle-like, and already compatible with rendering. ==MPM== handles arbitrary materials (elastic, plastic, granular, viscoplastic) on the same particle representation. Result: "what you see is what you simulate" — no separate mesh extraction step.
 
+- **[[2609.07532|PhysReal]]** — Learns deformable physics from one interactive RGB-D video by coupling a ==differentiable MPM== to ==3DGS== appearance, with a ==spatially varying hybrid constitutive field== (analytic Kirchhoff stress + return-mapping, plus patch-latent neural residuals) fit by a ==three-stage curriculum==; **0.015** Chamfer / **75.12%** IoU vs PhysTwin's **0.017** / **65.79%**.
 - **[[2511.06299|Physics-Informed-Deformable-GS]]** — A method unifying explicit ==3D Gaussian Splatting== with ==continuum mechanics== for physically consistent dynamic novel-view synthesis from monocular video: each Gaussian is a ==Lagrangian material particle== with a time-evolving constitutive field, regularized by the ==Cauchy momentum equation== + a ==Lagrangian flow-matching loss==.
 - **[[2505.16971|UniPhy]] (CVPR'25)** — A unified neural ==constitutive model== for inverse physics simulation that swaps two material-dependent ==MPM== functions for ==latent-conditioned networks==, then freezes them and optimizes a per-scene latent to infer material from observed trajectories; elastic reconstruction error **5.2e-6** vs **2.4e-4** (NCLaw) — material-agnostic, no preset material type.
 - **[[2410.08257|NeuMA]]** — Models material dynamics as ==residual adaptation==: an expert MPM prior (M0) plus a ==LoRA neural adaptor== (ΔMθ), rendered via ==Particle-GS== (Gaussian kernels hierarchically bound to sim particles); Chamfer **1.31** vs PAC-NeRF's **114.80** and NCLaw's **12.18**.
@@ -362,12 +363,15 @@ Constrain *during* sampling rather than during training. Useful when you can't r
 - **[[2503.23368|VLIPP]] (ICCV'25)** — A ==VLM (GPT-4o) coarse motion planner== with ==Chain-of-Thought== reasoning predicts object bounding-box trajectories from inferred physical laws, converted to ==optical-flow structured noise== conditioning a Go-with-the-Flow VDM; **+15.3%** over T2V / **+11.1%** over I2V on PhyGenBench.
 - **[[2603.06408|PSIVG]] (CVPR'26)** — A training-free framework coupling a ==physical simulator into video diffusion==: it reconstructs 3D/4D scene geometry, an ==MPM simulator== produces accurate trajectories converted to ==optical-flow guidance==, plus ==Test-Time Texture Consistency Optimization==; preferred for plausibility in **82.3%** of comparisons, **0.84** SAM mIoU, **0.95** VBench consistency.
 
-#### 3.4 Control-Theoretic Constraints in Generative Planners
+#### 3.4 Model-Based Constraints in Generative Planners
 
-Flow-matching trajectory planners are expressive but give no formal guarantee that generated states are safe, dynamically consistent, or actuator-admissible. This track folds classical control-theory machinery (control barrier / Lyapunov functions, polytope projection) *into* the generative process — turning constraint satisfaction from a post-hoc fix into a property of the sampler itself, enforced at test time without retraining.
+Flow-matching trajectory planners are expressive but give no formal guarantee that generated states are safe, dynamically consistent, or actuator-admissible. This track folds classical model-based machinery (control barrier / Lyapunov functions, polytope projection, analytical model gradients, constrained-optimization modules) *into* the generative process — turning constraint satisfaction from a post-hoc fix into a property of the sampler itself, enforced at test time without retraining.
 
+- **[[2609.09745|PccDiffuser]]** — A continuum-robot diffusion planner injecting ==analytical differential-kinematics guidance== (Jacobian terminal-error + backbone-repulsion gradients) into ==DDIM sampling==, over ==exponential-coordinate PCC== paths conditioned by a ==GNN== obstacle encoder; **91.11%** success on mixed obstacle scenes vs ~**70%** for RRT*, at **34.0 ms** per path.
 - **[[2606.13400|PolyFlow]] (ICML'26)** — A polytope-constrained flow-matching planner with a ==projection-free architecture== (a ==Ray Shooting operator== + learned gating, Frank-Wolfe-inspired) and a ==Constraint Encoding Block== fusing linear-inequality constraints into the latent; **100%** safety with competitive fidelity, faster than projection methods — zero-shot to dynamic quadruped limits.
 - **[[2511.05355|SAD-Flower]]** — A control-augmented flow-matching planner enforcing state/action constraints via ==Control Barrier Functions== + dynamic consistency via a ==Control Lyapunov Function==, solved as a per-step ==Quadratic Program== with two-phase activation; perfect constraint satisfaction across Maze2d/Hopper/Walker2d/Kuka at test time, no retraining — prevents local traps.
+- **[[2509.08775|JM2D]] (CoRL'25)** — Recasts module integration as ==joint diffusion== over concatenated plan and control variables, with a gradient-free ==Monte Carlo importance-sampling estimator== of the joint score that admits non-differentiable objectives and hard constraints without retraining; higher Safe Success Rate and dramatically fewer violations than sequential/Gibbs baselines.
+- **[[2505.13131|CoDiG]] (CoRL'25)** — Adds a ==barrier gradient== to the diffusion ==score function== at inference so trajectories stay feasible and collision-free, with ==warm-start inference== reusing the prior trajectory to cut denoising **1000→50** steps; **0.25→2.5 Hz** sampling and **100%** success over **15** racing laps — barrier-as-guidance, no retraining.
 
 #### 3.5 Differentiable Contact Losses for Physically Plausible Hand-Object & Grasp Generation
 
@@ -390,6 +394,7 @@ Before physics entered video diffusion, it entered pose reconstruction: differen
 | Physics-coherent image-to-video | [[2603.13770\|PhysAlign]] |
 | Per-region physics control at sample time | [[2603.26285\|PhysVid]] |
 | Suppress hallucinations without retraining | [[2603.23376\|ABot-PhysWorld]] (Diffusion-DPO) |
+| Hard constraints inside a diffusion planner | [[2505.13131\|CoDiG]] (**100%** over **15** laps, no retraining) |
 
 ^dm-3
 
@@ -430,6 +435,7 @@ Reconstruct or learn the physics substrate; train policies against it. The simul
 - **[[2605.16395|OrbiSim]]** — Recasts a world model as a differentiable physics engine: object-centric ==recurrent state-space== dynamics predict explicit physical state, a decoupled ==latent-diffusion== renderer matches frames, and ==analytical policy gradients== backprop terminal rewards through dynamics only; sparse-reward Push success **42.71%** vs DreamerV3's **25.00%**, PPO's **1.04%**.
 - **[[2605.07687|PhySPRING]]** — A ==U-Net GNN== with ==Neural-CLASP== blocks learns node-merging via Gumbel-Softmax, ==Galerkin projection== coarsens PhysTwin's mass/stiffness/damping matrices while a decoder refines per-edge parameters through differentiable rollouts; **2.30x** speed-up at **30%** nodes, better accuracy than PhysTwin, zero-shot ROM substitution preserves ACT/pi-0 success.
 - **[[2603.27313|MetaTune]]** — An adjoint-based meta-learning framework jointly auto-tuning robotic feedback-controller gains and disturbance-observer parameters via ==differentiable dynamics==, using a ==neural policy== for time-varying gains and a ==discrete adjoint method== for linear-complexity meta-gradients; **>50%** faster gradients than forward-mode, **15-20%** RMSE cut on a quadrotor.
+- **[[2603.09882|DAPL]] (RSS'26)** — Alternates a learned physics substrate with its consumer policy: a patch Transformer over point clouds ==augmented with mass and velocity== predicts ==contact-induced object-scene dynamics== under ==variance-aware regularization==, and RL conditions on that representation via a ==curriculum==; **44.56%** in dense clutter (2× CORN's **22.22%**), **48%** real.
 - **[[2508.06181|HyperPM]] (CoRL'25)** — A ==causal network + B-spline== predictor encodes unmodeled dynamics as time-varying parameter trajectories over the MPC horizon (not constant), feeding **HyperMPC** via one lightweight forward pass; **300%** control-cost gain (pendulum), **48.75%** prediction gain (F1TENTH), **~1.85ms** overhead.
 - **[[2506.04646|ActivePusher]] (ICRA'26)** — Extends [[1903.11239|TossingBot]]'s residual recipe to data selection: an MLP residual on an analytical quasi-static pushing model is read as a ==Gaussian Process== via the ==Neural Tangent Kernel==, so ==BAIT== Fisher-information batches pick informative pushes; baseline SE(2) accuracy on **55%** of the data, **100%** Push-to-Region success.
 - **[[2505.20404|Soft Gripper Co-Design]] (CoRL'25)** — Trains a ==neural physics== surrogate (PointNet+MLP) on FEM simulation to jointly optimize gripper ==stiffness distribution== and grasp pose via gradient descent; **~1000x** faster than direct differentiable sim, **92.1%** vs rigid baselines' **60.5%**, real-world transfer confirmed.
@@ -451,6 +457,9 @@ Reconstruct or learn the physics substrate; train policies against it. The simul
 
 An LLM, VLM, or a sampling-based optimizer proposes candidate physical parameters, plans, tool geometry, or simulator code; a physics simulator rolls the candidate out and scores it, closing the loop by feeding the result back to the proposer. The simulator verifies and ranks — it does not get differentiated through.
 
+- **[[2609.08220|AID-SR]]** — Pushes the proposer-verifier loop from parameters to ==morphology==: Designer/Coder/Integrator agents emit continuum-robot MuJoCo XML, ==Physical Stability Validation== probes actuators and diagnoses dead actuation/self-collision as structured text, and an ==LLM Judge== gates semantics; **96.2%** valid, **26.7%** mean success across **14** tasks.
+- **[[2609.02020|Torque-Sampling MPPI]]** — Analytic rigid-body dynamics inside the sampler: ==torque-perturbed rollouts== solve ==forward dynamics== per step, rebuilding the ==inertia matrix== from link Jacobians per CUDA-thread rollout, and a ==dynamically consistent generalized inverse Jacobian== estimates end-effector force sensorlessly; **166 Hz** at **128** rollouts, **1.80 N** force MAE.
+- **[[2607.21522|GS-Agent]]** — Closes the agent loop on a real engine: ==Manager / Entity / Render agents== emit executable ==Genesis== scene code, and physics-boundary checks plus runtime and visual feedback drive ==iterative refinement== of assets, materials, and motion; **0.83** State-PIS and **32.2** alignment beat Sora-2 and Wan2.2, with emergent self-repair of broken assets.
 - **[[2607.01766|SimWorlds]]** — Scales the LLM-writes-Blender pattern to dynamic 4D: a ==staged construction pipeline== drives coder / verifier / reviewer through eight stages, and an ==orchestrator-side verifier== reads solver caches plus ==BVH-geometric== contact relations so keyframed motion cannot pass as physics; **0.87** mechanism / **0.89** structural pass vs **0.67**/**0.70**.
 - **[[2606.08688|PhysAgent]]** — A ==simulator-in-the-loop== multi-agent framework where a Semantic Agent proposes MPM force-field configs and Refine Agents iterate against ==trajectory-grounded visual feedback==, avoiding the LLM-simulator modality gap that causes "physical hallucinations"; highest CLIPsim + user preference across drop/stretch/sway force types.
 - **[[2512.11061|VDAWorld]]** — A VLM synthesizes an executable Python ==world program==: ==grounded 2D/3D scene representation== + action dynamics + a ==physics-or-logic simulator==, refined by a ==VLM critic + code-refiner== loop; **49.7** PhysicsIQ (vs Wan2.2 **46.2**), perfect **1.000** F1 on Conway's Game of Life — generalizes [[2512.04221|MoReGen]]'s LLM-writes-simulator-code pattern.
@@ -475,13 +484,16 @@ Replace the analytical nonlinear dynamics model inside a predictive / sampling-b
 - **[[2606.29825|KGD]]** — Repurposes ==Graph Neural Networks== as trainable lifting functions into a globally-linear ==Koopman space== for tethered systems (flexible tethers/nets), solved via ==MPC state condensing== as a fast QP with ==asynchronous dual-rate== online adaptation; achieves zero-shot spatial transfer controlling **n=16** tethers from a model trained on **n=10**.
 - **[[2603.05385|Koopman-Sampling-Control]]** — A control framework (MPPI-DK) embedding learned linear ==Deep Koopman Operator== dynamics into ==MPPI== so rollouts propagate by matrix multiplication in a lifted space, not nonlinear dynamics; matches classic MPPI accuracy while cutting per-step compute to **8.8 ms** vs **11.7 ms** (GPU) at **100%** success on a Unitree Go1 quadruped.
 - **[[2509.11567|Koopman-Continuum]]** — A data-driven ==Koopman operator== approach for multi-segment tendon-driven soft continuum robots, using a ==per-segment projection== into local coordinate frames to linearize dynamics for real-time linear MPC; cuts mean-squared shape error by an **order of magnitude**, scales to **5**-segment robots.
+- **[[2509.08241|RKL]] (CoRL'25)** — Makes the Koopman substrate *online*: ==EDMD== lifting plus ==Recursive Least Squares== updates the linear model at O(n²) per step independent of dataset size, feeding ==MPC== with formal convergence guarantees; cuts tracking error **77.94%** on a simulated arm and balances a puck on a Soft Stewart Platform in **0.8%** of RL's training time.
 - **[[2505.00354|Koopman-Soft-Robot-MPC]] (ICRA'25)** — A ==Deep Koopman==-based MPC (DK-MPC) linearizing multi-segment soft-robot dynamics via an ==auto-encoder== that learns lifting functions and the Koopman operator from state-action data, then plans inputs under MPC; **3.11 mm** average trajectory-tracking error on a physical soft robot vs **22.49 mm** for RBF-based K-MPC.
 
-#### 4.5 Probabilistic Safety Layers for Predictive Control
+#### 4.5 Certified Safety Layers for Model-Based Control
 
-Sampling-based and predictive controllers (MPPI, MPC) plan against an explicit dynamics model but handle hard constraints brittlely — penalty terms are fragile, and exact distributional knowledge of disturbances is rarely available. This track wraps the controller in a *statistical* safety layer (Bayesian, conformal, distribution-free) that bounds constraint-violation risk without assuming a known noise model, keeping the physics-engine-in-the-loop control loop certifiable.
+Sampling-based and predictive controllers (MPPI, MPC) plan against an explicit dynamics model but handle hard constraints brittlely — penalty terms are fragile, and exact distributional knowledge of disturbances is rarely available. This track wraps the controller — predictive, sampling-based, or primitive-driven — in a *certified* safety layer — statistical (Bayesian, conformal, distribution-free) or reachability-based (Hamilton-Jacobi value functions, differentiable flowpipes) — that bounds constraint-violation risk without assuming a known noise model, keeping the physics-engine-in-the-loop control loop certifiable.
 
+- **[[2606.28995|HJ-SafeDMP]]** — Learns a ==Control Barrier Value Function== offline from demonstrations via model-free ==Hamilton-Jacobi recursion== with ==expectile regression==, then bends ==Dynamic Movement Primitives== through a ==closed-form safety law== instead of online optimization; **0.0%** collisions over **100** trials at **1.2e-4 s** per step vs NODE-CLF-CBF's **0.3207 s**.
 - **[[2606.04185|CSRC-MPC]]** — A Conformal Spectral Risk Control layer extending ==distribution-free conformal methods== to ==spectral risk measures== (CVaR, Wang) reformulated as weighted expectations, integrated into ==MPC== via Lipschitz-bounded prediction sets; **100%** obstacle-avoidance, violations **52.9%→6.0%** under misspecification — safety without a known noise model.
+- **[[2605.25346|DiffReach]] (RSS'26)** — Unifies ==Taylor-model flowpipe construction== with ==CROWN-style network verification== in one JAX graph, making reachability differentiable so neural dynamics and controllers train under ==reachability regularization== and deploy in reachability-aware ==MPC==; ~**100×** faster than CROWN, **10 Hz** online planning on hardware.
 - **[[2510.00272|BC-MPPI]]** — A probabilistic constraint layer for ==Model-Predictive Path-Integral== control using ==Bayesian Neural Networks== to model each constraint's satisfaction probability + uncertainty, reshaping MPPI weights to down-weight (not reject) unsafe rollouts; fewer collisions + larger clearance than penalty/classic MPPI at a lower rejection rate — gradient-free safety.
 - **[[2509.19597|SPACE2TIME]] (CoRL'25)** — Recasts spatially-varying disturbances as ==temporal variations== so a ==Physics-Informed== ==time-varying safety value function== can be learned offline (DeepReach) and queried online via an adaptive "time to return"; **100%** vs baseline's **20%** success on a hardware Crazyflie drone.
 - **[[2501.04823|Conformal-Safety-from-Feedback]]** — A method learning subjective unsafe regions from sparse human-flagged trajectories via ==full conformal prediction== with a ==nearest-neighbor score==, enforced via a warning system + ==MPC backup mode==; collision rate **52%→14%** on a simulated quadcopter with finite-sample guarantees — safety from feedback, not a hand-coded constraint.
@@ -493,6 +505,8 @@ Sampling-based and predictive controllers (MPPI, MPC) plan against an explicit d
 | Reconstruct a digital twin from video | [[2503.17973\|PhysTwin]] (real-time interactive simulation) |
 | Train policy against learned physical world model | [[2511.07416\|PhysWorld]] (explicit physical state as substrate) |
 | Human→robot motion retargeting with physics | [[2605.06593\|ReActor]] (**+15.22pp** downstream RL, zero ground penetration) |
+| Learned linear model that adapts online | [[2509.08241\|RKL]] (**0.8%** of RL's training time) |
+| Certified safety wrapper around MPC | [[2605.25346\|DiffReach]] (~**100×** faster than CROWN, **10 Hz** on hardware) |
 
 ^dm-4
 
@@ -589,6 +603,8 @@ Benchmarks that compare generated video against *recorded* real physical experim
 
 Benchmarks that evaluate the *agent's* physical reasoning and manipulation under physics, not generated-video commonsense. The object of evaluation is closed-loop interaction (kinematic/dynamic reasoning, soft-body and deformable manipulation), so physics is the measured capability rather than a rendering target.
 
+- **[[2609.02402|Physics-Consistent HRI Benchmark]]** — Scores assistive bathing against a ==deformable care recipient== (articulated skeleton + region-wise soft-tissue shells via ==anchor Jacobians== and ==spring-dampers==) ==calibrated to manikin force-indentation==, under a frozen vision-only protocol; an LLM state machine drops **72.9% → 56.4%** once force-safety gating applies.
+- **[[2607.27017|POKEWORLD]]** — Asks what physics a latent WM can know: a ==certificate-gated protocol== first proves each hidden parameter is recoverable from observation, then ==X-JEPA== variants isolate objective from modality — contact stiffness is learned only when touch is a ==prediction target== (R² **0.40–0.57** vs **-0.02**), drag stalls at **0.13** despite a **0.70–0.89** certificate.
 - **[[2607.05966|iKCE]]** — Introduces the ==Imagined Kinematic-Consistency Error==: a diagnostic + ==conditioning-perturbation protocol== (sweeping friction) revealing DreamerV3's imagined rollouts extrapolate ==kinematically==, not dynamically — **~180x** higher iKCE than real physics at T=16, and iKCE stays flat across a friction sweep where real-policy reward collapses at μ=0.20.
 - **[[2604.25788|KinDER]] (RSS'26)** — A physical-reasoning benchmark for robot learning and planning isolating ==five core kinematic/dynamic challenges== over **25** procedural environments (==KinDERGarden==) with a Gymnasium-API library and **13** baselines; Bilevel Planning tops at **0.57** SR, in-context foundation models reach **0.43** (vs **0.34** zero-shot), RL/MBRL collapse to **0.02–0.13**.
 
@@ -630,7 +646,7 @@ How do these pieces connect when you build an end-to-end physics-aware robot sys
 Pretrain a video / VLM / egocentric backbone with explicit physics losses *before* attaching the downstream action head. The action head inherits physics-grounded representations without requiring physics supervision in the action loss.
 
 - **Pattern A — Physics-Coupled VLA Training**: Pretrain a video diffusion backbone with explicit physics losses ([[2512.00425|NewtonRewards]] / [[2510.13809|PhysMaster]] / [[2509.20570|PIRF]] (NeurIPS'25 Workshop)), then attach a downstream action head. See [[04_VLA#5. World-Model-Augmented VLAs]] for the WAM-augmented VLA recipe.
-- **Pattern A.2 — Egocentric-Physics-Pretrained Backbone**: [[2605.15298|PhysBrain]] pretrains a Qwen3-VL VLM on egocentric grounded QA (==depth-aware spatial augmentation==), then VLA-adapts via a ==dual-pathway architecture==: **45.5** ERQA / **50.2** PhysBench, **+16.2pp** real grasping. See [[14_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]].
+- **Pattern A.2 — Egocentric-Physics-Pretrained Backbone**: [[2605.15298|PhysBrain 1.0]] pretrains a Qwen3-VL VLM on egocentric grounded QA (==depth-aware spatial augmentation==), then VLA-adapts via a ==dual-pathway architecture==: **45.5** ERQA / **50.2** PhysBench, **+16.2pp** real grasping. See [[14_Egocentric-Pretraining-and-Human-Video#4. Pretraining Recipes — Three Generations]].
 - **Pattern A.1 — Geometric Feasibility Loss on Actions**: Add [[2604.17896|Physical-Feasibility-VLA]]'s differentiable feasibility term as an auxiliary action-loss ==L_geo==: a ==squared-hinge== penalty on link-to-obstacle signed distance — training-time bias, gone at deployment. Effective in **low-data regimes**: 40-episode policies match 120-episode baselines (SSR **22.00% → 43.50%**).
 
 #### 7.2 Digital-Twin-in-the-Loop
@@ -652,7 +668,7 @@ Use a physics-reasoning foundation model as the high-level planner; a low-level 
 | Need | Pattern | Recommendation |
 |---|---|---|
 | Robust generalist VLA via backbone pretraining | A | [[2512.00425\|NewtonRewards]] / [[2510.13809\|PhysMaster]] / [[2509.20570\|PIRF]] backbone + action head |
-| Semantic physics priors via egocentric pretraining | A.2 | [[2605.15298\|PhysBrain]] (**45.5** ERQA, **+16.2pp** real-world grasping) |
+| Semantic physics priors via egocentric pretraining | A.2 | [[2605.15298\|PhysBrain 1.0]] (**45.5** ERQA, **+16.2pp** real-world grasping) |
 | Geometric safety in low-data regime | A.1 | [[2604.17896\|Physical-Feasibility-VLA]] (**22 → 43.50%** SSR) |
 | Sim-to-real for a specific deployment | B | [[2503.17973\|PhysTwin]] (Digital-Twin-in-the-Loop) |
 | Long-horizon physics reasoning | C | [[2503.15558\|Cosmos-Reason1]] planner + low-level VLA |
@@ -660,7 +676,7 @@ Use a physics-reasoning foundation model as the high-level planner; a low-level 
 ^dm-7
 
 > [!star] Key Papers
-> - [[2605.15298|PhysBrain]] — Egocentric-physics-pretrained VLM with dual-pathway VLA adaptation; **45.5** ERQA / **50.2** PhysBench / **+16.2pp** real-world grasping — Pattern A.2 reference implementation
+> - [[2605.15298|PhysBrain 1.0]] — Egocentric-physics-pretrained VLM with dual-pathway VLA adaptation; **45.5** ERQA / **50.2** PhysBench / **+16.2pp** real-world grasping — Pattern A.2 reference implementation
 > - [[2604.17896|Physical-Feasibility-VLA]] — Differentiable geometric feasibility loss on actions; **22 → 43.50%** SSR in low-data regime — Pattern A.1 reference
 > - [[2503.17973|PhysTwin]] (ICCV'25) — Reconstructed digital twin for Pattern B sim-to-real deployment
 > - [[2503.15558|Cosmos-Reason1]] — Physics-reasoning planner for Pattern C long-horizon control
@@ -668,7 +684,7 @@ Use a physics-reasoning foundation model as the high-level planner; a low-level 
 ^key-papers-7
 
 > [!success] Choose Your Pattern
-> - **Need a robust generalist VLA?** Pattern A (Physics-Coupled VLA Training) — or A.2 ([[2605.15298|PhysBrain]]) for semantic-pathway physics
+> - **Need a robust generalist VLA?** Pattern A (Physics-Coupled VLA Training) — or A.2 ([[2605.15298|PhysBrain 1.0]]) for semantic-pathway physics
 > - **Need geometric safety in low-data?** Pattern A.1 ([[2604.17896|Physical-Feasibility-VLA]])
 > - **Need sim-to-real for a specific deployment?** Pattern B (Digital-Twin-in-the-Loop)
 > - **Need long-horizon physics reasoning?** Pattern C (Physics-Reasoning-Augmented Planning)
