@@ -593,7 +593,7 @@ Reinforcement learning applied to VLMs for improving visual reasoning, chain-of-
 > - [[2506.21710|FOCUS]] (NeurIPS'25) — Internal MLLM representations for efficient visual cropping; 42% accuracy boost at 3-6.5x less compute than baselines
 
 **Multimodal Representation & Embedding** — Learning improved multimodal embeddings and representations.
-- [[2604.12012|TIPSv2]] (CVPR'26), [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]] (CVPR'26), [[2511.11007|VisMem]], [[2509.26625|LLM-Visual-Priors]] (ICLR'26 Oral), [[2507.04590|VLM2Vec-V2]], [[2506.23115|MoCa]], [[2506.17629|CLiViS]], [[2505.19707|MVFT-JI]], [[2505.17812|VaLSe]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.17422|MLLM-Small-Visual-Details]] (ICLR'25), [[2502.16707|ReflectVLM]] (CoRL'25), [[2502.16435|VISFACTOR]], [[2410.11829|MMFuser]], [[2403.19651|MagicLens]] (ICML'24 Oral), [[2302.03084|Pic2Word]] (CVPR'23)
+- [[2609.01657|NeoMME]], [[2604.12012|TIPSv2]] (CVPR'26), [[2604.02073|PLUME]], [[2603.22953|ClusterSTM]] (CVPR'26), [[2511.11007|VisMem]], [[2509.26625|LLM-Visual-Priors]] (ICLR'26 Oral), [[2507.04590|VLM2Vec-V2]], [[2506.23115|MoCa]], [[2506.17629|CLiViS]], [[2505.19707|MVFT-JI]], [[2505.17812|VaLSe]], [[2504.19627|VCM]], [[2504.17432|UniME]], [[2502.17422|MLLM-Small-Visual-Details]] (ICLR'25), [[2502.16707|ReflectVLM]] (CoRL'25), [[2502.16435|VISFACTOR]], [[2410.11829|MMFuser]], [[2403.19651|MagicLens]] (ICML'24 Oral), [[2302.03084|Pic2Word]] (CVPR'23)
 
 > [!star] Key Papers
 > - [[2504.17432|UniME]] — Universal multimodal embeddings via distillation and hard-negative tuning; SOTA on MMEB with 14-18% gains on long-caption retrieval

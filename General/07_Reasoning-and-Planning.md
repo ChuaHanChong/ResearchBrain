@@ -221,6 +221,9 @@ The foundational paradigm: prompting LLMs to produce step-by-step reasoning befo
 **Adaptive-Length & Token-Efficient Reasoning Methods** — Methods that compress reasoning chains, encode thoughts more densely, or adapt reasoning depth to problem difficulty.
 - [[2602.16839|Progressive-Thought-Encoding]] (ICLR'26), [[2602.09276|Reasoning-ID]], [[2601.06002|Mole-Syn]], [[2511.17487|EXTRACT+THINK]] (CVPR'26), [[2511.08577|TaH]] (ICML'26), [[2508.03346|Step-Entropy-CoT]] (ICLR'26), [[2505.16579|D2R]], [[2505.15612|LASER]] (ICLR'26), [[2505.13975|DRP]], [[2505.13438|AnytimeReasoner]] (NeurIPS'25), [[2505.11896|AdaCoT]], [[2505.10425|L2T]] (NeurIPS'25), [[2505.00147|AdaptMI]], [[2504.01296|ThinkPrune]], [[2503.18866|BoLT]], [[2502.07266|CoT-Length-Study]] (ICLR'26), [[2501.19201|Heima]] (ICML'26), [[2412.09413|STILL-2]]
 
+**KV Cache & Inference-Time Serving Efficiency** - Serving-side techniques that manage the KV cache during long reasoning generation to cut memory and latency without retraining the model.
+- [[2609.03430|Random Attention]]
+
 **Efficient & Long-CoT Reasoning Surveys** — Survey papers mapping the efficient-reasoning and long-chain-of-thought landscape.
 - [[2508.02120|Efficient-R1-style-Reasoning-Survey]], [[2507.09662|Concise-Adaptive-Thinking-Survey]], [[2504.10903|Efficient-Reasoning-Models-Survey]], [[2503.23077|LRM-Efficient-Inference-Survey]], [[2503.21614|Efficient-Reasoning-Survey]], [[2503.16419|Stop-Overthinking-Survey]], [[2503.09567|Long-CoT-Survey]]
 
