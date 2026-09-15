@@ -136,12 +136,21 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
   # NOTE: forced LC_ALL=C + charlen() strips UTF-8 continuation bytes (0x80-0xBF) before counting —
   # plain length($0) counts BYTES on byte-oriented awk (BWK/"one true awk"), over-reporting length
   # ~7x on bullets dense with multi-byte glyphs (—, →, ×, °, ≤, ≥). Do not revert to length($0).
+  # bulletlen() also drops venue-sync's inline `(ICML'25)` badge: it is generated metadata, not
+  # authored prose, so counting it flags compliant bullets and invites trimming real content.
+  # Match is /^- \*\*/, not /^- \*\*\[\[/ — L3 also covers `- **[Tool](url)**` and Open-Problems'
+  # `- **<Problem name>**`, both of which the wikilink-only form never measured.
+  # Median is per `#### N.N`, not per `### N.`: "towers over its neighbours" means its own
+  # sub-section. A section mixing paper bullets with terse Open-Problems bullets has a median
+  # that describes neither. The >400 absolute rule is unaffected by this scope.
   LC_ALL=C awk '
     function charlen(s,   t){t=s;gsub(/[\200-\277]/,"",t);return length(t)}
+    function bulletlen(s){gsub(/\]\] \([^)]{1,30}\)/,"]]",s);return charlen(s)}
+    function label(s){sub(/^- \*\*(\[\[)?/,"",s);if(s~/\|/)sub(/\|.*/,"",s);else sub(/\*\*.*/,"",s);return s}
     function flushsec(){for(i in B){if(B[i]>400||(med>0&&B[i]>1.8*med))printf "OVER-LONG BULLET %s %s: %d chars (median %d)\n",sect,A[i],B[i],med}}
     function median(){c=0;for(i in B)V[c++]=B[i];for(a=0;a<c;a++)for(b=a+1;b<c;b++)if(V[b]<V[a]){t=V[a];V[a]=V[b];V[b]=t};med=(c?V[int(c/2)]:0)}
-    /^### [0-9]+\./{median();flushsec();delete B;delete A;delete V;n=0;sect=$0;next}
-    /^- \*\*\[\[/{m=$0;sub(/^- \*\*\[\[/,"",m);sub(/\|.*/,"",m);A[n]=m;B[n]=charlen($0);n++}
+    /^#{3,4} [0-9]+\./{median();flushsec();delete B;delete A;delete V;n=0;sect=$0;next}
+    /^- \*\*/{A[n]=label($0);B[n]=bulletlen($0);n++}
     END{median();flushsec()}
   ' "$F"
 
@@ -301,10 +310,11 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
   # charlen() must match Phase 1c's — see the NOTE there for why length($0) is wrong.
   AP_H=$(LC_ALL=C awk '
     function charlen(s,   t){t=s;gsub(/[\200-\277]/,"",t);return length(t)}
+    function bulletlen(s){gsub(/\]\] \([^)]{1,30}\)/,"]]",s);return charlen(s)}
     function fs(){for(i in B){if(B[i]>400||(med>0&&B[i]>1.8*med))k++}}
     function md(){c=0;for(i in B)V[c++]=B[i];for(a=0;a<c;a++)for(b=a+1;b<c;b++)if(V[b]<V[a]){t=V[a];V[a]=V[b];V[b]=t};med=(c?V[int(c/2)]:0)}
-    /^### [0-9]+\./{md();fs();delete B;delete V;n=0;next}
-    /^- \*\*\[\[/{B[n++]=charlen($0)}
+    /^#{3,4} [0-9]+\./{md();fs();delete B;delete V;n=0;next}
+    /^- \*\*/{B[n++]=bulletlen($0)}
     END{md();fs();print k+0}
   ' "$F")
   echo "  anti-patterns: A=$AP_A B=$AP_B C=$AP_C D=$AP_D E=$AP_E G=$AP_G H=$AP_H"
@@ -386,7 +396,7 @@ for F in Embodied-AI/[0-9][0-9]_*.md; do
   T_D=$((T_D + $(grep -cE '^- \[\[[0-9]{4}\.[0-9]+\|[^]]+\]\]\s+—' "$F")))
   T_E=$((T_E + $(grep -c 'metrics not yet reported' "$F")))
   T_G=$((T_G + $(grep -cE '^\*\*\[[^]]+— Decision Matrix\]\*\*' "$F")))
-  T_H=$((T_H + $(LC_ALL=C awk 'function charlen(s,   t){t=s;gsub(/[\200-\277]/,"",t);return length(t)} function fs(){for(i in B){if(B[i]>400||(med>0&&B[i]>1.8*med))k++}} function md(){c=0;for(i in B)V[c++]=B[i];for(a=0;a<c;a++)for(b=a+1;b<c;b++)if(V[b]<V[a]){t=V[a];V[a]=V[b];V[b]=t};med=(c?V[int(c/2)]:0)} /^### [0-9]+\./{md();fs();delete B;delete V;n=0;next} /^- \*\*\[\[/{B[n++]=charlen($0)} END{md();fs();print k+0}' "$F")))
+  T_H=$((T_H + $(LC_ALL=C awk 'function charlen(s,   t){t=s;gsub(/[\200-\277]/,"",t);return length(t)} function bulletlen(s){gsub(/\]\] \([^)]{1,30}\)/,"]]",s);return charlen(s)} function fs(){for(i in B){if(B[i]>400||(med>0&&B[i]>1.8*med))k++}} function md(){c=0;for(i in B)V[c++]=B[i];for(a=0;a<c;a++)for(b=a+1;b<c;b++)if(V[b]<V[a]){t=V[a];V[a]=V[b];V[b]=t};med=(c?V[int(c/2)]:0)} /^#{3,4} [0-9]+\./{md();fs();delete B;delete V;n=0;next} /^- \*\*/{B[n++]=bulletlen($0)} END{md();fs();print k+0}' "$F")))
   T_MISSING=$((T_MISSING + $(grep -oE '\[\[[0-9]{4}\.[0-9]+' "$F" | sort -u | sed 's/\[\[//' | \
     while read id; do [ -f "_KnowledgeHub_/${id}.md" ] || echo X; done | wc -l | tr -d ' ')))
 done
@@ -534,7 +544,7 @@ Every `### N. Section` contains these layers in order. **L4, L5, L6 each appear 
    2. **Bold the lead link** at bullet start — either `- **[[...]]**` (wikilink) or `- **[...](url)**` (external link).
    3. **One bullet = one paper / tool.** Multi-sentence OK if precise — every sentence earns its place. **Multi-home is allowed**: a paper's *canonical* L3 bullet lives in the file whose axis its core mechanism instantiates, but framework / design-space / pattern sections in the same or other files may deliberately carry an additional exemplar bullet when their axis genuinely covers the paper. Duplicated bullets should stay consistent on metrics (verbatim-diverged copies are drift — reconcile them, never delete a copy that a section's structure depends on).
    4. **`==highlight==` the methods** (e.g. `==RSSM==`, `==MoE gating==`, `==flow-matching action expert==`) and **bold the metric numbers** (`**99.2%**`, `**+27pp**`, `**3–4 ms/step**`, `**>900K FPS**`). If no metric available, skip — no placeholder.
-   5. **Length discipline** (two ceilings, both on raw line length incl. markup): (a) **absolute** — no bullet exceeds **400 chars**; (b) **relative** — no bullet exceeds **~1.5× its section's median** bullet length (it must not tower over its neighbors). A bullet that breaches either is an over-long bullet (anti-pattern **H**). When trimming to fit: keep every `**bold metric**` and `[[wikilink]]` and the lead `==method==`; cut only connective prose, mechanism-explanation clauses, parenthetical asides, and secondary highlights. Length and detail-density are independent — a tight 250-char bullet can still carry 4 bold metrics. Never drop a metric to hit length; if a genuinely metric-dense bullet can't fit, keep all metrics and get as close as possible.
+   5. **Length discipline** (two ceilings, both on raw line length incl. markup): (a) **absolute** — no bullet exceeds **400 chars**; (b) **relative** — no bullet exceeds **~1.5× its sub-section's median** bullet length (it must not tower over its neighbors). A bullet that breaches either is an over-long bullet (anti-pattern **H**). When trimming to fit: keep every `**bold metric**` and `[[wikilink]]` and the lead `==method==`; cut only connective prose, mechanism-explanation clauses, parenthetical asides, and secondary highlights. Length and detail-density are independent — a tight 250-char bullet can still carry 4 bold metrics. Never drop a metric to hit length; if a genuinely metric-dense bullet can't fit, keep all metrics and get as close as possible.
 4. **L4 — Decision Matrix**: `**<Section> — Decision Matrix**` header + table (paragon-canonical, no brackets — e.g., `**Engine — Decision Matrix**`). 2 columns canonical (`| Need | Recommendation |`); 3+ columns OK when the decision is an axis-comparison (e.g. `| Paradigm | Speed | Robustness | Best For |`). Table cells may carry wikilinks `[[id\|alias]]` *or* bold external links `[Tool](url)` depending on whether the entry has an arxiv ID. Decision-oriented (intent → paper/tool), not a data-dump of L3 bullets.
 5. **L5 — `> [!star] <Title>` callout**: a curated **3–5 paper shortlist** with **editorial significance** — *foundational/canonical* papers and **why they matter to the field**, not their specs. The `[!star]` callout type is mandatory; **title default is `Key Papers`**, with two relaxed variants encouraged when they sharpen the framing: `Key Papers — <Editorial Suffix>` (e.g., `Key Papers — Design-Space Exemplars`, `Key Papers — WAM Failure Frontier`) or a fully custom editorial label (`Key Recipes`, `Key Datasets`, `Key Design-Space Papers`, `Bimanual Tactile Landmark`). **No metric overlap with L3** (exception: when the metric IS the claim, e.g. DreamerV3's "**150+** tasks with fixed hyperparameters"). Bullet format: `> - [[id|alias]] — significance clause` (wikilink unbolded inside callouts — the `> ` prefix provides visual weight).
    - Good clauses: "the canonical X for Y" · "established the Z paradigm" · "first proof that W" · "the reference architecture for V" · "the methodological landmark that mapped the design space".
@@ -617,7 +627,7 @@ Each anti-pattern below has a matching regex in Phase 1c above and a matching re
 | **E** | Residual `(metrics not yet reported)` placeholder | Delete the placeholder text; bullet stands on non-metric content |
 | **F** | Whole-file L6 cross-vault link (`[[NN_File]]` in `[!tip]`) | Retrofit to section-anchored `[[NN_File#N. Section]]` |
 | **G** | Bracket-wrapped L4 header (`**[X — Decision Matrix]**`) | Strip outer brackets → `**X — Decision Matrix**` (paragon convention) |
-| **H** | Over-long L3 bullet (>400 chars, or >1.8× the section median — towers over neighbors) | KH-verify retained metrics/methods, then compress prose to ≤400ch and ≤~1.5× section median; keep all `**metrics**` + `[[links]]` + lead `==method==` (see L3 rule 5) |
+| **H** | Over-long L3 bullet (>400 chars, or >1.8× its sub-section median — towers over neighbors) | KH-verify retained metrics/methods, then compress prose to ≤400ch and ≤~1.5× sub-section median; keep all `**metrics**` + `[[links]]` + lead `==method==` (see L3 rule 5) |
 | **I** | L6 `[!tip]` with **no** cross-vault link at all (F catches the wrong *shape*; I catches *absence*) | Add ≥1 section-anchored `[[NN_File#N. Section]]` to a target a reader finishing this section would want next |
 | **Seq** | `### N.` numbering with dupes or gaps (consecutive duplicate numbers from a section merge, or non-monotonic gaps from a deleted section) | Renumber downstream; update reciprocal `[[NN_File#N. …]]` anchors |
 

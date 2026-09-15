@@ -96,12 +96,23 @@ def generate_summary(arxiv_id: str) -> dict:
     if outer.get("is_error"):
         raise RuntimeError(f"claude -p reported error: {str(outer.get('result'))[:300]}")
     text = outer.get("result", "")
-    # the agent's final message should be pure JSON, but tolerate stray prose/fences around it
-    start, end = text.find("{"), text.rfind("}")
-    if start == -1 or end == -1:
-        raise RuntimeError(f"no JSON object in claude -p result: {text[:300]!r}")
-    payload = json.loads(text[start:end + 1])
-    return validate_summary(payload)
+    return validate_summary(extract_json_object(text))
+
+
+def extract_json_object(text: str) -> dict:
+    """Return the first substring of text that parses as a JSON object holding the five summary keys."""
+    # Scan every "{": find/rfind anchors on prose or LaTeX braces and slices mid-payload.
+    decoder = json.JSONDecoder()
+    for start, char in enumerate(text):
+        if char != "{":
+            continue
+        try:
+            payload, _ = decoder.raw_decode(text, start)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(payload, dict) and all(k in payload for k in SUMMARY_KEYS):
+            return payload
+    raise RuntimeError(f"no JSON object with the five summary keys in claude -p result: {text[:300]!r}")
 
 
 def validate_summary(payload: dict) -> dict[str, object]:

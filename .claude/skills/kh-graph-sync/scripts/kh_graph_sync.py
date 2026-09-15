@@ -228,7 +228,9 @@ def cmd_finalize() -> None:
     nn, ne, nc = stats(ng)
     # new-paper connectivity
     new_papers = {f"{_arx(f)}_paper" for f in files}
-    linked = sum(1 for p in new_papers if p in G and any(nb in old_ids for nb in G.neighbors(p)))
+    # graphify prefixes merged ids with the source dir, so suffix-match or this always reads 0.
+    resolved = {n for n in G if any(n == q or n.endswith(f"_{q}") for q in new_papers)}
+    linked = sum(1 for n in resolved if any(nb in old_ids for nb in G.neighbors(n)))
     print(f"NODES       {on} -> {nn}  (+{nn-on})")
     print(f"EDGES       {oe} -> {ne}  (+{ne-oe})")
     print(f"COMMUNITIES {oc} -> {nc}")
