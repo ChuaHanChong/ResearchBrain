@@ -216,16 +216,16 @@ From video classification to self-supervised video representation learning. The 
 > - [[1706.04261|Something-Something]] (ICCV'17) — 108,499 clips across 174 fine-grained action classes; pioneered contrastive action templates to force models to learn physical common sense rather than superficial cues
 
 **Hand-Object Interaction & Capture Datasets** — Multi-sensor capture platforms and hand/object-interaction datasets for fine-grained pose and contact understanding.
-- [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]] (ECCV'26), [[2603.15847|FEEL]] (ECCV'26 Oral), [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2509.01708|ArtiPoint]] (CoRL'25), [[2411.19167|HOT3D]] (CVPR'25), [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]] (CVPR'24), [[2308.13561|Project Aria]], [[2203.09905|Cross-View-AG]] (CVPR'22), [[2203.01577|HOI4D]] (CVPR'22), [[2104.11181|H2O]]
+- [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]] (ECCV'26), [[2603.15847|FEEL]] (ECCV'26 Oral), [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2509.01708|ArtiPoint]] (CoRL'25), [[2411.19167|HOT3D]] (CVPR'25), [[2409.02224|EgoPressure]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]] (CVPR'24), [[2308.13561|Project Aria]], [[2203.09905|Cross-View-AG]] (CVPR'22), [[2203.01577|HOI4D]] (CVPR'22), [[2104.11181|H2O]]
 
 **Egocentric-to-Robot VLA Pretraining Datasets** — Egocentric human-video datasets built explicitly to pretrain or transfer to robot manipulation VLA policies.
-- [[2609.03199|RoboTok]], [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]] (ICLR'26), [[2503.13441|PH2D]] (CoRL'25), [[2502.03729|RAD (Action-Free Reasoning)]] (CoRL'25), [[2410.24221|EgoMimic]]
+- [[2609.10706|HuRo]], [[2609.03199|RoboTok]], [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]] (ICLR'26), [[2503.13441|PH2D]] (CoRL'25), [[2502.03729|RAD (Action-Free Reasoning)]] (CoRL'25), [[2410.24221|EgoMimic]]
 
 **Video-Based Camera Geometry & Registration** — Methods that exploit video's temporal structure for camera pose/registration and cross-view visual consistency, from homography-based frame matching to global Structure-from-Motion.
 - [[2607.27194|VidMap]], [[2607.26985|SymmGrid]], [[2607.25389|HOME]]
 
 **Additional Methods** — Robotic and embodied methods that treat camera motion or gaze as an intent-driven action rather than a passive byproduct of navigation or manipulation.
-- [[2607.02417|LIME]], [[2605.07943|TAVIS]], [[2506.10968|EyeRobot]] (CoRL'25)
+- [[2609.18514|ActiveScale]], [[2607.02417|LIME]], [[2605.07943|TAVIS]], [[2506.10968|EyeRobot]] (CoRL'25)
 
 > [!tip] The JEPA Connection
 > V-JEPA 2 and V-JEPA 2.1 represent the video branch of the JEPA family. The lineage runs V-JEPA 2 --> V-JEPA 2.1 --> VL-JEPA --> VLA-JEPA. The full lineage is documented in the JEPA notes.
@@ -268,8 +268,8 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2307.07635|CoTracker]] (ECCV'24) — Joint transformer point tracking that exploits inter-track dependencies; foundational architecture for the CoTracker lineage
 > - [[2410.11831|CoTracker3]] (ICCV'25 Highlight) — Simplified tracker trained via multi-teacher pseudo-labelling; beats BootsTAPIR with 1,000x less real training data
 
-**Spatiotemporal Video Grounding & Referring Expression** — Architectures for temporal video grounding and pixel-grounded referring-expression understanding.
-- [[2607.08537|Whareformer]] (ECCV'26), [[2604.12148|ViLL-E]], [[2604.02829|STRNet]] (CVPR'26), [[2603.23404|TRACE]], [[2603.12382|SPARROW]] (CVPR'26), [[2603.12254|AutoGaze]] (CVPR'26), [[2602.11730|STVG-R1]] (ICLR'26), [[2512.10359|STAR]] (NeurIPS'25), [[2511.19261|LAST]], [[2508.09736|M3-Agent]] (ICLR'26), [[2508.07388|Invert4TVG]] (ICLR'26), [[2508.06317|URPA]], [[2507.10302|DisCo]] (ICCV'25), [[2507.05258|REA]], [[2504.07745|SF2T]] (CVPR'25), [[2503.19355|ST-VLM]]
+**Spatiotemporal Video Grounding & Referring Expression** — Architectures for temporal video grounding, pixel-grounded referring-expression understanding, and geometry-grounded spatial reasoning.
+- [[2607.08537|Whareformer]] (ECCV'26), [[2604.12148|ViLL-E]], [[2604.02829|STRNet]] (CVPR'26), [[2603.26639|GeoSR]], [[2603.23404|TRACE]], [[2603.12382|SPARROW]] (CVPR'26), [[2603.12254|AutoGaze]] (CVPR'26), [[2602.11730|STVG-R1]] (ICLR'26), [[2512.10359|STAR]] (NeurIPS'25), [[2511.19261|LAST]], [[2508.09736|M3-Agent]] (ICLR'26), [[2508.07388|Invert4TVG]] (ICLR'26), [[2508.06317|URPA]], [[2507.10302|DisCo]] (ICCV'25), [[2507.05258|REA]], [[2504.07745|SF2T]] (CVPR'25), [[2503.19355|ST-VLM]]
 
 > [!star] Key Papers
 > - [[2603.12382|SPARROW]] (CVPR'26) — Temporal referential consistency via target-specific tracked features; +8.9 J&F on MeViS RVOS
@@ -282,6 +282,9 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2512.10863|MMSI-Video-Bench]] — MLLMs achieve 38.0% vs. 96.4% human accuracy on video spatial intelligence
 > - [[2603.17541|Temporal-Trap-Analysis]] — Revealed that Video-SFT degrades image understanding despite improving video metrics; proposed Hybrid-Frame Strategy
 > - [[2603.14145|MMOU]] — Joint audio-visual reasoning benchmark; best model (64.2%) far below human (84.3%)
+
+**Robot Manipulation Failure & Anomaly Detection** — Frame-level video anomaly detection benchmarks and optical-flow-based methods for localizing when a robot manipulation failure begins and ends.
+- [[2609.17843|RoboVAD]]
 
 **Social & Affective Interaction Understanding** — Datasets, workshops, and surveys probing whether video models can reason about social dynamics and affect (group interaction, emotion, deepfakes) rather than just spatiotemporal content.
 - [[2504.02244|SocialGesture]] (CVPR'25), [[2409.15316|Social AI Survey]], [[2409.07256|MRAC Workshop 2024]], [[2404.04458|JRDB-Social]] (CVPR'24), [[2212.08279|Werewolf Among Us]]
@@ -303,7 +306,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2310.06114|UniSim]] (ICLR'24 Oral) — Learned interactive real-world simulator from video data; key inspiration for the WAM paradigm
 
 **Egocentric & Robotic World Models** — World models specialized for egocentric or robot-embodied prediction and planning.
-- [[2608.30237|Motus2]], [[2608.29242|AnyWorld]], [[2607.11643|Xiaomi-Robotics-U0]], [[2607.07675|LingBot-Video]], [[2607.07534|LingBot-World-Infinity]], [[2605.03821|RoboAlign-R1]], [[2604.07209|INSPATIO-WORLD]], [[2604.04502|Veo-Act]], [[2604.01421|EgoFlow]] (CVPR'26), [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2601.20540|LingBot-World]], [[2512.08269|EgoX]], [[2509.15536|SAMPO]] (NeurIPS'25)
+- [[2609.20649|DexTouch-WM]], [[2609.17524|ModAR]], [[2609.15870|WLA3]], [[2608.30237|Motus2]], [[2608.29242|AnyWorld]], [[2607.11643|Xiaomi-Robotics-U0]], [[2607.07675|LingBot-Video]], [[2607.07534|LingBot-World-Infinity]], [[2605.03821|RoboAlign-R1]], [[2604.07209|INSPATIO-WORLD]], [[2604.04502|Veo-Act]], [[2604.01421|EgoFlow]] (CVPR'26), [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2601.20540|LingBot-World]], [[2512.08269|EgoX]], [[2509.15536|SAMPO]] (NeurIPS'25)
 
 **Scalable Industrial World-Model Systems** — Large-scale, lab/industrial-branded world-model systems targeting general-purpose scaling.
 - [[2607.06291|AlayaWorld]], [[2607.06216|MoWorld]], [[2607.03964|Worldscape-MoE]], [[2607.02642|GigaWorld-1]], [[2606.32028|DVG-WM]], [[2606.28804|ViPSim]], [[2606.18610|SC3-Eval]], [[2606.04463|OSCAR]], [[2606.02800|Cosmos-3]], [[2605.28816|Gamma-World]], [[2605.25874|WBench]], [[2605.08279|LaWM]], [[2604.18564|MultiWorld]], [[2604.08995|Matrix-Game-3.0]], [[2604.04913|DeltaWorld]] (CVPR'26), [[2604.04707|OpenWorldLib]]
@@ -430,7 +433,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2510.08398|VideoVerse]] — Tests "world model capability" via hidden-semantics prompts; reveals open-vs-closed-source gap on Mechanics/Interaction/Material dimensions even when basic T2V is comparable
 
 **Embodied, Multimodal & Domain-Specific Physics Benchmarks** — Embodied, multimodal (audio/tactile/hand-object), or domain-specific physics benchmarks that don't fit the generic T2V-evaluation mold.
-- [[2608.02150|PhyCheck]], [[2606.24256|TailOR]], [[2606.04811|Dream.exe]], [[2602.13294|VisPhyWorld]], [[2602.06033|VLM-Intuitive-Physics]] (ICML'26), [[2601.15282|Embodied-World-Video-Gen-Bench]], [[2512.12756|FysicsWorld]], [[2512.06963|VideoVLA]] (NeurIPS'25), [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.10975|GenWorld]], [[2506.00022|PHYSICS-Dataset]] (NeurIPS'25), [[2505.24182|MVPBench]], [[2505.22566|Universal-Visuo-Tactile]] (NeurIPS'25), [[2503.23715|HOIGen-1M]] (CVPR'25)
+- [[2609.18323|MiniMax-H3 Physical Reasoning]], [[2608.02150|PhyCheck]], [[2606.24256|TailOR]], [[2606.04811|Dream.exe]], [[2602.13294|VisPhyWorld]], [[2602.06033|VLM-Intuitive-Physics]] (ICML'26), [[2601.15282|Embodied-World-Video-Gen-Bench]], [[2512.12756|FysicsWorld]], [[2512.06963|VideoVLA]] (NeurIPS'25), [[2510.06251|Physics-Frontier-Diagnostic]], [[2506.10975|GenWorld]], [[2506.00022|PHYSICS-Dataset]] (NeurIPS'25), [[2505.24182|MVPBench]], [[2505.22566|Universal-Visuo-Tactile]] (NeurIPS'25), [[2503.23715|HOIGen-1M]] (CVPR'25)
 
 > [!star] Key Papers
 > - [[2512.12756|FysicsWorld]] — Unified full-modality benchmark for any-to-any (image+video+audio+text) understanding/generation/reasoning; CMCS strategy filters out unimodal shortcuts

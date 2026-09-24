@@ -172,7 +172,7 @@ If the Actor-Critic trains in the Imaginer's latent space, critic gradients flow
 
 ### 3.1 Manipulation Difficulty Is Non-Monotonic
 
-[[1901.01753|POET]] and [[2502.05726|ACCEL]] generate environments along smooth difficulty gradients. POET mutates terrain parameters (stump height, gap width) continuously. The Goldilocks zone ("just beyond the Actor's current ability") assumes a ==monotonic relationship== between parameter values and difficulty.
+[[1901.01753|POET]] and [[2203.01302|ACCEL]] generate environments along smooth difficulty gradients. POET mutates terrain parameters (stump height, gap width) continuously. The Goldilocks zone ("just beyond the Actor's current ability") assumes a ==monotonic relationship== between parameter values and difficulty.
 
 In manipulation, difficulty has ==cliff edges==:
 

@@ -269,7 +269,7 @@ Result: 39% improvement over non-co-evolved baseline
 
 ### The Adaptive Difficulty Pattern (POET + ACCEL)
 
-[[1901.01753|POET]] and [[2502.05726|ACCEL]] show a complementary pattern: the ==environment== co-evolves with the policy via unsupervised environment design. As the Actor improves, the environment generator creates harder challenges. Applied to WAMs:
+[[1901.01753|POET]] and [[2203.01302|ACCEL]] show a complementary pattern: the ==environment== co-evolves with the policy via unsupervised environment design. As the Actor improves, the environment generator creates harder challenges. Applied to WAMs:
 
 1. The Imaginer generates scenarios ==just beyond the Actor's current skill level==
 2. The Actor evolves to solve these scenarios
