@@ -216,6 +216,8 @@ Memory that changes shape as the world does — purging moved objects, re-rankin
 
 - **[[2608.10449|PBD-AG]]** — A ==baseline-delta graph== freezes an immutable baseline via cross-batch consensus, then appends typed audit events for moved/removed objects, with ==visibility-gated existence log-odds== admitting negative evidence only when provably observable; **0.833** dynamic IDF1, **zero** identity switches.
 
+- **[[2607.24190|Kim Episodic Memory]]** — An ==episodic memory module== on humanoid robot head Kim storing conversational fragments as ==vector embeddings== with ==LLM-derived emotional metadata==, retrieved via ==hybrid recency + emotional-intensity scoring==; **+0.60** Cohen's d Sociability (**p<.001**) — §1.2's retrieval pattern applied to conversational HRI memory, not task/control memory.
+
 - **[[2607.04057|PreSIST]]** — Proactively predicts how long an object will remain via instance-level ==survival priors== feeding a ==probabilistic persistence filter==; ==PreSIST-Lang== infers ==persistence quantiles== zero-shot from a VLM/LLM, ==PreSIST-Vis== distills this to **~0.04s**/query, improving long-term relocalization — proactive beats reactive re-perception.
 
 - **[[2606.30404|HUMEMBR]] (IROS'26)** — A predictive-navigation memory pairing ==face + Keypoint-Promptable-ReID clustering== for persistent multi-day human identity with a ==retrieval-augmented LLM== over five structured query functions, driving routine-conditioned navigation; **75.41%** PersonEQA (**-83%** tokens), **90-100%** real-robot SR on a Spot.
@@ -248,7 +250,11 @@ Memory that changes shape as the world does — purging moved objects, re-rankin
 
 The manipulation-side answer to the same problem, plus the robot-control world-action-models that gained a memory module rather than a scene graph: compressed action histories, gist tokens, hybrid memory banks, and event-boundary anchors that let a policy disambiguate two visually-identical moments that demand different actions.
 
+- **[[2609.11561|MaP-WAM]]** — Treats memory as plans: a VLM picks the next segment from ==keyframe memory== and a WAN-2.2 world model renders a visual plan, cached as a static prefix for a ==World-Action-Progress== ==Mixture-of-Transformers== that flow-matches video, actions and progress; **83.3%** RMBench, **88%** real Find Button, executor latency flat near **827ms**.
+
 - **[[2609.07581|ICI-VLA]]** — Test-time adaptation by retrieving phase-aligned ==micro-demonstrations== (~139,659 subtask examples) via a ==DTW-mined contrastive RD-Encoder==, with ==Target Action Masking== blocking action copying; **97.7%** LIBERO, **60.4%** RoboTwin 2.0 (**+19.3pp**), **83.2%** real dual-arm — retrieval over a demo corpus, no gradient update.
+
+- **[[2607.08283|TFP]] (RSS'26 Workshop)** — A memory-fusion policy augmenting a chunked VLA with an episode-local latent belief driven by ==Liquid Time-Constant networks==, modulating a ==flow-matching action decoder== via ==AdaLN== conditioning; **98.75%** LIBERO (vs π₀.₅'s 96.9%), **75.0%** on occluded ShellGameTouch, fewer real stage-memory failures on a Galaxea A1.
 
 - **[[2607.06678|NativeMEM]]** — A ==Native Memory Compression== scheme repurposing a pretrained VLA's own vision encoder to compress each historical frame-view into one action-relevant token, via a ==two-stage== tokenizer-then-VLA finetune pipeline; **84.0%** sim / **98.7%** real long-horizon SR, **5,000**-frame histories under real-time (**<100 ms**) latency.
 
@@ -284,8 +290,6 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 
 - **[[2602.04600|Act-Sense-Act]]** — A non-Markovian active-perception VLA (CoMe-VLA) pretrained on large-scale egocentric human data then robot-fine-tuned in a unified egocentric action space, via a ==Cognitive Auxiliary Head== + ==Dual-Track Memory==; **83.3%** mean SR over five long-horizon tasks (vs OpenVLA-OFT **12.7%**), **72.0→87.3%** as human data scales 400k→800k.
 
-- **[[2607.24190|Kim Episodic Memory]]** — An ==episodic memory module== on humanoid robot head Kim storing conversational fragments as ==vector embeddings== with ==LLM-derived emotional metadata==, retrieved via ==hybrid recency + emotional-intensity scoring==; **+0.60** Cohen's d Sociability (**p<.001**) — §1.2's retrieval pattern applied to conversational HRI memory, not task/control memory.
-
 - **[[2604.18791|HELM]]** — An ==Episodic Memory Module== (CLIP-retrieved keyframe key-value store) + learned ==State Verifier==; **81.5%** LIBERO-LONG (+23.1pp over OpenVLA), **54.2%** LIBERO-Recovery (vs 12.3%) — memory + verification compose.
 
 - **[[2607.18840|WorldScape Policy 2.0]]** — Combines a ==causal short-term visual memory== with a VLM-based ==event memory== for ==latent subgoal reasoning==, trained on the new ManipEvent-5M event-grounded dataset; **94.3%** avg SR across 50 bimanual sim tasks (**+14.5pp** over VLA baselines), **75%** real long-horizon autonomous planning.
@@ -317,7 +321,7 @@ The manipulation-side answer to the same problem, plus the robot-control world-a
 ^key-papers-1
 
 > [!tip] Same Pattern, Reinvented Three Times
-> Navigation's working memory (§1.1), navigation's dynamic memory (§1.2), and manipulation's episodic memory (§1.3) converged on the same three ideas — hierarchical short/long-term stores, event-boundary compression, and retrieval-on-demand — from three separate research communities that rarely cite each other. That convergence is the strongest available evidence that episodic memory is a *domain-independent* embodied-AI primitive, not a navigation trick or a manipulation trick. See [[13_Navigation-and-Mobile-Manipulation#3.2 Working & Episodic Memory]] and [[10_Manipulation-Skill-Learning#4.1 Episodic & Retrieval Memory]] for the two source domains this section unifies, and [[11_Contact-Rich-and-Tactile-Control#4.3 Long-Horizon Memory — Sustained-Contact Reasoning]] for a fourth, independent reinvention of the same pattern over force history rather than vision.
+> Navigation's working memory (§1.1), navigation's dynamic memory (§1.2), and manipulation's episodic memory (§1.3) converged on the same three ideas — hierarchical short/long-term stores, event-boundary compression, and retrieval-on-demand — from three separate research communities that rarely cite each other. That convergence is the strongest available evidence that episodic memory is a *domain-independent* embodied-AI primitive, not a navigation trick or a manipulation trick. See [[13_Navigation-and-Mobile-Manipulation#3.2 Working & Episodic Memory]] and [[10_Manipulation-Skill-Learning#4.1 Episodic & Retrieval Memory]] for the two source domains this section unifies, and [[11_Contact-Rich-and-Tactile-Control#4.3 Long-Horizon Memory — Sustained-Contact Reasoning]] for a fourth, independent reinvention of the same pattern over force history rather than vision. The same non-Markovian gap drives [[03_Imitation-Learning-and-RL#1. Behavior Cloning & Imitation Learning Foundations]]'s single-demo memory, and §1.3's [[2602.04600|Act-Sense-Act]] pretrains its Dual-Track Memory on egocentric human video, the memory-side complement to [[14_Egocentric-Pretraining-and-Human-Video#5. Transfer Mechanisms — Hand → Gripper]]'s hand-to-gripper projections.
 
 ^insight-1
 
@@ -346,10 +350,6 @@ Keep an object's identity — position, grasp state, role — alive across occlu
 #### 2.2 Keyframe-History Compression
 
 Rather than tracking objects explicitly, distill the raw history into a small set of salient keyframes — detected by deceleration, VLM saliency, or event boundaries — and condition on those instead of the full sequence.
-
-- **[[2607.08283|TFP]] (RSS'26 Workshop)** — A memory-fusion policy augmenting a chunked VLA with an episode-local latent belief driven by ==Liquid Time-Constant networks==, modulating a ==flow-matching action decoder== via ==AdaLN== conditioning; **98.75%** LIBERO (vs π₀.₅'s 96.9%), **75.0%** on occluded ShellGameTouch, fewer real stage-memory failures on a Galaxea A1.
-
-- **[[2606.31493|ChronoFlow-Policy]]** — A diffusion visuomotor policy unifying past-current-future gripper-object interaction via a compact ==3D keypoint representation (ChronoFlow)==, jointly learning ChronoFlow prediction + actions via a ==co-training objective== to resolve non-Markovian dependencies; **72%** MetaWorld / **66%** RoboTwin 2.0, **87%** real deformable towel-folding.
 
 - **[[2606.23589|KEMO]]** — A lightweight plug-in memory augmenting a VLA with a temporally-ordered bank of ==event keyframes==, detected from deceleration cues + a visual-change filter (no labels) and fused via masked cross-attention + gated residual fusion; **+23.6pp** Task SR (27.8→51.4%) and **+34.1pp** Stage Completion (42.3→76.4%) over a memory-free baseline across 6 real dual-arm tasks.
 
@@ -382,7 +382,7 @@ Rather than tracking objects explicitly, distill the raw history into a small se
 ^key-papers-2
 
 > [!tip] Two Kinds of "Remembering What You Can't See"
-> Object-permanence and keyframe-history solve the same visibility gap with opposite strategies — track the *thing* (explicit per-object state that survives occlusion) versus track the *moment* (compress history to the few frames that matter). Policies that need precise re-grasping after occlusion want §2.1; policies that just need to disambiguate "have I done this step yet" want §2.2. See [[10_Manipulation-Skill-Learning#4.2 Object-Permanence & Keyframe-History Policies]] for the manipulation-side source and §1 above for the complementary retrieval-based approach to the same non-Markovian problem.
+> Object-permanence and keyframe-history solve the same visibility gap with opposite strategies — track the *thing* (explicit per-object state that survives occlusion) versus track the *moment* (compress history to the few frames that matter). Policies that need precise re-grasping after occlusion want §2.1; policies that just need to disambiguate "have I done this step yet" want §2.2. See [[10_Manipulation-Skill-Learning#4.2 Object-Permanence & Keyframe-History Policies]] for the manipulation-side source and §1 above for the complementary retrieval-based approach to the same non-Markovian problem. For object permanence on a frozen latent predictor see [[07_Latent-World-Models#5. Latent vs Pixel Comparison]]; for the humanoid-side object tokenization and keyframe selectors see [[12_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination]].
 
 ^insight-2
 
@@ -506,6 +506,8 @@ All six papers share one axis — bidirectional temporal reasoning threaded thro
 
 Break the task into named phases or subgoals up front, then condition behavior on which one is currently active.
 
+- **[[2609.20791|StageGuard]]** — A distilled 0.8B VLM monitor deciding ==continue/advance/skip== per subtask while updating a ==semantic history==, trained from agentic teacher explanations; **90.18%** BEHAVIOR-1K transition completion, closed-loop success **0.53** vs **0.30** end-to-end, **18/20** on a real UR5e.
+
 - **[[2604.17880|ST-π]]** — A ==Spatiotemporal VLM== that decomposes tasks into ==causally-ordered chunk-level prompts== (semantic + spatial + temporal) + ==Spatiotemporal Action Expert==; highest SR and shortest completion across four LIBERO suites, surpassing OpenVLA, Octo, SpatialVLA, TraceVLA, 4D-VLA, CogACT, and π0.5, plus leads all three real STAR-dataset suites.
 
 - **[[2603.09292|See-Plan-Rewind]]** — A ==See-Plan-Rewind== cycle that decomposes tasks into spatially-grounded 2D subgoals with explicit ==error-recovery rewind==; **91.8%** LIBERO (+5.0 over MolmoAct), SOTA OOD robustness on LIBERO-Plus.
@@ -517,6 +519,8 @@ Break the task into named phases or subgoals up front, then condition behavior o
 No named phases — the state is a continuous representation instead of a labeled index: either a revisable execution-state vector persisted and updated across successive queries (ChainVLA, WeaveLA), or a bidirectional past/current/future window over compact motion vectors recomputed at each step (HiF-VLA).
 
 - **[[2608.02326|ChainVLA]]** — A unified, revisable ==execution state== (Progress Context + Motion Tail) explicitly passed across successive VLA queries so task evidence and unexecuted motion both persist across replanning; **62.8%** RMBench (vs Mem-0's 52.8%), **98.8%** avg LIBERO; ablating either component collapses SR to **11.2%/3.0%**.
+
+- **[[2606.31493|ChronoFlow-Policy]]** — A diffusion visuomotor policy unifying past-current-future gripper-object interaction via a compact ==3D keypoint representation (ChronoFlow)==, jointly learning ChronoFlow prediction + actions via a ==co-training objective== to resolve non-Markovian dependencies; **72%** MetaWorld / **66%** RoboTwin 2.0, **87%** real deformable towel-folding.
 
 - **[[2606.17463|WeaveLA]]** — An event-driven action-side ==latent memory weaving== interface bolted onto a frozen VLA backbone that writes a ==Memory Weaver==-compressed task state at sub-goal completion events to condition the next action expert via memory-conditioned AdaRMS; lifts RoboMME avg SR **19.0%→24.7%** and SWINGXTIMES **0%→47.8%** on repetition tasks.
 
@@ -787,7 +791,7 @@ The common design pattern across all of them: construct a task where success is 
 ^key-papers-8
 
 > [!tip] A Benchmark Is Only a Memory Benchmark If Memory-Free Fails
-> The design invariant across all seven dedicated suites is the same: pair every memory-dependent task with a memory-free or full-history baseline that provably cannot solve it, so a claimed "memory" gain is not just a harder task in disguise — [[2502.10550|MIKASA]] (ICLR'26)'s PPO-MLP-vs-PPO-LSTM collapse and [[2603.01229|RMBench]]'s ACT-scores-zero real-world result are the cleanest examples of this discipline. A newer, sharper failure mode two 2026-07/08 papers isolate: even a memory-equipped policy fails if what it stored has gone *stale* rather than merely thin — [[2608.04574|SpatialSTALE]] measures this directly, and §3.1's [[2607.23797|VLMM]] treats re-observation scheduling as the fix, not just diagnosis. See [[02_Dataset-Benchmark-Environment#5.3 Memory-Specific Benchmarks]] for the full benchmark descriptions this section points at rather than duplicates.
+> The design invariant across all seven dedicated suites is the same: pair every memory-dependent task with a memory-free or full-history baseline that provably cannot solve it, so a claimed "memory" gain is not just a harder task in disguise — [[2502.10550|MIKASA]] (ICLR'26)'s PPO-MLP-vs-PPO-LSTM collapse and [[2603.01229|RMBench]]'s ACT-scores-zero real-world result are the cleanest examples of this discipline. A newer, sharper failure mode two 2026-07/08 papers isolate: even a memory-equipped policy fails if what it stored has gone *stale* rather than merely thin — [[2608.04574|SpatialSTALE]] measures this directly, and §3.1's [[2607.23797|VLMM]] treats re-observation scheduling as the fix, not just diagnosis. See [[02_Dataset-Benchmark-Environment#5.3 Memory-Specific Benchmarks]] for the full benchmark descriptions this section points at rather than duplicates. [[15_Sim-to-Real-Transfer#5. Evaluation & Reality-Gap Measurement]] carries [[2607.04434|RoboDojo]], which scores memory as one of five capability dimensions over its 42 simulation tasks, separate from its 18 real-world tasks.
 
 ^insight-8
 

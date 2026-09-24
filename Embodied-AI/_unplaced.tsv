@@ -1,0 +1,172 @@
+id	category	reason	sweep
+1105.1186	control-solver	PRM*/RRT* asymptotically optimal sampling planners; classical planning theory, no learned policy	2026-09-24
+1604.03692	hri-study	social affordance grammar for human-human interaction skeletons; HRI motion synthesis from RGB-D, no robot control policy	2026-09-24
+1707.07383	control-solver	GPMP2 Gaussian-process motion planning as factor-graph inference; pure trajectory optimizer	2026-09-24
+1805.10000	non-embodied	Virtual-Taobao learned retail-search simulator for RL; e-commerce, no robot	2026-09-24
+2012.00726	general-cv	RAFT-3D dense SE3 scene flow from stereo/RGB-D; perception only, no acting agent	2026-09-24
+2103.03958	control-solver	GPU-Voxels mapping plus GPMP2 whole-body replanning on a mobile manipulator; optimization-based planner, no learned policy	2026-09-24
+2203.14956	autonomous-driving	LiDAR beam-count domain gap distillation for 3D object detection on driving data	2026-09-24
+2302.12288	general-cv	ZoeDepth zero-shot metric monocular depth; general vision model	2026-09-24
+2303.04116	autonomous-driving	TrafficBots multi-agent traffic simulation world model on Waymo Open Motion	2026-09-24
+2303.17144	autonomous-driving	DAMO-StreamNet streaming perception for driving on Argoverse-HD	2026-09-24
+2305.08553	autonomous-driving	Di-Long short-to-long distillation for pedestrian/road-user trajectory forecasting	2026-09-24
+2307.10984	general-cv	Metric3D canonical-camera zero-shot metric depth; general vision model	2026-09-24
+2401.07369	control-solver	CoVO-MPC convergence analysis and covariance design for MPPI; sampling-MPC theory	2026-09-24
+2401.09419	general-cv	GARField scale-conditioned 3D grouping distilled from SAM over NeRF; scene decomposition only	2026-09-24
+2402.11507	general-cv	MAL motion-aware loss for self-supervised monocular depth on driving benchmarks	2026-09-24
+2402.15116	survey-position	survey of large multimodal agents; software agents, no embodied method	2026-09-24
+2404.02817	survey-position	survey of optimization-based task and motion planning; no new method	2026-09-24
+2405.20501	hri-study	ShelfHelp assistive robotic cane guiding a blind user's hand; assistive HRI pilot study	2026-09-24
+2410.01319	autonomous-driving	DADT distill-tuning for LiDAR 3D detection domain gap on Waymo	2026-09-24
+2410.03909	control-solver	message-passing Monte Carlo low-discrepancy sampling for sampling-based motion planning	2026-09-24
+2412.00538	other	remaining-useful-life prognostics of a manipulator's degrading accuracy; health management, no policy	2026-09-24
+2412.12698	general-cv	audio-array UAV trajectory estimation with LiDAR pseudo-labels; tracks an external drone, no robot acting	2026-09-24
+2502.04640	general-cv	XM certifiable convex bundle adjustment for large-scale SfM; offline reconstruction	2026-09-24
+2502.06851	survey-position	LLM-generated demonstration survey of VLAs; authors state it is not original research	2026-09-24
+2503.18673	general-cv	Any6D model-free 6D pose of novel objects from one RGB-D anchor; perception only	2026-09-24
+2504.14604	general-cv	RoboOcc Gaussian-based 3D occupancy prediction on Occ-ScanNet; scene understanding with no action	2026-09-24
+2504.20326	control-solver	NMPC posture manipulation and thrust vectoring for a morphing aerial robot; model-based control	2026-09-24
+2505.03694	control-solver	ViSafe vision detect-and-avoid for sUAS with control barrier functions; aerial safety control, no learned policy	2026-09-24
+2505.20537	hri-study	CoRI VLM/LLM natural-language explanation of robot intent in physical HRI	2026-09-24
+2506.14855	control-solver	Feedback-MPPI local feedback gains from rollout differentiation; sampling-MPC solver	2026-09-24
+2506.16931	control-solver	multimodal learned solver for generalized TSP task sequencing; combinatorial planning, no robot policy	2026-09-24
+2507.09463	other	aerodynamic characterization of quadrotor downwash interactions; fluid-dynamics measurement study	2026-09-24
+2507.22885	systems	Viser web-based 3D visualization library for Python; tooling	2026-09-24
+2509.11388	other	quantum-circuit SAC on MuJoCo humanoid navigation; quantum RL demo on a standard gym env, no deep dive owns quantum RL	2026-09-24
+2509.18198	autonomous-driving	MMCD cross-modal distillation for connected-vehicle collaborative decisions	2026-09-24
+2510.07625	control-solver	GATO GPU-batched trajectory optimization solver for edge MPC	2026-09-24
+2510.09734	non-embodied	ARROW adaptive rollout for global weather forecasting	2026-09-24
+2510.12332	medical	shape-aware MPPI control of continuum robots for bronchoscopy; surgical robotics excluded	2026-09-24
+2510.23357	survey-position	review of LLM-based task planning for service robots; no new method	2026-09-24
+2511.02824	non-embodied	Kosmos multi-agent AI scientist for data-driven discovery	2026-09-24
+2511.17335	non-embodied	long-context Q-Former for action confirmation text generation on YouCook2 video; no robot execution	2026-09-24
+2512.00836	non-embodied	statistical framework for model error in counterfactual scenarios; no robot	2026-09-24
+2512.07998	hardware	DIJIT biomimetic binocular robotic head with 17 DoF; mechanism design	2026-09-24
+2512.12756	non-embodied	FysicsWorld any-to-any omni-modal benchmark; no embodiment	2026-09-24
+2601.03070	hri-study	HEXAR hierarchical explainability plug-in for modular robots; explanation framework, no policy	2026-09-24
+2601.14514	non-embodied	just-in-time world modeling as a cognitive model of human planning; cognitive science	2026-09-24
+2601.22135	general-cv	PI-Light physics-inspired diffusion image relighting	2026-09-24
+2602.03639	control-solver	variance-reduced MPPI via quadratic model approximation; sampling-MPC solver	2026-09-24
+2602.04056	survey-position	position paper arguing for modular safety guardrails on foundation-model robots; no method evaluated	2026-09-24
+2602.08334	autonomous-driving	Vec-QMDP vectorized CPU POMDP planner on nuPlan	2026-09-24
+2603.02642	control-solver	cuNRTO GPU-accelerated nonlinear robust trajectory optimization	2026-09-24
+2603.03577	general-cv	L2G-Det template-guided novel instance detection and segmentation	2026-09-24
+2603.19231	general-cv	MonoArt monocular articulated 3D object reconstruction	2026-09-24
+2604.01694	non-embodied	MiCA minor-singular-direction PEFT for LLMs	2026-09-24
+2604.11373	other	minimal visuomotor embodiment for learning number concepts; developmental cognition study, not a control contribution	2026-09-24
+2604.21568	medical	Bayesian reasoning for robotic casualty triage in DARPA Triage Challenge; medical assessment	2026-09-24
+2604.24894	control-solver	VISION-SLS system level synthesis over learned visual representations; robust control theory	2026-09-24
+2605.09131	non-embodied	MCP-Cosmos world-model-augmented LLM tool agents	2026-09-24
+2605.09216	hardware	flow-matching quasi-static self-model of tendon-driven continuum robot shape; forward model, no policy	2026-09-24
+2605.09465	control-solver	hydraulic excavator grading controller with hydraulic compensation; classical control	2026-09-24
+2605.11296	hardware	computational design of a low-visibility single-propeller UAV	2026-09-24
+2605.12804	hardware	BiPneu bipolar-pressure pneumatic system with sliding-mode control for soft robots	2026-09-24
+2605.17593	control-solver	motion-uncertainty-aware next-best-view planning for moving-object reconstruction; geometric planner, no learned policy	2026-09-24
+2606.04818	systems	5G edge-offloaded controller for an aerial robot in a mine; networking deployment	2026-09-24
+2606.09416	survey-position	position paper framing ROS 2 middleware as the Physical-AI harness layer	2026-09-24
+2606.11482	non-embodied	LLM social world model predicting collective beliefs from prediction markets	2026-09-24
+2606.17394	hardware	LEAP latent-ensemble proprioceptive damage adaptation for architected soft materials; sensing, no policy	2026-09-24
+2606.20394	non-embodied	LLM research agent auditing learned aerospace controllers; agentic tooling	2026-09-24
+2606.24039	control-solver	TurboMPC GPU-native differentiable MPC solver	2026-09-24
+2606.24597	non-embodied	Qwen-AgentWorld language world models for software agents	2026-09-24
+2606.26341	control-solver	jaxipm GPU-batched nonlinear program solver	2026-09-24
+2606.29065	control-solver	multi-contact path planning for rolling-sphere robots with no-slip constraints	2026-09-24
+2606.30293	systems	CSAR LXC/LXD containerized architecture for shared robotics infrastructure	2026-09-24
+2606.30694	autonomous-driving	DSIP diffusion multi-vehicle coordination at signal-free intersections	2026-09-24
+2606.30820	control-solver	MILP controller synthesis from time window temporal logic with MPC	2026-09-24
+2606.30900	hardware	soft compliant tail on a quadruped for contamination swabbing; end-effector design	2026-09-24
+2606.30940	autonomous-driving	objective-guided planning in a compressed latent trajectory space for driving	2026-09-24
+2606.31339	multi-agent-planning	verification-gated mission-state governance for industrial multi-robot fleets	2026-09-24
+2606.31497	systems	communication-aware execution choosing connectivity-favorable points for cloud inference	2026-09-24
+2607.00156	multi-agent-planning	DIVE node selection for anytime conflict-based search MAPF	2026-09-24
+2607.00530	hri-study	user study linking technical success gains to perceived competence of an HRI grasping system	2026-09-24
+2607.00591	multi-agent-planning	SCALE conflict resolution and precedence-graph execution for heterogeneous fleets	2026-09-24
+2607.00776	control-solver	functional conformal prediction on distance fields for safe MPC	2026-09-24
+2607.00889	general-cv	scene-graph generation with a V-JEPA 2 predicate prior; no dynamics or rollout, declined by 4 agents	2026-09-24
+2607.01203	control-solver	GPU-parallel linearization error bounds for robust optimal control	2026-09-24
+2607.01304	systems	analysis of ROS 2 middleware space/time/state trade-offs	2026-09-24
+2607.02474	control-solver	QuadRocket testbed validating adaptive thrust-vector control; control testbed	2026-09-24
+2607.03987	control-solver	PAKR GPU-vectorized asymptotically optimal kinodynamic RRT	2026-09-24
+2607.04144	general-cv	semantic-guided progressive object removal in 3D Gaussian Splatting	2026-09-24
+2607.04215	multi-agent-planning	contract-based distributed MPC for plug-and-play multi-agent collision avoidance	2026-09-24
+2607.04634	systems	asymmetric-trust cryptographic protocol for swarm role reassignment; security protocol	2026-09-24
+2607.05709	hri-study	Co-STAR in-home cognitive stimulation therapy robot for dementia; one-week user study	2026-09-24
+2607.06123	control-solver	MP-MPPI motion-primitive-guided sampling for MPC	2026-09-24
+2607.06344	hri-study	ethics framework for responsible personalisation in HRI	2026-09-24
+2607.06950	control-solver	RC-MPPI residual-modulated conservatism for model mismatch	2026-09-24
+2607.07139	control-solver	disturbance-aware planning for over-actuated underwater vehicles	2026-09-24
+2607.07390	hri-study	communicative efficiency of robot neck motion DoF; expressive-motion study	2026-09-24
+2607.07420	hri-study	probe-authorize-speak gating of when robots initiate social interaction	2026-09-24
+2607.07775	medical	privacy leakage from robotic prosthesis sensor data; prosthetics	2026-09-24
+2607.07968	medical	personalized soft robotic exoglove for hand rehabilitation	2026-09-24
+2607.07972	medical	in-vivo feasibility of a humanoid performing laparoscopic surgery	2026-09-24
+2607.08189	control-solver	input-constrained spatiotemporal tubes for reach-avoid-stay navigation; control synthesis	2026-09-24
+2607.08391	autonomous-driving	MURAL resolution-scalable anytime LiDAR object detection	2026-09-24
+2607.08620	hri-study	sigma-lognormal human-likeness comfort index for robot paths; user-preference study	2026-09-24
+2607.10372	other	doctoral thesis on human re-identification and semantic mapping for contextual awareness; spans perception topics, no policy	2026-09-24
+2607.10879	general-cv	diffusion prediction of hierarchical 3D scene graphs from partial observations; scene completion, no acting agent	2026-09-24
+2607.11018	hri-study	LLM-semantic to soft-trunk expressive motion via flow matching; expressive HRI on a soft robot	2026-09-24
+2607.12423	multi-agent-planning	MDOC training-free model-based diffusion with CBS for multi-robot planning	2026-09-24
+2607.13403	multi-agent-planning	E-PDT min-max regret task allocation for heterogeneous multi-robot temporal-logic missions	2026-09-24
+2607.13696	hri-study	expressive motion descriptors conveying manipulator uncertainty; human-subject study	2026-09-24
+2607.14177	control-solver	adaptive control of flexible-joint robots with uncertain stiffness	2026-09-24
+2607.14245	control-solver	entropy-feedback adaptive temperature for deterministic MPPI	2026-09-24
+2607.14781	multi-agent-planning	distributed simultaneous-arrival control for curvature-constrained multi-robot systems	2026-09-24
+2607.17250	non-embodied	EvolvingWorld co-evolving LLM role-play agents in literary worlds	2026-09-24
+2607.18197	general-cv	analytical monocular pose-to-joint-angle gesture imitation on NICO; pose retargeting pipeline, no learned policy	2026-09-24
+2607.18731	control-solver	correct-by-construction behavior tree synthesis from STL specs	2026-09-24
+2607.18737	other	self-organising-map motor primitive discovery and phase recognition on simulated NICO; recognition, not control	2026-09-24
+2607.19284	control-solver	SMO-SST multi-objective kinodynamic planning against adversaries	2026-09-24
+2607.20289	multi-agent-planning	GNN-estimated courteous anticipation for multi-robot long-lived task planning	2026-09-24
+2607.20992	multi-agent-planning	DMBD distributed model-based diffusion for multi-robot trajectory optimization	2026-09-24
+2607.21058	medical	robotic craniotomy with force/acoustic fusion and adaptive trajectory	2026-09-24
+2607.21113	medical	RL-MACRO closed-loop adaptive robotic craniotomy	2026-09-24
+2607.21309	general-cv	ST-Block human pose estimation from planar LiDAR sequences	2026-09-24
+2607.24113	hri-study	public-space acceptance case study of an android robotic head	2026-09-24
+2607.24317	other	SE(3) vs SO(3)xR3 configuration updates in constrained rigid-body time stepping; simulation numerics	2026-09-24
+2607.24629	medical	handheld actuation mechanism for a robotically steered guidewire	2026-09-24
+2607.25047	hri-study	conceptual framework for XR as mediation layer in human-robot teaming	2026-09-24
+2607.25071	control-solver	input shaping with time-delay filters for a continuum robot arm	2026-09-24
+2607.25327	hri-study	BAIT belief-aware influence and trust shaping in repeated human-robot lane merging	2026-09-24
+2607.25370	other	critical-slowing-down forecaster predicting quadrotor loss of control; fault prediction	2026-09-24
+2607.25389	general-cv	HOME Hough-space matching for textureless video registration	2026-09-24
+2607.25985	other	physics-aware DRL quadcopter control with actuator dynamics; aerial RL, no deep dive covers aerial vehicles	2026-09-24
+2607.26047	other	audio-visual imitation for manipulation; 10 has no sensing-modality axis and KH results carry no numeric metrics	2026-09-24
+2607.26121	survey-position	systems framework and T0-T5 trustworthiness levels for embodied AI	2026-09-24
+2607.26337	medical	autonomous surgical needle pickup via thread manipulation on dVRK	2026-09-24
+2607.26370	control-solver	no-regret self-adaptive model selection plus MPC for target tracking	2026-09-24
+2607.26889	general-cv	StructureGS structure-aware Gaussian Splatting for articulated object reconstruction	2026-09-24
+2607.28256	systems	goal-oriented semantic communication testbed for collaborative robots	2026-09-24
+2607.28451	survey-position	conceptual aging-aware autonomy architecture; no evaluated method	2026-09-24
+2608.01636	multi-agent-planning	forward-inverse dynamic game for multi-agent trajectory planning	2026-09-24
+2608.03496	survey-position	Principles of Robot Autonomy textbook	2026-09-24
+2608.03556	survey-position	human-centric embodied intelligence roadmap for soft wearable robots	2026-09-24
+2608.05673	autonomous-driving	INTraJ planning/reaction decomposition for crowd and AV trajectory prediction	2026-09-24
+2608.05989	general-cv	visual-RL representation learning evaluated on DMC simulation only; no robot, humanoid incidental	2026-09-24
+2608.06088	systems	IcFuzz fuzzing Isaac Sim for software defects	2026-09-24
+2608.06197	non-embodied	EnvACE LLM world rehearsal for agentic RL	2026-09-24
+2608.11063	systems	runtime recomposition of robots with unseen software/hardware payloads	2026-09-24
+2608.12650	hri-study	Attune gaze self-annotation tool for multi-robot operator attention; user study	2026-09-24
+2608.16853	control-solver	FlexWorm hybrid contact-motion planning for suction-based soft robots	2026-09-24
+2608.17928	multi-agent-planning	GD-RHCR group-decentralized lifelong MAPF	2026-09-24
+2608.25509	control-solver	constrained multibody model of a welding torch umbilical's effect on robot dynamics	2026-09-24
+2608.25924	survey-position	CVPR workshop white paper on visual general intelligence	2026-09-24
+2608.26314	control-solver	DFT* dispersive forward tree search kinodynamic planner	2026-09-24
+2608.26819	other	CLIPPER greedy coverage planning for municipal micromobility parking; urban siting, no robot	2026-09-24
+2608.27085	multi-agent-planning	decentralized collision-based load balancing for heterogeneous robot teams	2026-09-24
+2608.29023	hri-study	teaching robot policies to humans with erroneous examples; 39-participant user study	2026-09-24
+2608.29516	medical	robotic ultrasound scanning; vault excludes medical work	2026-09-24
+2609.00311	control-solver	conformal geometric algebra inverse kinematics for 3R robots	2026-09-24
+2609.00316	control-solver	geometric conditions for four IK solutions of orthogonal 3R robots	2026-09-24
+2609.00751	hardware	MONORIGAMI single-print origami folding soft actuator	2026-09-24
+2609.02413	other	WildFab multi-axis 3D printing toolpaths from raw geometry; fabrication	2026-09-24
+2609.03055	other	TFPD privacy leakage of task-scoped robot perception exports; privacy analysis, no policy	2026-09-24
+2609.03970	general-cv	photogrammetry plus segmentation weld-seam 3D mapping	2026-09-24
+2609.07430	hri-study	CALM human stopping-distance boundaries for humanoid approach; 41-participant study	2026-09-24
+2609.08490	hardware	soft-end-effector drumming with Bayesian-optimized feedforward stroke tricks	2026-09-24
+2609.09073	control-solver	reachability-aware interval sampling MPC for racecar	2026-09-24
+2609.11078	hri-study	freehand sketch end-user programming of robot swarm formations; user study	2026-09-24
+2609.11548	general-cv	World in World training-free control of a frozen video world model; video generation, no robot	2026-09-24
+2609.11775	control-solver	online RLS task-Jacobian estimation for in-hand pen writing; adaptive control, no learned policy	2026-09-24
+2609.14858	non-embodied	Dream-RSI recursive self-improvement of a coding agent	2026-09-24
+2609.20817	general-cv	FAMOS feed-forward articulation modeling from sparse point clouds	2026-09-24

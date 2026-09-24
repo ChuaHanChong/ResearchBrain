@@ -73,9 +73,11 @@ aliases:
   - [[02_Dataset-Benchmark-Environment#5. Diagnostic & Evaluation Datasets|5. Diagnostic & Evaluation Datasets]]  *([[02_Dataset-Benchmark-Environment#^dm-5|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-5|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-5|Insight]])*
     - [[02_Dataset-Benchmark-Environment#5.1 Precision & Reasoning Probes|5.1 Precision & Reasoning Probes]]
     - [[02_Dataset-Benchmark-Environment#5.2 Capability-Disentangling Diagnostics|5.2 Capability-Disentangling Diagnostics]]
+    - [[02_Dataset-Benchmark-Environment#5.2b Failure-Detection & Judge-Reliability Benchmarks|5.2b Failure-Detection & Judge-Reliability Benchmarks]]
     - [[02_Dataset-Benchmark-Environment#5.3 Memory-Specific Benchmarks|5.3 Memory-Specific Benchmarks]]
     - [[02_Dataset-Benchmark-Environment#5.4 LIBERO-Family Robustness Suite|5.4 LIBERO-Family Robustness Suite]]
     - [[02_Dataset-Benchmark-Environment#5.5 VLA Robustness & Adversarial Benchmarks|5.5 VLA Robustness & Adversarial Benchmarks]]
+    - [[02_Dataset-Benchmark-Environment#5.5b Semantic & Task-Planning Safety Benchmarks|5.5b Semantic & Task-Planning Safety Benchmarks]]
     - [[02_Dataset-Benchmark-Environment#5.6 Open-Ended & Diagnostic Interactive-Agent Evaluation|5.6 Open-Ended & Diagnostic Interactive-Agent Evaluation]]
     - [[02_Dataset-Benchmark-Environment#5.7 IL-Diversity, Safe-RL & Control-Robustness Suites|5.7 IL-Diversity, Safe-RL & Control-Robustness Suites]]
     - [[02_Dataset-Benchmark-Environment#5.8 Agentic & Tool-Use Capability Benchmarks|5.8 Agentic & Tool-Use Capability Benchmarks]]
@@ -98,8 +100,8 @@ aliases:
     - [[02_Dataset-Benchmark-Environment#9.4 Interactive Embodied Spatial Reasoning Benchmarks|9.4 Interactive Embodied Spatial Reasoning Benchmarks]]
   - [[02_Dataset-Benchmark-Environment#10. Long-Horizon Task Benchmarks|10. Long-Horizon Task Benchmarks]]  *([[02_Dataset-Benchmark-Environment#^dm-10|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-10|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-10|Insight]])*
     - [[02_Dataset-Benchmark-Environment#10.1 Long-Horizon Manipulation Suites|10.1 Long-Horizon Manipulation Suites]]
-    - [[02_Dataset-Benchmark-Environment#10.3 Language-Conditioned Long-Horizon|10.3 Language-Conditioned Long-Horizon]]
-    - [[02_Dataset-Benchmark-Environment#10.4 The LIBERO Family — Testing Different Failure Modes|10.4 The LIBERO Family — Testing Different Failure Modes]]
+    - [[02_Dataset-Benchmark-Environment#10.2 Language-Conditioned Long-Horizon|10.2 Language-Conditioned Long-Horizon]]
+    - [[02_Dataset-Benchmark-Environment#10.3 The LIBERO Family — Testing Different Failure Modes|10.3 The LIBERO Family — Testing Different Failure Modes]]
   - [[02_Dataset-Benchmark-Environment#11. World Model Benchmarks|11. World Model Benchmarks]]  *([[02_Dataset-Benchmark-Environment#^dm-11|DM]] · [[02_Dataset-Benchmark-Environment#^key-papers-11|Key Papers]] · [[02_Dataset-Benchmark-Environment#^insight-11|Insight]])*
     - [[02_Dataset-Benchmark-Environment#11.1 Physics Plausibility & Causal Reasoning|11.1 Physics Plausibility & Causal Reasoning]]
     - [[02_Dataset-Benchmark-Environment#11.2 Interactive & Action-Following Fidelity|11.2 Interactive & Action-Following Fidelity]]
@@ -122,6 +124,7 @@ aliases:
   - [[03_Imitation-Learning-and-RL#1. Behavior Cloning & Imitation Learning Foundations|1. Behavior Cloning & Imitation Learning Foundations]]  *([[03_Imitation-Learning-and-RL#^dm-1|DM]] · [[03_Imitation-Learning-and-RL#^key-papers-1|Key Papers]] · [[03_Imitation-Learning-and-RL#^insight-1|Insight]])*
     - [[03_Imitation-Learning-and-RL#1.1 Canonical BC & Empirical Studies|1.1 Canonical BC & Empirical Studies]]
     - [[03_Imitation-Learning-and-RL#1.2 Structured & Long-Context Policy Representations|1.2 Structured & Long-Context Policy Representations]]
+    - [[03_Imitation-Learning-and-RL#1.2b Movement-Primitive & Stable-Dynamical-System LfD|1.2b Movement-Primitive & Stable-Dynamical-System LfD]]
     - [[03_Imitation-Learning-and-RL#1.3 Imitation Beyond the Demo Ceiling|1.3 Imitation Beyond the Demo Ceiling]]
     - [[03_Imitation-Learning-and-RL#1.4 Non-Interactive Covariate-Shift Mitigation|1.4 Non-Interactive Covariate-Shift Mitigation]]
   - [[03_Imitation-Learning-and-RL#2. Scaling Demonstrations|2. Scaling Demonstrations]]  *([[03_Imitation-Learning-and-RL#^dm-2|DM]] · [[03_Imitation-Learning-and-RL#^key-papers-2|Key Papers]] · [[03_Imitation-Learning-and-RL#^insight-2|Insight]])*
@@ -226,6 +229,7 @@ aliases:
   - [[04_VLA#13. Safety, Robustness & Adversarial VLAs|13. Safety, Robustness & Adversarial VLAs]]  *([[04_VLA#^dm-13|DM]] · [[04_VLA#^key-papers-13|Key Papers]] · [[04_VLA#^insight-13|Insight]])*
     - [[04_VLA#13.1 Adversarial Attacks & Red-Teaming|13.1 Adversarial Attacks & Red-Teaming]]
     - [[04_VLA#13.2 Robustness & OOD Generalization|13.2 Robustness & OOD Generalization]]
+    - [[04_VLA#13.2b Safety Constraints & Constraint Enforcement|13.2b Safety Constraints & Constraint Enforcement]]
     - [[04_VLA#13.3 Runtime Verification & Failure Detection|13.3 Runtime Verification & Failure Detection]]
   - [[04_VLA#14. VLA Foundation Models & Infrastructure|14. VLA Foundation Models & Infrastructure]]  *([[04_VLA#^dm-14|DM]] · [[04_VLA#^key-papers-14|Key Papers]] · [[04_VLA#^insight-14|Insight]])*
     - [[04_VLA#14.1 Generalist Foundation-Model Reports|14.1 Generalist Foundation-Model Reports]]
@@ -405,6 +409,7 @@ aliases:
     - [[08_Physics-Aware-Embodied-AI#2.4 Physics-Verified Compositional Scene Reconstruction from Images|2.4 Physics-Verified Compositional Scene Reconstruction from Images]]
   - [[08_Physics-Aware-Embodied-AI#3. Explicit Physics Losses for Video Generation|3. Explicit Physics Losses for Video Generation]]  *([[08_Physics-Aware-Embodied-AI#^dm-3|DM]] · [[08_Physics-Aware-Embodied-AI#^key-papers-3|Key Papers]] · [[08_Physics-Aware-Embodied-AI#^insight-3|Insight]])*
     - [[08_Physics-Aware-Embodied-AI#3.1 Differentiable Physics Residuals|3.1 Differentiable Physics Residuals]]
+    - [[08_Physics-Aware-Embodied-AI#3.1b Physics Supervision from Curated Data & Learned Surrogates|3.1b Physics Supervision from Curated Data & Learned Surrogates]]
     - [[08_Physics-Aware-Embodied-AI#3.2 RL with Physics-Verifiable Rewards|3.2 RL with Physics-Verifiable Rewards]]
     - [[08_Physics-Aware-Embodied-AI#3.3 Physics-Aware Conditioning at Generation Time|3.3 Physics-Aware Conditioning at Generation Time]]
     - [[08_Physics-Aware-Embodied-AI#3.4 Model-Based Constraints in Generative Planners|3.4 Model-Based Constraints in Generative Planners]]
@@ -483,6 +488,7 @@ aliases:
 - **[[10_Manipulation-Skill-Learning#Part B — Reasoning & Memory|Part B — Reasoning & Memory]]**
   - [[10_Manipulation-Skill-Learning#3. World-Model & Video-as-Policy|3. World-Model & Video-as-Policy]]  *([[10_Manipulation-Skill-Learning#^dm-3|DM]] · [[10_Manipulation-Skill-Learning#^key-papers-3|Key Papers]] · [[10_Manipulation-Skill-Learning#^insight-3|Insight]])*
     - [[10_Manipulation-Skill-Learning#3.1 World-Action Models for Manipulation|3.1 World-Action Models for Manipulation]]
+    - [[10_Manipulation-Skill-Learning#3.1b Learned-Dynamics Model-Based Planning & MPC|3.1b Learned-Dynamics Model-Based Planning & MPC]]
     - [[10_Manipulation-Skill-Learning#3.2 Video Generation as Policy|3.2 Video Generation as Policy]]
     - [[10_Manipulation-Skill-Learning#3.3 Flow & Motion-Token Bridges|3.3 Flow & Motion-Token Bridges]]
   - [[10_Manipulation-Skill-Learning#4. Memory & Long-Horizon Non-Markovian Control|4. Memory & Long-Horizon Non-Markovian Control]]  *([[10_Manipulation-Skill-Learning#^dm-4|DM]] · [[10_Manipulation-Skill-Learning#^key-papers-4|Key Papers]] · [[10_Manipulation-Skill-Learning#^insight-4|Insight]])*
@@ -492,6 +498,7 @@ aliases:
     - [[10_Manipulation-Skill-Learning#5.1 LLM & VLM Task Decomposers & Planners|5.1 LLM & VLM Task Decomposers & Planners]]
     - [[10_Manipulation-Skill-Learning#5.2 LLM-as-Reward & Cost Designers|5.2 LLM-as-Reward & Cost Designers]]
     - [[10_Manipulation-Skill-Learning#5.3 Code-Generation Planners|5.3 Code-Generation Planners]]
+    - [[10_Manipulation-Skill-Learning#5.3b Frontier Agents as the Policy|5.3b Frontier Agents as the Policy]]
     - [[10_Manipulation-Skill-Learning#5.4 Affordance & Value-Map Grounding|5.4 Affordance & Value-Map Grounding]]
     - [[10_Manipulation-Skill-Learning#5.5 Interactive Perception, Scene Graphs & Human Collaboration|5.5 Interactive Perception, Scene Graphs & Human Collaboration]]
     - [[10_Manipulation-Skill-Learning#5.6 Runtime Monitoring & Failure Detection|5.6 Runtime Monitoring & Failure Detection]]
@@ -508,6 +515,7 @@ aliases:
     - [[10_Manipulation-Skill-Learning#7.1 Demonstration Collection & Skill Extraction|7.1 Demonstration Collection & Skill Extraction]]
     - [[10_Manipulation-Skill-Learning#7.2 Generative & Synthetic Data Pipelines|7.2 Generative & Synthetic Data Pipelines]]
     - [[10_Manipulation-Skill-Learning#7.3 Cross-Embodiment & Human-Video Transfer|7.3 Cross-Embodiment & Human-Video Transfer]]
+    - [[10_Manipulation-Skill-Learning#7.3b Robot-to-Robot Action & Visual Alignment|7.3b Robot-to-Robot Action & Visual Alignment]]
     - [[10_Manipulation-Skill-Learning#7.4 Cross-Embodiment Dexterous Grasp & Hand Generalization|7.4 Cross-Embodiment Dexterous Grasp & Hand Generalization]]
     - [[10_Manipulation-Skill-Learning#7.5 Benchmarks & Diagnostic Evaluation|7.5 Benchmarks & Diagnostic Evaluation]]
   - [[10_Manipulation-Skill-Learning#8. Human Hand & Body-Object Interaction Priors|8. Human Hand & Body-Object Interaction Priors]]  *([[10_Manipulation-Skill-Learning#^dm-8|DM]] · [[10_Manipulation-Skill-Learning#^key-papers-8|Key Papers]] · [[10_Manipulation-Skill-Learning#^insight-8|Insight]])*
@@ -538,6 +546,7 @@ aliases:
   - [[11_Contact-Rich-and-Tactile-Control#3. Force-Conditioned VLA Architectures|3. Force-Conditioned VLA Architectures]]  *([[11_Contact-Rich-and-Tactile-Control#^dm-3|DM]] · [[11_Contact-Rich-and-Tactile-Control#^key-papers-3|Key Papers]] · [[11_Contact-Rich-and-Tactile-Control#^insight-3|Insight]])*
     - [[11_Contact-Rich-and-Tactile-Control#3.1a Dedicated-Sensor Injection|3.1a Dedicated-Sensor Injection]]
     - [[11_Contact-Rich-and-Tactile-Control#3.1b Sensorless/Proxy Force Estimation|3.1b Sensorless/Proxy Force Estimation]]
+    - [[11_Contact-Rich-and-Tactile-Control#3.1c Force/Tactile Fusion in Non-VLA Policies|3.1c Force/Tactile Fusion in Non-VLA Policies]]
     - [[11_Contact-Rich-and-Tactile-Control#3.2 Force-Aware Mixture-of-Experts|3.2 Force-Aware Mixture-of-Experts]]
     - [[11_Contact-Rich-and-Tactile-Control#3.3 Force-Grounded Tactile Alignment|3.3 Force-Grounded Tactile Alignment]]
     - [[11_Contact-Rich-and-Tactile-Control#3.4 Force-Aware Human-Intervention & Refinement Layers|3.4 Force-Aware Human-Intervention & Refinement Layers]]
@@ -643,10 +652,12 @@ aliases:
     - [[13_Navigation-and-Mobile-Manipulation#3.2 Working & Episodic Memory|3.2 Working & Episodic Memory]]
     - [[13_Navigation-and-Mobile-Manipulation#3.3 Retrieval-Augmented & Dynamic Memory|3.3 Retrieval-Augmented & Dynamic Memory]]
     - [[13_Navigation-and-Mobile-Manipulation#3.4 Humanoid Panoramic & Occupancy Perception|3.4 Humanoid Panoramic & Occupancy Perception]]
-    - [[13_Navigation-and-Mobile-Manipulation#3.5 Learned Visual-Inertial Odometry|3.5 Learned Visual-Inertial Odometry]]
+    - [[13_Navigation-and-Mobile-Manipulation#3.5 Odometry & Ego-Motion Estimation|3.5 Odometry & Ego-Motion Estimation]]
     - [[13_Navigation-and-Mobile-Manipulation#3.6 Dense Implicit & Gaussian-Splatting Mapping|3.6 Dense Implicit & Gaussian-Splatting Mapping]]
     - [[13_Navigation-and-Mobile-Manipulation#3.7 Place Recognition & Loop Closure|3.7 Place Recognition & Loop Closure]]
-    - [[13_Navigation-and-Mobile-Manipulation#3.8 General State Estimation & Backend Optimization|3.8 General State Estimation & Backend Optimization]]
+    - [[13_Navigation-and-Mobile-Manipulation#3.8a Filtering & Estimation Theory|3.8a Filtering & Estimation Theory]]
+    - [[13_Navigation-and-Mobile-Manipulation#3.8b Backends, Calibration & Map Fusion|3.8b Backends, Calibration & Map Fusion]]
+    - [[13_Navigation-and-Mobile-Manipulation#3.8c Multi-Robot & Cooperative Localization|3.8c Multi-Robot & Cooperative Localization]]
   - [[13_Navigation-and-Mobile-Manipulation#4. Learning-Based Navigation Policies|4. Learning-Based Navigation Policies]]  *([[13_Navigation-and-Mobile-Manipulation#^dm-4|DM]] · [[13_Navigation-and-Mobile-Manipulation#^key-papers-4|Key Papers]] · [[13_Navigation-and-Mobile-Manipulation#^insight-4|Insight]])*
     - [[13_Navigation-and-Mobile-Manipulation#4.1 World-Model-in-the-Loop Planning|4.1 World-Model-in-the-Loop Planning]]
     - [[13_Navigation-and-Mobile-Manipulation#4.2 Self-Evolving & Continual Navigation|4.2 Self-Evolving & Continual Navigation]]
@@ -725,6 +736,9 @@ aliases:
     - [[15_Sim-to-Real-Transfer#3.2 Robust RL Foundations|3.2 Robust RL Foundations]]
     - [[15_Sim-to-Real-Transfer#3.3 Physics-Informed Policy Robustness|3.3 Physics-Informed Policy Robustness]]
     - [[15_Sim-to-Real-Transfer#3.4 Vision-Aware Sim-to-Real|3.4 Vision-Aware Sim-to-Real]]
+    - [[15_Sim-to-Real-Transfer#3.4a Sim-Real Image Translation & Restyling|3.4a Sim-Real Image Translation & Restyling]]
+    - [[15_Sim-to-Real-Transfer#3.4b Privileged-Teacher to Vision-Student Distillation|3.4b Privileged-Teacher to Vision-Student Distillation]]
+    - [[15_Sim-to-Real-Transfer#3.4c Synthetic-Trained Perception & 6D Pose|3.4c Synthetic-Trained Perception & 6D Pose]]
     - [[15_Sim-to-Real-Transfer#3.4x Controller-Gain & Parameter-Aware Adaptation|3.4x Controller-Gain & Parameter-Aware Adaptation]]
     - [[15_Sim-to-Real-Transfer#3.5 Humanoid & Legged Sim-to-Real|3.5 Humanoid & Legged Sim-to-Real]]
     - [[15_Sim-to-Real-Transfer#3.6 Domain Adaptation & Continual Transfer|3.6 Domain Adaptation & Continual Transfer]]
