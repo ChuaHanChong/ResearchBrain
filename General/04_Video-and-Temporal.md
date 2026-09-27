@@ -219,7 +219,7 @@ From video classification to self-supervised video representation learning. The 
 - [[2607.14183|Open-AoE]], [[2606.30598|HOPformer]] (ECCV'26), [[2603.15847|FEEL]] (ECCV'26 Oral), [[2511.15622|SA-FARI]], [[2509.04443|EMMA]], [[2509.01708|ArtiPoint]] (CoRL'25), [[2411.19167|HOT3D]] (CVPR'25), [[2409.02224|EgoPressure]], [[2402.13349|Aria-Everyday-Activities]], [[2312.05251|HaMeR]] (CVPR'24), [[2308.13561|Project Aria]], [[2203.09905|Cross-View-AG]] (CVPR'22), [[2203.01577|HOI4D]] (CVPR'22), [[2104.11181|H2O]]
 
 **Egocentric-to-Robot VLA Pretraining Datasets** — Egocentric human-video datasets built explicitly to pretrain or transfer to robot manipulation VLA policies.
-- [[2609.10706|HuRo]], [[2609.03199|RoboTok]], [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]] (ICLR'26), [[2503.13441|PH2D]] (CoRL'25), [[2502.03729|RAD (Action-Free Reasoning)]] (CoRL'25), [[2410.24221|EgoMimic]]
+- [[2609.24411|Zeva-Ego]], [[2609.10706|HuRo]], [[2609.03199|RoboTok]], [[2608.02580|Ego2Robot]], [[2607.19745|EgoRecovery]], [[2607.06403|LingBot-VLA 2.0]], [[2606.32009|Human-as-Humanoid]], [[2606.28133|Bridging Action VLA]], [[2507.12440|EgoVLA]], [[2505.11709|EgoDex]] (ICLR'26), [[2503.13441|PH2D]] (CoRL'25), [[2502.03729|RAD (Action-Free Reasoning)]] (CoRL'25), [[2410.24221|EgoMimic]]
 
 **Video-Based Camera Geometry & Registration** — Methods that exploit video's temporal structure for camera pose/registration and cross-view visual consistency, from homography-based frame matching to global Structure-from-Motion.
 - [[2607.27194|VidMap]], [[2607.26985|SymmGrid]], [[2607.25389|HOME]]
@@ -260,7 +260,7 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.16870|Video-Reasoning-Chain-of-Steps]] — Discovered that reasoning in diffusion video models unfolds across denoising steps, not frames
 
 **Video Segmentation & Point Tracking** — SAM-family and tracking-based architectures for pixel-precise video segmentation and point tracking.
-- [[2605.00891|X2SAM]], [[2602.23204|Motion-aware Event Suppression]], [[2602.20630|TraqPoint]] (CVPR'26 Oral), [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2507.12462|SpatialTrackerV2]] (ICCV'25), [[2506.07850|SAM2Auto]], [[2506.05302|PAM]] (NeurIPS'25), [[2410.11831|CoTracker3]] (ICCV'25 Highlight), [[2408.00714|SAM 2]] (ICLR'25 Oral), [[2407.15420|LocoTrack]] (ECCV'24), [[2402.00847|BootsTAP]], [[2307.07635|CoTracker]] (ECCV'24), [[2306.08637|TAPIR]], [[2211.03726|TAP-Vid]] (NeurIPS'22)
+- [[2609.30222|TrackEverything]], [[2605.00891|X2SAM]], [[2602.23204|Motion-aware Event Suppression]], [[2602.20630|TraqPoint]] (CVPR'26 Oral), [[2511.18373|MASS]], [[2511.16077|VideoSeg-R1]], [[2507.12462|SpatialTrackerV2]] (ICCV'25), [[2506.07850|SAM2Auto]], [[2506.05302|PAM]] (NeurIPS'25), [[2410.11831|CoTracker3]] (ICCV'25 Highlight), [[2408.00714|SAM 2]] (ICLR'25 Oral), [[2407.15420|LocoTrack]] (ECCV'24), [[2402.00847|BootsTAP]], [[2307.07635|CoTracker]] (ECCV'24), [[2306.08637|TAPIR]], [[2211.03726|TAP-Vid]] (NeurIPS'22)
 
 > [!star] Key Papers
 > - [[2506.05302|PAM]] (NeurIPS'25) — Extends SAM 2 to full region-level understanding (recognize, explain, caption, segment); 1.2-2.4x faster
@@ -284,7 +284,10 @@ Understanding *why* things happen in video, not just *what* happens. This sectio
 > - [[2603.14145|MMOU]] — Joint audio-visual reasoning benchmark; best model (64.2%) far below human (84.3%)
 
 **Robot Manipulation Failure & Anomaly Detection** — Frame-level video anomaly detection benchmarks and optical-flow-based methods for localizing when a robot manipulation failure begins and ends.
-- [[2609.17843|RoboVAD]]
+- [[2609.17843|RoboVAD]], [[2508.18705|Task-Knowledge Failure Detection]]
+
+**Confidence, Uncertainty & Hallucination Detection for Video/MLLM Predictions** — Post-hoc confidence scoring, uncertainty quantification, and claim-level hallucination detection for video-grounded and multimodal LLM outputs.
+- [[2609.11244|OmniHallu]], [[2607.05978|MTLA]], [[2603.10061|PairRank]], [[2603.02200|ACR]], [[2512.03101|ALARM]]
 
 **Social & Affective Interaction Understanding** — Datasets, workshops, and surveys probing whether video models can reason about social dynamics and affect (group interaction, emotion, deepfakes) rather than just spatiotemporal content.
 - [[2504.02244|SocialGesture]] (CVPR'25), [[2409.15316|Social AI Survey]], [[2409.07256|MRAC Workshop 2024]], [[2404.04458|JRDB-Social]] (CVPR'24), [[2212.08279|Werewolf Among Us]]
@@ -306,7 +309,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2310.06114|UniSim]] (ICLR'24 Oral) — Learned interactive real-world simulator from video data; key inspiration for the WAM paradigm
 
 **Egocentric & Robotic World Models** — World models specialized for egocentric or robot-embodied prediction and planning.
-- [[2609.20649|DexTouch-WM]], [[2609.17524|ModAR]], [[2609.15870|WLA3]], [[2608.30237|Motus2]], [[2608.29242|AnyWorld]], [[2607.11643|Xiaomi-Robotics-U0]], [[2607.07675|LingBot-Video]], [[2607.07534|LingBot-World-Infinity]], [[2605.03821|RoboAlign-R1]], [[2604.07209|INSPATIO-WORLD]], [[2604.04502|Veo-Act]], [[2604.01421|EgoFlow]] (CVPR'26), [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2601.20540|LingBot-World]], [[2512.08269|EgoX]], [[2509.15536|SAMPO]] (NeurIPS'25)
+- [[2609.27314|CoRe-WAM]], [[2609.20649|DexTouch-WM]], [[2609.17524|ModAR]], [[2609.15870|WLA3]], [[2608.30237|Motus2]], [[2608.29242|AnyWorld]], [[2607.11643|Xiaomi-Robotics-U0]], [[2607.07675|LingBot-Video]], [[2607.07534|LingBot-World-Infinity]], [[2605.03821|RoboAlign-R1]], [[2604.07209|INSPATIO-WORLD]], [[2604.04502|Veo-Act]], [[2604.01421|EgoFlow]] (CVPR'26), [[2604.01001|EgoSim]], [[2603.30045|OmniRoam]], [[2601.20540|LingBot-World]], [[2512.08269|EgoX]], [[2509.15536|SAMPO]] (NeurIPS'25)
 
 **Scalable Industrial World-Model Systems** — Large-scale, lab/industrial-branded world-model systems targeting general-purpose scaling.
 - [[2607.06291|AlayaWorld]], [[2607.06216|MoWorld]], [[2607.03964|Worldscape-MoE]], [[2607.02642|GigaWorld-1]], [[2606.32028|DVG-WM]], [[2606.28804|ViPSim]], [[2606.18610|SC3-Eval]], [[2606.04463|OSCAR]], [[2606.02800|Cosmos-3]], [[2605.28816|Gamma-World]], [[2605.25874|WBench]], [[2605.08279|LaWM]], [[2604.18564|MultiWorld]], [[2604.08995|Matrix-Game-3.0]], [[2604.04913|DeltaWorld]] (CVPR'26), [[2604.04707|OpenWorldLib]]
@@ -315,7 +318,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 - [[2607.08770|LongE2V]], [[2607.08766|OPSD-V]], [[2606.01027|τ0-WM]], [[2605.28820|NEO-ov]], [[2605.23993|Nano-World-Models]], [[2605.18678|Lance]], [[2605.15725|DiLA]], [[2605.15178|SANA-WM]], [[2603.26599|VGGRPO]] (ECCV'26), [[2603.25716|HyDRA]], [[2603.17117|MosaicMem]], [[2602.17259|FRAPPE]], [[2602.10717|SDA]], [[2602.10102|VideoWorld-2]], [[2602.07050|Interpreting-Physics-Video-WM]], [[2510.01183|EvoWorld]]
 
 **Latent-Action & Scalable World Models** — World models that extract latent action representations from unlabeled video, enabling RL-based agent training entirely within imagination.
-- [[2607.11397|WALA]], [[2604.10333|ZWM]], [[2510.26433|CoLA-World]], [[2509.24527|Dreamer-4]], [[2506.09995|PlayerOne]] (NeurIPS'25 Oral), [[2505.13934|RLVR-World]] (NeurIPS'25), [[2503.18938|AdaWorld]] (ICML'25), [[2501.03575|Cosmos]], [[2402.15391|Genie]] (ICML'24 Oral)
+- [[2609.23478|Latent-Action Consistency Audit]], [[2607.11397|WALA]], [[2604.10333|ZWM]], [[2510.26433|CoLA-World]], [[2509.24527|Dreamer-4]], [[2506.09995|PlayerOne]] (NeurIPS'25 Oral), [[2505.13934|RLVR-World]] (NeurIPS'25), [[2503.18938|AdaWorld]] (ICML'25), [[2501.03575|Cosmos]], [[2402.15391|Genie]] (ICML'24 Oral)
 
 > [!star] Key Papers
 > - [[2509.24527|Dreamer-4]] — First offline diamond acquisition in Minecraft; scalable world model with real-time 21 fps inference
@@ -409,7 +412,7 @@ The paradigm shift: video generation models that simulate ==physically plausible
 > - [[2309.17080|GAIA-1]] — Wayve's 9B autoregressive driving world model; foundational result that internet-scale video pretraining yields a useful driving world simulator
 
 **RL & Preference-Aligned Physics Reward Training** — World simulators trained or aligned via RL, preference optimization, or explicit physics-reward signals.
-- [[2604.24764|World-R1]] (ICML'26), [[2603.24506|PhyGenesis]], [[2603.03505|PhyPrompt]], [[2511.03997|PhysCorr]], [[2510.21840|V-JEPA-2-Physics-Reward]] (ICCV'25), [[2506.18655|RDPO]], [[2505.23656|VideoREPA]] (NeurIPS'25), [[2503.08153|WISA]] (NeurIPS'25 Spotlight), [[2502.02088|IPO]] (ICLR'26), [[2501.13918|VideoAlign]] (NeurIPS'25), [[2412.02617|AIF-Dynamic-T2V]], [[2412.00596|PhyT2V]] (CVPR'25)
+- [[2609.22947|RewardVerse]], [[2604.24764|World-R1]] (ICML'26), [[2603.24506|PhyGenesis]], [[2603.03505|PhyPrompt]], [[2511.03997|PhysCorr]], [[2510.21840|V-JEPA-2-Physics-Reward]] (ICCV'25), [[2506.18655|RDPO]], [[2505.23656|VideoREPA]] (NeurIPS'25), [[2503.08153|WISA]] (NeurIPS'25 Spotlight), [[2502.02088|IPO]] (ICLR'26), [[2501.13918|VideoAlign]] (NeurIPS'25), [[2412.02617|AIF-Dynamic-T2V]], [[2412.00596|PhyT2V]] (CVPR'25)
 
 **General-Purpose World-Simulator Foundations & Evaluation** — General-purpose world-simulator foundation models and the evaluation/benchmark protocols that assess them.
 - [[2607.10781|Training-Free Norm Injection]], [[2509.24702|Implausibility-Reasoning-Video-Gen]], [[2508.10858|PhysHPO]] (NeurIPS'25), [[2505.21996|VRAG-WM]] (NeurIPS'25), [[2504.13129|Science-T2I]] (CVPR'25), [[2501.09038|Physics-IQ]], [[2412.20404|Open-Sora]], [[2410.18072|WorldSimBench]] (ICML'25), [[2410.10076|VideoAgent]], [[2408.07009|Imagen-3]], [[2404.05014|MagicTime]], [[2401.09985|WorldDreamer]], [[1907.06987|Kinetics-700]]

@@ -271,14 +271,25 @@ Self-evolving systems need to practice on the right problems at the right diffic
 When self-improvement meets agentic AI: systems that autonomously explore environments, accumulate experience, distill lessons, and evolve their own capabilities across tasks. These go beyond single-turn reasoning to multi-step, tool-using, environment-interacting agents that learn from deployment.
 
 **General Agent Self-Evolution Frameworks** — End-to-end frameworks where a fixed agent's own reasoning, RL, or reflection loop directly drives capability growth across diverse domains — no separate curated artifact (skill library, memory store, or synthetic environment) sits between experience and improvement.
-- [[2605.07465|SEIF]], [[2604.18131|Native-Evolution]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting-RL]] (IROS'26), [[2603.02224|Subspace-Geometry-Forgetting]], [[2602.00359|A-EVOLVE]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]] (NeurIPS'25), [[2510.12710|Reflective-Self-Adaptation]], [[2510.08558|Early-Experience]] (ICML'26), [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]] (NeurIPS'25), [[2506.01716|SCA]] (NeurIPS'25), [[2406.04151|AgentGym]], [[2403.02334|GCSL]]
+- [[2605.07465|SEIF]], [[2604.18131|Native-Evolution]], [[2604.15034|Autogenesis]], [[2604.07799|ECM]], [[2604.01658|CORAL]], [[2603.19461|HyperAgents]], [[2603.08561|RetroAgent]], [[2603.04029|Self-Adapting-RL]] (IROS'26), [[2603.02224|Subspace-Geometry-Forgetting]], [[2602.00359|A-EVOLVE]], [[2511.16166|EvoVLA]], [[2511.00758|ATM]], [[2510.20685|C-Nav]] (NeurIPS'25), [[2510.12710|Reflective-Self-Adaptation]], [[2510.08558|Early-Experience]] (ICML'26), [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]] (NeurIPS'25), [[2506.05109|Intrinsic-Metacognitive-Learning]], [[2506.01716|SCA]] (NeurIPS'25), [[2406.04151|AgentGym]], [[2403.02334|GCSL]]
 
 > [!star] Key Papers
 > - [[2406.04151|AgentGym]] — Multi-environment agent evolution via behavioral cloning + self-evolution (AGENTEVOL); showed agents can generalize across diverse tasks
 > - [[2506.01716|SCA]] (NeurIPS'25) — Self-Challenging Agent: generates its own hard problems to practice on, driving continuous capability growth
 
+**Recursive Self-Improvement — Agents Rewriting Their Own Code** — Agents and pipelines that turn their own scaffold, workflow, or search policy into an editable target: the system inspects its own architecture, prompts, or harness, then rewrites, forks, or re-searches over that target to improve itself, with no fixed human-designed loop left outside the self-modification boundary.
+- [[2609.26457|AIDE²]], [[2609.13406|GAI]], [[2609.06396|MetaRSI]], [[2608.08311|Ouroboros]], [[2607.07984|AgentNAS]], [[2606.20657|A-Evolve-Training]], [[2606.03108|EvoTrainer]], [[2603.23420|Bilevel Autoresearch]], [[2510.21614|Huxley-Gödel Machine]], [[2509.24323|MAS²]], [[2504.15228|SICA]], [[2410.04444|Gödel Agent]], [[2408.08435|ADAS]], [[2310.02304|STOP]]
+
+> [!star] Key Papers
+> - [[2310.02304|STOP]] — Pioneered recursive self-improvement of code: a language model recursively rewrites its own improver scaffold
+> - [[2410.04444|Gödel Agent]] — Self-referential agent framework that reads and rewrites its own logic at runtime, no fixed meta-improvement rule
+> - [[2510.21614|Huxley-Gödel Machine]] — Approximates the theoretically optimal self-improving machine by estimating self-improvement potential separately from benchmark performance
+
 **Skill, Memory & Environment Curation** — Frameworks that build their self-evolution around an explicit external artifact — a skill library, episodic memory store, evolving harness/scaffold, or synthetic environment/benchmark — that accumulates across rounds and feeds back into the agent, including self-play on real software repositories.
-- [[2609.24972|RRSI]], [[2609.15364|RSIAgent]], [[2609.14858|Dream-RSI]], [[2609.11682|COBRA-Skills]], [[2608.17209|TGL]], [[2607.28568|Frontis-MA1]], [[2607.00272|ASPIRE]], [[2606.09498|Self-Harness]], [[2606.08671|SkillHone]], [[2605.15188|FutureSim]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.18292|Agent-World]], [[2601.03192|MemRL]], [[2512.18552|SSR]] (ICML'26), [[2510.16079|EVOLVER]] (ICML'26), [[2510.04618|ACE]] (ICLR'26), [[2509.19349|ShinkaEvolve]] (ICLR'26), [[2507.14172|SOAR]] (ICML'25), [[2409.00872|SAGE]], [[2305.16291|Voyager]]
+- [[2609.24972|RRSI]], [[2609.15364|RSIAgent]], [[2609.14858|Dream-RSI]], [[2609.11682|COBRA-Skills]], [[2608.24747|SkillForge]], [[2608.17209|TGL]], [[2607.28568|Frontis-MA1]], [[2607.00272|ASPIRE]], [[2606.09498|Self-Harness]], [[2606.08671|SkillHone]], [[2605.15188|FutureSim]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2604.25850|Agentic-Harness-Engineering]], [[2604.18292|Agent-World]], [[2601.03192|MemRL]], [[2512.18746|MemEvolve]], [[2512.18552|SSR]] (ICML'26), [[2510.16079|EVOLVER]] (ICML'26), [[2510.04618|ACE]] (ICLR'26), [[2509.19349|ShinkaEvolve]] (ICLR'26), [[2507.14172|SOAR]] (ICML'25), [[2409.00872|SAGE]], [[2305.16291|Voyager]]
+
+**Diagnosing Self-Evolution — Benchmarks & Failure Modes** — Papers that hold self-evolving agents to formal measurement rather than practicing the self-evolution itself: disentangling harness updates from real capability gain, benchmarking online agent evolution, and naming failure modes like skill-library drift, scientific amnesia, and rise-and-collapse self-training.
+- [[2606.21090|CARE-SelfTrain]], [[2606.21089|MAST]], [[2606.17546|SEAGym]], [[2605.30621|Solve-Evolve]], [[2605.19576|Ratchet]], [[2604.08988|SEA-Eval]]
 
 > [!star] Key Papers
 > - [[2604.18292|Agent-World]] — ByteDance/Renmin's framework unifying real-world environment synthesis with continuous self-evolution; 14B agent evaluated on 23 benchmarks, with average tool-use scores more than doubling as environment diversity scales from 0 to 1,978
@@ -318,7 +329,7 @@ When self-evolution meets physical agents: VLAs, WAMs, and robots that autonomou
 > - [[2603.19370|VAMPO]] — RL optimization of visual dynamics in video action models via GRPO; bridges world model quality and action quality
 
 **Self-Evolving Robots & Navigation** — Embodied agents that discover their own failure modes and improve through real-world or simulated experience, combining exploration, curiosity, and RL.
-- [[2607.20110|Extreme-RGMT]], [[2607.12114|GaitSpan]], [[2607.04764|SLAM (Lifelong VPR)]], [[2607.01111|FAR]], [[2605.09387|NEXUS]], [[2604.07392|ERA]], [[2603.04029|Self-Adapting-RL]] (IROS'26), [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.12252|Robot-Trains-Robot]] (CoRL'25), [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]] (NeurIPS'25), [[2506.06658|SILVR]] (ICLR'26), [[2503.10949|SCDA]], [[2409.02561|VLNCL]]
+- [[2609.24271|ME-Brain-1.0]], [[2609.14633|REVOLVE]], [[2607.20110|Extreme-RGMT]], [[2607.12114|GaitSpan]], [[2607.04764|SLAM (Lifelong VPR)]], [[2607.01111|FAR]], [[2605.09387|NEXUS]], [[2604.07392|ERA]], [[2603.04029|Self-Adapting-RL]] (IROS'26), [[2602.20057|AdaWorldPolicy]], [[2510.12693|ERA]], [[2508.12252|Robot-Trains-Robot]] (CoRL'25), [[2508.04700|SEAgent]], [[2507.13152|SE-VLN]], [[2506.21669|SEEA-R1]] (NeurIPS'25), [[2506.06658|SILVR]] (ICLR'26), [[2503.10949|SCDA]], [[2409.02561|VLNCL]]
 
 > [!star] Key Papers
 > - [[2506.21669|SEEA-R1]] (NeurIPS'25) — Tree-structured RL for self-evolving embodied agents; +24% via MCTS + generative reward
@@ -446,6 +457,7 @@ Comprehensive reviews and theoretical analyses that map the self-evolving AI lan
 - [[2603.25681|LLM-Self-Improvement-Survey]] — Unified closed-loop lifecycle framework for LLM self-improvement; covers data acquisition, selection, optimization, inference, and evaluation
 - [[2404.14387|LLM-Self-Evolution-Survey]] — Structured taxonomy of self-evolution approaches: self-training, self-rewarding, RL-based, and evolutionary methods
 - [[2609.11873|Recursive Self-Improvement Survey]] — Introduces the Headroom-Closed Index to normalize cross-benchmark progress and a five-level autonomy hierarchy grading how much of the improvement loop an AI internalizes, not just how much its scores rise
+- [[2608.18104|Self-Evolving Agent Graphs]] — Formalizes self-evolving agents as dynamic graph transformation with typed rewrite operators; recasts the field's ad hoc RSI methods as instances of one graph-rewrite taxonomy
 - [[2510.02665|MLLM-Self-Improvement-Survey]] — First survey focused on multimodal LLM self-improvement; maps methods from text to vision-language
 - [[2412.01951|Sharpening-Mechanism]] (ICLR'25 Oral) — Theoretical framework formalizing when and why self-improvement converges; identifies conditions for guaranteed improvement
 - [[2408.07666|Model-Merging-in-LLMs/MLLMs]] — Comprehensive survey of model merging methods for combining knowledge across fine-tuned models
