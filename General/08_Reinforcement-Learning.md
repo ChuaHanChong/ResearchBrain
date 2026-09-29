@@ -211,7 +211,7 @@ The nine lanes divide on **what the agent is learning from**. **Model-based RL**
 The theoretical bedrock of RL — comprehensive overviews, taxonomies, and fundamental theoretical contributions that define the field's vocabulary, scope, and open problems.
 
 **LLM Reasoning & Post-Training Surveys** — Surveys mapping RL-driven reasoning, self-improvement, fine-tuning, and distillation methods for LLMs.
-- [[2607.07663|RSI-Taxonomy-Survey]], [[2604.00626|On-Policy-Distillation-Survey]], [[2603.25681|LLM-Self-Improvement-Survey]], [[2601.12538|Agentic-Reasoning-Survey]], [[2512.16301|Agentic-AI-Adaptation-Survey]], [[2511.18538|Code-Intelligence-Survey]], [[2509.08827|RL-for-LRM-Survey]], [[2509.02547|Agentic-RL-Landscape-Survey]], [[2505.02665|Slow-Thinking-LLM-Survey]], [[2505.00551|DeepSeek-R1-Replication-Survey]], [[2504.09037|LLM-Reasoning-Frontiers-Survey]], [[2501.09686|Large-Reasoning-Models-Survey]], [[2501.09223|LLM-Foundations]], [[2410.19878|PEFT-Methodologies-Survey]], [[2408.13296|LLM-Fine-Tuning-Guide]], [[2303.18223|LLM-Survey]]
+- [[2607.07663|RSI-Taxonomy-Survey]], [[2604.00626|On-Policy-Distillation-Survey]], [[2603.25681|LLM-Self-Improvement-Survey]], [[2601.12538|Agentic-Reasoning-Survey]], [[2512.16301|Agentic-AI-Adaptation-Survey]], [[2511.18538|Code-Intelligence-Survey]], [[2509.08827|RL-for-LRM-Survey]], [[2509.02547|Agentic-RL-Landscape-Survey]], [[2505.02665|Slow-Thinking-LLM-Survey]], [[2505.00551|DeepSeek-R1-Replication-Survey]], [[2504.09037|LLM-Reasoning-Frontiers-Survey]], [[2502.21321|LLM-Post-Training-Survey]], [[2501.09686|Large-Reasoning-Models-Survey]], [[2501.09223|LLM-Foundations]], [[2410.19878|PEFT-Methodologies-Survey]], [[2408.13296|LLM-Fine-Tuning-Guide]], [[2303.18223|LLM-Survey]]
 
 > [!star] Key Papers
 > - [[2501.09686|Large-Reasoning-Models-Survey]] — First survey to formalize the "Large Reasoning Model" paradigm right after OpenAI's o1; frames the field's train-time and test-time scaling axes
@@ -220,14 +220,14 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[2501.09686|Large-Reasoning-Models-Survey]] — First systematic survey of RL-based reasoning in LLMs; maps the post-DeepSeek-R1 landscape
 
 **Multimodal, Robotics & Foundational RL Surveys** — Surveys spanning multimodal reasoning, robot learning, and core RL theory/tooling.
-- [[2608.02433|SAC-MRAC]], [[2607.06935|Mathematical Methods of RL]], [[2607.06706|VLA for UAVs and Bimanual Manipulation Review]], [[2603.24517|AVO]], [[2510.12403|Robot-Learning-Tutorial]], [[2510.02665|MLLM-Self-Improvement-Survey]], [[2508.08189|RL-for-Large-Models-Survey]], [[2506.06981|ForageWorld]] (NeurIPS'25), [[2505.04921|LMRM-Survey]], [[2504.21277|Reinforced-MLLM-Survey]], [[2504.03151|Multimodal-Reasoning-Survey]], [[2503.14576|SocialJax]] (ICLR'26), [[2502.08938|exp-a-spiel]] (ICLR'26), [[2501.02189|VLM-SOTA-Survey]], [[2412.06531|RL-Memory-Taxonomy]] (ICLR'26), [[2412.05265|RL-Overview]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]], [[1904.12901|Real-World RL Challenge Taxonomy]], [[1207.4708|ALE]]
+- [[2608.02433|SAC-MRAC]], [[2607.06935|Mathematical Methods of RL]], [[2607.06706|VLA for UAVs and Bimanual Manipulation Review]], [[2510.12403|Robot-Learning-Tutorial]], [[2510.02665|MLLM-Self-Improvement-Survey]], [[2508.08189|RL-for-Large-Models-Survey]], [[2505.04921|LMRM-Survey]], [[2504.21277|Reinforced-MLLM-Survey]], [[2504.03151|Multimodal-Reasoning-Survey]], [[2501.02189|VLM-SOTA-Survey]], [[2412.06531|RL-Memory-Taxonomy]] (ICLR'26), [[2412.05265|RL-Overview]], [[2408.07666|Model-Merging-in-LLMs/MLLMs]], [[1904.12901|Real-World RL Challenge Taxonomy]]
 
 > [!star] Key Papers
 > - [[2412.05265|RL-Overview]] — Sutton's comprehensive modern overview; the definitive reference for RL fundamentals
 > - [[2508.08189|RL-for-Large-Models-Survey]] — Comprehensive mapping of visual RL applied to large multimodal models
 
 **Causal RL** — Connecting causal inference with RL to enable more principled and generalizable decision-making.
-- [[2607.26336|Implicit Causal WM]], [[2507.14901|Causal-Model-Reduction]] (ICLR'26), [[2307.01452|Causal-RL-Roadmap]], [[2302.05209|Causal-RL-Methods-Survey]], [[2210.13066|DaXBench]] (ICLR'23 Oral), [[2104.03311|PlasticineLab]] (ICLR'21 Spotlight)
+- [[2607.26336|Implicit Causal WM]], [[2507.14901|Causal-Model-Reduction]] (ICLR'26), [[2307.01452|Causal-RL-Roadmap]], [[2302.05209|Causal-RL-Methods-Survey]]
 
 > [!star] Key Papers
 > - [[2302.05209|Causal-RL-Methods-Survey]] — First comprehensive taxonomy connecting causal inference with RL
@@ -253,7 +253,7 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 - [[2605.10899|RubricEM]], [[2604.24532|MORL-FB]] (ICLR'26), [[2604.05112|Vintix-II]] (ICLR'26), [[2601.21845|Constrained-Meta-RL]], [[2512.16848|LAMER]] (ICLR'26), [[2510.20264|OpTI-BFM]] (ICLR'26 Oral), [[2509.24923|Meta-Bandit-Exploitation-Bias]] (ICLR'26), [[2509.18389|ICRL-Emergence]] (NeurIPS'25), [[2508.16027|Transformer-Non-Stationary-RL]] (NeurIPS'25), [[2506.13690|MASP]] (NeurIPS'25), [[2506.06303|LLM-In-Context-RL]] (ICLR'26), [[2506.05426|T2MIR]] (NeurIPS'25), [[2506.01299|In-Context-Q-Learning]] (ICLR'26), [[2502.04979|Bandit-Prompt-Tuning-DT]] (NeurIPS'25), [[2502.03752|SISL]] (ICLR'26), [[2502.02869|OmniRL]] (NeurIPS'25)
 
 **Evolutionary Strategies vs Deep RL** — Comparative analysis of gradient-free vs gradient-based approaches to policy optimization.
-- [[2608.27351|ES vs GRPO for LLM Reasoning]], [[2608.17310|Agentic ESOpt]], [[2606.29082|EFT]], [[2604.07725|Squeeze-Evolve]], [[2602.00170|Blessing-of-Dimensionality-LLM]], [[2509.26354|Misevolution]] (ICLR'26), [[2509.24372|Evolution-Strategies-at-Scale]] (ICML'26), [[2501.15129|EvoRL]], [[2402.06912|ES-Linear-Policy]], [[2110.01411|DRL-vs-ES-Survey]], [[1803.07055|ARS]], [[1703.03864|OpenAI ES]]
+- [[2608.27351|ES vs GRPO for LLM Reasoning]], [[2608.17310|Agentic ESOpt]], [[2608.12679|ES vs RL Solution Coverage]], [[2606.29082|EFT]], [[2604.07725|Squeeze-Evolve]], [[2603.24517|AVO]], [[2602.00170|Blessing-of-Dimensionality-LLM]], [[2511.16652|EGGROLL]], [[2509.24372|Evolution-Strategies-at-Scale]] (ICML'26), [[2501.15129|EvoRL]], [[2402.06912|ES-Linear-Policy]], [[2206.08896|ELM]], [[2110.01411|DRL-vs-ES-Survey]], [[1803.07055|ARS]], [[1703.03864|OpenAI ES]]
 
 > [!star] Key Papers
 > - [[2501.15129|EvoRL]] — JAX-based GPU-accelerated framework achieving 60x speedup for evolutionary RL
@@ -269,14 +269,17 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > - [[1812.06162|Large-Batch-Training]] — OpenAI's gradient noise scale; foundational for understanding batch size in deep RL
 
 **Training Dynamics, Plasticity & Failure Modes** — What happens inside the optimizer during RL training — plasticity loss, entropy collapse, gradient stability, and SFT/RL spectral differences.
-- [[2607.16051|Loopie]], [[2604.01913|Plasticity-Sample-Weight-Decay]] (ICLR'26), [[2510.11495|RL-After-NTP]] (ICLR'26), [[2510.00553|RL-Dynamics-Predictability]] (ICLR'26), [[2509.21128|RL-Squeezes-SFT-Expands]] (ICLR'26), [[2508.16546|SFT-vs-RL-Spectral-Analysis]], [[2507.06187|Delta-Learning-Hypothesis]], [[2506.15544|Stable-Gradients-RL]] (NeurIPS'25 Spotlight), [[2505.24061|GraMa]] (NeurIPS'25), [[2505.22617|Entropy-Collapse-in-RL]], [[2505.17749|Pixel-RL-Scale-GAP]] (NeurIPS'25), [[2412.01951|Sharpening-Mechanism]] (ICLR'25 Oral), [[2410.17517|Maynard-Cross-Learning]], [[2407.10490|LLM-Finetuning-Dynamics]] (ICLR'25 Oral), [[2405.16158|BRO]] (NeurIPS'24 Spotlight), [[2402.12479|Pruned-Networks-in-Deep-RL]] (ICML'24), [[2310.19668|DrM]] (ICLR'24 Spotlight)
+- [[2607.19331|ISO]], [[2607.16051|Loopie]], [[2604.01913|Plasticity-Sample-Weight-Decay]] (ICLR'26), [[2510.11495|RL-After-NTP]] (ICLR'26), [[2510.00553|RL-Dynamics-Predictability]] (ICLR'26), [[2509.21128|RL-Squeezes-SFT-Expands]] (ICLR'26), [[2508.16546|SFT-vs-RL-Spectral-Analysis]], [[2507.06187|Delta-Learning-Hypothesis]], [[2506.15544|Stable-Gradients-RL]] (NeurIPS'25 Spotlight), [[2505.24061|GraMa]] (NeurIPS'25), [[2505.22617|Entropy-Collapse-in-RL]], [[2505.17749|Pixel-RL-Scale-GAP]] (NeurIPS'25), [[2412.01951|Sharpening-Mechanism]] (ICLR'25 Oral), [[2410.17517|Maynard-Cross-Learning]], [[2407.10490|LLM-Finetuning-Dynamics]] (ICLR'25 Oral), [[2405.16158|BRO]] (NeurIPS'24 Spotlight), [[2402.12479|Pruned-Networks-in-Deep-RL]] (ICML'24), [[2310.19668|DrM]] (ICLR'24 Spotlight)
 
 > [!star] Key Papers
 > - [[2505.22617|Entropy-Collapse-in-RL]] — Identifies universal policy entropy collapse in RL for LLMs; a key failure mode to watch for
 > - [[2508.16546|SFT-vs-RL-Spectral-Analysis]] — Reveals that SFT causes OOD generalization issues that RL avoids, via spectral lens
 
+**Optimizers, Architectures & Pretraining Dynamics** - Optimizers, attention/normalization designs, and loss-curve or instability studies from general LLM training that shape the base models RL post-trains.
+- [[2604.09258|Nexus]], [[2603.02188|MLRA]], [[2509.06806|MachineLearningLM]], [[2508.02124|DMA]], [[2507.07101|Small-Batch-LLM-Training]], [[2505.02406|TCPA]], [[2505.02222|Muon]], [[2503.12811|MPL]], [[2503.10622|DyT]], [[2502.16982|Muon]], [[2309.14322|Transformer-Training-Instabilities]]
+
 **SFT vs RL Generalization** — Why RL generalizes where supervised fine-tuning memorizes — a central question for post-training.
-- [[2608.03573|Parallel-RL]], [[2605.11739|EffOPD]], [[2602.10815|RL-vs-SFT-VLM-Study]], [[2512.17636|TRAPO]] (ICLR'26), [[2512.12690|SFT-vs-RL-VLM-Study]], [[2501.17161|SFT-Memorizes-RL-Generalizes]] (ICML'25)
+- [[2608.03573|Parallel-RL]], [[2605.11739|EffOPD]], [[2602.10815|RL-vs-SFT-VLM-Study]], [[2512.17636|TRAPO]] (ICLR'26), [[2512.12690|SFT-vs-RL-VLM-Study]], [[2512.02389|Synthetic-Error-Self-Correct]], [[2501.17161|SFT-Memorizes-RL-Generalizes]] (ICML'25)
 
 > [!star] Key Papers
 > - [[2501.17161|SFT-Memorizes-RL-Generalizes]] (ICML'25) — Landmark finding: SFT makes models memorize training distributions, while RL makes them generalize to unseen problems
@@ -293,13 +296,21 @@ The theoretical bedrock of RL — comprehensive overviews, taxonomies, and funda
 > The key insight from 2025: SFT teaches models to *reproduce* patterns, RL teaches them to *solve* problems. For reasoning tasks, RL generalizes where SFT memorizes. But SFT remains essential for format/instruction following — the best pipelines use SFT then RL.
 
 **Safe & Risk-Sensitive RL** — Constrained RL, safety filters, shielding, and risk-averse objectives for safety-critical deployment.
-- [[2607.01794|Lightweight Safe RL for UAV Navigation]], [[2606.31993|OopsieVerse]] (RSS'26), [[2606.31320|AutoSafe]], [[2605.14174|VIA]], [[2605.09772|GP-Safe-Exploration]], [[2605.01195|TAIL-Safe]] (RSS'26), [[2602.13040|TCRL]], [[2602.11437|DrIGM]] (ICLR'26), [[2602.05089|Daze]] (ICLR'26), [[2512.01228|BARPO]] (ICLR'26), [[2511.09681|SEBA]] (CVPR'26), [[2510.03471|Quadcopter-Control-Eval-Suite]], [[2508.02948|f-MORNAVI]] (ICLR'26), [[2507.20068|PERRY]], [[2506.21683|Risk-Averse-Total-Reward-RL]] (NeurIPS'25), [[2506.11033|Adaptive-Shielding]], [[2502.16816|Robust-Avg-Reward-RL]] (NeurIPS'25), [[2404.13009|M-GAPS-Online-Policy-Opt]], [[2310.12567|Safety-Gymnasium]] (NeurIPS'23)
+- [[2607.01794|Lightweight Safe RL for UAV Navigation]], [[2606.31993|OopsieVerse]] (RSS'26), [[2606.31320|AutoSafe]], [[2605.14174|VIA]], [[2605.09772|GP-Safe-Exploration]], [[2605.01195|TAIL-Safe]] (RSS'26), [[2603.23889|COX]] (ICLR'26), [[2602.15817|FGE]] (ICLR'26), [[2602.13040|TCRL]], [[2602.11437|DrIGM]] (ICLR'26), [[2602.05089|Daze]] (ICLR'26), [[2601.19612|SOOPER]] (ICLR'26), [[2512.01228|BARPO]] (ICLR'26), [[2511.09681|SEBA]] (CVPR'26), [[2510.12312|Deep-SPI]] (ICLR'26), [[2510.03471|Quadcopter-Control-Eval-Suite]], [[2509.25727|B2R]] (NeurIPS'25), [[2508.02948|f-MORNAVI]] (ICLR'26), [[2507.20068|PERRY]], [[2506.21683|Risk-Averse-Total-Reward-RL]] (NeurIPS'25), [[2506.11033|Adaptive-Shielding]], [[2505.21852|PLS]] (NeurIPS'25), [[2502.16816|Robust-Avg-Reward-RL]] (NeurIPS'25), [[2404.13009|M-GAPS-Online-Policy-Opt]], [[2310.12567|Safety-Gymnasium]] (NeurIPS'23)
 
 > [!star] Key Papers
 > - [[2310.12567|Safety-Gymnasium]] (NeurIPS'23) — The field's unifying benchmark suite (54 environments + 16 validated baselines); the standard testbed for constrained RL
 > - [[2606.31320|AutoSafe]] — Makes hard-constraint intervention differentiable, resolving the soft-constraint vs hard-filter dilemma; validated on real hardware
 > - [[2506.21683|Risk-Averse-Total-Reward-RL]] (NeurIPS'25) — First model-free Q-learning with proven convergence for risk-averse objectives in the undiscounted setting
 > - [[2602.13040|TCRL]] — Temporal-coupled adversarial training for constrained RL; reduces safety costs by orders of magnitude under worst-case attacks
+
+**Safe RL & Constrained Control Theory** — Formal safety constraints, temporal-logic specifications, and robustness theory for RL.
+- [[2602.19532|VDPPO]] (RSS'26), [[2602.17078|Safe-CT-MARL]] (ICLR'26), [[2602.05323|GAS-Safe-RL]] (ICLR'26), [[2508.01561|GenZ-LTL]] (NeurIPS'25), [[2506.08062|FairDICE]] (NeurIPS'25), [[2506.01167|Differentiable-LTL]] (ICLR'26), [[2505.10947|Lyapunov-RL-Stability]] (NeurIPS'25), [[2504.04675|HypRL]] (NeurIPS'25), [[2503.18991|DR-IRL]] (ICLR'26), [[2502.10138|OPSE-LCMDP]] (NeurIPS'25 Spotlight), [[1901.09184|Action-Robust-RL]] (ICML'19)
+
+> [!star] Key Papers
+> - [[1901.09184|Action-Robust-RL]] (ICML'19) — earliest work in the group, formalizing action-space robustness via PR-MDP/NR-MDP two-player games with convergence guarantees, whose AR-DDPG became a reference robust-RL baseline
+> - [[2505.10947|Lyapunov-RL-Stability]] (NeurIPS'25) — bridges classical constrained-control theory and RL, relaxing the pointwise Lyapunov decrease condition to a multi-step average that nearly doubles formally verified regions of attraction
+> - [[2502.10138|OPSE-LCMDP]] (NeurIPS'25 Spotlight) — first computationally efficient linear-CMDP algorithm proven to achieve both sublinear regret and episode-wise zero constraint violation
 
 **Adversarial Robustness, Attacks & Domain Generalization** — Attacks, backdoors, targeted perturbations, and cross-domain/cross-dynamics generalization for RL policies.
 - [[2510.15382|Robust-Zero-Shot-RL]] (NeurIPS'25), [[2510.14246|DR-RPO]], [[2510.11824|MARL-Robustness-Study]] (NeurIPS'25), [[2509.24130|Sharpness-Aware-Prompt]] (ICLR'26), [[2509.23846|AD-RRL]] (NeurIPS'25), [[2509.16950|Multi-Vehicle-Backdoor]] (NeurIPS'25), [[2507.07348|Context-Generalization-RL]] (NeurIPS'25), [[2506.16590|EBTL]], [[2506.12815|TrojanTO]] (ICLR'26), [[2506.12622|DR-SAC]] (ICLR'26), [[2412.18781|Offline-RL-Action-Perturbation-Eval]], [[2412.10713|RAT]], [[2409.18330|DMC-VB]] (NeurIPS'24), [[2406.09976|RMBPO]], [[2406.08406|RRLS]], [[2406.03862|Behavior-Imitation-Attack]] (ICLR'26), [[2312.17116|SAM-G]], [[2307.10224|RL-ViGen]] (NeurIPS'23), [[2307.07666|ARRLC]], [[2307.00972|MoVie]] (NeurIPS'23), [[2206.00238|DARL]], [[2204.12581|RAMBO-RL]] (NeurIPS'22)
@@ -344,7 +355,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2603.04333|floq]] — Explains the empirical success of flow-matching critics in Temporal Difference learning
 
 **Diffusion Planning & Trajectory Generation** — Denoising-diffusion planners that generate or condition trajectories directly.
-- [[2607.25798|Transformer Transformer]], [[2606.19656|DF-ExpEnse]] (ICML'26), [[2605.28293|ProRL-Recommendation]] (ICML'26), [[2605.20758|g-car]] (ICML'26), [[2605.04568|Dream-MPC]], [[2604.00202|DreamControl-v2]], [[2603.14245|GoldenStart]] (ICLR'26), [[2602.08032|Horizon-Imagination]] (ICLR'26), [[2602.05051|ReFORM]] (ICLR'26), [[2601.00898|DIPOLE]] (ICLR'26), [[2508.12166|B-COD]] (CoRL'25), [[2505.20922|DIMA]] (NeurIPS'25), [[2505.10881|Prior-Guided-Diffusion-Planning]] (NeurIPS'25), [[2304.12824|QGPO]] (ICML'23), [[2210.15629|LCD]] (ICLR'24), [[2208.06193|Diffusion-QL]] (ICLR'23), [[2205.09991|Diffuser]] (ICML'22 Oral)
+- [[2606.19656|DF-ExpEnse]] (ICML'26), [[2605.20758|g-car]] (ICML'26), [[2605.04568|Dream-MPC]], [[2604.00202|DreamControl-v2]], [[2603.14245|GoldenStart]] (ICLR'26), [[2602.08032|Horizon-Imagination]] (ICLR'26), [[2602.05051|ReFORM]] (ICLR'26), [[2601.00898|DIPOLE]] (ICLR'26), [[2508.12166|B-COD]] (CoRL'25), [[2505.20922|DIMA]] (NeurIPS'25), [[2505.10881|Prior-Guided-Diffusion-Planning]] (NeurIPS'25), [[2304.12824|QGPO]] (ICML'23), [[2210.15629|LCD]] (ICLR'24), [[2208.06193|Diffusion-QL]] (ICLR'23), [[2205.09991|Diffuser]] (ICML'22 Oral)
 
 > [!star] Key Papers
 > - [[2210.15629|LCD]] (ICLR'24) — Hierarchical diffusion planner extending Diffuser to pixel/language-conditioned long-horizon control; 3.3-15x faster inference
@@ -363,7 +374,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2510.00739|TD-JEPA]] (ICLR'26 Oral) — Temporal-difference JEPA learns policy-conditioned multi-step latents for zero-shot RL; SOTA across 65 tasks, strong on pixel-based observations
 
 **World Model Architectures & Latent Representations** — Model designs for latent-action, latent-state, and joint-embedding world models.
-- [[2607.28415|QQWorld]], [[2606.21173|P-learning]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.02027|World-Task-Factorization]], [[2605.29564|VE2VF]], [[2605.25313|UWM-JEPA]], [[2605.22123|FLORA]], [[2605.12771|PASTA]] (RSS'26), [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2503.00653|DC-MPC]] (ICLR'25), [[2408.14472|DWL]] (RSS'24), [[2403.04253|R2I]] (ICLR'24 Oral), [[2402.19161|MemoNav]] (CVPR'24 Highlight)
+- [[2609.22175|Contrastive World Models]], [[2608.27549|Code-as-World]], [[2607.28415|QQWorld]], [[2606.21173|P-learning]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.02027|World-Task-Factorization]], [[2605.29564|VE2VF]], [[2605.25313|UWM-JEPA]], [[2605.22123|FLORA]], [[2605.12771|PASTA]] (RSS'26), [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.28963|AutoWorld]], [[2603.28955|WAM]], [[2505.10819|PoE-World]], [[2503.00653|DC-MPC]] (ICLR'25), [[2408.14472|DWL]] (RSS'24), [[2403.04253|R2I]] (ICLR'24 Oral)
 
 > [!star] Key Papers
 > - [[2403.04253|R2I]] (ICLR'24 Oral) — Foundational latent-state architecture integrating State Space Models into Dreamer; superhuman on Memory Maze with 9x faster training than DreamerV3
@@ -371,7 +382,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 > - [[2605.25313|UWM-JEPA]] — Most novel joint-embedding architecture, replacing vector latents with a density-matrix belief state and a unitary predictor for uncertainty-preserving imagination
 
 **World Model Theory, Control & Sample-Efficient Planning** — Formal generalization results, free-energy/active-inference grounding, and planning algorithms built on world models.
-- [[2608.02993|InK]], [[2605.06732|Training-in-Imagination]], [[2605.01694|Latent-State-Design-WM]], [[2604.25416|Biased Dreams]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2510.21232|Confusing-World-Models]], [[2510.18135|World-in-World]] (ICLR'26 Oral), [[2506.01622|General-Agents-World-Models]] (ICML'25), [[2501.10100|RWM]], [[2310.16828|TD-MPC2]] (ICLR'24 Spotlight), [[2206.02072|VSRL]] (NeurIPS'22), [[2203.04955|TD-MPC]] (ICML'22 Spotlight), [[2112.01506|REVI]], [[2106.02039|Trajectory-Transformer]] (NeurIPS'21 Spotlight), [[2103.10369|RH-UCRL]] (ICML'21 Spotlight), [[1911.10601|Scaling-Active-Inference]], [[1805.12114|PETS]] (NeurIPS'18)
+- [[2608.02993|InK]], [[2605.06732|Training-in-Imagination]], [[2605.01694|Latent-State-Design-WM]], [[2604.25416|Biased Dreams]], [[2602.06130|SWIRL]], [[2602.05842|RWML]], [[2512.09929|OWM]], [[2512.03556|RoboScape-R]], [[2512.01119|World-Model-Surprise-Robustness]] (CVPR'26), [[2510.21232|Confusing-World-Models]], [[2510.18135|World-in-World]] (ICLR'26 Oral), [[2506.06981|ForageWorld]] (NeurIPS'25), [[2506.01622|General-Agents-World-Models]] (ICML'25), [[2501.10100|RWM]], [[2401.05946|TDB]] (ICML'24), [[2310.16828|TD-MPC2]] (ICLR'24 Spotlight), [[2310.06114|UniSim]] (ICLR'24 Oral), [[2206.02072|VSRL]] (NeurIPS'22), [[2203.04955|TD-MPC]] (ICML'22 Spotlight), [[2203.03485|Self-directed-Exploratory-Planning]], [[2112.01506|REVI]], [[2106.02039|Trajectory-Transformer]] (NeurIPS'21 Spotlight), [[2103.10369|RH-UCRL]] (ICML'21 Spotlight), [[1911.10601|Scaling-Active-Inference]], [[1805.12114|PETS]] (NeurIPS'18)
 
 > [!star] Key Papers
 > - [[2506.01622|General-Agents-World-Models]] (ICML'25) — Google DeepMind formally proves that agents capable of generalizing to multi-step, goal-directed tasks must build world models
@@ -411,7 +422,7 @@ The Dreamer lineage: learning a latent world model, then "dreaming" in it to tra
 Direct methods for optimizing policies — from classic PPO through modern GRPO variants, KL-regularized objectives, and tree-structured search. This is the algorithmic engine behind both LLM reasoning and robot control.
 
 **Domain-Specific & Multimodal GRPO Applications** — GRPO adapted to specific modalities and domains — video, flow-matching, diffusion, navigation, and MoE.
-- [[2605.27079|TRQAM]], [[2605.21429|roto-2.0]] (ICRA'26 Workshop), [[2605.15726|NUDGERL]], [[2605.15458|VideoRLVR]], [[2605.15012|FEST]], [[2605.14539|CIPO]], [[2605.06139|LPO]], [[2604.27998|Latent-GRPO]], [[2604.02288|SRPO]], [[2603.24984|MoE-GRPO]] (CVPR'26), [[2511.06411|SofT-GRPO]], [[2510.19807|Scaf-GRPO]] (ICLR'26), [[2510.08554|GDPO-Diffusion-LM]] (ICLR'26), [[2509.06040|BranchGRPO]] (ICLR'26), [[2507.21848|EDGE-GRPO]], [[2506.16141|GRPO-CARE]], [[2506.13923|Guide-GRPO]], [[2505.05470|Flow-GRPO]] (NeurIPS'25), [[2301.13261|Blind-Nav-Agents]] (ICLR'23 Oral), [[2101.05181|MemAug-Image-Goal-Nav]]
+- [[2605.27079|TRQAM]], [[2605.21429|roto-2.0]] (ICRA'26 Workshop), [[2605.15726|NUDGERL]], [[2605.15458|VideoRLVR]], [[2605.15012|FEST]], [[2605.14539|CIPO]], [[2605.06139|LPO]], [[2604.27998|Latent-GRPO]], [[2604.02288|SRPO]], [[2603.24984|MoE-GRPO]] (CVPR'26), [[2511.06411|SofT-GRPO]], [[2510.19807|Scaf-GRPO]] (ICLR'26), [[2510.08554|GDPO-Diffusion-LM]] (ICLR'26), [[2507.21848|EDGE-GRPO]], [[2506.16141|GRPO-CARE]], [[2506.13923|Guide-GRPO]]
 
 > [!star] Key Papers
 > - [[2505.05470|Flow-GRPO]] (NeurIPS'25) — First method to integrate online GRPO into flow-matching models via an ODE-to-SDE conversion; pushed SD3.5-M GenEval accuracy from 63% to 95%
@@ -419,7 +430,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2603.24984|MoE-GRPO]] (CVPR'26) — Pioneers GRPO for a structural target, treating expert routing itself as the RL policy; boosts VLM OOD generalization by up to 4.1%
 
 **Core GRPO Algorithm & Theory** — Foundational GRPO variants addressing credit assignment, sampling, off-policy extension, and risk-sensitivity.
-- [[2607.16850|GECPO]], [[2602.05547|MT-GRPO]] (ICML'26), [[2601.20614|DGPO-Difficulty]] (ICLR'26), [[2510.20150|Rank-GRPO]] (ICLR'26), [[2510.04072|SFPO]] (ICLR'26), [[2509.25849|Knapsack-GRPO]], [[2509.24261|Risk-Sensitive-GRPO]], [[2508.09726|GFPO]] (ICLR'26), [[2505.22257|Off-Policy-GRPO]] (ICLR'26), [[2505.12929|Advantage-Reweighting]] (ICLR'26), [[2505.12366|DisCO-RL]] (NeurIPS'25), [[2504.02546|GPG]] (ICLR'26), [[2504.00883|vsGRPO]], [[2503.20783|Dr.-GRPO]], [[2503.14476|DAPO]] (NeurIPS'25), [[2502.10550|MIKASA]] (ICLR'26), [[2402.03300|DeepSeekMath]]
+- [[2607.16850|GECPO]], [[2602.05547|MT-GRPO]] (ICML'26), [[2601.20614|DGPO-Difficulty]] (ICLR'26), [[2510.20150|Rank-GRPO]] (ICLR'26), [[2510.04072|SFPO]] (ICLR'26), [[2509.25849|Knapsack-GRPO]], [[2509.24261|Risk-Sensitive-GRPO]], [[2508.09726|GFPO]] (ICLR'26), [[2505.22257|Off-Policy-GRPO]] (ICLR'26), [[2505.12929|Advantage-Reweighting]] (ICLR'26), [[2505.12366|DisCO-RL]] (NeurIPS'25), [[2504.02546|GPG]] (ICLR'26), [[2504.00883|vsGRPO]], [[2503.20783|Dr.-GRPO]], [[2503.14476|DAPO]] (NeurIPS'25), [[2402.03300|DeepSeekMath]]
 
 > [!star] Key Papers
 > - [[2402.03300|DeepSeekMath]] — Introduced GRPO, the group-relative policy optimization algorithm underlying nearly all post-DeepSeek-R1 reasoning RL
@@ -428,7 +439,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2505.22257|Off-Policy-GRPO]] (ICLR'26) — Formalized off-policy extension for GRPO; enables more sample-efficient training
 
 **PPO & Proximal Methods** — PPO-family algorithms adapted for LLM and multimodal model training, with emphasis on credit assignment and stability.
-- [[2607.10169|RIPO]] (ICML'26), [[2605.11473|TOPPO]], [[2605.04470|CRAFT-Driving]], [[2605.03846|SigLoMa]], [[2605.03363|Hierarchical-RL-QP-Grasp]], [[2604.20328|DePO]] (ECCV'26), [[2602.04879|DPPO]], [[2602.02454|World-Gymnast]], [[2511.01331|RobustVLA]], [[2510.03817|TROLL]] (ICLR'26 Oral), [[2510.01656|AsyPPO]] (ICLR'26), [[2508.17784|PSFT]] (ICLR'26), [[2508.08221|Lite-PPO]], [[2506.15050|T-PPO]], [[2410.01679|VinePPO]] (ICML'25), [[2409.16578|FLaRe]], [[1707.06347|PPO]], [[1502.05477|TRPO]] (ICML'15)
+- [[2607.10169|RIPO]] (ICML'26), [[2605.11473|TOPPO]], [[2604.20328|DePO]] (ECCV'26), [[2602.04879|DPPO]], [[2602.02454|World-Gymnast]], [[2510.03817|TROLL]] (ICLR'26 Oral), [[2510.01656|AsyPPO]] (ICLR'26), [[2508.17784|PSFT]] (ICLR'26), [[2508.08221|Lite-PPO]], [[2506.15050|T-PPO]], [[2410.01679|VinePPO]] (ICML'25), [[2409.16578|FLaRe]], [[1707.06347|PPO]], [[1502.05477|TRPO]] (ICML'15)
 
 > [!star] Key Papers
 > - [[2604.20328|DePO]] (ECCV'26) — Decoupled PPO for hybrid discrete-continuous action spaces; vMF distribution and hyperspherical KL enable stable MLLM latent-reasoning RL
@@ -445,7 +456,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2411.10442|MPO]] — Mixed Preference Optimization with scalable automated pipeline for constructing multimodal preferences
 
 **Core DPO Objective Variants** — Algorithmic reformulations of the DPO loss — reweighting, groupwise, and generalized objectives.
-- [[2606.16856|VOTP]] (ICML'26 Oral), [[2604.02349|OPRIDE]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.28204|ERPO]], [[2603.19835|FIPO]], [[2602.22703|GEODPO]] (ICLR'26), [[2602.21346|Alignment-Weighted-DPO]] (ICLR'26), [[2509.23802|STAIR]] (NeurIPS'25), [[2509.23102|MNPO]] (ICLR'26 Oral), [[2507.13579|PLUS]] (ICLR'26), [[2507.08068|QRPO]] (NeurIPS'25), [[2506.10054|Uni-DPO]] (ICLR'26), [[2506.07127|APO]] (NeurIPS'25), [[2506.01183|DRPO]] (NeurIPS'25), [[2502.16852|ONPO]] (NeurIPS'25 Spotlight), [[2411.04109|SCPO]] (ICML'25)
+- [[2606.16856|VOTP]] (ICML'26 Oral), [[2604.02349|OPRIDE]], [[2604.01840|PGPO]], [[2603.28618|PRCO]], [[2603.28204|ERPO]], [[2603.19835|FIPO]], [[2602.22703|GEODPO]] (ICLR'26), [[2602.21346|Alignment-Weighted-DPO]] (ICLR'26), [[2509.23802|STAIR]] (NeurIPS'25), [[2509.23102|MNPO]] (ICLR'26 Oral), [[2507.13579|PLUS]] (ICLR'26), [[2507.08068|QRPO]] (NeurIPS'25), [[2506.10054|Uni-DPO]] (ICLR'26), [[2506.07127|APO]] (NeurIPS'25), [[2506.01183|DRPO]] (NeurIPS'25), [[2505.19223|LLaDA-1.5]], [[2502.16852|ONPO]] (NeurIPS'25 Spotlight), [[2411.04109|SCPO]] (ICML'25)
 
 > [!star] Key Papers
 > - [[2509.23102|MNPO]] (ICLR'26 Oral) — Generalizes two-player Nash preference learning to an N-player game; its Time-Dependent variant provably unifies DPO, IPO, SPIN, and INPO
@@ -453,7 +464,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2507.08068|QRPO]] (NeurIPS'25) — Solves DPO's relative-preference-only limitation by transforming pointwise rewards into quantile rewards, reducing policy fitting to plain regression
 
 **Classic & Theoretical Preference Optimization** — The DPO lineage's foundational and theoretically-grounded variants.
-- [[2502.08922|SCIR]], [[2411.00361|DIPPER]] (ICLR'26), [[2410.23223|COMAL]] (ICLR'26), [[2410.12735|CREAM]] (ICLR'25), [[2410.02355|AlphaEdit]] (ICLR'25 Oral), [[2407.13399|χPO]] (ICLR'25 Spotlight), [[2405.16436|RPO]] (NeurIPS'24), [[2405.14734|SimPO]] (NeurIPS'24), [[2405.12961|Energy-Rank-Alignment]] (NeurIPS'25), [[2401.01335|SPIN]], [[2210.05639|DPO]] (NeurIPS'22)
+- [[2502.08922|SCIR]], [[2411.00361|DIPPER]] (ICLR'26), [[2410.23223|COMAL]] (ICLR'26), [[2410.12735|CREAM]] (ICLR'25), [[2407.13399|χPO]] (ICLR'25 Spotlight), [[2405.16436|RPO]] (NeurIPS'24), [[2405.14734|SimPO]] (NeurIPS'24), [[2405.12961|Energy-Rank-Alignment]] (NeurIPS'25), [[2401.01335|SPIN]], [[2210.05639|DPO]] (NeurIPS'22)
 
 > [!star] Key Papers
 > - [[2405.14734|SimPO]] (NeurIPS'24) — Widely-adopted reference-free simplification of DPO, fixing its reward/generation-likelihood mismatch; SOTA among sub-10B open models
@@ -481,7 +492,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2504.19599|GVPO]] (NeurIPS'25) — Zero-sum-weight gradient design gives a provable unique convergence guarantee; scores 20.72 on AIME2024 versus GRPO's 14.79 with strong hyperparameter robustness
 
 **Value Function Representation Learning** — Representation-learning approaches to value functions — successor features, hyperbolic embeddings, and Eikonal/proto representations.
-- [[2602.10539|DAWN (Residual RL Value Learning)]], [[2512.14202|Hyperbolic-Deep-RL]] (ICLR'26), [[2512.12046|Eik-QRL]] (ICLR'26), [[2510.06714|Dual-Goal-Representations]] (ICLR'26), [[2509.18714|GBSM]] (NeurIPS'25), [[2509.12026|RDM-RL]] (ICLR'26), [[2509.06782|Eikonal-Value-Learner]] (NeurIPS'25), [[2509.05193|k-Shifted-Successor]] (NeurIPS'25 Spotlight), [[2505.16217|Reward-Aware-Proto-Representations]] (NeurIPS'25), [[2505.12737|OTA-Value-Learning]] (NeurIPS'25 Spotlight)
+- [[2602.10539|DAWN (Residual RL Value Learning)]], [[2512.14202|Hyperbolic-Deep-RL]] (ICLR'26), [[2512.12046|Eik-QRL]] (ICLR'26), [[2510.22512|TRL]] (ICLR'26), [[2510.06714|Dual-Goal-Representations]] (ICLR'26), [[2509.18714|GBSM]] (NeurIPS'25), [[2509.12026|RDM-RL]] (ICLR'26), [[2509.06782|Eikonal-Value-Learner]] (NeurIPS'25), [[2509.05193|k-Shifted-Successor]] (NeurIPS'25 Spotlight), [[2505.16217|Reward-Aware-Proto-Representations]] (NeurIPS'25), [[2505.12737|OTA-Value-Learning]] (NeurIPS'25 Spotlight)
 
 > [!star] Key Papers
 > - [[2512.14202|Hyperbolic-Deep-RL]] (ICLR'26) — Formal gradient analysis of hyperbolic RL's optimization instabilities yields HYPER++, beating prior hyperbolic agents by 52.3% on ProcGen and outperforming Euclidean baselines
@@ -501,7 +512,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 
 
 **Tree Search & MCTS** — Monte Carlo Tree Search integrated with RL for structured exploration during training and inference.
-- [[2609.19526|SIFT]], [[2607.03751|SVA]], [[2604.01434|VOIMCP]], [[2602.20809|RGSC]] (ICLR'26), [[2510.24302|LATR]] (ICLR'26), [[2509.25454|DeepSearch]], [[2509.15929|MCTS-Symbolic-Regression]] (NeurIPS'25), [[2509.09284|Tree-OPO]], [[2508.17445|TreePO]], [[2506.11902|TreeRL]], [[2410.11234|BA-MCTS]] (ICLR'26), [[2406.06592|OmegaPRM]], [[2406.03816|ReST-MCTS*]] (NeurIPS'24)
+- [[2609.19526|SIFT]], [[2607.03751|SVA]], [[2604.01434|VOIMCP]], [[2602.20809|RGSC]] (ICLR'26), [[2510.24302|LATR]] (ICLR'26), [[2509.25454|DeepSearch]], [[2509.15929|MCTS-Symbolic-Regression]] (NeurIPS'25), [[2509.09284|Tree-OPO]], [[2508.17445|TreePO]], [[2506.11902|TreeRL]], [[2501.01478|MCTS-Process-Supervision]], [[2410.11234|BA-MCTS]] (ICLR'26), [[2406.06592|OmegaPRM]], [[2406.03816|ReST-MCTS*]] (NeurIPS'24), [[2405.15383|GIF-MCTS]]
 
 
 **Classic Offline RL & Actor-Critic Algorithms** — The foundational offline/off-policy algorithm lineage: conservative Q-learning, implicit Q-learning, and actor-critic baselines.
@@ -512,6 +523,14 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2006.04779|CQL]] (NeurIPS'20) — Regularizes Q-values to be conservative on out-of-distribution actions, achieving 2-5x higher returns on multi-modal D4RL benchmarks and solving previously intractable domains like AntMaze
 > - [[2110.06169|IQL]] (ICLR'22) — Never queries out-of-distribution actions at all, using expectile regression to implicitly estimate max Q-values; excels at stitching suboptimal trajectories on long-horizon navigation
 
+**Modern Offline RL Algorithms & Theory** — Core offline RL algorithms addressing distribution shift, partial observability, and static-buffer learning.
+- [[2609.02237|DCRL]], [[2608.29061|PathBridger]], [[2608.01205|ReBRAC-v2]], [[2606.17551|RQL]], [[2603.22201|NMR]], [[2505.23871|ADG]] (NeurIPS'25), [[2505.22866|SORL]] (NeurIPS'25), [[2505.22151|Oryx]] (NeurIPS'25), [[2505.18595|MisoDICE]], [[2505.15418|GPO-Partial-Obs]] (ICLR'26), [[2505.14975|SAW]] (NeurIPS'25 Spotlight), [[2505.08078|Batch-Online-RL-Study]] (ICLR'26), [[2504.11453|Clean-Slate-Offline-RL]] (NeurIPS'25 Oral)
+
+> [!star] Key Papers
+> - [[2606.17551|RQL]] — foundational flow-reversal technique solving the curse-of-horizon in off-policy value learning from static buffers, highest average score across 50 OGBench tasks against 18 baselines
+> - [[2505.15418|GPO-Partial-Obs]] (ICLR'26) — clearest paradigm shift for partial observability, replacing the standard "impossibly good" teacher-student setup with a co-trained, theoretically-grounded guider/learner scheme that provably converges to RL-optimal
+> - [[2504.11453|Clean-Slate-Offline-RL]] (NeurIPS'25 Oral) — most foundational theory contribution, exposing evaluation inconsistencies across the field and unifying prior distribution-shift-mitigation components into one framework yielding new SOTA algorithms
+
 **Experience Replay, Data Reuse & Off-Policy Evaluation Theory** — Replay-buffer design, data attribution, and the theory of off-policy evaluation and function approximation.
 - [[2601.19030|Linear-OPE-Coverage]] (ICLR'26), [[2601.18795|Reuse-FLOPs]], [[2509.04501|RL-for-Model-Training-Survey]], [[2507.11269|Data-Recycling-RL]] (NeurIPS'25), [[2506.21039|Frontier-Experience-Replay]] (ICLR'26), [[2506.18482|Reliability-Adjusted-PER]] (ICLR'26), [[2506.00131|DT-CORL]] (ICLR'26), [[2505.19281|Online-RL-Data-Attribution]] (NeurIPS'25 Oral), [[2503.02269|Experience-Replay-Random-Reshuffling]], [[2502.08021|LSTD-Tournament]] (NeurIPS'25), [[2502.07523|CrossQ+WN]] (NeurIPS'25), [[2501.15910|Online-RL-Multi-Model-Complexity]] (ICLR'26), [[2501.01774|Off-Policy-LFA-Unifying-View]] (NeurIPS'25 Spotlight), [[2412.09858|RLDG]] (RSS'25), [[2412.00798|CRUCB]] (ICLR'26), [[2407.20230|SAPG]] (ICML'24 Oral)
 
@@ -521,7 +540,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2505.19281|Online-RL-Data-Attribution]] (NeurIPS'25 Oral) — Local influence-based filtering for PPO rollout buffers cuts training rounds by 20-67% and runtime by up to 69%, with RLHF gains transferring to LLM fine-tuning
 
 **LLM Reasoning Off-Policy & Sample-Efficient RL** — Off-policy and data-reuse techniques specifically for LLM RLVR/reasoning training.
-- [[2609.20807|Score Centering]], [[2609.13443|NGU]], [[2608.01418|PNPO]], [[2605.30056|CGPO]] (ICML'26), [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2602.20722|BAPO-RL]] (ICLR'26), [[2510.18927|BAPO]] (ICLR'26), [[2510.13328|TOSFIT]] (ICLR'26), [[2510.07730|DEAS]] (ICLR'26), [[2510.02245|ExGRPO]] (ICLR'26), [[2510.01161|M2PO]] (ICLR'26), [[2509.24748|RPEX]] (NeurIPS'25), [[2509.24067|ICQL]] (ICLR'26), [[2509.22601|SPEAR-RL]] (ICLR'26), [[2509.15981|Uncertainty-Policy-Regularisation]] (NeurIPS'25), [[2509.15965|RLinf]], [[2509.01720|SoLS]] (NeurIPS'25), [[2509.01321|DEPO]] (ICLR'26)
+- [[2609.20807|Score Centering]], [[2609.13443|NGU]], [[2608.01418|PNPO]], [[2605.30056|CGPO]] (ICML'26), [[2604.23073|RLT]], [[2604.20733|NPO]], [[2604.18978|LoRA-Critic]], [[2604.08706|RL-Experience-Replay-for-LLMs]], [[2602.20722|BAPO-RL]] (ICLR'26), [[2510.18927|BAPO]] (ICLR'26), [[2510.13328|TOSFIT]] (ICLR'26), [[2510.07730|DEAS]] (ICLR'26), [[2510.02245|ExGRPO]] (ICLR'26), [[2510.01161|M2PO]] (ICLR'26), [[2509.24748|RPEX]] (NeurIPS'25), [[2509.24067|ICQL]] (ICLR'26), [[2509.22601|SPEAR-RL]] (ICLR'26), [[2509.15981|Uncertainty-Policy-Regularisation]] (NeurIPS'25), [[2509.15965|RLinf]], [[2509.01720|SoLS]] (NeurIPS'25), [[2509.01321|DEPO]] (ICLR'26)
 
 > [!star] Key Papers
 > - [[2510.02245|ExGRPO]] (ICLR'26) — Replay-buffer prioritization by question difficulty and trajectory entropy lifts OOD reasoning by +7.6 points and rescues weaker models from RLVR collapse (1.3 to 30.8 OOD score)
@@ -529,7 +548,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2510.01161|M2PO]] (ICLR'26) — Second-moment trust-region masking matches on-policy GRPO performance even with data stale by 256 model updates, across model scales from 1.7B to 32B
 
 **Efficient RL Algorithms & Auxiliary Techniques** — Auxiliary tricks and lightweight algorithmic variants that improve RL/RLVR sample efficiency.
-- [[2508.19900|ASPC]] (ICLR'26), [[2508.11143|AC3]], [[2507.07986|EXPO]] (ICLR'26), [[2507.06892|ReMix-RL]], [[2506.06964|Refit]] (NeurIPS'25), [[2506.00917|PSQL]] (ICLR'26), [[2505.11081|ShiQ]] (NeurIPS'25), [[2503.19612|AGRO]], [[2503.05453|SPO]]
+- [[2508.19900|ASPC]] (ICLR'26), [[2508.11143|AC3]], [[2507.07986|EXPO]] (ICLR'26), [[2507.06892|ReMix-RL]], [[2506.06964|Refit]] (NeurIPS'25), [[2506.00917|PSQL]] (ICLR'26), [[2505.15345|Hadamax]] (NeurIPS'25), [[2505.11081|ShiQ]] (NeurIPS'25), [[2503.19612|AGRO]], [[2503.05453|SPO]]
 
 > [!star] Key Papers
 > - [[2507.07986|EXPO]] (ICLR'26) — Pairs a frozen imitation-learned expressive policy with a lightweight edit policy for on-the-fly Q-maximizing refinement, stabilizing online RL for diffusion policies on sparse-reward tasks
@@ -570,14 +589,14 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2506.09477|KL-Divergence-Gradient-Pitfalls]] — Meta FAIR identifies widespread implementation errors in KL divergence gradient estimation; critical for correct RLHF
 
 **Multi-Turn & Agentic Policy Optimization** — Extending RLVR beyond single-turn QA to multi-step, multi-turn, and agentic settings.
-- [[2607.05378|CompactionRL]], [[2606.05468|FlowPRO]], [[2605.06595|CRONA]], [[2605.02730|PFlowNet]] (ICML'26), [[2604.28182|Exploration-Hacking]], [[2602.22817|HGPO]] (ICLR'26), [[2511.02303|Dr.-MAMR]] (ICLR'26), [[2510.14967|IGPO-Info-Gain]] (ICLR'26), [[2510.11062|AT-GRPO]] (ICLR'26), [[2510.05592|AgentFlow]] (ICLR'26 Oral), [[2509.22638|FCP]], [[2509.21826|ResT-RL]] (ICLR'26), [[2509.21240|Tree-GRPO]] (ICLR'26), [[2509.07980|Parallel-R1]] (ICLR'26), [[2509.02333|DCPO]], [[2506.00539|ARIA]] (NeurIPS'25 Spotlight), [[2505.10978|GiGPO]] (NeurIPS'25), [[2504.20571|1-shot-RLVR]] (NeurIPS'25), [[2504.20073|RAGEN]]
+- [[2607.05378|CompactionRL]], [[2606.05468|FlowPRO]], [[2605.06595|CRONA]], [[2605.02730|PFlowNet]] (ICML'26), [[2604.28182|Exploration-Hacking]], [[2602.22817|HGPO]] (ICLR'26), [[2511.02303|Dr.-MAMR]] (ICLR'26), [[2510.14967|IGPO-Info-Gain]] (ICLR'26), [[2510.11062|AT-GRPO]] (ICLR'26), [[2510.05592|AgentFlow]] (ICLR'26 Oral), [[2509.22638|FCP]], [[2509.21826|ResT-RL]] (ICLR'26), [[2509.21240|Tree-GRPO]] (ICLR'26), [[2509.07980|Parallel-R1]] (ICLR'26), [[2509.02333|DCPO]], [[2506.00539|ARIA]] (NeurIPS'25 Spotlight), [[2505.10978|GiGPO]] (NeurIPS'25), [[2504.20073|RAGEN]]
 
 > [!star] Key Papers
 > - [[2504.20073|RAGEN]] — Showed that single-turn RLVR doesn't transfer to multi-step tasks; introduced StarPO for multi-turn RL
 > - [[2504.20571|1-shot-RLVR]] (NeurIPS'25) — Achieves competitive reasoning with just 1 rollout per sample; extreme sample efficiency
 
 **Rollout Speedup, Precision & Compression** — Speculative rollouts, low-precision training, and pruning/compression tricks for faster RL iteration.
-- [[2607.07508|SAO]], [[2607.01232|Single-Layer RL Training]], [[2606.18967|EfficientRollout]], [[2606.12370|MTP-RS]], [[2605.15855|AdaScope]] (CVPR'26), [[2604.26779|Speculative-RL-Rollouts]], [[2603.01639|RL-Speculative-Decoding]] (ICLR'26), [[2602.01601|VIP-Rollout]] (ICLR'26), [[2510.26788|FP16-RL-Training]], [[2510.11696|QeRL]] (ICLR'26), [[2509.23931|AutoPrune]], [[2509.23791|CaRe-BN]] (ICLR'26), [[2509.22566|Policy-Space-Compression]] (ICLR'26), [[2509.01920|DSP-Speculative]] (ICLR'26), [[2505.15345|Hadamax]] (NeurIPS'25), [[2311.12244|muLV-Rep]] (ICML'24)
+- [[2607.07508|SAO]], [[2607.01232|Single-Layer RL Training]], [[2606.18967|EfficientRollout]], [[2606.12370|MTP-RS]], [[2605.15855|AdaScope]] (CVPR'26), [[2604.26779|Speculative-RL-Rollouts]], [[2603.01639|RL-Speculative-Decoding]] (ICLR'26), [[2602.01601|VIP-Rollout]] (ICLR'26), [[2510.26788|FP16-RL-Training]], [[2510.11696|QeRL]] (ICLR'26), [[2509.23931|AutoPrune]], [[2509.23791|CaRe-BN]] (ICLR'26), [[2509.22566|Policy-Space-Compression]] (ICLR'26), [[2509.01920|DSP-Speculative]] (ICLR'26)
 
 > [!star] Key Papers
 > - [[2510.26788|FP16-RL-Training]] — Traces the training-inference mismatch to BF16 rounding error; switching to FP16 cuts the mismatch 24x and lets GRPO/PG-Seq-IS converge stably where BF16 collapses
@@ -586,7 +605,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2510.26788|FP16-RL-Training]] — Demonstrates FP16 precision works for RL training; halves memory cost
 
 **Distributed Training Infrastructure & Stability** — Distributed/async RL systems and algorithmic stability fixes for scaling RL training to production.
-- [[2607.18722|Staleness-Adaptive Trust Region]], [[2604.03489|FAB]] (ICLR'26), [[2510.01764|Octax]] (ICLR'26), [[2510.00819|Stable-PG-LLM]] (ICLR'26), [[2509.25762|OPPO]] (ICLR'26), [[2509.25174|XQC]] (ICLR'26), [[2509.24305|Async-Policy-Gradient]] (ICLR'26), [[2509.21792|FastGRPO]] (ICLR'26), [[2509.19846|BoreaRL]] (ICLR'26), [[2508.17850|GEPO]] (ICLR'26), [[2507.19234|Virne]] (ICLR'26), [[2506.02177|GRESO]] (NeurIPS'25), [[2505.24034|LlamaRL]], [[2505.07291|INTELLECT-2]], [[2503.18929|TBA]] (NeurIPS'25), [[2404.08233|GPBT-PL]], [[1803.00933|Ape-X]] (ICLR'18)
+- [[2607.18722|Staleness-Adaptive Trust Region]], [[2604.03489|FAB]] (ICLR'26), [[2510.01764|Octax]] (ICLR'26), [[2510.00819|Stable-PG-LLM]] (ICLR'26), [[2509.25762|OPPO]] (ICLR'26), [[2509.25174|XQC]] (ICLR'26), [[2509.24305|Async-Policy-Gradient]] (ICLR'26), [[2509.21792|FastGRPO]] (ICLR'26), [[2508.17850|GEPO]] (ICLR'26), [[2506.02177|GRESO]] (NeurIPS'25), [[2505.24034|LlamaRL]], [[2505.07291|INTELLECT-2]], [[2503.18929|TBA]] (NeurIPS'25), [[2410.18252|Asynchronous-RLHF]] (ICLR'25), [[2404.08233|GPBT-PL]], [[1803.00933|Ape-X]] (ICLR'18)
 
 **Unified & Single-Stage SFT+RL Training** — Methods that fuse SFT and RL into one training objective or stage rather than sequencing them.
 - [[2510.10606|ViSurf]], [[2508.11408|CHORD]] (ICLR'26), [[2507.01679|Prefix-RFT]] (ICML'26), [[2506.19767|SRFT]] (ICLR'26), [[2506.13056|Metis-RISE]], [[2506.07527|ReLIFT]] (ICLR'26), [[2505.18917|Behavior-Injection]] (NeurIPS'25), [[2505.18116|NFT]] (ICLR'26), [[2505.03181|AFSFT]] (ICLR'25 Workshop)
@@ -604,7 +623,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2601.06993|ReFine-RFT]] — Identifies the "Cost of Thinking" where excessive textual reasoning hurts; balances verbal and visual reasoning
 
 **Multi-Agent RL** — Multi-agent credit assignment, mean-field, and inverse-RL methods within the policy-optimization family.
-- [[2606.30893|CIMORL]], [[2602.02722|Entity-Centric-HRL]] (ICLR'26), [[2601.05407|HINT]], [[2509.16412|STAF]] (CoRL'25), [[2509.09135|VIP-CT-MARL]] (ICLR'26), [[2508.01522|Cable-Suspended MARL]] (CoRL'25), [[2507.18059|Multi-Agent-GPO]] (ICLR'26), [[2506.09434|MARL-Diversity-Theory]] (ICLR'26), [[2505.22760|Best-Response-Flow]] (NeurIPS'25), [[2505.13834|Quadrupedal Robot Soccer]] (CoRL'25), [[2505.04317|HCSP]] (CoRL'25), [[2502.09762|AT-Drone]] (CoRL'25), [[2502.00560|CAMS]] (ICLR'26), [[2501.06058|CASH]] (CoRL'25), [[2412.04426|Marvel]], [[2412.04233|HyperMARL]] (NeurIPS'25), [[2412.00661|SUBSAMPLE-MFQ]] (NeurIPS'25 Spotlight), [[2411.15046|Multi-Agent-IRL-Rewards]] (NeurIPS'25 Spotlight), [[2405.08036|POW-QMIX]] (ICLR'26)
+- [[2606.30893|CIMORL]], [[2603.11691|STAIRS-Former]], [[2602.02722|Entity-Centric-HRL]] (ICLR'26), [[2601.05407|HINT]], [[2509.16412|STAF]] (CoRL'25), [[2509.09135|VIP-CT-MARL]] (ICLR'26), [[2508.01522|Cable-Suspended MARL]] (CoRL'25), [[2507.18059|Multi-Agent-GPO]] (ICLR'26), [[2506.09434|MARL-Diversity-Theory]] (ICLR'26), [[2505.22760|Best-Response-Flow]] (NeurIPS'25), [[2505.13834|Quadrupedal Robot Soccer]] (CoRL'25), [[2505.04317|HCSP]] (CoRL'25), [[2503.14576|SocialJax]] (ICLR'26), [[2502.09762|AT-Drone]] (CoRL'25), [[2502.08938|exp-a-spiel]] (ICLR'26), [[2502.00560|CAMS]] (ICLR'26), [[2501.06058|CASH]] (CoRL'25), [[2412.04426|Marvel]], [[2412.04233|HyperMARL]] (NeurIPS'25), [[2412.00661|SUBSAMPLE-MFQ]] (NeurIPS'25 Spotlight), [[2411.15046|Multi-Agent-IRL-Rewards]] (NeurIPS'25 Spotlight), [[2405.08036|POW-QMIX]] (ICLR'26)
 
 > [!star] Key Papers
 > - [[2506.09434|MARL-Diversity-Theory]] (ICLR'26) — Proves via Schur-convexity of the reward aggregation operators exactly when behavioral diversity helps cooperative teams, validated across embodied multi-agent environments
@@ -612,7 +631,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2606.30893|CIMORL]] — Sampling-based Pareto-frontier search with distributed dynamic weight prediction for multi-objective multi-robot RL, validated with real-world collision-free Crazyflie drone coordination
 
 **Information-Theoretic, Variational & Formal RL Theory** — Principled probabilistic and information-theoretic treatments of policies, latent reasoning, and value geometry.
-- [[2609.13406|GAI]], [[2509.22637|Variational-Reasoning]] (ICLR'26), [[2509.15999|IO-LVM]] (NeurIPS'25), [[2507.18391|IBRO]], [[2506.16016|Dual-Objective-HJB-RL]] (ICLR'26), [[2506.10138|Planning-Mechanistic-Description]] (ICLR'26), [[2506.02385|Markov-Entanglement]] (NeurIPS'25 Spotlight), [[2506.01597|Policy-Newton-RKHS]] (ICLR'26), [[2505.18454|HRPO]] (NeurIPS'25), [[2410.03119|Ring-Attractor-RL]] (NeurIPS'25), [[2409.17411|Semantic-Clustering-DRL]] (NeurIPS'25), [[2006.13566|DISK]] (NeurIPS'20)
+- [[2609.13406|GAI]], [[2512.20605|Internal-RL]], [[2509.22637|Variational-Reasoning]] (ICLR'26), [[2509.15999|IO-LVM]] (NeurIPS'25), [[2507.18391|IBRO]], [[2506.16016|Dual-Objective-HJB-RL]] (ICLR'26), [[2506.10138|Planning-Mechanistic-Description]] (ICLR'26), [[2506.02385|Markov-Entanglement]] (NeurIPS'25 Spotlight), [[2506.01597|Policy-Newton-RKHS]] (ICLR'26), [[2505.18454|HRPO]] (NeurIPS'25), [[2411.14251|NLRL]], [[2410.03119|Ring-Attractor-RL]] (NeurIPS'25), [[2409.17411|Semantic-Clustering-DRL]] (NeurIPS'25), [[2311.12244|muLV-Rep]] (ICML'24), [[2201.02373|Mirror-Learning]] (ICML'22 Spotlight), [[2006.13566|DISK]] (NeurIPS'20)
 
 > [!star] Key Papers
 > - [[2507.18391|IBRO]] — Grounds RL post-training in the Information Bottleneck principle; clearest information-theoretic account of the entropy/exploration trade-off via a near-free regularizer
@@ -628,7 +647,7 @@ Direct methods for optimizing policies — from classic PPO through modern GRPO 
 > - [[2509.24207|Humanline]] (ICLR'26) — Explains why online RL outperforms offline methods from a human cognitive science perspective
 
 **Applied, Hierarchical & Domain-Specific Policy Methods** — Domain-specific and hierarchical policy-optimization applications outside the mainstream algorithm families.
-- [[2608.18770|CurriPO]], [[2608.09628|PPO Satellite Collision Avoidance]], [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]] (CVPR'26), [[2602.03086|Neural-Predictor-Corrector]] (ICLR'26), [[2601.19452|APC-RL]] (ICLR'26), [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]] (ICLR'26), [[2511.17367|R2PS]] (ICLR'26), [[2511.08234|Geometric-Action-Control]] (ICLR'26), [[2511.05005|MAC-Flow]] (ICLR'26), [[2505.03586|Rainbow-Delay-Compensation]], [[2001.06782|PCGrad]] (NeurIPS'20), [[1910.04054|MVFST-RL]] (NeurIPS'19 Workshop), [[1312.5602|DQN]]
+- [[2608.18770|CurriPO]], [[2608.09628|PPO Satellite Collision Avoidance]], [[2607.23726|HRL-SAC]], [[2606.04923|CHERRL]], [[2603.17925|SPRUCE]], [[2603.11346|Human-Human-Assist-RL]] (CVPR'26), [[2602.03086|Neural-Predictor-Corrector]] (ICLR'26), [[2601.19452|APC-RL]] (ICLR'26), [[2601.00116|GRL-SNAM]], [[2512.13607|Nemotron-Cascade]], [[2512.00915|PI-MDP]] (ICLR'26), [[2511.17367|R2PS]] (ICLR'26), [[2511.08234|Geometric-Action-Control]] (ICLR'26), [[2511.05005|MAC-Flow]] (ICLR'26), [[2505.03586|Rainbow-Delay-Compensation]], [[2406.15508|UNReAL]], [[2001.06782|PCGrad]] (NeurIPS'20), [[1910.04054|MVFST-RL]] (NeurIPS'19 Workshop), [[1312.5602|DQN]]
 
 > [!success] The Post-R1 RL Recipe
 > ==SFT warm-up== (instruction following + format compliance) → ==GRPO with verifiable rewards== (math/code execution as signal) → ==Distillation== to smaller models. Stable large-scale GRPO training with decoupled clip-higher and dynamic sampling. Even 1.5B models gain reasoning; zero-data bootstrapping works via self-play RL.
@@ -659,7 +678,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2605.11182|On-Policy-Distillation-Study]] — Clearest mechanistic account of when and why on-policy self-distillation succeeds or collapses, with concrete fixes
 
 **Self-Rewarding Signal Generation** — Models that construct their own reward or verification signal without external reward models.
-- [[2608.17253|Co-RL]], [[2607.23802|SpyRL]], [[2509.05489|Self-Aligned-Reward]] (ICLR'26), [[2508.14460|DuPO]], [[2508.05004|R-Zero]] (ICLR'26), [[2508.00410|Co-rewarding]] (ICLR'26), [[2506.10139|ICM]], [[2506.08745|CoVo]] (NeurIPS'25), [[2506.07468|SELF-REDTEAM]] (ICML'26), [[2506.01369|Self-Verify-RL]] (NeurIPS'25), [[2505.19590|INTUITOR]] (ICLR'26), [[2502.19613|Self-Rewarding Correction]], [[2407.19594|Meta-Rewarding]], [[2401.10020|Self-Rewarding-LM]] (ICML'24)
+- [[2608.17253|Co-RL]], [[2607.23802|SpyRL]], [[2511.17473|MR-RLVR]], [[2509.05489|Self-Aligned-Reward]] (ICLR'26), [[2508.14460|DuPO]], [[2508.05004|R-Zero]] (ICLR'26), [[2508.00410|Co-rewarding]] (ICLR'26), [[2506.10139|ICM]], [[2506.08745|CoVo]] (NeurIPS'25), [[2506.07468|SELF-REDTEAM]] (ICML'26), [[2506.01369|Self-Verify-RL]] (NeurIPS'25), [[2505.19590|INTUITOR]] (ICLR'26), [[2502.19613|Self-Rewarding Correction]], [[2407.19594|Meta-Rewarding]], [[2401.10020|Self-Rewarding-LM]] (ICML'24)
 
 > [!star] Key Papers
 > - [[2401.10020|Self-Rewarding-LM]] (ICML'24) — Foundational paper establishing the self-rewarding paradigm: a single LLM acts as both generator and judge via iterative DPO, no external reward model
@@ -669,16 +688,16 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2508.05004|R-Zero]] (ICLR'26) — LLMs self-evolve reasoning via self-generated problems and rewards; fully autonomous
 
 **Self-Improvement Pipelines & Applications** — End-to-end self-improvement systems and their applications across modalities.
-- [[2607.14777|SEED]], [[2605.20914|RISE-Self-Evolving-VLM]], [[2604.20209|SGS]], [[2602.10014|Task-Centric-Self-Improvement-Theory]], [[2601.21343|Self-Improving-Pretraining]], [[2512.05356|Co-Improving-AI]], [[2510.14943|LaSeR-RL]] (ICLR'26), [[2510.14420|Instructions-RL]], [[2510.02172|RESTRAIN]], [[2509.23863|SPELL]] (ICLR'26), [[2509.23236|Self-Reflection-VLM]], [[2509.15155|Self-Improving-EFM]] (NeurIPS'25), [[2508.14029|SvS]] (ICLR'26), [[2507.16663|MLLM-Self-Improvement]] (ICLR'26), [[2504.05812|EMPO]] (NeurIPS'25 Spotlight), [[2412.02674|GV-Gap]], [[2410.15639|Self-Developing]]
+- [[2607.14777|SEED]], [[2605.20914|RISE-Self-Evolving-VLM]], [[2604.20209|SGS]], [[2602.10014|Task-Centric-Self-Improvement-Theory]], [[2601.21343|Self-Improving-Pretraining]], [[2512.05356|Co-Improving-AI]], [[2510.14943|LaSeR-RL]] (ICLR'26), [[2510.14420|Instructions-RL]], [[2510.02172|RESTRAIN]], [[2509.23863|SPELL]] (ICLR'26), [[2509.23236|Self-Reflection-VLM]], [[2509.15155|Self-Improving-EFM]] (NeurIPS'25), [[2508.14029|SvS]] (ICLR'26), [[2507.16663|MLLM-Self-Improvement]] (ICLR'26), [[2506.10943|SEAL]] (NeurIPS'25), [[2504.05812|EMPO]] (NeurIPS'25 Spotlight), [[2412.02674|GV-Gap]], [[2410.15639|Self-Developing]]
 
 **Chain-of-Thought Reasoning** — Training LLMs to produce explicit step-by-step reasoning, with RL as the training signal.
-- [[2606.03937|VEPO]], [[2605.28774|AXPO]], [[2506.07751|AbstRaL]] (ICLR'26), [[2505.20561|BARL]] (ICLR'26), [[2505.14631|LHRM]] (NeurIPS'25), [[2505.13308|LATENTSEEK]], [[2505.11896|AdaCoT]], [[2505.10425|L2T]] (NeurIPS'25), [[2503.24290|Open-Reasoner-Zero]] (NeurIPS'25), [[2503.10460|Light-R1]]
+- [[2606.03937|VEPO]], [[2605.28774|AXPO]], [[2506.07751|AbstRaL]] (ICLR'26), [[2505.20561|BARL]] (ICLR'26), [[2505.10425|L2T]] (NeurIPS'25), [[2503.24290|Open-Reasoner-Zero]] (NeurIPS'25), [[2503.10460|Light-R1]]
 
 > [!star] Key Papers
 > - [[2503.24290|Open-Reasoner-Zero]] (NeurIPS'25) — First comprehensive open-source reproduction of R1-Zero; reference implementation for the field
 
 **Adaptive Compute Allocation & When-to-Think** — Methods that decide when and how much to reason at inference time, optimizing the compute-accuracy tradeoff.
-- [[2604.05355|ETR]], [[2601.22628|TTCS]], [[2512.01127|Mode-Conditioning]], [[2510.09001|DARO]], [[2510.06557|Markovian-Thinker]] (ICLR'26), [[2510.01135|PCL]] (ICLR'26), [[2506.18110|AdaBack]] (ICLR'26), [[2505.19862|REA-RL]] (ICLR'26), [[2505.13438|AnytimeReasoner]] (NeurIPS'25), [[2505.13379|Thinkless]] (NeurIPS'25), [[2503.16188|Think-or-Not-Think]], [[2503.04697|L1]], [[2502.04463|Efficient-Reasoning-RL]] (NeurIPS'25)
+- [[2604.05355|ETR]], [[2601.22628|TTCS]], [[2512.01127|Mode-Conditioning]], [[2510.09001|DARO]], [[2510.06557|Markovian-Thinker]] (ICLR'26), [[2510.01135|PCL]] (ICLR'26), [[2506.18110|AdaBack]] (ICLR'26), [[2505.19862|REA-RL]] (ICLR'26), [[2505.14631|LHRM]] (NeurIPS'25), [[2505.13438|AnytimeReasoner]] (NeurIPS'25), [[2505.13379|Thinkless]] (NeurIPS'25), [[2505.11896|AdaCoT]], [[2503.16188|Think-or-Not-Think]], [[2503.07572|MRT]] (ICML'25), [[2503.04697|L1]], [[2502.04463|Efficient-Reasoning-RL]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2503.04697|L1]] — Foundational method (LCPO) giving explicit control over reasoning length via a tunable target-token-budget prompt; a 1.5B model beats GPT-4o at matched token budgets
@@ -706,7 +725,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2512.03442|PretrainZero]] — Self-supervised reinforcement active pretraining without human data
 
 **Flagship Reasoning Models** — Complete, named reasoning-model training pipelines from major labs.
-- [[2607.15314|Cura 1T]], [[2607.12395|Ring-Zero]], [[2507.12507|Nemotron]], [[2506.13585|MiniMax-M1]], [[2506.13284|AceReason-Nemotron]] (ICLR'26), [[2505.00949|Llama-Nemotron]], [[2504.21318|Phi-4-reasoning]], [[2504.21233|Phi-4-Mini-Reasoning]], [[2501.12948|DeepSeek-R1]], [[2501.12599|Kimi k1.5]], [[2501.11223|RLM-Blueprint]]
+- [[2607.15314|Cura 1T]], [[2607.12395|Ring-Zero]], [[2507.20534|Kimi-K2]], [[2507.12507|Nemotron]], [[2506.13585|MiniMax-M1]], [[2506.13284|AceReason-Nemotron]] (ICLR'26), [[2505.00949|Llama-Nemotron]], [[2504.21318|Phi-4-reasoning]], [[2504.21233|Phi-4-Mini-Reasoning]], [[2501.12948|DeepSeek-R1]], [[2501.12599|Kimi k1.5]], [[2501.11223|RLM-Blueprint]]
 
 > [!star] Key Papers
 > - [[2501.12948|DeepSeek-R1]] — Showed reasoning emerges from pure outcome-based RL alone; established the multi-stage SFT+RL+distillation pipeline the field now builds on
@@ -717,7 +736,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2501.11223|RLM-Blueprint]] — ETH Zurich's comprehensive modular blueprint for Reasoning Language Models
 
 **Training Recipes, Curricula & Data for Reasoning** — Data synthesis, curricula, and multi-hop/multi-lingual training recipes for reasoning RL.
-- [[2606.25996|Autodata]], [[2603.02146|LongRLVR]] (ICLR'26), [[2603.02091|Synthetic-Multi-Hop-RL]] (ICLR'26), [[2510.19363|LoongRL]] (ICLR'26 Oral), [[2510.16614|MERCI]] (ICLR'26), [[2510.15414|MARSHAL]] (ICLR'26), [[2510.11686|RepExp]] (ICLR'26), [[2510.04140|MENTOR]] (ICLR'26), [[2510.02173|RL4HS]] (ICLR'26), [[2509.25666|NuRL]] (ICLR'26), [[2509.23657|RL-Cross-Lingual]] (ICLR'26), [[2509.23330|SIE]], [[2509.10396|IGPO]] (ICLR'26), [[2509.06949|TraceRL]] (ICLR'26), [[2507.13266|QuestA]] (ICLR'26), [[2506.08672|RuleReasoner]] (ICLR'26), [[2506.06632|Easy-to-Hard-Curriculum-RL]] (ICLR'26), [[2505.24630|FSPO]] (NeurIPS'25), [[2505.19914|Enigmata]] (NeurIPS'25 Spotlight), [[2505.19641|SynLogic]] (NeurIPS'25), [[2504.13828|Cognition-Engineering]]
+- [[2606.25996|Autodata]], [[2603.02146|LongRLVR]] (ICLR'26), [[2603.02091|Synthetic-Multi-Hop-RL]] (ICLR'26), [[2510.19363|LoongRL]] (ICLR'26 Oral), [[2510.16614|MERCI]] (ICLR'26), [[2510.15414|MARSHAL]] (ICLR'26), [[2510.11686|RepExp]] (ICLR'26), [[2510.04140|MENTOR]] (ICLR'26), [[2510.02173|RL4HS]] (ICLR'26), [[2509.25666|NuRL]] (ICLR'26), [[2509.23657|RL-Cross-Lingual]] (ICLR'26), [[2509.23330|SIE]], [[2509.10396|IGPO]] (ICLR'26), [[2509.06949|TraceRL]] (ICLR'26), [[2509.06870|AggLM]], [[2507.13266|QuestA]] (ICLR'26), [[2506.08672|RuleReasoner]] (ICLR'26), [[2506.06632|Easy-to-Hard-Curriculum-RL]] (ICLR'26), [[2505.24630|FSPO]] (NeurIPS'25), [[2505.19914|Enigmata]] (NeurIPS'25 Spotlight), [[2505.19641|SynLogic]] (NeurIPS'25), [[2504.13828|Cognition-Engineering]]
 
 > [!star] Key Papers
 > - [[2603.02091|Synthetic-Multi-Hop-RL]] (ICLR'26) — Shows RL on purely rule-generated, fictional synthetic data teaches a transferable "knowledge composition" skill, lifting real-world multi-hop QA F1 by 56-131%
@@ -725,7 +744,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2509.23657|RL-Cross-Lingual]] (ICLR'26) — Definitive multilingual training-recipe study, showing RL (unlike SFT) generalizes cross-lingually and trains better on non-English data
 
 **Reward & Objective Design for Reasoning** — Reward-shaping and objective-function innovations for reasoning RL.
-- [[2605.29198|GCPO]], [[2605.22817|VPO]], [[2605.21467|DelTA]], [[2605.16787|RLVR-Unlearnability]] (ICML'26), [[2605.12227|dGRPO]], [[2605.11609|AntiSD]], [[2512.13106|TraPO-RL]] (ICLR'26), [[2510.22543|FAPO]] (ICLR'26), [[2506.18485|MeRF]] (ICLR'26), [[2506.17238|ether0]] (NeurIPS'25), [[2506.05997|SRU]], [[2506.01413|Instruction-Following-RL]] (NeurIPS'25), [[2505.21908|DRG-SAPPHIRE]] (NeurIPS'25 Spotlight), [[2505.21097|Thinker-RL]] (NeurIPS'25), [[2505.16368|SATURN]] (NeurIPS'25 Spotlight), [[2505.11792|SIRL]] (NeurIPS'25)
+- [[2608.05139|Skill-Entropy RL]], [[2605.29198|GCPO]], [[2605.22817|VPO]], [[2605.21467|DelTA]], [[2605.16787|RLVR-Unlearnability]] (ICML'26), [[2605.12227|dGRPO]], [[2605.11609|AntiSD]], [[2512.13106|TraPO-RL]] (ICLR'26), [[2510.22543|FAPO]] (ICLR'26), [[2506.18485|MeRF]] (ICLR'26), [[2506.17238|ether0]] (NeurIPS'25), [[2506.05997|SRU]], [[2506.01413|Instruction-Following-RL]] (NeurIPS'25), [[2505.21908|DRG-SAPPHIRE]] (NeurIPS'25 Spotlight), [[2505.21097|Thinker-RL]] (NeurIPS'25), [[2505.16368|SATURN]] (NeurIPS'25 Spotlight), [[2505.11792|SIRL]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2605.11609|AntiSD]] — Reframes self-distillation's per-token signal as conditional PMI, then reverses and JSD-bounds it to reward deliberation over shortcuts; 2-10x faster convergence and up to +11.5pts over GRPO
@@ -736,21 +755,21 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 - [[2605.31228|EchoRL]] (ICML'26), [[2605.31159|TRB]], [[2605.28421|DenoiseRL]], [[2605.10663|Evolving-RL]], [[2603.07197|Re-squared]] (ICLR'26), [[2602.11549|NRT]] (ICLR'26), [[2512.18857|CORE-Concept]] (ICLR'26), [[2512.01925|Rectifying-LLM-Thought]] (ICLR'26), [[2510.12264|Belief-Deviation-Active-Reasoning]] (ICLR'26 Oral), [[2507.20187|MultiRole-R1]] (ICLR'26), [[2506.18841|LongWriter-Zero]] (ICLR'26 Oral), [[2505.20948|CtrlHGen]] (ICLR'26), [[2505.18499|G1-Graph-Reasoning]], [[2505.18098|PNLC]] (NeurIPS'25), [[2505.10446|DCoLT]] (NeurIPS'25), [[2503.09501|ReMA]] (NeurIPS'25), [[2502.06772|ReasonFlux]]
 
 **Search-Augmented Reasoning** — Teaching LLMs to interleave reasoning with external search and retrieval, learned end-to-end via RL.
-- [[2603.22293|TIPS-RL]] (ICLR'26), [[2602.21728|Explore-on-Graph]] (ICLR'26), [[2510.07958|A2Search]] (ICLR'26), [[2510.00861|Erasable-RL]] (ICLR'26), [[2509.24869|Retro-Star]] (ICLR'26), [[2505.04588|ZeroSearch]], [[2504.21776|WebThinker]] (NeurIPS'25), [[2503.19470|ReSearch]] (NeurIPS'25), [[2503.09516|Search-R1]], [[2503.05592|R1-Searcher]], [[2109.13202|MiniHack]]
+- [[2603.22293|TIPS-RL]] (ICLR'26), [[2602.21728|Explore-on-Graph]] (ICLR'26), [[2510.07958|A2Search]] (ICLR'26), [[2510.00861|Erasable-RL]] (ICLR'26), [[2509.24869|Retro-Star]] (ICLR'26), [[2505.04588|ZeroSearch]], [[2504.21776|WebThinker]] (NeurIPS'25), [[2503.19470|ReSearch]] (NeurIPS'25), [[2503.09516|Search-R1]], [[2503.05592|R1-Searcher]]
 
 > [!star] Key Papers
 > - [[2503.09516|Search-R1]] — RL trains LLMs to autonomously interleave reasoning with search; outperforms pipeline RAG approaches
 > - [[2505.04588|ZeroSearch]] — Trains LLMs to use search by simulating search engines with LLMs; zero real search calls needed
 
 **Verification & Process Rewards** — Learning to verify reasoning steps and assign process-level rewards for more reliable training signals.
-- [[2605.30290|STV]], [[2601.14209|InT]] (ICLR'26), [[2512.16917|GAR-Reasoner]] (ICLR'26), [[2510.24320|Critique-RL]] (ICLR'26), [[2509.26628|AttnRL]] (ICLR'26), [[2508.13755|DARS-Breadth]], [[2506.14245|CoT-Pass@K]] (ICLR'26), [[2506.09026|e3]] (ICLR'26), [[2506.05316|DOTS]] (NeurIPS'25), [[2504.19162|SPC]] (NeurIPS'25), [[2410.08146|PAV]] (ICLR'25 Spotlight), [[2408.15240|GenRM]] (ICLR'25), [[2011.07215|SoftGym]] (CoRL'20)
+- [[2605.30290|STV]], [[2601.14209|InT]] (ICLR'26), [[2512.16917|GAR-Reasoner]] (ICLR'26), [[2510.24320|Critique-RL]] (ICLR'26), [[2509.26628|AttnRL]] (ICLR'26), [[2508.13755|DARS-Breadth]], [[2506.14245|CoT-Pass@K]] (ICLR'26), [[2506.09026|e3]] (ICLR'26), [[2506.05316|DOTS]] (NeurIPS'25), [[2504.19162|SPC]] (NeurIPS'25), [[2410.08146|PAV]] (ICLR'25 Spotlight), [[2408.15240|GenRM]] (ICLR'25)
 
 > [!star] Key Papers
 > - [[2408.15240|GenRM]] (ICLR'25) — Reframes reward modeling as next-token prediction; generative verifiers outperform discriminative ones
 > - [[2410.08146|PAV]] (ICLR'25 Spotlight) — Process Advantage Verifiers measure step-level progress; fine-grained credit assignment
 
 **Failure Modes, Spurious Signals & Reward Hacking** — Cases where RLVR rewards mislead training or where the policy exploits shortcuts.
-- [[2608.23875|AI Surprise Anecdotes]], [[2606.21090|CARE-SelfTrain]], [[2606.21089|MAST]], [[2604.03993|Noisy-Supervision-Reasoning]], [[2512.20760|RLCausal]] (ICLR'26), [[2512.16912|RLVR-Clipping-Entropy]] (ICLR'26), [[2510.09259|Self-Critique-Contamination]] (ICLR'26), [[2509.04259|RL's-Razor]] (ICLR'26), [[2506.17219|RLIF-No-Free-Lunch]], [[2506.10947|Spurious-Rewards-RLVR]], [[2506.01347|Negative-Reinforcement-RLVR]] (NeurIPS'25), [[2505.18830|GRPO-Negative-Gradient]] (NeurIPS'25)
+- [[2608.23875|AI Surprise Anecdotes]], [[2606.21090|CARE-SelfTrain]], [[2606.21089|MAST]], [[2604.03993|Noisy-Supervision-Reasoning]], [[2512.20760|RLCausal]] (ICLR'26), [[2512.16912|RLVR-Clipping-Entropy]] (ICLR'26), [[2510.09259|Self-Critique-Contamination]] (ICLR'26), [[2509.04259|RL's-Razor]] (ICLR'26), [[2506.17219|RLIF-No-Free-Lunch]], [[2506.10947|Spurious-Rewards-RLVR]], [[2506.01347|Negative-Reinforcement-RLVR]] (NeurIPS'25), [[2505.18830|GRPO-Negative-Gradient]] (NeurIPS'25), [[2503.11926|CoT Monitoring]]
 
 > [!star] Key Papers
 > - [[2506.10947|Spurious-Rewards-RLVR]] — Foundational, most surprising finding: random or deliberately incorrect rewards drive Qwen-Math gains nearly matching ground-truth RLVR, revealing RLVR can amplify a pre-existing shortcut rather than teach anything new
@@ -759,7 +778,7 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2506.10947|Spurious-Rewards-RLVR]] — Shows RLVR can improve reasoning even with partially spurious rewards; robustness result
 
 **Generalization, Transfer & Reasoning-Boundary Theory** — When and why RLVR generalizes beyond the training distribution, and where its reasoning-capability ceiling lies.
-- [[2604.15306|Shortest-Path-Generalization]] (ICLR'26), [[2603.08660|Unsupervised-RLVR-Scale]] (ICLR'26), [[2510.11653|MATH-Beyond]] (ICLR'26), [[2509.21124|Reasoning-Potential]] (ICLR'26), [[2509.21016|RL-Grokking-DELTA]] (ICLR'26), [[2508.21188|Model-Task-Alignment]] (ICLR'26), [[2507.10532|RandomCalculation]], [[2506.19733|RL-Transfer-Study]] (ICLR'26), [[2505.11711|RL-Sparse-Subnetwork]] (NeurIPS'25), [[2504.13837|RLVR-Reasoning-Boundary]] (NeurIPS'25 Oral), [[2408.15332|RL-Math-Hardness-Study]] (NeurIPS'25)
+- [[2604.15306|Shortest-Path-Generalization]] (ICLR'26), [[2603.08660|Unsupervised-RLVR-Scale]] (ICLR'26), [[2602.04118|TinyLoRA]], [[2510.11653|MATH-Beyond]] (ICLR'26), [[2509.21124|Reasoning-Potential]] (ICLR'26), [[2509.21016|RL-Grokking-DELTA]] (ICLR'26), [[2508.21188|Model-Task-Alignment]] (ICLR'26), [[2507.10532|RandomCalculation]], [[2506.19733|RL-Transfer-Study]] (ICLR'26), [[2505.24864|ProRL]] (NeurIPS'25), [[2505.11711|RL-Sparse-Subnetwork]] (NeurIPS'25), [[2504.20571|1-shot-RLVR]] (NeurIPS'25), [[2504.13837|RLVR-Reasoning-Boundary]] (NeurIPS'25 Oral), [[2408.15332|RL-Math-Hardness-Study]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2504.13837|RLVR-Reasoning-Boundary]] (NeurIPS'25 Oral) — Shows RLVR raises pass@1 but shrinks pass@k at large k below the base model, revealing the ceiling is the base model's own support rather than new reasoning
@@ -768,10 +787,10 @@ The post-DeepSeek-R1 paradigm: using RL (especially GRPO) to teach LLMs to reaso
 > - [[2505.11711|RL-Sparse-Subnetwork]] (NeurIPS'25) — RL fine-tuning consistently activates sparse subnetworks; reveals structural changes in LLMs
 
 **Training Dynamics & Mechanistic Analysis** — Mechanistic and empirical analysis of what happens inside the model during RLVR training.
-- [[2603.22446|Token-Level-Shift-Analysis]] (ICLR'26), [[2601.22595|Uncertainty-Consistency-RLVR]] (ICLR'26), [[2512.23165|PEFT-for-RLVR]], [[2512.05962|DMVR]] (ICLR'26), [[2510.27072|Self-Play Reasoning Analysis]], [[2510.03669|Token-Hidden-Reward]] (ICLR'26), [[2509.24203|Group-Relative-REINFORCE-Analysis]] (ICLR'26), [[2509.22613|RL-Planning-Theory]] (ICLR'26), [[2509.21044|RL-Activation-Intensity]] (ICLR'26), [[2506.09967|Resa]], [[2506.04723|SPARKLE]] (NeurIPS'25), [[2506.04695|RL-Training-Dynamics-Analysis]] (ICLR'26), [[2505.20268|Outcome-Based-Online-RL]] (NeurIPS'25), [[2505.16826|KTAE]] (NeurIPS'25), [[1910.11956|Franka-Kitchen]] (CoRL'19)
+- [[2603.22446|Token-Level-Shift-Analysis]] (ICLR'26), [[2601.22595|Uncertainty-Consistency-RLVR]] (ICLR'26), [[2512.23165|PEFT-for-RLVR]], [[2512.05962|DMVR]] (ICLR'26), [[2510.27072|Self-Play Reasoning Analysis]], [[2510.03669|Token-Hidden-Reward]] (ICLR'26), [[2509.24203|Group-Relative-REINFORCE-Analysis]] (ICLR'26), [[2509.22613|RL-Planning-Theory]] (ICLR'26), [[2509.21044|RL-Activation-Intensity]] (ICLR'26), [[2506.09967|Resa]], [[2506.04723|SPARKLE]] (NeurIPS'25), [[2506.04695|RL-Training-Dynamics-Analysis]] (ICLR'26), [[2505.20268|Outcome-Based-Online-RL]] (NeurIPS'25), [[2505.16826|KTAE]] (NeurIPS'25)
 
 **Internalized Reasoning & Latent Thought** — Moving reasoning from explicit text to internal latent representations, enabling faster and more efficient inference.
-- [[2601.21598|ATP-Latent]], [[2601.18631|AdaReasoner]] (ICLR'26), [[2601.13562|Reasoning-as-Modality]], [[2601.05877|iReasoner]], [[2512.17206|Reasoning-Palette]], [[2512.07558|ReLaX]], [[2509.24251|LVR]] (ICLR'26), [[2509.19170|Noisy-Soft-Thinking]] (ICLR'26), [[2509.06160|REER]] (ICLR'26), [[2505.19092|LatentR3]] (ICLR'26), [[2505.16552|CoLaR]] (NeurIPS'25)
+- [[2601.21598|ATP-Latent]], [[2601.18631|AdaReasoner]] (ICLR'26), [[2601.13562|Reasoning-as-Modality]], [[2601.05877|iReasoner]], [[2512.17206|Reasoning-Palette]], [[2512.07558|ReLaX]], [[2511.21395|Monet]], [[2509.24251|LVR]] (ICLR'26), [[2509.19170|Noisy-Soft-Thinking]] (ICLR'26), [[2509.06160|REER]] (ICLR'26), [[2505.19092|LatentR3]] (ICLR'26), [[2505.16552|CoLaR]] (NeurIPS'25), [[2505.13308|LATENTSEEK]]
 
 > [!star] Key Papers
 > - [[2509.24251|LVR]] (ICLR'26) — Latent Visual Reasoning: autoregressive reasoning directly within visual representations, bypassing text
@@ -793,15 +812,6 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2503.21776|Video-R1]] (NeurIPS'25) — First framework to apply rule-based R1-style RL to video, introducing T-GRPO's contrastive temporal reward as the foundation others build on
 > - [[2505.12434|VIDEORFT]] (NeurIPS'25) — Strongest reported results, beating GPT-4o on VSI-Bench and outranking contemporary R1 video models on most benchmarks
 > - [[2511.13054|ViSS-R1]] — Clearest fix for the field's text-centric shortcut-learning problem, using self-supervised visual pretext tasks to force genuine visual grounding
-
-**Spatial & Embodied Visual R1** — R1-style RL for spatial/embodied reasoning.
-- [[2512.04069|SpaceTools]] (CVPR'26), [[2510.08531|SpatialLadder]] (ICLR'26), [[2508.11737|Ovis2.5]], [[2505.07062|Seed1.5-VL]], [[2503.20752|Reason-RFT]] (NeurIPS'25), [[2503.18470|MetaSpatial]] (ICLR'26), [[2503.12797|DeepPerception]]
-
-> [!star] Key Papers
-> - [[2503.18470|MetaSpatial]] (ICLR'26) — First RL framework to give VLMs inherent 3D spatial reasoning, eliminating costly post-hoc layout correction
-> - [[2503.20752|Reason-RFT]] (NeurIPS'25) — Clearest exposition of the SFT-then-GRPO recipe, showing it generalizes far better than pure SFT under domain shift
-> - [[2512.04069|SpaceTools]] (CVPR'26) — Strongest reported result, translating tool-augmented RL into an 86% real-robot manipulation success rate
-> - [[2505.07062|Seed1.5-VL]] — ByteDance's production-grade multimodal reasoning model; SOTA on 38/60 benchmarks
 
 **GUI & Mobile Agent R1** — R1-style RL for GUI grounding and mobile-agent control.
 - [[2509.18119|MobileRL]] (ICLR'26), [[2508.04389|GuirlVG]] (ICLR'26), [[2505.15810|GUI-G1]] (NeurIPS'25), [[2505.12493|GUI-Shift]] (ICLR'26), [[2505.12370|SE-GUI]] (NeurIPS'25)
@@ -847,7 +857,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2506.03569|MiMo-VL]] — Xiaomi's 7B model achieving SOTA visual reasoning; proves small models can reason
 
 **Self-Improvement, Training-Free & Efficient Visual RLVR** — Label-free, test-time, and compute-efficient visual RLVR training strategies.
-- [[2511.01191|Self-Harmony]] (ICLR'26), [[2510.03259|MASA]] (ICML'26), [[2510.02752|Self-Aware-RL-for-LLMs]], [[2510.02263|RLAD]] (ICLR'26), [[2509.25541|Vision-Zero]] (ICLR'26), [[2509.15194|EVOL-RL]], [[2507.08838|wd1]] (ICLR'26), [[2506.08989|SwS]] (NeurIPS'25), [[2504.16084|TTRL]] (NeurIPS'25)
+- [[2511.15661|VisPlay]], [[2511.01191|Self-Harmony]] (ICLR'26), [[2510.03259|MASA]] (ICML'26), [[2510.02752|Self-Aware-RL-for-LLMs]], [[2510.02263|RLAD]] (ICLR'26), [[2509.25541|Vision-Zero]] (ICLR'26), [[2509.15194|EVOL-RL]], [[2507.08838|wd1]] (ICLR'26), [[2506.08989|SwS]] (NeurIPS'25), [[2504.16084|TTRL]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2504.16084|TTRL]] (NeurIPS'25) — foundational method establishing test-time RL from majority-vote pseudo-rewards, spawning the whole self-improvement lineage this group builds on and critiques
@@ -866,13 +876,17 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2602.23615|HART]] — clearest diagnosis of the core RL-for-grounding failure mode (reward misspecification), halving incorrect-grounding-yet-correct-answer cases
 
 **Spatial Reasoning & 3D/4D Understanding** — RL for 3D spatial relations, multi-view understanding, and spatial-reasoning benchmarks.
-- [[2609.23038|Spatial-Interactor]], [[2608.21170|Progressive-Visual-Scaffolds]], [[2512.20617|SpatialTree]], [[2510.27606|Spatial-SSRL]], [[2507.13362|VLM-Spatial-Reasoning-RL]], [[2507.08306|M2-Reasoning]], [[2506.21656|SpatialReasoner-R1]] (NeurIPS'25), [[2506.21458|MINDCUBE]] (ICLR'26), [[2506.09965|VILASR]] (NeurIPS'25), [[2505.19094|SATORI]], [[2505.15879|GRIT]] (NeurIPS'25), [[2505.15804|STAR-R1]], [[2504.07954|Perception-R1-RL]] (NeurIPS'25)
+- [[2609.23038|Spatial-Interactor]], [[2608.21170|Progressive-Visual-Scaffolds]], [[2512.20617|SpatialTree]], [[2512.04069|SpaceTools]] (CVPR'26), [[2510.27606|Spatial-SSRL]], [[2510.08531|SpatialLadder]] (ICLR'26), [[2508.11737|Ovis2.5]], [[2507.13362|VLM-Spatial-Reasoning-RL]], [[2507.08306|M2-Reasoning]], [[2506.21656|SpatialReasoner-R1]] (NeurIPS'25), [[2506.21458|MINDCUBE]] (ICLR'26), [[2506.09965|VILASR]] (NeurIPS'25), [[2505.19094|SATORI]], [[2505.15879|GRIT]] (NeurIPS'25), [[2505.15804|STAR-R1]], [[2505.07062|Seed1.5-VL]], [[2504.07954|Perception-R1-RL]] (NeurIPS'25), [[2503.20752|Reason-RFT]] (NeurIPS'25), [[2503.18470|MetaSpatial]] (ICLR'26), [[2503.12797|DeepPerception]]
 
 > [!star] Key Papers
 > - [[2512.20617|SpatialTree]] — first capability-centric hierarchical taxonomy unifying fragmented spatial benchmarks, with an "auto-think" RL strategy that lifts scores across every level
 > - [[2506.21458|MINDCUBE]] (ICLR'26) — exposes VLMs' near-random performance on spatial mental modeling from limited views and shows SFT+RL cognitive-map training lifts accuracy from 47.62% to 70.67%
 > - [[2506.09965|VILASR]] (NeurIPS'25) — paradigm-shifting "drawing to reason in space" approach interleaving visual drawing operations with text, reaching SOTA with an 18.4% average gain across five spatial-reasoning benchmarks
 > - [[2505.15804|STAR-R1]] — State-of-the-art spatial reasoning by anchoring each CoT step to visual regions
+> - [[2503.18470|MetaSpatial]] (ICLR'26) — First RL framework to give VLMs inherent 3D spatial reasoning, eliminating costly post-hoc layout correction
+> - [[2503.20752|Reason-RFT]] (NeurIPS'25) — Clearest exposition of the SFT-then-GRPO recipe, showing it generalizes far better than pure SFT under domain shift
+> - [[2512.04069|SpaceTools]] (CVPR'26) — Strongest reported result, translating tool-augmented RL into an 86% real-robot manipulation success rate
+> - [[2505.07062|Seed1.5-VL]] — ByteDance's production-grade multimodal reasoning model; SOTA on 38/60 benchmarks
 
 **Video/Temporal Grounding, Segmentation & GUI-Document Spatial RL** — RL for temporal video grounding, pixel-level segmentation, and document/sketch spatial understanding.
 - [[2607.02490|VRRL]], [[2605.15951|Group-Revision]] (CVPR'26), [[2605.14742|EARL]] (ICML'26), [[2603.26499|AIRA2]], [[2603.25629|LanteRn]], [[2602.20630|TraqPoint]] (CVPR'26 Oral), [[2602.11730|STVG-R1]] (ICLR'26), [[2601.15224|PROGRESSLM]], [[2601.05688|SketchVL]], [[2512.15160|EagleVision]] (CVPR'26), [[2512.12633|DiG]], [[2511.05491|VST]], [[2507.05920|MGPO]], [[2507.05255|OVR]] (NeurIPS'25), [[2506.22624|Seg-R1]]
@@ -918,13 +932,15 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2512.18552|SSR]] (ICML'26) — strongest reported results, using adversarial bug-injection/bug-solving self-play on real repositories to beat human-curated-data RL baselines by +10.4 pts on SWE-bench Verified
 > - [[2512.22545|SR-MCR]] — clearest articulation of the self-rewarding idea, combining five intrinsic tool-based process signals to avoid the "self-delusion" of LLM-as-judge rewards
 
-**Embodied, Spatial & Action-Oriented Visual RL** — RL for physically/spatially grounded visual tasks — panoramic navigation, video segmentation, and embodied action.
-- [[2602.21992|PanoEnv]], [[2601.19099|m2sv]], [[2601.02356|Talk2Move]], [[2511.16077|VideoSeg-R1]], [[2511.11113|VIDEOP2R]], [[2510.09606|SpaceVista]], [[2507.16815|ThinkAct]] (NeurIPS'25), [[2505.23747|Spatial-MLLM]] (NeurIPS'25 Spotlight), [[2505.23678|ViGoRL]] (NeurIPS'25), [[2505.23590|Jigsaw-R1]]
+**Embodied & Action-Oriented Visual RL** — RL for physically grounded visual reasoning and action: embodied 3D reasoning, panoramic navigation, video segmentation, and robot action.
+- [[2609.19659|EmbodiedMind]], [[2602.21992|PanoEnv]], [[2602.00795|DVLA-RL]] (ICLR'26), [[2601.19099|m2sv]], [[2601.02356|Talk2Move]], [[2512.13660|RoboTracer]] (ECCV'26), [[2511.20814|SPHINX]], [[2511.20351|HVS]], [[2511.16077|VideoSeg-R1]], [[2511.11113|VIDEOP2R]], [[2510.09606|SpaceVista]], [[2508.07804|Pose-RFT]], [[2507.16815|ThinkAct]] (NeurIPS'25), [[2507.10548|EmbRACE-3K]], [[2506.08011|ViGaL]] (ICLR'26), [[2505.23747|Spatial-MLLM]] (NeurIPS'25 Spotlight), [[2505.23678|ViGoRL]] (NeurIPS'25), [[2505.23590|Jigsaw-R1]], [[2504.12680|Embodied-R]]
 
 > [!star] Key Papers
 > - [[2507.16815|ThinkAct]] (NeurIPS'25) — dual-system RL framework directly grounds reasoning in robot actions, driving the strongest embodied results (84.4% LIBERO) and emergent self-correction
 > - [[2505.23678|ViGoRL]] (NeurIPS'25) — foundational grounded-RL paradigm anchoring each reasoning step to explicit image coordinates, inducing human-like visual behaviors absent from vanilla GRPO
 > - [[2505.23747|Spatial-MLLM]] (NeurIPS'25 Spotlight) — first to fuse a visual geometry foundation model with an MLLM for RL-tuned spatial reasoning, setting SOTA on VSI-Bench purely from 2D video
+> - [[2504.12680|Embodied-R]] — Enables foundation models to perform embodied spatial reasoning by combining CoT with physical grounding
+> - [[2507.10548|EmbRACE-3K]] — 3,000 embodied reasoning tasks in photorealistic environments; benchmark for embodied visual RL
 
 **General & Applied Visual Reasoning Methods** — Broader visual reasoning RL methods spanning coding, editing, and general multimodal tasks.
 - [[2604.20705|SSL-R1]], [[2603.19370|VAMPO]], [[2603.03857|DeepScan]], [[2603.02511|Unveiler]], [[2512.23169|REVEALER]], [[2512.17312|CodeDance]] (CVPR'26), [[2511.18373|MASS]], [[2510.24285|ViPER]], [[2510.23925|LaCoT]] (NeurIPS'25), [[2509.07969|Mini-o3]] (ICLR'26), [[2506.02096|SynthRL]], [[2505.14246|Visual-ARFT]]
@@ -935,7 +951,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2603.03857|DeepScan]] — training-free bottom-up scanning paradigm that most clearly demonstrates the group's core idea, beating even RL-trained and much larger models while being faster
 
 **Agentic Multimodal RL Frameworks** — Multi-turn, tool-using, and driving/shopping/search agent frameworks trained with multimodal RL.
-- [[2511.18437|PEARL]], [[2510.23038|TIR-Judge]] (ICLR'26), [[2510.22832|HRM-Agent]], [[2510.19245|See-Think-Act-Shopper]], [[2510.01132|Multi-turn-Agentic-RL-Guide]], [[2509.26626|RSA]], [[2509.22643|VLA-Reasoner]] (ICRA'26), [[2509.01055|VerlTool]], [[2508.20722|rStar2-Agent]], [[2508.13167|CoA]], [[2508.09736|M3-Agent]] (ICLR'26), [[2508.07976|ASearcher]], [[2508.03680|Agent-Lightning]], [[2507.20879|DriveAgent-R1]] (ICLR'26), [[2506.21669|SEEA-R1]] (NeurIPS'25), [[2506.06122|ROLL]]
+- [[2512.13043|GTR-Turbo]] (CVPR'26), [[2511.18437|PEARL]], [[2510.23038|TIR-Judge]] (ICLR'26), [[2510.22832|HRM-Agent]], [[2510.19245|See-Think-Act-Shopper]], [[2510.01132|Multi-turn-Agentic-RL-Guide]], [[2509.26626|RSA]], [[2509.22643|VLA-Reasoner]] (ICRA'26), [[2509.01055|VerlTool]], [[2508.20722|rStar2-Agent]], [[2508.13167|CoA]], [[2508.09736|M3-Agent]] (ICLR'26), [[2508.07976|ASearcher]], [[2508.03680|Agent-Lightning]], [[2507.20879|DriveAgent-R1]] (ICLR'26), [[2506.21669|SEEA-R1]] (NeurIPS'25), [[2506.06122|ROLL]], [[2405.10292|VLM-RL-Fine-Tuning]] (NeurIPS'24)
 
 > [!star] Key Papers
 > - [[2509.01055|VerlTool]] — foundational open-source framework unifying agentic RL with tool use, fixing the fragmented, synchronous, text-only infrastructure that held back the whole ecosystem
@@ -959,7 +975,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2511.11007|VisMem]] — cognitively-grounded dual short-term/long-term latent vision memory that recovers visual grounding lost over long generations
 
 **World-Model, VLA & Embodied-Adjacent Multimodal RL** — Multimodal RL tied to world models, VLA action generation, and embodied energy-based objectives.
-- [[2512.14666|EVOLVE-VLA]], [[2512.13644|DexWM]], [[2512.09924|ReViSE]], [[2510.19307|RIL]] (NeurIPS'25), [[2510.12693|ERA]], [[2510.11369|Reasoning-as-Representation]] (ICLR'26 Oral), [[2510.10603|EA4LLM]], [[2510.09285|VPPO]] (ICLR'26), [[2510.08191|Training-Free-GRPO]], [[2507.07969|Q-chunking]] (NeurIPS'25), [[2507.02092|EBT]] (ICLR'26 Oral), [[2506.10943|SEAL]] (NeurIPS'25)
+- [[2512.14666|EVOLVE-VLA]], [[2512.13644|DexWM]], [[2512.09924|ReViSE]], [[2510.19307|RIL]] (NeurIPS'25), [[2510.12693|ERA]], [[2510.11369|Reasoning-as-Representation]] (ICLR'26 Oral), [[2510.10603|EA4LLM]], [[2510.09285|VPPO]] (ICLR'26), [[2510.08191|Training-Free-GRPO]], [[2507.02092|EBT]] (ICLR'26 Oral)
 
 > [!star] Key Papers
 > - [[2507.07969|Q-chunking]] (NeurIPS'25) — redefines the Q-function over action chunks for unbiased n-step backups, now a building block under many VLA training recipes
@@ -967,7 +983,7 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2512.14666|EVOLVE-VLA]] — replaces the oracle reward RL needs with a learned progress estimator for test-time training, breaking the 0% barrier on unseen tasks
 
 **Named Multimodal Models & Reasoning-Quality Enhancements** — Flagship multimodal models and reasoning/hallucination-robustness enhancements.
-- [[2605.13467|PDCR]] (CVPR'26), [[2604.03179|Hallucination-as-Cue]] (CVPR'26), [[2604.00479|MUPO]] (CVPR'26), [[2603.25720|R-C2]], [[2603.24139|TSRL-Deepfake]] (CVPR'26), [[2603.18886|RLLM]], [[2603.17693|SynRL]], [[2603.05256|Wiki-R1]] (ICLR'26), [[2603.01106|DIVA-GRPO]] (ICLR'26), [[2602.02150|ECHO]], [[2601.06794|ECHO]], [[2512.24330|SenseNova-MARS]], [[2510.26583|Emu3.5]], [[2508.11630|Thyme]] (ICLR'26), [[2507.20534|Kimi-K2]], [[2506.01078|GThinker]], [[2505.19223|LLaDA-1.5]]
+- [[2605.13467|PDCR]] (CVPR'26), [[2604.03179|Hallucination-as-Cue]] (CVPR'26), [[2604.00479|MUPO]] (CVPR'26), [[2603.25720|R-C2]], [[2603.24139|TSRL-Deepfake]] (CVPR'26), [[2603.18886|RLLM]], [[2603.17693|SynRL]], [[2603.05256|Wiki-R1]] (ICLR'26), [[2603.01106|DIVA-GRPO]] (ICLR'26), [[2602.02150|ECHO]], [[2601.06794|ECHO]], [[2512.24330|SenseNova-MARS]], [[2510.26583|Emu3.5]], [[2508.11630|Thyme]] (ICLR'26), [[2506.01078|GThinker]], [[2505.07538|Selftok]], [[2409.18869|Emu3]]
 
 > [!star] Key Papers
 > - [[2510.26583|Emu3.5]] — flagship native next-token-prediction model (34.1B params, 13T tokens of video) beating Gemini 2.5 Flash Image 65.5-67.1% of the time
@@ -987,18 +1003,11 @@ Applying RL (especially GRPO) to teach VLMs to reason visually — a direct exte
 > - [[2505.11221|LVLM2P]] — Distills RL-trained large VLM reasoning policies into compact deployable models
 
 **Visual Planning & Tool Use** — RL teaches VLMs to plan visually, use tools, and generate executable visual programs.
-- [[2607.12800|UniVR]], [[2604.01600|MM-ReCoder]] (CVPR'26), [[2603.14117|SIEVE-VLM]], [[2602.11073|VILAVT]], [[2511.19661|CodeV]], [[2508.13587|Chart-to-Code-RL]] (ICLR'26), [[2505.20289|VisTA]], [[2505.11409|VPRL]] (ICLR'26 Oral)
+- [[2607.12800|UniVR]], [[2604.01600|MM-ReCoder]] (CVPR'26), [[2603.14117|SIEVE-VLM]], [[2602.11073|VILAVT]], [[2511.19661|CodeV]], [[2508.13587|Chart-to-Code-RL]] (ICLR'26), [[2505.20289|VisTA]], [[2505.11409|VPRL]] (ICLR'26 Oral), [[2403.12884|HYDRA]] (ECCV'24)
 
 > [!star] Key Papers
 > - [[2505.11409|VPRL]] (ICLR'26 Oral) — Visual Planning via RL: multi-step reasoning solely through sequences of images
 > - [[2511.19661|CodeV]] — Code-based visual agent with Tool-Aware Policy Optimization; addresses unfaithful visual reasoning
-
-**Embodied Visual Reasoning** — RL for visual reasoning in physically grounded, 3D settings — bridging perception and action.
-- [[2609.19659|EmbodiedMind]], [[2602.00795|DVLA-RL]] (ICLR'26), [[2512.13660|RoboTracer]] (ECCV'26), [[2511.20814|SPHINX]], [[2511.20351|HVS]], [[2508.07804|Pose-RFT]], [[2507.10548|EmbRACE-3K]], [[2506.08011|ViGaL]] (ICLR'26), [[2504.12680|Embodied-R]]
-
-> [!star] Key Papers
-> - [[2504.12680|Embodied-R]] — Enables foundation models to perform embodied spatial reasoning by combining CoT with physical grounding
-> - [[2507.10548|EmbRACE-3K]] — 3,000 embodied reasoning tasks in photorealistic environments; benchmark for embodied visual RL
 
 **Multimodal Benchmarks for RL** — Benchmarks specifically designed to evaluate RL-trained visual reasoning.
 - [[2609.11244|OmniHallu]], [[2602.08346|ThinkWithImages-PRMBENCH]], [[2509.26601|MENLO]] (ICLR'26), [[2506.14965|GURU]] (NeurIPS'25), [[2505.24760|REASONING-GYM]] (NeurIPS'25 Spotlight), [[2505.15966|Pixel-Reasoner]], [[2504.15279|VisuLogic]] (ICLR'26)
@@ -1104,7 +1113,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 > - [[2302.08242|Reward-Tuning-CV]] (ICML'23) — Pioneered applying RL reward tuning to computer vision tasks
 
 **Calibration & Safety** — Reward models that are well-calibrated, safe, and resistant to reward hacking.
-- [[2609.26550|JEV]], [[2607.18966|Contrastive SDF]], [[2605.12474|Rubric-RL-Diagnostic]], [[2604.12086|Robust-Reward-Hacking]] (ICLR'26), [[2604.04648|Caution-BoN]] (ICLR'26), [[2602.04755|LLM-Abstention]] (ICLR'26), [[2511.17879|GAPT]] (ICLR'26), [[2507.16806|RLCR]] (ICLR'26), [[2505.16186|SafeKey]], [[2503.02623|Rewarding-Doubt]] (ICLR'26), [[2412.09544|POWER-DL]] (ICLR'25)
+- [[2609.29769|Jev-RubricJudge]], [[2609.26550|JEV]], [[2607.18966|Contrastive SDF]], [[2605.12474|Rubric-RL-Diagnostic]], [[2604.12086|Robust-Reward-Hacking]] (ICLR'26), [[2604.04648|Caution-BoN]] (ICLR'26), [[2602.04755|LLM-Abstention]] (ICLR'26), [[2512.11391|NSPO]] (ICLR'26), [[2511.17879|GAPT]] (ICLR'26), [[2510.08240|WaltzRL]] (ICLR'26), [[2507.16806|RLCR]] (ICLR'26), [[2505.20065|SafeDPO]] (ICLR'26 Oral), [[2505.16186|SafeKey]], [[2504.19254|uqlm]], [[2503.02623|Rewarding-Doubt]] (ICLR'26), [[2412.09544|POWER-DL]] (ICLR'25), [[2406.10162|Sycophancy to Subterfuge]], [[2209.13085|Reward Hacking Definition]]
 
 > [!star] Key Papers
 > - [[2505.16186|SafeKey]] — Enhances safety for Large Reasoning Models without sacrificing reasoning performance
@@ -1120,7 +1129,7 @@ Learning and designing reward signals for RL training — from hand-crafted rewa
 RL for multi-turn, tool-using, and self-evolving agents — the bridge between reasoning models and autonomous systems. These agents don't just answer questions; they take actions, observe results, and adapt.
 
 **Multi-Turn Training Foundations & Coordination** — Core multi-turn RL training frameworks, environments, and multi-agent coordination/memory mechanisms.
-- [[2609.13739|HarnessBandit]], [[2608.10299|Agentic Co-Evolution Survey]], [[2604.06268|RAGEN-2]], [[2603.17621|Complementary-RL]], [[2603.05218|KARL]], [[2602.23008|EMPO-squared]] (ICLR'26), [[2602.17930|MIRA-RL]] (ICLR'26), [[2602.14926|MAC-AMP]] (ICLR'26), [[2512.20092|Memory-T1]] (ICLR'26), [[2512.09706|CrossHA]] (CVPR'26 Highlight), [[2512.04388|Conductor]] (ICLR'26), [[2511.22235|CES-Scheduler]] (CVPR'26), [[2511.07327|IterResearch]] (ICLR'26), [[2510.10197|Environment-Tuning]] (ICLR'26), [[2509.24323|MAS²]], [[2509.08755|AgentGym-RL]], [[2507.21046|Self-Evolving-Agents-Survey]], [[2504.20997|LLM-PSRL]] (ICLR'26), [[2504.20073|RAGEN]], [[2504.16078|LLM-Greedy-Agents]] (ICLR'26), [[2406.04151|AgentGym]]
+- [[2609.13739|HarnessBandit]], [[2608.10299|Agentic Co-Evolution Survey]], [[2604.06268|RAGEN-2]], [[2603.17621|Complementary-RL]], [[2603.05218|KARL]], [[2602.23008|EMPO-squared]] (ICLR'26), [[2602.17930|MIRA-RL]] (ICLR'26), [[2602.14926|MAC-AMP]] (ICLR'26), [[2512.20092|Memory-T1]] (ICLR'26), [[2512.09706|CrossHA]] (CVPR'26 Highlight), [[2512.04388|Conductor]] (ICLR'26), [[2511.22235|CES-Scheduler]] (CVPR'26), [[2511.07327|IterResearch]] (ICLR'26), [[2510.12635|MemAct]], [[2510.10197|Environment-Tuning]] (ICLR'26), [[2509.24323|MAS²]], [[2509.08755|AgentGym-RL]], [[2507.21046|Self-Evolving-Agents-Survey]], [[2504.20997|LLM-PSRL]] (ICLR'26), [[2504.20073|RAGEN]], [[2504.16078|LLM-Greedy-Agents]] (ICLR'26), [[2504.15257|FlowReasoner]], [[2502.04306|ScoreFlow]], [[2406.04151|AgentGym]], [[2402.16823|GPTSwarm]]
 
 > [!star] Key Papers
 > - [[2504.20073|RAGEN]] — introduces StarPO and identifies the "Echo Trap" instability that motivated most later multi-turn RL work, including RAGEN-2 in this same list
@@ -1134,7 +1143,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 - [[2604.23626|GraphPlanner]] (ICLR'26), [[2603.05044|WebFactory]] (ICLR'26), [[2510.18798|WebSeer]] (ICLR'26), [[2508.14040|ComputerRL]] (ICLR'26), [[2507.17842|Shop-R1]] (ICLR'26), [[2507.04103|LLM-Web-Agent-Diagnosis]] (NeurIPS'25), [[2505.23885|OWL-Workforce]] (NeurIPS'25), [[2505.22648|WebDancer]] (NeurIPS'25), [[2505.19591|Puppeteer-Agent]] (NeurIPS'25), [[2504.03206|CURIO]] (NeurIPS'25), [[2503.11739|CoLLMLight]] (ICLR'26)
 
 **Skill/Memory-Based & Self-Play Evolution** — Self-evolving agents that use skill libraries, external memory, or self-play to improve.
-- [[2609.14858|Dream-RSI]], [[2609.08404|FEEs]], [[2609.08183|NeoHorse-1]], [[2608.24747|SkillForge]], [[2608.19197|SPADE-SelfPlay]], [[2608.13120|SkillEvo]], [[2607.22529|Skill-SP]], [[2606.08755|SAPO]], [[2606.03108|EvoTrainer]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2603.25111|SEVerA]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2510.18821|Search-Self-play]] (ICLR'26), [[2510.13220|EvoTest]] (ICLR'26), [[2510.09577|Dyna-Mind]] (ICLR'26), [[2510.08529|CoMAS]] (ICLR'26)
+- [[2609.14858|Dream-RSI]], [[2609.08404|FEEs]], [[2609.08183|NeoHorse-1]], [[2608.24747|SkillForge]], [[2608.19197|SPADE-SelfPlay]], [[2608.13120|SkillEvo]], [[2607.22529|Skill-SP]], [[2606.08755|SAPO]], [[2606.03108|EvoTrainer]], [[2605.15155|SDAR]], [[2605.06614|SkillOS]], [[2603.25111|SEVerA]], [[2603.18743|Memento-Skills]], [[2602.21633|SC-VLA]], [[2602.20133|AdaEvolve]], [[2602.06508|World-VLA-Loop]], [[2602.00359|A-EVOLVE]], [[2601.03192|MemRL]], [[2510.18821|Search-Self-play]] (ICLR'26), [[2510.13220|EvoTest]] (ICLR'26), [[2510.09577|Dyna-Mind]] (ICLR'26), [[2510.08529|CoMAS]] (ICLR'26), [[2509.26354|Misevolution]] (ICLR'26), [[2303.11366|Reflexion]]
 
 > [!star] Key Papers
 > - [[2605.06614|SkillOS]] — an RL-trained skill curator (not just a zero-shot LLM curator) that learns to insert/update/delete skills, giving rise to emergent "meta-strategy skills"
@@ -1143,17 +1152,17 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2603.18743|Memento-Skills]] — Skill library as external memory; agents evolve without parameter updates, +13.7pp on GAIA
 
 **Applied Self-Evolving Agents** — Self-evolving agents applied to specific domains — UI control, scientific discovery, and presentation generation.
-- [[2607.21461|AREX]], [[2606.03963|AgenticRL]], [[2604.20987|Co-Evolve-Agents]], [[2603.29640|ASI-Evolve]], [[2603.24533|UI-Voyager]], [[2603.07642|Helix-Scientific]] (ICLR'26), [[2511.16043|Agent0]], [[2511.10395|AgentEvolver]], [[2511.03773|Experience-Synthesis-Mexp]] (ICLR'26), [[2510.05571|EvoPresent]] (ICLR'26), [[2508.04700|SEAgent]], [[2506.11442|ReVeal-Agent]] (ICLR'26)
+- [[2608.15763|HAT]], [[2608.15669|LDM]], [[2607.21461|AREX]], [[2606.03963|AgenticRL]], [[2604.20987|Co-Evolve-Agents]], [[2603.29640|ASI-Evolve]], [[2603.24533|UI-Voyager]], [[2603.07642|Helix-Scientific]] (ICLR'26), [[2511.16043|Agent0]], [[2511.10395|AgentEvolver]], [[2511.03773|Experience-Synthesis-Mexp]] (ICLR'26), [[2510.05571|EvoPresent]] (ICLR'26), [[2508.04700|SEAgent]], [[2507.18074|ASI-ARCH]], [[2506.11442|ReVeal-Agent]] (ICLR'26), [[2411.00816|CycleResearcher]]
 
 > [!star] Key Papers
 > - [[2511.16043|Agent0]] — Fully autonomous agent that self-improves through experience without human feedback
 
 **Retrieval-Augmented Agents** — RL teaches agents to effectively retrieve and reason over external knowledge.
-- [[2511.07328|Q-RAG]] (ICLR'26 Oral), [[2510.27566|Interact-RAG]] (ICLR'26), [[2510.07794|HiPRAG]] (ICLR'26), [[2509.01092|REFRAG]], [[2505.24332|DeepDiver]], [[2505.20046|REARANK]], [[2505.14069|ReasonRAG]] (NeurIPS'25), [[2505.09316|InForage]] (NeurIPS'25 Spotlight), [[2505.07233|DynamicRAG]] (NeurIPS'25), [[2505.04588|ZeroSearch]], [[2504.21776|WebThinker]] (NeurIPS'25), [[2503.19470|ReSearch]] (NeurIPS'25), [[2503.09516|Search-R1]], [[2503.05592|R1-Searcher]], [[2501.15228|MMOA-RAG]] (NeurIPS'25)
+- [[2511.07328|Q-RAG]] (ICLR'26 Oral), [[2510.27566|Interact-RAG]] (ICLR'26), [[2510.07794|HiPRAG]] (ICLR'26), [[2509.01092|REFRAG]], [[2505.24332|DeepDiver]], [[2505.20046|REARANK]], [[2505.14069|ReasonRAG]] (NeurIPS'25), [[2505.09316|InForage]] (NeurIPS'25 Spotlight), [[2505.07233|DynamicRAG]] (NeurIPS'25), [[2501.15228|MMOA-RAG]] (NeurIPS'25)
 
 
 **Navigation & Path Planning RL** — RL for embodied navigation, vision-language navigation, and path planning.
-- [[2609.03906|TopoMacro VLN-CE]], [[2609.00920|VerNav]], [[2607.13461|JOP-VLN]] (IROS'26), [[2607.01044|CommNav]], [[2606.31260|SymPlan]], [[2604.08883|HTNav]], [[2602.12351|LongNav-R1]] (RSS'26), [[2602.00551|APEX-Aerial]] (CVPR'26), [[2510.10181|Dejavu]], [[2509.23203|CE-Nav]] (ICLR'26), [[2507.22028|S2E-Navigation]] (ICLR'26), [[2301.11575|ARiADNE]], [[1905.12255|CLS]], [[1811.10092|RCM+SIL]] (CVPR'19)
+- [[2609.03906|TopoMacro VLN-CE]], [[2609.00920|VerNav]], [[2607.13461|JOP-VLN]] (IROS'26), [[2607.01044|CommNav]], [[2606.31260|SymPlan]], [[2604.08883|HTNav]], [[2602.12351|LongNav-R1]] (RSS'26), [[2602.00551|APEX-Aerial]] (CVPR'26), [[2510.10181|Dejavu]], [[2509.23203|CE-Nav]] (ICLR'26), [[2507.22028|S2E-Navigation]] (ICLR'26), [[2402.19161|MemoNav]] (CVPR'24 Highlight), [[2301.13261|Blind-Nav-Agents]] (ICLR'23 Oral), [[2301.11575|ARiADNE]], [[2101.05181|MemAug-Image-Goal-Nav]], [[1905.12255|CLS]], [[1811.10092|RCM+SIL]] (CVPR'19)
 
 > [!star] Key Papers
 > - [[1811.10092|RCM+SIL]] (CVPR'19) — the foundational method: Reinforced Cross-Modal Matching + Self-Supervised Imitation Learning, the canonical RL recipe later VLN work still builds on
@@ -1161,7 +1170,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2607.13461|JOP-VLN]] (IROS'26) — strongest current results: new SOTA 69.9% SR on R2R Val-Unseen from single-view RGB alone, with real quadruped deployment
 
 **Manipulation, Planning & LLM-Guided Embodied Control** — RL for embodied manipulation and planning, including LLM-guided test-time planning.
-- [[2607.23515|LEACL]], [[2607.18060|RoboHarness]], [[2607.13818|Agentic Execution RL]], [[2607.13653|REAL]] (ECCV'26), [[2607.13524|COLMAR]] (IROS'26), [[2607.01925|SPLC]], [[2606.29222|CORE Planner]], [[2604.21232|ReCAPA]] (ICLR'26), [[2603.30022|Hybrid-LLM-RL-Manipulation]], [[2602.21198|Reflective-Test-Time-Planning]], [[2601.16175|TTT-Discover]], [[2511.01107|SLAP]] (ICLR'26), [[2506.00070|Robot-R1]] (NeurIPS'25), [[2412.05718|RLZero]] (NeurIPS'25)
+- [[2607.23515|LEACL]], [[2607.18060|RoboHarness]], [[2607.13818|Agentic Execution RL]], [[2607.13653|REAL]] (ECCV'26), [[2607.13524|COLMAR]] (IROS'26), [[2607.01925|SPLC]], [[2606.29222|CORE Planner]], [[2604.21232|ReCAPA]] (ICLR'26), [[2603.30022|Hybrid-LLM-RL-Manipulation]], [[2602.21198|Reflective-Test-Time-Planning]], [[2511.01107|SLAP]] (ICLR'26), [[2506.00070|Robot-R1]] (NeurIPS'25), [[2412.05718|RLZero]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2511.01107|SLAP]] (ICLR'26) — foundational integration of classical TAMP abstract planning with RL, autonomously discovering low-level "shortcut" policies that cut plan length by 32-73% while holding 100% success where pure RL scores 0%
@@ -1172,7 +1181,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 
 
 **Agent Infrastructure & Benchmarks** — Frameworks, environments, and evaluation tools for agentic RL.
-- [[2608.20318|AI4AI-Bench]], [[2607.21653|Molt]], [[2606.17546|SEAGym]], [[2602.04118|TinyLoRA]], [[2511.21395|Monet]], [[2511.17473|MR-RLVR]], [[2511.15661|VisPlay]], [[2505.24760|REASONING-GYM]] (NeurIPS'25 Spotlight), [[2406.18505|LLM-Xavier]]
+- [[2608.20318|AI4AI-Bench]], [[2607.21653|Molt]], [[2606.17546|SEAGym]], [[2505.24760|REASONING-GYM]] (NeurIPS'25 Spotlight), [[2406.18505|LLM-Xavier]], [[2109.13202|MiniHack]]
 
 
 **Code Generation, Compilation & Systems RL** — RL for code generation, decompilation, compiler optimization, and low-level systems code.
@@ -1184,7 +1193,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2504.08600|SQL-R1]] (NeurIPS'25) — strongest reward-engineering recipe for code-adjacent generation; a four-component progressive reward pushes a 7B model to 88.7% Spider-Test / 66.6% BIRD-Dev, beating larger closed-source baselines
 
 **Code Agent Tools, Interpreters & Tool-Use RL** — RL for tool-calling, code-interpreter use, and applied coding-agent workflows.
-- [[2608.13331|Faraday]], [[2603.13348|AutoTool]] (ICLR'26), [[2512.08511|SubagentVL]], [[2512.04563|COOPER]], [[2511.01618|Actial]] (NeurIPS'25), [[2510.14635|ATGen]] (ICLR'26), [[2510.01832|SCRIBES]] (ICLR'26), [[2509.22824|Critique-Coder]] (ICLR'26), [[2509.22644|WebGen-Agent]] (ICLR'26), [[2509.17325|CodeGym]] (ICLR'26), [[2509.01684|ML-Engineering-RL-Agents]] (ICLR'26), [[2508.21107|UTRL]] (ICLR'26), [[2508.05433|MLES]] (ICLR'26), [[2508.04865|Agnostics]] (ICLR'26), [[2506.09820|CoRT]], [[2505.23387|Afterburner]] (NeurIPS'25), [[2505.21668|R1-Code-Interpreter]] (ICLR'26), [[2505.16053|RLAF]] (ICLR'26), [[2505.12723|OORL]] (NeurIPS'25), [[2505.12285|CALM-Heuristic-Design]] (ICLR'26), [[2505.07773|ZeroTIR]]
+- [[2608.13331|Faraday]], [[2603.13348|AutoTool]] (ICLR'26), [[2512.16918|AdaTooler-V]], [[2512.08511|SubagentVL]], [[2512.04563|COOPER]], [[2511.01618|Actial]] (NeurIPS'25), [[2510.14635|ATGen]] (ICLR'26), [[2510.01832|SCRIBES]] (ICLR'26), [[2509.22824|Critique-Coder]] (ICLR'26), [[2509.22644|WebGen-Agent]] (ICLR'26), [[2509.17325|CodeGym]] (ICLR'26), [[2509.01684|ML-Engineering-RL-Agents]] (ICLR'26), [[2508.21107|UTRL]] (ICLR'26), [[2508.05433|MLES]] (ICLR'26), [[2508.04865|Agnostics]] (ICLR'26), [[2506.09820|CoRT]], [[2505.23387|Afterburner]] (NeurIPS'25), [[2505.21668|R1-Code-Interpreter]] (ICLR'26), [[2505.16053|RLAF]] (ICLR'26), [[2505.12723|OORL]] (NeurIPS'25), [[2505.12285|CALM-Heuristic-Design]] (ICLR'26), [[2505.07773|ZeroTIR]], [[2505.01441|ARTIST]], [[2505.00024|Nemotron-Research-Tool-N1]] (ICLR'26), [[2504.13958|ToolRL]] (NeurIPS'25)
 
 
 **Additional Methods** — Cognitive-modeling and other agentic RL methods that cross section boundaries — human decision explanation, EEG-based reward, and policy-to-language translation.
@@ -1194,7 +1203,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 > - [[2505.11614|RL-for-Human-Decision-Explanation]] (ICLR'26) — Novel use of RL to train LLMs as cognitive models of human decision-making; bridges AI and cognitive science
 
 **Adversarial Multi-Agent RL & Red-Teaming** — RL where agents are trained as adversaries — to mine failures, induce targeted behaviors, or stress-test other policies. Companion to robust RL; closely related to [[11_Robotics-and-Embodied-AI|adversarial robustness in VLAs]].
-- [[2607.10630|AWM-Adversarial]], [[2607.05939|PFSP-CTBR]], [[2604.05595|DAERT]], [[2602.06854|SEMA]] (ICLR'26), [[2602.00528|LLM-Poker-Study]] (ICLR'26), [[2510.10937|Neutral-Adversarial-Policy]], [[2510.08255|ShapeLLM-Opponent]] (ICLR'26), [[2510.02286|DialTree]] (ICLR'26), [[2510.01264|HARL-A]], [[2509.18891|Point-Prompt-Defender]], [[2508.02027|Dual-DM]], [[2503.21983|RL-Trust-Attacks]] (ICLR'25 Workshop), [[2501.01830|Auto-RT]] (ICLR'26), [[1903.10654|FAILMAKER-ADVRL]]
+- [[2607.10630|AWM-Adversarial]], [[2607.05939|PFSP-CTBR]], [[2604.05595|DAERT]], [[2602.06854|SEMA]] (ICLR'26), [[2602.00528|LLM-Poker-Study]] (ICLR'26), [[2510.10937|Neutral-Adversarial-Policy]], [[2510.08255|ShapeLLM-Opponent]] (ICLR'26), [[2510.02286|DialTree]] (ICLR'26), [[2510.01264|HARL-A]], [[2509.18891|Point-Prompt-Defender]], [[2508.02027|Dual-DM]], [[2503.21983|RL-Trust-Attacks]] (ICLR'25 Workshop), [[2501.01830|Auto-RT]] (ICLR'26), [[2412.02818|RoboMD]] (ICLR'26), [[1903.10654|FAILMAKER-ADVRL]]
 
 > [!star] Key Papers
 > - [[2604.05595|DAERT]] — RL-based diversity-aware red-teaming against VLAs; bridges adversarial RL with VLA failure-mining (5.85% π0 success under attack)
@@ -1211,7 +1220,7 @@ RL for multi-turn, tool-using, and self-evolving agents — the bridge between r
 RL methods designed for or applied to physical robot learning — sample efficiency, safety, and real-world deployment constraints make robotics RL fundamentally different from LLM RL.
 
 **Foundational VLA RL Frameworks & Algorithms** — The core algorithmic frameworks establishing RL post-training for VLA models.
-- [[2609.28161|Advantage-Guided VLA Post-Training]], [[2609.26467|RouteRLT]], [[2608.19891|EXIMO]], [[2607.29172|CLIFT]], [[2607.26513|EKG-VLA]], [[2607.20345|DEED]], [[2606.31958|SARL]], [[2604.17706|OmniVLA-RL]], [[2603.21341|RoboAlign]], [[2603.15600|Active-Critic-RL]] (ECCV'26), [[2602.12281|Scaling-Verification-VLA]], [[2602.01789|RFS]] (ICLR'26), [[2509.09674|SimpleVLA-RL]] (ICLR'26), [[2506.08440|TGRPO]], [[2505.19789|RL-for-VLA-Study]] (NeurIPS'25), [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]]
+- [[2609.28161|Advantage-Guided VLA Post-Training]], [[2609.26467|RouteRLT]], [[2608.19891|EXIMO]], [[2607.29172|CLIFT]], [[2607.26513|EKG-VLA]], [[2607.20345|DEED]], [[2606.31958|SARL]], [[2604.17706|OmniVLA-RL]], [[2603.21341|RoboAlign]], [[2603.15600|Active-Critic-RL]] (ECCV'26), [[2602.12281|Scaling-Verification-VLA]], [[2602.01789|RFS]] (ICLR'26), [[2512.02834|TACO]], [[2511.09515|WMPO]] (ICLR'26), [[2511.01331|RobustVLA]], [[2510.00406|VLA-RFT]], [[2509.15937|VLAC]], [[2509.09674|SimpleVLA-RL]] (ICLR'26), [[2506.08440|TGRPO]], [[2505.19789|RL-for-VLA-Study]] (NeurIPS'25), [[2505.18719|VLA-RL]], [[2505.17016|RIPT-VLA]]
 
 > [!star] Key Papers
 > - [[2509.09674|SimpleVLA-RL]] (ICLR'26) — canonical GRPO-based framework porting LLM outcome-reward RL to VLA, pushing LIBERO to 99.1% and revealing emergent policies human demonstrations never showed
@@ -1222,7 +1231,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.08440|TGRPO]] — Trajectory-wise GRPO adapted for VLA fine-tuning; bridges LLM RL and robot RL
 
 **Flow/Chunk-Based & Action-Representation VLA RL** — RL over flow-matching, action-chunking, and structured action representations for VLAs.
-- [[2609.28838|Uncertainty-Gated Exploration Noise]], [[2609.18207|Real-Time-EXPO-FT]], [[2608.29768|SmoothRL]], [[2608.17423|Prism-GRPO]], [[2607.27782|RedFlow]], [[2607.26991|RL2-VLA]], [[2607.12992|ChunkFlow]], [[2607.12931|ExToken]], [[2607.10383|ABot-N1]], [[2607.04681|Pinocchio]], [[2607.04591|S2C]], [[2607.02092|Guided Action Flow]], [[2605.13276|D-VLA]], [[2605.13105|PAIR-VLA]], [[2605.09410|RePO-VLA]], [[2604.05614|GPLA]], [[2508.18269|FlowVLA]]
+- [[2609.28838|Uncertainty-Gated Exploration Noise]], [[2609.18207|Real-Time-EXPO-FT]], [[2608.29768|SmoothRL]], [[2608.17423|Prism-GRPO]], [[2607.27782|RedFlow]], [[2607.26991|RL2-VLA]], [[2607.12992|ChunkFlow]], [[2607.12931|ExToken]], [[2607.10383|ABot-N1]], [[2607.04681|Pinocchio]], [[2607.04591|S2C]], [[2607.02092|Guided Action Flow]], [[2605.13276|D-VLA]], [[2605.13105|PAIR-VLA]], [[2605.09410|RePO-VLA]], [[2604.05614|GPLA]], [[2508.18269|FlowVLA]], [[2507.07969|Q-chunking]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2607.12992|ChunkFlow]] — foundational unified framework baking seam-aware continuity losses directly into AWAC-based RL fine-tuning for chunked VLA policies, the best success-smoothness trade-off (93.4% LIBERO-Long, lowest jitter) at no extra inference latency
@@ -1230,7 +1239,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2607.12931|ExToken]] — strongest reported results (98.2% avg LIBERO, beating RLinf-GRPO), using clustered demonstration embeddings as discrete action-representation tokens to solve action-mode-collapse in VLA-RL exploration
 
 **Driving, Model-Specific & Infrastructure VLA RL** — VLA RL for autonomous driving/surgical domains, named models, and training infrastructure.
-- [[2609.20756|OPTED]], [[2607.01658|DriveTeach-VLA]] (ECCV'26), [[2606.31846|Z-1]], [[2606.29892|T2VLA]], [[2605.13959|WarmPrior]], [[2604.08168|ViVa]], [[2604.02523|Tune-to-Learn]] (RSS'26), [[2603.28116|AutoDrive-P3]] (ICLR'26), [[2603.27670|ProgressVLA]], [[2603.27164|daVinci-LLM]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.13925|SmoothVLA]], [[2602.00919|Green-VLA]], [[2510.10975|RoVer]], [[2509.25852|REVER]]
+- [[2609.20756|OPTED]], [[2607.01658|DriveTeach-VLA]] (ECCV'26), [[2606.31846|Z-1]], [[2606.29892|T2VLA]], [[2605.13959|WarmPrior]], [[2605.04470|CRAFT-Driving]], [[2604.08168|ViVa]], [[2604.02523|Tune-to-Learn]] (RSS'26), [[2603.28116|AutoDrive-P3]] (ICLR'26), [[2603.27670|ProgressVLA]], [[2603.27164|daVinci-LLM]], [[2603.26666|VLA-OPD]], [[2603.25406|MMaDA-VLA]], [[2603.13925|SmoothVLA]], [[2602.00919|Green-VLA]], [[2510.10975|RoVer]], [[2509.25852|REVER]]
 
 > [!star] Key Papers
 > - [[2603.28116|AutoDrive-P3]] (ICLR'26) — unifies perception, prediction, and planning through a single hierarchical GRPO reward, fixing the gap where RL only supervised final planning metrics and yielding the lowest collision rate (0.06%) in the group
@@ -1240,11 +1249,14 @@ RL methods designed for or applied to physical robot learning — sample efficie
 **Manipulation & Embodiment-Specific VLA RL** — VLA RL specialized to manipulation, dexterous hands, and specific robot embodiments.
 - [[2609.19666|Dexterous-VLA-Post-Training]], [[2509.23745|LocoFormer]] (CoRL'25), [[2509.19301|ResFiT]], [[2505.16517|ManipLVM-R1]], [[2505.15206|EndoVLA]], [[2505.03238|RobotxR1]] (CoRL'25), [[2504.04259|ORCA-Hand]] (IROS'25), [[2503.16806|DyWA]] (ICCV'25), [[2502.14795|Humanoid-VLA]], [[2212.07740|TERT]] (ICRA'23), [[2107.03996|LocoTransformer]] (ICLR'22 Spotlight)
 
-**Model-Based Robot RL** — World-model-based approaches for sample-efficient robot learning.
-- [[2609.28258|InsertionWM]], [[2609.27455|LeWAM]], [[2609.24033|Imagine-RL]], [[2609.03681|WISE]], [[2608.30378|PAVE]], [[2608.30237|Motus2]], [[2608.17163|QWM]], [[2608.07468|SimWAM]], [[2607.06018|RoboTALES]] (ECCV'26), [[2607.04265|HALO-WA]], [[2607.02431|WorldSample]], [[2605.12084|QOED]] (RSS'26), [[2604.18161|DDCG]] (ICLR'26), [[2604.02260|Time-Varying-MBRL]], [[2603.18336|ManiDreams]], [[2602.09022|WorldCompass]], [[2509.00215|DMO]] (CoRL'25), [[2509.00178|Poke and Strike]] (CoRL'25), [[2508.19172|URSA]] (CoRL'25), [[2508.15755|NeRD]] (CoRL'25), [[2505.16394|Raw2Drive]] (NeurIPS'25), [[2505.13925|TR-DRL]] (NeurIPS'25), [[2504.16680|RWM-U]], [[2502.13144|RAD]] (NeurIPS'25), [[2501.10100|RWM]], [[2410.00564|JOWA]] (ICLR'25), [[2309.14236|MoDem-V2]], [[2303.01488|MEDAL++]], [[2207.07560|SkiMo]] (CoRL'22), [[2206.14176|DayDreamer]] (CoRL'22), [[1909.11652|PDDM]] (CoRL'19), [[1812.00568|Visual MPC]]
+**Robot World Models & WAMs for Manipulation** — Recent world-model and world-action-model approaches that imagine, sample, or plan robot manipulation in learned simulators.
+- [[2609.28258|InsertionWM]], [[2609.27455|LeWAM]], [[2609.24033|Imagine-RL]], [[2609.03681|WISE]], [[2608.30378|PAVE]], [[2608.30237|Motus2]], [[2608.17163|QWM]], [[2608.07468|SimWAM]], [[2607.06018|RoboTALES]] (ECCV'26), [[2607.04265|HALO-WA]], [[2607.02431|WorldSample]], [[2605.12084|QOED]] (RSS'26), [[2604.18161|DDCG]] (ICLR'26), [[2603.18336|ManiDreams]], [[2602.09022|WorldCompass]], [[2508.19172|URSA]] (CoRL'25), [[2508.15755|NeRD]] (CoRL'25)
 
 > [!star] Key Papers
 > - [[2603.18336|ManiDreams]] — World model generates diverse manipulation scenarios; dream-based RL for dexterous tasks
+
+**Classic & Sample-Efficient Robot MBRL** — Classic model-based robot RL lineage plus sample-efficient world models for real robots, locomotion, and driving.
+- [[2604.02260|Time-Varying-MBRL]], [[2509.00215|DMO]] (CoRL'25), [[2509.00178|Poke and Strike]] (CoRL'25), [[2505.16394|Raw2Drive]] (NeurIPS'25), [[2505.13925|TR-DRL]] (NeurIPS'25), [[2504.16680|RWM-U]], [[2502.13144|RAD]] (NeurIPS'25), [[2501.10100|RWM]], [[2410.00564|JOWA]] (ICLR'25), [[2309.14236|MoDem-V2]], [[2303.01488|MEDAL++]], [[2207.07560|SkiMo]] (CoRL'22), [[2206.14176|DayDreamer]] (CoRL'22), [[1909.11652|PDDM]] (CoRL'19), [[1812.00568|Visual MPC]]
 
 **MPC + RL for Control** — Combining Model Predictive Control with learned RL policies for structured, physically-grounded control, including runtime safety filters and control barrier functions.
 - [[2609.23968|Opt2VLA]], [[2609.20575|SGPS]], [[2609.14878|MPC-Scaffolding]], [[2609.01061|SG-RL]], [[2608.04732|Integrated-Safe-AC]], [[2607.23930|FAOC]], [[2607.20665|DGPPO]], [[2607.14488|Acc-CBF-QP]] (IROS'26), [[2607.13938|DBF]], [[2607.12784|ATACOM-DC]], [[2607.07252|Safe RL via MPC]], [[2607.02472|Quad APG]], [[2607.01281|WaveLander]], [[2607.00066|Endovascular RL-NMPC]] (IROS'26), [[2606.31562|Stabilization Learning]], [[2606.24039|TurboMPC]], [[2604.21456|TSMC]] (RSS'26), [[2603.14469|PIPER]], [[2510.06179|DiffMPC]] (ICLR'26 Oral), [[2507.21533|MPAIL]] (ICLR'26), [[2507.19151|ReCoDe]] (CoRL'25), [[2505.20829|Unified-Force-Position-Control]] (CoRL'25), [[2504.06662|RAMBO]], [[2502.02133|MPC-RL-Survey]], [[2310.10509|Online Admittance Residual Learning]] (CoRL'23), [[2309.15462|DTC]], [[1504.00702|Visuomotor GPS]]
@@ -1255,7 +1267,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2309.15462|DTC]] — strongest reported results, a Science Robotics hybrid TO+RL controller hitting 2.3cm foothold accuracy while crossing gaps, beams, and slippery terrain that pure MPC or pure RL baselines fail on
 
 **Control-Theoretic, Constraint-Aware & Benchmark Infrastructure** — Control-theoretic RL (Koopman/CBF), constraint-aware planning, and benchmark/simulation infrastructure for LLM-guided robotics.
-- [[2607.23473|PRISM-Motor]], [[2605.26452|Koopman-CBF-SAC]], [[2604.03023|Behavior-Constrained-RL]], [[2604.02021|Discrete-Continuous-Planning-Bridge]], [[2603.13707|REFINE-DP]], [[2603.02203|T3RL]], [[2602.15827|PHP]] (RSS'26), [[2602.06556|LIBERO-X]] (RSS'26), [[2602.02605|ESMA]], [[2602.02481|FPO++]], [[2509.09863|LSAC]] (CoRL'25), [[2407.07788|BiGym]] (CoRL'24), [[2302.04659|ManiSkill2]] (ICLR'23), [[2107.04034|RMA]] (RSS'21)
+- [[2607.23473|PRISM-Motor]], [[2605.26452|Koopman-CBF-SAC]], [[2604.03023|Behavior-Constrained-RL]], [[2604.02021|Discrete-Continuous-Planning-Bridge]], [[2603.13707|REFINE-DP]], [[2603.02203|T3RL]], [[2602.15827|PHP]] (RSS'26), [[2602.06556|LIBERO-X]] (RSS'26), [[2602.02605|ESMA]], [[2602.02481|FPO++]], [[2509.09863|LSAC]] (CoRL'25), [[2502.10550|MIKASA]] (ICLR'26), [[2407.07788|BiGym]] (CoRL'24), [[2302.04659|ManiSkill2]] (ICLR'23), [[2210.13066|DaXBench]] (ICLR'23 Oral), [[2107.04034|RMA]] (RSS'21), [[2104.03311|PlasticineLab]] (ICLR'21 Spotlight), [[2011.07215|SoftGym]] (CoRL'20), [[1207.4708|ALE]]
 
 > [!star] Key Papers
 > - [[2605.26452|Koopman-CBF-SAC]] — clearest paradigm-shifting approach for control-theoretic RL, bridging model-free SAC with data-driven Koopman-CBF safety filters and a novel residual margin giving pointwise safety guarantees
@@ -1263,7 +1275,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2302.04659|ManiSkill2]] (ICLR'23) — foundational benchmark/simulation infrastructure paper, establishing real-time two-way rigid-soft coupling and ~2000 FPS visual RL that later manipulation benchmarks build on
 
 **LLM/VLM-Guided Reward & Task Specification** — Using LLM/VLM reasoning to specify rewards, tasks, and goals for robot RL.
-- [[2608.18254|GAPL]], [[2605.22986|ASQ]] (RSS'26), [[2602.01166|LaRA-VLA]] (ICML'26), [[2512.01996|Humanoid-Loco-15min]], [[2512.00961|GenReward]] (CVPR'26), [[2511.17855|QuickLAP]], [[2506.08052|ReCogDrive]] (ICLR'26), [[2502.13130|Magma]] (CVPR'25), [[2502.10894|UAN]] (RSS'25), [[2403.13358|QUARD-Auto]], [[2309.00709|TrafficRLHF]] (ICRA'24), [[2306.08647|L2R]] (CoRL'23)
+- [[2608.18254|GAPL]], [[2605.22986|ASQ]] (RSS'26), [[2602.01166|LaRA-VLA]] (ICML'26), [[2512.01996|Humanoid-Loco-15min]], [[2512.00961|GenReward]] (CVPR'26), [[2511.17855|QuickLAP]], [[2511.14565|Masked-IRL]] (ICRA'26), [[2506.08052|ReCogDrive]] (ICLR'26), [[2502.13130|Magma]] (CVPR'25), [[2502.10894|UAN]] (RSS'25), [[2403.13358|QUARD-Auto]], [[2309.00709|TrafficRLHF]] (ICRA'24), [[2306.08647|L2R]] (CoRL'23)
 
 > [!star] Key Papers
 > - [[2512.00961|GenReward]] (CVPR'26) — clearest instantiation of the group's core idea: a pretrained video diffusion model generates goal videos whose alignment with the agent's trajectory becomes the RL reward, delivering the group's strongest measured gains
@@ -1271,11 +1283,11 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2506.08052|ReCogDrive]] (ICLR'26) — paradigm-shifting case for VLM-guided RL: cognitive tokens from a driving-tuned VLM condition a diffusion planner that DiffGRPO optimizes against closed-loop reward, achieving new SOTA (90.8 PDMS)
 
 **Applied Manipulation, Locomotion & Mobile Robot Control** — LLM-guided RL applied to specific manipulation, locomotion, and mobile-robot control tasks.
-- [[2607.25985|Physics-Aware DRL Quadcopter Control]], [[2607.21227|FORGE-plus]], [[2606.31106|AD Internal Prediction Probing]], [[2606.03441|PerchRL]], [[2606.03335|DGPO]], [[2605.27046|Thermal-Aware-Residual]], [[2605.26478|SDPG]], [[2605.21688|Microfiber-Shape-Control]], [[2605.19924|RoHIL]], [[2605.19919|ZPRL]], [[2509.02754|LLM Modules for AD]] (CoRL'25), [[2506.07876|ReLIC]] (CoRL'25), [[2505.22642|FastTD3]], [[2505.06776|FALCON-Loco-Manipulation]], [[2504.17838|CaRL]] (CoRL'25), [[2504.13818|PODS]], [[2502.01143|ASAP]] (RSS'25), [[2405.07991|SPIN-Mobile-Manip]] (CVPR'24), [[2003.01239|Evolutionary-Meta-Learning-Legged]] (IROS'20)
+- [[2607.25985|Physics-Aware DRL Quadcopter Control]], [[2607.21227|FORGE-plus]], [[2606.31106|AD Internal Prediction Probing]], [[2606.03441|PerchRL]], [[2606.03335|DGPO]], [[2605.27046|Thermal-Aware-Residual]], [[2605.26478|SDPG]], [[2605.21688|Microfiber-Shape-Control]], [[2605.19924|RoHIL]], [[2605.19919|ZPRL]], [[2509.02754|LLM Modules for AD]] (CoRL'25), [[2506.07876|ReLIC]] (CoRL'25), [[2505.22642|FastTD3]], [[2505.06776|FALCON-Loco-Manipulation]], [[2504.17838|CaRL]] (CoRL'25), [[2504.13818|PODS]], [[2502.01143|ASAP]] (RSS'25), [[2405.07991|SPIN-Mobile-Manip]] (CVPR'24), [[2003.01239|Evolutionary-Meta-Learning-Legged]] (IROS'20), [[1910.11956|Franka-Kitchen]] (CoRL'19)
 
 
 **Classic Sim-to-Real Theory & Domain Randomization** — Foundational domain-randomization and theoretical results underpinning sim-to-real transfer.
-- [[2411.14251|NLRL]], [[2307.12074|MRLM]], [[2206.14661|ADR Benchmark]], [[2201.02373|Mirror-Learning]] (ICML'22 Spotlight), [[2003.02471|BayRn]], [[1903.11774|DR Parameter Optimization]], [[1804.10332|Minitaur Sim-to-Real]] (RSS'18), [[1710.06537|Dynamics Randomization]] (ICRA'18), [[1702.02453|UP-OSI]] (RSS'17)
+- [[2206.14661|ADR Benchmark]], [[2003.02471|BayRn]], [[1903.11774|DR Parameter Optimization]], [[1804.10332|Minitaur Sim-to-Real]] (RSS'18), [[1710.06537|Dynamics Randomization]] (ICRA'18), [[1702.02453|UP-OSI]] (RSS'17)
 
 > [!star] Key Papers
 > - [[1710.06537|Dynamics Randomization]] (ICRA'18) — foundational method establishing training-time randomization of physical parameters combined with a recurrent policy as the classic recipe for zero-shot sim-to-real transfer
@@ -1295,7 +1307,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 - [[2608.29516|TR-FDF]], [[2607.04972|HOLA]], [[2607.02037|Cross-Platform ASV RL]], [[2607.01410|BIFROST]], [[2607.00160|Phase-Decomposed RL]] (IROS'26), [[2606.31043|Warp RL]], [[2606.30268|ConCent]], [[2606.05880|TAGA]], [[2605.19033|RLFTSim]] (CVPR'26 Highlight), [[2605.09789|DRIS]] (RSS'26), [[2604.24018|Sim2Real-Betting]] (RSS'26), [[2604.07457|CMP]], [[2602.23253|SPARR]], [[2602.00678|RoboGauge]] (RSS'26), [[2510.18060|SPACeR-RL]] (ICLR'26), [[2509.18648|SPiDR]] (NeurIPS'25), [[2508.21065|Learning-on-the-Fly]], [[2508.10538|MLM]], [[2507.06905|ULC]], [[2505.06771|JaxRobotarium]] (CoRL'25), [[2504.18904|RoboVerse]], [[2502.17666|IC-QL]], [[2502.07380|Wheeled Lab]] (CoRL'25)
 
 **RL Infrastructure & Scaling** — Engineering and scaling RL systems for real-world robot deployment.
-- [[2607.26985|SymmGrid]], [[2604.08706|RL-Experience-Replay-for-LLMs]], [[2604.06943|Sustainable-Transfer-RL]], [[2604.04539|FlashSAC]] (RSS'26), [[2604.01158|SMASH]], [[2603.03279|ULTRA]], [[2602.07837|USER]] (RSS'26), [[2512.20605|Internal-RL]], [[2510.22512|TRL]] (ICLR'26), [[2510.11103|SO3-Action-Representations]] (ICLR'26), [[2505.24864|ProRL]] (NeurIPS'25), [[2412.13211|MS-HAB]] (ICLR'25), [[2108.10470|Isaac-Gym]], [[2108.03332|BEHAVIOR]] (CoRL'21), [[2106.14405|Habitat-2.0]] (NeurIPS'21 Spotlight), [[2009.12293|robosuite]]
+- [[2607.26985|SymmGrid]], [[2604.06943|Sustainable-Transfer-RL]], [[2604.04539|FlashSAC]] (RSS'26), [[2604.01158|SMASH]], [[2603.03279|ULTRA]], [[2602.07837|USER]] (RSS'26), [[2510.11103|SO3-Action-Representations]] (ICLR'26), [[2412.13211|MS-HAB]] (ICLR'25), [[2108.10470|Isaac-Gym]], [[2108.03332|BEHAVIOR]] (CoRL'21), [[2106.14405|Habitat-2.0]] (NeurIPS'21 Spotlight), [[2009.12293|robosuite]]
 
 
 **Contrastive & Self-Supervised RL** — Self-supervised methods that learn useful representations for RL without labeled rewards.
@@ -1305,27 +1317,19 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2510.16416|SSL4RL]] — Reinterprets self-supervised learning tasks as intrinsic verifiable rewards for RL
 > - [[2506.11967|Annotation-Bootstrapping]] — Recasts visual pre-training as RL; learns annotation policies that improve downstream performance
 
-**Offline RL Algorithms & Theory** — Core offline RL algorithms addressing distribution shift, partial observability, and static-buffer learning.
-- [[2609.02237|DCRL]], [[2608.29061|PathBridger]], [[2608.01205|ReBRAC-v2]], [[2606.17551|RQL]], [[2603.22201|NMR]], [[2505.23871|ADG]] (NeurIPS'25), [[2505.22866|SORL]] (NeurIPS'25), [[2505.22151|Oryx]] (NeurIPS'25), [[2505.18595|MisoDICE]], [[2505.15418|GPO-Partial-Obs]] (ICLR'26), [[2505.14975|SAW]] (NeurIPS'25 Spotlight), [[2505.08078|Batch-Online-RL-Study]] (ICLR'26), [[2504.11453|Clean-Slate-Offline-RL]] (NeurIPS'25 Oral)
-
-> [!star] Key Papers
-> - [[2606.17551|RQL]] — foundational flow-reversal technique solving the curse-of-horizon in off-policy value learning from static buffers, highest average score across 50 OGBench tasks against 18 baselines
-> - [[2505.15418|GPO-Partial-Obs]] (ICLR'26) — clearest paradigm shift for partial observability, replacing the standard "impossibly good" teacher-student setup with a co-trained, theoretically-grounded guider/learner scheme that provably converges to RL-optimal
-> - [[2504.11453|Clean-Slate-Offline-RL]] (NeurIPS'25 Oral) — most foundational theory contribution, exposing evaluation inconsistencies across the field and unifying prior distribution-shift-mitigation components into one framework yielding new SOTA algorithms
-
 **Applied, Benchmark & Cross-Embodiment Offline RL** — Offline RL benchmarks, datasets, and cross-embodiment applications.
-- [[2602.18025|Cross-Embodiment-Offline-RL]] (ICLR'26), [[2511.07820|SONIC]], [[2509.26605|BRIDGE-RL]] (ICLR'26), [[2509.06870|AggLM]], [[2508.03100|AVATAR]] (CVPR'26), [[2410.21151|BraVE]] (NeurIPS'25), [[2410.20092|OGBench]] (ICLR'25), [[2410.18252|Asynchronous-RLHF]] (ICLR'25), [[2410.01735|LASeR]], [[2209.08959|TACO-RL]] (CoRL'22), [[2108.03298|Robomimic]] (CoRL'21)
+- [[2602.18025|Cross-Embodiment-Offline-RL]] (ICLR'26), [[2511.07820|SONIC]], [[2509.26605|BRIDGE-RL]] (ICLR'26), [[2508.03100|AVATAR]] (CVPR'26), [[2410.21151|BraVE]] (NeurIPS'25), [[2410.20092|OGBench]] (ICLR'25), [[2410.01735|LASeR]], [[2209.08959|TACO-RL]] (CoRL'22), [[2108.03298|Robomimic]] (CoRL'21)
 
 
 **Tactile, Contact-Rich & Teleoperation-Guided Manipulation** — Manipulation learning grounded in tactile sensing, contact signals, and teleoperated human demonstrations.
-- [[2609.16504|UniDex-ViTac]], [[2609.01938|DemoMimic]], [[2607.23782|N0-VTLA]], [[2607.11481|TELEDEXTER]], [[2607.08742|ContactMimic]], [[2607.06438|WristMimic]] (ECCV'26), [[2607.03723|OmniTacTune]], [[2607.00033|CHORD (Contact Wrench Guidance)]], [[2603.10971|ContactExplorer]], [[2603.00446|HydroShear]] (RSS'26), [[2509.12741|FMVP]] (CoRL'25), [[2506.10968|EyeRobot]] (CoRL'25), [[2505.23175|LocoTouch]] (CoRL'25), [[2409.15095|MoMa-Teleop]], [[2310.03478|RGBManip]] (ICRA'24), [[2207.10763|Tactile-Gym-2.0]], [[2207.09450|WHIRL]], [[2105.14455|TacTip]]
+- [[2609.16504|UniDex-ViTac]], [[2609.01938|DemoMimic]], [[2607.23782|N0-VTLA]], [[2607.11481|TELEDEXTER]], [[2607.08742|ContactMimic]], [[2607.06438|WristMimic]] (ECCV'26), [[2607.03723|OmniTacTune]], [[2607.00033|CHORD (Contact Wrench Guidance)]], [[2603.10971|ContactExplorer]], [[2603.00446|HydroShear]] (RSS'26), [[2509.18830|DexSkin]] (CoRL'25), [[2509.12741|FMVP]] (CoRL'25), [[2506.10968|EyeRobot]] (CoRL'25), [[2505.23175|LocoTouch]] (CoRL'25), [[2409.15095|MoMa-Teleop]], [[2310.03478|RGBManip]] (ICRA'24), [[2207.10763|Tactile-Gym-2.0]], [[2207.09450|WHIRL]], [[2105.14455|TacTip]]
 
 > [!star] Key Papers
 > - [[2105.14455|TacTip]] — foundational biomimetic optical tactile sensor whose decade-long design lineage and shear-sensing principle underpin most tactile-guided manipulation work in this group
 > - [[2607.11481|TELEDEXTER]] — clearest advance in teleoperation-guided dexterity, replacing kinematic retargeting with a learned hand-object co-tracking controller that hits 75.2% success where prior teleoperation baselines fail near zero
 
 **In-Hand, Grasping & Residual Manipulation RL** — In-hand reorientation, grasping, and residual-RL structuring of the dexterous action space.
-- [[2609.13761|POISE]], [[2607.28198|UniCross]], [[2607.12105|Physics-Priors In-Hand Rotation]], [[2607.11874|REGRIND]], [[2607.06323|LAMP]], [[2607.01651|AutoSERL]], [[2606.31909|CoDex]], [[2606.30474|GOMP]], [[2606.28323|DexCompose]], [[2509.09671|Dexplore]] (CoRL'25), [[2508.17547|LodeStar]] (CoRL'25), [[2505.05287|SYMDEX]] (CoRL'25), [[2502.15442|Privileged Actions]] (CoRL'25), [[2304.08488|VRB]] (CVPR'23), [[2304.04150|RoboPianist]] (CoRL'23), [[2303.03486|SBRL]] (RSS'23), [[2008.03285|Residual-Hand-Pose-RL]] (IROS'20), [[1812.03201|Residual RL]], [[1803.09956|VPG]] (IROS'18)
+- [[2609.13761|POISE]], [[2607.28198|UniCross]], [[2607.12105|Physics-Priors In-Hand Rotation]], [[2607.11874|REGRIND]], [[2607.06323|LAMP]], [[2607.01651|AutoSERL]], [[2606.31909|CoDex]], [[2606.30474|GOMP]], [[2606.28323|DexCompose]], [[2605.03363|Hierarchical-RL-QP-Grasp]], [[2509.09671|Dexplore]] (CoRL'25), [[2508.17547|LodeStar]] (CoRL'25), [[2505.05287|SYMDEX]] (CoRL'25), [[2502.15442|Privileged Actions]] (CoRL'25), [[2307.12074|MRLM]], [[2304.08488|VRB]] (CVPR'23), [[2304.04150|RoboPianist]] (CoRL'23), [[2303.03486|SBRL]] (RSS'23), [[2008.03285|Residual-Hand-Pose-RL]] (IROS'20), [[1812.03201|Residual RL]], [[1803.09956|VPG]] (IROS'18)
 
 > [!star] Key Papers
 > - [[2607.06323|LAMP]] — Latent motion prior structures the high-dimensional hand-action space, enabling near-perfect success on complex dexterous tasks
@@ -1339,7 +1343,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2502.10363|BeamDojo]] (RSS'25) — first learning-based method for fine-grained humanoid foothold control on sparse terrain, pairing a sampling-based foothold reward with double-critic RL to hit 90%+ sim success and robust zero-shot real-world transfer
 
 **Humanoid Whole-Body Control & Teleoperation** — Whole-body humanoid control, heavy-payload teleoperation, and novel gaits.
-- [[2609.18869|KINO]], [[2608.29487|Blind Dexterity]], [[2607.24083|HMP]], [[2607.20399|VR-RL Humanoid Tele-Loco-Manipulation]], [[2607.19903|YAHMP]], [[2607.15163|Humanoid Transformer]], [[2607.11624|SKooP]], [[2607.11041|PAKE]], [[2607.07830|HumoSlope]], [[2607.07370|ABot-C0]], [[2607.04837|Athena-WBC]], [[2607.02332|HEFT]], [[2606.31807|Skating Humanoid RL]] (IROS'26), [[2606.29209|AnyBody (Whole-Body Humanoid Control)]], [[2603.02856|Rhythm]] (RSS'26), [[2602.13656|KungFuAthlete]], [[2511.01774|MOBIUS]] (RSS'26)
+- [[2609.18869|KINO]], [[2608.29487|Blind Dexterity]], [[2607.24083|HMP]], [[2607.20399|VR-RL Humanoid Tele-Loco-Manipulation]], [[2607.19903|YAHMP]], [[2607.15163|Humanoid Transformer]], [[2607.11624|SKooP]], [[2607.11041|PAKE]], [[2607.07830|HumoSlope]], [[2607.07370|ABot-C0]], [[2607.04837|Athena-WBC]], [[2607.02332|HEFT]], [[2606.31807|Skating Humanoid RL]] (IROS'26), [[2606.29209|AnyBody (Whole-Body Humanoid Control)]], [[2603.02856|Rhythm]] (RSS'26), [[2602.13656|KungFuAthlete]], [[2511.01774|MOBIUS]] (RSS'26), [[2506.12851|KungfuBot]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2607.15163|Humanoid Transformer]] — strongest reported results (up to 82% MPKPE reduction), establishing a principled scaling recipe for humanoid Behavior Foundation Models
@@ -1349,7 +1353,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2607.02332|HEFT]] — Single policy handles 24kg heavy-payload teleoperation on a full-size humanoid via privileged motion guidance and payload curriculum
 
 **Quadruped & Perceptive Locomotion Control** — Quadruped locomotion policies and perceptive/blind terrain-aware control, including the ANYmal lineage.
-- [[2607.26434|LSTM-CPG Quadruped Policy]], [[2607.24036|WARL]] (IROS'26), [[2607.20110|Extreme-RGMT]], [[2607.18365|Torque-Driven Quadruped RL]], [[2607.18135|Isaac Sim-to-Real Quadruped RL]], [[2606.31691|FastDSAC]], [[2606.30362|ReactiveBFM]], [[2606.00637|GLAD]], [[2509.01765|PEGrad]] (CoRL'25), [[2508.11849|LocoMamba]], [[2506.09588|Attention-Map-Encoding]], [[2505.16084|ANYmal Motion Priors]] (CoRL'25), [[2404.02887|Differentiable Locomotion Control]] (CoRL'25), [[2211.07638|Egocentric-Legged-Locomotion]] (CoRL'22), [[2209.12827|Position-Based-Locomotion]], [[2201.08117|ANYmal-Perceptive-Locomotion]], [[2010.11251|ANYmal-Locomotion]], [[1707.02286|Distributed PPO]]
+- [[2607.26434|LSTM-CPG Quadruped Policy]], [[2607.24036|WARL]] (IROS'26), [[2607.20110|Extreme-RGMT]], [[2607.18365|Torque-Driven Quadruped RL]], [[2607.18135|Isaac Sim-to-Real Quadruped RL]], [[2606.31691|FastDSAC]], [[2606.30362|ReactiveBFM]], [[2606.00637|GLAD]], [[2605.03846|SigLoMa]], [[2509.01765|PEGrad]] (CoRL'25), [[2508.11849|LocoMamba]], [[2506.09588|Attention-Map-Encoding]], [[2505.16084|ANYmal Motion Priors]] (CoRL'25), [[2404.02887|Differentiable Locomotion Control]] (CoRL'25), [[2211.07638|Egocentric-Legged-Locomotion]] (CoRL'22), [[2209.12827|Position-Based-Locomotion]], [[2201.08117|ANYmal-Perceptive-Locomotion]], [[2010.11251|ANYmal-Locomotion]], [[1707.02286|Distributed PPO]]
 
 > [!star] Key Papers
 > - [[2010.11251|ANYmal-Locomotion]] — foundational teacher-student RL controller pioneering zero-shot sim-to-real proprioceptive locomotion, validated with zero failures in the DARPA Subterranean Challenge
@@ -1357,7 +1361,7 @@ RL methods designed for or applied to physical robot learning — sample efficie
 > - [[2211.07638|Egocentric-Legged-Locomotion]] (CoRL'22) — replaced noisy elevation-map pipelines with direct end-to-end egocentric depth vision, hitting 94-100% real-world success on stairs, gaps, and stepping stones
 
 **Gait, Reference-Motion & Morphology-Agnostic Control** — Gait/reference-motion tracking and policies that generalize across robot morphologies.
-- [[2609.15213|X-WBC]], [[2607.00442|STL Gait-Aware Locomotion]], [[2606.31912|Foot-Centric Proximity Locomotion]] (IROS'26), [[2606.30290|X-Morph]], [[2603.24047|PCHC]], [[2602.23832|OmniTrack]], [[2602.20375|Multi-Task Reference-Goal RL]] (RSS'26), [[2510.02252|GMR]], [[2507.09371|ConsMimic]] (CoRL'25), [[2506.11470|Multi-Loco]] (CoRL'25), [[2102.02202|DERL]], [[2010.01856|AMORPHEUS]] (ICLR'21), [[2007.04976|SMP]] (ICML'20), [[2004.00784|Imitating Animals]]
+- [[2609.15213|X-WBC]], [[2607.25798|Transformer Transformer]], [[2607.00442|STL Gait-Aware Locomotion]], [[2606.31912|Foot-Centric Proximity Locomotion]] (IROS'26), [[2606.30290|X-Morph]], [[2603.24047|PCHC]], [[2602.23832|OmniTrack]], [[2602.20375|Multi-Task Reference-Goal RL]] (RSS'26), [[2510.02252|GMR]], [[2507.09371|ConsMimic]] (CoRL'25), [[2506.11470|Multi-Loco]] (CoRL'25), [[2102.02202|DERL]], [[2010.01856|AMORPHEUS]] (ICLR'21), [[2007.04976|SMP]] (ICML'20), [[2004.00784|Imitating Animals]]
 
 **Robot Navigation RL** — End-to-end RL navigation policies for mobile robots and autonomous agents — crowd and social navigation, unsteady-flow fields, and low-latency trajectory generation.
 - [[2608.30935|LightNav-0]], [[2607.28560|X-NavDP]], [[2607.24292|HYPER-GNC]], [[2607.20785|Robostral Navigate]], [[2607.18794|LANav]], [[2607.15036|VOP-Nav]], [[2607.14643|NavCMPO]] (IROS'26), [[2607.13553|Flow-Aware RL Navigation]], [[2607.10991|HUMA]] (CoRL'26), [[2508.03027|CogniPlan]] (CoRL'25)
@@ -1404,20 +1408,12 @@ RL methods designed for or applied to physical robot learning — sample efficie
 RL methods applied to specialized domains and cross-cutting applications that span multiple categories.
 
 **Distillation & Efficiency-Focused Post-Training** — On-policy/teacher-student distillation and compute-efficient post-training recipes.
-- [[2609.04172|One-Shot OPD]], [[2607.15161|OPD^2]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.04751|TOP-D]], [[2604.11297|MEDS]], [[2604.08865|SPPO]], [[2512.22238|Mask-Teacher-Distill]], [[2512.00536|Dataset-Distillation-RL]] (ICLR'26), [[2511.00091|PLD]] (ICLR'26), [[2509.26226|ThinkingFree]] (ICLR'26), [[2509.23958|RLIR]], [[2509.19292|SOE]], [[2509.16965|TVKD]] (NeurIPS'25), [[2505.16581|Distilled-Policy-Ensembles]] (NeurIPS'25)
+- [[2609.04172|One-Shot OPD]], [[2607.15161|OPD^2]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.04751|TOP-D]], [[2604.11297|MEDS]], [[2604.08865|SPPO]], [[2603.19266|Explanatory-Inversion]] (ICLR'26), [[2603.10160|ReMix]] (ICLR'26), [[2512.22238|Mask-Teacher-Distill]], [[2512.04072|SkillFactory]] (ICLR'26), [[2512.00536|Dataset-Distillation-RL]] (ICLR'26), [[2511.00091|PLD]] (ICLR'26), [[2509.26226|ThinkingFree]] (ICLR'26), [[2509.23958|RLIR]], [[2509.19292|SOE]], [[2509.16965|TVKD]] (NeurIPS'25), [[2505.16581|Distilled-Policy-Ensembles]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2607.04751|TOP-D]] — fixes the root-cause instability of on-policy distillation (unbounded log-ratio reward) with a theoretically-grounded trust-region fix, the largest single reported gain in the group (+25.84pp AIME24) at zero extra compute
 > - [[2607.05394|Direct-OPD]] — reframes a weak model's RL training as a reusable "policy shift" that can be transplanted onto stronger students, cutting post-training compute by ~50%
 > - [[2607.15161|OPD^2]] — isolates a teacher's reasoning-specific delta from its base model rather than its full output distribution, with the broadest, most consistent gains across model sizes/domains
-
-**Robotics, Tool-Use & Agentic Post-Training** — Post-training methods applied to VLA/robotics and agentic tool-use settings.
-- [[2512.16918|AdaTooler-V]], [[2512.04072|SkillFactory]] (ICLR'26), [[2512.02834|TACO]], [[2511.14565|Masked-IRL]] (ICRA'26), [[2511.09515|WMPO]] (ICLR'26), [[2510.00406|VLA-RFT]], [[2509.18830|DexSkin]] (CoRL'25), [[2509.15937|VLAC]], [[2506.12851|KungfuBot]] (NeurIPS'25), [[2505.01441|ARTIST]], [[2505.00024|Nemotron-Research-Tool-N1]] (ICLR'26), [[2504.13958|ToolRL]] (NeurIPS'25), [[2503.07572|MRT]] (ICML'25), [[2501.01478|MCTS-Process-Supervision]], [[2412.02818|RoboMD]] (ICLR'26), [[2405.10292|VLM-RL-Fine-Tuning]] (NeurIPS'24)
-
-> [!star] Key Papers
-> - [[2405.10292|VLM-RL-Fine-Tuning]] (NeurIPS'24) — the foundational template of end-to-end RL fine-tuning of a VLM as an acting agent with CoT, which every later robotics/tool/agentic-RL paper in this group varies
-> - [[2504.13958|ToolRL]] (NeurIPS'25) — clearest statement that reward design, not architecture or SFT, is the real lever for tool-use RL
-> - [[2511.09515|WMPO]] (ICLR'26) — paradigm shift for robotics post-training: on-policy RL run entirely inside a learned pixel-space world model, eliminating real-world interaction while still yielding real-robot gains
 
 **Reasoning-Efficiency, Reflection & Reward-Shaping Post-Training** — Post-training recipes that reshape rewards, add reflection, or manage reasoning-token budgets.
 - [[2512.18552|SSR]] (ICML'26), [[2510.25889|piRL]], [[2510.25801|Metis-SPECS]] (ICLR'26), [[2510.15047|SPA]], [[2510.12710|Reflective-Self-Adaptation]], [[2508.12790|Rubicon]], [[2508.05629|DFT]] (ICLR'26), [[2508.02298|CAPO]], [[2507.17746|RaR]] (ICLR'26), [[2505.22094|ReinFlow]] (NeurIPS'25), [[2504.13055|NoisyRollout]] (NeurIPS'25), [[2504.12216|d1]] (NeurIPS'25 Spotlight), [[2504.11536|ReTool]] (ICLR'26), [[2503.23383|ToRL]], [[2503.03746|Process-based-Self-Rewarding]], [[2502.02316|DIME-RL]] (ICML'25)
@@ -1426,42 +1422,24 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 > - [[2508.05629|DFT]] (ICLR'26) — reframes SFT as RL with an ill-posed inverse-probability reward and rectifies it in a single line, beating PPO/GRPO by +15.66 points
 > - [[2504.11536|ReTool]] (ICLR'26) — RL-learned strategic code-interpreter use lifts AIME24 from 40.0% to 67.0% in 400 steps while cutting response length 40%, with emergent self-correction
 
-**Generation, Multimodal & Theory Post-Training** — Post-training for generative/multimodal outputs plus surveys and theoretical framing of the field.
-- [[2604.01193|SSD-Code-Generation]], [[2603.19266|Explanatory-Inversion]] (ICLR'26), [[2603.10160|ReMix]] (ICLR'26), [[2512.17636|TRAPO]] (ICLR'26), [[2512.13043|GTR-Turbo]] (CVPR'26), [[2512.01119|World-Model-Surprise-Robustness]] (CVPR'26), [[2505.07538|Selftok]], [[2504.18471|AFM]], [[2504.18053|DREAM]], [[2502.21321|LLM-Post-Training-Survey]], [[2501.13926|CoT-Image-Generation]], [[2409.18869|Emu3]], [[2403.12884|HYDRA]] (ECCV'24), [[2401.05946|TDB]] (ICML'24), [[2310.06114|UniSim]] (ICLR'24 Oral), [[2203.03485|Self-directed-Exploratory-Planning]]
-
-> [!star] Key Papers
-> - [[2502.21321|LLM-Post-Training-Survey]] — Comprehensive survey of post-training for LLMs; maps the full SFT-to-RL pipeline
-
 **RL for Structured Prediction** — RL applied to ranking, retrieval, and other structured output tasks.
-- [[2604.08545|Metis]], [[2604.02035|RL-Speculative-Trading]], [[2603.07020|RESCHED]] (ICLR'26), [[2602.11057|PRAM]] (ICLR'26), [[2512.23333|CME-CAD]], [[2510.11121|RFTHGS]] (ICLR'26), [[2510.10509|MARS-Sep]] (ICLR'26), [[2510.04080|PoLi-RL]] (ICLR'26), [[2510.03257|Triple-BERT]] (ICLR'26 Oral), [[2509.22558|StepORLM]] (ICLR'26), [[2509.15927|AIGB-Pearl]] (ICLR'26 Oral), [[2508.14313|AIRL-S]], [[2506.16931|MMFL]] (CoRL'25), [[2506.08898|POCCO]] (NeurIPS'25), [[2506.04195|MACS-Crystal]] (NeurIPS'25), [[2505.23131|DOPPLER]] (ICLR'26), [[2505.20046|REARANK]], [[2505.19053|Structured-RL-CO]] (NeurIPS'25), [[2505.13445|RISE]] (NeurIPS'25), [[2110.11073|RL4RS]], [[1909.04847|RecSim]], [[1905.12767|SLATEQ]]
+- [[2605.28293|ProRL-Recommendation]] (ICML'26), [[2604.08545|Metis]], [[2604.02035|RL-Speculative-Trading]], [[2603.07020|RESCHED]] (ICLR'26), [[2602.11057|PRAM]] (ICLR'26), [[2512.23333|CME-CAD]], [[2510.11121|RFTHGS]] (ICLR'26), [[2510.10509|MARS-Sep]] (ICLR'26), [[2510.04080|PoLi-RL]] (ICLR'26), [[2510.03257|Triple-BERT]] (ICLR'26 Oral), [[2509.22558|StepORLM]] (ICLR'26), [[2509.19846|BoreaRL]] (ICLR'26), [[2509.15927|AIGB-Pearl]] (ICLR'26 Oral), [[2508.14313|AIRL-S]], [[2507.19234|Virne]] (ICLR'26), [[2506.16931|MMFL]] (CoRL'25), [[2506.08898|POCCO]] (NeurIPS'25), [[2506.04195|MACS-Crystal]] (NeurIPS'25), [[2505.23131|DOPPLER]] (ICLR'26), [[2505.20046|REARANK]], [[2505.19053|Structured-RL-CO]] (NeurIPS'25), [[2505.13445|RISE]] (NeurIPS'25), [[2110.11073|RL4RS]], [[1909.04847|RecSim]], [[1905.12767|SLATEQ]]
 
-
-**Safe RL & Constrained Control Theory** — Formal safety constraints, temporal-logic specifications, and robustness theory for RL.
-- [[2602.19532|VDPPO]] (RSS'26), [[2602.17078|Safe-CT-MARL]] (ICLR'26), [[2602.05323|GAS-Safe-RL]] (ICLR'26), [[2508.01561|GenZ-LTL]] (NeurIPS'25), [[2506.08062|FairDICE]] (NeurIPS'25), [[2506.01167|Differentiable-LTL]] (ICLR'26), [[2505.10947|Lyapunov-RL-Stability]] (NeurIPS'25), [[2504.04675|HypRL]] (NeurIPS'25), [[2503.18991|DR-IRL]] (ICLR'26), [[2502.10138|OPSE-LCMDP]] (NeurIPS'25 Spotlight), [[1901.09184|Action-Robust-RL]] (ICML'19)
-
-> [!star] Key Papers
-> - [[1901.09184|Action-Robust-RL]] (ICML'19) — earliest work in the group, formalizing action-space robustness via PR-MDP/NR-MDP two-player games with convergence guarantees, whose AR-DDPG became a reference robust-RL baseline
-> - [[2505.10947|Lyapunov-RL-Stability]] (NeurIPS'25) — bridges classical constrained-control theory and RL, relaxing the pointwise Lyapunov decrease condition to a multi-step average that nearly doubles formally verified regions of attraction
-> - [[2502.10138|OPSE-LCMDP]] (NeurIPS'25 Spotlight) — first computationally efficient linear-CMDP algorithm proven to achieve both sublinear regret and episode-wise zero constraint violation
 
 **Truthfulness, Alignment & Human-Values RL** — RL methods that improve model truthfulness, opinion diversity, and alignment with human values.
-- [[2606.24014|Beneficial Trait RL]], [[2603.01214|Opinion-Alignment-Reasoning]] (ICLR'26), [[2509.20357|RLMT]], [[2509.03518|LLM-Lying]], [[2507.14987|AlphaAlign]] (ICLR'26), [[2507.00971|TARS]] (NeurIPS'25), [[2506.19807|KnowRL]], [[2506.04245|CI-CoT]] (NeurIPS'25), [[2505.15795|RLRE]] (NeurIPS'25 Spotlight), [[2410.19933|RePO]] (NeurIPS'25)
+- [[2606.24014|Beneficial Trait RL]], [[2603.01214|Opinion-Alignment-Reasoning]] (ICLR'26), [[2509.20357|RLMT]], [[2509.15172|MACA]], [[2509.03518|LLM-Lying]], [[2507.14987|AlphaAlign]] (ICLR'26), [[2507.00971|TARS]] (NeurIPS'25), [[2506.19807|KnowRL]], [[2506.04245|CI-CoT]] (NeurIPS'25), [[2505.15795|RLRE]] (NeurIPS'25 Spotlight), [[2504.18053|DREAM]], [[2410.19933|RePO]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2606.24014|Beneficial Trait RL]] — training on just 5% beneficial-trait data drove 83% out-of-distribution alignment wins and far greater resilience to adversarial prompting
 > - [[2507.00971|TARS]] (NeurIPS'25) — three-stage recipe gives the clearest, ablation-backed explanation of why naive safety RL collapses into blanket refusal and how to avoid it
 > - [[2410.19933|RePO]] (NeurIPS'25) — foundational reframing showing "expected" safety constraints let models statistically compensate for individual unsafe outputs, proposing per-instance "critical safety constraints" as the fix
 
-**Safety Filters, Robustness & Reward-Hacking Defense** — Runtime safety filters and defenses against reward hacking and unsafe exploration.
-- [[2603.23889|COX]] (ICLR'26), [[2602.15817|FGE]] (ICLR'26), [[2601.19612|SOOPER]] (ICLR'26), [[2512.11391|NSPO]] (ICLR'26), [[2510.12312|Deep-SPI]] (ICLR'26), [[2510.08240|WaltzRL]] (ICLR'26), [[2509.25727|B2R]] (NeurIPS'25), [[2509.15172|MACA]], [[2507.16806|RLCR]] (ICLR'26), [[2505.21852|PLS]] (NeurIPS'25), [[2505.20065|SafeDPO]] (ICLR'26 Oral), [[2505.16186|SafeKey]]
-
-
 **RL-Enhanced Multimodal Architectures** — Novel architectures that fundamentally integrate RL into their design rather than using it as post-training.
 - [[2604.08539|OpenVLThinkerV2]], [[2603.01696|CIM]] (CVPR'26), [[2602.04884|RAL]], [[2602.03806|COBALT]], [[2602.03143|SAGE]], [[2602.02605|ESMA]], [[2511.10279|PROPA]], [[2507.00432|Math-Reasoning-Transferability]], [[2506.13351|DRO]], [[2506.08388|RLTs]] (NeurIPS'25), [[2505.18129|V-Triune]], [[2505.16673|R1-ShareVL]], [[1705.03633|IEP]] (ICCV'17), [[1704.05526|N2NMN]] (ICCV'17)
 
 
 **Diffusion/Flow GRPO for Image & Video Generation** — GRPO and flow-matching variants adapted to diffusion-based image/video generation.
-- [[2609.30221|WanPE]], [[2608.26872|Self-OPD]], [[2606.27376|Ask-Solve-Generate]], [[2604.10962|ScoRe-Flow]], [[2603.28718|Stepwise-Flow-GRPO]], [[2603.16769|GDPO-SR]], [[2603.01163|BeautyGRPO]] (CVPR'26), [[2512.21514|DiverseGRPO]], [[2512.18766|MaskFocus]], [[2512.08153|TreeGRPO]] (ICLR'26), [[2512.04784|PaCo-RL]], [[2511.20256|Adv-GRPO]], [[2510.13418|Mask-GRPO]] (NeurIPS'25), [[2510.08425|DGPO-Diffusion]] (ICLR'26), [[2510.02880|MaskGRPO]] (ICLR'26), [[2510.01982|G2RPO-Flow]], [[2510.01540|Diffusion-LPO]] (ICLR'26), [[2510.00502|Diffusion-EM-Alignment]] (ICLR'26), [[2509.22485|GCPO-RL]] (ICLR'26), [[2509.16117|DiffusionNFT]] (ICLR'26 Oral), [[2508.04324|TempFlow-GRPO]] (ICLR'26)
+- [[2609.30221|WanPE]], [[2608.26872|Self-OPD]], [[2606.27376|Ask-Solve-Generate]], [[2604.10962|ScoRe-Flow]], [[2603.28718|Stepwise-Flow-GRPO]], [[2603.16769|GDPO-SR]], [[2603.01163|BeautyGRPO]] (CVPR'26), [[2512.21514|DiverseGRPO]], [[2512.18766|MaskFocus]], [[2512.08153|TreeGRPO]] (ICLR'26), [[2512.04784|PaCo-RL]], [[2511.20256|Adv-GRPO]], [[2510.13418|Mask-GRPO]] (NeurIPS'25), [[2510.08425|DGPO-Diffusion]] (ICLR'26), [[2510.02880|MaskGRPO]] (ICLR'26), [[2510.01982|G2RPO-Flow]], [[2510.01540|Diffusion-LPO]] (ICLR'26), [[2510.00502|Diffusion-EM-Alignment]] (ICLR'26), [[2509.22485|GCPO-RL]] (ICLR'26), [[2509.16117|DiffusionNFT]] (ICLR'26 Oral), [[2509.06040|BranchGRPO]] (ICLR'26), [[2508.04324|TempFlow-GRPO]] (ICLR'26), [[2505.05470|Flow-GRPO]] (NeurIPS'25)
 
 > [!star] Key Papers
 > - [[2508.04324|TempFlow-GRPO]] (ICLR'26) — foundational: shows flow-GRPO's uniform per-step credit assignment is the core inefficiency, an insight later Stepwise-Flow-GRPO, G²RPO-Flow, and TreeGRPO all build on
@@ -1469,7 +1447,7 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 > - [[2510.08425|DGPO-Diffusion]] (ICLR'26) — eliminates the need for a stochastic policy altogether, hitting 97% GenEval with up to 30x faster training than Flow-GRPO
 
 **Image/Video Editing & Preference RL** — RL for image/video editing, poster/motion generation, and preference-driven creative outputs.
-- [[2604.19406|HP-Edit]] (CVPR'26), [[2509.15031|AutoEdit]] (NeurIPS'25), [[2508.01119|RL-Image-Editing]] (NeurIPS'25), [[2506.10741|PosterCraft]] (ICLR'26), [[2506.10353|Motion-R1]] (ICLR'26), [[2506.08011|ViGaL]] (ICLR'26), [[2505.21478|FlowRL-T2I-Pipeline]] (NeurIPS'25), [[2505.20793|Rendering-Aware-RL-SVG]] (NeurIPS'25), [[2505.18547|Diffusion-Blend]] (ICLR'26), [[2505.17540|RePrompt]] (ICLR'26), [[2505.17534|CoRL-Multimodal]] (NeurIPS'25 Spotlight), [[2505.17017|Image-Gen-RL-Study]] (NeurIPS'25), [[2407.08737|VADER]], [[2403.18811|Duolando]] (ICLR'24)
+- [[2608.25622|RefineCut]], [[2607.05465|CanvasAgent]], [[2604.19406|HP-Edit]] (CVPR'26), [[2509.15031|AutoEdit]] (NeurIPS'25), [[2509.12883|Lego-Edit]], [[2508.01119|RL-Image-Editing]] (NeurIPS'25), [[2506.10741|PosterCraft]] (ICLR'26), [[2506.10353|Motion-R1]] (ICLR'26), [[2506.08011|ViGaL]] (ICLR'26), [[2505.21478|FlowRL-T2I-Pipeline]] (NeurIPS'25), [[2505.20793|Rendering-Aware-RL-SVG]] (NeurIPS'25), [[2505.18547|Diffusion-Blend]] (ICLR'26), [[2505.17540|RePrompt]] (ICLR'26), [[2505.17534|CoRL-Multimodal]] (NeurIPS'25 Spotlight), [[2505.17017|Image-Gen-RL-Study]] (NeurIPS'25), [[2407.08737|VADER]], [[2403.18811|Duolando]] (ICLR'24)
 
 > [!star] Key Papers
 > - [[2407.08737|VADER]] — first to align video diffusion models via differentiable reward gradients, founding the reward-gradient approach this group builds on
@@ -1486,20 +1464,20 @@ RL methods applied to specialized domains and cross-cutting applications that sp
 > - [[2603.03072|TikZilla]] (ICLR'26) — clearest demonstration of data+RL with a domain-specific visual reward applied to text/diagram/code rendering, with small open models beating GPT-5/GPT-4o
 
 **General RL+Generation Algorithms & Theory** — Broader algorithmic and theoretical contributions to RL for generative modeling.
-- [[2605.15055|DiffusionOPD]], [[2605.10759|RAM]], [[2604.24171|POCA]] (CVPR'26), [[2603.21175|RSA-FT]] (CVPR'26), [[2603.21138|Generative-ZSL-RL]], [[2603.18991|CRAFT-Diff]] (CVPR'26), [[2602.16548|RIDER]] (ICLR'26), [[2601.02256|VAR-RL]], [[2601.02036|GDRO-Diff]], [[2512.24146|D2-Align]] (CVPR'26), [[2511.18719|ViPO]], [[2510.22319|GRPO-Guard]], [[2510.14255|IPRO]] (CVPR'26), [[2510.01399|DISCO-T2I]] (CVPR'26), [[2509.25774|PCPO]] (ICLR'26), [[2509.16500|RLGF]] (NeurIPS'25), [[2506.17007|Soft-Operators-Robust-RL]] (ICLR'26), [[2505.20107|MVC-ZigAL]] (CVPR'26), [[2502.01384|SEPO]] (NeurIPS'25), [[2502.00639|RLR-Optimizer]] (ICLR'26 Oral)
+- [[2605.15055|DiffusionOPD]], [[2605.10759|RAM]], [[2604.24171|POCA]] (CVPR'26), [[2603.21175|RSA-FT]] (CVPR'26), [[2603.21138|Generative-ZSL-RL]], [[2603.18991|CRAFT-Diff]] (CVPR'26), [[2602.16548|RIDER]] (ICLR'26), [[2601.02256|VAR-RL]], [[2601.02036|GDRO-Diff]], [[2512.24146|D2-Align]] (CVPR'26), [[2511.18719|ViPO]], [[2510.22319|GRPO-Guard]], [[2510.14255|IPRO]] (CVPR'26), [[2510.01399|DISCO-T2I]] (CVPR'26), [[2509.25774|PCPO]] (ICLR'26), [[2509.16500|RLGF]] (NeurIPS'25), [[2506.17007|Soft-Operators-Robust-RL]] (ICLR'26), [[2505.20107|MVC-ZigAL]] (CVPR'26), [[2502.01384|SEPO]] (NeurIPS'25), [[2502.00639|RLR-Optimizer]] (ICLR'26 Oral), [[2501.13926|CoT-Image-Generation]]
 
 > [!star] Key Papers
 > - [[2512.07733|SpatialDreamer]] — Uses active mental imagery via RL to incentivize spatial reasoning in generative models
 > - [[2506.08011|ViGaL]] (ICLR'26) — RL-based game play for learning generalizable visual reasoning; bridges generation and understanding
 
 **Continual & Test-Time RL** — RL methods that continue learning at deployment time or adapt to distribution shifts.
-- [[2608.27448|TTPO]], [[2607.01111|FAR]], [[2604.11768|GC-PFO]], [[2604.11138|ViserDex]] (RSS'26), [[2603.02203|T3RL]], [[2602.21198|Reflective-Test-Time-Planning]], [[2601.16175|TTT-Discover]], [[2502.03369|PVP (Proxy Value Propagation)]]
+- [[2608.27448|TTPO]], [[2607.01111|FAR]], [[2604.11768|GC-PFO]], [[2604.11138|ViserDex]] (RSS'26), [[2603.02203|T3RL]], [[2602.21198|Reflective-Test-Time-Planning]], [[2601.16175|TTT-Discover]], [[2511.23473|ThetaEvolve]], [[2504.18471|AFM]], [[2502.03369|PVP (Proxy Value Propagation)]]
 
 > [!star] Key Papers
 > - [[2601.16175|TTT-Discover]] — Test-time training enabling LLMs to learn and adapt to novel patterns during inference
 
 **RL + Program Synthesis** — RL for theorem proving, code generation, and formal verification.
-- [[2510.11769|GAR]] (ICLR'26), [[2509.23285|Tool-Light]] (ICLR'26), [[2504.21801|DeepSeek-Prover-V2]], [[2504.11354|Kimina-Prover]], [[2503.16219|Open-RS]], [[2502.07640|Goedel-Prover]]
+- [[2604.01193|SSD-Code-Generation]], [[2510.11769|GAR]] (ICLR'26), [[2509.23285|Tool-Light]] (ICLR'26), [[2504.21801|DeepSeek-Prover-V2]], [[2504.11354|Kimina-Prover]], [[2503.16219|Open-RS]], [[2502.07640|Goedel-Prover]]
 
 > [!star] Key Papers
 > - [[2504.21801|DeepSeek-Prover-V2]] — RL-enhanced formal theorem proving with recursive proof search and subgoal decomposition

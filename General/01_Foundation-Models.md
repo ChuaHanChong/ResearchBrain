@@ -246,17 +246,14 @@ The architectural revolution that brought attention mechanisms to computer visio
 > - [[2111.06091|Visual-Transformers-Survey]] — Consolidated taxonomy of ViT variants and training recipes as the field matured past first-generation designs
 
 **Efficiency, Tokenization & Edge Deployment** — Reducing ViT compute and memory cost via patch/token-level optimization, sparsity, and lightweight designs for edge inference.
-- [[2603.25744|MuRF]], [[2603.22815|PinPoint]] (CVPR'26), [[2603.22387|EUPE]], [[2602.08683|OneVision-Encoder]], [[2512.01738|MSPT]], [[2510.23479|MergeMix]] (ICLR'26), [[2510.21501|GranViT]], [[2510.18091|APT]] (ICLR'26), [[2507.07995|KARL-Eff]] (NeurIPS'25), [[2505.23769|TextRegion]], [[2504.03118|NuWa-Eff]] (CVPR'26), [[2307.09120|LW-PLG-ViT]], [[2205.03436|EdgeViTs]], [[2107.02239|ViX]], [[2104.05704|CCT]]
+- [[2603.25744|MuRF]], [[2603.22815|PinPoint]] (CVPR'26), [[2603.22387|EUPE]], [[2602.08683|OneVision-Encoder]], [[2512.01738|MSPT]], [[2510.23479|MergeMix]] (ICLR'26), [[2510.21501|GranViT]], [[2510.18091|APT]] (ICLR'26), [[2507.07995|KARL-Eff]] (NeurIPS'25), [[2507.01643|SAILViT]], [[2506.11136|JAFAR]] (NeurIPS'25), [[2505.23769|TextRegion]], [[2504.03118|NuWa-Eff]] (CVPR'26), [[2307.09120|LW-PLG-ViT]], [[2205.03436|EdgeViTs]], [[2107.02239|ViX]], [[2104.05704|CCT]]
 
 **Domain Adaptation, Transfer & Interpretability** — Adapting pretrained ViTs to new domains via adapters and prompts, and analyzing what the adapted representations capture.
-- [[2608.02124|HAFI-VLM]], [[2603.22570|CanViT]], [[2601.08499|EfficientFSL]], [[2505.21501|PH-Reg]] (NeurIPS'25 Spotlight), [[2505.19985|Structured-ViT-Initialization]] (NeurIPS'25), [[2505.18364|ImLPR]] (CoRL'25), [[2505.17316|Patch-Aligned-Training]] (NeurIPS'25), [[2502.01962|META]] (ICLR'25), [[2501.09333|Prompt-CAM]] (CVPR'25), [[2412.04073|TransAdapter]], [[2303.13434|PMTrans]] (CVPR'23), [[2205.08534|ViT-Adapter]] (ICLR'23 Spotlight), [[2108.05988|TVT]]
+- [[2608.02124|HAFI-VLM]], [[2603.22570|CanViT]], [[2603.02959|SS-Text-U]], [[2601.08499|EfficientFSL]], [[2505.21501|PH-Reg]] (NeurIPS'25 Spotlight), [[2505.19985|Structured-ViT-Initialization]] (NeurIPS'25), [[2505.18364|ImLPR]] (CoRL'25), [[2505.17316|Patch-Aligned-Training]] (NeurIPS'25), [[2502.01962|META]] (ICLR'25), [[2501.09333|Prompt-CAM]] (CVPR'25), [[2412.04073|TransAdapter]], [[2303.13434|PMTrans]] (CVPR'23), [[2205.08534|ViT-Adapter]] (ICLR'23 Spotlight), [[2108.05988|TVT]]
 
 > [!star] Key Papers
 > - [[2205.08534|ViT-Adapter]] (ICLR'23 Spotlight) — Foundational adapter method enabling plain ViTs to handle dense prediction tasks without architectural changes
 > - [[2412.04073|TransAdapter]] — Feature-centric unsupervised domain adaptation for ViTs; bridges the gap between pre-trained ViTs and target domains
-
-**Additional methods** — Robot-data and benchmark papers that don't fit the categories above.
-- [[2504.13059|RoboTwin]] (CVPR'25), [[2109.13396|Bridge]]
 
 > [!tip] Scaling vs Efficiency
 > ViTs scale well (ViT-22B proves this), but raw scaling is not always practical. Hierarchical designs like Swin and HiViT recover multi-scale features efficiently, while domain-specific adaptations (HIPT for pathology, WIN-WIN for high-res) show that architecture matters as much as scale.
@@ -290,7 +287,7 @@ New attention patterns, normalization strategies, and structural modifications t
 > - [[2512.24695|Hope]] (NeurIPS'25) — Nested Learning reinterprets deep learning as nested multi-level optimization
 
 **Hybrid Architectures** — Combining Transformers with state-space models, recurrence, or looped computation for improved efficiency.
-- [[2608.27763|Falcon (Fast Weight Attention)]], [[2608.05416|SpectraLDS]], [[2607.16051|Loopie]], [[2605.11689|MoE-Configuration-Study]], [[2604.21254|Hyperloop-Transformers]], [[2603.11691|STAIRS-Former]], [[2601.15275|RayRoPE]], [[2512.20856|Nemotron-3]], [[2507.22448|Falcon-H1]], [[2507.12898|Vidar]], [[2507.03285|Memory-Mosaics-v2]] (NeurIPS'25 Oral), [[2505.16416|Circle-RoPE]] (ICML'26), [[2505.05522|CTM]] (NeurIPS'25 Spotlight), [[2503.24067|TransMamba]], [[2501.00663|Titans]] (NeurIPS'25), [[2405.21060|Mamba-2]] (ICML'24), [[2311.12424|Looped-Transformers]] (ICLR'24)
+- [[2608.27763|Falcon (Fast Weight Attention)]], [[2608.05416|SpectraLDS]], [[2607.16051|Loopie]], [[2605.11689|MoE-Configuration-Study]], [[2604.21254|Hyperloop-Transformers]], [[2603.11691|STAIRS-Former]], [[2601.15275|RayRoPE]], [[2512.20856|Nemotron-3]], [[2508.09834|Efficient-LLM-Architectures-Survey]], [[2507.22448|Falcon-H1]], [[2507.12898|Vidar]], [[2507.06607|Gated-Memory-Unit]], [[2507.03285|Memory-Mosaics-v2]] (NeurIPS'25 Oral), [[2505.16416|Circle-RoPE]] (ICML'26), [[2505.05522|CTM]] (NeurIPS'25 Spotlight), [[2503.24067|TransMamba]], [[2501.00663|Titans]] (NeurIPS'25), [[2412.06464|Gated DeltaNet]], [[2405.21060|Mamba-2]] (ICML'24), [[2311.12424|Looped-Transformers]] (ICLR'24)
 
 > [!star] Key Papers
 > - [[2507.22448|Falcon-H1]] — Hybrid-head models integrating parallel Transformer and Mamba blocks; redefines the efficiency-performance frontier
@@ -320,13 +317,13 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2304.07193|DINOv2]] (ICLR'25) — Curated data + distillation produces universal visual features without fine-tuning
 
 **DINO-Family & Latent Geometry Extensions** — Recent methods that extend, simplify, or theoretically analyze the DINO/DINOv2 self-distillation lineage.
-- [[2603.28480|INSID3]] (CVPR'26), [[2510.08638|Minkowski-Representation-Hypothesis]] (ICLR'26), [[2507.19468|DINO-world]], [[2507.14137|Franca]], [[2505.15970|DINOv2-Hierarchy-SAE]] (CVPR'25 Workshop), [[2503.20839|TAR]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]] (ICML'25)
+- [[2603.28480|INSID3]] (CVPR'26), [[2510.08638|Minkowski-Representation-Hypothesis]] (ICLR'26), [[2507.14137|Franca]], [[2505.15970|DINOv2-Hierarchy-SAE]] (CVPR'25 Workshop), [[2503.20839|TAR]], [[2503.09867|OH-A-DINO]], [[2502.10385|SimDINO]] (ICML'25)
 
 > [!star] Key Papers
 > - [[2502.10385|SimDINO]] (ICML'25) — Dramatically simplified DINO via coding rate regularization; shows what DINO really needs
 
-**Robotics-Applied Contrastive & Tactile Perception** — Contrastive and self-supervised representation learning applied to robot manipulation, locomotion, localization, and touch sensing.
-- [[2609.20107|AnyViewDex]], [[2607.05247|LingBot-Vision]], [[2606.04718|CoRe-MoE]], [[2605.29564|VE2VF]], [[2604.09445|AsymLoc]], [[2603.12217|Verifier-Point-Tracking]] (CVPR'26), [[2602.00937|CLAMP]] (RSS'26), [[2506.14754|Sparsh-X]] (CoRL'25), [[2506.10359|Multi-Suction Pick Success]] (RSS'25), [[2505.11420|Sparsh-skin]] (CoRL'25), [[2502.19374|VFM-LiDAR Registration]] (RSS'25), [[2410.24090|Sparsh]] (CoRL'24)
+**Robotics-Applied Contrastive Perception** — Contrastive and self-supervised representation learning applied to robot manipulation, locomotion, and localization.
+- [[2609.20107|AnyViewDex]], [[2607.05247|LingBot-Vision]], [[2606.04718|CoRe-MoE]], [[2604.09445|AsymLoc]], [[2603.12217|Verifier-Point-Tracking]] (CVPR'26), [[2602.00937|CLAMP]] (RSS'26), [[2506.10359|Multi-Suction Pick Success]] (RSS'25), [[2502.19374|VFM-LiDAR Registration]] (RSS'25)
 
 **General Self-Supervised Learning Theory** — Theoretical and empirical studies of what makes contrastive/self-distillation objectives work and how they scale.
 - [[2608.06174|SO-OPF]], [[2605.03517|LDM-SSL]] (ICML'26 Spotlight), [[2603.26799|GJE]], [[2603.15553|Bootleg]], [[2601.21584|Observation-Quotient]], [[2506.10159|VCL]], [[2410.10817|Human-Aligned Vision Representations]] (NeurIPS'24), [[2406.09294|JEA-Scaling-Study]] (NeurIPS'24)
@@ -338,11 +335,8 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2111.06377|MAE]] (CVPR'22) — Masked 75% of patches; proved simple reconstruction objective learns powerful features
 > - [[2106.08254|BEiT]] (ICLR'22 Oral) — BERT-style pre-training for vision: predict discrete visual tokens from masked patches
 
-**Generative Pre-training for Perception** — Large-scale text-to-video generation as the pre-training objective, with the generative backbone repurposed into a feed-forward perception model.
-- [[2607.09024|GenCeption]] (ECCV'26), [[2607.06856|Gen4U]]
-
-**World Models, VLA & Embodied JEPA** — JEPA variants applied to physical world modeling, video-based planning, VLA integration, and reinforcement learning.
-- [[2607.26924|TC-LeWM]], [[2606.32026|AdaJEPA]], [[2605.00078|Being-H0.7]], [[2603.19312|LeWM]], [[2603.14482|V-JEPA-2.1]], [[2602.23058|GeoWorld]] (CVPR'26), [[2602.11832|JEPA-VLA]], [[2602.11389|Causal-JEPA]] (ICML'26), [[2512.24497|JEPA-WM]], [[2512.10942|VL-JEPA]] (ICLR'26), [[2510.00739|TD-JEPA]] (ICLR'26 Oral), [[2506.09985|V-JEPA-2]], [[2504.16591|JEPA-for-RL]], [[2502.11831|V-JEPA (Intuitive Physics)]], [[2404.08471|V-JEPA]] (ICLR'25), [[2403.00504|IWM]], [[1803.07616|IntPhys]]
+**Video & Intuitive-Physics JEPA** — JEPA variants that learn video representations by latent prediction and probe intuitive physical understanding.
+- [[2603.14482|V-JEPA-2.1]], [[2506.09985|V-JEPA-2]], [[2502.11831|V-JEPA (Intuitive Physics)]], [[2404.08471|V-JEPA]] (ICLR'25), [[2403.00504|IWM]], [[1803.07616|IntPhys]]
 
 **Core JEPA Theory & Objectives** — Foundational and theoretical studies of the JEPA objective itself: variants, regularizers, and what makes latent prediction work.
 - [[2609.20800|JEPA-Anything]], [[2608.27395|LeVJEPA]], [[2607.02404|Object-centric LeJEPA]], [[2606.15956|TDV]], [[2606.02572|VISReg]], [[2605.03413|NEO-Theorizer]], [[2603.20111|Var-JEPA]], [[2601.14354|VJEPA-Probabilistic]], [[2512.19605|KerJEPA]], [[2511.08544|LeJEPA]], [[2509.25449|TS-JEPA]] (NeurIPS'24 Workshop), [[2509.12249|P-JEPA]], [[2507.15216|N-JEPA]], [[2505.03176|seq-JEPA]] (NeurIPS'25), [[2410.19560|C-JEPA]] (NeurIPS'24 Spotlight), [[2410.03755|D-JEPA]] (ICLR'25), [[2407.03475|JEPA-Noisy-Features]] (NeurIPS'24), [[2312.04000|LiDAR-Metric]] (ICLR'24 Spotlight), [[2307.12698|MC-JEPA]], [[2301.08243|I-JEPA]] (CVPR'23), [[2211.10831|JEPA-Slow-Features]] (NeurIPS'22 Workshop), [[1504.08023|Visual Representation Anticipation]] (CVPR'16)
@@ -357,36 +351,36 @@ Learning visual representations without labels — the foundation for data-effic
 - [[2608.22642|Mol-JEPA]], [[2511.18424|CrossJEPA]], [[2504.10512|JEPA4Rec]], [[2504.03169|REJEPA]] (CVPR'25 Workshop), [[2412.14123|AnySat]] (CVPR'25), [[2409.15803|3D-JEPA]], [[2406.12913|T-JEPA-Trajectory]], [[2404.16432|Point-JEPA]], [[2311.15153|SAR-JEPA]], [[2309.16014|Graph-JEPA]]
 
 **Cross-Modal & Generative JEPA Variants** — JEPA formulations for vision-language alignment, text-conditioned generation, and multimodal pretraining.
-- [[2607.00784|LeVLJEPA]], [[2605.02134|PV-VAE]], [[2510.00974|JEPA-T]], [[2509.14252|LLM-JEPA]] (ICLR'26), [[2503.06380|TI-JEPA]]
+- [[2607.00784|LeVLJEPA]], [[2605.02134|PV-VAE]], [[2512.10942|VL-JEPA]] (ICLR'26), [[2510.00974|JEPA-T]], [[2509.14252|LLM-JEPA]] (ICLR'26), [[2503.06380|TI-JEPA]]
 
 > [!tip] The JEPA Lineage
 > I-JEPA started a family: [[2511.08544|LeJEPA]] (provable foundations) and [[2512.19605|KerJEPA]] (kernel methods) extend the theory, while [[2602.11389|Causal-JEPA]] (ICML'26) adds causal reasoning. For the full robotics-oriented lineage (V-JEPA 2 → VL-JEPA → VLA-JEPA), see the JEPA notes in the vault.
 
 **Tactile & Multi-Sensory Representation Learning** — Self-supervised and contrastive methods for learning transferable tactile representations across heterogeneous sensors and modalities.
-- [[2609.29822|PROPRA]], [[2609.24385|Tactile-JEPA]], [[2607.20683|FELT]], [[2607.13522|Kepler-Encoder]], [[2607.01067|TTP]], [[2606.31694|RCT]], [[2606.31236|TactX]] (CoRL'26), [[2606.29948|HTT]], [[2606.29173|TacGen]], [[2606.14344|LESS]] (RSS'26), [[2603.15847|FEEL]] (ECCV'26 Oral), [[2601.20239|TouchGuide]] (RSS'26), [[2509.14688|exUMI]] (CoRL'25)
+- [[2609.29822|PROPRA]], [[2609.24385|Tactile-JEPA]], [[2607.20683|FELT]], [[2607.13522|Kepler-Encoder]], [[2607.01067|TTP]], [[2606.31694|RCT]], [[2606.31236|TactX]] (CoRL'26), [[2606.29948|HTT]], [[2606.29173|TacGen]], [[2606.14344|LESS]] (RSS'26), [[2605.29564|VE2VF]], [[2603.15847|FEEL]] (ECCV'26 Oral), [[2601.20239|TouchGuide]] (RSS'26), [[2509.14688|exUMI]] (CoRL'25), [[2506.14754|Sparsh-X]] (CoRL'25), [[2505.11420|Sparsh-skin]] (CoRL'25), [[2410.24090|Sparsh]] (CoRL'24)
 
 > [!star] Key Papers
 > - [[2606.31236|TactX]] (CoRL'26) — Learns shared representations across heterogeneous tactile sensor families; transfers without hardware-specific retraining
 > - [[2606.29948|HTT]] — Heterogeneous Tactile Transformer: general self-supervised framework spanning diverse sensor transduction types
 
 **Continual & Semi-Supervised Learning Theory** — Adapting self-supervised models for streaming data, long-tailed distributions, class-incremental learning, and test-time shifts.
-- [[2601.19897|SDFT]], [[2512.15934|IC-SSL]] (ICLR'26), [[2512.09441|MoP-CIL]], [[2511.20844|Pre-train-to-Gain]], [[2511.13787|TC2]], [[2507.10434|CLA]], [[2506.23529|SSTTA]], [[2506.00467|SST]], [[2505.05062|ULFine]], [[2411.13852|ESRM]] (NeurIPS'24), [[2404.17202|Low-Data-SSL-Evaluation]], [[2305.13622|SER]]
+- [[2601.19897|SDFT]], [[2512.15934|IC-SSL]] (ICLR'26), [[2512.09441|MoP-CIL]], [[2511.20844|Pre-train-to-Gain]], [[2511.13787|TC2]], [[2507.10434|CLA]], [[2506.00467|SST]], [[2505.05062|ULFine]], [[2411.13852|ESRM]] (NeurIPS'24), [[2404.17202|Low-Data-SSL-Evaluation]], [[2305.13622|SER]]
 
 > [!star] Key Papers
 > - [[2507.10434|CLA]] — Continual Latent Alignment for online continual self-supervised learning; avoids catastrophic forgetting
 > - [[2512.15934|IC-SSL]] (ICLR'26) — In-Context Semi-Supervised Learning: Transformer framework leveraging in-context learning for semi-supervised tasks
 
 **Representation Capacity, Scaling & General SSL Methods** — Studies of representation capacity, scaling behavior, and general self-supervised methods that fall outside the continual/semi-supervised and robotics-specific buckets.
-- [[2609.29350|FBDM]], [[2607.09657|VP]], [[2606.03940|SEAOTTER]], [[2606.02767|HAKF]], [[2605.29548|Capacity-Interference-Retention]], [[2605.27734|Latent-Sample-Complexity]], [[2605.22629|H-Flow]], [[2605.09963|Spatial-Prediction-SP]], [[2604.18267|MARCO]] (CVPR'26 Oral), [[2603.06693|SER]] (ICLR'26), [[2512.01342|InternVideo-Next]] (CVPR'26), [[2511.17309|MuM]], [[2509.15965|RLinf]], [[2410.21676|Critical-Batch-Size-Scaling]] (ICLR'25), [[2409.14401|In-Class-Data-Imbalance]], [[2101.12195|CADDY]] (CVPR'21)
+- [[2609.29350|FBDM]], [[2607.09657|VP]], [[2607.09024|GenCeption]] (ECCV'26), [[2607.06856|Gen4U]], [[2606.03940|SEAOTTER]], [[2606.02767|HAKF]], [[2605.29548|Capacity-Interference-Retention]], [[2605.27734|Latent-Sample-Complexity]], [[2605.22629|H-Flow]], [[2605.09963|Spatial-Prediction-SP]], [[2604.18267|MARCO]] (CVPR'26 Oral), [[2603.06693|SER]] (ICLR'26), [[2512.01342|InternVideo-Next]] (CVPR'26), [[2511.17309|MuM]], [[2509.15965|RLinf]], [[2410.21676|Critical-Batch-Size-Scaling]] (ICLR'25), [[2409.14401|In-Class-Data-Imbalance]], [[2101.12195|CADDY]] (CVPR'21)
 
 **Robotics Imitation, Play & Offline Representation Learning** — Self-supervised and imitation-learning methods for robot manipulation and navigation from demonstrations, play, and offline interaction data.
-- [[2605.24934|HumanEgo]], [[2605.20811|Demo-JEPA]], [[2509.21986|Ego-VLA-Pretrain]], [[2508.19391|LaVA-Man]] (CoRL'25), [[2507.23523|H-RDT]], [[2506.05064|DemoSpeedup]] (CoRL'25), [[2505.17006|CoMo]] (CVPR'26), [[2504.18904|RoboVerse]], [[2412.04445|Moto]] (ICCV'25 Oral), [[2406.17768|EXTRACT]] (CoRL'24), [[2312.10812|LAPO]] (ICLR'24 Spotlight), [[2311.16098|Dobb-E]], [[2306.00958|LIV]] (ICML'23), [[2111.09793|Robotic-Interestingness]], [[2111.07447|Self-Replay]] (CoRL'21), [[2101.05181|MemAug-Image-Goal-Nav]], [[1909.06933|DD Policy]], [[1903.11239|TossingBot]], [[1903.01973|Play-LMP]] (CoRL'19), [[1806.09655|CLASP-Action-Space]] (ICLR'19), [[1805.07914|ILPO]] (ICML'19)
+- [[2607.08341|AnyDexRT]], [[2605.24934|HumanEgo]], [[2605.20811|Demo-JEPA]], [[2509.21986|Ego-VLA-Pretrain]], [[2508.19391|LaVA-Man]] (CoRL'25), [[2507.23523|H-RDT]], [[2506.05064|DemoSpeedup]] (CoRL'25), [[2505.17006|CoMo]] (CVPR'26), [[2504.18904|RoboVerse]], [[2412.04445|Moto]] (ICCV'25 Oral), [[2410.24221|EgoMimic]], [[2406.17768|EXTRACT]] (CoRL'24), [[2312.10812|LAPO]] (ICLR'24 Spotlight), [[2311.16098|Dobb-E]], [[2306.00958|LIV]] (ICML'23), [[2111.09793|Robotic-Interestingness]], [[2111.07447|Self-Replay]] (CoRL'21), [[2101.05181|MemAug-Image-Goal-Nav]], [[1909.06933|DD Policy]], [[1903.11239|TossingBot]], [[1903.01973|Play-LMP]] (CoRL'19), [[1806.09655|CLASP-Action-Space]] (ICLR'19), [[1805.07914|ILPO]] (ICML'19)
 
 **Robot World Models, Latent Actions & RL Representation** — World models, latent-action representations, and RL-theoretic representation learning for robot control.
-- [[2607.08341|AnyDexRT]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.03985|Humanoid-GPT]] (CVPR'26), [[2606.03476|Human2Humanoid]], [[2605.30350|DynaFLIP]], [[2605.26379|LeJEPA-World-Model]], [[2605.25313|UWM-JEPA]], [[2605.22671|BehaviorVLA]] (ICML'26 Oral), [[2605.21258|Structural-Latent-Points]], [[2605.15725|DiLA]], [[2604.16391|DeFI]] (ICLR'26), [[2512.00961|GenReward]] (CVPR'26), [[2511.04131|BFM-Zero]] (ICLR'26), [[2505.00500|INR-DOM]] (RSS'25), [[2410.08208|SPA (3D Spatial-Awareness Representation)]] (ICLR'25), [[2407.20230|SAPG]] (ICML'24 Oral), [[2311.12244|muLV-Rep]] (ICML'24), [[2310.01404|H-InDex]] (NeurIPS'23), [[2212.05749|LfS (+aug) Baseline]] (ICML'23), [[2210.07241|Self-Supervised 3D RL]], [[2103.07945|Forward-Backward Representation]] (NeurIPS'21), [[2103.06326|S4RL]]
+- [[2609.22175|Contrastive World Models]], [[2606.04130|CLAW-Latent-Action-WM]], [[2606.03985|Humanoid-GPT]] (CVPR'26), [[2606.03476|Human2Humanoid]], [[2605.30350|DynaFLIP]], [[2605.26379|LeJEPA-World-Model]], [[2605.25313|UWM-JEPA]], [[2605.22671|BehaviorVLA]] (ICML'26 Oral), [[2605.21258|Structural-Latent-Points]], [[2605.15725|DiLA]], [[2604.16391|DeFI]] (ICLR'26), [[2512.00961|GenReward]] (CVPR'26), [[2511.04131|BFM-Zero]] (ICLR'26), [[2505.00500|INR-DOM]] (RSS'25), [[2410.08208|SPA (3D Spatial-Awareness Representation)]] (ICLR'25), [[2407.20230|SAPG]] (ICML'24 Oral), [[2311.12244|muLV-Rep]] (ICML'24), [[2310.01404|H-InDex]] (NeurIPS'23), [[2212.05749|LfS (+aug) Baseline]] (ICML'23), [[2210.07241|Self-Supervised 3D RL]], [[2103.07945|Forward-Backward Representation]] (NeurIPS'21), [[2103.06326|S4RL]]
 
 **Dataset Distillation & Representation Theory** — Compressing training data and understanding the theoretical properties of learned representations.
-- [[2604.18811|Dataset-Distillation-Soft-Labels]] (CVPR'26 Oral), [[2604.03191|Compression-Gap]], [[2603.12228|Neural-Thickets]], [[2602.15029|Language-Symmetry-Representations]] (ICML'26), [[2602.01905|STELLAR]], [[2601.03220|Epiplexity]], [[2512.19693|Prism-Hypothesis]], [[2512.09322|GPSSL]], [[2512.00536|Dataset-Distillation-RL]] (ICLR'26), [[2511.16674|LGM]] (NeurIPS'25), [[2510.20994|VESSA]] (NeurIPS'25), [[2506.16895|STRUCTURE-Alignment]] (NeurIPS'25), [[2506.09278|UFM]] (NeurIPS'25), [[2505.12477|Joint-Embedding-vs-Reconstruction-SSL]] (NeurIPS'25 Spotlight), [[2504.10428|PIU-Learning]] (STOC), [[2402.11337|Reconstruction vs Perception]], [[2309.17024|HoloAssist]], [[2203.14712|Assembly101]], [[1711.00937|VQ-VAE]] (NeurIPS'17)
+- [[2604.18811|Dataset-Distillation-Soft-Labels]] (CVPR'26 Oral), [[2604.03191|Compression-Gap]], [[2603.12228|Neural-Thickets]], [[2602.15029|Language-Symmetry-Representations]] (ICML'26), [[2602.01905|STELLAR]], [[2601.03220|Epiplexity]], [[2512.19693|Prism-Hypothesis]], [[2512.09322|GPSSL]], [[2512.00536|Dataset-Distillation-RL]] (ICLR'26), [[2511.16674|LGM]] (NeurIPS'25), [[2510.20994|VESSA]] (NeurIPS'25), [[2506.16895|STRUCTURE-Alignment]] (NeurIPS'25), [[2506.09278|UFM]] (NeurIPS'25), [[2505.12477|Joint-Embedding-vs-Reconstruction-SSL]] (NeurIPS'25 Spotlight), [[2504.10428|PIU-Learning]] (STOC), [[2402.11337|Reconstruction vs Perception]]
 
 > [!star] Key Papers
 > - [[2511.16674|LGM]] (NeurIPS'25) — Linear Gradient Matching for dataset distillation in self-supervised models; highly efficient compression
@@ -412,9 +406,6 @@ Learning visual representations without labels — the foundation for data-effic
 > - [[2305.13689|SSL-Survey]] — Comprehensive taxonomy of image-based generative and discriminative self-supervised methods; essential landscape overview
 > - [[2408.17059|SSL-for-ViT-Survey]] — Focused survey on self-supervised mechanisms specifically designed for vision Transformers
 
-**Additional methods** — Papers referenced in this section that don't fit the categories above.
-- [[2604.04310|frax]] (ICRA'26 Workshop)
-
 > [!tip] From Reconstruction to Prediction
 > The field moved from pixel reconstruction (MAE, BEiT) to latent prediction (I-JEPA, LeJEPA). Latent prediction avoids wasting capacity on irrelevant pixel details and produces more semantically meaningful features. Meanwhile, continual learning (CLA, IC-SSL) ensures these methods work in non-stationary real-world settings.
 
@@ -434,9 +425,6 @@ Connecting visual and textual representations in a shared embedding space, enabl
 
 **Recent Contrastive Alignment Extensions** — Efficiency, distillation, and representation-quality improvements built on the CLIP-style contrastive alignment recipe.
 - [[2608.17402|MoE-ViE]] (ECCV'26), [[2512.11141|ItemizedCLIP]], [[2509.01644|OpenVision-2]], [[2507.22062|Meta-CLIP-2]] (NeurIPS'25 Spotlight), [[2507.18009|GRR-CoCa]], [[2506.06970|MAPLE]] (NeurIPS'25), [[2506.03096|FuseLIP]], [[2505.21549|DCLIP]], [[2505.18983|AmorLIP]] (NeurIPS'25), [[2505.14204|Perceptual-Initialization]], [[2505.11192|FALCON]] (CVPR'26), [[2505.04601|OpenVision]] (ICCV'25), [[2505.04410|DeCLIP]] (CVPR'25), [[2505.03703|Modality-Gap-Reduction]], [[2504.13181|Perception-Encoder]] (NeurIPS'25 Oral), [[2503.15485|TULIP]], [[2503.06626|DiffCLIP]], [[2406.17639|AlignCLIP]] (ICLR'25), [[2406.06973|RWKV-CLIP]]
-
-**Additional methods** — Robot imitation-learning papers that don't fit the categories above.
-- [[2602.12215|LDA-1B]] (RSS'26), [[2410.24221|EgoMimic]]
 
 **Multi-Modal Embedding Spaces** — Extending alignment beyond image-text to encompass audio, depth, thermal, and other modalities.
 - [[2511.00405|UME-R1]] (ICLR'26), [[2510.06673|Heptapod]], [[2506.23639|Being-VL]] (ICCV'25 Highlight), [[2505.15045|DIFFEMBED]], [[2505.05422|TokLIP]], [[2504.02318|X-Capture]] (ICCV'25), [[2502.02772|Force-Language Dual Autoencoder]] (RSS'25), [[2411.14402|AIMV2]] (CVPR'25), [[2411.04997|LLM2CLIP]], [[2305.05665|ImageBind]] (CVPR'23), [[2206.07643|FIBER]] (NeurIPS'22)
@@ -486,7 +474,7 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 > - [[2204.14198|Flamingo]] (NeurIPS'22) — DeepMind's few-shot VLM interleaving vision and language; established in-context learning for multimodal models
 
 **Grounded & Spatial MLLMs** — Models that can localize objects, reference bounding boxes, and reason about spatial relationships.
-- [[2607.15054|ViPS]], [[2602.11635|MathSpatial]], [[2601.13633|EGM]], [[2512.06963|VideoVLA]] (NeurIPS'25), [[2410.11829|MMFuser]], [[2306.14824|KOSMOS-2]] (ICLR'24)
+- [[2607.15054|ViPS]], [[2602.21186|Spa3R]], [[2602.11635|MathSpatial]], [[2601.13633|EGM]], [[2512.06963|VideoVLA]] (NeurIPS'25), [[2511.19418|COVT]] (ECCV'26 Oral), [[2510.27606|Spatial-SSRL]], [[2410.11829|MMFuser]], [[2306.14824|KOSMOS-2]] (ICLR'24)
 
 > [!star] Key Papers
 > - [[2306.14824|KOSMOS-2]] (ICLR'24) — Grounded multimodal LLM: generates text with bounding box references
@@ -500,7 +488,7 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 > - [[2502.13130|Magma]] (CVPR'25) — Foundation model specifically designed for multimodal AI agents
 
 **Visual Reasoning & Thinking** — Methods for enhancing MLLMs with explicit reasoning, chain-of-thought over images, and self-rewarding loops.
-- [[2601.13705|LVLM-Visual-Puzzle-Survey]], [[2511.09018|Owl]], [[2510.06783|TTRV]], [[2509.25190|Visual-Jigsaw]] (ICLR'26), [[2508.19652|Vision-SR1]], [[2506.23918|Thinking-with-Images-Survey]], [[2505.17022|GoT-R1]] (ICLR'26), [[2504.17207|APC]] (ICCV'25), [[2501.04693|FuSe]], [[2412.18194|VLABench]] (ICCV'25)
+- [[2601.13705|LVLM-Visual-Puzzle-Survey]], [[2511.10055|HCM-GRPO]] (PR), [[2511.09018|Owl]], [[2510.06783|TTRV]], [[2509.25190|Visual-Jigsaw]] (ICLR'26), [[2508.19652|Vision-SR1]], [[2506.23918|Thinking-with-Images-Survey]], [[2505.17022|GoT-R1]] (ICLR'26), [[2504.17207|APC]] (ICCV'25), [[2501.04693|FuSe]]
 
 > [!star] Key Papers
 > - [[2505.17022|GoT-R1]] (ICLR'26) — Applies RL to unleash reasoning capability of MLLMs for visual generation
@@ -508,21 +496,21 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 > - [[2510.06783|TTRV]] — First test-time RL framework for decoder-based VLMs
 
 **MLLM Evaluation & Benchmarks** — Reward models, judging frameworks, and benchmarks for evaluating multimodal model quality.
-- [[2512.16899|MMRB2]], [[2511.10055|HCM-GRPO]] (PR), [[2510.17793|Foundational-Evaluators]] (ICLR'26), [[2508.19229|StepWiser]], [[2401.06209|MMVP]] (CVPR'24 Oral)
+- [[2512.16899|MMRB2]], [[2510.17793|Foundational-Evaluators]] (ICLR'26), [[2508.19229|StepWiser]], [[2401.06209|MMVP]] (CVPR'24 Oral)
 
 > [!star] Key Papers
 > - [[2512.16899|MMRB2]] — First comprehensive benchmark for evaluating reward models on multimodal interleaved content
 > - [[2508.19229|StepWiser]] — Generative judges that meta-reason about intermediate reasoning steps
 
 **Key Surveys** — Comprehensive surveys mapping the rapidly evolving MLLM landscape.
-- [[2504.07951|NMM-Scaling-Laws]] (ICCV'25 Oral), [[2405.19334|LLM-Multimodal-Generation-Survey]], [[2405.10739|Efficient-MLLM-Survey]], [[2306.13549|MLLM-Survey]], [[2303.18223|LLM Survey]], [[2302.01107|Efficient-Transformer-Training-Survey]]
+- [[2405.19334|LLM-Multimodal-Generation-Survey]], [[2405.10739|Efficient-MLLM-Survey]], [[2306.13549|MLLM-Survey]], [[2303.18223|LLM Survey]]
 
 > [!star] Key Papers
 > - [[2306.13549|MLLM-Survey]] — Foundational survey that defined the taxonomy and evaluation framework for multimodal large language models
 > - [[2405.10739|Efficient-MLLM-Survey]] — Comprehensive guide to making MLLMs practical through efficiency techniques across model, data, and inference
 
 **Additional methods** — Papers referenced in this section that don't fit the categories above.
-- [[2605.30370|IBNN]], [[2504.13161|Nemotron-CLIMB]] (NeurIPS'25 Spotlight)
+- [[2605.30370|IBNN]]
 
 > [!success] The Modern VLM Stack
 > ==Frozen vision encoder== (SigLIP or DINOv2) + ==lightweight connector== (linear projection) + ==LLM backbone== (Gemma, Llama) + ==instruction tuning== on diverse V-L tasks. Sub-3B models now achieve SOTA on 40+ tasks; open-source MLLMs match proprietary ones across understanding and generation.
@@ -537,14 +525,14 @@ LLMs augmented with visual perception — the backbone for modern VLMs and VLAs.
 Core training recipes, optimizers, scaling laws, and architectural insights for training large language models efficiently.
 
 **Optimizers** — Second-order and novel optimizers that improve over AdamW for large-scale training.
-- [[2606.25971|MD-Decoupling]], [[2605.31159|TRB]], [[2605.21699|X-Token]], [[2604.17535|OPSDL]], [[2506.07254|SPlus]] (NeurIPS'25), [[2506.05454|Zeroth-Order-Flat-Minima]] (NeurIPS'25), [[2506.01393|GP-UCB-Regret]] (NeurIPS'25 Oral), [[2505.23725|MuLoCo]], [[2505.16932|Polar-Express]] (ICLR'26 Oral), [[2505.02222|Muon]], [[2502.16982|Muon]], [[2411.08380|EgoVid-5M]], [[2409.16283|Gen2Act]] (CoRL'25)
+- [[2606.25971|MD-Decoupling]], [[2605.31159|TRB]], [[2506.07254|SPlus]] (NeurIPS'25), [[2506.05454|Zeroth-Order-Flat-Minima]] (NeurIPS'25), [[2506.01393|GP-UCB-Regret]] (NeurIPS'25 Oral), [[2505.23725|MuLoCo]], [[2505.16932|Polar-Express]] (ICLR'26 Oral), [[2505.02222|Muon]], [[2502.16982|Muon]]
 
 > [!star] Key Papers
 > - [[2502.16982|Muon]] — Breakthrough: second-order optimizer demonstrating superior training efficiency over AdamW for LLMs
 > - [[2505.23725|MuLoCo]] — Muon as inner optimizer for DiLoCo distributed training; significant speedup over AdamW
 
 **Scaling Laws, Compute-Optimality & Foundational Releases** — Theoretical scaling laws and the landmark large-scale pretrained language models whose training runs put those laws into practice.
-- [[2607.22043|Native Multimodal Scaling Laws]], [[2607.16097|Pretraining-RL Scaling Law]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2510.06954|Condensation-Rank-Collapse]] (NeurIPS'25 Oral), [[2509.02754|LLM Modules for AD]] (CoRL'25), [[2506.12932|Complexity-Scaling-Laws]] (NeurIPS'25), [[2505.10559|Neural-Thermodynamic-Laws]], [[2505.10465|Superposition-Scaling]] (NeurIPS'25 Oral), [[2503.12811|MPL]] (ICLR'25), [[2502.21269|Generalization-Overfitting-Decoupling]] (NeurIPS'25 Oral), [[2405.18392|Compute-Optimal-Scaling-Laws]] (NeurIPS'24 Spotlight), [[2302.13971|LLaMA]], [[2204.02311|PaLM (Pathways Language Model)]], [[2006.12467|Depth-to-Width Interplay]] (NeurIPS'20), [[2005.14165|GPT-3]] (NeurIPS'20 Oral), [[2001.08361|Neural Scaling Laws]]
+- [[2609.19107|Prelude-Core-Coda]], [[2609.15818|Atria Dawn]], [[2607.22043|Native Multimodal Scaling Laws]], [[2607.16097|Pretraining-RL Scaling Law]], [[2607.15314|Cura 1T]], [[2605.26494|MiniMax-M2]], [[2603.21191|BST-Scaling-Rule]], [[2603.15958|Hyperparameter-Scaling-Laws]], [[2510.06954|Condensation-Rank-Collapse]] (NeurIPS'25 Oral), [[2509.02754|LLM Modules for AD]] (CoRL'25), [[2507.20534|Kimi-K2]], [[2507.06261|Gemini-2.5]], [[2506.12932|Complexity-Scaling-Laws]] (NeurIPS'25), [[2505.10559|Neural-Thermodynamic-Laws]], [[2505.10465|Superposition-Scaling]] (NeurIPS'25 Oral), [[2504.07951|NMM-Scaling-Laws]] (ICCV'25 Oral), [[2503.12811|MPL]] (ICLR'25), [[2502.21269|Generalization-Overfitting-Decoupling]] (NeurIPS'25 Oral), [[2410.21276|GPT-4o]], [[2405.18392|Compute-Optimal-Scaling-Laws]] (NeurIPS'24 Spotlight), [[2303.12712|Sparks of AGI]], [[2302.13971|LLaMA]], [[2204.02311|PaLM (Pathways Language Model)]], [[2006.12467|Depth-to-Width Interplay]] (NeurIPS'20), [[2005.14165|GPT-3]] (NeurIPS'20 Oral), [[2001.08361|Neural Scaling Laws]]
 
 > [!star] Key Papers
 > - [[2503.12811|MPL]] (ICLR'25) — Multi-Power Law accurately predicts training loss across learning rate schedules
@@ -552,15 +540,15 @@ Core training recipes, optimizers, scaling laws, and architectural insights for 
 > - [[2204.02311|PaLM (Pathways Language Model)]] — 540B-parameter model trained with Pathways; demonstrated emergent few-shot reasoning and chain-of-thought capabilities at scale
 
 **Training Systems, Pipelines & MoE Infrastructure** — Practical systems work on pipeline scheduling, learning-rate/hyperparameter tuning, and mixture-of-experts routing for large-scale training.
-- [[2607.21653|Molt]], [[2607.05155|EdgeBench]], [[2605.22297|Layerwise-LR]], [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2602.10556|LAP]] (RSS'26), [[2512.16913|DAP]], [[2508.18672|MoE-Sparsity-Reasoning]] (ICLR'26 Oral), [[2507.12507|Nemotron]], [[2506.16029|EvoLM]] (NeurIPS'25 Oral), [[2505.22323|MoE-Expert-Specialization]] (NeurIPS'25 Oral), [[2405.16158|BRO]] (NeurIPS'24 Spotlight), [[2310.18969|ViT-Class-Embedding-Analysis]] (NeurIPS'23), [[2309.14322|Transformer-Training-Instabilities]] (ICLR'24 Oral), [[2109.08203|Seed-3407]], [[2107.02027|packedBERT]], [[1701.06538|Sparsely-Gated MoE]] (ICLR'17)
+- [[2607.21653|Molt]], [[2607.05155|EdgeBench]], [[2605.22297|Layerwise-LR]], [[2605.02087|MSM]], [[2604.27085|RoundPipe]], [[2604.05091|MegaTrain]], [[2603.27164|daVinci-LLM]], [[2603.26164|DataFlex]], [[2602.10556|LAP]] (RSS'26), [[2512.16913|DAP]], [[2508.18672|MoE-Sparsity-Reasoning]] (ICLR'26 Oral), [[2507.12507|Nemotron]], [[2506.16029|EvoLM]] (NeurIPS'25 Oral), [[2505.22323|MoE-Expert-Specialization]] (NeurIPS'25 Oral), [[2504.13161|Nemotron-CLIMB]] (NeurIPS'25 Spotlight), [[2405.16158|BRO]] (NeurIPS'24 Spotlight), [[2310.18969|ViT-Class-Embedding-Analysis]] (NeurIPS'23), [[2309.14322|Transformer-Training-Instabilities]] (ICLR'24 Oral), [[2302.01107|Efficient-Transformer-Training-Survey]], [[2109.08203|Seed-3407]], [[2107.02027|packedBERT]], [[1701.06538|Sparsely-Gated MoE]] (ICLR'17)
 
 **Batch Size, Distributed Training & Large-Scale RL Systems** — Studies of batch size effects and the distributed/parallel training systems that enable large-scale learning, including early large-scale RL infrastructure.
-- [[2507.07101|Small-Batch-LLM-Training]] (NeurIPS'25), [[2504.17838|CaRL]] (CoRL'25), [[2308.12952|BridgeData-V2]] (CoRL'23), [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch-Training]], [[1811.03600|Data Parallelism Study]], [[1807.11205|Jizhi]], [[1803.00933|Ape-X]] (ICLR'18), [[1706.02677|ImageNet in 1 Hour]], [[1507.04296|Gorila]]
+- [[2507.07101|Small-Batch-LLM-Training]] (NeurIPS'25), [[2504.17838|CaRL]] (CoRL'25), [[2104.08212|MT-Opt]], [[1812.06162|Large-Batch-Training]], [[1811.03600|Data Parallelism Study]], [[1807.11205|Jizhi]], [[1803.00933|Ape-X]] (ICLR'18), [[1706.02677|ImageNet in 1 Hour]], [[1507.04296|Gorila]]
 
 > [!star] Key Papers
 > - [[2507.07101|Small-Batch-LLM-Training]] (NeurIPS'25) — Small batch sizes (even batch=1) can stably train LLMs; challenges the large-batch orthodoxy
 
-**Inference Acceleration** — Techniques for faster inference through early exit, speculative decoding, and layer skipping.
+**Inference Acceleration & Model Compression** — Techniques for faster or cheaper inference through early exit, speculative decoding, layer skipping, quantization, and low-rank compression.
 - [[2609.28399|MA]], [[2608.09703|Matryoshka LM Suites]], [[2605.31124|QVGGT]] (CVPR'26), [[2602.05179|Parallel-DP-GPU]] (ICLR'26), [[2511.15190|GSIM]], [[2510.01143|Bridge-Parallel-Scaling]] (ICLR'26), [[2507.10069|ElasticMM]] (NeurIPS'25 Oral), [[2507.00754|LUViT]], [[2505.23416|KVzip]] (NeurIPS'25 Oral), [[2505.11820|CoLM]] (NeurIPS'25), [[2505.08022|RobustDLRT]] (NeurIPS'25 Oral), [[2404.16710|LayerSkip]], [[1703.09844|MSDNet]]
 
 > [!star] Key Papers
@@ -609,30 +597,36 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2309.16797|PromptBreeder]] (ICML'24) — Self-referential self-improvement via prompt evolution; automates prompt engineering
 
 **LoRA & Parameter-Efficient Fine-Tuning** — Methods that adapt large models by training only a small fraction of parameters.
-- [[2607.05938|Prior-First, Condition-Second]], [[2604.19254|ShadowPEFT]], [[2507.11851|Gated-LoRA]], [[2506.20629|PLoP]] (ICLR'26), [[2506.06105|T2L]] (ICML'25), [[2504.13292|GrokTransfer]] (ICLR'25), [[2502.16025|FeatSharp]] (ICML'25), [[2410.19878|PEFT-Methodologies-Survey]], [[2406.10973|ExPLoRA]] (ICML'25), [[2405.09673|LoRA-Learns-Less]] (ICLR'25), [[2312.12148|PEFT-Critical-Review]], [[2310.20587|LaMo]] (ICLR'24)
+- [[2607.05938|Prior-First, Condition-Second]], [[2604.19254|ShadowPEFT]], [[2507.11851|Gated-LoRA]], [[2506.20629|PLoP]] (ICLR'26), [[2506.06105|T2L]] (ICML'25), [[2504.13292|GrokTransfer]] (ICLR'25), [[2502.16025|FeatSharp]] (ICML'25), [[2410.19878|PEFT-Methodologies-Survey]], [[2406.10973|ExPLoRA]] (ICML'25), [[2405.09673|LoRA-Learns-Less]] (ICLR'25), [[2312.12148|PEFT-Critical-Review]], [[2310.20587|LaMo]] (ICLR'24), [[1902.00751|Adapters]]
 
 > [!star] Key Papers
 > - [[2506.06105|T2L]] (ICML'25) — Text-to-LoRA: hypernetwork that dynamically generates task-specific LoRA adapters from text descriptions
 > - [[2507.11851|Gated-LoRA]] — Enables pretrained autoregressive LLMs to perform multi-token prediction via gated LoRA modules
 
 **Model Merging & Weight Averaging** — Combining multiple fine-tuned models into a single improved model without retraining.
-- [[2605.14386|Darwin]] (NeurIPS'26), [[2604.27155|GeoMerge]], [[2602.05943|Orthogonal-Model-Merging]], [[2512.13043|GTR-Turbo]] (CVPR'26), [[2512.05117|Universal Weight Subspace Hypothesis]], [[2510.21223|FDA]], [[2505.12082|PMA]] (NeurIPS'25), [[2408.07666|Model-Merging-in-LLMs/MLLMs]], [[2407.13771|Training-Free-Model-Merging-MTDA]] (ECCV'24), [[1803.05407|SWA]]
+- [[2605.14386|Darwin]] (NeurIPS'26), [[2604.27155|GeoMerge]], [[2602.05943|Orthogonal-Model-Merging]], [[2512.13043|GTR-Turbo]] (CVPR'26), [[2512.05117|Universal Weight Subspace Hypothesis]], [[2510.21223|FDA]], [[2505.12082|PMA]] (NeurIPS'25), [[2408.07666|Model-Merging-in-LLMs/MLLMs]], [[2407.13771|Training-Free-Model-Merging-MTDA]] (ECCV'24), [[2403.13257|MergeKit]], [[1803.05407|SWA]]
 
 > [!star] Key Papers
 > - [[1803.05407|SWA]] — Stochastic Weight Averaging: simple technique that finds wider optima and better generalization
 > - [[2505.12082|PMA]] (NeurIPS'25) — Pre-trained Model Average for effective merging of LLM checkpoints
 
-**On-Policy Distillation for LLMs & Agents** — Self-distillation methods that train student policies on their own on-policy rollouts during LLM and agent post-training.
-- [[2609.08798|OPRD]], [[2609.05295|RISE-PolicyDistillation]], [[2609.04172|One-Shot OPD]], [[2609.02998|TGOPD]], [[2608.31046|OPSA]], [[2608.24696|OPDVR]], [[2608.01735|DAPD]], [[2608.01263|FP-OPD]], [[2607.28590|VAD]], [[2607.24731|PDM]], [[2607.15161|OPD^2]], [[2607.14777|SEED]], [[2607.08766|OPSD-V]], [[2607.05804|TurnOPD]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.05184|Fork Suppression]], [[2607.04763|ReOPD]], [[2607.04751|TOP-D]], [[2606.30626|DOPD]], [[2606.24143|AsyncOPD]], [[2606.07082|On-Policy-Distillation-Geometry]], [[2605.03677|Uni-OPD]], [[2604.28123|PRISM]], [[2604.14084|TIP]], [[2604.00626|On-Policy-Distillation-Survey]], [[2601.20802|SDPO]], [[2601.18734|OPSD]], [[2510.23497|VOLD]]
+**On-Policy Distillation Algorithms for LLMs** — Self-distillation and teacher-guided objectives that train student LLMs on their own on-policy rollouts during post-training.
+- [[2609.08798|OPRD]], [[2609.05295|RISE-PolicyDistillation]], [[2609.02998|TGOPD]], [[2608.24696|OPDVR]], [[2608.01735|DAPD]], [[2607.15161|OPD^2]], [[2607.05394|Direct-OPD]], [[2607.05339|TREK]], [[2607.04751|TOP-D]], [[2606.30626|DOPD]], [[2605.07465|SEIF]], [[2605.07396|ROPD]], [[2605.03677|Uni-OPD]], [[2604.14084|TIP]], [[2604.13010|Lightning-OPD]], [[2603.07079|EOPD]] (ICML'26), [[2601.20802|SDPO]], [[2601.18734|OPSD]]
+
+**On-Policy Distillation for Multimodal, Agentic & Long-Horizon Settings** — On-policy distillation adapted to vision-language and video models, multi-turn agents, and long-context training.
+- [[2608.14144|S2VOPD]], [[2608.01263|FP-OPD]], [[2607.28590|VAD]], [[2607.24731|PDM]], [[2607.14777|SEED]], [[2607.08766|OPSD-V]], [[2607.05804|TurnOPD]], [[2607.04763|ReOPD]], [[2604.28123|PRISM]], [[2604.17535|OPSDL]], [[2510.23497|VOLD]]
+
+**On-Policy Distillation Studies & Surveys** — Empirical and theoretical analyses of why and when on-policy distillation works, plus field surveys.
+- [[2609.04172|One-Shot OPD]], [[2608.31046|OPSA]], [[2607.05184|Fork Suppression]], [[2606.24143|AsyncOPD]], [[2606.07082|On-Policy-Distillation-Geometry]], [[2604.13016|OPD-Distillation-Study]], [[2604.00626|On-Policy-Distillation-Survey]]
 
 **Teacher-Student Distillation for Robot Control** — RMA-style distillation that transfers a privileged, simulation-trained teacher policy into a deployable sensor-limited student controller.
-- [[2609.20756|OPTED]], [[2607.07357|HUMAIN]] (IROS'26), [[2607.02332|HEFT]], [[2607.02037|Cross-Platform ASV RL]], [[2606.30474|GOMP]], [[2605.03821|RoboAlign-R1]], [[2603.08763|SPREAD]], [[2601.05407|HINT]], [[2310.04582|PULSE]] (ICLR'24 Spotlight), [[2309.14341|Extreme Parkour]], [[2309.05665|Robot Parkour]] (CoRL'23), [[2211.07638|Egocentric Legged Locomotion]] (CoRL'22)
+- [[2609.20756|OPTED]], [[2607.07357|HUMAIN]] (IROS'26), [[2607.02332|HEFT]], [[2607.02037|Cross-Platform ASV RL]], [[2606.30474|GOMP]], [[2603.08763|SPREAD]], [[2601.05407|HINT]], [[2310.04582|PULSE]] (ICLR'24 Spotlight), [[2309.14341|Extreme Parkour]], [[2309.05665|Robot Parkour]] (CoRL'23), [[2211.07638|Egocentric Legged Locomotion]] (CoRL'22)
 
 **Vision, Multimodal & Domain-Adaptive Distillation** — General-purpose vision, multimodal, and domain-adaptive teacher-student and multi-teacher distillation methods.
 - [[2607.21556|VCSD]], [[2607.10762|TOLiD]], [[2607.10082|Event-Image Dual-Stage Distillation]], [[2607.06957|Flow-ERD]], [[2606.08432|Trajectory-Refined-Distillation]], [[2602.05449|DisCa]], [[2512.22238|Mask-Teacher-Distill]], [[2508.04816|CoMAD]], [[2505.11221|LVLM2P]], [[2505.07675|DHO]], [[2503.11339|CSD]] (ICLR'26), [[2502.02538|FQL]] (ICML'25), [[2412.14446|VLM-AD]] (CoRL'25), [[2312.06709|AM-RADIO]] (CVPR'24)
 
 **Reasoning, Agent & Language Distillation** — Distilling reasoning, chain-of-thought, and agentic capability from larger models into smaller or more efficient ones.
-- [[2609.20791|StageGuard]], [[2604.01193|SSD-Code-Generation]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2508.13167|CoA]], [[2507.05707|Agentic-R1]], [[2506.17486|PRISM-SLM]] (CoRL'25), [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2502.21074|CODI]], [[2311.01460|Implicit CoT]], [[2306.08543|MiniLLM]] (ICLR'24)
+- [[2609.24974|Harness-Zero]], [[2609.20791|StageGuard]], [[2608.25622|RefineCut]], [[2608.15763|HAT]], [[2605.21699|X-Token]], [[2604.01193|SSD-Code-Generation]], [[2603.24422|OneSearch-V2]], [[2603.16856|OEL]], [[2508.13167|CoA]], [[2507.05707|Agentic-R1]], [[2506.17486|PRISM-SLM]] (CoRL'25), [[2506.14728|AgentDistill]], [[2505.13975|DRP]], [[2504.15257|FlowReasoner]], [[2502.21074|CODI]], [[2311.01460|Implicit CoT]], [[2306.08543|MiniLLM]] (ICLR'24)
 
 > [!star] Key Papers
 > - [[2306.08543|MiniLLM]] (ICLR'24) — Foundational KD method for LLMs using reverse KL divergence; set the standard for language model compression
@@ -640,7 +634,7 @@ Making foundation models practical: parameter-efficient fine-tuning, model mergi
 > - [[2506.14728|AgentDistill]] — Training-free agent distillation via generalizable MCP boxes; bridges large and small agent models
 
 **Continual Pretraining & Domain Adaptation** — Extending foundation models to new domains or tasks through continued training.
-- [[2609.06986|Long-Horizon Memorization]], [[2607.05665|Morphological Similarity Transfer Learning]], [[2606.02280|LDG]], [[2603.17655|CC-CDFSL]] (CVPR'26), [[2602.02381|AdaSSL]] (ICLR'26), [[2601.21725|Procedural-Pretraining]] (ICML'26), [[2511.13945|Procedural-Warm-Up]], [[2509.06806|MachineLearningLM]], [[2507.06187|Delta-Learning-Hypothesis]], [[2507.00994|MLM-vs-CLM-Pretraining]] (ICLR'26), [[2504.07745|SF2T]] (CVPR'25), [[2504.06608|Cross-Domain-FSL-with-DKM]], [[1703.05175|Prototypical Networks]] (NeurIPS'17), [[1411.1792|Transferable Features]] (NeurIPS'14)
+- [[2609.06986|Long-Horizon Memorization]], [[2607.05665|Morphological Similarity Transfer Learning]], [[2606.02280|LDG]], [[2603.17655|CC-CDFSL]] (CVPR'26), [[2602.02381|AdaSSL]] (ICLR'26), [[2601.21725|Procedural-Pretraining]] (ICML'26), [[2511.13945|Procedural-Warm-Up]], [[2509.06806|MachineLearningLM]], [[2507.06187|Delta-Learning-Hypothesis]], [[2507.00994|MLM-vs-CLM-Pretraining]] (ICLR'26), [[2505.01812|New-News]], [[2504.07745|SF2T]] (CVPR'25), [[2504.06608|Cross-Domain-FSL-with-DKM]], [[2410.02355|AlphaEdit]], [[1703.05175|Prototypical Networks]] (NeurIPS'17), [[1411.1792|Transferable Features]] (NeurIPS'14)
 
 > [!star] Key Papers
 > - [[2509.06806|MachineLearningLM]] — Continued pretraining framework that enhances LLMs with robust many-shot in-context learning for ML tasks
@@ -683,10 +677,10 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 > - [[2512.16649|JustRL]] (ICLR'26) — Simplified RL recipe effectively scales a 1.5B model for mathematical reasoning
 
 **Policy Optimization, Reward Modeling & Verification** — Policy-optimization algorithm variants, reward-model scaling, and self-verification methods for RL with verifiable rewards.
-- [[2604.20733|NPO]], [[2604.17654|Poly-EPO]], [[2604.02288|SRPO]], [[2509.26074|LENS-Reward]] (NeurIPS'25), [[2508.18588|RhymeRL]], [[2508.14460|DuPO]], [[2506.08388|RLTs]] (NeurIPS'25), [[2503.23829|RLVR]], [[2402.03300|DeepSeekMath]], [[2210.10760|RM Overoptimization]] (ICML'23)
+- [[2605.12227|dGRPO]], [[2604.20733|NPO]], [[2604.17654|Poly-EPO]], [[2604.02288|SRPO]], [[2509.26074|LENS-Reward]] (NeurIPS'25), [[2508.18588|RhymeRL]], [[2508.14460|DuPO]], [[2506.08388|RLTs]] (NeurIPS'25), [[2503.23829|RLVR]], [[2402.03300|DeepSeekMath]], [[2210.10760|RM Overoptimization]] (ICML'23)
 
 **Reasoning Models** — LLMs explicitly trained for multi-step reasoning with RL.
-- [[2603.02556|VC-STaR]] (ICLR'26 Oral), [[2512.12623|DMLR]], [[2510.00219|Thoughtbubbles]], [[2508.03613|Goedel-Prover-V2]] (ICLR'26), [[2507.18071|GSPO]], [[2506.10910|Magistral]], [[2505.16993|SeNaTra]] (NeurIPS'25), [[2505.11484|SoftCoT++]], [[2505.10320|J1]] (ICLR'26), [[2503.16219|Open-RS]], [[2503.14858|CRL]] (NeurIPS'25 Oral), [[2501.12948|DeepSeek-R1]], [[2408.03314|Test-Time Compute Scaling]], [[2403.09629|Quiet-STaR]], [[2401.08967|ReFT]], [[2203.14465|STaR]] (NeurIPS'22)
+- [[2603.02556|VC-STaR]] (ICLR'26 Oral), [[2512.12623|DMLR]], [[2510.00219|Thoughtbubbles]], [[2508.03613|Goedel-Prover-V2]] (ICLR'26), [[2507.18071|GSPO]], [[2506.10910|Magistral]], [[2505.16993|SeNaTra]] (NeurIPS'25), [[2505.11484|SoftCoT++]], [[2505.10320|J1]] (ICLR'26), [[2503.16219|Open-RS]], [[2503.14858|CRL]] (NeurIPS'25 Oral), [[2502.03275|Token-Assorted]], [[2501.12948|DeepSeek-R1]], [[2408.03314|Test-Time Compute Scaling]], [[2403.09629|Quiet-STaR]], [[2401.08967|ReFT]], [[2203.14465|STaR]] (NeurIPS'22)
 
 > [!star] Key Papers
 > - [[2501.12948|DeepSeek-R1]] — RL-only training (no SFT) elicits emergent chain-of-thought reasoning; established the RL-for-reasoning paradigm the field now builds on
@@ -694,13 +688,13 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 > - [[2505.10320|J1]] (ICLR'26) — RL-trained LLM-as-a-Judge that incentivizes genuine thinking during evaluation
 
 **LLM-as-a-Judge & Evaluation** — Using LLMs to evaluate other LLMs, with RL to improve judging quality.
-- [[2605.12227|dGRPO]], [[2605.07396|ROPD]], [[2603.07079|EOPD]] (ICML'26), [[2508.19229|StepWiser]], [[2505.10320|J1]] (ICLR'26), [[2411.15594|LLM-as-a-Judge]]
+- [[2508.19229|StepWiser]], [[2505.10320|J1]] (ICLR'26), [[2411.15594|LLM-as-a-Judge]]
 
 > [!star] Key Papers
 > - [[2411.15594|LLM-as-a-Judge]] — Comprehensive survey providing formal definitions and unified taxonomy for LLM-based evaluation
 
 **Agentic RL & Search** — RL applied to LLM-based agents for tool use, search, and multi-step task completion.
-- [[2603.28963|AutoWorld]], [[2603.26499|AIRA2]], [[2603.12011|RFT-LLM-Agent-Generalization]], [[2603.11327|MR-Search]], [[2602.05842|RWML]], [[2408.10899|ARIO]], [[2403.19417|OAKINK2]] (CVPR'24)
+- [[2603.28963|AutoWorld]], [[2603.26499|AIRA2]], [[2603.12011|RFT-LLM-Agent-Generalization]], [[2603.11327|MR-Search]], [[2602.05842|RWML]], [[2408.10899|ARIO]]
 
 > [!star] Key Papers
 > - [[2603.11327|MR-Search]] — Meta-RL framework enabling LLM search agents to improve via in-context learning
@@ -714,7 +708,7 @@ Reinforcement learning applied to improve language model reasoning, self-improve
 > - [[2506.10139|ICM]] — Unsupervised elicitation of language model capabilities without labeled examples; reveals latent model knowledge
 
 **Self-Evolving & Self-Improving Agents** — LLM systems that autonomously improve their capabilities through self-play, self-generated data, or evolutionary strategies.
-- [[2609.15802|RSI Economics]], [[2609.00137|Recursive Criticality]], [[2606.20657|A-Evolve-Training]], [[2604.03128|Self-Distilled-RLVR]], [[2603.29640|ASI-Evolve]], [[2601.10094|V-Zero]], [[2601.07055|Dr.-Zero]], [[2601.05877|iReasoner]], [[2512.20605|Internal-RL]], [[2512.06835|DoGe]], [[2512.02472|R-FEW]], [[2511.16672|EvoLMM]], [[2511.16043|Agent0]], [[2511.15661|VisPlay]], [[2511.13054|ViSS-R1]], [[2511.10395|AgentEvolver]], [[2510.16416|SSL4RL]], [[2510.16333|PIVOT]] (ICLR'26), [[2412.02674|GV-Gap]]
+- [[2606.20657|A-Evolve-Training]], [[2604.03128|Self-Distilled-RLVR]], [[2603.29640|ASI-Evolve]], [[2601.10094|V-Zero]], [[2601.07055|Dr.-Zero]], [[2601.05877|iReasoner]], [[2512.20605|Internal-RL]], [[2512.06835|DoGe]], [[2512.02472|R-FEW]], [[2511.16672|EvoLMM]], [[2511.16043|Agent0]], [[2511.15661|VisPlay]], [[2511.13054|ViSS-R1]], [[2511.10395|AgentEvolver]], [[2510.16416|SSL4RL]], [[2510.16333|PIVOT]] (ICLR'26), [[2412.02674|GV-Gap]]
 
 > [!star] Key Papers
 > - [[2511.16043|Agent0]] — Self-evolving agents from zero data via tool-integrated reasoning; paradigm for autonomous agent improvement
@@ -738,9 +732,6 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 > - [[2512.00975|MM-ACT]] — Unified VLA model integrating text, image, and robot actions into a single multimodal framework
 > - [[2508.07917|MolmoAct]] — Action Reasoning Models integrating depth-aware perception with visual reasoning for spatial tasks
 
-**Humanoid & Whole-Body Control Foundation Models** — VLA-adjacent foundation models for humanoid whole-body and locomotion control.
-- [[2604.19734|UniT]], [[2511.07820|SONIC]], [[2502.14795|Humanoid-VLA]]
-
 **VLA Training Methodology: RL, Distillation & Test-Time Adaptation** — Algorithmic training recipes for VLA models: RL fine-tuning, on-policy distillation, continual learning, and test-time adaptation.
 - [[2609.24682|World-Model-to-VLA Distillation]], [[2609.18242|ForceDelta-VLA]], [[2607.12892|UR-VC]], [[2606.29892|T2VLA]], [[2604.19730|FASTER]], [[2603.26666|VLA-OPD]], [[2603.11653|VLA-RL-Continual-Learning]] (ICRA'26 Workshop), [[2602.01067|LBM Co-training Study]] (RSS'26)
 
@@ -754,48 +745,45 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 - [[2609.29934|Spatial-Nav]], [[2609.03906|TopoMacro VLN-CE]], [[2607.23743|Traversability-Aware Global Planner]], [[2607.20679|CAT-Nav]] (IROS'26), [[2602.18803|LoTIS]] (RSS'26), [[2509.11480|VLA-Cross-Platform-Scaling]], [[2503.03921|CREStE]] (RSS'25), [[2307.15644|ScaleVLN]], [[2306.14846|ViNT]] (CoRL'23), [[2105.06453|E.T. (Episodic Transformer)]]
 
 **Foundational Latent-Action & Video-Action Learning** — Core methods for learning action representations and goal-conditioned control from video and interaction data without explicit action labels.
-- [[2609.23478|Latent-Action Consistency Audit]], [[2606.11525|IWR]], [[2509.19958|MotoVLA]] (CoRL'25), [[2410.11758|LAPA]] (ICLR'25), [[2410.06158|GR-2]], [[2402.15391|Genie]] (ICML'24 Oral), [[2310.08576|AVDC]] (ICLR'24 Spotlight), [[2306.10007|RPT]] (CoRL'23), [[2305.02195|CALM]], [[2203.12601|R3M]] (CoRL'22), [[2112.01511|VINN]]
+- [[2609.23478|Latent-Action Consistency Audit]], [[2606.11525|IWR]], [[2509.19958|MotoVLA]] (CoRL'25), [[2410.11758|LAPA]] (ICLR'25), [[2410.06158|GR-2]], [[2409.16283|Gen2Act]] (CoRL'25), [[2402.15391|Genie]] (ICML'24 Oral), [[2310.08576|AVDC]] (ICLR'24 Spotlight), [[2306.10007|RPT]] (CoRL'23), [[2305.02195|CALM]], [[2203.12601|R3M]] (CoRL'22), [[2112.01511|VINN]]
 
 > [!star] Key Papers
 > - [[2410.11758|LAPA]] (ICLR'25) — Latent Action Pretraining from videos; learns action representations without action labels
 > - [[2310.08576|AVDC]] (ICLR'24 Spotlight) — Learns manipulation tasks from actionless video via dense visual correspondences
 
-**Robot Datasets & Benchmarks for Action Learning** — Large-scale robot manipulation datasets and benchmarks used to pretrain and evaluate action representations.
-- [[2607.25895|HiFi-UMI]], [[2503.06669|AgiBot-World]], [[2310.08864|OXE]], [[2307.00595|RH20T]] (ICRA'24), [[2306.03310|LIBERO]] (NeurIPS'23)
+**Robot Datasets & Benchmarks for Action Learning** — Large-scale robot manipulation, egocentric human-activity, and hand-object datasets and benchmarks used to pretrain and evaluate action representations.
+- [[2607.25895|HiFi-UMI]], [[2510.08807|Humanoid-Everyday]], [[2504.13059|RoboTwin]] (CVPR'25), [[2503.06669|AgiBot-World]], [[2412.18194|VLABench]] (ICCV'25), [[2411.08380|EgoVid-5M]], [[2403.19417|OAKINK2]] (CVPR'24), [[2310.08864|OXE]], [[2309.17024|HoloAssist]], [[2308.12952|BridgeData-V2]] (CoRL'23), [[2307.00595|RH20T]] (ICRA'24), [[2306.03310|LIBERO]] (NeurIPS'23), [[2203.14712|Assembly101]], [[2203.01577|HOI4D]] (CVPR'22), [[2109.13396|Bridge]]
 
 **Recent Action-Representation & World-Guided Pretraining Methods** — Newer methods for pretraining action representations, including world-model-guided, outcome-regularity, and task-agnostic approaches.
-- [[2609.10706|HuRo]], [[2607.18236|Patch Policy]], [[2607.15163|Humanoid Transformer]], [[2607.11427|EDAR]], [[2607.04714|GeoMoLa]], [[2607.02466|TAP]] (ICML'26), [[2606.30749|G2D-Pretrain]], [[2606.29834|STEAM]], [[2606.29517|CORE (Outcome Regularities)]], [[2606.28320|WARP-RM]], [[2606.12366|APT-VLA]], [[2602.22010|WoG]], [[2601.02427|NitroGen]], [[2512.13030|Motus]], [[2512.07203|MMRPT]], [[2511.21428|LAPS]] (CVPR'26), [[2511.16407|LAOF]] (CVPR'26), [[2508.17230|FVP]] (ICCV'25)
+- [[2609.10706|HuRo]], [[2607.18236|Patch Policy]], [[2607.15163|Humanoid Transformer]], [[2607.11427|EDAR]], [[2607.04714|GeoMoLa]], [[2607.02466|TAP]] (ICML'26), [[2606.30749|G2D-Pretrain]], [[2606.29834|STEAM]], [[2606.29517|CORE (Outcome Regularities)]], [[2606.28320|WARP-RM]], [[2606.12366|APT-VLA]], [[2604.19734|UniT]], [[2602.22010|WoG]], [[2602.12215|LDA-1B]] (RSS'26), [[2601.02427|NitroGen]], [[2512.13030|Motus]], [[2512.07203|MMRPT]], [[2511.21428|LAPS]] (CVPR'26), [[2511.16407|LAOF]] (CVPR'26), [[2511.07820|SONIC]], [[2508.17230|FVP]] (ICCV'25), [[2502.14795|Humanoid-VLA]]
 
 **Foundational World Models & Model-Based RL** — The classic lineage of learned world models and model-based RL methods for planning.
-- [[2609.30264|AD-WM]], [[2607.26712|ActSWM]], [[2410.00564|JOWA]] (ICLR'25), [[2310.16828|TD-MPC2]] (ICLR'24 Spotlight), [[2005.05960|Plan2Explore]] (ICML'20), [[1809.01999|World Models]], [[1507.00814|Predictive Exploration Bonus]]
+- [[2609.30264|AD-WM]], [[2607.26712|ActSWM]], [[2606.05555|MR.Q]], [[2410.00564|JOWA]] (ICLR'25), [[2310.16828|TD-MPC2]] (ICLR'24 Spotlight), [[2005.05960|Plan2Explore]] (ICML'20), [[1809.01999|World Models]], [[1507.00814|Predictive Exploration Bonus]]
 
 **Autonomous Driving World Models** — World models specifically for autonomous-driving perception, occupancy prediction, and planning.
 - [[2607.15898|Orbis 2]], [[2607.04541|CRISP]], [[2510.12796|DriveVLA-W0]] (ICLR'26), [[2407.21126|LOPR]] (RSS'25), [[2311.16038|OccWorld]] (ECCV'24)
 
 **Latent-Action & JEPA-Based World Models for Robotics** — World models built on latent-action and JEPA-style representations for robot planning and control.
-- [[2609.29171|RWM-LatentPlan]], [[2609.24749|Decision-Aligned JEPA]], [[2609.03565|Physically Grounded JEPA]], [[2607.26056|INTACT]], [[2607.25337|Temporal-Distance-JEPA]], [[2607.09185|CD-LAM]], [[2607.04978|Qantara]], [[2602.11389|Causal-JEPA]] (ICML'26), [[2602.06949|DreamDojo]], [[2602.06130|SWIRL]], [[2601.05230|Latent-Action-World-Models]], [[2512.23541|Act2Goal]] (RSS'26), [[2507.19468|DINO-world]], [[2502.14819|PLDM]] (NeurIPS'25), [[2411.04983|DINO-WM]] (ICML'25)
+- [[2609.29171|RWM-LatentPlan]], [[2609.24749|Decision-Aligned JEPA]], [[2609.03565|Physically Grounded JEPA]], [[2607.26924|TC-LeWM]], [[2607.26056|INTACT]], [[2607.25337|Temporal-Distance-JEPA]], [[2607.09185|CD-LAM]], [[2607.04978|Qantara]], [[2606.32026|AdaJEPA]], [[2605.00078|Being-H0.7]], [[2603.19312|LeWM]], [[2602.23058|GeoWorld]] (CVPR'26), [[2602.11389|Causal-JEPA]] (ICML'26), [[2602.06949|DreamDojo]], [[2602.06130|SWIRL]], [[2601.05230|Latent-Action-World-Models]], [[2512.24497|JEPA-WM]], [[2512.23541|Act2Goal]] (RSS'26), [[2510.00739|TD-JEPA]] (ICLR'26 Oral), [[2507.19468|DINO-world]], [[2504.16591|JEPA-for-RL]], [[2502.14819|PLDM]] (NeurIPS'25), [[2411.04983|DINO-WM]] (ICML'25)
 
 **Recent World-Model Architectures & Physics Simulation** — Recent world-model architectures, physics-aware simulators, and self-improving dynamics models.
-- [[2609.29092|DAWN-Parkour]], [[2609.27455|LeWAM]], [[2609.23888|HapticWAM]], [[2609.15570|DIDO]], [[2607.28415|QQWorld]], [[2607.28391|TacWAM]], [[2607.27924|ODEWorld]], [[2607.27017|POKEWORLD]], [[2607.25918|DC-WAM]], [[2607.21576|SDM]], [[2607.19191|ABot-World-0]], [[2607.02195|BRIDGE-WA]], [[2606.30534|Orca]], [[2606.29501|A2World]] (ECCV'26), [[2606.27364|PhysiFormer]], [[2604.10333|ZWM]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.12231|Temporal-Straightening]] (ICML'26), [[2512.09929|OWM]], [[2511.09057|PAN]]
+- [[2609.29092|DAWN-Parkour]], [[2609.27455|LeWAM]], [[2609.23888|HapticWAM]], [[2609.15570|DIDO]], [[2607.28415|QQWorld]], [[2607.28391|TacWAM]], [[2607.27924|ODEWorld]], [[2607.27017|POKEWORLD]], [[2607.25918|DC-WAM]], [[2607.21576|SDM]], [[2607.19191|ABot-World-0]], [[2607.02195|BRIDGE-WA]], [[2606.30534|Orca]], [[2606.29501|A2World]] (ECCV'26), [[2606.27364|PhysiFormer]], [[2605.03821|RoboAlign-R1]], [[2604.10333|ZWM]], [[2604.03208|HWM]], [[2604.01985|WAV]], [[2603.29090|HCLSM]], [[2603.12231|Temporal-Straightening]] (ICML'26), [[2512.09929|OWM]], [[2511.09057|PAN]]
 
 > [!star] Key Papers
 > - [[2511.09057|PAN]] — World model using Generative Latent Prediction for general, interactable, long-horizon simulation
 > - [[2603.12231|Temporal-Straightening]] (ICML'26) — Geometric regularization for straighter latent trajectories; improves latent planning
 
-**Simulation Environments** — Platforms for training and evaluating robotic manipulation and interaction.
-- [[2604.17513|FLASH]], [[2603.15789|OmniReset]] (ICLR'26), [[2603.03279|ULTRA]], [[2603.03026|URGT]], [[2603.02959|SS-Text-U]], [[2602.21186|Spa3R]], [[2511.19418|COVT]] (ECCV'26 Oral), [[2510.27606|Spatial-SSRL]], [[2510.08807|Humanoid-Everyday]], [[2506.10966|GenManip]] (CVPR'25), [[2203.01577|HOI4D]] (CVPR'22), [[2003.08515|SAPIEN]] (CVPR'20)
+**Simulation Environments & Reset/Training Platforms** — Simulators, reset systems, and robotics software platforms for training and evaluating robotic manipulation and interaction.
+- [[2604.17513|FLASH]], [[2604.04310|frax]] (ICRA'26 Workshop), [[2603.15789|OmniReset]] (ICLR'26), [[2603.03279|ULTRA]], [[2603.03026|URGT]], [[2506.10966|GenManip]] (CVPR'25), [[2003.08515|SAPIEN]] (CVPR'20)
 
 > [!star] Key Papers
 > - [[2003.08515|SAPIEN]] (CVPR'20) — Simulated environment with 2,346 articulated objects; foundational platform for robot manipulation research
-
-**Brain-Machine Interface & Neural Decoding** — Self-supervised and continual-adaptation methods for long-term neural decoding in brain-machine interfaces, addressing domain shift and disentanglement of control-relevant signal.
-- [[2607.24031|UnSPC]], [[2607.24023|SSCDL]]
 
 **Robot State Estimation & Geometric Perception** — Learned-geometry and state-estimation methods for robot localization, odometry, and large-scale reconstruction.
 - [[2605.10456|POLI]] (RSS'26), [[2509.10405|LED-State Pose Estimation]] (CoRL'25), [[2506.02587|BEVCALIB]] (CoRL'25), [[2504.09495|Hierarchical IMU Debiasing]] (RSS'25), [[2502.04640|XM]] (RSS'25), [[2311.04320|DRIFT (Dead Reckoning)]]
 
 **Additional methods** — Papers referenced in this section that don't fit the categories above.
-- [[2609.27095|Embodiment Diversity Scaling]], [[2607.24959|IFT Contact Differentiation]], [[2607.24538|NEO]], [[2607.23108|Curse of Precision]] (ICRA'26), [[2606.05555|MR.Q]], [[2603.28713|DreamLite]], [[2512.19693|Prism-Hypothesis]], [[2512.10950|E-RayZer]] (CVPR'26), [[2512.05665|ILVR]], [[2511.21395|Monet]], [[2511.20639|LatentMAS]] (ICML'26 Spotlight), [[2507.01643|SAILViT]], [[2506.11136|JAFAR]] (NeurIPS'25), [[2209.08959|TACO-RL]] (CoRL'22), [[1803.09956|VPG]] (IROS'18)
+- [[2609.27095|Embodiment Diversity Scaling]], [[2607.24959|IFT Contact Differentiation]], [[2607.24538|NEO]], [[2607.23108|Curse of Precision]] (ICRA'26), [[2512.10950|E-RayZer]] (CVPR'26), [[2511.21395|Monet]], [[2511.20639|LatentMAS]] (ICML'26 Spotlight), [[2209.08959|TACO-RL]] (CoRL'22), [[1803.09956|VPG]] (IROS'18)
 
 > [!tip] The VLA Pipeline
 > Modern VLAs follow a pattern: large-scale pretraining on internet video (LAPA) or diverse robot data (pi0.5), then RL fine-tuning for specific tasks (VLA RL Continual Learning). World models (PAN, Causal-JEPA) are emerging as the "imagination engine" that enables sample-efficient policy learning without costly real-world interaction.
@@ -806,36 +794,28 @@ Foundation models applied to robotics — VLAs, action pretraining, world models
 
 Unconventional approaches that do not fit neatly into the above categories but represent important research directions.
 
-**Neuromorphic & Bio-Inspired Learning** — Learning algorithms inspired by biological neural mechanisms.
-- [[2607.20743|Bio-Inspired Self-Supervised Trajectory Planner]], [[2607.18737|SOM-ESN Motion Primitive Model]], [[2506.05259|RHEL]] (NeurIPS'25 Oral), [[2505.24161|Proxy-Target-SNN]] (NeurIPS'25), [[2505.18361|Tactile-CRNN]] (NeurIPS'25 Oral), [[2307.04054|Deep-STDP]]
+**Neuromorphic, Bio-Inspired & Neural Decoding** — Learning algorithms inspired by biological neural mechanisms, and self-supervised methods for long-term neural decoding in brain-machine interfaces.
+- [[2607.24031|UnSPC]], [[2607.24023|SSCDL]], [[2607.20743|Bio-Inspired Self-Supervised Trajectory Planner]], [[2607.18737|SOM-ESN Motion Primitive Model]], [[2506.05259|RHEL]] (NeurIPS'25 Oral), [[2505.24161|Proxy-Target-SNN]] (NeurIPS'25), [[2505.18361|Tactile-CRNN]] (NeurIPS'25 Oral), [[2307.04054|Deep-STDP]]
 
 > [!star] Key Papers
 > - [[2307.04054|Deep-STDP]] — Spike-timing-dependent plasticity for deep unsupervised learning; explores biologically plausible alternatives to backpropagation
 
 **LLM-Assisted Research Tools** — Using LLMs to automate aspects of the research process itself.
-- [[2604.13016|OPD-Distillation-Study]], [[2604.09258|Nexus]], [[2508.17971|LLM-NAR]], [[2504.17192|PaperCoder]] (ICLR'26), [[2203.03485|Self-directed-Exploratory-Planning]]
+- [[2604.09258|Nexus]], [[2508.17971|LLM-NAR]], [[2504.17192|PaperCoder]] (ICLR'26), [[2203.03485|Self-directed-Exploratory-Planning]]
 
 > [!star] Key Papers
 > - [[2504.17192|PaperCoder]] (ICLR'26) — Multi-agent LLM framework that generates functional code from scientific papers
 > - [[2508.17971|LLM-NAR]] — Integrates LLMs with Graph Neural Networks for multi-agent path finding
 
-**Diffusion & Autoregressive Generation Architectures** — Core and efficient generative-model architectures for image and video synthesis.
-- [[2607.21585|EFM]], [[2605.16147|Register Guidance]], [[2604.09168|ELT]] (ECCV'26), [[2603.28713|DreamLite]], [[2511.20645|PixelDiT]] (CVPR'26), [[2511.20549|Flash-DMD]], [[2408.06072|CogVideoX]] (ICLR'25), [[2312.02116|GIVT]] (ECCV'24), [[2307.01952|SDXL]] (ICLR'24 Spotlight), [[2212.09748|DiT]], [[2209.14916|MDM]] (ICLR'23 Oral), [[2102.12092|DALL-E]] (ICML'21 Spotlight)
+**Diffusion & Autoregressive Generation: Architectures, Tokenization & Control** — Core and efficient generative-model architectures for image and video synthesis, tokenization and representation-alignment techniques, and style-, subject- and layout-controlled generation.
+- [[2608.01306|SPAE]], [[2607.21585|EFM]], [[2605.16147|Register Guidance]], [[2604.09168|ELT]] (ECCV'26), [[2603.28713|DreamLite]], [[2603.22187|VFLM]] (CVPR'26), [[2512.05665|ILVR]], [[2511.20645|PixelDiT]] (CVPR'26), [[2511.20549|Flash-DMD]], [[2508.18966|USO]], [[2411.10231|TaylorIR]], [[2410.06940|REPA]] (ICLR'25 Oral), [[2408.06072|CogVideoX]] (ICLR'25), [[2406.07550|TiTok (32 Tokens Reconstruction)]] (NeurIPS'24), [[2312.02116|GIVT]] (ECCV'24), [[2307.01952|SDXL]] (ICLR'24 Spotlight), [[2212.09748|DiT]], [[2209.14916|MDM]] (ICLR'23 Oral), [[2102.12092|DALL-E]] (ICML'21 Spotlight), [[1711.00937|VQ-VAE]] (NeurIPS'17)
 
 > [!star] Key Papers
 > - [[2212.09748|DiT]] — Diffusion Transformer replacing U-Net backbone; established the transformer-based diffusion architecture underlying modern generative video/image models
+> - [[2508.18966|USO]] — Unified style and subject-driven generation via disentangled reward learning; achieves controllable personalization
 
 **Video & 3D Scene Generation** — Generating and reconstructing video and 3D scenes with generative models.
 - [[2607.15038|Wan-Streamer v0.3]], [[2607.05373|PixWorld]], [[2510.08575|ReSplat]] (ECCV'26 Spotlight), [[2503.20314|Wan]], [[2308.06571|ModelScopeT2V]]
-
-**Tokenization, Representation & Efficient Generation** — Tokenization and representation-alignment techniques that improve generative model efficiency and quality.
-- [[2608.01306|SPAE]], [[2411.10231|TaylorIR]], [[2410.06940|REPA]] (ICLR'25 Oral), [[2406.07550|TiTok (32 Tokens Reconstruction)]] (NeurIPS'24)
-
-**Style, Subject & Layout-Controlled Generation** — Controllable generation methods for style transfer, subject-driven synthesis, and layout refinement.
-- [[2603.22187|VFLM]] (CVPR'26), [[2508.18966|USO]], [[2505.17022|GoT-R1]] (ICLR'26)
-
-> [!star] Key Papers
-> - [[2508.18966|USO]] — Unified style and subject-driven generation via disentangled reward learning; achieves controllable personalization
 
 **DETR-Family Transformer Detectors** — End-to-end transformer-based object detectors descending from DETR.
 - [[2406.03459|LW-DETR]], [[2304.08069|RT-DETR]] (CVPR'24), [[2010.04159|Deformable DETR]] (ICLR'21 Oral), [[2005.12872|DETR]] (ECCV'20), [[1811.11168|DCNv2]] (CVPR'19)
