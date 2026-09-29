@@ -250,6 +250,10 @@ Memory that changes shape as the world does — purging moved objects, re-rankin
 
 The manipulation-side answer to the same problem, plus the robot-control world-action-models that gained a memory module rather than a scene graph: compressed action histories, gist tokens, hybrid memory banks, and event-boundary anchors that let a policy disambiguate two visually-identical moments that demand different actions.
 
+- **[[2609.30134|BPC]]** — Training-free behavior cloning: ==future-informed retrieval== over a learned ==Mahalanobis metric== picks demo windows, a ==Hankel action-continuation prior== carries history-fit coefficients into the demonstrated future, and a closed-form ==random-feature residual== corrects it; **73%** MimicGen vs π0.5 **77%**, **34/40** vs **8/40** on real Switch, fit in **<3 min**.
+
+- **[[2609.28256|MemBodied]]** — Fixed-size episodic memory for a VLA: per-layer ==associative matrices== updated by a ==gated delta rule== write each executed action with its visual consequence, plus an ==episode anchor==, read into a memory token in the action expert; **50.0%** RMBench vs **6.4%** stateless and **38.4%** NativeMEM, at **129 ms** vs **1594 ms**.
+
 - **[[2609.11561|MaP-WAM]]** — Treats memory as plans: a VLM picks the next segment from ==keyframe memory== and a WAN-2.2 world model renders a visual plan, cached as a static prefix for a ==World-Action-Progress== ==Mixture-of-Transformers== that flow-matches video, actions and progress; **83.3%** RMBench, **88%** real Find Button, executor latency flat near **827ms**.
 
 - **[[2609.07581|ICI-VLA]]** — Test-time adaptation by retrieving phase-aligned ==micro-demonstrations== (~139,659 subtask examples) via a ==DTW-mined contrastive RD-Encoder==, with ==Target Action Masking== blocking action copying; **97.7%** LIBERO, **60.4%** RoboTwin 2.0 (**+19.3pp**), **83.2%** real dual-arm — retrieval over a demo corpus, no gradient update.
@@ -399,6 +403,8 @@ Two sub-sections split on *where the map lives*: as an explicit external structu
 #### 3.1 Scene-Graph & Map Representations
 
 External, queryable structures — 3D scene graphs, voxel grids, Gaussian-splat memories — built online as the agent explores, then re-consulted by a separate planner or VLM, or fed straight back into the same policy via dedicated encoders.
+
+- **[[2609.28798|OCC4M]]** — An ==object-centric 4D memory== writing ==SAM 3== detections as world-frame object tracks (per-class ==Hungarian assignment==) with motion and containment relations, read once by a VLM to target a frozen π0.5 executor; **96.6%** memory / **88.9%** end-to-end vs **54.6%/57.7%** for full-history frame sampling, **100%** memory after a **0.30 m** base shift.
 
 - **[[2608.14986|GaussMemory]]** — A persistent ==3D Gaussian scene memory== (timestamped, object-ID-grouped) whose update and readout share one ==Unified Memory Attention== module, so the diffusion action loss itself teaches what to keep via a ==learned gate + existence decay==; **94.1%** LIBERO Long-10, memory-vs-none gap widening **+4.0 → +11.7** with horizon.
 
@@ -779,6 +785,7 @@ The common design pattern across all of them: construct a task where success is 
 | Decompose *which* memory type (temporal/spatial/object/procedural) a policy lacks | [[2603.04639\|RoboMME]] (**16** long-horizon tasks) |
 | Dual-arm benchmark graded by Task Memory Complexity | [[2603.01229\|RMBench]] (**9** tasks, Mem-0 baseline) |
 | Memory-RL benchmark unifying Object/Spatial/Sequential/Capacity | [[2502.10550\|MIKASA]] (**32** memory-intensive tasks) |
+| Decision-level audit: does memory pick the warranted branch, not just change the action | [[2609.27247\|CMA]] (only **20/64** pairs fully reliable) |
 | One dimension of a broader sim-and-real capability suite | [[2607.04434\|RoboDojo]] (Memory is 1 of 5 dimensions) |
 
 ^dm-8

@@ -338,6 +338,7 @@ aliases:
     - [[06_WAM#5.5 Compact Motion Representations|5.5 Compact Motion Representations]]
   - [[06_WAM#6. Efficient & Action-Centered WAMs|6. Efficient & Action-Centered WAMs]]  *([[06_WAM#^dm-6|DM]] · [[06_WAM#^key-papers-6|Key Papers]] · [[06_WAM#^insight-6|Insight]])*
     - [[06_WAM#6.1 Training-Time Video, Test-Time Speed|6.1 Training-Time Video, Test-Time Speed]]
+    - [[06_WAM#6.1b Amortized Test-Time Prediction|6.1b Amortized Test-Time Prediction]]
     - [[06_WAM#6.2 Latent Planning & Parameter-Efficient Transfer|6.2 Latent Planning & Parameter-Efficient Transfer]]
     - [[06_WAM#6.3 Uncertainty-Aware & Self-Verifying|6.3 Uncertainty-Aware & Self-Verifying]]
     - [[06_WAM#6.4 Deployment Infrastructure & Runtime Engineering|6.4 Deployment Infrastructure & Runtime Engineering]]
@@ -498,6 +499,7 @@ aliases:
     - [[10_Manipulation-Skill-Learning#5.1 LLM & VLM Task Decomposers & Planners|5.1 LLM & VLM Task Decomposers & Planners]]
     - [[10_Manipulation-Skill-Learning#5.2 LLM-as-Reward & Cost Designers|5.2 LLM-as-Reward & Cost Designers]]
     - [[10_Manipulation-Skill-Learning#5.3 Code-Generation Planners|5.3 Code-Generation Planners]]
+    - [[10_Manipulation-Skill-Learning#5.3a Closed-Loop Code Verification, Repair & Rewriting|5.3a Closed-Loop Code Verification, Repair & Rewriting]]
     - [[10_Manipulation-Skill-Learning#5.3b Frontier Agents as the Policy|5.3b Frontier Agents as the Policy]]
     - [[10_Manipulation-Skill-Learning#5.4 Affordance & Value-Map Grounding|5.4 Affordance & Value-Map Grounding]]
     - [[10_Manipulation-Skill-Learning#5.5 Interactive Perception, Scene Graphs & Human Collaboration|5.5 Interactive Perception, Scene Graphs & Human Collaboration]]
@@ -577,6 +579,7 @@ aliases:
   - [[12_Whole-Body-and-Locomotion-Control#1. Whole-Body Control & Coordination|1. Whole-Body Control & Coordination]]  *([[12_Whole-Body-and-Locomotion-Control#^dm-1|DM]] · [[12_Whole-Body-and-Locomotion-Control#^key-papers-1|Key Papers]] · [[12_Whole-Body-and-Locomotion-Control#^insight-1|Insight]])*
     - [[12_Whole-Body-and-Locomotion-Control#1.1 Unified & Hierarchical Whole-Body Controllers|1.1 Unified & Hierarchical Whole-Body Controllers]]
     - [[12_Whole-Body-and-Locomotion-Control#1.1b Cooperative & Multi-Agent Loco-Manipulation|1.1b Cooperative & Multi-Agent Loco-Manipulation]]
+    - [[12_Whole-Body-and-Locomotion-Control#1.1c Humanoid & Legged VLA / World-Action-Model Front-Ends|1.1c Humanoid & Legged VLA / World-Action-Model Front-Ends]]
     - [[12_Whole-Body-and-Locomotion-Control#1.2 Balance & Load-Aware Adaptation|1.2 Balance & Load-Aware Adaptation]]
     - [[12_Whole-Body-and-Locomotion-Control#1.3 Behavioral & Motion-Tracking Foundation Models|1.3 Behavioral & Motion-Tracking Foundation Models]]
     - [[12_Whole-Body-and-Locomotion-Control#1.4 Cross-Embodiment & Generalist Whole-Body Control|1.4 Cross-Embodiment & Generalist Whole-Body Control]]
@@ -778,6 +781,7 @@ aliases:
     - [[16_Self-Evolving-VLA-WAM#1.1 Self-Evolving Agent (Behavior-Level)|1.1 Self-Evolving Agent (Behavior-Level)]]
     - [[16_Self-Evolving-VLA-WAM#1.2 Self-Evolving VLA (Policy-Level)|1.2 Self-Evolving VLA (Policy-Level)]]
     - [[16_Self-Evolving-VLA-WAM#1.3 Self-Evolving WAM (Dynamics-Level)|1.3 Self-Evolving WAM (Dynamics-Level)]]
+    - [[16_Self-Evolving-VLA-WAM#1.4 Frozen-Policy Harness Evolution (Harness-Level)|1.4 Frozen-Policy Harness Evolution (Harness-Level)]]
   - [[16_Self-Evolving-VLA-WAM#2. Self-Evolving Agent vs VLA vs WAM|2. Self-Evolving Agent vs VLA vs WAM]]  *([[16_Self-Evolving-VLA-WAM#^dm-2|DM]] · [[16_Self-Evolving-VLA-WAM#^key-papers-2|Key Papers]] · [[16_Self-Evolving-VLA-WAM#^insight-2|Insight]])*
     - [[16_Self-Evolving-VLA-WAM#2.1 Agent-Side (Model-Free, Behavior-Level)|2.1 Agent-Side (Model-Free, Behavior-Level)]]
     - [[16_Self-Evolving-VLA-WAM#2.2 VLA-Side (Policy-Level, VLM-Pretrained)|2.2 VLA-Side (Policy-Level, VLM-Pretrained)]]
@@ -809,6 +813,7 @@ aliases:
     - [[16_Self-Evolving-VLA-WAM#7.2 Policy ↔ Environment Co-Evolution|7.2 Policy ↔ Environment Co-Evolution]]
     - [[16_Self-Evolving-VLA-WAM#7.3 Curriculum & Structural Self-Evolution|7.3 Curriculum & Structural Self-Evolution]]
     - [[16_Self-Evolving-VLA-WAM#7.4 Reset-Free Autonomous Operation|7.4 Reset-Free Autonomous Operation]]
+    - [[16_Self-Evolving-VLA-WAM#7.5 Frozen-Policy Harness Evolution|7.5 Frozen-Policy Harness Evolution]]
 - **[[16_Self-Evolving-VLA-WAM#Part C — Open Problems & Failure Modes|Part C — Open Problems & Failure Modes]]**
   - [[16_Self-Evolving-VLA-WAM#8. Open Problems & Failure Modes|8. Open Problems & Failure Modes]]  *([[16_Self-Evolving-VLA-WAM#^dm-8|DM]] · [[16_Self-Evolving-VLA-WAM#^key-papers-8|Key Papers]] · [[16_Self-Evolving-VLA-WAM#^insight-8|Insight]])*
     - [[16_Self-Evolving-VLA-WAM#8.1 Value Drift & Alignment Failures|8.1 Value Drift & Alignment Failures]]

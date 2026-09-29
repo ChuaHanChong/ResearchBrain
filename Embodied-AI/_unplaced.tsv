@@ -37,7 +37,6 @@ id	category	reason	sweep
 2510.07625	control-solver	GATO GPU-batched trajectory optimization solver for edge MPC	2026-09-24
 2510.09734	non-embodied	ARROW adaptive rollout for global weather forecasting	2026-09-24
 2510.12332	medical	shape-aware MPPI control of continuum robots for bronchoscopy; surgical robotics excluded	2026-09-24
-2510.23357	survey-position	review of LLM-based task planning for service robots; no new method	2026-09-24
 2511.02824	non-embodied	Kosmos multi-agent AI scientist for data-driven discovery	2026-09-24
 2511.17335	non-embodied	long-context Q-Former for action confirmation text generation on YouCook2 video; no robot execution	2026-09-24
 2512.00836	non-embodied	statistical framework for model error in counterfactual scenarios; no robot	2026-09-24
@@ -47,7 +46,6 @@ id	category	reason	sweep
 2601.14514	non-embodied	just-in-time world modeling as a cognitive model of human planning; cognitive science	2026-09-24
 2601.22135	general-cv	PI-Light physics-inspired diffusion image relighting	2026-09-24
 2602.03639	control-solver	variance-reduced MPPI via quadratic model approximation; sampling-MPC solver	2026-09-24
-2602.04056	survey-position	position paper arguing for modular safety guardrails on foundation-model robots; no method evaluated	2026-09-24
 2602.08334	autonomous-driving	Vec-QMDP vectorized CPU POMDP planner on nuPlan	2026-09-24
 2603.02642	control-solver	cuNRTO GPU-accelerated nonlinear robust trajectory optimization	2026-09-24
 2603.03577	general-cv	L2G-Det template-guided novel instance detection and segmentation	2026-09-24
@@ -109,6 +107,7 @@ id	category	reason	sweep
 2607.12423	multi-agent-planning	MDOC training-free model-based diffusion with CBS for multi-robot planning	2026-09-24
 2607.13403	multi-agent-planning	E-PDT min-max regret task allocation for heterogeneous multi-robot temporal-logic missions	2026-09-24
 2607.13696	hri-study	expressive motion descriptors conveying manipulator uncertainty; human-subject study	2026-09-24
+2607.13926	autonomous-driving	dual-stream semantic/spatial driving VLA on NAVSIM; no latent reasoning and no future-scene prediction	2026-09-29
 2607.14177	control-solver	adaptive control of flexible-joint robots with uncertain stiffness	2026-09-24
 2607.14245	control-solver	entropy-feedback adaptive temperature for deterministic MPPI	2026-09-24
 2607.14781	multi-agent-planning	distributed simultaneous-arrival control for curvature-constrained multi-robot systems	2026-09-24
@@ -132,12 +131,12 @@ id	category	reason	sweep
 2607.25389	general-cv	HOME Hough-space matching for textureless video registration	2026-09-24
 2607.25985	other	physics-aware DRL quadcopter control with actuator dynamics; aerial RL, no deep dive covers aerial vehicles	2026-09-24
 2607.26047	other	audio-visual imitation for manipulation; 10 has no sensing-modality axis and KH results carry no numeric metrics	2026-09-24
-2607.26121	survey-position	systems framework and T0-T5 trustworthiness levels for embodied AI	2026-09-24
 2607.26337	medical	autonomous surgical needle pickup via thread manipulation on dVRK	2026-09-24
 2607.26370	control-solver	no-regret self-adaptive model selection plus MPC for target tracking	2026-09-24
 2607.26889	general-cv	StructureGS structure-aware Gaussian Splatting for articulated object reconstruction	2026-09-24
 2607.28256	systems	goal-oriented semantic communication testbed for collaborative robots	2026-09-24
 2607.28451	survey-position	conceptual aging-aware autonomy architecture; no evaluated method	2026-09-24
+2608.01221	medical	world-action model for endoscopic navigation; vault excludes medical work	2026-09-29
 2608.01636	multi-agent-planning	forward-inverse dynamic game for multi-agent trajectory planning	2026-09-24
 2608.03496	survey-position	Principles of Robot Autonomy textbook	2026-09-24
 2608.03556	survey-position	human-centric embodied intelligence roadmap for soft wearable robots	2026-09-24
@@ -170,3 +169,18 @@ id	category	reason	sweep
 2609.11775	control-solver	online RLS task-Jacobian estimation for in-hand pen writing; adaptive control, no learned policy	2026-09-24
 2609.14858	non-embodied	Dream-RSI recursive self-improvement of a coding agent	2026-09-24
 2609.20817	general-cv	FAMOS feed-forward articulation modeling from sparse point clouds	2026-09-24
+2609.28416	non-embodied	action-judge world model trained on Search/Terminal/SWE agent trajectories; no robot, VLA or simulator	2026-09-29
+2609.29021	control-solver	joint arm-hand motion planner (RRT-Connect + fiber projection optimisation) with no learned component	2026-09-29
+2203.14465	non-embodied	STaR LLM rationale bootstrapping; text reasoning self-improvement, no robot or embodied policy (removed from 16 in RSI restructure; home General 07/09)	2026-09-29
+2403.09629	non-embodied	Quiet-STaR token-level LLM rationale generation; no robot or embodied policy (removed from 16 in RSI restructure; home General 07/09)	2026-09-29
+2508.04700	non-embodied	SEAgent computer-use agent self-evolving on software GUIs; no robot or embodied policy (removed from 16 in RSI restructure; home General 09/11)	2026-09-29
+2601.06794	non-embodied	ECHO LLM agent hindsight trajectory rewriting; text environments only (removed from 16 in RSI restructure; home General 08/09)	2026-09-29
+2601.07055	non-embodied	Dr.-Zero search-agent self-evolution without data; no robot or embodied policy (removed from 16 in RSI restructure; home General 07/09)	2026-09-29
+2402.12275	non-embodied	WorldCoder LLM-written Python world model for Sokoban/Minigrid/AlfWorld; grid and text games, no robot or embodied simulator	2026-09-29
+2405.15383	non-embodied	GIF-MCTS code world models on Gymnasium CWMB plus APPS; generic RL envs, no robot or embodied simulator	2026-09-29
+2505.10819	non-embodied	PoE-World product of programmatic experts on Atari Pong/Montezuma; game world model, no embodied setting	2026-09-29
+2510.04542	non-embodied	code world models for OpenSpiel general game playing; board and card games, no embodied setting	2026-09-29
+2602.01576	non-embodied	gWorld renderable-code mobile GUI world model plus MWMBench; phone-UI agents, no embodiment	2026-09-29
+2605.30880	non-embodied	PatchWorld executable belief-state world models on AgentGym text environments; no robot or embodied simulator	2026-09-29
+2606.16070	non-embodied	Mind-Studio executable world models for Atari lookahead planning; game world model, no embodied setting	2026-09-29
+2609.11499	general-cv	RCWM recursive Three.js scene programs reconstructing reference images; visual reconstruction, no simulation-ready physics or robot use	2026-09-29

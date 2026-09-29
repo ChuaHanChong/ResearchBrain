@@ -71,7 +71,7 @@ Use `Skill(skill="obsidian:obsidian-markdown")` and the Edit tool to enrich each
 
 > The **`## Detailed Report`** section is fetched from alphaxiv's `.md` render and normalized at assembly by `format_reports.py` (see **"Validate & format-QA the Detailed Reports"** below). Don't add highlights or hand-tune its prose; after a batch, run the validator and read a sample.
 
-##### Canonical Tag Taxonomy (64 tags)
+##### Canonical Tag Taxonomy (73 tags)
 
 > **Single source of truth for the tag vocabulary used across all skills.** `Skill(skill="paper-curate")` references this table for routing — keep tag names exact (renames must propagate). Run `validate-tags` (see `Skill(skill="paper-curate")`) after any change to detect drift.
 
@@ -102,6 +102,8 @@ Pick 3–6 tags per note (step 2 above). Only use tags from this list.
 | | `curriculum-learning` | Ordering training data / tasks easy-to-hard |
 | | `in-context-learning` | Task adaptation from prompt examples, no weight update |
 | | `self-play` | Improving by competing / cooperating with copies of oneself |
+| | `self-improvement` | Loop that improves a model or agent's weights, data or behaviour from its own outputs / experience (self-training, self-rewarding, proposer-solver self-play, self-evolving agents, recursive self-improvement; not one-shot test-time refinement of a single output) |
+| | `harness-engineering` | Designing or optimizing the scaffold around a frozen model: code, prompts, tools, skill library, memory, verifier (vs. `self-improvement` = the loop; a paper can carry both) |
 | | `flow-matching` | Continuous-time generative training via velocity fields |
 | | `model-merging` | Combining multiple models' weights into one |
 | | `retrieval` | Retrieval-augmented generation (RAG) and retrieval / memory systems that fetch external context |

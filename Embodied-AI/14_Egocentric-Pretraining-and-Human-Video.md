@@ -495,6 +495,7 @@ No explicit projection layer; let the VLA absorb the kinematic difference throug
 
 Insert a dedicated training stage *between* broad human pretraining and final robot fine-tuning. Amortizes the embodiment hop across a smaller human-robot bridge dataset specifically designed for the kinematic alignment.
 
+- **[[2609.24411|Zeva-Ego]]** — Mid-trains a π0.5 VLA on **10K hours** of egocentric video, an ==Action-Centric Encoder== pseudo-labeling 16D camera-frame end-effector chunks, plus ==In-Context Causal Learning== memory conditioning only the Action Expert; RoboTwin **63.8% → 75.3%**, matching 2K robot hours (**~4-5:1**), retries **58% → 89%** with frozen weights.
 - **[[2602.16710|EgoScale]]** — A two-stage recipe whose mid-training keeps the log-linear curve flat at scale: Stage 1 broad human pretraining (**20,854 hours**), Stage 2 mid-training on a smaller embodiment-aligned human-robot dataset bridging the kinematic gap. **+54%** task SR on 22-DoF hand; **88%** shirt-folding from a single robot demo; **+30%** cross-embodiment. See §3.
 
 #### 5.4 Active Vision from Egocentric Video

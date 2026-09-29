@@ -57,8 +57,8 @@ $PY $HELPER neighbors 2604.28192   # any unassigned arxiv ID
 | `robotics`, `VLA`, `world-model`, `manipulation`, `embodied-AI`, `navigation`, `imitation-learning`, `autonomous-driving`, `humanoid`, `dexterous`, `tactile`, `sim-to-real`, `egocentric` | `11_Robotics-and-Embodied-AI.md` |
 | `survey`, `benchmark`, `dataset` | `12_Benchmarks-and-Surveys.md` |
 | `LLM`, `hallucination` | `06_Multimodal-LLMs.md` |
-| `agentic-AI`, `tool-use`, `code-generation` | `10_Agents-and-Tool-Use.md` |
-| `continual-learning`, `meta-learning` | `09_Self-Evolving-AI.md` |
+| `agentic-AI`, `tool-use`, `code-generation`, `harness-engineering` | `10_Agents-and-Tool-Use.md` |
+| `continual-learning`, `meta-learning`, `self-improvement`, `harness-engineering` | `09_Self-Evolving-AI.md` |
 | `diffusion`, `image-generation`, `flow-matching`, `generative-model`, `physics-aware` | `03_Diffusion-and-Generation.md` |
 
 Edge cases:
