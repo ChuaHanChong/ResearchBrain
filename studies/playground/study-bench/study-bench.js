@@ -1157,9 +1157,178 @@
     });
   }
 
+
+  /* ---------- v2.8 BenchTerms: the lab's "On this bench" panel ----------
+     Not a second glossary. It lists only the terms you can see in the bench right now (current method / world / scene),
+     grouped by where they are, with what to watch and a live value, and points at the element.
+     Definitions, pictures and the term map stay on the Glossary page ("Definition ↗" links there).
+     opts: { button, host (bench root; panel is appended here), title?: () => string,
+             items: () => [{ id, name, sym?, where, watch, value?: () => string, target?: () => Element|null, href? }],
+             onPoint?: (item) => void } */
+  function benchTerms(opts) {
+    var btn = opts.button, host = opts.host || document.body, timer = null, lastFocus = null;
+    var panel = document.createElement("aside");
+    panel.className = "sb-benchterms"; panel.hidden = true; panel.setAttribute("aria-label", "On this bench");
+    panel.id = (host.id || "bench") + "-onbench";
+    panel.innerHTML = '<div class="sb-benchterms-head"><div><div class="sb-eyebrow">On this bench</div><h3 class="sb-benchterms-title"></h3></div><span class="sb-count"></span><button type="button" class="sb-btn sb-btn--ghost sb-benchterms-x" aria-label="Close On this bench">✕</button></div>' +
+      '<p class="sb-benchterms-lede">What you can see in the bench now, where it is and what to watch. Tap Point to it to find it.</p><div class="sb-benchterms-body"></div>' +
+      '<p class="sb-benchterms-foot">Definitions, pictures and the term map are on the <a href="#glossary">Glossary page ↗</a>.</p>';
+    host.appendChild(panel);
+    btn.setAttribute("aria-controls", panel.id); btn.setAttribute("aria-expanded", "false");
+    function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    var list = [];
+    function render() {
+      list = (opts.items() || []);
+      panel.querySelector(".sb-benchterms-title").textContent = opts.title ? opts.title() : "";
+      panel.querySelector(".sb-count").textContent = list.length + (list.length === 1 ? " term" : " terms");
+      var groups = {}, order = [];
+      list.forEach(function (t) { if (!groups[t.where]) { groups[t.where] = []; order.push(t.where); } groups[t.where].push(t); });
+      panel.querySelector(".sb-benchterms-body").innerHTML = order.map(function (w) {
+        return '<section class="sb-benchterms-group"><h4 class="sb-benchterms-where">' + esc(w) + '</h4><ul>' + groups[w].map(function (t) {
+          var i = list.indexOf(t);
+          return '<li class="sb-benchterm" data-term="' + esc(t.id) + '"><div class="sb-benchterm-top"><b>' + esc(t.name) + '</b>' + (t.sym ? ' <span class="sb-benchterm-sym">' + esc(t.sym) + '</span>' : "") +
+            (t.value ? '<span class="sb-benchterm-val" data-i="' + i + '">–</span>' : "") + '</div><p class="sb-benchterm-watch">' + esc(t.watch) + '</p>' +
+            '<div class="sb-benchterm-acts">' + (t.target ? '<button type="button" class="sb-btn" data-point="' + i + '">Point to it</button>' : "") +
+            '<a class="sb-link" href="' + esc(t.href || ("#glossary/" + t.id)) + '">Definition ↗</a></div></li>';
+        }).join("") + "</ul></section>";
+      }).join("") || '<p class="sb-empty">Nothing on the bench yet. Pick a method.</p>';
+      tick();
+    }
+    function tick() {
+      Array.prototype.forEach.call(panel.querySelectorAll(".sb-benchterm-val"), function (el) {
+        var t = list[+el.getAttribute("data-i")]; var v = "–"; try { v = t.value(); } catch (e) {}
+        el.textContent = (v == null || v === "" || (typeof v === "number" && !isFinite(v))) ? "–" : v;
+      });
+    }
+    function point(t) {
+      var el = t.target && t.target(); if (!el) return;
+      el.scrollIntoView({ block: "center", inline: "nearest", behavior: "instant" });
+      el.classList.remove("sb-pointed"); void el.offsetWidth; el.classList.add("sb-pointed");
+      setTimeout(function () { el.classList.remove("sb-pointed"); }, 2400);
+      if (opts.onPoint) opts.onPoint(t);
+    }
+    function open() { lastFocus = document.activeElement; render(); panel.hidden = false; btn.setAttribute("aria-expanded", "true"); host.classList.add("has-benchterms");
+      clearInterval(timer); timer = setInterval(tick, 500); panel.querySelector(".sb-benchterms-x").focus(); }
+    function close() { panel.hidden = true; btn.setAttribute("aria-expanded", "false"); host.classList.remove("has-benchterms"); clearInterval(timer); if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+    btn.addEventListener("click", function () { panel.hidden ? open() : close(); });
+    panel.addEventListener("click", function (e) {
+      if (e.target.closest(".sb-benchterms-x")) return close();
+      var p = e.target.closest("[data-point]"); if (p) point(list[+p.getAttribute("data-point")]);
+    });
+    panel.addEventListener("keydown", function (e) { if (e.key === "Escape") { e.stopPropagation(); close(); } });
+    return { open: open, close: close, refresh: function () { if (!panel.hidden) render(); }, panel: panel, isOpen: function () { return !panel.hidden; } };
+  }
+
+
+  /* ---------- v2.9 Animated visual guides (TL;DR page) ----------
+     figure.sb-anim > svg (parts carry data-a="<id>") + figcaption > ol.sb-anim-beats > li (one per beat).
+     li attributes: data-on="ids" (fade/draw in), data-off="ids", data-cls="id:class id:class" (add a motion class: a-flow, a-pulse, a-glow),
+       data-move="tokenId:pathId" (move a token along a path), data-set="id.attr=value …" (tween a number, e.g. bar.height=80),
+       data-text="id=value" (change a label), data-dur="ms" (how long the beat holds, default 1800).
+     The figure plays when it scrolls into view, loops, pauses off screen, obeys the page's Pause button and prefers-reduced-motion
+     (then it shows the finished picture with every step listed). Not interactive: there is nothing to click in the scene. */
+  var animState = { paused: false, list: [] };
+  try { animState.paused = localStorage.getItem("sb-anim-paused") === "1"; } catch (e) {}
+  var reduceMQ = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false, addEventListener: function () {} };
+  function anim(fig, opts) {
+    opts = opts || {};
+    if (fig._sbAnim) return fig._sbAnim;
+    var svg = fig.querySelector("svg"), beats = Array.prototype.slice.call(fig.querySelectorAll(".sb-anim-beats > li"));
+    var parts = {}; Array.prototype.forEach.call(svg.querySelectorAll("[data-a]"), function (el) { parts[el.getAttribute("data-a")] = el; });
+    var init = {};
+    Object.keys(parts).forEach(function (k) {
+      var el = parts[k];
+      if (el.classList.contains("a-draw") && el.getTotalLength) { try { el.style.setProperty("--len", Math.ceil(el.getTotalLength())); } catch (e) {} }
+      init[k] = { cls: el.getAttribute("class") || "", tf: el.getAttribute("transform"), text: el.tagName.toLowerCase() === "text" ? el.textContent : null, attrs: {} };
+    });
+    beats.forEach(function (li) {
+      (li.getAttribute("data-set") || "").split(/\s+/).filter(Boolean).forEach(function (s) {
+        var m = s.match(/^([\w-]+)\.([\w-]+)=/); if (m && parts[m[1]] && init[m[1]].attrs[m[2]] == null) init[m[1]].attrs[m[2]] = parts[m[1]].getAttribute(m[2]);
+      });
+      (li.getAttribute("data-text") || "").split(/\s+(?=[\w-]+=)/).filter(Boolean).forEach(function (s) { var id = s.split("=")[0]; if (parts[id] && init[id].text == null) init[id].text = parts[id].textContent; });
+    });
+    var i = -1, timer = null, raf = [], visible = false, api;
+    function ids(s) { return (s || "").split(/\s+/).filter(function (x) { return x && parts[x]; }); }
+    function tween(el, attr, to, ms) {
+      var from = parseFloat(el.getAttribute(attr)) || 0, t0 = performance.now();
+      if (ms <= 0) { el.setAttribute(attr, to); return; }
+      function f(now) { var k = Math.min(1, (now - t0) / ms), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; el.setAttribute(attr, from + (to - from) * e); if (k < 1) raf.push(requestAnimationFrame(f)); }
+      raf.push(requestAnimationFrame(f));
+    }
+    function move(tok, path, ms) {
+      var L = path.getTotalLength(), t0 = performance.now(), ctm = null;
+      function place(k) { var p = path.getPointAtLength(L * k); tok.setAttribute("transform", "translate(" + p.x + " " + p.y + ")"); }
+      if (ms <= 0) { place(1); return; }
+      function f(now) { var k = Math.min(1, (now - t0) / ms), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; place(e); if (k < 1) raf.push(requestAnimationFrame(f)); }
+      raf.push(requestAnimationFrame(f));
+    }
+    function apply(li, instant) {
+      var d = instant ? 0 : Math.min(900, (+li.getAttribute("data-dur") || 1800) * 0.6);
+      ids(li.getAttribute("data-on")).forEach(function (k) { parts[k].classList.add("is-on"); });
+      ids(li.getAttribute("data-off")).forEach(function (k) { parts[k].classList.remove("is-on"); });
+      (li.getAttribute("data-cls") || "").split(/\s+/).filter(Boolean).forEach(function (s) { var p = s.split(":"); if (parts[p[0]]) { parts[p[0]].classList.add("is-on"); parts[p[0]].classList.add(p[1]); } });
+      (li.getAttribute("data-move") || "").split(/\s+/).filter(Boolean).forEach(function (s) { var p = s.split(":"); if (parts[p[0]] && parts[p[1]]) { parts[p[0]].classList.add("is-on"); move(parts[p[0]], parts[p[1]], d); } });
+      (li.getAttribute("data-set") || "").split(/\s+/).filter(Boolean).forEach(function (s) { var m = s.match(/^([\w-]+)\.([\w-]+)=(.+)$/); if (m && parts[m[1]]) tween(parts[m[1]], m[2], parseFloat(m[3]), d); });
+      (li.getAttribute("data-text") || "").split(/\s+(?=[\w-]+=)/).filter(Boolean).forEach(function (s) { var k = s.indexOf("="), id = s.slice(0, k); if (parts[id]) parts[id].textContent = s.slice(k + 1); });
+    }
+    function reset() {
+      raf.forEach(cancelAnimationFrame); raf = [];
+      Object.keys(parts).forEach(function (k) { var el = parts[k], s = init[k]; el.setAttribute("class", s.cls); if (s.tf == null) el.removeAttribute("transform"); else el.setAttribute("transform", s.tf); if (s.text != null) el.textContent = s.text; Object.keys(s.attrs).forEach(function (a) { if (s.attrs[a] == null) el.removeAttribute(a); else el.setAttribute(a, s.attrs[a]); }); });
+      beats.forEach(function (li) { li.classList.remove("is-now", "is-done"); li.style.removeProperty("--beat"); });
+      i = -1;
+    }
+    function show(k, instant) {
+      i = k; apply(beats[k], instant);
+      beats.forEach(function (li, j) { li.classList.toggle("is-done", j < k); li.classList.toggle("is-now", j === k); });
+      beats[k].style.setProperty("--beat", (+beats[k].getAttribute("data-dur") || 1800) + "ms");
+    }
+    function running() { return visible && !animState.paused && !reduceMQ.matches; }
+    function next() {
+      clearTimeout(timer);
+      if (!running()) return;
+      if (i >= beats.length - 1) {
+        timer = setTimeout(function () { fig.classList.add("is-resetting"); timer = setTimeout(function () { reset(); fig.classList.remove("is-resetting"); next(); }, 500); }, +(fig.getAttribute("data-hold") || 2200));
+        return;
+      }
+      show(i + 1, false);
+      timer = setTimeout(next, +beats[i].getAttribute("data-dur") || 1800);
+    }
+    function still() { clearTimeout(timer); reset(); beats.forEach(function (li, j) { apply(li, true); }); beats.forEach(function (li) { li.classList.add("is-done"); }); fig.classList.add("is-still"); }
+    function refresh() {
+      if (reduceMQ.matches) { still(); return; }
+      if (fig.classList.contains("is-still")) { fig.classList.remove("is-still"); reset(); }
+      fig.classList.toggle("is-paused", animState.paused);
+      if (running()) { if (!timer || i < 0) next(); else { clearTimeout(timer); timer = setTimeout(next, 700); } }
+      else { clearTimeout(timer); timer = null; }
+    }
+    fig.setAttribute("role", "group");
+    if (!fig.getAttribute("aria-label")) { var t = fig.querySelector("svg title"); fig.setAttribute("aria-label", "Animated guide" + (t ? ": " + t.textContent : "")); }
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { es.forEach(function (e) { visible = e.isIntersecting; refresh(); }); }, { threshold: 0.35 }).observe(fig);
+    else { visible = true; }
+    api = { refresh: refresh, reset: reset, go: function (k) { reset(); for (var j = 0; j <= k; j++) show(j, true); }, fig: fig };
+    fig._sbAnim = api; animState.list.push(api); refresh();
+    return api;
+  }
+  function animAll(root) {
+    root = root || document;
+    Array.prototype.forEach.call(root.querySelectorAll("figure.sb-anim"), function (f) { anim(f); });
+    function label(b) { b.setAttribute("aria-pressed", String(animState.paused)); b.textContent = animState.paused ? "▶ Play animations" : "❚❚ Pause animations"; }
+    Array.prototype.forEach.call(root.querySelectorAll("[data-anim-toggle]"), function (b) {
+      if (b._sbAnimT) return; b._sbAnimT = 1; label(b);
+      if (reduceMQ.matches) { b.hidden = true; }
+      b.addEventListener("click", function () {
+        animState.paused = !animState.paused; try { localStorage.setItem("sb-anim-paused", animState.paused ? "1" : "0"); } catch (e) {}
+        Array.prototype.forEach.call(document.querySelectorAll("[data-anim-toggle]"), label);
+        animState.list.forEach(function (a) { a.refresh(); });
+      });
+    });
+    if (reduceMQ.addEventListener) reduceMQ.addEventListener("change", function () { animState.list.forEach(function (a) { a.refresh(); }); });
+    return { pause: function () { animState.paused = true; animState.list.forEach(function (a) { a.refresh(); }); }, play: function () { animState.paused = false; animState.list.forEach(function (a) { a.refresh(); }); } };
+  }
+
   window.StudyBench = {
     token: token, palette: palette, onThemeChange: onThemeChange, segmented: segmented, seq: seq, div: div,
     link: link, stepper: stepper, flow: flow, dag: dag, lineChart: lineChart, grid: grid, table: table,
-    terms: terms, flashcards: flashcards, decide: decide, search: search, tour: tour, progress: progress, quiz: quiz, drawer: drawer, autolink: autolink, demo: demo, visualGlossary: visualGlossary, audit: audit, themeToggle: themeToggle, demoHint: demoHint, returnNav: returnNav, facetCounts: facetCounts, cardLinks: cardLinks, anatomyJump: anatomyJump, flash: flash, WORD_LIMITS: WORD_LIMITS
+    terms: terms, flashcards: flashcards, decide: decide, search: search, tour: tour, progress: progress, quiz: quiz, drawer: drawer, autolink: autolink, demo: demo, visualGlossary: visualGlossary, audit: audit, themeToggle: themeToggle, demoHint: demoHint, returnNav: returnNav, facetCounts: facetCounts, benchTerms: benchTerms, anim: anim, animAll: animAll, cardLinks: cardLinks, anatomyJump: anatomyJump, flash: flash, WORD_LIMITS: WORD_LIMITS
   };
 })();

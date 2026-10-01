@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Atkinson+Hyperlegible+Mono:wght@400;500;700&display=swap");
 /* Study Bench v2.4 — drop-in: tokens (light + dark, three-state) then components. Source of truth: the Study Bench design system artifact. Do not edit per site. */
+/* Release: v2.10 (2026-10-01). The "v2.4 — drop-in" line above is a fixed build marker, not the version. */
 /* Study Bench tokens v1 — light on :root, dark via OS setting or data-theme="dark". */
 :root {
   color-scheme: light;
@@ -1038,3 +1039,88 @@ body.sb-demo-on { padding-bottom: 220px; }
   .sb-root *, .sb-root *::before, .sb-root *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
   .sb-skel::after, .sb-live-dot, .sb-spot { animation: none !important; transition: none !important; }
 }
+
+/* v2.8 BenchTerms ("On this bench") and the bench-bar Tours menu */
+.sb-benchterms { position: fixed; top: calc(var(--appbar-h, 56px) + var(--space-3)); right: var(--space-4); bottom: var(--space-4); width: min(360px, calc(100vw - 32px)); z-index: 45; display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; grid-template-columns: minmax(0, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-pop); overflow: hidden; }
+.sb-benchterms[hidden] { display: none; }
+.sb-benchterms-head { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--line); }
+.sb-benchterms-head > div { flex: 1; min-width: 0; }
+.sb-benchterms-title { margin: 2px 0 0; font: 700 16px/22px var(--font-display); }
+.sb-benchterms-lede, .sb-benchterms-foot { margin: 0; padding: var(--space-2) var(--space-4); font: 400 13px/19px var(--font-body); color: var(--ink-2); }
+.sb-benchterms-foot { border-top: 1px solid var(--line); }
+.sb-benchterms-body { overflow: auto; padding: 0 var(--space-4) var(--space-3); }
+.sb-benchterms-where { margin: var(--space-3) 0 var(--space-2); font: 500 12px/16px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.sb-benchterms-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.sb-benchterm { padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+.sb-benchterm-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--space-2); font: 400 14px/20px var(--font-body); min-width: 0; }
+.sb-benchterm { min-width: 0; overflow-wrap: anywhere; }
+.sb-benchterm-sym { color: var(--ink-2); }
+.sb-benchterm-val { margin-left: auto; font: 500 13px/20px var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ink); background: var(--surface-sunk); padding: 0 var(--space-2); border-radius: var(--radius-xs); max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.sb-benchterm-watch { margin: 2px 0 var(--space-2); font: 400 13px/19px var(--font-body); color: var(--ink-2); }
+.sb-benchterm-acts { display: flex; gap: var(--space-3); align-items: center; }
+.sb-pointed { outline: 3px solid var(--accent) !important; outline-offset: 3px; border-radius: var(--radius-xs); animation: sb-point 0.6s var(--ease-out) 3; }
+@keyframes sb-point { 50% { outline-offset: 7px; } }
+@media (prefers-reduced-motion: reduce) { .sb-pointed { animation: none; } }
+@media (max-width: 640px) { .sb-benchterms { top: auto; left: 0; right: 0; bottom: 0; width: auto; max-height: 70vh; border-radius: var(--radius-md) var(--radius-md) 0 0; } }
+.sb-tourmenu { position: absolute; z-index: 31; width: min(420px, calc(100vw - 32px)); max-height: min(70vh, 560px); overflow: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-pop); padding: var(--space-3); }
+
+/* v2.8.2: while On this bench is open the bench makes room for it, so nothing on the bench sits under the panel */
+@media (min-width: 641px) { .has-benchterms { padding-right: calc(360px + var(--space-5)) !important; transition: padding-right var(--dur-base) var(--ease-out); } }
+@media (min-width: 641px) and (prefers-reduced-motion: reduce) { .has-benchterms { transition: none; } }
+
+/* v2.9 TL;DR page: sections partitioned on one page, each an animated visual guide + a short TL;DR. Not interactive. */
+.sb-root { --dur-beat: 1800ms; --dur-draw: 900ms; --ease-anim: cubic-bezier(.65,0,.35,1); }
+.sb-tldr-bar { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; margin-top: var(--space-4); }
+.sb-tldr-map { list-style: none; margin: var(--space-5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); grid-auto-rows: 1fr; gap: var(--space-2); counter-reset: none; }
+.sb-tldr-map > li { display: flex; min-width: 0; }
+.sb-tldr-map a { flex: 1; box-sizing: border-box; display: flex; gap: var(--space-2); align-items: baseline; padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); text-decoration: none; font: 500 14px/20px var(--font-body); }
+.sb-tldr-map a:hover { border-color: var(--line-strong); background: var(--surface-strong); }
+.sb-tldr-map .n, .sb-tldr-n { font: 500 12px/16px var(--font-mono); letter-spacing: .08em; color: var(--accent-strong); }
+.sb-sec.sb-tldr-part > .sb-sec-head { padding-top: var(--space-5); border-top: 1px solid var(--line-strong); }
+.sb-sec.sb-tldr { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--space-6); align-items: start; padding: var(--space-5); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.sb-sec.sb-tldr.is-flip { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+.sb-sec.sb-tldr.is-flip > .sb-anim { order: 2; }
+@media (max-width: 960px) { .sb-sec.sb-tldr, .sb-sec.sb-tldr.is-flip { grid-template-columns: minmax(0, 1fr); } .sb-sec.sb-tldr.is-flip > .sb-anim { order: 0; } }
+.sb-tldr-text { display: grid; gap: var(--space-3); align-content: start; }
+.sb-tldr-title { margin: 0; font: 700 22px/28px var(--font-display); text-wrap: balance; }
+.sb-tldr-sum { margin: 0; font: 400 18px/28px var(--font-body); color: var(--ink); }
+.sb-tldr-sum b { font: 500 12px/16px var(--font-mono); letter-spacing: .08em; color: var(--ink-3); margin-right: var(--space-2); }
+.sb-tldr-points { margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-2); color: var(--ink-2); }
+.sb-tldr-remember { margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: var(--surface-sunk); font: 400 15px/22px var(--font-body); }
+.sb-tldr-remember b { color: var(--ink); }
+/* the animated figure */
+.sb-anim { margin: 0; display: grid; gap: var(--space-3); }
+.sb-anim > svg { width: 100%; max-width: 640px; justify-self: center; height: auto; display: block; background: var(--surface-sunk); border-radius: var(--radius-sm); }
+.sb-anim [data-a] { opacity: 0; transition: opacity 500ms var(--ease-anim), fill 500ms var(--ease-anim), stroke 500ms var(--ease-anim); }
+.sb-anim [data-a].a-base, .sb-anim [data-a].is-on { opacity: 1; }
+.sb-anim [data-a].is-dim { opacity: .28; }
+.sb-anim .a-draw { stroke-dasharray: var(--len, 1000); stroke-dashoffset: var(--len, 1000); transition: stroke-dashoffset var(--dur-draw) var(--ease-anim), opacity 200ms linear; }
+.sb-anim .a-draw.is-on { stroke-dashoffset: 0; }
+.sb-anim .a-flow.is-on { stroke-dasharray: 5 7; animation: sb-aflow 900ms linear infinite; }
+@keyframes sb-aflow { to { stroke-dashoffset: -24; } }
+.sb-anim .a-pulse.is-on { animation: sb-apulse 1400ms var(--ease-anim) infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes sb-apulse { 50% { transform: scale(1.12); } }
+.sb-anim .a-glow.is-on { filter: drop-shadow(0 0 4px var(--accent)); }
+.sb-anim.is-resetting [data-a]:not(.a-base) { opacity: 0 !important; transition-duration: 400ms; }
+/* the caption track: one line per beat, the current one bold with a progress rule */
+.sb-anim-cap { margin: 0; }
+.sb-anim-beats { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: beat; }
+.sb-anim-beats > li { counter-increment: beat; position: relative; display: flex; gap: var(--space-2); padding: 4px var(--space-2) 6px; font: 400 14px/20px var(--font-body); color: var(--ink-3); border-radius: var(--radius-xs); }
+.sb-anim-beats > li::before { content: counter(beat, decimal-leading-zero); font: 500 12px/20px var(--font-mono); color: var(--ink-3); }
+.sb-anim-beats > li.is-done { color: var(--ink-2); }
+.sb-anim-beats > li.is-now { color: var(--ink); font-weight: 600; background: var(--accent-soft); }
+.sb-anim-beats > li.is-now::before { color: var(--accent-strong); }
+.sb-anim-beats > li.is-now::after { content: ""; position: absolute; left: var(--space-2); right: var(--space-2); bottom: 2px; height: 2px; background: var(--accent); transform-origin: left; animation: sb-abeat var(--beat, 1800ms) linear forwards; }
+.sb-anim.is-paused .sb-anim-beats > li.is-now::after { animation-play-state: paused; }
+@keyframes sb-abeat { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.sb-anim.is-still .sb-anim-beats > li { color: var(--ink-2); }
+@media (prefers-reduced-motion: reduce) { .sb-anim [data-a] { transition: none; } .sb-anim .a-flow.is-on, .sb-anim .a-pulse.is-on { animation: none; } .sb-anim-beats > li::after { display: none; } }
+@media print { .sb-anim [data-a] { opacity: 1 !important; } .sb-anim-beats > li::after { display: none; } }
+
+/* v2.10 TopicLinks: one topic, three depths (Summary on Overview · TL;DR · Topic Explorer), same links everywhere */
+.sb-topiclinks { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin: 0; font: 500 14px/20px var(--font-body); }
+.sb-topiclinks > a { white-space: nowrap; }
+.sb-topiclinks > .sb-done { margin-left: auto; }
+.sb-done { display: inline-flex; align-items: center; gap: 4px; padding: 0 var(--space-2); border-radius: var(--radius-xs); background: var(--good-soft); color: var(--good); font: 600 12px/20px var(--font-body); white-space: nowrap; }
+.sb-done[hidden] { display: none; }
+.sb-tldr-map a .sb-done { margin-left: auto; align-self: flex-start; }
