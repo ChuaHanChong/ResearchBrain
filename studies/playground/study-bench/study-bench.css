@@ -1124,3 +1124,16 @@ body.sb-demo-on { padding-bottom: 220px; }
 .sb-done { display: inline-flex; align-items: center; gap: 4px; padding: 0 var(--space-2); border-radius: var(--radius-xs); background: var(--good-soft); color: var(--good); font: 600 12px/20px var(--font-body); white-space: nowrap; }
 .sb-done[hidden] { display: none; }
 .sb-tldr-map a .sb-done { margin-left: auto; align-self: flex-start; }
+
+/* v2.11 Visual weight: size tiers so pictures carry as much of the page as the words do */
+.sb-fig--hero { justify-items: center; }
+.sb-fig--hero > svg, .sb-fig--hero > canvas, .sb-fig--hero > .sb-fig-body { width: 100%; max-width: 760px; max-height: 60vh; }
+.sb-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+.sb-split--fig-wide { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+@media (max-width: 960px) { .sb-split, .sb-split--fig-wide { grid-template-columns: minmax(0, 1fr); } }
+.sb-multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-4); }
+.sb-multiples > figure { margin: 0; display: grid; gap: var(--space-2); justify-items: center; }
+.sb-multiples > figure > svg { width: 100%; max-width: 240px; height: auto; }
+.sb-more { margin-top: var(--space-3); }
+details.sb-more:not([open]) > :not(summary) { display: none; }
+.sb-more > summary { cursor: pointer; font: 600 14px/20px var(--font-body); color: var(--link); }

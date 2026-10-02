@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Study Bench · Robot Learning</title>
-<meta name="description" content="Interactive study companion to fifteen robot-learning surveys and the 626 method papers they cite: VLAs, world action models, data, grasping, touch and verifiers.">
+<meta name="description" content="Interactive study companion to seventeen robot-learning surveys and the 646 method papers they cite: VLAs, world action models, data, grasping, touch and verifiers.">
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Atkinson+Hyperlegible+Mono:wght@400;500;700&display=swap");
 /* Study Bench v2.4 — drop-in: tokens (light + dark, three-state) then components. Source of truth: the Study Bench design system artifact. Do not edit per site. */
+/* Release: v2.10 (2026-10-01). The "v2.4 — drop-in" line above is a fixed build marker, not the version. */
 /* Study Bench tokens v1 — light on :root, dark via OS setting or data-theme="dark". */
 :root {
   color-scheme: light;
@@ -1132,6 +1133,19 @@ body.sb-demo-on { padding-bottom: 220px; }
 .sb-done[hidden] { display: none; }
 .sb-tldr-map a .sb-done { margin-left: auto; align-self: flex-start; }
 
+/* v2.11 Visual weight: size tiers so pictures carry as much of the page as the words do */
+.sb-fig--hero { justify-items: center; }
+.sb-fig--hero > svg, .sb-fig--hero > canvas, .sb-fig--hero > .sb-fig-body { width: 100%; max-width: 760px; max-height: 60vh; }
+.sb-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+.sb-split--fig-wide { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+@media (max-width: 960px) { .sb-split, .sb-split--fig-wide { grid-template-columns: minmax(0, 1fr); } }
+.sb-multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-4); }
+.sb-multiples > figure { margin: 0; display: grid; gap: var(--space-2); justify-items: center; }
+.sb-multiples > figure > svg { width: 100%; max-width: 240px; height: auto; }
+.sb-more { margin-top: var(--space-3); }
+details.sb-more:not([open]) > :not(summary) { display: none; }
+.sb-more > summary { cursor: pointer; font: 600 14px/20px var(--font-body); color: var(--link); }
+
 /* ===== Study Bench · Robot Learning — site layout helpers. Tokens only; no hex, no new font sizes. ===== */
 /* layout helpers content files may use */
 .rb-stack{display:grid;gap:var(--space-3);align-content:start;grid-template-columns:minmax(0,1fr)}
@@ -1142,7 +1156,7 @@ body.sb-demo-on { padding-bottom: 220px; }
 .rb-grid2>*,.rb-grid3>*{min-width:0}
 @media (max-width:960px){.rb-grid2,.rb-grid3{grid-template-columns:minmax(0,1fr)}}
 .rb-well{background:var(--surface-sunk);border:1px solid var(--line);border-radius:var(--radius-sm);padding:var(--space-3)}
-.rb-canvas{display:block;width:100%;height:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);touch-action:none}
+.rb-canvas{display:block;width:100%;height:auto;margin-inline:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);touch-action:none}
 .rb-svg{display:block;width:100%;height:auto}
 .rb-fig{margin:0;display:grid;gap:var(--space-2);grid-template-columns:minmax(0,1fr)}
 .rb-h4{margin:0;font:700 18px/24px var(--font-display);color:var(--ink)}
@@ -1172,7 +1186,7 @@ body.sb-demo-on { padding-bottom: 220px; }
 .rb-rule{display:grid;gap:var(--space-4);grid-template-columns:minmax(0,1fr)}
 @media (min-width:1100px){.rb-rule:has(.sb-algo){grid-template-columns:minmax(0,3fr) minmax(0,2fr);align-items:start}}
 .rb-we-eq{margin-bottom:var(--space-3)}
-.rb-we-fig svg{display:block;width:100%;min-width:520px;max-width:640px;height:auto}
+.rb-we-fig svg{display:block;width:100%;min-width:520px;max-width:760px;height:auto;margin-inline:auto}
 .rb-understood{align-items:center;gap:var(--space-4);margin-top:var(--space-4)}
 .rb-understood .sb-meter{flex:1 1 200px;max-width:320px}
 .rb-close-check>.sb-panel{margin:0}
@@ -1200,7 +1214,7 @@ body.sb-demo-on { padding-bottom: 220px; }
 .rb-layer.is-on rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
 .rb-layer:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .rb-layer-t{font:700 15px/1 var(--font-display);fill:var(--ink)}
-.rb-layer-s{font:500 12px/1 var(--font-mono);fill:var(--ink-3)}
+.rb-layer-s{font:500 14.5px/1 var(--font-mono);fill:var(--ink-3)}
 .rb-layer-arrow{fill:none;stroke:var(--ink-2);stroke-width:1.5}
 .rb-layer-env{fill:var(--surface-sunk);stroke:var(--line-strong);stroke-width:1.5}
 .rb-layer-card{display:grid;gap:var(--space-3);align-content:start}
@@ -1302,22 +1316,22 @@ body.sb-demo-on { padding-bottom: 220px; }
 .rb-am:focus-visible .rb-am-box{stroke:var(--focus);stroke-width:3}
 .rb-am-stripe{fill:var(--c2)}
 .rb-am-stripe1{fill:var(--c)}
-.rb-am-role{font:600 10px/1 var(--font-mono);letter-spacing:.06em;fill:color-mix(in srgb,var(--c) 70%,var(--ink))}
+.rb-am-role{font:600 11px/1 var(--font-mono);letter-spacing:.06em;fill:color-mix(in srgb,var(--c) 70%,var(--ink))}
 .rb-am-name{font:700 14px/1 var(--font-body);fill:var(--ink)}
 .rb-am-sub{font:500 11px/1 var(--font-mono);fill:var(--ink-2)}
-.rb-am-tag{font:500 10.5px/1 var(--font-mono);fill:var(--ink-3)}
+.rb-am-tag{font:500 11px/1 var(--font-mono);fill:var(--ink-3)}
 .rb-am-tag.is-frozen{fill:var(--data-1)}
-.rb-am-more{font:600 10.5px/1 var(--font-mono);fill:var(--accent)}
+.rb-am-more{font:600 11px/1 var(--font-mono);fill:var(--accent)}
 .rb-ak{fill:var(--c);stroke:var(--c);stroke-width:1}
 .rb-ak.is-noisy{fill:color-mix(in srgb,var(--c) 22%,var(--surface));stroke-dasharray:2 1.5}
 .rb-at-lab{font:500 11px/1 var(--font-body);fill:var(--ink-2)}
-.rb-at-n{font:500 10.5px/1 var(--font-mono);fill:var(--ink-3)}
+.rb-at-n{font:500 11px/1 var(--font-mono);fill:var(--ink-3)}
 .rb-arch-tl{stroke:var(--line-strong);stroke-width:1.2}
 .rb-arch-head{fill:var(--ink-2)}
 .rb-arch-link line{stroke:var(--ink-2);stroke-width:1.8}
 .rb-arch-link.is-dash line{stroke-dasharray:6 4}
 .rb-arch-lt{font:500 11px/1 var(--font-body);fill:var(--ink-2)}
-.rb-arch-lk{font:600 10.5px/1 var(--font-mono);fill:var(--accent)}
+.rb-arch-lk{font:600 11px/1 var(--font-mono);fill:var(--accent)}
 .rb-arch-legend{margin-top:var(--space-2)}
 .rb-sw-noisy{display:inline-block;width:12px;height:12px;border-radius:2px;border:1.5px dashed var(--ink-3);vertical-align:-2px}
 .rb-sw-link{display:inline-block;width:24px;height:0;border-top:2px solid var(--ink-2);vertical-align:middle;position:relative}
@@ -1335,7 +1349,7 @@ body.sb-demo-on { padding-bottom: 220px; }
 .rb-mask-svg{display:block}
 .rb-mask-c{fill:var(--surface-sunk);stroke:var(--line)}
 .rb-mask-c.is-on{fill:var(--accent);stroke:var(--accent)}
-.rb-mask-ax,.rb-mask-ay{font:600 10.5px/1 var(--font-mono);fill:color-mix(in srgb,var(--c) 75%,var(--ink))}
+.rb-mask-ax,.rb-mask-ay{font:600 11px/1 var(--font-mono);fill:color-mix(in srgb,var(--c) 75%,var(--ink))}
 .rb-arch-sum th[scope=row]{white-space:nowrap;color:var(--ink-2);font-weight:600;vertical-align:top}
 .rb-arch-sum td{vertical-align:top;min-width:160px}
 .rb-arch-sum tr.is-diff td{background:color-mix(in srgb,var(--q-changed) 10%,transparent)}
@@ -1635,6 +1649,95 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
 .rb-sumcard .sb-topiclinks{margin-top:auto;padding-top:var(--space-2);border-top:1px solid var(--line)}
 .sb-topic-head .sb-topiclinks{margin:var(--space-2) 0}
 .rb-tl-foot .sb-topiclinks{flex:1}
+/* wide equation still cut after fitting: fade the right edge so it reads as "scroll for more" */
+.rb-math.is-cut,.sb-eq-math.is-cut{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+/* ===== Size balance: figures vs text =====
+   TL;DR: scene and text share the row equally, so scene labels (~16–17px) match the prose instead of towering over it;
+   one-column widths cap the scene so it does not grow to 27px labels on a tablet. */
+@media (min-width:961px){.sb-sec.sb-tldr,.sb-sec.sb-tldr.is-flip{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:960px){.sb-sec.sb-tldr>.sb-anim{width:100%;max-width:540px;justify-self:center}}
+@media (max-width:640px){.sb-anim .t-sm{font-size:14px}}
+/* Phone: wide flow diagrams keep readable labels (~11px) and scroll sideways, instead of shrinking to 7px */
+@media (max-width:640px){
+  .sb-flow .sb-scroll-x>svg{min-width:820px}
+  .rb-fig .sb-scroll-x>svg,.rb-fig-scroll>svg{min-width:640px}
+}
+/* a sideways-scrolling figure that is cut off fades at the cut edge (cleared when scrolled to the end) */
+.sb-scroll-x.is-cut,.rb-fig-scroll.is-cut{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),rgba(0,0,0,.15));mask-image:linear-gradient(90deg,#000 calc(100% - 36px),rgba(0,0,0,.15))}
+.rb-fig-scroll{overflow-x:auto;max-width:100%}
+@media (max-width:640px){.rb-fig-scroll>svg{min-width:560px}}
+.rb-am-role.is-long{font-size:10px;letter-spacing:.02em}
+.sb-vg-stage-head .rb-vg-zoom{margin-left:auto;align-self:center}
+.rb-open-more .rb-open{margin-top:var(--space-3)}
+/* v2.11 visual weight: "Where it fits" mini map spans the orientation row; methods timeline */
+.sb-orient .rb-orient-map{grid-column:1/-1}
+.rb-orient-map .sb-dag{max-width:100%}
+.rb-mtl{margin:0 0 var(--space-4)}
+.rb-mtl .rb-mtl-scroll{width:100%}
+.rb-mtl svg{display:block;width:100%;max-width:760px;height:auto;margin-inline:auto}
+.rb-mtl a,.rb-mtl-lbl{text-decoration:none}
+.rb-mtl-grid{stroke:var(--line);stroke-width:1}
+.rb-mtl-axis{stroke:var(--line-strong);stroke-width:1}
+.rb-mtl-tick{font:500 11px var(--font-mono);fill:var(--ink-3)}
+.rb-mtl-edge{fill:none;stroke:var(--ink-3);stroke-width:1.2;opacity:.7}
+.rb-mtl-head{fill:var(--ink-3)}
+.rb-mtl-dot{fill:var(--accent);stroke:var(--surface);stroke-width:2}
+.rb-mtl-lbl{font:500 12px var(--font-body);fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round}
+.rb-mtl-m:hover .rb-mtl-lbl,.rb-mtl-m:focus-visible .rb-mtl-lbl{fill:var(--accent-strong)}
+.rb-mtl-m:hover .rb-mtl-dot{r:7}
+.rb-mtl-m:focus-visible{outline:none}.rb-mtl-m:focus-visible .rb-mtl-dot{stroke:var(--focus);stroke-width:3}
+@media (max-width:640px){.rb-mtl svg{min-width:680px}}
+/* VLA builder: picture gets 60% of the row (v2.11 side figure); labels stay >= 11px after scaling */
+#b4-pg-build .rb-fig .rb-t-mono{font-size:12px}
+#b4-pg-build .rb-fig .rb-t-ink,#b4-pg-build .rb-fig .rb-t-acc{font-size:13px}
+.rb-rule-more>.sb-eq{margin-top:var(--space-3)}
+/* figures attached to an equation (v2.11: a picture of the rule's mechanism) */
+.rb-eq-fig{margin:var(--space-3) 0 0;justify-items:center}
+.rb-eq-fig>svg{width:100%;max-width:620px;height:auto}
+.rb-ch-seg{stroke:var(--accent);stroke-width:2}
+.rb-ch-p1{fill:var(--data-1);stroke:var(--surface);stroke-width:2}
+.rb-ch-p2{fill:var(--surface);stroke:var(--data-2);stroke-width:2.5}
+.rb-ch-lbl{font:500 13px var(--font-body);fill:var(--ink-2)}
+.rb-ch-acc{fill:var(--accent-strong)}
+/* Overview, v2.11 visual weight: TL;DR still on each summary card; survey × topic coverage matrix on the shelf */
+.rb-sum-pic{margin:var(--space-2) 0}
+.rb-tl-thumb{margin:0}
+.rb-tl-thumb>svg{display:block;width:100%;height:auto;background:var(--surface-sunk);border-radius:var(--radius-sm)}
+.rb-tl-thumb .a-flow.is-on,.rb-tl-thumb .a-pulse.is-on{animation:none}
+.rb-tl-thumb [data-a]{transition:none}
+.rb-sum-more{margin-top:var(--space-2)}
+.rb-cov{margin:0 0 var(--space-5)}
+.rb-cov svg{display:block;width:100%;max-width:760px;height:auto;margin-inline:auto}
+.rb-cov-lbl{font:500 12px var(--font-body);fill:var(--ink)}
+.rb-cov-n{font:500 11px var(--font-mono);fill:var(--ink-3)}
+.rb-cov-part{font:600 11px var(--font-mono);fill:var(--ink-2);letter-spacing:.04em}
+.rb-cov-sep{stroke:var(--line-strong);stroke-width:1}
+.rb-cov-band{fill:var(--surface-sunk);opacity:.6}
+.rb-cov-cell{fill:var(--accent)}
+.rb-cov-a:hover .rb-cov-cell,.rb-cov-a:focus-visible .rb-cov-cell{fill:var(--accent-strong);stroke:var(--focus);stroke-width:2}
+@media (max-width:640px){.rb-cov svg{min-width:700px}}
+.rb-cov .sb-scroll-x{width:100%}
+.rb-lab-more{margin-top:var(--space-3)}
+.rb-film-thumbs svg text{display:none} /* v2.11: thumbnail art carries no text below 11px */
+/* Evolution story as a visual guide (v2.11): picture first, its three zones light up in turn, each zone's sentence under it */
+.rb-film-guide{grid-template-columns:minmax(0,1fr);gap:var(--space-4)}
+.rb-film-head>*{margin:0}.rb-film-head{display:grid;gap:4px}
+.rb-film-stage{width:100%;max-width:760px;margin-inline:auto;display:grid;gap:var(--space-3)}
+.rb-film-guide .rb-film-art{padding:var(--space-2) var(--space-3)}
+.rb-film-guide .rb-film-art svg text{font-size:5.4px !important}
+.rb-film-zones{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-3)}
+.rb-film-z{display:grid;gap:4px;align-content:start;padding:var(--space-2) var(--space-3);border-top:3px solid var(--line-strong)}
+.rb-film-z p{margin:0;font:400 14px/21px var(--font-body);color:var(--ink-2)}
+.rb-film-k{font:600 12px/16px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.rb-film-k b{display:inline-grid;place-items:center;width:18px;height:18px;margin-right:4px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:11px}
+.rb-film-z3{border-top-color:var(--accent)}
+@keyframes rbZone{from{opacity:.15}to{opacity:1}}
+.rb-film-guide.is-play .rb-film-art svg>g,.rb-film-guide.is-play .rb-film-z{animation:rbZone 700ms var(--ease-out,ease-out) both}
+.rb-film-guide.is-play .rb-film-art svg>g:nth-of-type(1),.rb-film-guide.is-play .rb-film-z1{animation-delay:0ms}
+.rb-film-guide.is-play .rb-film-art svg>g:nth-of-type(2),.rb-film-guide.is-play .rb-film-z2{animation-delay:900ms}
+.rb-film-guide.is-play .rb-film-art svg>g:nth-of-type(3),.rb-film-guide.is-play .rb-film-z3{animation-delay:1800ms}
+@media (prefers-reduced-motion:reduce){.rb-film-guide.is-play .rb-film-art svg>g,.rb-film-guide.is-play .rb-film-z{animation:none}}
+@media (max-width:640px){.rb-film-zones{grid-template-columns:minmax(0,1fr)}.rb-film-guide .rb-film-art svg text{font-size:7.6px !important}}
 
 </style>
 <script>(function(){try{var t=localStorage.getItem("sb-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
@@ -1660,7 +1763,7 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
 <!-- =================== 1. OVERVIEW =================== -->
 <main aria-labelledby="h-overview" id="view-overview" data-page="overview" class="sb-page">
 <header class="sb-hero">
-<p class="sb-eyebrow">Companion to sixteen robot-learning surveys and 646 method papers</p>
+<p class="sb-eyebrow">Companion to seventeen robot-learning surveys and 646 method papers</p>
 <h1 id="h-overview" class="sb-hero-title" tabindex="-1">Robot learning, <mark>one mechanism</mark> at a time</h1>
 <p class="sb-lede">How robots learn to manipulate, from control loops and reward to vision-language-action models, world action models and verifiers. Follow each method's lineage, open its architecture and run it on a bench.</p>
 <div class="sb-hero-actions"><button class="sb-btn sb-btn--primary sb-btn--lg" id="heroContinue" type="button">Continue ▶</button><button class="sb-btn" id="heroTour" type="button">Start guided tour</button><span class="sb-hero-progress" id="heroProgress" aria-live="polite">–</span></div>
@@ -1677,7 +1780,7 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
 <section class="sb-sec" aria-labelledby="h-map" id="ov-map"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-map">Course map</h2><p class="sb-sec-lede">Arrows point from a topic to the topics that build on it. Hover to trace prerequisites; click to open a topic. Progress stays in this browser.</p></header>
 <div class="sb-panel"><div class="sb-panel-body"><div class="sb-meter" data-progress role="meter" aria-label="Topics understood"><div class="sb-meter-track"><div class="sb-meter-fill"></div></div><span class="sb-meter-text"></span></div><p class="sb-caption" id="continueNote"></p><div id="courseMap"></div><div class="sb-dag-key"><span><i class="k-done"></i>Understood</span><span><i class="k-sel"></i>Next up</span><span><i></i>Needed first (on hover)</span><span><i class="k-desc"></i>Builds on it (on hover)</span></div></div></div></section>
 <section class="sb-sec" aria-labelledby="h-tasks" id="ov-tasks"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-tasks">Manipulation task map</h2><p class="sb-sec-lede">The task families of the manipulation survey. Each tile opens its topic.</p></header><div id="tasksHost"></div></section>
-<section class="sb-sec" aria-labelledby="h-shelf" id="ov-shelf"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-shelf">The paper shelf</h2><p class="sb-sec-lede">The sixteen surveys this site reads, and the topics that use each one.</p></header><div class="sb-toolbar" id="shelfTools"></div><div id="shelfHost"></div></section>
+<section class="sb-sec" aria-labelledby="h-shelf" id="ov-shelf"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-shelf">The paper shelf</h2><p class="sb-sec-lede">The seventeen surveys this site reads, and the topics that use each one.</p></header><div class="sb-toolbar" id="shelfTools"></div><div id="shelfHost"></div></section>
 <section class="sb-sec" aria-labelledby="h-sums" id="ov-sums"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-sums">Topic summaries</h2><p class="sb-sec-lede">One card per topic, grouped by part, with its key equation. Each card links to its TL;DR and opens its topic.</p></header><div id="sumHost"></div></section>
 <section class="sb-sec" aria-labelledby="h-front" id="ov-front"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-front">Where the field is going</h2><p class="sb-sec-lede">Open problems raised across the surveys, grouped. Each card names the papers that raise it.</p></header><div id="frontHost"></div></section>
 <nav class="sb-pager sb-page-pager" aria-label="Pages"><a class="sb-link" href="#tldr">Next: TL;DR →</a></nav>
@@ -1775,7 +1878,7 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
 </header>
 <section class="sb-sec" aria-labelledby="h-bench" id="lab-sec"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-bench">Robot Learning Bench</h2><p class="sb-sec-lede" id="benchLede">Pick a station on the left. Each one is a simplified model of a mechanism from the surveys, labeled as such.</p><div id="benchDemo"></div></header></section>
 <div class="sb-bleed" id="benchHost"></div>
-<section class="sb-sec" aria-labelledby="h-demolist" id="lab-demos"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-demolist">A demo for every station</h2></header><details class="sb-demo-list" open><summary>Show all 12 demos</summary><div class="sb-cards" id="demoCards"></div></details></section>
+<section class="sb-sec" aria-labelledby="h-demolist" id="lab-demos"><header class="sb-sec-head"><h2 class="sb-sec-title" id="h-demolist">A demo for every station</h2></header><details class="sb-demo-list"><summary>Show all 12 demos</summary><div class="sb-cards" id="demoCards"></div></details></section>
 <nav class="sb-pager sb-page-pager" aria-label="Pages"><a class="sb-link" href="#compare">← Compare</a><a class="sb-link" href="#reference">Next: Reference →</a></nav>
 </main>
 
@@ -1839,7 +1942,7 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
 <nav class="sb-pager sb-page-pager" aria-label="Pages"><a class="sb-link" href="#glossary">← Glossary</a><a class="sb-link" href="#overview">Back to Overview ↑</a></nav>
 </main>
 
-<footer class="sb-footer" id="siteFooter"><p>Study Bench · Robot Learning. Built from sixteen surveys in the Robot-Learning project and the method papers they cite, read through alphaXiv. Simplified simulations are labeled; every number carries its source.</p></footer>
+<footer class="sb-footer" id="siteFooter"><p>Study Bench · Robot Learning. Built from seventeen surveys in the Robot-Learning project and the method papers they cite, read through alphaXiv. Simplified simulations are labeled; every number carries its source.</p></footer>
 
 <script>/* ---- study-bench.js (design system, do not edit) ---- */
 /* @ds-bundle: {"format":4,"namespace":"StudyBench","components":[{"name":"Algorithm"},{"name":"AppBar"},{"name":"BackupDiagram"},{"name":"Bench"},{"name":"Button"},{"name":"Callout"},{"name":"Chips"},{"name":"ConceptCards"},{"name":"Controls"},{"name":"CourseMap"},{"name":"Cover"},{"name":"DecisionGuide"},{"name":"DemoMode"},{"name":"DiffLedger"},{"name":"Drawer"},{"name":"Equation"},{"name":"EquationLineage"},{"name":"Flashcards"},{"name":"FlowDiagram"},{"name":"FormulaSheet"},{"name":"GlossaryMap"},{"name":"GridWorld"},{"name":"GuidedTour"},{"name":"Hero"},{"name":"KeyTermNotes"},{"name":"Legend"},{"name":"LineChart"},{"name":"LineageMap"},{"name":"LinkedHighlight"},{"name":"MasterTable"},{"name":"MethodRack"},{"name":"MethodsTable"},{"name":"NotationSheet"},{"name":"Orientation"},{"name":"Overview"},{"name":"PageGuide"},{"name":"PageShell"},{"name":"Panel"},{"name":"PayoffMatrix"},{"name":"Quiz"},{"name":"Readout"},{"name":"ReturnNav"},{"name":"Search"},{"name":"Segmented"},{"name":"SideBySide"},{"name":"States"},{"name":"StoryMode"},{"name":"Takeaways"},{"name":"TermHover"},{"name":"TopicNav"},{"name":"TopicPage"},{"name":"TopicPager"},{"name":"Trajectory"},{"name":"UpdateEngine"},{"name":"VisualGlossary"},{"name":"WorkedExample"}]} */
@@ -3274,7 +3377,7 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
   /* HiDPI canvas: returns ctx sized to css width/height */
   RB.canvas = function (cv, w, h) {
     var dpr = Math.min(2, window.devicePixelRatio || 1);
-    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.width = "100%"; cv.style.maxWidth = w + "px"; cv.style.aspectRatio = w + " / " + h; cv.style.height = "auto";
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.width = "100%"; cv.style.maxWidth = Math.min(w, Math.round(520 * w / h)) + "px"; /* v2.11: a playground scene is at most 520px tall */ cv.style.aspectRatio = w + " / " + h; cv.style.height = "auto";
     var ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
   };
 
@@ -3289,13 +3392,46 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
       if (ids.length) el.title = ids.map(function (k) { return k + ": " + map[k].title + (map[k].arxiv ? " (arXiv " + map[k].arxiv + ")" : ""); }).join("\n");
     });
   };
+  var mjChain = Promise.resolve();
   RB.typeset = function (el) {
     if (!el) return Promise.resolve();
     try { RB.annotateRefs(el); } catch (e) { }
     if (window.MathJax && MathJax.typesetPromise && mjReady) {
-      return MathJax.typesetPromise([el]).then(function () { RB.$$(".rb-math", el).forEach(function (m) { m.classList.add("is-typeset"); }); }).catch(function (e) { warn("MathJax: " + e.message); });
+      /* one typeset at a time: two overlapping typesets running together find the same \\( … \\) twice and draw it twice */
+      return (mjChain = mjChain.then(function () { if (!document.contains(el)) return; return MathJax.typesetPromise([el]); }).then(function () { RB.$$(".rb-math", el).forEach(function (m) { m.classList.add("is-typeset"); }); RB.fitMath(el); }).catch(function (e) { warn("MathJax: " + e.message); }));
     }
     mjQueue.push(el); return Promise.resolve();
+  };
+  /* Wide equations: shrink to fit their box (down to 72%) instead of hiding the end behind a sideways scroll.
+     Wider still: keep 72% and let the box scroll, with a fade on the cut edge. Re-fits whenever the box changes size. */
+  var fitRO = window.ResizeObserver ? new ResizeObserver(function (es) { es.forEach(function (e) { fitOne(e.target); }); }) : null;
+  function fitOne(box) {
+    var c = box.querySelector("mjx-container"); if (!c || !box.clientWidth) return;
+    c.style.fontSize = "";
+    var need = box.scrollWidth, have = box.clientWidth;
+    if (need <= have + 1) { box.classList.remove("is-cut"); return; }
+    var r = Math.max(0.72, Math.floor((have - 2) / need * 100) / 100);
+    c.style.fontSize = Math.round(r * 100) + "%";
+    var cut = function () { box.classList.toggle("is-cut", box.scrollLeft + box.clientWidth < box.scrollWidth - 1); };
+    cut(); if (!box._cutHook) { box._cutHook = true; box.addEventListener("scroll", cut, { passive: true }); }
+  }
+  /* any sideways-scrolling box: .is-cut while content hides past the right edge */
+  var cutRO = window.ResizeObserver ? new ResizeObserver(function (es) { es.forEach(function (e) { e.target._cut && e.target._cut(); }); }) : null;
+  RB.watchCut = function (root) {
+    RB.$$(".sb-scroll-x, .rb-fig-scroll", root || document).forEach(function (box) {
+      if (box._cut) return box._cut();
+      box._cut = function () { box.classList.toggle("is-cut", box.scrollLeft + box.clientWidth < box.scrollWidth - 2); };
+      box.addEventListener("scroll", box._cut, { passive: true }); if (cutRO) cutRO.observe(box); box._cut();
+    });
+  };
+  window.addEventListener("hashchange", function () { setTimeout(function () { RB.watchCut(); }, 400); });
+  window.addEventListener("load", function () { setTimeout(function () { RB.watchCut(); }, 1500); });
+  RB.fitMath = function (root) {
+    RB.$$("mjx-container[display], .rb-math mjx-container, .sb-eq-math mjx-container", root).forEach(function (c) {
+      var box = c.parentElement; while (box && box !== root.parentElement && !/(auto|scroll)/.test(getComputedStyle(box).overflowX)) box = box.parentElement;
+      if (!box || box === root.parentElement || box.querySelectorAll("mjx-container").length > 1) return;
+      if (box._fit) return; box._fit = true; fitOne(box); if (fitRO) fitRO.observe(box);
+    });
   };
   window.MathJax = window.MathJax || {
     tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]], packages: { "[+]": ["html"] } },
@@ -3325,7 +3461,7 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
     var words = spec.words ? '<p class="sb-eqwords"><b>In words:</b> ' + spec.words + "</p>" : "";
     var key = RB.eqKey(spec.key);
     var diffKey = spec.diff ? '<p class="sb-eq-key"><span class="sb-eq-new">new term</span> <span class="sb-eq-chg">changed term</span></p>' : "";
-    return '<div class="sb-eq' + (opts.cls ? " " + opts.cls : "") + '"' + (spec.id ? ' id="' + spec.id + '"' : "") + ">" + head + rows + diffKey + words + key + "</div>";
+    return '<div class="sb-eq' + (opts.cls ? " " + opts.cls : "") + '"' + (spec.id ? ' id="' + spec.id + '"' : "") + ">" + head + rows + diffKey + words + key + (spec.fig ? '<figure class="sb-fig rb-eq-fig">' + spec.fig + (spec.figCap ? '<figcaption class="sb-caption">' + spec.figCap + "</figcaption>" : "") + "</figure>" : "") + "</div>";
   };
   RB.eqKey = function (key) {
     if (!key || !key.length) return "";
@@ -3334,7 +3470,7 @@ a:hover .rb-atlas-tl{fill:var(--accent);text-decoration:underline}
       var s2 = k.sym && RB.symbols[k.sym];
       var glyph = k.glyph || (s2 ? (s2.tex ? RB.itex(s2.tex) : s2.glyph) : k.sym);
       /* plain-text glyphs written with _ or ^ (v_θ, a_t) are typeset as math so they match the equation above */
-      if (glyph && /[_^]/.test(glyph) && glyph.indexOf("\\(") < 0 && !/<[a-z]/i.test(glyph)) glyph = RB.itex(glyph);
+      if (glyph && /[_^]/.test(glyph) && glyph.indexOf("\\(") < 0 && !/<[a-z]/i.test(glyph)) glyph = RB.itex(glyph.replace(/([_^])([^{}_^\s,]{2,})/g, "$1{$2}"));  /* e_ee → e_{ee}: a multi-letter subscript stays one subscript */
       var meaning = k.meaning || (s2 ? (s2.short || s2.meaning) : "");
       return "<li" + (k.sym ? ' data-sym="' + k.sym + '"' : "") + '><span class="sb-eqkey-sym">' + glyph + "</span> " + meaning + "</li>";
     }).join("") + "</ul>";
@@ -5495,6 +5631,41 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       a: "VINN paper §IV-G: k ≈ 10 gives the lowest validation error; no gain beyond k = 20.",
       b: "VINN stretch_code/remote_node/nearest.py @23a756e: the robot script averages the k = 5 nearest neighbours.",
       why: "The deployed controller smooths over half the neighbours the paper recommends.",
+      href: "#explorer/b6/arch" },
+    { kind: "Paper vs code", where: "TecNets · normalisation in the networks",
+      a: "TecNets paper App. A: every layer of both CNNs is followed by layer normalisation and ELU.",
+      b: "TecNets networks/cnn.py @bf88595: only the conv layers get LayerNorm; the fully connected layers apply ELU alone.",
+      why: "A faithful re-implementation from the paper normalises three more layers per network than the released model.",
+      href: "#explorer/b6/arch" },
+    { kind: "Paper vs code", where: "TecNets · sentence and query normalisation",
+      a: "TecNets paper Eq. 1: the sentence is the normalised mean of the raw example embeddings; Eq. 2 compares unit-length query embeddings.",
+      b: "TecNets consumers/margin_loss.py @bf88595: each support embedding is normalised before averaging, and query embeddings enter the hinge loss unnormalised.",
+      why: "The margin of 0.1 acts on unnormalised dot products in the released code.",
+      href: "#explorer/b6/arch" },
+    { kind: "Paper vs code", where: "TecNets · batch size (pushing)",
+      a: "TecNets paper §4: all networks are trained with batch size 64.",
+      b: "TecNets tecnets_corl_results.sh @bf88595: the simulated pushing run uses batch 100 (reaching uses 64).",
+      why: "The released pushing command does not reproduce the stated batch size.",
+      href: "#explorer/b6/arch" },
+    { kind: "Paper vs code", where: "T-OSIL · activation in the attention layer",
+      a: "T-OSIL paper §3.2: key, query and value come from 1×1×1 3-D convolutions with ReLU, each projected separately per head.",
+      b: "T-OSIL hem/models/traj_embed.py @ecd43b0: K, Q, V convs have no activation and are simply split into heads; the ReLU follows the output conv.",
+      why: "Attention logits can be negative in the released model, unlike the paper's description.",
+      href: "#explorer/b6/arch" },
+    { kind: "Paper vs code", where: "REGENT · distance clipping",
+      a: "REGENT paper App. A: distances are divided by the 95th percentile and clipped to 1.",
+      b: "REGENT scripts_regent/new_dataset.py and regent/modeling_regent.py @6a4ddef: distances are divided by the 95th percentile but never clipped.",
+      why: "Far-away queries get e^(−λd) below e^(−10) in code rather than exactly e^(−10), so R&P is weighted slightly less.",
+      href: "#explorer/b6/arch" },
+    { kind: "Paper vs code", where: "IMOP · state routing and matching stages",
+      a: "IMOP paper §III-C3: a state-routing network (PTv2 + cross-attention) picks the support frame; one region-matching network gives C.",
+      b: "IMOP README and network.py @ca23524: state routing is removed (the agent steps to the next demo keyframe) and a second, fine region-matching network is added.",
+      why: "Results from the released code test the matching networks with a fixed keyframe order, not the full routed policy.",
+      href: "#explorer/b6/arch" },
+    { kind: "Paper vs code", where: "DemoDiffusion · noising the retargeted chunk",
+      a: "DemoDiffusion paper Eq. 2: ã = √α_{s*} · â + √(1 − α_{s*}) · ε, the DDPM forward process.",
+      b: "DemoDiffusion openpi fork src/openpi/models/pi0.py @18006ae: x = t · ε + (1 − t) · â with t = s*/S (π0's flow interpolation), on the first 8 action dims, then Euler steps on a 20-step grid.",
+      why: "With π0 the noise level s*/S is a straight-line mixing weight, not a DDPM schedule position.",
       href: "#explorer/b6/arch" }
   ]);
 })();
@@ -8610,7 +8781,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
   function orientation(t) {
     var builds = (t.buildsOn || []).map(function (k) { return '<a href="#explorer/' + k + '"><span class="sb-ref">' + firstRef(k) + "</span>" + esc(RB.topicTitle(k)) + "</a>"; }).join("") || '<span class="sb-caption">Start here.</span>';
     var leads = leadsTo(t.id).map(function (k) { return '<a href="#explorer/' + k + '"><span class="sb-ref">' + firstRef(k) + "</span>" + esc(RB.topicTitle(k)) + "</a>"; }).join("") || '<span class="sb-caption">The last topic of its part.</span>';
-    return '<div class="sb-orient"><section class="sb-orient-card"><span class="sb-eyebrow">Why this exists</span><p>' + (t.why || "") + '</p></section><section class="sb-orient-card"><span class="sb-eyebrow">After this you can</span><ul class="sb-outcomes">' + (t.outcomes || []).map(function (o) { return "<li><span>" + o + "</span></li>"; }).join("") + '</ul></section><section class="sb-orient-card"><span class="sb-eyebrow">How it connects</span><div class="sb-connect"><div class="sb-connect-col"><span class="sb-connect-k">← Builds on</span>' + builds + '</div><div class="sb-connect-col"><span class="sb-connect-k">Leads to →</span>' + leads + "</div></div></section></div>";
+    return '<div class="sb-orient"><section class="sb-orient-card"><span class="sb-eyebrow">Why this exists</span><p>' + (t.why || "") + '</p></section><section class="sb-orient-card"><span class="sb-eyebrow">After this you can</span><ul class="sb-outcomes">' + (t.outcomes || []).map(function (o) { return "<li><span>" + o + "</span></li>"; }).join("") + '</ul></section><section class="sb-orient-card"><span class="sb-eyebrow">How it connects</span><div class="sb-connect"><div class="sb-connect-col"><span class="sb-connect-k">← Builds on</span>' + builds + '</div><div class="sb-connect-col"><span class="sb-connect-k">Leads to →</span>' + leads + "</div></div></section>" + '<section class="sb-orient-card rb-orient-map"><span class="sb-eyebrow">Where it fits</span><div data-fitmap="' + t.id + '"></div></section></div>';
   }
 
   function concepts(t) {
@@ -8625,7 +8796,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     if (w.mount) return RB.panel({ ref: w.ref, prov: w.prov, body: '<div data-worked="' + t.id + '"></div>' });
     var n = w.steps.length;
     var eq = w.eq ? '<div class="sb-eq rb-we-eq">' + (w.eq.html ? '<div class="sb-eq-math">' + w.eq.html + "</div>" : '<div class="sb-eq-math">' + RB.tex(w.eq.tex) + "</div>") + (w.eq.words ? '<p class="sb-eqwords"><b>In words:</b> ' + w.eq.words + "</p>" : "") + RB.eqKey(w.eq.key) + "</div>" : "";
-    var fig = w.figure ? '<div class="sb-scroll-x rb-we-fig">' + w.figure + "</div>" : "";
+    var fig = w.figure ? '<div class="sb-scroll-x rb-we-fig sb-fig--hero">' + w.figure + "</div>" : "";
     var texts = w.steps.map(function (s, i) { return '<p class="sb-step-text" data-step-text="' + (i + 1) + '"' + (i ? " hidden" : "") + "><b>" + esc(s.title) + ".</b> " + s.text + "</p>"; }).join("");
     var body = '<div class="sb-stepper sb-stepper--reveal rb-we" data-steps="' + n + '" tabindex="0" aria-label="Worked example. Use the arrow keys to step.">' + eq + fig + texts +
       '<div class="sb-stepper-bar"><button class="sb-btn sb-btn--primary" data-act="play">Play ▶</button><button class="sb-btn" data-act="prev" aria-label="Previous step">←</button><button class="sb-btn" data-act="next" aria-label="Next step">→</button><input class="sb-range" type="range" data-act="scrub" aria-label="Step"><span class="sb-status" data-status></span></div></div>';
@@ -8634,13 +8805,57 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
 
   function rules(t) {
     var out = "";
-    if (t.rules && t.rules.length) out += '<p class="sb-lit-hint">Hover a symbol to see it everywhere: equation, key and pseudocode.</p><div class="rb-rule"><div class="rb-stack">' + t.rules.map(function (r) { return RB.eqBlock(r); }).join("") + "</div>";
+    if (t.rules && t.rules.length) out += '<p class="sb-lit-hint">Hover a symbol to see it everywhere: equation, key and pseudocode.</p><div class="rb-rule"><div class="rb-stack">' + t.rules.slice(0, 4).map(function (r) { return RB.eqBlock(r); }).join("") +
+      (t.rules.length > 4 ? '<details class="sb-more rb-rule-more"><summary>More detail: ' + (t.rules.length - 4) + " more equation" + (t.rules.length > 5 ? "s" : "") + "</summary>" + t.rules.slice(4).map(function (r) { return RB.eqBlock(r); }).join("") + "</details>" : "") + "</div>";
     if (t.algorithm) {
       var a = t.algorithm;
       out += '<div class="sb-algo"><div class="sb-algo-head"><h4 class="sb-algo-title">' + esc(a.title) + "</h4>" + (a.ref ? '<span class="sb-ref">' + esc(a.ref) + "</span>" : "") + (a.prov ? '<span class="sb-prov">' + esc(a.prov) + "</span>" : "") + "</div><ol>" + a.lines.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></div>";
     }
     if (t.rules && t.rules.length) out += "</div>";
     return out;
+  }
+
+
+  /* Methods timeline (v2.11 visual weight): every method read in full, placed by its arXiv date, with an arrow from a
+     method to one that builds on it. The methods table under it is the chart's table view. */
+  function methodTime(m) {
+    var a = String(m.arxiv || "").match(/^(\d\d)(\d\d)\./);
+    if (a && +a[2] >= 1 && +a[2] <= 12) return 2000 + +a[1] + (+a[2] - 0.5) / 12;
+    return m.year ? m.year + 0.5 : null;
+  }
+  function methodTimeline(t, list) {
+    var ms = list.filter(function (m) { return m.tier === 1 && methodTime(m) != null; });
+    if (ms.length < 2) return "";
+    ms.sort(function (a, b) { return methodTime(a) - methodTime(b); });
+    var W = 760, PL = 18, PR = 18, LH = 26, top = 14;
+    var t0 = Math.floor(methodTime(ms[0])), t1 = Math.ceil(methodTime(ms[ms.length - 1])); if (t1 - t0 < 2) { t0 -= 1; t1 += 1; }
+    var X = function (v) { return PL + (v - t0) / (t1 - t0) * (W - PL - PR); };
+    var lanes = [], pos = {};
+    ms.forEach(function (m) {
+      var x = X(methodTime(m)), lw = Math.round(String(m.name).length * 6.9) + 12, left = x + 8 + lw > W - 4;
+      var a = left ? x - 8 - lw : x - 7, b = left ? x + 7 : x + 8 + lw, k = 0;
+      while (lanes[k] != null && lanes[k] > a - 6) k++;
+      lanes[k] = b; pos[m.name.toLowerCase()] = { m: m, x: x, k: k, left: left };
+    });
+    var axisY = top + lanes.length * LH + 6, H = axisY + 30, uid = "mtl-" + t.id;
+    var y = function (k) { return top + k * LH + 10; };
+    var o = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Timeline of the ' + ms.length + ' methods read in full for this topic, ' + t0 + " to " + t1 + ', with arrows from each method to the ones that build on it"><defs><marker id="' + uid + '-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8z" class="rb-mtl-head"/></marker></defs>';
+    for (var yr = t0; yr <= t1; yr++) { var gx = X(yr); o += '<line class="rb-mtl-grid" x1="' + gx + '" x2="' + gx + '" y1="' + (top - 6) + '" y2="' + axisY + '"/><text class="rb-mtl-tick" x="' + gx + '" y="' + (axisY + 18) + '" text-anchor="middle">' + yr + "</text>"; }
+    o += '<line class="rb-mtl-axis" x1="' + PL + '" x2="' + (W - PR) + '" y1="' + axisY + '" y2="' + axisY + '"/>';
+    ms.forEach(function (m) {
+      var c = pos[m.name.toLowerCase()];
+      (m.parents || []).forEach(function (pn) {
+        var p = pos[String(pn).toLowerCase()]; if (!p || p === c) return;
+        var x0 = p.x, y0 = y(p.k), x1 = c.x, y1 = y(c.k), mx = (x0 + x1) / 2;
+        o += '<path class="rb-mtl-edge" d="M' + x0.toFixed(1) + " " + y0 + " C" + mx.toFixed(1) + " " + y0 + " " + mx.toFixed(1) + " " + y1 + " " + (x1 - 6).toFixed(1) + " " + y1 + '" marker-end="url(#' + uid + '-a)"/>';
+      });
+    });
+    ms.forEach(function (m) {
+      var c = pos[m.name.toLowerCase()], yy = y(c.k);
+      o += '<a href="#compare/sbs/' + m.id + '" class="rb-mtl-m"><title>' + esc(m.name + " (" + (m.year || "") + ")" + (m.problem ? ": " + m.problem : "")) + "</title>" +
+        '<circle class="rb-mtl-dot" cx="' + c.x.toFixed(1) + '" cy="' + yy + '" r="5"/><text class="rb-mtl-lbl" x="' + (c.left ? c.x - 9 : c.x + 9).toFixed(1) + '" y="' + (yy + 4) + '"' + (c.left ? ' text-anchor="end"' : "") + ">" + esc(m.name) + "</text></a>";
+    });
+    return '<figure class="sb-fig sb-fig--hero rb-mtl"><figcaption class="sb-caption">Methods read in full, by arXiv date. An arrow means “builds on”. Click a dot to compare it with its parent.</figcaption><div class="sb-scroll-x rb-mtl-scroll">' + o + '</svg></div></figure>';
   }
 
   function methodsTable(t) {
@@ -8652,12 +8867,13 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       return '<tr' + (m.tier !== 1 ? ' data-tier2 hidden' : "") + '><th scope="row"><b>' + esc(m.name) + '</b><br><span class="sb-ref">' + (m.year || "–") + "</span> " + RB.coverageTag(m) + '<span class="rb-mlinks"><a href="#compare/sbs/' + m.id + '" aria-label="Compare ' + esc(m.name) + '">Compare</a>' + (m.arxiv ? '<a href="https://arxiv.org/abs/' + m.arxiv + '" target="_blank" rel="noopener" aria-label="' + esc(m.name) + ' paper on arXiv">Paper ↗</a>' : "") + '</span></th><td>' + esc(m.idea || m.problem || "") + "</td><td>" + esc(m.action || m.outputs || "–") + "</td><td>" + esc((m.parents || []).slice(0, 3).join(", ") || "–") + "</td></tr>";
     }).join("");
     var more = all.length > t1 ? '<button class="sb-btn" type="button" data-more-methods>Show all</button>' : "";
-    return '<div class="sb-toolbar"><span class="sb-count">' + t1 + " read in full" + (all.length > t1 ? " · " + (all.length - t1) + " fact cards" : "") + "</span>" + more + '</div><div class="sb-scroll-x"><table class="sb-table rb-mtable"><thead><tr><th scope="col">Method</th><th scope="col">Key idea</th><th scope="col">Output</th><th scope="col">Builds on</th></tr></thead><tbody>' + rows + "</tbody></table></div>";
+    var longLede = t.methodsLede && t.methodsLede.split(/\s+/).length > 30 ? '<details class="sb-more"><summary>More detail: how the line evolved</summary><p>' + t.methodsLede + "</p></details>" : "";
+    return methodTimeline(t, all) + longLede + '<div class="sb-toolbar"><span class="sb-count">' + t1 + " read in full" + (all.length > t1 ? " · " + (all.length - t1) + " fact cards" : "") + "</span>" + more + '</div><div class="sb-scroll-x"><table class="sb-table rb-mtable"><thead><tr><th scope="col">Method</th><th scope="col">Key idea</th><th scope="col">Output</th><th scope="col">Builds on</th></tr></thead><tbody>' + rows + "</tbody></table></div>";
   }
 
   function openProblems(t) {
     if (!t.open || !t.open.length) return "";
-    return '<div class="rb-open">' + t.open.map(function (o) { return '<article class="rb-open-card"><p class="rb-open-t">' + esc(o.title) + "</p><p>" + o.text + "</p>" + (o.refs ? '<span class="sb-ref">' + esc(o.refs) + "</span>" : "") + "</article>"; }).join("") + "</div>";
+    return '<details class="sb-more rb-open-more"><summary>More detail: ' + t.open.length + ' open problem' + (t.open.length > 1 ? "s" : "") + ' the surveys name</summary><div class="rb-open">' + t.open.map(function (o) { return '<article class="rb-open-card"><p class="rb-open-t">' + esc(o.title) + "</p><p>" + o.text + "</p>" + (o.refs ? '<span class="sb-ref">' + esc(o.refs) + "</span>" : "") + "</article>"; }).join("") + "</div></details>";
   }
 
   function close(t) {
@@ -8689,12 +8905,12 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     if (t.worked) s += sec({ eyebrow: "Worked example", title: t.worked.title, topic: id, id: id + "-worked" }, worked(t));
     if ((t.rules && t.rules.length) || t.algorithm) s += sec({ eyebrow: "The rule", title: t.ruleTitle || "The key equations", topic: id, id: id + "-rule" }, rules(t));
     var archs = RB.arch ? RB.arch.forTopic(id) : [];
-    if (archs.length) s += sec({ eyebrow: "Model architectures", title: t.archTitle || (archs.length > 1 ? "Inside the models" : "Inside " + archs[0].name), topic: id, id: id + "-arch", lede: "Every model is drawn with the same parts: modules coloured by role, input tokens below, outputs above, and the coupling written on each link. Select a module for its layers.", demo: "arch-" + id, demoMeta: archs.length + (archs.length > 1 ? " models" : " model") }, '<div class="rb-arch-host" data-arch-topic="' + id + '"></div>');
+    if (archs.length) s += sec({ eyebrow: "Model architectures", title: t.archTitle || (archs.length > 1 ? "Inside the models" : "Inside " + archs[0].name), topic: id, id: id + "-arch", lede: "Same parts in every model: modules coloured by role, inputs below, outputs above, the coupling on each link. Select a module for its layers.", demo: "arch-" + id, demoMeta: archs.length + (archs.length > 1 ? " models" : " model") }, '<div class="rb-arch-host" data-arch-topic="' + id + '"></div>');
     (t.playgrounds || []).forEach(function (p, k) {
       s += sec({ eyebrow: k === 0 ? "Playground" : "Playground " + (k + 1), title: p.title, topic: id, id: id + "-pg-" + p.id, cls: "rb-play", demo: p.demo ? "pg-" + id + "-" + p.id : null, demoMeta: p.demo ? (typeof p.demo === "function" ? "" : p.demo.length + " steps") : null },
         (p.try ? RB.callout("try", p.try) : "") + '<div class="sb-panel"' + ' data-pg="' + id + "/" + p.id + '"><div class="sb-panel-head"><span class="sb-eyebrow sb-eyebrow--live">Interactive</span>' + (p.ref ? '<span class="sb-ref">' + esc(p.ref) + "</span>" : "") + (p.prov ? '<span class="sb-prov">' + esc(p.prov) + "</span>" : "") + (p.meta ? '<span class="sb-panel-meta">' + esc(p.meta) + "</span>" : "") + '</div><div class="sb-panel-body rb-pg-body" data-pg-body="' + id + "/" + p.id + '">' + (p.html || "") + "</div></div>");
     });
-    s += sec({ eyebrow: "Methods", title: "Methods in this topic", topic: id, id: id + "-methods", lede: t.methodsLede || "Every method paper the surveys cite for this topic. Rows marked Fact card are hidden until you show all." }, methodsTable(t));
+    s += sec({ eyebrow: "Methods", title: "Methods in this topic", topic: id, id: id + "-methods", lede: (t.methodsLede && t.methodsLede.split(/\s+/).length <= 30 ? t.methodsLede : "Every method paper the surveys cite here; fact-card rows appear with Show all.") }, methodsTable(t));
     if (t.open && t.open.length) s += sec({ eyebrow: "Frontier", title: "What is still open", topic: id, id: id + "-open" }, openProblems(t));
     s += sec({ eyebrow: "Takeaways", title: "What to remember", topic: id, id: id + "-takeaways", cls: "rb-takeaways" }, '<ol class="sb-takeaways">' + (t.takeaways || []).map(function (x) { return "<li><span>" + x + "</span></li>"; }).join("") + "</ol>");
     s += sec({ eyebrow: "Check yourself", title: "Quiz and flashcards", topic: id, id: id + "-check", cls: "rb-close" }, close(t));
@@ -8709,6 +8925,16 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     var id = t.id;
     var ah = art.querySelector("[data-arch-topic]");
     if (ah) { try { ah.__arch = RB.arch.mount(ah, RB.arch.forTopic(id)); RB.demos["arch-" + id] = RB.arch.topicDemo(id, ah); } catch (e) { ah.innerHTML = '<div class="sb-error">The architecture diagram failed to draw: ' + esc(e.message) + "</div>"; RB.warn(id + " arch: " + e.message); } }
+    /* where it fits: neighbours only (Orientation, optional fourth card) */
+    var fm = art.querySelector('[data-fitmap="' + id + '"]');
+    if (fm) try {
+      var bs = (t.buildsOn || []).filter(function (k) { return RB.topics[k]; }), ls = leadsTo(id), nr = Math.max(bs.length, ls.length, 1), nodes = [], lab = function (k) { var x = RB.topics[k]; return x.num + " " + (x.map || x.short); };
+      bs.forEach(function (k, i) { nodes.push({ id: k, label: lab(k), col: 0, row: i }); });
+      nodes.push({ id: id, label: lab(id), col: bs.length ? 1 : 0, row: Math.floor((nr - 1) / 2), state: "current" });
+      ls.forEach(function (k, i) { nodes.push({ id: k, label: lab(k), col: bs.length ? 2 : 1, row: i }); });
+      StudyBench.dag(fm, { cols: (bs.length ? ["Builds on"] : []).concat(["This topic"]).concat(ls.length ? ["Leads to"] : []), nodes: nodes, nodeW: 222,
+        edges: bs.map(function (k) { return [k, id]; }).concat(ls.map(function (k) { return [id, k]; })), onSelect: function (k) { if (k !== id) RB.go("#explorer/" + k); }, title: "Where " + t.short + " fits: the topics it builds on and leads to" });
+    } catch (e) { RB.warn(id + " fit map: " + e.message); }
     /* flow */
     if (t.flow) {
       var fh = art.querySelector('[data-flow="' + id + '"]');
@@ -8895,7 +9121,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       out.appendChild(document.createTextNode(t.slice(last, start)));
       var parts = tok.match(/^([^_^]+)(?:\^(\{[^}]*\}|[^_]+))?(?:_(\{[^}]*\}|[^\^]+))?(?:\^(\{[^}]*\}|.+))?$/) || [tok, tok];
       out.appendChild(document.createTextNode(parts[1]));
-      [[parts[2] || parts[4], "super"], [parts[3], "sub"]].forEach(function (x) { if (!x[0]) return; var ts = document.createElementNS(NS, "tspan"); ts.setAttribute("baseline-shift", x[1]); ts.setAttribute("font-size", "72%"); ts.textContent = x[0].replace(/[{}]/g, ""); out.appendChild(ts); var back = document.createElementNS(NS, "tspan"); back.textContent = "​"; out.appendChild(back); });
+      [[parts[2] || parts[4], "super"], [parts[3], "sub"]].forEach(function (x) { if (!x[0]) return; var ts = document.createElementNS(NS, "tspan"); ts.setAttribute("baseline-shift", x[1] === "sub" ? "-16%" : "36%"); ts.setAttribute("font-size", "70%"); ts.textContent = x[0].replace(/[{}]/g, ""); out.appendChild(ts); var back = document.createElementNS(NS, "tspan"); back.textContent = "​"; out.appendChild(back); });
       last = start + tok.length;
     }
     if (!last) return false;
@@ -8920,6 +9146,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       CODE.lastIndex = 0;
       if (!/[_^]/.test(node.nodeValue)) return;
       if (inSvg) { svgMath(node); return; }
+      if (/\\\(|\\\[/.test(node.nodeValue)) return; /* already TeX waiting for MathJax: wrapping it again typesets it twice */
       var t = node.nodeValue, re = new RegExp(MATH.source, "g"), m, last = 0, html = "", hit = false;
       while ((m = re.exec(t))) { var start = m.index + m[1].length; html += RB.esc(t.slice(last, start)) + "\\(" + tex(m[2]) + "\\)"; last = start + m[2].length; hit = true; }
       if (!hit) return;
@@ -9048,10 +9275,10 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     var nodes = RB.topicOrder.map(function (k) {
       var t = RB.topics[k], col = RB.PARTS.map(function (p) { return p.id; }).indexOf(t.part);
       rows[col] = (rows[col] || 0) + 1;
-      return { id: k, label: t.num + " " + (t.map || t.short), sub: (t.sources || "").split(" · ")[0], col: col, row: rows[col] - 1 };
+      return { id: k, label: t.num + " " + (t.map || t.short), col: col, row: rows[col] - 1 };  /* no sub line: survey names are wider than a node */
     });
     var edges = []; RB.topicOrder.forEach(function (k) { (RB.topics[k].buildsOn || []).forEach(function (b) { edges.push([b, k]); }); });
-    var map = StudyBench.dag(host, { cols: RB.PARTS.map(function (p) { return "Part " + p.id; }), nodes: nodes, edges: edges, nodeW: 176, onSelect: function (id) { RB.go("#explorer/" + id); } });
+    var map = StudyBench.dag(host, { cols: RB.PARTS.map(function (p) { return "Part " + p.id; }), nodes: nodes, edges: edges, nodeW: 192, onSelect: function (id) { RB.go("#explorer/" + id); } });
     function upd() {
       var nx = RB.nextUp();
       nodes.forEach(function (n) { var g = map.nodes[n.id].g; g.classList.toggle("is-done", RB.progress.get(n.id)); g.classList.toggle("is-current", n.id === nx); });
@@ -9075,15 +9302,53 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     }).join("") + "</div>";
   }
 
+  /* the finished frame of an AnimatedGuide scene, drawn once with no motion (same rules as StudyBench.anim's still mode) */
+  function finishScene(fig) {
+    var parts = {}; RB.$$("[data-a]", fig).forEach(function (el) { parts[el.getAttribute("data-a")] = el; });
+    var ids = function (v) { return (v || "").split(/\s+/).filter(function (x) { return x && parts[x]; }); };
+    RB.$$(".sb-anim-beats > li", fig).forEach(function (li) {
+      ids(li.getAttribute("data-on")).forEach(function (k) { parts[k].classList.add("is-on"); });
+      ids(li.getAttribute("data-off")).forEach(function (k) { parts[k].classList.remove("is-on"); });
+      (li.getAttribute("data-cls") || "").split(/\s+/).filter(Boolean).forEach(function (x) { var q = x.split(":"); if (parts[q[0]]) parts[q[0]].classList.add("is-on", q[1]); });
+      (li.getAttribute("data-move") || "").split(/\s+/).filter(Boolean).forEach(function (x) { var q = x.split(":"), tok = parts[q[0]], path = parts[q[1]]; if (!tok || !path || !path.getTotalLength) return; tok.classList.add("is-on"); try { var pt = path.getPointAtLength(path.getTotalLength()); tok.setAttribute("transform", "translate(" + pt.x + " " + pt.y + ")"); } catch (e) { } });
+      (li.getAttribute("data-set") || "").split(/\s+/).filter(Boolean).forEach(function (x) { var m = x.match(/^([\w-]+)\.([\w-]+)=(.+)$/); if (m && parts[m[1]]) parts[m[1]].setAttribute(m[2], parseFloat(m[3])); });
+      (li.getAttribute("data-text") || "").split(/\s+(?=[\w-]+=)/).filter(Boolean).forEach(function (x) { var i = x.indexOf("="), id = x.slice(0, i); if (parts[id]) parts[id].textContent = x.slice(i + 1); });
+    });
+  }
+
+  /* which survey feeds which topic: one row per survey, one column per topic, grouped by part */
+  function coverage(ps, kind) {
+    var rowName = function (p) { return kind === "survey" ? ((RB.SURVEY_NAMES && RB.SURVEY_NAMES[p.id]) || p.id) : p.title; };
+    var tops = RB.topicOrder, LW = 236, CW = 21, RH = 21, TOP = 46, W = LW + tops.length * CW + 8, H = TOP + ps.length * RH + 6;
+    var o = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + (kind === "survey" ? "Which survey each topic draws on: " + ps.length + " surveys by " : "Which topics each open problem touches: " + ps.length + " problems by ") + tops.length + ' topics">';
+    var x0 = LW;
+    RB.PARTS.forEach(function (p) {
+      var ids = tops.filter(function (k) { return RB.topics[k].part === p.id; }); if (!ids.length) return;
+      var a = x0 + tops.indexOf(ids[0]) * CW, b = x0 + (tops.indexOf(ids[ids.length - 1]) + 1) * CW;
+      o += '<text class="rb-cov-part" x="' + ((a + b) / 2) + '" y="14" text-anchor="middle">Part ' + p.id + "</text>" + '<line class="rb-cov-sep" x1="' + a + '" x2="' + a + '" y1="20" y2="' + (H - 4) + '"/>';
+    });
+    tops.forEach(function (k, j) { o += '<text class="rb-cov-n" x="' + (x0 + j * CW + CW / 2) + '" y="38" text-anchor="middle">' + RB.topics[k].num + "</text>"; });
+    ps.forEach(function (p, i) {
+      var y = TOP + i * RH;
+      if (i % 2) o += '<rect class="rb-cov-band" x="0" y="' + y + '" width="' + W + '" height="' + RH + '"/>';
+      o += '<text class="rb-cov-lbl" x="' + (LW - 10) + '" y="' + (y + 15) + '" text-anchor="end">' + esc(rowName(p)) + "</text>";
+      tops.forEach(function (k, j) {
+        if (p.topics.indexOf(k) < 0) return;
+        o += '<a href="#explorer/' + k + '" class="rb-cov-a"><title>' +  esc(rowName(p) + " → " + RB.topics[k].num + " " + (RB.topics[k].short || "")) + '</title><rect class="rb-cov-cell" x="' + (x0 + j * CW + 3) + '" y="' + (y + 3) + '" width="' + (CW - 6) + '" height="' + (RH - 6) + '" rx="3"/></a>';
+      });
+    });
+    return '<figure class="sb-fig sb-fig--hero rb-cov"><figcaption class="sb-caption">' + (kind === "survey" ? "Each square: this survey is a source for that topic. Click one to open the topic." : "Each square: this open problem bears on that topic. Click one to open the topic.") + '</figcaption><div class="sb-scroll-x">' + o + "</svg></div></figure>";
+  }
+
   function shelf() {
     var tools = document.getElementById("shelfTools"), host = document.getElementById("shelfHost");
     var ps = RB.PAPERS.filter(function (p) { return !p.unused; });
     tools.innerHTML = '<div class="sb-seg sb-seg--sm" role="group" aria-label="Filter by part" id="shelfSeg"><button type="button" value="all" aria-pressed="true">All</button>' + RB.PARTS.map(function (p) { return '<button type="button" value="' + p.id + '" aria-pressed="false">Part ' + p.id + "</button>"; }).join("") + '</div><span class="sb-count" id="shelfCount"></span>';
     function draw(part) {
       var list = ps.filter(function (p) { return part === "all" || p.topics.some(function (k) { return RB.topics[k].part === part; }); });
-      host.innerHTML = '<div class="rb-shelf">' + list.map(function (p) {
+      host.innerHTML = coverage(list, "survey") + '<details class="sb-more rb-shelf-more"' + (part !== "all" ? " open" : "") + '><summary>More detail: the ' + list.length + ' surveys, with titles, authors and arXiv links</summary><div class="rb-shelf">' + list.map(function (p) {
         return '<article class="rb-paper"><p class="sb-eyebrow">' + p.id + " · " + esc(p.date) + '</p><p class="rb-paper-t">' + esc(p.title) + '</p><p class="sb-caption">' + esc(p.authors) + " · " + esc(p.orgs) + "</p><p>" + esc(p.role) + '</p><div class="sb-chips">' + p.topics.map(function (k) { return '<a class="sb-tag" href="#explorer/' + k + '">' + RB.topics[k].num + "</a>"; }).join("") + '</div><a class="sb-link" href="https://arxiv.org/abs/' + p.arxiv + '" target="_blank" rel="noopener">arXiv ' + p.arxiv + " ↗</a></article>";
-      }).join("") + "</div>";
+      }).join("") + "</div></details>";
       document.getElementById("shelfCount").textContent = list.length + " of " + ps.length + " surveys";
     }
     StudyBench.segmented(document.getElementById("shelfSeg"), function (_v, b) { draw(b.value); });
@@ -9110,6 +9375,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     var terms = Object.keys(t.terms || {}).filter(function (k) { return RB.terms[k]; }).slice(0, 4);
     return '<article class="sb-sumcard rb-sumcard" id="ov-' + id + '" data-topic="' + id + '"><header class="sb-sumcard-head"><span class="sb-sumcard-n">' + esc(t.num || "") + '</span><h3 class="sb-sumcard-t">' + esc(t.short || t.title || id) + "</h3></header>" +
       '<p class="sb-sumcard-s">' + (t.lede || "") + "</p>" +
+      (RB.topicTldr && RB.TLDR_SCENES && RB.TLDR_SCENES[RB.topicTldr(id)] ? '<div class="rb-sum-pic" data-tlthumb="' + RB.topicTldr(id) + '"></div>' : "") +
       (r ? RB.eqBlock({ name: r.name, ref: r.ref, tex: undiff(r.tex), words: r.words, key: r.key, term: r.term }, { cls: "rb-sum-eq" }) : "") +
       (terms.length ? '<div class="sb-chips"><span class="sb-caption">Key terms</span>' + terms.map(function (k) { return '<a class="sb-tag" href="#glossary/' + k + '">' + esc(RB.terms[k].name) + "</a>"; }).join("") + "</div>" : "") +
       '<footer class="sb-sumcard-foot"><span class="sb-chips"><span class="sb-ref">' + esc(t.sources || "") + "</span></span></footer>" +
@@ -9128,6 +9394,19 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       if (window.getSelection && String(window.getSelection()).length) return;
       var c = e.target.closest(".rb-sumcard[data-topic]"); if (c) RB.go("#explorer/" + c.getAttribute("data-topic"));
     });
+    /* v2.11 visual weight: each card shows its topic's TL;DR picture as a still (the finished frame), and the equation's
+       "In words" and symbol key fold into More detail */
+    RB.$$("#sumHost [data-tlthumb]").forEach(function (h) {
+      var sec = h.getAttribute("data-tlthumb"), sc = RB.TLDR_SCENES[sec]; if (!sc) return;
+      h.innerHTML = RB.tl.figure(sec + "-ov-" + h.closest("[data-topic]").getAttribute("data-topic"), sc);
+      var fig = h.querySelector("figure"); fig.classList.add("rb-tl-thumb"); finishScene(fig);
+      var cap = fig.querySelector(".sb-anim-cap"); if (cap) cap.remove();
+    });
+    RB.$$("#sumHost .rb-sum-eq").forEach(function (eq) {
+      var w = eq.querySelector(".sb-eqwords"), k = eq.querySelector(".sb-eqkey"); if (!w && !k) return;
+      var d = document.createElement("details"); d.className = "sb-more rb-sum-more"; d.innerHTML = "<summary>More detail: in words and symbols</summary>";
+      if (w) d.appendChild(w); if (k) d.appendChild(k); eq.appendChild(d);
+    });
     RB.$$("#sumHost .sb-eq").forEach(function (e) { StudyBench.link(e); });
     RB.typeset(host);
     if (RB.syncDone) RB.syncDone();
@@ -9142,7 +9421,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
 
   function frontier() {
     var F = RB.FRONTIER || [];
-    document.getElementById("frontHost").innerHTML = F.length ? '<div class="rb-open">' + F.map(function (f) { return '<article class="rb-open-card"><p class="rb-open-t">' + esc(f.title) + "</p><p>" + f.text + '</p><div class="sb-chips">' + (f.papers || []).map(function (p) { return '<span class="sb-ref">' + esc(p) + "</span>"; }).join("") + (f.topics || []).map(function (k) { return '<a class="sb-tag" href="#explorer/' + k + '">' + RB.topics[k].num + "</a>"; }).join("") + "</div></article>"; }).join("") + "</div>" : '<div class="sb-empty"><p>The frontier map is being written.</p></div>';
+    document.getElementById("frontHost").innerHTML = F.length ? coverage(F.map(function (f) { return { title: f.title, topics: (f.topics || []).filter(function (k) { return RB.topics[k]; }) }; }), "open") + '<div class="rb-open">' + F.map(function (f) { return '<article class="rb-open-card"><p class="rb-open-t">' + esc(f.title) + "</p><p>" + f.text + '</p><div class="sb-chips">' + (f.papers || []).map(function (p) { return '<span class="sb-ref">' + esc(p) + "</span>"; }).join("") + (f.topics || []).map(function (k) { return '<a class="sb-tag" href="#explorer/' + k + '">' + RB.topics[k].num + "</a>"; }).join("") + "</div></article>"; }).join("") + "</div>" : '<div class="sb-empty"><p>The frontier map is being written.</p></div>';
   }
 
   RB.pages.overview = {
@@ -9235,7 +9514,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     for (var i = 0; i < k; i++) s += '<rect class="rb-ak' + (t.noisy ? " is-noisy" : "") + '" style="--c:var(--' + mod.c + ')" x="' + (x0 + i * (sz + g)) + '" y="' + y + '" width="' + sz + '" height="' + sz + '" rx="2.5"/>';
     var lines = wrapWords(t.label, chars || 20).slice(0, 2), ly = up ? y - 8 - (lines.length - 1) * 13 : y + sz + 15;
     lines.forEach(function (l, j) { s += '<text class="rb-at-lab" x="' + cx + '" y="' + (ly + j * 13) + '" text-anchor="middle">' + esc(l) + "</text>"; });
-    if (t.n) wrapWords(t.n, chars || 20).slice(0, 2).forEach(function (l, j, arr) { s += '<text class="rb-at-n" x="' + cx + '" y="' + (up ? ly - 14 - (arr.length - 1 - j) * 12 : ly + lines.length * 13 + j * 12) + '" text-anchor="middle">' + esc(l) + "</text>"; });
+    if (t.n) wrapWords(t.n, Math.max(8, Math.floor((chars || 20) * 0.9))).slice(0, 2).forEach(function (l, j, arr) { s += '<text class="rb-at-n" x="' + cx + '" y="' + (up ? ly - 14 - (arr.length - 1 - j) * 12 : ly + lines.length * 13 + j * 12) + '" text-anchor="middle">' + esc(l) + "</text>"; });
     return "<g><title>" + esc(mod.t + ": " + t.label + (t.n ? " (" + t.n + ")" : "") + (t.note ? ". " + t.note : "")) + "</title>" + s + "</g>";
   }
   function system(s, o) {
@@ -9265,12 +9544,13 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       out += '<g class="rb-am' + (m.stack ? " has-stack" : "") + '" data-mod="' + m.id + '" style="--c:var(--' + R.c + ')"' + (m.stack ? ' tabindex="0" role="button" aria-label="' + esc("Show the layers of " + m.name) + '"' : "") + ">";
       out += '<rect class="rb-am-box" x="' + x + '" y="' + y + '" width="' + MW + '" height="' + MODH + '" rx="10"/>';
       if (R.c2) out += '<rect class="rb-am-stripe" style="--c2:var(--' + R.c2 + ')" x="' + (x + MW / 2) + '" y="' + (y + 1) + '" width="' + (MW / 2 - 10) + '" height="4"/><rect class="rb-am-stripe1" x="' + (x + 10) + '" y="' + (y + 1) + '" width="' + (MW / 2 - 10) + '" height="4"/>';
-      out += '<text class="rb-am-role" x="' + (x + 12) + '" y="' + (y + 20) + '">' + esc((m.roleLabel || R.t).toUpperCase()) + "</text>";
+      var rl = (m.roleLabel || R.t).toUpperCase(); out += '<text class="rb-am-role' + (rl.length * 7.4 > MW - 24 ? " is-long" : "") + '" x="' + (x + 12) + '" y="' + (y + 20) + '">' + esc(rl) + "</text>";
       wrapWords(m.name, 18).slice(0, 2).forEach(function (l, j) { out += '<text class="rb-am-name" x="' + (x + 12) + '" y="' + (y + 40 + j * 16) + '">' + esc(l) + "</text>"; });
       if (m.sub) out += '<text class="rb-am-sub" x="' + (x + 12) + '" y="' + (y + 76) + '">' + esc(m.sub) + "</text>";
       var tag = m.frozen === true ? "frozen" : m.frozen === "lora" ? "LoRA" : m.frozen === "partial" ? "partly frozen" : "trained";
       out += '<text class="rb-am-tag' + (m.frozen === true ? " is-frozen" : "") + '" x="' + (x + 12) + '" y="' + (y + 92) + '">' + tag + (m.params ? " · " + esc(m.params) : "") + "</text>";
-      if (m.stack) out += '<text class="rb-am-more" x="' + (x + MW - 10) + '" y="' + (y + 92) + '" text-anchor="end">layers ›</text>';
+      var tagLen = (m.frozen === true ? 6 : m.frozen === "lora" ? 4 : 7) + (m.params ? 3 + String(m.params).length : 0);
+      if (m.stack) out += '<text class="rb-am-more" x="' + (x + MW - 10) + '" y="' + (y + 92) + '" text-anchor="end">' + (tagLen * 6.9 + 70 > MW - 22 ? "›" : "layers ›") + "</text>";
       out += "<title>" + esc(R.t + ": " + m.name + (m.note ? ". " + m.note : "") + (m.stack ? ". Select to see its layers." : "")) + "</title></g>";
       /* tokens */
       var ins = (s.inputs || []).filter(function (t) { return t.to === m.id; }), outs = (s.outputs || []).filter(function (t) { return t.from === m.id; });
@@ -9300,10 +9580,10 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       var ins = (s.inputs || []).filter(function (t) { return t.to === m.id; }), outs = (s.outputs || []).filter(function (t) { return t.from === m.id; });
       if (ins.length) tokRow(ins, false);
       body += '<g class="rb-am' + (m.stack ? " has-stack" : "") + '" data-mod="' + m.id + '" style="--c:var(--' + R.c + ')"' + (m.stack ? ' tabindex="0" role="button" aria-label="' + esc("Show the layers of " + m.name) + '"' : "") + '><rect class="rb-am-box" x="' + BX + '" y="' + y + '" width="' + BW + '" height="84" rx="10"/>' +
-        '<text class="rb-am-role" x="' + (BX + 12) + '" y="' + (y + 19) + '">' + esc((m.roleLabel || R.t).toUpperCase()) + '</text><text class="rb-am-name" x="' + (BX + 12) + '" y="' + (y + 39) + '">' + esc(m.name) + "</text>" +
+        '<text class="rb-am-role' + ((m.roleLabel || R.t).length * 7.4 > MW - 24 ? " is-long" : "") + '" x="' + (BX + 12) + '" y="' + (y + 19) + '">' + esc((m.roleLabel || R.t).toUpperCase()) + '</text><text class="rb-am-name" x="' + (BX + 12) + '" y="' + (y + 39) + '">' + esc(m.name) + "</text>" +
         (m.sub ? '<text class="rb-am-sub" x="' + (BX + 12) + '" y="' + (y + 58) + '">' + esc(m.sub) + "</text>" : "") +
         '<text class="rb-am-tag' + (m.frozen === true ? " is-frozen" : "") + '" x="' + (BX + 12) + '" y="' + (y + 75) + '">' + (m.frozen === true ? "frozen" : m.frozen === "lora" ? "LoRA" : "trained") + (m.params ? " · " + esc(m.params) : "") + "</text>" +
-        (m.stack ? '<text class="rb-am-more" x="' + (BX + BW - 10) + '" y="' + (y + 75) + '" text-anchor="end">layers ›</text>' : "") + "</g>";
+        (m.stack ? '<text class="rb-am-more" x="' + (BX + BW - 10) + '" y="' + (y + 75) + '" text-anchor="end">' + (((m.frozen === true ? 6 : m.frozen === "lora" ? 4 : 7) + (m.params ? 3 + String(m.params).length : 0)) * 6.9 + 70 > BW - 22 ? "›" : "layers ›") + "</text>" : "") + "</g>";
       y += 84;
       if (outs.length) tokRow(outs, true);
       var nx = ms[k + 1];
@@ -9433,8 +9713,8 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
           (facts ? '<details class="rb-arch-srcd" open><summary>Every number with its source</summary><div class="rb-bp-facts">' + facts + "</div></details>" : "") +
           '<details class="rb-arch-srcd"><summary>Sources</summary>' + sources(s) + "</details>" });
       } else if (view === "system") {
-        html = RB.panel({ eyebrow: "System view", ref: esc(s.figRef || ""), prov: s.prov || "", body: (s.lede ? '<p class="rb-arch-lede">' + s.lede + "</p>" : "") + '<div class="sb-scroll-x rb-arch-scroll" data-arch-sys>' + systemAuto(s, { uid: uid }) + "</div>" + legend(s) +
-          '<div class="rb-arch-side">' + mask(s) + '<div class="rb-arch-sumw"><p class="rb-h5">At a glance</p>' + summary([s]) + "</div></div>" + (s.callouts && s.callouts.length ? '<ul class="rb-arch-notes">' + s.callouts.map(function (c) { return "<li>" + c + "</li>"; }).join("") + "</ul>" : "") +
+        html = RB.panel({ eyebrow: "System view", ref: esc(s.figRef || ""), prov: s.prov || "", body: '<div class="sb-scroll-x rb-arch-scroll" data-arch-sys>' + systemAuto(s, { uid: uid }) + "</div>" + legend(s) + (s.lede ? '<p class="rb-arch-lede">' + s.lede + "</p>" : "") +
+          '<div class="rb-arch-side">' + mask(s) + '<div class="rb-arch-sumw"><p class="rb-h5">At a glance</p>' + summary([s]) + "</div></div>" + (s.callouts && s.callouts.length ? '<details class="sb-more rb-arch-notesd"><summary>More detail: ' + s.callouts.length + " note" + (s.callouts.length > 1 ? "s" : "") + ' on paper vs code</summary><ul class="rb-arch-notes">' + s.callouts.map(function (c) { return "<li>" + c + "</li>"; }).join("") + "</ul></details>" : "") +
           '<details class="rb-arch-srcd"><summary>Sources for every number</summary>' + sources(s) + "</details>" });
       } else if (view === "layers") {
         var withStack = s.modules.filter(function (m) { return m.stack; });
@@ -9545,7 +9825,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
   function ctext(c) { return Array.isArray(c) ? String(c[0]) : String(c || ""); }
   function wrap(t, n) { var w = String(t).split(" "), out = [], cur = ""; w.forEach(function (x) { if ((cur + " " + x).trim().length > n && cur) { out.push(cur); cur = x; } else cur = (cur + " " + x).trim(); }); if (cur) out.push(cur); return out; }
   function numSpans(line) {
-    return esc(line).replace(/(\d[\d,.]*(?:\s?[kKMB])?(?:\s?[×x])?)/g, '<tspan class="rb-bp-num">$1</tspan>');
+    return esc(line).replace(/(\d(?:[\d,.]*\d)?(?:\s?[kKMB](?![\w_]))?(?:\s?[×x](?![\w_]))?)/g, '<tspan class="rb-bp-num">$1</tspan>');
   }
   function hRow(r) {
     if (r.t === "block" || r.t === "group") return BPAD + r.rows.reduce(function (a, x, i) { return a + hRow(x) + (i ? GAP : 0); }, 0) + BPAD + (r.t === "group" ? 14 : 0);
@@ -9676,16 +9956,61 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
 
   function tHeight(t) { return (t.rows || []).reduce(function (a, r, i) { return a + hRow(r) + (i ? GAP : 0); }, 0) + CPAD * 2; }
 
+  /* Two feeders on the same side of one target make the far one's link cross the near tower (long, through a box).
+     Put the far feeder on the target's other side instead, when that feeder has no other link to keep it in place. */
+  /* Feeder placement. Two feeders on the same side of one target make the far one's link cross the near tower.
+     - Into a side input (FiLM, cross-attention: drawn as a box on the target's left): every feeder goes on the left and they share the line.
+     - Into anything else (the input box, a row): the far feeder moves to the target's other side.
+     A feeder with another link of its own stays where the author put it. */
+  function arrange(towers, links) {
+    var order = towers.slice(), idx = function (m) { for (var i = 0; i < order.length; i++) if (order[i].mod === m) return i; return -1; };
+    var deg = {}; links.forEach(function (l) { deg[l.from] = (deg[l.from] || 0) + 1; deg[l.to] = (deg[l.to] || 0) + 1; });
+    function findRow(rows, id) { for (var i = 0; i < (rows || []).length; i++) { var r = rows[i]; if (r.id === id) return r; var q = findRow(r.rows, id); if (q) return q; } return null; }
+    var groups = {};
+    links.forEach(function (l) {
+      var t = order[idx(l.to)], r = t && findRow(t.rows, l.toRow), side = !!(r && r.side);
+      var k = l.to + "|" + (side ? "side" : "any"); (groups[k] = groups[k] || { to: l.to, side: side, F: [] }).F.push(l.from);
+    });
+    /* a side input sits on the target's left: its feeders belong on the left, so other feeders of that target go right */
+    Object.keys(groups).forEach(function (k) {
+      var g = groups[k]; if (!g.side) return;
+      g.F.filter(function (f) { return deg[f] === 1 && idx(f) > idx(g.to); }).forEach(function (f) { var t = order.splice(idx(f), 1)[0]; order.splice(idx(g.to), 0, t); });
+      var other = groups[g.to + "|any"];
+      if (other) other.F.filter(function (f) { return deg[f] === 1 && idx(f) < idx(g.to); }).forEach(function (f) { var t = order.splice(idx(f), 1)[0]; order.splice(idx(g.to) + 1, 0, t); });
+    });
+    Object.keys(groups).forEach(function (k) {
+      var g = groups[k]; if (g.F.length < 2) return;
+      var movable = g.F.filter(function (f) { return deg[f] === 1; });
+      if (g.side) {
+        movable.forEach(function (f) { if (idx(f) > idx(g.to)) { var t = order.splice(idx(f), 1)[0]; order.splice(idx(g.to), 0, t); } });
+        return;
+      }
+      var ti = idx(g.to), L = g.F.filter(function (f) { return idx(f) < ti; }), R = g.F.filter(function (f) { return idx(f) > ti; });
+      var sideList = L.length >= 2 && !R.length ? L : R.length >= 2 && !L.length ? R : null; if (!sideList) return;
+      var far = sideList.filter(function (f) { return deg[f] === 1; }).sort(function (p, q) { return Math.abs(idx(q) - ti) - Math.abs(idx(p) - ti); })[0];
+      if (!far || Math.abs(idx(far) - ti) < 2) return;
+      var t = order.splice(idx(far), 1)[0]; ti = idx(g.to);
+      order.splice(sideList === L ? ti + 1 : ti, 0, t);
+    });
+    return order;
+  }
+
   function blueprint(s, o) {
     o = o || {}; var B = s.blueprint; if (!B) return ""; MK = "rbbp" + (++MKN);
-    var towers = B.towers, X = {}, base = {}, x = 10, Y0 = 1000;
+    var towers = arrange(B.towers, B.links || []), X = {}, base = {}, x = 10, Y0 = 1000;
     towers.forEach(function (t, i) { X[t.mod] = x; base[t.mod] = Y0; x += towerW(t) + (i < towers.length - 1 ? 28 : 0); });
     var below = {}; (B.links || []).forEach(function (l) { below[l.from] = 1; });
     function measure(mod) { var t = towers.filter(function (q) { return q.mod === mod; })[0]; return drawTower(s, t, X[mod], base[mod], { zooms: [], below: below }); }
     /* 1) rows joined by shared attention sit on one line */
     (B.shared || []).forEach(function (l) { var a = measure(l.a[0]), b = measure(l.b[0]), pa = a.pos[l.a[1]], pb = b.pos[l.b[1]]; if (pa && pb) base[l.b[0]] += pa.y - pb.y; });
     /* 2) a feeding tower is moved up or down so its output arrow ends just below the row it feeds: short elbows, no detours */
-    (B.links || []).forEach(function (l) { var a = measure(l.from), b = measure(l.to), tg = b.pos[l.toRow + ":side"] || b.pos[l.toRow]; if (tg) base[l.from] += (tg.y + 22) - a.outY; });
+    /*    Chains (A feeds B, B feeds C) need several passes: moving B after A was placed would undo A's elbow. Sinks never move,
+          so repeating until nothing changes settles every feeder relative to its (already settled) target. */
+    for (var pass = 0; pass < 8; pass++) {
+      var moved = 0;
+      (B.links || []).forEach(function (l) { var a = measure(l.from), b = measure(l.to), tg = b.pos[l.toRow + ":side"] || b.pos[l.toRow]; if (!tg) return; var d = (tg.y + 22) - a.outY; if (Math.abs(d) > 0.5) { base[l.from] += d; moved++; } });
+      if (!moved) break;
+    }
     var ctx = { zooms: [], below: below }, parts = [], T = {};
     towers.forEach(function (t) { var r = drawTower(s, t, X[t.mod], base[t.mod], ctx); T[t.mod] = r; parts.push(r.svg); });
     var W = x + 10, top = Math.min.apply(null, towers.map(function (t) { return T[t.mod].top; })), bottom = Math.max.apply(null, towers.map(function (t) { return T[t.mod].bottom; })), links = "";
@@ -9891,7 +10216,18 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     var api = StudyBench.stepper(film, {
       onStep: function (i) {
         var st = S[i - 1];
-        main.innerHTML = '<div class="rb-film-card"><div class="rb-film-art">' + (st.art || "") + '</div><div class="rb-film-text"><p class="sb-eyebrow">Step ' + i + " of " + S.length + (st.years ? " · " + esc(st.years) : "") + '</p><h3 class="rb-h4">' + esc(st.title) + '</h3><dl class="rb-kv"><dt>Problem</dt><dd>' + st.problem + "</dd><dt>Change</dt><dd>" + st.change + "</dd><dt>Result</dt><dd>" + st.result + "</dd></dl>" + (st.eq ? RB.eqBlock(st.eq) : "") + '<div class="sb-btn-row">' + (st.lane ? '<button class="sb-btn" type="button" data-showmap="' + st.lane + "|" + (st.node || "") + '">Show on map →</button>' : "") + (st.topic ? '<a class="sb-btn sb-btn--ghost" href="#explorer/' + st.topic + '">Topic ' + (RB.topics[st.topic] || {}).num + " →</a>" : "") + "</div></div></div>";
+        /* v2.11 visual guide: the picture leads; its three zones (problem · change · result) light up in turn, and each
+           zone's sentence sits right under it. The equation's words and symbols fold into More detail. */
+        var zone = function (n, k, txt) { return '<li class="rb-film-z rb-film-z' + n + '"><span class="rb-film-k"><b>' + n + "</b> " + k + "</span><p>" + txt + "</p></li>"; };
+        main.innerHTML = '<div class="rb-film-card rb-film-guide"><header class="rb-film-head"><p class="sb-eyebrow">Step ' + i + " of " + S.length + (st.years ? " · " + esc(st.years) : "") + '</p><h3 class="rb-h4">' + esc(st.title) + "</h3></header>" +
+          '<div class="rb-film-stage"><figure class="rb-film-art">' + (st.art || "") + '</figure><ol class="rb-film-zones">' + zone(1, "Problem", st.problem) + zone(2, "Change", st.change) + zone(3, "Result", st.result) + "</ol></div>" +
+          (st.eq ? RB.eqBlock(st.eq) : "") + '<div class="sb-btn-row">' + (st.lane ? '<button class="sb-btn" type="button" data-showmap="' + st.lane + "|" + (st.node || "") + '">Show on map →</button>' : "") + (st.topic ? '<a class="sb-btn sb-btn--ghost" href="#explorer/' + st.topic + '">Topic ' + (RB.topics[st.topic] || {}).num + " →</a>" : "") + "</div></div>";
+        RB.$$(".sb-eq", main).forEach(function (eq) {
+          var w = eq.querySelector(".sb-eqwords"), k = eq.querySelector(".sb-eqkey"); if (!w && !k) return;
+          var d = document.createElement("details"); d.className = "sb-more"; d.innerHTML = "<summary>More detail: in words and symbols</summary>";
+          if (w) d.appendChild(w); if (k) d.appendChild(k); eq.appendChild(d);
+        });
+        var card = main.querySelector(".rb-film-guide"); requestAnimationFrame(function () { card.classList.add("is-play"); });
         RB.$$("[data-film]", host).forEach(function (b) { b.setAttribute("aria-current", +b.getAttribute("data-film") === i ? "step" : "false"); });
         RB.$$(".sb-eq", main).forEach(function (e) { StudyBench.link(e); });
         RB.typeset(main); RB.linkTerms(main);
@@ -10567,8 +10903,22 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     try { curApi = st.mount(api) || {}; }
     catch (e) { scene.innerHTML = '<div class="sb-error">This station failed to start (' + esc(e.message) + "). Pick another station and come back.</div>"; live("error", "Error"); RB.warn("station " + id + ": " + e.message); console.error(e); return; }
     RB.demos["lab-" + id] = function () { return curApi && curApi.demo ? curApi.demo() : []; };
+    foldRefs(api.side);
+    if (window.MutationObserver && api.side && !api.side._foldObs) { api.side._foldObs = new MutationObserver(function () { foldRefs(api.side); }); api.side._foldObs.observe(api.side, { childList: true }); }
     RB.typeset(document.getElementById("benchHost"));
     RB.linkTerms(side);
+  }
+  /* v2.11 visual weight: published numbers beside a station are reference detail, so they fold into More detail
+     (a heading "Numbers from the papers" / "Reference numbers" and everything after it up to the next heading) */
+  function foldRefs(box) {
+    if (!box) return;
+    RB.$$(":scope > .rb-h5, :scope > h4, :scope > .rb-stack > .rb-h5", box).forEach(function (h) {
+      if (!/numbers from the papers|reference numbers|which gripper/i.test(h.textContent) || h.closest("details.rb-lab-more")) return;
+      var d = document.createElement("details"); d.className = "sb-more rb-lab-more";
+      d.innerHTML = "<summary>More detail: " + RB.esc(h.textContent.trim().toLowerCase()) + "</summary>";
+      var n = h.nextSibling; h.parentNode.insertBefore(d, h); h.remove();
+      while (n && !(n.nodeType === 1 && n.matches(".rb-h5, h4"))) { var nx = n.nextSibling; d.appendChild(n); n = nx; }
+    });
   }
   RB.openStation = open;
 
@@ -10909,7 +11259,45 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     if (!terms.length) { host.innerHTML = '<div class="sb-empty"><p>The glossary fills in as topics are written.</p></div>'; return; }
     host.innerHTML = '<section class="sb-sec" id="gl-v-sec">' + RB.secHead({ level: "h2", title: "Visual glossary", lede: "Pick a term: the picture shows where it lives. Back and Next walk the list; nothing advances by itself.", demo: "gl-visual", demoMeta: "4 steps" }) + '<div id="vgHost"></div></section>';
     var sc = {}; sk.forEach(function (k) { sc[k] = scenes[k]; });
-    vg = StudyBench.visualGlossary(document.getElementById("vgHost"), { terms: terms, scenes: sc, groups: groups(), onShow: function (t) { var h = RB.labTermHref && RB.labTermHref(t.id); if (h) RB.go(h); }, onSelect: function (t) { var c = document.querySelector("#vgHost .sb-vg-card"); if (c) { RB.typeset(c); var b = c.querySelector('[data-act="show"]'); if (b) { var h = RB.labTermHref && RB.labTermHref(t.id); b.style.display = h ? "" : "none"; if (h) b.title = "Opens the Lab with On this bench pointing at this term"; } } } });
+    /* Phone: the whole map would draw its labels at ~5px. Zoom the picture onto the highlighted parts (about 2×, so labels
+       read at ~10–11px) and move the callout with it; "Whole map" shows everything again. Wide screens keep the full map. */
+    var vgWhole = false, vgLast = null;
+    function vgZoom(t) {
+      vgLast = t || vgLast; t = vgLast;
+      var host = document.getElementById("vgHost"), art = host && host.querySelector(".sb-vg-art"), svg = art && art.querySelector("svg");
+      if (!svg) return;
+      if (!svg.__vb) svg.__vb = svg.getAttribute("viewBox");
+      var full = svg.__vb.split(/[\s,]+/).map(Number), btn = host.querySelector(".rb-vg-zoom");
+      var focus = (t && t.focus) || [], small = art.clientWidth > 0 && art.clientWidth < 600;
+      if (!btn) {
+        btn = document.createElement("button"); btn.type = "button"; btn.className = "sb-btn sb-btn--ghost rb-vg-zoom";
+        btn.addEventListener("click", function () { vgWhole = !vgWhole; vgZoom(); });
+        var head = host.querySelector(".sb-vg-stage-head"); if (head) head.appendChild(btn);
+      }
+      svg.setAttribute("viewBox", svg.__vb);
+      btn.hidden = !small || !focus.length; btn.textContent = vgWhole ? "Zoom in" : "Whole map";
+      if (!small || !focus.length || vgWhole) return placeCallout(art, focus);
+      /* union of the focused parts in viewBox units */
+      var sr = svg.getBoundingClientRect(), k = full[2] / sr.width, x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+      focus.forEach(function (id) { RB.$$('[data-part="' + id + '"]', art).forEach(function (el) { var r = el.getBoundingClientRect(); if (!r.width && !r.height) return; x0 = Math.min(x0, r.left); y0 = Math.min(y0, r.top); x1 = Math.max(x1, r.right); y1 = Math.max(y1, r.bottom); }); });
+      if (!isFinite(x0)) return placeCallout(art, focus);
+      var bx = full[0] + (x0 - sr.left) * k, by = full[1] + (y0 - sr.top) * k, bw = (x1 - x0) * k, bh = (y1 - y0) * k;
+      var z = Math.min(2.2, Math.max(1, Math.min(full[2] / (bw + full[2] * 0.12), full[3] / (bh + full[3] * 0.18))));
+      var w = full[2] / z, h = full[3] / z, cx = bx + bw / 2, cy = by + bh / 2;
+      var vx = Math.max(full[0], Math.min(full[0] + full[2] - w, cx - w / 2)), vy = Math.max(full[1], Math.min(full[1] + full[3] - h, cy - h / 2));
+      svg.setAttribute("viewBox", [vx, vy, w, h].map(function (n) { return Math.round(n * 10) / 10; }).join(" "));
+      placeCallout(art, focus);
+    }
+    /* same rule as the design system: centred above the first highlighted part, kept inside the picture */
+    function placeCallout(art, focus) {
+      var co = art.parentElement.querySelector(".sb-vg-callout"), first = focus[0] && art.querySelector('[data-part="' + focus[0] + '"]');
+      if (!co || co.hidden || !first) return;
+      var fr = first.getBoundingClientRect(), hr = art.getBoundingClientRect();
+      co.style.left = (art.offsetLeft + Math.max(4, Math.min(hr.width - co.offsetWidth - 4, fr.left - hr.left + fr.width / 2 - co.offsetWidth / 2))) + "px";
+      co.style.top = (art.offsetTop + Math.max(4, fr.top - hr.top - co.offsetHeight - 6)) + "px";
+    }
+    var vgRT; window.addEventListener("resize", function () { clearTimeout(vgRT); vgRT = setTimeout(function () { vgZoom(); }, 150); });
+    vg = StudyBench.visualGlossary(document.getElementById("vgHost"), { terms: terms, scenes: sc, groups: groups(), onShow: function (t) { var h = RB.labTermHref && RB.labTermHref(t.id); if (h) RB.go(h); }, onSelect: function (t) { vgZoom(t); var c = document.querySelector("#vgHost .sb-vg-card"); if (c) { RB.typeset(c); var b = c.querySelector('[data-act="show"]'); if (b) { var h = RB.labTermHref && RB.labTermHref(t.id); b.style.display = h ? "" : "none"; if (h) b.title = "Opens the Lab with On this bench pointing at this term"; } } } });
     RB.demos["gl-visual"] = function () {
       var first = terms[0].id, two = terms[Math.min(5, terms.length - 1)].id;
       return [
@@ -12643,7 +13031,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
             { t: "mlp", label: "MPPI planner", call: ["horizon 3, 512 samples, 64 elites", "c1"] } ],
           output: { label: "action (61 DoF)" } }
       ],
-      links: [{ from: "reward", to: "tdmpc", toRow: "r", label: "R_T + λ(q/l_e)R_S" }]
+      links: [{ from: "reward", to: "tdmpc", toRow: "r", label: "R_T + λ(q / l_e)R_S" }]
     },
     modules: [
       { id: "reward", role: "critic", roleLabel: "Stabilizing reward", name: "SMPL-X map + RoHM", sub: "frozen · segments of 145", col: 0, frozen: true, short: "R_S",
@@ -17720,6 +18108,636 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       "The paper names only “DINO-v2”; the code uses ViT-B/14 and keeps 64 patch-group means (49,152-d) rather than the CLS token as the retrieval key."
     ]
   });
+  /* ------------------------------------------------------------------ TecNets */
+  RB.arch.spec({
+    id: "tecn", method: "tecn", topic: "b6", name: "TecNets", year: 2018,
+    figRef: "James et al. Fig. 2 · §3 · App. A", prov: "",
+    lede: "Two small conv nets. One embeds each demonstration's first and last frame into a unit vector; their normalised mean, the task sentence, is tiled over the image and concatenated channel-wise into a control CNN that outputs torques.",
+    sources: {
+      p1: { kind: "paper", ref: "James et al. 2018, §3.1–3.2, Eqs. 1–4 and Fig. 2", url: "https://arxiv.org/abs/1810.03237" },
+      p2: { kind: "paper", ref: "James et al. 2018, §4 (optimiser, batch) and §4.1–4.2", url: "https://arxiv.org/abs/1810.03237" },
+      p3: { kind: "paper", ref: "James et al. 2018, App. A (architectures per domain)", url: "https://arxiv.org/abs/1810.03237" },
+      c1: { kind: "code", repo: "stepjam/TecNets", path: "networks/cnn.py", commit: "bf88595", url: "https://github.com/stepjam/TecNets/blob/bf88595/networks/cnn.py" },
+      c2: { kind: "code", repo: "stepjam/TecNets", path: "consumers/control.py", commit: "bf88595", url: "https://github.com/stepjam/TecNets/blob/bf88595/consumers/control.py" },
+      c3: { kind: "code", repo: "stepjam/TecNets", path: "consumers/margin_loss.py", commit: "bf88595", url: "https://github.com/stepjam/TecNets/blob/bf88595/consumers/margin_loss.py" },
+      c4: { kind: "code", repo: "stepjam/TecNets", path: "tecnets_corl_results.sh", commit: "bf88595", url: "https://github.com/stepjam/TecNets/blob/bf88595/tecnets_corl_results.sh" },
+      c5: { kind: "code", repo: "stepjam/TecNets", path: "consumers/task_embedding.py", commit: "bf88595", url: "https://github.com/stepjam/TecNets/blob/bf88595/consumers/task_embedding.py" },
+      c6: { kind: "code", repo: "stepjam/TecNets", path: "data/mil_sim_push.py", commit: "bf88595", url: "https://github.com/stepjam/TecNets/blob/bf88595/data/mil_sim_push.py" }
+    },
+    summary: {
+      pattern: ["Task-embedding net + sentence-conditioned control CNN", "p1"],
+      params: null,
+      vision: ["Pushing: 125 × 125 RGB; 4 strided conv layers of 16 filters 5 × 5 in each net", "p3", "c4"],
+      backbone: ["Control CNN reads [image ‖ tiled 20-d sentence] = 23 channels; LayerNorm + ELU", "p1", "p3", "c2"],
+      head: ["Proprioception joins after the convs; 3 FC layers of 200, linear output", "p3", "c1"],
+      output: ["7 joint torques (pushing); 2 in the reaching domain", "p3"],
+      attention: null,
+      cond: ["Sentence s: normalised mean of the K demos' embeddings, from first and last frames only", "p1", "c5"],
+      steps: ["Sentence computed once per task; one control-net pass per step", "p1"],
+      chunk: null, rate: null, latency: null,
+      train: ["Hinge rank loss (margin 0.1, λ 1) + support and query MSE (λ 0.1 each); Adam 5e-4", "p1", "p3", "c4"]
+    },
+    blueprint: {
+      headline: "TecNets: a task sentence steers the policy",
+      note: "The embedding net turns each demo's first and last frame into a 20-d vector; averaging and normalising gives the sentence. The sentence is tiled to the image size and stacked onto the RGB channels, so the control net sees the task from its very first conv layer.",
+      towers: [
+        { mod: "emb", title: "Task-embedding net fθ", sub: "demo → 20-d unit vector", compact: true,
+          input: { label: "First ‖ last demo frame", caption: "125 × 125 × 6 per demonstration" },
+          rows: [
+            { t: "block", n: "4", label: "Strided conv", rows: [
+              { t: "conv", label: "Conv 5 × 5, stride 2", call: ["16 filters per layer (pushing)", "p3", "c4"] },
+              { t: "norm", label: "LayerNorm + ELU" } ] },
+            { t: "block", n: "3", label: "Fully connected", rows: [
+              { t: "mlp", label: "FC 200, ELU", call: ["no LayerNorm in code", "c1"] } ] },
+            { t: "linear", label: "Linear → embedding", call: ["20-d per demonstration", "p3", "c4"] },
+            { t: "pool", label: "Mean over demos, L2-norm", call: ["sentence s, unit length", "p1", "c3"],
+              zoom: { k: "rows", title: "Hinge rank loss (Eq. 2)", rows: ["sentence from support demos", "query demo embedding sₖ", "sₖ · s_own ≥ sₖ · s_other + margin", "negatives: other tasks in batch"] } } ],
+          output: { label: "sentence s (20-d)" } },
+        { mod: "ctrl", title: "Control net π(o, s)", sub: "same layer recipe, own weights",
+          input: { label: "Image ‖ tiled sentence", caption: "s copied to every pixel" },
+          rows: [
+            { t: "embed", label: "Concat on channels", call: ["3 + 20 = 23 input channels", "p1", "c2"] },
+            { t: "block", n: "4", label: "Strided conv", rows: [
+              { t: "conv", label: "Conv 5 × 5, stride 2", call: ["16 filters per layer (pushing)", "p3", "c4"] },
+              { t: "norm", label: "LayerNorm + ELU" } ] },
+            { t: "linear", label: "Flatten ‖ proprioception", side: "state", call: ["angles, velocities, EE pose", "p3"] },
+            { t: "block", n: "3", label: "Fully connected", rows: [
+              { t: "mlp", label: "FC 200, ELU", call: ["200 units each (pushing)", "p3", "c4"] } ] },
+            { t: "linear", label: "Linear action output", call: ["7 joint torques", "p3", "c6"],
+              zoom: { k: "rows", title: "Control loss (Eqs. 3–4)", rows: ["π(o, sᵤ) on support demos", "π(o, sᵤ) on query demos", "MSE, λ = 0.1 each", "+ hinge loss, λ = 1"] } } ],
+          output: { label: "action a (torques)" } }
+      ],
+      links: [{ from: "emb", to: "ctrl", toRow: "input", label: "sentence s" }]
+    },
+    modules: [
+      { id: "emb", role: "latent", roleLabel: "Task-embedding net", name: "Embedding CNN fθ", sub: "4 conv · 3 FC · 20-d", col: 0, frozen: false, short: "fθ",
+        stack: { rows: [
+          { t: "in", label: "first ‖ last frame", dims: "125 × 125 × 6", c: "data-1" },
+          { t: "block", label: "Strided conv", n: "4", rows: [{ t: "conv", label: "5 × 5, 16 filters, stride 2" }, { t: "norm", label: "LayerNorm, ELU" }] },
+          { t: "block", label: "Fully connected", n: "3", rows: [{ t: "mlp", label: "200 units, ELU" }] },
+          { t: "linear", label: "Linear → 20" },
+          { t: "pool", label: "mean over demos, L2-normalise" },
+          { t: "out", label: "sentence s", dims: "20-d, unit norm", c: "data-1" } ],
+          facts: [["Input", ["first and last frame, stacked: 6 channels", "p1", "c5"]], ["Convs (pushing)", ["4 × 16 filters, 5 × 5, stride 2", "p3", "c4"]], ["Convs (reaching)", ["3 × 40 filters, 3 × 3", "p3", "c4"]], ["Embedding", ["20-d", "p3", "c4"]], ["Margin", ["0.1", "p1", "c4"]]] } },
+      { id: "ctrl", role: "net", roleLabel: "Control network", name: "Control CNN π", sub: "23-ch input · 3 × FC 200", col: 1, frozen: false, main: true, short: "Control net",
+        stack: { rows: [
+          { t: "in", label: "image ‖ tiled sentence", dims: "125 × 125 × (3 + 20)", c: "data-3" },
+          { t: "block", label: "Strided conv", n: "4", rows: [{ t: "conv", label: "5 × 5, 16 filters, stride 2" }, { t: "norm", label: "LayerNorm, ELU" }] },
+          { t: "linear", label: "flatten ‖ proprioception" },
+          { t: "block", label: "Fully connected", n: "3", rows: [{ t: "mlp", label: "200 units, ELU" }] },
+          { t: "linear", label: "Linear → action" },
+          { t: "out", label: "joint torques", dims: "7 (pushing)", c: "data-3" } ],
+          facts: [["Conditioning", ["sentence tiled and concatenated at the input", "p1", "c2"]], ["State", ["joins after the conv layers", "p3", "c1"]], ["State size (pushing)", ["20-d in code", "c6"]], ["Loss", ["MSE on support and query examples", "p1"]], ["Optimiser", ["Adam, lr 5e-4", "p2", "c4"]]] } }
+    ],
+    inputs: [
+      { to: "emb", mod: "vision", label: "demo first + last frames", n: "K demos", k: 2 },
+      { to: "ctrl", mod: "vision", label: "image", n: "125 × 125", k: 3 },
+      { to: "ctrl", mod: "state", label: "proprio", n: "joints", k: 1 }
+    ],
+    outputs: [{ from: "ctrl", mod: "action", label: "joint torques", n: "7", k: 3 }],
+    links: [{ from: "emb", to: "ctrl", kind: "feeds", label: "20-d sentence|tiled on channels" }],
+    callouts: [
+      "App. A says <b>every layer</b> is followed by LayerNorm and ELU. In cnn.py only the conv layers are normalised; the fully connected layers apply ELU alone.",
+      "Eq. 1 normalises only the mean of the embeddings. margin_loss.py <b>normalises each support embedding first</b>, and uses the query embeddings unnormalised in the hinge loss.",
+      "The paper trains every domain with batch 64; the released pushing command uses <b>batch 100</b> (5 support + 5 query demos)."
+    ]
+  });
+
+  /* ------------------------------------------------------------------ T-OSIL */
+  RB.arch.spec({
+    id: "tosil", method: "tosil", topic: "b6", name: "T-OSIL", year: 2020,
+    figRef: "Dasari & Gupta Fig. 2 · §3.2–3.5", prov: "",
+    lede: "One-shot imitation with attention. A ResNet-18 encodes a demonstrator's video and the robot's own frames; causal non-local attention over the joint space-time volume builds task-aware features, decoded into a discretized logistic mixture over actions.",
+    sources: {
+      p1: { kind: "paper", ref: "Dasari & Gupta 2020, §3.2 (feature learning) and Fig. 2", url: "https://arxiv.org/abs/2011.05970" },
+      p2: { kind: "paper", ref: "Dasari & Gupta 2020, §3.3 (goal-conditioned BC, mixture head)", url: "https://arxiv.org/abs/2011.05970" },
+      p3: { kind: "paper", ref: "Dasari & Gupta 2020, §3.4–3.5 (inverse and point losses)", url: "https://arxiv.org/abs/2011.05970" },
+      p4: { kind: "paper", ref: "Dasari & Gupta 2020, §4.1 (environment, action space)", url: "https://arxiv.org/abs/2011.05970" },
+      p5: { kind: "paper", ref: "He et al. 2016, Table 1 (ResNet-18)", url: "https://arxiv.org/abs/1512.03385" },
+      c1: { kind: "code", repo: "SudeepDasari/one_shot_transformers", path: "hem/models/inverse_module.py", commit: "ecd43b0", url: "https://github.com/SudeepDasari/one_shot_transformers/blob/ecd43b0/hem/models/inverse_module.py" },
+      c2: { kind: "code", repo: "SudeepDasari/one_shot_transformers", path: "hem/models/traj_embed.py", commit: "ecd43b0", url: "https://github.com/SudeepDasari/one_shot_transformers/blob/ecd43b0/hem/models/traj_embed.py" },
+      c3: { kind: "code", repo: "SudeepDasari/one_shot_transformers", path: "experiments/base.yaml", commit: "ecd43b0", url: "https://github.com/SudeepDasari/one_shot_transformers/blob/ecd43b0/experiments/base.yaml" },
+      c4: { kind: "code", repo: "SudeepDasari/one_shot_transformers", path: "hem/models/basic_embedding.py", commit: "ecd43b0", url: "https://github.com/SudeepDasari/one_shot_transformers/blob/ecd43b0/hem/models/basic_embedding.py" },
+      c5: { kind: "code", repo: "SudeepDasari/one_shot_transformers", path: "scripts/train_transformer.py", commit: "ecd43b0", url: "https://github.com/SudeepDasari/one_shot_transformers/blob/ecd43b0/scripts/train_transformer.py" },
+      c6: { kind: "code", repo: "SudeepDasari/one_shot_transformers", path: "hem/models/discrete_logistic.py", commit: "ecd43b0", url: "https://github.com/SudeepDasari/one_shot_transformers/blob/ecd43b0/hem/models/discrete_logistic.py" }
+    },
+    summary: {
+      pattern: ["Demo-conditioned attention policy (one-shot imitation)", "p1"],
+      params: null,
+      vision: ["ImageNet ResNet-18 with pool and fc removed: 512-channel map per frame", "p1", "c1", "c4"],
+      backbone: ["2 causal non-local attention layers over [demo ‖ obs] space-time, 4 heads, Q/K/V width 128", "p1", "c1", "c3"],
+      head: ["Spatial softmax → MLP → 40-d φₜ (L2 norm); ‖ goal embedding → MLP 32 → logistic mixture", "p2", "c1", "c3"],
+      output: ["Target pose (xyz, axis-angle) + gripper, 8-d; 256 bins per dimension", "p4", "c1", "c6"],
+      attention: ["Causal in time: a frame sees the demo frames and earlier robot frames", "p1", "c2"],
+      cond: ["Context video of 4 frames from a Sawyer demonstrator; the agent is a Panda", "p4", "c3"],
+      steps: null, chunk: null, rate: null, latency: null,
+      train: ["BC NLL + inverse NLL (weight 1) + point NLL (0.1); lr 5e-4, batch 30", "p3", "c3", "c5"]
+    },
+    blueprint: {
+      headline: "T-OSIL: attend across demo and robot",
+      note: "Demo and robot frames share one ResNet-18. Their feature maps, with sinusoidal positions, form one space-time volume; two causal non-local layers let every robot frame read the demo. Spatial softmax and an MLP give a 40-d unit vector, joined with a 40-d goal embedding of the demo before the action head.",
+      towers: [
+        { mod: "trunk", title: "ResNet-18 trunk", sub: "ImageNet weights, pool and fc dropped", compact: true,
+          input: { label: "RGB frame", caption: "4 demo frames + robot frames" },
+          rows: [
+            { t: "conv", label: "Stem 7 × 7 conv + pool", call: ["64 channels", "p5"] },
+            { t: "block", n: "8", label: "Basic block", rows: [
+              { t: "conv", label: "Conv 3 × 3" },
+              { t: "conv", label: "Conv 3 × 3", call: ["2 blocks per stage: 64 → 512 ch", "p5", "c4"] },
+              { t: "add", span: 2 } ] } ],
+          output: { label: "512-channel map per frame" } },
+        { mod: "attn", title: "Non-local attention", sub: "causal over space and time",
+          input: { label: "[demo ‖ robot] feature maps", caption: "512 × (4 + T) × H × W" },
+          rows: [
+            { t: "embed", label: "+ sinusoidal position enc.", call: ["over T·H·W flattened, 512-d", "p1", "c2"] },
+            { t: "block", n: "2", rows: [
+              { t: "linear", label: "1×1×1 conv Q, K, V", call: ["512 → 128 each, no bias", "c2", "c3"] },
+              { t: "attn", label: "Causal self-attention", call: ["4 heads × 32, temperature √512", "c2", "c3"], zoom: { k: "heads", q: 4, kv: 4, hd: 32, title: "Attention heads" } },
+              { t: "linear", label: "1×1×1 conv out, ReLU", call: ["128 → 512, dropout 0.2", "c1", "c2"] },
+              { t: "add", span: 3 },
+              { t: "norm", label: "BatchNorm3d" } ] } ],
+          output: { label: "attended robot-frame maps" } },
+        { mod: "head", title: "Embedding + heads", sub: "shared by BC and inverse model", compact: true,
+          input: { label: "Robot-frame features", caption: "plus a goal embedding of the demo" },
+          rows: [
+            { t: "pool", label: "Spatial softmax", call: ["512 maps → 1,024 coordinates", "p2", "c1"] },
+            { t: "mlp", label: "MLP + L2 norm", call: ["1,024 → 256 → 40 (φₜ)", "c1", "c3"] },
+            { t: "linear", label: "‖ goal embedding", call: ["40 + 40 = 80", "c1", "c3"],
+              zoom: { k: "rows", title: "Goal embedding", rows: ["[demo ‖ first robot frame]", "one more non-local layer", "temporal conv, mean over time", "same MLP → 40-d, L2 norm"] } },
+            { t: "mlp", label: "Action MLP", call: ["80 → 32, ReLU", "c1", "c3"] },
+            { t: "linear", label: "Logistic mixture head", call: ["2 mixtures, learned constant scale", "p2", "c3"],
+              zoom: { k: "rows", title: "Auxiliary heads (training)", rows: ["inverse: [φₜ ‖ φₜ₊₁] → 32", "same mixture head as BC", "point: goal → 2-D gripper", "position H steps ahead"] } } ],
+          output: { label: "aₜ ∼ discretized logistic mixture" } }
+      ],
+      links: [
+        { from: "trunk", to: "attn", toRow: "input", label: "feature maps" },
+        { from: "attn", to: "head", toRow: "input", label: "attended maps" }
+      ]
+    },
+    modules: [
+      { id: "trunk", role: "vision-enc", name: "ResNet-18", sub: "ImageNet · 512 ch", col: 0, frozen: false, short: "ResNet-18",
+        stack: { rows: [
+          { t: "in", label: "RGB frame", dims: "demo and robot frames alike", c: "data-1" },
+          { t: "conv", label: "Stem 7 × 7 + max pool" },
+          { t: "block", label: "Basic residual block", n: "8", rows: [{ t: "conv", label: "3 × 3 → 3 × 3" }, { t: "add", span: 1 }] },
+          { t: "out", label: "512-channel map", dims: "avgpool and fc dropped", c: "data-1" } ],
+          facts: [["Init", ["ImageNet (pretrained=True)", "c4"]], ["Kept", ["all four stages, no pooling", "p1", "c1"]], ["Channels", ["512", "p1", "c1"]]] } },
+      { id: "attn", role: "net", roleLabel: "Demo–robot attention", name: "Non-local attention", sub: "2 × · 4 heads · width 128", col: 1, frozen: false, main: true, short: "Attention",
+        stack: { rows: [
+          { t: "in", label: "[demo | robot] maps + sinusoid PE", dims: "B × 512 × T × H × W", c: "data-1" },
+          { t: "block", label: "Non-local layer", n: "2", rows: [
+            { t: "linear", label: "1×1×1 conv Q, K, V: 512 → 128" },
+            { t: "attn", label: "causal softmax(KᵀQ / √512) per head" },
+            { t: "linear", label: "1×1×1 conv 128 → 512, ReLU, dropout" },
+            { t: "add", span: 3 },
+            { t: "norm", label: "BatchNorm3d" } ] },
+          { t: "out", label: "attended maps", dims: "robot frames kept", c: "data-1" } ],
+          facts: [["Layers", ["2", "c3"]], ["Heads", ["4", "c3"]], ["Q, K, V width", ["128", "c1"]], ["Temperature", ["√512 (default)", "c2"]], ["Dropout", ["0.2", "c1"]], ["Context frames", ["4", "c3"]]] } },
+      { id: "head", role: "action-head", name: "Embedding + mixture head", sub: "1,024 → 40 · 80 → 32 → 8-d", col: 2, frozen: false, short: "Head",
+        stack: { rows: [
+          { t: "in", label: "attended robot-frame maps", c: "data-3" },
+          { t: "pool", label: "spatial softmax → 1,024" },
+          { t: "mlp", label: "Linear 256, ReLU, Linear 40 · L2 norm" },
+          { t: "linear", label: "‖ 40-d goal embedding" },
+          { t: "mlp", label: "Linear 80 → 32, ReLU" },
+          { t: "linear", label: "μ, mixture logits; constant log-scale" },
+          { t: "out", label: "discretized logistic mixture", dims: "8-d, 256 bins", c: "data-3" } ],
+          facts: [["Embedding", ["40-d", "c3"]], ["Mixtures", ["2", "p2", "c3"]], ["Bins", ["256 per dimension", "p4", "c6"]], ["Losses", ["BC + inverse + 0.1 · point", "p3", "c5"]]] } }
+    ],
+    inputs: [
+      { to: "trunk", mod: "vision", label: "demo video (Sawyer)", n: "4 frames", k: 4 },
+      { to: "trunk", mod: "vision", label: "robot frames (Panda)", n: "current", k: 2 }
+    ],
+    outputs: [{ from: "head", mod: "action", label: "action aₜ", n: "8-d", k: 3 }],
+    links: [
+      { from: "trunk", to: "attn", kind: "feeds", label: "512-ch maps|per frame" },
+      { from: "attn", to: "head", kind: "feeds", label: "spatial softmax|→ 40-d φₜ" }
+    ],
+    mask: { name: "Causal space-time", ref: "p1", axes: [{ label: "demo frames", short: "d", mod: "vision" }, { label: "robot frames", short: "o", mod: "action" }], m: ["10", "11"],
+      note: "Demo frames come first in time, so the causal mask lets robot frames read the whole demo and their own past, never the future." },
+    callouts: [
+      "Paper §3.2 applies ReLU to the K, Q and V convolutions and projects each head separately. In traj_embed.py the K, Q, V convs are plain and simply split into heads; the ReLU sits after the output conv.",
+      "MOSAIC (above) keeps this non-local design (1×1×1 conv Q, K, V, residual, BatchNorm3d) and the logistic-mixture head."
+    ]
+  });
+
+  /* ------------------------------------------------------------------ REGENT */
+  RB.arch.spec({
+    id: "regent", method: "regent", topic: "b6", name: "REGENT", year: 2024,
+    figRef: "Sridhar et al. Fig. 3 · §4 · App. A", prov: "",
+    lede: "A small JAT-style causal transformer that reads the 19 demo states nearest to the query, with their rewards and actions, then the query. Its output is blended with the nearest neighbour's action, weighted by how close that neighbour is.",
+    sources: {
+      p1: { kind: "paper", ref: "Sridhar et al. 2025, §4.1–4.2, Eqs. 1–2 and Fig. 3", url: "https://arxiv.org/abs/2412.04759" },
+      p2: { kind: "paper", ref: "Sridhar et al. 2025, §4.2 (architecture, retrieval, data)", url: "https://arxiv.org/abs/2412.04759" },
+      p3: { kind: "paper", ref: "Sridhar et al. 2025, App. A (hyperparameters)", url: "https://arxiv.org/abs/2412.04759" },
+      c1: { kind: "code", repo: "regent-research/regent", path: "regent/modeling_regent.py", commit: "6a4ddef", url: "https://github.com/regent-research/regent/blob/6a4ddef/regent/modeling_regent.py" },
+      c2: { kind: "code", repo: "regent-research/regent", path: "jat/modeling_jat.py", commit: "6a4ddef", url: "https://github.com/regent-research/regent/blob/6a4ddef/jat/modeling_jat.py" },
+      c3: { kind: "code", repo: "regent-research/regent", path: "scripts_regent/new_dataset.py", commit: "6a4ddef", url: "https://github.com/regent-research/regent/blob/6a4ddef/scripts_regent/new_dataset.py" },
+      c4: { kind: "code", repo: "regent-research/regent", path: "README.md", commit: "6a4ddef", url: "https://github.com/regent-research/regent/blob/6a4ddef/README.md" },
+      c5: { kind: "code", repo: "regent-research/regent-medium-embeddings (Hugging Face)", path: "config.json", commit: "d3c7c23", url: "https://huggingface.co/regent-research/regent-medium-embeddings/blob/d3c7c2323bdcd39094e2b4ea9a39947c81600f39/config.json" }
+    },
+    summary: {
+      pattern: ["Retrieval-augmented causal transformer (semi-parametric)", "p1"],
+      params: ["138.6M including the frozen ResNet-18 (JAT: 192.7M)", "p2"],
+      vision: ["Images: frozen ImageNet ResNet-18 → 512-d per 4-frame stack; vector states used raw", "p2", "p3", "c1"],
+      backbone: ["GPT-Neo trunk: 12 layers, width 768, 12 heads, 40 learned positions", "p3", "c5"],
+      head: ["Shared linear heads (continuous 768 → 513, discrete 768 → 18), then blend with R&P", "p3", "c1", "c2"],
+      output: ["An action at all 20 state positions; only the query's is executed", "p1"],
+      attention: ["Causal over 19 retrieved (s, r, a) tuples, nearest first, then the query", "p1", "p3"],
+      cond: ["19 nearest states (with previous reward and action) from a few demos of the new environment", "p1", "p2"],
+      steps: ["One forward pass per step; no gradient update in a new environment", "p1"],
+      chunk: null, rate: null, latency: null,
+      train: ["14.5M transitions (JAT/Gato suites); AdamW 5e-5 → 0, batch 512, stop after 1 epoch", "p2", "p3", "c4"]
+    },
+    blueprint: {
+      headline: "REGENT: retrieve, read, then blend",
+      note: "Retrieval finds the 19 demo states closest to the query. They enter the transformer with their rewards and actions, nearest first, followed by the query. Every predicted action is mixed with the nearest neighbour's action a′: the closer the query is to it, the more a′ wins.",
+      towers: [
+        { mod: "ret", title: "Retrieve and Play", sub: "k-NN over the demos, no trained weights", compact: true,
+          input: { label: "Query state sₜ", caption: "images embedded; vectors raw" },
+          rows: [
+            { t: "conv", label: "ResNet-18 (images only)", call: ["512-d, frozen", "p2", "p3"] },
+            { t: "linear", label: "ℓ2 nearest neighbours", call: ["n = 19, target demos", "p2"] },
+            { t: "norm", label: "d ÷ 95th percentile", call: ["per environment", "p3", "c3"] },
+            { t: "linear", label: "R&P: action a′ of nearest" } ],
+          output: { label: "context, a′, d" } },
+        { mod: "trf", title: "Causal transformer πθ", sub: "GPT-Neo trunk, JAT-style encoders",
+          input: { label: "[(s′, r, a′) × 19 | sₜ, rₜ₋₁]", caption: "retrieved tuples nearest first, query last" },
+          rows: [
+            { t: "linear", label: "Shared linear encoder", call: ["state ‖ reward, padded to 513 → 768", "p3", "c2"] },
+            { t: "embed", label: "Discrete-action lookup", call: ["GPT-2 vocabulary of 50,257 · 768", "p2", "c5"] },
+            { t: "embed", label: "+ learned positions", call: ["40: 20 states, 20 actions", "p3", "c5"] },
+            { t: "block", n: "12", rows: [
+              { t: "norm", label: "LayerNorm 1" },
+              { t: "attn", label: "Causal self-attention", call: ["12 heads × 64", "p3", "c5"], zoom: { k: "heads", q: 12, kv: 12, hd: 64, title: "Attention heads" } },
+              { t: "add", span: 2 },
+              { t: "norm", label: "LayerNorm 2" },
+              { t: "ffn", label: "Feed forward (MLP)", call: ["Hidden dimension 3,072 (4 × 768)", "c5"], zoom: { k: "mlp", act: "GELU", d: "768", ff: "3,072", title: "Feed forward (MLP)" } },
+              { t: "add", span: 2 } ] },
+            { t: "norm", label: "Final LayerNorm" },
+            { t: "linear", label: "Shared action heads", call: ["768 → 513 cont. · 768 → 18 discrete", "p3", "c1", "c2"] },
+            { t: "group", label: "Blend with R&P (no weights)", rows: [
+              { id: "mix", t: "linear", label: "Mix with a′", call: ["weight e^(−λd), λ = 10", "p1", "c5"],
+                zoom: { k: "rows", title: "Interpolation (Eqs. 1–2)", rows: ["w = e^(−λd)", "a = w · a′ + (1 − w) · σ(πθ)", "σ: softmax, or 10 · MixedReLU", "d → 0: play a′"] } } ] } ],
+          output: { label: "query action aₜ" } }
+      ],
+      links: [
+        { from: "ret", to: "trf", toRow: "mix", label: "a′, distance d" }
+      ]
+    },
+    modules: [
+      { id: "ret", role: "vision-enc", roleLabel: "Retrieval (R&P)", name: "ResNet-18 + k-NN", sub: "512-d key · ℓ2 · n = 19", col: 0, frozen: true, short: "Retrieval",
+        note: "The only network here is the frozen ImageNet ResNet-18 used for image observations; vector observations are compared directly.",
+        stack: { rows: [
+          { t: "in", label: "query state sₜ", dims: "image stack or vector", c: "data-1" },
+          { t: "conv", label: "ResNet-18 → 512-d (images)" },
+          { t: "linear", label: "ℓ2 distance to demo states" },
+          { t: "pool", label: "keep 19 nearest, sort by distance" },
+          { t: "norm", label: "d ÷ 95th-percentile distance" },
+          { t: "out", label: "context, a′, d", c: "data-1" } ],
+          facts: [["Neighbours", ["19", "p2", "c5"]], ["Metric", ["ℓ2 (JAT/Gato setting); SSIM in ProcGen", "p2"]], ["Image key", ["ResNet-18, 512-d", "p3"]]] } },
+      { id: "trf", role: "net", roleLabel: "Causal policy transformer", name: "GPT-Neo (JAT-style)", sub: "12 × 768 · 12 heads", col: 1, frozen: false, main: true, short: "Transformer",
+        stack: { rows: [
+          { t: "in", label: "[(s′, r, a′) × 19 | sₜ, rₜ₋₁]", dims: "40 positions", c: "data-3" },
+          { t: "linear", label: "shared linear encoder 513 → 768" },
+          { t: "embed", label: "token lookup for discrete actions" },
+          { t: "block", label: "GPT-Neo block", n: "12", rows: [
+            { t: "norm", label: "LayerNorm" }, { t: "attn", label: "causal MHA · 12 heads" }, { t: "add", span: 2 },
+            { t: "norm", label: "LayerNorm" }, { t: "ffn", label: "MLP 768 → 3,072 → 768, GELU" }, { t: "add", span: 2 } ] },
+          { t: "linear", label: "shared linear heads" },
+          { t: "linear", label: "a = w · a′ + (1 − w) · σ(πθ)", dims: "w = e^(−λd)" },
+          { t: "out", label: "query action", dims: "loss on all 20 actions", c: "data-3" } ],
+          facts: [["Width / depth / heads", ["768 / 12 / 12", "p3", "c5"]], ["Positions", ["40", "p3", "c5"]], ["λ and L", ["10 and 10", "p1", "c1"]], ["Loss", ["CE (discrete) + MSE (continuous) on all n + 1 actions", "p1"]], ["Fine-tuning", ["optional: lr 5e-6, 3 epochs", "p3", "c4"]]] } }
+    ],
+    inputs: [
+      { to: "ret", mod: "vision", label: "query state", n: "image or vector", k: 2 },
+      { to: "trf", mod: "other", label: "retrieved", n: "19 × (s, r, a)", k: 5 },
+      { to: "trf", mod: "state", label: "query", n: "sₜ, rₜ₋₁", k: 1 }
+    ],
+    outputs: [{ from: "trf", mod: "action", label: "action aₜ", n: "discrete or continuous", k: 3 }],
+    links: [{ from: "ret", to: "trf", kind: "prefix", label: "19 neighbours|+ a′ and d" }],
+    mask: { name: "Causal over the context", ref: "p1", axes: [{ label: "retrieved tuples", short: "ret", mod: "other" }, { label: "query state", short: "s", mod: "state" }, { label: "query action", short: "a", mod: "action" }], m: ["100", "110", "111"],
+      note: "Plain causal attention: the query, placed last, reads every retrieved tuple." },
+    callouts: [
+      "App. A: distances are divided by the 95th percentile <b>and clipped to 1</b>. The released code divides by the 95th percentile but never clips.",
+      "RICL (above) carries the same blend into π0-FAST: the same e^(−λd) weight and λ = 10 on a normalised distance, but 4 DINOv2-retrieved neighbours inside a VLA."
+    ]
+  });
+
+  /* ------------------------------------------------------------------ IMOP */
+  RB.arch.spec({
+    id: "imop", method: "imop", topic: "b6", name: "IMOP", year: 2024,
+    figRef: "Zhang & Boularias Figs. 3–4 · §III-C", prov: "",
+    lede: "No pose regression head. Point-cloud graph attention finds the task's invariant region in the demo frame, matches it into the live scene, and a differentiable Procrustes solve carries the demonstrated gripper pose across.",
+    sources: {
+      p1: { kind: "paper", ref: "Zhang & Boularias 2024, §III-C1 (invariant region matching) and Fig. 3", url: "https://arxiv.org/abs/2405.13178" },
+      p2: { kind: "paper", ref: "Zhang & Boularias 2024, §III-C2 (pose regression, Eq. 1)", url: "https://arxiv.org/abs/2405.13178" },
+      p3: { kind: "paper", ref: "Zhang & Boularias 2024, §III-C3 (state routing) and Fig. 4", url: "https://arxiv.org/abs/2405.13178" },
+      p4: { kind: "paper", ref: "Zhang & Boularias 2024, §III-B, §III-C4 (formulation, training)", url: "https://arxiv.org/abs/2405.13178" },
+      p5: { kind: "paper", ref: "Zhang & Boularias 2024, §IV, Tables III and V", url: "https://arxiv.org/abs/2405.13178" },
+      c1: { kind: "code", repo: "mlzxy/imop", path: "network.py", commit: "ca23524", url: "https://github.com/mlzxy/imop/blob/ca23524/network.py" },
+      c2: { kind: "code", repo: "mlzxy/imop", path: "README.md", commit: "ca23524", url: "https://github.com/mlzxy/imop/blob/ca23524/README.md" },
+      c3: { kind: "code", repo: "mlzxy/imop", path: "configs/eval_novel.yaml", commit: "ca23524", url: "https://github.com/mlzxy/imop/blob/ca23524/configs/eval_novel.yaml" }
+    },
+    summary: {
+      pattern: ["Correspondence-based one-shot policy (point graph attention + Procrustes)", "p1"],
+      params: ["80.8M", "p5"],
+      vision: ["Scene point cloud from 4 RGB-D cameras at 128 × 128; per point xyz, RGB, normal, robot-frame xyz, 2 flags = 14-d", "p5", "c1"],
+      backbone: ["Point Transformer encoders + kNN-graph self- and cross-attention (K = 16)", "p1", "p5", "c1"],
+      head: ["Sigmoid invariant-region mask; dual-softmax correspondence C; differentiable Procrustes", "p1", "p2"],
+      output: ["Keyframe action: SE(3) gripper pose; open and collision flags copied from the demo", "p4", "p3"],
+      attention: ["Local: each point attends to its K nearest points, within or across scenes", "p1"],
+      cond: ["One demo: support keyframe sᵢ, its next frame sᵢ′ and pose Tᵢ, picked by state routing", "p1", "p3"],
+      steps: ["One pass per keyframe; a motion planner reaches the pose", "p4"],
+      chunk: null, rate: null, latency: null,
+      train: ["18 RLBench base tasks × 100 demos; focal + dice on the mask, matching loss on C", "p5", "c1"]
+    },
+    blueprint: {
+      headline: "IMOP: match the invariant region, solve the pose",
+      note: "The invariant-region net compares the demo keyframe with its next frame and marks the points that stay fixed in the gripper's frame. The matching net aligns those points with the live scene through kNN cross-attention and dual softmax. Procrustes on the matches maps the demo pose Tᵢ to the new pose Tⱼ.",
+      towers: [
+        { mod: "ir", title: "Invariant-region net", sub: "support frame sᵢ vs next frame sᵢ′", compact: true,
+          input: { label: "Demo pair sᵢ, sᵢ′", caption: "sᵢ chosen by the state-routing net" },
+          rows: [
+            { t: "attn", label: "Point Transformer", call: ["3 levels, widths 64, 128, 256", "c1"] },
+            { t: "block", n: "4", label: "Reasoning stage", rows: [
+              { t: "attn", label: "kNN cross-attn sᵢ ↔ sᵢ′", call: ["256-d, 8 heads, K = 16", "c1"] },
+              { t: "attn", label: "kNN self-attention" },
+              { t: "attn", label: "kNN cross-attn sᵢ ↔ sᵢ′" } ] },
+            { t: "linear", label: "Point-wise sigmoid", call: ["temperature 0.25 → mask I(sᵢ)", "c1"] } ],
+          output: { label: "invariant region I(sᵢ)" } },
+        { mod: "match", title: "Region matching net", sub: "demo region ↔ live scene",
+          input: { label: "I(sᵢ) points + live scene sⱼ", caption: "both as kNN graphs" },
+          rows: [
+            { t: "attn", label: "Point Transformer", call: ["widths 128, 256, 384", "c1"] },
+            { t: "block", n: "2", label: "Match round", rows: [
+              { t: "linear", label: "Match, re-pose sᵢ points" },
+              { t: "attn", label: "kNN cross-attn I(sᵢ) ↔ sⱼ", call: ["128-d, 4 heads, K = 16", "c1"] },
+              { t: "attn", label: "kNN self-attention" },
+              { t: "attn", label: "kNN cross-attn I(sᵢ) ↔ sⱼ" } ] },
+            { t: "linear", label: "Dual-softmax matching", call: ["one row of C per region point", "p1"],
+              zoom: { k: "rows", title: "Dual softmax", rows: ["dot products of point features", "row and column softmax", "C: product of the two, in [0, 1]", "trained against GT matches"] } } ],
+          output: { label: "correspondence matrix C" } },
+        { mod: "pose", title: "Pose solver", sub: "no weights", compact: true,
+          input: { label: "C, demo points, Tᵢ", caption: "Eq. 1" },
+          rows: [
+            { t: "linear", label: "Weighted Procrustes (SVD)", call: ["differentiable, as in Lepard", "p2"] },
+            { t: "linear", label: "Tⱼ from the demo pose Tᵢ" },
+            { t: "linear", label: "Copy gripper flags λᵢ" } ],
+          output: { label: "pose Tⱼ + flags" } }
+      ],
+      links: [
+        { from: "ir", to: "match", toRow: "input", label: "region mask" },
+        { from: "match", to: "pose", toRow: "input", label: "matches C" }
+      ]
+    },
+    modules: [
+      { id: "ir", role: "net", roleLabel: "Invariant-region net", name: "Invariant region", sub: "PT encoder + 4 kNN stages", col: 0, frozen: false, short: "Region net",
+        stack: { rows: [
+          { t: "in", label: "demo frames sᵢ, sᵢ′", dims: "14-d per point", c: "data-1" },
+          { t: "attn", label: "Point Transformer, depths 2, 4, 2" },
+          { t: "block", label: "Reasoning stage", n: "4", rows: [{ t: "attn", label: "cross · self · cross, kNN K = 16" }] },
+          { t: "linear", label: "Linear 256 → 1, sigmoid" },
+          { t: "out", label: "mask I(sᵢ)", c: "data-1" } ],
+          facts: [["Encoder widths", ["64, 128, 256", "c1"]], ["Heads", ["8 in the reasoning stages", "c1"]], ["Loss", ["focal + dice", "c1"]], ["Ground truth", ["segment with least motion in the action frame (Eq. 2)", "p4"]]] } },
+      { id: "match", role: "net", roleLabel: "Region matching", name: "Matching net", sub: "PT encoder · kNN · 128-d", col: 1, frozen: false, main: true, short: "Matching",
+        stack: { rows: [
+          { t: "in", label: "I(sᵢ) points and live scene sⱼ", c: "data-3" },
+          { t: "attn", label: "Point Transformer encoder" },
+          { t: "block", label: "Match round", n: "2", rows: [{ t: "linear", label: "dual softmax + re-pose" }, { t: "attn", label: "cross · self · cross, kNN" }] },
+          { t: "linear", label: "final dual-softmax match" },
+          { t: "out", label: "correspondence C", c: "data-3" } ],
+          facts: [["Width / heads", ["128 / 4", "c1"]], ["Graph degree", ["K = 16; K = 8 loses 2.7 points on novel tasks", "p5"]], ["Global attention instead", ["novel success 41.3 → 16.4 %", "p5"]]] } },
+      { id: "pose", role: "codec", roleLabel: "Pose solver (no weights)", name: "Procrustes", sub: "C → SE(3)", col: 2, frozen: true, short: "Procrustes",
+        note: "Not a network: least-squares rigid fit of the matched points, applied to the demonstrated pose." }
+    ],
+    inputs: [
+      { to: "ir", mod: "vision", label: "demo keyframe pair", n: "point clouds", k: 3 },
+      { to: "match", mod: "vision", label: "live point cloud", n: "4 RGB-D views", k: 4 }
+    ],
+    outputs: [{ from: "pose", mod: "action", label: "gripper pose Tⱼ", n: "SE(3) + 2 flags", k: 2 }],
+    links: [
+      { from: "ir", to: "match", kind: "feeds", label: "invariant region|I(sᵢ)" },
+      { from: "match", to: "pose", kind: "feeds", label: "correspondence C|+ demo pose Tᵢ" }
+    ],
+    callouts: [
+      "The released code (README) <b>drops the state-routing network</b> and steps to the next demo keyframe, and adds a second, fine region-matching network after the coarse one.",
+      "Table V: regressing the pose from the matched points with a learned head instead of Eq. 1 drops novel-task success from 41.3 % to 29.4 %."
+    ]
+  });
+
+  /* ------------------------------------------------------------------ DemoDiffusion */
+  RB.arch.spec({
+    id: "demodiffusion", method: "demodiffusion", topic: "b6", name: "DemoDiffusion", year: 2025, parent: "pi0",
+    diffRows: ["pattern", "cond", "steps", "chunk", "output", "train"],
+    figRef: "Park et al. Fig. 2 · §III · App. D–F", prov: "",
+    lede: "No new network. A human demo is turned into a rough robot trajectory by hand tracking and retargeting; π0-DROID, unchanged, then denoises a partly noised copy of it, so the robot follows the demo while staying on its own action manifold.",
+    sources: {
+      p1: { kind: "paper", ref: "Park et al. 2025, §III-B (kinematic retargeting)", url: "https://arxiv.org/abs/2506.20668" },
+      p2: { kind: "paper", ref: "Park et al. 2025, §III-C, Eq. 2 (closed-loop denoising)", url: "https://arxiv.org/abs/2506.20668" },
+      p3: { kind: "paper", ref: "Park et al. 2025, §IV-B (real-world setup, π0)", url: "https://arxiv.org/abs/2506.20668" },
+      p4: { kind: "paper", ref: "Park et al. 2025, App. D–E (inference, retargeting details)", url: "https://arxiv.org/abs/2506.20668" },
+      p5: { kind: "paper", ref: "Black et al. 2024, §IV (π0 size)", url: "https://arxiv.org/abs/2410.24164" },
+      c1: { kind: "code", repo: "demodiffusion/demodiffusion", path: "demodiffusion/deploy/demodiffusion.py", commit: "ad9cacc", url: "https://github.com/demodiffusion/demodiffusion/blob/ad9cacc/demodiffusion/deploy/demodiffusion.py" },
+      c2: { kind: "code", repo: "demodiffusion/openpi", path: "src/openpi/models/pi0.py", commit: "18006ae", url: "https://github.com/demodiffusion/openpi/blob/18006ae/src/openpi/models/pi0.py" },
+      c3: { kind: "code", repo: "demodiffusion/demodiffusion", path: "README.md", commit: "ad9cacc", url: "https://github.com/demodiffusion/demodiffusion/blob/ad9cacc/README.md" },
+      c4: { kind: "code", repo: "demodiffusion/openpi", path: "src/openpi/models/gemma.py", commit: "18006ae", url: "https://github.com/demodiffusion/openpi/blob/18006ae/src/openpi/models/gemma.py" },
+      c5: { kind: "code", repo: "demodiffusion/openpi", path: "src/openpi/training/config.py", commit: "18006ae", url: "https://github.com/demodiffusion/openpi/blob/18006ae/src/openpi/training/config.py" }
+    },
+    summary: {
+      pattern: ["Frozen flow VLA as prior + retargeted human demo (SDEdit-style)", "p2"],
+      params: ["π0-DROID as released (π0: 3.3B); HaMeR off the shelf", "p3", "p5"],
+      vision: ["Policy: exterior + wrist camera at 224 × 224. Demo: HaMeR on 4 calibrated cameras, triangulated", "p3", "c1"],
+      backbone: ["π0: PaliGemma (Gemma 2B) + 300M action expert, weights untouched", "p3", "p5"],
+      head: ["π0's flow-matching expert, started from the noised retargeted chunk", "p2", "c2"],
+      output: ["Chunk of 10 joint-velocity actions (7 joints + gripper); 8 run open loop", "p4", "c1", "c5"],
+      attention: ["π0's block-causal mask, unchanged", "p3"],
+      cond: ["Prompt + retargeted hand trajectory at the same timestep, as a noisy starting chunk", "p4", "c1"],
+      steps: ["20-step Euler grid; start at s*/S = 0.2 or 0.4 → 4 or 8 steps", "p3", "c1", "c2"],
+      chunk: ["H = 10, 8 executed before re-planning", "p4", "c1"],
+      rate: ["15 Hz (DROID setup)", "c1"],
+      latency: null,
+      train: ["None: no fine-tuning and no robot data for the new task", "p3"]
+    },
+    changes: [
+      "<b>No retraining</b>: π0-DROID is used exactly as released; everything new happens at inference.",
+      "A <b>human-demo front end</b>: HaMeR hand meshes from 4 calibrated cameras are triangulated to 3-D keypoints.",
+      "<b>Kinematic retargeting</b>: wrist → end-effector pose, thumb–finger distance → gripper, IK → joint velocities.",
+      "Denoising <b>starts from the noised retargeted chunk</b> at s*/S = 0.2 or 0.4, not from pure noise.",
+      "The flow grid is doubled to 20 steps, so a chunk takes 4 or 8 Euler steps (π0: 10 from noise)."
+    ],
+    blueprint: {
+      headline: "DemoDiffusion: π0 polishes a retargeted demo",
+      note: "The retargeting tower turns the human's hand into a joint-velocity chunk â. Mixed with noise, â replaces π0's usual pure-noise start. π0's Gemma and action expert then run as always, sharing attention layer by layer, but integrate only the last 4 or 8 of 20 steps.",
+      towers: [
+        { mod: "ret", title: "Human-demo retargeting", sub: "HaMeR + geometry, no training", compact: true,
+          input: { label: "Human demo, 4 cameras", caption: "one demonstration, calibrated views" },
+          rows: [
+            { t: "attn", label: "HaMeR hand mesh", call: ["per view, frozen", "p3"] },
+            { t: "linear", label: "Triangulate keypoints", call: ["21 keypoints, robot frame", "c3"] },
+            { t: "linear", label: "Wrist → EE pose; grip", call: ["closed if < 80 % max width", "p4"],
+              zoom: { k: "rows", title: "Retargeting (App. E)", rows: ["A = wrist, B = thumb tip", "C = mean of other fingertips", "orientation from AB and AB × AC", "gripper width = |BC|"] } },
+            { t: "linear", label: "IK → joint velocities", call: ["10 steps from t", "p4", "c1"] } ],
+          output: { label: "retargeted chunk â" } },
+        { mod: "expert", title: "π0 action expert", sub: "≈300M, frozen, flow matching",
+          input: { label: "Noised proposal + state", caption: "not pure noise" },
+          rows: [
+            { t: "group", label: "Partial noising (no weights)", rows: [
+              { id: "noise", t: "linear", label: "Aτ₀ = τ₀ · â + (1 − τ₀) · ε", call: ["τ₀ = 0.8 or 0.6; first 8 dims", "p2", "c2"] } ] },
+            { t: "mlp", label: "State + action/time MLP", call: ["actions padded to 32 dims", "c2"] },
+            { t: "block", n: "18", rows: [
+              { t: "norm", label: "RMSNorm 1" },
+              { id: "att", t: "attn", label: "Masked multi-query attention" },
+              { t: "add", span: 2 },
+              { t: "norm", label: "RMSNorm 2" },
+              { t: "ffn", label: "Feed forward (GeGLU)", call: ["Width 1,024 · hidden 4,096", "c4"] },
+              { t: "add", span: 2 } ] },
+            { t: "linear", label: "Action output projection", call: ["4 or 8 Euler steps to τ = 1", "c1", "c2"] } ],
+          output: { label: "10 joint-velocity actions; run 8" } },
+        { mod: "gemma", title: "π0 VLM (Gemma 2B)", sub: "PaliGemma prefix, frozen", compact: true,
+          input: { label: "2 images + prompt", caption: "exterior + wrist, 224 × 224" },
+          rows: [
+            { t: "embed", label: "SigLIP tokens + text embed" },
+            { t: "block", n: "18", rows: [
+              { t: "norm", label: "RMSNorm 1" },
+              { id: "att", t: "attn", label: "Masked multi-query attention", call: ["8 query heads share 1 KV head", "c4"] },
+              { t: "add", span: 2 },
+              { t: "norm", label: "RMSNorm 2" },
+              { t: "ffn", label: "Feed forward (GeGLU)", call: ["Hidden dimension of 16,384", "c4"] },
+              { t: "add", span: 2 } ] } ],
+          output: { label: "prefix keys and values" } }
+      ],
+      links: [{ from: "ret", to: "expert", toRow: "noise", label: "â" }],
+      shared: [{ a: ["gemma", "att"], b: ["expert", "att"], label: "shared self-attention" }]
+    },
+    modules: [
+      { id: "ret", role: "vision-enc", roleLabel: "Hand tracking + retargeting", name: "HaMeR + retarget", sub: "4 views → joint velocities", col: 0, frozen: true, short: "Retarget",
+        note: "HaMeR is used off the shelf; triangulation, the wrist-to-gripper mapping and IK have no learned weights." },
+      { id: "expert", role: "action-expert", name: "π0 action expert", sub: "18 × 1024 · frozen", col: 1, frozen: true, main: true, short: "Action expert",
+        stack: { rows: [
+          { t: "in", label: "noised proposal Aτ₀ + state", dims: "10 × 32 (8 used)", c: "data-3" },
+          { t: "linear", label: "Aτ₀ = τ₀ â + (1 − τ₀) ε", dims: "replaces the pure-noise start" },
+          { t: "mlp", label: "action + time MLP → 1024" },
+          { t: "block", label: "Expert block, shared attention with Gemma", n: "18", rows: [{ t: "attn", label: "masked MQA" }, { t: "ffn", label: "GeGLU 1024 → 4096" }] },
+          { t: "linear", label: "action output projection" },
+          { t: "out", label: "velocity vθ; Euler to τ = 1", dims: "4 or 8 steps", c: "data-3" } ],
+          facts: [["Weights", ["π0-DROID checkpoint, not fine-tuned", "p3", "c3"]], ["Action horizon", ["10 (pi0_droid config)", "p4", "c5"]], ["Noise level s*/S", ["0.2 if π0 alone scores 0 %, else 0.4", "p3"]], ["Steps", ["20-step grid, both π0 and DemoDiffusion", "c1", "c2"]]] } },
+      { id: "gemma", role: "vlm", name: "Gemma 2B (PaliGemma)", sub: "18 × 2048 · MQA · frozen", col: 2, frozen: true, short: "Gemma 2B",
+        note: "Unchanged π0 prefix: SigLIP image tokens and the task prompt." }
+    ],
+    inputs: [
+      { to: "ret", mod: "vision", label: "human demo video", n: "4 cameras", k: 4 },
+      { to: "expert", mod: "state", label: "state", n: "1 token", k: 1 },
+      { to: "expert", mod: "action", label: "noised â", n: "10 × 8", k: 4, noisy: true },
+      { to: "gemma", mod: "vision", label: "robot cameras", n: "2 × 224²", k: 3 },
+      { to: "gemma", mod: "lang", label: "task prompt", n: "text", k: 2 }
+    ],
+    outputs: [{ from: "expert", mod: "action", label: "joint velocities", n: "10 × 8", k: 4 }],
+    links: [
+      { from: "ret", to: "expert", kind: "feeds", label: "retargeted â|noised to τ₀" },
+      { from: "gemma", to: "expert", kind: "joint-attn", label: "shared self-attn" }
+    ],
+    callouts: [
+      "Eq. 2 writes the DDPM form √α · â + √(1 − α) · ε. The released sampler (openpi fork, pi0.py) uses π0's <b>straight-line mix</b> t · ε + (1 − t) · â with t = s*/S.",
+      "Code comment: the Euler grid is raised from π0's 10 to <b>20 steps</b> for both π0 and DemoDiffusion, so s*/S = 0.2 runs 4 steps and 0.4 runs 8."
+    ]
+  });
+
+  /* ------------------------------------------------------------------ MatchingPolicy */
+  RB.arch.spec({
+    id: "matchingpolicy", method: "matchingpolicy", topic: "b6", name: "MatchingPolicy", year: 2026,
+    figRef: "She et al. Figs. 1–2, 4 · §3", prov: "no public code",
+    lede: "Matching first, policy second. Foundation-model features and a point tracker give demo-to-scene correspondences; a graph diffusion policy over correspondence-indexed keypoints then predicts future gripper motion, recovered as poses by SVD.",
+    sources: {
+      p1: { kind: "paper", ref: "She et al. 2026, §3 (problem formulation, overview)", url: "https://arxiv.org/abs/2608.16715" },
+      p2: { kind: "paper", ref: "She et al. 2026, §3.1 (correspondence-aware diffusion policy) and Fig. 2", url: "https://arxiv.org/abs/2608.16715" },
+      p3: { kind: "paper", ref: "She et al. 2026, §3.3 (real-world correspondences) and Fig. 4", url: "https://arxiv.org/abs/2608.16715" },
+      p4: { kind: "paper", ref: "She et al. 2026, §3.2 (MatchingDataset) and Fig. 3", url: "https://arxiv.org/abs/2608.16715" },
+      p5: { kind: "paper", ref: "She et al. 2026, §3.4 (implementation details)", url: "https://arxiv.org/abs/2608.16715" },
+      p6: { kind: "paper", ref: "She et al. 2026, §4.3 and Table 4 (test-time planning)", url: "https://arxiv.org/abs/2608.16715" }
+    },
+    summary: {
+      pattern: ["Graph diffusion policy over correspondence-indexed keypoints", "p2"],
+      params: null,
+      vision: ["Real world: RADIO v2.5 descriptors matched inside object masks; CoTracker, 512 points per object and view", "p3"],
+      backbone: ["Graph message passing over demo, current and K action frames; width and depth not stated", "p2"],
+      head: ["ε ∈ ℝ⁷ per action gripper node (translation part, rotation part, gripper); SVD → ΔTₖ", "p2"],
+      output: ["K relative gripper poses + gripper states; IK → joint commands", "p1", "p2"],
+      attention: ["Along 3 edge types: correspondence, intra-frame spatial, action consistency", "p2"],
+      cond: ["N = 1 or 2 demos, each L frames of gripper-frame point cloud + gripper state", "p1"],
+      steps: null,
+      chunk: ["K actions; run K/2, reuse the rest to seed the next chunk", "p6"],
+      rate: null, latency: null,
+      train: ["150k+ synthetic trajectories, 50k+ ShapeNet objects; AdamW 1e-5, 1M steps", "p4", "p5"]
+    },
+    blueprint: {
+      headline: "MatchingPolicy: match, then diffuse along matches",
+      note: "Off-the-shelf models find which scene points correspond to which demo points. Those matches fix the node identities of a graph: the m-th scene node means the same physical point in every frame. The policy passes messages along matches and within frames, then denoises the gripper nodes of the action frames.",
+      towers: [
+        { mod: "front", title: "Correspondence front end", sub: "vision foundation models, frozen", compact: true,
+          input: { label: "Demo + live RGB-D", caption: "3 calibrated cameras" },
+          rows: [
+            { t: "pool", label: "View alignment", call: ["keep the top 2 view pairs", "p3"] },
+            { t: "attn", label: "RADIO v2.5 matching", call: ["nearest descriptor in mask", "p3"] },
+            { t: "attn", label: "CoTracker over time", call: ["512 points / object / view", "p3"] },
+            { t: "linear", label: "Lift to 3-D, gripper frame" },
+            { t: "pool", label: "Keep reliable, FPS", call: ["16 scene keypoints", "p2"] } ],
+          output: { label: "matched keypoints" } },
+        { mod: "gnn", title: "Correspondence-aware policy", sub: "graph diffusion network",
+          input: { label: "Graph of frames", caption: "demos · current · K noisy action frames" },
+          rows: [
+            { t: "embed", label: "Scene + gripper nodes", call: ["16 scene + 6 gripper per frame", "p2"] },
+            { t: "mlp", label: "Local PointNet features", call: ["occupancy pre-trained", "p2"],
+              zoom: { k: "rows", title: "Local geometric refinement", rows: ["each point → nearest keypoint", "PointNet on each point group", "pre-trained on reconstruction", "feature on that scene node"] } },
+            { t: "group", label: "Message passing (depth not stated)", rows: [
+              { t: "attn", label: "Correspondence edges", call: ["demo ↔ current, same index", "p2"],
+                zoom: { k: "rows", title: "Edge types", rows: ["demo ↔ current: same keypoint", "within frame: all node pairs", "action ↔ current, earlier actions", "spatial edges carry Δxyz"] } },
+              { t: "attn", label: "Spatial edges in frames" },
+              { t: "attn", label: "Action-consistency edges" } ] },
+            { t: "mlp", label: "Denoising output", call: ["ε ∈ ℝ⁷ per action gripper node", "p2"] } ],
+          output: { label: "noise estimate per gripper node" } },
+        { mod: "svd", title: "Pose recovery", sub: "no weights", compact: true,
+          input: { label: "Gripper-node displacements" },
+          rows: [
+            { t: "linear", label: "Iterative denoising" },
+            { t: "linear", label: "SVD fit → ΔTₖ", call: ["least-squares rigid fit", "p2"] },
+            { t: "linear", label: "IK → joint commands", call: ["run K/2, overlap the rest", "p6"] } ],
+          output: { label: "K gripper actions" } }
+      ],
+      links: [
+        { from: "front", to: "gnn", toRow: "input", label: "keypoints" },
+        { from: "gnn", to: "svd", toRow: "input", label: "per-node ε" }
+      ]
+    },
+    modules: [
+      { id: "front", role: "vision-enc", roleLabel: "Correspondence front end", name: "RADIO + CoTracker", sub: "dense matches + tracks", col: 0, frozen: true, short: "Matching",
+        note: "Used only at deployment; in training the synthetic dataset supplies ground-truth correspondences." },
+      { id: "gnn", role: "net", roleLabel: "Graph diffusion policy", name: "Graph policy", sub: "22 nodes / frame · ε ∈ ℝ⁷", col: 1, frozen: false, main: true, short: "Graph policy",
+        stack: { rows: [
+          { t: "in", label: "demo, current and noisy action frames", dims: "6 gripper + 16 scene nodes each", c: "data-3" },
+          { t: "mlp", label: "local PointNet feature per scene node" },
+          { t: "attn", label: "message passing: correspondence, spatial, action edges" },
+          { t: "mlp", label: "decoder per action gripper node" },
+          { t: "out", label: "ε = [∇pₜ, ∇p_R, ∇a]", dims: "7-d", c: "data-3" } ],
+          facts: [["Nodes per frame", ["6 gripper + 16 scene", "p2"]], ["Demos", ["N = 1 or 2", "p1"]], ["Loss", ["standard denoising MSE", "p2"]], ["Optimiser", ["AdamW, lr 1e-5, 1M steps", "p5"]], ["Width / depth", ["not stated", "p2"]]] } },
+      { id: "svd", role: "codec", roleLabel: "Pose recovery (no weights)", name: "SVD + IK", sub: "node flow → ΔTₖ", col: 2, frozen: true, short: "SVD",
+        note: "Not a network: rigid fit of the predicted gripper-keypoint displacements, then inverse kinematics." }
+    ],
+    inputs: [
+      { to: "front", mod: "vision", label: "demo + live RGB-D", n: "3 cameras", k: 4 },
+      { to: "gnn", mod: "other", label: "N demos", n: "1–2", k: 3 },
+      { to: "gnn", mod: "action", label: "noisy actions", n: "K frames", k: 4, noisy: true }
+    ],
+    outputs: [{ from: "svd", mod: "action", label: "gripper actions", n: "K × (ΔT, grip)", k: 4 }],
+    links: [
+      { from: "front", to: "gnn", kind: "feeds", label: "matched keypoints|by index" },
+      { from: "gnn", to: "svd", kind: "feeds", label: "per-node ε|SVD per frame" }
+    ],
+    callouts: [
+      "No public code, and the paper gives no width, depth, head count or denoising-step count for the graph network; those are left out here.",
+      "Close to Instant Policy's graph (6 gripper nodes, a 7-d ε split into translation and rotation parts, SVD), but scene nodes are <b>matched keypoints</b> rather than point-cloud centroids, so demo and scene nodes line up by index."
+    ]
+  });
 })();
 
 </script>
@@ -20983,8 +22001,8 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       { id: "act", role: "action-expert", name: "Action expert DiT", sub: "30 × 1024 · FFN 4096", col: 2, frozen: false, params: "≈ 1B", short: "Action DiT" }
     ],
     inputs: [
-      { to: "vae", mod: "vision", label: "current frame f₀", n: "cameras tiled", k: 3 },
-      { to: "vae", mod: "future", label: "future frames", n: "training only", k: 4 },
+      { to: "vae", mod: "vision", label: "current frame f₀", n: "tiled views", k: 3 },
+      { to: "vae", mod: "future", label: "future frames", n: "train only", k: 4 },
       { to: "vid", mod: "lang", label: "instruction (T5)", n: "cross-attention", k: 3 },
       { to: "act", mod: "action", label: "noisy action chunk", n: "h = 32", k: 5, noisy: true }
     ],
@@ -27098,7 +28116,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
           input: { label: "Visual + tactile tokens", caption: "256-d each" },
           rows: [
             { t: "linear", label: "Random masking (MAE only)", call: ["95 % of tokens dropped", "p2", "c1"],
-              zoom: { k: "rows", title: "MAE decoder (training)", rows: ["visible tokens + mask tokens", "+ sin-cos positions", "decoder: 3 layers, d 256, 4 heads", "predict pixels and taxels", "L = MSE_pixels + 10 · MSE_taxels"] } },
+              zoom: { k: "rows", title: "MAE decoder (training)", rows: ["visible tokens + mask tokens", "+ sin-cos positions", "decoder: 3 layers, d 256, 4 heads", "predict pixels and taxels", "L = MSE(pixels) + 10 · MSE(taxels)"] } },
             { t: "block", n: "4", rows: [
               { t: "norm", label: "LayerNorm 1" },
               { t: "attn", label: "Multi-head attention", call: ["4 heads × 64, width 256", "c1", "c2"], zoom: { k: "heads", q: 4, kv: 4, hd: 64, title: "Encoder attention" } },
@@ -28718,7 +29736,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
           rows: [
             { t: "conv", label: "ResNet-18 encoder h(·)", call: ["Reused, frozen, inside RND-OE", "p1", "p2"] },
             { t: "mlp", label: "Diffusion U-Net or flow ACT", call: ["Sample B chunks per call", "p3", "c5"] } ],
-          output: { label: "embedding Oᵉ + B chunks" } },
+          output: { label: "embedding Oᵉ" } },
         { mod: "rnd", title: "RND-OE predictor fθ", sub: "vs frozen random target g",
           input: { label: "Observation embedding Oᵉ", caption: "same input for target and predictor" },
           rows: [
@@ -28731,7 +29749,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
             { t: "pool", label: "‖fθ − g‖₂, window sum", call: ["Window w_O; best w = 25 or 50", "p1", "p5"] } ],
           output: { label: "observation score ηₒ" } },
         { mod: "ace", title: "Action-chunk entropy", sub: "no training", compact: true,
-          input: { label: "B sampled chunks", caption: "end-effector positions" },
+          input: { label: "B chunks from the policy", caption: "end-effector positions" },
           rows: [
             { t: "linear", label: "Per-step xyz histogram", call: ["Cell = 0.03 × calibration range", "p3", "c4"],
               zoom: { k: "rows", title: "ACE score", rows: ["B chunks, H steps each", "per step: grid cells in xyz", "pᶜ = count / B", "entropy −Σ pᶜ log₂ pᶜ", "sum over H steps"] } },
@@ -28744,7 +29762,6 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       ],
       links: [
         { from: "policy", to: "rnd", toRow: "input", label: "embedding Oᵉ" },
-        { from: "policy", to: "ace", toRow: "input", label: "B chunks" },
         { from: "rnd", to: "gate", toRow: "input", label: "η_O" },
         { from: "ace", to: "gate", toRow: "input", label: "η_A" }
       ]
@@ -28831,7 +29848,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
             { t: "linear", label: "Sample B chunks of h", call: ["h = 16 in all domains", "p3"] } ],
           output: { label: "B action chunks at t" } },
         { mod: "stac", title: "STAC", sub: "statistical temporal action consistency",
-          input: { label: "Batches at t and t + k", caption: "overlap a_{t+k : t+h−1}" },
+          input: { label: "Batches at t and t + k", caption: "overlap a_{t+k:t+h−1}" },
           rows: [
             { t: "linear", label: "Drop gripper, keep overlap", call: ["h − k overlapping steps", "p1", "p3"] },
             { t: "linear", label: "Distance D̂(π̄ₜ, π̃ₜ₊ₖ)", call: ["MMD with RBF, or KL via KDE", "p3"],
@@ -31170,8 +32187,8 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
     ],
     inputs: [
       { to: "enc", mod: "vision", label: "observation", n: "points / image / state", k: 4 },
-      { to: "gen", mod: "action", label: "action input a", n: "0 at test time", k: 3 },
-      { to: "gen", mod: "time", label: "time t", n: "0 test · 0.9 probe", k: 2 },
+      { to: "gen", mod: "action", label: "action input a", n: "0 at test", k: 3 },
+      { to: "gen", mod: "time", label: "time t", n: "0 · probe 0.9", k: 2 },
       { to: "geo", mod: "action", label: "expert actions a*", n: "minibatch", k: 3 }
     ],
     outputs: [{ from: "gen", mod: "action", label: "action chunk", n: "1 NFE", k: 4 }],
@@ -33793,6 +34810,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
   A.alias("open-x-embodiment-rt-x", "rt-1", "RT-X adds data, not architecture: RT-1-X is the RT-1 network trained on Open X-Embodiment, and RT-2-X is RT-2 (PaLI-X). Shown: RT-1.");
   A.alias("umi", "diffusion-policy", "UMI is a data-collection interface; its policy is a standard Diffusion Policy. Shown: Diffusion Policy.");
   A.alias("phantom", "diffusion-policy", "Phantom edits human videos into robot data and trains a standard Diffusion Policy on it. Shown: Diffusion Policy.");
+  A.alias("mobile-aloha", "act", "Mobile ALOHA is a bimanual mobile platform and a co-training recipe; its main policy is the standard ACT network. Shown: ACT.");
   A.alias("serl", "hil-serl", "SERL runs the same RLPD agent and ResNet-10 encoder later used by HIL-SERL. Shown: HIL-SERL.");
   A.alias("rlpd", "hil-serl", "RLPD is an algorithm recipe on SAC (symmetric sampling, LayerNorm critics, ensembles); its network is drawn inside HIL-SERL.");
   [["dagger", "A data-aggregation algorithm around any supervised learner; it has no network of its own."],
@@ -33810,7 +34828,27 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
    ["robopair", "An LLM jailbreak attack; the attacker and judge are off-the-shelf LLMs."],
    ["badrobot", "A voice and text jailbreak benchmark with no model of its own."],
    ["poex", "An attack on planning LLMs with no robot-policy model to draw."],
-   ["libero-plus", "A perturbation benchmark over LIBERO, not a policy."]
+   ["libero-plus", "A perturbation benchmark over LIBERO, not a policy."],
+   /* Data (topic 14): datasets, devices and generators */
+   ["droid", "A dataset and its collection platform. Its reference policy is a robomimic Diffusion Policy, drawn in Generative policy heads."],
+   ["bridgedata-v2", "A dataset and its collection setup; the policies it benchmarks (GCBC, ACT, Diffusion Policy) are drawn in their own topics."],
+   ["gello", "A low-cost leader arm for teleoperation: hardware, not a model."],
+   ["mimicgen", "A data-generation system: it re-targets object-centric demo segments in simulation and trains a standard BC-RNN on the result."],
+   ["robocasa", "A simulation framework and task suite; its benchmark policy is a standard robomimic BC-Transformer."],
+   /* Benchmarks (topic 24): evaluation suites, not models */
+   ["libero", "A benchmark suite (130 tasks in four groups), not a policy."],
+   ["calvin", "A long-horizon language-conditioned benchmark, not a policy."],
+   ["simpler", "Simulated replicas of real setups for evaluating real-robot policies; no model of its own."],
+   ["rlbench", "A simulated benchmark of 100 manipulation tasks, not a policy."],
+   ["meta-world", "A multi-task and meta-RL benchmark of 50 tasks, not a policy."],
+   ["robomimic", "A benchmark and learning framework; its BC, BC-RNN and offline-RL baselines are generic networks."],
+   ["maniskill3", "A GPU-parallel simulator and benchmark, not a policy."],
+   ["worldsimbench", "A benchmark for video world simulators, not a model."],
+   ["ewmbench", "A benchmark for embodied world models, not a model."],
+   /* In-context learning (topic b6): methods built from off-the-shelf parts */
+   ["kat", "No network of its own: frozen DINO-ViT-S/8 descriptors pick 10 keypoints shared across the demos, and an off-the-shelf GPT-4 Turbo maps the demos' keypoint and action tokens to new action tokens in context."],
+   ["roboprompt", "No network of its own: Grounding DINO and FoundationPose give 6-DoF object poses, written as discretised text, and GPT-4 Turbo completes keyframe actions from 10 in-context examples."],
+   ["bpc", "No deep network: it retrieves demo windows, fits their next actions to the live history (H g ≈ z), and adds a ridge-regression residual on pooled random Fourier features."]
   ].forEach(function (x) { A.none(x[0], x[1]); });
 })();
 
@@ -36581,7 +37619,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       te: "Temporal ensembling averages the old and new chunks. When they chose different sides of the block, the average drives into it.",
       rtc: "RTC freezes the first d actions to the old chunk and blends the rest with a decaying mask, so the new chunk continues the same mode."
     };
-    var sx = function (x) { return 24 + x / LEN * (W - 48); }, sy = function (v) { return Hc / 2 - v * (Hc / 2 - 24); };
+    var sx = function (x) { return 24 + x / LEN * (W - 48); }, sy = function (v) { return Hc / 2 - v / 0.9 * (Hc / 2 - 16); };
     function draw() {
       var P = RB.pal(), c = RB.canvas(cv, W, Hc);
       c.fillStyle = P.surface; c.fillRect(0, 0, W, Hc);
@@ -36938,11 +37976,11 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       RB.slider({ id: id + "-h", label: "Chunk H", min: 1, max: 50, step: 1, value: 1 }) +
       RB.slider({ id: id + "-k", label: "Denoising steps K", min: 1, max: 20, step: 1, value: 10 }) +
       '<label class="sb-field"><input type="checkbox" id="' + id + '-par"> <span>Decode all tokens in one pass</span></label></div>' +
-      '<div class="rb-grid2"><figure class="rb-fig"><div data-grid></div><div data-stack></div><figcaption class="sb-caption">Top: the seven cells of P02 Fig. 4; click one. Bottom: the chosen stack. The accent loop shows which part runs again and again for one call.</figcaption></figure>' +
+      '<div class="sb-split sb-split--fig-wide"><figure class="rb-fig"><div data-grid></div><div data-stack></div><figcaption class="sb-caption">Top: the seven cells of P02 Fig. 4; click one. Bottom: the chosen stack. The accent loop shows which part runs again and again for one call.</figcaption></figure>' +
       '<div class="rb-stack">' + RB.readouts([{ id: "cell", k: "Cell in P02 Fig. 4" }, { id: "big", k: "Big-model passes per call" }, { id: "small", k: "Small-module passes per call" }, { id: "acts", k: "Actions per call" }]) +
       '<div class="rb-well"><p class="sb-caption" data-name></p><dl class="rb-kv" data-facts></dl><p class="sb-caption" data-ref></p></div><p class="sb-caption" data-note></p></div></div>';
     var st = { bb: "vlm", head: "tok", D: 7, H: 1, K: 10, par: false };
-    var gridHost = body.querySelector("[data-grid]"), stackHost = body.querySelector("[data-stack]");
+    var gridHost = body.querySelector("[data-grid]"), stackHost = body.querySelector("[data-stack]"); gridHost.classList.add("rb-fig-scroll"); stackHost.classList.add("rb-fig-scroll");
     function render() {
       var key = st.bb + "-" + st.head, cell = CELLS[key], p = passes(st.bb, st.head, st.D, st.H, st.K, st.par);
       gridHost.innerHTML = gridSVG(st.bb, st.head);
@@ -41707,6 +42745,23 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
 /* Topic 17 · Deformable, bimanual and mobile manipulation. Sources: P01 §2.1, §3.2, §4.5–4.7, Tables 2 and 7; P07 §4.4; P02 §VI-A, §VII-A; P05 §2.3.2, §5.4; method cards (topic E3). */
 (function () {
   "use strict";
+  /* Chamfer distance, drawn: every point of the current shape P1 joins its nearest point of the goal shape P2; d_c is the mean length */
+  function chamferFig() {
+    var W = 520, H = 240, P1 = [], P2 = [], i;
+    for (i = 0; i < 9; i++) { var u = i / 8; P1.push([60 + u * 400, 150 - Math.sin(u * Math.PI) * 70]); }
+    for (i = 0; i < 7; i++) { var v = i / 6; P2.push([90 + v * 360, 62 + v * 50]); }
+    var segs = "", sum = 0;
+    P1.forEach(function (p) {
+      var best = null, bd = 1e9; P2.forEach(function (q) { var d = Math.hypot(p[0] - q[0], p[1] - q[1]); if (d < bd) { bd = d; best = q; } });
+      sum += bd; segs += '<line class="rb-ch-seg" x1="' + p[0].toFixed(1) + '" y1="' + p[1].toFixed(1) + '" x2="' + best[0].toFixed(1) + '" y2="' + best[1].toFixed(1) + '"/>';
+    });
+    var dots = P1.map(function (p) { return '<circle class="rb-ch-p1" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="6"/>'; }).join("") +
+      P2.map(function (q) { return '<rect class="rb-ch-p2" x="' + (q[0] - 5).toFixed(1) + '" y="' + (q[1] - 5).toFixed(1) + '" width="10" height="10" rx="2"/>'; }).join("");
+    return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Chamfer distance: each point of the current shape is joined to its nearest point of the goal shape; the distance is the mean length of these segments">' + segs + dots +
+      '<text class="rb-ch-lbl" x="30" y="228">● current shape P₁</text><text class="rb-ch-lbl" x="200" y="228">□ goal shape P₂</text><text class="rb-ch-lbl rb-ch-acc" x="352" y="228">— nearest-point gap</text>' +
+      '<text class="rb-ch-lbl" x="' + (W - 12) + '" y="22" text-anchor="end">d_c = mean of the ' + P1.length + " gaps</text></svg>";
+  }
+
   var RB = window.RB;
 
   /* RB.bindSeg passes b.value of a string (undefined) in this core version, so bind segmented controls directly */
@@ -42078,7 +43133,8 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       { name: "Chamfer distance between shapes", ref: "arXiv 2110.04685", term: "chamfer-distance",
         tex: "d_c = \\frac{1}{|\\class{sym-pc}{P_1}|} \\sum_{p \\in \\class{sym-pc}{P_1}} \\min_{p' \\in \\class{sym-pc}{P_2}} \\| p - p' \\|_2",
         words: "For every point of one shape, find the nearest point of the other and average the distances. It needs no point correspondences.",
-        key: [{ glyph: "d_c", meaning: "Chamfer distance" }, "pc", { glyph: "p, p′", meaning: "points of the two clouds" }] },
+        key: [{ glyph: "d_c", meaning: "Chamfer distance" }, "pc", { glyph: "p, p′", meaning: "points of the two clouds" }],
+        fig: chamferFig(), figCap: "Illustrative points. Each gap runs from a point of P₁ to its nearest point of P₂; no point pairs are given in advance, and two P₁ points may share a nearest P₂ point." },
       { name: "HoMeR whole-body IK", ref: "arXiv 2506.01185", term: "whole-body-control",
         tex: "\\min_{\\dot{\\class{sym-qj}{q}}}\\ \\|\\class{sym-Jac}{J(q)}\\,\\dot{\\class{sym-qj}{q}} - e_{ee}\\|^2_{W_{ee}} + \\|\\class{sym-qj}{q} + \\dot{\\class{sym-qj}{q}}\\,\\Delta t - \\class{sym-qj}{q}_{\\text{rest}}\\|^2_{W_{post}} + \\|\\dot{\\class{sym-qj}{q}}_{\\text{base}}\\|^2_{W_{damp}}",
         words: "A quadratic program (QP): track the end-effector error, stay near a tucked posture, damp base motion. HoMeR weights these 1.0, 0.002 and 1.5.",
@@ -51740,7 +52796,7 @@ window.RB.M = {}; window.RB.METHODS.forEach(function (m) { window.RB.M[m.id] = m
       { target: "#tab-lab", title: "Interactive Lab", text: "Twelve stations on one bench: policy heads, tokenizers, world models, grasps, contact and verifiers." },
       { target: "#tab-reference", title: "Reference", text: "Formula sheet, review cards, where the papers disagree, the dataset atlas and the shelf." },
       { target: "#tab-glossary", title: "Glossary", text: "Every key term shown where it lives in a picture of a robot-learning system." },
-      { target: "#tab-notation", title: "Notation", text: "One house notation for all sixteen surveys, and how each paper writes the same idea." }
+      { target: "#tab-notation", title: "Notation", text: "One house notation for all seventeen surveys, and how each paper writes the same idea." }
     ], { title: "Tour" });
     RB.go("#overview"); tour.start(0);
   };
