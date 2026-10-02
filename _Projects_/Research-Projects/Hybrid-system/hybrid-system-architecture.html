@@ -1572,17 +1572,17 @@ body.has-sheet .st-main { padding-bottom: calc(46vh + 24px); }
 /* gaps layer */
 .pv .qtags { display: none; }
 .pv[data-layer="status"] .qtags { display: inline; }
-.pv .qtag rect { stroke: var(--surface); stroke-width: 1.5; } .pv .qtag.p1 rect { fill: var(--bad); } .pv .qtag.p2 rect { fill: var(--warn); } .pv .qtag.p3 rect { fill: var(--ink-3); }
-.pv .qtag text { font: 700 11px/1 var(--font-mono); fill: var(--surface); text-anchor: middle; dominant-baseline: central; }
+.pv .qtag rect { stroke-width: 1.6; } .pv .qtag.p1 rect { fill: var(--ink); stroke: var(--ink); } .pv .qtag.p2 rect { fill: var(--surface); stroke: var(--ink); } .pv .qtag.p3 rect { fill: var(--surface); stroke: var(--ink-3); }
+.pv .qtag text { font: 700 11px/1 var(--font-mono); fill: var(--ink); text-anchor: middle; dominant-baseline: central; } .pv .qtag.p1 text { fill: var(--surface); } .pv .qtag.p3 text { fill: var(--ink-3); }
 .st-gapbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
 .st-gaplist { display: grid; gap: 6px; }
 .st-gap { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 2px 8px; align-items: center; width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); text-align: left; cursor: pointer; font: 400 14px/20px var(--font-body); }
 .st-gap:hover { background: var(--accent-soft); border-color: var(--accent); }
 .st-gap .gtitle { font-weight: 600; } .st-gap small { grid-column: 1 / -1; color: var(--ink-3); font: 400 12px/16px var(--font-mono); }
-.gp { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: var(--radius-round); font: 700 11px/1 var(--font-mono); color: var(--surface); flex: none; }
-.gp.p1 { background: var(--bad); } .gp.p2 { background: var(--warn); } .gp.p3 { background: var(--ink-3); }
+.gp { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 4px; font: 700 11px/1 var(--font-mono); flex: none; border: 1.6px solid var(--ink); }
+.gp.p1 { background: var(--ink); color: var(--surface); } .gp.p2 { background: var(--surface); color: var(--ink); } .gp.p3 { background: var(--surface); color: var(--ink-3); border-color: var(--ink-3); }
 .gt { display: inline-flex; align-items: center; padding: 0 8px; border-radius: var(--radius-xs); font: 600 11px/18px var(--font-mono); letter-spacing: .04em; text-transform: uppercase; border: 1px solid currentColor; }
-.gt.t-fix { color: var(--bad); } .gt.t-verify { color: var(--data-1); } .gt.t-decide { color: var(--warn); } .gt.t-build { color: var(--ink-2); }
+.gt { color: var(--ink-2); }
 .st-prompt { margin: 0; padding: var(--space-3); max-height: 340px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-sunk); font: 400 12.5px/19px var(--font-mono); color: var(--ink); }
 
 /* module list */
@@ -1611,6 +1611,9 @@ body.has-sheet .st-main { padding-bottom: calc(46vh + 24px); }
 .st-terms dd { margin: 0; font: 400 14px/20px var(--font-body); color: var(--ink); }
 @media (max-width: 600px) { .st-terms dl { grid-template-columns: minmax(0, 1fr); } }
 .sh-col p, .sh-col dd, .st-where, .st-contract dd { overflow-wrap: anywhere; }
+
+.lg-gp { border-radius: 3px; width: 18px; height: 14px; }
+.lg-gp1 { background: var(--ink); border-color: var(--ink); } .lg-gp2 { background: var(--surface); border-color: var(--ink); } .lg-gp3 { background: var(--surface); border-color: var(--ink-3); }
 
 </style>
 </head><body class="sb-root">
@@ -3807,7 +3810,7 @@ window.CARDS = {"m-libero-policy": "<div class=\"hs-card\"><div class=\"hs-card-
   var legendEl = document.getElementById("stLegend");
   function sw(cls, txt) { return '<span><i class="lg-sw ' + cls + '"></i>' + txt + '</span>'; }
   function legendFor(name) {
-    return '<span class="lg-group"><span class="lg-title">Fill = role in the design</span>' + sw("lg-adv", "advisor (system 2)") + sw("lg-pol", "policy (system 1)") + sw("lg-box", "other step") + sw("lg-gate", "decision gate") + '</span><span class="lg-group"><span class="lg-title">Outline and mark = status</span>' + sw("lg-ok", "✓ built as designed") + sw("lg-diff", "≠ built differently") + sw("lg-miss", "✕ not built") + '<span>L LIBERO · R RoboDojo · Δ details differ</span></span><span class="lg-group"><span class="lg-title">Number on a box = open gaps</span><span><i class="lg-sw lg-tag" style="background:var(--bad);border-color:var(--bad)"></i>high</span><span><i class="lg-sw lg-tag" style="background:var(--warn);border-color:var(--warn)"></i>medium</span><span><i class="lg-sw lg-tag" style="background:var(--ink-3);border-color:var(--ink-3)"></i>low</span></span>';
+    return '<span class="lg-group"><span class="lg-title">Fill = role in the design</span>' + sw("lg-adv", "advisor (system 2)") + sw("lg-pol", "policy (system 1)") + sw("lg-box", "other step") + sw("lg-gate", "decision gate") + '</span><span class="lg-group"><span class="lg-title">Outline and mark = status</span>' + sw("lg-ok", "✓ built as designed") + sw("lg-diff", "≠ built differently") + sw("lg-miss", "✕ not built") + '<span>L LIBERO · R RoboDojo · Δ details differ</span></span><span class="lg-group"><span class="lg-title">Square on a box = open gaps (count)</span><span><i class="lg-sw lg-gp lg-gp1"></i>high priority</span><span><i class="lg-sw lg-gp lg-gp2"></i>medium</span><span><i class="lg-sw lg-gp lg-gp3"></i>low</span></span>';
   }
 
   /* gaps: what is left between the design and the code */
@@ -3818,7 +3821,7 @@ window.CARDS = {"m-libero-policy": "<div class=\"hs-card\"><div class=\"hs-card-
   ST.ITEMS.forEach(function (it) {
     var mine = GAPS.filter(function (g) { return g.boxes.indexOf(it.id) >= 0; }); if (!mine.length) return;
     var top = Math.min.apply(null, mine.map(function (g) { return g.priority; })), pp = pos(it), q = el("g", { "class": "qtag p" + top }, qLayer);
-    el("rect", { x: pp.rx - 12, y: pp.ly - 9, width: 24, height: 18, rx: 9 }, q); var tx = el("text", { x: pp.rx, y: pp.ly }, q); tx.textContent = mine.length;
+    el("rect", { x: pp.rx - 12, y: pp.ly - 9, width: 24, height: 18, rx: 3 }, q); var tx = el("text", { x: pp.rx, y: pp.ly }, q); tx.textContent = mine.length;
   });
   function sortedGaps() { return GAPS.filter(function (g) { return (gf.type === "all" || g.type === gf.type) && (!gf.high || g.priority === 1); }).sort(function (a, b) { return a.priority - b.priority || TORDER[a.type] - TORDER[b.type]; }); }
   function gapRow(g) { return '<button type="button" class="st-gap" data-gap="' + g.id + '"><span class="gp p' + g.priority + '" title="' + PRIO[g.priority] + ' priority">' + PRIO[g.priority][0] + '</span><span class="gt t-' + g.type + '">' + GT[g.type] + '</span><span class="gtitle">' + esc(g.title) + '</span><small>' + g.size + ' · ' + g.boxes.length + ' box' + (g.boxes.length === 1 ? '' : 'es') + (g.deps.length ? ' · needs ' + g.deps.length : '') + '</small></button>'; }
