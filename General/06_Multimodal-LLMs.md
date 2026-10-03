@@ -363,7 +363,7 @@ Reducing MLLM inference cost through token compression, model compression, and c
 > - [[2412.04468|NVILA]] (CVPR'25) — NVIDIA's efficient MLLM family achieving competitive quality at reduced compute
 
 **Efficient Inference & Acceleration** — Methods for speeding up MLLM inference at deployment time.
-- [[2602.11812|EGTP]] (ICLR'26), [[2512.13607|Nemotron-Cascade]], [[2508.03682|SQLM]], [[2505.22618|Fast-dLLM]] (ICLR'26), [[2505.10526|MASSV]], [[2404.16710|LayerSkip]]
+- [[2610.02185|LoopCD]], [[2602.11812|EGTP]] (ICLR'26), [[2512.13607|Nemotron-Cascade]], [[2508.03682|SQLM]], [[2505.22618|Fast-dLLM]] (ICLR'26), [[2505.10526|MASSV]], [[2404.16710|LayerSkip]]
 
 > [!star] Key Papers
 > - [[2505.10526|MASSV]] — Speculative decoding framework accelerating VLM inference through multi-head parallel generation
@@ -499,7 +499,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 - [[2604.28182|Exploration-Hacking]], [[2603.30036|CoT-Monitorability]], [[2602.08145|Reliable-Foundation-Models-Survey]], [[2601.14127|MIR-SafetyBench]], [[2512.15926|DSO]], [[2510.06738|AWM]] (ICLR'26), [[2510.06096|Alignment-Auditor]] (ICLR'26), [[2510.01088|Safety-Instincts]] (ICLR'26), [[2509.22989|Strategic-Persuasion]] (ICLR'26), [[2509.03518|LLM-Lying]], [[2506.19823|Persona-Misalignment]] (ICLR'26), [[2506.19807|KnowRL]], [[2502.05206|Safety-at-Scale-Survey]], [[2405.02411|Socially Aware NLP]] (CL)
 
 **Trustworthiness Calibration & Robustness Benchmarks** — Measuring confidence calibration and robustness of MLLM predictions.
-- [[2609.22206|MLLM Uncertainty Benchmark]], [[2608.17084|MLLM Uncertainty Survey]], [[2606.14728|FUSE-VLM-UQ]], [[2604.09529|VL-Calibration]], [[2603.13292|Pragma-VL]] (ICLR'26), [[2603.03944|SCP-Bench]], [[2602.21054|VAUQ]], [[2602.14934|GAPA]], [[2602.01816|VIA-Bench]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2504.18053|DREAM]], [[2411.11919|VL-Uncertainty]], [[2406.18925|VisArgs]]
+- [[2609.22206|MLLM Uncertainty Benchmark]], [[2608.17084|MLLM Uncertainty Survey]], [[2606.14728|FUSE-VLM-UQ]], [[2604.09529|VL-Calibration]], [[2603.13292|Pragma-VL]] (ICLR'26), [[2603.03944|SCP-Bench]], [[2602.21054|VAUQ]], [[2602.14934|GAPA]], [[2602.01816|VIA-Bench]], [[2511.04869|B-Calibration]], [[2506.22982|CroPA]], [[2505.23745|TrustVLM]], [[2504.18053|DREAM]], [[2411.11919|VL-Uncertainty]], [[2406.18925|VisArgs]]
 
 > [!star] Key Papers
 > - [[2505.23745|TrustVLM]] — Framework estimating prediction trustworthiness by combining internal and external confidence signals
@@ -514,7 +514,7 @@ Methods for improving MLLM reasoning capabilities and estimating the reliability
 > - [[2508.04227|VLM-Continual-Learning-Survey]] — Comprehensive taxonomy of continual learning challenges specific to VLMs
 
 **Multimodal Reasoning: Data, Representation & Efficiency** — Non-RL methods improving multimodal reasoning through data curation, representation design, or inference efficiency.
-- [[2606.07500|SETA]], [[2602.02951|NUWA]] (ICLR'26), [[2512.12822|LEMON]], [[2511.22715|ReAG]] (CVPR'26), [[2511.19972|Activation-Replay-MM]] (CVPR'26), [[2511.17487|EXTRACT+THINK]] (CVPR'26), [[2510.14605|Wiki-PRF]] (NeurIPS'25), [[2510.08673|Puffin]] (ICLR'26), [[2508.15568|ADAPT]] (NeurIPS'25), [[2507.10302|DisCo]] (ICCV'25), [[2506.22819|TCA]], [[2506.05302|PAM]] (NeurIPS'25), [[2506.04559|RAPID]] (ICLR'26), [[2506.04209|LIFT]], [[2506.02138|PA-LRP]] (NeurIPS'25), [[2505.16151|FRANK]], [[2505.07956|LLM-LEx]], [[2502.20120|Modality-Boosting]] (NeurIPS'25 Oral)
+- [[2609.37725|CLM]], [[2606.07500|SETA]], [[2602.02951|NUWA]] (ICLR'26), [[2512.12822|LEMON]], [[2511.22715|ReAG]] (CVPR'26), [[2511.19972|Activation-Replay-MM]] (CVPR'26), [[2511.17487|EXTRACT+THINK]] (CVPR'26), [[2510.14605|Wiki-PRF]] (NeurIPS'25), [[2510.08673|Puffin]] (ICLR'26), [[2508.15568|ADAPT]] (NeurIPS'25), [[2507.10302|DisCo]] (ICCV'25), [[2506.22819|TCA]], [[2506.05302|PAM]] (NeurIPS'25), [[2506.04559|RAPID]] (ICLR'26), [[2506.04209|LIFT]], [[2506.02138|PA-LRP]] (NeurIPS'25), [[2505.16151|FRANK]], [[2505.07956|LLM-LEx]], [[2502.20120|Modality-Boosting]] (NeurIPS'25 Oral)
 
 > [!tip] Reasoning You Can Trust
 > MLLM reasoning gains now come mostly from RL on verifiable visual tasks, but a reasoning trace is only useful if its confidence is trustworthy. TrustVLM scores predictions training-free from image-to-text and image-to-image similarity, VAUQ quantifies how much a prediction relies on visual evidence, and MIR-SafetyBench is the first benchmark for safety risks that arise from multi-image reasoning, so calibration and safety checks belong next to the RL that improves accuracy. Agent, self-improvement and harness work formerly listed here now lives in [[10_Agents-and-Tool-Use]] and [[09_Self-Evolving-AI]].
@@ -560,7 +560,7 @@ Applying MLLMs and VLMs to downstream tasks including fine-grained recognition, 
 > - [[2506.23115|MoCa]] — Transforms causal VLMs into bidirectional encoders for robust retrieval
 
 **Creative & Domain-Specific Applications** — MLLMs applied to creative, simulation, and unconventional domain tasks.
-- [[2607.15314|Cura 1T]], [[2607.08374|JAM]], [[2606.31209|RosettaSim]] (ECCV'26), [[2606.31131|Crash-to-Scenario LLM Pipeline]], [[2604.13074|PersonaVLM]] (CVPR'26), [[2511.11007|VisMem]], [[2505.21497|PosterAgent]] (NeurIPS'25), [[2505.11820|CoLM]] (NeurIPS'25), [[2505.01812|New-News]], [[2411.17673|SketchAgent]] (CVPR'25), [[2312.04684|LaRS]], [[2301.05226|IPVR]], [[2210.02506|GameBugDescriptions]]
+- [[2609.34309|MaLiang-Harness]], [[2607.15314|Cura 1T]], [[2607.08374|JAM]], [[2606.31209|RosettaSim]] (ECCV'26), [[2606.31131|Crash-to-Scenario LLM Pipeline]], [[2604.13074|PersonaVLM]] (CVPR'26), [[2511.11007|VisMem]], [[2505.21497|PosterAgent]] (NeurIPS'25), [[2505.11820|CoLM]] (NeurIPS'25), [[2505.01812|New-News]], [[2411.17673|SketchAgent]] (CVPR'25), [[2312.04684|LaRS]], [[2301.05226|IPVR]], [[2210.02506|GameBugDescriptions]]
 
 **Evaluation, Testing & Deployment Applications** — Evaluating and stress-testing MLLM applications for real-world deployment.
 - [[2601.12585|MLLM-Visualization-Literacy]], [[2601.00561|AEGIS]], [[2511.20814|SPHINX]], [[2509.24207|Humanline]] (ICLR'26), [[2508.13142|EASI]], [[2507.01955|GPT-4o-Vision-Evaluation]] (ICLR'26), [[2506.22395|Test-Time-VLM-Consistency]], [[2412.18072|MMFactory]], [[2403.19103|PRISM-T2I]], [[2310.10625|VLP]] (ICLR'24), [[2305.00104|MMViT]]

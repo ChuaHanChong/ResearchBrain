@@ -176,10 +176,10 @@ The foundational paradigm for LLM agents: interleaving reasoning traces with env
 > - [[2305.14992|RAP]] — Treats the LLM as its own world model, enabling lookahead planning within the reasoning-acting framework
 
 **Agent Harness Design** — Studies and formalisms of the fixed software layer around a model (loop, tools, context management, verification, state), measured at depth 0 with no optimization loop; loops that rewrite the harness live in [[09_Self-Evolving-AI#10. Harness Optimization & Recursive Self-Improvement|09 §10]].
-- [[2609.20804|Coding Agent Harness Study]], [[2608.01964|LongHorizon-Harness]], [[2607.28802|Model-or-Harness]], [[2603.25723|Natural-Language-Agent-Harnesses]]
+- [[2610.01415|PoS]], [[2610.00972|VeriHarness]], [[2609.31847|Omni-IO-Skills]], [[2609.20804|Coding Agent Harness Study]], [[2608.01964|LongHorizon-Harness]], [[2607.28802|Model-or-Harness]], [[2603.25723|Natural-Language-Agent-Harnesses]]
 
 **Prompt, Pipeline & Harness Optimization** - Methods that search, learn, or co-train over prompts, LM-program pipelines, agent modules, and harness code; recursive self-improvement loops are traced in [[09_Self-Evolving-AI#10. Harness Optimization & Recursive Self-Improvement|09 §10]].
-- [[2609.00196|WHALE]], [[2608.15763|HAT]], [[2608.13560|AutoDesign]], [[2605.08083|AutoTTS]], [[2604.25850|Agentic-Harness-Engineering]], [[2603.28052|Meta-Harness]], [[2603.03329|AutoHarness]], [[2602.12275|OPCD]], [[2601.21557|MCE]], [[2507.19457|GEPA]] (ICLR'26 Oral), [[2505.00147|AdaptMI]], [[2502.04306|ScoreFlow]], [[2410.10762|AFlow]], [[2410.06153|AgentSquare]], [[2406.18532|Agent Symbolic Learning]], [[2406.11695|MIPRO]], [[2406.07496|TextGrad]], [[2403.19103|PRISM-T2I]], [[2310.03714|DSPy]], [[2309.08532|EvoPrompt]], [[2309.03409|OPRO]], [[2305.03495|ProTeGi]], [[2212.10560|Self-Instruct]]
+- [[2609.38143|MetaSkill]], [[2609.33439|Raven]], [[2609.00196|WHALE]], [[2608.15763|HAT]], [[2608.13560|AutoDesign]], [[2607.26598|Living-Harness]], [[2605.08083|AutoTTS]], [[2604.25850|Agentic-Harness-Engineering]], [[2603.28052|Meta-Harness]], [[2603.03329|AutoHarness]], [[2602.12275|OPCD]], [[2601.21557|MCE]], [[2507.19457|GEPA]] (ICLR'26 Oral), [[2505.00147|AdaptMI]], [[2502.04306|ScoreFlow]], [[2410.10762|AFlow]], [[2410.06153|AgentSquare]], [[2406.18532|Agent Symbolic Learning]], [[2406.11695|MIPRO]], [[2406.07496|TextGrad]], [[2403.19103|PRISM-T2I]], [[2310.03714|DSPy]], [[2309.08532|EvoPrompt]], [[2309.03409|OPRO]], [[2305.03495|ProTeGi]], [[2212.10560|Self-Instruct]]
 
 **Foundational Agent Benchmarks & Capabilities** — Landmark early benchmarks and capability studies that established what LLMs could do as autonomous agents, motivating the reasoning-acting paradigms that followed.
 - [[2607.05155|EdgeBench]], [[2605.15188|FutureSim]], [[2604.08523|ClawBench]], [[2602.11964|Gaia2]] (ICLR'26 Oral), [[2510.11977|HAL]], [[2509.22391|SeekBench]], [[2505.15146|lmgame-Bench]] (ICLR'26), [[2410.09024|AgentHarm]], [[2407.01502|AI Agents That Matter]], [[2310.12823|AgentLM]], [[2307.13854|WebArena]] (ICLR'24), [[2303.12712|Sparks of AGI]], [[2210.02506|GameBugDescriptions]]
@@ -197,10 +197,10 @@ Agents that generate and execute code as their primary action modality. Instead 
 - [[2510.15700|ProofOptimizer]] (ICLR'26), [[2510.01539|Executable-Counterfactuals]] (ICLR'26), [[2506.11487|DSP+]] (NeurIPS'25), [[2506.09820|CoRT]], [[2506.07047|Mathesis]] (ICLR'26), [[2401.08190|MARIO]], [[2211.12588|PoT]], [[2211.10435|PAL]] (ICML'23)
 
 **Domain-Specific Code Generation & Translation** — Code agents specialized for SQL, front-end, robotics, binary, and symbolic-solver targets rather than general-purpose reasoning.
-- [[2607.24051|HELIOS]], [[2509.25411|KeyTrace]] (ICLR'26), [[2509.22114|SK2Decompile]] (ICLR'26), [[2505.24189|SLM-vs-LLM-Low-Code-Workflows]], [[2504.08600|SQL-R1]] (NeurIPS'25), [[2504.02327|LearNAT]] (ICLR'26), [[2503.01619|Flame]], [[2305.03129|PROLEX]]
+- [[2609.39018|URAI]], [[2609.35432|HexaAnything]], [[2609.32416|RE-0]], [[2607.24051|HELIOS]], [[2509.25411|KeyTrace]] (ICLR'26), [[2509.22114|SK2Decompile]] (ICLR'26), [[2505.24189|SLM-vs-LLM-Low-Code-Workflows]], [[2504.08600|SQL-R1]] (NeurIPS'25), [[2504.02327|LearNAT]] (ICLR'26), [[2503.01619|Flame]], [[2305.03129|PROLEX]]
 
 **Code-Generation Training & Quality Optimization** — RL and feedback-driven methods that train code models for correctness, multi-language coverage, and interpreter-integrated reasoning quality.
-- [[2609.22068|CodeMidas]], [[2509.25810|RA3]] (ICLR'26), [[2508.04865|Agnostics]] (ICLR'26), [[2506.20639|DiffuCoder]] (ICLR'26), [[2505.22704|REAL-Code]] (NeurIPS'25), [[2505.21668|R1-Code-Interpreter]] (ICLR'26), [[2505.12723|OORL]] (NeurIPS'25)
+- [[2609.34587|IR4RL]], [[2609.32577|Gagar]], [[2609.22068|CodeMidas]], [[2509.25810|RA3]] (ICLR'26), [[2508.04865|Agnostics]] (ICLR'26), [[2506.20639|DiffuCoder]] (ICLR'26), [[2505.22704|REAL-Code]] (NeurIPS'25), [[2505.21668|R1-Code-Interpreter]] (ICLR'26), [[2505.12723|OORL]] (NeurIPS'25)
 
 **Secure & Verifiable Code Generation** — Benchmarks and inference-/training-time defenses that measure and improve the security of LLM-generated code without sacrificing functional correctness.
 - [[2507.19060|PurpCode]] (NeurIPS'25), [[2410.11096|SeCodePLT]], [[2405.00218|CODEGUARD+]], [[2402.09497|SafeCoder]] (ICML'24)
@@ -218,7 +218,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2512.03746|CodeVision]] — Code-as-tool framework equipping MLLMs with dynamically generated visual processing code
 
 **Coding Agents as Robot Control Policies** - LLM-generated robot programs and coding agents that write and execute code as the manipulation policy itself, often refining from physical or simulated rollout feedback instead of training a VLA.
-- [[2609.30249|RAPID-Nonprehensile]], [[2609.30233|AgenticGenPlan]], [[2609.29394|RACaP]], [[2609.27308|EmbodiedSWE]], [[2609.26499|Local Coding Agent]], [[2609.20822|SafeHarness]], [[2609.12541|AGP]], [[2608.18227|Agentic Push-T]], [[2606.16458|RHO-CodingAgent]], [[2605.02600|CoRAL]] (RSS'26), [[2604.10929|Ro-SLM]], [[2603.22435|CaP-X]], [[2603.04466|AOR]], [[2601.20334|FAEA]], [[2601.19510|ALRM]], [[2510.21302|NeSyRo]], [[2508.02629|HyCodePolicy]], [[2501.04268|RoboPro]], [[2305.16744|Demo2Code]], [[2305.11176|Instruct2Act]], [[2209.11302|ProgPrompt]], [[2209.07753|Code-as-Policies]] (ICRA'23)
+- [[2610.02196|InterEvolve]], [[2609.30249|RAPID-Nonprehensile]], [[2609.30233|AgenticGenPlan]], [[2609.29394|RACaP]], [[2609.27308|EmbodiedSWE]], [[2609.26499|Local Coding Agent]], [[2609.20822|SafeHarness]], [[2609.12541|AGP]], [[2608.18227|Agentic Push-T]], [[2606.16458|RHO-CodingAgent]], [[2605.02600|CoRAL]] (RSS'26), [[2604.10929|Ro-SLM]], [[2603.22435|CaP-X]], [[2603.04466|AOR]], [[2601.20334|FAEA]], [[2601.19510|ALRM]], [[2510.21302|NeSyRo]], [[2508.02629|HyCodePolicy]], [[2501.04268|RoboPro]], [[2305.16744|Demo2Code]], [[2305.11176|Instruct2Act]], [[2209.11302|ProgPrompt]], [[2209.07753|Code-as-Policies]] (ICRA'23)
 
 **Evolutionary Algorithm & Heuristic Discovery** — Agents that autonomously discover algorithms or evolve heuristics for optimization and combinatorial problems via evolutionary/genetic search.
 - [[2607.07984|AgentNAS]], [[2605.15871|AIRA-Compose]], [[2603.24517|AVO]], [[2601.18067|EvolVE]], [[2511.23473|ThetaEvolve]], [[2510.11121|RFTHGS]] (ICLR'26), [[2510.10644|LLM-Meta-Optimizer-MoD]] (NeurIPS'25), [[2510.06056|DeepEvolve]], [[2509.19349|ShinkaEvolve]] (ICLR'26), [[2509.16865|LLM-CombOpt-Solvers]] (NeurIPS'25), [[2508.05433|MLES]] (ICLR'26), [[2506.13131|AlphaEvolve]], [[2505.17866|DesignX]] (NeurIPS'25), [[2505.16053|RLAF]] (ICLR'26), [[2505.12285|CALM-Heuristic-Design]] (ICLR'26), [[2206.08896|ELM]]
@@ -234,7 +234,7 @@ Agents that generate and execute code as their primary action modality. Instead 
 > - [[2511.18538|Code-Intelligence-Survey]] — Comprehensive synthesis of LLMs for automated software development across the full model lifecycle
 
 **Code World Models** - Agents that write executable programs as world models (transition, reward, or game-rule code), then plan or learn against them instead of a neural simulator.
-- [[2608.27549|Code-as-World]], [[2608.25927|Code World Model]], [[2606.16070|Mind-Studio]], [[2605.30880|PatchWorld]], [[2602.01576|gWorld]], [[2510.04542|CWM-Games]], [[2505.10819|PoE-World]], [[2405.15383|GIF-MCTS]], [[2402.12275|WorldCoder]]
+- [[2609.35047|EMPIRIC]], [[2608.27549|Code-as-World]], [[2608.25927|Code World Model]], [[2606.16070|Mind-Studio]], [[2605.30880|PatchWorld]], [[2602.01576|gWorld]], [[2510.04542|CWM-Games]], [[2505.10819|PoE-World]], [[2405.15383|GIF-MCTS]], [[2402.12275|WorldCoder]]
 
 **3D Scene & Asset Synthesis via Code** - Agents that write Blender, procedural, or scene-program code to build, reconstruct, or edit 3D assets and interactive environments.
 - [[2609.11499|RCWM]], [[2608.24212|NeoWorld-Pro]], [[2608.18840|RoomWright]], [[2606.02580|SEIG]], [[2606.01869|WorldCoder-Bench]], [[2605.19587|SceneCode]], [[2605.18451|Code-as-Room]], [[2605.14700|SR-Platform]], [[2601.11109|VIGA]], [[2508.08228|LL3M]], [[2403.01248|SceneCraft]], [[2310.12945|3D-GPT]]
@@ -255,7 +255,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 - [[2603.13348|AutoTool]] (ICLR'26), [[2509.23285|Tool-Light]] (ICLR'26), [[2509.21826|ResT-RL]] (ICLR'26), [[2509.17325|CodeGym]] (ICLR'26), [[2509.02479|SimpleTIR]] (ICLR'26), [[2509.01055|VerlTool]], [[2505.07773|ZeroTIR]], [[2505.00024|Nemotron-Research-Tool-N1]] (ICLR'26), [[2504.13958|ToolRL]] (NeurIPS'25), [[2504.11536|ReTool]] (ICLR'26), [[2504.04736|SWiRL]], [[2503.23383|ToRL]]
 
 **Embodied & Robotic Tool Use** — Tool-use RL and functional-tool-grounding methods applied to embodied and robotic agents.
-- [[2609.27340|MCP Robot Navigation]], [[2608.05738|VLA-Talker]], [[2607.05780|FORGE]], [[2605.26637|Embodied-Tool-Protocol]], [[2605.13119|VLAs-as-Tools]], [[2602.09430|AtomBridge]], [[2510.14902|VLA2]]
+- [[2609.35318|DexAgent]], [[2609.27340|MCP Robot Navigation]], [[2608.05738|VLA-Talker]], [[2607.05780|FORGE]], [[2605.26637|Embodied-Tool-Protocol]], [[2605.13119|VLAs-as-Tools]], [[2602.09430|AtomBridge]], [[2510.14902|VLA2]]
 
 > [!star] Key Papers
 > - [[2504.11536|ReTool]] (ICLR'26) — ByteDance's RL framework enabling LLMs to dynamically decide when to invoke tools during reasoning
@@ -284,7 +284,7 @@ Training LLMs to learn when and how to invoke external tools through reinforceme
 > - [[2509.01656|ReV-PT]] — RL-trained visual tool-use policy for compositional reasoning across detectors, segmenters, and editors
 
 **Agentic Image & Video Editing** - Agents that plan and orchestrate editing or generation tools, or emit code, across multi-turn image and video creation tasks.
-- [[2607.27380|VideoCoCo]], [[2607.05465|CanvasAgent]], [[2606.23327|VideoAgent-Edit]], [[2603.29602|IMAGAgent]], [[2509.12883|Lego-Edit]], [[2509.10761|EditDuet]], [[2506.20911|FaSTA*]], [[2503.10613|CoSTA*]]
+- [[2609.34309|MaLiang-Harness]], [[2607.27380|VideoCoCo]], [[2607.05465|CanvasAgent]], [[2606.23327|VideoAgent-Edit]], [[2603.29602|IMAGAgent]], [[2509.12883|Lego-Edit]], [[2509.10761|EditDuet]], [[2506.20911|FaSTA*]], [[2503.10613|CoSTA*]]
 
 **Routing, Composition & Model Selection** — Meta-agents that dynamically select, compose, or route between multiple models and tools to match task requirements.
 - [[2604.23626|GraphPlanner]] (ICLR'26), [[2601.03872|ATLAS]], [[2512.24330|SenseNova-MARS]], [[2506.09033|Router-R1]] (NeurIPS'25), [[2506.04632|Risk-Sensitive-Agents]] (ICLR'26)
@@ -364,7 +364,7 @@ Agents that operate in real digital environments -- browsing the web, interactin
 Systems where multiple LLM agents collaborate, specialize, or compete. Multi-agent architectures enable division of labor, debate-based reasoning, and scalable task decomposition that single agents cannot achieve.
 
 **Physical & Robotic Multi-Agent Coordination** — Multi-agent architectures coordinating physical or scientific-domain systems: multi-robot teams, industrial governance, chip placement, and infrastructure control.
-- [[2609.08220|AID-SR]], [[2607.18536|MAGE-MacroPlacement]], [[2607.12050|EFLUX]], [[2607.07403|Megamind]], [[2606.31339|Verification-Gated Mission Governance]], [[2606.25404|HEART]], [[2602.14926|MAC-AMP]] (ICLR'26), [[2506.18448|GraspMAS]] (IROS'25), [[2505.19486|VLMLight]] (NeurIPS'25), [[2503.11739|CoLLMLight]] (ICLR'26), [[2409.10106|Industry 6.0]] (IROS'25)
+- [[2609.35651|D4ORM]], [[2609.32745|MORPH]], [[2609.08220|AID-SR]], [[2607.18536|MAGE-MacroPlacement]], [[2607.12050|EFLUX]], [[2607.07403|Megamind]], [[2606.31339|Verification-Gated Mission Governance]], [[2606.25404|HEART]], [[2602.14926|MAC-AMP]] (ICLR'26), [[2506.18448|GraspMAS]] (IROS'25), [[2505.19486|VLMLight]] (NeurIPS'25), [[2503.11739|CoLLMLight]] (ICLR'26), [[2409.10106|Industry 6.0]] (IROS'25)
 
 **Multi-Agent Orchestration & Training** - Architectures and RL fine-tuning methods for coordinating and training teams of software agents.
 - [[2604.01658|CORAL]], [[2601.19204|MATA]] (ICLR'26), [[2601.10825|Societies-of-Thought]], [[2601.09295|MACRO-LLM]], [[2512.04388|Conductor]] (ICLR'26), [[2510.11062|AT-GRPO]] (ICLR'26), [[2509.24323|MAS²]], [[2508.13167|CoA]], [[2507.01701|LbMAS]], [[2506.12508|AgentOrchestra]], [[2505.23885|OWL-Workforce]] (NeurIPS'25), [[2505.19591|Puppeteer-Agent]] (NeurIPS'25), [[2504.16129|MARFT]], [[2504.01990|Foundation-Agents-Survey]], [[2501.15228|MMOA-RAG]] (NeurIPS'25)
@@ -406,14 +406,14 @@ Agents that accumulate experience over time, build persistent memory, and reuse 
 - 2023-2025 · [[2512.23343|Agent Memory Survey 2025]], [[2512.20092|Memory-T1]] (ICLR'26), [[2512.13564|AI-Agent-Memory-Survey]], [[2511.14004|STAR-Memory-Action]], [[2510.04618|ACE]] (ICLR'26), [[2509.23040|ReMemR1]] (ICLR'26), [[2508.06433|Memp]], [[2508.01415|RoboMemory]], [[2506.15841|MEM1]] (ICLR'26), [[2504.15965|AI-Memory-Survey]], [[2504.07952|Dynamic Cheatsheet]], [[2409.18313|Embodied-RAG]], [[2409.07429|AWM-Agent]], [[2310.08560|MemGPT]], [[2308.10144|ExpeL]]
 
 **Skill Libraries, Discovery & Internalization** — Agents that maintain persistent, reusable skill repositories and discover or internalize new skills without retraining.
-- [[2609.11682|COBRA-Skills]], [[2609.05571|Code2Skill]], [[2608.24747|SkillForge]], [[2608.02636|Feedback-Conditioned Skill Evolution]], [[2607.08448|Harness-VLA]], [[2607.00272|ASPIRE]], [[2606.29538|Resource2Skill]], [[2606.08671|SkillHone]], [[2605.19576|Ratchet]], [[2605.06614|SkillOS]], [[2604.27488|Skills-Coach]], [[2604.04804|SkillX]], [[2604.02268|SKILL0]], [[2604.01687|EvoSkills]], [[2603.18743|Memento-Skills]], [[2603.12056|XSkill]] (ICML'26), [[2602.08234|SkillRL]], [[2505.20286|Alita]], [[2504.07079|SkillWeaver]], [[2305.16291|Voyager]]
+- [[2609.37810|RoboSkill]], [[2609.35690|APPL]], [[2609.30674|SkillRefine]], [[2609.11682|COBRA-Skills]], [[2609.05571|Code2Skill]], [[2608.24747|SkillForge]], [[2608.02636|Feedback-Conditioned Skill Evolution]], [[2607.08448|Harness-VLA]], [[2607.00272|ASPIRE]], [[2606.29538|Resource2Skill]], [[2606.08671|SkillHone]], [[2605.19576|Ratchet]], [[2605.06614|SkillOS]], [[2604.27488|Skills-Coach]], [[2604.04804|SkillX]], [[2604.02268|SKILL0]], [[2604.01687|EvoSkills]], [[2603.18743|Memento-Skills]], [[2603.12056|XSkill]] (ICML'26), [[2602.08234|SkillRL]], [[2505.20286|Alita]], [[2504.07079|SkillWeaver]], [[2305.16291|Voyager]]
 
 > [!star] Key Papers
 > - [[2305.16291|Voyager]] — Automatic curriculum plus an ever-growing library of executable skills; discovered 3.3x more unique items than prior agents
 > - [[2603.18743|Memento-Skills]] — Skill library as external memory with a behaviour-aligned router; GAIA 52.3% -> 66.0%, HLE 17.9% -> 38.7%
 
 **Memory-Integrated RL & Self-Evolving Memory** — RL and evolutionary-search methods where the memory or planning trace itself is the object being trained or evolved.
-- [[2608.10504|MEGA]], [[2603.24639|ERL]] (ICLR'26 Workshop), [[2602.23008|EMPO-squared]] (ICLR'26), [[2602.17930|MIRA-RL]] (ICLR'26), [[2601.03192|MemRL]], [[2512.18746|MemEvolve]], [[2510.12635|MemAct]], [[2509.25140|ReasoningBank]] (ICLR'26)
+- [[2608.10504|MEGA]], [[2607.28272|MemHarness]], [[2603.24639|ERL]] (ICLR'26 Workshop), [[2602.23008|EMPO-squared]] (ICLR'26), [[2602.17930|MIRA-RL]] (ICLR'26), [[2601.03192|MemRL]], [[2512.18746|MemEvolve]], [[2510.12635|MemAct]], [[2509.25140|ReasoningBank]] (ICLR'26)
 
 > [!star] Key Papers
 > - [[2603.18743|Memento-Skills]] — Skill library as external memory for continual learning; agents store and retrieve reusable skills without weight updates
@@ -429,10 +429,13 @@ Agents that accumulate experience over time, build persistent memory, and reuse 
 Agents that process visual, spatial, and multi-sensory inputs alongside language, enabling interaction with physical and visual environments beyond text-only tasks.
 
 **Physical Robot Agent Architectures & Manipulation** — Integrated architectures combining vision-language understanding with agent capabilities for real-world robot manipulation and interaction.
-- [[2609.29964|WAA]], [[2609.29389|K1]], [[2609.29204|AdaHVLA]], [[2609.29091|Agentic Embodied Manipulation]], [[2609.19138|GPT-Policy]], [[2609.09808|GTA-2]], [[2609.01281|EmbodiedSkills]], [[2608.29896|EMERGE-Policy]], [[2608.03924|ETA]], [[2607.26148|Agentic Embodied Control]], [[2607.23784|ARCHITECT]], [[2607.18060|RoboHarness]], [[2607.16636|PhyAgentOS]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2607.11119|VIA]], [[2607.10350|ABot-AgentOS]], [[2607.05377|Cortex]], [[2607.04426|ACE-Brain-0.5]], [[2606.30632|GROW²]], [[2606.16295|VisualClaw]], [[2606.05395|VASO]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2604.20348|BiCICLe]], [[2512.21220|RoboSafe]], [[2510.21817|VITA-E]], [[2505.20424|ApBot]]
+- [[2609.29091|Agentic Embodied Manipulation]], [[2609.09808|GTA-2]], [[2609.01281|EmbodiedSkills]], [[2608.29896|EMERGE-Policy]], [[2608.03924|ETA]], [[2607.23784|ARCHITECT]], [[2607.12894|Hy-Embodied-VLM-1.0]], [[2607.11119|VIA]], [[2607.10350|ABot-AgentOS]], [[2607.05377|Cortex]], [[2607.04426|ACE-Brain-0.5]], [[2606.30632|GROW²]], [[2606.16295|VisualClaw]], [[2605.21133|Spatial-Brain-Cerebellum]], [[2604.20348|BiCICLe]], [[2512.21220|RoboSafe]], [[2510.21817|VITA-E]], [[2505.20424|ApBot]]
+
+**Robot Harnesses Around a Frozen Policy** - Scaffolds of code, skills, memory and verifiers that steer a fixed VLA or VLM at runtime, improved without weight updates.
+- [[2610.02204|RPG-Robot]], [[2609.40306|DynaHarness]], [[2609.39304|Scale and Selection]], [[2609.38078|MotorMind]], [[2609.37583|RoboHarn-Evo]], [[2609.34276|NavHarness]], [[2609.33378|RHD]], [[2609.32862|RoboFoundry]], [[2609.29964|WAA]], [[2609.29389|K1]], [[2609.29204|AdaHVLA]], [[2609.19138|GPT-Policy]], [[2607.26148|Agentic Embodied Control]], [[2607.18060|RoboHarness]], [[2607.16636|PhyAgentOS]], [[2606.05395|VASO]]
 
 **Embodied Simulation, World Engines & Foundational Benchmarks** — Simulated worlds, 3D scene engines, and benchmark environments underpinning embodied multimodal agent research.
-- [[2608.15265|VibeWorlding]], [[2608.05248|WorldClaw]], [[2607.11377|PHILIA]], [[2607.07534|LingBot-World-Infinity]], [[2607.07459|EmbodiedGen V2]], [[2412.13178|SafeAgentBench]], [[2410.06237|BUMBLE]], [[2403.19622|RH20T-P]] (NeurIPS'24 Workshop), [[2304.04321|ARNOLD]], [[2210.03094|VIMA]] (ICML'23), [[1806.07011|VirtualHome]] (CVPR'18)
+- [[2610.00854|Embodied Agent Arena]], [[2608.15265|VibeWorlding]], [[2608.05248|WorldClaw]], [[2607.11377|PHILIA]], [[2607.07534|LingBot-World-Infinity]], [[2607.07459|EmbodiedGen V2]], [[2412.13178|SafeAgentBench]], [[2410.06237|BUMBLE]], [[2403.19622|RH20T-P]] (NeurIPS'24 Workshop), [[2304.04321|ARNOLD]], [[2210.03094|VIMA]] (ICML'23), [[1806.07011|VirtualHome]] (CVPR'18)
 
 **General Multimodal Vision-Agent Architectures** — Vision-language agents for non-embodiment tasks: image/video understanding, generalized visual search, and domain-specialized reasoning.
 - [[2602.17558|RetouchIQ]], [[2512.18745|InSight-o3]] (ICLR'26), [[2512.05111|ARM-Thinker]], [[2511.19524|VideoChat-M1]] (CVPR'26), [[2511.05271|DeepEyesV2]] (ICLR'26)
