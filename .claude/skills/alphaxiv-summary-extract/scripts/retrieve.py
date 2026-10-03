@@ -42,7 +42,7 @@ Reply with ONLY this JSON object, no other text, no markdown code fence:
 {{"Summary": "...", "Problem": ["...", "...", "..."], "Method": ["...", "...", "..."], "Results": ["...", "...", "..."], "Takeaways": ["...", "...", "..."]}}
 """
 
-GENERATE_TIMEOUT = 300  # measured ~90-130s/paper; margin
+GENERATE_TIMEOUT = 900  # typical 90-130s; oversized papers overflow the MCP limit and read the saved file in chunks (2609.20519: 276s, 5 papers failed at 300s)
 
 
 def extract_title(url: str) -> Optional[str]:

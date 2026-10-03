@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Drive a cmux browser to generate alphaxiv overviews for papers whose Detailed Report is missing.
+"""Drive a cmux browser to fill the Detailed Report of KH notes that are missing one.
 
-`retrieve.fetch_research_report` 404s until alphaxiv generates that paper's overview — this only
-affects the Detailed Report, not the five short fields. Patches the report into the existing KH note
-in place once generated, no note regeneration. Run in the foreground or a harness-managed background —
-nohup breaks cmux's socket eval.
+The report comes from alphaxiv's `overview/{id}.md` intermediate report when it exists; otherwise from
+the abs page's AI OVERVIEW panel, copied as markdown via its Copy button (alphaxiv's 2026-09 UI no longer
+publishes a `.md` for newly generated overviews). Patches the existing KH note in place, no note
+regeneration. Run in the foreground — nohup and `run_in_background` both break cmux's socket eval.
 
 Usage:
     python generate_overviews.py --missing-reports        # every KH note lacking ## Detailed Report
@@ -24,22 +24,44 @@ from pathlib import Path
 from typing import Optional
 
 from common import ABS_URL, ARXIV_ID_RE, KH_DIR, overview_link_selector
+from format_reports import format_report
 from retrieve import fetch_research_report
+from validate_reports import check
 
-# Probe the page state: is the Generate button present, and is the overview fully rendered?
-PROBE_JS = r"""(() => {
+MIN_OVERVIEW_CHARS = 1500  # smallest real AI overview seen was ~4.3k chars; below this the copy failed
+CLIPBOARD_SETTLE_SECONDS = 2  # Copy click -> pbpaste; 2s was enough on all 101 rescued notes
+
+# Locate the abs page's "AI OVERVIEW" panel; its container sits 4 ancestors above the label leaf.
+_AI_PANEL_JS = r"""
+  const leaf = [...document.querySelectorAll("*")].find(x => x.childElementCount === 0 && /^AI OVERVIEW$/i.test((x.textContent||"").trim()));
+  let box = leaf; for (let i = 0; leaf && i < 4; i++) box = box.parentElement;
+"""
+
+# Page state: is the AI overview rendered (Copy button, no progress text), and is the page an error page?
+PROBE_JS = r"""(() => {""" + _AI_PANEL_JS + r"""
   const body = document.body.innerText || "";
-  const genBtn = [...document.querySelectorAll("button")].some(b => /generate overview/i.test(b.textContent||""));
-  const heads = [...document.querySelectorAll("h1,h2,h3")].map(h => (h.textContent||"").trim().toLowerCase());
-  const hasToC = heads.some(h => h.includes("table of contents"));
-  const err = /page not found|404|does not exist|couldn.t find|no longer available|error loading/i.test(body);
-  return JSON.stringify({genBtn: genBtn, hasToC: hasToC, len: body.length, err: err});
+  const t = box ? (box.innerText || "") : "";
+  const copy = !!box && [...box.querySelectorAll("button")].some(b => /^copy$/i.test((b.textContent||"").trim()));
+  const gen = [...document.querySelectorAll("button")].some(b => /generate/i.test(b.textContent||"") && !/audio/i.test(b.textContent||""));
+  // A real paper page shows its ABSTRACT, whose own text can contain these phrases (2609.35200's says "no longer available").
+  const err = !/\bABSTRACT\b/.test(body) && /page not found|does not exist|couldn.t find|no longer available|error loading/i.test(body.slice(0, 2000));
+  // Progress is "Reading the paper" or a bare N% line; a percentage inside overview prose (2609.38905: "14.0% of the time") is not.
+  return JSON.stringify({found: !!leaf, copy: copy, progress: /Reading the paper|^\s*\d{1,3}%\s*$/im.test(t.slice(0, 300)), gen: gen, len: t.length, err: err});
 })()"""
 
-# Click the "Generate Overview" button if present.
+# Click a generate button if one is present (the AI overview usually auto-generates on visit).
 CLICK_JS = r"""(() => {
-  const b = [...document.querySelectorAll("button")].find(x => /generate overview/i.test(x.textContent||""));
+  const b = [...document.querySelectorAll("button")].find(x => /generate/i.test(x.textContent||"") && !/audio/i.test(x.textContent||""));
   if (!b) return "no-btn";
+  b.click();
+  return "clicked";
+})()"""
+
+# Click the AI overview's Copy button, which puts the overview's markdown on the clipboard.
+COPY_JS = r"""(() => {""" + _AI_PANEL_JS + r"""
+  if (!box) return "no-panel";
+  const b = [...box.querySelectorAll("button")].find(x => /^copy$/i.test((x.textContent||"").trim()));
+  if (!b) return "no-copy";
   b.click();
   return "clicked";
 })()"""
@@ -95,8 +117,8 @@ def probe(surface: str, retries: int = 4) -> Optional[dict]:
 
 
 def is_done(state: Optional[dict]) -> bool:
-    """Strong/fast completion signal: a fully-rendered overview with a Table-of-Contents heading."""
-    return bool(state and state.get("hasToC") and state.get("len", 0) > 5000)
+    """Return True when the AI overview has finished rendering (Copy button present, no progress text)."""
+    return bool(state and state.get("copy") and not state.get("progress"))
 
 
 def open_overview(surface: str, paper_id: str) -> str:
@@ -128,32 +150,47 @@ def generate_one(surface: str, paper_id: str, per_timeout: int, poll: int = 7) -
         return "withdrawn"  # 404 / withdrawn — nothing to generate
     if is_done(state):
         return "already"  # overview already exists
-    if state.get("genBtn") and "clicked" not in cmux(surface, "eval", CLICK_JS):
-        time.sleep(2)
-        cmux(surface, "eval", CLICK_JS)  # first click didn't register — retry once
+    if state.get("gen"):
+        cmux(surface, "eval", CLICK_JS)
 
-    # Done = ToC heading + large body (fast, strong), OR a button-free large body that stopped
-    # growing across two polls — the stream finished even without a ToC (older/short papers).
     start = time.time()
-    prev_len = -1
-    stable = 0
     while time.time() - start < per_timeout:
         time.sleep(poll)
         state = probe(surface)
-        if not state:
-            continue
         if is_done(state):
             return "generated"
-        if not state.get("genBtn") and state.get("len", 0) > 6000:
-            stable = stable + 1 if abs(state["len"] - prev_len) < 200 else 0
-            prev_len = state["len"]
-            if stable >= 2:  # ~2 polls (~14s) of a stable, button-free, sizable page
-                return "generated"
-        elif state.get("genBtn"):  # click didn't register — retry and reset stability
+        if state and state.get("gen"):  # a click that didn't register — retry
             cmux(surface, "eval", CLICK_JS)
-            stable = 0
-            prev_len = -1
     return "timeout"
+
+
+def copy_ai_overview(surface: str) -> str:
+    """Click the rendered AI overview's Copy button and return the clipboard markdown ("" on failure)."""
+    # macOS clipboard (pbcopy/pbpaste): the Copy button is the only way to get the overview as markdown.
+    subprocess.run(["pbcopy"], input="", text=True)
+    if "clicked" not in cmux(surface, "eval", COPY_JS):
+        return ""
+    time.sleep(CLIPBOARD_SETTLE_SECONDS)
+    return subprocess.run(["pbpaste"], capture_output=True, text=True).stdout
+
+
+def ai_overview_to_report(raw_md: str, kh_ids: set, paper_id: str) -> str:
+    """Format copied AI-overview markdown into a Detailed Report body (intro kept, [pN] cites dropped)."""
+    raw_md = re.sub(r"\[p\d+(?:[,\u2013-]\s*p?\d+)*\]", "", raw_md)
+
+    def _link(match: "re.Match") -> str:
+        """Rewrite an alphaxiv/arxiv markdown link: self-link to plain text, in-vault paper to a wikilink."""
+        text, pid = match.group(1), match.group(2)
+        if pid == paper_id:
+            return text
+        return f"[[{pid}|{text}]]" if pid in kh_ids else match.group(0)
+
+    raw_md = re.sub(
+        r"\[([^\]]+)\]\(https?://(?:www\.)?(?:alphaxiv|arxiv)\.org/(?:abs|overview|pdf)/(\d{4}\.\d{4,5})[^)]*\)",
+        _link, raw_md)
+    if not raw_md.lstrip().startswith("#"):
+        raw_md = "## Overview\n\n" + raw_md  # format_report drops text before the first heading
+    return format_report(raw_md, kh_ids)
 
 
 def load_ids(args: argparse.Namespace) -> list:
@@ -181,8 +218,8 @@ def load_ids(args: argparse.Namespace) -> list:
     sys.exit("provide --ids, --ids-file, --pending, or --missing-reports")
 
 
-def patch_detailed_report(kh_dir: str, paper_id: str) -> str:
-    """Fetch a paper's now-generated Detailed Report and append it to its existing KH note in place."""
+def patch_detailed_report(kh_dir: str, paper_id: str, surface: Optional[str] = None) -> str:
+    """Fetch a paper's Detailed Report (.md, else the page's AI overview) and append it to its KH note."""
     # Only for notes that already exist and already have their five fields — this never regenerates
     # a note, it only backfills the one section that depends on alphaxiv having an overview.
     note_path = Path(kh_dir) / f"{paper_id}.md"
@@ -195,16 +232,27 @@ def patch_detailed_report(kh_dir: str, paper_id: str) -> str:
     # cmux just confirmed the overview is rendered server-side, but the `.md` endpoint is a separate
     # request and can lag briefly behind — retry rather than treat a fresh generation as a dead end.
     report = ""
-    for attempt in range(3):
+    for attempt in range(2):
         report = fetch_research_report(paper_id, kh_ids)
         if report.strip():
             break
-        if attempt < 2:
+        if attempt < 1:
             time.sleep(5)
+    source = "md"
+    if not report.strip() and surface:
+        # No intermediate report: fall back to the AI overview the browser just confirmed is rendered.
+        raw = copy_ai_overview(surface)
+        if len(raw) < MIN_OVERVIEW_CHARS:
+            return "copy-failed"
+        report, source = ai_overview_to_report(raw, kh_ids, paper_id), "ai-overview"
     if not report.strip():
         return "fetch-failed"
-    note_path.write_text(text.rstrip("\n") + f"\n\n## Detailed Report\n\n{report}\n", encoding="utf-8")
-    return "patched"
+    patched = text.rstrip("\n") + f"\n\n## Detailed Report\n\n{report}\n"
+    problems = check(patched)
+    if problems:
+        return f"validate-fail {problems}"
+    note_path.write_text(patched, encoding="utf-8")
+    return f"patched-{source}"
 
 
 def main() -> None:
@@ -240,7 +288,7 @@ def main() -> None:
         # A note that already exists (--missing-reports, or a --pending id ingested meanwhile) gets
         # its Detailed Report backfilled in place — no note regeneration, no re-running content synthesis.
         if outcome in ("generated", "already"):
-            patch_outcome = patch_detailed_report(args.kh_dir, paper_id)
+            patch_outcome = patch_detailed_report(args.kh_dir, paper_id, surface)
             outcome = f"{outcome}+{patch_outcome}"
         stats[outcome] = stats.get(outcome, 0) + 1
         print(f"[{n:>3}/{len(ids)}] {paper_id}  {outcome}  ({int(time.time() - start)}s)", flush=True)

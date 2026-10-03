@@ -212,30 +212,34 @@ Every note's five short fields must be sourced from the paper's own full text: d
 
 **The Detailed Report is a separate, real gap, non-fatal to the note** (written without that section) — see the rescue section right after this one.
 
-## Papers with no pre-generated alphaxiv overview (rescue for the Detailed Report only)
+## Papers with no alphaxiv report (rescue for the Detailed Report only)
 
-Persistent Detailed Report fetch failures (`fetch_research_report` returns `""`, note ends up missing `## Detailed Report`) mean that specific paper has **no pre-generated overview** on alphaxiv — `alphaxiv.org/overview/{ID}` shows a *"Generate Overview"* button. This is **not** transient or rate-limiting; re-fetching alone won't fix it. Generation is **server-side and per-paper** (not per-browser): once an overview exists, any later fetch — including a plain unauthenticated `curl` to the `.md` endpoint — can read it. So the rescue is to trigger generation once, then patch the Detailed Report into the existing note (no note regeneration, no re-running the five-field synthesis).
+`fetch_research_report` reads `overview/{ID}.md`, which serves alphaxiv's **intermediate report**. When a paper has none, the endpoint 404s with `No intermediate report available for {ID}vN` and the note is written without `## Detailed Report`. This is per-paper, not transient: re-fetching won't fix it, and neither MCP `get_paper_content` (it falls back to full text) nor the abs page's generate flow creates one. Since alphaxiv's 2026-09 UI, new overviews appear only as the abs page's **AI OVERVIEW** panel, a blog-style overview with no `.md` render. The rescue copies that panel instead.
 
-### `generate_overviews.py --missing-reports` (primary use case now)
+### `generate_overviews.py --missing-reports`
 
-Targets every KH note currently lacking `## Detailed Report` — exactly `validate_reports.py`'s "NO '## Detailed Report' section" failure signature — drives a cmux browser surface through each one, clicks *"Generate Overview"*, waits for it to fully render, then **patches the Detailed Report directly into the existing note** (`patch_detailed_report`, appends after existing content — never touches the five fields already there):
+Targets every KH note lacking `## Detailed Report` (the validator's "NO '## Detailed Report' section" signature). For each paper it opens the abs page in a cmux browser surface, waits for the AI overview to finish rendering, then patches the note in place (`patch_detailed_report`, appended after existing content; the five fields are never touched):
+
+1. Try the `.md` intermediate report first.
+2. Otherwise click the AI overview's **Copy** button, read the markdown from the macOS clipboard, and run it through `ai_overview_to_report`: keeps the intro as `### 1. Overview`, drops `[pN]` page cites, turns links to in-vault papers into wikilinks and self-links into plain text, then applies `format_report`.
+3. Validate with `validate_reports.check` before writing; a failing report is reported, not written.
 
 ```bash
 .venv/bin/python .claude/skills/alphaxiv-summary-extract/scripts/generate_overviews.py --missing-reports
 ```
 
-Also supports `--ids`/`--ids-file` (explicit targets) and `--pending` (every `knowledge.py` ID with no KH note at all — a pre-warming pass, though most fresh papers already succeed on first fetch without it).
+Also supports `--ids`/`--ids-file` (explicit targets) and `--pending` (`knowledge.py` IDs with no note yet). Outcomes read `already|generated` plus `+patched-md`, `+patched-ai-overview`, `+copy-failed` or `+validate-fail [...]`.
 
-It opens a **visible** surface by default (`--focus true`, via `--no-visible` to suppress) so a human can watch it work, reuses that one surface (navigating in place), retries the probe on warm-up, detects withdrawn/404 pages, and caps each paper at `--timeout` seconds so one stuck page can't hang the loop.
+The AI overview reads differently from the old reports: narrative section titles instead of a fixed Research Context / Methodology spine, and figure captions kept as short paragraphs. It passes the validator as is.
 
-Four gotchas the script encodes — they cost real debugging time, so respect them when invoking or adapting it:
+Gotchas the script encodes:
 
-- **Never `nohup ... &` it.** Detaching from the TTY breaks cmux's socket `eval` (returns empty → every paper silently skipped, nothing generated). Run it in the **foreground**, or via a harness-managed background runner that keeps the cmux socket alive (Claude Code's `run_in_background`). The tell-tale is `[probe empty]` on every paper.
-- **Completion = a "Table of Contents" heading + a large body (~>5000 chars).** Don't poll for the word *"generating"* — it false-positives on section headings (e.g. *"Generating Obstacle-Aware Trajectory Supervision"*).
-- **The first probe after navigation is often empty** (browser warm-up); one empty read is not a failure, so the script retries before giving up.
-- **Each paper takes ~30–120 s** to generate, so a large failed batch runs for a while — that's inherent (you're waiting on alphaxiv's server), not a bug.
+- **Run it in the foreground.** `nohup` and the Bash tool's `run_in_background: true` both break cmux's socket `eval`: every paper probe-fails in about 18s. A foreground run that the harness moves to the background after 600s keeps working.
+- **Completion = the AI OVERVIEW panel shows a Copy button and no progress text** (`Reading the paper...`, `55%`). Generation starts on page visit and takes minutes per paper.
+- **The clipboard is shared.** Run one instance at a time and don't copy anything yourself while it runs, or a note can receive the wrong text.
+- **The first probe after navigation is often empty** (browser warm-up), so the script retries before giving up.
 
-Same rule as the five fields, applied to this one section: never fabricate a Detailed Report from the arxiv abstract/HTML/PDF as a substitute. If an overview still cannot be generated, leave that note without one. A `404` on `/abs/{ID}.md` (or an `err` page in the generator) means the paper is withdrawn — skip it.
+Never fabricate a Detailed Report from the arxiv abstract/HTML/PDF. If neither the `.md` nor an AI overview exists, leave the note without one. A withdrawn paper shows an error page; skip it.
 
 ## Notes
 
