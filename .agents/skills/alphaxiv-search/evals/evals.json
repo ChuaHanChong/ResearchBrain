@@ -1,0 +1,43 @@
+{
+  "skill_name": "alphaxiv-search",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "search alphaxiv for recent papers on using GRPO-style reinforcement learning to fine-tune vision-language-action models for robotics",
+      "expected_output": "Calls the current discover_papers tool (not a retired tool name) with a keywords array, a semantic question string, and a difficulty number, then returns a ranked list of real candidate papers.",
+      "files": [],
+      "expectations": [
+        "Calls mcp__alphaxiv__discover_papers, not embedding_similarity_search/full_text_papers_search/agentic_paper_retrieval",
+        "discover_papers call includes a keywords array (3-4 terms)",
+        "discover_papers call includes a question string (semantic description)",
+        "discover_papers call includes a difficulty number",
+        "No tool-call error surfaces to the final answer"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "can you check the FlashSAC paper (arxiv 2604.04539) and tell me what update-to-data ratio and batch size it uses, plus what the entropy target is",
+      "expected_output": "Calls answer_pdf_queries once with paper=\"2604.04539\" and a queries array batching all three questions, and returns correct values (UTD 2/1024 or 2/2048 depending on table, batch size 2048, entropy target sigma_tgt=0.15).",
+      "files": [],
+      "expectations": [
+        "Calls mcp__alphaxiv__answer_pdf_queries with param name 'paper' (not 'url')",
+        "Calls mcp__alphaxiv__answer_pdf_queries with param name 'queries' as an array (not a single 'query' string)",
+        "All three questions are batched into one answer_pdf_queries call, not three separate calls",
+        "Final answer states batch size 2048",
+        "Final answer states entropy target / sigma_tgt around 0.15"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "get me the training loop code from the LoRA (low-rank adaptation) paper's official repo - I want to see how they apply the low-rank update during the forward pass",
+      "expected_output": "Finds the paper and its GitHub URL (microsoft/LoRA), then uses read_files_from_github_repository starting with path=\"/\" for an overview before drilling into the relevant source file.",
+      "files": [],
+      "expectations": [
+        "Identifies the correct GitHub repo (microsoft/LoRA or equivalent official repo)",
+        "Calls mcp__alphaxiv__read_files_from_github_repository with path=\"/\" at least once before drilling into a specific file",
+        "Eventually reads a specific source file relevant to the low-rank forward pass, not just the repo root",
+        "No tool-call error surfaces to the final answer"
+      ]
+    }
+  ]
+}
